@@ -8,15 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <MSDynamicsDrawerViewController.h>
+#import "YXDrawerViewController.h"
 
 @interface YXDrawerController : NSObject
 
 + (void)showDrawer;
 + (void)hideDrawer;
 
-+ (MSDynamicsDrawerViewController *)drawer;
-
-+ (void)enableDrag;
-+ (void)disableDrag;
++ (YXDrawerViewController *)drawer;
 
 @end

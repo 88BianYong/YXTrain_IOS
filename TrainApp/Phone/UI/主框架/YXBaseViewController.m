@@ -27,10 +27,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotate{
+    return NO;
+}
+
 - (UINavigationController *)navigationController{
     UINavigationController *navi = [super navigationController];
     if (!navi) {
-        MSDynamicsDrawerViewController *drawerVC = [YXDrawerController drawer];
+        YXDrawerViewController *drawerVC = [YXDrawerController drawer];
         if ([drawerVC.paneViewController isKindOfClass:[UINavigationController class]]) {
             navi = (UINavigationController *)drawerVC.paneViewController;
         }

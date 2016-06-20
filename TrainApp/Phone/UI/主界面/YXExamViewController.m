@@ -38,8 +38,18 @@
 }
 
 - (void)btnAction{
-    YXTestPushViewController *vc = [[YXTestPushViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
+    item.name = @"测试测试";
+    item.url = @"http://mbtestsourse.teacherclub.com.cn/course/cf/ts/ts_gg/xy_xyp/video/xyp/xyp.m3u8";
+    [YXFileBrowseManager sharedManager].fileItem = item;
+    [YXFileBrowseManager sharedManager].baseViewController = self;
+    [[YXFileBrowseManager sharedManager]addFavorWithData:[NSObject new] completion:^{
+        NSLog(@"Item favor success!");
+    }];
+    [[YXFileBrowseManager sharedManager] browseFile];
+    return;
+//    YXTestPushViewController *vc = [[YXTestPushViewController alloc]init];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

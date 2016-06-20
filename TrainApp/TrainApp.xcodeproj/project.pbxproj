@@ -80,6 +80,25 @@
 		7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31785A1D139D49004AAC90 /* YXProjectContainerView.m */; };
 		7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31785D1D13DE38004AAC90 /* YXPromtController.m */; };
 		7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178601D13DE57004AAC90 /* YXNavigationBarController.m */; };
+		7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */; };
+		7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */; };
+		7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */; };
+		7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888001D17D4C600E7C04D /* MJRefreshConst.m */; };
+		7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888021D17D4C600E7C04D /* MJRefreshFooterView.m */; };
+		7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888041D17D4C600E7C04D /* MJRefreshHeaderView.m */; };
+		7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8880B1D17D4E100E7C04D /* PagedListViewControllerBase.m */; };
+		7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8880E1D17D4FD00E7C04D /* YXCommonErrorView.m */; };
+		7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888111D17D51500E7C04D /* PagedListFetcherBase.m */; };
+		7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888191D17E51E00E7C04D /* LePlayer.m */; };
+		7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8881B1D17E51E00E7C04D /* LePlayerView.m */; };
+		7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888201D17E6C600E7C04D /* YXPlayerBottomView.m */; };
+		7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888221D17E6C600E7C04D /* YXPlayerBufferingView.m */; };
+		7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888241D17E6C600E7C04D /* YXPlayerTopView.m */; };
+		7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888261D17E6C600E7C04D /* YXPlayerViewController.m */; };
+		7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888281D17E6C600E7C04D /* YXSlideProgressView.m */; };
+		7CF888311D17E82100E7C04D /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888301D17E82100E7C04D /* JKAlertDialog.m */; };
+		7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888331D17ECB800E7C04D /* YXAudioPlayerViewController.m */; };
+		7CF888371D17ECB800E7C04D /* YXAudioSlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888351D17ECB800E7C04D /* YXAudioSlideProgressView.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -248,6 +267,46 @@
 		7C31785D1D13DE38004AAC90 /* YXPromtController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPromtController.m; sourceTree = "<group>"; };
 		7C31785F1D13DE57004AAC90 /* YXNavigationBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNavigationBarController.h; sourceTree = "<group>"; };
 		7C3178601D13DE57004AAC90 /* YXNavigationBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNavigationBarController.m; sourceTree = "<group>"; };
+		7CF887F61D17A77400E7C04D /* YXDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDrawerViewController.h; sourceTree = "<group>"; };
+		7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDrawerViewController.m; sourceTree = "<group>"; };
+		7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		7CF887FC1D17D4C600E7C04D /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		7CF887FD1D17D4C600E7C04D /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
+		7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
+		7CF887FF1D17D4C600E7C04D /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		7CF888001D17D4C600E7C04D /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		7CF888011D17D4C600E7C04D /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
+		7CF888021D17D4C600E7C04D /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
+		7CF888031D17D4C600E7C04D /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
+		7CF888041D17D4C600E7C04D /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
+		7CF8880A1D17D4E100E7C04D /* PagedListViewControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedListViewControllerBase.h; sourceTree = "<group>"; };
+		7CF8880B1D17D4E100E7C04D /* PagedListViewControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedListViewControllerBase.m; sourceTree = "<group>"; };
+		7CF8880D1D17D4FD00E7C04D /* YXCommonErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCommonErrorView.h; sourceTree = "<group>"; };
+		7CF8880E1D17D4FD00E7C04D /* YXCommonErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCommonErrorView.m; sourceTree = "<group>"; };
+		7CF888101D17D51500E7C04D /* PagedListFetcherBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedListFetcherBase.h; sourceTree = "<group>"; };
+		7CF888111D17D51500E7C04D /* PagedListFetcherBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedListFetcherBase.m; sourceTree = "<group>"; };
+		7CF888181D17E51E00E7C04D /* LePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LePlayer.h; sourceTree = "<group>"; };
+		7CF888191D17E51E00E7C04D /* LePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LePlayer.m; sourceTree = "<group>"; };
+		7CF8881A1D17E51E00E7C04D /* LePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LePlayerView.h; sourceTree = "<group>"; };
+		7CF8881B1D17E51E00E7C04D /* LePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LePlayerView.m; sourceTree = "<group>"; };
+		7CF8881E1D17E56C00E7C04D /* SpacemanBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpacemanBlocks.h; sourceTree = "<group>"; };
+		7CF8881F1D17E6C600E7C04D /* YXPlayerBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPlayerBottomView.h; sourceTree = "<group>"; };
+		7CF888201D17E6C600E7C04D /* YXPlayerBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPlayerBottomView.m; sourceTree = "<group>"; };
+		7CF888211D17E6C600E7C04D /* YXPlayerBufferingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPlayerBufferingView.h; sourceTree = "<group>"; };
+		7CF888221D17E6C600E7C04D /* YXPlayerBufferingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPlayerBufferingView.m; sourceTree = "<group>"; };
+		7CF888231D17E6C600E7C04D /* YXPlayerTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPlayerTopView.h; sourceTree = "<group>"; };
+		7CF888241D17E6C600E7C04D /* YXPlayerTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPlayerTopView.m; sourceTree = "<group>"; };
+		7CF888251D17E6C600E7C04D /* YXPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPlayerViewController.h; sourceTree = "<group>"; };
+		7CF888261D17E6C600E7C04D /* YXPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPlayerViewController.m; sourceTree = "<group>"; };
+		7CF888271D17E6C600E7C04D /* YXSlideProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSlideProgressView.h; sourceTree = "<group>"; };
+		7CF888281D17E6C600E7C04D /* YXSlideProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSlideProgressView.m; sourceTree = "<group>"; };
+		7CF8882E1D17E6DC00E7C04D /* YXPlayProgressDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXPlayProgressDelegate.h; sourceTree = "<group>"; };
+		7CF8882F1D17E82100E7C04D /* JKAlertDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAlertDialog.h; sourceTree = "<group>"; };
+		7CF888301D17E82100E7C04D /* JKAlertDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlertDialog.m; sourceTree = "<group>"; };
+		7CF888321D17ECB800E7C04D /* YXAudioPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAudioPlayerViewController.h; sourceTree = "<group>"; };
+		7CF888331D17ECB800E7C04D /* YXAudioPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAudioPlayerViewController.m; sourceTree = "<group>"; };
+		7CF888341D17ECB800E7C04D /* YXAudioSlideProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAudioSlideProgressView.h; sourceTree = "<group>"; };
+		7CF888351D17ECB800E7C04D /* YXAudioSlideProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAudioSlideProgressView.m; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -344,6 +403,7 @@
 		7C31775C1D0E5E0F004AAC90 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7CF888171D17E51200E7C04D /* Player */,
 				7C3177F11D1177E0004AAC90 /* Download */,
 				7C3177DA1D114735004AAC90 /* FileBrowser */,
 				7C3177631D0E688D004AAC90 /* 3rdLib */,
@@ -362,6 +422,7 @@
 		7C3177631D0E688D004AAC90 /* 3rdLib */ = {
 			isa = PBXGroup;
 			children = (
+				7CF887FA1D17D4C600E7C04D /* MJRefresh */,
 				7C31780C1D129BDA004AAC90 /* Reader */,
 			);
 			path = 3rdLib;
@@ -403,6 +464,8 @@
 		7C3177671D0E688D004AAC90 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				7CF8882F1D17E82100E7C04D /* JKAlertDialog.h */,
+				7CF888301D17E82100E7C04D /* JKAlertDialog.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -520,16 +583,13 @@
 		7C3177C01D0EC0FC004AAC90 /* 主框架 */ = {
 			isa = PBXGroup;
 			children = (
+				7CF888141D17D74500E7C04D /* 样式 */,
+				7CF888131D17D69C00E7C04D /* 抽屉 */,
+				7CF887F91D17D45A00E7C04D /* 分页框架 */,
 				7C3177C61D10F46B004AAC90 /* YXBaseViewController.h */,
 				7C3177C71D10F46B004AAC90 /* YXBaseViewController.m */,
 				7C3177C91D10F496004AAC90 /* YXNavigationController.h */,
 				7C3177CA1D10F496004AAC90 /* YXNavigationController.m */,
-				7C3177D71D110D9D004AAC90 /* YXDrawerController.h */,
-				7C3177D81D110D9D004AAC90 /* YXDrawerController.m */,
-				7C31785C1D13DE38004AAC90 /* YXPromtController.h */,
-				7C31785D1D13DE38004AAC90 /* YXPromtController.m */,
-				7C31785F1D13DE57004AAC90 /* YXNavigationBarController.h */,
-				7C3178601D13DE57004AAC90 /* YXNavigationBarController.m */,
 			);
 			path = "主框架";
 			sourceTree = "<group>";
@@ -613,10 +673,13 @@
 		7C3178031D123899004AAC90 /* Browsers */ = {
 			isa = PBXGroup;
 			children = (
+				7CF888161D17D82400E7C04D /* Audio */,
+				7CF888151D17D81900E7C04D /* Video */,
 				7C31782F1D12A396004AAC90 /* Html */,
 				7C31782B1D129D8C004AAC90 /* Photo */,
 				7C3178041D1238C9004AAC90 /* Doc */,
 				7C3178081D12791E004AAC90 /* YXBrowserExitDelegate.h */,
+				7CF8882E1D17E6DC00E7C04D /* YXPlayProgressDelegate.h */,
 			);
 			name = Browsers;
 			sourceTree = "<group>";
@@ -774,6 +837,98 @@
 			name = "简报";
 			sourceTree = "<group>";
 		};
+		7CF887F91D17D45A00E7C04D /* 分页框架 */ = {
+			isa = PBXGroup;
+			children = (
+				7CF888101D17D51500E7C04D /* PagedListFetcherBase.h */,
+				7CF888111D17D51500E7C04D /* PagedListFetcherBase.m */,
+				7CF8880D1D17D4FD00E7C04D /* YXCommonErrorView.h */,
+				7CF8880E1D17D4FD00E7C04D /* YXCommonErrorView.m */,
+				7CF8880A1D17D4E100E7C04D /* PagedListViewControllerBase.h */,
+				7CF8880B1D17D4E100E7C04D /* PagedListViewControllerBase.m */,
+			);
+			name = "分页框架";
+			sourceTree = "<group>";
+		};
+		7CF887FA1D17D4C600E7C04D /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */,
+				7CF887FC1D17D4C600E7C04D /* MJRefresh.h */,
+				7CF887FD1D17D4C600E7C04D /* MJRefreshBaseView.h */,
+				7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */,
+				7CF887FF1D17D4C600E7C04D /* MJRefreshConst.h */,
+				7CF888001D17D4C600E7C04D /* MJRefreshConst.m */,
+				7CF888011D17D4C600E7C04D /* MJRefreshFooterView.h */,
+				7CF888021D17D4C600E7C04D /* MJRefreshFooterView.m */,
+				7CF888031D17D4C600E7C04D /* MJRefreshHeaderView.h */,
+				7CF888041D17D4C600E7C04D /* MJRefreshHeaderView.m */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
+		7CF888131D17D69C00E7C04D /* 抽屉 */ = {
+			isa = PBXGroup;
+			children = (
+				7C3177D71D110D9D004AAC90 /* YXDrawerController.h */,
+				7C3177D81D110D9D004AAC90 /* YXDrawerController.m */,
+				7CF887F61D17A77400E7C04D /* YXDrawerViewController.h */,
+				7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */,
+			);
+			name = "抽屉";
+			sourceTree = "<group>";
+		};
+		7CF888141D17D74500E7C04D /* 样式 */ = {
+			isa = PBXGroup;
+			children = (
+				7C31785C1D13DE38004AAC90 /* YXPromtController.h */,
+				7C31785D1D13DE38004AAC90 /* YXPromtController.m */,
+				7C31785F1D13DE57004AAC90 /* YXNavigationBarController.h */,
+				7C3178601D13DE57004AAC90 /* YXNavigationBarController.m */,
+			);
+			name = "样式";
+			sourceTree = "<group>";
+		};
+		7CF888151D17D81900E7C04D /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				7CF8881F1D17E6C600E7C04D /* YXPlayerBottomView.h */,
+				7CF888201D17E6C600E7C04D /* YXPlayerBottomView.m */,
+				7CF888211D17E6C600E7C04D /* YXPlayerBufferingView.h */,
+				7CF888221D17E6C600E7C04D /* YXPlayerBufferingView.m */,
+				7CF888231D17E6C600E7C04D /* YXPlayerTopView.h */,
+				7CF888241D17E6C600E7C04D /* YXPlayerTopView.m */,
+				7CF888251D17E6C600E7C04D /* YXPlayerViewController.h */,
+				7CF888261D17E6C600E7C04D /* YXPlayerViewController.m */,
+				7CF888271D17E6C600E7C04D /* YXSlideProgressView.h */,
+				7CF888281D17E6C600E7C04D /* YXSlideProgressView.m */,
+			);
+			name = Video;
+			sourceTree = "<group>";
+		};
+		7CF888161D17D82400E7C04D /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				7CF888321D17ECB800E7C04D /* YXAudioPlayerViewController.h */,
+				7CF888331D17ECB800E7C04D /* YXAudioPlayerViewController.m */,
+				7CF888341D17ECB800E7C04D /* YXAudioSlideProgressView.h */,
+				7CF888351D17ECB800E7C04D /* YXAudioSlideProgressView.m */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		7CF888171D17E51200E7C04D /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				7CF888181D17E51E00E7C04D /* LePlayer.h */,
+				7CF888191D17E51E00E7C04D /* LePlayer.m */,
+				7CF8881A1D17E51E00E7C04D /* LePlayerView.h */,
+				7CF8881B1D17E51E00E7C04D /* LePlayerView.m */,
+				7CF8881E1D17E56C00E7C04D /* SpacemanBlocks.h */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		9027B214674A7F10A4FE7EE9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -891,6 +1046,7 @@
 			files = (
 				7C3177601D0E603C004AAC90 /* PhoneImage.xcassets in Resources */,
 				7C31776E1D0E6E92004AAC90 /* YXConfig.plist in Resources */,
+				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
@@ -969,22 +1125,31 @@
 			files = (
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
+				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
 				7C3177FC1D1177F9004AAC90 /* DownloaderEntity.m in Sources */,
 				7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */,
+				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
 				7C3177B51D0EB7F1004AAC90 /* UIViewController+Keyboard.m in Sources */,
+				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
+				7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */,
 				7C31780B1D12830A004AAC90 /* YXFileFavorWrapper.m in Sources */,
+				7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
 				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
+				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
+				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
+				7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
+				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
 				7C3177FD1D1177F9004AAC90 /* DownloadManager.m in Sources */,
 				7C3177991D0EA6A8004AAC90 /* GetRequest.m in Sources */,
 				7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */,
@@ -993,9 +1158,11 @@
 				7C3178071D123935004AAC90 /* YXQLPreviewController.m in Sources */,
 				7C3178581D139BE4004AAC90 /* YXBulletinViewController.m in Sources */,
 				7C3177CB1D10F496004AAC90 /* YXNavigationController.m in Sources */,
+				7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */,
 				7C3177BD1D0EBA79004AAC90 /* UIView+YXShadowColor.m in Sources */,
 				7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */,
 				7C31779A1D0EA6A8004AAC90 /* PostRequest.m in Sources */,
+				7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
@@ -1011,25 +1178,32 @@
 				7C3177971D0EA6A8004AAC90 /* HttpBaseRequest.m in Sources */,
 				7C3177B21D0EB738004AAC90 /* UIButton+HighlightColor.m in Sources */,
 				7C31778D1D0EA598004AAC90 /* YXMockManager.m in Sources */,
+				7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */,
+				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
 				7C3177981D0EA6A8004AAC90 /* UploadRequest.m in Sources */,
 				7C3177A11D0EA723004AAC90 /* YXGetRequest.m in Sources */,
 				7C31782A1D129C01004AAC90 /* UIXToolbarView.m in Sources */,
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
+				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,
 				7C3177581D0E5E04004AAC90 /* AppDelegate.m in Sources */,
+				7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */,
 				7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */,
 				7C3178271D129C01004AAC90 /* ReaderDocumentOutline.m in Sources */,
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
 				7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */,
+				7CF888311D17E82100E7C04D /* JKAlertDialog.m in Sources */,
 				7C3177B01D0EB738004AAC90 /* UIImage+Color.m in Sources */,
 				7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,
 				7C3177B81D0EB9EE004AAC90 /* UIView+ViewController.m in Sources */,
 				7C3177ED1D114DC1004AAC90 /* YXFileBrowseManager.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
+				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
 				7C3178231D129C01004AAC90 /* ReaderContentPage.m in Sources */,
 				7C3177A31D0EA723004AAC90 /* YXUploadRequest.m in Sources */,
 				7C3178261D129C01004AAC90 /* ReaderDocument.m in Sources */,
+				7CF888371D17ECB800E7C04D /* YXAudioSlideProgressView.m in Sources */,
 				7C3178241D129C01004AAC90 /* ReaderContentTile.m in Sources */,
 				7C3177811D0E8A1D004AAC90 /* GlobalUtils.m in Sources */,
 			);

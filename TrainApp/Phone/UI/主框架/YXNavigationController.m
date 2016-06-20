@@ -28,6 +28,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotate{
+    return NO;
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [YXDrawerController hideDrawer];
     if (self.viewControllers.count == 1) {

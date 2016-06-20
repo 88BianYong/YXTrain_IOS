@@ -13,6 +13,7 @@
 #import "YXProjectMainViewController.h"
 #import "YXSideMenuViewController.h"
 #import "YXNavigationController.h"
+#import "YXDrawerViewController.h"
 
 @interface AppDelegate ()
 
@@ -36,22 +37,14 @@
         YXTestViewController *vc = [[YXTestViewController alloc] init];
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     }else{
-        MSDynamicsDrawerViewController *drawerVC = [[MSDynamicsDrawerViewController alloc]init];
-        drawerVC.gravityMagnitude = 10;
-        
-        MSDynamicsDrawerShadowStyler *sdst = [MSDynamicsDrawerShadowStyler styler];
-        sdst.shadowColor = [UIColor blackColor];
-        sdst.shadowOpacity = 0.65;
-        sdst.shadowRadius = 10;
-        sdst.shadowOffset = CGSizeMake(-4, 0);        
-        [drawerVC addStylersFromArray:@[[MSDynamicsDrawerFadeStyler styler], sdst] forDirection:MSDynamicsDrawerDirectionLeft];
-        
         YXSideMenuViewController *menuVC = [[YXSideMenuViewController alloc]init];
-        [drawerVC setDrawerViewController:menuVC forDirection:MSDynamicsDrawerDirectionLeft];
-        
         YXProjectMainViewController *projectVC = [[YXProjectMainViewController alloc]init];
         YXNavigationController *projectNavi = [[YXNavigationController alloc]initWithRootViewController:projectVC];
-        [drawerVC setPaneViewController:projectNavi];
+        
+        YXDrawerViewController *drawerVC = [[YXDrawerViewController alloc]init];
+        drawerVC.drawerViewController = menuVC;
+        drawerVC.paneViewController = projectNavi;
+        drawerVC.drawerWidth = 200;
         
         self.window.rootViewController = drawerVC;
     }

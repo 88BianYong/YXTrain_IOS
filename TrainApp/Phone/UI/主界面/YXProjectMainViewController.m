@@ -51,12 +51,10 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [YXDrawerController enableDrag];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [YXDrawerController disableDrag];
 }
 
 - (void)btnAction{

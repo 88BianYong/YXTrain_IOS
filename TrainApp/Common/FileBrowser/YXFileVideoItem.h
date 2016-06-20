@@ -9,5 +9,7 @@
 #import "YXFileItemBase.h"
 
 @interface YXFileVideoItem : YXFileItemBase
-
+@property (nonatomic, strong) NSString *lurl;
+@property (nonatomic, strong) NSString *murl;
+@property (nonatomic, strong) NSString *surl;
 @end

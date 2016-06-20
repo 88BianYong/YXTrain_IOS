@@ -13,8 +13,10 @@
 #import "YXFileFavorWrapper.h"
 #import "YXImageViewController.h"
 #import "YXTOWebViewController.h"
+#import "YXPlayerViewController.h"
+#import "YXAudioPlayerViewController.h"
 
-@interface YXFileBrowseManager()<YXBrowserExitDelegate,YXFileFavorDelegate>
+@interface YXFileBrowseManager()<YXBrowserExitDelegate,YXFileFavorDelegate,YXPlayProgressDelegate>
 @property (nonatomic, strong) UrlDownloader *downloader;
 @property (nonatomic, strong) id favorData;
 @property (nonatomic, copy) void(^addFavorCompleteBlock)();
@@ -84,9 +86,9 @@
 
 - (void)browseOnlineFile{
     if (self.fileItem.type == YXFileTypeVideo) {
-        
+        [self openVideo];
     }else if (self.fileItem.type == YXFileTypeAudio) {
-        
+        [self openAudio];
     }else if (self.fileItem.type == YXFileTypeHtml) {
         [self openHtml];
     }else {
@@ -169,7 +171,7 @@
         return;
     }
     YXImageViewController *vc = [[YXImageViewController alloc] init];
-    if (!self.favorData) {
+    if (self.favorData) {
         YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:self.favorData baseVC:vc];
         wrapper.delegate = self;
         vc.favorWrapper = wrapper;
@@ -189,9 +191,60 @@
     [self.baseViewController.navigationController pushViewController:webViewController animated:YES];
 }
 
+- (void)openVideo{
+    YXPlayerViewController *vc = [[YXPlayerViewController alloc] init];
+    if (self.favorData) {
+        YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:self.favorData baseVC:vc];
+        wrapper.delegate = self;
+        vc.favorWrapper = wrapper;
+    }
+    YXFileVideoItem *videoItem = (YXFileVideoItem *)self.fileItem;
+    vc.videoUrl = videoItem.url;
+    
+    YXPlayerDefinition *d0 = [[YXPlayerDefinition alloc] init];
+    d0.identifier = @"流畅";
+    d0.url = videoItem.lurl;
+    
+    YXPlayerDefinition *d1 = [[YXPlayerDefinition alloc] init];
+    d1.identifier = @"标清";
+    d1.url = videoItem.murl;
+    
+    YXPlayerDefinition *d2 = [[YXPlayerDefinition alloc] init];
+    d2.identifier = @"高清";
+    d2.url = videoItem.surl;
+    
+    vc.definitionArray = @[d0, d1, d2];
+
+    vc.title = videoItem.name;
+    vc.delegate = self;
+    [self.baseViewController.navigationController presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)openAudio{
+    YXAudioPlayerViewController *vc = [[YXAudioPlayerViewController alloc] init];
+    if (self.favorData) {
+        YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:self.favorData baseVC:vc];
+        wrapper.delegate = self;
+        vc.favorWrapper = wrapper;
+    }
+    vc.videoUrl = self.fileItem.url;
+    vc.title = self.fileItem.name;
+    vc.delegate = self;
+    [self.baseViewController presentViewController:vc animated:YES completion:nil];
+}
+
 #pragma mark - YXBrowserExitDelegate
 - (void)browserExit{
     [self clear];
+}
+
+#pragma mark - YXPlayProgressDelegate
+- (void)playerProgress:(CGFloat)progress totalDuration:(NSTimeInterval)duration stayTime:(NSTimeInterval)time{
+    [self clear];
+}
+
+- (CGFloat)preProgress{
+    return 0;
 }
 
 #pragma mark - YXFileFavorDelegate

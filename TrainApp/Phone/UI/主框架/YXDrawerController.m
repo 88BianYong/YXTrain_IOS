@@ -11,37 +11,22 @@
 @implementation YXDrawerController
 
 + (void)showDrawer{
-    MSDynamicsDrawerViewController *drawerVC = [self drawer];
-    if (drawerVC.paneState == MSDynamicsDrawerPaneStateClosed) {
-        [drawerVC setPaneState:MSDynamicsDrawerPaneStateOpen inDirection:MSDynamicsDrawerDirectionLeft animated:YES allowUserInterruption:YES completion:^{
-            
-        }];
-    }
+    YXDrawerViewController *drawerVC = [self drawer];
+    [drawerVC showDrawer];
 }
 
 + (void)hideDrawer{
-    MSDynamicsDrawerViewController *drawerVC = [self drawer];
-    if (drawerVC.paneState != MSDynamicsDrawerPaneStateClosed) {
-        [drawerVC setPaneState:MSDynamicsDrawerPaneStateClosed inDirection:MSDynamicsDrawerDirectionLeft animated:YES allowUserInterruption:YES completion:^{
-            
-        }];
-    }
+    YXDrawerViewController *drawerVC = [self drawer];
+    [drawerVC hideDrawer];
 }
 
-+ (MSDynamicsDrawerViewController *)drawer{
-    MSDynamicsDrawerViewController *drawerVC = (MSDynamicsDrawerViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-    if ([drawerVC isKindOfClass:[MSDynamicsDrawerViewController class]]) {
++ (YXDrawerViewController *)drawer{
+    YXDrawerViewController *drawerVC = (YXDrawerViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+    if ([drawerVC isKindOfClass:[YXDrawerViewController class]]) {
         return drawerVC;
     }
     return nil;
 }
 
-+ (void)enableDrag{
-    [[self drawer] setPaneDragRevealEnabled:YES forDirection:MSDynamicsDrawerDirectionLeft];
-}
-
-+ (void)disableDrag{
-    [[self drawer] setPaneDragRevealEnabled:NO forDirection:MSDynamicsDrawerDirectionLeft];
-}
 
 @end
