@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol YXCourseFilterViewDelegate <NSObject>
+
+- (void)filterChanged:(NSArray *)filterArray;
+
+@end
+
 @interface YXCourseFilterView : UIView
+
+@property (nonatomic, weak) id<YXCourseFilterViewDelegate> delegate;
+
+- (void)addFilters:(NSArray *)filters forKey:(NSString *)key;
 
 @end

@@ -13,27 +13,11 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-//        _os = @"ios";
-//        _version = [[YXConfigManager sharedInstance] clientVersion];
-//        _osType = [YXConfigManager sharedInstance].phonepad;
-//        if ([[YXUserManager sharedManager] isLogin]) {
-//            _token = [YXUserManager sharedManager].userModel.passport.token;
-//        }
+
     }
     return self;
 }
 
-//- (void)startRequestWithRetClass:(Class)retClass
-//                andCompleteBlock:(HttpRequestCompleteBlock)completeBlock
-//{
-//    @weakify(self);
-//    [super startRequestWithRetClass:retClass andCompleteBlock:^(id retItem, NSError *error) {
-//        @strongify(self);
-//        [self operationWithInvalidToken:self.token
-//                                retItem:retItem
-//                                  error:error
-//                          completeBlock:completeBlock];
-//    }];
-//}
+
 
 @end

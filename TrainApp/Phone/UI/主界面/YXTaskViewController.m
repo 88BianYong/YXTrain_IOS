@@ -7,6 +7,7 @@
 //
 
 #import "YXTaskViewController.h"
+#import "YXCourseViewController.h"
 
 @interface YXTaskViewController ()
 
@@ -19,10 +20,11 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor greenColor];
     self.title = @"任务";
-    UILabel *lb = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 300, 40)];
-    lb.text = @"vc2";
-    lb.textColor = [UIColor blackColor];
-    [self.view addSubview:lb];
+    UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(20, 100, 60, 40)];
+    [b setTitle:@"Push" forState:UIControlStateNormal];
+    [b setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [b addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:b];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,14 +32,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)btnAction{
+    YXCourseViewController *vc = [[YXCourseViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
-*/
 
 @end
