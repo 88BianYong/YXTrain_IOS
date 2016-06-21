@@ -99,6 +99,11 @@
 		7CF888311D17E82100E7C04D /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888301D17E82100E7C04D /* JKAlertDialog.m */; };
 		7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888331D17ECB800E7C04D /* YXAudioPlayerViewController.m */; };
 		7CF888371D17ECB800E7C04D /* YXAudioSlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888351D17ECB800E7C04D /* YXAudioSlideProgressView.m */; };
+		7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8883A1D18DB5B00E7C04D /* YXCourseViewController.m */; };
+		7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8883D1D18DB7E00E7C04D /* YXCourseFilterView.m */; };
+		7CF888411D18E80200E7C04D /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CF888401D18E80200E7C04D /* readme.txt */; };
+		7CF888441D18E86A00E7C04D /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CF888431D18E86A00E7C04D /* readme.txt */; };
+		7CF888471D18E88500E7C04D /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CF888461D18E88500E7C04D /* readme.txt */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -307,6 +312,13 @@
 		7CF888331D17ECB800E7C04D /* YXAudioPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAudioPlayerViewController.m; sourceTree = "<group>"; };
 		7CF888341D17ECB800E7C04D /* YXAudioSlideProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAudioSlideProgressView.h; sourceTree = "<group>"; };
 		7CF888351D17ECB800E7C04D /* YXAudioSlideProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAudioSlideProgressView.m; sourceTree = "<group>"; };
+		7CF888391D18DB5B00E7C04D /* YXCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCourseViewController.h; sourceTree = "<group>"; };
+		7CF8883A1D18DB5B00E7C04D /* YXCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCourseViewController.m; sourceTree = "<group>"; };
+		7CF8883C1D18DB7E00E7C04D /* YXCourseFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCourseFilterView.h; sourceTree = "<group>"; };
+		7CF8883D1D18DB7E00E7C04D /* YXCourseFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCourseFilterView.m; sourceTree = "<group>"; };
+		7CF888401D18E80200E7C04D /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		7CF888431D18E86A00E7C04D /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		7CF888461D18E88500E7C04D /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -431,6 +443,7 @@
 		7C3177641D0E688D004AAC90 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				7CF888451D18E88500E7C04D /* 登录注册 */,
 				7C31783A1D139789004AAC90 /* 动态 */,
 				7C31783C1D139789004AAC90 /* 个人 */,
 				7C31783E1D139789004AAC90 /* 工作坊 */,
@@ -569,6 +582,8 @@
 		7C3177BF1D0EC0FC004AAC90 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7CF888421D18E86A00E7C04D /* 引导页 */,
+				7CF8883F1D18E80200E7C04D /* 登录注册 */,
 				7C3177C01D0EC0FC004AAC90 /* 主框架 */,
 				7C3177D01D10FBAA004AAC90 /* 主界面 */,
 				7C3177CC1D10F63B004AAC90 /* 侧边栏 */,
@@ -813,6 +828,7 @@
 		7C31784A1D1398E2004AAC90 /* 任务 */ = {
 			isa = PBXGroup;
 			children = (
+				7CF888381D18DA4B00E7C04D /* 课程 */,
 				7C3178501D139A2A004AAC90 /* YXTaskViewController.h */,
 				7C3178511D139A2A004AAC90 /* YXTaskViewController.m */,
 			);
@@ -927,6 +943,41 @@
 				7CF8881E1D17E56C00E7C04D /* SpacemanBlocks.h */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		7CF888381D18DA4B00E7C04D /* 课程 */ = {
+			isa = PBXGroup;
+			children = (
+				7CF888391D18DB5B00E7C04D /* YXCourseViewController.h */,
+				7CF8883A1D18DB5B00E7C04D /* YXCourseViewController.m */,
+				7CF8883C1D18DB7E00E7C04D /* YXCourseFilterView.h */,
+				7CF8883D1D18DB7E00E7C04D /* YXCourseFilterView.m */,
+			);
+			name = "课程";
+			sourceTree = "<group>";
+		};
+		7CF8883F1D18E80200E7C04D /* 登录注册 */ = {
+			isa = PBXGroup;
+			children = (
+				7CF888401D18E80200E7C04D /* readme.txt */,
+			);
+			path = "登录注册";
+			sourceTree = "<group>";
+		};
+		7CF888421D18E86A00E7C04D /* 引导页 */ = {
+			isa = PBXGroup;
+			children = (
+				7CF888431D18E86A00E7C04D /* readme.txt */,
+			);
+			path = "引导页";
+			sourceTree = "<group>";
+		};
+		7CF888451D18E88500E7C04D /* 登录注册 */ = {
+			isa = PBXGroup;
+			children = (
+				7CF888461D18E88500E7C04D /* readme.txt */,
+			);
+			path = "登录注册";
 			sourceTree = "<group>";
 		};
 		9027B214674A7F10A4FE7EE9 /* Pods */ = {
@@ -1044,12 +1095,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CF888471D18E88500E7C04D /* readme.txt in Resources */,
 				7C3177601D0E603C004AAC90 /* PhoneImage.xcassets in Resources */,
 				7C31776E1D0E6E92004AAC90 /* YXConfig.plist in Resources */,
 				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
+				7CF888441D18E86A00E7C04D /* readme.txt in Resources */,
+				7CF888411D18E80200E7C04D /* readme.txt in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1175,6 +1229,7 @@
 				7C3177B11D0EB738004AAC90 /* UIImage+FixOrientation.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
+				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
 				7C3177971D0EA6A8004AAC90 /* HttpBaseRequest.m in Sources */,
 				7C3177B21D0EB738004AAC90 /* UIButton+HighlightColor.m in Sources */,
 				7C31778D1D0EA598004AAC90 /* YXMockManager.m in Sources */,
@@ -1200,6 +1255,7 @@
 				7C3177ED1D114DC1004AAC90 /* YXFileBrowseManager.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
+				7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */,
 				7C3178231D129C01004AAC90 /* ReaderContentPage.m in Sources */,
 				7C3177A31D0EA723004AAC90 /* YXUploadRequest.m in Sources */,
 				7C3178261D129C01004AAC90 /* ReaderDocument.m in Sources */,
