@@ -114,10 +114,6 @@
         activityView.autoresizingMask = arrowImage.autoresizingMask;
         [self addSubview:_activityView = activityView];
         
-        _lastUpdateTimeLabel.hidden = YES;
-        _statusLabel.hidden = YES;
-        _arrowImage.hidden = YES;
-        _activityView.hidden = YES;
         // 6.设置默认状态
         [self setState:MJRefreshStateNormal];
     }

@@ -40,7 +40,7 @@
 - (void)btnAction{
     YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
     item.name = @"测试测试";
-    item.url = @"http://mbtestsourse.teacherclub.com.cn/course/cf/ts/ts_gg/xy_xyp/video/xyp/xyp.m3u8";
+    item.url = @"http://mbtestsourse.teacherclub.com.cn/course/cf/xk/xxjs/xxjslpxkcdd/video/1/1.m3u8";
     [YXFileBrowseManager sharedManager].fileItem = item;
     [YXFileBrowseManager sharedManager].baseViewController = self;
     [[YXFileBrowseManager sharedManager]addFavorWithData:[NSObject new] completion:^{

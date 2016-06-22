@@ -8,6 +8,8 @@
 
 #import "YXSideMenuViewController.h"
 #import "YXTestPushViewController.h"
+#import "YXDatumViewController.h"
+
 
 @interface YXSideMenuViewController ()
 
@@ -30,7 +32,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (void)btnAction{
-    YXTestPushViewController *vc = [[YXTestPushViewController alloc]init];
+    YXDatumViewController *vc = [[YXDatumViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
