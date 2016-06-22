@@ -14,6 +14,7 @@
 @interface YXDatumViewController ()
 
 @property (nonatomic,strong) UIViewController *currentViewController;
+@property (nonatomic,strong) YXAllDatumViewController *allDatumViewController;
 
 @end
 
@@ -23,7 +24,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self configSegmentUI];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(searchButtonClicked)];
+    [self setupRightWithTitle:@"搜索"];
     //[self yx_setupRightButtonItemWithImage:nil title:@"搜索"];
     
 }
@@ -35,14 +36,14 @@
     [seg addTarget:self action:@selector(datumSourceChanged:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = seg;
     
-    YXAllDatumViewController *allDatumViewController = [[YXAllDatumViewController alloc] init];
-    [self addChildViewController:allDatumViewController];
+    self.allDatumViewController = [[YXAllDatumViewController alloc] init];
+    [self addChildViewController:self.allDatumViewController];
     YXMyDatumViewController *myDatumViewController = [[YXMyDatumViewController alloc] init];
     [self addChildViewController:myDatumViewController];
     
-    [self.view addSubview:allDatumViewController.view];
-    [allDatumViewController didMoveToParentViewController:self];
-    self.currentViewController = allDatumViewController;
+    [self.view addSubview:self.allDatumViewController.view];
+    [self.allDatumViewController didMoveToParentViewController:self];
+    self.currentViewController = self.allDatumViewController;
 }
 
 - (void)datumSourceChanged:(UISegmentedControl *)seg{
@@ -57,11 +58,11 @@
     }
 }
 
-- (void)searchButtonClicked{
+- (void)naviRightAction{
     YXDatumSearchViewController *vc = [[YXDatumSearchViewController alloc]init];
     UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:navi animated:YES completion:^{
-//        [self foldOrderView];
+        [self.allDatumViewController setMenuViewFold];
 //        [self foldFilterView];
     }];
 }

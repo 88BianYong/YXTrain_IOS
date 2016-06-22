@@ -208,4 +208,17 @@
         self.filterImageView.image = [UIImage imageNamed:@"下拉三角灰"];
     }
 }
+
+- (void)setFilterFolded{
+    //
+    self.filterButton.selected = FALSE;
+    self.filterImageView.image = [UIImage imageNamed:@"下拉三角灰"];
+}
+- (void)setOrderFolded{
+    self.orderView.frame = CGRectMake(0, -self.orderView.frame.size.height, self.orderView.frame.size.width, self.orderView.frame.size.height);
+    self.orderButton.selected = FALSE;
+    self.orderImageView.image = [UIImage imageNamed:@"下拉三角灰"];
+}
+
+
 @end

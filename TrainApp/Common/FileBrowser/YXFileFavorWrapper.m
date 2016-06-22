@@ -7,11 +7,14 @@
 //
 
 #import "YXFileFavorWrapper.h"
+#import "YXDatumCellModel.h"
+#import "YXResourceCollectionRequest.h"
 
 @interface YXFileFavorWrapper()
 @property (nonatomic, strong) id data;
 @property (nonatomic, weak) UIViewController *baseVC;
 @property (nonatomic, strong) UIButton *favorButton;
+@property (nonatomic, strong) YXResourceCollectionRequest *collectionRequest;
 @end
 
 @implementation YXFileFavorWrapper
@@ -31,7 +34,30 @@
 }
 
 - (void)favorAction{
-    SAFE_CALL(self.delegate, fileDidFavor);
+    if (self.collectionRequest) {
+        [self.collectionRequest stopRequest];
+    }
+    YXDatumCellModel *datumModel = (YXDatumCellModel *)self.data;
+    self.collectionRequest = [[YXResourceCollectionRequest alloc] init];
+    self.collectionRequest.aid = datumModel.aid;
+    self.collectionRequest.type = datumModel.type;
+    self.collectionRequest.iscollection = @"0";
+    @weakify(self);
+    [YXPromtController startLoadingInView:self.baseVC.view];
+    [self.collectionRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        @strongify(self);
+        [YXPromtController stopLoadingInView:self.baseVC.view];
+        HttpBaseRequestItem *item = (HttpBaseRequestItem *)retItem;
+        if (item) {
+            self.favorButton.hidden = YES;
+            datumModel.isFavor = TRUE;
+            datumModel.rawData.isCollection = @"1";
+            SAFE_CALL(self.delegate, fileDidFavor);
+            [YXPromtController showToast:@"已保存到\"我的资源\"" inView:self.baseVC.view];
+        } else {
+            [YXPromtController showToast:error.localizedDescription inView:self.baseVC.view];
+        }
+    }];
 }
 
 

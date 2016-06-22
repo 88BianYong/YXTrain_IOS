@@ -7,7 +7,10 @@
 //
 
 #import "PagedListViewControllerBase.h"
+@class YXDatumOrderFilterMenuView;
 
 @interface YXAllDatumViewController : PagedListViewControllerBase
+
+- (void)setMenuViewFold;
 
 @end

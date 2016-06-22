@@ -124,26 +124,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXDatumCellModel *data = self.dataArray[indexPath.row];
-//    YXAttachmentModel *attach = [[YXAttachmentModel alloc] init];
-//    YXAttachmentTypeHelper *th = [[YXAttachmentTypeHelper alloc] init];
-//    [th setupWithTypeName:data.type];
-//    attach.type = th.type;
-//    attach.rawdataUrl = data.url;
-//    attach.name = data.title;
-//    
-//    if (data.isFavor) {
-//        [self.datumVC previewOnlineAttachment:attach];
-//    }else{
-//        [self.datumVC previewOnlineAttachment:attach withDatum:data];
-//    }
-    
     YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
     item.name = data.title;
     item.url = data.url;
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
     if (!data.isFavor) {
-        [[YXFileBrowseManager sharedManager]addFavorWithData:[NSObject new] completion:^{
-            NSLog(@"Item favor success!");
+        [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
+            [self.tableView reloadData];
         }];
     }
     [YXFileBrowseManager sharedManager].fileItem = item;
@@ -170,7 +157,9 @@
 //    return 0.1f;
 //}
 
-
+- (void)setMenuViewFold {
+    [self.menuView setOrderFolded];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

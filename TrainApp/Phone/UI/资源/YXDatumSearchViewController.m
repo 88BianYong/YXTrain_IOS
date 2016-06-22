@@ -27,7 +27,7 @@
 //    emptyView.iconName = @"资料";
 //    emptyView.title = @"没有找到符合条件的资源";
 //    self.emptyView = emptyView;
-    
+    [self setupDataFetcher];
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupUI];
@@ -99,10 +99,9 @@
     item.name = data.title;
     item.url = data.url;
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
-    item.isLocal = YES;
     if (!data.isFavor) {
-        [[YXFileBrowseManager sharedManager]addFavorWithData:[NSObject new] completion:^{
-            NSLog(@"Item favor success!");
+        [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
+            //[self.tableView reloadData];
         }];
     }
     [YXFileBrowseManager sharedManager].fileItem = item;

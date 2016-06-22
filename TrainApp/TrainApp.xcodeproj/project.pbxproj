@@ -118,7 +118,6 @@
 		CB3510CE1D190B610081EA3B /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510CD1D190B610081EA3B /* PersistentUrlDownloader.m */; };
 		CB3510D11D1912DD0081EA3B /* YXAttachmentTypeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510D01D1912DD0081EA3B /* YXAttachmentTypeHelper.m */; };
 		CB3510DA1D1924110081EA3B /* YXAllDatumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510D91D1924110081EA3B /* YXAllDatumTableViewCell.m */; };
-		CB3510DD1D1964EC0081EA3B /* TestPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510DC1D1964EC0081EA3B /* TestPageViewController.m */; };
 		CB3510E01D1A41C40081EA3B /* YXResourceCollectionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510DF1D1A41C40081EA3B /* YXResourceCollectionRequest.m */; };
 		CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91671D1A5A4800B5F1D0 /* YXMyDatumFetcher.m */; };
 		CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D916A1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m */; };
@@ -380,8 +379,6 @@
 		CB3510D01D1912DD0081EA3B /* YXAttachmentTypeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAttachmentTypeHelper.m; sourceTree = "<group>"; };
 		CB3510D81D1924110081EA3B /* YXAllDatumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAllDatumTableViewCell.h; sourceTree = "<group>"; };
 		CB3510D91D1924110081EA3B /* YXAllDatumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAllDatumTableViewCell.m; sourceTree = "<group>"; };
-		CB3510DB1D1964EC0081EA3B /* TestPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPageViewController.h; sourceTree = "<group>"; };
-		CB3510DC1D1964EC0081EA3B /* TestPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPageViewController.m; sourceTree = "<group>"; };
 		CB3510DE1D1A41C40081EA3B /* YXResourceCollectionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXResourceCollectionRequest.h; sourceTree = "<group>"; };
 		CB3510DF1D1A41C40081EA3B /* YXResourceCollectionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXResourceCollectionRequest.m; sourceTree = "<group>"; };
 		CB4D91661D1A5A4800B5F1D0 /* YXMyDatumFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyDatumFetcher.h; sourceTree = "<group>"; };
@@ -1110,8 +1107,6 @@
 				CB3510A61D18E9730081EA3B /* YXDatumViewController.m */,
 				CB3510A71D18E9730081EA3B /* YXMyDatumViewController.h */,
 				CB3510A81D18E9730081EA3B /* YXMyDatumViewController.m */,
-				CB3510DB1D1964EC0081EA3B /* TestPageViewController.h */,
-				CB3510DC1D1964EC0081EA3B /* TestPageViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -1407,7 +1402,6 @@
 				CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */,
 				7C3177FD1D1177F9004AAC90 /* DownloadManager.m in Sources */,
 				7C3177991D0EA6A8004AAC90 /* GetRequest.m in Sources */,
-				CB3510DD1D1964EC0081EA3B /* TestPageViewController.m in Sources */,
 				7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
 				7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */,

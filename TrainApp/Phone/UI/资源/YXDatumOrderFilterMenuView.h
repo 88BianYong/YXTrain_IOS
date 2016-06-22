@@ -13,4 +13,7 @@
 @property (nonatomic, copy) void(^didSelectedOrderCell)(NSString *condition);
 @property (nonatomic, copy) void(^didSelectedFilterCell)(NSString *condition);
 
+- (void)setFilterFolded;
+- (void)setOrderFolded;
+
 @end
