@@ -9,20 +9,23 @@
 #import "YXImageViewController.h"
 #import "ReaderMainToolbar.h"
 #import "ReaderDocument.h"
-@interface YXImageViewController() <ReaderMainToolbarDelegate>
+@interface YXImageViewController() //<ReaderMainToolbarDelegate>
 @end
 
 @implementation YXImageViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    ReaderDocument *d = [[ReaderDocument alloc] init];
+//    ReaderDocument *d = [[ReaderDocument alloc] init];
+//    
+//    ReaderMainToolbar *mainToolbar = [[ReaderMainToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44) document:d];
+//    mainToolbar.delegate = self; // ReaderMainToolbarDelegate
+//    mainToolbar.backgroundColor = [UIColor blueColor];
+//    mainToolbar.nameLabel.text = self.title;
+//    mainToolbar.rightFavorButton = self.favorWrapper.favorButton;
+//    [self.view addSubview:mainToolbar];
     
-    ReaderMainToolbar *mainToolbar = [[ReaderMainToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44) document:d];
-    mainToolbar.delegate = self; // ReaderMainToolbarDelegate
-    mainToolbar.backgroundColor = [UIColor blueColor];
-    mainToolbar.nameLabel.text = self.title;
-    mainToolbar.rightFavorButton = self.favorWrapper.favorButton;
-    [self.view addSubview:mainToolbar];
+    [self setupLeftBack];
+    self.navigationItem.rightBarButtonItems = [YXNavigationBarController barButtonItemsForView:self.favorWrapper.favorButton];
 
     UIImageView *imageView = [[UIImageView alloc] init];
     
@@ -33,7 +36,7 @@
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.view addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(@44);
+        make.top.mas_equalTo(@0);
         make.bottom.left.right.mas_equalTo(@0);
     }];
 }
@@ -60,14 +63,19 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar doneButton:(UIButton *)button
-{
+- (void)naviLeftAction{
     [self dismissViewControllerAnimated:NO completion:nil];
     SAFE_CALL(self.exitDelegate, browserExit);
 }
 
-- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar favouriteButton:(UIButton *)button {
-    
-}
+//- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar doneButton:(UIButton *)button
+//{
+//    [self dismissViewControllerAnimated:NO completion:nil];
+//    SAFE_CALL(self.exitDelegate, browserExit);
+//}
+//
+//- (void)tappedInToolbar:(ReaderMainToolbar *)toolbar favouriteButton:(UIButton *)button {
+//    
+//}
 
 @end

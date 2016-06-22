@@ -20,6 +20,12 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    NSArray *vcArray = self.navigationController.viewControllers;
+    if (!isEmpty(vcArray)) {
+        if (vcArray[0] != self) {
+            [self setupLeftBack];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,17 +48,61 @@
     return navi;
 }
 
+#pragma mark - Navi Left
+- (void)setupLeftBack{
+    [self setupLeftWithImageNamed:@"返回" highlightImageNamed:@"返回"];
+}
+
+- (void)setupLeftWithImageNamed:(NSString *)imageName highlightImageNamed:(NSString *)highlightImageName{
+    WEAK_SELF
+    [YXNavigationBarController setLeftWithNavigationItem:self.navigationItem imageName:imageName highlightImageName:highlightImageName action:^{
+        STRONG_SELF
+        [self naviLeftAction];
+    }];
+}
+
+- (void)naviLeftAction{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - Navi Right
+- (void)setupRightWithImageNamed:(NSString *)imageName highlightImageNamed:(NSString *)highlightImageName{
+    WEAK_SELF
+    [YXNavigationBarController setRightWithNavigationItem:self.navigationItem imageName:imageName highlightImageName:highlightImageName action:^{
+        STRONG_SELF
+        [self naviRightAction];
+    }];
+}
+
+- (void)setupRightWithCustomView:(UIView *)view{
+    [YXNavigationBarController setRightWithNavigationItem:self.navigationItem customView:view];
+}
+
+- (void)setupRightWithTitle:(NSString *)title{
+    WEAK_SELF
+    [YXNavigationBarController setRightWithNavigationItem:self.navigationItem title:title action:^{
+        STRONG_SELF
+        [self naviRightAction];
+    }];
+}
+
+- (void)naviRightAction{
+    
+}
+
 #pragma mark - 提示
 - (void)startLoading{
-    
+    [YXNavigationBarController disableRightNavigationItem:self.navigationItem];
+    [YXPromtController startLoadingInView:self.view];
 }
 
 - (void)stopLoading{
-    
+    [YXNavigationBarController enableRightNavigationItem:self.navigationItem];
+    [YXPromtController stopLoadingInView:self.view];
 }
 
 - (void)showToast:(NSString *)text{
-    
+    [YXPromtController showToast:text inView:self.view];
 }
 
 @end

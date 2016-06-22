@@ -33,6 +33,7 @@ extern int ddLogLevel;
 #import <MWPhotoBrowser.h>
 #import <FCUUID.h>
 #import <SAMTextView.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 #pragma mark - Category
 #import "UIViewController+Keyboard.h"

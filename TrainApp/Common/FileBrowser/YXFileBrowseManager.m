@@ -15,6 +15,7 @@
 #import "YXTOWebViewController.h"
 #import "YXPlayerViewController.h"
 #import "YXAudioPlayerViewController.h"
+#import "YXNavigationController.h"
 
 @interface YXFileBrowseManager()<YXBrowserExitDelegate,YXFileFavorDelegate,YXPlayProgressDelegate>
 @property (nonatomic, strong) UrlDownloader *downloader;
@@ -156,7 +157,7 @@
     }
 
     if (self.favorData) {
-        YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:self.favorData baseVC:(YXBaseViewController *)qlVC];
+        YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:self.favorData baseVC:qlVC];
         wrapper.delegate = self;
         qlVC.favorWrapper = wrapper;
     }
@@ -181,7 +182,9 @@
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     vc.title = self.fileItem.name;
     vc.exitDelegate = self;
-    [self.baseViewController presentViewController:vc animated:NO completion:nil];
+    
+    YXNavigationController *navi = [[YXNavigationController alloc]initWithRootViewController:vc];
+    [self.baseViewController presentViewController:navi animated:NO completion:nil];
 }
 
 - (void)openHtml{

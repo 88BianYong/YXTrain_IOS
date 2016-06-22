@@ -11,15 +11,19 @@
 @implementation YXPromtController
 
 + (void)startLoadingInView:(UIView *)view{
-    
+    [MBProgressHUD showHUDAddedTo:view animated:YES];
 }
 
 + (void)stopLoadingInView:(UIView *)view{
-    
+    [MBProgressHUD hideHUDForView:view animated:YES];
 }
 
 + (void)showToast:(NSString *)text inView:(UIView *)view{
-    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = text;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:0.6];
 }
 
 @end

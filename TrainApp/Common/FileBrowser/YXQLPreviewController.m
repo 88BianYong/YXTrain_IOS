@@ -84,13 +84,15 @@
     // Now initialize your custom navigation bar with whatever items you like...
     self.overlayNavigationItem = [[UINavigationItem alloc] initWithTitle:self.qlTitle];
     
-    self.overlayNavigationItem.leftBarButtonItems = [self leftBarButtonItemsWithButton:[self leftButton]];
+    WEAK_SELF
+    [YXNavigationBarController setLeftWithNavigationItem:self.overlayNavigationItem imageName:nil highlightImageName:nil action:^{
+        STRONG_SELF
+        [self doneButtonTapped:nil];
+    }];
     self.overlayNavigationItem.hidesBackButton = YES;
     
     UIButton *rightButton = self.favorWrapper.favorButton;
-    rightButton.frame = CGRectMake(0, 0, 44, 44);
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    self.overlayNavigationItem.rightBarButtonItems = [self rightBarButtonItemsWithButton:rightButton];
+    self.overlayNavigationItem.rightBarButtonItems = [YXNavigationBarController barButtonItemsForView:rightButton];
     
     [self.overlayNavigationBar pushNavigationItem:self.overlayNavigationItem animated:NO];
      [self.overlayNavigationBar setBackgroundImage:[UIImage yx_imageWithColor:[UIColor blueColor]] forBarMetrics:UIBarMetricsDefault];

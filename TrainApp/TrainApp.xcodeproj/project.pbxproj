@@ -75,7 +75,6 @@
 		7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178341D12A8BB004AAC90 /* YXTOWebViewController.m */; };
 		7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31784E1D139A18004AAC90 /* YXExamViewController.m */; };
 		7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178511D139A2A004AAC90 /* YXTaskViewController.m */; };
-		7C3178551D139A85004AAC90 /* YXNotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178541D139A85004AAC90 /* YXNotificationViewController.m */; };
 		7C3178581D139BE4004AAC90 /* YXBulletinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178571D139BE4004AAC90 /* YXBulletinViewController.m */; };
 		7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31785A1D139D49004AAC90 /* YXProjectContainerView.m */; };
 		7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31785D1D13DE38004AAC90 /* YXPromtController.m */; };
@@ -102,6 +101,7 @@
 		7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8883D1D18DB7E00E7C04D /* YXCourseFilterView.m */; };
 		7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888491D18F90000E7C04D /* YXCourseFilterCell.m */; };
 		7CF8885C1D194BE800E7C04D /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8885B1D194BE800E7C04D /* JKAlertDialog.m */; };
+		7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8885E1D1A427700E7C04D /* YXNoticeViewController.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -258,8 +258,6 @@
 		7C31784E1D139A18004AAC90 /* YXExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamViewController.m; sourceTree = "<group>"; };
 		7C3178501D139A2A004AAC90 /* YXTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTaskViewController.h; sourceTree = "<group>"; };
 		7C3178511D139A2A004AAC90 /* YXTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTaskViewController.m; sourceTree = "<group>"; };
-		7C3178531D139A85004AAC90 /* YXNotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNotificationViewController.h; sourceTree = "<group>"; };
-		7C3178541D139A85004AAC90 /* YXNotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNotificationViewController.m; sourceTree = "<group>"; };
 		7C3178561D139BE4004AAC90 /* YXBulletinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBulletinViewController.h; sourceTree = "<group>"; };
 		7C3178571D139BE4004AAC90 /* YXBulletinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBulletinViewController.m; sourceTree = "<group>"; };
 		7C3178591D139D49004AAC90 /* YXProjectContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProjectContainerView.h; sourceTree = "<group>"; };
@@ -319,6 +317,8 @@
 		7CF888581D194B8300E7C04D /* YXDefinitions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXDefinitions.h; sourceTree = "<group>"; };
 		7CF8885A1D194BE800E7C04D /* JKAlertDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKAlertDialog.h; sourceTree = "<group>"; };
 		7CF8885B1D194BE800E7C04D /* JKAlertDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlertDialog.m; sourceTree = "<group>"; };
+		7CF8885D1D1A427700E7C04D /* YXNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNoticeViewController.h; sourceTree = "<group>"; };
+		7CF8885E1D1A427700E7C04D /* YXNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNoticeViewController.m; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -837,8 +837,8 @@
 		7C31784B1D1398EB004AAC90 /* 通知 */ = {
 			isa = PBXGroup;
 			children = (
-				7C3178531D139A85004AAC90 /* YXNotificationViewController.h */,
-				7C3178541D139A85004AAC90 /* YXNotificationViewController.m */,
+				7CF8885D1D1A427700E7C04D /* YXNoticeViewController.h */,
+				7CF8885E1D1A427700E7C04D /* YXNoticeViewController.m */,
 			);
 			name = "通知";
 			sourceTree = "<group>";
@@ -1191,6 +1191,7 @@
 				7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
+				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
 				7C3177B51D0EB7F1004AAC90 /* UIViewController+Keyboard.m in Sources */,
 				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
@@ -1229,7 +1230,6 @@
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
-				7C3178551D139A85004AAC90 /* YXNotificationViewController.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
 				7C3177711D0E7EB0004AAC90 /* YXConfigManager.m in Sources */,
 				7C3177D61D10FF0A004AAC90 /* YXTestPushViewController.m in Sources */,

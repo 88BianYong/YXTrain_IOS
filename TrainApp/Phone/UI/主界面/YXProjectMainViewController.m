@@ -10,7 +10,7 @@
 #import "YXDrawerController.h"
 #import "YXExamViewController.h"
 #import "YXTaskViewController.h"
-#import "YXNotificationViewController.h"
+#import "YXNoticeViewController.h"
 #import "YXBulletinViewController.h"
 #import "YXProjectContainerView.h"
 
@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self setupRightWithTitle:@"测试"];
     UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 40)];
     [b setTitle:@"Menu" forState:UIControlStateNormal];
     [b setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -38,7 +39,7 @@
     YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
     YXExamViewController *examVC = [[YXExamViewController alloc]init];
     YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
-    YXNotificationViewController *notiVC = [[YXNotificationViewController alloc]init];
+    YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
     YXBulletinViewController *bulletinVC = [[YXBulletinViewController alloc]init];
     containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
     [self.view addSubview:containerView];
@@ -49,12 +50,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+- (void)naviRightAction{
+    NSLog(@"right action！！！");
 }
 
 - (void)btnAction{

@@ -1,18 +1,18 @@
 //
-//  YXNotificationViewController.m
+//  YXNoticeViewController.m
 //  TrainApp
 //
-//  Created by niuzhaowang on 16/6/17.
+//  Created by niuzhaowang on 16/6/22.
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "YXNotificationViewController.h"
+#import "YXNoticeViewController.h"
 
-@interface YXNotificationViewController ()
+@interface YXNoticeViewController ()
 
 @end
 
-@implementation YXNotificationViewController
+@implementation YXNoticeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

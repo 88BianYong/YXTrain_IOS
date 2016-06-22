@@ -27,6 +27,7 @@ static const NSUInteger kTagBase = 3333;
 }
 
 - (void)setupUI{
+    self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, 40)];
     [self addSubview:self.topView];
     
@@ -35,6 +36,7 @@ static const NSUInteger kTagBase = 3333;
     [self addSubview:self.seperatorView];
     
     self.bottomScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, self.seperatorView.frame.origin.y+self.seperatorView.frame.size.height, self.frame.size.width, self.frame.size.height-self.topView.frame.size.height-self.seperatorView.frame.size.height)];
+    self.bottomScrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.bottomScrollView.pagingEnabled = YES;
     self.bottomScrollView.showsHorizontalScrollIndicator = NO;
     self.bottomScrollView.bounces = NO;

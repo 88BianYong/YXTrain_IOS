@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YXBaseViewController.h"
 
 @protocol YXFileFavorDelegate <NSObject>
 - (void)fileDidFavor;
@@ -18,6 +17,6 @@
 @property (nonatomic, strong, readonly) UIButton *favorButton;
 @property (nonatomic, weak) id<YXFileFavorDelegate> delegate;
 
-- (instancetype)initWithData:(id)data baseVC:(YXBaseViewController *)vc;
+- (instancetype)initWithData:(id)data baseVC:(UIViewController *)vc;
 
 @end

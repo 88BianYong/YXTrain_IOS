@@ -20,7 +20,6 @@
     // Do any additional setup after loading the view.
     // 禁用自动pop手势
     self.interactivePopGestureRecognizer.enabled = NO;
-//    [self.navigationBar setBackgroundImage:[UIImage yx_imageWithColor:[UIColor blueColor]] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning {
