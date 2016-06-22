@@ -121,8 +121,8 @@
         @strongify(self); if (!self) return;
         @weakify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self firstPageRequestBack];
             @strongify(self); if (!self) return;
+            [self tableViewWillRefresh];
             [self stopLoading];
             [self stopAnimation];
             if (error) {
@@ -157,7 +157,7 @@
     }];
 }
 
-- (void)firstPageRequestBack
+- (void)tableViewWillRefresh
 {
     
 }

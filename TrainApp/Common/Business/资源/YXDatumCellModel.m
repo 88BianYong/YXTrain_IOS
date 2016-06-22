@@ -44,30 +44,27 @@
     return model;
 }
 
-//+ (YXDatumCellModel *)modelFromMyDatumRequestResultList:(YXMyDatumRequestItem_result_list *)list{
-//    YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
-//    model.title = list.title;
-//    model.size = [BaseDownloader sizeStringForBytes:list.fileSize.longLongValue];
-//    model.isFavor = list.isCollection.boolValue;
-//    model.url = list.previewUrl;
-//    if ([PersistentUrlDownloader fileExist:model.url]) {
-//        model.downloadState = DownloadStatusFinished;
-//    }
-//    model.aid = list.aid;
-//    model.uid = list.uid;
-//    model.type = list.type;
-//    // set image
-//    AttachmentType type = getAttacheTypeByName(list.type);
-//    YXAttachmentTypeHelper *th = [[YXAttachmentTypeHelper alloc] init];
-//    th.type = type;
-//    NSString *imageName = [NSString stringWithFormat:@"60-%@", [th 切图后缀]];
-//    model.image = [UIImage imageNamed:imageName];
-//    // set date
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"yyyy-MM-dd"];
-//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:list.pubTime.doubleValue/1000];
-//    model.date = [formatter stringFromDate:date];
-//    return model;
-//}
++ (YXDatumCellModel *)modelFromMyDatumRequestResultList:(YXMyDatumRequestItem_result_list *)list{
+    YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
+    model.title = list.title;
+    model.size = [BaseDownloader sizeStringForBytes:list.fileSize.longLongValue];
+    model.isFavor = list.isCollection.boolValue;
+    model.url = list.previewUrl;
+    if ([PersistentUrlDownloader fileExist:model.url]) {
+        model.downloadState = DownloadStatusFinished;
+    }
+    model.aid = list.aid;
+    model.uid = list.uid;
+    model.type = list.type;
+    // set image
+    NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:list.type];
+    model.image = [UIImage imageNamed:imageName];
+    // set date
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:list.pubTime.doubleValue/1000];
+    model.date = [formatter stringFromDate:date];
+    return model;
+}
 
 @end

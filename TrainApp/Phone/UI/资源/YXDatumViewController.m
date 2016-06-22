@@ -9,6 +9,7 @@
 #import "YXDatumViewController.h"
 #import "YXAllDatumViewController.h"
 #import "YXMyDatumViewController.h"
+#import "YXDatumSearchViewController.h"
 
 @interface YXDatumViewController ()
 
@@ -22,6 +23,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self configSegmentUI];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target:self action:@selector(searchButtonClicked)];
     //[self yx_setupRightButtonItemWithImage:nil title:@"搜索"];
     
 }
@@ -53,6 +55,15 @@
             [viewController didMoveToParentViewController:self];
         }];
     }
+}
+
+- (void)searchButtonClicked{
+    YXDatumSearchViewController *vc = [[YXDatumSearchViewController alloc]init];
+    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
+    [self presentViewController:navi animated:YES completion:^{
+//        [self foldOrderView];
+//        [self foldFilterView];
+    }];
 }
 
 

@@ -29,5 +29,5 @@
 
 @property (nonatomic, assign) int emptyViewTopInset;
 
-- (void)firstPageRequestBack;
+- (void)tableViewWillRefresh;
 @end

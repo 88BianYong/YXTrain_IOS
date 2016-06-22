@@ -120,6 +120,19 @@
 		CB3510DA1D1924110081EA3B /* YXAllDatumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510D91D1924110081EA3B /* YXAllDatumTableViewCell.m */; };
 		CB3510DD1D1964EC0081EA3B /* TestPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510DC1D1964EC0081EA3B /* TestPageViewController.m */; };
 		CB3510E01D1A41C40081EA3B /* YXResourceCollectionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510DF1D1A41C40081EA3B /* YXResourceCollectionRequest.m */; };
+		CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91671D1A5A4800B5F1D0 /* YXMyDatumFetcher.m */; };
+		CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D916A1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m */; };
+		CB4D916E1D1A5E8C00B5F1D0 /* YXDatumGlobalSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D916D1D1A5E8C00B5F1D0 /* YXDatumGlobalSingleton.m */; };
+		CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91701D1A5EC800B5F1D0 /* YXFilterModel.m */; };
+		CB4D91741D1A5F2000B5F1D0 /* YXDatumFilterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91731D1A5F2000B5F1D0 /* YXDatumFilterRequest.m */; };
+		CB4D91771D1A635400B5F1D0 /* YXMyDatumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91761D1A635400B5F1D0 /* YXMyDatumCell.m */; };
+		CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91791D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m */; };
+		CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D917C1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m */; };
+		CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D917E1D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m */; };
+		CB4D91831D1A73EA00B5F1D0 /* YXDatumSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91821D1A73EA00B5F1D0 /* YXDatumSearchViewController.m */; };
+		CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91851D1A74C800B5F1D0 /* YXDatumSearchCell.m */; };
+		CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */; };
+		CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D918B1D1A758500B5F1D0 /* YXDatumSearchFetcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -371,6 +384,32 @@
 		CB3510DC1D1964EC0081EA3B /* TestPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPageViewController.m; sourceTree = "<group>"; };
 		CB3510DE1D1A41C40081EA3B /* YXResourceCollectionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXResourceCollectionRequest.h; sourceTree = "<group>"; };
 		CB3510DF1D1A41C40081EA3B /* YXResourceCollectionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXResourceCollectionRequest.m; sourceTree = "<group>"; };
+		CB4D91661D1A5A4800B5F1D0 /* YXMyDatumFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyDatumFetcher.h; sourceTree = "<group>"; };
+		CB4D91671D1A5A4800B5F1D0 /* YXMyDatumFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyDatumFetcher.m; sourceTree = "<group>"; };
+		CB4D91691D1A5A8D00B5F1D0 /* YXMyDatumRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyDatumRequest.h; sourceTree = "<group>"; };
+		CB4D916A1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyDatumRequest.m; sourceTree = "<group>"; };
+		CB4D916C1D1A5E8C00B5F1D0 /* YXDatumGlobalSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumGlobalSingleton.h; sourceTree = "<group>"; };
+		CB4D916D1D1A5E8C00B5F1D0 /* YXDatumGlobalSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumGlobalSingleton.m; sourceTree = "<group>"; };
+		CB4D916F1D1A5EC800B5F1D0 /* YXFilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFilterModel.h; sourceTree = "<group>"; };
+		CB4D91701D1A5EC800B5F1D0 /* YXFilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFilterModel.m; sourceTree = "<group>"; };
+		CB4D91721D1A5F2000B5F1D0 /* YXDatumFilterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumFilterRequest.h; sourceTree = "<group>"; };
+		CB4D91731D1A5F2000B5F1D0 /* YXDatumFilterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumFilterRequest.m; sourceTree = "<group>"; };
+		CB4D91751D1A635400B5F1D0 /* YXMyDatumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyDatumCell.h; sourceTree = "<group>"; };
+		CB4D91761D1A635400B5F1D0 /* YXMyDatumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyDatumCell.m; sourceTree = "<group>"; };
+		CB4D91781D1A642F00B5F1D0 /* YXDatumDelSourseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumDelSourseRequest.h; sourceTree = "<group>"; };
+		CB4D91791D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumDelSourseRequest.m; sourceTree = "<group>"; };
+		CB4D917B1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyDatumDownloadingInfoView.h; sourceTree = "<group>"; };
+		CB4D917C1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyDatumDownloadingInfoView.m; sourceTree = "<group>"; };
+		CB4D917D1D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyDatumNormalInfoView.h; sourceTree = "<group>"; };
+		CB4D917E1D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyDatumNormalInfoView.m; sourceTree = "<group>"; };
+		CB4D91811D1A73EA00B5F1D0 /* YXDatumSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchViewController.h; sourceTree = "<group>"; };
+		CB4D91821D1A73EA00B5F1D0 /* YXDatumSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchViewController.m; sourceTree = "<group>"; };
+		CB4D91841D1A74C800B5F1D0 /* YXDatumSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchCell.h; sourceTree = "<group>"; };
+		CB4D91851D1A74C800B5F1D0 /* YXDatumSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchCell.m; sourceTree = "<group>"; };
+		CB4D91871D1A74F700B5F1D0 /* YXDatumSearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchBarView.h; sourceTree = "<group>"; };
+		CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchBarView.m; sourceTree = "<group>"; };
+		CB4D918A1D1A758500B5F1D0 /* YXDatumSearchFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchFetcher.h; sourceTree = "<group>"; };
+		CB4D918B1D1A758500B5F1D0 /* YXDatumSearchFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchFetcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -864,6 +903,8 @@
 		7C3178421D139789004AAC90 /* 资源 */ = {
 			isa = PBXGroup;
 			children = (
+				CB4D916C1D1A5E8C00B5F1D0 /* YXDatumGlobalSingleton.h */,
+				CB4D916D1D1A5E8C00B5F1D0 /* YXDatumGlobalSingleton.m */,
 				CB3510CF1D1912DD0081EA3B /* YXAttachmentTypeHelper.h */,
 				CB3510D01D1912DD0081EA3B /* YXAttachmentTypeHelper.m */,
 				CB3510CC1D190B610081EA3B /* PersistentUrlDownloader.h */,
@@ -1061,6 +1102,8 @@
 		CB3510A11D18E9460081EA3B /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CB4D91811D1A73EA00B5F1D0 /* YXDatumSearchViewController.h */,
+				CB4D91821D1A73EA00B5F1D0 /* YXDatumSearchViewController.m */,
 				CB3510A31D18E9730081EA3B /* YXAllDatumViewController.h */,
 				CB3510A41D18E9730081EA3B /* YXAllDatumViewController.m */,
 				CB3510A51D18E9730081EA3B /* YXDatumViewController.h */,
@@ -1076,6 +1119,16 @@
 		CB3510A21D18E9580081EA3B /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CB4D91871D1A74F700B5F1D0 /* YXDatumSearchBarView.h */,
+				CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */,
+				CB4D91841D1A74C800B5F1D0 /* YXDatumSearchCell.h */,
+				CB4D91851D1A74C800B5F1D0 /* YXDatumSearchCell.m */,
+				CB4D917B1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.h */,
+				CB4D917C1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m */,
+				CB4D917D1D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.h */,
+				CB4D917E1D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m */,
+				CB4D91751D1A635400B5F1D0 /* YXMyDatumCell.h */,
+				CB4D91761D1A635400B5F1D0 /* YXMyDatumCell.m */,
 				CB3510AC1D18E9830081EA3B /* YXDatumFilterView.h */,
 				CB3510AD1D18E9830081EA3B /* YXDatumFilterView.m */,
 				CB3510AE1D18E9830081EA3B /* YXDatumOrderFilterMenuView.h */,
@@ -1093,6 +1146,8 @@
 		CB3510B81D18E9C80081EA3B /* models */ = {
 			isa = PBXGroup;
 			children = (
+				CB4D916F1D1A5EC800B5F1D0 /* YXFilterModel.h */,
+				CB4D91701D1A5EC800B5F1D0 /* YXFilterModel.m */,
 				CB3510C91D18F9C30081EA3B /* YXDatumCellModel.h */,
 				CB3510CA1D18F9C30081EA3B /* YXDatumCellModel.m */,
 				CB3510BA1D18E9DD0081EA3B /* YXDatumFilterModel.h */,
@@ -1106,6 +1161,16 @@
 		CB3510B91D18E9D00081EA3B /* requests */ = {
 			isa = PBXGroup;
 			children = (
+				CB4D918A1D1A758500B5F1D0 /* YXDatumSearchFetcher.h */,
+				CB4D918B1D1A758500B5F1D0 /* YXDatumSearchFetcher.m */,
+				CB4D91781D1A642F00B5F1D0 /* YXDatumDelSourseRequest.h */,
+				CB4D91791D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m */,
+				CB4D91721D1A5F2000B5F1D0 /* YXDatumFilterRequest.h */,
+				CB4D91731D1A5F2000B5F1D0 /* YXDatumFilterRequest.m */,
+				CB4D91691D1A5A8D00B5F1D0 /* YXMyDatumRequest.h */,
+				CB4D916A1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m */,
+				CB4D91661D1A5A4800B5F1D0 /* YXMyDatumFetcher.h */,
+				CB4D91671D1A5A4800B5F1D0 /* YXMyDatumFetcher.m */,
 				CB3510DE1D1A41C40081EA3B /* YXResourceCollectionRequest.h */,
 				CB3510DF1D1A41C40081EA3B /* YXResourceCollectionRequest.m */,
 				CB3510C61D18F62A0081EA3B /* YXWholeDatumFetcher.h */,
@@ -1305,6 +1370,7 @@
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
 				7C3177FC1D1177F9004AAC90 /* DownloaderEntity.m in Sources */,
+				CB4D91741D1A5F2000B5F1D0 /* YXDatumFilterRequest.m in Sources */,
 				7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
@@ -1316,14 +1382,18 @@
 				7CF8885C1D194BE800E7C04D /* JKAlertDialog.m in Sources */,
 				7C31780B1D12830A004AAC90 /* YXFileFavorWrapper.m in Sources */,
 				7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */,
+				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
 				CB3510CE1D190B610081EA3B /* PersistentUrlDownloader.m in Sources */,
+				CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
 				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
 				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
+				CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
+				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
 				CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */,
@@ -1334,6 +1404,7 @@
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
+				CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */,
 				7C3177FD1D1177F9004AAC90 /* DownloadManager.m in Sources */,
 				7C3177991D0EA6A8004AAC90 /* GetRequest.m in Sources */,
 				CB3510DD1D1964EC0081EA3B /* TestPageViewController.m in Sources */,
@@ -1344,10 +1415,12 @@
 				7C3178581D139BE4004AAC90 /* YXBulletinViewController.m in Sources */,
 				7C3177CB1D10F496004AAC90 /* YXNavigationController.m in Sources */,
 				7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */,
+				CB4D91771D1A635400B5F1D0 /* YXMyDatumCell.m in Sources */,
 				7C3177BD1D0EBA79004AAC90 /* UIView+YXShadowColor.m in Sources */,
 				7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */,
 				CB3510E01D1A41C40081EA3B /* YXResourceCollectionRequest.m in Sources */,
 				7C31779A1D0EA6A8004AAC90 /* PostRequest.m in Sources */,
+				CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */,
 				7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
@@ -1359,10 +1432,12 @@
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
+				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				7C3177B11D0EB738004AAC90 /* UIImage+FixOrientation.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
+				CB4D91831D1A73EA00B5F1D0 /* YXDatumSearchViewController.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
 				7C3177971D0EA6A8004AAC90 /* HttpBaseRequest.m in Sources */,
 				7C3177B21D0EB738004AAC90 /* UIButton+HighlightColor.m in Sources */,
@@ -1389,7 +1464,9 @@
 				7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,
 				7C3177B81D0EB9EE004AAC90 /* UIView+ViewController.m in Sources */,
+				CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */,
 				CB3510B51D18E9830081EA3B /* YXDatumOrderFilterMenuView.m in Sources */,
+				CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */,
 				CB3510B61D18E9830081EA3B /* YXDatumOrderView.m in Sources */,
 				7C3177ED1D114DC1004AAC90 /* YXFileBrowseManager.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
@@ -1398,6 +1475,7 @@
 				7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */,
 				7C3178231D129C01004AAC90 /* ReaderContentPage.m in Sources */,
 				7C3177A31D0EA723004AAC90 /* YXUploadRequest.m in Sources */,
+				CB4D916E1D1A5E8C00B5F1D0 /* YXDatumGlobalSingleton.m in Sources */,
 				7C3178261D129C01004AAC90 /* ReaderDocument.m in Sources */,
 				CB3510C51D18F1A90081EA3B /* YXDatumSearchRequest.m in Sources */,
 				CB3510C81D18F62A0081EA3B /* YXWholeDatumFetcher.m in Sources */,

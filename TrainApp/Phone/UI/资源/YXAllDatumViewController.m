@@ -141,6 +141,11 @@
     item.name = data.title;
     item.url = data.url;
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    if (!data.isFavor) {
+        [[YXFileBrowseManager sharedManager]addFavorWithData:[NSObject new] completion:^{
+            NSLog(@"Item favor success!");
+        }];
+    }
     [YXFileBrowseManager sharedManager].fileItem = item;
     [YXFileBrowseManager sharedManager].baseViewController = self;
     [[YXFileBrowseManager sharedManager] browseFile];

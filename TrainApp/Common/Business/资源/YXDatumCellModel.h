@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseDownloader.h"
 #import "YXDatumSearchRequest.h"
-//#import "YXMyDatumRequest.h"
+#import "YXMyDatumRequest.h"
 
 @interface YXDatumCellModel : NSObject
 @property (nonatomic, copy) NSString *uid;
@@ -28,5 +28,5 @@
 
 @property (nonatomic, strong) YXDatumSearchRequestItem_data *rawData;
 + (YXDatumCellModel *)modelFromSearchRequestItemData:(YXDatumSearchRequestItem_data *)data;
-//+ (YXDatumCellModel *)modelFromMyDatumRequestResultList:(YXMyDatumRequestItem_result_list *)list;
++ (YXDatumCellModel *)modelFromMyDatumRequestResultList:(YXMyDatumRequestItem_result_list *)list;
 @end
