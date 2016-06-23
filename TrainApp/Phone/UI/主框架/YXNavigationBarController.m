@@ -11,11 +11,12 @@
 @implementation YXNavigationBarController
 
 + (void)setup{
-    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage yx_imageWithColor:[UIColor blueColor]] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage yx_imageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
+    [UINavigationBar appearance].shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                [UIColor whiteColor], NSForegroundColorAttributeName,
-                                                [UIFont systemFontOfSize:17], NSFontAttributeName,
+                                                [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
+                                                [UIFont boldSystemFontOfSize:17], NSFontAttributeName,
                                                 nil]];
 }
 
@@ -36,6 +37,7 @@
 + (void)setRightWithNavigationItem:(UINavigationItem *)item imageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(actionBlock)action{
     UIImage *normalImage = [UIImage imageNamed:imageName];
     UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
+    
     UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width+20, normalImage.size.height+20)];
     [rightButton setImage:normalImage forState:UIControlStateNormal];
     [rightButton setImage:highlightImage forState:UIControlStateHighlighted];
@@ -75,7 +77,7 @@
 
 + (UIBarButtonItem *)negativeBarButtonItem{
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -11;
+    negativeSpacer.width = -16;
     return negativeSpacer;
 }
 

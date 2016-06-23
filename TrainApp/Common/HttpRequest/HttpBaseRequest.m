@@ -147,8 +147,8 @@
     }
     
     // 业务逻辑错误
-    if (item.status.code.integerValue != 0) {
-        error = [NSError errorWithDomain:@"network" code:item.status.code.integerValue userInfo:@{NSLocalizedDescriptionKey: item.status.desc ?:@"请求失败"}];
+    if (item.code.integerValue != 0) {
+        error = [NSError errorWithDomain:@"network" code:item.code.integerValue userInfo:@{NSLocalizedDescriptionKey: item.desc ?:@"请求失败"}];
         _completeBlock(item, error, self->_isMock);
         return;
     }

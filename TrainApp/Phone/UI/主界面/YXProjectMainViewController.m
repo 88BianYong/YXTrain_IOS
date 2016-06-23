@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.title = @"项目标题";
     [self setupRightWithTitle:@"测试"];
     UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 40)];
     [b setTitle:@"Menu" forState:UIControlStateNormal];

@@ -1,0 +1,98 @@
+{
+    "code": "0",
+    "debugDesc": "[debug_token: http-nio-45901-exec-4-1466492260388-12_7_45901 ] backen code[0]+ Focus fetching code[0],desc[返回数据成功]",
+    "desc": "success",
+    "body": {
+        "totalfficial": 100,
+        "totalscore": 54.7,
+        "bounstotal": 90,
+        "pofficial": 90,
+        "punofficial": 10,
+        "userGetScore": 44.7,
+        "bounsscore": 10,
+        "bounsdailylimit": 20,
+        "isContainsTeacher": true,
+        "level": 2,
+        "w": 3,
+        "checkway": 1,
+        "uRank": "0.0%",
+        "bounsdaily": 0,
+        "userName": "黄新枝",
+        "ptotalscore": 100,
+        "isPass": 1,
+        "bounsVo": {
+            "publishBlog": 0,
+            "publishHomework": 0,
+            "uploadRes": 4,
+            "publishWenda": 0,
+            "timeCourse": 0,
+            "mark": 14,
+            "comment": 13,
+            "followUser": 0,
+            "joinAnswering": 0,
+            "joinActive": 0,
+            "commentEd": 2,
+            "tuiyouEdHomework": 0,
+            "tuiyouEdResource": 0,
+            "downloadEdRes": 0,
+            "bouns1": 4,
+            "bouns2": 27,
+            "bouns3": 2,
+            "bounstotal": 33,
+            "bounsscore": 0
+        },
+        "leadingVoList": [
+                          {
+                          "id": 2141,
+                          "name": "第一阶段：感受技术魅力 提升综合素养",
+                          "isfinish": 1,
+                          "userscore": 12,
+                          "totalscore": 12,
+                          "enddate": "2016-05-20",
+                          "toolExamineVoList": [
+                                                {
+                                                "toolid": 201,
+                                                "name": "课程",
+                                                "finishnum": 145,
+                                                "totalnum": 100,
+                                                "userscore": 5,
+                                                "totalscore": 5,
+                                                "isneedmark": 0
+                                                },
+                                                {
+                                                "toolid": 203,
+                                                "name": "作业",
+                                                "finishnum": 1,
+                                                "totalnum": 1,
+                                                "userscore": 5,
+                                                "totalscore": 5,
+                                                "isneedmark": 0
+                                                },
+                                                {
+                                                "toolid": 202,
+                                                "name": "活动",
+                                                "finishnum": 2,
+                                                "totalnum": 1,
+                                                "userscore": 2,
+                                                "totalscore": 2,
+                                                "isneedmark": 0
+                                                }
+                                                ]
+                          }
+                          ],
+        "bounsVoList": [
+                        {
+                        "id": 310,
+                        "name": "资源",
+                        "isfinish": 0,
+                        "userscore": 4,
+                        "totalscore": 10,
+                        "enddate": "",
+                        "toolid": 210, 
+                        "finishnum": 2, 
+                        "totalnum": 5,  
+                        "isneedmark": 0
+                        }
+                        ]
+    }
+}

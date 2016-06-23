@@ -54,6 +54,7 @@ static const CGFloat kAnimationDuration = 0.3;
                      animations:^{
                          self.drawerViewController.view.center = CGPointMake(self.drawerWidth/2, self.view.bounds.size.height/2);
                          self.gestureView.frame = CGRectMake(self.drawerWidth, 0, self.view.frame.size.width-self.drawerWidth, self.view.frame.size.height);
+                         self.gestureView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
     }
                      completion:^(BOOL finished) {
                          self.isAnimating = NO;
@@ -66,6 +67,7 @@ static const CGFloat kAnimationDuration = 0.3;
                      animations:^{
                          self.drawerViewController.view.center = CGPointMake(-self.drawerWidth/2, self.view.bounds.size.height/2);
                          self.gestureView.frame = self.view.bounds;
+                         self.gestureView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0];
                      }
                      completion:^(BOOL finished) {
                          [self.gestureView removeFromSuperview];
@@ -99,6 +101,7 @@ static const CGFloat kAnimationDuration = 0.3;
         offset = MIN(offset, self.drawerWidth);
         self.drawerViewController.view.frame = CGRectMake(-(self.drawerWidth-offset), 0, self.drawerWidth, self.view.frame.size.height);
         self.gestureView.frame = CGRectMake(offset, 0, self.view.frame.size.width-offset, self.view.frame.size.height);
+        self.gestureView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5*offset/self.drawerWidth];
         [gesture setTranslation:CGPointZero inView:gesture.view];
     }else if (gesture.state == UIGestureRecognizerStateEnded){
         CGFloat offset = self.drawerViewController.view.frame.origin.x+self.drawerViewController.view.frame.size.width;

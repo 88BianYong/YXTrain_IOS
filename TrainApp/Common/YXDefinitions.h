@@ -20,4 +20,8 @@
 
 #define BLOCK_EXEC(block, ...) if (block) { block(__VA_ARGS__); };
 
+
+// 字体
+#define YXFontMetro_Medium        @"Metro-Medium"
+
 #endif /* YXDefinitions_h */

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>http://mobile.yanxiu.com/v17/api/</string>
+	<string>http://mobile.yanxiu.com/test/</string>
 	<key>mockFrameworkOn</key>
-	<false/>
+	<true/>
 	<key>testFrameworkOn</key>
 	<false/>
 </dict>

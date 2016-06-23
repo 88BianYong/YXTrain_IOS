@@ -102,6 +102,20 @@
 		7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888491D18F90000E7C04D /* YXCourseFilterCell.m */; };
 		7CF8885C1D194BE800E7C04D /* JKAlertDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8885B1D194BE800E7C04D /* JKAlertDialog.m */; };
 		7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8885E1D1A427700E7C04D /* YXNoticeViewController.m */; };
+		7CF888671D1BC49200E7C04D /* YXWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888661D1BC49200E7C04D /* YXWaveView.m */; };
+		7CF8886A1D1BC58100E7C04D /* YXExamProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888691D1BC58100E7C04D /* YXExamProgressView.m */; };
+		7CF8886D1D1BC5C300E7C04D /* YXGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8886C1D1BC5C300E7C04D /* YXGradientView.m */; };
+		7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8886F1D1BCDF600E7C04D /* YXExamTotalScoreCell.m */; };
+		7CF888761D1BD06D00E7C04D /* YXExamProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888751D1BD06D00E7C04D /* YXExamProgressCell.m */; };
+		7CF888791D1BD1BF00E7C04D /* YXExamPhaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888781D1BD1BF00E7C04D /* YXExamPhaseHeaderView.m */; };
+		7CF8887C1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8887B1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m */; };
+		7CF8887F1D1BD25C00E7C04D /* YXExamEndDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8887E1D1BD25C00E7C04D /* YXExamEndDateCell.m */; };
+		7CF888821D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7CF888811D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf */; };
+		7CF888851D1BE20400E7C04D /* YXExamPhaseShadowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888841D1BE20400E7C04D /* YXExamPhaseShadowCell.m */; };
+		7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888871D1CFBDC00E7C04D /* YXExamNoScoreView.m */; };
+		7CF8888B1D1D09B100E7C04D /* YXExamineRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8888A1D1D09B100E7C04D /* YXExamineRequest.m */; };
+		7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8888C1D1D147600E7C04D /* examine_mock.json */; };
+		7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 		CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510A41D18E9730081EA3B /* YXAllDatumViewController.m */; };
 		CB3510AA1D18E9730081EA3B /* YXDatumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510A61D18E9730081EA3B /* YXDatumViewController.m */; };
@@ -348,6 +362,32 @@
 		7CF8885B1D194BE800E7C04D /* JKAlertDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKAlertDialog.m; sourceTree = "<group>"; };
 		7CF8885D1D1A427700E7C04D /* YXNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNoticeViewController.h; sourceTree = "<group>"; };
 		7CF8885E1D1A427700E7C04D /* YXNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNoticeViewController.m; sourceTree = "<group>"; };
+		7CF888651D1BC49200E7C04D /* YXWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWaveView.h; sourceTree = "<group>"; };
+		7CF888661D1BC49200E7C04D /* YXWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWaveView.m; sourceTree = "<group>"; };
+		7CF888681D1BC58100E7C04D /* YXExamProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamProgressView.h; sourceTree = "<group>"; };
+		7CF888691D1BC58100E7C04D /* YXExamProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamProgressView.m; sourceTree = "<group>"; };
+		7CF8886B1D1BC5C300E7C04D /* YXGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGradientView.h; sourceTree = "<group>"; };
+		7CF8886C1D1BC5C300E7C04D /* YXGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXGradientView.m; sourceTree = "<group>"; };
+		7CF8886E1D1BCDF600E7C04D /* YXExamTotalScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamTotalScoreCell.h; sourceTree = "<group>"; };
+		7CF8886F1D1BCDF600E7C04D /* YXExamTotalScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamTotalScoreCell.m; sourceTree = "<group>"; };
+		7CF888741D1BD06D00E7C04D /* YXExamProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamProgressCell.h; sourceTree = "<group>"; };
+		7CF888751D1BD06D00E7C04D /* YXExamProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamProgressCell.m; sourceTree = "<group>"; };
+		7CF888771D1BD1BF00E7C04D /* YXExamPhaseHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamPhaseHeaderView.h; sourceTree = "<group>"; };
+		7CF888781D1BD1BF00E7C04D /* YXExamPhaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamPhaseHeaderView.m; sourceTree = "<group>"; };
+		7CF8887A1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamBlankHeaderFooterView.h; sourceTree = "<group>"; };
+		7CF8887B1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamBlankHeaderFooterView.m; sourceTree = "<group>"; };
+		7CF8887D1D1BD25C00E7C04D /* YXExamEndDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamEndDateCell.h; sourceTree = "<group>"; };
+		7CF8887E1D1BD25C00E7C04D /* YXExamEndDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamEndDateCell.m; sourceTree = "<group>"; };
+		7CF888811D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "METRO-MEDIUM PLAYTYPE.otf"; sourceTree = "<group>"; };
+		7CF888831D1BE20400E7C04D /* YXExamPhaseShadowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamPhaseShadowCell.h; sourceTree = "<group>"; };
+		7CF888841D1BE20400E7C04D /* YXExamPhaseShadowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamPhaseShadowCell.m; sourceTree = "<group>"; };
+		7CF888861D1CFBDC00E7C04D /* YXExamNoScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamNoScoreView.h; sourceTree = "<group>"; };
+		7CF888871D1CFBDC00E7C04D /* YXExamNoScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamNoScoreView.m; sourceTree = "<group>"; };
+		7CF888891D1D09B100E7C04D /* YXExamineRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamineRequest.h; sourceTree = "<group>"; };
+		7CF8888A1D1D09B100E7C04D /* YXExamineRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamineRequest.m; sourceTree = "<group>"; };
+		7CF8888C1D1D147600E7C04D /* examine_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = examine_mock.json; sourceTree = "<group>"; };
+		7CF8888E1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamTaskProgressHeaderView.h; sourceTree = "<group>"; };
+		7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamTaskProgressHeaderView.m; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CB3510A31D18E9730081EA3B /* YXAllDatumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAllDatumViewController.h; sourceTree = "<group>"; };
 		CB3510A41D18E9730081EA3B /* YXAllDatumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAllDatumViewController.m; sourceTree = "<group>"; };
@@ -488,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				7C3177BF1D0EC0FC004AAC90 /* UI */,
+				7CF888801D1BD4A900E7C04D /* 字体 */,
 				7C3177521D0E5E04004AAC90 /* AppDelegate.h */,
 				7C3177531D0E5E04004AAC90 /* AppDelegate.m */,
 				7C3177551D0E5E04004AAC90 /* main.m */,
@@ -567,6 +608,8 @@
 		7C3177671D0E688D004AAC90 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				7CF8886B1D1BC5C300E7C04D /* YXGradientView.h */,
+				7CF8886C1D1BC5C300E7C04D /* YXGradientView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -893,6 +936,9 @@
 		7C3178401D139789004AAC90 /* 主界面 */ = {
 			isa = PBXGroup;
 			children = (
+				7CF888891D1D09B100E7C04D /* YXExamineRequest.h */,
+				7CF8888A1D1D09B100E7C04D /* YXExamineRequest.m */,
+				7CF8888C1D1D147600E7C04D /* examine_mock.json */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -915,6 +961,7 @@
 		7C3178491D1398C6004AAC90 /* 考核 */ = {
 			isa = PBXGroup;
 			children = (
+				7CF888631D1BC40500E7C04D /* View */,
 				7C31784D1D139A18004AAC90 /* YXExamViewController.h */,
 				7C31784E1D139A18004AAC90 /* YXExamViewController.m */,
 			);
@@ -1085,6 +1132,41 @@
 				7CF8885B1D194BE800E7C04D /* JKAlertDialog.m */,
 			);
 			path = JKAlertDialog;
+			sourceTree = "<group>";
+		};
+		7CF888631D1BC40500E7C04D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CF888651D1BC49200E7C04D /* YXWaveView.h */,
+				7CF888661D1BC49200E7C04D /* YXWaveView.m */,
+				7CF888681D1BC58100E7C04D /* YXExamProgressView.h */,
+				7CF888691D1BC58100E7C04D /* YXExamProgressView.m */,
+				7CF888861D1CFBDC00E7C04D /* YXExamNoScoreView.h */,
+				7CF888871D1CFBDC00E7C04D /* YXExamNoScoreView.m */,
+				7CF8886E1D1BCDF600E7C04D /* YXExamTotalScoreCell.h */,
+				7CF8886F1D1BCDF600E7C04D /* YXExamTotalScoreCell.m */,
+				7CF888771D1BD1BF00E7C04D /* YXExamPhaseHeaderView.h */,
+				7CF888781D1BD1BF00E7C04D /* YXExamPhaseHeaderView.m */,
+				7CF8887A1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.h */,
+				7CF8887B1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m */,
+				7CF888741D1BD06D00E7C04D /* YXExamProgressCell.h */,
+				7CF888751D1BD06D00E7C04D /* YXExamProgressCell.m */,
+				7CF8887D1D1BD25C00E7C04D /* YXExamEndDateCell.h */,
+				7CF8887E1D1BD25C00E7C04D /* YXExamEndDateCell.m */,
+				7CF888831D1BE20400E7C04D /* YXExamPhaseShadowCell.h */,
+				7CF888841D1BE20400E7C04D /* YXExamPhaseShadowCell.m */,
+				7CF8888E1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.h */,
+				7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7CF888801D1BD4A900E7C04D /* 字体 */ = {
+			isa = PBXGroup;
+			children = (
+				7CF888811D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf */,
+			);
+			path = "字体";
 			sourceTree = "<group>";
 		};
 		9027B214674A7F10A4FE7EE9 /* Pods */ = {
@@ -1285,8 +1367,10 @@
 				7C3177601D0E603C004AAC90 /* PhoneImage.xcassets in Resources */,
 				7C31776E1D0E6E92004AAC90 /* YXConfig.plist in Resources */,
 				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
+				7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
+				7CF888821D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
 			);
@@ -1382,10 +1466,13 @@
 				CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
 				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
+				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
 				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
+				7CF8888B1D1D09B100E7C04D /* YXExamineRequest.m in Sources */,
+				7CF8886D1D1BC5C300E7C04D /* YXGradientView.m in Sources */,
 				CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
@@ -1397,6 +1484,7 @@
 				CB3510AA1D18E9730081EA3B /* YXDatumViewController.m in Sources */,
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
+				7CF8887C1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
 				CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */,
@@ -1413,7 +1501,9 @@
 				7C3177BD1D0EBA79004AAC90 /* UIView+YXShadowColor.m in Sources */,
 				7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */,
 				CB3510E01D1A41C40081EA3B /* YXResourceCollectionRequest.m in Sources */,
+				7CF888791D1BD1BF00E7C04D /* YXExamPhaseHeaderView.m in Sources */,
 				7C31779A1D0EA6A8004AAC90 /* PostRequest.m in Sources */,
+				7CF8887F1D1BD25C00E7C04D /* YXExamEndDateCell.m in Sources */,
 				CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */,
 				7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
@@ -1435,9 +1525,12 @@
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
 				7C3177971D0EA6A8004AAC90 /* HttpBaseRequest.m in Sources */,
 				7C3177B21D0EB738004AAC90 /* UIButton+HighlightColor.m in Sources */,
+				7CF888761D1BD06D00E7C04D /* YXExamProgressCell.m in Sources */,
+				7CF8886A1D1BC58100E7C04D /* YXExamProgressView.m in Sources */,
 				7C31778D1D0EA598004AAC90 /* YXMockManager.m in Sources */,
 				7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */,
 				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
+				7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */,
 				CB3510D11D1912DD0081EA3B /* YXAttachmentTypeHelper.m in Sources */,
 				7C3177981D0EA6A8004AAC90 /* UploadRequest.m in Sources */,
 				7C3177A11D0EA723004AAC90 /* YXGetRequest.m in Sources */,
@@ -1451,6 +1544,8 @@
 				7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */,
 				7C3178271D129C01004AAC90 /* ReaderDocumentOutline.m in Sources */,
 				CB3510AB1D18E9730081EA3B /* YXMyDatumViewController.m in Sources */,
+				7CF888851D1BE20400E7C04D /* YXExamPhaseShadowCell.m in Sources */,
+				7CF888671D1BC49200E7C04D /* YXWaveView.m in Sources */,
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
 				7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */,
@@ -1462,6 +1557,7 @@
 				CB3510B51D18E9830081EA3B /* YXDatumOrderFilterMenuView.m in Sources */,
 				CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */,
 				CB3510B61D18E9830081EA3B /* YXDatumOrderView.m in Sources */,
+				7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */,
 				7C3177ED1D114DC1004AAC90 /* YXFileBrowseManager.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
