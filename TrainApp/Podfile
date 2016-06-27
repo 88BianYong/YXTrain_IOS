@@ -32,5 +32,6 @@ pod 'TOWebViewController', '2.0.14'
 pod 'Base64'
 pod 'CommonCrypto'
 pod 'FCUUID'
+pod 'IQKeyboardManager'
 #pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 inhibit_all_warnings!

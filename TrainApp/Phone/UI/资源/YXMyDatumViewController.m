@@ -67,6 +67,7 @@
 - (void)tableViewWillRefresh{
     [self cancelDownload];
 }
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.dataArray count];
@@ -101,25 +102,17 @@
     if (data.downloadState == DownloadStatusDownloading) {
         return;
     }
-    if (data.downloadState != DownloadStatusFinished) { // 没下载的在线预览
-        YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
-        item.name = data.title;
-        item.url = data.url;
-        item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
-        [YXFileBrowseManager sharedManager].fileItem = item;
-        [YXFileBrowseManager sharedManager].baseViewController = self;
-        [[YXFileBrowseManager sharedManager] browseFile];
-        
-    }else{
-        YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
-        item.name = data.title;
-        item.url = [PersistentUrlDownloader localPathForUrl:data.url];
-        item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
+    item.name = data.title;
+    item.url = data.url;
+    item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    if (data.downloadState == DownloadStatusFinished) { // 没下载的在线预览
         item.isLocal = YES;
-        [YXFileBrowseManager sharedManager].fileItem = item;
-        [YXFileBrowseManager sharedManager].baseViewController = self;
-        [[YXFileBrowseManager sharedManager] browseFile];
     }
+    [YXFileBrowseManager sharedManager].fileItem = item;
+    [YXFileBrowseManager sharedManager].baseViewController = self;
+    [[YXFileBrowseManager sharedManager] browseFile];
+
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.1f;
@@ -131,64 +124,64 @@
     return UITableViewCellEditingStyleDelete;
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    YXDatumCellModel *model = self.datumVC.dataArray[indexPath.row];
-//    if ([model.uid isEqualToString:[YXUserManager sharedManager].userModel.uid]) {  // 我的上传
-//        if (self.delSourceRequest) {
-//            [self.delSourceRequest stopRequest];
-//        }
-//        self.delSourceRequest = [[YXDatumDelSourseRequest alloc] init];
-//        self.delSourceRequest.resid = model.aid;
-//        @weakify(self);
-//        [self.datumVC startLoading];
-//        [self.delSourceRequest startRequestWithDecodeClass:[YXRequestBaseItem class] completion:^(id responseObject, NSError *error) {
-//            @strongify(self);
-//            [self.datumVC stopLoading];
-//            [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:responseObject];
-//        }];
-//    }else{  // 我的收藏
-//        if (self.collectionRequest) {
-//            [self.collectionRequest stopRequest];
-//        }
-//        self.collectionRequest = [[YXResourceCollectionRequest alloc] init];
-//        self.collectionRequest.aid = model.aid;
-//        self.collectionRequest.type = model.type;
-//        self.collectionRequest.iscollection = @"1";
-//        @weakify(self);
-//        [self.datumVC startLoading];
-//        [self.collectionRequest startRequestWithDecodeClass:[YXRequestBaseItem class] completion:^(id responseObject, NSError *error) {
-//            @strongify(self);
-//            [self.datumVC stopLoading];
-//            if (error) {
-//                [self.datumVC yx_showToast:error.localizedDescription];
-//            }
-//            [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:responseObject];
-//        }];
-//    }
+    YXDatumCellModel *model = self.dataArray[indexPath.row];
+    if (NO) {  // 我的上传
+        if (self.delSourceRequest) {
+            [self.delSourceRequest stopRequest];
+        }
+        self.delSourceRequest = [[YXDatumDelSourseRequest alloc] init];
+        self.delSourceRequest.resid = model.aid;
+        @weakify(self);
+        [self startLoading];
+        [self.delSourceRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+            @strongify(self);
+            [self stopLoading];
+            [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:retItem];
+        }];
+    }else{  // 我的收藏
+        if (self.collectionRequest) {
+            [self.collectionRequest stopRequest];
+        }
+        self.collectionRequest = [[YXResourceCollectionRequest alloc] init];
+        self.collectionRequest.aid = model.aid;
+        self.collectionRequest.type = model.type;
+        self.collectionRequest.iscollection = @"1";
+        @weakify(self);
+        [self startLoading];
+        [self.collectionRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+            @strongify(self);
+            [self stopLoading];
+            if (error) {
+                [self showToast:error.localizedDescription];
+            }
+            [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:retItem];
+        }];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView handleDeleteDatumforIndexPath:(NSIndexPath *)indexPath withResponseItem:(HttpBaseRequestItem *)retItem{
-//    YXDatumCellModel *model = self.datumVC.dataArray[indexPath.row];
-//    if (retItem) {
-//        // 如果当前项正在下载则需要先停止
-//        if (model.downloadState == DownloadStatusDownloading) {
-//            [self.downloader stop];
-//        }
-//        [PersistentUrlDownloader removeFile:model.url];
-//        
-//        model.isFavor = FALSE;
-//        [self.datumVC.dataArray removeObjectAtIndex:indexPath.row];
-//        [tableView beginUpdates];
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//        [tableView endUpdates];
-//        if ([self.datumVC.dataArray count] == 0) {
-//            self.datumVC.emptyView.hidden = NO;
-//        }
-//    } else {
-//        [tableView beginUpdates];
-//        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//        [tableView endUpdates];
-//        //[self.datumVC yx_showToast:@"删除失败"];
-//    }
+    YXDatumCellModel *model = self.dataArray[indexPath.row];
+    if (retItem) {
+        // 如果当前项正在下载则需要先停止
+        if (model.downloadState == DownloadStatusDownloading) {
+            [self.downloader stop];
+        }
+        [PersistentUrlDownloader removeFile:model.url];
+        
+        model.isFavor = FALSE;
+        [self.dataArray removeObjectAtIndex:indexPath.row];
+        [tableView beginUpdates];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [tableView endUpdates];
+        if ([self.dataArray count] == 0) {
+            self.emptyView.hidden = NO;
+        }
+    } else {
+        [tableView beginUpdates];
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [tableView endUpdates];
+        //[self.datumVC yx_showToast:@"删除失败"];
+    }
 }
 
 #pragma mark - YXMyDatumCellDelegate

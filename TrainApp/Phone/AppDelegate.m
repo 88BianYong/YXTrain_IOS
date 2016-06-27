@@ -14,6 +14,11 @@
 #import "YXSideMenuViewController.h"
 #import "YXNavigationController.h"
 #import "YXDrawerViewController.h"
+#import "YXLoginViewController.h"
+
+#import "YXUserProfileRequest.h"
+#import "YXLoginViewController.h"
+#import "YXUserManager.h"
 
 @interface AppDelegate ()
 
@@ -25,7 +30,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[YXAppStartupManager sharedInstance] setupForAppdelegate:nil withLauchOptions:launchOptions];
-    
+    //键盘自动控制
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = NO;
+    manager.shouldResignOnTouchOutside = YES;
+    manager.shouldToolbarUsesTextFieldTintColor = YES;
+    manager.enableAutoToolbar = NO;
     [self setupUI];
     return YES;
 }
@@ -46,10 +56,32 @@
         drawerVC.drawerViewController = menuVC;
         drawerVC.paneViewController = projectNavi;
         drawerVC.drawerWidth = 200;
-        
-        self.window.rootViewController = drawerVC;
+        if ([[YXUserManager sharedManager] isLogin]) {
+            self.window.rootViewController = drawerVC;
+            [self requestCommonData];
+        } else {
+            YXLoginViewController *vc = [[YXLoginViewController alloc] init];
+            vc.loginInSuccessBlock = ^{
+                self.window.rootViewController = drawerVC;
+                [self requestCommonData];
+            };
+            self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:vc];
+        }
     }
     [self.window makeKeyAndVisible];
+}
+
+- (void)requestCommonData
+{
+    @weakify(self);
+    [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
+        @strongify(self);
+        //[[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
+        //[self.studioVC requestStudioNotifyList];
+//        [self repeatToAskRedDot];
+    }];
+//    [[YXCooperateGroupHelper sharedHelper] requestCompeletion:nil];
+//    [[YXGPGlobalSingleton sharedInstance] updateFilters];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

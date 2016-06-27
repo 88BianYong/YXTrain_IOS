@@ -40,6 +40,7 @@ PODS:
     - UICKeyChainStore (~> 2.1.0)
   - FileMD5Hash (2.0.0)
   - IBActionSheet (0.0.2)
+  - IQKeyboardManager (4.0.3)
   - JSONModel (1.2.0)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
@@ -88,6 +89,7 @@ DEPENDENCIES:
   - FCUUID
   - FileMD5Hash (= 2.0.0)
   - IBActionSheet (= 0.0.2)
+  - IQKeyboardManager
   - JSONModel (~> 1.0)
   - MagicalRecord (~> 2.0)
   - Masonry (~> 0.0)
@@ -122,6 +124,7 @@ SPEC CHECKSUMS:
   FCUUID: 9bfe031d35b7c221a7c66156a0af45d4eb49c3b6
   FileMD5Hash: 3ed69cc19a21ff4d30ae8833fc104275ad2c7de0
   IBActionSheet: 4028206b0561772c3674a339fb4a7265d55a6f8b
+  IQKeyboardManager: be9695ffc5a52077deb4847608f338771022d6d1
   JSONModel: 12523685c4b623553ccf844bbbf7007624317b2c
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2

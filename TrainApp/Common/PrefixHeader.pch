@@ -34,6 +34,7 @@ extern int ddLogLevel;
 #import <FCUUID.h>
 #import <SAMTextView.h>
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <IQKeyboardManager.h>
 
 #pragma mark - Category
 #import "UIViewController+Keyboard.h"
@@ -43,6 +44,7 @@ extern int ddLogLevel;
 #import "UIView+ViewController.h"
 #import "UIView+YXShadowColor.h"
 #import "UIImage+YXResize.h"
+#import "NSString+YXString.h"
 
 #pragma mark - Other
 #import "YXDefinitions.h"

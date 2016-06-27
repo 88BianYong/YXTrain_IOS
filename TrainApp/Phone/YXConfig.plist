@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>loginServer</key>
+	<string>http://u.yanxiu.com/</string>
 	<key>server</key>
 	<string>http://mobile.yanxiu.com/test/</string>
 	<key>mockFrameworkOn</key>

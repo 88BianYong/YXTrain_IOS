@@ -117,6 +117,13 @@
 		7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8888C1D1D147600E7C04D /* examine_mock.json */; };
 		7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
+		CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */; };
+		CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */; };
+		CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904D71D1BC88F00026C9D /* YXClickedUnderLineButton.m */; };
+		CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF34A1D1BE9AD00E76B34 /* YXLoginTextFiledView.m */; };
+		CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF34D1D1BF00300E76B34 /* NSString+YXString.m */; };
+		CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF3501D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m */; };
+		CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF3531D1CE98100E76B34 /* YXLoginTopView.m */; };
 		CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510A41D18E9730081EA3B /* YXAllDatumViewController.m */; };
 		CB3510AA1D18E9730081EA3B /* YXDatumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510A61D18E9730081EA3B /* YXDatumViewController.m */; };
 		CB3510AB1D18E9730081EA3B /* YXMyDatumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510A81D18E9730081EA3B /* YXMyDatumViewController.m */; };
@@ -129,7 +136,6 @@
 		CB3510C51D18F1A90081EA3B /* YXDatumSearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510C41D18F1A90081EA3B /* YXDatumSearchRequest.m */; };
 		CB3510C81D18F62A0081EA3B /* YXWholeDatumFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510C71D18F62A0081EA3B /* YXWholeDatumFetcher.m */; };
 		CB3510CB1D18F9C30081EA3B /* YXDatumCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510CA1D18F9C30081EA3B /* YXDatumCellModel.m */; };
-		CB3510CE1D190B610081EA3B /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510CD1D190B610081EA3B /* PersistentUrlDownloader.m */; };
 		CB3510D11D1912DD0081EA3B /* YXAttachmentTypeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510D01D1912DD0081EA3B /* YXAttachmentTypeHelper.m */; };
 		CB3510DA1D1924110081EA3B /* YXAllDatumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510D91D1924110081EA3B /* YXAllDatumTableViewCell.m */; };
 		CB3510E01D1A41C40081EA3B /* YXResourceCollectionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3510DF1D1A41C40081EA3B /* YXResourceCollectionRequest.m */; };
@@ -146,6 +152,24 @@
 		CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91851D1A74C800B5F1D0 /* YXDatumSearchCell.m */; };
 		CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */; };
 		CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D918B1D1A758500B5F1D0 /* YXDatumSearchFetcher.m */; };
+		CB7462641D1D44F10065113A /* YXScanQRBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462631D1D44F10065113A /* YXScanQRBackgroundView.m */; };
+		CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462661D1D44FA0065113A /* YXLoginByScanQRViewController.m */; };
+		CB74626A1D1E85630065113A /* YXUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462691D1E85630065113A /* YXUserManager.m */; };
+		CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74626C1D1E85FE0065113A /* YXLoginRequest.m */; };
+		CB7462701D1E89EE0065113A /* YXInitRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74626F1D1E89EE0065113A /* YXInitRequest.m */; };
+		CB7462731D1F64970065113A /* YXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462721D1F64970065113A /* YXAlertView.m */; };
+		CB7462781D1F6D270065113A /* YXUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462751D1F6D270065113A /* YXUserProfile.m */; };
+		CB7462791D1F6D270065113A /* YXUserProfileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462771D1F6D270065113A /* YXUserProfileRequest.m */; };
+		CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74627B1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m */; };
+		CB74627F1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74627E1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m */; };
+		CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462811D1FE2160065113A /* YXVerifySMSCodeRequest.m */; };
+		CB7462851D1FF00D0065113A /* YXResetPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462841D1FF00D0065113A /* YXResetPasswordRequest.m */; };
+		CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94F71D1D111300C935C8 /* YXLoginBaseViewController.m */; };
+		CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94FA1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m */; };
+		CBBE94FE1D1D193400C935C8 /* YXLoginButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94FD1D1D193400C935C8 /* YXLoginButtonTableViewCell.m */; };
+		CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE95001D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m */; };
+		CBBE95041D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE95031D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m */; };
+		CBBE95071D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE95061D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -351,7 +375,6 @@
 		7CF8883A1D18DB5B00E7C04D /* YXCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCourseViewController.m; sourceTree = "<group>"; };
 		7CF8883C1D18DB7E00E7C04D /* YXCourseFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCourseFilterView.h; sourceTree = "<group>"; };
 		7CF8883D1D18DB7E00E7C04D /* YXCourseFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCourseFilterView.m; sourceTree = "<group>"; };
-		7CF888401D18E80200E7C04D /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		7CF888431D18E86A00E7C04D /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		7CF888461D18E88500E7C04D /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
 		7CF888481D18F90000E7C04D /* YXCourseFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCourseFilterCell.h; sourceTree = "<group>"; };
@@ -389,6 +412,20 @@
 		7CF8888E1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamTaskProgressHeaderView.h; sourceTree = "<group>"; };
 		7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamTaskProgressHeaderView.m; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CB0904CE1D1AA3CC00026C9D /* PersistentUrlDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentUrlDownloader.h; sourceTree = "<group>"; };
+		CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentUrlDownloader.m; sourceTree = "<group>"; };
+		CB0904D11D1B97CC00026C9D /* YXLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginViewController.h; sourceTree = "<group>"; };
+		CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginViewController.m; sourceTree = "<group>"; };
+		CB0904D61D1BC88F00026C9D /* YXClickedUnderLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXClickedUnderLineButton.h; sourceTree = "<group>"; };
+		CB0904D71D1BC88F00026C9D /* YXClickedUnderLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXClickedUnderLineButton.m; sourceTree = "<group>"; };
+		CB2CF3491D1BE9AD00E76B34 /* YXLoginTextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginTextFiledView.h; sourceTree = "<group>"; };
+		CB2CF34A1D1BE9AD00E76B34 /* YXLoginTextFiledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginTextFiledView.m; sourceTree = "<group>"; };
+		CB2CF34C1D1BF00300E76B34 /* NSString+YXString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YXString.h"; sourceTree = "<group>"; };
+		CB2CF34D1D1BF00300E76B34 /* NSString+YXString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YXString.m"; sourceTree = "<group>"; };
+		CB2CF34F1D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMiddlePlaceholderTextField.h; sourceTree = "<group>"; };
+		CB2CF3501D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMiddlePlaceholderTextField.m; sourceTree = "<group>"; };
+		CB2CF3521D1CE98100E76B34 /* YXLoginTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginTopView.h; sourceTree = "<group>"; };
+		CB2CF3531D1CE98100E76B34 /* YXLoginTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginTopView.m; sourceTree = "<group>"; };
 		CB3510A31D18E9730081EA3B /* YXAllDatumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAllDatumViewController.h; sourceTree = "<group>"; };
 		CB3510A41D18E9730081EA3B /* YXAllDatumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAllDatumViewController.m; sourceTree = "<group>"; };
 		CB3510A51D18E9730081EA3B /* YXDatumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumViewController.h; sourceTree = "<group>"; };
@@ -413,8 +450,6 @@
 		CB3510C71D18F62A0081EA3B /* YXWholeDatumFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWholeDatumFetcher.m; sourceTree = "<group>"; };
 		CB3510C91D18F9C30081EA3B /* YXDatumCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumCellModel.h; sourceTree = "<group>"; };
 		CB3510CA1D18F9C30081EA3B /* YXDatumCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumCellModel.m; sourceTree = "<group>"; };
-		CB3510CC1D190B610081EA3B /* PersistentUrlDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentUrlDownloader.h; sourceTree = "<group>"; };
-		CB3510CD1D190B610081EA3B /* PersistentUrlDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentUrlDownloader.m; sourceTree = "<group>"; };
 		CB3510CF1D1912DD0081EA3B /* YXAttachmentTypeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAttachmentTypeHelper.h; sourceTree = "<group>"; };
 		CB3510D01D1912DD0081EA3B /* YXAttachmentTypeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAttachmentTypeHelper.m; sourceTree = "<group>"; };
 		CB3510D81D1924110081EA3B /* YXAllDatumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAllDatumTableViewCell.h; sourceTree = "<group>"; };
@@ -447,6 +482,42 @@
 		CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchBarView.m; sourceTree = "<group>"; };
 		CB4D918A1D1A758500B5F1D0 /* YXDatumSearchFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchFetcher.h; sourceTree = "<group>"; };
 		CB4D918B1D1A758500B5F1D0 /* YXDatumSearchFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchFetcher.m; sourceTree = "<group>"; };
+		CB7462621D1D44F10065113A /* YXScanQRBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScanQRBackgroundView.h; sourceTree = "<group>"; };
+		CB7462631D1D44F10065113A /* YXScanQRBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScanQRBackgroundView.m; sourceTree = "<group>"; };
+		CB7462651D1D44FA0065113A /* YXLoginByScanQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginByScanQRViewController.h; sourceTree = "<group>"; };
+		CB7462661D1D44FA0065113A /* YXLoginByScanQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginByScanQRViewController.m; sourceTree = "<group>"; };
+		CB7462681D1E85630065113A /* YXUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserManager.h; sourceTree = "<group>"; };
+		CB7462691D1E85630065113A /* YXUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserManager.m; sourceTree = "<group>"; };
+		CB74626B1D1E85FE0065113A /* YXLoginRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginRequest.h; sourceTree = "<group>"; };
+		CB74626C1D1E85FE0065113A /* YXLoginRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginRequest.m; sourceTree = "<group>"; };
+		CB74626E1D1E89EE0065113A /* YXInitRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXInitRequest.h; sourceTree = "<group>"; };
+		CB74626F1D1E89EE0065113A /* YXInitRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXInitRequest.m; sourceTree = "<group>"; };
+		CB7462711D1F64970065113A /* YXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAlertView.h; sourceTree = "<group>"; };
+		CB7462721D1F64970065113A /* YXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAlertView.m; sourceTree = "<group>"; };
+		CB7462741D1F6D270065113A /* YXUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserProfile.h; sourceTree = "<group>"; };
+		CB7462751D1F6D270065113A /* YXUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserProfile.m; sourceTree = "<group>"; };
+		CB7462761D1F6D270065113A /* YXUserProfileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserProfileRequest.h; sourceTree = "<group>"; };
+		CB7462771D1F6D270065113A /* YXUserProfileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserProfileRequest.m; sourceTree = "<group>"; };
+		CB74627A1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVerifyPhoneExistRequest.h; sourceTree = "<group>"; };
+		CB74627B1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXVerifyPhoneExistRequest.m; sourceTree = "<group>"; };
+		CB74627D1D1FDE180065113A /* YXPhoneVerifyCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPhoneVerifyCodeRequest.h; sourceTree = "<group>"; };
+		CB74627E1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPhoneVerifyCodeRequest.m; sourceTree = "<group>"; };
+		CB7462801D1FE2160065113A /* YXVerifySMSCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVerifySMSCodeRequest.h; sourceTree = "<group>"; };
+		CB7462811D1FE2160065113A /* YXVerifySMSCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXVerifySMSCodeRequest.m; sourceTree = "<group>"; };
+		CB7462831D1FF00D0065113A /* YXResetPasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXResetPasswordRequest.h; sourceTree = "<group>"; };
+		CB7462841D1FF00D0065113A /* YXResetPasswordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXResetPasswordRequest.m; sourceTree = "<group>"; };
+		CBBE94F61D1D111300C935C8 /* YXLoginBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginBaseViewController.h; sourceTree = "<group>"; };
+		CBBE94F71D1D111300C935C8 /* YXLoginBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginBaseViewController.m; sourceTree = "<group>"; };
+		CBBE94F91D1D16AF00C935C8 /* YXLoginFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginFieldTableViewCell.h; sourceTree = "<group>"; };
+		CBBE94FA1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginFieldTableViewCell.m; sourceTree = "<group>"; };
+		CBBE94FC1D1D193400C935C8 /* YXLoginButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginButtonTableViewCell.h; sourceTree = "<group>"; };
+		CBBE94FD1D1D193400C935C8 /* YXLoginButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginButtonTableViewCell.m; sourceTree = "<group>"; };
+		CBBE94FF1D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVerifyCodeInputTableViewCell.h; sourceTree = "<group>"; };
+		CBBE95001D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXVerifyCodeInputTableViewCell.m; sourceTree = "<group>"; };
+		CBBE95021D1D241C00C935C8 /* YXLoginVerifyCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginVerifyCodeViewController.h; sourceTree = "<group>"; };
+		CBBE95031D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginVerifyCodeViewController.m; sourceTree = "<group>"; };
+		CBBE95051D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginModifyPasswordViewController.h; sourceTree = "<group>"; };
+		CBBE95061D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginModifyPasswordViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -587,6 +658,8 @@
 		7C3177651D0E688D004AAC90 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				CB2CF34C1D1BF00300E76B34 /* NSString+YXString.h */,
+				CB2CF34D1D1BF00300E76B34 /* NSString+YXString.m */,
 				7C3177B31D0EB7F1004AAC90 /* UIViewController+Keyboard.h */,
 				7C3177B41D0EB7F1004AAC90 /* UIViewController+Keyboard.m */,
 				7C3177AA1D0EB738004AAC90 /* UIImage+Color.h */,
@@ -624,6 +697,8 @@
 				7C31777E1D0E8A1D004AAC90 /* GlobalUtils.m */,
 				7C31776F1D0E7EB0004AAC90 /* YXConfigManager.h */,
 				7C3177701D0E7EB0004AAC90 /* YXConfigManager.m */,
+				CB74626E1D1E89EE0065113A /* YXInitRequest.h */,
+				CB74626F1D1E89EE0065113A /* YXInitRequest.m */,
 			);
 			path = Env;
 			sourceTree = "<group>";
@@ -734,6 +809,8 @@
 				7C3177C71D10F46B004AAC90 /* YXBaseViewController.m */,
 				7C3177C91D10F496004AAC90 /* YXNavigationController.h */,
 				7C3177CA1D10F496004AAC90 /* YXNavigationController.m */,
+				CB7462711D1F64970065113A /* YXAlertView.h */,
+				CB7462721D1F64970065113A /* YXAlertView.m */,
 			);
 			path = "主框架";
 			sourceTree = "<group>";
@@ -801,6 +878,8 @@
 		7C3177F11D1177E0004AAC90 /* Download */ = {
 			isa = PBXGroup;
 			children = (
+				CB0904CE1D1AA3CC00026C9D /* PersistentUrlDownloader.h */,
+				CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */,
 				7C3177F21D1177F9004AAC90 /* BaseDownloader.h */,
 				7C3177F31D1177F9004AAC90 /* BaseDownloader.m */,
 				7C3177F41D1177F9004AAC90 /* DownloaderEntity.h */,
@@ -892,6 +971,10 @@
 		7C3178371D13949C004AAC90 /* 个人 */ = {
 			isa = PBXGroup;
 			children = (
+				CB7462741D1F6D270065113A /* YXUserProfile.h */,
+				CB7462751D1F6D270065113A /* YXUserProfile.m */,
+				CB7462761D1F6D270065113A /* YXUserProfileRequest.h */,
+				CB7462771D1F6D270065113A /* YXUserProfileRequest.m */,
 			);
 			path = "个人";
 			sourceTree = "<group>";
@@ -950,8 +1033,6 @@
 				CB4D916D1D1A5E8C00B5F1D0 /* YXDatumGlobalSingleton.m */,
 				CB3510CF1D1912DD0081EA3B /* YXAttachmentTypeHelper.h */,
 				CB3510D01D1912DD0081EA3B /* YXAttachmentTypeHelper.m */,
-				CB3510CC1D190B610081EA3B /* PersistentUrlDownloader.h */,
-				CB3510CD1D190B610081EA3B /* PersistentUrlDownloader.m */,
 				CB3510B91D18E9D00081EA3B /* requests */,
 				CB3510B81D18E9C80081EA3B /* models */,
 			);
@@ -1104,7 +1185,8 @@
 		7CF8883F1D18E80200E7C04D /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
-				7CF888401D18E80200E7C04D /* readme.txt */,
+				CB0904D51D1BC74400026C9D /* views */,
+				CB0904D41D1BC73D00026C9D /* controllers */,
 			);
 			path = "登录注册";
 			sourceTree = "<group>";
@@ -1120,6 +1202,18 @@
 		7CF888451D18E88500E7C04D /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
+				CB7462831D1FF00D0065113A /* YXResetPasswordRequest.h */,
+				CB7462841D1FF00D0065113A /* YXResetPasswordRequest.m */,
+				CB7462801D1FE2160065113A /* YXVerifySMSCodeRequest.h */,
+				CB7462811D1FE2160065113A /* YXVerifySMSCodeRequest.m */,
+				CB74627D1D1FDE180065113A /* YXPhoneVerifyCodeRequest.h */,
+				CB74627E1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m */,
+				CB74627A1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.h */,
+				CB74627B1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m */,
+				CB74626B1D1E85FE0065113A /* YXLoginRequest.h */,
+				CB74626C1D1E85FE0065113A /* YXLoginRequest.m */,
+				CB7462681D1E85630065113A /* YXUserManager.h */,
+				CB7462691D1E85630065113A /* YXUserManager.m */,
 				7CF888461D18E88500E7C04D /* readme.txt */,
 			);
 			path = "登录注册";
@@ -1176,6 +1270,46 @@
 				B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		CB0904D41D1BC73D00026C9D /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CB7462651D1D44FA0065113A /* YXLoginByScanQRViewController.h */,
+				CB7462661D1D44FA0065113A /* YXLoginByScanQRViewController.m */,
+				CB0904D11D1B97CC00026C9D /* YXLoginViewController.h */,
+				CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */,
+				CBBE94F61D1D111300C935C8 /* YXLoginBaseViewController.h */,
+				CBBE94F71D1D111300C935C8 /* YXLoginBaseViewController.m */,
+				CBBE95021D1D241C00C935C8 /* YXLoginVerifyCodeViewController.h */,
+				CBBE95031D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m */,
+				CBBE95051D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.h */,
+				CBBE95061D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		CB0904D51D1BC74400026C9D /* views */ = {
+			isa = PBXGroup;
+			children = (
+				CB7462621D1D44F10065113A /* YXScanQRBackgroundView.h */,
+				CB7462631D1D44F10065113A /* YXScanQRBackgroundView.m */,
+				CB2CF34F1D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.h */,
+				CB2CF3501D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m */,
+				CB0904D61D1BC88F00026C9D /* YXClickedUnderLineButton.h */,
+				CB0904D71D1BC88F00026C9D /* YXClickedUnderLineButton.m */,
+				CB2CF3491D1BE9AD00E76B34 /* YXLoginTextFiledView.h */,
+				CB2CF34A1D1BE9AD00E76B34 /* YXLoginTextFiledView.m */,
+				CB2CF3521D1CE98100E76B34 /* YXLoginTopView.h */,
+				CB2CF3531D1CE98100E76B34 /* YXLoginTopView.m */,
+				CBBE94F91D1D16AF00C935C8 /* YXLoginFieldTableViewCell.h */,
+				CBBE94FA1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m */,
+				CBBE94FC1D1D193400C935C8 /* YXLoginButtonTableViewCell.h */,
+				CBBE94FD1D1D193400C935C8 /* YXLoginButtonTableViewCell.m */,
+				CBBE94FF1D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.h */,
+				CBBE95001D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 		CB3510A11D18E9460081EA3B /* controllers */ = {
@@ -1447,6 +1581,7 @@
 			files = (
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
+				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
 				7C3177FC1D1177F9004AAC90 /* DownloaderEntity.m in Sources */,
 				CB4D91741D1A5F2000B5F1D0 /* YXDatumFilterRequest.m in Sources */,
@@ -1459,12 +1594,15 @@
 				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
 				7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */,
 				7CF8885C1D194BE800E7C04D /* JKAlertDialog.m in Sources */,
+				CB7462851D1FF00D0065113A /* YXResetPasswordRequest.m in Sources */,
 				7C31780B1D12830A004AAC90 /* YXFileFavorWrapper.m in Sources */,
 				7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */,
 				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
-				CB3510CE1D190B610081EA3B /* PersistentUrlDownloader.m in Sources */,
+				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
 				CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
+				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
+				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
 				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
@@ -1476,21 +1614,30 @@
 				CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
+				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
+				CB7462781D1F6D270065113A /* YXUserProfile.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
 				CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */,
 				7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
+				CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */,
+				CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */,
 				CB3510AA1D18E9730081EA3B /* YXDatumViewController.m in Sources */,
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
 				7CF8887C1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m in Sources */,
+				CB7462641D1D44F10065113A /* YXScanQRBackgroundView.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
 				CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */,
 				7C3177FD1D1177F9004AAC90 /* DownloadManager.m in Sources */,
+				CBBE95041D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m in Sources */,
 				7C3177991D0EA6A8004AAC90 /* GetRequest.m in Sources */,
 				7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */,
+				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
+				CB7462791D1F6D270065113A /* YXUserProfileRequest.m in Sources */,
+				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
 				7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */,
 				7C3178071D123935004AAC90 /* YXQLPreviewController.m in Sources */,
@@ -1498,7 +1645,9 @@
 				7C3177CB1D10F496004AAC90 /* YXNavigationController.m in Sources */,
 				7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */,
 				CB4D91771D1A635400B5F1D0 /* YXMyDatumCell.m in Sources */,
+				CBBE94FE1D1D193400C935C8 /* YXLoginButtonTableViewCell.m in Sources */,
 				7C3177BD1D0EBA79004AAC90 /* UIView+YXShadowColor.m in Sources */,
+				CB74627F1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m in Sources */,
 				7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */,
 				CB3510E01D1A41C40081EA3B /* YXResourceCollectionRequest.m in Sources */,
 				7CF888791D1BD1BF00E7C04D /* YXExamPhaseHeaderView.m in Sources */,
@@ -1509,11 +1658,13 @@
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
+				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
 				7C3177711D0E7EB0004AAC90 /* YXConfigManager.m in Sources */,
 				7C3177D61D10FF0A004AAC90 /* YXTestPushViewController.m in Sources */,
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
+				CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
@@ -1523,6 +1674,7 @@
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
 				CB4D91831D1A73EA00B5F1D0 /* YXDatumSearchViewController.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
+				CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */,
 				7C3177971D0EA6A8004AAC90 /* HttpBaseRequest.m in Sources */,
 				7C3177B21D0EB738004AAC90 /* UIButton+HighlightColor.m in Sources */,
 				7CF888761D1BD06D00E7C04D /* YXExamProgressCell.m in Sources */,
@@ -1531,10 +1683,12 @@
 				7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */,
 				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
 				7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */,
+				CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */,
 				CB3510D11D1912DD0081EA3B /* YXAttachmentTypeHelper.m in Sources */,
 				7C3177981D0EA6A8004AAC90 /* UploadRequest.m in Sources */,
 				7C3177A11D0EA723004AAC90 /* YXGetRequest.m in Sources */,
 				7C31782A1D129C01004AAC90 /* UIXToolbarView.m in Sources */,
+				CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */,
 				CB3510DA1D1924110081EA3B /* YXAllDatumTableViewCell.m in Sources */,
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
 				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,
@@ -1547,7 +1701,10 @@
 				7CF888851D1BE20400E7C04D /* YXExamPhaseShadowCell.m in Sources */,
 				7CF888671D1BC49200E7C04D /* YXWaveView.m in Sources */,
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,
+				CB7462701D1E89EE0065113A /* YXInitRequest.m in Sources */,
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
+				CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */,
+				CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */,
 				7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */,
 				7C3177B01D0EB738004AAC90 /* UIImage+Color.m in Sources */,
 				7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */,
@@ -1562,6 +1719,7 @@
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
 				CB3510B71D18E9830081EA3B /* YXDatumOrderViewCell.m in Sources */,
+				CBBE95071D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m in Sources */,
 				7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */,
 				7C3178231D129C01004AAC90 /* ReaderContentPage.m in Sources */,
 				7C3177A31D0EA723004AAC90 /* YXUploadRequest.m in Sources */,

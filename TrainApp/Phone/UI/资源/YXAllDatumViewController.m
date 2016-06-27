@@ -106,9 +106,9 @@
             if (item) {
                 model.isFavor = TRUE;
                 [self.tableView reloadData];
-                //[self yx_showToast:@"已保存到\"我的资源\""];
+                [self showToast:@"已保存到\"我的资源\""];
             } else {
-                //[self yx_showToast:error.localizedDescription];
+                [self showToast:error.localizedDescription];
             }
         }];
     };
