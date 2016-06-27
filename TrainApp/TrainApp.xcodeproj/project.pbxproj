@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B2A1D20FF5700A03635 /* YXScoreViewController.m */; };
+		7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreCell.m */; };
+		7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B301D21043A00A03635 /* YXScoreNoScoreView.m */; };
+		7C2C3B341D2114DC00A03635 /* YXScoreTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B331D2114DC00A03635 /* YXScoreTypeCell.m */; };
+		7C2C3B371D2119BB00A03635 /* YXScorePhaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B361D2119BB00A03635 /* YXScorePhaseHeaderView.m */; };
+		7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B391D212C9200A03635 /* YXScoreBlankCell.m */; };
+		7C2C3B3D1D212D6700A03635 /* YXScoreLeadScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B3C1D212D6700A03635 /* YXScoreLeadScoreCell.m */; };
+		7C2C3B401D21320E00A03635 /* YXScoreTaskScoreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B3F1D21320E00A03635 /* YXScoreTaskScoreHeaderView.m */; };
+		7C2C3B431D21351F00A03635 /* YXScoreExpHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B421D21351F00A03635 /* YXScoreExpHeaderView.m */; };
+		7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B451D21404700A03635 /* YXScoreExpScoreCell.m */; };
+		7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B481D22596B00A03635 /* YXExamHelper.m */; };
+		7C2C3B4C1D226D3D00A03635 /* YXExamMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B4B1D226D3D00A03635 /* YXExamMarkView.m */; };
 		7C3177381D0E4D6C004AAC90 /* TrainAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177371D0E4D6C004AAC90 /* TrainAppTests.m */; };
 		7C3177431D0E4D6C004AAC90 /* TrainAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177421D0E4D6C004AAC90 /* TrainAppUITests.m */; };
 		7C3177581D0E5E04004AAC90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
@@ -79,6 +91,10 @@
 		7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31785A1D139D49004AAC90 /* YXProjectContainerView.m */; };
 		7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31785D1D13DE38004AAC90 /* YXPromtController.m */; };
 		7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178601D13DE57004AAC90 /* YXNavigationBarController.m */; };
+		7C3F258B1D20C42D00F0A17A /* YXTrainListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F258A1D20C42D00F0A17A /* YXTrainListRequest.m */; };
+		7C3F258D1D20C6C100F0A17A /* trainlist_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F258C1D20C6C100F0A17A /* trainlist_mock.json */; };
+		7C3F25901D20CB5F00F0A17A /* YXTaskListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F258F1D20CB5F00F0A17A /* YXTaskListRequest.m */; };
+		7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F25911D20D11800F0A17A /* tasklist_mock.json */; };
 		7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */; };
 		7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */; };
 		7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */; };
@@ -195,6 +211,30 @@
 /* Begin PBXFileReference section */
 		22524766F0C73BA9FCA8F5C7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A44E0C17A8C88A304B21CA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7C2C3B291D20FF5700A03635 /* YXScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreViewController.h; sourceTree = "<group>"; };
+		7C2C3B2A1D20FF5700A03635 /* YXScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreViewController.m; sourceTree = "<group>"; };
+		7C2C3B2C1D21007D00A03635 /* YXScoreTotalScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreTotalScoreCell.h; sourceTree = "<group>"; };
+		7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreTotalScoreCell.m; sourceTree = "<group>"; };
+		7C2C3B2F1D21043A00A03635 /* YXScoreNoScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreNoScoreView.h; sourceTree = "<group>"; };
+		7C2C3B301D21043A00A03635 /* YXScoreNoScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreNoScoreView.m; sourceTree = "<group>"; };
+		7C2C3B321D2114DC00A03635 /* YXScoreTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreTypeCell.h; sourceTree = "<group>"; };
+		7C2C3B331D2114DC00A03635 /* YXScoreTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreTypeCell.m; sourceTree = "<group>"; };
+		7C2C3B351D2119BB00A03635 /* YXScorePhaseHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScorePhaseHeaderView.h; sourceTree = "<group>"; };
+		7C2C3B361D2119BB00A03635 /* YXScorePhaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScorePhaseHeaderView.m; sourceTree = "<group>"; };
+		7C2C3B381D212C9200A03635 /* YXScoreBlankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreBlankCell.h; sourceTree = "<group>"; };
+		7C2C3B391D212C9200A03635 /* YXScoreBlankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreBlankCell.m; sourceTree = "<group>"; };
+		7C2C3B3B1D212D6700A03635 /* YXScoreLeadScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreLeadScoreCell.h; sourceTree = "<group>"; };
+		7C2C3B3C1D212D6700A03635 /* YXScoreLeadScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreLeadScoreCell.m; sourceTree = "<group>"; };
+		7C2C3B3E1D21320E00A03635 /* YXScoreTaskScoreHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreTaskScoreHeaderView.h; sourceTree = "<group>"; };
+		7C2C3B3F1D21320E00A03635 /* YXScoreTaskScoreHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreTaskScoreHeaderView.m; sourceTree = "<group>"; };
+		7C2C3B411D21351F00A03635 /* YXScoreExpHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreExpHeaderView.h; sourceTree = "<group>"; };
+		7C2C3B421D21351F00A03635 /* YXScoreExpHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreExpHeaderView.m; sourceTree = "<group>"; };
+		7C2C3B441D21404700A03635 /* YXScoreExpScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreExpScoreCell.h; sourceTree = "<group>"; };
+		7C2C3B451D21404700A03635 /* YXScoreExpScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreExpScoreCell.m; sourceTree = "<group>"; };
+		7C2C3B471D22596B00A03635 /* YXExamHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamHelper.h; sourceTree = "<group>"; };
+		7C2C3B481D22596B00A03635 /* YXExamHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamHelper.m; sourceTree = "<group>"; };
+		7C2C3B4A1D226D3D00A03635 /* YXExamMarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamMarkView.h; sourceTree = "<group>"; };
+		7C2C3B4B1D226D3D00A03635 /* YXExamMarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamMarkView.m; sourceTree = "<group>"; };
 		7C31771A1D0E4D6C004AAC90 /* TrainApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3177331D0E4D6C004AAC90 /* TrainAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrainAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3177371D0E4D6C004AAC90 /* TrainAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrainAppTests.m; sourceTree = "<group>"; };
@@ -336,6 +376,12 @@
 		7C31785D1D13DE38004AAC90 /* YXPromtController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPromtController.m; sourceTree = "<group>"; };
 		7C31785F1D13DE57004AAC90 /* YXNavigationBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNavigationBarController.h; sourceTree = "<group>"; };
 		7C3178601D13DE57004AAC90 /* YXNavigationBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNavigationBarController.m; sourceTree = "<group>"; };
+		7C3F25891D20C42D00F0A17A /* YXTrainListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrainListRequest.h; sourceTree = "<group>"; };
+		7C3F258A1D20C42D00F0A17A /* YXTrainListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTrainListRequest.m; sourceTree = "<group>"; };
+		7C3F258C1D20C6C100F0A17A /* trainlist_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trainlist_mock.json; sourceTree = "<group>"; };
+		7C3F258E1D20CB5F00F0A17A /* YXTaskListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTaskListRequest.h; sourceTree = "<group>"; };
+		7C3F258F1D20CB5F00F0A17A /* YXTaskListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTaskListRequest.m; sourceTree = "<group>"; };
+		7C3F25911D20D11800F0A17A /* tasklist_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tasklist_mock.json; sourceTree = "<group>"; };
 		7CF887F61D17A77400E7C04D /* YXDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDrawerViewController.h; sourceTree = "<group>"; };
 		7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDrawerViewController.m; sourceTree = "<group>"; };
 		7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
@@ -1027,6 +1073,12 @@
 				7CF888891D1D09B100E7C04D /* YXExamineRequest.h */,
 				7CF8888A1D1D09B100E7C04D /* YXExamineRequest.m */,
 				7CF8888C1D1D147600E7C04D /* examine_mock.json */,
+				7C3F25891D20C42D00F0A17A /* YXTrainListRequest.h */,
+				7C3F258A1D20C42D00F0A17A /* YXTrainListRequest.m */,
+				7C3F258C1D20C6C100F0A17A /* trainlist_mock.json */,
+				7C3F258E1D20CB5F00F0A17A /* YXTaskListRequest.h */,
+				7C3F258F1D20CB5F00F0A17A /* YXTaskListRequest.m */,
+				7C3F25911D20D11800F0A17A /* tasklist_mock.json */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -1050,6 +1102,8 @@
 				7CF888631D1BC40500E7C04D /* View */,
 				7C31784D1D139A18004AAC90 /* YXExamViewController.h */,
 				7C31784E1D139A18004AAC90 /* YXExamViewController.m */,
+				7C2C3B291D20FF5700A03635 /* YXScoreViewController.h */,
+				7C2C3B2A1D20FF5700A03635 /* YXScoreViewController.m */,
 			);
 			name = "考核";
 			sourceTree = "<group>";
@@ -1256,6 +1310,28 @@
 				7CF888841D1BE20400E7C04D /* YXExamPhaseShadowCell.m */,
 				7CF8888E1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.h */,
 				7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */,
+				7C2C3B4A1D226D3D00A03635 /* YXExamMarkView.h */,
+				7C2C3B4B1D226D3D00A03635 /* YXExamMarkView.m */,
+				7C2C3B471D22596B00A03635 /* YXExamHelper.h */,
+				7C2C3B481D22596B00A03635 /* YXExamHelper.m */,
+				7C2C3B2C1D21007D00A03635 /* YXScoreTotalScoreCell.h */,
+				7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreCell.m */,
+				7C2C3B2F1D21043A00A03635 /* YXScoreNoScoreView.h */,
+				7C2C3B301D21043A00A03635 /* YXScoreNoScoreView.m */,
+				7C2C3B321D2114DC00A03635 /* YXScoreTypeCell.h */,
+				7C2C3B331D2114DC00A03635 /* YXScoreTypeCell.m */,
+				7C2C3B351D2119BB00A03635 /* YXScorePhaseHeaderView.h */,
+				7C2C3B361D2119BB00A03635 /* YXScorePhaseHeaderView.m */,
+				7C2C3B381D212C9200A03635 /* YXScoreBlankCell.h */,
+				7C2C3B391D212C9200A03635 /* YXScoreBlankCell.m */,
+				7C2C3B3B1D212D6700A03635 /* YXScoreLeadScoreCell.h */,
+				7C2C3B3C1D212D6700A03635 /* YXScoreLeadScoreCell.m */,
+				7C2C3B3E1D21320E00A03635 /* YXScoreTaskScoreHeaderView.h */,
+				7C2C3B3F1D21320E00A03635 /* YXScoreTaskScoreHeaderView.m */,
+				7C2C3B411D21351F00A03635 /* YXScoreExpHeaderView.h */,
+				7C2C3B421D21351F00A03635 /* YXScoreExpHeaderView.m */,
+				7C2C3B441D21404700A03635 /* YXScoreExpScoreCell.h */,
+				7C2C3B451D21404700A03635 /* YXScoreExpScoreCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1528,11 +1604,13 @@
 				7C3177601D0E603C004AAC90 /* PhoneImage.xcassets in Resources */,
 				7C31776E1D0E6E92004AAC90 /* YXConfig.plist in Resources */,
 				CB7462891D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF in Resources */,
+				7C3F258D1D20C6C100F0A17A /* trainlist_mock.json in Resources */,
 				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
 				7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
+				7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */,
 				7CF888821D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
@@ -1612,8 +1690,10 @@
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
+				7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */,
 				7C3177FC1D1177F9004AAC90 /* DownloaderEntity.m in Sources */,
 				CB4D91741D1A5F2000B5F1D0 /* YXDatumFilterRequest.m in Sources */,
+				7C2C3B371D2119BB00A03635 /* YXScorePhaseHeaderView.m in Sources */,
 				7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
@@ -1627,6 +1707,7 @@
 				7C31780B1D12830A004AAC90 /* YXFileFavorWrapper.m in Sources */,
 				7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */,
 				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
+				7C2C3B341D2114DC00A03635 /* YXScoreTypeCell.m in Sources */,
 				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
 				CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
@@ -1634,6 +1715,7 @@
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
 				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
+				7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
@@ -1652,6 +1734,8 @@
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
 				CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */,
 				CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */,
+				7C2C3B3D1D212D6700A03635 /* YXScoreLeadScoreCell.m in Sources */,
+				7C3F25901D20CB5F00F0A17A /* YXTaskListRequest.m in Sources */,
 				CB3510AA1D18E9730081EA3B /* YXDatumViewController.m in Sources */,
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
@@ -1659,6 +1743,7 @@
 				CB7462641D1D44F10065113A /* YXScanQRBackgroundView.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
+				7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreCell.m in Sources */,
 				CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */,
 				7C3177FD1D1177F9004AAC90 /* DownloadManager.m in Sources */,
 				CBBE95041D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m in Sources */,
@@ -1685,7 +1770,10 @@
 				CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */,
 				7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
+				7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */,
+				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
+				7C2C3B401D21320E00A03635 /* YXScoreTaskScoreHeaderView.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
@@ -1695,6 +1783,7 @@
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
 				CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
+				7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */,
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
@@ -1711,6 +1800,7 @@
 				7CF8886A1D1BC58100E7C04D /* YXExamProgressView.m in Sources */,
 				7C31778D1D0EA598004AAC90 /* YXMockManager.m in Sources */,
 				7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */,
+				7C2C3B431D21351F00A03635 /* YXScoreExpHeaderView.m in Sources */,
 				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
 				7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */,
 				CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */,
@@ -1728,6 +1818,7 @@
 				7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */,
 				7C3178271D129C01004AAC90 /* ReaderDocumentOutline.m in Sources */,
 				CB3510AB1D18E9730081EA3B /* YXMyDatumViewController.m in Sources */,
+				7C3F258B1D20C42D00F0A17A /* YXTrainListRequest.m in Sources */,
 				7CF888851D1BE20400E7C04D /* YXExamPhaseShadowCell.m in Sources */,
 				7CF888671D1BC49200E7C04D /* YXWaveView.m in Sources */,
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,
@@ -1736,6 +1827,7 @@
 				CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */,
 				CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */,
 				7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */,
+				7C2C3B4C1D226D3D00A03635 /* YXExamMarkView.m in Sources */,
 				7C3177B01D0EB738004AAC90 /* UIImage+Color.m in Sources */,
 				7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,

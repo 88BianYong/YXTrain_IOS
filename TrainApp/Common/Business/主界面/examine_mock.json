@@ -57,7 +57,7 @@
                                                 "totalnum": 100,
                                                 "userscore": 5,
                                                 "totalscore": 5,
-                                                "isneedmark": 0
+                                                "isneedmark": 1
                                                 },
                                                 {
                                                 "toolid": 203,
@@ -91,7 +91,7 @@
                         "toolid": 210, 
                         "finishnum": 2, 
                         "totalnum": 5,  
-                        "isneedmark": 0
+                        "isneedmark": 1
                         }
                         ]
     }

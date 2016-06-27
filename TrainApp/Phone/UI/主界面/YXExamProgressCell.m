@@ -8,13 +8,14 @@
 
 #import "YXExamProgressCell.h"
 #import "YXExamProgressView.h"
+#import "YXExamHelper.h"
 
 @interface YXExamProgressCell()
 @property (nonatomic, strong) UIImageView *typeImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *progressLabel;
-@property (nonatomic, strong) UILabel *statusLabel;
 @property (nonatomic, strong) YXExamProgressView *progressView;
+@property (nonatomic, strong) UIButton *markButton;
 @end
 
 @implementation YXExamProgressCell
@@ -69,38 +70,49 @@
     self.progressLabel.font = [UIFont systemFontOfSize:11];
     self.progressLabel.textColor = [UIColor colorWithHexString:@"0067be"];
     [self.contentView addSubview:self.progressLabel];
-    self.statusLabel = [[UILabel alloc]init];
-    self.statusLabel.font = [UIFont systemFontOfSize:11];
-    self.statusLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
-    self.statusLabel.textAlignment = NSTextAlignmentRight;
-    self.statusLabel.text = @"这是啥";
-    [self.contentView addSubview:self.statusLabel];
-    [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.progressView.mas_right);
-        make.bottom.mas_equalTo(self.progressView.mas_top).mas_offset(-11);
-    }];
     [self.progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.progressView.mas_left);
-        make.right.mas_equalTo(self.statusLabel.mas_left).mas_offset(-10);
+        make.right.mas_equalTo(self.progressView.mas_right);
         make.bottom.mas_equalTo(self.progressView.mas_top).mas_offset(-11);
     }];
     [self.progressLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     [self.progressLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+    
+    self.markButton = [[UIButton alloc]init];
+    self.markButton.backgroundColor = [UIColor redColor];
+    [self.markButton addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)setItem:(YXExamineRequestItem_body_toolExamineVo *)item{
     _item = item;
     self.titleLabel.text = item.name;
-    NSString *lStr = [NSString stringWithFormat:@"已完成%@个",item.finishnum];
-    NSString *rStr = [NSString stringWithFormat:@"／%@个",item.totalnum];
-    NSString *completeStr = [NSString stringWithFormat:@"%@%@",lStr,rStr];
-    NSMutableAttributedString *mStr = [[NSMutableAttributedString alloc]initWithString:completeStr];
-    NSRange range = [completeStr rangeOfString:rStr];
-    [mStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"505f84"] range:range];
-    self.progressLabel.attributedText = mStr;
+    self.progressLabel.attributedText = [YXExamHelper toolCompleteStatusStringWithID:item.toolid finishNum:item.finishnum totalNum:item.totalnum];
     CGFloat progress = item.finishnum.floatValue/item.totalnum.floatValue;
     self.progressView.progress = progress;
+    [self.markButton removeFromSuperview];
+    if (item.isneedmark.boolValue) {
+        [self.contentView addSubview:self.markButton];
+        [self.markButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.progressView.mas_right);
+            make.centerY.mas_equalTo(self.progressLabel.mas_centerY);
+            make.size.mas_equalTo(CGSizeMake(25, 25));
+        }];
+        [self.progressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.progressView.mas_left);
+            make.right.mas_equalTo(self.markButton.mas_left).mas_offset(-10);
+            make.bottom.mas_equalTo(self.progressView.mas_top).mas_offset(-11);
+        }];
+    }else{
+        [self.progressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.progressView.mas_left);
+            make.right.mas_equalTo(self.progressView.mas_right);
+            make.bottom.mas_equalTo(self.progressView.mas_top).mas_offset(-11);
+        }];
+    }
 }
 
+- (void)btnAction:(UIButton *)sender{
+    BLOCK_EXEC(self.markAction,sender);
+}
 
 @end

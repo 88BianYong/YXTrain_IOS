@@ -11,4 +11,5 @@
 
 @interface YXExamProgressCell : UITableViewCell
 @property (nonatomic, strong) YXExamineRequestItem_body_toolExamineVo *item;
+@property (nonatomic, copy) void(^markAction)(UIButton *b);
 @end

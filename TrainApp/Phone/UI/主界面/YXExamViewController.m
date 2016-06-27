@@ -15,16 +15,23 @@
 #import "YXExamBlankHeaderFooterView.h"
 #import "YXExamTaskProgressHeaderView.h"
 #import "YXExamineRequest.h"
-
+#import "MJRefresh.h"
+#import "YXScoreViewController.h"
+#import "YXExamMarkView.h"
 
 @interface YXExamViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) YXExamineRequest *request;
 @property (nonatomic, strong) YXExamineRequestItem *examineItem;
 @property (nonatomic, strong) NSMutableDictionary *foldStatusDic;
+@property (nonatomic, strong) MJRefreshHeaderView *header;
 @end
 
 @implementation YXExamViewController
+
+- (void)dealloc{
+    [self.header free];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,30 +45,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)getData{
-    [self.request stopRequest];
-    self.request = [[YXExamineRequest alloc]init];
-    [self startLoading];
-    WEAK_SELF
-    [self.request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        if (error) {
-            [self showToast:error.localizedDescription];
-            return;
-        }
-        [self dealWithRetItem:retItem];
-    }];
-}
-
-- (void)dealWithRetItem:(YXExamineRequestItem *)retItem{
-    self.examineItem = retItem;
-    for (YXExamineRequestItem_body_leadingVo *vo in retItem.body.leadingVoList) {
-        [self.foldStatusDic setValue:@(vo.isfinish.boolValue) forKey:vo.voID];
-    }
-    [self.tableView reloadData];
 }
 
 - (void)setupUI{
@@ -81,6 +64,45 @@
     [self.tableView registerClass:[YXExamPhaseHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXExamPhaseHeaderView"];
     [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
     [self.tableView registerClass:[YXExamTaskProgressHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXExamTaskProgressHeaderView"];
+    
+    self.header = [MJRefreshHeaderView header];
+    self.header.scrollView = self.tableView;
+    WEAK_SELF
+    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        STRONG_SELF
+        [self getData];
+    };
+}
+
+- (void)getData{
+    [self.request stopRequest];
+    self.request = [[YXExamineRequest alloc]init];
+    [self startLoading];
+    WEAK_SELF
+    [self.request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
+        [self.header endRefreshing];
+        if (error) {
+            [self showToast:error.localizedDescription];
+            return;
+        }
+        [self dealWithRetItem:retItem];
+    }];
+}
+
+- (void)dealWithRetItem:(YXExamineRequestItem *)retItem{
+    self.examineItem = retItem;
+    for (YXExamineRequestItem_body_leadingVo *vo in retItem.body.leadingVoList) {
+        [self.foldStatusDic setValue:@(vo.isfinish.boolValue) forKey:vo.voID];
+    }
+    [self.tableView reloadData];
+}
+
+- (void)showMarkWithOriginRect:(CGRect)rect{
+    YXExamMarkView *v = [[YXExamMarkView alloc]init];
+    v.originRect = rect;
+    [v showInView:self.view];
 }
 
 #pragma mark - UITableViewDataSource
@@ -125,6 +147,12 @@
         }else{
             YXExamProgressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXExamProgressCell"];
             cell.item = vo.toolExamineVoList[indexPath.row-1];
+            WEAK_SELF
+            cell.markAction = ^(UIButton *b){
+                STRONG_SELF
+                CGRect rect = [b convertRect:b.bounds toView:self.view];
+                [self showMarkWithOriginRect:rect];
+            };
             return cell;
         }
     }else{
@@ -156,6 +184,12 @@
         YXExamineRequestItem_body_bounsVoData *data = self.examineItem.body.bounsVoList[index];
         YXExamTaskProgressHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamTaskProgressHeaderView"];
         header.data = data;
+        WEAK_SELF
+        header.markAction = ^(UIButton *b){
+            STRONG_SELF
+            CGRect rect = [b convertRect:b.bounds toView:self.view];
+            [self showMarkWithOriginRect:rect];
+        };
         return header;
     }
 }
@@ -194,7 +228,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    if (indexPath.section == 0) {
+        YXScoreViewController *vc = [[YXScoreViewController alloc]init];
+        vc.data = self.examineItem.body;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
+
+
 
 @end

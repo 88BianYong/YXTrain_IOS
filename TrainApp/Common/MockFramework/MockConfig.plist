@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>maxTimeUse</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>data</key>
 	<dict>
 		<key>YXExamineRequest</key>
@@ -20,7 +20,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>YXGetSubjectRequest</key>
+		<key>YXTrainListRequest</key>
 		<dict>
 			<key>mockEnable</key>
 			<true/>
@@ -28,21 +28,23 @@
 			<array>
 				<dict>
 					<key>fileName</key>
-					<string>subject_mock.json</string>
+					<string>trainlist_mock.json</string>
 					<key>percent</key>
-					<integer>50</integer>
+					<integer>100</integer>
 				</dict>
+			</array>
+		</dict>
+		<key>YXTaskListRequest</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
 				<dict>
 					<key>fileName</key>
-					<string>subject_errorcode_mock.json</string>
+					<string>tasklist_mock.json</string>
 					<key>percent</key>
-					<integer>30</integer>
-				</dict>
-				<dict>
-					<key>fileName</key>
-					<string>subject_neterror_mock.json</string>
-					<key>percent</key>
-					<integer>20</integer>
+					<integer>100</integer>
 				</dict>
 			</array>
 		</dict>

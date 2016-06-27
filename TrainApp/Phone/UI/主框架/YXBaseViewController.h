@@ -19,6 +19,13 @@
 - (void)setupRightWithImageNamed:(NSString *)imageName highlightImageNamed:(NSString *)highlightImageName;
 
 /**
+ *  设置导航左端为自定义view
+ *
+ *  @param view 自定义view
+ */
+- (void)setupLeftWithCustomView:(UIView *)view;
+
+/**
  *  点击右端图片的事件响应，子类需要自己实现
  */
 - (void)naviRightAction;

@@ -34,6 +34,17 @@
     item.leftBarButtonItems = @[[self negativeBarButtonItem],leftItem];
 }
 
++ (void)setLeftWithNavigationItem:(UINavigationItem *)item customView:(UIView *)view{
+    CGRect rect = view.bounds;
+    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width+20, rect.size.height+20)];
+    containerView.backgroundColor = [UIColor clearColor];
+    [containerView addSubview:view];
+    view.center = CGPointMake(containerView.bounds.size.width/2, containerView.bounds.size.height/2);
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:containerView];
+    
+    item.leftBarButtonItems = @[[self negativeBarButtonItem],rightItem];
+}
+
 + (void)setRightWithNavigationItem:(UINavigationItem *)item imageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(actionBlock)action{
     UIImage *normalImage = [UIImage imageNamed:imageName];
     UIImage *highlightImage = [UIImage imageNamed:highlightImageName];

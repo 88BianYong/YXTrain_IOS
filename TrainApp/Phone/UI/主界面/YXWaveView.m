@@ -77,10 +77,10 @@
     [self addSubview:v2];
     [self addSubview:v1];
     
-    [UIView animateWithDuration:1.5 delay:0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:2.5 delay:0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
         self.v1.frame = CGRectMake(0, 0, self.v1.bounds.size.width, self.v1.bounds.size.height);
     } completion:nil];
-    [UIView animateWithDuration:5 delay:0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:7 delay:0 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionCurveLinear animations:^{
         self.v2.frame = CGRectMake(0, 0, self.v2.bounds.size.width, self.v2.bounds.size.height);
     } completion:nil];
 }

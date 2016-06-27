@@ -61,6 +61,10 @@
     }];
 }
 
+- (void)setupLeftWithCustomView:(UIView *)view{
+    [YXNavigationBarController setLeftWithNavigationItem:self.navigationItem customView:view];
+}
+
 - (void)naviLeftAction{
     [self.navigationController popViewControllerAnimated:YES];
 }

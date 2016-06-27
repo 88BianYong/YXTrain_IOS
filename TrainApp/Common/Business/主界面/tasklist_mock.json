@@ -1,0 +1,34 @@
+{
+    "code": "0",
+    "debugDesc": "[debug_token: http-nio-45901-exec-4-1466492260388-12_7_45901 ] backen code[0]+ Focus fetching code[0],desc[返回数据成功]",
+    "desc": "success",
+    "body": {
+        "w": 3,
+        "tasks": [
+                  {
+                  "toolid": 201,
+                  "name": "课程"
+                  },
+                  {
+                  "toolid": 202,
+                  "name": "活动"
+                  },
+                  {
+                  "toolid": 203,
+                  "name": "作业"
+                  },
+                  {
+                  "toolid": 209,
+                  "name": "日志"
+                  },
+                  {
+                  "toolid": 210,
+                  "name": "资源"
+                  },
+                  {
+                  "toolid": 211,
+                  "name": "问答"
+                  }
+                  ]
+    }
+}

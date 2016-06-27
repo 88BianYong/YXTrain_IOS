@@ -16,6 +16,8 @@ typedef void(^actionBlock)();
 
 + (void)setLeftWithNavigationItem:(UINavigationItem *)item imageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(actionBlock)action;
 
++ (void)setLeftWithNavigationItem:(UINavigationItem *)item customView:(UIView *)view;
+
 + (void)setRightWithNavigationItem:(UINavigationItem *)item imageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(actionBlock)action;
 
 + (void)setRightWithNavigationItem:(UINavigationItem *)item title:(NSString *)title action:(actionBlock)action;
