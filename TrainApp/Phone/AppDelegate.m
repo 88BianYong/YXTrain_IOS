@@ -73,9 +73,9 @@
 
 - (void)requestCommonData
 {
-    @weakify(self);
+    //@weakify(self);
     [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
-        @strongify(self);
+        //@strongify(self);
         //[[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
         //[self.studioVC requestStudioNotifyList];
 //        [self repeatToAskRedDot];

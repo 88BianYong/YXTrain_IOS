@@ -14,5 +14,6 @@
 @property (nonatomic, copy) void(^verifyCodeChangedBlock)(NSString *verifyCode);
 - (void)startTimer;
 - (void)stopTimer;
+- (void)resetTextField;
 
 @end

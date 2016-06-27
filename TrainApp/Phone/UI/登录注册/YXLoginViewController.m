@@ -14,7 +14,6 @@
 #import "YXLoginByScanQRViewController.h"
 #import "YXLoginModifyPasswordViewController.h"
 
-
 #import "YXUserManager.h"
 #import "YXLoginRequest.h"
 #import "YXInitRequest.h"
@@ -80,7 +79,7 @@
         YXLoginVerifyCodeViewController *vc = [[YXLoginVerifyCodeViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     };
-    [forgetPasswordButton buttonTitileWithName:@"忘记密码"];
+    [forgetPasswordButton buttonTitileWithName:@"忘记密码?"];
     [containerView addSubview:forgetPasswordButton];
     [forgetPasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(containerView.mas_bottom).offset(-kScreenSpaceHeight * 0.22);

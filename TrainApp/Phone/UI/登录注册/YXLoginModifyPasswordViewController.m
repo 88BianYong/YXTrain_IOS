@@ -80,14 +80,14 @@
                 if (!self) {
                     return;
                 }
-                //
+                [self submitAction];
             };
         }
         return cell;
     }
 }
 
-- (void)submitAction:(id)sender
+- (void)submitAction
 {
     NSString *password = self.password;
     NSString *confirmPassword = self.verifyNewPassword;
@@ -99,14 +99,18 @@
         [self showToast:@"两次输入密码不一致"];
         return;
     }
+    if (password.length < 6) {
+        [self showToast:@"密码不能少于6位"];
+    }
     [self resetPasswordRequest];
 }
 
 - (void)resetPasswordRequest
 {
-    if (!self.request) {
-        self.request = [[YXResetPasswordRequest alloc] init];
+    if (self.request) {
+        [self.request stopRequest];
     }
+    self.request = [[YXResetPasswordRequest alloc] init];
     self.request.loginName = self.phoneNumberString;
     self.request.password = self.password;
     [self startLoading];

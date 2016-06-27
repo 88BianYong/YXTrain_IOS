@@ -116,7 +116,6 @@
                     return;
                 }
                 [self verifySMSCode];
-                //
             };
         }
         return cell;
@@ -136,7 +135,7 @@
         @strongify(self);
         [self stopLoading];
         YXVerifyPhoneExistRequestItem *item = retItem;
-        if (item.code.integerValue != 0) {
+        if (error) {
             [self showToast:error.localizedDescription];
             return;
         }
@@ -167,7 +166,7 @@
         }
         [self stopLoading];
         HttpBaseRequestItem *item = retItem;
-        if (item.code.integerValue == 0 && !error) {
+        if (item && !error) {
             [self.verifyCodeCell startTimer];
         } else {
             [self showToast:@"请求失败"];
@@ -190,12 +189,14 @@
         @strongify(self);
         [self stopLoading];
         HttpBaseRequestItem *item = retItem;
-        if (retItem && item.code.integerValue == 0&&!error) {
+        if (item && !error) {
             [self.verifyCodeCell stopTimer];
+            [self.verifyCodeCell resetTextField];
             YXLoginModifyPasswordViewController *vc = [[YXLoginModifyPasswordViewController alloc] init];
+            vc.phoneNumberString = self.phoneNumber;
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            [self showToast:item.desc];
+            [self showToast:error.localizedDescription];
         }
     }];
     

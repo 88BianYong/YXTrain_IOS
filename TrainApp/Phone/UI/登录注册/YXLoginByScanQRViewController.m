@@ -17,6 +17,7 @@
 //#import "NSString+YXString.h"
 #import "YXUserProfileRequest.h"
 #import "YXUserManager.h"
+#import "YXAlertView.h"
 
 @interface YXLoginByScanQRViewController ()<AVCaptureMetadataOutputObjectsDelegate>{
     YXScanQRBackgroundView *_scanBackgroundView;
@@ -191,19 +192,19 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-//- (void)scanLoginFail{
-//    YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"非常抱歉，格式不正确或token已过期，请重新扫描"];
-//    [alertView addButtonWithTitle:@"返回" action:^{
-//        [_scanBackgroundView.scanTimer invalidate];
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }];
-//    [alertView addButtonWithTitle:@"继续扫码" action:^{
-//        [_scanBackgroundView.scanTimer setFireDate:[NSDate date]];
-//        [_session startRunning];
-//    }];
-//    [alertView show];
-//    [self removeNotifications];
-//}
+- (void)scanLoginFail{
+    YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"非常抱歉，格式不正确或token已过期，请重新扫描"];
+    [alertView addButtonWithTitle:@"返回" action:^{
+        [_scanBackgroundView.scanTimer invalidate];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [alertView addButtonWithTitle:@"继续扫码" action:^{
+        [_scanBackgroundView.scanTimer setFireDate:[NSDate date]];
+        [_session startRunning];
+    }];
+    [alertView show];
+    [self removeNotifications];
+}
 
 #pragma mark- 链接内容
 - (NSDictionary *)urlInfo:(NSString *)query{

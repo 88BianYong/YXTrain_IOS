@@ -93,17 +93,24 @@
     self.viewBackgroundColor = backgroundColor;
     self.backgroundColor = self.viewBackgroundColor;
 }
+
 - (void)setTextFiledEditedBackgroundColor:(UIColor *)backgroundColor {
     self.editedColor = backgroundColor;
 }
+
 - (void)setPlaceHolderWithString:(NSString *)str keyType:(UIKeyboardType)keyType isSecure:(BOOL)isSecure{
     self.textField.placeholder = str;
     self.textField.keyboardType = keyType;
     self.textField.secureTextEntry = isSecure;;
 }
+
 - (void)setTextColor:(UIColor *)color placeHolderColor:(UIColor *)placeHolderColor{
     self.textField.textColor = color;
     [self.textField setValue:placeHolderColor forKeyPath:@"_placeholderLabel.textColor"];
+}
+
+- (void)resetTextFieldText {
+    self.textField.text = @"";
 }
 
 @end
