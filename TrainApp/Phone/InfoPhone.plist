@@ -43,6 +43,8 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>METRO-ITALIC PLAYTYPE.otf</string>
+		<string>METRO-LIGHT PLAYTYPE.otf</string>
 		<string>METRO-MEDIUM PLAYTYPE.otf</string>
 	</array>
 </dict>

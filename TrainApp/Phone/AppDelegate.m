@@ -22,6 +22,8 @@
 
 @interface AppDelegate ()
 
+@property (strong, nonatomic) YXDrawerViewController *drawerVC;
+
 @end
 
 @implementation AppDelegate
@@ -55,20 +57,35 @@
         YXDrawerViewController *drawerVC = [[YXDrawerViewController alloc]init];
         drawerVC.drawerViewController = menuVC;
         drawerVC.paneViewController = projectNavi;
-        drawerVC.drawerWidth = 200;
+        drawerVC.drawerWidth = [UIScreen mainScreen].bounds.size.width * 600/750;
         if ([[YXUserManager sharedManager] isLogin]) {
             self.window.rootViewController = drawerVC;
             [self requestCommonData];
         } else {
             YXLoginViewController *vc = [[YXLoginViewController alloc] init];
-            vc.loginInSuccessBlock = ^{
-                self.window.rootViewController = drawerVC;
-                [self requestCommonData];
-            };
             self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:vc];
+            [self registerNotifications];
         }
+        self.drawerVC = drawerVC;
     }
     [self.window makeKeyAndVisible];
+}
+
+- (void)registerNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginSuccess:)
+                                                 name:YXUserLoginSuccessNotification
+                                               object:nil];
+}
+
+
+- (void)loginSuccess:(NSNotification *)notification
+{
+    self.window.rootViewController = self.drawerVC;
+    [self requestCommonData];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)requestCommonData

@@ -11,6 +11,4 @@
 #define kScreenSpaceHeight   ([UIScreen mainScreen].bounds.size.height - 336)
 @interface YXLoginViewController : YXBaseViewController
 
-@property (nonatomic, copy) void (^loginInSuccessBlock)();
-
 @end

@@ -18,7 +18,7 @@
 }
 */
 - (void)drawPlaceholderInRect:(CGRect)rect {
-    [super drawPlaceholderInRect:CGRectMake(0, rect.size.height * 0.5 + 3, 0, 0)];
+    [super drawPlaceholderInRect:CGRectMake(0, rect.size.height * 0.5 + 1, 0, 0)];
 }
 
 @end

@@ -5,7 +5,7 @@
 	<key>loginServer</key>
 	<string>http://u.yanxiu.com/</string>
 	<key>server</key>
-	<string>http://mobile.yanxiu.com/test/</string>
+	<string>http://mobile.yanxiu.com/v17/api/</string>
 	<key>mockFrameworkOn</key>
 	<true/>
 	<key>testFrameworkOn</key>

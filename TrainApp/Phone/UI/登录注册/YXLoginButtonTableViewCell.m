@@ -39,6 +39,7 @@
     self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.btn = [[UIButton alloc] init];
     self.btn.backgroundColor = [UIColor whiteColor];
+    [self.btn setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
     [self.btn setTitleColor:[UIColor colorWithHexString:@"41c694"] forState:UIControlStateNormal];
     [self.btn addTarget:self action:@selector(btnClicked) forControlEvents:UIControlEventTouchUpInside];
     self.btn.layer.cornerRadius = 2;

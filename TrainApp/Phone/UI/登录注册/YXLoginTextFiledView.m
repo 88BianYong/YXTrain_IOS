@@ -39,8 +39,7 @@
     
     self.textField = [[YXMiddlePlaceholderTextField alloc]init];
     self.textField.textColor = [UIColor colorWithHexString:@"ffffff"];
-    //self.textField.font = [UIFont fontWithName:YXFontMetro_Regular size:20];
-    self.textField.font = [UIFont systemFontOfSize:20];
+    self.textField.font = [UIFont fontWithName:YXFontMetro_Light size:20];
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
     NSString *placeholder = @"请输入密码";
     self.textField.placeholder = placeholder;

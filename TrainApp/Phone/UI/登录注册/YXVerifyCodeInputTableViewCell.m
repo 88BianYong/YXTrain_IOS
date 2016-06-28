@@ -122,7 +122,7 @@
         [self.verifyCodeButton setTitle:@"重新发送" forState:UIControlStateNormal];
         return;
     }
-    NSString *secString = [NSString stringWithFormat:@"%@秒",@(self.secondsLeft)];
+    NSString *secString = [NSString stringWithFormat:@"%@",@(self.secondsLeft)];
     [self.verifyCodeButton setTitle:secString forState:UIControlStateNormal];
     self.secondsLeft--;
 }

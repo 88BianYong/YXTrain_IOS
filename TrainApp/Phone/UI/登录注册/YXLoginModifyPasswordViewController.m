@@ -101,6 +101,7 @@
     }
     if (password.length < 6) {
         [self showToast:@"密码不能少于6位"];
+        return;
     }
     [self resetPasswordRequest];
 }

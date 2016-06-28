@@ -23,5 +23,7 @@
 
 // 字体
 #define YXFontMetro_Medium        @"Metro-Medium"
+#define YXFontMetro_Light        @"Metro-Light"
+#define YXFontMetro_Italic        @"Metro-Italic"
 
 #endif /* YXDefinitions_h */

@@ -65,14 +65,6 @@
     };
     [QRScanButton buttonTitileWithName:@"扫描二维码登录"];
     [containerView addSubview:QRScanButton];
-    [QRScanImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(containerView.mas_left).offset(75);
-        make.centerY.equalTo(QRScanButton.mas_centerY);
-    }];
-    [QRScanButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(containerView.mas_bottom).offset(-kScreenSpaceHeight * 0.22);
-        make.left.equalTo(QRScanImageView.mas_right).offset(5);
-    }];
     
     YXClickedUnderLineButton *forgetPasswordButton = [[YXClickedUnderLineButton alloc] init];
     forgetPasswordButton.buttonClicked = ^{
@@ -81,10 +73,6 @@
     };
     [forgetPasswordButton buttonTitileWithName:@"忘记密码?"];
     [containerView addSubview:forgetPasswordButton];
-    [forgetPasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(containerView.mas_bottom).offset(-kScreenSpaceHeight * 0.22);
-        make.right.equalTo(containerView.mas_right).offset(-75);
-    }];
     
     UIButton *loginButton = [[UIButton alloc] init];
     [loginButton setTitleColor:[UIColor colorWithHexString:@"41c694"] forState:UIControlStateNormal];
@@ -97,12 +85,6 @@
     loginButton.layer.cornerRadius = 2;
     loginButton.layer.masksToBounds = YES;
     [containerView addSubview:loginButton];
-    [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(QRScanButton.mas_top).offset(-kScreenSpaceHeight * 0.1);
-        make.width.mas_equalTo(225);
-        make.centerX.mas_equalTo(0);
-        make.height.mas_equalTo(44);
-    }];
     
     YXLoginTextFiledView *passwordView = [[YXLoginTextFiledView alloc] init];
     [passwordView setTextFiledViewBackgroundColor:[UIColor colorWithHexString:@"dae2eb"]];
@@ -117,12 +99,6 @@
         self.password = password;
     };
     [containerView addSubview:passwordView];
-    [passwordView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(loginButton.mas_top).offset(-20);
-        make.width.mas_equalTo(225);
-        make.centerX.mas_equalTo(0);
-        make.height.mas_equalTo(40);
-    }];
     
     YXLoginTextFiledView *registerView = [[YXLoginTextFiledView alloc] init];
     [registerView setTextFiledViewBackgroundColor:[UIColor colorWithHexString:@"dae2eb"]];
@@ -136,15 +112,41 @@
         self.registerNumber = registerNumber;
     };
     [containerView addSubview:registerView];
+    
+    YXLoginTopView *topView = [[YXLoginTopView alloc] init];
+    [containerView addSubview:topView];
+
+    //
+    [QRScanImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(loginButton.mas_left);
+        make.centerY.equalTo(QRScanButton.mas_centerY);
+    }];
+    [QRScanButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(containerView.mas_bottom).offset(-kScreenSpaceHeight * 0.22);
+        make.left.equalTo(QRScanImageView.mas_right).offset(5);
+    }];
+    [forgetPasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(containerView.mas_bottom).offset(-kScreenSpaceHeight * 0.22);
+        make.right.equalTo(loginButton.mas_right);
+    }];
+    [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(QRScanButton.mas_top).offset(-kScreenSpaceHeight * 0.1);
+        make.width.mas_equalTo(225);
+        make.centerX.mas_equalTo(0);
+        make.height.mas_equalTo(44);
+    }];
+    [passwordView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(loginButton.mas_top).offset(-20);
+        make.width.mas_equalTo(225);
+        make.centerX.mas_equalTo(0);
+        make.height.mas_equalTo(40);
+    }];
     [registerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(passwordView.mas_top).offset(-10);
         make.width.mas_equalTo(225);
         make.centerX.mas_equalTo(0);
         make.height.mas_equalTo(40);
     }];
-    
-    YXLoginTopView *topView = [[YXLoginTopView alloc] init];
-    [containerView addSubview:topView];
     [topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(registerView.mas_top);
         make.left.right.top.equalTo(containerView);
@@ -153,6 +155,7 @@
 
 - (void)startLoginRequest
 {
+    [self.view endEditing:YES];
     NSString *name = [self.registerNumber yx_stringByTrimmingCharacters];
     NSString *password = [self.password yx_stringByTrimmingCharacters];
     if (![name yx_isValidString]) {
@@ -163,9 +166,10 @@
         [self showToast:@"密码不能为空"];
         return;
     }
-    if (!self.request) {
-        self.request = [[YXLoginRequest alloc] init];
+    if (self.request) {
+        [self.request stopRequest];
     }
+    self.request = [[YXLoginRequest alloc] init];
     self.request.loginName = [self.registerNumber yx_safeString];
     self.request.password = [self.password yx_safeString];
     [self startLoading];
@@ -175,23 +179,26 @@
         [self stopLoading];
         YXLoginRequestItem *item = (YXLoginRequestItem *)retItem;
         if (!error && item) {
-            if ([item.actiFlag integerValue] == 1) {
-                [self showToast:@"登录成功"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self saveUserDataWithLoginItem:retItem];
-                    if(self.loginInSuccessBlock) {
-                        self.loginInSuccessBlock();
-                    }
-                });
-            } else {
-                [self showToast:@"您的帐号未激活，修改密码完成登录"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self saveUserDataWithLoginItem:retItem];
+            });
+//            if ([item.actiFlag integerValue] == 1) {
+//                //[self showToast:@"登录成功"];
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                    [self saveUserDataWithLoginItem:retItem];
+//                    if(self.loginInSuccessBlock) {
+//                        self.loginInSuccessBlock();
+//                    }
+//                });
+//            } else {
+//                [self showToast:@"您的帐号未激活，修改密码完成登录"];
+//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //                    YXLoginModifyPasswordViewController *vc = [[YXLoginModifyPasswordViewController alloc] initWithFirstLogin:YES];
 //                    vc.loginName = self.request.loginName;
 //                    vc.verifyType = YXLoginPhoneVerifyTypeResetPassword;
 //                    [self.navigationController pushViewController:vc animated:YES];
-                });
-            }
+//                });
+//            }
         } else {
             [self showToast:error.localizedDescription];
         }

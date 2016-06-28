@@ -164,6 +164,9 @@
 		CB74627F1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74627E1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m */; };
 		CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462811D1FE2160065113A /* YXVerifySMSCodeRequest.m */; };
 		CB7462851D1FF00D0065113A /* YXResetPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462841D1FF00D0065113A /* YXResetPasswordRequest.m */; };
+		CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */ = {isa = PBXBuildFile; fileRef = CB7462861D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf */; };
+		CB7462891D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF in Resources */ = {isa = PBXBuildFile; fileRef = CB7462881D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF */; };
+		CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74628D1D2133170065113A /* YXSideTableViewCell.m */; };
 		CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94F71D1D111300C935C8 /* YXLoginBaseViewController.m */; };
 		CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94FA1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m */; };
 		CBBE94FE1D1D193400C935C8 /* YXLoginButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94FD1D1D193400C935C8 /* YXLoginButtonTableViewCell.m */; };
@@ -506,6 +509,10 @@
 		CB7462811D1FE2160065113A /* YXVerifySMSCodeRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXVerifySMSCodeRequest.m; sourceTree = "<group>"; };
 		CB7462831D1FF00D0065113A /* YXResetPasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXResetPasswordRequest.h; sourceTree = "<group>"; };
 		CB7462841D1FF00D0065113A /* YXResetPasswordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXResetPasswordRequest.m; sourceTree = "<group>"; };
+		CB7462861D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "METRO-LIGHT PLAYTYPE.otf"; sourceTree = "<group>"; };
+		CB7462881D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "METRO-ITALIC PLAYTYPE.OTF"; sourceTree = "<group>"; };
+		CB74628C1D2133170065113A /* YXSideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSideTableViewCell.h; sourceTree = "<group>"; };
+		CB74628D1D2133170065113A /* YXSideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSideTableViewCell.m; sourceTree = "<group>"; };
 		CBBE94F61D1D111300C935C8 /* YXLoginBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginBaseViewController.h; sourceTree = "<group>"; };
 		CBBE94F71D1D111300C935C8 /* YXLoginBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginBaseViewController.m; sourceTree = "<group>"; };
 		CBBE94F91D1D16AF00C935C8 /* YXLoginFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginFieldTableViewCell.h; sourceTree = "<group>"; };
@@ -818,10 +825,8 @@
 		7C3177CC1D10F63B004AAC90 /* 侧边栏 */ = {
 			isa = PBXGroup;
 			children = (
-				7C3177CD1D10F791004AAC90 /* YXSideMenuViewController.h */,
-				7C3177CE1D10F791004AAC90 /* YXSideMenuViewController.m */,
-				7C3177D41D10FF0A004AAC90 /* YXTestPushViewController.h */,
-				7C3177D51D10FF0A004AAC90 /* YXTestPushViewController.m */,
+				CB74628B1D21326E0065113A /* views */,
+				CB74628A1D2132600065113A /* controllers */,
 			);
 			path = "侧边栏";
 			sourceTree = "<group>";
@@ -1258,6 +1263,8 @@
 		7CF888801D1BD4A900E7C04D /* 字体 */ = {
 			isa = PBXGroup;
 			children = (
+				CB7462881D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF */,
+				CB7462861D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf */,
 				7CF888811D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf */,
 			);
 			path = "字体";
@@ -1392,6 +1399,26 @@
 			name = requests;
 			sourceTree = "<group>";
 		};
+		CB74628A1D2132600065113A /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7C3177CD1D10F791004AAC90 /* YXSideMenuViewController.h */,
+				7C3177CE1D10F791004AAC90 /* YXSideMenuViewController.m */,
+				7C3177D41D10FF0A004AAC90 /* YXTestPushViewController.h */,
+				7C3177D51D10FF0A004AAC90 /* YXTestPushViewController.m */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		CB74628B1D21326E0065113A /* views */ = {
+			isa = PBXGroup;
+			children = (
+				CB74628C1D2133170065113A /* YXSideTableViewCell.h */,
+				CB74628D1D2133170065113A /* YXSideTableViewCell.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1500,9 +1527,11 @@
 			files = (
 				7C3177601D0E603C004AAC90 /* PhoneImage.xcassets in Resources */,
 				7C31776E1D0E6E92004AAC90 /* YXConfig.plist in Resources */,
+				CB7462891D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF in Resources */,
 				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
 				7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
+				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
 				7CF888821D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
@@ -1668,6 +1697,7 @@
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
+				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
 				7C3177B11D0EB738004AAC90 /* UIImage+FixOrientation.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,

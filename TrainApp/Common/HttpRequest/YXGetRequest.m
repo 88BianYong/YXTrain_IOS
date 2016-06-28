@@ -13,7 +13,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-
+        self.token = [YXUserManager sharedManager].userModel.token;
     }
     return self;
 }

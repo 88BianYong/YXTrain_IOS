@@ -36,7 +36,8 @@
     [self addSubview:self.titileLabel];
     
     self.versionLabel = [[UILabel alloc] init];
-    self.versionLabel.font = [UIFont systemFontOfSize:16];
+    self.versionLabel.font = [UIFont fontWithName:YXFontMetro_Italic size:16];
+    self.versionLabel.textColor = [UIColor colorWithHexString:@"bbc2c9"];
     self.versionLabel.text = @"V2.0";
     [self addSubview:self.versionLabel];
     

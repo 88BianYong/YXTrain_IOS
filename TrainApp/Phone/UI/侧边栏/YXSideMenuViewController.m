@@ -11,22 +11,209 @@
 #import "YXDatumViewController.h"
 #import "YXLoginViewController.h"
 
+#import "YXSideTableViewCell.h"
 
-@interface YXSideMenuViewController ()
+
+@interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIView *footerView;
 
 @end
 
-@implementation YXSideMenuViewController
+@implementation YXSideMenuViewController {
+    
+    UIImageView *_iconImageView;
+    UILabel *_nameLabel;
+    UILabel *_subNameLabel;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(20, 100, 60, 40)];
-    [b setTitle:@"Push" forState:UIControlStateNormal];
-    [b setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [b addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:b];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.headerView = [[UIView alloc] init];
+    [self.view addSubview:self.headerView];
+    self.headerView.backgroundColor = [UIColor whiteColor];
+    UITapGestureRecognizer * tapHeaderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHeaderGesture:)];
+    [self.headerView addGestureRecognizer:tapHeaderGesture];
+    
+    self.tableView = [[UITableView alloc] init];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = 45;
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    [self.tableView registerClass:[YXSideTableViewCell class] forCellReuseIdentifier:@"YXSideTableViewCell"];
+    
+    self.footerView = [[UIView alloc] init];
+    self.footerView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_footerView];
+    UITapGestureRecognizer * tapFooterGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFooterGesture:)];
+    [self.footerView addGestureRecognizer:tapFooterGesture];
+    
+    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.mas_equalTo(@0);
+        make.height.mas_equalTo(@108);
+        make.width.mas_equalTo(@([UIScreen mainScreen].bounds.size.width * 600/750));
+    }];
+    [self.footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.mas_equalTo(@0);
+        make.height.mas_equalTo(60);
+        make.width.mas_equalTo(@([UIScreen mainScreen].bounds.size.width * 600/750));
+    }];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.headerView.mas_bottom);
+        make.left.right.mas_equalTo(@0);
+        make.bottom.equalTo(self.footerView.mas_top);
+    }];
+    
+    _iconImageView = [[UIImageView alloc] init];
+    _iconImageView.backgroundColor = [UIColor redColor];
+    [self.headerView addSubview:_iconImageView];
+    
+    _nameLabel = [[UILabel alloc] init];
+    _nameLabel.font = [UIFont systemFontOfSize:14];
+    _nameLabel.textColor = [UIColor lightGrayColor];
+    _nameLabel.text = @"123";
+    [self.headerView addSubview:_nameLabel];
+    
+    _subNameLabel = [[UILabel alloc] init];
+    _subNameLabel.font = [UIFont systemFontOfSize:12];
+    _subNameLabel.textColor = [UIColor lightGrayColor];
+    _subNameLabel.text = @"1233455";
+    [self.headerView addSubview:_subNameLabel];
+    
+    UIImageView *headerIconImageView = [[UIImageView alloc] init];
+    headerIconImageView.backgroundColor = [UIColor redColor];
+    [self.headerView addSubview:headerIconImageView];
+    
+    UIView *headerBottomView = [[UIView alloc] init];
+    headerBottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.headerView addSubview:headerBottomView];
+    
+    [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(@15);
+        make.bottom.mas_equalTo(@-21);
+        make.size.mas_equalTo(CGSizeMake(45, 45));
+    }];
+    _iconImageView.layer.cornerRadius = 45.0/2;
+    _iconImageView.layer.masksToBounds = YES;
+    
+    [headerIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-15);
+        make.size.mas_equalTo(CGSizeMake(25, 25));
+        make.centerY.equalTo(_iconImageView.mas_centerY);
+    }];
+    
+    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(45);
+        make.left.mas_equalTo(self->_iconImageView.mas_right).mas_offset(@12);
+        make.right.mas_equalTo(headerIconImageView.mas_left).offset(-20);
+    }];
+    
+    [_subNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self->_iconImageView.mas_bottom);
+        make.left.mas_equalTo(self->_iconImageView.mas_right).mas_offset(@12);
+        make.right.mas_equalTo(headerIconImageView.mas_left).offset(-20);
+    }];
+    
+    [headerBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
+    
+    UIView *footerBottomView = [[UIView alloc] init];
+    footerBottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.footerView addSubview:footerBottomView];
+    UIImageView *footerIconImageView = [[UIImageView alloc] init];
+    footerIconImageView.backgroundColor = [UIColor redColor];
+    [self.footerView addSubview:footerIconImageView];
+    UILabel *footerLabel = [[UILabel alloc] init];
+    footerLabel.text = @"设置";
+    footerLabel.font = [UIFont systemFontOfSize:14];
+    footerLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    [self.footerView addSubview:footerLabel];
+    
+    [footerBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
+    [footerIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(25);
+        make.centerY.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(25, 25));
+    }];
+    [footerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(footerIconImageView.mas_right).offset(21);
+        make.centerY.mas_equalTo(0);
+    }];
 }
+
+- (void)tapHeaderGesture:(UIGestureRecognizer *)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        //
+        NSLog(@"tapHeader");
+    }
+}
+
+- (void)tapFooterGesture:(UIGestureRecognizer *)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        //
+        NSLog(@"tapFooter");
+    }
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXSideTableViewCell" forIndexPath:indexPath];
+    if (indexPath.section == 0) {
+        [cell updateWithIconNamed:@"" andName:@"资源"];
+    }
+    if (indexPath.section == 1) {
+        [cell updateWithIconNamed:@"" andName:@"我的工作坊"];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 22.5;
+    } else {
+        return 15;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *v = [[UIView alloc]init];
+    v.backgroundColor = [UIColor whiteColor];
+    return v;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
