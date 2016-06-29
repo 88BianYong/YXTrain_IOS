@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>maxTimeUse</key>
-	<integer>3</integer>
+	<integer>2</integer>
 	<key>data</key>
 	<dict>
 		<key>YXExamineRequest</key>
@@ -43,6 +43,62 @@
 				<dict>
 					<key>fileName</key>
 					<string>tasklist_mock.json</string>
+					<key>percent</key>
+					<integer>100</integer>
+				</dict>
+			</array>
+		</dict>
+		<key>YXCourseListRequest</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
+				<dict>
+					<key>fileName</key>
+					<string>courselist_mock.json</string>
+					<key>percent</key>
+					<integer>100</integer>
+				</dict>
+			</array>
+		</dict>
+		<key>YXCourseDetailRequest</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
+				<dict>
+					<key>fileName</key>
+					<string>coursedetail_mock.json</string>
+					<key>percent</key>
+					<integer>100</integer>
+				</dict>
+			</array>
+		</dict>
+		<key>YXModuleDetailRequest</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
+				<dict>
+					<key>fileName</key>
+					<string>moduledetail_mock.json</string>
+					<key>percent</key>
+					<integer>100</integer>
+				</dict>
+			</array>
+		</dict>
+		<key>YXCourseRecordRequest</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
+				<dict>
+					<key>fileName</key>
+					<string>courserecord_mock.json</string>
 					<key>percent</key>
 					<integer>100</integer>
 				</dict>

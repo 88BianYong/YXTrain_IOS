@@ -7,7 +7,8 @@
 //
 
 #import "YXBaseViewController.h"
+#import "PagedListViewControllerBase.h"
 
-@interface YXCourseViewController : YXBaseViewController
+@interface YXCourseViewController : PagedListViewControllerBase
 
 @end

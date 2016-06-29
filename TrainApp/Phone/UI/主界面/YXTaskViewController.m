@@ -8,9 +8,13 @@
 
 #import "YXTaskViewController.h"
 #import "YXCourseViewController.h"
+#import "YXTaskCell.h"
+#import "YXTaskListRequest.h"
 
-@interface YXTaskViewController ()
-
+@interface YXTaskViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) YXTaskListRequest *request;
+@property (nonatomic, strong) YXTaskListRequestItem *tasklistItem;
 @end
 
 @implementation YXTaskViewController
@@ -18,13 +22,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor greenColor];
     self.title = @"任务";
-    UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(20, 100, 60, 40)];
-    [b setTitle:@"Push" forState:UIControlStateNormal];
-    [b setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [b addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:b];
+    [self setupUI];
+    [self getData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,9 +32,63 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)btnAction{
-    YXCourseViewController *vc = [[YXCourseViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)setupUI{
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.rowHeight = 53;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    [self.tableView registerClass:[YXTaskCell class] forCellReuseIdentifier:@"YXTaskCell"];
+}
+
+- (void)getData{
+    [self.request stopRequest];
+    self.request = [[YXTaskListRequest alloc]init];
+    [self startLoading];
+    WEAK_SELF
+    [self.request startRequestWithRetClass:[YXTaskListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
+        if (error) {
+            [self showToast:error.localizedDescription];
+            return;
+        }
+        self.tasklistItem = retItem;
+        [self.tableView reloadData];
+    }];
+}
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.tasklistItem.body.tasks.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXTaskCell"];
+    YXTaskListRequestItem_body_task *task = self.tasklistItem.body.tasks[indexPath.row];
+    cell.task = task;
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 5;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    YXTaskListRequestItem_body_task *task = self.tasklistItem.body.tasks[indexPath.row];
+    if (task.toolid.integerValue == 201) {
+        YXCourseViewController *vc = [[YXCourseViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        [self showToast:@"相关功能暂未开放"];
+    }
 }
 
 @end

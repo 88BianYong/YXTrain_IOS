@@ -8,6 +8,7 @@
 
 #import "YXCourseFilterView.h"
 #import "YXCourseFilterCell.h"
+#import "YXCourseFilterBgView.h"
 
 static const NSUInteger kTagBase = 876;
 
@@ -28,7 +29,6 @@ static const NSUInteger kTagBase = 876;
 @property (nonatomic, strong) YXCourseFilterItem *currentFilterItem;
 @property (nonatomic, assign) BOOL layoutComplete;
 @property (nonatomic, assign) BOOL isAnimating;
-@property (nonatomic, assign) BOOL showStatus;
 @end
 
 @implementation YXCourseFilterView
@@ -43,18 +43,19 @@ static const NSUInteger kTagBase = 876;
 
 - (void)setupUI{
     self.typeContainerView = [[UIView alloc]initWithFrame:self.bounds];
-    CGFloat lineHeight = 1/[UIScreen mainScreen].scale;
-    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, self.typeContainerView.bounds.size.height-lineHeight, self.typeContainerView.frame.size.width, lineHeight)];
-    line.backgroundColor = [UIColor blackColor];
-    [self.typeContainerView addSubview:line];
+//    CGFloat lineHeight = 1/[UIScreen mainScreen].scale;
+//    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, self.typeContainerView.bounds.size.height-lineHeight, self.typeContainerView.frame.size.width, lineHeight)];
+//    line.backgroundColor = [UIColor blackColor];
+//    [self.typeContainerView addSubview:line];
     [self addSubview:self.typeContainerView];
     
     self.maskView = [[UIView alloc]init];
-    self.maskView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.6];
+    self.maskView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
     [self.maskView addGestureRecognizer:tap];
     
     self.selectionTableView = [[UITableView alloc]init];
+    self.selectionTableView.backgroundColor = [UIColor clearColor];
     self.selectionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.selectionTableView.rowHeight = 44;
     self.selectionTableView.dataSource = self;
@@ -70,7 +71,7 @@ static const NSUInteger kTagBase = 876;
     YXCourseFilterItem *item = [[YXCourseFilterItem alloc]init];
     item.typeName = key;
     item.filterArray = filters;
-    item.currentIndex = 0;
+    item.currentIndex = -1;
     [self.filterItemArray addObject:item];
 }
 
@@ -85,10 +86,14 @@ static const NSUInteger kTagBase = 876;
         UIButton *b = [self typeButtonWithName:item.typeName];
         b.frame = CGRectMake(btnWidth*idx, 0, btnWidth, self.typeContainerView.bounds.size.height);
         b.tag = kTagBase + idx;
+        [self exchangeTitleImagePositionForButton:b];
+        [self changeButton:b selectedStatus:NO];
         [self.typeContainerView addSubview:b];
         if (idx < self.filterItemArray.count-1) {
-            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(b.frame.origin.x+b.frame.size.width-lineWidth, 0, lineWidth, self.typeContainerView.bounds.size.height)];
-            line.backgroundColor = [UIColor blackColor];
+            CGFloat h = 15;
+            CGFloat y = (self.typeContainerView.bounds.size.height-h)/2;
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(b.frame.origin.x+b.frame.size.width-lineWidth, y, lineWidth, h)];
+            line.backgroundColor = [UIColor colorWithHexString:@"d6d7db"];
             [self.typeContainerView addSubview:line];
         }
     }];
@@ -99,22 +104,44 @@ static const NSUInteger kTagBase = 876;
 - (UIButton *)typeButtonWithName:(NSString *)name{
     UIButton *b = [[UIButton alloc]init];
     [b setTitle:name forState:UIControlStateNormal];
-    [b setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    b.titleLabel.font = [UIFont systemFontOfSize:13];
     [b addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self changeButton:b foldStatus:YES];
     return b;
+}
+
+- (void)exchangeTitleImagePositionForButton:(UIButton *)button{
+    NSString *title = [button titleForState:UIControlStateNormal];
+    CGFloat titleWidth = ceilf([title sizeWithAttributes:@{NSFontAttributeName:button.titleLabel.font}].width+2);
+    UIImage *image = [button imageForState:UIControlStateNormal];
+    CGFloat imageWidth = image.size.width+2;
+    button.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth);
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, titleWidth, 0, -titleWidth);
+}
+
+- (void)changeButton:(UIButton *)b foldStatus:(BOOL)isFold{
+    if (isFold) {
+        [b setImage:[UIImage imageNamed:@"下拉三角灰"] forState:UIControlStateNormal];
+    }else{
+        [b setImage:[UIImage imageNamed:@"下拉三角蓝"] forState:UIControlStateNormal];
+    }
+}
+
+- (void)changeButton:(UIButton *)b selectedStatus:(BOOL)isSelected{
+    if (isSelected) {
+        [b setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+    }else{
+        [b setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)btnAction:(UIButton *)sender{
     if (self.isAnimating) {
         return;
     }
-    NSInteger preIndex = [self.filterItemArray indexOfObject:self.currentFilterItem];
     NSInteger curIndex = sender.tag - kTagBase;
-    if (preIndex == curIndex && self.showStatus) {
-        [self hideFilterSelectionView];
-    }else{
-        [self showFilterSelectionViewWithIndex:curIndex];
-    }
+    [self showFilterSelectionViewWithIndex:curIndex];
+    [self changeButton:sender foldStatus:NO];
 }
 
 - (void)tapAction{
@@ -128,40 +155,27 @@ static const NSUInteger kTagBase = 876;
 - (void)showFilterSelectionViewWithIndex:(NSInteger)index{
     self.currentFilterItem = self.filterItemArray[index];
     
-    CGFloat x = self.frame.origin.x;
-    CGFloat y = self.frame.origin.x + self.frame.size.height;
-    CGFloat w = self.frame.size.width;
-    CGFloat h = self.superview.bounds.size.height - y;
-    self.maskView.frame = CGRectMake(x, y, w, h);
-    [self.superview addSubview:self.maskView];
+    UIView *superview = self.window;
+    self.maskView.frame = superview.bounds;
+    [superview addSubview:self.maskView];
     
-    CGFloat tableHeight = MIN(self.currentFilterItem.filterArray.count*self.selectionTableView.rowHeight, 200);
-    self.tableBottomView.frame = CGRectMake(x, y, w, tableHeight);
-    [self.superview addSubview:self.tableBottomView];
+    CGRect rect = [self convertRect:self.bounds toView:superview];
     
-    self.selectionTableView.frame = CGRectMake(0, -self.tableBottomView.bounds.size.height, self.tableBottomView.bounds.size.width, self.tableBottomView.bounds.size.height);
-    [self.tableBottomView addSubview:self.selectionTableView];
+    CGFloat tableHeight = MIN(self.currentFilterItem.filterArray.count*self.selectionTableView.rowHeight, 176);
+    
+    YXCourseFilterBgView *bgView = [[YXCourseFilterBgView alloc]initWithFrame:CGRectMake(6, rect.origin.y+rect.size.height-5, rect.size.width-6-6, tableHeight+7) triangleX:self.bounds.size.width/8*(1+2*index)-6];
+    self.selectionTableView.frame = CGRectMake(0, 7, bgView.bounds.size.width, tableHeight);
+    [bgView addSubview:self.selectionTableView];
+    [superview addSubview:bgView];
     [self.selectionTableView reloadData];
-    
-    self.isAnimating = YES;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.selectionTableView.frame = self.tableBottomView.bounds;
-    } completion:^(BOOL finished) {
-        self.isAnimating = NO;
-        self.showStatus = YES;
-    }];
 }
 
 - (void)hideFilterSelectionView{
-    self.isAnimating = YES;
-    [UIView animateWithDuration:0.3 animations:^{
-        self.selectionTableView.frame = CGRectMake(0, -self.tableBottomView.bounds.size.height, self.tableBottomView.bounds.size.width, self.tableBottomView.bounds.size.height);
-    } completion:^(BOOL finished) {
-        [self.tableBottomView removeFromSuperview];
-        [self.maskView removeFromSuperview];
-        self.isAnimating = NO;
-        self.showStatus = NO;
-    }];
+    [self.selectionTableView.superview removeFromSuperview];
+    [self.maskView removeFromSuperview];
+    NSInteger index = [self.filterItemArray indexOfObject:self.currentFilterItem];
+    UIButton *b = [self.typeContainerView viewWithTag:index+kTagBase];
+    [self changeButton:b foldStatus:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -172,6 +186,7 @@ static const NSUInteger kTagBase = 876;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXCourseFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXCourseFilterCell"];
     cell.filterName = self.currentFilterItem.filterArray[indexPath.row];
+    cell.isCurrent = (indexPath.row == self.currentFilterItem.currentIndex);
     return cell;
 }
 
@@ -184,13 +199,17 @@ static const NSUInteger kTagBase = 876;
     NSMutableArray *array = [NSMutableArray array];
     [self.filterItemArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXCourseFilterItem *item = (YXCourseFilterItem *)obj;
-        [array addObject:@(item.currentIndex)];
+        NSInteger index = MAX(item.currentIndex, 0);
+        [array addObject:@(index)];
     }];
     SAFE_CALL_OneParam(self.delegate, filterChanged, array);
     
     NSInteger index = [self.filterItemArray indexOfObject:self.currentFilterItem];
     UIButton *b = [self.typeContainerView viewWithTag:kTagBase+index];
     [b setTitle:self.currentFilterItem.filterArray[indexPath.row] forState:UIControlStateNormal];
+    [self changeButton:b foldStatus:YES];
+    [self changeButton:b selectedStatus:YES];
+    [self exchangeTitleImagePositionForButton:b];
     
     [self hideFilterSelectionView];
 }

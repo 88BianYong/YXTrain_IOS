@@ -10,4 +10,5 @@
 
 @interface YXCourseFilterCell : UITableViewCell
 @property (nonatomic, strong) NSString *filterName;
+@property (nonatomic, assign) BOOL isCurrent;
 @end

@@ -1,0 +1,95 @@
+{
+    "BaseBeanCreateTime": 1467254662130,
+    "code": "0",
+    "debugDesc": "[debug_token:  http-nio-45003-exec-6-1467254662108-1_184_45003 ] 查询课程详情成功！ backen code[0]",
+    "desc": "查询课程详情成功！",
+    "body": {
+        "BaseBeanCreateTime": 1467254662130,
+        "module_name": "第一阶段",
+        "course_title": "2016年高考试题评析与指导(全国卷-生物)",
+        "ac": "2465",
+        "tc": "2465",
+        "rc": "0",
+        "t": "1289",
+        "c": "10216168",
+        "p": "XY02307750@yanxiu.com",
+        "i": "true",
+        "md5": null,
+        "mxt": null,
+        "chapters": [
+                     {
+                     "BaseBeanCreateTime": 1467254662130,
+                     "chapter_name": "试题整体特点",
+                     "fragments": [
+                                   {
+                                   "BaseBeanCreateTime": 1467254662130,
+                                   "chapter_name": "试题的整体特点",
+                                   "url": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/1.1/1.1.m3u8",
+                                   "surl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/1.1_s/1.1_s.m3u8",
+                                   "murl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/1.1_m/1.1_m.m3u8",
+                                   "lurl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/1.1_l/1.1_l.m3u8",
+                                   "type": "0",
+                                   "record": "0",
+                                   "duration": "0"
+                                   }
+                                   ]
+                     },
+                     {
+                     "BaseBeanCreateTime": 1467254662130,
+                     "chapter_name": "典型试题评析",
+                     "fragments": [
+                                   {
+                                   "BaseBeanCreateTime": 1467254662130,
+                                   "chapter_name": "信息获取与知识基础的结合",
+                                   "url": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.1/2.1.m3u8",
+                                   "surl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.1_s/2.1_s.m3u8",
+                                   "murl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.1_m/2.1_m.m3u8",
+                                   "lurl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.1_l/2.1_l.m3u8",
+                                   "type": "0",
+                                   "record": "0",
+                                   "duration": "0"
+                                   },
+                                   {
+                                   "BaseBeanCreateTime": 1467254662130,
+                                   "chapter_name": "不拘一格的实验探究能力的考查",
+                                   "url": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.2/2.2.m3u8",
+                                   "surl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.2_s/2.2_s.m3u8",
+                                   "murl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.2_m/2.2_m.m3u8",
+                                   "lurl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.2_l/2.2_l.m3u8",
+                                   "type": "0",
+                                   "record": "0",
+                                   "duration": "0"
+                                   },
+                                   {
+                                   "BaseBeanCreateTime": 1467254662130,
+                                   "chapter_name": "用理性思维解决综合性问题",
+                                   "url": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.3/2.3.m3u8",
+                                   "surl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.3_s/2.3_s.m3u8",
+                                   "murl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.3_m/2.3_m.m3u8",
+                                   "lurl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/2.3_l/2.3_l.m3u8",
+                                   "type": "0",
+                                   "record": "0",
+                                   "duration": "0"
+                                   }
+                                   ]
+                     },
+                     {
+                     "BaseBeanCreateTime": 1467254662130,
+                     "chapter_name": "教研和教学建议",
+                     "fragments": [
+                                   {
+                                   "BaseBeanCreateTime": 1467254662130,
+                                   "chapter_name": "教研及教学建议",
+                                   "url": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/3.1/3.1.m3u8",
+                                   "surl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/3.1_s/3.1_s.m3u8",
+                                   "murl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/3.1_m/3.1_m.m3u8",
+                                   "lurl": "http://mbtestsourse.teacherclub.com.cn/course/cf/xk/gzsw/2016ngkstpxyzdqgj-sw/video/3.1_l/3.1_l.m3u8",
+                                   "type": "0",
+                                   "record": "0",
+                                   "duration": "0"
+                                   }
+                                   ]
+                     }
+                     ]
+    }
+}

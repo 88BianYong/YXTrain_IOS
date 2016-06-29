@@ -1,0 +1,279 @@
+{
+    "BaseBeanCreateTime": 1467106797781,
+    "code": "0",
+    "debugDesc": "[debug_token:  http-nio-45002-exec-5-1467106797689-12_7_45002 ] 返回数据成功 backen code[0]",
+    "desc": "返回数据成功",
+    "body": {
+        "BaseBeanCreateTime": 1467106797781,
+        "title": "2015校本-项目考核培训",
+        "modules": [
+                    {
+                    "BaseBeanCreateTime": 1467106797781,
+                    "module_id": "725",
+                    "module_name": "能力测评",
+                    "more": "false",
+                    "courses": [
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10196636",
+                                "course_title": "信息技术课程导读",
+                                "course_img": "http://p.yanxiu.com/clogo/101/966/36/10196636.png",
+                                "record": "27",
+                                "is_selected": "1"
+                                },
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10196639",
+                                "course_title": "【平台操作】小研伴你行：管理员篇",
+                                "course_img": "http://p.yanxiu.com/clogo/101/966/39/10196639.png",
+                                "record": "6",
+                                "is_selected": "1"
+                                }
+                                ]
+                    },
+                    {
+                    "BaseBeanCreateTime": 1467106797781,
+                    "module_id": "726",
+                    "module_name": "第一阶段",
+                    "more": "true",
+                    "courses": [
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10216156",
+                                "course_title": "2016年高考试题评析与指导(全国卷-数学)",
+                                "course_img": "http://p.yanxiu.com/clogo/102/161/56/10216156.png",
+                                "record": "0",
+                                "is_selected": "0"
+                                },
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10216157",
+                                "course_title": "2016年高考试题评析与指导(全国卷-生物)",
+                                "course_img": "http://p.yanxiu.com/clogo/102/161/57/10216157.png",
+                                "record": "0",
+                                "is_selected": "0"
+                                },
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10216168",
+                                "course_title": "2016年高考试题评析与指导(全国卷-生物)",
+                                "course_img": "http://p.yanxiu.com/clogo/102/161/68/10216168.png",
+                                "record": "0",
+                                "is_selected": "0"
+                                },
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10147289",
+                                "course_title": "【平台操作】小研伴你行：学员篇",
+                                "course_img": "http://p.yanxiu.com/clogo/101/472/89/10147289.png",
+                                "record": "10",
+                                "is_selected": "1"
+                                },
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10147290",
+                                "course_title": "【平台操作】小研伴你行：坊主篇",
+                                "course_img": "http://p.yanxiu.com/clogo/101/472/90/10147290.png",
+                                "record": "3",
+                                "is_selected": "1"
+                                },
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10147291",
+                                "course_title": "【平台操作】小研伴你行：管理员篇",
+                                "course_img": "http://p.yanxiu.com/clogo/101/472/91/10147291.png",
+                                "record": "0",
+                                "is_selected": "1"
+                                },
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10147292",
+                                "course_title": "信息技术与教学过程融合--教学策略与案例分析(T1)",
+                                "course_img": "http://p.yanxiu.com/clogo/101/472/92/10147292.png",
+                                "record": "0",
+                                "is_selected": "1"
+                                },
+                                {
+                                "BaseBeanCreateTime": 1467106797781,
+                                "courses_id": "10216169",
+                                "course_title": "信息技术与教学过程融合--教学策略与案例分析(T1)",
+                                "course_img": "http://p.yanxiu.com/clogo/102/161/69/10216169.png",
+                                "record": "0",
+                                "is_selected": "0"
+                                }
+                                ]
+                    }
+                    ],
+        "coursecount": "153",
+        "total": "153",
+        "progress": null,
+        "segments": [
+                     {
+                     "BaseBeanCreateTime": 1467106797781,
+                     "id": "0",
+                     "name": "通识"
+                     },
+                     {
+                     "BaseBeanCreateTime": 1467106797781,
+                     "id": "20",
+                     "name": "中学"
+                     },
+                     {
+                     "BaseBeanCreateTime": 1467106797781,
+                     "id": "30",
+                     "name": "高中"
+                     },
+                     {
+                     "BaseBeanCreateTime": 1467106797781,
+                     "id": "60",
+                     "name": "中职"
+                     }
+                     ],
+        "stages": [
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "725",
+                   "name": "能力测评"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "726",
+                   "name": "第一阶段"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "1449",
+                   "name": "第二阶段"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "1450",
+                   "name": "第三阶段"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "1599",
+                   "name": "第四阶段"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "1600",
+                   "name": "第五阶段"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "2063",
+                   "name": "第一阶段"
+                   }
+                   ],
+        "studys": [
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "0",
+                   "name": "通识"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "10",
+                   "name": "语文"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "11",
+                   "name": "数学"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "12",
+                   "name": "英语"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "13",
+                   "name": "物理"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "14",
+                   "name": "化学"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "15",
+                   "name": "生物"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "16",
+                   "name": "地理"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "17",
+                   "name": "思想政治"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "18",
+                   "name": "历史"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "19",
+                   "name": "音乐"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "20",
+                   "name": "体育与健康"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "21",
+                   "name": "美术"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "23",
+                   "name": "信息技术"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "25",
+                   "name": "思想品德"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "26",
+                   "name": "综合实践"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "32",
+                   "name": "心理"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "39",
+                   "name": "通用技术"
+                   },
+                   {
+                   "BaseBeanCreateTime": 1467106797781,
+                   "id": "60",
+                   "name": "中职"
+                   }
+                   ],
+        "types": [
+                  {
+                  "BaseBeanCreateTime": 1467106797781,
+                  "id": "101",
+                  "name": "选修课"
+                  },
+                  {
+                  "BaseBeanCreateTime": 1467106797781,
+                  "id": "102",
+                  "name": "必修课"
+                  }
+                  ]
+    }
+}
