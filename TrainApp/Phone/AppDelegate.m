@@ -19,6 +19,7 @@
 #import "YXUserProfileRequest.h"
 #import "YXLoginViewController.h"
 #import "YXUserManager.h"
+#import "YXDatumGlobalSingleton.h"
 
 @interface AppDelegate ()
 
@@ -93,12 +94,12 @@
     //@weakify(self);
     [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
         //@strongify(self);
-        //[[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
+        [[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
         //[self.studioVC requestStudioNotifyList];
 //        [self repeatToAskRedDot];
     }];
 //    [[YXCooperateGroupHelper sharedHelper] requestCompeletion:nil];
-//    [[YXGPGlobalSingleton sharedInstance] updateFilters];
+   // [[YXGPGlobalSingleton sharedInstance] updateFilters];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

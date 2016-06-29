@@ -7,9 +7,7 @@
 //
 
 #import "YXSideMenuViewController.h"
-#import "YXTestPushViewController.h"
 #import "YXDatumViewController.h"
-#import "YXLoginViewController.h"
 
 #import "YXSideTableViewCell.h"
 
@@ -40,7 +38,7 @@
     UITapGestureRecognizer * tapHeaderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHeaderGesture:)];
     [self.headerView addGestureRecognizer:tapHeaderGesture];
     
-    self.tableView = [[UITableView alloc] init];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -193,6 +191,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        YXDatumViewController *datumVc = [[YXDatumViewController alloc] init];
+        [self.navigationController pushViewController:datumVc animated:YES];
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -218,10 +220,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (void)btnAction{
-    YXLoginViewController *vc = [[YXLoginViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

@@ -66,7 +66,7 @@
     }];
 }
 
-- (void)setDatumOrder:(YXDatumOrder *)order{
+- (void)setDatumOrder:(YXFilterSubtype *)order{
     _datumOrder = order;
     self.orderLabel.text = order.name;
     if (order.selected) {

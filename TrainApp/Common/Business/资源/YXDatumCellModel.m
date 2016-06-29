@@ -16,8 +16,8 @@
     if (self = [super init]) {
         self.title = @"";
         self.date = @"";
-        self.size = @"0B";
-        self.downloadedSize = @"0B";
+        self.size = 0;
+        self.downloadedSize = 0;
         self.isFavor = FALSE;
         self.downloadState = DownloadStatusNA;
     }
@@ -27,7 +27,7 @@
 + (YXDatumCellModel *)modelFromSearchRequestItemData:(YXDatumSearchRequestItem_data *)data{
     YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
     model.title = data.filename;
-    model.size = [BaseDownloader sizeStringForBytes:data.filesize.longLongValue];
+    model.size = data.filesize.longLongValue;
     model.isFavor = data.isCollection.boolValue;
     model.url = data.url;
     model.aid = data.datumId;
@@ -47,7 +47,7 @@
 + (YXDatumCellModel *)modelFromMyDatumRequestResultList:(YXMyDatumRequestItem_result_list *)list{
     YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
     model.title = list.title;
-    model.size = [BaseDownloader sizeStringForBytes:list.fileSize.longLongValue];
+    model.size = list.fileSize.longLongValue;
     model.isFavor = list.isCollection.boolValue;
     model.url = list.previewUrl;
     if ([PersistentUrlDownloader fileExist:model.url]) {

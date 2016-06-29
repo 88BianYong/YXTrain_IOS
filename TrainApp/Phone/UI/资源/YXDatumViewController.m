@@ -31,6 +31,11 @@
 
 - (void)configSegmentUI {
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"全部资源",@"我的资源"]];
+    seg.tintColor = [UIColor whiteColor];
+    seg.backgroundColor = [UIColor whiteColor];
+    [seg setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"41c694"]] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [seg setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"505f84"],NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} forState:UIControlStateNormal];
+    [seg setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"0067be"],NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} forState:UIControlStateSelected];
     seg.frame = CGRectMake(0, 0, 160, 30);
     seg.selectedSegmentIndex = 0;
     [seg addTarget:self action:@selector(datumSourceChanged:) forControlEvents:UIControlEventValueChanged];
@@ -62,7 +67,7 @@
     YXDatumSearchViewController *vc = [[YXDatumSearchViewController alloc]init];
     UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
     [self presentViewController:navi animated:YES completion:^{
-        [self.allDatumViewController setMenuViewFold];
+        //[self.allDatumViewController setMenuViewFold];
 //        [self foldFilterView];
     }];
 }

@@ -21,6 +21,6 @@
 // end
 
 // 获取资源筛选目录
-//- (void)getDatumFilterData:(void(^)(NSError *error))completion;
+- (void)getDatumFilterData:(void(^)(NSError *error))completion;
 
 @end

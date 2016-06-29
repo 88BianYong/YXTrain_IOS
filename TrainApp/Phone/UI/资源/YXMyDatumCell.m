@@ -7,18 +7,23 @@
 //
 
 #import "YXMyDatumCell.h"
-#import "YXMyDatumNormalInfoView.h"
-#import "YXMyDatumDownloadingInfoView.h"
 #import "YXAttachmentTypeHelper.h"
+#import "YXStoreLikeProgressView.h"
+
 
 @interface YXMyDatumCell()
-@property (nonatomic, strong) UILabel *titleLabel;
+
 @property (nonatomic, strong) UIButton *downloadButton;
-@property (nonatomic, strong) UIView *seperatorView;
-@property (nonatomic, strong) UIView *cellSeperatorView;
-@property (nonatomic, strong) YXMyDatumNormalInfoView *normalInfoView;
-@property (nonatomic, strong) YXMyDatumDownloadingInfoView *downloadInfoView;
 @property (nonatomic, strong) NSMutableArray *disposeArray;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIImageView *typeImageView;
+@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *sizeLabel;
+@property (nonatomic, strong) UIView *cellSeperatorView;
+@property (nonatomic, strong) YXStoreLikeProgressView *downloadProcessView;
+
+@property (nonatomic, strong) UIView *leftAreaView;
+
 @end
 
 @implementation YXMyDatumCell
@@ -44,54 +49,103 @@
 
 - (void)setupUI{
     self.titleLabel = [[UILabel alloc]init];
-    self.titleLabel.font = [UIFont systemFontOfSize:16];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.titleLabel.numberOfLines = 2;
     [self.contentView addSubview:self.titleLabel];
     
-    self.normalInfoView = [[YXMyDatumNormalInfoView alloc]init];
-    [self.contentView addSubview:self.normalInfoView];
+    self.typeImageView = [[UIImageView alloc]init];
+    self.typeImageView.backgroundColor = [UIColor redColor];
+    [self.contentView addSubview:self.typeImageView];
     
-    self.downloadInfoView = [[YXMyDatumDownloadingInfoView alloc]init];
-    [self.contentView addSubview:self.downloadInfoView];
+    self.dateLabel = [[UILabel alloc]init];
+    self.dateLabel.font = [UIFont systemFontOfSize:12];
+    self.dateLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    [self.contentView addSubview:self.dateLabel];
     
-    self.downloadButton = [[UIButton alloc]init];
-    self.downloadButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"2c97dd"] forState:UIControlStateNormal];
-    [self.downloadButton setTitleColor:[[UIColor colorWithHexString:@"2c97dd"] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
-    [self.downloadButton addTarget:self action:@selector(downloadAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:self.downloadButton];
-    
-    self.seperatorView = [[UIView alloc]init];
-    self.seperatorView.backgroundColor = [UIColor colorWithHexString:@"e0e0e0"];
-    [self.contentView addSubview:self.seperatorView];
+    self.sizeLabel = [[UILabel alloc]init];
+    self.sizeLabel.font = [UIFont systemFontOfSize:12];
+    self.sizeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    [self.contentView addSubview:self.sizeLabel];
     
     self.cellSeperatorView = [[UIView alloc]init];
-    self.cellSeperatorView.backgroundColor = [UIColor colorWithHexString:@"e0e0e0"];
+    self.cellSeperatorView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.contentView addSubview:self.cellSeperatorView];
     
-    [self.downloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(0);
-        make.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(0);
-        make.width.mas_equalTo(60);
+    self.leftAreaView = [[UIView alloc] init];
+    self.leftAreaView.backgroundColor = [UIColor whiteColor];
+    UITapGestureRecognizer * tapLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLeftGesture:)];
+    [self.leftAreaView addGestureRecognizer:tapLeftGesture];
+    [self.contentView addSubview:self.leftAreaView];
+    
+    self.downloadButton = [[UIButton alloc] init];
+    [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+    self.downloadButton.userInteractionEnabled = NO;
+    self.downloadButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.downloadButton.layer.cornerRadius = 2;
+    self.downloadButton.layer.borderColor = [UIColor colorWithHexString:@"0e7ac9"].CGColor;
+    self.downloadButton.layer.borderWidth = 1;
+    self.downloadButton.layer.masksToBounds = YES;
+    [self.leftAreaView addSubview:self.downloadButton];
+    
+    self.downloadProcessView = [[YXStoreLikeProgressView alloc] init];
+    self.downloadProcessView.userInteractionEnabled = NO;
+    self.downloadProcessView.hidden = YES;
+    [self.leftAreaView addSubview:self.downloadProcessView];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.typeImageView.mas_right).offset(13);
+        make.top.mas_equalTo(18);
+        //make.right.mas_equalTo(-20);
     }];
-    [self.seperatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(8);
-        make.bottom.mas_equalTo(-8);
-        make.centerY.mas_equalTo(self.contentView);
-        make.width.mas_equalTo(1/[UIScreen mainScreen].scale);
-        make.right.mas_equalTo(self.downloadButton.mas_left);
+    [self.typeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(14);
+        make.width.mas_equalTo(35);
+        make.height.mas_equalTo(35);
+        make.centerY.equalTo(self.titleLabel.mas_centerY);
+    }];
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.titleLabel.mas_left);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(12);
+        make.bottom.equalTo(self.cellSeperatorView.mas_top).offset(-18);
+    }];
+    [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.dateLabel.mas_right).mas_offset(10);
+        make.centerY.mas_equalTo(self.dateLabel);
+        make.right.mas_lessThanOrEqualTo(20);
     }];
     [self.cellSeperatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
+        make.left.mas_equalTo(self.dateLabel.mas_left);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
+    }];
+    
+    [self.leftAreaView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.right.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(self.titleLabel.mas_right);
+    }];
+    [self.downloadButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.right.mas_equalTo(-15);
+        make.left.mas_equalTo(self.titleLabel.mas_right).offset(22);
+        make.size.mas_equalTo(CGSizeMake(44, 22));
+    }];
+    [self.downloadButton setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [self.downloadButton setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [self.downloadProcessView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.centerX.equalTo(self.downloadButton.mas_centerX);
+        make.size.mas_equalTo(CGSizeMake(25, 25));
     }];
 }
 
 - (void)setCellModel:(YXDatumCellModel *)cellModel{
     _cellModel = cellModel;
+    self.titleLabel.text = cellModel.title;
+    self.dateLabel.text = cellModel.date;
+    self.sizeLabel.text = [BaseDownloader sizeStringForBytes:cellModel.size];
+    self.typeImageView.image = cellModel.image;
     [self configCellForDownloadState:cellModel.downloadState];
     [self setupObservers];
 }
@@ -123,93 +177,43 @@
 
 - (void)configCellForDownloadState:(DownloaderState)state{
     if (state == DownloadStatusFinished) {
-        self.titleLabel.text = self.cellModel.title;
-        self.normalInfoView.dateLabel.text = self.cellModel.date;
-        self.normalInfoView.sizeLabel.text = self.cellModel.size;
-        self.normalInfoView.typeImageView.image = self.cellModel.image;
-        self.seperatorView.hidden = YES;
-        self.downloadButton.hidden = YES;
-        [self.downloadInfoView removeFromSuperview];
-        [self.contentView addSubview:self.normalInfoView];
-        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(10);
-            make.right.mas_equalTo(-10);
-        }];
-        [self.normalInfoView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(10);
-            make.right.mas_equalTo(-10);
-            make.height.mas_equalTo(15);
-            make.bottom.mas_equalTo(-10);
-        }];
+        self.downloadProcessView.hidden = YES;
+        self.downloadButton.hidden = NO;
+        [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateNormal];
+        self.downloadButton.layer.borderColor = [UIColor colorWithHexString:@"b9bfc7"].CGColor;
+        [self.downloadButton setTitle:@"打开" forState:UIControlStateNormal];
+        self.leftAreaView.userInteractionEnabled = NO;
     }else if (state == DownloadStatusDownloading){
-        self.titleLabel.text = self.cellModel.title;
-        [self.downloadButton setTitle:@"取消" forState:UIControlStateNormal];
-        [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"2c97dd"] forState:UIControlStateNormal];
-        [self.downloadButton setTitleColor:[[UIColor colorWithHexString:@"2c97dd"] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
-        self.downloadInfoView.downloadingLabel.text = @"正在下载中";
-        [self updateDownloadProgressWithDownloadedSize:self.cellModel.downloadedSize totalSize:self.cellModel.size];
-        self.seperatorView.hidden = NO;
-        self.downloadButton.hidden = NO;
-        [self.normalInfoView removeFromSuperview];
-        [self.contentView addSubview:self.downloadInfoView];
-        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(10);
-            make.right.mas_equalTo(self.seperatorView.mas_left).mas_offset(-10);
-        }];
-        [self.downloadInfoView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(10);
-            make.right.mas_equalTo(self.seperatorView.mas_left).mas_offset(-10);
-            make.height.mas_equalTo(15);
-            make.bottom.mas_equalTo(-10);
-        }];
+        self.downloadProcessView.hidden = NO;
+        self.downloadButton.hidden = YES;
+        self.leftAreaView.userInteractionEnabled = YES;
     }else{
-        self.titleLabel.text = self.cellModel.title;
-        [self.downloadButton setTitle:@"下载" forState:UIControlStateNormal];
-        [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"2c97dd"] forState:UIControlStateNormal];
-        [self.downloadButton setTitleColor:[[UIColor colorWithHexString:@"2c97dd"] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
-        self.normalInfoView.dateLabel.text = self.cellModel.date;
-        self.normalInfoView.sizeLabel.text = self.cellModel.size;
-        self.normalInfoView.typeImageView.image = self.cellModel.image;
-        self.seperatorView.hidden = NO;
+        self.downloadProcessView.hidden = YES;
         self.downloadButton.hidden = NO;
-        [self.downloadInfoView removeFromSuperview];
-        [self.contentView addSubview:self.normalInfoView];
-        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(10);
-            make.right.mas_equalTo(self.seperatorView.mas_left).mas_offset(-10);
-        }];
-        [self.normalInfoView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(10);
-            make.right.mas_equalTo(self.seperatorView.mas_left).mas_offset(-10);
-            make.height.mas_equalTo(15);
-            make.bottom.mas_equalTo(-10);
-        }];
-        
-        // 只有文档类的可以下载，视频音频不能下载
+        self.leftAreaView.userInteractionEnabled = YES;
+        [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+        self.downloadButton.layer.borderColor = [UIColor colorWithHexString:@"0e7ac9"].CGColor;
+        [self.downloadButton setTitle:@"下载" forState:UIControlStateNormal];
         YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:self.cellModel.type];
         if (type == YXFileTypeVideo || type == YXFileTypeAudio) {
-            [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"cccccc"] forState:UIControlStateNormal];
-            [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"cccccc"] forState:UIControlStateHighlighted];
+            [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"cccdd0"] forState:UIControlStateNormal];
+            [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"cccdd0"] forState:UIControlStateHighlighted];
+            self.downloadButton.layer.borderColor = [UIColor colorWithHexString:@"cccdd0"].CGColor;
         }
     }
 }
 
-- (void)updateDownloadProgressWithDownloadedSize:(NSString *)downloadedSize totalSize:(NSString *)totalSize{
-    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@/%@",downloadedSize,totalSize]];
-    [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"2c97dd"] range:NSMakeRange(0, downloadedSize.length)];
-    self.downloadInfoView.downloadProgressLabel.attributedText = attrString;
+- (void)updateDownloadProgressWithDownloadedSize:(unsigned long long)downloadedSize totalSize:(unsigned long long)totalSize{
+    [self.downloadProcessView setProgress:downloadedSize/(float)totalSize];
 }
 
-- (void)downloadAction:(UIButton *)sender{
+- (void)tapLeftGesture:(UIButton *)sender {
     // 只有文档类的可以下载，视频音频不能下载
     YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:self.cellModel.type];
     if (type == YXFileTypeVideo || type == YXFileTypeAudio) {
+        if (self.canOpenDatumToast) {
+            self.canOpenDatumToast();
+        }
         return;
     }
     

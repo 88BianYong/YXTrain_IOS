@@ -92,7 +92,7 @@
     _cellModel = cellModel;
     self.titleLabel.text = cellModel.title;
     self.dateLabel.text = cellModel.date;
-    self.sizeLabel.text = cellModel.size;
+    self.sizeLabel.text = [BaseDownloader sizeStringForBytes:cellModel.size];
     self.typeImageView.image = cellModel.image;
 }
 @end

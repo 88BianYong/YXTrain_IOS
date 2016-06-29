@@ -10,10 +10,6 @@
 
 @interface YXDatumOrderFilterMenuView : UIView
 
-@property (nonatomic, copy) void(^didSelectedOrderCell)(NSString *condition);
-@property (nonatomic, copy) void(^didSelectedFilterCell)(NSString *condition);
-
-- (void)setFilterFolded;
-- (void)setOrderFolded;
+@property (nonatomic, copy) void(^refreshFilterBlock)(NSString *condition);
 
 @end

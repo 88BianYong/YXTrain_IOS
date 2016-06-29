@@ -27,7 +27,6 @@
 {
     if (self = [super init]) {
         self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"resource/myResourceList"];
-        self.token = @"b80c145d55b856a474ecefef00bf2b0e";
     }
     return self;
 }

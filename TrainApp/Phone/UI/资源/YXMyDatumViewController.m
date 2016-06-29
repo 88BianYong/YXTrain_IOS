@@ -27,9 +27,13 @@
 @implementation YXMyDatumViewController
 
 - (void)viewDidLoad {
+    self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
     [super viewDidLoad];
     [self.tableView registerClass:[YXMyDatumCell class] forCellReuseIdentifier:@"YXMyDatumCell"];
+    UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3)];
+    tableViewHeaderView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.tableHeaderView = tableViewHeaderView;
     // Do any additional setup after loading the view.
 }
 
@@ -74,6 +78,9 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXMyDatumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMyDatumCell" forIndexPath:indexPath];
+    cell.canOpenDatumToast = ^{
+        [self showToast:@"音视频不支持下载"];
+    };
     cell.cellModel = self.dataArray[indexPath.row];
     cell.delegate = self;
     // 对于第一页数据记录下载状态
@@ -82,7 +89,7 @@
             &&cell.cellModel.downloadState != DownloadStatusDownloading
             &&self.currentDownloadingModel.downloadState == DownloadStatusDownloading) {
             cell.cellModel.downloadState = DownloadStatusDownloading;
-            cell.cellModel.downloadedSize = [BaseDownloader sizeStringForBytes:self.downloader.downloadedSizeByte];
+            cell.cellModel.downloadedSize = self.downloader.downloadedSizeByte;
             [self setupObserversWithCellModel:cell.cellModel];
         }
     }
@@ -108,6 +115,7 @@
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
     if (data.downloadState == DownloadStatusFinished) { // 没下载的在线预览
         item.isLocal = YES;
+        item.url = [PersistentUrlDownloader localPathForUrl:data.url];
     }
     [YXFileBrowseManager sharedManager].fileItem = item;
     [YXFileBrowseManager sharedManager].baseViewController = self;
@@ -180,7 +188,7 @@
         [tableView beginUpdates];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         [tableView endUpdates];
-        //[self.datumVC yx_showToast:@"删除失败"];
+        [self showToast:@"删除失败"];
     }
 }
 
@@ -189,13 +197,13 @@
     YXDatumCellModel *model = myDatumCell.cellModel;
     if (model.downloadState != DownloadStatusDownloading) { // 当前点击是未下载
         if (self.downloader.state == DownloadStatusDownloading) { // 当有任务下载时不能下载
-            //[self.datumVC yx_showToast:@"已有任务正在下载中哦"];
+            [self showToast:@"已有任务正在下载中哦"];
             return;
         }else{
             // 先检查网络
             Reachability *r = [Reachability reachabilityForInternetConnection];
             if (![r isReachable]) {
-                //[self.datumVC yx_showToast:@"网络异常，请稍候尝试"];
+                [self showToast:@"网络异常，请稍候尝试"];
                 return;
             }
             self.downloader = [[PersistentUrlDownloader alloc]init];
@@ -223,7 +231,8 @@
         if (!self) {
             return;
         }
-        model.downloadedSize = [BaseDownloader sizeStringForBytes:self.downloader.downloadedSizeByte];
+//        model.downloadedSize = [BaseDownloader sizeStringForBytes:self.downloader.downloadedSizeByte];
+        model.downloadedSize = self.downloader.downloadedSizeByte;
     }];
 }
 

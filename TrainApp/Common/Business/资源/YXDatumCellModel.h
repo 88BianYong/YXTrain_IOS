@@ -17,13 +17,13 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, copy) NSString *date;
-@property (nonatomic, copy) NSString *size;
+@property (nonatomic, assign) unsigned long long size;
 @property (nonatomic, assign) BOOL isFavor;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, copy) NSString *type;
 // 下载
-@property (nonatomic, copy) NSString *downloadedSize;
+@property (nonatomic, assign) unsigned long long downloadedSize;
 @property (nonatomic, assign) DownloaderState downloadState;
 
 @property (nonatomic, strong) YXDatumSearchRequestItem_data *rawData;

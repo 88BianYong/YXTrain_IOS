@@ -183,6 +183,10 @@
 		CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */ = {isa = PBXBuildFile; fileRef = CB7462861D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf */; };
 		CB7462891D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF in Resources */ = {isa = PBXBuildFile; fileRef = CB7462881D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF */; };
 		CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74628D1D2133170065113A /* YXSideTableViewCell.m */; };
+		CB748EDD1D223E2B004BCFBF /* YXFilterCustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CB748EDC1D223E2B004BCFBF /* YXFilterCustomButton.m */; };
+		CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB748EDF1D224B48004BCFBF /* YXTopFilterView.m */; };
+		CB748EE31D228B51004BCFBF /* YXFilterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CB748EE21D228B51004BCFBF /* YXFilterButton.m */; };
+		CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB748EE51D239AF0004BCFBF /* YXStoreLikeProgressView.m */; };
 		CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94F71D1D111300C935C8 /* YXLoginBaseViewController.m */; };
 		CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94FA1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m */; };
 		CBBE94FE1D1D193400C935C8 /* YXLoginButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94FD1D1D193400C935C8 /* YXLoginButtonTableViewCell.m */; };
@@ -559,6 +563,14 @@
 		CB7462881D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "METRO-ITALIC PLAYTYPE.OTF"; sourceTree = "<group>"; };
 		CB74628C1D2133170065113A /* YXSideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSideTableViewCell.h; sourceTree = "<group>"; };
 		CB74628D1D2133170065113A /* YXSideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSideTableViewCell.m; sourceTree = "<group>"; };
+		CB748EDB1D223E2B004BCFBF /* YXFilterCustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFilterCustomButton.h; sourceTree = "<group>"; };
+		CB748EDC1D223E2B004BCFBF /* YXFilterCustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFilterCustomButton.m; sourceTree = "<group>"; };
+		CB748EDE1D224B48004BCFBF /* YXTopFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTopFilterView.h; sourceTree = "<group>"; };
+		CB748EDF1D224B48004BCFBF /* YXTopFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTopFilterView.m; sourceTree = "<group>"; };
+		CB748EE11D228B51004BCFBF /* YXFilterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFilterButton.h; sourceTree = "<group>"; };
+		CB748EE21D228B51004BCFBF /* YXFilterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFilterButton.m; sourceTree = "<group>"; };
+		CB748EE41D239AF0004BCFBF /* YXStoreLikeProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXStoreLikeProgressView.h; sourceTree = "<group>"; };
+		CB748EE51D239AF0004BCFBF /* YXStoreLikeProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXStoreLikeProgressView.m; sourceTree = "<group>"; };
 		CBBE94F61D1D111300C935C8 /* YXLoginBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginBaseViewController.h; sourceTree = "<group>"; };
 		CBBE94F71D1D111300C935C8 /* YXLoginBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginBaseViewController.m; sourceTree = "<group>"; };
 		CBBE94F91D1D16AF00C935C8 /* YXLoginFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginFieldTableViewCell.h; sourceTree = "<group>"; };
@@ -1413,6 +1425,8 @@
 		CB3510A21D18E9580081EA3B /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CB748EE41D239AF0004BCFBF /* YXStoreLikeProgressView.h */,
+				CB748EE51D239AF0004BCFBF /* YXStoreLikeProgressView.m */,
 				CB4D91871D1A74F700B5F1D0 /* YXDatumSearchBarView.h */,
 				CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */,
 				CB4D91841D1A74C800B5F1D0 /* YXDatumSearchCell.h */,
@@ -1433,6 +1447,12 @@
 				CB3510B31D18E9830081EA3B /* YXDatumOrderViewCell.m */,
 				CB3510D81D1924110081EA3B /* YXAllDatumTableViewCell.h */,
 				CB3510D91D1924110081EA3B /* YXAllDatumTableViewCell.m */,
+				CB748EDB1D223E2B004BCFBF /* YXFilterCustomButton.h */,
+				CB748EDC1D223E2B004BCFBF /* YXFilterCustomButton.m */,
+				CB748EDE1D224B48004BCFBF /* YXTopFilterView.h */,
+				CB748EDF1D224B48004BCFBF /* YXTopFilterView.m */,
+				CB748EE11D228B51004BCFBF /* YXFilterButton.h */,
+				CB748EE21D228B51004BCFBF /* YXFilterButton.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -1751,6 +1771,7 @@
 				7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */,
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
 				CB7462791D1F6D270065113A /* YXUserProfileRequest.m in Sources */,
+				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
 				7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */,
@@ -1775,6 +1796,7 @@
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
 				7C2C3B401D21320E00A03635 /* YXScoreTaskScoreHeaderView.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
+				CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
@@ -1788,6 +1810,7 @@
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
 				7C3177B11D0EB738004AAC90 /* UIImage+FixOrientation.m in Sources */,
+				CB748EE31D228B51004BCFBF /* YXFilterButton.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
@@ -1835,6 +1858,7 @@
 				CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */,
 				CB3510B51D18E9830081EA3B /* YXDatumOrderFilterMenuView.m in Sources */,
 				CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */,
+				CB748EDD1D223E2B004BCFBF /* YXFilterCustomButton.m in Sources */,
 				CB3510B61D18E9830081EA3B /* YXDatumOrderView.m in Sources */,
 				7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */,
 				7C3177ED1D114DC1004AAC90 /* YXFileBrowseManager.m in Sources */,

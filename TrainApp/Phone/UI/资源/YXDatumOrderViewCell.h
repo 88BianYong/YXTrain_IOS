@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "YXDatumOrderModel.h"
+#import "YXFilterModel.h"
 
 @interface YXDatumOrderViewCell : UITableViewCell
 
-@property (nonatomic, strong) YXDatumOrder *datumOrder;
+@property (nonatomic, strong) YXFilterSubtype *datumOrder;
 
 @end

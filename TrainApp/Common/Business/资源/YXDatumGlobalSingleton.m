@@ -8,8 +8,8 @@
 
 #import "YXDatumGlobalSingleton.h"
 #import "YXDatumFilterRequest.h"
-//#import "YXUserManager.h"
-//#import "YXUserProfile.h"
+#import "YXUserManager.h"
+#import "YXUserProfile.h"
 
 @interface YXDatumGlobalSingleton ()
 
@@ -32,30 +32,30 @@
     return sharedInstance;
 }
 
-//// 获取资源筛选目录
-//- (void)getDatumFilterData:(void(^)(NSError *))completion
-//{
-//    [self.request stopRequest];
-//    self.request = [[YXDatumFilterRequest alloc]init];
-//    self.request.stage = [YXUserManager sharedManager].userModel.profile.stageId;
-//    @weakify(self);
-//    [self.request startRequestWithDecodeClass:[YXDatumFilterRequestItem class] completion:^(id responseObject, NSError *error) {
-//        @strongify(self);
-//        if (!self) {
-//            return;
-//        }
-//        if (!responseObject || error) {
-//            if (completion) {
-//                completion(error);
-//            }
-//            return;
-//        }
-//        YXDatumFilterRequestItem *item = responseObject;
-//        self.filterModel = [YXFilterModel modelFromFilterRequestItem:item];
-//        if (completion) {
-//            completion(nil);
-//        }
-//    }];
-//}
+// 获取资源筛选目录
+- (void)getDatumFilterData:(void(^)(NSError *))completion
+{
+    [self.request stopRequest];
+    self.request = [[YXDatumFilterRequest alloc]init];
+    self.request.stage = [YXUserManager sharedManager].userModel.profile.stageId;
+    @weakify(self);
+    [self.request startRequestWithRetClass:[YXDatumFilterRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        @strongify(self);
+        if (!self) {
+            return;
+        }
+        if (!retItem || error) {
+            if (completion) {
+                completion(error);
+            }
+            return;
+        }
+        YXDatumFilterRequestItem *item = retItem;
+        self.filterModel = [YXFilterModel modelFromFilterRequestItem:item];
+        if (completion) {
+            completion(nil);
+        }
+    }];
+}
 
 @end

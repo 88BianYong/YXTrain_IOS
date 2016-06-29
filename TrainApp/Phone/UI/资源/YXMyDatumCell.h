@@ -20,4 +20,6 @@
 @interface YXMyDatumCell : UITableViewCell
 @property (nonatomic, strong) YXDatumCellModel *cellModel;
 @property (nonatomic, weak) id<YXMyDatumCellDelegate> delegate;
+
+@property (nonatomic, copy) void(^canOpenDatumToast)();
 @end

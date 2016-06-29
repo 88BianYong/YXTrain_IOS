@@ -28,7 +28,7 @@
 @implementation YXAllDatumViewController
 
 - (void)viewDidLoad {
-//    self.bIsGroupedTableViewStyle = YES;
+    self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
 //    YXPagedListEmptyView *emptyView = [[YXPagedListEmptyView alloc] init];
 //    emptyView.iconName = @"资料";
@@ -42,7 +42,7 @@
 - (void)configUI {
     self.menuView = [[YXDatumOrderFilterMenuView alloc]initWithFrame:CGRectZero];
     @weakify(self);
-    self.menuView.didSelectedOrderCell = ^(NSString *condition) {
+    self.menuView.refreshFilterBlock = ^(NSString *condition) {
         @strongify(self);
         self.wholeDatumFetcher.condition = condition;
         [self firstPageFetch];
@@ -65,6 +65,10 @@
         make.top.mas_equalTo(self.menuView.mas_bottom);
         make.bottom.mas_equalTo(0);
     }];
+    
+    UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3)];
+    tableViewHeaderView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.tableHeaderView = tableViewHeaderView;
 }
 
 - (void)setupDataFetcher{
@@ -89,29 +93,6 @@
     YXAllDatumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXAllDatumTableViewCell" forIndexPath:indexPath];
     YXDatumCellModel *model = self.dataArray[indexPath.row];
     cell.cellModel = model;
-    cell.allDatumCellFavor = ^{
-        if (self.collectionRequest) {
-            [self.collectionRequest stopRequest];
-        }
-        self.collectionRequest = [[YXResourceCollectionRequest alloc] init];
-        self.collectionRequest.aid = model.aid;
-        self.collectionRequest.type = model.type;
-        self.collectionRequest.iscollection = @"0";
-        @weakify(self);
-        [self startLoading];
-        [self.collectionRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-            @strongify(self);
-            [self stopLoading];
-            HttpBaseRequestItem *item = (HttpBaseRequestItem *)retItem;
-            if (item) {
-                model.isFavor = TRUE;
-                [self.tableView reloadData];
-                [self showToast:@"已保存到\"我的资源\""];
-            } else {
-                [self showToast:error.localizedDescription];
-            }
-        }];
-    };
     return cell;
 }
 
@@ -137,30 +118,6 @@
     [YXFileBrowseManager sharedManager].baseViewController = self;
     [[YXFileBrowseManager sharedManager] browseFile];
 }
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    static NSString *header = @"header";
-//    YXDatumFilterHeaderView *hv = [tableView dequeueReusableHeaderFooterViewWithIdentifier:header];
-//    if (!hv) {
-//        hv = [[YXDatumFilterHeaderView alloc]initWithReuseIdentifier:header];
-//    }
-//    hv.title = self.filterText;
-//    return hv;
-//}
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    if (isEmpty(self.filterText)) {
-//        return 0.1f;
-//    }
-//    CGRect rect = [self.filterText boundingRectWithSize:CGSizeMake(tableView.frame.size.width-20, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]} context:NULL];
-//    return ceil(rect.size.height) + 20;
-//}
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    return 0.1f;
-//}
-
-- (void)setMenuViewFold {
-    [self.menuView setOrderFolded];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

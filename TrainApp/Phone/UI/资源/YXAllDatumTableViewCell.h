@@ -12,6 +12,5 @@
 @interface YXAllDatumTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) YXDatumCellModel *cellModel;
-@property (nonatomic, copy) void(^allDatumCellFavor)();
 
 @end

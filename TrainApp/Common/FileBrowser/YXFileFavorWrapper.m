@@ -48,7 +48,7 @@
         @strongify(self);
         [YXPromtController stopLoadingInView:self.baseVC.view];
         HttpBaseRequestItem *item = (HttpBaseRequestItem *)retItem;
-        if (item) {
+        if (item && !error) {
             self.favorButton.hidden = YES;
             datumModel.isFavor = TRUE;
             datumModel.rawData.isCollection = @"1";

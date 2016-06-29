@@ -11,7 +11,8 @@
 
 @interface YXDatumOrderView : UIView
 
-@property (nonatomic, strong) YXDatumOrderModel *orderModel;
-@property (nonatomic, copy) void(^didSeletedDatumOrderItem)();
+@property (nonatomic, copy) void(^didSeletedDatumOrderItem)(NSInteger index);
+
+- (void)setViewWithDataArray:(NSArray *)array index:(NSInteger)index buttonCount:(NSInteger)btnCount;
 
 @end
