@@ -32,6 +32,13 @@
     self.orderArray = array;
     self.index = index;
     self.btnCount = btnCount;
+    CGFloat tableHeight = MIN(array.count*40, 280);
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(109);
+        make.left.mas_equalTo(6);
+        make.right.mas_equalTo(-6);
+        make.height.mas_equalTo(tableHeight);
+    }];
     [self.tableView reloadData];
     
 }
@@ -62,7 +69,7 @@
         make.top.mas_equalTo(109);
         make.left.mas_equalTo(6);
         make.right.mas_equalTo(-6);
-        make.height.mas_equalTo(200);
+        make.height.mas_equalTo(280);
     }];
     [self.tableView registerClass:[YXDatumOrderViewCell class] forCellReuseIdentifier:@"YXDatumOrderViewCell"];
 }

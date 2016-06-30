@@ -34,11 +34,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [super setupLeftBack];
     self.view.backgroundColor = [UIColor blackColor];
 //    [self yx_setupLeftBackBarButtonItem];
 //    [self.navigationController.navigationBar setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
 //    [self.navigationController.navigationBar setShadowImage:[UIImage yx_createImageWithColor:[UIColor clearColor]]];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+   // self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationItem.title = @"扫描二维码登录";
 
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
@@ -64,6 +65,12 @@
     [_scanBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];    
+}
+
+- (void)naviLeftAction {
+    [self dismissViewControllerAnimated:YES completion:^{
+        //
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

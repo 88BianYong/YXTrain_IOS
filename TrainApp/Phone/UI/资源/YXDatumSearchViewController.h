@@ -11,4 +11,6 @@
 
 @interface YXDatumSearchViewController : PagedListViewControllerBase
 
+@property (nonatomic, strong) NSString *keyWord;
+
 @end

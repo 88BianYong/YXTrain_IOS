@@ -133,7 +133,7 @@
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     YXDatumCellModel *model = self.dataArray[indexPath.row];
-    if (NO) {  // 我的上传
+    if ([model.uid isEqualToString:[YXUserManager sharedManager].userModel.uid]) {  // 我的上传
         if (self.delSourceRequest) {
             [self.delSourceRequest stopRequest];
         }

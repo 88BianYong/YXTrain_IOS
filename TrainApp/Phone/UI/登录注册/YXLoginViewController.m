@@ -13,6 +13,7 @@
 #import "YXLoginVerifyCodeViewController.h"
 #import "YXLoginByScanQRViewController.h"
 #import "YXLoginModifyPasswordViewController.h"
+#import "YXNavigationController.h"
 
 #import "YXUserManager.h"
 #import "YXLoginRequest.h"
@@ -61,7 +62,10 @@
     YXClickedUnderLineButton *QRScanButton = [[YXClickedUnderLineButton alloc] initWithFrame:CGRectZero];
     QRScanButton.buttonClicked = ^{
         YXLoginByScanQRViewController *vc = [[YXLoginByScanQRViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:navi animated:YES completion:^{
+            //
+        }];
     };
     [QRScanButton buttonTitileWithName:@"扫描二维码登录"];
     [containerView addSubview:QRScanButton];
@@ -69,7 +73,10 @@
     YXClickedUnderLineButton *forgetPasswordButton = [[YXClickedUnderLineButton alloc] init];
     forgetPasswordButton.buttonClicked = ^{
         YXLoginVerifyCodeViewController *vc = [[YXLoginVerifyCodeViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
+        YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:navi animated:YES completion:^{
+            //
+        }];
     };
     [forgetPasswordButton buttonTitileWithName:@"忘记密码?"];
     [containerView addSubview:forgetPasswordButton];

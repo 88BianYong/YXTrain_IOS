@@ -30,7 +30,7 @@
     [self setImage:titleImage forState:UIControlStateNormal];
     CGSize imageSize = titleImage.size;
     self.titleEdgeInsets = UIEdgeInsetsMake(0.0, - imageSize.width * 2 - spacing, 0.0, 0.0);
-    CGSize titleSize = rect.size;
+    //CGSize titleSize = rect.size;
     //self.imageEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, - titleSize.width * 2 - spacing);
     self.imageEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, - self.titleLabel.intrinsicContentSize.width * 2 - spacing);
 }

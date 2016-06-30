@@ -10,6 +10,7 @@
 #import "YXDatumViewController.h"
 
 #import "YXSideTableViewCell.h"
+#import "YXUserProfileRequest.h"
 
 
 @interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -17,6 +18,8 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *footerView;
+
+@property (nonatomic, strong) YXUserProfile *profile;
 
 @end
 
@@ -168,6 +171,45 @@
     }
 }
 
+- (void)loadUserProfile
+{
+    self.profile = [YXUserManager sharedManager].userModel.profile;
+    if (!self.profile) {
+        [self startLoading];
+        @weakify(self);
+        [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
+            @strongify(self);
+            [self stopLoading];
+        }];
+    } else {
+        [self reloadUserProfileView];
+    }
+}
+
+- (void)reloadUserProfileView
+{
+    self.profile = [YXUserManager sharedManager].userModel.profile;
+    
+    _nameLabel.text = self.profile.nickName;
+    _subNameLabel.text = self.profile.school;
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+}
+
+
+- (void)registerNotifications
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+//    [center addObserver:self
+//               selector:@selector(userLogoutSuccess:)
+//                   name:YXUserLogoutSuccessNotification
+//                 object:nil];
+    [center addObserver:self
+               selector:@selector(reloadUserProfileView)
+                   name:YXUserProfileGetSuccessNotification
+                 object:nil];
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
@@ -220,6 +262,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadUserProfile];
 }
 
 @end

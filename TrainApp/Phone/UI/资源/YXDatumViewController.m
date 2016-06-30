@@ -10,11 +10,16 @@
 #import "YXAllDatumViewController.h"
 #import "YXMyDatumViewController.h"
 #import "YXDatumSearchViewController.h"
+#import "YXDatumSearchView.h"
+#import "YXNavigationController.h"
 
 @interface YXDatumViewController ()
 
 @property (nonatomic,strong) UIViewController *currentViewController;
 @property (nonatomic,strong) YXAllDatumViewController *allDatumViewController;
+@property (nonatomic,strong) UIView *maskView;
+@property (nonatomic,strong) YXDatumSearchView *seachView;
+
 
 @end
 
@@ -26,10 +31,21 @@
     [self configSegmentUI];
     [self setupRightWithTitle:@"搜索"];
     //[self yx_setupRightButtonItemWithImage:nil title:@"搜索"];
-    
 }
 
 - (void)configSegmentUI {
+    [self setDatumTitleView];
+    self.allDatumViewController = [[YXAllDatumViewController alloc] init];
+    [self addChildViewController:self.allDatumViewController];
+    YXMyDatumViewController *myDatumViewController = [[YXMyDatumViewController alloc] init];
+    [self addChildViewController:myDatumViewController];
+    
+    [self.view addSubview:self.allDatumViewController.view];
+    [self.allDatumViewController didMoveToParentViewController:self];
+    self.currentViewController = self.allDatumViewController;
+}
+
+- (void)setDatumTitleView {
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"全部资源",@"我的资源"]];
     seg.tintColor = [UIColor whiteColor];
     seg.backgroundColor = [UIColor whiteColor];
@@ -40,15 +56,6 @@
     seg.selectedSegmentIndex = 0;
     [seg addTarget:self action:@selector(datumSourceChanged:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = seg;
-    
-    self.allDatumViewController = [[YXAllDatumViewController alloc] init];
-    [self addChildViewController:self.allDatumViewController];
-    YXMyDatumViewController *myDatumViewController = [[YXMyDatumViewController alloc] init];
-    [self addChildViewController:myDatumViewController];
-    
-    [self.view addSubview:self.allDatumViewController.view];
-    [self.allDatumViewController didMoveToParentViewController:self];
-    self.currentViewController = self.allDatumViewController;
 }
 
 - (void)datumSourceChanged:(UISegmentedControl *)seg{
@@ -64,12 +71,63 @@
 }
 
 - (void)naviRightAction{
-    YXDatumSearchViewController *vc = [[YXDatumSearchViewController alloc]init];
-    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
-    [self presentViewController:navi animated:YES completion:^{
-        //[self.allDatumViewController setMenuViewFold];
-//        [self foldFilterView];
-    }];
+    self.seachView = [[YXDatumSearchView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44)];
+    self.seachView.backgroundColor = [UIColor whiteColor];
+    [self.seachView setFirstResponse];
+    @weakify(self);
+    self.seachView.textBeginEdit = ^{
+        @strongify(self);
+        if (!self.maskView) {
+            self.maskView = [[UIView alloc] init];
+            UITapGestureRecognizer *maskTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(maskTapGesture:)];
+            [self.maskView addGestureRecognizer:maskTapGesture];
+            self.maskView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+            [self.view addSubview:self.maskView];
+            [self.maskView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
+        }
+    };
+    self.seachView.texEndEdit = ^{
+        @strongify(self);
+        if (self.maskView) {
+            [self.maskView removeFromSuperview];
+            self.maskView = nil;
+        }
+        [super setupLeftBack];
+        [self setupRightWithTitle:@"搜索"];
+        [self setDatumTitleView];
+    };
+    self.seachView.textShouldClear = ^{
+    };
+    self.seachView.textShouldReturn = ^(NSString *text){
+        @strongify(self);
+        //[super setupLeftBack];
+        //[self setupRightWithTitle:@"搜索"];
+        //[self setDatumTitleView];
+        
+        
+        YXDatumSearchViewController *vc = [[YXDatumSearchViewController alloc] init];
+        YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
+        vc.keyWord = text;
+        [self presentViewController:navi animated:YES completion:^{
+            if (self.maskView) {
+                [self.maskView removeFromSuperview];
+                self.maskView = nil;
+            }
+        }];
+        
+    };
+    self.navigationItem.titleView = self.seachView;
+    self.navigationItem.rightBarButtonItems = nil;
+    self.navigationItem.leftBarButtonItems = nil;
+    [self.navigationItem setHidesBackButton:YES animated:NO];
+}
+
+- (void)maskTapGesture:(UIGestureRecognizer *)gesture{
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        [self.seachView endEditing:YES];
+    }
 }
 
 

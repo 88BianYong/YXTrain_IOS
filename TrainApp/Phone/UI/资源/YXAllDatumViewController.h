@@ -11,6 +11,4 @@
 
 @interface YXAllDatumViewController : PagedListViewControllerBase
 
-//- (void)setMenuViewFold;
-
 @end

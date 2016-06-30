@@ -11,24 +11,27 @@
 #import "YXDatumSearchBarView.h"
 #import "YXDatumSearchFetcher.h"
 #import "YXAttachmentTypeHelper.h"
-//#import "YXPagedListEmptyView.h"
+#import "YXAllDatumTableViewCell.h"
+#import "YXDatumSearchView.h"
+#import "YXPagedListEmptyView.h"
 //#import "UIViewController+YXPreviewAttachment.h"
 
-@interface YXDatumSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,YXDatumSearchBarViewDelegate>
+@interface YXDatumSearchViewController ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 @property (nonatomic, strong) NSMutableArray *mockArray;
-@property (nonatomic, strong) YXDatumSearchBarView *searchBarView;
+//@property (nonatomic, strong) YXDatumSearchBarView *searchBarView;
 @end
 
 @implementation YXDatumSearchViewController
 
 - (void)viewDidLoad {
-    self.bNeedHeader = FALSE;
-//    YXPagedListEmptyView *emptyView = [[YXPagedListEmptyView alloc] init];
-//    emptyView.iconName = @"资料";
-//    emptyView.title = @"没有找到符合条件的资源";
-//    self.emptyView = emptyView;
-    [self setupDataFetcher];
+    //self.bNeedHeader = FALSE;
+    YXPagedListEmptyView *emptyView = [[YXPagedListEmptyView alloc] init];
+    emptyView.iconName = @"资料";
+    emptyView.title = @"没有找到符合条件的资源";
+    self.emptyView = emptyView;
     [super viewDidLoad];
+    [self setupDataFetcher];
+    [self firstPageFetch];
     // Do any additional setup after loading the view.
     [self setupUI];
 }
@@ -40,6 +43,7 @@
 
 - (void)setupDataFetcher{
     YXDatumSearchFetcher *dataFetcher = [[YXDatumSearchFetcher alloc]init];
+    dataFetcher.keyWord = self.keyWord;
     dataFetcher.pagesize = 20;
     NSDictionary *dic = @{@"interf":@"SearchKeywords",@"source":@"ios"};
     NSError *error;
@@ -54,41 +58,34 @@
 }
 
 - (void)setupUI{
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.searchBarView = [[YXDatumSearchBarView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-    self.searchBarView.delegate = self;
-    [self.navigationController.navigationBar addSubview:self.searchBarView];
-    
-//    self.tableView = [[UITableView alloc]init];
+    [self setNavigationBar];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.estimatedRowHeight = 60;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-//    [self.view addSubview:self.tableView];
-    [self.tableView registerClass:[YXDatumSearchCell class] forCellReuseIdentifier:@"datum_search_cell"];
-    
+    [self.tableView registerClass:[YXAllDatumTableViewCell class] forCellReuseIdentifier:@"YXAllDatumTableViewCell"];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);
     }];
+    UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3)];
+    tableViewHeaderView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.tableHeaderView = tableViewHeaderView;
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.dataArray count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"datum_search_cell";
-    YXDatumSearchCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[YXDatumSearchCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-    }
-    cell.cellModel = self.dataArray[indexPath.row];
+    YXAllDatumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXAllDatumTableViewCell" forIndexPath:indexPath];
+    YXDatumCellModel *model = self.dataArray[indexPath.row];
+    cell.cellModel = model;
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [tableView fd_heightForCellWithIdentifier:@"datum_search_cell" configuration:^(YXDatumSearchCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:@"YXAllDatumTableViewCell" configuration:^(YXDatumSearchCell *cell) {
         cell.cellModel = self.dataArray[indexPath.row];
     }];
 }
@@ -101,7 +98,7 @@
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
     if (!data.isFavor) {
         [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
-            //[self.tableView reloadData];
+            [self.tableView reloadData];
         }];
     }
     [YXFileBrowseManager sharedManager].fileItem = item;
@@ -109,26 +106,31 @@
     [[YXFileBrowseManager sharedManager] browseFile];
 }
 
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    [self.searchBarView hideKeyboard];
-}
 
-#pragma mark - YXDatumSearchBarViewDelegate
-- (void)searchWithText:(NSString *)text{
-    NSLog(@"text:%@",text);
-    [self.searchBarView hideKeyboard];
-    if (!self.dataFetcher) {
-        [self setupDataFetcher];
-    }
-    YXDatumSearchFetcher *fetcher = (YXDatumSearchFetcher *)self.dataFetcher;
-    fetcher.keyWord = text;
-    [self firstPageFetch];
-}
-
-- (void)searchCancel{
-    [self.searchBarView hideKeyboard];
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)setNavigationBar {
+    YXDatumSearchView *seachView = [[YXDatumSearchView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44)];
+    [seachView setTextFieldWithString:self.keyWord];
+    seachView.textBeginEdit = ^{
+    };
+    seachView.texEndEdit = ^{
+    };
+    seachView.textShouldClear = ^{
+    };
+    seachView.textShouldReturn = ^(NSString *text){
+        if (!self.dataFetcher) {
+            [self setupDataFetcher];
+        }
+        YXDatumSearchFetcher *fetcher = (YXDatumSearchFetcher *)self.dataFetcher;
+        fetcher.keyWord = text;
+        [self firstPageFetch];
+    };
+    seachView.cancelButtonClickedBlock = ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    };
+    self.navigationItem.titleView = seachView;
+    self.navigationItem.rightBarButtonItems = nil;
+    self.navigationItem.leftBarButtonItems = nil;
+    [self.navigationItem setHidesBackButton:YES animated:NO];
 }
 
 @end

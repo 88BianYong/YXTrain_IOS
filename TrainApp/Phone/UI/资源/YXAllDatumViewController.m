@@ -14,6 +14,7 @@
 #import "YXAllDatumTableViewCell.h"
 #import "YXAttachmentTypeHelper.h"
 #import "YXResourceCollectionRequest.h"
+#import "YXPagedListEmptyView.h"
 
 @interface YXAllDatumViewController ()
 
@@ -30,16 +31,17 @@
 - (void)viewDidLoad {
     self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
-//    YXPagedListEmptyView *emptyView = [[YXPagedListEmptyView alloc] init];
-//    emptyView.iconName = @"资料";
-//    emptyView.title = @"没有符合条件的资源";
-//    self.emptyView = emptyView;
+    YXPagedListEmptyView *emptyView = [[YXPagedListEmptyView alloc] init];
+    emptyView.iconName = @"资料";
+    emptyView.title = @"没有符合条件的资源";
+    self.emptyView = emptyView;
     [super viewDidLoad];
     [self configUI];
     // Do any additional setup after loading the view.
 }
 
 - (void)configUI {
+    self.view.backgroundColor = [UIColor redColor];
     self.menuView = [[YXDatumOrderFilterMenuView alloc]initWithFrame:CGRectZero];
     @weakify(self);
     self.menuView.refreshFilterBlock = ^(NSString *condition) {

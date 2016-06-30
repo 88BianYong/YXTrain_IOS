@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [super setupLeftBack];
     UIView *footerView = [[UIView alloc] init];
     footerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     UILabel *footerLabel = [[UILabel alloc] init];
@@ -47,6 +48,14 @@
     self.tableView.tableFooterView = footerView;
     // Do any additional setup after loading the view.
 }
+
+- (void)naviLeftAction {
+    [self dismissViewControllerAnimated:YES completion:^{
+        //
+    }];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -167,9 +176,11 @@
         [self stopLoading];
         HttpBaseRequestItem *item = retItem;
         if (item && !error) {
+            [self showToast:@"验证码已发送"];
             [self.verifyCodeCell startTimer];
+            
         } else {
-            [self showToast:@"请求失败"];
+            [self showToast:@"获取失败"];
         }
     }];
 }
