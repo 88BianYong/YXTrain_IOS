@@ -28,6 +28,13 @@
 
 - (void)setupUI{
     self.contentView.backgroundColor = [UIColor whiteColor];
+    UIButton *bgButton = [[UIButton alloc]init];
+    [bgButton addTarget:self action:@selector(bgButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:bgButton];
+    [bgButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
@@ -39,6 +46,7 @@
     }];
     
     self.progressView = [[YXExamProgressView alloc]init];
+    self.progressView.userInteractionEnabled = NO;
     [self.contentView addSubview:self.progressView];
     [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(81).priorityHigh();
@@ -93,6 +101,10 @@
 
 - (void)btnAction:(UIButton *)sender{
     BLOCK_EXEC(self.markAction,sender);
+}
+
+- (void)bgButtonAction{
+    BLOCK_EXEC(self.clickAction);
 }
 
 @end

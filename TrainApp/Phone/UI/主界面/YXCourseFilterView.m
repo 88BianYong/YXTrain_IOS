@@ -75,6 +75,17 @@ static const NSUInteger kTagBase = 876;
     [self.filterItemArray addObject:item];
 }
 
+- (void)setCurrentIndex:(NSInteger)index forKey:(NSString *)key{
+    YXCourseFilterItem *item = nil;
+    for (YXCourseFilterItem *f in self.filterItemArray) {
+        if ([f.typeName isEqualToString:key]) {
+            item = f;
+            break;
+        }
+    }
+    item.currentIndex = index;
+}
+
 - (void)layoutSubviews{
     if (self.layoutComplete) {
         return;
@@ -83,11 +94,12 @@ static const NSUInteger kTagBase = 876;
     CGFloat lineWidth = 1/[UIScreen mainScreen].scale;
     [self.filterItemArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXCourseFilterItem *item = (YXCourseFilterItem *)obj;
-        UIButton *b = [self typeButtonWithName:item.typeName];
+        UIButton *b = [self typeButtonWithName:[self currentFilterNameForItem:item]];
         b.frame = CGRectMake(btnWidth*idx, 0, btnWidth, self.typeContainerView.bounds.size.height);
         b.tag = kTagBase + idx;
         [self exchangeTitleImagePositionForButton:b];
-        [self changeButton:b selectedStatus:NO];
+        BOOL status = item.currentIndex>=0 ? YES:NO;
+        [self changeButton:b selectedStatus:status];
         [self.typeContainerView addSubview:b];
         if (idx < self.filterItemArray.count-1) {
             CGFloat h = 15;
@@ -99,6 +111,13 @@ static const NSUInteger kTagBase = 876;
     }];
     
     self.layoutComplete = YES;
+}
+
+- (NSString *)currentFilterNameForItem:(YXCourseFilterItem *)item{
+    if (item.currentIndex < 0) {
+        return item.typeName;
+    }
+    return item.filterArray[item.currentIndex];
 }
 
 - (UIButton *)typeButtonWithName:(NSString *)name{

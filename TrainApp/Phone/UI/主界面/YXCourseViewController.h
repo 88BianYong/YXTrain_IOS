@@ -10,5 +10,6 @@
 #import "PagedListViewControllerBase.h"
 
 @interface YXCourseViewController : PagedListViewControllerBase
-
+@property (nonatomic, assign) BOOL isElective; // 从考核的课程超市进入需要设为YES
+@property (nonatomic, strong) NSString *stageID; // 从考核的阶段课程进入需要传阶段的id
 @end

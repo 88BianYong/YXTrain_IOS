@@ -11,6 +11,7 @@
 #import "YXModuleDetailRequest.h"
 #import "YXCourseDetailCell.h"
 #import "YXCourseDetailHeaderView.h"
+#import "YXFileRecordManager.h"
 
 @interface YXCourseDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -58,7 +59,7 @@
         self.courseDetailRequest = [[YXCourseDetailRequest alloc]init];
         self.courseDetailRequest.cid = self.course.courses_id;
         self.courseDetailRequest.stageid = self.course.module_id;
-//        self.courseDetailRequest.pid =
+        self.courseDetailRequest.pid = [YXTrainManager sharedInstance].currentProject.pid;
         [self startLoading];
         WEAK_SELF
         [self.courseDetailRequest startRequestWithRetClass:[YXCourseDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -75,6 +76,8 @@
         [self.moduleDetailRequest stopRequest];
         self.moduleDetailRequest = [[YXModuleDetailRequest alloc]init];
         self.moduleDetailRequest.cid = self.course.courses_id;
+        self.moduleDetailRequest.w = [YXTrainManager sharedInstance].currentProject.w;
+        self.moduleDetailRequest.pid = [YXTrainManager sharedInstance].currentProject.pid;
         [self startLoading];
         WEAK_SELF
         [self.moduleDetailRequest startRequestWithRetClass:[YXModuleDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -108,7 +111,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXCourseDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXCourseDetailCell"];
     YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];
-    cell.data = chapter.fragments[indexPath.row];
+    YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
+    cell.data = fragment;
+    if ([[YXFileRecordManager sharedInstance]hasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
+        cell.watched = YES;
+    }else{
+        cell.watched = NO;
+    }
     return cell;
 }
 
@@ -129,7 +138,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];
+    YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
+    [[YXFileRecordManager sharedInstance]saveRecordWithFilename:fragment.fragment_name url:fragment.url];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end

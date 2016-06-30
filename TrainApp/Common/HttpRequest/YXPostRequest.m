@@ -13,7 +13,8 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-
+        self.token = [YXUserManager sharedManager].userModel.token;
+        self.version = [YXConfigManager sharedInstance].clientVersion;
     }
     return self;
 }

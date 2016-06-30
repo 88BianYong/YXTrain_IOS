@@ -22,6 +22,11 @@
 
 - (void)viewDidLoad {
     YXCourseListFetcher *fetcher = [[YXCourseListFetcher alloc]init];
+    fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    fetcher.stageid = self.stageID;
+    if (self.isElective) {
+        fetcher.type = @"101"; // 选修
+    }
     WEAK_SELF
     fetcher.filterBlock = ^(YXCourseListFilterModel *model){
         STRONG_SELF
@@ -48,6 +53,7 @@
 - (void)dealWithFilterModel:(YXCourseListFilterModel *)model{
     self.filterModel = model;
     YXCourseFilterView *filterView = [[YXCourseFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    self.filterView = filterView;
     for (YXCourseFilterGroup *group in model.groupArray) {
         NSMutableArray *array = [NSMutableArray array];
         for (YXCourseFilter *filter in group.filterArray) {
@@ -55,12 +61,44 @@
         }
         [filterView addFilters:array forKey:group.name];
     }
+    [self setupWithCurrentFilters];
     filterView.delegate = self;
     [self.view addSubview:filterView];
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(44);
     }];
+}
+
+- (void)setupWithCurrentFilters{
+    if (self.stageID) {
+        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+        __block NSInteger stageIndex = -1;
+        [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            YXCourseFilter *filter = (YXCourseFilter *)obj;
+            if ([self.stageID isEqualToString:filter.filterID]) {
+                stageIndex = idx;
+                *stop = YES;
+            }
+        }];
+        if (stageIndex >= 0) {
+            [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
+        }
+    }
+    if (self.isElective) {
+        YXCourseFilterGroup *typeGroup = self.filterModel.groupArray[2];
+        __block NSInteger typeIndex = -1;
+        [typeGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            YXCourseFilter *filter = (YXCourseFilter *)obj;
+            if ([@"101" isEqualToString:filter.filterID]) {
+                typeIndex = idx;
+                *stop = YES;
+            }
+        }];
+        if (typeIndex >= 0) {
+            [self.filterView setCurrentIndex:typeIndex forKey:typeGroup.name];
+        }
+    }
 }
 
 - (void)naviRightAction{

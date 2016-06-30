@@ -49,6 +49,8 @@
 - (void)getData{
     [self.request stopRequest];
     self.request = [[YXTaskListRequest alloc]init];
+    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
     [self startLoading];
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXTaskListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

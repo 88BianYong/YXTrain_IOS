@@ -20,4 +20,6 @@
 
 - (void)addFilters:(NSArray *)filters forKey:(NSString *)key;
 
+- (void)setCurrentIndex:(NSInteger)index forKey:(NSString *)key;
+
 @end

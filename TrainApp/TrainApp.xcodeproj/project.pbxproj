@@ -40,6 +40,7 @@
 		7C2C3B851D24F6F700A03635 /* YXCourseRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B841D24F6F700A03635 /* YXCourseRecordCell.m */; };
 		7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B871D24FD7E00A03635 /* YXCourseRecordHeaderView.m */; };
 		7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B8D1D2508E200A03635 /* YXCourseRecordFooterView.m */; };
+		7C2C3B911D26406400A03635 /* YXTrainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B901D26406400A03635 /* YXTrainManager.m */; };
 		7C3177381D0E4D6C004AAC90 /* TrainAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177371D0E4D6C004AAC90 /* TrainAppTests.m */; };
 		7C3177431D0E4D6C004AAC90 /* TrainAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177421D0E4D6C004AAC90 /* TrainAppUITests.m */; };
 		7C3177581D0E5E04004AAC90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
@@ -115,6 +116,10 @@
 		7C3F258D1D20C6C100F0A17A /* trainlist_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F258C1D20C6C100F0A17A /* trainlist_mock.json */; };
 		7C3F25901D20CB5F00F0A17A /* YXTaskListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F258F1D20CB5F00F0A17A /* YXTaskListRequest.m */; };
 		7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F25911D20D11800F0A17A /* tasklist_mock.json */; };
+		7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7CF844551D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld */; };
+		7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8445A1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m */; };
+		7CF8445E1D2A5E4800B1CE55 /* FileRecordEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8445C1D2A5E4800B1CE55 /* FileRecordEntity.m */; };
+		7CF844611D2A609500B1CE55 /* YXFileRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF844601D2A609500B1CE55 /* YXFileRecordManager.m */; };
 		7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */; };
 		7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */; };
 		7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */; };
@@ -301,6 +306,8 @@
 		7C2C3B871D24FD7E00A03635 /* YXCourseRecordHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCourseRecordHeaderView.m; sourceTree = "<group>"; };
 		7C2C3B8C1D2508E200A03635 /* YXCourseRecordFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCourseRecordFooterView.h; sourceTree = "<group>"; };
 		7C2C3B8D1D2508E200A03635 /* YXCourseRecordFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCourseRecordFooterView.m; sourceTree = "<group>"; };
+		7C2C3B8F1D26406400A03635 /* YXTrainManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrainManager.h; sourceTree = "<group>"; };
+		7C2C3B901D26406400A03635 /* YXTrainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTrainManager.m; sourceTree = "<group>"; };
 		7C31771A1D0E4D6C004AAC90 /* TrainApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3177331D0E4D6C004AAC90 /* TrainAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrainAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3177371D0E4D6C004AAC90 /* TrainAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrainAppTests.m; sourceTree = "<group>"; };
@@ -447,6 +454,13 @@
 		7C3F258E1D20CB5F00F0A17A /* YXTaskListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTaskListRequest.h; sourceTree = "<group>"; };
 		7C3F258F1D20CB5F00F0A17A /* YXTaskListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTaskListRequest.m; sourceTree = "<group>"; };
 		7C3F25911D20D11800F0A17A /* tasklist_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tasklist_mock.json; sourceTree = "<group>"; };
+		7CF844561D2A5AFD00B1CE55 /* TrainModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrainModel.xcdatamodel; sourceTree = "<group>"; };
+		7CF844591D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FileRecordEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		7CF8445A1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FileRecordEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		7CF8445B1D2A5E4800B1CE55 /* FileRecordEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileRecordEntity.h; sourceTree = "<group>"; };
+		7CF8445C1D2A5E4800B1CE55 /* FileRecordEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileRecordEntity.m; sourceTree = "<group>"; };
+		7CF8445F1D2A609500B1CE55 /* YXFileRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFileRecordManager.h; sourceTree = "<group>"; };
+		7CF844601D2A609500B1CE55 /* YXFileRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFileRecordManager.m; sourceTree = "<group>"; };
 		7CF887F61D17A77400E7C04D /* YXDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDrawerViewController.h; sourceTree = "<group>"; };
 		7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDrawerViewController.m; sourceTree = "<group>"; };
 		7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
@@ -711,6 +725,7 @@
 		7C2C3B631D24C48B00A03635 /* 课程 */ = {
 			isa = PBXGroup;
 			children = (
+				7CF844581D2A5E0C00B1CE55 /* DB */,
 				7C2C3B531D23B34300A03635 /* YXCourseListRequest.h */,
 				7C2C3B541D23B34300A03635 /* YXCourseListRequest.m */,
 				7C2C3B581D23BEE100A03635 /* YXCourseListFetcher.h */,
@@ -729,6 +744,8 @@
 				7C2C3B7B1D24F23600A03635 /* YXCourseRecordRequest.h */,
 				7C2C3B7C1D24F23600A03635 /* YXCourseRecordRequest.m */,
 				7C2C3B7E1D24F54100A03635 /* courserecord_mock.json */,
+				7CF8445F1D2A609500B1CE55 /* YXFileRecordManager.h */,
+				7CF844601D2A609500B1CE55 /* YXFileRecordManager.m */,
 			);
 			name = "课程";
 			sourceTree = "<group>";
@@ -1228,6 +1245,8 @@
 				7C3F25891D20C42D00F0A17A /* YXTrainListRequest.h */,
 				7C3F258A1D20C42D00F0A17A /* YXTrainListRequest.m */,
 				7C3F258C1D20C6C100F0A17A /* trainlist_mock.json */,
+				7C2C3B8F1D26406400A03635 /* YXTrainManager.h */,
+				7C2C3B901D26406400A03635 /* YXTrainManager.m */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -1285,6 +1304,18 @@
 				7C3178571D139BE4004AAC90 /* YXBulletinViewController.m */,
 			);
 			name = "简报";
+			sourceTree = "<group>";
+		};
+		7CF844581D2A5E0C00B1CE55 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				7CF844551D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld */,
+				7CF844591D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.h */,
+				7CF8445A1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m */,
+				7CF8445B1D2A5E4800B1CE55 /* FileRecordEntity.h */,
+				7CF8445C1D2A5E4800B1CE55 /* FileRecordEntity.m */,
+			);
+			name = DB;
 			sourceTree = "<group>";
 		};
 		7CF887F91D17D45A00E7C04D /* 分页框架 */ = {
@@ -1890,6 +1921,7 @@
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
+				7CF8445E1D2A5E4800B1CE55 /* FileRecordEntity.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
 				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
@@ -1962,10 +1994,12 @@
 				7C3177D61D10FF0A004AAC90 /* YXTestPushViewController.m in Sources */,
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
 				7C2C3B4F1D2364E300A03635 /* YXTaskCell.m in Sources */,
+				7C2C3B911D26406400A03635 /* YXTrainManager.m in Sources */,
 				CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
 				7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */,
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
+				7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */,
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
@@ -2010,8 +2044,10 @@
 				7CF888851D1BE20400E7C04D /* YXExamPhaseShadowCell.m in Sources */,
 				7CF888671D1BC49200E7C04D /* YXWaveView.m in Sources */,
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,
+				7CF844611D2A609500B1CE55 /* YXFileRecordManager.m in Sources */,
 				CB7462701D1E89EE0065113A /* YXInitRequest.m in Sources */,
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
+				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
 				CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */,
 				CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */,
@@ -2180,7 +2216,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
+				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
 			};
 			name = Debug;
 		};
@@ -2198,7 +2234,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
+				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
 			};
 			name = Release;
 		};
@@ -2288,6 +2324,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7CF844551D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7CF844561D2A5AFD00B1CE55 /* TrainModel.xcdatamodel */,
+			);
+			currentVersion = 7CF844561D2A5AFD00B1CE55 /* TrainModel.xcdatamodel */;
+			path = TrainModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7C3177121D0E4D6C004AAC90 /* Project object */;
 }

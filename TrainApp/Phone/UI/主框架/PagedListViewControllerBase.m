@@ -94,7 +94,7 @@
     self.dataArray = [NSMutableArray array];
     [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
     _total = (int)[self.dataArray count];
-    [self startLoading];
+
     [self firstPageFetch];
 }
 
@@ -115,7 +115,7 @@
     if (!self.dataFetcher.pagesize) {
         self.dataFetcher.pagesize = 20;
     }
-    
+    [self startLoading];
     @weakify(self);
     [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         @strongify(self); if (!self) return;

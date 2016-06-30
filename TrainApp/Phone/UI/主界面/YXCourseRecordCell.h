@@ -11,4 +11,5 @@
 
 @interface YXCourseRecordCell : UICollectionViewCell
 @property (nonatomic, strong) YXCourseRecordRequestItem_body_module_course *course;
+@property (nonatomic, assign) BOOL isFirst;
 @end

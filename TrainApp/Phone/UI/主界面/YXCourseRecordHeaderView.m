@@ -22,10 +22,17 @@
 }
 
 - (void)setupUI{
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    UIView *containerView = [[UIView alloc]init];
+    containerView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:containerView];
+    [containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(5);
+    }];
     UIImageView *imgView = [[UIImageView alloc]init];
     imgView.backgroundColor = [UIColor redColor];
-    [self addSubview:imgView];
+    [containerView addSubview:imgView];
     [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(3);
         make.size.mas_equalTo(CGSizeMake(20, 20));
@@ -34,7 +41,7 @@
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    [self addSubview:self.titleLabel];
+    [containerView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(imgView.mas_right).mas_offset(3);
         make.centerY.mas_equalTo(imgView.mas_centerY);

@@ -62,7 +62,8 @@
         if ([[YXUserManager sharedManager] isLogin]) {
             self.window.rootViewController = drawerVC;
             [self requestCommonData];
-        } else {
+        } else
+        {
             YXLoginViewController *vc = [[YXLoginViewController alloc] init];
             self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:vc];
             [self registerNotifications];

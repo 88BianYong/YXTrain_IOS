@@ -30,7 +30,9 @@
     self.courseImageView.layer.cornerRadius = 2;
     [self.contentView addSubview:self.courseImageView];
     [self.courseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-6);
         make.height.mas_equalTo(125);
     }];
     self.titleLabel = [[UILabel alloc]init];
@@ -39,7 +41,8 @@
     self.titleLabel.numberOfLines = 2;
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
+        make.left.mas_equalTo(self.courseImageView.mas_left);
+        make.right.mas_equalTo(self.courseImageView.mas_right);
         make.top.mas_equalTo(self.courseImageView.mas_bottom).mas_offset(11);
     }];
     
@@ -88,6 +91,25 @@
     minute = minute % 60;
     second = second % 60;
     self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
+}
+
+- (void)setIsFirst:(BOOL)isFirst{
+    _isFirst = isFirst;
+    if (isFirst) {
+        [self.courseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(0);
+            make.left.mas_equalTo(15);
+            make.right.mas_equalTo(-6);
+            make.height.mas_equalTo(125);
+        }];
+    }else{
+        [self.courseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(0);
+            make.left.mas_equalTo(6);
+            make.right.mas_equalTo(-15);
+            make.height.mas_equalTo(125);
+        }];
+    }
 }
 
 @end

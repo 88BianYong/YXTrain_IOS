@@ -11,4 +11,5 @@
 
 @interface YXCourseDetailCell : UITableViewCell
 @property (nonatomic, strong) YXCourseDetailItem_chapter_fragment *data;
+@property (nonatomic, assign) BOOL watched;
 @end

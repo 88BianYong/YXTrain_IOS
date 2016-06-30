@@ -18,6 +18,7 @@
 #import "MJRefresh.h"
 #import "YXScoreViewController.h"
 #import "YXExamMarkView.h"
+#import "YXCourseViewController.h"
 
 @interface YXExamViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -77,6 +78,8 @@
 - (void)getData{
     [self.request stopRequest];
     self.request = [[YXExamineRequest alloc]init];
+    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
     [self startLoading];
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -190,6 +193,15 @@
             CGRect rect = [b convertRect:b.bounds toView:self.view];
             [self showMarkWithOriginRect:rect];
         };
+        header.clickAction = ^{
+            if ([data.toolid isEqualToString:@"315"]) { // 课程超市
+                YXCourseViewController *vc = [[YXCourseViewController alloc]init];
+                vc.isElective = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                [self showToast:@"相关功能暂未开放"];
+            }
+        };
         return header;
     }
 }
@@ -232,6 +244,18 @@
         YXScoreViewController *vc = [[YXScoreViewController alloc]init];
         vc.data = self.examineItem.body;
         [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.section <= self.examineItem.body.leadingVoList.count){
+        YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[indexPath.section-1];
+        if (indexPath.row>0 && indexPath.row<=vo.toolExamineVoList.count) {
+            YXExamineRequestItem_body_toolExamineVo *data = vo.toolExamineVoList[indexPath.row-1];
+            if ([data.toolid isEqualToString:@"201"]) { // 课程
+                YXCourseViewController *vc = [[YXCourseViewController alloc]init];
+                vc.stageID = vo.voID;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                [self showToast:@"相关功能暂未开放"];
+            }
+        }
     }
 }
 

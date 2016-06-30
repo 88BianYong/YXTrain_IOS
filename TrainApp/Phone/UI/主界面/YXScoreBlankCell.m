@@ -29,5 +29,6 @@
 
 - (void)setupUI{
     self.contentView.backgroundColor = [UIColor whiteColor];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 @end

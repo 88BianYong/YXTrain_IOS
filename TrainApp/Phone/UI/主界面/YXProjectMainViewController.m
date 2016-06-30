@@ -16,8 +16,7 @@
 #import "YXTrainListRequest.h"
 
 @interface YXProjectMainViewController ()
-@property (nonatomic, strong) YXTrainListRequest *request;
-@property (nonatomic, strong) YXTrainListRequestItem *trainlistItem;
+
 @end
 
 @implementation YXProjectMainViewController
@@ -31,20 +30,7 @@
     [b addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self setupLeftWithCustomView:b];
     
-    [self getTrainList];
-//    UIButton *testButton = [[UIButton alloc]initWithFrame:CGRectMake(50, 100, 80, 50)];
-//    [testButton setTitle:@"Test" forState:UIControlStateNormal];
-//    [testButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-//    [testButton addTarget:self action:@selector(testAction) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:testButton];
-    
-//    YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
-//    YXExamViewController *examVC = [[YXExamViewController alloc]init];
-//    YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
-//    YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
-//    YXBulletinViewController *bulletinVC = [[YXBulletinViewController alloc]init];
-//    containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
-//    [self.view addSubview:containerView];
+    [self getProjectList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,25 +38,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)getTrainList{
-    [self.request stopRequest];
-    self.request = [[YXTrainListRequest alloc]init];
+- (void)getProjectList{
     [self startLoading];
     WEAK_SELF
-    [self.request startRequestWithRetClass:[YXTrainListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+    [[YXTrainManager sharedInstance]getProjectsWithCompleteBlock:^(NSArray *projects, NSError *error) {
         STRONG_SELF
         [self stopLoading];
         if (error) {
             [self showToast:error.localizedDescription];
             return;
         }
-        [self dealWithRetItem:retItem];
+        [self dealWithProjects:projects];
     }];
 }
 
-- (void)dealWithRetItem:(YXTrainListRequestItem *)retItem{
-    self.trainlistItem = retItem;
-    YXTrainListRequestItem_body_train *train = retItem.body.trains.firstObject;
+- (void)dealWithProjects:(NSArray *)projects{
+    [YXTrainManager sharedInstance].currentProjectIndex = 0;
+    YXTrainListRequestItem_body_train *train = projects.firstObject;
     self.title = train.name;
     YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
     YXExamViewController *examVC = [[YXExamViewController alloc]init];

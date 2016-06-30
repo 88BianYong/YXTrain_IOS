@@ -45,9 +45,8 @@
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
-    layout.sectionInset = UIEdgeInsetsMake(0, 15, 0, 15);
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.alwaysBounceVertical = YES;
@@ -57,7 +56,7 @@
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(6);
+        make.top.mas_equalTo(0);
     }];
     
     self.header = [MJRefreshHeaderView header];
@@ -72,6 +71,8 @@
 - (void)getData{
     [self.request stopRequest];
     self.request = [[YXCourseRecordRequest alloc]init];
+    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     [self startLoading];
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXCourseRecordRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -104,6 +105,11 @@
     YXCourseRecordCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXCourseRecordCell" forIndexPath:indexPath];
     YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[indexPath.section];
     cell.course = module.courses[indexPath.row];
+    if (indexPath.row % 2 == 0) {
+        cell.isFirst = YES;
+    }else{
+        cell.isFirst = NO;
+    }
     return cell;
 }
 
@@ -122,13 +128,13 @@
 
 #pragma mark - UICollectionViewDelegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(CGRectGetWidth(self.view.bounds), 45.f);
+    return CGSizeMake(CGRectGetWidth(self.view.bounds), 50.f);
 }
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    return CGSizeMake(CGRectGetWidth(self.view.bounds), 5.f);
-}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+//    return CGSizeMake(CGRectGetWidth(self.view.bounds), 5.f);
+//}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake((self.view.bounds.size.width-30-11)/2, 195.f);
+    return CGSizeMake((self.view.bounds.size.width)/2, 195.f);
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[indexPath.section];

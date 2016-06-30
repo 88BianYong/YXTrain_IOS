@@ -65,4 +65,13 @@
     self.titleLabel.attributedText = attributedString;
 }
 
+- (void)setWatched:(BOOL)watched{
+    _watched = watched;
+    if (watched) {
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"0067be"];
+    }else{
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    }
+}
+
 @end
