@@ -30,8 +30,10 @@
     self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
     [super viewDidLoad];
+//    self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
     [self.tableView registerClass:[YXMyDatumCell class] forCellReuseIdentifier:@"YXMyDatumCell"];
     UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3)];
+    self.tableView.estimatedRowHeight = 60;
     tableViewHeaderView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.tableHeaderView = tableViewHeaderView;
     // Do any additional setup after loading the view.

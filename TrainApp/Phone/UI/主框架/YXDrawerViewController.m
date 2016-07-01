@@ -7,6 +7,7 @@
 //
 
 #import "YXDrawerViewController.h"
+#import "YXSideMenuViewController.h"
 
 static const CGFloat kAnimationDuration = 0.3;
 
@@ -47,6 +48,7 @@ static const CGFloat kAnimationDuration = 0.3;
 
 - (void)showDrawer{
     self.isAnimating = YES;
+    [((YXSideMenuViewController *)self.drawerViewController) displayShadowView];
     CGFloat x = self.drawerViewController.view.frame.origin.x+self.drawerViewController.view.frame.size.width;
     self.gestureView.frame = CGRectMake(x, 0, self.view.frame.size.width-x, self.view.frame.size.height);
     [self.view addSubview:self.gestureView];
@@ -63,6 +65,7 @@ static const CGFloat kAnimationDuration = 0.3;
 
 - (void)hideDrawer{
     self.isAnimating = YES;
+    [((YXSideMenuViewController *)self.drawerViewController) dismissShadowView];
     [UIView animateWithDuration:[self drawerDurationForShow:NO]
                      animations:^{
                          self.drawerViewController.view.center = CGPointMake(-self.drawerWidth/2, self.view.bounds.size.height/2);

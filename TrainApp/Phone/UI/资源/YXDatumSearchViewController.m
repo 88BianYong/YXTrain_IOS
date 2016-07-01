@@ -86,7 +86,8 @@
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return [tableView fd_heightForCellWithIdentifier:@"YXAllDatumTableViewCell" configuration:^(YXDatumSearchCell *cell) {
-        cell.cellModel = self.dataArray[indexPath.row];
+        YXDatumCellModel *model = self.dataArray[indexPath.row];
+        cell.cellModel = model;
     }];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

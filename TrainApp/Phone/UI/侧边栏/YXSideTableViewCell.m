@@ -40,7 +40,7 @@
     [self.contentView addSubview:self.iconImageView];
     
     self.sideLabel = [[UILabel alloc] init];
-    self.sideLabel.font = [UIFont systemFontOfSize:14];
+    self.sideLabel.font = [UIFont boldSystemFontOfSize:14];
     self.sideLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.sideLabel];
     

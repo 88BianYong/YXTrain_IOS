@@ -43,6 +43,9 @@
     [self.view addSubview:self.allDatumViewController.view];
     [self.allDatumViewController didMoveToParentViewController:self];
     self.currentViewController = self.allDatumViewController;
+    [self.currentViewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
 }
 
 - (void)setDatumTitleView {
@@ -65,6 +68,9 @@
         [self transitionFromViewController:self.currentViewController toViewController:viewController duration:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
         }  completion:^(BOOL finished) {
             self.currentViewController=viewController;
+            [self.currentViewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
             [viewController didMoveToParentViewController:self];
         }];
     }

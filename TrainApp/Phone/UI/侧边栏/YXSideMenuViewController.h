@@ -10,4 +10,7 @@
 
 @interface YXSideMenuViewController : YXBaseViewController
 
+- (void)displayShadowView;
+- (void)dismissShadowView;
+
 @end

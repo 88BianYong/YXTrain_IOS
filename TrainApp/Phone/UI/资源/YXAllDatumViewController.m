@@ -29,7 +29,7 @@
 @implementation YXAllDatumViewController
 
 - (void)viewDidLoad {
-    self.bIsGroupedTableViewStyle = YES;
+    //self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
     YXPagedListEmptyView *emptyView = [[YXPagedListEmptyView alloc] init];
     emptyView.iconName = @"资料";
@@ -42,6 +42,7 @@
 
 - (void)configUI {
     self.view.backgroundColor = [UIColor redColor];
+//    self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
     self.menuView = [[YXDatumOrderFilterMenuView alloc]initWithFrame:CGRectZero];
     @weakify(self);
     self.menuView.refreshFilterBlock = ^(NSString *condition) {
@@ -57,8 +58,8 @@
         make.height.mas_equalTo(45);
     }];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"#f2f2f2"];
+    self.tableView.estimatedRowHeight = 800;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.estimatedRowHeight = 60;
     [self.tableView registerClass:[YXAllDatumTableViewCell class] forCellReuseIdentifier:@"YXAllDatumTableViewCell"];
     
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {

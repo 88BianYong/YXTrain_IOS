@@ -28,6 +28,7 @@ pod 'IBActionSheet', '0.0.2'
 pod 'DTCoreText', '1.6.16'
 pod 'MWPhotoBrowser','2.1.1'
 pod 'TOWebViewController', '2.0.14'
+pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 
 pod 'Base64'
 pod 'CommonCrypto'

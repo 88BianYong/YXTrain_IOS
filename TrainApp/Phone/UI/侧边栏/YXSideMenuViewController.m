@@ -18,8 +18,9 @@
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *footerView;
-
 @property (nonatomic, strong) YXUserProfile *profile;
+
+@property (nonatomic, strong) UIView *shadowView;
 
 @end
 
@@ -35,7 +36,20 @@
     [self registerNotifications];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
-    
+
+    self.shadowView = [[UIView alloc] init];
+    self.shadowView.backgroundColor = [UIColor whiteColor];
+    self.shadowView.layer.shadowColor = [UIColor colorWithHexString:@"dfe2e6"].CGColor;
+    self.shadowView.layer.shadowOffset = CGSizeMake(9, 0);
+    self.shadowView.layer.shadowRadius = 20;
+    self.shadowView.layer.shadowOpacity = 1;
+    self.shadowView.hidden = YES;
+    [self.view addSubview:self.shadowView];
+    [self.shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.bottom.right.mas_equalTo(@0);
+        make.width.mas_equalTo(@([UIScreen mainScreen].bounds.size.width * 600/750));
+    }];
+
     self.headerView = [[UIView alloc] init];
     [self.view addSubview:self.headerView];
     self.headerView.backgroundColor = [UIColor whiteColor];
@@ -79,14 +93,14 @@
     [self.headerView addSubview:_iconImageView];
     
     _nameLabel = [[UILabel alloc] init];
-    _nameLabel.font = [UIFont systemFontOfSize:14];
-    _nameLabel.textColor = [UIColor lightGrayColor];
+    _nameLabel.font = [UIFont boldSystemFontOfSize:17];
+    _nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
     _nameLabel.text = @"123";
     [self.headerView addSubview:_nameLabel];
     
     _subNameLabel = [[UILabel alloc] init];
     _subNameLabel.font = [UIFont systemFontOfSize:12];
-    _subNameLabel.textColor = [UIColor lightGrayColor];
+    _subNameLabel.textColor = [UIColor colorWithHexString:@"505f84"];
     _subNameLabel.text = @"1233455";
     [self.headerView addSubview:_subNameLabel];
     
@@ -137,7 +151,7 @@
     [self.footerView addSubview:footerIconImageView];
     UILabel *footerLabel = [[UILabel alloc] init];
     footerLabel.text = @"设置";
-    footerLabel.font = [UIFont systemFontOfSize:14];
+    footerLabel.font = [UIFont boldSystemFontOfSize:14];
     footerLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.footerView addSubview:footerLabel];
     
@@ -269,6 +283,13 @@
 {
     [super viewWillAppear:animated];
     [self loadUserProfile];
+}
+
+- (void)displayShadowView {
+    self.shadowView.hidden = NO;
+}
+- (void)dismissShadowView {
+    self.shadowView.hidden = YES;
 }
 
 @end
