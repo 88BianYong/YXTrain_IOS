@@ -45,6 +45,7 @@
             return;
         }
         if (!retItem || error) {
+            self.filterModel = [YXFilterModel modelFromFilterRequestItem:nil];
             if (completion) {
                 completion(error);
             }

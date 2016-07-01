@@ -21,24 +21,26 @@
 + (YXFilterModel *)modelFromFilterRequestItem:(YXDatumFilterRequestItem *)item{
     YXFilterModel *filterModel = [[YXFilterModel alloc]init];
     NSMutableArray *typeArray = [NSMutableArray array];
-    for (YXDatumFilterRequestItem_data *data in item.data) {
-        YXFilterType *type = [[YXFilterType alloc]init];
-        type.name = data.cataName;
-        type.code = data.cataCodeName;
-        NSMutableArray *subTypeArray = [NSMutableArray array];
-        for (YXDatumFilterRequestItem_data_cataele *ele in data.cataele) {
-            YXFilterSubtype *subType = [[YXFilterSubtype alloc]init];
-            subType.name = ele.name;
-            subType.filterId = ele.elementId;
-            [subTypeArray addObject:subType];
+    if (item) {
+        for (YXDatumFilterRequestItem_data *data in item.data) {
+            YXFilterType *type = [[YXFilterType alloc]init];
+            type.name = data.cataName;
+            type.code = data.cataCodeName;
+            NSMutableArray *subTypeArray = [NSMutableArray array];
+            for (YXDatumFilterRequestItem_data_cataele *ele in data.cataele) {
+                YXFilterSubtype *subType = [[YXFilterSubtype alloc]init];
+                subType.name = ele.name;
+                subType.filterId = ele.elementId;
+                [subTypeArray addObject:subType];
+            }
+            YXFilterSubtype *whole = [[YXFilterSubtype alloc]init];
+            whole.name = @"全部";
+            whole.selected = YES;
+            [subTypeArray insertObject:whole atIndex:0];
+            
+            type.subtypeArray = subTypeArray;
+            [typeArray addObject:type];
         }
-        YXFilterSubtype *whole = [[YXFilterSubtype alloc]init];
-        whole.name = @"全部";
-        whole.selected = YES;
-        [subTypeArray insertObject:whole atIndex:0];
-        
-        type.subtypeArray = subTypeArray;
-        [typeArray addObject:type];
     }
     NSArray *nameArray = @[@"年级",@"学科",@"教材版本"];
     filterModel.filterArray = typeArray;

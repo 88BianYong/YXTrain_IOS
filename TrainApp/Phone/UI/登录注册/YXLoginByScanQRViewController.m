@@ -36,18 +36,14 @@
     [super viewDidLoad];
     [super setupLeftBack];
     self.view.backgroundColor = [UIColor blackColor];
-//    [self yx_setupLeftBackBarButtonItem];
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage yx_createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setShadowImage:[UIImage yx_createImageWithColor:[UIColor clearColor]]];
-   // self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.navigationItem.title = @"扫描二维码登录";
 
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusDenied)
     {
-//        YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问相机" message:@"请到“设置->隐私->相机”中设置为允许访问相机！"];
-//        [alertView addButtonWithTitle:@"确定"];
-//        [alertView show];
+        YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问相机" message:@"请到“设置->隐私->相机”中设置为允许访问相机！"];
+        [alertView addButtonWithTitle:@"确定"];
+        [alertView show];
     }else
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -129,9 +125,12 @@
                     return;
                 }
                 [self saveUserDataAndLogin];
-                //[self dismissViewControllerAnimated:YES completion:nil];
             }];
+        } else {
+            [self showToast:@"无法识别该二维码"];
         }
+    } else {
+        [self showToast:@"无法识别该二维码"];
     }
 }
 

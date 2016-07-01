@@ -35,7 +35,13 @@
 
 - (void)prapareData {
     self.typeNameArray = [[NSMutableArray alloc] init];
-    if ([YXDatumGlobalSingleton sharedInstance].filterModel) {
+    BOOL isExist = NO;
+    for (YXFilterType *type in [YXDatumGlobalSingleton sharedInstance].filterModel.filterArray) {
+        if (type.subtypeArray.count> 1) {
+            isExist = YES;
+        }
+    }
+    if ([YXDatumGlobalSingleton sharedInstance].filterModel && isExist) {
         self.filterModel = [YXDatumGlobalSingleton sharedInstance].filterModel;
     }else{
         [self getFilter];
