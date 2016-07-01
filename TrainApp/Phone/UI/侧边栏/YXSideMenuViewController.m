@@ -32,6 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self registerNotifications];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -175,11 +176,10 @@
 {
     self.profile = [YXUserManager sharedManager].userModel.profile;
     if (!self.profile) {
-        [self startLoading];
         @weakify(self);
         [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
             @strongify(self);
-            [self stopLoading];
+            [self showToast:error.localizedDescription];
         }];
     } else {
         [self reloadUserProfileView];
@@ -193,6 +193,7 @@
     _nameLabel.text = self.profile.nickName;
     _subNameLabel.text = self.profile.school;
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    [self.view setNeedsLayout];
 }
 
 

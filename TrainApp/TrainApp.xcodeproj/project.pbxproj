@@ -210,6 +210,7 @@
 		CB748EE91D23E118004BCFBF /* YXDatumSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB748EE81D23E118004BCFBF /* YXDatumSearchView.m */; };
 		CB748EEC1D24F3CD004BCFBF /* YXPagedListEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB748EEB1D24F3CD004BCFBF /* YXPagedListEmptyView.m */; };
 		CB748EEE1D250086004BCFBF /* PhoneImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB748EED1D250086004BCFBF /* PhoneImage.xcassets */; };
+		CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBA47A41D25FED80000EA84 /* UIImageView+AnimationCompletion.m */; };
 		CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94F71D1D111300C935C8 /* YXLoginBaseViewController.m */; };
 		CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94FA1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m */; };
 		CBBE94FE1D1D193400C935C8 /* YXLoginButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE94FD1D1D193400C935C8 /* YXLoginButtonTableViewCell.m */; };
@@ -636,6 +637,8 @@
 		CB748EEA1D24F3CD004BCFBF /* YXPagedListEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPagedListEmptyView.h; sourceTree = "<group>"; };
 		CB748EEB1D24F3CD004BCFBF /* YXPagedListEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPagedListEmptyView.m; sourceTree = "<group>"; };
 		CB748EED1D250086004BCFBF /* PhoneImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PhoneImage.xcassets; sourceTree = "<group>"; };
+		CBBA47A31D25FED80000EA84 /* UIImageView+AnimationCompletion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AnimationCompletion.h"; sourceTree = "<group>"; };
+		CBBA47A41D25FED80000EA84 /* UIImageView+AnimationCompletion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AnimationCompletion.m"; sourceTree = "<group>"; };
 		CBBE94F61D1D111300C935C8 /* YXLoginBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginBaseViewController.h; sourceTree = "<group>"; };
 		CBBE94F71D1D111300C935C8 /* YXLoginBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginBaseViewController.m; sourceTree = "<group>"; };
 		CBBE94F91D1D16AF00C935C8 /* YXLoginFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginFieldTableViewCell.h; sourceTree = "<group>"; };
@@ -860,6 +863,8 @@
 			isa = PBXGroup;
 			children = (
 				CB2CF34C1D1BF00300E76B34 /* NSString+YXString.h */,
+				CBBA47A31D25FED80000EA84 /* UIImageView+AnimationCompletion.h */,
+				CBBA47A41D25FED80000EA84 /* UIImageView+AnimationCompletion.m */,
 				CB2CF34D1D1BF00300E76B34 /* NSString+YXString.m */,
 				7C3177B31D0EB7F1004AAC90 /* UIViewController+Keyboard.h */,
 				7C3177B41D0EB7F1004AAC90 /* UIViewController+Keyboard.m */,
@@ -1761,7 +1766,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C2C3B701D24C8A600A03635 /* moduledetail_mock.json in Resources */,
-				7C3177601D0E603C004AAC90 /* PhoneImage.xcassets in Resources */,
 				7C2C3B7F1D24F54100A03635 /* courserecord_mock.json in Resources */,
 				7C31776E1D0E6E92004AAC90 /* YXConfig.plist in Resources */,
 				CB7462891D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF in Resources */,
@@ -2007,6 +2011,7 @@
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,
 				CB7462701D1E89EE0065113A /* YXInitRequest.m in Sources */,
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
+				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
 				CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */,
 				CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */,
 				7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */,

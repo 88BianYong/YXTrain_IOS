@@ -32,7 +32,6 @@
             subType.filterId = ele.elementId;
             [subTypeArray addObject:subType];
         }
-        // 增加‘全部’
         YXFilterSubtype *whole = [[YXFilterSubtype alloc]init];
         whole.name = @"全部";
         whole.selected = YES;
@@ -41,7 +40,29 @@
         type.subtypeArray = subTypeArray;
         [typeArray addObject:type];
     }
+    NSArray *nameArray = @[@"年级",@"学科",@"教材版本"];
     filterModel.filterArray = typeArray;
+    if (filterModel.filterArray.count < 3) {
+        for (NSString *name in nameArray) {
+            BOOL isExist= NO;
+            for (YXFilterType *filterType in filterModel.filterArray) {
+                if ([filterType.name isEqualToString:name]) {
+                    isExist = YES;
+                }
+            }
+            if (!isExist) {
+                YXFilterType *type = [[YXFilterType alloc]init];
+                type.name = name;
+                YXFilterSubtype *whole = [[YXFilterSubtype alloc]init];
+                whole.name = @"全部";
+                whole.selected = YES;
+                NSMutableArray *subTypeArray = [NSMutableArray array];
+                [subTypeArray insertObject:whole atIndex:0];
+                type.subtypeArray = subTypeArray;
+                [typeArray insertObject:type atIndex:[nameArray indexOfObject:name]];
+            }
+        }
+    }
     return filterModel;
 }
 

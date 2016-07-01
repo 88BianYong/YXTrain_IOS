@@ -32,7 +32,7 @@
     self.orderArray = array;
     self.index = index;
     self.btnCount = btnCount;
-    CGFloat tableHeight = MIN(array.count*40, 280);
+    CGFloat tableHeight = MIN(array.count*44, 308);
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(109);
         make.left.mas_equalTo(6);
@@ -57,7 +57,7 @@
     self.tableView = [[UITableView alloc]init];
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.rowHeight = 40;
+    self.tableView.rowHeight = 44;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.layer.cornerRadius = 2;
@@ -69,7 +69,7 @@
         make.top.mas_equalTo(109);
         make.left.mas_equalTo(6);
         make.right.mas_equalTo(-6);
-        make.height.mas_equalTo(280);
+        make.height.mas_equalTo(308);
     }];
     [self.tableView registerClass:[YXDatumOrderViewCell class] forCellReuseIdentifier:@"YXDatumOrderViewCell"];
 }
