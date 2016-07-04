@@ -8,6 +8,8 @@
 
 #import "YXSideMenuViewController.h"
 #import "YXDatumViewController.h"
+#import "YXMySettingViewController.h"
+#import "YXWorkshopViewController.h"
 
 #import "YXSideTableViewCell.h"
 #import "YXUserProfileRequest.h"
@@ -155,6 +157,11 @@
     footerLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.footerView addSubview:footerLabel];
     
+    UIButton *footerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [footerButton addTarget:self action:@selector(pushSettingButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.footerView addSubview:footerButton];
+    
+    
     [footerBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);
         make.height.mas_equalTo(1);
@@ -167,6 +174,9 @@
     [footerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(footerIconImageView.mas_right).offset(21);
         make.centerY.mas_equalTo(0);
+    }];
+    [footerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.footerView);
     }];
 }
 
@@ -251,6 +261,9 @@
     if (indexPath.section == 0) {
         YXDatumViewController *datumVc = [[YXDatumViewController alloc] init];
         [self.navigationController pushViewController:datumVc animated:YES];
+    }else if(indexPath.section == 1){
+        YXWorkshopViewController *workshopVc = [[YXWorkshopViewController alloc] init];
+        [self.navigationController pushViewController:workshopVc animated:YES];
     }
 }
 
@@ -292,4 +305,9 @@
     self.shadowView.hidden = YES;
 }
 
+#pragma mark - button Action
+- (void)pushSettingButtonAction:(UIButton *)sender{
+    YXMySettingViewController *datumVc = [[YXMySettingViewController alloc] init];
+    [self.navigationController pushViewController:datumVc animated:YES];
+}
 @end

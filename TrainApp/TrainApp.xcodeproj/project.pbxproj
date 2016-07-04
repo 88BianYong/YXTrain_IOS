@@ -157,6 +157,10 @@
 		7CF8888B1D1D09B100E7C04D /* YXExamineRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8888A1D1D09B100E7C04D /* YXExamineRequest.m */; };
 		7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8888C1D1D147600E7C04D /* examine_mock.json */; };
 		7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */; };
+		922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */; };
+		922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */; };
+		922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */; };
+		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 		CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */; };
 		CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */; };
@@ -539,6 +543,14 @@
 		7CF8888C1D1D147600E7C04D /* examine_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = examine_mock.json; sourceTree = "<group>"; };
 		7CF8888E1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamTaskProgressHeaderView.h; sourceTree = "<group>"; };
 		7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamTaskProgressHeaderView.m; sourceTree = "<group>"; };
+		922F3AC61D2A61DE00CBF7C3 /* YXWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopViewController.h; sourceTree = "<group>"; };
+		922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopViewController.m; sourceTree = "<group>"; };
+		922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopCell.h; sourceTree = "<group>"; };
+		922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopCell.m; sourceTree = "<group>"; };
+		922F3ACC1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailViewController.h; sourceTree = "<group>"; };
+		922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailViewController.m; sourceTree = "<group>"; };
+		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
+		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CB0904CE1D1AA3CC00026C9D /* PersistentUrlDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentUrlDownloader.h; sourceTree = "<group>"; };
 		CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentUrlDownloader.m; sourceTree = "<group>"; };
@@ -1018,6 +1030,7 @@
 				7C3178371D13949C004AAC90 /* 个人 */,
 				7C3178381D13949C004AAC90 /* 工作坊 */,
 				7C3178391D13949C004AAC90 /* 资源 */,
+				92529A721D2A337C007E26D8 /* 设置 */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1203,6 +1216,8 @@
 		7C3178381D13949C004AAC90 /* 工作坊 */ = {
 			isa = PBXGroup;
 			children = (
+				922F3AC41D2A61A900CBF7C3 /* view */,
+				922F3AC51D2A61B100CBF7C3 /* controller */,
 			);
 			path = "工作坊";
 			sourceTree = "<group>";
@@ -1538,6 +1553,43 @@
 				B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		922F3AC41D2A61A900CBF7C3 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */,
+				922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		922F3AC51D2A61B100CBF7C3 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				922F3AC61D2A61DE00CBF7C3 /* YXWorkshopViewController.h */,
+				922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */,
+				922F3ACC1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.h */,
+				922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		92529A721D2A337C007E26D8 /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+				92529A791D2A43FC007E26D8 /* controller */,
+			);
+			path = "设置";
+			sourceTree = "<group>";
+		};
+		92529A791D2A43FC007E26D8 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */,
+				92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */,
+			);
+			name = controller;
 			sourceTree = "<group>";
 		};
 		CB0904D41D1BC73D00026C9D /* controllers */ = {
@@ -1898,6 +1950,7 @@
 				CB4D91741D1A5F2000B5F1D0 /* YXDatumFilterRequest.m in Sources */,
 				7C2C3B371D2119BB00A03635 /* YXScorePhaseHeaderView.m in Sources */,
 				7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */,
+				922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */,
 				7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
@@ -1949,6 +2002,7 @@
 				CB7462641D1D44F10065113A /* YXScanQRBackgroundView.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
+				92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */,
 				7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreCell.m in Sources */,
 				CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */,
 				7C2C3B851D24F6F700A03635 /* YXCourseRecordCell.m in Sources */,
@@ -2003,11 +2057,13 @@
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
+				922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */,
 				7C3177B11D0EB738004AAC90 /* UIImage+FixOrientation.m in Sources */,
 				CB748EE31D228B51004BCFBF /* YXFilterButton.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
 				7C2C3B821D24F5BE00A03635 /* YXCourseRecordViewController.m in Sources */,
+				922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */,
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
 				CB4D91831D1A73EA00B5F1D0 /* YXDatumSearchViewController.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
