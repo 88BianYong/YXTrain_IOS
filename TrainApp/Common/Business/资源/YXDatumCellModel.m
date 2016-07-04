@@ -9,6 +9,7 @@
 #import "YXDatumCellModel.h"
 #import "PersistentUrlDownloader.h"
 #import "YXAttachmentTypeHelper.h"
+NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
 
 @implementation YXDatumCellModel
 

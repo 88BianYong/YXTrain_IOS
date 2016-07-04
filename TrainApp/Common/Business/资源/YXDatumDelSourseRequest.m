@@ -13,10 +13,10 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-//        self.urlHead = [YXConfigManager sharedInstance].uploadServer;
+        self.urlHead = [YXConfigManager sharedInstance].uploadServer;
 ////        self.urlHead = @"http://122.11.49.127/resource/index.jsp";
-//        self.action = @"delete";
-//        self.uid = [YXUserManager sharedManager].userModel.uid;
+        self.action = @"delete";
+        self.uid = [YXUserManager sharedManager].userModel.uid;
     }
     return self;
 }

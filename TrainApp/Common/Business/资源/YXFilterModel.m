@@ -10,6 +10,13 @@
 
 @implementation YXFilterType
 
+- (id)init {
+    if (self = [super init]) {
+        self.subtypeArray = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 @end
 
 @implementation YXFilterSubtype
@@ -17,6 +24,13 @@
 @end
 
 @implementation YXFilterModel
+
+- (id)init {
+    if (self = [super init]) {
+        self.filterArray = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 + (YXFilterModel *)modelFromFilterRequestItem:(YXDatumFilterRequestItem *)item{
     YXFilterModel *filterModel = [[YXFilterModel alloc]init];

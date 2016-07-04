@@ -114,6 +114,7 @@
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
     if (!data.isFavor) {
         [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:YXFavorSuccessNotification object:data userInfo:nil];
             [self.tableView reloadData];
         }];
     }

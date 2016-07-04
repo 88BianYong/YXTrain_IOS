@@ -67,7 +67,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    return NO;
+    return YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -77,6 +77,8 @@
     self.overlayNavigationBar = [[UINavigationBar alloc] initWithFrame:[self navigationBarFrameForOrientation:[[UIApplication sharedApplication] statusBarOrientation]]];
     self.overlayNavigationBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:self.overlayNavigationBar];
+    [self.navigationController setNavigationBarHidden:YES];
+    //self.navigationController.navigationBar = self.overlayNavigationBar;
     NSAssert(self.qlNavigationBar, @"could not find navigation bar");
     if (self.qlNavigationBar) {
         [self.qlNavigationBar addObserver:self forKeyPath:@"hidden" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];

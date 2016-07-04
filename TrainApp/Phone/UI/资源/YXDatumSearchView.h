@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YXDatumSearchView : UIView
+@property (nonatomic, strong) UITextField *searchTextField;
 
 @property (nonatomic, copy)void(^textBeginEdit)();
 @property (nonatomic, copy)void(^textShouldClear)();

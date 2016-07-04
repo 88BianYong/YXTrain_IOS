@@ -10,7 +10,7 @@
 #import "BaseDownloader.h"
 #import "YXDatumSearchRequest.h"
 #import "YXMyDatumRequest.h"
-
+extern NSString *const YXFavorSuccessNotification;
 @interface YXDatumCellModel : NSObject
 @property (nonatomic, copy) NSString *uid;
 

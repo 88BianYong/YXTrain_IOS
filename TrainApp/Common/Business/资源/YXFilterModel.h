@@ -12,7 +12,7 @@
 @interface YXFilterType : NSObject
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *code;
-@property (nonatomic, strong) NSArray *subtypeArray;
+@property (nonatomic, strong) NSMutableArray *subtypeArray;
 @end
 
 @interface YXFilterSubtype : NSObject
@@ -23,7 +23,7 @@
 @end
 
 @interface YXFilterModel : NSObject
-@property (nonatomic, strong) NSArray *filterArray;
+@property (nonatomic, strong) NSMutableArray *filterArray;
 
 + (YXFilterModel *)modelFromFilterRequestItem:(YXDatumFilterRequestItem *)item;
 

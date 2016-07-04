@@ -30,10 +30,11 @@
     emptyView.title = @"没有找到符合条件的资源";
     self.emptyView = emptyView;
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self setupDataFetcher];
-    [self firstPageFetch];
     // Do any additional setup after loading the view.
     [self setupUI];
+    [self firstPageFetch];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +43,7 @@
 }
 
 - (void)setupDataFetcher{
+    [self setNavigationBar];
     YXDatumSearchFetcher *dataFetcher = [[YXDatumSearchFetcher alloc]init];
     dataFetcher.keyWord = self.keyWord;
     dataFetcher.pagesize = 20;
@@ -58,7 +60,6 @@
 }
 
 - (void)setupUI{
-    [self setNavigationBar];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.estimatedRowHeight = 60;
@@ -111,6 +112,7 @@
 - (void)setNavigationBar {
     YXDatumSearchView *seachView = [[YXDatumSearchView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44)];
     [seachView setTextFieldWithString:self.keyWord];
+    seachView.searchTextField.clearButtonMode = UITextFieldViewModeAlways;
     seachView.textBeginEdit = ^{
     };
     seachView.texEndEdit = ^{

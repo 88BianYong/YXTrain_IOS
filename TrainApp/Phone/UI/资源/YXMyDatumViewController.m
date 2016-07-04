@@ -30,11 +30,20 @@
     self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
     [super viewDidLoad];
-//    self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
+    self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     [self.tableView registerClass:[YXMyDatumCell class] forCellReuseIdentifier:@"YXMyDatumCell"];
     UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3)];
     self.tableView.estimatedRowHeight = 60;
     tableViewHeaderView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    @weakify(self);
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXFavorSuccessNotification object:nil] subscribeNext:^(NSNotification *x) {
+        @strongify(self);
+        if (!self) return;
+        YXDatumCellModel *model = x.object;
+        [self.dataArray insertObject:model atIndex:0];
+        [self.tableView reloadData];
+    }];
+    
     self.tableView.tableHeaderView = tableViewHeaderView;
     // Do any additional setup after loading the view.
 }

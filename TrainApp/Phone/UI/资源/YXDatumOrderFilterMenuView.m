@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSArray *orderArray;
 @property (nonatomic, strong) NSMutableArray *typeNameArray;
 
+@property (nonatomic, strong) YXTopFilterView *topFilterView;
+
 @end
 
 @implementation YXDatumOrderFilterMenuView
@@ -28,7 +30,8 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self prapareData];
-        [self setupUI];
+        self.backgroundColor = [UIColor whiteColor];
+        [self setupTopView];
     }
     return self;
 }
@@ -48,6 +51,26 @@
     }
     [self setupDatumOrder];
     [self.typeNameArray addObject:@"默认排序"];
+    if (!self.filterModel) {
+        self.filterModel = [[YXFilterModel alloc] init];
+    }
+    if (self.filterModel.filterArray.count == 0) {
+        for (int i = 0; i < 3; i ++) {
+            YXFilterType *type = [[YXFilterType alloc] init];
+            if (i == 0) {
+                type.name = @"年级";
+            } else if(i == 1) {
+                type.name = @"学科";
+            } else if(i == 2) {
+                type.name = @"教材版本";
+            }
+            YXFilterSubtype *whole = [[YXFilterSubtype alloc]init];
+            whole.name = @"全部";
+            whole.selected = YES;
+            [type.subtypeArray addObject:whole];
+            [self.filterModel.filterArray addObject:type];
+        }
+    }
     [self.filterModel.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXFilterType *filterType = obj;
         [self.typeNameArray addObject:filterType.name];
@@ -55,35 +78,36 @@
     
 }
 
-- (void)setupUI{
-    self.backgroundColor = [UIColor whiteColor];
-    YXTopFilterView *topFilterView = [[YXTopFilterView alloc] init];
-    [self addSubview:topFilterView];
-    [topFilterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(45);
-    }];
-    @weakify(topFilterView);
-    topFilterView.buttonClicked = ^(NSInteger index) {
-        YXDatumOrderView *orderView = [[YXDatumOrderView alloc]initWithFrame:self.window.bounds];
-        NSArray *orderViewArray = nil;
-        if (index == 0) {
-            orderViewArray = self.orderArray;
-        } else {
-            orderViewArray = ((YXFilterType *)self.filterModel.filterArray[index -1]).subtypeArray;
-        }
-        [orderView setViewWithDataArray:orderViewArray index:index buttonCount:self.filterModel.filterArray.count + 1];
-        orderView.didSeletedDatumOrderItem = ^(NSInteger selectedIndex){
-            @strongify(topFilterView);
-            NSString *condition = [self currentCondition];
-            if (self.refreshFilterBlock) {
-                self.refreshFilterBlock(condition);
+- (void)setupTopView{
+    if (!self.topFilterView) {
+        self.topFilterView = [[YXTopFilterView alloc] init];
+        [self addSubview:self.topFilterView];
+        [self.topFilterView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.left.right.mas_equalTo(0);
+            make.height.mas_equalTo(45);
+        }];
+        @weakify(self);
+        self.topFilterView.buttonClicked = ^(NSInteger index) {
+            @strongify(self);
+            YXDatumOrderView *orderView = [[YXDatumOrderView alloc]initWithFrame:self.window.bounds];
+            NSArray *orderViewArray = nil;
+            if (index == 0) {
+                orderViewArray = self.orderArray;
+            } else {
+                orderViewArray = ((YXFilterType *)self.filterModel.filterArray[index -1]).subtypeArray;
             }
-            [topFilterView btnTitileWithString:((YXFilterSubtype *)orderViewArray[selectedIndex]).name index:index];
+            [orderView setViewWithDataArray:orderViewArray index:index buttonCount:self.filterModel.filterArray.count + 1];
+            orderView.didSeletedDatumOrderItem = ^(NSInteger selectedIndex){
+                NSString *condition = [self currentCondition];
+                if (self.refreshFilterBlock) {
+                    self.refreshFilterBlock(condition);
+                }
+                [self.topFilterView btnTitileWithString:((YXFilterSubtype *)orderViewArray[selectedIndex]).name index:index];
+            };
+            [self.window addSubview:orderView];
         };
-        [self.window addSubview:orderView];
-    };
-    [topFilterView viewWithNameArray:self.typeNameArray];
+    }
+    [self.topFilterView viewWithNameArray:self.typeNameArray];
 }
 
 - (void)getFilter

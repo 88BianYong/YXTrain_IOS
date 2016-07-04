@@ -11,7 +11,7 @@
 @interface YXDatumSearchView ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *searchImageView;
-@property (nonatomic, strong) UITextField *searchTextField;
+
 @property (nonatomic, strong) UIButton *cancelButton;
 
 @end
@@ -61,6 +61,8 @@
         make.left.equalTo(self.searchImageView.mas_right).offset(5);
         make.top.bottom.mas_equalTo(0);
     }];
+    [self.searchTextField setContentHuggingPriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
+    [self.searchTextField setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
     
     [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.searchTextField.mas_right);
