@@ -24,6 +24,8 @@
 @interface AppDelegate ()
 
 @property (strong, nonatomic) YXDrawerViewController *drawerVC;
+@property (strong, nonatomic) YXLoginViewController *loginVC;
+
 
 @end
 
@@ -64,10 +66,10 @@
             [self requestCommonData];
         } else
         {
-            YXLoginViewController *vc = [[YXLoginViewController alloc] init];
-            self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:vc];
-            [self registerNotifications];
+            self.loginVC = [[YXLoginViewController alloc] init];
+            self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
         }
+        [self registerNotifications];
         self.drawerVC = drawerVC;
     }
     [self.window makeKeyAndVisible];
@@ -75,50 +77,58 @@
 
 - (void)registerNotifications
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loginSuccess:)
-                                                 name:YXUserLoginSuccessNotification
-                                               object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+		selector:@selector(loginSuccess:)
+		name:YXUserLoginSuccessNotification
+		object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+		selector:@selector(logoutSuccess:)
+		name:YXUserLogoutSuccessNotification
+		object:nil];
 }
 
 
 - (void)loginSuccess:(NSNotification *)notification
 {
-    self.window.rootViewController = self.drawerVC;
-    [self requestCommonData];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+	self.window.rootViewController = self.drawerVC;
+	[self requestCommonData];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)logoutSuccess:(NSNotification *)notification {
+	self.window.rootViewController = self.loginVC;
 }
 
 - (void)requestCommonData
 {
-    //@weakify(self);
-    [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
-        //@strongify(self);
-        [[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
-        //[self.studioVC requestStudioNotifyList];
-//        [self repeatToAskRedDot];
-    }];
-//    [[YXCooperateGroupHelper sharedHelper] requestCompeletion:nil];
-   // [[YXGPGlobalSingleton sharedInstance] updateFilters];
+	//@weakify(self);
+	[[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
+		//@strongify(self);
+		[[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
+		//[self.studioVC requestStudioNotifyList];
+		//        [self repeatToAskRedDot];
+	}];
+	//    [[YXCooperateGroupHelper sharedHelper] requestCompeletion:nil];
+	// [[YXGPGlobalSingleton sharedInstance] updateFilters];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+	// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+	// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 #pragma mark - ApiStubForTransfer
@@ -139,12 +149,12 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return NO;
+	return NO;
 }
 
 // 9.0
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    return NO;
+	return NO;
 }
 
 @end

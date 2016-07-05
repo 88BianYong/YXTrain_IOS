@@ -41,11 +41,29 @@
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusDenied)
     {
-        YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问相机" message:@"请到“设置->隐私->相机”中设置为允许访问相机！"];
+        YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问相机" message:@"请到“设置->隐私->相aut机”中设置为允许访问相机！"];
         [alertView addButtonWithTitle:@"确定"];
         [alertView show];
-    }else
+    }else if(authStatus == AVAuthorizationStatusNotDetermined)
     {
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (granted) {
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        if (!_session) {
+                            [self setupCamera];
+                        } else{
+                            [_session startRunning];
+                        }
+                    });
+                } else {
+                    [self dismissViewControllerAnimated:YES completion:^{
+                        //
+                    }];
+                }
+            });
+        }];
+    }else if(authStatus == AVAuthorizationStatusAuthorized){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             if (!_session) {
                 [self setupCamera];
@@ -54,6 +72,10 @@
             }
         });
         
+    } else {
+        [self dismissViewControllerAnimated:YES completion:^{
+            //
+        }];
     }
     _scanBackgroundView = [[YXScanQRBackgroundView alloc] init];
     [self.view addSubview:_scanBackgroundView];

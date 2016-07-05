@@ -18,6 +18,7 @@
 #import "YXUserManager.h"
 #import "YXLoginRequest.h"
 #import "YXInitRequest.h"
+#import "YXAlertView.h"
 
 @interface YXLoginViewController ()
 
@@ -61,11 +62,29 @@
     [containerView addSubview:QRScanImageView];
     YXClickedUnderLineButton *QRScanButton = [[YXClickedUnderLineButton alloc] initWithFrame:CGRectZero];
     QRScanButton.buttonClicked = ^{
-        YXLoginByScanQRViewController *vc = [[YXLoginByScanQRViewController alloc] init];
-        YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
-        [self presentViewController:navi animated:YES completion:^{
-            //
+        @weakify(self);
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            @strongify(self);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (granted) {
+                    YXLoginByScanQRViewController *vc = [[YXLoginByScanQRViewController alloc] init];
+                    YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
+                    [self presentViewController:navi animated:YES completion:^{
+                        //
+                    }];
+                } else {
+                    YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问相机" message:@"请到“设置->隐私->相机”中设置为允许访问相机！"];
+                    [alertView addButtonWithTitle:@"取消" action:^{
+                        //
+                    }];
+                    [alertView addButtonWithTitle:@"确定" action:^{
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=Privacy&path=Photos"]];
+                    }];
+                    [alertView show];
+                }
+            });
         }];
+        
     };
     [QRScanButton buttonTitileWithName:@"扫描二维码登录"];
     [containerView addSubview:QRScanButton];

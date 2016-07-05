@@ -8,6 +8,7 @@
 
 #import "HttpBaseRequest.h"
 #import "YXMockManager.h"
+#import "AppDelegate.h"
 #pragma mark - Url Arguments Category : NSString & NSDictionary
 @interface NSDictionary (UrlArgumentsAdditions)
 - (NSString *)httpArgumentsString;
@@ -145,7 +146,12 @@
         _completeBlock(nil, error, self->_isMock);
         return;
     }
-    
+    if (item.code.integerValue == 3) { // token失效
+        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        [(YXBaseViewController *)delegate.window.rootViewController showToast:@"帐号授权已失效，请重新登录"];;
+        [[YXUserManager sharedManager] logout];
+        return;
+    }
     // 业务逻辑错误
     if (item.code.integerValue != 0) {
         error = [NSError errorWithDomain:@"network" code:item.code.integerValue userInfo:@{NSLocalizedDescriptionKey: item.desc ?:@"请求失败"}];
