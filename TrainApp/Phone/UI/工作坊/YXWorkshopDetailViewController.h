@@ -9,5 +9,5 @@
 #import "YXBaseViewController.h"
 
 @interface YXWorkshopDetailViewController : YXBaseViewController
-
+@property (nonatomic, copy)NSString *baridString;
 @end

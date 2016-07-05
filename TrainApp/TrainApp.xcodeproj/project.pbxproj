@@ -157,9 +157,18 @@
 		7CF8888B1D1D09B100E7C04D /* YXExamineRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8888A1D1D09B100E7C04D /* YXExamineRequest.m */; };
 		7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8888C1D1D147600E7C04D /* examine_mock.json */; };
 		7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */; };
+		9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */; };
+		9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8041D2BAA2C000F74DF /* YXWorkshopDetailRequest.m */; };
+		9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */; };
+		9223C80C1D2CA4E4000F74DF /* YXWorkshopMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C80B1D2CA4E4000F74DF /* YXWorkshopMemberCell.m */; };
+		9223C80F1D2CADD6000F74DF /* YXWorkshopMemberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C80E1D2CADD6000F74DF /* YXWorkshopMemberRequest.m */; };
+		9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8111D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m */; };
 		922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */; };
 		922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */; };
 		922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */; };
+		922F3AD11D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD01D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m */; };
+		922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD31D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m */; };
+		922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 		CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */; };
@@ -544,12 +553,30 @@
 		7CF8888C1D1D147600E7C04D /* examine_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = examine_mock.json; sourceTree = "<group>"; };
 		7CF8888E1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXExamTaskProgressHeaderView.h; sourceTree = "<group>"; };
 		7CF8888F1D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamTaskProgressHeaderView.m; sourceTree = "<group>"; };
+		9223C8001D2B9DD5000F74DF /* YXWorkshopListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopListRequest.h; sourceTree = "<group>"; };
+		9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopListRequest.m; sourceTree = "<group>"; };
+		9223C8031D2BAA2C000F74DF /* YXWorkshopDetailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailRequest.h; sourceTree = "<group>"; };
+		9223C8041D2BAA2C000F74DF /* YXWorkshopDetailRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailRequest.m; sourceTree = "<group>"; };
+		9223C8071D2BC59E000F74DF /* YXWorkshopMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopMemberViewController.h; sourceTree = "<group>"; };
+		9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopMemberViewController.m; sourceTree = "<group>"; };
+		9223C80A1D2CA4E4000F74DF /* YXWorkshopMemberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopMemberCell.h; sourceTree = "<group>"; };
+		9223C80B1D2CA4E4000F74DF /* YXWorkshopMemberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopMemberCell.m; sourceTree = "<group>"; };
+		9223C80D1D2CADD6000F74DF /* YXWorkshopMemberRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopMemberRequest.h; sourceTree = "<group>"; };
+		9223C80E1D2CADD6000F74DF /* YXWorkshopMemberRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopMemberRequest.m; sourceTree = "<group>"; };
+		9223C8101D2CD5DB000F74DF /* YXWorkshopMemberFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopMemberFetcher.h; sourceTree = "<group>"; };
+		9223C8111D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopMemberFetcher.m; sourceTree = "<group>"; };
 		922F3AC61D2A61DE00CBF7C3 /* YXWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopViewController.h; sourceTree = "<group>"; };
 		922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopViewController.m; sourceTree = "<group>"; };
 		922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopCell.h; sourceTree = "<group>"; };
 		922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopCell.m; sourceTree = "<group>"; };
 		922F3ACC1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailViewController.h; sourceTree = "<group>"; };
 		922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailViewController.m; sourceTree = "<group>"; };
+		922F3ACF1D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailHeaderView.h; sourceTree = "<group>"; };
+		922F3AD01D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailHeaderView.m; sourceTree = "<group>"; };
+		922F3AD21D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailGroupCell.h; sourceTree = "<group>"; };
+		922F3AD31D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailGroupCell.m; sourceTree = "<group>"; };
+		922F3AD51D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailInfoCell.h; sourceTree = "<group>"; };
+		922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailInfoCell.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -1251,6 +1278,14 @@
 		7C31783E1D139789004AAC90 /* 工作坊 */ = {
 			isa = PBXGroup;
 			children = (
+				9223C8001D2B9DD5000F74DF /* YXWorkshopListRequest.h */,
+				9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */,
+				9223C8031D2BAA2C000F74DF /* YXWorkshopDetailRequest.h */,
+				9223C8041D2BAA2C000F74DF /* YXWorkshopDetailRequest.m */,
+				9223C80D1D2CADD6000F74DF /* YXWorkshopMemberRequest.h */,
+				9223C80E1D2CADD6000F74DF /* YXWorkshopMemberRequest.m */,
+				9223C8101D2CD5DB000F74DF /* YXWorkshopMemberFetcher.h */,
+				9223C8111D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m */,
 			);
 			path = "工作坊";
 			sourceTree = "<group>";
@@ -1565,6 +1600,14 @@
 			children = (
 				922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */,
 				922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */,
+				922F3ACF1D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.h */,
+				922F3AD01D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m */,
+				922F3AD51D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.h */,
+				922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */,
+				922F3AD21D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.h */,
+				922F3AD31D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m */,
+				9223C80A1D2CA4E4000F74DF /* YXWorkshopMemberCell.h */,
+				9223C80B1D2CA4E4000F74DF /* YXWorkshopMemberCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1576,6 +1619,8 @@
 				922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */,
 				922F3ACC1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.h */,
 				922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */,
+				9223C8071D2BC59E000F74DF /* YXWorkshopMemberViewController.h */,
+				9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -1977,9 +2022,12 @@
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
 				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
+				922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */,
 				7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
 				7CF8445E1D2A5E4800B1CE55 /* FileRecordEntity.m in Sources */,
+				9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */,
+				922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
 				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
@@ -1992,6 +2040,7 @@
 				CB7462781D1F6D270065113A /* YXUserProfile.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
+				9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */,
 				CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */,
 				7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
@@ -2005,8 +2054,10 @@
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
 				7CF8887C1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m in Sources */,
 				CB7462641D1D44F10065113A /* YXScanQRBackgroundView.m in Sources */,
+				9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
+				9223C80C1D2CA4E4000F74DF /* YXWorkshopMemberCell.m in Sources */,
 				92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */,
 				7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreCell.m in Sources */,
 				CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */,
@@ -2067,6 +2118,7 @@
 				7C3177B11D0EB738004AAC90 /* UIImage+FixOrientation.m in Sources */,
 				CB748EE31D228B51004BCFBF /* YXFilterButton.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
+				9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
 				7C2C3B821D24F5BE00A03635 /* YXCourseRecordViewController.m in Sources */,
 				922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */,
@@ -2076,6 +2128,7 @@
 				CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */,
 				7C2C3B551D23B34300A03635 /* YXCourseListRequest.m in Sources */,
 				7C3177971D0EA6A8004AAC90 /* HttpBaseRequest.m in Sources */,
+				922F3AD11D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m in Sources */,
 				7C3177B21D0EB738004AAC90 /* UIButton+HighlightColor.m in Sources */,
 				7CF888761D1BD06D00E7C04D /* YXExamProgressCell.m in Sources */,
 				7CF8886A1D1BC58100E7C04D /* YXExamProgressView.m in Sources */,
@@ -2083,6 +2136,7 @@
 				7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */,
 				CB748EE91D23E118004BCFBF /* YXDatumSearchView.m in Sources */,
 				7C2C3B431D21351F00A03635 /* YXScoreExpHeaderView.m in Sources */,
+				9223C80F1D2CADD6000F74DF /* YXWorkshopMemberRequest.m in Sources */,
 				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
 				7C2C3B731D24C98D00A03635 /* YXCourseDetailViewController.m in Sources */,
 				7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */,

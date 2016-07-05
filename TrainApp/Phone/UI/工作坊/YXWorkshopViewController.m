@@ -8,10 +8,13 @@
 
 #import "YXWorkshopViewController.h"
 #import "YXWorkshopCell.h"
+#import "YXWorkshopDetailViewController.h"
+#import "YXWorkshopListRequest.h"
 @interface YXWorkshopViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     UITableView *_tableView;
-    
+    YXWorkshopListRequest *_listRequest;
+    NSMutableArray<YXWorkshopListRequestItem_group> *_dataMutableArray;
 }
 @end
 
@@ -24,9 +27,10 @@
     [super viewDidLoad];
     self.title = @"我的工作坊";
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    _dataMutableArray = [[NSMutableArray<YXWorkshopListRequestItem_group> alloc] initWithCapacity:10];
     [self setupUI];
     [self layoutInterface];
-    
+    [self requestForWorkshopList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +41,7 @@
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.separatorInset = UIEdgeInsetsMake(0, 26, 0, 0);
+    _tableView.separatorInset = UIEdgeInsetsMake(0, 66, 0, 10);
     if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         _tableView.layoutMargins = UIEdgeInsetsZero;
     }
@@ -64,6 +68,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.1f;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    YXWorkshopDetailViewController *detailVC = [[YXWorkshopDetailViewController alloc] init];
+    YXWorkshopListRequestItem_group *group = _dataMutableArray[indexPath.row];
+    detailVC.baridString = group.barid;
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -71,16 +82,39 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _dataMutableArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YXWorkshopCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXWorkshopCell"
                                                            forIndexPath:indexPath];
-    [cell reloadWithText:@"你好不好呀 就是不好 的书法家" imageUrl:@""];
+    YXWorkshopListRequestItem_group *group = _dataMutableArray[indexPath.row];
+    [cell reloadWithText:group.gname imageUrl:@""];
     return cell;
 }
-
+#pragma mark - request
+- (void)requestForWorkshopList{
+    if (_listRequest) {
+        [_listRequest stopRequest];
+    }
+    YXWorkshopListRequest *request = [[YXWorkshopListRequest alloc] init];
+    [self startLoading];
+    WEAK_SELF
+    [request startRequestWithRetClass:[YXWorkshopListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
+        YXWorkshopListRequestItem *item = (YXWorkshopListRequestItem *)retItem;
+        if (item && !error) {
+            DDLogDebug(@"%@",item);
+            [self -> _dataMutableArray addObjectsFromArray:item.group];
+            [_tableView reloadData];
+        }
+        else{
+            [self showToast:error.localizedDescription];
+        }
+    }];
+    _listRequest = request;
+}
 
 @end

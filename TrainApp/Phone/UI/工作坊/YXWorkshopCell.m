@@ -38,6 +38,7 @@
 - (void)setupUI{
     _iconImageView = [[UIImageView alloc] init];
     _iconImageView.backgroundColor = [UIColor redColor];
+    _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:_iconImageView];
     
     _nameLabel = [[UILabel alloc] init];
