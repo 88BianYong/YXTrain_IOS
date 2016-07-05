@@ -6,8 +6,8 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "YXBaseViewController.h"
+#import "PagedListViewControllerBase.h"
 
-@interface YXNoticeViewController : YXBaseViewController
+@interface YXNoticeViewController : PagedListViewControllerBase
 
 @end

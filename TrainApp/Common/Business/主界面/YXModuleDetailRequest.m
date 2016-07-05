@@ -16,7 +16,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"api/guopei/module/detail"];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"guopei/module/detail"];
     }
     return self;
 }

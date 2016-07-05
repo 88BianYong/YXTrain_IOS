@@ -28,7 +28,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"api/guopei/course/list"];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"guopei/course/list"];
     }
     return self;
 }

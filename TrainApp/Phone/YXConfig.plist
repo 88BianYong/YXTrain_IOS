@@ -5,7 +5,7 @@
 	<key>serverList</key>
 	<dict>
 		<key>testServer</key>
-		<string>http://mobile.yanxiu.com/test/</string>
+		<string>http://mobile.yanxiu.com/test/api/</string>
 		<key>releaseServer</key>
 		<string>http://mobile.yanxiu.com/v17/api/</string>
 		<key>uploadServer</key>
@@ -16,9 +16,9 @@
 	<key>uploadServer</key>
 	<string>http://upload.yanxiu.com/resource/index.jsp</string>
 	<key>loginServer</key>
-	<string>http://u.yanxiu.com/</string>
+	<string>http://u.yanxiu.com/test/</string>
 	<key>server</key>
-	<string>http://mobile.yanxiu.com/test/</string>
+	<string>http://mobile.yanxiu.com/test/api/</string>
 	<key>mockFrameworkOn</key>
 	<true/>
 	<key>testFrameworkOn</key>

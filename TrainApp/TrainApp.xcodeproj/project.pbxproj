@@ -197,6 +197,7 @@
 		CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91851D1A74C800B5F1D0 /* YXDatumSearchCell.m */; };
 		CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */; };
 		CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D918B1D1A758500B5F1D0 /* YXDatumSearchFetcher.m */; };
+		CB52FCF11D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB52FCF01D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m */; };
 		CB7462641D1D44F10065113A /* YXScanQRBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462631D1D44F10065113A /* YXScanQRBackgroundView.m */; };
 		CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462661D1D44FA0065113A /* YXLoginByScanQRViewController.m */; };
 		CB74626A1D1E85630065113A /* YXUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462691D1E85630065113A /* YXUserManager.m */; };
@@ -622,6 +623,8 @@
 		CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchBarView.m; sourceTree = "<group>"; };
 		CB4D918A1D1A758500B5F1D0 /* YXDatumSearchFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchFetcher.h; sourceTree = "<group>"; };
 		CB4D918B1D1A758500B5F1D0 /* YXDatumSearchFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchFetcher.m; sourceTree = "<group>"; };
+		CB52FCEF1D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNoticeAndBulletinTableViewCell.h; sourceTree = "<group>"; };
+		CB52FCF01D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNoticeAndBulletinTableViewCell.m; sourceTree = "<group>"; };
 		CB7462621D1D44F10065113A /* YXScanQRBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScanQRBackgroundView.h; sourceTree = "<group>"; };
 		CB7462631D1D44F10065113A /* YXScanQRBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScanQRBackgroundView.m; sourceTree = "<group>"; };
 		CB7462651D1D44FA0065113A /* YXLoginByScanQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginByScanQRViewController.h; sourceTree = "<group>"; };
@@ -1308,6 +1311,8 @@
 			children = (
 				7CF8885D1D1A427700E7C04D /* YXNoticeViewController.h */,
 				7CF8885E1D1A427700E7C04D /* YXNoticeViewController.m */,
+				CB52FCEF1D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.h */,
+				CB52FCF01D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m */,
 			);
 			name = "通知";
 			sourceTree = "<group>";
@@ -2051,6 +2056,7 @@
 				7C2C3B911D26406400A03635 /* YXTrainManager.m in Sources */,
 				CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
+				CB52FCF11D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m in Sources */,
 				7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */,
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
 				7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */,
@@ -2272,7 +2278,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
+				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
 			};
 			name = Debug;
 		};
@@ -2290,7 +2296,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
+				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
 			};
 			name = Release;
 		};

@@ -39,7 +39,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"api/guopei/examine"];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"guopei/examine"];
     }
     return self;
 }
