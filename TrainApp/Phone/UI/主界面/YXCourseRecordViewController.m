@@ -33,6 +33,7 @@
     self.title = @"看课记录";
     [self setupUI];
     [self getData];
+    [self setupObservers];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,6 +91,33 @@
 - (void)dealWithRecordItem:(YXCourseRecordRequestItem *)item{
     self.recordItem = item;
     [self.collectionView reloadData];
+}
+
+- (void)setupObservers{
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kRecordReportSuccessNotification object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        NSNotification *noti = (NSNotification *)x;
+        NSString *course_id = noti.userInfo.allKeys.firstObject;
+        NSString *record = noti.userInfo[course_id];
+        [self.recordItem.body.modules enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSUInteger moduleIndex = idx;
+            YXCourseRecordRequestItem_body_module *module = (YXCourseRecordRequestItem_body_module *)obj;
+            __block BOOL complete = NO;
+            [module.courses enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                YXCourseRecordRequestItem_body_module_course *course = (YXCourseRecordRequestItem_body_module_course *)obj;
+                if ([course.courses_id isEqualToString:course_id]) {
+                    course.record = record;
+                    [self.collectionView reloadItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:moduleIndex]]];
+                    complete = YES;
+                    *stop = YES;
+                }
+            }];
+            if (complete) {
+                *stop = YES;
+            }
+        }];
+    }];
 }
 
 #pragma mark - UICollectionViewDataSource

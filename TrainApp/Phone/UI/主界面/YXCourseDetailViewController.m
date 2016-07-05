@@ -22,6 +22,10 @@
 
 @implementation YXCourseDetailViewController
 
+- (void)dealloc{
+    [[YXRecordManager sharedManager]clear];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -94,8 +98,10 @@
 }
 
 - (void)dealWithCourseItem:(YXCourseDetailItem *)courseItem{
+    courseItem.course_id = self.course.courses_id;
     self.courseItem = courseItem;
     [self.tableView reloadData];
+    [[YXRecordManager sharedManager]setupWithCourseDetailItem:courseItem];
 }
 
 #pragma mark - UITableViewDataSource
@@ -140,8 +146,52 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];
     YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
+    
+    YXFileType type = [YXAttachmentTypeHelper typeWithID:fragment.type];
+    if (type == YXFileTypeUnknown) {
+        [self showToast:@"移动端不支持当前课程学习"];
+        return;
+    }
+    
     [[YXFileRecordManager sharedInstance]saveRecordWithFilename:fragment.fragment_name url:fragment.url];
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    [YXRecordManager sharedManager].chapterIndex = indexPath.section;
+    [YXRecordManager sharedManager].fragmentIndex = indexPath.row;
+    
+    NSMutableString *fixUrl = [NSMutableString stringWithString:fragment.url];
+    [fixUrl replaceOccurrencesOfString:@"\\" withString:@"/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [fixUrl length])];
+    YXFileItemBase *item = nil;
+    if (type == YXFileTypeVideo) {
+        YXFileVideoItem *videoItem = [[YXFileVideoItem alloc]init];
+        videoItem.url = fixUrl;
+        videoItem.name = fragment.fragment_name;
+        videoItem.lurl = fragment.lurl;
+        videoItem.murl = fragment.murl;
+        videoItem.surl = fragment.surl;
+        item = videoItem;
+    }else if (type == YXFileTypeAudio){
+        YXFileAudioItem *audioItem = [[YXFileAudioItem alloc]init];
+        audioItem.url = fixUrl;
+        audioItem.name = fragment.fragment_name;
+        item = audioItem;
+    }else if (type == YXFileTypeDoc){
+        YXFileDocItem *docItem = [[YXFileDocItem alloc]init];
+        docItem.url = fixUrl;
+        docItem.name = fragment.fragment_name;
+        item = docItem;
+    }else if (type == YXFileTypeHtml){
+        YXFileHtmlItem *htmlItem = [[YXFileHtmlItem alloc]init];
+        htmlItem.url = fixUrl;
+        htmlItem.name = fragment.fragment_name;
+        item = htmlItem;
+    }
+    
+    if (item) {
+        [YXFileBrowseManager sharedManager].fileItem = item;
+        [YXFileBrowseManager sharedManager].baseViewController = self;
+        [[YXFileBrowseManager sharedManager] browseFile];
+    }
 }
 
 @end

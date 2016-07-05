@@ -44,4 +44,20 @@
              };
 }
 
+#pragma mark - 国培相关
++ (YXFileType)typeWithID:(NSString *)typeID {
+    NSInteger value = typeID.integerValue;
+    if (value == 0) {
+        return YXFileTypeVideo;
+    }else if (value == 1){
+        return YXFileTypeDoc;
+    }else if (value == 2){
+        return YXFileTypeHtml;
+    }else if (value == 3){
+        return YXFileTypeAudio;
+    }else{
+        return YXFileTypeUnknown;
+    }
+}
+
 @end

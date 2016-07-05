@@ -25,6 +25,9 @@
 }
 
 - (YXTrainListRequestItem_body_train *)currentProject{
+    if (isEmpty(self.trainlistItem.body.trains)) {
+        return nil;
+    }
     return self.trainlistItem.body.trains[self.currentProjectIndex];
 }
 

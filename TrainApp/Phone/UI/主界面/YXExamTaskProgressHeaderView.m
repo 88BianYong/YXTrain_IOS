@@ -49,10 +49,10 @@
     self.progressView.userInteractionEnabled = NO;
     [self.contentView addSubview:self.progressView];
     [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(81).priorityHigh();
+        make.width.mas_equalTo(100).priorityHigh();
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(6);
-        make.left.mas_equalTo(self.titleLabel.mas_right).mas_offset(2);
+        make.left.mas_equalTo(self.titleLabel.mas_right).mas_offset(2).priorityHigh();
     }];
     
     self.statusLabel = [[UILabel alloc]init];
@@ -68,6 +68,9 @@
     self.markButton = [[UIButton alloc]init];
     self.markButton.backgroundColor = [UIColor redColor];
     [self.markButton addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.statusLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+    [self.statusLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
 }
 
 - (void)setData:(YXExamineRequestItem_body_bounsVoData *)data{

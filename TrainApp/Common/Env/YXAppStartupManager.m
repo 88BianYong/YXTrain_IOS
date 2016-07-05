@@ -10,7 +10,8 @@
 
 @interface YXAppStartupManager ()
 @property (nonatomic, strong) UIWindow *window;
-
+@property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
+@property (nonatomic, strong) NSTimer *backgroundTimer;
 @end
 
 @implementation YXAppStartupManager
@@ -35,7 +36,8 @@
     // 为完成转移AppDelegate.m中(ApiStubForTransfer)category务必要有API的实现，哪怕为空，否则此类中相应的实现不会调用
     self.window = [appdelegate window];
     
-    NSArray *deliveredMethodArray = @[@"applicationWillTerminate:"
+    NSArray *deliveredMethodArray = @[@"applicationWillTerminate:",
+                                      @"applicationDidEnterBackground:"
 //                                      @"application:handleActionWithIdentifier:forRemoteNotification:completionHandler:",
 //                                      @"application:didRegisterForRemoteNotificationsWithDeviceToken:",
 //                                      @"application:didFailToRegisterForRemoteNotificationsWithError:",
@@ -74,7 +76,51 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     [GlobalUtils clearCore];
 }
+#pragma mark - 看课记录后台上报
+- (void)applicationDidEnterBackground:(UIApplication *)application{
+    if ([YXRecordManager sharedManager].isActive) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:kRecordNeedUpdateNotification object:nil];
+        [[YXRecordManager sharedManager]report];
+        WEAK_SELF
+        self.backgroundTaskIdentifier =[application beginBackgroundTaskWithExpirationHandler:^(void) {
+            STRONG_SELF
+            [self.backgroundTimer invalidate];
+            self.backgroundTimer = nil;
+            [self endBackgroundTask];
+        }];
+        self.backgroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(finishRecordTimer) name:kRecordReportCompleteNotification object:nil];
+    }
+}
+- (void)endBackgroundTask{
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    @weakify(self);
+    dispatch_async(mainQueue, ^(void) {
+        @strongify(self);
+        if (self != nil){
+            [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTaskIdentifier];
+            // 销毁后台任务标识符
+            self.backgroundTaskIdentifier = UIBackgroundTaskInvalid;
+        }
+    });
+}
+- (void)finishRecordTimer {
+    [self.backgroundTimer invalidate];
+    self.backgroundTimer = nil;
+    if (self.backgroundTaskIdentifier) {
+        [self endBackgroundTask];
+    }
+}
 
+- (void)timerMethod:(NSTimer *)paramSender{
+    // backgroundTimeRemaining 属性包含了程序留给的我们的时间
+    NSTimeInterval backgroundTimeRemaining =[[UIApplication sharedApplication] backgroundTimeRemaining];
+    if (backgroundTimeRemaining == DBL_MAX){
+        NSLog(@"Background Time Remaining = Undetermined");
+    } else {
+        NSLog(@"Background Time Remaining = %.02f Seconds", backgroundTimeRemaining);
+    }
+}
 #pragma mark - APNS相关
 //- (void)resetAPNSWithAccount:(NSString *)account {
 //    if (!isEmpty(account)) {

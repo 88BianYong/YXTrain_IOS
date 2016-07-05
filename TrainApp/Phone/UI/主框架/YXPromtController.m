@@ -11,6 +11,9 @@
 @implementation YXPromtController
 
 + (void)startLoadingInView:(UIView *)view{
+    if ([MBProgressHUD HUDForView:view]) {
+        return;
+    }
     [MBProgressHUD showHUDAddedTo:view animated:YES];
 }
 

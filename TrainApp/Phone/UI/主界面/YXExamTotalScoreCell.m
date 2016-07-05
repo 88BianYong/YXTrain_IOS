@@ -100,7 +100,7 @@
 
 - (void)setTotalScore:(NSString *)totalScore{
     _totalScore = totalScore;
-    if (totalScore.floatValue == 0) {
+    if (totalScore.length == 0) {
         [self.scoreLabel removeFromSuperview];
         [self.contentView addSubview:self.leftNoScoreView];
         [self.leftNoScoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -123,7 +123,7 @@
 
 - (void)setTotalPoint:(NSString *)totalPoint{
     _totalPoint = totalPoint;
-    if (totalPoint.floatValue == 0) {
+    if (totalPoint.length == 0) {
         [self.pointLabel removeFromSuperview];
         [self.contentView addSubview:self.rightNoScoreView];
         [self.rightNoScoreView mas_remakeConstraints:^(MASConstraintMaker *make) {

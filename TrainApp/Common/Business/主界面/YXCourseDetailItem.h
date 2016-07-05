@@ -31,6 +31,7 @@
 @interface YXCourseDetailItem : JSONModel
 @property (nonatomic, copy) NSString<Optional> *module_name;
 @property (nonatomic, copy) NSString<Optional> *course_title;
+@property (nonatomic, copy) NSString<Optional> *course_id;
 
 @property (nonatomic, copy) NSString<Optional> *ac;
 @property (nonatomic, copy) NSString<Optional> *tc;

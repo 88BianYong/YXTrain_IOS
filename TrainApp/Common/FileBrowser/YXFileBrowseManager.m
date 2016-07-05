@@ -17,7 +17,7 @@
 #import "YXAudioPlayerViewController.h"
 #import "YXNavigationController.h"
 
-@interface YXFileBrowseManager()<YXBrowserExitDelegate,YXFileFavorDelegate,YXPlayProgressDelegate>
+@interface YXFileBrowseManager()<YXBrowserExitDelegate,YXFileFavorDelegate,YXPlayProgressDelegate,YXBrowseTimeDelegate>
 @property (nonatomic, strong) UrlDownloader *downloader;
 @property (nonatomic, strong) id favorData;
 @property (nonatomic, copy) void(^addFavorCompleteBlock)();
@@ -162,6 +162,7 @@
         qlVC.favorWrapper = wrapper;
     }
     qlVC.exitDelegate = self;
+    qlVC.browseTimeDelegate = self;
     [self.baseViewController presentViewController:qlVC animated:YES completion:nil];
 }
 
@@ -191,6 +192,8 @@
     YXTOWebViewController * webViewController = [[YXTOWebViewController alloc] initWithURLString:self.fileItem.url];
     webViewController.title = self.fileItem.name;
     webViewController.showPageTitles = NO;
+    webViewController.exitDelegate = self;
+    webViewController.browseTimeDelegate = self;
     [self.baseViewController.navigationController pushViewController:webViewController animated:YES];
 }
 
@@ -220,6 +223,7 @@
 
     vc.title = videoItem.name;
     vc.delegate = self;
+    vc.exitDelegate = self;
     [self.baseViewController.navigationController presentViewController:vc animated:YES completion:nil];
 }
 
@@ -233,21 +237,37 @@
     vc.videoUrl = self.fileItem.url;
     vc.title = self.fileItem.name;
     vc.delegate = self;
+    vc.exitDelegate = self;
     [self.baseViewController presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - YXBrowserExitDelegate
 - (void)browserExit{
     [self clear];
+    if ([YXRecordManager sharedManager].isActive) {
+        [[YXRecordManager sharedManager]report];
+    }
 }
 
 #pragma mark - YXPlayProgressDelegate
 - (void)playerProgress:(CGFloat)progress totalDuration:(NSTimeInterval)duration stayTime:(NSTimeInterval)time{
-    [self clear];
+    if ([YXRecordManager sharedManager].isActive) {
+        [[YXRecordManager sharedManager]updateFragmentWithDuration:duration record:duration*progress watchedTime:time];
+    }
 }
 
 - (CGFloat)preProgress{
+    if ([YXRecordManager sharedManager].isActive) {
+        return [[YXRecordManager sharedManager]preProgress];
+    }
     return 0;
+}
+
+#pragma mark - YXBrowseTimeDelegate
+- (void)browseTimeUpdated:(NSTimeInterval)time{
+    if ([YXRecordManager sharedManager].isActive) {
+        [[YXRecordManager sharedManager]updateFragmentWithFileBrowseTime:time];
+    }
 }
 
 #pragma mark - YXFileFavorDelegate

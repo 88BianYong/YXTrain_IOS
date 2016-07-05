@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UINavigationBar   *overlayNavigationBar;
 @property (nonatomic, strong) UINavigationItem *overlayNavigationItem;
 @property (nonatomic, strong) YXQLPreviewItem *previewItem;
+@property (nonatomic, strong) NSDate *beginDate;
 @end
 
 @implementation YXQLPreviewController
@@ -63,6 +64,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.beginDate = [NSDate date];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        self.beginDate = [NSDate date];
+    }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kRecordNeedUpdateNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
+    }];
 }
 
 - (BOOL)shouldAutorotate
@@ -134,6 +145,7 @@
 - (void)doneButtonTapped:(UIBarButtonItem *)item
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
     SAFE_CALL(self.exitDelegate, browserExit);
 }
 

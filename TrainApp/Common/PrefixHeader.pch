@@ -60,5 +60,7 @@ extern int ddLogLevel;
 #import "YXNavigationBarController.h"
 #import "YXUserManager.h"
 #import "YXTrainManager.h"
+#import "YXRecordManager.h"
+#import "YXAttachmentTypeHelper.h"
 
 #endif /* PrefixHeader_pch */

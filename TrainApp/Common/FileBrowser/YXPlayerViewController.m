@@ -153,7 +153,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.topView.titleLabel.text = self.title;
     [self setupGesture];
     @weakify(self);
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"YXForceStopProcessPlayer" object:nil] subscribeNext:^(id x) {
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kRecordNeedUpdateNotification object:nil] subscribeNext:^(id x) {
         @strongify(self);
         if (!self) return;
         [self recordPlayerDuration];
@@ -251,6 +251,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [UIApplication sharedApplication].statusBarHidden = NO;
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    SAFE_CALL(self.exitDelegate, browserExit);
 }
 
 - (void)recordPlayerDuration {
@@ -415,12 +417,20 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             }
         }
     }];
+    
+    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
+        @strongify(self); if (!self) return;
+        if (self->_startTime) {
+            self->_startTime = [NSDate date];
+        }
+    }];
 
     [self.disposableArray addObject:r0];
     [self.disposableArray addObject:r1];
     [self.disposableArray addObject:r2];
     [self.disposableArray addObject:r3];
     [self.disposableArray addObject:r4];
+    [self.disposableArray addObject:r5];
 }
 
 #pragma mark - top / bottom hide
@@ -697,6 +707,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
 - (NSString *)loadDefaultDefinition{
     NSString *definitionID = [[NSUserDefaults standardUserDefaults]valueForKey:@"kPlayerDefaultDefinition"];
+    if (!definitionID) {
+        return @"标清";
+    }
     return definitionID;
 }
 

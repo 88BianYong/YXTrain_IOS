@@ -14,4 +14,7 @@
 + (YXFileType)fileTypeWithTypeName:(NSString *)typeName;
 + (NSString *)picNameWithTypeName:(NSString *)typeName;
 
+// 国培
++ (YXFileType)typeWithID:(NSString *)typeID;
+
 @end

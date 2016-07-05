@@ -34,7 +34,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [[YXAppStartupManager sharedInstance] setupForAppdelegate:nil withLauchOptions:launchOptions];
+    [[YXAppStartupManager sharedInstance] setupForAppdelegate:self withLauchOptions:launchOptions];
     //键盘自动控制
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
     manager.enable = NO;

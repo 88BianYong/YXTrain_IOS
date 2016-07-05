@@ -153,6 +153,7 @@
                 [self.dataFetcher saveToCache];
             }
             [self.tableView reloadData];
+            self.tableView.contentOffset = CGPointZero;
         });
     }];
 }

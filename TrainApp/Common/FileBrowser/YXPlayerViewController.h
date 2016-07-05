@@ -9,6 +9,7 @@
 #import "YXBaseViewController.h"
 #import "YXPlayProgressDelegate.h"
 #import "YXFileFavorWrapper.h"
+#import "YXBrowserExitDelegate.h"
 
 @interface YXPlayerDefinition : NSObject
 @property (nonatomic, copy) NSString *identifier;
@@ -31,4 +32,6 @@
 
 @property (nonatomic, assign) BOOL isPreRecord;
 @property (nonatomic, copy) void(^deleteHandle)(UIButton *item);
+
+@property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
 @end

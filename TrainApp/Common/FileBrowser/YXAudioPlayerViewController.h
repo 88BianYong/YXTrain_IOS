@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YXPlayProgressDelegate.h"
 #import "YXFileFavorWrapper.h"
+#import "YXBrowserExitDelegate.h"
 
 @interface YXAudioPlayerViewController : YXBaseViewController
 @property (nonatomic, assign) BOOL bIsLocalFile;
@@ -19,4 +20,6 @@
 @property (nonatomic, weak) id<YXPlayProgressDelegate> delegate;
 
 @property (nonatomic, strong) YXFileFavorWrapper *favorWrapper;
+
+@property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
 @end

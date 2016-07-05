@@ -69,8 +69,22 @@
     } else {
         self.player.videoUrl = [NSURL URLWithString:self.videoUrl];
     }
+    
+    @weakify(self);
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kRecordNeedUpdateNotification object:nil] subscribeNext:^(id x) {
+        @strongify(self);
+        if (!self) return;
+        [self recordPlayerDuration];
+    }];
 }
-
+- (void)recordPlayerDuration {
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    if ((self.delegate) && [self.delegate respondsToSelector:@selector(playerProgress:totalDuration:stayTime:)]) {
+        if (self.player.duration) {
+            [self.delegate playerProgress:self.slideProgressView.playProgress totalDuration:self.player.duration stayTime:[[NSDate date] timeIntervalSinceDate:self->_startTime]];
+        }
+    }
+}
 - (void)setupAudioUI {
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:[UIImage imageNamed:@"icon_back"] forState:UIControlStateNormal];
@@ -275,6 +289,8 @@
     self.navigationController.navigationBarHidden = NO;
     [UIApplication sharedApplication].statusBarHidden = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    SAFE_CALL(self.exitDelegate, browserExit);
 }
 
 - (void)playPauseAction {
@@ -404,11 +420,19 @@
         }
     }];
     
+    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
+        @strongify(self); if (!self) return;
+        if (self->_startTime) {
+            self->_startTime = [NSDate date];
+        }
+    }];
+    
     [self.disposableArray addObject:r0];
     [self.disposableArray addObject:r1];
     [self.disposableArray addObject:r2];
     [self.disposableArray addObject:r3];
     [self.disposableArray addObject:r4];
+    [self.disposableArray addObject:r5];
 }
 
 #pragma mark - top actions

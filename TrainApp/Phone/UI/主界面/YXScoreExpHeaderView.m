@@ -58,7 +58,7 @@
     [self.nameLabel removeFromSuperview];
     [self.scoreLabel removeFromSuperview];
     [self.noScoreView removeFromSuperview];
-    if (score.floatValue == 0) {
+    if (score.length == 0) {
         [self.contentView addSubview:self.noScoreView];
         [self.noScoreView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);

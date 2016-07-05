@@ -9,7 +9,7 @@
 #import "YXTOWebViewController.h"
 
 @interface YXTOWebViewController ()
-
+@property (nonatomic, strong) NSDate *beginDate;
 @end
 
 @implementation YXTOWebViewController
@@ -24,6 +24,17 @@
     [b addTarget:self action:@selector(doneButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:b];
+    
+    self.beginDate = [NSDate date];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        self.beginDate = [NSDate date];
+    }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kRecordNeedUpdateNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,7 +44,9 @@
 
 - (void)doneButtonTapped:(UIBarButtonItem *)item
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+    SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
     SAFE_CALL(self.exitDelegate, browserExit);
 }
 

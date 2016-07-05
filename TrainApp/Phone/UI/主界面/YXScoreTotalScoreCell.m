@@ -134,7 +134,7 @@
     self.scoreTitleLabel.text = [NSString stringWithFormat:@"总成绩（满分%@）",data.totalfficial];
     self.leadScoreTitleLabel.text = [NSString stringWithFormat:@"引领学习（满分%@）",data.pofficial];
     self.expScoreTitleLabel.text = [NSString stringWithFormat:@"拓展学习（满分%@）",data.punofficial];
-    if (data.totalscore.floatValue == 0) {
+    if (data.totalscore.length == 0) {
         [self.scoreLabel removeFromSuperview];
         [self.contentView addSubview:self.noScoreView];
         [self.noScoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -153,7 +153,7 @@
             make.centerX.mas_equalTo(self.scoreTitleLabel.mas_centerX);
         }];
     }
-    if (data.userGetScore.floatValue == 0) {
+    if (data.userGetScore.length == 0) {
         [self.leadScoreLabel removeFromSuperview];
         [self.contentView addSubview:self.noLeadScoreView];
         [self.noLeadScoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -172,7 +172,7 @@
             make.right.mas_equalTo(self.leadScoreTitleLabel.mas_right);
         }];
     }
-    if (data.bounsscore.floatValue == 0) {
+    if (data.bounsscore.length == 0) {
         [self.expScoreLabel removeFromSuperview];
         [self.contentView addSubview:self.noExpScoreView];
         [self.noExpScoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
