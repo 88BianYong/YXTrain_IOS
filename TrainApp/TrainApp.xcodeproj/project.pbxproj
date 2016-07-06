@@ -166,6 +166,10 @@
 		9223C80C1D2CA4E4000F74DF /* YXWorkshopMemberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C80B1D2CA4E4000F74DF /* YXWorkshopMemberCell.m */; };
 		9223C80F1D2CADD6000F74DF /* YXWorkshopMemberRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C80E1D2CADD6000F74DF /* YXWorkshopMemberRequest.m */; };
 		9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8111D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m */; };
+		9223C8151D2CFF89000F74DF /* YXWorkshopDatumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8141D2CFF89000F74DF /* YXWorkshopDatumViewController.m */; };
+		9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8171D2D00F1000F74DF /* YXWorkshopDatumFetch.m */; };
+		9223C81B1D2D0144000F74DF /* YXWorkshopDatumRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C81A1D2D0144000F74DF /* YXWorkshopDatumRequest.m */; };
+		9223C81D1D2D0EB6000F74DF /* temp.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9223C81C1D2D0EB6000F74DF /* temp.txt */; };
 		922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */; };
 		922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */; };
 		922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */; };
@@ -575,6 +579,13 @@
 		9223C80E1D2CADD6000F74DF /* YXWorkshopMemberRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopMemberRequest.m; sourceTree = "<group>"; };
 		9223C8101D2CD5DB000F74DF /* YXWorkshopMemberFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopMemberFetcher.h; sourceTree = "<group>"; };
 		9223C8111D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopMemberFetcher.m; sourceTree = "<group>"; };
+		9223C8131D2CFF89000F74DF /* YXWorkshopDatumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDatumViewController.h; sourceTree = "<group>"; };
+		9223C8141D2CFF89000F74DF /* YXWorkshopDatumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDatumViewController.m; sourceTree = "<group>"; };
+		9223C8161D2D00F1000F74DF /* YXWorkshopDatumFetch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDatumFetch.h; sourceTree = "<group>"; };
+		9223C8171D2D00F1000F74DF /* YXWorkshopDatumFetch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDatumFetch.m; sourceTree = "<group>"; };
+		9223C8191D2D0144000F74DF /* YXWorkshopDatumRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDatumRequest.h; sourceTree = "<group>"; };
+		9223C81A1D2D0144000F74DF /* YXWorkshopDatumRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDatumRequest.m; sourceTree = "<group>"; };
+		9223C81C1D2D0EB6000F74DF /* temp.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = temp.txt; sourceTree = "<group>"; };
 		922F3AC61D2A61DE00CBF7C3 /* YXWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopViewController.h; sourceTree = "<group>"; };
 		922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopViewController.m; sourceTree = "<group>"; };
 		922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopCell.h; sourceTree = "<group>"; };
@@ -1298,6 +1309,11 @@
 				9223C80E1D2CADD6000F74DF /* YXWorkshopMemberRequest.m */,
 				9223C8101D2CD5DB000F74DF /* YXWorkshopMemberFetcher.h */,
 				9223C8111D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m */,
+				9223C8191D2D0144000F74DF /* YXWorkshopDatumRequest.h */,
+				9223C81A1D2D0144000F74DF /* YXWorkshopDatumRequest.m */,
+				9223C8161D2D00F1000F74DF /* YXWorkshopDatumFetch.h */,
+				9223C8171D2D00F1000F74DF /* YXWorkshopDatumFetch.m */,
+				9223C81C1D2D0EB6000F74DF /* temp.txt */,
 			);
 			path = "工作坊";
 			sourceTree = "<group>";
@@ -1646,6 +1662,8 @@
 				922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */,
 				9223C8071D2BC59E000F74DF /* YXWorkshopMemberViewController.h */,
 				9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */,
+				9223C8131D2CFF89000F74DF /* YXWorkshopDatumViewController.h */,
+				9223C8141D2CFF89000F74DF /* YXWorkshopDatumViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -1940,6 +1958,7 @@
 				7CF888821D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf in Resources */,
 				CB748EEE1D250086004BCFBF /* PhoneImage.xcassets in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
+				9223C81D1D2D0EB6000F74DF /* temp.txt in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2026,6 +2045,7 @@
 				7C2C3B371D2119BB00A03635 /* YXScorePhaseHeaderView.m in Sources */,
 				7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */,
 				922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */,
+				9223C81B1D2D0144000F74DF /* YXWorkshopDatumRequest.m in Sources */,
 				7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
@@ -2060,6 +2080,7 @@
 				7CF8886D1D1BC5C300E7C04D /* YXGradientView.m in Sources */,
 				CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
+				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
 				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
 				CB7462781D1F6D270065113A /* YXUserProfile.m in Sources */,
@@ -2137,6 +2158,7 @@
 				CB52FCF11D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m in Sources */,
 				7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */,
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
+				9223C8151D2CFF89000F74DF /* YXWorkshopDatumViewController.m in Sources */,
 				7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */,
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,

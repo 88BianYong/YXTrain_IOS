@@ -8,6 +8,7 @@
 
 #import "YXWorkshopDetailViewController.h"
 #import "YXWorkshopMemberViewController.h"
+#import "YXWorkshopDatumViewController.h"
 
 #import "YXWorkshopDetailHeaderView.h"
 #import "YXWorkshopDetailGroupCell.h"
@@ -102,6 +103,10 @@
         memberVC.dataMutableArray = dic[@"member"];
         memberVC.baridString = self.baridString;
         [self.navigationController pushViewController:memberVC animated:YES];
+    }else if(indexPath.section == 1 && indexPath.row == 1){
+        YXWorkshopDatumViewController *datumVC = [[YXWorkshopDatumViewController alloc] init];
+        datumVC.baridString = self.baridString;
+        [self.navigationController pushViewController:datumVC animated:YES];
     }
 }
 #pragma mark - UITableViewDataSource
