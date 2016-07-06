@@ -127,6 +127,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    self.tableView.showsVerticalScrollIndicator = YES;
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.tableView.showsVerticalScrollIndicator = NO;
+}
+
 /*
 #pragma mark - Navigation
 

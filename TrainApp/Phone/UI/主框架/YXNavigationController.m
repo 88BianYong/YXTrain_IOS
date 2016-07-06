@@ -31,6 +31,10 @@
     return NO;
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     [YXDrawerController hideDrawer];
     if (self.viewControllers.count == 1) {

@@ -37,6 +37,10 @@
     return NO;
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 - (UINavigationController *)navigationController{
     UINavigationController *navi = [super navigationController];
     if (!navi) {

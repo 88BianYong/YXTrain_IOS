@@ -78,7 +78,7 @@
 
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return NO; 
 }
 
 - (void)viewWillAppear:(BOOL)animated

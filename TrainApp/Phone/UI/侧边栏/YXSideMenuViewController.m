@@ -214,7 +214,7 @@
 {
     self.profile = [YXUserManager sharedManager].userModel.profile;
     
-    _nameLabel.text = self.profile.nickName;
+    _nameLabel.text = self.profile.realName;
     _subNameLabel.text = self.profile.school;
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"默认头像"]];
     [self.view setNeedsLayout];

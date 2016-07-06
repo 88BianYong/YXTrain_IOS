@@ -131,11 +131,11 @@
         
         if ([x intValue] == DownloadStatusFailed) {
             [progressView removeFromSuperview];
-            [self.baseViewController showToast:@"下载失败"];
+            [self.baseViewController showToast:@"加载失败"];
         }
     }];
     progressView.frame = [UIScreen mainScreen].bounds;
-    progressView.titleLabel.text  =@"文件下载中...";
+    progressView.titleLabel.text  =@"文件加载中...";
     [self.baseViewController.view.window addSubview:progressView];
     progressView.closeBlock = ^() {
         STRONG_SELF

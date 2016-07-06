@@ -60,7 +60,9 @@
     YXExamViewController *examVC = [[YXExamViewController alloc]init];
     YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
     YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
-    YXBulletinViewController *bulletinVC = [[YXBulletinViewController alloc]init];
+    notiVC.flag = YXFlag_Notice;
+    YXNoticeViewController *bulletinVC = [[YXNoticeViewController alloc]init];
+    bulletinVC.flag = YXFlag_Bulletin;
     containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
     [self.view addSubview:containerView];
 }

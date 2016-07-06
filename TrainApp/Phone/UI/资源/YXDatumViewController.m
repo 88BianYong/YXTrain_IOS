@@ -20,6 +20,8 @@
 @property (nonatomic,strong) UIView *maskView;
 @property (nonatomic,strong) YXDatumSearchView *seachView;
 
+@property (nonatomic, assign) NSInteger selectedIndex;
+
 
 @end
 
@@ -27,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _selectedIndex = 0;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self configSegmentUI];
     [self setupRightWithTitle:@"搜索"];
@@ -53,16 +56,17 @@
     [seg setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"505f84"],NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} forState:UIControlStateNormal];
     [seg setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"0067be"],NSFontAttributeName:[UIFont boldSystemFontOfSize:15]} forState:UIControlStateSelected];
     seg.frame = CGRectMake(0, 0, 160, 30);
-    seg.selectedSegmentIndex = 0;
+    seg.selectedSegmentIndex = _selectedIndex;
     [seg addTarget:self action:@selector(datumSourceChanged:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = seg;
 }
 
 - (void)datumSourceChanged:(UISegmentedControl *)seg{
+    _selectedIndex = seg.selectedSegmentIndex;
     UIViewController *viewController = self.childViewControllers[seg.selectedSegmentIndex];
     if (![viewController isKindOfClass:[self.currentViewController class]]) {
         [self.currentViewController willMoveToParentViewController:nil];
-        [self transitionFromViewController:self.currentViewController toViewController:viewController duration:2 options:UIViewAnimationOptionTransitionNone animations:^{
+        [self transitionFromViewController:self.currentViewController toViewController:viewController duration:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
         }  completion:^(BOOL finished) {
             self.currentViewController=viewController;
             [viewController didMoveToParentViewController:self];
@@ -110,7 +114,7 @@
         YXDatumSearchViewController *vc = [[YXDatumSearchViewController alloc] init];
         YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
         vc.keyWord = text;
-        [self presentViewController:navi animated:YES completion:^{
+        [self.currentViewController presentViewController:navi animated:YES completion:^{
             if (self.maskView) {
                 [self.maskView removeFromSuperview];
                 self.maskView = nil;

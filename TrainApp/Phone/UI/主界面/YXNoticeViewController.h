@@ -7,7 +7,13 @@
 //
 
 #import "PagedListViewControllerBase.h"
+typedef NS_ENUM (NSInteger, YXNoticeAndBulletinFlag) {
+    YXFlag_Notice = 0,
+    YXFlag_Bulletin = 1,
+};
 
 @interface YXNoticeViewController : PagedListViewControllerBase
+
+@property (nonatomic, assign) YXNoticeAndBulletinFlag flag;
 
 @end

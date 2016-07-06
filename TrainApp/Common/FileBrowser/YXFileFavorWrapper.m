@@ -29,7 +29,7 @@
 }
 
 - (void)setupButton{
-    self.favorButton = [YXNavigationBarController naviButtonForTitle:@"保存"];
+    self.favorButton = [YXNavigationBarController naviButtonForTitle:@"收藏"];
     [self.favorButton addTarget:self action:@selector(favorAction) forControlEvents:UIControlEventTouchUpInside];
 }
 

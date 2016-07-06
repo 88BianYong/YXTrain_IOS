@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YXNoticeListRequest.h"
 @interface YXNoticeAndBulletinTableViewCell : UITableViewCell
+
+- (void)configUIwithItem:(YXNoticeAndBulletinItem *)item isLastOne:(BOOL)isLastOne;
 
 @end
