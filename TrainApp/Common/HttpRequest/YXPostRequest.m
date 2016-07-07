@@ -14,7 +14,8 @@
 {
     if (self = [super init]) {
         self.token = [YXUserManager sharedManager].userModel.token;
-        self.version = [YXConfigManager sharedInstance].clientVersion;
+        self.ver = [YXConfigManager sharedInstance].clientVersion;
+        self.os = @"ios";
     }
     return self;
 }

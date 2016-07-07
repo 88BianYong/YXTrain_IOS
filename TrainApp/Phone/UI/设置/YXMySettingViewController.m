@@ -7,16 +7,32 @@
 //
 
 #import "YXMySettingViewController.h"
-
+#import "PersistentUrlDownloader.h"
+#import "YXFeedBackViewController.h"
+#import "YXAboutViewController.h"
 @interface YXMySettingViewController ()
-
+<
+UITableViewDelegate,
+UITableViewDataSource
+>
+{
+    UITableView *_tableView;
+    
+    
+    NSArray *_titleArray;
+    
+}
 @end
 
 @implementation YXMySettingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"设置";
+    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    _titleArray = @[@[@"清空缓存",@"意见反馈",@"去AppStore评分",@"关于我们"],@[@"退出登录"]];
+    [self setupUI];
+    [self layoutInterface];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +40,113 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - UI setting
+- (void)setupUI{
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.separatorInset = UIEdgeInsetsMake(0, 15.0f, 0.0f, 0.0f);
+    _tableView.layoutMargins = UIEdgeInsetsZero;
+    [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"staticString"];
+    [self.view addSubview:_tableView];
 }
-*/
+
+- (void)layoutInterface{
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+}
+
+#pragma mark - tableView DataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return _titleArray.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return ((NSArray *)_titleArray[section]).count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"staticString" forIndexPath:indexPath];
+    cell.textLabel.text = _titleArray[indexPath.section][indexPath.row];
+    if (indexPath.section == 0) {
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        cell.textLabel.textColor = [UIColor colorWithHexString:@"334466"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    else{
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
+        cell.textLabel.textColor = [UIColor colorWithHexString:@"0067be"];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    return cell;
+}
+
+#pragma mark - tableView Delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.1f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc] init];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 5.0f;
+    }else{
+        return 30.0f;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if(indexPath.section == 0){
+        switch (indexPath.row) {
+            case 0:
+            {
+                // 清sdwebimage
+                [[SDImageCache sharedImageCache] clearDisk];
+                [[SDImageCache sharedImageCache] clearMemory];
+                
+                // 清下载
+                NSString *dp = [PersistentUrlDownloader downloadFolderPath];
+                [[NSFileManager defaultManager] removeItemAtPath:dp error:nil];
+                [self showToast:@"清除成功"];
+            }
+                break;
+            case 1:
+            {
+                YXFeedBackViewController *feedBackVC = [[YXFeedBackViewController alloc] init];
+                [self.navigationController pushViewController:feedBackVC animated:YES];
+            }
+                break;
+            case 2:
+            {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1012923844"]];
+            }
+                break;
+            case 3:
+            {
+                YXAboutViewController *aboutVC = [[YXAboutViewController alloc] init];
+                [self.navigationController pushViewController:aboutVC animated:YES];
+            }
+                break;
+            default:
+                break;
+        }
+        
+    }else{
+        
+    }
+}
+
 
 @end

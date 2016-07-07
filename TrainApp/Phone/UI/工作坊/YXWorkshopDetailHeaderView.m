@@ -38,6 +38,7 @@
     _nameLable = [[UILabel alloc] init];
     _nameLable.font = [UIFont boldSystemFontOfSize:15.0f];
     _nameLable.textColor = [UIColor colorWithHexString:@"334466"];
+    _nameLable.text = @"暂无";
     [self addSubview:_nameLable];
     
     _iconImageView = [[UIImageView alloc] init];
@@ -46,6 +47,7 @@
     
     _masterLabel = [[UILabel alloc] init];
     _masterLabel.font = [UIFont systemFontOfSize:12.0f];
+    _masterLabel.text = @"坊主  暂无";
     _masterLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self addSubview:_masterLabel];
 }

@@ -121,16 +121,9 @@ UICollectionViewDelegate
     return cell;
 }
 - (void)reloadWithTitle:(NSString *)titleString
-                content:(NSString *)contentString
-                 member:(BOOL)memberBool{
+                content:(NSString *)contentString{
     _titleLabel.text = titleString;
     _contentLabel.text = contentString;
-    if (memberBool) {
-        _collectionView.hidden = NO;
-    }
-    else{
-        _collectionView.hidden = YES;
-    }
 }
 - (void)setMemberMutableArray:(NSMutableArray *)memberMutableArray{
     _memberMutableArray = memberMutableArray;

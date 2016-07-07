@@ -13,6 +13,8 @@
 #import "YXWorkshopDetailHeaderView.h"
 #import "YXWorkshopDetailGroupCell.h"
 #import "YXWorkshopDetailInfoCell.h"
+#import "YXWorkshopDetailDatumCell.h"
+
 
 #import "YXWorkshopDetailRequest.h"
 #import "YXWorkshopMemberFetcher.h"
@@ -26,7 +28,7 @@
     UITableView *_tableView;
     YXWorkshopDetailHeaderView *_headerView;
     
-    NSMutableArray *_titleMutableArray;
+    NSMutableArray *_dataMutableArray;
     YXWorkshopDetailRequestItem *_detailItem;
     
     YXWorkshopDetailRequest *_detailRequest;
@@ -45,7 +47,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"工作坊详情";
-    _titleMutableArray = [[NSMutableArray alloc] initWithCapacity:2];
+    _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:2];
     _detailItem = [[YXWorkshopDetailRequestItem alloc] init];
     [self setupUI];
     [self layoutInterface];
@@ -69,6 +71,7 @@
     _tableView.tableHeaderView = _headerView;
     [_tableView registerClass:[YXWorkshopDetailGroupCell class] forCellReuseIdentifier:@"YXWorkshopDetailGroupCell"];
     [_tableView registerClass:[YXWorkshopDetailInfoCell class] forCellReuseIdentifier:@"YXWorkshopDetailInfoCell"];
+    [_tableView registerClass:[YXWorkshopDetailDatumCell class] forCellReuseIdentifier:@"YXWorkshopDetailDatumCell"];
     [self.view addSubview:_tableView];
     
 }
@@ -98,7 +101,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.section == 1 && indexPath.row == 0) {
-        NSMutableDictionary *dic = _titleMutableArray[indexPath.section][indexPath.row];
+        NSMutableDictionary *dic = _dataMutableArray[indexPath.section][indexPath.row];
         YXWorkshopMemberViewController *memberVC = [[YXWorkshopMemberViewController alloc] init];
         memberVC.dataMutableArray = dic[@"member"];
         memberVC.baridString = self.baridString;
@@ -111,26 +114,32 @@
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return _titleMutableArray.count;
+    return _dataMutableArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return ((NSArray *)_titleMutableArray[section]).count;
+    return ((NSArray *)_dataMutableArray[section]).count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dic = _titleMutableArray[indexPath.section][indexPath.row];
+    NSDictionary *dic = _dataMutableArray[indexPath.section][indexPath.row];
     if (indexPath.section == 0) {
         YXWorkshopDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXWorkshopDetailInfoCell" forIndexPath:indexPath];
         [cell reloadWithTitle:dic[@"title"] content:dic[@"content"]];
         return cell;
     }else{
-        YXWorkshopDetailGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXWorkshopDetailGroupCell" forIndexPath:indexPath];
-        BOOL memberBool = indexPath.row == 0 ? YES : NO;
-        if (dic[@"member"]) {
-            cell.memberMutableArray = dic[@"member"];
+        if (indexPath.row == 0) {
+            YXWorkshopDetailGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXWorkshopDetailGroupCell" forIndexPath:indexPath];
+            if (dic[@"member"]) {
+                cell.memberMutableArray = dic[@"member"];
+            }
+            [cell reloadWithTitle:dic[@"title"] content:dic[@"content"]];
+            return cell;
+            
+        }else{
+            YXWorkshopDetailDatumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXWorkshopDetailDatumCell" forIndexPath:indexPath];
+            [cell reloadWithTitle:dic[@"title"] content:dic[@"content"]];
+            return cell;
         }
-        [cell reloadWithTitle:dic[@"title"] content:dic[@"content"] member:memberBool];
-        return cell;
     }
 }
 #pragma mark - request
@@ -169,7 +178,7 @@
     [_memberFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
         if (!error && retItemArray) {
-            NSMutableDictionary *mutableDictionary = _titleMutableArray[1][0];
+            NSMutableDictionary *mutableDictionary = _dataMutableArray[1][0];
             [mutableDictionary setValue:[NSMutableArray arrayWithArray:retItemArray] forKey:@"member"];
             [self ->_tableView reloadData];
         }
@@ -181,16 +190,16 @@
     NSString *(^formatContent)(NSString *)= ^NSString *(NSString *content){
         return [content yx_isValidString] ? content : @"暂无";;
     };
-
+    [_dataMutableArray  removeAllObjects];
     NSArray *infoArray = @[@{@"title":@"学科",@"content":formatContent(item.subject)},
                                         @{@"title":@"学段",@"content":formatContent(item.stage)},
                                         @{@"title":@"学年",@"content":formatContent(item.grade)},
                                         @{@"title":@"简介",@"content":formatContent(item.barDesc)}];
-    [_titleMutableArray addObject:infoArray];
+    [_dataMutableArray addObject:infoArray];
     NSMutableDictionary *memberMutableDictionary =[@{@"title":@"成员",@"content":item.memberNum} mutableCopy];
     NSMutableDictionary *resourcesMutableDictionary =[@{@"title":@"资源",@"content":item.resNum} mutableCopy];
     NSMutableArray *mutableArray =[@[memberMutableDictionary,resourcesMutableDictionary] mutableCopy];
-    [_titleMutableArray addObject:mutableArray];
+    [_dataMutableArray addObject:mutableArray];
     [_tableView reloadData];
 }
 @end
