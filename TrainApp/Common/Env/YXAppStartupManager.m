@@ -35,6 +35,7 @@
     // ！！！注意！！！
     // 为完成转移AppDelegate.m中(ApiStubForTransfer)category务必要有API的实现，哪怕为空，否则此类中相应的实现不会调用
     self.window = [appdelegate window];
+    self.delegate = appdelegate;
     
     NSArray *deliveredMethodArray = @[@"applicationWillTerminate:",
                                       @"applicationDidEnterBackground:"
@@ -65,8 +66,8 @@
 //    // 5, 三方登录
 //    [[YXSSOAuthManager sharedManager] registerWXApp];
 //    [[YXSSOAuthManager sharedManager] registerQQApp];
-//    // 6, 用户登录通知
-//    [self registerLoginNotifications];
+//    // 6, 注册通知
+    [self registeLoginrNotifications];
 //    
 //    // 7, TalkingData
 //    [TalkingData sessionStarted:[YXConfigManager sharedInstance].TalkingDataAppID withChannelId:[YXConfigManager sharedInstance].channel];
@@ -306,14 +307,21 @@
 //
 //#pragma mark - 登录
 //
-//- (void)registerLoginNotifications
-//{
-//    [self removeLoginNotifications];
-//    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//    [center addObserver:self
-//               selector:@selector(loginSuccess:)
-//                   name:YXUserLoginSuccessNotification
-//                 object:nil];
+- (void)registeLoginrNotifications
+{
+    [self removeLoginNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginSuccess:)
+                                                 name:YXUserLoginSuccessNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(logoutSuccess:)
+                                                 name:YXUserLogoutSuccessNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(tokenInvalid:)
+                                                 name:YXTokenInValidNotification
+                                               object:nil];
 //    [center addObserver:self
 //               selector:@selector(logoutSuccess:)
 //                   name:YXUserLogoutSuccessNotification
@@ -339,17 +347,17 @@
 //               selector:@selector(parentExitBindSuccess:)
 //                   name:YXParentUserExitBindNotification
 //                 object:nil];
-//}
-//
-//- (void)removeLoginNotifications
-//{
-//    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//    [center removeObserver:self
-//                      name:YXUserLoginSuccessNotification
-//                    object:nil];
-//    [center removeObserver:self
-//                      name:YXUserLogoutSuccessNotification
-//                    object:nil];
+}
+
+- (void)removeLoginNotifications
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center removeObserver:self
+                      name:YXUserLoginSuccessNotification
+                    object:nil];
+    [center removeObserver:self
+                      name:YXUserLogoutSuccessNotification
+                    object:nil];
 //    // 家长
 //    [center removeObserver:self
 //                      name:YXParentUserLoginSuccessNotification
@@ -366,17 +374,22 @@
 //    [center removeObserver:self
 //                      name:YXParentUserExitBindNotification
 //                    object:nil];
-//}
+}
 //
-//- (void)loginSuccess:(NSNotification *)notification
-//{
-//    SAFE_CALL(self.delegate, userLoginSuccess);
-//}
-//
-//- (void)logoutSuccess:(NSNotification *)notification
-//{
-//    SAFE_CALL(self.delegate, userLogoutSuccess);
-//}
+- (void)loginSuccess:(NSNotification *)notification
+{
+    SAFE_CALL(self.delegate, loginSuccess);
+}
+
+- (void)tokenInvalid:(NSNotification *)notification
+{
+    SAFE_CALL(self.delegate, tokenInvalid);
+}
+
+- (void)logoutSuccess:(NSNotification *)notification
+{
+    SAFE_CALL(self.delegate, logoutSuccess);
+}
 //
 //#pragma mark - 家长
 //- (void)parentLoginSuccess:(NSNotification *)notification

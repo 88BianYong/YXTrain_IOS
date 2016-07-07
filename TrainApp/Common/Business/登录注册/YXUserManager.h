@@ -62,7 +62,11 @@ extern NSString *const YXUserLogoutSuccessNotification;
 // 登出后重置用户数据等操作
 - (void)logout;
 
+- (void)logoutIsTokenInvalid:(BOOL)isTokenInvalid;
+
 // 判断是否登录
 - (BOOL)isLogin;
+
+- (void)resetUserData;
 
 @end

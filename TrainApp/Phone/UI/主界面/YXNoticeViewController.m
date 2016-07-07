@@ -19,7 +19,6 @@
 @implementation YXNoticeViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     if (self.flag == YXFlag_Notice) {
         self.title = @"通知";
         YXNoticeListFetch *fetcher = [[YXNoticeListFetch alloc] init];
@@ -30,8 +29,8 @@
         YXBriefListFetch *fetcher = [[YXBriefListFetch alloc] init];
         self.dataFetcher = fetcher;
     }
-    
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    [super viewDidLoad];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXNoticeAndBulletinTableViewCell class] forCellReuseIdentifier:@"YXNoticeAndBulletinTableViewCell"];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];

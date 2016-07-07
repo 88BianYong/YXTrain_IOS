@@ -224,7 +224,9 @@
     YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"非常抱歉，格式不正确或token已过期，请重新扫描"];
     [alertView addButtonWithTitle:@"返回" action:^{
         [_scanBackgroundView.scanTimer invalidate];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self dismissViewControllerAnimated:YES completion:^{
+            //
+        }];
     }];
     [alertView addButtonWithTitle:@"继续扫码" action:^{
         [_scanBackgroundView.scanTimer setFireDate:[NSDate date]];

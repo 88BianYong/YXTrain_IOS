@@ -13,6 +13,7 @@
 
 #import "YXSideTableViewCell.h"
 #import "YXUserProfileRequest.h"
+#import "YXMineViewController.h"
 
 
 @interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -185,6 +186,8 @@
     if (gesture.state == UIGestureRecognizerStateEnded) {
         //
         NSLog(@"tapHeader");
+        YXMineViewController *vc = [[YXMineViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

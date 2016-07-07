@@ -147,9 +147,8 @@
         return;
     }
     if (item.code.integerValue == 3) { // token失效
-        AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        [(YXBaseViewController *)delegate.window.rootViewController showToast:@"帐号授权已失效，请重新登录"];;
-        [[YXUserManager sharedManager] logout];
+        [[NSNotificationCenter defaultCenter] postNotificationName:YXTokenInValidNotification
+                                                            object:nil];
         return;
     }
     // 业务逻辑错误

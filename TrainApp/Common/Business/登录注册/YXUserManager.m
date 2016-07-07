@@ -83,10 +83,18 @@ NSString *const YXUserLogoutSuccessNotification = @"kYXUserLogoutSuccessNotifica
 
 - (void)logout
 {
-    [self resetUserData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:YXUserLogoutSuccessNotification
-                                                        object:nil];
+    [self logoutIsTokenInvalid:NO];
+}
 
+- (void)logoutIsTokenInvalid:(BOOL)isTokenInvalid {
+    [self resetUserData];
+    if (isTokenInvalid) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:YXUserLogoutSuccessNotification
+                                                            object:@(isTokenInvalid)];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:YXUserLogoutSuccessNotification
+                                                            object:nil];
+    }
 }
 
 - (BOOL)isLogin

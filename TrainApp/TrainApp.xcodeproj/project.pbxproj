@@ -229,8 +229,6 @@
 		CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74626C1D1E85FE0065113A /* YXLoginRequest.m */; };
 		CB7462701D1E89EE0065113A /* YXInitRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74626F1D1E89EE0065113A /* YXInitRequest.m */; };
 		CB7462731D1F64970065113A /* YXAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462721D1F64970065113A /* YXAlertView.m */; };
-		CB7462781D1F6D270065113A /* YXUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462751D1F6D270065113A /* YXUserProfile.m */; };
-		CB7462791D1F6D270065113A /* YXUserProfileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462771D1F6D270065113A /* YXUserProfileRequest.m */; };
 		CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74627B1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m */; };
 		CB74627F1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB74627E1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m */; };
 		CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7462811D1FE2160065113A /* YXVerifySMSCodeRequest.m */; };
@@ -258,6 +256,11 @@
 		CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE95001D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m */; };
 		CBBE95041D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE95031D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m */; };
 		CBBE95071D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBBE95061D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m */; };
+		CBF66E281D2E36EE00F4E408 /* YXUserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E251D2E36EE00F4E408 /* YXUserProfile.m */; };
+		CBF66E291D2E36EE00F4E408 /* YXUserProfileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E271D2E36EE00F4E408 /* YXUserProfileRequest.m */; };
+		CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E2D1D2E37B000F4E408 /* YXMineViewController.m */; };
+		CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E301D2E3A8D00F4E408 /* YXUserImageTableViewCell.m */; };
+		CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E331D2E435E00F4E408 /* YXUserInfoTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -718,10 +721,6 @@
 		CB74626F1D1E89EE0065113A /* YXInitRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXInitRequest.m; sourceTree = "<group>"; };
 		CB7462711D1F64970065113A /* YXAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAlertView.h; sourceTree = "<group>"; };
 		CB7462721D1F64970065113A /* YXAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAlertView.m; sourceTree = "<group>"; };
-		CB7462741D1F6D270065113A /* YXUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserProfile.h; sourceTree = "<group>"; };
-		CB7462751D1F6D270065113A /* YXUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserProfile.m; sourceTree = "<group>"; };
-		CB7462761D1F6D270065113A /* YXUserProfileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserProfileRequest.h; sourceTree = "<group>"; };
-		CB7462771D1F6D270065113A /* YXUserProfileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserProfileRequest.m; sourceTree = "<group>"; };
 		CB74627A1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVerifyPhoneExistRequest.h; sourceTree = "<group>"; };
 		CB74627B1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXVerifyPhoneExistRequest.m; sourceTree = "<group>"; };
 		CB74627D1D1FDE180065113A /* YXPhoneVerifyCodeRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPhoneVerifyCodeRequest.h; sourceTree = "<group>"; };
@@ -773,6 +772,16 @@
 		CBBE95031D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginVerifyCodeViewController.m; sourceTree = "<group>"; };
 		CBBE95051D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginModifyPasswordViewController.h; sourceTree = "<group>"; };
 		CBBE95061D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginModifyPasswordViewController.m; sourceTree = "<group>"; };
+		CBF66E241D2E36EE00F4E408 /* YXUserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserProfile.h; sourceTree = "<group>"; };
+		CBF66E251D2E36EE00F4E408 /* YXUserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserProfile.m; sourceTree = "<group>"; };
+		CBF66E261D2E36EE00F4E408 /* YXUserProfileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserProfileRequest.h; sourceTree = "<group>"; };
+		CBF66E271D2E36EE00F4E408 /* YXUserProfileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserProfileRequest.m; sourceTree = "<group>"; };
+		CBF66E2C1D2E37B000F4E408 /* YXMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineViewController.h; sourceTree = "<group>"; };
+		CBF66E2D1D2E37B000F4E408 /* YXMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineViewController.m; sourceTree = "<group>"; };
+		CBF66E2F1D2E3A8D00F4E408 /* YXUserImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserImageTableViewCell.h; sourceTree = "<group>"; };
+		CBF66E301D2E3A8D00F4E408 /* YXUserImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserImageTableViewCell.m; sourceTree = "<group>"; };
+		CBF66E321D2E435E00F4E408 /* YXUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserInfoTableViewCell.h; sourceTree = "<group>"; };
+		CBF66E331D2E435E00F4E408 /* YXUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserInfoTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1306,10 +1315,8 @@
 		7C3178371D13949C004AAC90 /* 个人 */ = {
 			isa = PBXGroup;
 			children = (
-				CB7462741D1F6D270065113A /* YXUserProfile.h */,
-				CB7462751D1F6D270065113A /* YXUserProfile.m */,
-				CB7462761D1F6D270065113A /* YXUserProfileRequest.h */,
-				CB7462771D1F6D270065113A /* YXUserProfileRequest.m */,
+				CBF66E2B1D2E376E00F4E408 /* controllers */,
+				CBF66E2A1D2E372700F4E408 /* views */,
 			);
 			path = "个人";
 			sourceTree = "<group>";
@@ -1342,6 +1349,10 @@
 		7C31783C1D139789004AAC90 /* 个人 */ = {
 			isa = PBXGroup;
 			children = (
+				CBF66E241D2E36EE00F4E408 /* YXUserProfile.h */,
+				CBF66E251D2E36EE00F4E408 /* YXUserProfile.m */,
+				CBF66E261D2E36EE00F4E408 /* YXUserProfileRequest.h */,
+				CBF66E271D2E36EE00F4E408 /* YXUserProfileRequest.m */,
 			);
 			path = "个人";
 			sourceTree = "<group>";
@@ -1942,6 +1953,26 @@
 			name = "简报";
 			sourceTree = "<group>";
 		};
+		CBF66E2A1D2E372700F4E408 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				CBF66E2F1D2E3A8D00F4E408 /* YXUserImageTableViewCell.h */,
+				CBF66E301D2E3A8D00F4E408 /* YXUserImageTableViewCell.m */,
+				CBF66E321D2E435E00F4E408 /* YXUserInfoTableViewCell.h */,
+				CBF66E331D2E435E00F4E408 /* YXUserInfoTableViewCell.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		CBF66E2B1D2E376E00F4E408 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CBF66E2C1D2E37B000F4E408 /* YXMineViewController.h */,
+				CBF66E2D1D2E37B000F4E408 /* YXMineViewController.m */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2142,6 +2173,7 @@
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
+				CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
 				7C2C3B7D1D24F23600A03635 /* YXCourseRecordRequest.m in Sources */,
 				7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */,
@@ -2171,11 +2203,13 @@
 				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
 				CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
+				CBF66E281D2E36EE00F4E408 /* YXUserProfile.m in Sources */,
 				CBB62E091D2CB98300DAA6DE /* NSDate+Utilities.m in Sources */,
 				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
 				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
+				CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */,
 				922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */,
 				7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
@@ -2193,8 +2227,8 @@
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
 				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
-				CB7462781D1F6D270065113A /* YXUserProfile.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
+				CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
 				9223C8201D2DF93A000F74DF /* YXFeedBackViewController.m in Sources */,
 				9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */,
@@ -2225,7 +2259,6 @@
 				7C3177991D0EA6A8004AAC90 /* GetRequest.m in Sources */,
 				7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */,
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
-				CB7462791D1F6D270065113A /* YXUserProfileRequest.m in Sources */,
 				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
 				CBB62E0D1D2CBDB000DAA6DE /* YXBriefListRequest.m in Sources */,
@@ -2307,6 +2340,7 @@
 				9223C8231D2E0060000F74DF /* YXAboutViewController.m in Sources */,
 				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
 				7C2C3B731D24C98D00A03635 /* YXCourseDetailViewController.m in Sources */,
+				CBF66E291D2E36EE00F4E408 /* YXUserProfileRequest.m in Sources */,
 				7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */,
 				CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */,
 				CB3510D11D1912DD0081EA3B /* YXAttachmentTypeHelper.m in Sources */,
@@ -2504,7 +2538,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
+				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
 			};
 			name = Debug;
 		};
@@ -2522,7 +2556,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
+				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
 			};
 			name = Release;
 		};

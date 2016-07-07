@@ -8,6 +8,8 @@
 
 #import "JSONModel.h"
 
+static NSString *const YXTokenInValidNotification = @"kYXTokenInValidNotification";
+
 @interface HttpBaseRequestItem_Status : JSONModel
 @property (nonatomic, copy) NSString<Optional> *status;
 @property (nonatomic, copy) NSString<Optional> *desc;

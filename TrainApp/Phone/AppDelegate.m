@@ -20,8 +20,9 @@
 #import "YXLoginViewController.h"
 #import "YXUserManager.h"
 #import "YXDatumGlobalSingleton.h"
+#import "YXPromtController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<YXLoginDelegate>
 
 @property (strong, nonatomic) YXDrawerViewController *drawerVC;
 @property (strong, nonatomic) YXLoginViewController *loginVC;
@@ -53,51 +54,29 @@
         YXTestViewController *vc = [[YXTestViewController alloc] init];
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     }else{
-        YXSideMenuViewController *menuVC = [[YXSideMenuViewController alloc]init];
-        YXProjectMainViewController *projectVC = [[YXProjectMainViewController alloc]init];
-        YXNavigationController *projectNavi = [[YXNavigationController alloc]initWithRootViewController:projectVC];
-        
-        YXDrawerViewController *drawerVC = [[YXDrawerViewController alloc]init];
-        drawerVC.drawerViewController = menuVC;
-        drawerVC.paneViewController = projectNavi;
-        drawerVC.drawerWidth = [UIScreen mainScreen].bounds.size.width * 600/750;
         if ([[YXUserManager sharedManager] isLogin]) {
-            self.window.rootViewController = drawerVC;
+            self.window.rootViewController = [self rootDrawerViewController];
             [self requestCommonData];
         } else
         {
             self.loginVC = [[YXLoginViewController alloc] init];
             self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
         }
-        [self registerNotifications];
-        self.drawerVC = drawerVC;
     }
     [self.window makeKeyAndVisible];
 }
 
-- (void)registerNotifications
-{
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-		selector:@selector(loginSuccess:)
-		name:YXUserLoginSuccessNotification
-		object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-		selector:@selector(logoutSuccess:)
-		name:YXUserLogoutSuccessNotification
-		object:nil];
-}
-
-
-- (void)loginSuccess:(NSNotification *)notification
-{
-	self.window.rootViewController = self.drawerVC;
-	[self requestCommonData];
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)logoutSuccess:(NSNotification *)notification {
-	self.window.rootViewController = self.loginVC;
+- (YXDrawerViewController *)rootDrawerViewController {
+    
+    YXSideMenuViewController *menuVC = [[YXSideMenuViewController alloc]init];
+    YXProjectMainViewController *projectVC = [[YXProjectMainViewController alloc]init];
+    YXNavigationController *projectNavi = [[YXNavigationController alloc]initWithRootViewController:projectVC];
+    
+    YXDrawerViewController *drawerVC = [[YXDrawerViewController alloc]init];
+    drawerVC.drawerViewController = menuVC;
+    drawerVC.paneViewController = projectNavi;
+    drawerVC.drawerWidth = [UIScreen mainScreen].bounds.size.width * 600/750;
+    return drawerVC;
 }
 
 - (void)requestCommonData
@@ -155,6 +134,30 @@
 // 9.0
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
 	return NO;
+}
+
+#pragma mark - YXLoginDelegate
+
+- (void)loginSuccess
+{
+    self.window.rootViewController = [self rootDrawerViewController];
+    [self requestCommonData];
+}
+
+- (void)logoutSuccess {
+    if ([self.window.rootViewController isKindOfClass:[YXDrawerViewController class]]) {
+        self.loginVC = [[YXLoginViewController alloc] init];
+        self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
+    }
+}
+
+- (void)tokenInvalid {
+    [[YXUserManager sharedManager] resetUserData];
+    [YXPromtController showToast:@"帐号授权已失效，请重新登录" inView:self.window];
+    if ([self.window.rootViewController isKindOfClass:[YXDrawerViewController class]]) {
+        self.loginVC = [[YXLoginViewController alloc] init];
+        self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
+    }
 }
 
 @end

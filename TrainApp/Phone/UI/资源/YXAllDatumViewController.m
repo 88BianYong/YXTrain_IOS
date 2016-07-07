@@ -48,6 +48,7 @@
     self.menuView.refreshFilterBlock = ^(NSString *condition) {
         @strongify(self);
         self.wholeDatumFetcher.condition = condition;
+        [self.tableView setContentOffset:CGPointZero];
         [self firstPageFetch];
     };
     [self.view addSubview:self.menuView];
