@@ -66,7 +66,7 @@
 
 - (void)setDate:(NSString *)date{
     _date = date;
-    self.dateLabel.text = date;
+    self.dateLabel.text = [NSString stringWithFormat:@"结束日期：%@",date];
 }
 
 @end

@@ -123,6 +123,10 @@
 		7CF844651D2B622200B1CE55 /* YXRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF844641D2B622200B1CE55 /* YXRecordManager.m */; };
 		7CF844691D2C9E5700B1CE55 /* YXRecordContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF844681D2C9E5700B1CE55 /* YXRecordContent.m */; };
 		7CF8446C1D2CA32000B1CE55 /* YXSaveProcessRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8446B1D2CA32000B1CE55 /* YXSaveProcessRequest.m */; };
+		7CF844751D2E2EA000B1CE55 /* YXTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF844741D2E2EA000B1CE55 /* YXTriangleView.m */; };
+		7CF844781D2E367900B1CE55 /* YXProjectSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF844771D2E367900B1CE55 /* YXProjectSelectionView.m */; };
+		7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8447A1D2E400D00B1CE55 /* YXProjectSelectionBgView.m */; };
+		7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8447D1D2E43EC00B1CE55 /* YXProjectSelectionCell.m */; };
 		7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */; };
 		7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */; };
 		7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */; };
@@ -507,6 +511,14 @@
 		7CF844681D2C9E5700B1CE55 /* YXRecordContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXRecordContent.m; sourceTree = "<group>"; };
 		7CF8446A1D2CA32000B1CE55 /* YXSaveProcessRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSaveProcessRequest.h; sourceTree = "<group>"; };
 		7CF8446B1D2CA32000B1CE55 /* YXSaveProcessRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSaveProcessRequest.m; sourceTree = "<group>"; };
+		7CF844731D2E2EA000B1CE55 /* YXTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTriangleView.h; sourceTree = "<group>"; };
+		7CF844741D2E2EA000B1CE55 /* YXTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTriangleView.m; sourceTree = "<group>"; };
+		7CF844761D2E367900B1CE55 /* YXProjectSelectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProjectSelectionView.h; sourceTree = "<group>"; };
+		7CF844771D2E367900B1CE55 /* YXProjectSelectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProjectSelectionView.m; sourceTree = "<group>"; };
+		7CF844791D2E400D00B1CE55 /* YXProjectSelectionBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProjectSelectionBgView.h; sourceTree = "<group>"; };
+		7CF8447A1D2E400D00B1CE55 /* YXProjectSelectionBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProjectSelectionBgView.m; sourceTree = "<group>"; };
+		7CF8447C1D2E43EC00B1CE55 /* YXProjectSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProjectSelectionCell.h; sourceTree = "<group>"; };
+		7CF8447D1D2E43EC00B1CE55 /* YXProjectSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProjectSelectionCell.m; sourceTree = "<group>"; };
 		7CF887F61D17A77400E7C04D /* YXDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDrawerViewController.h; sourceTree = "<group>"; };
 		7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDrawerViewController.m; sourceTree = "<group>"; };
 		7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
@@ -1026,6 +1038,8 @@
 			children = (
 				7CF8886B1D1BC5C300E7C04D /* YXGradientView.h */,
 				7CF8886C1D1BC5C300E7C04D /* YXGradientView.m */,
+				7CF844731D2E2EA000B1CE55 /* YXTriangleView.h */,
+				7CF844741D2E2EA000B1CE55 /* YXTriangleView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -1179,6 +1193,12 @@
 				7C3177D21D10FC36004AAC90 /* YXProjectMainViewController.m */,
 				7C3178591D139D49004AAC90 /* YXProjectContainerView.h */,
 				7C31785A1D139D49004AAC90 /* YXProjectContainerView.m */,
+				7CF844761D2E367900B1CE55 /* YXProjectSelectionView.h */,
+				7CF844771D2E367900B1CE55 /* YXProjectSelectionView.m */,
+				7CF844791D2E400D00B1CE55 /* YXProjectSelectionBgView.h */,
+				7CF8447A1D2E400D00B1CE55 /* YXProjectSelectionBgView.m */,
+				7CF8447C1D2E43EC00B1CE55 /* YXProjectSelectionCell.h */,
+				7CF8447D1D2E43EC00B1CE55 /* YXProjectSelectionCell.m */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -2188,6 +2208,7 @@
 				7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
+				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
 				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
@@ -2295,6 +2316,7 @@
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
+				7CF844751D2E2EA000B1CE55 /* YXTriangleView.m in Sources */,
 				7C3177711D0E7EB0004AAC90 /* YXConfigManager.m in Sources */,
 				7C3177D61D10FF0A004AAC90 /* YXTestPushViewController.m in Sources */,
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
@@ -2353,8 +2375,10 @@
 				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,
 				7C3177581D0E5E04004AAC90 /* AppDelegate.m in Sources */,
 				7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */,
+				7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */,
 				7C2C3B7A1D24CBB700A03635 /* YXCourseDetailHeaderView.m in Sources */,
 				9223C8271D2E0E44000F74DF /* YXFeedBackRequest.m in Sources */,
+				7CF844781D2E367900B1CE55 /* YXProjectSelectionView.m in Sources */,
 				CB3510CB1D18F9C30081EA3B /* YXDatumCellModel.m in Sources */,
 				7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */,
 				7C3178271D129C01004AAC90 /* ReaderDocumentOutline.m in Sources */,
@@ -2538,7 +2562,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
+				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
 			};
 			name = Debug;
 		};
@@ -2556,7 +2580,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
+				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
 			};
 			name = Release;
 		};

@@ -62,5 +62,6 @@ extern int ddLogLevel;
 #import "YXTrainManager.h"
 #import "YXRecordManager.h"
 #import "YXAttachmentTypeHelper.h"
+#import "YXTriangleView.h"
 
 #endif /* PrefixHeader_pch */

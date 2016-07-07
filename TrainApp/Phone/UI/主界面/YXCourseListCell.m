@@ -101,6 +101,9 @@
     minute = minute % 60;
     second = second % 60;
     self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
+    if (second == 0) {
+        self.recordLabel.text = @"未观看";
+    }
 }
 
 @end

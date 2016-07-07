@@ -14,16 +14,17 @@
 #import "YXBulletinViewController.h"
 #import "YXProjectContainerView.h"
 #import "YXTrainListRequest.h"
+#import "YXProjectSelectionView.h"
 
 @interface YXProjectMainViewController ()
-
+@property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
 @end
 
 @implementation YXProjectMainViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    [self setupRightWithTitle:@"测试"];
+//    [self setupRightWithTitle:@"测试"];
     
     UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
     b.backgroundColor = [UIColor redColor];
@@ -36,6 +37,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar addSubview:self.projectSelectionView];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.projectSelectionView removeFromSuperview];
 }
 
 - (void)getProjectList{
@@ -54,8 +65,8 @@
 
 - (void)dealWithProjects:(NSArray *)projects{
     [YXTrainManager sharedInstance].currentProjectIndex = 0;
-    YXTrainListRequestItem_body_train *train = projects.firstObject;
-    self.title = train.name;
+//    YXTrainListRequestItem_body_train *train = projects.firstObject;
+//    self.title = train.name;
     YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
     YXExamViewController *examVC = [[YXExamViewController alloc]init];
     YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
@@ -65,6 +76,15 @@
     bulletinVC.flag = YXFlag_Bulletin;
     containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
     [self.view addSubview:containerView];
+    
+    YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
+    selectionView.projectArray = @[@"这是测试项目1",@"这是测试项目22222",@"这是测试项目3333333333333333"];
+    selectionView.projectChangeBlock = ^(NSInteger index){
+        NSLog(@"project change index: %@",@(index));
+    };
+    self.projectSelectionView = selectionView;
+    [self.navigationController.navigationBar addSubview:selectionView];
+//    self.navigationItem.titleView = selectionView;
 }
 
 - (void)naviRightAction{

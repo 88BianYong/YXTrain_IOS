@@ -31,8 +31,8 @@
     [self.contentView addSubview:self.courseImageView];
     [self.courseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
-        make.left.mas_equalTo(15);
-        make.right.mas_equalTo(-6);
+        make.left.mas_equalTo(10);
+        make.right.mas_equalTo(-10);
         make.height.mas_equalTo(125);
     }];
     self.titleLabel = [[UILabel alloc]init];
@@ -52,26 +52,32 @@
     recordBgView.layer.cornerRadius = 2;
     [self.courseImageView addSubview:recordBgView];
     [recordBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(14);
-        make.right.mas_equalTo(-14);
+//        make.left.mas_equalTo(14);
+//        make.right.mas_equalTo(-14);
         make.center.mas_equalTo(0);
         make.height.mas_equalTo(36);
+        make.width.mas_equalTo(120);
     }];
-    self.recordLabel = [[UILabel alloc]init];
-    self.recordLabel.font = [UIFont systemFontOfSize:11];
-    self.recordLabel.textColor = [UIColor whiteColor];
-    [recordBgView addSubview:self.recordLabel];
-    [self.recordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.centerX.mas_equalTo(11);
-    }];
+
     UIImageView *historyImageView = [[UIImageView alloc]init];
     historyImageView.backgroundColor = [UIColor redColor];
     [recordBgView addSubview:historyImageView];
     [historyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(20, 20));
-        make.right.mas_equalTo(self.recordLabel.mas_left).mas_offset(-3);
+//        make.right.mas_equalTo(self.recordLabel.mas_left).mas_offset(-3);
+        make.left.mas_equalTo(5);
+    }];
+    
+    self.recordLabel = [[UILabel alloc]init];
+    self.recordLabel.font = [UIFont systemFontOfSize:11];
+    self.recordLabel.textColor = [UIColor whiteColor];
+    [recordBgView addSubview:self.recordLabel];
+    [self.recordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+//        make.centerX.mas_equalTo(11);
+        make.left.mas_equalTo(historyImageView.mas_right).mas_offset(5);
+        make.right.mas_equalTo(-5);
     }];
 }
 
@@ -91,25 +97,28 @@
     minute = minute % 60;
     second = second % 60;
     self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
-}
-
-- (void)setIsFirst:(BOOL)isFirst{
-    _isFirst = isFirst;
-    if (isFirst) {
-        [self.courseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(0);
-            make.left.mas_equalTo(15);
-            make.right.mas_equalTo(-6);
-            make.height.mas_equalTo(125);
-        }];
-    }else{
-        [self.courseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(0);
-            make.left.mas_equalTo(6);
-            make.right.mas_equalTo(-15);
-            make.height.mas_equalTo(125);
-        }];
+    if (second == 0) {
+        self.recordLabel.text = @"未观看";
     }
 }
+
+//- (void)setIsFirst:(BOOL)isFirst{
+//    _isFirst = isFirst;
+//    if (isFirst) {
+//        [self.courseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(0);
+//            make.left.mas_equalTo(15);
+//            make.right.mas_equalTo(-6);
+//            make.height.mas_equalTo(125);
+//        }];
+//    }else{
+//        [self.courseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.top.mas_equalTo(0);
+//            make.left.mas_equalTo(6);
+//            make.right.mas_equalTo(-15);
+//            make.height.mas_equalTo(125);
+//        }];
+//    }
+//}
 
 @end

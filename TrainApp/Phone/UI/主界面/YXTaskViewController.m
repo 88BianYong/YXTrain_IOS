@@ -23,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"任务";
+    [self loadCache];
     [self setupUI];
     [self getData];
 }
@@ -62,7 +63,22 @@
         }
         self.tasklistItem = retItem;
         [self.tableView reloadData];
+        [self saveToCache];
     }];
+}
+
+#pragma mark - Cache
+- (void)loadCache{
+    NSString *json = [[NSUserDefaults standardUserDefaults]valueForKey:@"kTaskListKey"];
+    if (json) {
+        YXTaskListRequestItem *item = [[YXTaskListRequestItem alloc]initWithString:json error:nil];
+        self.tasklistItem = item;
+    }
+}
+
+- (void)saveToCache{
+    [[NSUserDefaults standardUserDefaults]setValue:[self.tasklistItem toJSONString] forKey:@"kTaskListKey"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 #pragma mark - UITableViewDataSource
