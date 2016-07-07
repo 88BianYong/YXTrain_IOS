@@ -14,7 +14,7 @@
 {
     UITableView *_tableView;
     YXWorkshopListRequest *_listRequest;
-    NSMutableArray<YXWorkshopListRequestItem_group> *_dataMutableArray;
+    NSMutableArray *_dataMutableArray;
 }
 @end
 
@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.title = @"我的工作坊";
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    _dataMutableArray = [[NSMutableArray<YXWorkshopListRequestItem_group> alloc] initWithCapacity:10];
+    _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [self setupUI];
     [self layoutInterface];
     [self requestForWorkshopList];

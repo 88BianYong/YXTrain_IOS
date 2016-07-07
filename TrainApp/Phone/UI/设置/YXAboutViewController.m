@@ -12,7 +12,8 @@
 @interface YXAboutViewController ()
 <
   UITableViewDelegate,
-  UITableViewDataSource
+  UITableViewDataSource,
+  YXAboutCellDelegate
 >
 {
     UITableView *_tableView; 
@@ -25,6 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"关于我们";
     [self setupUI];
 }
 
@@ -58,7 +60,6 @@
     [footerButton setTitleColor:[UIColor colorWithHexString:@"41c694"] forState:UIControlStateNormal];
     [footerView addSubview:footerButton];
     _tableView.tableFooterView = footerView;
-    
 }
 
 #pragma mark - tableView dataSorce
@@ -78,6 +79,7 @@
         cell.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         cell.titleLabel.text = @"官方微信  lstong910";
         cell.titleLabel.textAlignment = NSTextAlignmentCenter;
+        cell.delegate = self;
     }
     else{
         NSString *phoneString = @"客服电话  400-7799-010";
@@ -86,6 +88,7 @@
         [attributeString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"41c694"]} range:NSMakeRange(5, 13)];
         cell.titleLabel.attributedText = attributeString;
         cell.titleLabel.textAlignment = NSTextAlignmentCenter;
+        cell.delegate = nil;
     }
     return cell;
 }
@@ -97,6 +100,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.1f;
 }
-
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+#pragma mark -YXAboutTableViewCellDelegate
+- (void)showMenu:(id)cell {
+    if ([cell isHighlighted]) {
+        [cell becomeFirstResponder];
+        
+        UIMenuController * menu = [UIMenuController sharedMenuController];
+        [menu setTargetRect: [cell frame] inView: [self view]];
+        [menu setMenuVisible: YES animated: YES];
+    }
+}
 @end

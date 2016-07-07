@@ -32,11 +32,10 @@
     [IQKeyboardManager sharedManager].enable = YES;
     [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 60.0f;
 }
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [IQKeyboardManager sharedManager].enable = NO;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"意见反馈";

@@ -83,9 +83,7 @@ UICollectionViewDelegate
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
        STRONG_SELF
         [self requestForWorkshopMember:self ->_pageIndex];
-    };
-    
-    
+    };    
 }
 
 - (void)layoutInterface{
@@ -146,8 +144,11 @@ UICollectionViewDelegate
     WEAK_SELF
     [_memberFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
-        [self->_footer endRefreshing];
-        [self->_header endRefreshing];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self->_footer endRefreshing];
+            [self->_header endRefreshing];
+        });//多次加载
+
         [self stopLoading];
         if (pageIndex == 0) {
             [self.dataMutableArray removeAllObjects];

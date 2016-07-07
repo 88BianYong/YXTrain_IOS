@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@protocol YXAboutCellDelegate;
 @interface YXAboutCell : UITableViewCell
-@property (nonatomic ,strong)UILabel *titleLabel;
+@property (nonatomic ,strong) UILabel *titleLabel;
+@property (nonatomic ,assign) id<YXAboutCellDelegate> delegate;
+@end
+@protocol YXAboutCellDelegate <NSObject>
+
+- (void)showMenu:(UITableViewCell *)cell;
 @end

@@ -9,9 +9,14 @@
 #import "YXAboutCell.h"
 
 @implementation YXAboutCell
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIMenuControllerWillHideMenuNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuHidden:) name:UIMenuControllerWillHideMenuNotification object:nil];
         [self setupUI];
     }
     return self;
@@ -43,5 +48,44 @@
 
     // Configure the view for the selected state
 }
-
+#pragma mark -showMenu
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(showMenu:)]) {
+        [self.delegate performSelector:@selector(showMenu:) withObject:self];
+    }
+    [super setHighlighted:highlighted animated:animated];
+}
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+    if (action == @selector(cut:)){
+        return NO;
+    }
+    else if(action == @selector(copy:)){
+        return YES;
+    }
+    else if(action == @selector(paste:)){
+        return NO;
+    }
+    else if(action == @selector(select:)){
+        return NO;
+    }
+    else if(action == @selector(selectAll:)){
+        return NO;
+    }else{
+        return [super canPerformAction:action withSender:sender];
+    }
+}
+- (void)copy:(id)sender {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    [pasteboard setString:@"lstong910"];
+}
+#pragma mark -UIMenuControllerWillHideMenuNotification
+- (void)menuHidden:(NSNotification *)notif
+{
+    self.selected = NO;
+}
 @end

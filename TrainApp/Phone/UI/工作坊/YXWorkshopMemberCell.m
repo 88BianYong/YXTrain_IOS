@@ -20,7 +20,7 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         [self setupUI];
-       // [self layoutInterface];
+        [self layoutInterface];
     }
     return self;
 }
@@ -39,7 +39,6 @@
     _nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
     _nameLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:_nameLabel];
-    [self layoutInterface];
 }
 
 - (void)layoutInterface{
