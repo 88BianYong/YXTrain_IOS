@@ -146,7 +146,7 @@
     }else{
         [self.noScoreView removeFromSuperview];
         [self.contentView addSubview:self.scoreLabel];
-        self.scoreLabel.text = [NSString stringWithFormat:@"%@分",data.totalscore];
+        self.scoreLabel.attributedText = [self totalScoreStringWithScore:data.totalscore];
         [self.contentView addSubview:self.scoreLabel];
         [self.scoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.scoreTitleLabel.mas_bottom).mas_offset(14);
@@ -165,7 +165,7 @@
     }else{
         [self.noLeadScoreView removeFromSuperview];
         [self.contentView addSubview:self.leadScoreLabel];
-        self.leadScoreLabel.text = [NSString stringWithFormat:@"%@",data.userGetScore];
+        self.leadScoreLabel.text = [NSString stringWithFormat:@"%@分",data.userGetScore];
         [self.contentView addSubview:self.leadScoreLabel];
         [self.leadScoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.leadScoreTitleLabel.mas_bottom).mas_offset(10);
@@ -184,13 +184,21 @@
     }else{
         [self.noExpScoreView removeFromSuperview];
         [self.contentView addSubview:self.expScoreLabel];
-        self.expScoreLabel.text = [NSString stringWithFormat:@"%@",data.bounsscore];
+        self.expScoreLabel.text = [NSString stringWithFormat:@"%@分",data.bounsscore];
         [self.contentView addSubview:self.expScoreLabel];
         [self.expScoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.expScoreTitleLabel.mas_bottom).mas_offset(10);
             make.left.mas_equalTo(self.expScoreTitleLabel.mas_left);
         }];
     }
+}
+
+- (NSMutableAttributedString *)totalScoreStringWithScore:(NSString *)score{
+    NSString *completeStr = [NSString stringWithFormat:@"%@分",score];
+    NSRange range = [completeStr rangeOfString:@"分"];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
+    [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontFZLBJW_GB1 size:36] range:range];
+    return attr;
 }
 
 - (void)startAnimation{

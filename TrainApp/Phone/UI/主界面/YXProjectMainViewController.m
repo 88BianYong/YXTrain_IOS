@@ -41,12 +41,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:self.projectSelectionView];
+    [self showProjectSelectionView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.projectSelectionView removeFromSuperview];
+    [self hideProjectSelectionView];
 }
 
 - (void)getProjectList{
@@ -83,7 +83,8 @@
         NSLog(@"project change index: %@",@(index));
     };
     self.projectSelectionView = selectionView;
-    [self.navigationController.navigationBar addSubview:selectionView];
+    [self showProjectSelectionView];
+//    [self.navigationController.navigationBar addSubview:selectionView];
 //    self.navigationItem.titleView = selectionView;
 }
 
@@ -105,6 +106,17 @@
         NSLog(@"Item favor success!");
     }];
     [[YXFileBrowseManager sharedManager] browseFile];
+}
+
+#pragma mark - peojects hide & show
+- (void)showProjectSelectionView{
+    if (self.navigationController.topViewController == self) {
+        [self.navigationController.navigationBar addSubview:self.projectSelectionView];
+    }
+}
+
+- (void)hideProjectSelectionView{
+    [self.projectSelectionView removeFromSuperview];
 }
 
 @end

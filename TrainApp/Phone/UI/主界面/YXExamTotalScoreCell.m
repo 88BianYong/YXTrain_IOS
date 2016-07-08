@@ -112,7 +112,7 @@
     }else{
         [self.leftNoScoreView removeFromSuperview];
         [self.contentView addSubview:self.scoreLabel];
-        self.scoreLabel.text = [NSString stringWithFormat:@"%@分",totalScore];
+        self.scoreLabel.attributedText = [self totalScoreStringWithScore:totalScore];
         [self.contentView addSubview:self.scoreLabel];
         [self.scoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.scoreTitleLabel.mas_bottom).mas_offset(21);
@@ -135,13 +135,21 @@
     }else{
         [self.rightNoScoreView removeFromSuperview];
         [self.contentView addSubview:self.pointLabel];
-        self.pointLabel.text = [NSString stringWithFormat:@"%@分",totalPoint];
+        self.pointLabel.attributedText = [self totalScoreStringWithScore:totalPoint];
         [self.contentView addSubview:self.pointLabel];
         [self.pointLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.pointTitleLabel.mas_bottom).mas_offset(21);
             make.centerX.mas_equalTo(self.pointTitleLabel.mas_centerX);
         }];
     }
+}
+
+- (NSMutableAttributedString *)totalScoreStringWithScore:(NSString *)score{
+    NSString *completeStr = [NSString stringWithFormat:@"%@分",score];
+    NSRange range = [completeStr rangeOfString:@"分"];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
+    [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontFZLBJW_GB1 size:23] range:range];
+    return attr;
 }
 
 - (void)startAnimation{

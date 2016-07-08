@@ -32,6 +32,8 @@
 		<string>METRO-ITALIC PLAYTYPE.otf</string>
 		<string>METRO-LIGHT PLAYTYPE.otf</string>
 		<string>METRO-MEDIUM PLAYTYPE.otf</string>
+		<string>METRO-DEMIBOLD PLAYTYPE.OTF</string>
+		<string>fzlbjw.TTF</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Empty</string>

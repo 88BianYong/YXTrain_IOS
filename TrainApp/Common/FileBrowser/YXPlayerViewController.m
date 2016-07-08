@@ -701,16 +701,17 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
 #pragma mark - 默认清晰度的保存与读取
 - (void)saveDefaultDefinition:(NSString *)definitionID{
-    [[NSUserDefaults standardUserDefaults]setValue:definitionID forKey:@"kPlayerDefaultDefinition"];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+//    [[NSUserDefaults standardUserDefaults]setValue:definitionID forKey:@"kPlayerDefaultDefinition"];
+//    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 - (NSString *)loadDefaultDefinition{
-    NSString *definitionID = [[NSUserDefaults standardUserDefaults]valueForKey:@"kPlayerDefaultDefinition"];
-    if (!definitionID) {
-        return @"标清";
-    }
-    return definitionID;
+    return @"标清";
+//    NSString *definitionID = [[NSUserDefaults standardUserDefaults]valueForKey:@"kPlayerDefaultDefinition"];
+//    if (!definitionID) {
+//        return @"标清";
+//    }
+//    return definitionID;
 }
 
 

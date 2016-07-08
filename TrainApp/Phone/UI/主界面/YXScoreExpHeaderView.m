@@ -30,7 +30,7 @@
     self.nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
     
     self.scoreLabel = [[UILabel alloc]init];
-    self.scoreLabel.font = [UIFont systemFontOfSize:13];
+    self.scoreLabel.font = [UIFont fontWithName:YXFontMetro_DemiBold size:13];
     self.scoreLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
     self.scoreLabel.textAlignment = NSTextAlignmentCenter;
     

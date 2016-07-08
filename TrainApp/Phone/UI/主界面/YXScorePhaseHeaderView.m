@@ -31,7 +31,7 @@
     self.nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
     
     self.scoreLabel = [[UILabel alloc]init];
-    self.scoreLabel.font = [UIFont systemFontOfSize:13];
+    self.scoreLabel.font = [UIFont fontWithName:YXFontMetro_DemiBold size:13];
     self.scoreLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
     self.scoreLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -77,7 +77,7 @@
             make.right.mas_equalTo(self.noScoreView.mas_left).mas_offset(-10).priorityHigh();
         }];
         [self.contentView addSubview:self.totalScoreLabel];
-        self.totalScoreLabel.text = [NSString stringWithFormat:@"满分%@",data.totalscore];
+        self.totalScoreLabel.attributedText = [self totalScoreStringWithScore:data.totalscore];
         [self.totalScoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.left.mas_equalTo(self.noScoreView.mas_right).mas_offset(10).priorityHigh();
@@ -97,13 +97,22 @@
             make.right.mas_equalTo(self.scoreLabel.mas_left).mas_offset(-10).priorityHigh();
         }];
         [self.contentView addSubview:self.totalScoreLabel];
-        self.totalScoreLabel.text = [NSString stringWithFormat:@"满分%@",data.totalscore];
+        self.totalScoreLabel.attributedText = [self totalScoreStringWithScore:data.totalscore];
         [self.totalScoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.left.mas_equalTo(self.scoreLabel.mas_right).mas_offset(10).priorityHigh();
             make.centerY.mas_equalTo(0);
         }];
     }
+}
+
+- (NSMutableAttributedString *)totalScoreStringWithScore:(NSString *)score{
+    NSString *completeStr = [NSString stringWithFormat:@"满分%@",score];
+    NSRange range = [completeStr rangeOfString:score];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
+    [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_DemiBold size:13] range:range];
+    [attr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"e5581a"] range:range];
+    return attr;
 }
 
 @end

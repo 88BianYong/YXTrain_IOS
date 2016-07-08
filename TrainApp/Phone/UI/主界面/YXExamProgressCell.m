@@ -62,7 +62,8 @@
     [self.contentView addSubview:self.progressView];
     [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-30);
-        make.centerY.mas_equalTo(0);
+//        make.centerY.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(-2);
         make.height.mas_equalTo(6);
         make.left.mas_equalTo(self.titleLabel.mas_right).mas_offset(8);
     }];

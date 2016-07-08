@@ -127,6 +127,8 @@
 		7CF844781D2E367900B1CE55 /* YXProjectSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF844771D2E367900B1CE55 /* YXProjectSelectionView.m */; };
 		7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8447A1D2E400D00B1CE55 /* YXProjectSelectionBgView.m */; };
 		7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8447D1D2E43EC00B1CE55 /* YXProjectSelectionCell.m */; };
+		7CF844801D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8447F1D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF */; };
+		7CF844821D2F61F800B1CE55 /* fzlbjw.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 7CF844811D2F61F800B1CE55 /* fzlbjw.TTF */; };
 		7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */; };
 		7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */; };
 		7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */; };
@@ -529,6 +531,8 @@
 		7CF8447A1D2E400D00B1CE55 /* YXProjectSelectionBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProjectSelectionBgView.m; sourceTree = "<group>"; };
 		7CF8447C1D2E43EC00B1CE55 /* YXProjectSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProjectSelectionCell.h; sourceTree = "<group>"; };
 		7CF8447D1D2E43EC00B1CE55 /* YXProjectSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProjectSelectionCell.m; sourceTree = "<group>"; };
+		7CF8447F1D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "METRO-DEMIBOLD PLAYTYPE.OTF"; sourceTree = "<group>"; };
+		7CF844811D2F61F800B1CE55 /* fzlbjw.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = fzlbjw.TTF; sourceTree = "<group>"; };
 		7CF887F61D17A77400E7C04D /* YXDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDrawerViewController.h; sourceTree = "<group>"; };
 		7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDrawerViewController.m; sourceTree = "<group>"; };
 		7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
@@ -1752,6 +1756,8 @@
 				CB7462881D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF */,
 				CB7462861D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf */,
 				7CF888811D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf */,
+				7CF8447F1D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF */,
+				7CF844811D2F61F800B1CE55 /* fzlbjw.TTF */,
 			);
 			path = "字体";
 			sourceTree = "<group>";
@@ -2149,11 +2155,13 @@
 				7C31776E1D0E6E92004AAC90 /* YXConfig.plist in Resources */,
 				CB7462891D21087A0065113A /* METRO-ITALIC PLAYTYPE.OTF in Resources */,
 				7C2C3B6F1D24C8A600A03635 /* coursedetail_mock.json in Resources */,
+				7CF844801D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */,
 				7C3F258D1D20C6C100F0A17A /* trainlist_mock.json in Resources */,
 				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
 				9223C83A1D2F82D8000F74DF /* search.txt in Resources */,
 				CBF66E421D2F840800F4E408 /* stagesSubjects in Resources */,
 				7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */,
+				7CF844821D2F61F800B1CE55 /* fzlbjw.TTF in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
