@@ -10,6 +10,8 @@
 #import "YXUserImageTableViewCell.h"
 #import "YXUserInfoTableViewCell.h"
 #import "YXSchoolSearchViewController.h"
+#import "YXUserTextFieldTableViewCell.h"
+
 @interface YXMineViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -36,6 +38,7 @@
     }];
     [self.tableView registerClass:[YXUserImageTableViewCell class] forCellReuseIdentifier:@"YXUserImageTableViewCell"];
     [self.tableView registerClass:[YXUserInfoTableViewCell class] forCellReuseIdentifier:@"YXUserInfoTableViewCell"];
+    [self.tableView registerClass:[YXUserTextFieldTableViewCell class] forCellReuseIdentifier:@"YXUserTextFieldTableViewCell"];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
     headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.tableHeaderView = headerView;
@@ -54,23 +57,35 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         YXUserImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXUserImageTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.userImageTap = ^(){
         
         };
         return cell;
+    } else if(indexPath.section == 1){
+        YXUserTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXUserTextFieldTableViewCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     } else {
         YXUserInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXUserInfoTableViewCell"];
-        if (indexPath.section == 1) {
-            [cell configUIwithTitle:@"姓名" content:@"哈哈哈哈"];
-        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (indexPath.section == 2) {
-            [cell configUIwithTitle:@"姓名" content:@"哈哈哈哈"];
+            [cell configUIwithTitle:@"学科 | 学段" content:@"点击编辑～"];
+            cell.userInfoButtonClickedBlock = ^() {
+            
+            };
         }
         if (indexPath.section == 3) {
-            [cell configUIwithTitle:@"姓名" content:@"哈哈哈哈"];
+            [cell configUIwithTitle:@"地区" content:@"点击编辑～"];
+            cell.userInfoButtonClickedBlock = ^() {
+                
+            };
         }
         if (indexPath.section == 4) {
-            [cell configUIwithTitle:@"姓名" content:@"哈哈哈哈"];
+            [cell configUIwithTitle:@"学校" content:@"点击编辑～"];
+            cell.userInfoButtonClickedBlock = ^() {
+                
+            };
         }
         return cell;
     }
@@ -95,6 +110,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 40;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:NO];
 }
 
 /*

@@ -269,6 +269,7 @@
 		CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E2D1D2E37B000F4E408 /* YXMineViewController.m */; };
 		CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E301D2E3A8D00F4E408 /* YXUserImageTableViewCell.m */; };
 		CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E331D2E435E00F4E408 /* YXUserInfoTableViewCell.m */; };
+		CBF66E371D2E647100F4E408 /* YXUserTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E361D2E647100F4E408 /* YXUserTextFieldTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -805,6 +806,8 @@
 		CBF66E301D2E3A8D00F4E408 /* YXUserImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserImageTableViewCell.m; sourceTree = "<group>"; };
 		CBF66E321D2E435E00F4E408 /* YXUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserInfoTableViewCell.h; sourceTree = "<group>"; };
 		CBF66E331D2E435E00F4E408 /* YXUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserInfoTableViewCell.m; sourceTree = "<group>"; };
+		CBF66E351D2E647100F4E408 /* YXUserTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserTextFieldTableViewCell.h; sourceTree = "<group>"; };
+		CBF66E361D2E647100F4E408 /* YXUserTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserTextFieldTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1996,6 +1999,8 @@
 				CBF66E301D2E3A8D00F4E408 /* YXUserImageTableViewCell.m */,
 				CBF66E321D2E435E00F4E408 /* YXUserInfoTableViewCell.h */,
 				CBF66E331D2E435E00F4E408 /* YXUserInfoTableViewCell.m */,
+				CBF66E351D2E647100F4E408 /* YXUserTextFieldTableViewCell.h */,
+				CBF66E361D2E647100F4E408 /* YXUserTextFieldTableViewCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -2415,6 +2420,7 @@
 				9223C8351D2F4BD2000F74DF /* YXSchoolSearchViewController.m in Sources */,
 				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
+				CBF66E371D2E647100F4E408 /* YXUserTextFieldTableViewCell.m in Sources */,
 				CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */,
 				CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */,
 				7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */,

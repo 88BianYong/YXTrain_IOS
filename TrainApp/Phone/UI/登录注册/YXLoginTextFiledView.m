@@ -64,6 +64,9 @@
 
 - (void)clearAction{
     self.textField.text = nil;
+    if (self.textChangedBlock) {
+        self.textChangedBlock(nil);
+    }
     self.rightButton.hidden = YES;
     [self.textField becomeFirstResponder];
 }

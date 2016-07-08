@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIImageView *userImageView;
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *desLabel;
+@property (nonatomic, strong) UIView *bottomView;
 
 @end
 
@@ -53,6 +54,10 @@
     self.desLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:self.desLabel];
     
+    self.bottomView = [[UIView alloc] init];
+    self.bottomView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.contentView addSubview:self.bottomView];
+    
     [self.userImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
         make.top.mas_equalTo(28);
@@ -70,6 +75,13 @@
     [self.desLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
         make.top.mas_equalTo(self.iconImageView.mas_bottom).offset(4);
+    }];
+    
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(0.5);
+        make.left.mas_equalTo(20);
+        make.right.mas_equalTo(-20);
     }];
 }
 

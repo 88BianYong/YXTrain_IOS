@@ -144,7 +144,7 @@ UITableViewDataSource
         }
         
     }else{
-        
+        [[YXUserManager sharedManager] logout];
     }
 }
 

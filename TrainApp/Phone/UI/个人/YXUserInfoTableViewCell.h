@@ -12,4 +12,6 @@
 
 - (void)configUIwithTitle:(NSString *)title content:(NSString *)contentString;
 
+@property (nonatomic, copy) void(^userInfoButtonClickedBlock)();
+
 @end
