@@ -103,6 +103,7 @@
         [self showToast:@"密码不能少于6位"];
         return;
     }
+    [self.view endEditing:YES];
     [self resetPasswordRequest];
 }
 

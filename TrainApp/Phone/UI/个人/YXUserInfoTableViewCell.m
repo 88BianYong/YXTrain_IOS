@@ -76,7 +76,11 @@
 
 - (void)configUIwithTitle:(NSString *)title content:(NSString *)contentString {
     self.userTitleLabel.text = title;
-    self.contentLabel.text = contentString;
+    if ([contentString yx_isValidString]) {
+        self.contentLabel.text = contentString;
+    } else {
+        self.contentLabel.text = @"点击编辑～";
+    }
 }
 
 - (void)contentButtonClicked {

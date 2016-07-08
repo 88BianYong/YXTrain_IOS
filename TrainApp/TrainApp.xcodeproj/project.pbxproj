@@ -270,6 +270,11 @@
 		CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E301D2E3A8D00F4E408 /* YXUserImageTableViewCell.m */; };
 		CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E331D2E435E00F4E408 /* YXUserInfoTableViewCell.m */; };
 		CBF66E371D2E647100F4E408 /* YXUserTextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E361D2E647100F4E408 /* YXUserTextFieldTableViewCell.m */; };
+		CBF66E401D2F5A4800F4E408 /* YXStageAndSubjectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E3F1D2F5A4800F4E408 /* YXStageAndSubjectRequest.m */; };
+		CBF66E421D2F840800F4E408 /* stagesSubjects in Resources */ = {isa = PBXBuildFile; fileRef = CBF66E411D2F840800F4E408 /* stagesSubjects */; };
+		CBF66E451D2F86DD00F4E408 /* YXPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E441D2F86DD00F4E408 /* YXPickerViewController.m */; };
+		CBF66E4A1D2F8F8500F4E408 /* province_data.xml in Resources */ = {isa = PBXBuildFile; fileRef = CBF66E491D2F8F8500F4E408 /* province_data.xml */; };
+		CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E4C1D2F8FE500F4E408 /* YXProvinceList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -808,6 +813,14 @@
 		CBF66E331D2E435E00F4E408 /* YXUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserInfoTableViewCell.m; sourceTree = "<group>"; };
 		CBF66E351D2E647100F4E408 /* YXUserTextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUserTextFieldTableViewCell.h; sourceTree = "<group>"; };
 		CBF66E361D2E647100F4E408 /* YXUserTextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUserTextFieldTableViewCell.m; sourceTree = "<group>"; };
+		CBF66E3E1D2F5A4800F4E408 /* YXStageAndSubjectRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXStageAndSubjectRequest.h; sourceTree = "<group>"; };
+		CBF66E3F1D2F5A4800F4E408 /* YXStageAndSubjectRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXStageAndSubjectRequest.m; sourceTree = "<group>"; };
+		CBF66E411D2F840800F4E408 /* stagesSubjects */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = stagesSubjects; sourceTree = "<group>"; };
+		CBF66E431D2F86DD00F4E408 /* YXPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPickerViewController.h; sourceTree = "<group>"; };
+		CBF66E441D2F86DD00F4E408 /* YXPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPickerViewController.m; sourceTree = "<group>"; };
+		CBF66E491D2F8F8500F4E408 /* province_data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = province_data.xml; sourceTree = "<group>"; };
+		CBF66E4B1D2F8FE500F4E408 /* YXProvinceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProvinceList.h; sourceTree = "<group>"; };
+		CBF66E4C1D2F8FE500F4E408 /* YXProvinceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProvinceList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -978,6 +991,8 @@
 		7C31775C1D0E5E0F004AAC90 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CBF66E491D2F8F8500F4E408 /* province_data.xml */,
+				CBF66E411D2F840800F4E408 /* stagesSubjects */,
 				7CF888571D194B8300E7C04D /* PrefixHeader.pch */,
 				7CF888581D194B8300E7C04D /* YXDefinitions.h */,
 				7CF888171D17E51200E7C04D /* Player */,
@@ -1174,6 +1189,8 @@
 		7C3177C01D0EC0FC004AAC90 /* 主框架 */ = {
 			isa = PBXGroup;
 			children = (
+				CBF66E431D2F86DD00F4E408 /* YXPickerViewController.h */,
+				CBF66E441D2F86DD00F4E408 /* YXPickerViewController.m */,
 				7CF888141D17D74500E7C04D /* 样式 */,
 				7CF888131D17D69C00E7C04D /* 抽屉 */,
 				7CF887F91D17D45A00E7C04D /* 分页框架 */,
@@ -1384,6 +1401,10 @@
 			isa = PBXGroup;
 			children = (
 				9223C8391D2F82D8000F74DF /* search.txt */,
+				CBF66E4B1D2F8FE500F4E408 /* YXProvinceList.h */,
+				CBF66E4C1D2F8FE500F4E408 /* YXProvinceList.m */,
+				CBF66E3E1D2F5A4800F4E408 /* YXStageAndSubjectRequest.h */,
+				CBF66E3F1D2F5A4800F4E408 /* YXStageAndSubjectRequest.m */,
 				CBF66E241D2E36EE00F4E408 /* YXUserProfile.h */,
 				CBF66E251D2E36EE00F4E408 /* YXUserProfile.m */,
 				CBF66E261D2E36EE00F4E408 /* YXUserProfileRequest.h */,
@@ -2131,6 +2152,7 @@
 				7C3F258D1D20C6C100F0A17A /* trainlist_mock.json in Resources */,
 				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
 				9223C83A1D2F82D8000F74DF /* search.txt in Resources */,
+				CBF66E421D2F840800F4E408 /* stagesSubjects in Resources */,
 				7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
@@ -2142,6 +2164,7 @@
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
 				9223C81D1D2D0EB6000F74DF /* temp.txt in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
+				CBF66E4A1D2F8F8500F4E408 /* province_data.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2248,6 +2271,7 @@
 				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
 				CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
+				CBF66E401D2F5A4800F4E408 /* YXStageAndSubjectRequest.m in Sources */,
 				CBF66E281D2E36EE00F4E408 /* YXUserProfile.m in Sources */,
 				CBB62E091D2CB98300DAA6DE /* NSDate+Utilities.m in Sources */,
 				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
@@ -2392,11 +2416,13 @@
 				9223C8381D2F78E3000F74DF /* YXSchoolSearchRequest.m in Sources */,
 				CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */,
 				CB3510D11D1912DD0081EA3B /* YXAttachmentTypeHelper.m in Sources */,
+				CBF66E451D2F86DD00F4E408 /* YXPickerViewController.m in Sources */,
 				7C3177981D0EA6A8004AAC90 /* UploadRequest.m in Sources */,
 				7C3177A11D0EA723004AAC90 /* YXGetRequest.m in Sources */,
 				7C31782A1D129C01004AAC90 /* UIXToolbarView.m in Sources */,
 				CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */,
 				CB3510DA1D1924110081EA3B /* YXAllDatumTableViewCell.m in Sources */,
+				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
 				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,
 				7C3177581D0E5E04004AAC90 /* AppDelegate.m in Sources */,
@@ -2590,7 +2616,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
+				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
 			};
 			name = Debug;
 		};
@@ -2608,7 +2634,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
+				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
 			};
 			name = Release;
 		};
