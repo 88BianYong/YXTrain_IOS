@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 typedef NS_ENUM(NSInteger, YXLoginPhoneVerifyType) {
     YXLoginPhoneVerifyTypeResetPassword, // 重置密码
     YXLoginPhoneVerifyTypeRegister,      // 注册

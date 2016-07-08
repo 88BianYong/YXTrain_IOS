@@ -9,7 +9,7 @@
 #import "YXMineViewController.h"
 #import "YXUserImageTableViewCell.h"
 #import "YXUserInfoTableViewCell.h"
-
+#import "YXSchoolSearchViewController.h"
 @interface YXMineViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -106,5 +106,8 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXSchoolSearchViewController *searchVC = [[YXSchoolSearchViewController alloc] init];
+    [self.navigationController pushViewController:searchVC animated:YES];
+}
 @end
