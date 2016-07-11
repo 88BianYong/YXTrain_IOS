@@ -21,20 +21,23 @@
     UILabel *_contactLabel;
     UIButton *_submitButton;
     
+    UIScrollView *_scrollView;
+    UIView *_contentView;
+    
     YXFeedBackRequest *_feedBackRequest;
 }
 @end
 
 @implementation YXFeedBackViewController
+- (void)dealloc{
+    
+}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [IQKeyboardManager sharedManager].enable = YES;
-    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 60.0f;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [IQKeyboardManager sharedManager].enable = NO;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +45,22 @@
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self setupUI];
     [self layoutInterface];
+    
+    @weakify(self);
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillChangeFrameNotification object:nil]subscribeNext:^(id x) {
+        @strongify(self);
+        if (!self) {
+            return;
+        }
+        NSNotification *noti = (NSNotification *)x;
+        NSDictionary *dic = noti.userInfo;
+        NSValue *keyboardFrameValue = [dic valueForKey:UIKeyboardFrameEndUserInfoKey];
+        CGRect keyboardFrame = keyboardFrameValue.CGRectValue;
+        CGFloat bottom = [UIScreen mainScreen].bounds.size.height-keyboardFrame.origin.y;
+        [self ->_scrollView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.view.mas_bottom).offset(-bottom);
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,20 +70,28 @@
 
 #pragma mark - UI Setting
 - (void)setupUI{
+    CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64.0f);
+    _scrollView = [[UIScrollView alloc] init];
+    _scrollView.contentSize = frame.size;
+    [self.view addSubview:_scrollView];
+    
+    _contentView = [[UIView alloc] initWithFrame:frame];
+    [_scrollView addSubview:_contentView];
+    
     _feedBackView = [[UIView alloc] init];
     _feedBackView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_feedBackView];
-    
+    [_contentView addSubview:_feedBackView];
     
     _feedBackTextView = [[SAMTextView alloc] init];
     _feedBackTextView.delegate = self;
+    _feedBackTextView.scrollEnabled = NO;
     _feedBackTextView.font = [UIFont systemFontOfSize:14.0f];
     [_feedBackView addSubview:_feedBackTextView];
     _feedBackTextView.placeholder = @"请简单描述您的问题，或对我们提出宝贵建议(4-500字)";
     
     _contactView = [[UIView alloc] init];
     _contactView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_contactView];
+    [_contentView addSubview:_contactView];
     
     _contactTextField = [[UITextField alloc] init];
     _contactTextField.font = [UIFont systemFontOfSize:14];
@@ -78,7 +105,7 @@
     [_contactView addSubview:_contactLabel];
     
     _submitButton = [[UIButton alloc] init];
-    [self.view addSubview:_submitButton];
+    [_contentView addSubview:_submitButton];
     [_submitButton addTarget:self action:@selector(submitButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
     _submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
@@ -89,11 +116,20 @@
 }
 
 - (void)layoutInterface{
-    [_feedBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top).offset(5.0f);
-        make.height.mas_offset(165.0f);
+    [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top);
+        make.bottom.equalTo(self.view.mas_bottom);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
+    }];
+    
+
+    
+    [_feedBackView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_contentView.mas_top).offset(5.0f);
+        make.height.mas_offset(165.0f);
+        make.left.equalTo(_contentView.mas_left);
+        make.right.equalTo(_contentView.mas_right);
     }];
     [_feedBackTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(_feedBackView).offset(15.0f);
@@ -103,7 +139,7 @@
     
     [_contactView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_feedBackView.mas_bottom).offset(10.0f);
-        make.left.right.equalTo(self.view);
+        make.left.right.equalTo(_contentView);
         make.height.mas_offset(45.0f);
     }];
     [_contactLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,8 +154,8 @@
     }];
     
     [_submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left).offset(15.0f);
-        make.right.equalTo(self.view.mas_right).offset(-15.0f);
+        make.left.equalTo(_contentView.mas_left).offset(15.0f);
+        make.right.equalTo(_contentView.mas_right).offset(-15.0f);
         make.top.equalTo(_contactView.mas_bottom).offset(34.0f);
         make.height.mas_offset(44.0f);
     }];

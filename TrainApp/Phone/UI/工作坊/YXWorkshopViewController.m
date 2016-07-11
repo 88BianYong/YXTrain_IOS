@@ -42,13 +42,14 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsMake(0, 66, 0, 10);
+    _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
     _tableView.layoutMargins = UIEdgeInsetsZero;
     [_tableView registerClass:[YXWorkshopCell class] forCellReuseIdentifier:@"YXWorkshopCell"];
     [self.view addSubview:_tableView];
 }
 - (void)layoutInterface{
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top).offset(5.0f);
+        make.top.equalTo(self.view.mas_top).offset(0.0f);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
@@ -60,7 +61,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.1f;
+    return 5.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -90,6 +91,9 @@
     YXWorkshopListRequestItem_group *group = _dataMutableArray[indexPath.row];
     [cell reloadWithText:group.gname imageUrl:@""];
     return cell;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [[UIView alloc] init];
 }
 #pragma mark - request
 - (void)requestForWorkshopList{

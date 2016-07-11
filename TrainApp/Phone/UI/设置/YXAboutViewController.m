@@ -10,6 +10,8 @@
 #import "YXAboutHeaderView.h"
 #import "YXAboutCell.h"
 #import "YXProvisionViewController.h"
+#import "YXActionSheet.h"
+#import "YXAlertView.h"
 @interface YXAboutViewController ()
 <
   UITableViewDelegate,
@@ -17,7 +19,8 @@
   YXAboutCellDelegate
 >
 {
-    UITableView *_tableView; 
+    UITableView *_tableView;
+    NSString *_phoneString;
 }
 
 @end
@@ -28,6 +31,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"关于我们";
+    _phoneString = @"400-7799-010";
     [self setupUI];
 }
 
@@ -87,7 +91,7 @@
         cell.delegate = self;
     }
     else{
-        NSString *phoneString = @"客服电话  400-7799-010";
+        NSString *phoneString = [NSString stringWithFormat:@"客服电话  %@",_phoneString];
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:phoneString];
         [attributeString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"]} range:NSMakeRange(0, 4)];
         [attributeString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"41c694"]} range:NSMakeRange(5, 13)];
@@ -106,7 +110,22 @@
     return 0.1f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.row == 1) {
+        YXActionSheet * sheet = [YXActionSheet actionSheetWithTitle:nil];
+        NSString * title = [NSString stringWithFormat:@"呼叫:  %@",_phoneString];
+        [sheet addDestructiveButtonWithTitle:title action:^{
+            NSString *telUrl = [NSString stringWithFormat:@"el://%@",_phoneString];
+            if (![[UIApplication sharedApplication] openURL:[NSURL URLWithString:telUrl]]) {
+                [YXAlertView showAlertViewWithMessage:@"此设备不支持通话！"];
+            }
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        }];
+        [sheet addCancelButtonWithTitle:@"取消" action:^{
+            [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        }];
+        [sheet showInView:self.view];
+
+    }
 }
 #pragma mark -YXAboutTableViewCellDelegate
 - (void)showMenu:(id)cell {

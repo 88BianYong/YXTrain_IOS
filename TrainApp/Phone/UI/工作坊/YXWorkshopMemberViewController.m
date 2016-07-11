@@ -24,6 +24,7 @@ UICollectionViewDelegate
     MJRefreshHeaderView *_header;
     
     int _pageIndex;
+    NSMutableArray *_dataMutableArray;
 }
 @property (nonatomic ,assign) NSInteger fillInteger;
 @end
@@ -39,6 +40,7 @@ UICollectionViewDelegate
 - (void)viewDidLoad {    
     [super viewDidLoad];
     self.title = @"成员";
+    _dataMutableArray = [[NSMutableArray alloc] initWithArray:_cachMutableArray];
     [self setupUI];
     [self layoutInterface];
     if (_dataMutableArray.count == 0) {
@@ -151,11 +153,14 @@ UICollectionViewDelegate
 
         [self stopLoading];
         if (pageIndex == 0) {
-            [self.dataMutableArray removeAllObjects];
+            [self.cachMutableArray removeAllObjects];
+            [self.cachMutableArray addObjectsFromArray:retItemArray];
+            
+            [self ->_dataMutableArray removeAllObjects];
         }
         if (!error && retItemArray) {
             _pageIndex ++ ;
-            [self.dataMutableArray addObjectsFromArray:retItemArray];
+            [self ->_dataMutableArray addObjectsFromArray:retItemArray];
             [self ->_collectionView reloadData];
         }
         else if(error){

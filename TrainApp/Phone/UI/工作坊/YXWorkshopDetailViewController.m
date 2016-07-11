@@ -76,6 +76,7 @@
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0);
     _tableView.layoutMargins = UIEdgeInsetsZero;
+    _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
     _headerView = [[YXWorkshopDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 165.0f)];
     _tableView.tableHeaderView = _headerView;
     [_tableView registerClass:[YXWorkshopDetailGroupCell class] forCellReuseIdentifier:@"YXWorkshopDetailGroupCell"];
@@ -112,7 +113,7 @@
     if (indexPath.section == 1 && indexPath.row == 0) {
         NSMutableDictionary *dic = _dataMutableArray[indexPath.section][indexPath.row];
         YXWorkshopMemberViewController *memberVC = [[YXWorkshopMemberViewController alloc] init];
-        memberVC.dataMutableArray = dic[@"member"];
+        memberVC.cachMutableArray = dic[@"member"];
         memberVC.baridString = self.baridString;
         [self.navigationController pushViewController:memberVC animated:YES];
     }else if(indexPath.section == 1 && indexPath.row == 1){
@@ -169,7 +170,7 @@
             [self ->_headerView reloadWithName:_detailItem.gname
                                         master:[_detailItem.master yx_isValidString]?_detailItem.master:@"暂无"];
             [self workshopDetailDataFormat:item];
-            [self requestForWorkshopMember];
+            //[self requestForWorkshopMember];
         }
         else{
             [self showToast:error.localizedDescription];

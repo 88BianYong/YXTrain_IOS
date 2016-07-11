@@ -156,6 +156,7 @@
             cell.userInfoButtonClickedBlock = ^() {
                 YXSchoolSearchViewController *vc = [[YXSchoolSearchViewController alloc] init];
                 vc.areaId = self.profile.regionId;
+                vc.areaName = @"";
                 vc.addSchoolNameSuccessBlock = ^(NSString *schoolName){
                     YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
                     [cell configUIwithTitle:@"学校" content:schoolName];
@@ -163,7 +164,7 @@
                         self.schoolModifySuccess(schoolName);
                     }
                 };
-                [self.navigationController pushViewController:vc animated:NO];
+                [self.navigationController pushViewController:vc animated:YES];
             };
         }
         return cell;
@@ -719,20 +720,5 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXSchoolSearchViewController *searchVC = [[YXSchoolSearchViewController alloc] init];
-    searchVC.areaName = @"";
-    [self.navigationController pushViewController:searchVC animated:YES];
 }
 @end

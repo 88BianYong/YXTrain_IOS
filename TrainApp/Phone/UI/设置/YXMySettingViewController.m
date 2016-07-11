@@ -45,6 +45,7 @@ UITableViewDataSource
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
+    _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
     _tableView.separatorInset = UIEdgeInsetsMake(0, 15.0f, 0.0f, 0.0f);
     _tableView.layoutMargins = UIEdgeInsetsZero;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"staticString"];
@@ -87,7 +88,7 @@ UITableViewDataSource
 #pragma mark - tableView Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40.0f;
+    return 45.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

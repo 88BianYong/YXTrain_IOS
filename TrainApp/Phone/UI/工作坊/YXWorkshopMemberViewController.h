@@ -9,6 +9,6 @@
 #import "YXBaseViewController.h"
 
 @interface YXWorkshopMemberViewController : YXBaseViewController
-@property (nonatomic, strong)NSMutableArray *dataMutableArray;
+@property (nonatomic, strong)NSMutableArray *cachMutableArray;
 @property (nonatomic, copy)NSString *baridString;
 @end
