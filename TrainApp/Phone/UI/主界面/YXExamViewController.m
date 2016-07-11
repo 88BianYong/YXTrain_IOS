@@ -194,9 +194,12 @@
             [self showMarkWithOriginRect:rect];
         };
         header.clickAction = ^{
-            if ([data.toolid isEqualToString:@"315"]) { // 课程超市
+            if ([data.toolid isEqualToString:@"315"]||[data.toolid isEqualToString:@"215"]) { // 课程超市
                 YXCourseViewController *vc = [[YXCourseViewController alloc]init];
-                vc.isElective = YES;
+                vc.stageID = @"2242";
+                [self.navigationController pushViewController:vc animated:YES];
+            }else if ([data.toolid isEqualToString:@"201"]||[data.toolid isEqualToString:@"301"]) { // 课程
+                YXCourseViewController *vc = [[YXCourseViewController alloc]init];
                 [self.navigationController pushViewController:vc animated:YES];
             }else{
                 [self showToast:@"相关功能暂未开放"];

@@ -26,9 +26,6 @@
     YXCourseListFetcher *fetcher = [[YXCourseListFetcher alloc]init];
     fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
     fetcher.stageid = self.stageID;
-    if (self.isElective) {
-        fetcher.type = @"101"; // 选修
-    }
     WEAK_SELF
     fetcher.filterBlock = ^(YXCourseListFilterModel *model){
         STRONG_SELF
@@ -43,7 +40,7 @@
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     
-    if (self.stageID || self.isElective) {
+    if (self.stageID) {
         self.isWaitingForFilter = YES;
     }
     [super viewDidLoad];
@@ -126,20 +123,20 @@
             [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
         }
     }
-    if (self.isElective) {
-        YXCourseFilterGroup *typeGroup = self.filterModel.groupArray[2];
-        __block NSInteger typeIndex = -1;
-        [typeGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            YXCourseFilter *filter = (YXCourseFilter *)obj;
-            if ([@"101" isEqualToString:filter.filterID]) {
-                typeIndex = idx;
-                *stop = YES;
-            }
-        }];
-        if (typeIndex >= 0) {
-            [self.filterView setCurrentIndex:typeIndex forKey:typeGroup.name];
-        }
-    }
+//    if (self.isElective) {
+//        YXCourseFilterGroup *typeGroup = self.filterModel.groupArray[2];
+//        __block NSInteger typeIndex = -1;
+//        [typeGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            YXCourseFilter *filter = (YXCourseFilter *)obj;
+//            if ([@"101" isEqualToString:filter.filterID]) {
+//                typeIndex = idx;
+//                *stop = YES;
+//            }
+//        }];
+//        if (typeIndex >= 0) {
+//            [self.filterView setCurrentIndex:typeIndex forKey:typeGroup.name];
+//        }
+//    }
 }
 
 - (void)setupObservers{

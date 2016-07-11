@@ -92,6 +92,7 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:course.course_title];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7];//调整行间距
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
     
