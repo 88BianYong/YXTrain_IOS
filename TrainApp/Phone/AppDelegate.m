@@ -85,11 +85,7 @@
 	[[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
 		//@strongify(self);
 		[[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
-		//[self.studioVC requestStudioNotifyList];
-		//        [self repeatToAskRedDot];
 	}];
-	//    [[YXCooperateGroupHelper sharedHelper] requestCompeletion:nil];
-	// [[YXGPGlobalSingleton sharedInstance] updateFilters];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

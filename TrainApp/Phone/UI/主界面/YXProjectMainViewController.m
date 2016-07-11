@@ -11,7 +11,6 @@
 #import "YXExamViewController.h"
 #import "YXTaskViewController.h"
 #import "YXNoticeViewController.h"
-#import "YXBulletinViewController.h"
 #import "YXProjectContainerView.h"
 #import "YXTrainListRequest.h"
 #import "YXProjectSelectionView.h"
@@ -84,8 +83,6 @@
     };
     self.projectSelectionView = selectionView;
     [self showProjectSelectionView];
-//    [self.navigationController.navigationBar addSubview:selectionView];
-//    self.navigationItem.titleView = selectionView;
 }
 
 - (void)naviRightAction{

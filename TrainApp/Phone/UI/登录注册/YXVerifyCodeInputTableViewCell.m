@@ -104,7 +104,7 @@
 }
 
 - (void)startTimer{
-    self.secondsLeft = 45;
+    self.secondsLeft = 60;
     self.verifyCodeButton.userInteractionEnabled = NO;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 }

@@ -16,6 +16,7 @@
 #import "YXPlayerViewController.h"
 #import "YXAudioPlayerViewController.h"
 #import "YXNavigationController.h"
+#import "YXBroseWebView.h"
 
 @interface YXFileBrowseManager()<YXBrowserExitDelegate,YXFileFavorDelegate,YXPlayProgressDelegate,YXBrowseTimeDelegate>
 @property (nonatomic, strong) UrlDownloader *downloader;
@@ -189,12 +190,16 @@
 }
 
 - (void)openHtml{
-    YXTOWebViewController * webViewController = [[YXTOWebViewController alloc] initWithURLString:self.fileItem.url];
-    webViewController.title = self.fileItem.name;
-    webViewController.showPageTitles = NO;
-    webViewController.exitDelegate = self;
-    webViewController.browseTimeDelegate = self;
-    [self.baseViewController.navigationController pushViewController:webViewController animated:YES];
+//    YXTOWebViewController * webViewController = [[YXTOWebViewController alloc] initWithURLString:self.fileItem.url];
+//    webViewController.title = self.fileItem.name;
+//    webViewController.showPageTitles = NO;
+//    webViewController.exitDelegate = self;
+//    webViewController.browseTimeDelegate = self;
+//    [self.baseViewController.navigationController pushViewController:webViewController animated:YES];
+    YXBroseWebView *webView = [[YXBroseWebView alloc] init];
+    webView.urlString = self.fileItem.url;
+    webView.titleString = self.fileItem.name;
+    [self.baseViewController.navigationController pushViewController:webView animated:YES];
 }
 
 - (void)openVideo{

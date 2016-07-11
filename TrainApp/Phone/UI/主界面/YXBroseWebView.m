@@ -12,6 +12,7 @@
 @interface YXBroseWebView ()
 
 @property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) NSDate *beginDate;
 
 @end
 
@@ -33,6 +34,15 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
     [self.webView loadRequest:request];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        self.beginDate = [NSDate date];
+    }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kRecordNeedUpdateNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
+    }];
 }
 
 - (void)naviRightAction{
@@ -51,6 +61,11 @@
         }
     };
     [self.view.window addSubview:menuView];
+}
+- (void)naviLeftAction{
+    [self.navigationController popViewControllerAnimated:YES];
+    SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
+    SAFE_CALL(self.exitDelegate, browserExit);
 }
 
 @end

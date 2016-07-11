@@ -108,7 +108,6 @@
 		7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178341D12A8BB004AAC90 /* YXTOWebViewController.m */; };
 		7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31784E1D139A18004AAC90 /* YXExamViewController.m */; };
 		7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178511D139A2A004AAC90 /* YXTaskViewController.m */; };
-		7C3178581D139BE4004AAC90 /* YXBulletinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178571D139BE4004AAC90 /* YXBulletinViewController.m */; };
 		7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31785A1D139D49004AAC90 /* YXProjectContainerView.m */; };
 		7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31785D1D13DE38004AAC90 /* YXPromtController.m */; };
 		7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3178601D13DE57004AAC90 /* YXNavigationBarController.m */; };
@@ -500,8 +499,6 @@
 		7C31784E1D139A18004AAC90 /* YXExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXExamViewController.m; sourceTree = "<group>"; };
 		7C3178501D139A2A004AAC90 /* YXTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTaskViewController.h; sourceTree = "<group>"; };
 		7C3178511D139A2A004AAC90 /* YXTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTaskViewController.m; sourceTree = "<group>"; };
-		7C3178561D139BE4004AAC90 /* YXBulletinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBulletinViewController.h; sourceTree = "<group>"; };
-		7C3178571D139BE4004AAC90 /* YXBulletinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXBulletinViewController.m; sourceTree = "<group>"; };
 		7C3178591D139D49004AAC90 /* YXProjectContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProjectContainerView.h; sourceTree = "<group>"; };
 		7C31785A1D139D49004AAC90 /* YXProjectContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProjectContainerView.m; sourceTree = "<group>"; };
 		7C31785C1D13DE38004AAC90 /* YXPromtController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPromtController.h; sourceTree = "<group>"; };
@@ -1239,8 +1236,7 @@
 			children = (
 				7C3178491D1398C6004AAC90 /* 考核 */,
 				7C31784A1D1398E2004AAC90 /* 任务 */,
-				7C31784B1D1398EB004AAC90 /* 通知 */,
-				7C31784C1D139901004AAC90 /* 简报 */,
+				7C31784B1D1398EB004AAC90 /* 通知简报 */,
 				7C3177D11D10FC36004AAC90 /* YXProjectMainViewController.h */,
 				7C3177D21D10FC36004AAC90 /* YXProjectMainViewController.m */,
 				7C3178591D139D49004AAC90 /* YXProjectContainerView.h */,
@@ -1513,7 +1509,7 @@
 			name = "任务";
 			sourceTree = "<group>";
 		};
-		7C31784B1D1398EB004AAC90 /* 通知 */ = {
+		7C31784B1D1398EB004AAC90 /* 通知简报 */ = {
 			isa = PBXGroup;
 			children = (
 				7CF8885D1D1A427700E7C04D /* YXNoticeViewController.h */,
@@ -1529,16 +1525,7 @@
 				CBB62E171D2CCE3D00DAA6DE /* YXShowWebMenuTableViewCell.h */,
 				CBB62E181D2CCE3D00DAA6DE /* YXShowWebMenuTableViewCell.m */,
 			);
-			name = "通知";
-			sourceTree = "<group>";
-		};
-		7C31784C1D139901004AAC90 /* 简报 */ = {
-			isa = PBXGroup;
-			children = (
-				7C3178561D139BE4004AAC90 /* YXBulletinViewController.h */,
-				7C3178571D139BE4004AAC90 /* YXBulletinViewController.m */,
-			);
-			name = "简报";
+			name = "通知简报";
 			sourceTree = "<group>";
 		};
 		7CF844581D2A5E0C00B1CE55 /* DB */ = {
@@ -2373,7 +2360,6 @@
 				7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */,
 				CBB62E101D2CBE4C00DAA6DE /* YXBriefListFetch.m in Sources */,
 				7C3178071D123935004AAC90 /* YXQLPreviewController.m in Sources */,
-				7C3178581D139BE4004AAC90 /* YXBulletinViewController.m in Sources */,
 				7C3177CB1D10F496004AAC90 /* YXNavigationController.m in Sources */,
 				7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */,
 				CB4D91771D1A635400B5F1D0 /* YXMyDatumCell.m in Sources */,

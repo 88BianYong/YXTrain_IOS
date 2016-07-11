@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YXBrowserExitDelegate.h"
+#import "YXBrowseTimeDelegate.h"
 
 @interface YXBroseWebView : YXBaseViewController
 
 @property (nonatomic, copy) NSString *urlString;
 @property (nonatomic, copy) NSString *titleString;
+@property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
+@property (nonatomic, weak) id<YXBrowseTimeDelegate> browseTimeDelegate;
 
 @end
