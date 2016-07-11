@@ -59,7 +59,6 @@ NSString *const YXUpdateProfileTypeKey = @"kYXUpdateProfileTypeKey";
         if (retItem && !error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self saveDataWithParam:param type:type];
-                [[NSNotificationCenter defaultCenter] postNotificationName:YXUpdateProfileSuccessNotification object:nil userInfo:@{YXUpdateProfileTypeKey:@(type)}];
             });
         }
     }];

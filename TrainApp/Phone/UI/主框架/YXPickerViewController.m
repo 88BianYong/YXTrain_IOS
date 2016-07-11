@@ -22,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setUpSubviews];
+    [self hidePickerView:NO];
     // Do any additional setup after loading the view.
 }
 
@@ -33,8 +35,6 @@
 - (void)loadView
 {
     [super loadView];
-    [self setUpSubviews];
-    [self hidePickerView:NO];
 }
 
 - (UIPickerView *)pickerView
@@ -66,31 +66,24 @@
 
 - (void)setUpSubviews
 {
-//    _backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
-//    _backgroundView.backgroundColor = [UIColor blackColor];
-//    _backgroundView.alpha = 0.5f;
-//    [self.view addSubview:_backgroundView];
+    self.view.backgroundColor = [UIColor clearColor];
+    _backgroundView = [[UIView alloc] initWithFrame:self.view.bounds];
+    _backgroundView.backgroundColor = [UIColor blackColor];
+    _backgroundView.alpha = 0.5f;
+    [self.view addSubview:_backgroundView];
     
-    self.view.backgroundColor = [UIColor blueColor];
     _contentView = [[UIView alloc] init];
-    _contentView.backgroundColor = [UIColor redColor];
+    _contentView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_contentView];
     
-//    UIColor *bgColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];//修改
     _cancelButton = [[UIButton alloc] init];
-//    _cancelButton.backgroundColor = bgColor;
     [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     [_cancelButton setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateNormal];
     [_cancelButton addTarget:self action:@selector(cancelAction:) forControlEvents:UIControlEventTouchUpInside];
     _cancelButton.titleLabel.font = [UIFont systemFontOfSize:15.f];
     [_contentView addSubview:_cancelButton];
     
-//    _blankView = [[UIView alloc] init];
-//    _blankView.backgroundColor = bgColor;
-//    [_contentView addSubview:_blankView];
-    
     _confirmButton = [[UIButton alloc] init];
-//    _confirmButton.backgroundColor = bgColor;
     [_confirmButton setTitle:@"确定" forState:UIControlStateNormal];
     [_confirmButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
     [_confirmButton addTarget:self action:@selector(confirmAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -111,20 +104,11 @@
     
     [_cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@0);
-        make.height.equalTo(@40);
-        //make.width.equalTo(@80);
         make.left.equalTo(@40);
     }];
-//    [_blankView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.right.left.equalTo(@0);
-//        make.height.equalTo(_cancelButton.mas_height);
-////        make.left.equalTo(_cancelButton.mas_right);
-////        make.right.equalTo(_confirmButton.mas_left);
-//    }];
     [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.equalTo(@0);
         make.height.equalTo(_cancelButton.mas_height);
-//        make.width.equalTo(_cancelButton.mas_width);
         make.right.mas_equalTo(-40);
     }];
     

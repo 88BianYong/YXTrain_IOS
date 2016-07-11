@@ -39,6 +39,7 @@
 
 - (void)setupUI {
     self.userImageView = [[UIImageView alloc] init];
+    self.userImageView.userInteractionEnabled = YES;
     self.userImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.userImageView];
     UITapGestureRecognizer * tapUserImageGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUserImageGesture:)];
@@ -91,6 +92,13 @@
             self.userImageTap();
         }
     }
+}
+
+-(void)setImageWithUrl:(NSString *)urlString{
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"icon_default_avatar"]];
+}
+-(void)setImageWithDataImage:(UIImage *)image{
+    self.userImageView.image = image;
 }
 
 @end

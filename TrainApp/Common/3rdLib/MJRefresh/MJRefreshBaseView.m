@@ -96,6 +96,9 @@
         // 1.自己的属性
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.backgroundColor = [UIColor clearColor];
+//        UIView *mjBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, -[UIScreen mainScreen].bounds.size.height + MJRefreshViewHeight, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+//        mjBackgroundView.backgroundColor = [UIColor redColor];
+//        [self addSubview:mjBackgroundView];
         
         // 2.时间标签
         [self addSubview:_lastUpdateTimeLabel = [self labelWithFontSize:12]];

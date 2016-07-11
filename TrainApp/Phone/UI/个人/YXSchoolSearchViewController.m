@@ -230,6 +230,9 @@
         if (error) {
             [self showToast:error.localizedDescription];
         } else {
+            if (self.addSchoolNameSuccessBlock) {
+                self.addSchoolNameSuccessBlock(school.name);
+            }
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];

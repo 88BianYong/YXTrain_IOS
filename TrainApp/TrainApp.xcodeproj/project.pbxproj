@@ -197,6 +197,10 @@
 		CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */; };
 		CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */; };
 		CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904D71D1BC88F00026C9D /* YXClickedUnderLineButton.m */; };
+		CB1606041D2FC7C60071BA01 /* YXImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1606031D2FC7C60071BA01 /* YXImagePickerController.m */; };
+		CB1606071D2FC8490071BA01 /* UIImage+YXImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1606061D2FC8490071BA01 /* UIImage+YXImage.m */; };
+		CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1606091D2FCA9F0071BA01 /* YXActionSheet.m */; };
+		CB16060D1D2FCB390071BA01 /* YXUploadHeadImgRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16060C1D2FCB390071BA01 /* YXUploadHeadImgRequest.m */; };
 		CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF34A1D1BE9AD00E76B34 /* YXLoginTextFiledView.m */; };
 		CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF34D1D1BF00300E76B34 /* NSString+YXString.m */; };
 		CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF3501D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m */; };
@@ -253,6 +257,7 @@
 		CB748EE91D23E118004BCFBF /* YXDatumSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB748EE81D23E118004BCFBF /* YXDatumSearchView.m */; };
 		CB748EEC1D24F3CD004BCFBF /* YXPagedListEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB748EEB1D24F3CD004BCFBF /* YXPagedListEmptyView.m */; };
 		CB748EEE1D250086004BCFBF /* PhoneImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB748EED1D250086004BCFBF /* PhoneImage.xcassets */; };
+		CB8524641D334BFB009FA14B /* HJCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8524631D334BFB009FA14B /* HJCActionSheet.m */; };
 		CBB62E091D2CB98300DAA6DE /* NSDate+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB62E081D2CB98300DAA6DE /* NSDate+Utilities.m */; };
 		CBB62E0D1D2CBDB000DAA6DE /* YXBriefListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB62E0C1D2CBDB000DAA6DE /* YXBriefListRequest.m */; };
 		CBB62E101D2CBE4C00DAA6DE /* YXBriefListFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB62E0F1D2CBE4C00DAA6DE /* YXBriefListFetch.m */; };
@@ -670,6 +675,14 @@
 		CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginViewController.m; sourceTree = "<group>"; };
 		CB0904D61D1BC88F00026C9D /* YXClickedUnderLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXClickedUnderLineButton.h; sourceTree = "<group>"; };
 		CB0904D71D1BC88F00026C9D /* YXClickedUnderLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXClickedUnderLineButton.m; sourceTree = "<group>"; };
+		CB1606021D2FC7C60071BA01 /* YXImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXImagePickerController.h; sourceTree = "<group>"; };
+		CB1606031D2FC7C60071BA01 /* YXImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXImagePickerController.m; sourceTree = "<group>"; };
+		CB1606051D2FC8490071BA01 /* UIImage+YXImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+YXImage.h"; sourceTree = "<group>"; };
+		CB1606061D2FC8490071BA01 /* UIImage+YXImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+YXImage.m"; sourceTree = "<group>"; };
+		CB1606081D2FCA9F0071BA01 /* YXActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXActionSheet.h; sourceTree = "<group>"; };
+		CB1606091D2FCA9F0071BA01 /* YXActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXActionSheet.m; sourceTree = "<group>"; };
+		CB16060B1D2FCB390071BA01 /* YXUploadHeadImgRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadHeadImgRequest.h; sourceTree = "<group>"; };
+		CB16060C1D2FCB390071BA01 /* YXUploadHeadImgRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUploadHeadImgRequest.m; sourceTree = "<group>"; };
 		CB2CF3491D1BE9AD00E76B34 /* YXLoginTextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginTextFiledView.h; sourceTree = "<group>"; };
 		CB2CF34A1D1BE9AD00E76B34 /* YXLoginTextFiledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginTextFiledView.m; sourceTree = "<group>"; };
 		CB2CF34C1D1BF00300E76B34 /* NSString+YXString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YXString.h"; sourceTree = "<group>"; };
@@ -779,6 +792,8 @@
 		CB748EEA1D24F3CD004BCFBF /* YXPagedListEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPagedListEmptyView.h; sourceTree = "<group>"; };
 		CB748EEB1D24F3CD004BCFBF /* YXPagedListEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPagedListEmptyView.m; sourceTree = "<group>"; };
 		CB748EED1D250086004BCFBF /* PhoneImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PhoneImage.xcassets; sourceTree = "<group>"; };
+		CB8524621D334BFB009FA14B /* HJCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HJCActionSheet.h; sourceTree = "<group>"; };
+		CB8524631D334BFB009FA14B /* HJCActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HJCActionSheet.m; sourceTree = "<group>"; };
 		CBB62E071D2CB98300DAA6DE /* NSDate+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Utilities.h"; sourceTree = "<group>"; };
 		CBB62E081D2CB98300DAA6DE /* NSDate+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Utilities.m"; sourceTree = "<group>"; };
 		CBB62E0B1D2CBDB000DAA6DE /* YXBriefListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXBriefListRequest.h; sourceTree = "<group>"; };
@@ -1042,6 +1057,8 @@
 		7C3177651D0E688D004AAC90 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				CB1606051D2FC8490071BA01 /* UIImage+YXImage.h */,
+				CB1606061D2FC8490071BA01 /* UIImage+YXImage.m */,
 				CBB62E071D2CB98300DAA6DE /* NSDate+Utilities.h */,
 				CBB62E081D2CB98300DAA6DE /* NSDate+Utilities.m */,
 				CB2CF34C1D1BF00300E76B34 /* NSString+YXString.h */,
@@ -1404,6 +1421,8 @@
 		7C31783C1D139789004AAC90 /* 个人 */ = {
 			isa = PBXGroup;
 			children = (
+				CB16060B1D2FCB390071BA01 /* YXUploadHeadImgRequest.h */,
+				CB16060C1D2FCB390071BA01 /* YXUploadHeadImgRequest.m */,
 				9223C8391D2F82D8000F74DF /* search.txt */,
 				CBF66E4B1D2F8FE500F4E408 /* YXProvinceList.h */,
 				CBF66E4C1D2F8FE500F4E408 /* YXProvinceList.m */,
@@ -2022,6 +2041,10 @@
 		CBF66E2A1D2E372700F4E408 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				CB8524621D334BFB009FA14B /* HJCActionSheet.h */,
+				CB8524631D334BFB009FA14B /* HJCActionSheet.m */,
+				CB1606081D2FCA9F0071BA01 /* YXActionSheet.h */,
+				CB1606091D2FCA9F0071BA01 /* YXActionSheet.m */,
 				CBF66E2F1D2E3A8D00F4E408 /* YXUserImageTableViewCell.h */,
 				CBF66E301D2E3A8D00F4E408 /* YXUserImageTableViewCell.m */,
 				CBF66E321D2E435E00F4E408 /* YXUserInfoTableViewCell.h */,
@@ -2035,6 +2058,8 @@
 		CBF66E2B1D2E376E00F4E408 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CB1606021D2FC7C60071BA01 /* YXImagePickerController.h */,
+				CB1606031D2FC7C60071BA01 /* YXImagePickerController.m */,
 				CBF66E2C1D2E37B000F4E408 /* YXMineViewController.h */,
 				CBF66E2D1D2E37B000F4E408 /* YXMineViewController.m */,
 				9223C8331D2F4BD2000F74DF /* YXSchoolSearchViewController.h */,
@@ -2276,7 +2301,9 @@
 				7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */,
 				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
 				7C2C3B341D2114DC00A03635 /* YXScoreTypeCell.m in Sources */,
+				CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */,
 				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
+				CB16060D1D2FCB390071BA01 /* YXUploadHeadImgRequest.m in Sources */,
 				CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
 				CBF66E401D2F5A4800F4E408 /* YXStageAndSubjectRequest.m in Sources */,
@@ -2340,6 +2367,7 @@
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
 				CBB62E0D1D2CBDB000DAA6DE /* YXBriefListRequest.m in Sources */,
 				7C2C3B6C1D24C74F00A03635 /* YXModuleDetailRequest.m in Sources */,
+				CB1606041D2FC7C60071BA01 /* YXImagePickerController.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
 				7C2C3B601D23D68500A03635 /* YXCourseListFilterModel.m in Sources */,
 				7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */,
@@ -2400,6 +2428,7 @@
 				922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */,
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
 				CB4D91831D1A73EA00B5F1D0 /* YXDatumSearchViewController.m in Sources */,
+				CB8524641D334BFB009FA14B /* HJCActionSheet.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
 				CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */,
 				7C2C3B551D23B34300A03635 /* YXCourseListRequest.m in Sources */,
@@ -2430,6 +2459,7 @@
 				7C31782A1D129C01004AAC90 /* UIXToolbarView.m in Sources */,
 				CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */,
 				CB3510DA1D1924110081EA3B /* YXAllDatumTableViewCell.m in Sources */,
+				CB1606071D2FC8490071BA01 /* UIImage+YXImage.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
 				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,

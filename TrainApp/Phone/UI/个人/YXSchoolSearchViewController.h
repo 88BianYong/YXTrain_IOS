@@ -10,4 +10,6 @@
 @class YXSchool;
 @interface YXSchoolSearchViewController : YXBaseViewController
 @property (nonatomic, copy) NSString *areaId;
+
+@property (nonatomic, copy) void(^addSchoolNameSuccessBlock)(NSString *);
 @end

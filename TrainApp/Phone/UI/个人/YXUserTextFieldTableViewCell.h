@@ -10,4 +10,9 @@
 
 @interface YXUserTextFieldTableViewCell : UITableViewCell
 
+@property(nonatomic, copy)void(^startUpdateUserName)(NSString *);
+
+-(void)setUserName:(NSString *)name;
+
+
 @end

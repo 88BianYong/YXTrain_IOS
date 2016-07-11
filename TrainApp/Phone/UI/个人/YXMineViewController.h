@@ -10,4 +10,8 @@
 
 @interface YXMineViewController : YXBaseViewController
 
+@property (nonatomic, copy) void(^nameModifySuccess)(NSString *name);
+@property (nonatomic, copy) void(^userPicModifySuccess)(UIImage *image);
+@property (nonatomic, copy) void(^schoolModifySuccess)(NSString *school);
+
 @end

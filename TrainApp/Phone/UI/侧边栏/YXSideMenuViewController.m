@@ -31,7 +31,7 @@
     
     UIImageView *_iconImageView;
     UILabel *_nameLabel;
-    UILabel *_subNameLabel;
+    UILabel *_schoolNameLabel;
 }
 
 - (void)viewDidLoad {
@@ -101,11 +101,11 @@
     _nameLabel.text = @"123";
     [self.headerView addSubview:_nameLabel];
     
-    _subNameLabel = [[UILabel alloc] init];
-    _subNameLabel.font = [UIFont systemFontOfSize:12];
-    _subNameLabel.textColor = [UIColor colorWithHexString:@"505f84"];
-    _subNameLabel.text = @"1233455";
-    [self.headerView addSubview:_subNameLabel];
+    _schoolNameLabel = [[UILabel alloc] init];
+    _schoolNameLabel.font = [UIFont systemFontOfSize:12];
+    _schoolNameLabel.textColor = [UIColor colorWithHexString:@"505f84"];
+    _schoolNameLabel.text = @"1233455";
+    [self.headerView addSubview:_schoolNameLabel];
     
     UIImageView *headerIconImageView = [[UIImageView alloc] init];
     headerIconImageView.backgroundColor = [UIColor redColor];
@@ -135,7 +135,7 @@
         make.right.mas_equalTo(headerIconImageView.mas_left).offset(-20);
     }];
     
-    [_subNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_schoolNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self->_iconImageView.mas_bottom);
         make.left.mas_equalTo(self->_iconImageView.mas_right).mas_offset(@12);
         make.right.mas_equalTo(headerIconImageView.mas_left).offset(-20);
@@ -179,6 +179,8 @@
     [footerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.footerView);
     }];
+    
+    [self loadUserProfile];
 }
 
 - (void)tapHeaderGesture:(UIGestureRecognizer *)gesture
@@ -187,6 +189,15 @@
         //
         NSLog(@"tapHeader");
         YXMineViewController *vc = [[YXMineViewController alloc] init];
+        vc.nameModifySuccess = ^(NSString *name) {
+            _nameLabel.text = name;
+        };
+        vc.schoolModifySuccess = ^(NSString *schoolName) {
+            _schoolNameLabel.text = schoolName;
+        };
+        vc.userPicModifySuccess = ^(UIImage *image) {
+            _iconImageView.image = image;
+        };
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -218,8 +229,8 @@
     self.profile = [YXUserManager sharedManager].userModel.profile;
     
     _nameLabel.text = self.profile.realName;
-    _subNameLabel.text = self.profile.school;
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    _schoolNameLabel.text = self.profile.school;
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.headDetail] placeholderImage:[UIImage imageNamed:@"默认头像"]];
     [self.view setNeedsLayout];
 }
 
@@ -228,10 +239,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-//    [center addObserver:self
-//               selector:@selector(userLogoutSuccess:)
-//                   name:YXUserLogoutSuccessNotification
-//                 object:nil];
     [center addObserver:self
                selector:@selector(reloadUserProfileView)
                    name:YXUserProfileGetSuccessNotification
@@ -298,7 +305,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadUserProfile];
 }
 
 - (void)displayShadowView {

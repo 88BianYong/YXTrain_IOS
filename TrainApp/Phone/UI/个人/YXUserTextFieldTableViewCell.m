@@ -8,7 +8,7 @@
 
 #import "YXUserTextFieldTableViewCell.h"
 
-@interface YXUserTextFieldTableViewCell ()
+@interface YXUserTextFieldTableViewCell ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UILabel *userTitleLabel;
 @property (nonatomic, strong) UITextField *contentTextField;
@@ -44,6 +44,7 @@
     [self.contentView addSubview:self.userTitleLabel];
     
     self.contentTextField = [[UITextField alloc] init];
+    self.contentTextField.delegate = self;
     self.contentTextField.font = [UIFont boldSystemFontOfSize:14];
     self.contentTextField.text = @"暂无";
     self.contentTextField.textColor = [UIColor colorWithHexString:@"334466"];
@@ -60,6 +61,26 @@
         make.left.mas_equalTo(self.userTitleLabel.mas_right).offset(14);
         make.right.mas_equalTo(-20);
     }];
+}
+
+- (void)setUserName:(NSString *)name {
+    if ([name yx_isValidString]) {
+        self.contentTextField.text = name;
+    } else {
+        self.contentTextField.text = @"暂无";
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (self.startUpdateUserName) {
+        self.startUpdateUserName(textField.text);
+    }
+
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self.contentTextField resignFirstResponder];
+    return YES;
 }
 
 @end

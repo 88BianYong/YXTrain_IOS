@@ -12,4 +12,7 @@
 
 @property (nonatomic, strong) void(^userImageTap)();
 
+-(void)setImageWithUrl:(NSString *)urlString;
+-(void)setImageWithDataImage:(UIImage *)image;
+
 @end
