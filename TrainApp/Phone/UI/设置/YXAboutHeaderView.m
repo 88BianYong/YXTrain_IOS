@@ -30,8 +30,10 @@
     UIImageView *logoImageView = [[UIImageView alloc] init];
     logoImageView.image = [UIImage imageNamed:@"logo"];
     [self addSubview:logoImageView];
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
     [logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(58.0f);
+        make.top.equalTo(self.mas_top).offset(58.0f/667.0f * height);
         make.height.width.mas_offset(100.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];

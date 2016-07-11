@@ -12,4 +12,5 @@
 @property (nonatomic, copy) NSString *areaId;
 
 @property (nonatomic, copy) void(^addSchoolNameSuccessBlock)(NSString *);
+@property (nonatomic, copy) NSString *areaName;
 @end

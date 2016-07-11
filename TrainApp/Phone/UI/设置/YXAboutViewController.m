@@ -9,6 +9,7 @@
 #import "YXAboutViewController.h"
 #import "YXAboutHeaderView.h"
 #import "YXAboutCell.h"
+#import "YXProvisionViewController.h"
 @interface YXAboutViewController ()
 <
   UITableViewDelegate,
@@ -43,14 +44,17 @@
     _tableView.backgroundColor = [UIColor whiteColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.layoutMargins = UIEdgeInsetsZero;
+    _tableView.scrollEnabled = NO;
     [_tableView registerClass:[YXAboutCell class] forCellReuseIdentifier:@"YXAboutCell"];
     [self.view addSubview:_tableView];
     
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
     YXAboutHeaderView *headerView = [[YXAboutHeaderView alloc] init];
-    headerView.frame = CGRectMake(0, 0, 320, 300);
+    headerView.frame = CGRectMake(0, 0, 320.0f, 300/667.0f * height);
     _tableView.tableHeaderView = headerView;
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size
                                                                   .width, 100.f)];
+    
     UIButton *footerButton = [UIButton buttonWithType:UIButtonTypeCustom];
     footerButton.frame = CGRectMake(0, 0, 150, 50.0f);
     footerButton.center = footerView.center;
@@ -58,6 +62,7 @@
     footerButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [footerButton setTitle:@"使用条款和隐私策略" forState:UIControlStateNormal];
     [footerButton setTitleColor:[UIColor colorWithHexString:@"41c694"] forState:UIControlStateNormal];
+    [footerButton addTarget:self action:@selector(goProvisionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [footerView addSubview:footerButton];
     _tableView.tableFooterView = footerView;
 }
@@ -112,5 +117,10 @@
         [menu setTargetRect: [cell frame] inView: [self view]];
         [menu setMenuVisible: YES animated: YES];
     }
+}
+
+- (void)goProvisionButtonAction:(UIButton *)sender{
+    YXProvisionViewController *provisionVC = [[YXProvisionViewController alloc] init];
+    [self.navigationController pushViewController:provisionVC animated:YES];
 }
 @end

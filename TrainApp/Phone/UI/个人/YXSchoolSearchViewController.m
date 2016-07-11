@@ -67,7 +67,7 @@
     [self.view addSubview:_searchBar];
     
     _rangeLabel = [[UILabel alloc] init];
-    _rangeLabel.text = @"范围: 北京市 朝阳区";
+    _rangeLabel.text = [NSString stringWithFormat:@"范围: %@ ",self.areaName];
     _rangeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     _rangeLabel.font = [UIFont systemFontOfSize:13.0f];
     [self.view addSubview:_rangeLabel];
@@ -179,10 +179,10 @@
         [request startRequestWithRetClass:[YXSchoolSearchItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
             [self stopLoading];
- //           YXSchoolSearchItem *item = retItem;
-            NSString *pathString = [[NSBundle mainBundle] pathForResource:@"search" ofType:@"txt"];
-            NSString *string = [NSString stringWithContentsOfFile:pathString encoding:NSUTF8StringEncoding error:nil];
-            YXSchoolSearchItem *item = [[YXSchoolSearchItem alloc] initWithString:string error:nil];
+            YXSchoolSearchItem *item = retItem;
+//            NSString *pathString = [[NSBundle mainBundle] pathForResource:@"search" ofType:@"txt"];
+//            NSString *string = [NSString stringWithContentsOfFile:pathString encoding:NSUTF8StringEncoding error:nil];
+//            YXSchoolSearchItem *item = [[YXSchoolSearchItem alloc] initWithString:string error:nil];
             if (item) {
                 self ->_item = item;
                 [self ->_tableView reloadData];

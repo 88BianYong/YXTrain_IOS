@@ -144,7 +144,7 @@ UICollectionViewDelegate
     WEAK_SELF
     [_memberFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self->_footer endRefreshing];
             [self->_header endRefreshing];
         });//多次加载
@@ -157,9 +157,8 @@ UICollectionViewDelegate
             _pageIndex ++ ;
             [self.dataMutableArray addObjectsFromArray:retItemArray];
             [self ->_collectionView reloadData];
-            
         }
-        else{
+        else if(error){
             [self showToast:error.localizedDescription];
         }
     }];

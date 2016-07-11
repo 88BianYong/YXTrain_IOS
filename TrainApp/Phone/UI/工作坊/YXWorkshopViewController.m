@@ -42,9 +42,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsMake(0, 66, 0, 10);
-    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        _tableView.layoutMargins = UIEdgeInsetsZero;
-    }
+    _tableView.layoutMargins = UIEdgeInsetsZero;
     [_tableView registerClass:[YXWorkshopCell class] forCellReuseIdentifier:@"YXWorkshopCell"];
     [self.view addSubview:_tableView];
 }

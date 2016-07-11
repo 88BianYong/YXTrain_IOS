@@ -44,10 +44,21 @@
     [_tableView reloadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear: animated];
+    if (_detailRequest) {
+        [_detailRequest stopRequest];
+    }
+    if (_memberFetcher) {
+        [_memberFetcher stop];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"工作坊详情";
     _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:2];
+    [self workshopDetailDataFormat:nil];
     _detailItem = [[YXWorkshopDetailRequestItem alloc] init];
     [self setupUI];
     [self layoutInterface];
@@ -64,9 +75,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0);
-    if ([_tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        _tableView.layoutMargins = UIEdgeInsetsZero;
-    }
+    _tableView.layoutMargins = UIEdgeInsetsZero;
     _headerView = [[YXWorkshopDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 165.0f)];
     _tableView.tableHeaderView = _headerView;
     [_tableView registerClass:[YXWorkshopDetailGroupCell class] forCellReuseIdentifier:@"YXWorkshopDetailGroupCell"];
@@ -170,6 +179,9 @@
 }
 
 - (void)requestForWorkshopMember{
+    if (_memberFetcher) {
+        [_memberFetcher stop];
+    }
     _memberFetcher = [[YXWorkshopMemberFetcher alloc] init];
     _memberFetcher.barid = self.baridString;
     _memberFetcher.pagesize = 40;
@@ -196,8 +208,9 @@
                                         @{@"title":@"学年",@"content":formatContent(item.grade)},
                                         @{@"title":@"简介",@"content":formatContent(item.barDesc)}];
     [_dataMutableArray addObject:infoArray];
-    NSMutableDictionary *memberMutableDictionary =[@{@"title":@"成员",@"content":item.memberNum} mutableCopy];
-    NSMutableDictionary *resourcesMutableDictionary =[@{@"title":@"资源",@"content":item.resNum} mutableCopy];
+    NSMutableDictionary *memberMutableDictionary =[@{@"title":@"成员",@"content":formatContent(item.memberNum)} mutableCopy];
+    [memberMutableDictionary setValue:[NSMutableArray array] forKey:@"member"];
+    NSMutableDictionary *resourcesMutableDictionary =[@{@"title":@"资源",@"content":formatContent(item.resNum)} mutableCopy];
     NSMutableArray *mutableArray =[@[memberMutableDictionary,resourcesMutableDictionary] mutableCopy];
     [_dataMutableArray addObject:mutableArray];
     [_tableView reloadData];

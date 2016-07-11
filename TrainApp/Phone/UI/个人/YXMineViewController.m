@@ -730,4 +730,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXSchoolSearchViewController *searchVC = [[YXSchoolSearchViewController alloc] init];
+    searchVC.areaName = @"";
+    [self.navigationController pushViewController:searchVC animated:YES];
+}
 @end
