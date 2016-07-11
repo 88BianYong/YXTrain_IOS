@@ -108,7 +108,7 @@
     self.overlayNavigationItem.rightBarButtonItems = [YXNavigationBarController barButtonItemsForView:rightButton];
     
     [self.overlayNavigationBar pushNavigationItem:self.overlayNavigationItem animated:NO];
-     [self.overlayNavigationBar setBackgroundImage:[UIImage yx_imageWithColor:[UIColor blueColor]] forBarMetrics:UIBarMetricsDefault];
+//     [self.overlayNavigationBar setBackgroundImage:[UIImage yx_imageWithColor:[UIColor blueColor]] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewWillLayoutSubviews {
