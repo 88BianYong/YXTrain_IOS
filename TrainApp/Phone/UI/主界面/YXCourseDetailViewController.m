@@ -18,6 +18,9 @@
 @property (nonatomic, strong) YXModuleDetailRequest *moduleDetailRequest;
 @property (nonatomic, strong) YXCourseDetailRequest *courseDetailRequest;
 @property (nonatomic, strong) YXCourseDetailItem *courseItem;
+
+@property (nonatomic, strong) YXErrorView *errorView;
+@property (nonatomic, strong) YXEmptyView *emptyView;
 @end
 
 @implementation YXCourseDetailViewController
@@ -30,6 +33,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.course.course_title;
+    WEAK_SELF
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self getData];
+    };
+    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    
     [self setupUI];
     [self getData];
 }
@@ -70,10 +81,23 @@
             STRONG_SELF
             [self stopLoading];
             if (error) {
-                [self showToast:error.localizedDescription];
+                if ([error.domain isEqualToString:@"network"]) { // 业务逻辑错误
+                    self.emptyView.frame = self.view.bounds;
+                    [self.view addSubview:self.emptyView];
+                }else{
+                    self.errorView.frame = self.view.bounds;
+                    [self.view addSubview:self.errorView];
+                }
                 return;
             }
             YXCourseDetailRequestItem *item = (YXCourseDetailRequestItem *)retItem;
+            if (item.body.chapters.count == 0) {
+                self.emptyView.frame = self.view.bounds;
+                [self.view addSubview:self.emptyView];
+            }
+            [self.errorView removeFromSuperview];
+            [self.emptyView removeFromSuperview];
+            
             [self dealWithCourseItem:item.body];
         }];
     }else{
@@ -88,10 +112,23 @@
             STRONG_SELF
             [self stopLoading];
             if (error) {
-                [self showToast:error.localizedDescription];
+                if ([error.domain isEqualToString:@"network"]) { // 业务逻辑错误
+                    self.emptyView.frame = self.view.bounds;
+                    [self.view addSubview:self.emptyView];
+                }else{
+                    self.errorView.frame = self.view.bounds;
+                    [self.view addSubview:self.errorView];
+                }
                 return;
             }
             YXModuleDetailRequestItem *item = (YXModuleDetailRequestItem *)retItem;
+            if (item.body.chapters.count == 0) {
+                self.emptyView.frame = self.view.bounds;
+                [self.view addSubview:self.emptyView];
+            }
+            [self.errorView removeFromSuperview];
+            [self.emptyView removeFromSuperview];
+            
             [self dealWithCourseItem:item.body];
         }];
     }

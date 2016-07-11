@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YXEmptyView : UIView
-@property (nonatomic, strong) NSString *message;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *subTitle;
 @property (nonatomic, strong) NSString *imageName;
 @end

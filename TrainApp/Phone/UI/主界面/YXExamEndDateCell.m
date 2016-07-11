@@ -36,7 +36,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.dateLabel = [[UILabel alloc]init];
     self.dateLabel.font = [UIFont systemFontOfSize:11];
-    self.dateLabel.textColor = [UIColor colorWithHexString:@"bec8d8"];
+    self.dateLabel.textColor = [UIColor colorWithHexString:@"d1d1d1"];
     self.dateLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.dateLabel];
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {

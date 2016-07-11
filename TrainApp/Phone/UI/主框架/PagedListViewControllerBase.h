@@ -8,7 +8,6 @@
 
 #import "YXBaseViewController.h"
 #import "PagedListFetcherBase.h"
-#import "YXCommonErrorView.h"
 
 @interface PagedListViewControllerBase : YXBaseViewController
 @property (nonatomic, strong) UITableView *tableView;
@@ -18,7 +17,7 @@
 @property (nonatomic, assign) BOOL bNeedFooter;
 
 @property (nonatomic, strong) PagedListFetcherBase *dataFetcher;
-@property (nonatomic, strong) YXCommonErrorView *errorView;
+@property (nonatomic, strong) YXErrorView *errorView;
 
 @property (nonatomic, strong) UIView *emptyView;
 

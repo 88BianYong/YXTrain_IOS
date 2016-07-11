@@ -46,6 +46,7 @@ static const CGFloat kImageWidth = 30;
     self.rightImageView = [[UIImageView alloc]init];
     self.rightImageView.image = [UIImage imageNamed:@"下拉三角灰"];
     self.rightImageView.contentMode = UIViewContentModeCenter;
+    self.rightImageView.hidden = YES;
     [self addSubview:self.rightImageView];
     
     self.maskView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -83,6 +84,7 @@ static const CGFloat kImageWidth = 30;
     self.titleLabel.frame = CGRectMake((self.bounds.size.width-titleWidth-kImageWidth)/2, 0, titleWidth, self.bounds.size.height);
     self.titleLabel.text = pName;
     if (self.projectArray.count > 1) {
+        self.rightImageView.hidden = NO;
         self.rightImageView.frame = CGRectMake(self.titleLabel.frame.origin.x+self.titleLabel.frame.size.width, (self.bounds.size.height-kImageWidth)/2, kImageWidth, kImageWidth);
         self.bgButton.userInteractionEnabled = YES;
     }
@@ -134,6 +136,7 @@ static const CGFloat kImageWidth = 30;
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.currentIndex == indexPath.row) {
+        [self hideSelectionView];
         return;
     }
     self.currentIndex = indexPath.row;

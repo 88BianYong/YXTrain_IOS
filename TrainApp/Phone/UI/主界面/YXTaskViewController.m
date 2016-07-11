@@ -15,6 +15,9 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) YXTaskListRequest *request;
 @property (nonatomic, strong) YXTaskListRequestItem *tasklistItem;
+
+@property (nonatomic, strong) YXErrorView *errorView;
+@property (nonatomic, strong) YXEmptyView *emptyView;
 @end
 
 @implementation YXTaskViewController
@@ -23,6 +26,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"任务";
+    WEAK_SELF
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self getData];
+    };
+    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    
     [self loadCache];
     [self setupUI];
     [self getData];
@@ -58,9 +69,23 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            [self showToast:error.localizedDescription];
+            if (self.tasklistItem.body.tasks.count == 0) {
+                self.errorView.frame = self.view.bounds;
+                [self.view addSubview:self.errorView];
+            }else{
+                [self showToast:error.localizedDescription];
+            }
             return;
         }
+        YXTaskListRequestItem *item = (YXTaskListRequestItem *)retItem;
+        if (item.body.tasks.count == 0) {
+            self.emptyView.frame = self.view.bounds;
+            [self.view addSubview:self.emptyView];
+            return;
+        }
+        [self.errorView removeFromSuperview];
+        [self.emptyView removeFromSuperview];
+        
         self.tasklistItem = retItem;
         [self.tableView reloadData];
         [self saveToCache];

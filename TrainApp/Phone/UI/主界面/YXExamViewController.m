@@ -26,6 +26,8 @@
 @property (nonatomic, strong) YXExamineRequestItem *examineItem;
 @property (nonatomic, strong) NSMutableDictionary *foldStatusDic;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
+
+@property (nonatomic, strong) YXErrorView *errorView;
 @end
 
 @implementation YXExamViewController
@@ -38,6 +40,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"考核";
+    WEAK_SELF
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self getData];
+    };
+    
     self.foldStatusDic = [NSMutableDictionary dictionary];
     [self setupUI];
     [self getData];
@@ -87,9 +96,11 @@
         [self stopLoading];
         [self.header endRefreshing];
         if (error) {
-            [self showToast:error.localizedDescription];
+            self.errorView.frame = self.view.bounds;
+            [self.view addSubview:self.errorView];
             return;
         }
+        [self.errorView removeFromSuperview];
         [self dealWithRetItem:retItem];
     }];
 }

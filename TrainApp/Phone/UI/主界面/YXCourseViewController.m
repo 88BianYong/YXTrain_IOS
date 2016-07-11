@@ -18,6 +18,8 @@
 @property (nonatomic, strong) YXCourseListFilterModel *filterModel;
 @property (nonatomic, strong) YXCourseListRequest *request;
 @property (nonatomic, assign) BOOL isWaitingForFilter;
+
+@property (nonatomic, strong) YXErrorView *filterErrorView;
 @end
 
 @implementation YXCourseViewController
@@ -39,6 +41,15 @@
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
+    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+    if ([[YXTrainManager sharedInstance].currentProject.w isEqualToString:@"3"]) {
+        emptyView.title = @"没有符合条件的课程";
+    }else{
+        emptyView.title = @"您还没有选课";
+        emptyView.subTitle = @"请您先在电脑登录研修网选课";
+    }
+        
+    self.emptyView = emptyView;
     
     if (self.stageID) {
         self.isWaitingForFilter = YES;
@@ -50,7 +61,19 @@
     [self setupObservers];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.tableView registerClass:[YXCourseListCell class] forCellReuseIdentifier:@"YXCourseListCell"];
+    
+    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(44);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
+    
     if (self.isWaitingForFilter) {
+        self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+        WEAK_SELF
+        self.filterErrorView.retryBlock = ^{
+            STRONG_SELF
+            [self getFilters];
+        };
         [self getFilters];
     }
 }
@@ -58,6 +81,17 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tableViewWillRefresh{
+    CGFloat top = 0.f;
+    if (self.filterView) {
+        top = 44.f;
+    }
+    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(top);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
 }
 
 - (void)getFilters{
@@ -70,11 +104,14 @@
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXCourseListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
+        [self stopLoading];
         if (error) {
-            [self stopLoading];
-            [self showToast:error.localizedDescription];
+            self.errorView.frame = self.view.bounds;
+            [self.view addSubview:self.errorView];
             return;
         }
+        [self.errorView removeFromSuperview];
+        
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         self.filterModel = [item filterModel];
         self.isWaitingForFilter = NO;

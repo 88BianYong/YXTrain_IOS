@@ -19,6 +19,9 @@
 @property (nonatomic, strong) YXCourseRecordRequest *request;
 @property (nonatomic, strong) YXCourseRecordRequestItem *recordItem;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
+
+@property (nonatomic, strong) YXErrorView *errorView;
+@property (nonatomic, strong) YXEmptyView *emptyView;
 @end
 
 @implementation YXCourseRecordViewController
@@ -31,6 +34,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"看课记录";
+    WEAK_SELF
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self getData];
+    };
+    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    self.emptyView.title = @"您还没有开始看课";
+    
     [self setupUI];
     [self getData];
     [self setupObservers];
@@ -81,9 +93,19 @@
         [self stopLoading];
         [self.header endRefreshing];
         if (error) {
-            [self showToast:error.localizedDescription];
+            self.errorView.frame = self.view.bounds;
+            [self.view addSubview:self.errorView];
             return;
         }
+        YXCourseRecordRequestItem *item = (YXCourseRecordRequestItem *)retItem;
+        if (item.body.modules.count == 0) {
+            self.emptyView.frame = self.view.bounds;
+            [self.view addSubview:self.emptyView];
+            return;
+        }
+        [self.errorView removeFromSuperview];
+        [self.emptyView removeFromSuperview];
+        
         [self dealWithRecordItem:retItem];
     }];
 }

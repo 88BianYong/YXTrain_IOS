@@ -149,7 +149,7 @@
         self.scoreLabel.attributedText = [self totalScoreStringWithScore:data.totalscore];
         [self.contentView addSubview:self.scoreLabel];
         [self.scoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.scoreTitleLabel.mas_bottom).mas_offset(14);
+            make.top.mas_equalTo(self.scoreTitleLabel.mas_bottom).mas_offset(6);
             make.centerX.mas_equalTo(self.scoreTitleLabel.mas_centerX);
         }];
     }

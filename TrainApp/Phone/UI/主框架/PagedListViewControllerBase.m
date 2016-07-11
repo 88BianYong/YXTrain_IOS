@@ -60,6 +60,7 @@
         make.edges.mas_equalTo(@0);
     }];
     
+    self.errorView = [[YXErrorView alloc]init];
     @weakify(self);
     [self.errorView setRetryBlock:^{
         @strongify(self); if (!self) return;
@@ -128,10 +129,11 @@
             if (error) {
                 if (isEmpty(self.dataArray)) {  // no cache 强提示, 加载失败界面
                     self->_total = 0;
-                    self.errorView.errorCode = [NSString stringWithFormat:@"%@", @(error.code)];
                     [self showErroView];
                 } else {
-                    [self showToast:error.localizedDescription];
+                    self->_total = 0;
+                    [self showErroView];
+//                    [self showToast:error.localizedDescription];
                 }
                 [self checkHasMore];
                 return;
