@@ -36,6 +36,9 @@
 }
 
 - (void)setupUI{
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.font = [UIFont systemFontOfSize:14];
     self.titleLabel.numberOfLines = 2;

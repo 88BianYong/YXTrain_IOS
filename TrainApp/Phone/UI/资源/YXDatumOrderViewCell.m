@@ -35,6 +35,9 @@
     return self;
 }
 - (void)setupUI{
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.orderLabel = [[UILabel alloc]init];
     self.orderLabel.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:self.orderLabel];

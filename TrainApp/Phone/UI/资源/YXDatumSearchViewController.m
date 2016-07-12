@@ -60,7 +60,7 @@
 }
 
 - (void)setupUI{
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"f2f2f2"];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.estimatedRowHeight = 60;
     self.tableView.dataSource = self;

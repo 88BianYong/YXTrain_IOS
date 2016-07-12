@@ -14,6 +14,8 @@
 #import "YXSideTableViewCell.h"
 #import "YXUserProfileRequest.h"
 #import "YXMineViewController.h"
+#import "YXGuideViewController.h"
+#import "YXGuideModel.h"
 
 
 @interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -199,7 +201,27 @@
             _iconImageView.image = image;
         };
         [self.navigationController pushViewController:vc animated:YES];
+//        YXGuideViewController *vc = [[YXGuideViewController alloc] init];
+//        vc.guideDataArray = [self configGuideArray];
+//        [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+- (NSArray *)configGuideArray {
+    YXGuideModel *model_1 = [self guideModelWithImageName:@"" title:@"yiyi" isShowButton:NO];
+    YXGuideModel *model_2 = [self guideModelWithImageName:@"" title:@"erer" isShowButton:NO];
+    YXGuideModel *model_3 = [self guideModelWithImageName:@"" title:@"sansan" isShowButton:NO];
+    YXGuideModel *model_4 = [self guideModelWithImageName:@"" title:@"sisi" isShowButton:YES];
+    NSArray *guideArry = @[model_1,model_2,model_3,model_4];
+    return guideArry;
+}
+
+- (YXGuideModel *)guideModelWithImageName:(NSString *)name title:(NSString *)titile isShowButton:(BOOL)isShowButton {
+    YXGuideModel *model =[[YXGuideModel alloc] init];
+    model.guideTitle = titile;
+    model.guideImageString = name;
+    model.isShowButton = isShowButton;
+    return model;
 }
 
 - (void)tapFooterGesture:(UIGestureRecognizer *)gesture

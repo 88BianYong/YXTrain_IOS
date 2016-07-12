@@ -170,7 +170,7 @@
             [self ->_headerView reloadWithName:_detailItem.gname
                                         master:[_detailItem.master yx_isValidString]?_detailItem.master:@"暂无"];
             [self workshopDetailDataFormat:item];
-            //[self requestForWorkshopMember];
+            [self requestForWorkshopMember];
         }
         else{
             [self showToast:error.localizedDescription];

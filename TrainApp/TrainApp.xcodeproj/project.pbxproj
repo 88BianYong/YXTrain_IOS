@@ -203,6 +203,9 @@
 		CB1606071D2FC8490071BA01 /* UIImage+YXImage.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1606061D2FC8490071BA01 /* UIImage+YXImage.m */; };
 		CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1606091D2FCA9F0071BA01 /* YXActionSheet.m */; };
 		CB16060D1D2FCB390071BA01 /* YXUploadHeadImgRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16060C1D2FCB390071BA01 /* YXUploadHeadImgRequest.m */; };
+		CB227EA21D34AB4C00D5327B /* YXGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB227EA11D34AB4C00D5327B /* YXGuideViewController.m */; };
+		CB227EA51D34C3A800D5327B /* YXGuideCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB227EA41D34C3A800D5327B /* YXGuideCustomView.m */; };
+		CB227EAE1D34D11E00D5327B /* YXGuideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB227EAD1D34D11E00D5327B /* YXGuideModel.m */; };
 		CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF34A1D1BE9AD00E76B34 /* YXLoginTextFiledView.m */; };
 		CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF34D1D1BF00300E76B34 /* NSString+YXString.m */; };
 		CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CF3501D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m */; };
@@ -689,6 +692,12 @@
 		CB1606091D2FCA9F0071BA01 /* YXActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXActionSheet.m; sourceTree = "<group>"; };
 		CB16060B1D2FCB390071BA01 /* YXUploadHeadImgRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadHeadImgRequest.h; sourceTree = "<group>"; };
 		CB16060C1D2FCB390071BA01 /* YXUploadHeadImgRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUploadHeadImgRequest.m; sourceTree = "<group>"; };
+		CB227EA01D34AB4C00D5327B /* YXGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGuideViewController.h; sourceTree = "<group>"; };
+		CB227EA11D34AB4C00D5327B /* YXGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXGuideViewController.m; sourceTree = "<group>"; };
+		CB227EA31D34C3A800D5327B /* YXGuideCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGuideCustomView.h; sourceTree = "<group>"; };
+		CB227EA41D34C3A800D5327B /* YXGuideCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXGuideCustomView.m; sourceTree = "<group>"; };
+		CB227EAC1D34D11E00D5327B /* YXGuideModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGuideModel.h; sourceTree = "<group>"; };
+		CB227EAD1D34D11E00D5327B /* YXGuideModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXGuideModel.m; sourceTree = "<group>"; };
 		CB2CF3491D1BE9AD00E76B34 /* YXLoginTextFiledView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLoginTextFiledView.h; sourceTree = "<group>"; };
 		CB2CF34A1D1BE9AD00E76B34 /* YXLoginTextFiledView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoginTextFiledView.m; sourceTree = "<group>"; };
 		CB2CF34C1D1BF00300E76B34 /* NSString+YXString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YXString.h"; sourceTree = "<group>"; };
@@ -1049,6 +1058,7 @@
 		7C3177641D0E688D004AAC90 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				CB227EAB1D34D10700D5327B /* 引导页 */,
 				9223C8241D2E0DFC000F74DF /* 设置 */,
 				7CF888451D18E88500E7C04D /* 登录注册 */,
 				7C31783A1D139789004AAC90 /* 动态 */,
@@ -1687,6 +1697,10 @@
 			isa = PBXGroup;
 			children = (
 				7CF888431D18E86A00E7C04D /* readme.txt */,
+				CB227EA01D34AB4C00D5327B /* YXGuideViewController.h */,
+				CB227EA11D34AB4C00D5327B /* YXGuideViewController.m */,
+				CB227EA31D34C3A800D5327B /* YXGuideCustomView.h */,
+				CB227EA41D34C3A800D5327B /* YXGuideCustomView.m */,
 			);
 			path = "引导页";
 			sourceTree = "<group>";
@@ -1906,6 +1920,15 @@
 				CBBE95001D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m */,
 			);
 			name = views;
+			sourceTree = "<group>";
+		};
+		CB227EAB1D34D10700D5327B /* 引导页 */ = {
+			isa = PBXGroup;
+			children = (
+				CB227EAC1D34D11E00D5327B /* YXGuideModel.h */,
+				CB227EAD1D34D11E00D5327B /* YXGuideModel.m */,
+			);
+			name = "引导页";
 			sourceTree = "<group>";
 		};
 		CB3510A11D18E9460081EA3B /* controllers */ = {
@@ -2324,10 +2347,12 @@
 				922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */,
 				CB52FCFB1D2BC1720096D8DC /* YXNoticeListFetch.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
+				CB227EA21D34AB4C00D5327B /* YXGuideViewController.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
 				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
 				7CF8888B1D1D09B100E7C04D /* YXExamineRequest.m in Sources */,
 				7CF8886D1D1BC5C300E7C04D /* YXGradientView.m in Sources */,
+				CB227EAE1D34D11E00D5327B /* YXGuideModel.m in Sources */,
 				CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
@@ -2424,6 +2449,7 @@
 				7C3177B11D0EB738004AAC90 /* UIImage+FixOrientation.m in Sources */,
 				CB748EE31D228B51004BCFBF /* YXFilterButton.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
+				CB227EA51D34C3A800D5327B /* YXGuideCustomView.m in Sources */,
 				9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
 				7C2C3B821D24F5BE00A03635 /* YXCourseRecordViewController.m in Sources */,

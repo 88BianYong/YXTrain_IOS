@@ -17,7 +17,6 @@
 #import "YXProvinceList.h"
 #import "YXUpdateProfileRequest.h"
 #import "YXImagePickerController.h"
-//#import "YXActionSheet.h"
 #import "UIImage+YXImage.h"
 #import "YXUploadHeadImgRequest.h"
 #import "HJCActionSheet.h"
@@ -87,6 +86,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+//    self.tableView.scrollEnabled = NO;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
@@ -96,9 +96,9 @@
     [self.tableView registerClass:[YXUserImageTableViewCell class] forCellReuseIdentifier:@"YXUserImageTableViewCell"];
     [self.tableView registerClass:[YXUserInfoTableViewCell class] forCellReuseIdentifier:@"YXUserInfoTableViewCell"];
     [self.tableView registerClass:[YXUserTextFieldTableViewCell class] forCellReuseIdentifier:@"YXUserTextFieldTableViewCell"];
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
-    headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.tableView.tableHeaderView = headerView;
+//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
+//    headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+//    self.tableView.tableHeaderView = headerView;
 }
 
 #pragma mark --TabelViewDelegate, TabelViewDataSource
@@ -721,4 +721,19 @@
     [super viewWillDisappear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    YXSchoolSearchViewController *searchVC = [[YXSchoolSearchViewController alloc] init];
+//    searchVC.areaName = @"";
+//    [self.navigationController pushViewController:searchVC animated:YES];
+//}
 @end

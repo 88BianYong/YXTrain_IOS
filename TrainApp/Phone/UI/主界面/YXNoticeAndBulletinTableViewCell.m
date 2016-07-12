@@ -44,6 +44,9 @@
 }
 
 - (void)setupUI {
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.topView = [[UIView alloc] init];
     self.topView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.contentView addSubview:self.topView];

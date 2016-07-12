@@ -104,12 +104,13 @@
     
     [_cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@0);
-        make.left.equalTo(@40);
+        make.height.equalTo(@40);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(40);
     }];
     [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.right.equalTo(@0);
+        make.top.equalTo(@0);
         make.height.equalTo(_cancelButton.mas_height);
-        make.right.mas_equalTo(-40);
+        make.right.mas_equalTo(self.contentView.mas_right).offset(-40);
     }];
     
     [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {

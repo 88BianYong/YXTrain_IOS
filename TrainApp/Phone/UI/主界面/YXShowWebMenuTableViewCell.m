@@ -37,6 +37,9 @@
 }
 
 - (void)setupUI {
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.menuImageView = [[UIImageView alloc] init];
     self.menuImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.menuImageView];
