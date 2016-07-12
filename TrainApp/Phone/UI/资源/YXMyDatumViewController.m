@@ -32,6 +32,7 @@
     [super viewDidLoad];
     self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXMyDatumCell class] forCellReuseIdentifier:@"YXMyDatumCell"];
     UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3)];
     tableViewHeaderView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];

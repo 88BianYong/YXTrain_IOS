@@ -61,13 +61,6 @@
     YXBroseWebView *webView = [[YXBroseWebView alloc] init];
     webView.urlString = item.url;
     [self.navigationController pushViewController:webView animated:NO];
-//    YXTaskListRequestItem_body_task *task = self.tasklistItem.body.tasks[indexPath.row];
-//    if (task.toolid.integerValue == 201) {
-//        YXCourseViewController *vc = [[YXCourseViewController alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else{
-//        [self showToast:@"相关功能暂未开放"];
-//    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -81,6 +74,9 @@
     return 0.01f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == self.dataArray.count -1 ) {
+        return 40;
+    }
     return 0.01f;
 }
 
@@ -103,6 +99,18 @@
         return [UIView new];
     }
 }
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == self.dataArray.count - 1) {
+        UIView *headerView = [[UIView alloc] init];
+        headerView.backgroundColor = [UIColor whiteColor];
+        return headerView;
+    } else {
+        return [UIView new];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

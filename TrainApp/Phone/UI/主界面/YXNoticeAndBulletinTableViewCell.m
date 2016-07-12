@@ -119,7 +119,7 @@
     
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentLabel.mas_left);
-        make.top.mas_equalTo(self.contentLabel.mas_bottom).offset(10);
+        make.top.mas_equalTo(self.contentLabel.mas_bottom).offset(8);
     }];
     
     [self.publisherLabel mas_makeConstraints:^(MASConstraintMaker *make) {
