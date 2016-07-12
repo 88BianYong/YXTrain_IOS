@@ -19,6 +19,9 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        UIView *selectedBgView = [[UIView alloc]init];
+        selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+        self.selectedBackgroundView = selectedBgView;
         [self setupUI];
         [self layoutInterface];
     }

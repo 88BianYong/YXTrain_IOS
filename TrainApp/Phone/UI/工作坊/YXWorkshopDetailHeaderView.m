@@ -72,7 +72,7 @@
     
     [_masterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_nameLable.mas_bottom).offset(12.0f);
-        make.centerX.equalTo(self.mas_centerX).offset(16.0f);
+        make.centerX.equalTo(self.mas_centerX).offset(8.0f);
     }];
 }
 - (void)reloadWithName:(NSString *)nameString

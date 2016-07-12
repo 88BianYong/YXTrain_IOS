@@ -56,19 +56,22 @@
     YXAboutHeaderView *headerView = [[YXAboutHeaderView alloc] init];
     headerView.frame = CGRectMake(0, 0, 320.0f, 300/667.0f * height);
     _tableView.tableHeaderView = headerView;
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size
-                                                                  .width, 100.f)];
+    
     
     UIButton *footerButton = [UIButton buttonWithType:UIButtonTypeCustom];
     footerButton.frame = CGRectMake(0, 0, 150, 50.0f);
-    footerButton.center = footerView.center;
     footerButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     footerButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [footerButton setTitle:@"使用条款和隐私策略" forState:UIControlStateNormal];
     [footerButton setTitleColor:[UIColor colorWithHexString:@"41c694"] forState:UIControlStateNormal];
     [footerButton addTarget:self action:@selector(goProvisionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [footerView addSubview:footerButton];
-    _tableView.tableFooterView = footerView;
+    [self.view addSubview:footerButton];
+    [footerButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(50.0f);
+        make.width.mas_equalTo(150.0f);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-27.0f/667.0f * height);
+    }];
 }
 
 #pragma mark - tableView dataSorce
@@ -114,7 +117,7 @@
         YXActionSheet * sheet = [YXActionSheet actionSheetWithTitle:nil];
         NSString * title = [NSString stringWithFormat:@"呼叫:  %@",_phoneString];
         [sheet addDestructiveButtonWithTitle:title action:^{
-            NSString *telUrl = [NSString stringWithFormat:@"el://%@",_phoneString];
+            NSString *telUrl = [NSString stringWithFormat:@"tel://%@",_phoneString];
             if (![[UIApplication sharedApplication] openURL:[NSURL URLWithString:telUrl]]) {
                 [YXAlertView showAlertViewWithMessage:@"此设备不支持通话！"];
             }

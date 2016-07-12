@@ -13,8 +13,13 @@
 @interface YXWorkshopViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     UITableView *_tableView;
-    YXWorkshopListRequest *_listRequest;
+    YXErrorView *_errorView;
+    YXEmptyView *_emptyView;
+    
     NSMutableArray *_dataMutableArray;
+    
+    YXWorkshopListRequest *_listRequest;
+
 }
 @end
 
@@ -44,8 +49,19 @@
     _tableView.separatorInset = UIEdgeInsetsMake(0, 66, 0, 10);
     _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
     _tableView.layoutMargins = UIEdgeInsetsZero;
+    _tableView.backgroundColor = [UIColor clearColor];
     [_tableView registerClass:[YXWorkshopCell class] forCellReuseIdentifier:@"YXWorkshopCell"];
     [self.view addSubview:_tableView];
+    
+    WEAK_SELF
+    _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    _errorView.retryBlock = ^{
+        STRONG_SELF
+        [self requestForWorkshopList];
+    };
+    _emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    _emptyView.title = @"暂无内容";
+
 }
 - (void)layoutInterface{
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -92,9 +108,6 @@
     [cell reloadWithText:group.gname imageUrl:@""];
     return cell;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return [[UIView alloc] init];
-}
 #pragma mark - request
 - (void)requestForWorkshopList{
     if (_listRequest) {
@@ -106,14 +119,22 @@
     [request startRequestWithRetClass:[YXWorkshopListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        YXWorkshopListRequestItem *item = (YXWorkshopListRequestItem *)retItem;
-        if (item && !error) {
-            DDLogDebug(@"%@",item);
-            [self -> _dataMutableArray addObjectsFromArray:item.group];
-            [_tableView reloadData];
+        if (error) {
+            self ->_errorView.frame = self.view.bounds;
+            [self.view addSubview:self ->_errorView];
         }
         else{
-            [self showToast:error.localizedDescription];
+            YXWorkshopListRequestItem *item = (YXWorkshopListRequestItem *)retItem;
+            if (item.group.count > 0) {
+                [self -> _dataMutableArray addObjectsFromArray:item.group];
+                [_tableView reloadData];
+                [self -> _emptyView removeFromSuperview];
+                [self -> _errorView removeFromSuperview];
+            }
+            else{
+                self ->_emptyView.frame = self.view.bounds;
+                [self.view addSubview:self ->_emptyView];
+            }
         }
     }];
     _listRequest = request;

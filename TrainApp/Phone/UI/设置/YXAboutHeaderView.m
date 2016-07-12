@@ -38,23 +38,22 @@
         make.centerX.equalTo(self.mas_centerX);
     }];
     
-    UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.text = @"良师通";
-    nameLabel.textColor = [UIColor blackColor];
-    nameLabel.font = [UIFont boldSystemFontOfSize:18.0f];
-    [self addSubview:nameLabel];
-    [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIImageView *titleImageView = [[UIImageView alloc] init];
+    titleImageView.image = [UIImage imageNamed:@"良师通"];
+    [self addSubview:titleImageView];
+    [titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(logoImageView.mas_bottom).offset(26.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
     
     UILabel *versionLabel = [[UILabel alloc] init];
-    versionLabel.text = @"v2.2";
-    versionLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    versionLabel.font = [UIFont systemFontOfSize:15.0f];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];  
+    versionLabel.text = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    versionLabel.textColor = [UIColor colorWithHexString:@"bbc2c9"];
+    versionLabel.font = [UIFont fontWithName:YXFontMetro_Italic size:16];
     [self addSubview:versionLabel];
     [versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(nameLabel.mas_bottom).offset(11.0f);
+        make.top.equalTo(titleImageView.mas_bottom).offset(11.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
 

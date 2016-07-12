@@ -95,6 +95,7 @@
     
     _contactTextField = [[UITextField alloc] init];
     _contactTextField.font = [UIFont systemFontOfSize:14];
+    _contactTextField.keyboardType = UIKeyboardTypeNumberPad;
     [_contactView addSubview:_contactTextField];
     _contactTextField.placeholder = @"我们会第一时间联系你";
     
@@ -184,6 +185,7 @@
 
 #pragma mark - button Action
 - (void)submitButtonAction:(UIButton *)sender{
+    [self yx_hideKeyboard];
     NSString *string = [_feedBackTextView.text yx_stringByTrimmingCharacters];
     if ([string yx_isValidString] && string.length >= 4) {
         [self requestForFeedback];

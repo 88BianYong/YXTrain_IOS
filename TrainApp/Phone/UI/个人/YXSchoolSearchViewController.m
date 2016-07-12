@@ -21,6 +21,7 @@
     UIButton *_addButton;
     UITableView * _tableView;
     UILabel *_rangeLabel;
+    YXEmptyView *_emptyView;
     
     YXSchoolSearchRequest *_searchRequest;
     YXSchoolSearchItem *_item;
@@ -66,8 +67,12 @@
     //    _searchBar.barTintColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.view addSubview:_searchBar];
     
+//    UITextField *searchField = [_searchBar valueForKey:@"searchField"];
+//    if (searchField) {
+//        searchField.layer.cornerRadius = 4.0f;
+//    }
     _rangeLabel = [[UILabel alloc] init];
-    _rangeLabel.text = [NSString stringWithFormat:@"范围: %@ ",self.areaName];
+    _rangeLabel.text = [NSString stringWithFormat:@"范围:  %@ ",self.areaName];
     _rangeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     _rangeLabel.font = [UIFont systemFontOfSize:13.0f];
     [self.view addSubview:_rangeLabel];
@@ -84,6 +89,10 @@
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15.0f, 85.5f, self.view.bounds.size.width - 15.0f, 0.5f)];
     lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.view addSubview:lineView];
+    
+    _emptyView = [[YXEmptyView alloc]initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 40.0f - 64.0f)];
+    _emptyView.title = @"没有符合条件的学校";
+    
 }
 
 - (void)layoutInterace{
@@ -183,9 +192,13 @@
 //            NSString *pathString = [[NSBundle mainBundle] pathForResource:@"search" ofType:@"txt"];
 //            NSString *string = [NSString stringWithContentsOfFile:pathString encoding:NSUTF8StringEncoding error:nil];
 //            YXSchoolSearchItem *item = [[YXSchoolSearchItem alloc] initWithString:string error:nil];
-            if (item) {
+            if (item.schools.count > 0) {
                 self ->_item = item;
                 [self ->_tableView reloadData];
+            }
+            else{
+                [self.view addSubview:self ->_emptyView];
+                [self yx_hideKeyboard];
             }
         }];
         _searchRequest = request;

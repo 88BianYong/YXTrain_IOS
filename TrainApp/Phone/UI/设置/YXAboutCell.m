@@ -22,6 +22,9 @@
     return self;
 }
 - (void)setupUI{
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     _titleLabel = [[UILabel alloc] init];
     [self.contentView addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

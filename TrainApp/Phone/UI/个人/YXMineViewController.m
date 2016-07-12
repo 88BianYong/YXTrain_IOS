@@ -156,7 +156,7 @@
             cell.userInfoButtonClickedBlock = ^() {
                 YXSchoolSearchViewController *vc = [[YXSchoolSearchViewController alloc] init];
                 vc.areaId = self.profile.regionId;
-                vc.areaName = @"";
+                vc.areaName = [NSString stringWithFormat:@"%@ %@ %@",self.profile.province,self.profile.city,self.profile.region];
                 vc.addSchoolNameSuccessBlock = ^(NSString *schoolName){
                     YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
                     [cell configUIwithTitle:@"学校" content:schoolName];

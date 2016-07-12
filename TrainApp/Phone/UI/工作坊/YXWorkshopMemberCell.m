@@ -59,7 +59,7 @@
 #pragma mark - reloadData
 - (void)setList:(YXWorkshopMemberRequestItem_memberList *)list{
     _list = list;
-    _nameLabel.text = list.nickName;
+    _nameLabel.text = list.realName;
     [_headImageView sd_setImageWithURL:[NSURL URLWithString:list.head] placeholderImage:[UIImage imageNamed:@""]];
 }
 @end

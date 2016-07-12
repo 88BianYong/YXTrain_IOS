@@ -35,6 +35,7 @@ UICollectionViewDelegate
     UILabel *_titleLabel;
     UICollectionView *_collectionView;
     UILabel *_contentLabel;
+    UIImageView *_imageView;
 }
 @end
 
@@ -43,7 +44,9 @@ UICollectionViewDelegate
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        UIView *selectedBgView = [[UIView alloc]init];
+        selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+        self.selectedBackgroundView = selectedBgView;
         [self setupUI];
         [self layoutInterface];
     }
@@ -63,7 +66,7 @@ UICollectionViewDelegate
 #pragma mark - UI setting
 - (void)setupUI{
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+    _titleLabel.font = [UIFont boldSystemFontOfSize:13.0f];
     _titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:_titleLabel];
     
@@ -80,9 +83,14 @@ UICollectionViewDelegate
     [self.contentView addSubview:_collectionView];
     
     _contentLabel = [[UILabel alloc] init];
-    _contentLabel.font = [UIFont boldSystemFontOfSize:15.0f];
-    _contentLabel.textColor = [UIColor colorWithHexString:@"505f84"];
+    _contentLabel.font = [UIFont boldSystemFontOfSize:13.0f];
+    _contentLabel.textAlignment = NSTextAlignmentRight;
+    _contentLabel.textColor = [UIColor colorWithHexString:@"0067be"];
     [self.contentView addSubview:_contentLabel];
+    
+    _imageView = [[UIImageView alloc] init];
+    _imageView.backgroundColor = [UIColor redColor];
+    [self.contentView addSubview:_imageView];
 }
 
 - (void)layoutInterface{
@@ -100,9 +108,14 @@ UICollectionViewDelegate
     
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
-        make.right.equalTo(self.contentView.mas_right).offset(-10.0f);
+        make.right.equalTo(_imageView.mas_left).offset(-10.0f);
     }];
-    
+
+    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
+        make.height.width.mas_equalTo(16.0f);
+        make.centerY.equalTo(self.contentView.mas_centerY);
+    }];
 }
 #pragma mark - UICollectionViewDataSource
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -110,7 +123,7 @@ UICollectionViewDelegate
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 6;
+    return _memberMutableArray.count > 6 ? 6 : _memberMutableArray.count;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     YXWorkshopDetailMemberCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXWorkshopDetailMemberCell" forIndexPath:indexPath];

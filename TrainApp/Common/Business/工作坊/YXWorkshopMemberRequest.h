@@ -12,7 +12,7 @@
 @interface YXWorkshopMemberRequestItem_memberList:JSONModel
 @property (nonatomic, strong) NSString<Optional> *uid;
 @property (nonatomic, strong) NSString<Optional> *head;
-@property (nonatomic, strong) NSString<Optional> *nickName;
+@property (nonatomic, strong) NSString<Optional> *realName;
 @end
 
 @interface YXWorkshopMemberRequestItem:HttpBaseRequestItem

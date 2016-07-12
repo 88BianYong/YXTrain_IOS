@@ -10,6 +10,7 @@
 #import "PersistentUrlDownloader.h"
 #import "YXFeedBackViewController.h"
 #import "YXAboutViewController.h"
+#import "YXMySettingCell.h"
 @interface YXMySettingViewController ()
 <
 UITableViewDelegate,
@@ -47,8 +48,10 @@ UITableViewDataSource
     _tableView.dataSource = self;
     _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
     _tableView.separatorInset = UIEdgeInsetsMake(0, 15.0f, 0.0f, 0.0f);
+    _tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     _tableView.layoutMargins = UIEdgeInsetsZero;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"staticString"];
+    [_tableView registerClass:[YXMySettingCell class] forCellReuseIdentifier:@"YXMySettingCell"];
     [self.view addSubview:_tableView];
 }
 
@@ -68,21 +71,25 @@ UITableViewDataSource
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"staticString" forIndexPath:indexPath];
-    cell.textLabel.text = _titleArray[indexPath.section][indexPath.row];
+    
     if (indexPath.section == 0) {
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:14.0f];
-        cell.textLabel.textAlignment = NSTextAlignmentLeft;
-        cell.textLabel.textColor = [UIColor colorWithHexString:@"334466"];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        YXMySettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMySettingCell" forIndexPath:indexPath];
+        [cell reloadWithText:_titleArray[indexPath.section][indexPath.row] imageName:@""];
+        return cell;
     }
     else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"staticString" forIndexPath:indexPath];
+        cell.textLabel.text = _titleArray[indexPath.section][indexPath.row];
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
         cell.textLabel.textColor = [UIColor colorWithHexString:@"0067be"];
         cell.accessoryType = UITableViewCellAccessoryNone;
+        UIView *selectedBgView = [[UIView alloc]init];
+        selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+        cell.selectedBackgroundView = selectedBgView;
+        return cell;
     }
-    return cell;
+    
 }
 
 #pragma mark - tableView Delegate

@@ -38,12 +38,12 @@
 }
 - (void)setupUI{
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+    _titleLabel.font = [UIFont boldSystemFontOfSize:13.0f];
     _titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:_titleLabel];
     
     _contentLabel = [[UILabel alloc] init];
-    _contentLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+    _contentLabel.font = [UIFont boldSystemFontOfSize:13.0f];
     _contentLabel.textColor = [UIColor colorWithHexString:@"505f84"];
     [self.contentView addSubview:_contentLabel];
 }

@@ -22,6 +22,8 @@ UICollectionViewDelegate
     YXWorkshopMemberFetcher *_memberFetcher;
     MJRefreshFooterView *_footer;
     MJRefreshHeaderView *_header;
+    YXErrorView *_errorView;
+    YXEmptyView *_emptyView;
     
     int _pageIndex;
     NSMutableArray *_dataMutableArray;
@@ -85,7 +87,15 @@ UICollectionViewDelegate
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
        STRONG_SELF
         [self requestForWorkshopMember:self ->_pageIndex];
-    };    
+    };
+    
+    _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    _errorView.retryBlock = ^{
+        STRONG_SELF
+        [self requestForWorkshopMember:self ->_pageIndex];
+    };
+    _emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    _emptyView.title = @"暂无成员";
 }
 
 - (void)layoutInterface{
@@ -152,19 +162,39 @@ UICollectionViewDelegate
         });//多次加载
 
         [self stopLoading];
-        if (pageIndex == 0) {
-            [self.cachMutableArray removeAllObjects];
-            [self.cachMutableArray addObjectsFromArray:retItemArray];
-            
-            [self ->_dataMutableArray removeAllObjects];
-        }
-        if (!error && retItemArray) {
-            _pageIndex ++ ;
-            [self ->_dataMutableArray addObjectsFromArray:retItemArray];
-            [self ->_collectionView reloadData];
-        }
-        else if(error){
-            [self showToast:error.localizedDescription];
+        if (pageIndex == 0) {//首次添加 如果错误添加错误界面如果空添加空界面
+            if (error) {
+                self ->_errorView.frame = self.view.bounds;
+                [self.view addSubview:self ->_errorView];
+            }
+            else{
+                if (retItemArray.count > 0) {
+                    [self.cachMutableArray removeAllObjects];
+                    [self.cachMutableArray addObjectsFromArray:retItemArray];
+                    [self ->_dataMutableArray removeAllObjects];
+                    
+                    
+                    [self ->_collectionView reloadData];
+                    
+                    [self -> _emptyView removeFromSuperview];
+                    [self -> _errorView removeFromSuperview];
+                }
+                else{
+                    self ->_emptyView.frame = self.view.bounds;
+                    [self.view addSubview:self ->_emptyView];
+                }
+            }
+        }else{//加载更多错误弹出提示
+            if (error) {
+               [self showToast:error.localizedDescription];
+            }
+            else{
+                if (retItemArray.count > 0) {
+                    _pageIndex ++ ;
+                    [self ->_dataMutableArray addObjectsFromArray:retItemArray];
+                    [self ->_collectionView reloadData];
+                }
+            }
         }
     }];
 }

@@ -151,6 +151,10 @@
     UIView *footerBottomView = [[UIView alloc] init];
     footerBottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.footerView addSubview:footerBottomView];
+    UIButton *footerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [footerButton addTarget:self action:@selector(pushSettingButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [footerButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
+    [self.footerView addSubview:footerButton];
     UIImageView *footerIconImageView = [[UIImageView alloc] init];
     footerIconImageView.backgroundColor = [UIColor redColor];
     [self.footerView addSubview:footerIconImageView];
@@ -159,11 +163,6 @@
     footerLabel.font = [UIFont boldSystemFontOfSize:14];
     footerLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.footerView addSubview:footerLabel];
-    
-    UIButton *footerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [footerButton addTarget:self action:@selector(pushSettingButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.footerView addSubview:footerButton];
-    
     
     [footerBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);

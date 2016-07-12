@@ -188,6 +188,7 @@
 		9223C83A1D2F82D8000F74DF /* search.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9223C8391D2F82D8000F74DF /* search.txt */; };
 		9223C8401D2F93D7000F74DF /* YXUpdateProfileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C83F1D2F93D7000F74DF /* YXUpdateProfileRequest.m */; };
 		9223C8431D337E05000F74DF /* YXProvisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8421D337E05000F74DF /* YXProvisionViewController.m */; };
+		9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8451D360DE0000F74DF /* YXMySettingCell.m */; };
 		922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */; };
 		922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */; };
 		922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */; };
@@ -663,6 +664,8 @@
 		9223C83F1D2F93D7000F74DF /* YXUpdateProfileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUpdateProfileRequest.m; sourceTree = "<group>"; };
 		9223C8411D337E05000F74DF /* YXProvisionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProvisionViewController.h; sourceTree = "<group>"; };
 		9223C8421D337E05000F74DF /* YXProvisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProvisionViewController.m; sourceTree = "<group>"; };
+		9223C8441D360DE0000F74DF /* YXMySettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingCell.h; sourceTree = "<group>"; };
+		9223C8451D360DE0000F74DF /* YXMySettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingCell.m; sourceTree = "<group>"; };
 		922F3AC61D2A61DE00CBF7C3 /* YXWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopViewController.h; sourceTree = "<group>"; };
 		922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopViewController.m; sourceTree = "<group>"; };
 		922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopCell.h; sourceTree = "<group>"; };
@@ -1820,6 +1823,8 @@
 				9223C82A1D2E30A5000F74DF /* YXAboutHeaderView.m */,
 				9223C82D1D2E36F0000F74DF /* YXAboutCell.h */,
 				9223C82E1D2E36F0000F74DF /* YXAboutCell.m */,
+				9223C8441D360DE0000F74DF /* YXMySettingCell.h */,
+				9223C8451D360DE0000F74DF /* YXMySettingCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1835,10 +1840,10 @@
 				922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */,
 				922F3AD21D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.h */,
 				922F3AD31D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m */,
-				9223C80A1D2CA4E4000F74DF /* YXWorkshopMemberCell.h */,
-				9223C80B1D2CA4E4000F74DF /* YXWorkshopMemberCell.m */,
 				9223C8301D2E3F72000F74DF /* YXWorkshopDetailDatumCell.h */,
 				9223C8311D2E3F72000F74DF /* YXWorkshopDetailDatumCell.m */,
+				9223C80A1D2CA4E4000F74DF /* YXWorkshopMemberCell.h */,
+				9223C80B1D2CA4E4000F74DF /* YXWorkshopMemberCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2521,6 +2526,7 @@
 				9223C8321D2E3F72000F74DF /* YXWorkshopDetailDatumCell.m in Sources */,
 				7C3177B01D0EB738004AAC90 /* UIImage+Color.m in Sources */,
 				7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */,
+				9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,
 				7C3177B81D0EB9EE004AAC90 /* UIView+ViewController.m in Sources */,
 				CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */,
@@ -2676,8 +2682,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xingfu liu (J63VXZH2U7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xingfu liu (J63VXZH2U7)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Phone/InfoPhone.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -24,10 +24,11 @@
     fetcher.barid = self.baridString;
     fetcher.pagesize = 10; // 保证至少够一UI页的数据
     self.dataFetcher = fetcher;
-    YXPagedListEmptyView *emptyView = [[YXPagedListEmptyView alloc] init];
-    emptyView.title = @"暂无数据";
-    emptyView.iconName = @"没有动态";
+    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+    emptyView.title = @"暂无资源";
+    emptyView.imageName = @"没有动态";
     self.emptyView = emptyView;
+    self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.title = @"资源";
     [self setupUI];
@@ -41,7 +42,7 @@
 
 #pragma mark - UI Setting
 - (void)setupUI{
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"#f2f2f2"];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.estimatedRowHeight = 800;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXAllDatumTableViewCell class] forCellReuseIdentifier:@"YXAllDatumTableViewCell"];
@@ -88,5 +89,8 @@
     [YXFileBrowseManager sharedManager].fileItem = item;
     [YXFileBrowseManager sharedManager].baseViewController = self;
     [[YXFileBrowseManager sharedManager] browseFile];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 5.0f;
 }
 @end

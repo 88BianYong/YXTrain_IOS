@@ -27,6 +27,7 @@
 {
     UITableView *_tableView;
     YXWorkshopDetailHeaderView *_headerView;
+    YXErrorView *_errorView;
     
     NSMutableArray *_dataMutableArray;
     YXWorkshopDetailRequestItem *_detailItem;
@@ -42,6 +43,12 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [_tableView reloadData];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+    
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -77,12 +84,20 @@
     _tableView.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0);
     _tableView.layoutMargins = UIEdgeInsetsZero;
     _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
+    _tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     _headerView = [[YXWorkshopDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 165.0f)];
     _tableView.tableHeaderView = _headerView;
     [_tableView registerClass:[YXWorkshopDetailGroupCell class] forCellReuseIdentifier:@"YXWorkshopDetailGroupCell"];
     [_tableView registerClass:[YXWorkshopDetailInfoCell class] forCellReuseIdentifier:@"YXWorkshopDetailInfoCell"];
     [_tableView registerClass:[YXWorkshopDetailDatumCell class] forCellReuseIdentifier:@"YXWorkshopDetailDatumCell"];
     [self.view addSubview:_tableView];
+    
+    WEAK_SELF
+    _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    _errorView.retryBlock = ^{
+        STRONG_SELF
+        [self requestForWorkshopDetail];
+    };
     
 }
 
@@ -165,15 +180,17 @@
         STRONG_SELF
         [self stopLoading];
         YXWorkshopDetailRequestItem *item = (YXWorkshopDetailRequestItem *)retItem;
-        if (item && !error) {
+        if (error) {
+            self ->_errorView.frame = self.view.bounds;
+            [self.view addSubview:self ->_errorView];
+        }
+        else{
             self ->_detailItem = item;
             [self ->_headerView reloadWithName:_detailItem.gname
                                         master:[_detailItem.master yx_isValidString]?_detailItem.master:@"暂无"];
             [self workshopDetailDataFormat:item];
             [self requestForWorkshopMember];
-        }
-        else{
-            [self showToast:error.localizedDescription];
+            [self ->_errorView removeFromSuperview];
         }
     }];
     _detailRequest = request;
