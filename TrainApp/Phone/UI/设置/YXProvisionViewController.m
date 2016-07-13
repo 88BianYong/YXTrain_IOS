@@ -7,7 +7,7 @@
 //
 
 #import "YXProvisionViewController.h"
-
+#import "YXShowWebMenuView.h"
 @interface YXProvisionViewController ()
 <
   UIWebViewDelegate
@@ -19,11 +19,15 @@
 @end
 
 @implementation YXProvisionViewController
+- (void)dealloc{
+    DDLogDebug(@"release");
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"服务条款";
     [self setupUI];
+    [self setupRightWithTitle:@"更多"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +48,24 @@
         [self ->_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.yanxiu.com/common/agreement.html"]]];
     };
 }
-
+- (void)naviRightAction{
+    YXShowWebMenuView *menuView = [[YXShowWebMenuView alloc]initWithFrame:self.view.window.bounds];
+    menuView.didSeletedItem = ^(NSInteger index) {
+        if (index == 0) {
+            [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.yanxiu.com/common/agreement.html"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
+        }
+        if (index == 1) {
+            NSURL *requestURL = [[NSURL alloc] initWithString:@"http://www.yanxiu.com/common/agreement.html"];
+            [[UIApplication sharedApplication] openURL:requestURL];
+        }
+        if (index == 2) {
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = @"http://www.yanxiu.com/common/agreement.html";
+            [self showToast:@"复制成功"];
+        }
+    };
+    [self.view.window addSubview:menuView];
+}
 #pragma mark - UIWebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     [self startLoading];

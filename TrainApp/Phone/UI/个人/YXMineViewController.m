@@ -50,6 +50,9 @@
 @end
 
 @implementation YXMineViewController
+- (void)dealloc{
+    DDLogDebug(@"release");
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -112,11 +115,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    WEAK_SELF
     if (indexPath.section == 0) {
         YXUserImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXUserImageTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setImageWithUrl:self.profile.headDetail];
         cell.userImageTap = ^(){
+            STRONG_SELF
             [self changeAvatar];
         };
         return cell;
@@ -125,6 +130,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell setUserName:self.profile.realName];
         cell.startUpdateUserName = ^(NSString *name){
+            STRONG_SELF
             [self updateUserNameWithString:name];
         };
         return cell;
@@ -142,24 +148,29 @@
             }
             [cell configUIwithTitle:@"学科 | 学段" content:content];
             cell.userInfoButtonClickedBlock = ^() {
+                STRONG_SELF
                 [self showStageAndSubjectPicker];
             };
         }
         if (indexPath.section == 3) {
             [cell configUIwithTitle:@"地区" content:self.profile.area];
             cell.userInfoButtonClickedBlock = ^() {
+                STRONG_SELF
                 [self showProvinceListPicker];
             };
         }
         if (indexPath.section == 4) {
             [cell configUIwithTitle:@"学校" content:self.profile.school];
             cell.userInfoButtonClickedBlock = ^() {
+                STRONG_SELF
                 YXSchoolSearchViewController *vc = [[YXSchoolSearchViewController alloc] init];
                 vc.areaId = self.profile.regionId;
                 vc.areaName = [NSString stringWithFormat:@"%@ %@ %@",self.profile.province,self.profile.city,self.profile.region];
                 vc.addSchoolNameSuccessBlock = ^(NSString *schoolName){
+                    STRONG_SELF
                     YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
                     [cell configUIwithTitle:@"学校" content:schoolName];
+                    self.profile = [YXUserManager sharedManager].userModel.profile;
                     if (self.schoolModifySuccess) {
                         self.schoolModifySuccess(schoolName);
                     }
@@ -354,6 +365,7 @@
         [self stopLoading];
         YXUserTextFieldTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
         if (!error) {
+            self.profile = [YXUserManager sharedManager].userModel.profile;
             [cell setUserName:name];
             if (self.nameModifySuccess) {
                 self.nameModifySuccess(name);
@@ -384,6 +396,7 @@
         if (error) {
             [self showToast:error.localizedDescription];
         } else {
+            self.profile = [YXUserManager sharedManager].userModel.profile;
             YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
             [cell configUIwithTitle:@"学科 | 学段" content:[NSString stringWithFormat:@"%@ / %@", self.selectedStage.name, self.selectedSubject.name]];
         }
@@ -408,6 +421,7 @@
         if (error) {
             [self showToast:error.localizedDescription];
         } else {
+            self.profile = [YXUserManager sharedManager].userModel.profile;
             YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
             [cell configUIwithTitle:@"地区" content:[NSString stringWithFormat:@"%@%@%@", self.selectedProvince.name, self.selectedCity.name,self.selectedCounty.name]];
         }

@@ -172,10 +172,9 @@ UICollectionViewDelegate
                     [self.cachMutableArray removeAllObjects];
                     [self.cachMutableArray addObjectsFromArray:retItemArray];
                     [self ->_dataMutableArray removeAllObjects];
-                    
+                    [self ->_dataMutableArray addObjectsFromArray:retItemArray];
                     
                     [self ->_collectionView reloadData];
-                    
                     [self -> _emptyView removeFromSuperview];
                     [self -> _errorView removeFromSuperview];
                 }

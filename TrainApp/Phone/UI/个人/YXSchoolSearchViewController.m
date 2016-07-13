@@ -92,6 +92,8 @@
     
     _emptyView = [[YXEmptyView alloc]initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 40.0f - 64.0f)];
     _emptyView.title = @"没有符合条件的学校";
+    _emptyView.backgroundColor = [UIColor whiteColor];
+
     
 }
 
@@ -188,18 +190,26 @@
         [request startRequestWithRetClass:[YXSchoolSearchItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
             [self stopLoading];
-            YXSchoolSearchItem *item = retItem;
-//            NSString *pathString = [[NSBundle mainBundle] pathForResource:@"search" ofType:@"txt"];
-//            NSString *string = [NSString stringWithContentsOfFile:pathString encoding:NSUTF8StringEncoding error:nil];
-//            YXSchoolSearchItem *item = [[YXSchoolSearchItem alloc] initWithString:string error:nil];
-            if (item.schools.count > 0) {
-                self ->_item = item;
-                [self ->_tableView reloadData];
+            if (error) {
+                [self showToast:error.localizedDescription];
             }
             else{
-                [self.view addSubview:self ->_emptyView];
-                [self yx_hideKeyboard];
+                YXSchoolSearchItem *item = retItem;
+                //            NSString *pathString = [[NSBundle mainBundle] pathForResource:@"search" ofType:@"txt"];
+                //            NSString *string = [NSString stringWithContentsOfFile:pathString encoding:NSUTF8StringEncoding error:nil];
+                //            YXSchoolSearchItem *item = [[YXSchoolSearchItem alloc] initWithString:string error:nil];
+                if (item.schools.count > 0) {
+                    self ->_item = item;
+                    [self ->_tableView reloadData];
+                    [self ->_emptyView removeFromSuperview];
+                    
+                }
+                else{
+                    [self.view addSubview:self ->_emptyView];
+                    [self yx_hideKeyboard];
+                }
             }
+
         }];
         _searchRequest = request;
     }

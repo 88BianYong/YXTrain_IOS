@@ -30,16 +30,15 @@
 //        NSString *pathString = [[NSBundle mainBundle] pathForResource:@"temp" ofType:@"txt"];
 //        NSString *string = [NSString stringWithContentsOfFile:pathString encoding:NSUTF8StringEncoding error:nil];
 //        YXDatumSearchRequestItem *item = [[YXDatumSearchRequestItem alloc] initWithString:string error:nil];
-//        NSMutableArray *array = [NSMutableArray array];
-//        for (YXDatumSearchRequestItem_data *data in item.data) {
-//            YXDatumCellModel *model = [YXDatumCellModel modelFromSearchRequestItemData:data];
-//            [array addObject:model];
-//        }
+//
 //        aCompleteBlock([item.total intValue], array, nil);
-        
+        NSMutableArray *array = [NSMutableArray array];
         YXDatumSearchRequestItem *item = retItem;
-        aCompleteBlock([item.total intValue], item.data, nil);
-        
+        for (YXDatumSearchRequestItem_data *data in item.data) {
+            YXDatumCellModel *model = [YXDatumCellModel modelFromSearchRequestItemData:data];
+            [array addObject:model];
+        }
+        aCompleteBlock([item.total intValue], array, nil);
     }];
 }
 - (void)stop{

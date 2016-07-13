@@ -31,7 +31,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的工作坊";
-    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [self setupUI];
     [self layoutInterface];
@@ -48,8 +47,8 @@
     _tableView.dataSource = self;
     _tableView.separatorInset = UIEdgeInsetsMake(0, 66, 0, 10);
     _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
+    _tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     _tableView.layoutMargins = UIEdgeInsetsZero;
-    _tableView.backgroundColor = [UIColor clearColor];
     [_tableView registerClass:[YXWorkshopCell class] forCellReuseIdentifier:@"YXWorkshopCell"];
     [self.view addSubview:_tableView];
     
