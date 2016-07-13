@@ -29,6 +29,9 @@
 - (void)viewDidLoad {
     self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
+    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+    emptyView.title = @"您还没有收藏的资源";
+    self.emptyView = emptyView;
     [super viewDidLoad];
     self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];

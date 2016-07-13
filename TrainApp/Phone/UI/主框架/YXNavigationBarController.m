@@ -107,9 +107,9 @@
 + (UIButton *)naviButtonForTitle:(NSString *)title {
     UIButton *b = [[UIButton alloc]init];
     [b setTitle:title forState:UIControlStateNormal];
-    [b setTitleColor:[UIColor colorWithHexString:@"333333"] forState:UIControlStateNormal];
-    [b setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateDisabled];
-    b.titleLabel.font = [UIFont systemFontOfSize:14];
+    [b setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+//    [b setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateDisabled];
+    b.titleLabel.font = [UIFont systemFontOfSize:13];
     CGSize size = [title sizeWithAttributes:@{NSFontAttributeName:b.titleLabel.font}];
     b.frame = CGRectMake(0, 0, ceilf(size.width)+20, ceilf(size.height)+20);
     return b;

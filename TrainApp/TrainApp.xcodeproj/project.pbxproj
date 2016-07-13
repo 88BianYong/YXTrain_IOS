@@ -2690,7 +2690,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "343e7ee8-452a-4f1d-8df9-d2fd67e62888";
+				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
 			};
 			name = Debug;
 		};
@@ -2708,11 +2708,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< 4319ceaddf29cad8d28ddc59cf5df4301bfc6322
-				PROVISIONING_PROFILE = "343e7ee8-452a-4f1d-8df9-d2fd67e62888";
-=======
 				PROVISIONING_PROFILE = "f7a29cbd-aae2-4007-92ac-2ff6057b540c";
->>>>>>> fix
 			};
 			name = Release;
 		};

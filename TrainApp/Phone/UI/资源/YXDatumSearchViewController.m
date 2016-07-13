@@ -24,9 +24,8 @@
 
 - (void)viewDidLoad {
     //self.bNeedHeader = FALSE;
-    YXPagedListEmptyView *emptyView = [[YXPagedListEmptyView alloc] init];
-    emptyView.iconName = @"资料";
-    emptyView.title = @"没有找到符合条件的资源";
+    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+    emptyView.title = @"没有符合条件的资源";
     self.emptyView = emptyView;
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;

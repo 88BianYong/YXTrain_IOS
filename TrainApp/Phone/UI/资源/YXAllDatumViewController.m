@@ -24,6 +24,8 @@
 
 @property (nonatomic, strong) YXResourceCollectionRequest *collectionRequest;
 
+@property (nonatomic, copy) NSString *currentConditon;//错误刷新用到
+
 @end
 
 @implementation YXAllDatumViewController
@@ -31,22 +33,36 @@
 - (void)viewDidLoad {
     //self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
-    YXPagedListEmptyView *emptyView = [[YXPagedListEmptyView alloc] init];
-    emptyView.iconName = @"资料";
+    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
     emptyView.title = @"没有符合条件的资源";
     self.emptyView = emptyView;
+
     [super viewDidLoad];
     [self configUI];
     // Do any additional setup after loading the view.
 }
 
 - (void)configUI {
+    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(44);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
+    self.emptyView.hidden = YES;
+    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(44);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
+    @weakify(self);
+    self.errorView.retryBlock = ^(){
+        @strongify(self);
+        [self startLoading];
+        [self firstPageFetch];
+    };
     self.view.backgroundColor = [UIColor redColor];
     self.menuView = [[YXDatumOrderFilterMenuView alloc]initWithFrame:CGRectZero];
-    @weakify(self);
     self.menuView.refreshFilterBlock = ^(NSString *condition) {
         @strongify(self);
-        self.wholeDatumFetcher.condition = condition;
+        self.currentConditon = condition;
         [self.tableView setContentOffset:CGPointZero];
         [self firstPageFetch];
     };
@@ -74,6 +90,11 @@
     self.tableView.tableHeaderView = tableViewHeaderView;
 }
 
+- (void)firstPageFetch {
+    self.wholeDatumFetcher.condition = self.currentConditon;
+    [super firstPageFetch];
+}
+
 - (void)setupDataFetcher{
     self.wholeDatumFetcher = [[YXWholeDatumFetcher alloc]init];
     self.wholeDatumFetcher.pagesize = 20;
@@ -82,9 +103,11 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&error];
     if (error) {
         self.wholeDatumFetcher.condition = nil;
+        self.currentConditon = nil;
     } else {
         NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
         self.wholeDatumFetcher.condition = jsonString;
+        self.currentConditon = jsonString;
     }
     self.dataFetcher = self.wholeDatumFetcher;
 }

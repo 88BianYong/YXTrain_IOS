@@ -21,7 +21,6 @@
     self.request.condition = self.condition;
     self.request.pageindex = [NSString stringWithFormat:@"%d", self.pageindex + 1];
     self.request.pagesize = [NSString stringWithFormat:@"%d", self.pagesize];
-    //self.request.request.timeOutSeconds = 60;
     @weakify(self);
     [self.request startRequestWithRetClass:[YXDatumSearchRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         @strongify(self); if (!self) return;

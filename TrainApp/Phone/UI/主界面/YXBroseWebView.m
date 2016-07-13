@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSDate *beginDate;
+@property (nonatomic, strong) YXErrorView *errorView;
 
 @end
 
@@ -24,6 +25,7 @@
     // Do any additional setup after loading the view.
     self.title = self.titleString;
     
+    WEAK_SELF
     [self setupRightWithTitle:@"菜单"];
     self.webView = [UIWebView new];
     self.webView.delegate = self;
@@ -35,7 +37,7 @@
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
     [self.webView loadRequest:request];
-    WEAK_SELF
+    
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
         self.beginDate = [NSDate date];
@@ -50,7 +52,7 @@
     YXShowWebMenuView *menuView = [[YXShowWebMenuView alloc]initWithFrame:self.view.window.bounds];
     menuView.didSeletedItem = ^(NSInteger index) {
         if (index == 0) {
-            [self.webView reload];
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
         }
         if (index == 1) {
             NSURL *requestURL = [[NSURL alloc] initWithString:self.urlString];
@@ -59,6 +61,7 @@
         if (index == 2) {
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.string = self.urlString;
+            [self showToast:@"复制成功"];
         }
     };
     [self.view.window addSubview:menuView];
@@ -71,14 +74,32 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     [self startLoading];
+//    if(self.errorView) {
+//        [self.errorView removeFromSuperview];
+//        self.errorView = nil;
+//    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [self stopLoading];
+    if(self.errorView) {
+        [self.errorView removeFromSuperview];
+        self.errorView = nil;
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [self stopLoading];
+    self.errorView.frame = self.view.bounds;
+    if (!self.errorView) {
+        WEAK_SELF
+        self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+        self.errorView.retryBlock = ^{
+            STRONG_SELF
+            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
+        };
+        [self.view addSubview:self.errorView];
+    }
 }
 
 @end

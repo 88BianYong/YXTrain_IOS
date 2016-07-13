@@ -8,6 +8,14 @@
 
 #import "YXGetRequest.h"
 
+extern NSString *const YXInitSuccessNotification;
+
+@interface YXInitRequestItem_Property : JSONModel
+
+@property (nonatomic, copy) NSString<Optional> *isAppleChecking; //苹果审核
+
+@end
+
 @interface YXInitRequestItem_Body : JSONModel
 
 @property (nonatomic, copy) NSString<Optional> *iid;          //啥玩意儿？
@@ -36,6 +44,7 @@
 @protocol YXInitRequestItem_Body @end
 @interface YXInitRequestItem : HttpBaseRequestItem
 
+@property (nonatomic, copy) YXInitRequestItem_Property<Optional> *property;
 @property (nonatomic, copy) NSArray<YXInitRequestItem_Body, Optional> *body;
 
 @end
@@ -62,5 +71,6 @@
 
 - (void)requestCompeletion:(void(^)(YXInitRequestItem *item, NSError *error))completion;
 - (void)requestLoginCompeletion:(void (^)(YXInitRequestItem *, NSError *))completion;
+- (BOOL)isAppleChecking;
 
 @end

@@ -21,6 +21,7 @@
 #import "YXUserManager.h"
 #import "YXDatumGlobalSingleton.h"
 #import "YXPromtController.h"
+#import "YXInitRequest.h"
 
 @interface AppDelegate ()<YXLoginDelegate>
 
@@ -42,6 +43,9 @@
     manager.shouldResignOnTouchOutside = YES;
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = NO;
+    
+    [[YXInitHelper sharedHelper] requestCompeletion:nil];
+    
     [self setupUI];
     return YES;
 }

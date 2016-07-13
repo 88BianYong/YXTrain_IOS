@@ -19,6 +19,7 @@
 #import "YXLoginRequest.h"
 #import "YXInitRequest.h"
 #import "YXAlertView.h"
+#import "YXInitRequest.h"
 
 @interface YXLoginViewController ()
 
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic, strong) YXLoginRequest *request;
+@property (nonatomic, strong) YXClickedUnderLineButton *touristLoginButton;
 
 @end
 
@@ -35,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self setObserver];
     // Do any additional setup after loading the view.
 }
 
@@ -100,6 +103,15 @@
     [forgetPasswordButton buttonTitileWithName:@"忘记密码?"];
     [containerView addSubview:forgetPasswordButton];
     
+    self.touristLoginButton = [[YXClickedUnderLineButton alloc] init];
+    @weakify(self);
+    self.touristLoginButton.buttonClicked = ^{
+        @strongify(self);
+        [self startTouristRequet];
+    };
+    [self.touristLoginButton buttonTitileWithName:@"游客登录"];
+    [containerView addSubview:self.touristLoginButton];
+    
     UIButton *loginButton = [[UIButton alloc] init];
     [loginButton setTitleColor:[UIColor colorWithHexString:@"41c694"] forState:UIControlStateNormal];
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
@@ -116,7 +128,6 @@
     [passwordView setTextFiledViewBackgroundColor:[UIColor colorWithHexString:@"dae2eb"]];
     [passwordView setTextFiledEditedBackgroundColor:[UIColor colorWithHexString:@"bbc2c9"]];
     [passwordView setPlaceHolderWithString:@"请输入密码" keyType:UIKeyboardTypeDefault isSecure:YES];
-    @weakify(self)
     passwordView.textChangedBlock = ^(NSString *password){
         @strongify(self)
         if (!self) {
@@ -155,6 +166,10 @@
         make.bottom.equalTo(containerView.mas_bottom).offset(-kScreenSpaceHeight * 0.22);
         make.right.equalTo(loginButton.mas_right);
     }];
+    [self.touristLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(QRScanButton.mas_bottom).offset(2);
+        make.left.equalTo(QRScanImageView.mas_left);
+    }];
     [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(QRScanButton.mas_top).offset(-kScreenSpaceHeight * 0.1);
         make.width.mas_equalTo(225);
@@ -177,7 +192,26 @@
         make.bottom.equalTo(registerView.mas_top);
         make.left.right.top.equalTo(containerView);
     }];
+    self.touristLoginButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
  }
+
+- (void)setObserver {
+    @weakify(self);
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXInitSuccessNotification object:nil] subscribeNext:^(id x) {
+        @strongify(self);
+        if (!self) {
+            return;
+        }
+        self.touristLoginButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
+    }];
+}
+
+- (void)startTouristRequet {
+    [self.view endEditing:YES];
+    self.registerNumber = @"XY02307777@yanxiu.com";
+    self.password = @"888888";
+    [self startLoginRequest];
+}
 
 - (void)startLoginRequest
 {

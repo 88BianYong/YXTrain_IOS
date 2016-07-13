@@ -11,6 +11,12 @@
 #import "YXAlertView.h"
 #import "YXUserManager.h"
 
+NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
+
+@implementation YXInitRequestItem_Property
+
+@end
+
 @implementation YXInitRequestItem_Body
 
 + (JSONKeyMapper *)keyMapper
@@ -143,6 +149,8 @@
             }
             self.item = retItem;
             [self showUpgradeForInit:YES];
+            [self saveAppleCheckingStatusToLocal];
+            [[NSNotificationCenter defaultCenter] postNotificationName:YXInitSuccessNotification object:nil];
         });
     }];
 }
@@ -210,6 +218,25 @@
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
         }];
         [alertView show];
+    }
+}
+
+- (BOOL)isAppleChecking
+{
+    id isChecking = [[NSUserDefaults standardUserDefaults] objectForKey:@"isAppleChecking"];
+    if (isChecking) {
+        return [isChecking boolValue];
+    }
+    return YES;
+}
+
+- (void)saveAppleCheckingStatusToLocal
+{
+    // 网络请求返回成功，isAppleChecking存在时保存到本地
+    NSString *isAppleChecking = self.item.property.isAppleChecking;
+    if ([isAppleChecking yx_isValidString]) {
+        [[NSUserDefaults standardUserDefaults] setObject:isAppleChecking forKey:@"isAppleChecking"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 

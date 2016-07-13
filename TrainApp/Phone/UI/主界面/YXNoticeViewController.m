@@ -20,6 +20,14 @@
 
 - (void)viewDidLoad {
     self.bIsGroupedTableViewStyle = YES;
+    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+    if (self.flag == YXFlag_Notice) {
+        emptyView.title = @"暂无通知";
+    }
+    if (self.flag == YXFlag_Bulletin) {
+        emptyView.title = @"暂无简报";
+    }
+    self.emptyView = emptyView;
     [super viewDidLoad];
     if (self.flag == YXFlag_Notice) {
         self.title = @"通知";
@@ -57,7 +65,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    YXNoticeAndBulletinItem *item = self.dataArray[indexPath.row];
+    YXNoticeAndBulletinItem *item = self.dataArray[indexPath.section];
     YXBroseWebView *webView = [[YXBroseWebView alloc] init];
     webView.urlString = item.url;
     webView.titleString = item.title;
