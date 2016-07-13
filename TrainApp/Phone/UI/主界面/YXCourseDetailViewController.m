@@ -53,9 +53,8 @@
 - (void)setupUI{
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.tableView.separatorInset = UIEdgeInsetsMake(0, 60, 0, 0);
     self.tableView.rowHeight = 70;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -181,6 +180,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];
     YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
     

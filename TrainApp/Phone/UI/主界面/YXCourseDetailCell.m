@@ -34,7 +34,9 @@
 }
 
 - (void)setupUI{
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.typeImageView = [[UIImageView alloc]init];
     [self.contentView addSubview:self.typeImageView];
     [self.typeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -52,6 +54,15 @@
         make.left.mas_equalTo(self.typeImageView.mas_right).mas_offset(12);
         make.right.mas_equalTo(-15);
         make.centerY.mas_equalTo(0);
+    }];
+    
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(60);
+        make.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
 }
 

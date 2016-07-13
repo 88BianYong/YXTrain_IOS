@@ -13,12 +13,15 @@
 #import "YXCourseRecordFooterView.h"
 #import "MJRefresh.h"
 #import "YXCourseDetailViewController.h"
+#import "YXModuleListRequest.h"
 
 @interface YXCourseRecordViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) YXCourseRecordRequest *request;
 @property (nonatomic, strong) YXCourseRecordRequestItem *recordItem;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
+
+@property (nonatomic, strong) YXModuleListRequest *moduleListRequest;
 
 @property (nonatomic, strong) YXErrorView *errorView;
 @property (nonatomic, strong) YXEmptyView *emptyView;
@@ -142,6 +145,30 @@
     }];
 }
 
+#pragma mark - 查看更多
+- (void)checkMoreWithModuleIndex:(NSInteger)index{
+    YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[index];
+    [self.moduleListRequest stopRequest];
+    self.moduleListRequest = [[YXModuleListRequest alloc]init];
+    self.moduleListRequest.mid = module.module_id;
+    self.moduleListRequest.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    self.moduleListRequest.w = [YXTrainManager sharedInstance].currentProject.w;
+    [self startLoading];
+    WEAK_SELF
+    [self.moduleListRequest startRequestWithRetClass:[YXModuleListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
+        if (error) {
+            [self showToast:error.localizedDescription];
+            return;
+        }
+        YXModuleListRequestItem *item = (YXModuleListRequestItem *)retItem;
+        [module.courses addObjectsFromArray:item.body.courses];
+        module.more = @"false";
+        [self.collectionView reloadData];
+    }];
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return self.recordItem.body.modules.count;
@@ -164,13 +191,18 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[indexPath.section];
     if (kind == UICollectionElementKindSectionHeader) {
         YXCourseRecordHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"YXCourseRecordHeaderView" forIndexPath:indexPath];
-        YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[indexPath.section];
         headerView.title = module.module_name;
         return headerView;
     }else{
         YXCourseRecordFooterView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"YXCourseRecordFooterView" forIndexPath:indexPath];
+        WEAK_SELF
+        footer.actionBlock = ^{
+            STRONG_SELF
+            [self checkMoreWithModuleIndex:indexPath.section];
+        };
         return footer;
     }
 }
@@ -180,9 +212,13 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(CGRectGetWidth(self.view.bounds), 50.f);
 }
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-//    return CGSizeMake(CGRectGetWidth(self.view.bounds), 5.f);
-//}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[section];
+    if ([module.more isEqualToString:@"false"]) {
+        return CGSizeZero;
+    }
+    return CGSizeMake(CGRectGetWidth(self.view.bounds), 44.f);
+}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return CGSizeMake((self.view.bounds.size.width)/2, 195.f);
 }
@@ -192,4 +228,5 @@
     vc.course = module.courses[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 @end

@@ -119,7 +119,7 @@
     [self.contentView addSubview:self.expScoreTitleLabel];
     [self.expScoreTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(sep.mas_top);
-        make.left.mas_equalTo(sep.mas_right).mas_offset(15);
+        make.left.mas_equalTo(sep.mas_right).mas_offset(20);
     }];
     self.expScoreLabel = [[UILabel alloc]init];
     self.expScoreLabel.font = [UIFont fontWithName:YXFontMetro_Medium size:18];
@@ -158,7 +158,7 @@
         [self.contentView addSubview:self.noLeadScoreView];
         [self.noLeadScoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.leadScoreTitleLabel.mas_bottom).mas_offset(20);
-            make.right.mas_equalTo(self.leadScoreTitleLabel.mas_right);
+            make.right.mas_equalTo(self.leadScoreTitleLabel.mas_right).mas_offset(-5);
             make.width.mas_equalTo(30);
             make.height.mas_equalTo(2);
         }];
@@ -169,7 +169,7 @@
         [self.contentView addSubview:self.leadScoreLabel];
         [self.leadScoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.leadScoreTitleLabel.mas_bottom).mas_offset(10);
-            make.right.mas_equalTo(self.leadScoreTitleLabel.mas_right);
+            make.right.mas_equalTo(self.leadScoreTitleLabel.mas_right).mas_offset(-5);
         }];
     }
     if (data.bounsscore.length == 0) {

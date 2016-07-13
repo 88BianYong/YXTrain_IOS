@@ -45,24 +45,24 @@
         make.width.mas_equalTo(75).priorityHigh();
     }];
     
-    self.progressView = [[YXExamProgressView alloc]init];
-    self.progressView.userInteractionEnabled = NO;
-    [self.contentView addSubview:self.progressView];
-    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(100).priorityHigh();
-        make.centerY.mas_equalTo(0);
-        make.height.mas_equalTo(6);
-        make.left.mas_equalTo(self.titleLabel.mas_right).mas_offset(2).priorityHigh();
-    }];
-    
     self.statusLabel = [[UILabel alloc]init];
     self.statusLabel.font = [UIFont systemFontOfSize:11];
     self.statusLabel.textColor = [UIColor colorWithHexString:@"0067be"];
     [self.contentView addSubview:self.statusLabel];
     [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.progressView.mas_right).mas_offset(10).priorityHigh();
         make.right.mas_equalTo(-15);
         make.centerY.mas_equalTo(0);
+        make.width.mas_equalTo(160);
+    }];
+    
+    self.progressView = [[YXExamProgressView alloc]init];
+    self.progressView.userInteractionEnabled = NO;
+    [self.contentView addSubview:self.progressView];
+    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.statusLabel.mas_left).mas_offset(-10);
+        make.centerY.mas_equalTo(0);
+        make.height.mas_equalTo(6);
+        make.left.mas_equalTo(self.titleLabel.mas_right).mas_offset(2).priorityHigh();
     }];
     
     self.markButton = [[UIButton alloc]init];
@@ -80,7 +80,6 @@
     CGFloat progress = data.finishnum.floatValue/data.totalnum.floatValue;
     self.progressView.progress = progress;
 
-    [self.markButton removeFromSuperview];
     if (data.isneedmark.boolValue) {
         [self.contentView addSubview:self.markButton];
         [self.markButton mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -89,16 +88,17 @@
             make.size.mas_equalTo(CGSizeMake(25, 25));
         }];
         [self.statusLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.progressView.mas_right).mas_offset(10).priorityHigh();
             make.right.mas_equalTo(self.markButton.mas_left).mas_offset(-10);
             make.centerY.mas_equalTo(0);
+            make.width.mas_equalTo(125);
         }];
     }else{
         [self.statusLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.progressView.mas_right).mas_offset(10).priorityHigh();
             make.right.mas_equalTo(-15);
             make.centerY.mas_equalTo(0);
+            make.width.mas_equalTo(160);
         }];
+        [self.markButton removeFromSuperview];
     }
 }
 

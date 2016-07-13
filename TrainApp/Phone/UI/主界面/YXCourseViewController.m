@@ -60,6 +60,7 @@
     [self setupRightWithTitle:@"看课记录"];
     [self setupObservers];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXCourseListCell class] forCellReuseIdentifier:@"YXCourseListCell"];
     
     [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -106,11 +107,11 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            self.errorView.frame = self.view.bounds;
-            [self.view addSubview:self.errorView];
+            self.filterErrorView.frame = self.view.bounds;
+            [self.view addSubview:self.filterErrorView];
             return;
         }
-        [self.errorView removeFromSuperview];
+        [self.filterErrorView removeFromSuperview];
         
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         self.filterModel = [item filterModel];
@@ -220,6 +221,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXCourseListRequestItem_body_module_course *course = self.dataArray[indexPath.row];
     YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];
     vc.course = course;

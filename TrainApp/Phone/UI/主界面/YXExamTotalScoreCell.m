@@ -49,6 +49,11 @@
     [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
+    
+    CGFloat top = 30.f;
+    if ([UIScreen mainScreen].bounds.size.width > 375) {
+        top += 15.f;
+    }
     self.scoreTitleLabel = [[UILabel alloc]init];
     self.scoreTitleLabel.font = [UIFont boldSystemFontOfSize:12];
     self.scoreTitleLabel.textColor = [UIColor colorWithHexString:@"334466"];
@@ -57,7 +62,7 @@
     [self.contentView addSubview:self.scoreTitleLabel];
     CGFloat scoreLabelWidth = [self.scoreTitleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.scoreTitleLabel.font}].width;
     [self.scoreTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(30);
+        make.top.mas_equalTo(top);
         make.right.mas_equalTo(self.contentView.mas_centerX).mas_offset(-28);
         make.width.mas_equalTo(ceilf(scoreLabelWidth));
     }];
@@ -75,7 +80,7 @@
     [self.contentView addSubview:self.pointTitleLabel];
     CGFloat pointLabelWidth = [self.pointTitleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.pointTitleLabel.font}].width;
     [self.pointTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(30);
+        make.top.mas_equalTo(top);
         make.left.mas_equalTo(self.contentView.mas_centerX).mas_offset(46);
         make.width.mas_equalTo(ceilf(pointLabelWidth));
     }];

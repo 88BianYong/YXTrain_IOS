@@ -135,6 +135,7 @@ static const CGFloat kImageWidth = 30;
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.currentIndex == indexPath.row) {
         [self hideSelectionView];
         return;

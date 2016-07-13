@@ -24,6 +24,9 @@
 
 - (void)setupUI{
     self.contentView.backgroundColor = [UIColor whiteColor];
+    UIView *selectedBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.courseImageView = [[UIImageView alloc]init];
     self.courseImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.courseImageView.clipsToBounds = YES;
@@ -47,7 +50,7 @@
     }];
     
     UIView *recordBgView = [[UIView alloc]init];
-    recordBgView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
+    recordBgView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.38];
     recordBgView.clipsToBounds = YES;
     recordBgView.layer.cornerRadius = 2;
     [self.courseImageView addSubview:recordBgView];

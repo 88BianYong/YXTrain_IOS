@@ -35,7 +35,9 @@
 
 - (void)setupUI{
     self.backgroundColor = [UIColor clearColor];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.filterLabel = [[UILabel alloc]init];
     self.filterLabel.font = [UIFont systemFontOfSize:13];
     [self.contentView addSubview:self.filterLabel];

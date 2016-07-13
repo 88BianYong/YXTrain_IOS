@@ -46,7 +46,7 @@
 
 - (void)setupUI{
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    self.tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.rowHeight = 53;
     self.tableView.dataSource = self;

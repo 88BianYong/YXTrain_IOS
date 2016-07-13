@@ -36,7 +36,9 @@
 }
 
 - (void)setupUI{
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.courseImageView = [[UIImageView alloc]init];
     self.courseImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.courseImageView.clipsToBounds = YES;

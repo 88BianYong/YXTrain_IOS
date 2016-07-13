@@ -227,7 +227,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 115;
+        CGFloat h = 115.f;
+        if ([UIScreen mainScreen].bounds.size.width > 375) {
+            h += 30.f;
+        }
+        return h;
     }else{
         YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[indexPath.section-1];
         if (indexPath.row == vo.toolExamineVoList.count+1){

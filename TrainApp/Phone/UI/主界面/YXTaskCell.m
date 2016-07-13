@@ -61,6 +61,15 @@
         make.size.mas_equalTo(CGSizeMake(16, 16));
         make.centerY.mas_equalTo(self.typeImageView.mas_centerY);
     }];
+    
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
 }
 
 - (void)setTask:(YXTaskListRequestItem_body_task *)task{
@@ -69,8 +78,10 @@
     self.typeImageView.backgroundColor = [UIColor redColor];
     if (task.toolid.integerValue == 201) {  // 课程
         self.typeLabel.textColor = [UIColor colorWithHexString:@"334466"];
+        self.enterImageView.hidden = NO;
     }else{
         self.typeLabel.textColor = [UIColor colorWithHexString:@"bec8d8"];
+        self.enterImageView.hidden = YES;
     }
 }
 

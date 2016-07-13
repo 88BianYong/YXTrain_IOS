@@ -211,6 +211,7 @@ static const NSUInteger kTagBase = 876;
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (self.isAnimating) {
         return;
     }
