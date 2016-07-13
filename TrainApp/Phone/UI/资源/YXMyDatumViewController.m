@@ -94,6 +94,11 @@
         [self showToast:@"音视频不支持下载"];
     };
     cell.cellModel = self.dataArray[indexPath.row];
+    if (indexPath.row == self.dataArray.count - 1) {
+        [cell hiddenBottomView:YES];
+    } else {
+        [cell hiddenBottomView:NO];
+    }
     cell.delegate = self;
     // 对于第一页数据记录下载状态
     if (indexPath.row < 20) {

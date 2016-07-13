@@ -12,5 +12,6 @@
 @interface YXAllDatumTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) YXDatumCellModel *cellModel;
+- (void)hiddenBottomView:(BOOL)hidden;
 
 @end

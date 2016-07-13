@@ -60,6 +60,7 @@
     YXNoticeAndBulletinItem *item = self.dataArray[indexPath.row];
     YXBroseWebView *webView = [[YXBroseWebView alloc] init];
     webView.urlString = item.url;
+    webView.titleString = item.title;
     [self.navigationController pushViewController:webView animated:NO];
 }
 

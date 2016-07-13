@@ -46,7 +46,7 @@
     [self.contentView addSubview:self.selectionImageView];
     
     self.cellSeperatorView = [[UIView alloc]init];
-    self.cellSeperatorView.backgroundColor = [UIColor colorWithHexString:@"e0e0e0"];
+    self.cellSeperatorView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.contentView addSubview:self.cellSeperatorView];
     
     [self.orderLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -184,7 +184,20 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        return 14;
+    }
     return 0.01;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 1) {
+        UIView *bgView = [[UIView alloc] init];
+        bgView.backgroundColor = [UIColor whiteColor];
+        return bgView;
+    } else {
+        return [UIView new];
+    }
 }
 
 #pragma private 
@@ -698,7 +711,6 @@
                 self.userPicModifySuccess(image);
             }
             
-            [[NSNotificationCenter defaultCenter] postNotificationName:YXUpdateHeadImgSuccessNotification object:nil];
         } else {
             [self showToast:error.localizedDescription];
         }

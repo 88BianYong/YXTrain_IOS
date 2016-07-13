@@ -237,7 +237,6 @@
 		CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D917C1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m */; };
 		CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D917E1D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m */; };
 		CB4D91831D1A73EA00B5F1D0 /* YXDatumSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91821D1A73EA00B5F1D0 /* YXDatumSearchViewController.m */; };
-		CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91851D1A74C800B5F1D0 /* YXDatumSearchCell.m */; };
 		CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */; };
 		CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4D918B1D1A758500B5F1D0 /* YXDatumSearchFetcher.m */; };
 		CB52FCF11D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB52FCF01D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m */; };
@@ -762,8 +761,6 @@
 		CB4D917E1D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyDatumNormalInfoView.m; sourceTree = "<group>"; };
 		CB4D91811D1A73EA00B5F1D0 /* YXDatumSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchViewController.h; sourceTree = "<group>"; };
 		CB4D91821D1A73EA00B5F1D0 /* YXDatumSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchViewController.m; sourceTree = "<group>"; };
-		CB4D91841D1A74C800B5F1D0 /* YXDatumSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchCell.h; sourceTree = "<group>"; };
-		CB4D91851D1A74C800B5F1D0 /* YXDatumSearchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchCell.m; sourceTree = "<group>"; };
 		CB4D91871D1A74F700B5F1D0 /* YXDatumSearchBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchBarView.h; sourceTree = "<group>"; };
 		CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDatumSearchBarView.m; sourceTree = "<group>"; };
 		CB4D918A1D1A758500B5F1D0 /* YXDatumSearchFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDatumSearchFetcher.h; sourceTree = "<group>"; };
@@ -1963,8 +1960,6 @@
 				CB748EE51D239AF0004BCFBF /* YXStoreLikeProgressView.m */,
 				CB4D91871D1A74F700B5F1D0 /* YXDatumSearchBarView.h */,
 				CB4D91881D1A74F700B5F1D0 /* YXDatumSearchBarView.m */,
-				CB4D91841D1A74C800B5F1D0 /* YXDatumSearchCell.h */,
-				CB4D91851D1A74C800B5F1D0 /* YXDatumSearchCell.m */,
 				CB4D917B1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.h */,
 				CB4D917C1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m */,
 				CB4D917D1D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.h */,
@@ -2339,7 +2334,6 @@
 				CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */,
 				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
 				CB16060D1D2FCB390071BA01 /* YXUploadHeadImgRequest.m in Sources */,
-				CB4D91861D1A74C800B5F1D0 /* YXDatumSearchCell.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
 				CBF66E401D2F5A4800F4E408 /* YXStageAndSubjectRequest.m in Sources */,
 				CBF66E281D2E36EE00F4E408 /* YXUserProfile.m in Sources */,

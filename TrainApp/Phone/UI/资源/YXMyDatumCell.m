@@ -71,15 +71,15 @@
     self.sizeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:self.sizeLabel];
     
-    self.cellSeperatorView = [[UIView alloc]init];
-    self.cellSeperatorView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    [self.contentView addSubview:self.cellSeperatorView];
-    
     self.leftAreaView = [[UIView alloc] init];
     self.leftAreaView.backgroundColor = [UIColor whiteColor];
     UITapGestureRecognizer * tapLeftGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLeftGesture:)];
     [self.leftAreaView addGestureRecognizer:tapLeftGesture];
     [self.contentView addSubview:self.leftAreaView];
+    
+    self.cellSeperatorView = [[UIView alloc]init];
+    self.cellSeperatorView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.contentView addSubview:self.cellSeperatorView];
     
     self.downloadButton = [[UIButton alloc] init];
     [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
@@ -109,7 +109,7 @@
     }];
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titleLabel.mas_left);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(12);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(11);
         make.bottom.equalTo(self.cellSeperatorView.mas_top).offset(-18);
     }];
     [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,7 +121,7 @@
         make.left.mas_equalTo(self.dateLabel.mas_left);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
+        make.height.mas_equalTo(1);
     }];
     
     [self.leftAreaView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -223,6 +223,10 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(myDatumCellDownloadButtonClicked:)]) {
         [self.delegate myDatumCellDownloadButtonClicked:self];
     }
+}
+
+- (void)hiddenBottomView:(BOOL)hidden {
+    self.cellSeperatorView.hidden = hidden;
 }
 
 @end

@@ -77,7 +77,7 @@
     }];
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titleLabel.mas_left);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(12);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(11);
         make.bottom.equalTo(self.cellSeperatorView.mas_top).offset(-18);
     }];
     [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,7 +89,7 @@
         make.left.mas_equalTo(self.dateLabel.mas_left);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
+        make.height.mas_equalTo(1);
     }];
 }
 
@@ -104,6 +104,10 @@
     } else {
         self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     }
+}
+
+- (void)hiddenBottomView:(BOOL)hidden {
+    self.cellSeperatorView.hidden = hidden;
 }
 
 @end

@@ -63,6 +63,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXAllDatumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXAllDatumTableViewCell" forIndexPath:indexPath];
     YXDatumCellModel *model = self.dataArray[indexPath.row];
+    if (indexPath.row == self.dataArray.count - 1) {
+        [cell hiddenBottomView:YES];
+    } else {
+        [cell hiddenBottomView:NO];
+    }
     cell.cellModel = model;
     return cell;
 }

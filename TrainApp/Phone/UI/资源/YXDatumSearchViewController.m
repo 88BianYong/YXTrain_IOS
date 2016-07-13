@@ -7,7 +7,6 @@
 //
 
 #import "YXDatumSearchViewController.h"
-#import "YXDatumSearchCell.h"
 #import "YXDatumSearchBarView.h"
 #import "YXDatumSearchFetcher.h"
 #import "YXAttachmentTypeHelper.h"
@@ -86,7 +85,7 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [tableView fd_heightForCellWithIdentifier:@"YXAllDatumTableViewCell" configuration:^(YXDatumSearchCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:@"YXAllDatumTableViewCell" configuration:^(YXAllDatumTableViewCell *cell) {
         YXDatumCellModel *model = self.dataArray[indexPath.row];
         cell.cellModel = model;
     }];

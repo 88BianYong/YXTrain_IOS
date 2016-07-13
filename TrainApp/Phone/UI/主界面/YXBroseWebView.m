@@ -9,7 +9,7 @@
 #import "YXBroseWebView.h"
 #import "YXShowWebMenuView.h"
 
-@interface YXBroseWebView ()
+@interface YXBroseWebView ()<UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSDate *beginDate;
@@ -26,6 +26,7 @@
     
     [self setupRightWithTitle:@"菜单"];
     self.webView = [UIWebView new];
+    self.webView.delegate = self;
     self.webView.scalesPageToFit = YES;
     [self.view addSubview:self.webView];
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,6 +67,18 @@
     [self.navigationController popViewControllerAnimated:YES];
     SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
     SAFE_CALL(self.exitDelegate, browserExit);
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    [self startLoading];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [self stopLoading];
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [self stopLoading];
 }
 
 @end

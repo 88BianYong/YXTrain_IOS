@@ -46,7 +46,7 @@
     return YES;
 }
 
-- (void)setupUI{
+- (void)setupUI {
     [YXNavigationBarController setup];
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
