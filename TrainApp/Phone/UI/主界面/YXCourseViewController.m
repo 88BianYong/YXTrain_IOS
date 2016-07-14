@@ -41,14 +41,9 @@
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
+    
     YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    if ([[YXTrainManager sharedInstance].currentProject.w isEqualToString:@"3"]) {
-        emptyView.title = @"没有符合条件的课程";
-    }else{
-        emptyView.title = @"您还没有选课";
-        emptyView.subTitle = @"请您先在电脑登录研修网选课";
-    }
-        
+    emptyView.title = @"没有符合条件的课程";
     self.emptyView = emptyView;
     
     if (self.stageID) {

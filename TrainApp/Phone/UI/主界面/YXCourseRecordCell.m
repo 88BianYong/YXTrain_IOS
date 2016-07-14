@@ -80,7 +80,7 @@
         make.centerY.mas_equalTo(0);
 //        make.centerX.mas_equalTo(11);
         make.left.mas_equalTo(historyImageView.mas_right).mas_offset(5);
-        make.right.mas_equalTo(-5);
+        make.right.mas_equalTo(-3);
     }];
 }
 

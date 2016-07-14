@@ -87,6 +87,7 @@
         [pArray addObject:p.name];
     }
     YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
+    selectionView.currentIndex = [YXTrainManager sharedInstance].currentProjectIndex;
     selectionView.projectArray = pArray;
     WEAK_SELF
     selectionView.projectChangeBlock = ^(NSInteger index){
@@ -97,7 +98,7 @@
     self.projectSelectionView = selectionView;
     [self showProjectSelectionView];
     
-    [self showProjectWithIndex:0];
+    [self showProjectWithIndex:[YXTrainManager sharedInstance].currentProjectIndex];
 }
 
 - (void)showProjectWithIndex:(NSInteger)index{

@@ -18,4 +18,6 @@
 
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *projects, NSError *error))completeBlock;
 
+- (void)clear;
+
 @end

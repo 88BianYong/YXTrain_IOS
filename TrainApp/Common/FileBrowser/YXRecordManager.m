@@ -68,11 +68,14 @@
     self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     self.request.w = [YXTrainManager sharedInstance].currentProject.w;
     self.request.content = [[YXRecordContent contentFromCourseDetailItem:self.courseDetailItem]toJSONString];
+    
+    NSString *course_id = self.courseDetailItem.course_id;
+    NSString *rc = self.courseDetailItem.rc;
     WEAK_SELF
     [self.request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         if (!error) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kRecordReportSuccessNotification object:nil userInfo:@{self.courseDetailItem.course_id:self.courseDetailItem.rc}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRecordReportSuccessNotification object:nil userInfo:@{course_id:rc}];
         }
         [[NSNotificationCenter defaultCenter]postNotificationName:kRecordReportCompleteNotification object:nil];
     }];

@@ -20,7 +20,7 @@ static const CGFloat kImageWidth = 30;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) YXProjectSelectionBgView *selectionBgView;
 @property (nonatomic, strong) UITableView *selectionTableView;
-@property (nonatomic, assign) NSInteger currentIndex;
+
 @end
 
 @implementation YXProjectSelectionView
@@ -73,7 +73,7 @@ static const CGFloat kImageWidth = 30;
     if (projectArray.count == 0) {
         return;
     }
-    self.currentIndex = 0;
+//    self.currentIndex = 0;
     NSString *currentProject = projectArray[self.currentIndex];
     [self setupTitleWithProject:currentProject];
 }

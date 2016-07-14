@@ -44,7 +44,12 @@
         [self getData];
     };
     self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    self.emptyView.title = @"您还没有开始看课";
+    if ([[YXTrainManager sharedInstance].currentProject.w isEqualToString:@"3"]) {
+        self.emptyView.title = @"您还没有开始看课";
+    }else{
+        self.emptyView.title = @"您还没有选课";
+        self.emptyView.subTitle = @"请您先在电脑登录研修网选课";
+    }
     
     [self setupUI];
     [self getData];

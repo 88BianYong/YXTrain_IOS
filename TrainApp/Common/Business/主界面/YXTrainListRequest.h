@@ -21,6 +21,7 @@
 
 @interface YXTrainListRequestItem_body : JSONModel
 @property (nonatomic, strong) NSString<Optional> *total;
+@property (nonatomic, strong) NSString<Optional> *index;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trains;
 @end
 
