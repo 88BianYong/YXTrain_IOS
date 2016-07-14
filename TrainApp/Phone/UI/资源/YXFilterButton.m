@@ -11,7 +11,6 @@
 @interface YXFilterButton ()
 
 @property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, strong) UILabel *btnLabel;
 @property (nonatomic, strong) UIImageView *btnImageView;
 
 @end

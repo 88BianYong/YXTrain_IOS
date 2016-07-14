@@ -10,8 +10,8 @@
 
 @interface YXFilterButton : UIButton
 
+@property (nonatomic, strong) UILabel *btnLabel;
 - (void)setButtonTitle:(NSString *)title withMaxWidth:(float)width;
-
 - (void)btnTitleColor:(UIColor *)color;
 
 @end

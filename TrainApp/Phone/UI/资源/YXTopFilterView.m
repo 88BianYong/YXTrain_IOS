@@ -71,6 +71,7 @@
 
 - (void)btnTitileWithString:(NSString *)title index:(NSInteger)index {
     YXFilterButton *btn = self.btnArray[index];
+    btn.btnLabel.textColor = [UIColor colorWithHexString:@"0067be"];
     [btn setButtonTitle:title withMaxWidth:[UIScreen mainScreen].bounds.size.width/self.nameArray.count];
 }
 
