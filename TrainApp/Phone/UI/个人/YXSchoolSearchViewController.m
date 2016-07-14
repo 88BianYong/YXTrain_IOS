@@ -92,6 +92,7 @@
     
     _emptyView = [[YXEmptyView alloc]initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 40.0f - 64.0f)];
     _emptyView.title = @"没有符合条件的学校";
+    _emptyView.imageName = @"没有合适的学校";
     _emptyView.backgroundColor = [UIColor whiteColor];
 
     

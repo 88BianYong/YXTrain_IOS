@@ -60,7 +60,7 @@
     };
     _emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
     _emptyView.title = @"暂无内容";
-
+    _emptyView.imageName = @"无内容";
 }
 - (void)layoutInterface{
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {

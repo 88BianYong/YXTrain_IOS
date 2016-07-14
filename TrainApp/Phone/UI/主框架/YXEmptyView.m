@@ -27,6 +27,7 @@
     self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.imageView = [[UIImageView alloc]init];
+    self.imageView.image = [UIImage imageNamed:@"无内容"];
     //self.imageView.backgroundColor = [UIColor redColor];
     [self addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {

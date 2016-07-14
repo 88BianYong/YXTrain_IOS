@@ -125,7 +125,7 @@ UITableViewDataSource
                 [[SDImageCache sharedImageCache] clearMemory];
                 
                 // 清下载
-                NSString *dp = [PersistentUrlDownloader downloadFolderPath];
+                NSString *dp = [BaseDownloader downloadFolderPath];
                 [[NSFileManager defaultManager] removeItemAtPath:dp error:nil];
                 [self showToast:@"清除成功"];
             }

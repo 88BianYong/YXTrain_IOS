@@ -45,7 +45,7 @@
     _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     _errorView.retryBlock = ^{
         STRONG_SELF
-        [self ->_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.yanxiu.com/common/agreement.html"]]];
+        [self ->_webView loadRequest:self ->_webView.request];
     };
 }
 - (void)naviRightAction{
@@ -79,7 +79,8 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [self stopLoading];
-    [self.view addSubview:_errorView];
-    
+    if (error.code == -1009) {
+      [self.view addSubview:_errorView];
+    }
 }
 @end

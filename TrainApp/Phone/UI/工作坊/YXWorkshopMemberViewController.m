@@ -42,6 +42,7 @@ UICollectionViewDelegate
 - (void)viewDidLoad {    
     [super viewDidLoad];
     self.title = @"成员";
+    self.view.backgroundColor = [UIColor whiteColor];
     _dataMutableArray = [[NSMutableArray alloc] initWithArray:_cachMutableArray];
     [self setupUI];
     [self layoutInterface];
@@ -66,15 +67,20 @@ UICollectionViewDelegate
     layout.minimumInteritemSpacing = 0.0f;
     layout.minimumLineSpacing = 0.0f;
     _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-    _collectionView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
+    _collectionView.alwaysBounceVertical = YES;
     [_collectionView registerClass:[YXWorkshopMemberCell class] forCellWithReuseIdentifier:@"YXWorkshopMemberCell"];
     [self.view addSubview:_collectionView];
     
     WEAK_SELF
     _header = [MJRefreshHeaderView header];
     _header.scrollView = _collectionView;
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, self.view.bounds.size.width, 360.0f)];
+    topView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [_header addSubview:topView];
+    [_header sendSubviewToBack:topView];
     _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
         self->_pageIndex = 0;
@@ -84,6 +90,10 @@ UICollectionViewDelegate
     
     _footer = [MJRefreshFooterView footer];
     _footer.scrollView = _collectionView;
+    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 360.0f)];
+    bottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [_footer addSubview:bottomView];
+    [_footer sendSubviewToBack:bottomView];
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
        STRONG_SELF
         [self requestForWorkshopMember:self ->_pageIndex];
@@ -96,6 +106,7 @@ UICollectionViewDelegate
     };
     _emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
     _emptyView.title = @"暂无成员";
+    _emptyView.imageName = @"无内容";
 }
 
 - (void)layoutInterface{
@@ -169,6 +180,7 @@ UICollectionViewDelegate
             }
             else{
                 if (retItemArray.count > 0) {
+                    _pageIndex ++;
                     [self.cachMutableArray removeAllObjects];
                     [self.cachMutableArray addObjectsFromArray:retItemArray];
                     [self ->_dataMutableArray removeAllObjects];
@@ -182,6 +194,7 @@ UICollectionViewDelegate
                     self ->_emptyView.frame = self.view.bounds;
                     [self.view addSubview:self ->_emptyView];
                 }
+                [self setPullupViewHidden:self ->_dataMutableArray.count >= total];
             }
         }else{//加载更多错误弹出提示
             if (error) {
@@ -193,32 +206,14 @@ UICollectionViewDelegate
                     [self ->_dataMutableArray addObjectsFromArray:retItemArray];
                     [self ->_collectionView reloadData];
                 }
+                [self setPullupViewHidden:self ->_dataMutableArray.count >= total];
             }
         }
     }];
 }
-//- (void)reloadCollectionView{
-//    if (self.dataMutableArray.count > 0){
-//        if (IS_IPHONE_6P) {
-//            
-//            
-//            //5 - self.dataMutableArray.count%5 =
-//        }
-//        
-//        
-//            [_collectionView reloadData];
-//        
-//        
-//    }
-//
-//    
-//    
-//
-//}
-//- (void)setFillInteger:(NSInteger)fillInteger{
-//    _fillInteger = fillInteger;
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
-//}
+
+- (void)setPullupViewHidden:(BOOL)hidden
+{
+    _footer.alpha = hidden ? 0:1;
+}
 @end

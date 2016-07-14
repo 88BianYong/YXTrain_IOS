@@ -123,7 +123,7 @@ UICollectionViewDelegate
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _memberMutableArray.count > 6 ? 6 : _memberMutableArray.count;
+    return _memberMutableArray.count > 7 ? 7 : _memberMutableArray.count;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     YXWorkshopDetailMemberCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXWorkshopDetailMemberCell" forIndexPath:indexPath];

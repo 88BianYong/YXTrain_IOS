@@ -28,7 +28,7 @@
     self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.imageView = [[UIImageView alloc]init];
-    self.imageView.backgroundColor = [UIColor redColor];
+    self.imageView.image = [UIImage imageNamed:@"网络异常"];
     [self addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);

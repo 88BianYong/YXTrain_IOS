@@ -53,6 +53,7 @@
         make.bottom.equalTo(self.contentView.mas_bottom);
         make.left.equalTo(self.contentView.mas_left).offset(10.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-10.0f);
+        make.height.offset(12.0f);
     }];
 }
 

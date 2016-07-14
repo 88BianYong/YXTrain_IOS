@@ -73,6 +73,7 @@
     CGRect frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 64.0f);
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.contentSize = frame.size;
+    _scrollView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.view addSubview:_scrollView];
     
     _contentView = [[UIView alloc] initWithFrame:frame];
