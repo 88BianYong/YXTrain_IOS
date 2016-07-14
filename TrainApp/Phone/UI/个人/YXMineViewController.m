@@ -99,9 +99,6 @@
     [self.tableView registerClass:[YXUserImageTableViewCell class] forCellReuseIdentifier:@"YXUserImageTableViewCell"];
     [self.tableView registerClass:[YXUserInfoTableViewCell class] forCellReuseIdentifier:@"YXUserInfoTableViewCell"];
     [self.tableView registerClass:[YXUserTextFieldTableViewCell class] forCellReuseIdentifier:@"YXUserTextFieldTableViewCell"];
-//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
-//    headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-//    self.tableView.tableHeaderView = headerView;
 }
 
 #pragma mark --TabelViewDelegate, TabelViewDataSource
@@ -122,6 +119,7 @@
         [cell setImageWithUrl:self.profile.headDetail];
         cell.userImageTap = ^(){
             STRONG_SELF
+            [self.view endEditing:YES];
             [self changeAvatar];
         };
         return cell;
@@ -149,6 +147,7 @@
             [cell configUIwithTitle:@"学科 | 学段" content:content];
             cell.userInfoButtonClickedBlock = ^() {
                 STRONG_SELF
+                [self.view endEditing:YES];
                 [self showStageAndSubjectPicker];
             };
         }
@@ -156,6 +155,7 @@
             [cell configUIwithTitle:@"地区" content:self.profile.area];
             cell.userInfoButtonClickedBlock = ^() {
                 STRONG_SELF
+                [self.view endEditing:YES];
                 [self showProvinceListPicker];
             };
         }
@@ -168,6 +168,7 @@
                 vc.areaName = [NSString stringWithFormat:@"%@ %@ %@",self.profile.province,self.profile.city,self.profile.region];
                 vc.addSchoolNameSuccessBlock = ^(NSString *schoolName){
                     STRONG_SELF
+                    [self.view endEditing:YES];
                     YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
                     [cell configUIwithTitle:@"学校" content:schoolName];
                     self.profile = [YXUserManager sharedManager].userModel.profile;

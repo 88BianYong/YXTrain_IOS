@@ -132,8 +132,7 @@
                     [self showErroView];
                 } else {
                     self->_total = 0;
-                    [self showErroView];
-//                    [self showToast:error.localizedDescription];
+                    [self showToast:error.localizedDescription];
                 }
                 [self checkHasMore];
                 return;

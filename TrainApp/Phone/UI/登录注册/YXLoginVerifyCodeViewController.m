@@ -97,7 +97,7 @@
             cell.verifyCodeAction = ^{
                 @strongify(self)
                 if (![self.phoneNumber yx_isPhoneNum]) {
-                    [self showToast:@"请输入正确手机号"];
+                    [self showToast:@"手机号码格式不正确"];
                     return;
                 }
                 [self verifyPhoneNumExist];

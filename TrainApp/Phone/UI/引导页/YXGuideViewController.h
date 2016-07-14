@@ -10,7 +10,7 @@
 
 @interface YXGuideViewController : YXBaseViewController
 
-@property (nonatomic, strong) UIViewController *endoTargetViewController;
 @property (nonatomic, strong) NSArray *guideDataArray;
+@property (nonatomic, copy) void(^startMainVCBlock)();
 
 @end

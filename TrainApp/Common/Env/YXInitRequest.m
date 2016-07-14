@@ -192,33 +192,25 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     if (![body.fileURL yx_isHttpLink]) { //http链接
         return;
     }
-    NSDate *cacheDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"升级间隔时长"];
-    if (cacheDate) {
-        NSLog(@"%f",[[NSDate date] timeIntervalSinceDate:cacheDate]);
-        if ([[NSDate date] timeIntervalSinceDate:cacheDate] > 3600 * 24) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"升级间隔时长"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            YXAlertView *alertView = [YXAlertView alertViewWithTitle:body.title message:body.content];
-            if (![body isForce]) {
-                [alertView addButtonWithTitle:@"取消"];
-            }
-            [alertView addButtonWithTitle:@"升级" action:^{
+    YXAlertView *alertView = [YXAlertView alertViewWithTitle:body.title message:body.content];
+    if (![body isForce]) {
+        [alertView addButtonWithTitle:@"取消"];
+    }
+    [alertView addButtonWithTitle:@"升级" action:^{
+        Reachability *r = [Reachability reachabilityForInternetConnection];
+        NetworkStatus status = [r currentReachabilityStatus];
+        if (status == ReachableViaWiFi) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
+        } else if(status == ReachableViaWWAN){
+            YXAlertView *showAlertView = [YXAlertView alertViewWithTitle:@"当前网络非WIFi环境，是否继续更新"];
+            [showAlertView addButtonWithTitle:@"否"];
+            [showAlertView addButtonWithTitle:@"继续" action:^{
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
             }];
-            [alertView show];
+            [showAlertView show];
         }
-    } else {
-        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"升级间隔时长"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        YXAlertView *alertView = [YXAlertView alertViewWithTitle:body.title message:body.content];
-        if (![body isForce]) {
-            [alertView addButtonWithTitle:@"取消"];
-        }
-        [alertView addButtonWithTitle:@"升级" action:^{
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
-        }];
-        [alertView show];
-    }
+    }];
+    [alertView show];
 }
 
 - (BOOL)isAppleChecking

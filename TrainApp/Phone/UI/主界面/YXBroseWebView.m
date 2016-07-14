@@ -55,7 +55,7 @@
             [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
         }
         if (index == 1) {
-            NSURL *requestURL = [[NSURL alloc] initWithString:self.urlString];
+            NSURL *requestURL = [[NSURL alloc] initWithString:self.webView.request.URL.absoluteString];
             [[UIApplication sharedApplication] openURL:requestURL];
         }
         if (index == 2) {
@@ -90,15 +90,17 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [self stopLoading];
-    self.errorView.frame = self.view.bounds;
-    if (!self.errorView) {
-        WEAK_SELF
-        self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-        self.errorView.retryBlock = ^{
-            STRONG_SELF
-            [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
-        };
-        [self.view addSubview:self.errorView];
+    if (error.code == -1009) {
+        self.errorView.frame = self.view.bounds;
+        if (!self.errorView) {
+            WEAK_SELF
+            self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+            self.errorView.retryBlock = ^{
+                STRONG_SELF
+                [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
+            };
+            [self.view addSubview:self.errorView];
+        }
     }
 }
 

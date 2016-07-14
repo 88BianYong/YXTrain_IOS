@@ -11,6 +11,7 @@
 @interface YXGuideCustomView ()
 
 @property (nonatomic, strong) UILabel *titileLabel;
+@property (nonatomic, strong) UIButton *startButton;
 
 @end
 
@@ -35,12 +36,28 @@
             make.centerX.mas_equalTo(0);
             make.centerY.mas_equalTo(0);
         }];
+        
+        self.startButton = [[UIButton alloc] init];
+        self.startButton.backgroundColor = [UIColor redColor];
+        [self.startButton addTarget:self action:@selector(startButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.startButton];
+        [self.startButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.mas_equalTo(0);
+            make.centerX.mas_equalTo(0);
+        }];
     }
     return self;
 }
 
 - (void)configWithGuideModel:(YXGuideModel *)guideModel {
     self.titileLabel.text = guideModel.guideTitle;
+    self.startButton.hidden = !guideModel.isShowButton;
+}
+
+- (void)startButtonClicked {
+    if (self.startButtonClickedBlock) {
+        self.startButtonClickedBlock();
+    }
 }
 
 @end

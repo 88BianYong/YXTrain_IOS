@@ -168,7 +168,7 @@
     }];
     [self.touristLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(QRScanButton.mas_bottom).offset(2);
-        make.left.equalTo(QRScanImageView.mas_left);
+        make.centerX.mas_equalTo(0);
     }];
     [loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(QRScanButton.mas_top).offset(-kScreenSpaceHeight * 0.1);
@@ -208,8 +208,8 @@
 
 - (void)startTouristRequet {
     [self.view endEditing:YES];
-    self.registerNumber = @"XY02307777@yanxiu.com";
-    self.password = @"888888";
+    self.registerNumber = @"XY02307737@yanxiu.com";
+    self.password = @"youkedenglu";
     [self startLoginRequest];
 }
 

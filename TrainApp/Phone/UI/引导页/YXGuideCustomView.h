@@ -13,4 +13,6 @@
 
 - (void)configWithGuideModel:(YXGuideModel *)guideModel;
 
+@property (nonatomic, strong) void(^startButtonClickedBlock)();
+
 @end

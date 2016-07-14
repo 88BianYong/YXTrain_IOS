@@ -22,6 +22,8 @@
 #import "YXDatumGlobalSingleton.h"
 #import "YXPromtController.h"
 #import "YXInitRequest.h"
+#import "YXGuideViewController.h"
+#import "YXGuideModel.h"
 
 @interface AppDelegate ()<YXLoginDelegate>
 
@@ -58,16 +60,34 @@
         YXTestViewController *vc = [[YXTestViewController alloc] init];
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     }else{
-        if ([[YXUserManager sharedManager] isLogin]) {
-            self.window.rootViewController = [self rootDrawerViewController];
-            [self requestCommonData];
-        } else
-        {
-            self.loginVC = [[YXLoginViewController alloc] init];
-            self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
+        NSString *versionKey = (__bridge NSString *)kCFBundleVersionKey;
+        NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:versionKey];
+        NSString *currentVersion = [[NSBundle mainBundle].infoDictionary objectForKey:versionKey];
+        if ([currentVersion compare:lastVersion] != NSOrderedSame) {
+            YXGuideViewController *vc = [[YXGuideViewController alloc] init];
+            vc.guideDataArray = [self configGuideArray];
+            vc.startMainVCBlock = ^{
+                [self startRootVC];
+            };
+            self.window.rootViewController = vc;
+            [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }else {
+            [self startRootVC];
         }
     }
     [self.window makeKeyAndVisible];
+}
+
+- (void)startRootVC {
+    if ([[YXUserManager sharedManager] isLogin]) {
+        self.window.rootViewController = [self rootDrawerViewController];
+        [self requestCommonData];
+    } else
+    {
+        self.loginVC = [[YXLoginViewController alloc] init];
+        self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
+    }
 }
 
 - (YXDrawerViewController *)rootDrawerViewController {
@@ -158,6 +178,23 @@
         self.loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
     }
+}
+
+- (NSArray *)configGuideArray {
+    YXGuideModel *model_1 = [self guideModelWithImageName:@"" title:@"yiyi" isShowButton:NO];
+    YXGuideModel *model_2 = [self guideModelWithImageName:@"" title:@"erer" isShowButton:NO];
+    YXGuideModel *model_3 = [self guideModelWithImageName:@"" title:@"sansan" isShowButton:NO];
+    YXGuideModel *model_4 = [self guideModelWithImageName:@"" title:@"sisi" isShowButton:YES];
+    NSArray *guideArry = @[model_1,model_2,model_3,model_4];
+    return guideArry;
+}
+
+- (YXGuideModel *)guideModelWithImageName:(NSString *)name title:(NSString *)titile isShowButton:(BOOL)isShowButton {
+    YXGuideModel *model =[[YXGuideModel alloc] init];
+    model.guideTitle = titile;
+    model.guideImageString = name;
+    model.isShowButton = isShowButton;
+    return model;
 }
 
 @end

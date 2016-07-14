@@ -42,6 +42,13 @@
     for (int i=0; i< self.pages; i++) {
         YXGuideCustomView *guideView = [[YXGuideCustomView alloc] init];
         [guideView configWithGuideModel:[self.guideDataArray objectAtIndex:i]];
+        @weakify(self);
+        guideView.startButtonClickedBlock = ^(){
+            @strongify(self);
+            if (self.startMainVCBlock) {
+                self.startMainVCBlock();
+            }
+        };
         [scrollView addSubview:guideView];
         CGRect frame = guideView.frame;
         frame.size = CGSizeMake(viewW, viewH);
