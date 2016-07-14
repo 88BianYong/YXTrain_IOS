@@ -60,7 +60,7 @@
         }
         if (index == 2) {
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = self.urlString;
+            pasteboard.string = self.webView.request.URL.absoluteString;
             [self showToast:@"复制成功"];
         }
     };
