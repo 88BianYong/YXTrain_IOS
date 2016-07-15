@@ -35,9 +35,20 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
+    if (!selected) {
+        _imageView.image = [UIImage imageNamed:@"工作坊列表展开箭头"];
+    }
 }
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        _imageView.image = [UIImage imageNamed:@"工作坊列表展开箭头-点击态"];
+    }
+    else{
+        _imageView.image = [UIImage imageNamed:@"工作坊列表展开箭头"];
+    }
+}
+
 #pragma mark - UI setting
 - (void)setupUI{
     _titleLabel = [[UILabel alloc] init];
@@ -51,7 +62,6 @@
     [self.contentView addSubview:_contentLabel];
     
     _imageView = [[UIImageView alloc] init];
-    _imageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:_imageView];
 }
 

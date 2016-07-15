@@ -44,7 +44,7 @@
     [self.contentView addSubview:self.userTitleLabel];
     
     UIImageView *editIconImageView = [[UIImageView alloc] init];
-    editIconImageView.backgroundColor = [UIColor redColor];
+    editIconImageView.image = [UIImage imageNamed:@"修改个人资料icon"];
     [self.contentView addSubview:editIconImageView];
     
     self.contentButton = [[UIButton alloc] init];

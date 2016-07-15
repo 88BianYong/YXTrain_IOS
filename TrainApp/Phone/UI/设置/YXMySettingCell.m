@@ -30,8 +30,18 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    if (!selected) {
+        _imageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
+    }
+}
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+       _imageView.image = [UIImage imageNamed:@"意见反馈展开箭头点击态"];
+    }
+    else{
+        _imageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
+    }
 }
 
 #pragma mark - setup UI
@@ -49,7 +59,7 @@
     }];
     
     _imageView = [[UIImageView alloc] init];
-    _imageView.backgroundColor = [UIColor redColor];
+    _imageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
     [self.contentView addSubview:_imageView];
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-12.0f);
@@ -60,6 +70,6 @@
 - (void)reloadWithText:(NSString *)text
              imageName:(NSString *)imageName{
     _titleLabel.text = text;
-    _imageView.image = [UIImage imageNamed:imageName];
+//    _imageView.image = [UIImage imageNamed:imageName];
 }
 @end

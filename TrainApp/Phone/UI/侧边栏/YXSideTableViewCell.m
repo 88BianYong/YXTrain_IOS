@@ -39,7 +39,6 @@
     selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
     self.selectedBackgroundView = selectedBgView;
     self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.iconImageView];
     
     self.sideLabel = [[UILabel alloc] init];

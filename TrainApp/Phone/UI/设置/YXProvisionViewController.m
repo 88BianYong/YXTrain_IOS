@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.title = @"服务条款";
     [self setupUI];
-    [self setupRightWithTitle:@"更多"];
+    [self setupRightWithImageNamed:@"更多icon-点击态" highlightImageNamed:@"更多icon"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,15 +52,14 @@
     YXShowWebMenuView *menuView = [[YXShowWebMenuView alloc]initWithFrame:self.view.window.bounds];
     menuView.didSeletedItem = ^(NSInteger index) {
         if (index == 0) {
-            [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.yanxiu.com/common/agreement.html"] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
+            [_webView loadRequest:[NSURLRequest requestWithURL:_webView.request.URL cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
         }
         if (index == 1) {
-            NSURL *requestURL = [[NSURL alloc] initWithString:@"http://www.yanxiu.com/common/agreement.html"];
-            [[UIApplication sharedApplication] openURL:requestURL];
+            [[UIApplication sharedApplication] openURL:_webView.request.URL];
         }
         if (index == 2) {
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-            pasteboard.string = @"http://www.yanxiu.com/common/agreement.html";
+            pasteboard.string = _webView.request.URL.absoluteString;
             [self showToast:@"复制成功"];
         }
     };

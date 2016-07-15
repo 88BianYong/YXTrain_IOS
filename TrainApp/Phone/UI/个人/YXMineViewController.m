@@ -63,13 +63,14 @@
 
 - (void)reloadUserProfileData
 {
-    self.profile = [YXUserManager sharedManager].userModel.profile;
-    if (!self.profile) {
-        [self requestUserProfile];
-    } else {
-        [self reloadDataWithProfile:self.profile];
-        [self.tableView reloadData];
-    }
+//    self.profile = [YXUserManager sharedManager].userModel.profile;
+//    if (!self.profile) {
+//        [self requestUserProfile];
+//    } else {
+//        [self reloadDataWithProfile:self.profile];
+//        [self.tableView reloadData];
+//    }
+    [self requestUserProfile];
 }
 
 - (void)requestUserProfile
@@ -78,6 +79,7 @@
     @weakify(self);
     [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
         @strongify(self);
+        self.profile = [YXUserManager sharedManager].userModel.profile;
         [self stopLoading];
         [self reloadDataWithProfile:self.profile];
         [self.tableView reloadData];
@@ -218,6 +220,7 @@
 {
     [self resetSelectedSubjectsWithProfile:profile];
     [self resetSelectedProvinceDataWithProfile:profile];
+    [self resetMineViewData:profile];
 }
 
 - (void)resetSelectedSubjectsWithProfile:(YXUserProfile *)profile
@@ -268,6 +271,18 @@
         }
     }];
 }
+- (void)resetMineViewData:(YXUserProfile *)profile{
+    if (self.schoolModifySuccess) {
+        self.schoolModifySuccess(profile.school);
+    }
+    if (self.userPicModifySuccess) {
+        self.userPicModifySuccess(profile.head);
+    }
+    if (self.nameModifySuccess) {
+        self.nameModifySuccess(profile.realName);
+    }
+}
+
 
 - (void)showProvinceListPicker
 {
@@ -723,7 +738,7 @@
             [cell setImageWithDataImage:image];
             
             if (self.userPicModifySuccess) {
-                self.userPicModifySuccess(image);
+                self.userPicModifySuccess(self.profile.headDetail);
             }
             
         } else {

@@ -64,6 +64,7 @@
     _searchBar.delegate = self;
     _searchBar.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     _searchBar.backgroundImage = [[UIImage alloc] init];
+    [_searchBar setImage:[UIImage imageNamed:@"输入搜索学校名称icon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     //    _searchBar.barTintColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.view addSubview:_searchBar];
     
@@ -242,6 +243,7 @@
 {
     if (![school.name yx_isValidString]
         || [school.name isEqualToString:[YXUserManager sharedManager].userModel.profile.school]) {
+        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
     NSDictionary *param = @{@"schoolName": school.name,

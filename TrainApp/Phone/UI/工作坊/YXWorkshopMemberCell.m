@@ -27,7 +27,7 @@
 
 - (void)setupUI{
     _headImageView = [[UIImageView alloc] init];
-    _headImageView.backgroundColor = [UIColor redColor];
+    _headImageView.image = [UIImage imageNamed:@"成员大头像"];
     _headImageView.layer.cornerRadius = 30.0f;
     _headImageView.layer.masksToBounds = YES;
     _headImageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -61,6 +61,6 @@
 - (void)setList:(YXWorkshopMemberRequestItem_memberList *)list{
     _list = list;
     _nameLabel.text = list.realName;
-    [_headImageView sd_setImageWithURL:[NSURL URLWithString:list.head] placeholderImage:[UIImage imageNamed:@""]];
+    [_headImageView sd_setImageWithURL:[NSURL URLWithString:list.head] placeholderImage:[UIImage imageNamed:@"成员大头像"]];
 }
 @end

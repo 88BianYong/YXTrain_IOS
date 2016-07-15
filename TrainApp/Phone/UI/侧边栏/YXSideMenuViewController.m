@@ -94,7 +94,7 @@
     }];
     
     _iconImageView = [[UIImageView alloc] init];
-    _iconImageView.backgroundColor = [UIColor redColor];
+    _iconImageView.image = [UIImage imageNamed:@"用户默认头像"];
     [self.headerView addSubview:_iconImageView];
     
     _nameLabel = [[UILabel alloc] init];
@@ -110,9 +110,8 @@
     [self.headerView addSubview:_schoolNameLabel];
     
     UIImageView *headerIconImageView = [[UIImageView alloc] init];
-    headerIconImageView.backgroundColor = [UIColor redColor];
+    headerIconImageView.image = [UIImage imageNamed:@"进入编辑个人中心icon"];
     [self.headerView addSubview:headerIconImageView];
-    
     UIView *headerBottomView = [[UIView alloc] init];
     headerBottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.headerView addSubview:headerBottomView];
@@ -156,7 +155,7 @@
     [footerButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
     [self.footerView addSubview:footerButton];
     UIImageView *footerIconImageView = [[UIImageView alloc] init];
-    footerIconImageView.backgroundColor = [UIColor redColor];
+    footerIconImageView.image = [UIImage imageNamed:@"设置icon"];
     [self.footerView addSubview:footerIconImageView];
     UILabel *footerLabel = [[UILabel alloc] init];
     footerLabel.text = @"设置";
@@ -196,8 +195,8 @@
         vc.schoolModifySuccess = ^(NSString *schoolName) {
             _schoolNameLabel.text = schoolName;
         };
-        vc.userPicModifySuccess = ^(UIImage *image) {
-            _iconImageView.image = image;
+        vc.userPicModifySuccess = ^(NSString *image) {
+            [_iconImageView sd_setImageWithURL:[NSURL URLWithString:image] placeholderImage:[UIImage imageNamed:@"用户默认头像"]];
         };
         [self.navigationController pushViewController:vc animated:YES];
 //        YXGuideViewController *vc = [[YXGuideViewController alloc] init];
@@ -251,7 +250,7 @@
     
     _nameLabel.text = self.profile.realName;
     _schoolNameLabel.text = self.profile.school;
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.headDetail] placeholderImage:[UIImage imageNamed:@"默认头像"]];
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.headDetail] placeholderImage:[UIImage imageNamed:@"用户默认头像"]];
     [self.view setNeedsLayout];
 }
 
@@ -278,10 +277,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXSideTableViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
-        [cell updateWithIconNamed:@"" andName:@"资源"];
+        [cell updateWithIconNamed:@"资源" andName:@"资源"];
     }
     if (indexPath.section == 1) {
-        [cell updateWithIconNamed:@"" andName:@"我的工作坊"];
+        [cell updateWithIconNamed:@"我的工作坊icon" andName:@"我的工作坊"];
     }
     return cell;
 }

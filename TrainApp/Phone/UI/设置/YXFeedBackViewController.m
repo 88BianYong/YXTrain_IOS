@@ -112,6 +112,8 @@
     _submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
     [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _submitButton.backgroundColor = [UIColor colorWithHexString:@"41c694"];
+//    [_submitButton setBackgroundImage: [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"41c694"]] forState:UIControlStateNormal];
+//    [_submitButton setBackgroundImage: [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
     _submitButton.layer.cornerRadius = 4;
     _submitButton.layer.masksToBounds = YES;
 }
@@ -214,7 +216,7 @@
         STRONG_SELF
         YXFeedBackRequestItem *item = retItem;
         if (item && !error) {
-            [self showToast:@"反馈成功"];
+            [self showToast:@"提交成功，感谢您的宝贵意见"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });

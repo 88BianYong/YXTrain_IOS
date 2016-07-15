@@ -32,15 +32,24 @@
     [super awakeFromNib];
     // Initialization code
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    if (!selected) {
+        _nextImageView.image = [UIImage imageNamed:@"工作坊列表展开箭头"];
+    }
+}
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        _nextImageView.image = [UIImage imageNamed:@"工作坊列表展开箭头-点击态"];
+    }
+    else{
+        _nextImageView.image = [UIImage imageNamed:@"工作坊列表展开箭头"];
+    }
 }
 - (void)setupUI{
     _iconImageView = [[UIImageView alloc] init];
-    _iconImageView.backgroundColor = [UIColor redColor];
+    _iconImageView.image = [UIImage imageNamed:@"工作坊列表小图标"];
     _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:_iconImageView];
     
@@ -50,7 +59,6 @@
     [self.contentView addSubview:_nameLabel];
     
     _nextImageView = [[UIImageView alloc] init];
-    _nextImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:_nextImageView];
 }
 - (void)layoutInterface{

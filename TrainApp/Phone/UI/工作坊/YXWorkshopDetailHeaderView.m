@@ -31,7 +31,7 @@
 
 - (void)setupUI{
     _headerImageView = [[UIImageView alloc] init];
-    _headerImageView.backgroundColor = [UIColor redColor];
+    _headerImageView.image = [UIImage imageNamed:@"工作坊详情大icon"];
     _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:_headerImageView];
     
@@ -42,7 +42,7 @@
     [self addSubview:_nameLable];
     
     _iconImageView = [[UIImageView alloc] init];
-    _iconImageView.backgroundColor = [UIColor redColor];
+    _iconImageView.image = [UIImage imageNamed:@"房主图标"];
     [self addSubview:_iconImageView];
     
     _masterLabel = [[UILabel alloc] init];
@@ -62,6 +62,7 @@
     [_nameLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(91.0f);
         make.centerX.equalTo(self.mas_centerX);
+        make.width.lessThanOrEqualTo(self.mas_width).offset(-30.0f);
     }];
     
     [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,12 +74,12 @@
     [_masterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_nameLable.mas_bottom).offset(12.0f);
         make.centerX.equalTo(self.mas_centerX).offset(8.0f);
+        make.width.lessThanOrEqualTo(self.mas_width).offset(-50.0f);
     }];
 }
 - (void)reloadWithName:(NSString *)nameString
                 master:(NSString *)masterString{
     _nameLable.text = nameString;
     _masterLabel.text = [NSString stringWithFormat:@"坊主  %@",masterString];
-    _headerImageView.image = [UIImage imageNamed:@"datum_pic"];
 }
 @end

@@ -46,7 +46,7 @@
     [self.userImageView addGestureRecognizer:tapUserImageGesture];
     
     self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.backgroundColor = [UIColor redColor];
+    self.iconImageView.image = [UIImage imageNamed:@"点击修改头像图标"];
     [self.contentView addSubview:self.iconImageView];
     
     self.desLabel = [[UILabel alloc] init];
@@ -95,7 +95,7 @@
 }
 
 -(void)setImageWithUrl:(NSString *)urlString{
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"icon_default_avatar"]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:[UIImage imageNamed:@"个人信息默认用户头像"]];
 }
 -(void)setImageWithDataImage:(UIImage *)image{
     self.userImageView.image = image;

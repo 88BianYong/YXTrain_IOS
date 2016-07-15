@@ -54,7 +54,7 @@
 
 #pragma mark - Navi Left
 - (void)setupLeftBack{
-    [self setupLeftWithImageNamed:@"返回" highlightImageNamed:@"返回"];
+    [self setupLeftWithImageNamed:@"返回按钮" highlightImageNamed:@"返回按钮点击态"];
 }
 
 - (void)setupLeftWithImageNamed:(NSString *)imageName highlightImageNamed:(NSString *)highlightImageName{

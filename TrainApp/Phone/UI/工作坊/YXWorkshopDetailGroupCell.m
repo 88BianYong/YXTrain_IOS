@@ -17,7 +17,7 @@
         self.imageView.layer.cornerRadius = 17.0f;
         self.imageView.clipsToBounds = YES;
         self.imageView.layer.masksToBounds = YES;
-        self.imageView.backgroundColor = [UIColor redColor];
+        self.imageView.image = [UIImage imageNamed:@"工作坊详情成员小头像"];
         [self addSubview:self.imageView];
     }
     return self;
@@ -60,8 +60,18 @@ UICollectionViewDelegate
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
+    if (!selected) {
+        _imageView.image = [UIImage imageNamed:@"工作坊列表展开箭头"];
+    }
+}
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        _imageView.image = [UIImage imageNamed:@"工作坊列表展开箭头-点击态"];
+    }
+    else{
+        _imageView.image = [UIImage imageNamed:@"工作坊列表展开箭头"];
+    }
 }
 #pragma mark - UI setting
 - (void)setupUI{
@@ -89,7 +99,6 @@ UICollectionViewDelegate
     [self.contentView addSubview:_contentLabel];
     
     _imageView = [[UIImageView alloc] init];
-    _imageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:_imageView];
 }
 
@@ -129,7 +138,7 @@ UICollectionViewDelegate
     YXWorkshopDetailMemberCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXWorkshopDetailMemberCell" forIndexPath:indexPath];
     if (_memberMutableArray.count > indexPath.row) {
         YXWorkshopMemberRequestItem_memberList *member = _memberMutableArray[indexPath.row];
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:member.head] placeholderImage:[UIImage imageNamed:@""]];
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:member.head] placeholderImage:[UIImage imageNamed:@"工作坊详情成员小头像"]];
     }
     return cell;
 }
