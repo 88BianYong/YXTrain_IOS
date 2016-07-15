@@ -77,6 +77,7 @@
 }
 
 - (void)clear{
+    self.trainlistItem = nil;
     [[NSUserDefaults standardUserDefaults]setValue:nil forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }

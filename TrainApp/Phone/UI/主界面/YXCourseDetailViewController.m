@@ -68,7 +68,7 @@
 }
 
 - (void)getData{
-    if (self.course.is_selected.integerValue == 0) {
+    if (self.course.is_selected.integerValue == 0 && !self.isFromRecord) {
         [self.courseDetailRequest stopRequest];
         self.courseDetailRequest = [[YXCourseDetailRequest alloc]init];
         self.courseDetailRequest.cid = self.course.courses_id;

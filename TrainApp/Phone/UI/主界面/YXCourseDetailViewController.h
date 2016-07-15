@@ -11,4 +11,5 @@
 
 @interface YXCourseDetailViewController : YXBaseViewController
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course *course;
+@property (nonatomic, assign) BOOL isFromRecord;
 @end

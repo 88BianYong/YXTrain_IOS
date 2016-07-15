@@ -220,6 +220,7 @@
     YXCourseListRequestItem_body_module_course *course = self.dataArray[indexPath.row];
     YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];
     vc.course = course;
+    vc.isFromRecord = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

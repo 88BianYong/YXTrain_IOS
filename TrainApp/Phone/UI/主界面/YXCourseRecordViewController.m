@@ -231,6 +231,7 @@
     YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[indexPath.section];
     YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];
     vc.course = module.courses[indexPath.row];
+    vc.isFromRecord = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
