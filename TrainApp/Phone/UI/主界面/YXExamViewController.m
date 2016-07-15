@@ -181,12 +181,14 @@
         return header;
     }else if (section <= self.examineItem.body.leadingVoList.count){
         YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[section-1];
+        NSNumber *status = [self.foldStatusDic valueForKey:vo.voID];
         YXExamPhaseHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamPhaseHeaderView"];
         header.title = vo.name;
+        header.isFold = status.boolValue;
+        header.isFinished = vo.isfinish.boolValue;
         WEAK_SELF
         header.actionBlock = ^{
             STRONG_SELF
-            NSNumber *status = [self.foldStatusDic valueForKey:vo.voID];
             [self.foldStatusDic setValue:@(!status.boolValue) forKey:vo.voID];
             [tableView beginUpdates];
             [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];

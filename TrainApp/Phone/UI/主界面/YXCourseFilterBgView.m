@@ -40,10 +40,15 @@
 
 - (void)setupUI{
     self.backgroundColor = [UIColor clearColor];
-    self.triangleView = [[YXTriangleView alloc]initWithFrame:CGRectMake(self.triangleX-8, 0, 16, 7)];
-    self.triangleView.backgroundColor = [UIColor clearColor];
-    [self addSubview:self.triangleView];
-    self.contentBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 7, self.bounds.size.width, self.bounds.size.height-7)];
+//    self.triangleView = [[YXTriangleView alloc]initWithFrame:CGRectMake(self.triangleX-8, 0, 16, 7)];
+//    self.triangleView.backgroundColor = [UIColor clearColor];
+//    [self addSubview:self.triangleView];
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.image = [UIImage imageNamed:@"切换项目名称的弹窗-尖角"];
+    imageView.frame = CGRectMake(self.triangleX-9, 0, 18, 8);
+    [self addSubview:imageView];
+    
+    self.contentBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 8, self.bounds.size.width, self.bounds.size.height-8)];
     self.contentBgView.backgroundColor = [UIColor whiteColor];
     self.contentBgView.layer.cornerRadius = 2;
     self.contentBgView.clipsToBounds = YES;

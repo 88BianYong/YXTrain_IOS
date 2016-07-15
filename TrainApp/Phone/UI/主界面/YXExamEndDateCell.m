@@ -66,7 +66,11 @@
 
 - (void)setDate:(NSString *)date{
     _date = date;
-    self.dateLabel.text = [NSString stringWithFormat:@"结束日期：%@",date];
+    if (date.length == 0) {
+        self.dateLabel.text = [NSString stringWithFormat:@"结束日期：%@",@"无"];
+    }else{
+        self.dateLabel.text = [NSString stringWithFormat:@"结束日期：%@",date];
+    }
 }
 
 @end

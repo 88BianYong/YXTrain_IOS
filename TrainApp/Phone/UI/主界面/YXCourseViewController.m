@@ -44,6 +44,7 @@
     
     YXEmptyView *emptyView = [[YXEmptyView alloc]init];
     emptyView.title = @"没有符合条件的课程";
+    emptyView.imageName = @"没有符合条件的课程";
     self.emptyView = emptyView;
     
     if (self.stageID) {

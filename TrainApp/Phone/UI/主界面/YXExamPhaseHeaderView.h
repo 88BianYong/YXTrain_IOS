@@ -13,4 +13,7 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) void(^actionBlock)();
 
+@property (nonatomic, assign) BOOL isFold;
+@property (nonatomic, assign) BOOL isFinished;
+
 @end

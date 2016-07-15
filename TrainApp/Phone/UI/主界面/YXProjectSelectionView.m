@@ -44,7 +44,7 @@ static const CGFloat kImageWidth = 30;
     [self addSubview:self.titleLabel];
     
     self.rightImageView = [[UIImageView alloc]init];
-    self.rightImageView.image = [UIImage imageNamed:@"下拉三角灰"];
+    self.rightImageView.image = [UIImage imageNamed:@"切换标题模块的按钮"];
     self.rightImageView.contentMode = UIViewContentModeCenter;
     self.rightImageView.hidden = YES;
     [self addSubview:self.rightImageView];
@@ -100,16 +100,16 @@ static const CGFloat kImageWidth = 30;
 
 #pragma mark - show & hide
 - (void)showSelectionView{
-    self.rightImageView.image = [UIImage imageNamed:@"下拉三角蓝"];
+    self.rightImageView.image = [UIImage imageNamed:@"切换标题模块的按钮-拷贝"];
     UIView *superview = self.window;
     [superview addSubview:self.maskView];
     
     CGFloat tableHeight = MIN(self.projectArray.count*self.selectionTableView.rowHeight, 180);
     CGRect rect = self.selectionBgView.frame;
-    rect.size.height = tableHeight+7;
+    rect.size.height = tableHeight+8;
     self.selectionBgView.frame = rect;
     
-    self.selectionTableView.frame = CGRectMake(0, 7, self.selectionBgView.bounds.size.width, tableHeight);
+    self.selectionTableView.frame = CGRectMake(0, 8, self.selectionBgView.bounds.size.width, tableHeight);
     [self.selectionBgView addSubview:self.selectionTableView];
     [superview addSubview:self.selectionBgView];
     [self.selectionTableView reloadData];
@@ -118,7 +118,7 @@ static const CGFloat kImageWidth = 30;
 - (void)hideSelectionView{
     [self.selectionBgView removeFromSuperview];
     [self.maskView removeFromSuperview];
-    self.rightImageView.image = [UIImage imageNamed:@"下拉三角灰"];
+    self.rightImageView.image = [UIImage imageNamed:@"切换标题模块的按钮"];
 }
 
 #pragma mark - UITableViewDataSource

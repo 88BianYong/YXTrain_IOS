@@ -25,6 +25,7 @@ extern int ddLogLevel;
 #import <JSONModel.h>
 #import <UITableView+FDTemplateLayoutCell.h>
 #import <UIImageView+WebCache.h>
+#import <UIButton+WebCache.h>
 #import <UIColor+Expanded.h>
 #import <Reachability.h>
 #import <NSString+Hashes.h>

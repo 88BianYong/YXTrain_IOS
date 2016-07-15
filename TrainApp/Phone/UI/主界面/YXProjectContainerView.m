@@ -8,21 +8,48 @@
 
 #import "YXProjectContainerView.h"
 
+@interface YXProjectTabItem : NSObject
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) UIImage *selectedImage;
+@property (nonatomic, strong) UIImage *defaultImage;
+@end
+@implementation YXProjectTabItem
+@end
+
 static const NSUInteger kTagBase = 3333;
 
 @interface YXProjectContainerView()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) UIView *sliderView;
 @property (nonatomic, strong) UIScrollView *bottomScrollView;
+
+@property (nonatomic, strong) NSArray *tabItemArray;
 @end
 
 @implementation YXProjectContainerView
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        [self setupTabItems];
         [self setupUI];
     }
     return self;
+}
+
+- (void)setupTabItems{
+    YXProjectTabItem *tab1 = [self tabItemWithName:@"考核" selectedImage:[UIImage imageNamed:@"考核当前态"] defaultImage:[UIImage imageNamed:@"考核默认态"]];
+    YXProjectTabItem *tab2 = [self tabItemWithName:@"任务" selectedImage:[UIImage imageNamed:@"任务当前态"] defaultImage:[UIImage imageNamed:@"任务默认态"]];
+    YXProjectTabItem *tab3 = [self tabItemWithName:@"通知" selectedImage:[UIImage imageNamed:@"通知当前态"] defaultImage:[UIImage imageNamed:@"通知默认态"]];
+    YXProjectTabItem *tab4 = [self tabItemWithName:@"简报" selectedImage:[UIImage imageNamed:@"简报当前态"] defaultImage:[UIImage imageNamed:@"简报默认态"]];
+    self.tabItemArray = @[tab1,tab2,tab3,tab4];
+}
+
+- (YXProjectTabItem *)tabItemWithName:(NSString *)name selectedImage:(UIImage *)selectedImage defaultImage:(UIImage *)defaultImage{
+    YXProjectTabItem *item = [[YXProjectTabItem alloc]init];
+    item.name = name;
+    item.selectedImage = selectedImage;
+    item.defaultImage = defaultImage;
+    return item;
 }
 
 - (void)setupUI{
@@ -64,7 +91,8 @@ static const NSUInteger kTagBase = 3333;
         vc.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         [self.bottomScrollView addSubview:vc.view];
         // top
-        UIButton *b = [self buttonWithTitle:vc.title image:[UIImage yx_imageWithColor:[UIColor redColor] rect:CGRectMake(0, 0, 15, 15)]];
+        YXProjectTabItem *tabItem = self.tabItemArray[idx];
+        UIButton *b = [self buttonWithTitle:tabItem.name image:tabItem.defaultImage selectedImage:tabItem.selectedImage];
         CGFloat btnWidth = self.topView.frame.size.width/viewControllers.count;
         b.frame = CGRectMake(btnWidth*idx, 0, btnWidth, self.topView.frame.size.height);
         b.tag = kTagBase + idx;
@@ -77,10 +105,11 @@ static const NSUInteger kTagBase = 3333;
     [self addSubview:self.sliderView];
 }
 
-- (UIButton *)buttonWithTitle:(NSString *)title image:(UIImage *)image{
+- (UIButton *)buttonWithTitle:(NSString *)title image:(UIImage *)image selectedImage:(UIImage *)selectedImage{
     UIButton *b = [[UIButton alloc]init];
     [b setTitle:title forState:UIControlStateNormal];
     [b setImage:image forState:UIControlStateNormal];
+    [b setImage:selectedImage forState:UIControlStateSelected];
     [b setTitleColor:[UIColor colorWithHexString:@"bbc2c9"] forState:UIControlStateNormal];
     [b setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateSelected];
     b.titleLabel.font = [UIFont systemFontOfSize:13];

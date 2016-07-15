@@ -22,8 +22,9 @@
 }
 
 - (void)setupUI{
-    self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 80, 50)];
-    self.imageView.backgroundColor = [UIColor blueColor];
+    self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 111, 44)];
+    self.imageView.image = [UIImage imageNamed:@"等待坊主点评"];
+//    self.imageView.backgroundColor = [UIColor blueColor];
     [self addSubview:self.imageView];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
@@ -38,7 +39,7 @@
     _originRect = originRect;
     CGRect rect = self.imageView.bounds;
     rect.origin.x = originRect.origin.x - (rect.size.width-originRect.size.width);
-    rect.origin.y = originRect.origin.y - rect.size.height - 5;
+    rect.origin.y = originRect.origin.y - rect.size.height;
     self.imageView.frame = rect;
 }
 

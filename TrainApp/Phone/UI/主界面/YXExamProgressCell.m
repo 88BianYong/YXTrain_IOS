@@ -41,7 +41,7 @@
 - (void)setupUI{
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.typeImageView = [[UIImageView alloc]init];
-    self.typeImageView.backgroundColor = [UIColor redColor];
+//    self.typeImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.typeImageView];
     [self.typeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
@@ -80,7 +80,9 @@
     [self.progressLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
     
     self.markButton = [[UIButton alloc]init];
-    self.markButton.backgroundColor = [UIColor redColor];
+//    self.markButton.backgroundColor = [UIColor redColor];
+    [self.markButton setImage:[UIImage imageNamed:@"点评icon"] forState:UIControlStateNormal];
+    [self.markButton setImage:[UIImage imageNamed:@"点评icon-点击态"] forState:UIControlStateHighlighted];
     [self.markButton addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -109,6 +111,16 @@
             make.right.mas_equalTo(self.progressView.mas_right);
             make.bottom.mas_equalTo(self.progressView.mas_top).mas_offset(-11);
         }];
+    }
+    
+    if (item.toolid.integerValue == 201 || item.toolid.integerValue == 301) {
+        self.typeImageView.image = [UIImage imageNamed:@"课程"];
+    }else if (item.toolid.integerValue == 202 || item.toolid.integerValue == 302){
+        self.typeImageView.image = [UIImage imageNamed:@"活动"];
+    }else if (item.toolid.integerValue == 203 || item.toolid.integerValue == 303){
+        self.typeImageView.image = [UIImage imageNamed:@"作业"];
+    }else{
+        self.typeImageView.image = nil;
     }
 }
 

@@ -30,7 +30,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
+    [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
     b.backgroundColor = [UIColor redColor];
+    b.layer.cornerRadius = 16;
+    b.clipsToBounds = YES;
     [b addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     [self setupLeftWithCustomView:b];
     
@@ -74,6 +77,7 @@
         if (projects.count == 0) {
             self.emptyView.frame = self.view.bounds;
             [self.view addSubview:self.emptyView];
+            return;
         }
         [self.errorView removeFromSuperview];
         [self.emptyView removeFromSuperview];

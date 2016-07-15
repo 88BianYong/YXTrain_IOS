@@ -33,6 +33,14 @@
 
     // Configure the view for the selected state
 }
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.enterImageView.image = [UIImage imageNamed:@"成绩详情进入页箭头点击态"];
+    }else{
+        self.enterImageView.image = [UIImage imageNamed:@"成绩详情进入页箭头"];
+    }
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -91,7 +99,7 @@
     self.pointLabel.text = @"90分";
 
     self.enterImageView = [[UIImageView alloc]init];
-    self.enterImageView.backgroundColor = [UIColor redColor];
+    self.enterImageView.image = [UIImage imageNamed:@"成绩详情进入页箭头"];
     [self.contentView addSubview:self.enterImageView];
     [self.enterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15);

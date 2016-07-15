@@ -93,6 +93,7 @@
             if (item.body.chapters.count == 0) {
                 self.emptyView.frame = self.view.bounds;
                 [self.view addSubview:self.emptyView];
+                return;
             }
             [self.errorView removeFromSuperview];
             [self.emptyView removeFromSuperview];
@@ -124,6 +125,7 @@
             if (item.body.chapters.count == 0) {
                 self.emptyView.frame = self.view.bounds;
                 [self.view addSubview:self.emptyView];
+                return;
             }
             [self.errorView removeFromSuperview];
             [self.emptyView removeFromSuperview];

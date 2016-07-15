@@ -182,8 +182,8 @@ static const NSUInteger kTagBase = 876;
     
     CGFloat tableHeight = MIN(self.currentFilterItem.filterArray.count*self.selectionTableView.rowHeight, 176);
     
-    YXCourseFilterBgView *bgView = [[YXCourseFilterBgView alloc]initWithFrame:CGRectMake(6, rect.origin.y+rect.size.height-5, rect.size.width-6-6, tableHeight+7) triangleX:self.bounds.size.width/8*(1+2*index)-6];
-    self.selectionTableView.frame = CGRectMake(0, 7, bgView.bounds.size.width, tableHeight);
+    YXCourseFilterBgView *bgView = [[YXCourseFilterBgView alloc]initWithFrame:CGRectMake(6, rect.origin.y+rect.size.height-5, rect.size.width-6-6, tableHeight+8) triangleX:self.bounds.size.width/8*(1+2*index)-6];
+    self.selectionTableView.frame = CGRectMake(0, 8, bgView.bounds.size.width, tableHeight);
     [bgView addSubview:self.selectionTableView];
     [superview addSubview:bgView];
     [self.selectionTableView reloadData];

@@ -66,7 +66,9 @@
     }];
     
     self.markButton = [[UIButton alloc]init];
-    self.markButton.backgroundColor = [UIColor redColor];
+//    self.markButton.backgroundColor = [UIColor redColor];
+    [self.markButton setImage:[UIImage imageNamed:@"点评icon"] forState:UIControlStateNormal];
+    [self.markButton setImage:[UIImage imageNamed:@"点评icon-点击态"] forState:UIControlStateHighlighted];
     [self.markButton addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.statusLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
