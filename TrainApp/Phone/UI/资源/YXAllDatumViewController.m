@@ -34,6 +34,7 @@
     //self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
     YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+    emptyView.imageName = @"暂无资源";
     emptyView.title = @"没有符合条件的资源";
     self.emptyView = emptyView;
 

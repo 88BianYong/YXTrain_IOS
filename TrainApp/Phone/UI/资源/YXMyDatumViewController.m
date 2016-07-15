@@ -30,6 +30,7 @@
     self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
     YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+    emptyView.imageName = @"没有收藏资源";
     emptyView.title = @"您还没有收藏的资源";
     self.emptyView = emptyView;
     [super viewDidLoad];

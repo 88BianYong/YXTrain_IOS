@@ -43,6 +43,10 @@
     self.userTitleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:self.userTitleLabel];
     
+    UIImageView *editIconImageView = [[UIImageView alloc] init];
+    editIconImageView.backgroundColor = [UIColor redColor];
+    [self.contentView addSubview:editIconImageView];
+    
     self.contentButton = [[UIButton alloc] init];
     [self.contentButton setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateNormal];
     [self.contentButton addTarget:self action:@selector(contentButtonClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -70,7 +74,13 @@
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentButton.mas_left);
         make.centerY.mas_equalTo(0);
-        make.right.mas_equalTo(0);
+        make.right.mas_lessThanOrEqualTo(0);
+    }];
+    
+    [editIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentLabel.mas_right).offset(2);
+        make.centerY.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(12, 12));
     }];
 }
 

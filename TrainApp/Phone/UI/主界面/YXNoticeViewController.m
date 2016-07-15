@@ -22,9 +22,11 @@
     self.bIsGroupedTableViewStyle = YES;
     YXEmptyView *emptyView = [[YXEmptyView alloc]init];
     if (self.flag == YXFlag_Notice) {
+        emptyView.imageName = @"暂无通知";
         emptyView.title = @"暂无通知";
     }
     if (self.flag == YXFlag_Bulletin) {
+        emptyView.imageName = @"暂无简报";
         emptyView.title = @"暂无简报";
     }
     self.emptyView = emptyView;
