@@ -250,7 +250,7 @@
     
     _nameLabel.text = self.profile.realName;
     _schoolNameLabel.text = self.profile.school;
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.headDetail] placeholderImage:[UIImage imageNamed:@"用户默认头像"]];
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.headDetail?:self.profile.head] placeholderImage:[UIImage imageNamed:@"用户默认头像"]];
     [self.view setNeedsLayout];
 }
 
@@ -277,7 +277,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXSideTableViewCell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
-        [cell updateWithIconNamed:@"资源" andName:@"资源"];
+        [cell updateWithIconNamed:@"资源1" andName:@"资源"];
     }
     if (indexPath.section == 1) {
         [cell updateWithIconNamed:@"我的工作坊icon" andName:@"我的工作坊"];

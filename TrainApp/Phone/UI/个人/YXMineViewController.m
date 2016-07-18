@@ -118,7 +118,7 @@
     if (indexPath.section == 0) {
         YXUserImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXUserImageTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell setImageWithUrl:self.profile.headDetail];
+        [cell setImageWithUrl:self.profile.headDetail ?: self.profile.head];
         cell.userImageTap = ^(){
             STRONG_SELF
             [self.view endEditing:YES];
@@ -741,7 +741,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:YXUploadUserPicSuccessNotification
                                                                 object:nil];
             if (self.userPicModifySuccess) {
-                self.userPicModifySuccess(self.profile.headDetail);
+                self.userPicModifySuccess(self.profile.headDetail?:self.profile.head);
             }
             
         } else {

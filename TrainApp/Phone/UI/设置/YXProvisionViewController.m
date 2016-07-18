@@ -27,7 +27,7 @@
     [super viewDidLoad];
     self.title = @"服务条款";
     [self setupUI];
-    [self setupRightWithImageNamed:@"更多icon-点击态" highlightImageNamed:@"更多icon"];
+    [self setupRightWithImageNamed:@"更多icon" highlightImageNamed:@"更多icon-点击态"];
 }
 
 - (void)didReceiveMemoryWarning {
