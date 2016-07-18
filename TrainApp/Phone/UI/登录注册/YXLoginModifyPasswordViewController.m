@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"设置新密码";
     // Do any additional setup after loading the view.
 }
 

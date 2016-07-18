@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *maskView;
 
+@property (nonatomic, strong) UIImageView *topTriangleImageView;
+
 @end
 
 @implementation YXDatumOrderView
@@ -33,6 +35,7 @@
     self.index = index;
     self.btnCount = btnCount;
     CGFloat tableHeight = MIN(array.count*44, 308);
+    [self setTriangleFrame];
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(109);
         make.left.mas_equalTo(6);
@@ -111,39 +114,17 @@
     }
 }
 
-#pragma mark 绘制三角形
-- (void)drawRect:(CGRect)rect
-
-{
-    // 设置背景色
-    [[UIColor whiteColor] set];
-    //拿到当前视图准备好的画板
-    
-    CGContextRef  context = UIGraphicsGetCurrentContext();
-    
-    //利用path进行绘制三角形
-    
-    CGContextBeginPath(context);//标记
-    CGFloat space = [UIScreen mainScreen].bounds.size.width/self.btnCount;
-    CGContextMoveToPoint(context,
-                         space * (0.5 + self.index)  - 6, 109);//设置起点
-    
-    CGContextAddLineToPoint(context,
-                            space * (0.5 + self.index) + 10 - 6,  99);
-    
-    CGContextAddLineToPoint(context,
-                            space * (0.5 + self.index) + 20 - 6, 109);
-    
-    CGContextClosePath(context);//路径结束标志，不写默认封闭
-    
-    [[UIColor whiteColor] setFill];  //设置填充色
-    
-    [[UIColor whiteColor] setStroke]; //设置边框颜色
-    
-    CGContextDrawPath(context,
-                      kCGPathFillStroke);//绘制路径path
-    
+- (UIImageView *)topTriangleImageView {
+    if (!_topTriangleImageView) {
+        _topTriangleImageView = [UIImageView new];
+        _topTriangleImageView.image = [UIImage imageNamed:@"切换项目名称的弹窗-尖角"];
+        [self addSubview:_topTriangleImageView];
+    }
+    return _topTriangleImageView;
 }
 
+- (void)setTriangleFrame {
+    self.topTriangleImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width/self.btnCount) * (0.5 + self.index) - 8, 101, 18, 8);
+}
 
 @end

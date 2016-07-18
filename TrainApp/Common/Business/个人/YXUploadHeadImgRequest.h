@@ -8,6 +8,7 @@
 
 #import "YXPostRequest.h"
 
+static NSString *const YXUploadUserPicSuccessNotification = @"kYXUploadUserPicSuccessNotification";
 
 @interface YXUploadHeadImgItem : HttpBaseRequestItem
 

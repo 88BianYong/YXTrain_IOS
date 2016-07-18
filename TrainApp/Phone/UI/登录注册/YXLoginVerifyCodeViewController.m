@@ -33,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [super setupLeftBack];
+    self.title = @"重置密码";
     UIView *footerView = [[UIView alloc] init];
     footerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     UILabel *footerLabel = [[UILabel alloc] init];

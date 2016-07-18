@@ -150,6 +150,7 @@
             cell.userInfoButtonClickedBlock = ^() {
                 STRONG_SELF
                 [self.view endEditing:YES];
+                [self resetSelectedSubjectsWithProfile:self.profile];
                 [self showStageAndSubjectPicker];
             };
         }
@@ -158,6 +159,7 @@
             cell.userInfoButtonClickedBlock = ^() {
                 STRONG_SELF
                 [self.view endEditing:YES];
+                [self resetSelectedProvinceDataWithProfile:self.profile];
                 [self showProvinceListPicker];
             };
         }
@@ -736,7 +738,8 @@
             
             YXUserImageTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             [cell setImageWithDataImage:image];
-            
+            [[NSNotificationCenter defaultCenter] postNotificationName:YXUploadUserPicSuccessNotification
+                                                                object:nil];
             if (self.userPicModifySuccess) {
                 self.userPicModifySuccess(self.profile.headDetail);
             }

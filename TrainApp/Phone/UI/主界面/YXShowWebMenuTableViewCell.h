@@ -10,6 +10,6 @@
 
 @interface YXShowWebMenuTableViewCell : UITableViewCell
 
-- (void)configCellWithTitle:(NSString *)title imageString:(NSString *)imageName isLastOne:(BOOL)isLastOne;
+- (void)configCellWithTitle:(NSString *)title imageString:(NSString *)imageName highLightImage:(NSString *)highLightImage isLastOne:(BOOL)isLastOne;
 
 @end

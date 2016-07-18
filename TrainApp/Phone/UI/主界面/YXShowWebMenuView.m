@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIImageView *topTriangleImageView;
 
 @end
 
@@ -25,6 +26,7 @@
     return self;
 }
 - (void)setupUI{
+    [self setTriangleFrame];
     self.maskView = [[UIView alloc] initWithFrame:self.bounds];
     UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHeaderGesture:)];
     [self.maskView addGestureRecognizer:tapGesture];
@@ -65,13 +67,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXShowWebMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXShowWebMenuTableViewCell" forIndexPath:indexPath];
     if (indexPath.row == 0) {
-        [cell configCellWithTitle:@"刷新" imageString:nil isLastOne:NO];
+        [cell configCellWithTitle:@"刷新" imageString:@"刷新icon" highLightImage:@"刷新icon点击态" isLastOne:NO];
     }
     if (indexPath.row == 1) {
-        [cell configCellWithTitle:@"在浏览器中打开" imageString:nil isLastOne:NO];
+        [cell configCellWithTitle:@"在浏览器中打开" imageString:@"浏览器icon" highLightImage:@"浏览器icon-点击态" isLastOne:NO];
     }
     if (indexPath.row == 2) {
-        [cell configCellWithTitle:@"复制链接" imageString:nil isLastOne:YES];
+        [cell configCellWithTitle:@"复制链接" imageString:@"链接-0" highLightImage:@"链接点击态" isLastOne:YES];
     }
     
     return cell;
@@ -85,37 +87,17 @@
     }
 }
 
-#pragma mark 绘制三角形
-- (void)drawRect:(CGRect)rect
+- (UIImageView *)topTriangleImageView {
+    if (!_topTriangleImageView) {
+        _topTriangleImageView = [UIImageView new];
+        _topTriangleImageView.image = [UIImage imageNamed:@"切换项目名称的弹窗-尖角"];
+        [self addSubview:_topTriangleImageView];
+    }
+    return _topTriangleImageView;
+}
 
-{
-    // 设置背景色
-    [[UIColor whiteColor] set];
-    //拿到当前视图准备好的画板
-    
-    CGContextRef  context = UIGraphicsGetCurrentContext();
-    
-    //利用path进行绘制三角形
-    
-    CGContextBeginPath(context);//标记
-    CGContextMoveToPoint(context,
-                         [UIScreen mainScreen].bounds.size.width - 10, 65);//设置起点
-    
-    CGContextAddLineToPoint(context,
-                            [UIScreen mainScreen].bounds.size.width - 17,  58);
-    
-    CGContextAddLineToPoint(context,
-                            [UIScreen mainScreen].bounds.size.width - 24, 65);
-    
-    CGContextClosePath(context);//路径结束标志，不写默认封闭
-    
-    [[UIColor whiteColor] setFill];  //设置填充色
-    
-    [[UIColor whiteColor] setStroke]; //设置边框颜色
-    
-    CGContextDrawPath(context,
-                      kCGPathFillStroke);//绘制路径path
-    
+- (void)setTriangleFrame {
+    self.topTriangleImageView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 30, 58, 18, 8);
 }
 
 

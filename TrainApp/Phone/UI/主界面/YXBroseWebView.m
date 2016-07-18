@@ -26,7 +26,7 @@
     self.title = self.titleString;
     
     WEAK_SELF
-    [self setupRightWithTitle:@"菜单"];
+    [self setupRightWithImageNamed:@"更多icon" highlightImageNamed:@"更多icon-点击态"];
     self.webView = [UIWebView new];
     self.webView.delegate = self;
     self.webView.scalesPageToFit = YES;

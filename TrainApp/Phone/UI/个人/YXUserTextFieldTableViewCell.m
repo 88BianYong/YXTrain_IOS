@@ -45,7 +45,8 @@
     
     UIButton *editIconButton = [[UIButton alloc] init];
     [editIconButton addTarget:self action:@selector(editButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    editIconButton.backgroundColor = [UIColor redColor];
+    [editIconButton setImage:[UIImage imageNamed:@"修改个人资料icon"] forState:UIControlStateNormal];
+    //editIconImageView.image = [UIImage imageNamed:@"修改个人资料icon"];
     [self.contentView addSubview:editIconButton];
     
     self.contentTextField = [[UITextField alloc] init];

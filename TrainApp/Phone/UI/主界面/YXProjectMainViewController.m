@@ -15,6 +15,8 @@
 #import "YXTrainListRequest.h"
 #import "YXProjectSelectionView.h"
 #import "YXCourseRecordViewController.h"
+#import "YXUserProfile.h"
+#import "YXUploadHeadImgRequest.h"
 
 @interface YXProjectMainViewController ()
 @property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
@@ -30,7 +32,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
-    [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
+    [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.profile.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXUploadUserPicSuccessNotification object:nil]subscribeNext:^(id x) {
+        [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.profile.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
+    }];
     b.backgroundColor = [UIColor redColor];
     b.layer.cornerRadius = 16;
     b.clipsToBounds = YES;

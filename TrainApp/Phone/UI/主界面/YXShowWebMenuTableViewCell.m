@@ -14,6 +14,9 @@
 @property (nonatomic, strong) UILabel *menuTitleLabel;
 @property (nonatomic, strong) UIView *bottomView;
 
+@property (nonatomic, copy) NSString *normalImage;
+@property (nonatomic, copy) NSString *highlightImage;
+
 @end
 
 @implementation YXShowWebMenuTableViewCell
@@ -36,12 +39,22 @@
     return self;
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.menuImageView.image = [UIImage imageNamed:self.highlightImage];
+    }
+    else{
+        self.menuImageView.image = [UIImage imageNamed:self.normalImage];
+    }
+}
+
 - (void)setupUI {
     UIView *selectedBgView = [[UIView alloc]init];
     selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
     self.selectedBackgroundView = selectedBgView;
     self.menuImageView = [[UIImageView alloc] init];
-    self.menuImageView.backgroundColor = [UIColor redColor];
+    //self.menuImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.menuImageView];
     
     self.menuTitleLabel = [[UILabel alloc] init];
@@ -73,8 +86,10 @@
     
 }
 
-- (void)configCellWithTitle:(NSString *)title imageString:(NSString *)imageName isLastOne:(BOOL)isLastOne {
+- (void)configCellWithTitle:(NSString *)title imageString:(NSString *)imageName highLightImage:(NSString *)highLightImage isLastOne:(BOOL)isLastOne {
     self.menuTitleLabel.text = title;
+    self.normalImage = imageName;
+    self.highlightImage = highLightImage;
     self.menuImageView.image = [UIImage imageNamed:imageName];
     if (isLastOne) {
         self.bottomView.hidden = YES;
