@@ -16,5 +16,6 @@
 
 // 国培
 + (YXFileType)typeWithID:(NSString *)typeID;
++ (NSString *)picNameWithID:(NSString *)typeID;
 
 @end

@@ -63,7 +63,8 @@
     }];
 
     UIImageView *historyImageView = [[UIImageView alloc]init];
-    historyImageView.backgroundColor = [UIColor redColor];
+//    historyImageView.backgroundColor = [UIColor redColor];
+    historyImageView.image = [UIImage imageNamed:@"看课记录时间icon"];
     [recordBgView addSubview:historyImageView];
     [historyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
@@ -101,9 +102,9 @@
     minute = minute % 60;
     second = second % 60;
     self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
-    if (second == 0) {
-        self.recordLabel.text = @"未观看";
-    }
+//    if (second == 0) {
+//        self.recordLabel.text = @"未观看";
+//    }
 }
 
 //- (void)setIsFirst:(BOOL)isFirst{

@@ -2690,7 +2690,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3ab0b7d6-525b-4863-bd0b-cb2c06c186f5";
+				PROVISIONING_PROFILE = "343e7ee8-452a-4f1d-8df9-d2fd67e62888";
 			};
 			name = Debug;
 		};
@@ -2708,7 +2708,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3ab0b7d6-525b-4863-bd0b-cb2c06c186f5";
+				PROVISIONING_PROFILE = "343e7ee8-452a-4f1d-8df9-d2fd67e62888";
 			};
 			name = Release;
 		};

@@ -56,7 +56,8 @@
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
     self.selectImageView = [[UIImageView alloc]init];
-    self.selectImageView.backgroundColor = [UIColor redColor];
+//    self.selectImageView.backgroundColor = [UIColor redColor];
+    self.selectImageView.image = [UIImage imageNamed:@"选择对号"];
     [self.contentView addSubview:self.selectImageView];
     [self.selectImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-10);

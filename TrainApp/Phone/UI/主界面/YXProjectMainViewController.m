@@ -115,7 +115,7 @@
         [v removeFromSuperview];
     }
     [YXTrainManager sharedInstance].currentProjectIndex = index;
-    if ([[YXTrainManager sharedInstance].currentProject.w isEqualToString:@"3"]) {
+    if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
         YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
         YXExamViewController *examVC = [[YXExamViewController alloc]init];
         YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];

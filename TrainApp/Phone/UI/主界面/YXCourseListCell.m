@@ -60,19 +60,19 @@
         make.right.mas_equalTo(-20);
     }];
     self.historyImageView = [[UIImageView alloc]init];
-    self.historyImageView.backgroundColor = [UIColor redColor];
+//    self.historyImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.historyImageView];
     [self.historyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.courseImageView.mas_right).mas_offset(15);
         make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(8);
-        make.size.mas_equalTo(CGSizeMake(13, 13));
+        make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
     self.recordLabel = [[UILabel alloc]init];
     self.recordLabel.font = [UIFont systemFontOfSize:11];
     self.recordLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:self.recordLabel];
     [self.recordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.historyImageView.mas_right).mas_offset(6);
+        make.left.mas_equalTo(self.historyImageView.mas_right).mas_offset(3);
         make.centerY.mas_equalTo(self.historyImageView.mas_centerY);
         make.right.mas_equalTo(-20);
     }];
@@ -104,8 +104,10 @@
     minute = minute % 60;
     second = second % 60;
     self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
+    self.historyImageView.image = [UIImage imageNamed:@"已观看时间icon"];
     if (second == 0) {
         self.recordLabel.text = @"未观看";
+        self.historyImageView.image = [UIImage imageNamed:@"未观看时间icon"];
     }
 }
 

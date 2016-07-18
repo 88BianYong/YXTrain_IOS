@@ -140,9 +140,9 @@ static const NSUInteger kTagBase = 876;
 
 - (void)changeButton:(UIButton *)b foldStatus:(BOOL)isFold{
     if (isFold) {
-        [b setImage:[UIImage imageNamed:@"下拉三角灰"] forState:UIControlStateNormal];
+        [b setImage:[UIImage imageNamed:@"学段类型展开箭头"] forState:UIControlStateNormal];
     }else{
-        [b setImage:[UIImage imageNamed:@"下拉三角蓝"] forState:UIControlStateNormal];
+        [b setImage:[UIImage imageNamed:@"学段类型收起箭头"] forState:UIControlStateNormal];
     }
 }
 

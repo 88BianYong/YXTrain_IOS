@@ -68,7 +68,8 @@
 
 - (void)setData:(YXCourseDetailItem_chapter_fragment *)data{
     _data = data;
-    self.typeImageView.backgroundColor = [UIColor redColor];
+//    self.typeImageView.backgroundColor = [UIColor redColor];
+    self.typeImageView.image = [UIImage imageNamed:[YXAttachmentTypeHelper picNameWithID:data.type]];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:data.fragment_name];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7];//调整行间距

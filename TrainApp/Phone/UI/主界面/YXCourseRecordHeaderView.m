@@ -31,7 +31,8 @@
         make.top.mas_equalTo(5);
     }];
     UIImageView *imgView = [[UIImageView alloc]init];
-    imgView.backgroundColor = [UIColor redColor];
+//    imgView.backgroundColor = [UIColor redColor];
+    imgView.image = [UIImage imageNamed:@"看课记录阶段标题前的icon"];
     [containerView addSubview:imgView];
     [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(3);

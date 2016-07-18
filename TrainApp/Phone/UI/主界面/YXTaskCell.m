@@ -27,6 +27,15 @@
     // Configure the view for the selected state
 }
 
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.enterImageView.image = [UIImage imageNamed:@"课程进入列表箭头-点击态"];
+    }else{
+        self.enterImageView.image = [UIImage imageNamed:@"课程进入列表箭头"];
+    }
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setupUI];
@@ -54,7 +63,7 @@
         make.centerY.mas_equalTo(self.typeImageView.mas_centerY);
     }];
     self.enterImageView = [[UIImageView alloc]init];
-    self.enterImageView.backgroundColor = [UIColor redColor];
+//    self.enterImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.enterImageView];
     [self.enterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-10);
@@ -75,13 +84,28 @@
 - (void)setTask:(YXTaskListRequestItem_body_task *)task{
     _task = task;
     self.typeLabel.text = task.name;
-    self.typeImageView.backgroundColor = [UIColor redColor];
     if (task.toolid.integerValue == 201) {  // 课程
         self.typeLabel.textColor = [UIColor colorWithHexString:@"334466"];
         self.enterImageView.hidden = NO;
     }else{
         self.typeLabel.textColor = [UIColor colorWithHexString:@"bec8d8"];
         self.enterImageView.hidden = YES;
+    }
+    // images setting
+    if (task.toolid.integerValue == 201) {
+        self.typeImageView.image = [UIImage imageNamed:@"课程icon"];
+    }else if (task.toolid.integerValue == 202){
+        self.typeImageView.image = [UIImage imageNamed:@"活动icon"];
+    }else if (task.toolid.integerValue == 203){
+        self.typeImageView.image = [UIImage imageNamed:@"作业icon"];
+    }else if (task.toolid.integerValue == 209){
+        self.typeImageView.image = [UIImage imageNamed:@"日志icon"];
+    }else if (task.toolid.integerValue == 210){
+        self.typeImageView.image = [UIImage imageNamed:@"资源"];
+    }else if (task.toolid.integerValue == 211){
+        self.typeImageView.image = [UIImage imageNamed:@"问答icon"];
+    }else{
+        self.typeImageView.image = nil;
     }
 }
 

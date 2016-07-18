@@ -59,5 +59,19 @@
         return YXFileTypeUnknown;
     }
 }
++ (NSString *)picNameWithID:(NSString *)typeID {
+    NSInteger value = typeID.integerValue;
+    if (value == 0) {
+        return @"视频";
+    }else if (value == 1){
+        return @"pdf";
+    }else if (value == 2){
+        return @"";
+    }else if (value == 3){
+        return @"MP3";
+    }else{
+        return @"";
+    }
+}
 
 @end
