@@ -17,6 +17,7 @@
 #import "YXAudioPlayerViewController.h"
 #import "YXNavigationController.h"
 #import "YXBroseWebView.h"
+#import "UIWindow+YXAddtion.h"
 
 @interface YXFileBrowseManager()<YXBrowserExitDelegate,YXFileFavorDelegate,YXPlayProgressDelegate,YXBrowseTimeDelegate>
 @property (nonatomic, strong) UrlDownloader *downloader;
@@ -229,7 +230,10 @@
     vc.title = videoItem.name;
     vc.delegate = self;
     vc.exitDelegate = self;
-    [self.baseViewController.navigationController presentViewController:vc animated:YES completion:nil];
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    UIViewController *rootVC = [window visibleViewController];
+    [rootVC presentViewController:vc animated:YES completion:nil];
+//     [self.baseViewController.navigationController presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)openAudio{

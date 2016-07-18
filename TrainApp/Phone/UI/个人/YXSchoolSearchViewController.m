@@ -95,8 +95,8 @@
     _emptyView.title = @"没有符合条件的学校";
     _emptyView.imageName = @"没有合适的学校";
     _emptyView.backgroundColor = [UIColor whiteColor];
-
-    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yx_hideKeyboard)];
+    [_emptyView addGestureRecognizer:recognizer];    
 }
 
 - (void)layoutInterace{
@@ -208,7 +208,6 @@
                 }
                 else{
                     [self.view addSubview:self ->_emptyView];
-                    [self yx_hideKeyboard];
                 }
             }
 

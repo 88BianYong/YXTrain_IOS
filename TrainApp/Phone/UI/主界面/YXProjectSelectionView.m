@@ -104,7 +104,7 @@ static const CGFloat kImageWidth = 30;
     UIView *superview = self.window;
     [superview addSubview:self.maskView];
     
-    CGFloat tableHeight = MIN(self.projectArray.count*self.selectionTableView.rowHeight, 180);
+    CGFloat tableHeight = MIN(self.projectArray.count*self.selectionTableView.rowHeight, 180 + 22);
     CGRect rect = self.selectionBgView.frame;
     rect.size.height = tableHeight+8;
     self.selectionBgView.frame = rect;

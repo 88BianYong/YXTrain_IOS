@@ -190,6 +190,7 @@
 		9223C8401D2F93D7000F74DF /* YXUpdateProfileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C83F1D2F93D7000F74DF /* YXUpdateProfileRequest.m */; };
 		9223C8431D337E05000F74DF /* YXProvisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8421D337E05000F74DF /* YXProvisionViewController.m */; };
 		9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8451D360DE0000F74DF /* YXMySettingCell.m */; };
+		9223C84F1D3DD71A000F74DF /* UIWindow+YXAddtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C84E1D3DD71A000F74DF /* UIWindow+YXAddtion.m */; };
 		922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */; };
 		922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */; };
 		922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */; };
@@ -668,6 +669,8 @@
 		9223C8421D337E05000F74DF /* YXProvisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProvisionViewController.m; sourceTree = "<group>"; };
 		9223C8441D360DE0000F74DF /* YXMySettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingCell.h; sourceTree = "<group>"; };
 		9223C8451D360DE0000F74DF /* YXMySettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingCell.m; sourceTree = "<group>"; };
+		9223C84D1D3DD71A000F74DF /* UIWindow+YXAddtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+YXAddtion.h"; sourceTree = "<group>"; };
+		9223C84E1D3DD71A000F74DF /* UIWindow+YXAddtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+YXAddtion.m"; sourceTree = "<group>"; };
 		922F3AC61D2A61DE00CBF7C3 /* YXWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopViewController.h; sourceTree = "<group>"; };
 		922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopViewController.m; sourceTree = "<group>"; };
 		922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopCell.h; sourceTree = "<group>"; };
@@ -1100,6 +1103,8 @@
 				7C3177BA1D0EBA79004AAC90 /* UIView+YXShadowColor.m */,
 				7C3177BB1D0EBA79004AAC90 /* UIImage+YXResize.h */,
 				7C3177BC1D0EBA79004AAC90 /* UIImage+YXResize.m */,
+				9223C84D1D3DD71A000F74DF /* UIWindow+YXAddtion.h */,
+				9223C84E1D3DD71A000F74DF /* UIWindow+YXAddtion.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -2400,6 +2405,7 @@
 				CBB62E0D1D2CBDB000DAA6DE /* YXBriefListRequest.m in Sources */,
 				7C2C3B6C1D24C74F00A03635 /* YXModuleDetailRequest.m in Sources */,
 				CB1606041D2FC7C60071BA01 /* YXImagePickerController.m in Sources */,
+				9223C84F1D3DD71A000F74DF /* UIWindow+YXAddtion.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
 				7C2C3B601D23D68500A03635 /* YXCourseListFilterModel.m in Sources */,
 				7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */,
