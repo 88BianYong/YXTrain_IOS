@@ -74,19 +74,19 @@
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentButton.mas_left);
         make.centerY.mas_equalTo(0);
-        make.right.mas_lessThanOrEqualTo(0);
+        make.right.mas_equalTo(-30);
     }];
     
     [editIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentLabel.mas_right).offset(2);
+        make.left.equalTo(self.contentLabel.mas_right);
         make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(12, 12));
+        make.size.mas_equalTo(CGSizeMake(25, 25));
     }];
 }
 
 - (void)configUIwithTitle:(NSString *)title content:(NSString *)contentString {
     self.userTitleLabel.text = title;
-    if ([contentString yx_isValidString]) {
+    if ([contentString yx_isValidString] && contentString.length > 0) {
         self.contentLabel.text = contentString;
     } else {
         self.contentLabel.text = @"点击编辑～";

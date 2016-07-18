@@ -32,8 +32,7 @@
     _selectedIndex = 0;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self configSegmentUI];
-    [self setupRightWithTitle:@"搜索"];
-    //[self yx_setupRightButtonItemWithImage:nil title:@"搜索"];
+    [self setupRightWithImageNamed:@"搜索" highlightImageNamed:@"搜索"];
 }
 
 - (void)configSegmentUI {
@@ -99,7 +98,7 @@
             self.maskView = nil;
         }
         [super setupLeftBack];
-        [self setupRightWithTitle:@"搜索"];
+        [self setupRightWithImageNamed:@"搜索" highlightImageNamed:@"搜索"];
         [self setDatumTitleView];
     };
     self.seachView.textShouldClear = ^{

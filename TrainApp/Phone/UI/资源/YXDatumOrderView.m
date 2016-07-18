@@ -77,7 +77,9 @@
 - (void)tapHeaderGesture:(UIGestureRecognizer *)gesture
 {
     if (gesture.state == UIGestureRecognizerStateEnded) {
-        //
+        if (self.tapCloseView) {
+            self.tapCloseView(_index);
+        }
         [self removeFromSuperview];
     }
 }

@@ -74,10 +74,10 @@
     self.orderLabel.text = order.name;
     if (order.selected) {
         self.orderLabel.textColor = [UIColor colorWithHexString:@"0067be"];
-        self.selectionImageView.image = [UIImage imageNamed:@"icon_contact_selected"];
+        self.selectionImageView.image = [UIImage imageNamed:@"选择对号"];
     }else{
         self.orderLabel.textColor = [UIColor colorWithHexString:@"334466"];
-        self.selectionImageView.image = [UIImage imageNamed:@"icon_contact_unselect"];
+        self.selectionImageView.image = [UIImage imageNamed:@""];
     }
 }
 

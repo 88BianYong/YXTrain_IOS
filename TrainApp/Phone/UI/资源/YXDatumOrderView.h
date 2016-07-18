@@ -15,4 +15,6 @@
 
 - (void)setViewWithDataArray:(NSArray *)array index:(NSInteger)index buttonCount:(NSInteger)btnCount;
 
+@property (nonatomic, copy)void(^tapCloseView)(NSInteger index);
+
 @end

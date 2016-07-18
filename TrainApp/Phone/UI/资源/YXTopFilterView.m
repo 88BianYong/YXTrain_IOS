@@ -27,6 +27,7 @@
     [nameArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSString *btnTitleString = obj;
         YXFilterButton *btn = [[YXFilterButton alloc] init];
+        [btn changeButtonImageExpand:NO];
         btn.tag = idx + 100;
         [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget: self action:@selector(btnBeginTouch:) forControlEvents:UIControlEventTouchDown];
@@ -60,6 +61,7 @@
 
 - (void)btnClicked:(YXFilterButton *)sender {
     [sender btnTitleColor:[UIColor colorWithHexString:@"505f84"]];
+    [sender changeButtonImageExpand:YES];
     if (self.buttonClicked) {
         self.buttonClicked(sender.tag - 100);
     }
@@ -73,6 +75,12 @@
     YXFilterButton *btn = self.btnArray[index];
     btn.btnLabel.textColor = [UIColor colorWithHexString:@"0067be"];
     [btn setButtonTitle:title withMaxWidth:[UIScreen mainScreen].bounds.size.width/self.nameArray.count];
+    [btn changeButtonImageExpand:NO];
+}
+
+- (void)tapViewWithIndex:(NSInteger)index {
+    YXFilterButton *btn = self.btnArray[index];
+    [btn changeButtonImageExpand:NO];
 }
 
 @end

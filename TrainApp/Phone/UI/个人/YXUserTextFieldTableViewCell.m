@@ -43,6 +43,11 @@
     self.userTitleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:self.userTitleLabel];
     
+    UIButton *editIconButton = [[UIButton alloc] init];
+    [editIconButton addTarget:self action:@selector(editButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    editIconButton.backgroundColor = [UIColor redColor];
+    [self.contentView addSubview:editIconButton];
+    
     self.contentTextField = [[UITextField alloc] init];
     self.contentTextField.delegate = self;
     self.contentTextField.font = [UIFont boldSystemFontOfSize:14];
@@ -59,7 +64,12 @@
     [self.contentTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.left.mas_equalTo(self.userTitleLabel.mas_right).offset(14);
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-50);
+    }];
+    [editIconButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(25, 25));
+        make.left.equalTo(self.contentTextField.mas_right).offset(0);
     }];
 }
 
@@ -81,6 +91,10 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self.contentTextField resignFirstResponder];
     return YES;
+}
+
+- (void)editButtonClicked {
+    [self.contentTextField becomeFirstResponder];
 }
 
 @end

@@ -104,6 +104,9 @@
                 }
                 [self.topFilterView btnTitileWithString:((YXFilterSubtype *)orderViewArray[selectedIndex]).name index:index];
             };
+            orderView.tapCloseView = ^(NSInteger selectedIndex){
+                [self.topFilterView tapViewWithIndex:selectedIndex];
+            };
             [self.window addSubview:orderView];
         };
     }

@@ -27,7 +27,7 @@
 
 - (void)setupUI {
     self.searchImageView = [[UIImageView alloc] init];
-    self.searchImageView.backgroundColor = [UIColor redColor];
+    self.searchImageView.image = [UIImage imageNamed:@"搜索输入框内的搜索icon"];
     [self addSubview:self.searchImageView];
     
     self.searchTextField = [[UITextField alloc] init];

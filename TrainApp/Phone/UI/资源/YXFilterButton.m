@@ -76,6 +76,14 @@
     self.btnLabel.textColor = color;
 }
 
+- (void)changeButtonImageExpand:(BOOL)isExpand {
+    if (isExpand) {
+        self.btnImageView.image = [UIImage imageNamed:@"筛选排序学科收起icon"];
+    } else {
+        self.btnImageView.image = [UIImage imageNamed:@"筛选排序学科i展开con"];
+    }
+}
+
 
 @end
 

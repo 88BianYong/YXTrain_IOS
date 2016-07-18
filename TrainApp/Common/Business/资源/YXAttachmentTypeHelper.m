@@ -32,14 +32,14 @@
 }
 
 + (NSDictionary *)picNameMap {
-    return @{@"video":@"datum_video",
-             @"audio":@"datum_audio",
-             @"text":@"datum_txt",
-             @"image":@"datum_pic",
-             @"pdf":@"datum_pdf",
-             @"ppt":@"datum_ppt",
-             @"word":@"datum_word",
-             @"excel":@"datum_excel",
+    return @{@"video":@"视频",
+             @"audio":@"MP3",
+             @"text":@"TXT",
+             @"image":@"image",
+             @"pdf":@"pdf",
+             @"ppt":@"ppt",
+             @"word":@"word",
+             @"excel":@"excel",
              @"unknown":@"datum_other"
              };
 }

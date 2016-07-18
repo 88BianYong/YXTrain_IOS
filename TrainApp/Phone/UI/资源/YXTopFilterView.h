@@ -15,4 +15,6 @@
 
 - (void)btnTitileWithString:(NSString *)title index:(NSInteger)index;
 
+- (void)tapViewWithIndex:(NSInteger)index;
+
 @end

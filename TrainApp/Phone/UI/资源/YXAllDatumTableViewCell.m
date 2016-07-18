@@ -47,7 +47,7 @@
     [self.contentView addSubview:self.titleLabel];
     
     self.typeImageView = [[UIImageView alloc]init];
-    self.typeImageView.backgroundColor = [UIColor redColor];
+    //self.typeImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.typeImageView];
     
     self.dateLabel = [[UILabel alloc]init];
