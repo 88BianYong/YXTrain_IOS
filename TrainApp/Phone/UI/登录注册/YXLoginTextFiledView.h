@@ -17,5 +17,6 @@
 - (void)setPlaceHolderWithString:(NSString *)str keyType:(UIKeyboardType)keyType isSecure:(BOOL)isSecure;
 - (void)setTextColor:(UIColor *)color placeHolderColor:(UIColor *)placeHolderColor;
 - (void)resetTextFieldText;
+- (void)setRightButtonWhiteColor;
 
 @end

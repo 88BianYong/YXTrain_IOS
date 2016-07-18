@@ -61,4 +61,8 @@
     [self.loginTextField setPlaceHolderWithString:str keyType:keyType isSecure:isSecure];
 }
 
+- (void)setRightButtonImage {
+    [self.loginTextField setRightButtonWhiteColor];
+}
+
 @end

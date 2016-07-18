@@ -108,8 +108,6 @@
         //[super setupLeftBack];
         //[self setupRightWithTitle:@"搜索"];
         //[self setDatumTitleView];
-        
-        
         YXDatumSearchViewController *vc = [[YXDatumSearchViewController alloc] init];
         YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
         vc.keyWord = text;

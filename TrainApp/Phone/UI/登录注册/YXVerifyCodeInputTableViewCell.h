@@ -16,4 +16,6 @@
 - (void)stopTimer;
 - (void)resetTextField;
 
+- (void)setRightButtonImage;
+
 @end

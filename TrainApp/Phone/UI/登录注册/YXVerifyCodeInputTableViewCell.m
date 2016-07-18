@@ -131,5 +131,9 @@
     [self.loginTextField resetTextFieldText];
 }
 
+- (void)setRightButtonImage {
+    [self.loginTextField setRightButtonWhiteColor];
+}
+
 
 @end

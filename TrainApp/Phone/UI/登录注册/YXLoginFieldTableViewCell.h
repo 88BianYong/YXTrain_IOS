@@ -13,5 +13,6 @@
 @property (nonatomic, copy) void(^textChangedBlock)(NSString *text);
 
 - (void)setPlaceHolderWithString:(NSString *)str keyType:(UIKeyboardType)keyType isSecure:(BOOL)isSecure;
+- (void)setRightButtonImage;
 
 @end

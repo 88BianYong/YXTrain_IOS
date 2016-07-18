@@ -72,6 +72,7 @@
         if (!cell) {
             cell = [[YXLoginFieldTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YXLoginFieldTableViewCell"];
             [cell setPlaceHolderWithString:@"输入手机号" keyType:UIKeyboardTypeNumberPad isSecure:NO];
+            [cell setRightButtonImage];
             @weakify(self)
             cell.textChangedBlock = ^(NSString *text){
                 @strongify(self)
@@ -86,6 +87,7 @@
         YXVerifyCodeInputTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXVerifyCodeInputTableViewCell"];
         if (!cell) {
             cell = [[YXVerifyCodeInputTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YXVerifyCodeInputTableViewCell"];
+            [cell setRightButtonImage];
             @weakify(self)
             cell.verifyCodeChangedBlock = ^(NSString *verifyCode){
                 @strongify(self)

@@ -43,6 +43,7 @@
         YXLoginFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXLoginFieldTableViewCell"];
         if (!cell) {
             cell = [[YXLoginFieldTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YXLoginFieldTableViewCell"];
+            [cell setRightButtonImage];
             [cell setPlaceHolderWithString:@"输入新密码" keyType:UIKeyboardTypeDefault isSecure:YES];
             @weakify(self)
             cell.textChangedBlock = ^(NSString *text){
@@ -58,6 +59,7 @@
         YXLoginFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXLoginFieldTableViewCell"];
         if (!cell) {
             cell = [[YXLoginFieldTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YXLoginFieldTableViewCell"];
+            [cell setRightButtonImage];
             [cell setPlaceHolderWithString:@"确认新密码" keyType:UIKeyboardTypeDefault isSecure:YES];
             @weakify(self)
             cell.textChangedBlock = ^(NSString *text){

@@ -31,8 +31,8 @@
     self.layer.cornerRadius = 2;
     self.layer.masksToBounds = YES;
     self.rightButton = [[UIButton alloc]init];
-    //[self.rightButton setBackgroundImage:[UIImage imageNamed:@"清除"] forState:UIControlStateNormal];
-    [self.rightButton setBackgroundColor:[UIColor redColor]];
+    [self.rightButton setBackgroundImage:[UIImage imageNamed:@"删除当前输入内容"] forState:UIControlStateNormal];
+    [self.rightButton setBackgroundImage:[UIImage imageNamed:@"删除当前输入内容点击态"] forState:UIControlStateHighlighted];
     [self.rightButton addTarget:self action:@selector(clearAction) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.rightButton];
     self.rightButton.hidden = YES;
@@ -113,6 +113,10 @@
 
 - (void)resetTextFieldText {
     self.textField.text = @"";
+}
+
+- (void)setRightButtonWhiteColor {
+    [self.rightButton setBackgroundImage:[UIImage imageNamed:@"白色框删除当前输入内容"] forState:UIControlStateNormal];
 }
 
 @end
