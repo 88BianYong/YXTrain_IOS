@@ -17,6 +17,10 @@
 
 @implementation YXUserTextFieldTableViewCell
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -36,6 +40,7 @@
 }
 
 - (void)setupUI {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange) name:UITextFieldTextDidChangeNotification object:nil];
     self.userTitleLabel = [[UILabel alloc] init];
     self.userTitleLabel.text = @"姓名";
     self.userTitleLabel.textAlignment = NSTextAlignmentRight;
@@ -97,5 +102,21 @@
 - (void)editButtonClicked {
     [self.contentTextField becomeFirstResponder];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (range.location >20)
+    {
+        return  NO;
+    }
+    return YES;
+}
+
+- (void)textFieldDidChange
+{
+    if (self.contentTextField.text.length > 20) {
+        self.contentTextField.text = [self.contentTextField.text substringToIndex:20];
+    }
+}
+
 
 @end
