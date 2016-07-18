@@ -230,10 +230,14 @@
     vc.title = videoItem.name;
     vc.delegate = self;
     vc.exitDelegate = self;
-    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    UIViewController *rootVC = [window visibleViewController];
-    [rootVC presentViewController:vc animated:YES completion:nil];
-//     [self.baseViewController.navigationController presentViewController:vc animated:YES completion:nil];
+    if (self.baseViewController.presentingViewController) {
+      [self.baseViewController.navigationController presentViewController:vc animated:YES completion:nil];
+    }
+    else{
+        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+        UIViewController *rootVC = [window visibleViewController];
+        [rootVC presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 - (void)openAudio{

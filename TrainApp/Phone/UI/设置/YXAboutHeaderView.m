@@ -48,7 +48,7 @@
     
     UILabel *versionLabel = [[UILabel alloc] init];
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];  
-    versionLabel.text = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    versionLabel.text = [NSString stringWithFormat:@"V%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"]];
     versionLabel.textColor = [UIColor colorWithHexString:@"bbc2c9"];
     versionLabel.font = [UIFont fontWithName:YXFontMetro_Italic size:16];
     [self addSubview:versionLabel];
