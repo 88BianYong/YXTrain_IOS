@@ -36,6 +36,8 @@ UICollectionViewDelegate
     UICollectionView *_collectionView;
     UILabel *_contentLabel;
     UIImageView *_imageView;
+    
+    NSInteger _memberInteger;
 }
 @end
 
@@ -132,7 +134,7 @@ UICollectionViewDelegate
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _memberMutableArray.count > 7 ? 7 : _memberMutableArray.count;
+    return _memberInteger > 7 ? 7 : _memberInteger;
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     YXWorkshopDetailMemberCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXWorkshopDetailMemberCell" forIndexPath:indexPath];
@@ -146,6 +148,7 @@ UICollectionViewDelegate
                 content:(NSString *)contentString{
     _titleLabel.text = titleString;
     _contentLabel.text = contentString;
+    _memberInteger = [contentString integerValue];
 }
 - (void)setMemberMutableArray:(NSMutableArray *)memberMutableArray{
     _memberMutableArray = memberMutableArray;
