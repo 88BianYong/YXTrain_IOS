@@ -34,7 +34,7 @@
     self.orderArray = array;
     self.index = index;
     self.btnCount = btnCount;
-    CGFloat tableHeight = MIN(array.count*44, 308);
+    CGFloat tableHeight = MIN(array.count*44, 330);
     [self setTriangleFrame];
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(109);

@@ -250,7 +250,7 @@
     
     _nameLabel.text = self.profile.realName;
     _schoolNameLabel.text = self.profile.school;
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.headDetail?:self.profile.head] placeholderImage:[UIImage imageNamed:@"用户默认头像"]];
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"用户默认头像"]];
     [self.view setNeedsLayout];
 }
 
