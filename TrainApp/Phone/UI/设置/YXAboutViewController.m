@@ -143,7 +143,6 @@
 
 - (void)goProvisionButtonAction:(UIButton *)sender{
     YXProvisionViewController *provisionVC = [[YXProvisionViewController alloc] init];
-    //[self.navigationController pushViewController:provisionVC animated:YES];
-    [self presentViewController:provisionVC animated:YES completion:nil];
+    [self.navigationController pushViewController:provisionVC animated:YES];
 }
 @end
