@@ -96,9 +96,8 @@
     }
     // Now initialize your custom navigation bar with whatever items you like...
     self.overlayNavigationItem = [[UINavigationItem alloc] initWithTitle:self.qlTitle];
-    
     WEAK_SELF
-    [YXNavigationBarController setLeftWithNavigationItem:self.overlayNavigationItem imageName:nil highlightImageName:nil action:^{
+    [YXNavigationBarController setLeftWithNavigationItem:self.overlayNavigationItem imageName:@"返回按钮" highlightImageName:@"返回按钮点击态" action:^{
         STRONG_SELF
         [self doneButtonTapped:nil];
     }];
