@@ -84,6 +84,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.qlNavigationBar = [self getNavigationBarFromView:self.view];
     self.overlayNavigationBar = [[UINavigationBar alloc] initWithFrame:[self navigationBarFrameForOrientation:[[UIApplication sharedApplication] statusBarOrientation]]];
     self.overlayNavigationBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -114,6 +115,7 @@
     [super viewWillLayoutSubviews];
     self.overlayNavigationBar.frame = [self navigationBarFrameForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
+
 
 - (UIButton *)leftButton{
     UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];

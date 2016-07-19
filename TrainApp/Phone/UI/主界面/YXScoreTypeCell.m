@@ -58,10 +58,10 @@
 - (void)setType:(YXScoreCellType)type{
     _type = type;
     if (type == YXScoreCellType_Lead) {
-        self.typeImageView.backgroundColor = [UIColor redColor];
+        self.typeImageView.image = [UIImage imageNamed:@"引领"];
         self.titleLabel.text = @"引领学习";
     }else{
-        self.typeImageView.backgroundColor = [UIColor redColor];
+        self.typeImageView.image = [UIImage imageNamed:@"拓展"];
         self.titleLabel.text = @"拓展学习";
     }
 }
