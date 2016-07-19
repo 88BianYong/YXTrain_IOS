@@ -44,7 +44,7 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXNoticeAndBulletinTableViewCell class] forCellReuseIdentifier:@"YXNoticeAndBulletinTableViewCell"];
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 10)];
     headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.tableHeaderView = headerView;
     [self firstPageFetch];
