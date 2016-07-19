@@ -26,7 +26,7 @@
     hud.mode = MBProgressHUDModeText;
     hud.labelText = text;
     hud.removeFromSuperViewOnHide = YES;
-    [hud hide:YES afterDelay:0.6];
+    [hud hide:YES afterDelay:1];
 }
 
 @end

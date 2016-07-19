@@ -43,19 +43,19 @@
     self.collectionRequest.type = datumModel.type;
     self.collectionRequest.iscollection = @"0";
     @weakify(self);
-    [YXPromtController startLoadingInView:self.baseVC.view];
+    [YXPromtController startLoadingInView:self.baseVC.view.window];
     [self.collectionRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         @strongify(self);
-        [YXPromtController stopLoadingInView:self.baseVC.view];
+        [YXPromtController stopLoadingInView:self.baseVC.view.window];
         HttpBaseRequestItem *item = (HttpBaseRequestItem *)retItem;
         if (item && !error) {
             self.favorButton.hidden = YES;
             datumModel.isFavor = TRUE;
             datumModel.rawData.isCollection = @"1";
             SAFE_CALL(self.delegate, fileDidFavor);
-            [YXPromtController showToast:@"已保存到\"我的资源\"" inView:self.baseVC.view];
+            [YXPromtController showToast:@"已保存到\"我的资源\"" inView:self.baseVC.view.window];
         } else {
-            [YXPromtController showToast:error.localizedDescription inView:self.baseVC.view];
+            [YXPromtController showToast:error.localizedDescription inView:self.baseVC.view.window];
         }
     }];
 }
