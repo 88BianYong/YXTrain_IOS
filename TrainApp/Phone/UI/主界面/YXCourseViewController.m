@@ -157,6 +157,20 @@
             [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
         }
     }
+    if (self.fromCourseMarket) {
+        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+        __block NSInteger stageIndex = -1;
+        [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            YXCourseFilter *filter = (YXCourseFilter *)obj;
+            if ([filter.name isEqualToString:@"课程超市"]) {
+                stageIndex = idx;
+                *stop = YES;
+            }
+        }];
+        if (stageIndex >= 0) {
+            [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
+        }
+    }
 //    if (self.isElective) {
 //        YXCourseFilterGroup *typeGroup = self.filterModel.groupArray[2];
 //        __block NSInteger typeIndex = -1;

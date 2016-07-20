@@ -10,5 +10,6 @@
 #import "PagedListViewControllerBase.h"
 
 @interface YXCourseViewController : PagedListViewControllerBase
-@property (nonatomic, strong) NSString *stageID; // 从考核的阶段课程或课程超市进入需要传阶段的id
+@property (nonatomic, strong) NSString *stageID; // 从考核的阶段课程进入需要传阶段的id
+@property (nonatomic, assign) BOOL fromCourseMarket; // 是否从课程超市进入
 @end
