@@ -136,6 +136,10 @@
     item.name = data.title;
     item.url = data.url;
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    if(item.type == YXFileTypeUnknown) {
+        [self showToast:@"暂不支持该格式文件预览"];
+        return;
+    }
     if (!data.isFavor) {
         [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:YXFavorSuccessNotification object:data userInfo:nil];

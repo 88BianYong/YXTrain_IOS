@@ -134,6 +134,10 @@
     item.name = data.title;
     item.url = data.url;
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    if(item.type == YXFileTypeUnknown) {
+        [self showToast:@"暂不支持该格式文件预览"];
+        return;
+    }
     if (data.downloadState == DownloadStatusFinished) { // 没下载的在线预览
         item.isLocal = YES;
         item.url = [PersistentUrlDownloader localPathForUrl:data.url];
