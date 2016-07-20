@@ -35,8 +35,6 @@
 		<string>METRO-DEMIBOLD PLAYTYPE.OTF</string>
 		<string>fzlbjw.TTF</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>Empty</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
