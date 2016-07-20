@@ -32,6 +32,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
 @interface YXPlayerViewController() {
     NSDate *_startTime;
+    NSTimeInterval _playTime;
     BOOL _bDefinitionShown;
     
     NSMutableArray *_internalDefinitionArray;
@@ -60,6 +61,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 //}
 
 - (void)viewDidLoad {
+    _playTime = 0;
     self.bottomView = [[YXPlayerBottomView alloc] init];
     [self _setupDefinitions];
     if (!isEmpty(_internalDefaultDefinition.url)) {
@@ -234,7 +236,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     
     if ((self.delegate) && [self.delegate respondsToSelector:@selector(playerProgress:totalDuration:stayTime:)]) {
         if (self.player.duration) {
-            [self.delegate playerProgress:self.bottomView.slideProgressView.playProgress totalDuration:self.player.duration stayTime:[[NSDate date] timeIntervalSinceDate:self->_startTime]];
+            if (self->_startTime) {
+                self->_playTime += [[NSDate date]timeIntervalSinceDate:self->_startTime];
+            }
+            [self.delegate playerProgress:self.bottomView.slideProgressView.playProgress totalDuration:self.player.duration stayTime:self->_playTime];
         }
     }
 
@@ -259,7 +264,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     if ((self.delegate) && [self.delegate respondsToSelector:@selector(playerProgress:totalDuration:stayTime:)]) {
         if (self.player.duration) {
-            [self.delegate playerProgress:self.bottomView.slideProgressView.playProgress totalDuration:self.player.duration stayTime:[[NSDate date] timeIntervalSinceDate:self->_startTime]];
+            if (self->_startTime) {
+                self->_playTime += [[NSDate date]timeIntervalSinceDate:self->_startTime];
+            }
+            [self.delegate playerProgress:self.bottomView.slideProgressView.playProgress totalDuration:self.player.duration stayTime:self->_playTime];
+            self->_playTime = 0;
+            self->_startTime = nil;
         }
     }
 }
@@ -321,6 +331,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.disposableArray = [NSMutableArray array];
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
         @strongify(self); if (!self) return;
+        if ([x unsignedIntegerValue] == PlayerView_State_Playing) {
+            self->_startTime = [NSDate date];
+        } else {
+            if (self->_startTime) {
+                self->_playTime += [[NSDate date]timeIntervalSinceDate:self->_startTime];
+                self->_startTime = nil;
+            }
+        }
 //        dispatch_async(dispatch_get_main_queue(), ^{
             if ([x unsignedIntegerValue] == PlayerView_State_Buffering) {
                 self.bufferingView.hidden = NO;
@@ -380,9 +398,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     
     RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
         @strongify(self); if (!self) return;
-        if (isEmpty(self->_startTime)) {
-            self->_startTime = [NSDate date];
-        }
+//        if (isEmpty(self->_startTime)) {
+//            self->_startTime = [NSDate date];
+//        }
         
         self.bottomView.slideProgressView.duration = [x doubleValue];
         if (self.bottomView.slideProgressView.bufferProgress > 0) { // walkthrough 换url时slide跳动
@@ -418,19 +436,19 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         }
     }];
     
-    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
-        @strongify(self); if (!self) return;
-        if (self->_startTime) {
-            self->_startTime = [NSDate date];
-        }
-    }];
+//    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
+//        @strongify(self); if (!self) return;
+//        if (self->_startTime) {
+//            self->_startTime = [NSDate date];
+//        }
+//    }];
 
     [self.disposableArray addObject:r0];
     [self.disposableArray addObject:r1];
     [self.disposableArray addObject:r2];
     [self.disposableArray addObject:r3];
     [self.disposableArray addObject:r4];
-    [self.disposableArray addObject:r5];
+//    [self.disposableArray addObject:r5];
 }
 
 #pragma mark - top / bottom hide

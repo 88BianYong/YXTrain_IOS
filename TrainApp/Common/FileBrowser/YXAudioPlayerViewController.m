@@ -18,6 +18,7 @@
 
 @interface YXAudioPlayerViewController() {
     NSDate *_startTime;
+    NSTimeInterval _playTime;
 }
 @property (nonatomic, strong) LePlayer *player;
 @property (nonatomic, strong) LePlayerView *playerView;
@@ -35,6 +36,7 @@
 @implementation YXAudioPlayerViewController
 
 - (void)viewDidLoad {
+    _playTime = 0;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     if ((self.delegate) && [self.delegate respondsToSelector:@selector(preProgress)]) {
         self.preProgress = [self.delegate preProgress];
@@ -81,7 +83,12 @@
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     if ((self.delegate) && [self.delegate respondsToSelector:@selector(playerProgress:totalDuration:stayTime:)]) {
         if (self.player.duration) {
-            [self.delegate playerProgress:self.slideProgressView.playProgress totalDuration:self.player.duration stayTime:[[NSDate date] timeIntervalSinceDate:self->_startTime]];
+            if (self->_startTime) {
+                self->_playTime += [[NSDate date]timeIntervalSinceDate:self->_startTime];
+            }
+            [self.delegate playerProgress:self.slideProgressView.playProgress totalDuration:self.player.duration stayTime:self->_playTime];
+            self->_playTime = 0;
+            self->_startTime = nil;
         }
     }
 }
@@ -278,7 +285,10 @@
     
     if ((self.delegate) && [self.delegate respondsToSelector:@selector(playerProgress:totalDuration:stayTime:)]) {
         if (self.player.duration) {
-            [self.delegate playerProgress:self.slideProgressView.playProgress totalDuration:self.player.duration stayTime:[[NSDate date] timeIntervalSinceDate:self->_startTime]];
+            if (self->_startTime) {
+                self->_playTime += [[NSDate date]timeIntervalSinceDate:self->_startTime];
+            }
+            [self.delegate playerProgress:self.slideProgressView.playProgress totalDuration:self.player.duration stayTime:_playTime];
         }
     }
     
@@ -345,7 +355,14 @@
     self.disposableArray = [NSMutableArray array];
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
         @strongify(self); if (!self) return;
-        
+        if ([x unsignedIntegerValue] == PlayerView_State_Playing) {
+            self->_startTime = [NSDate date];
+        } else {
+            if (self->_startTime) {
+                self->_playTime += [[NSDate date]timeIntervalSinceDate:self->_startTime];
+                self->_startTime = nil;
+            }
+        }
         switch ([x unsignedIntegerValue]) {
             case PlayerView_State_Buffering:
                 DDLogInfo(@"buffering");
@@ -388,9 +405,9 @@
     
     RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
         @strongify(self); if (!self) return;
-        if (isEmpty(self->_startTime)) {
-            self->_startTime = [NSDate date];
-        }
+//        if (isEmpty(self->_startTime)) {
+//            self->_startTime = [NSDate date];
+//        }
 
         self.preButton.hidden = NO;
         self.nextButton.hidden = NO;
@@ -420,19 +437,19 @@
         }
     }];
     
-    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
-        @strongify(self); if (!self) return;
-        if (self->_startTime) {
-            self->_startTime = [NSDate date];
-        }
-    }];
+//    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
+//        @strongify(self); if (!self) return;
+//        if (self->_startTime) {
+//            self->_startTime = [NSDate date];
+//        }
+//    }];
     
     [self.disposableArray addObject:r0];
     [self.disposableArray addObject:r1];
     [self.disposableArray addObject:r2];
     [self.disposableArray addObject:r3];
     [self.disposableArray addObject:r4];
-    [self.disposableArray addObject:r5];
+//    [self.disposableArray addObject:r5];
 }
 
 #pragma mark - top actions
