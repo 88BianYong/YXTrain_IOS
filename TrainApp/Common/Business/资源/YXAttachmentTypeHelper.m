@@ -40,7 +40,7 @@
              @"ppt":@"ppt",
              @"word":@"word",
              @"excel":@"excel",
-             @"unknown":@"datum_other"
+             @"unknown":@"未知"
              };
 }
 
@@ -66,11 +66,11 @@
     }else if (value == 1){
         return @"pdf";
     }else if (value == 2){
-        return @"";
+        return @"网页";
     }else if (value == 3){
         return @"MP3";
     }else{
-        return @"";
+        return @"未知";
     }
 }
 
