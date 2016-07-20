@@ -181,18 +181,20 @@
 }
 
 - (NSArray *)configGuideArray {
-    YXGuideModel *model_1 = [self guideModelWithImageName:@"" title:@"yiyi" isShowButton:NO];
-    YXGuideModel *model_2 = [self guideModelWithImageName:@"" title:@"erer" isShowButton:NO];
-    YXGuideModel *model_3 = [self guideModelWithImageName:@"" title:@"sansan" isShowButton:NO];
-    YXGuideModel *model_4 = [self guideModelWithImageName:@"" title:@"sisi" isShowButton:YES];
+    [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];
+    YXGuideModel *model_1 = [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];;
+    YXGuideModel *model_2 = [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];;
+    YXGuideModel *model_3 = [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];;
+    YXGuideModel *model_4 = [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:YES];;
     NSArray *guideArry = @[model_1,model_2,model_3,model_4];
     return guideArry;
 }
 
-- (YXGuideModel *)guideModelWithImageName:(NSString *)name title:(NSString *)titile isShowButton:(BOOL)isShowButton {
+- (YXGuideModel *)guideModelWithImageName:(NSString *)name title:(NSString *)titile detail:(NSString *)detail isShowButton:(BOOL)isShowButton {
     YXGuideModel *model =[[YXGuideModel alloc] init];
     model.guideTitle = titile;
     model.guideImageString = name;
+    model.guideDetail = detail;
     model.isShowButton = isShowButton;
     return model;
 }

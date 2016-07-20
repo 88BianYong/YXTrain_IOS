@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy) NSString *guideImageString;
 @property (nonatomic, copy) NSString *guideTitle;
+@property (nonatomic, copy) NSString *guideDetail;
 @property (nonatomic, assign) BOOL isShowButton;
 
 @end

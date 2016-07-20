@@ -32,7 +32,7 @@
     [self addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
-        make.centerY.mas_equalTo(self.mas_centerY).mas_offset(-70);
+        make.centerY.mas_equalTo(self.mas_centerY).mas_offset(-110);
         make.size.mas_equalTo(CGSizeMake(202, 202));
     }];
     self.titleLabel = [[UILabel alloc]init];
