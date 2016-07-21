@@ -48,7 +48,7 @@
     [self.enterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15);
         make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(20, 20));
+        make.size.mas_equalTo(CGSizeMake(15, 15));
     }];
     self.statusImageView = [[UIImageView alloc]init];
     self.statusImageView.image = [UIImage imageNamed:@"完成学习任务标签"];
@@ -81,13 +81,13 @@
         [self.contentView addSubview:self.statusImageView];
         [self.statusImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
-            make.size.mas_equalTo(CGSizeMake(23, 19));
+            make.size.mas_equalTo(CGSizeMake(46, 38));
             make.right.mas_equalTo(self.enterImageView.mas_left).mas_offset(-10);
         }];
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(15).priorityHigh();
-            make.centerY.mas_equalTo(0);
             make.right.mas_equalTo(self.statusImageView.mas_left).mas_offset(-10).priorityHigh();
+            make.left.mas_equalTo(15);
+            make.centerY.mas_equalTo(0);
         }];
     }else{
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
