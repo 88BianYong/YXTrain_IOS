@@ -91,7 +91,7 @@
     [_contentView addSubview:_confirmButton];
     
     UIView *bottomLineView = [[UIView alloc] init];
-    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"cdcdcd"];
     [_contentView addSubview:bottomLineView];
     
     _pickerView = [[UIPickerView alloc] init];
@@ -124,6 +124,7 @@
         make.left.bottom.right.equalTo(@0);
         make.top.equalTo(_cancelButton.mas_bottom);
     }];
+    [self clearSeparatorWithView:_pickerView];
 }
 
 - (void)showPickerView:(BOOL)animated
@@ -174,6 +175,21 @@
     if (self.confirmBlock) {
         self.confirmBlock();
     }
+}
+- (void)clearSeparatorWithView:(UIView * )view
+{
+    if(view.subviews != 0  )
+    {
+        if(view.bounds.size.height < 5)
+        {
+            view.backgroundColor = [UIColor clearColor];
+        }
+        
+        [view.subviews enumerateObjectsUsingBlock:^( UIView *  obj, NSUInteger idx, BOOL *  stop) {
+            [self clearSeparatorWithView:obj];
+        }];
+    }
+    
 }
 
 @end

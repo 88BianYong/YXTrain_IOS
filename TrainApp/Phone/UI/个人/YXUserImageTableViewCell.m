@@ -40,7 +40,6 @@
 - (void)setupUI {
     self.userImageView = [[UIImageView alloc] init];
     self.userImageView.userInteractionEnabled = YES;
-    self.userImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.userImageView];
     UITapGestureRecognizer * tapUserImageGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapUserImageGesture:)];
     [self.userImageView addGestureRecognizer:tapUserImageGesture];

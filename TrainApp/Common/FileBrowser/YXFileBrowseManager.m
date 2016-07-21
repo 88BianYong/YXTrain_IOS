@@ -200,6 +200,8 @@
     YXBroseWebView *webView = [[YXBroseWebView alloc] init];
     webView.urlString = self.fileItem.url;
     webView.titleString = self.fileItem.name;
+    webView.exitDelegate = self;
+    webView.browseTimeDelegate = self;
     [self.baseViewController.navigationController pushViewController:webView animated:YES];
 }
 

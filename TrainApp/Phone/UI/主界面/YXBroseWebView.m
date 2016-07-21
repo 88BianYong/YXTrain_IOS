@@ -38,6 +38,7 @@
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
     [self.webView loadRequest:request];
     
+    self.beginDate = [NSDate date];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
         self.beginDate = [NSDate date];

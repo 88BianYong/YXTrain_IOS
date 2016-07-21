@@ -38,7 +38,7 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXMyDatumCell class] forCellReuseIdentifier:@"YXMyDatumCell"];
-    UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 3)];
+    UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
     tableViewHeaderView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     @weakify(self);
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXFavorSuccessNotification object:nil] subscribeNext:^(NSNotification *x) {
