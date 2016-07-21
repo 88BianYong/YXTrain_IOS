@@ -59,6 +59,7 @@
     self.contentTextField.font = [UIFont boldSystemFontOfSize:14];
     self.contentTextField.text = @"暂无";
     self.contentTextField.textColor = [UIColor colorWithHexString:@"334466"];
+    self.contentTextField.keyboardType = UIReturnKeyDone;
     [self.contentView addSubview:self.contentTextField];
     
     [self.userTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
