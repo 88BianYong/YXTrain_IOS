@@ -102,6 +102,10 @@
     [self.tableView registerClass:[YXUserImageTableViewCell class] forCellReuseIdentifier:@"YXUserImageTableViewCell"];
     [self.tableView registerClass:[YXUserInfoTableViewCell class] forCellReuseIdentifier:@"YXUserInfoTableViewCell"];
     [self.tableView registerClass:[YXUserTextFieldTableViewCell class] forCellReuseIdentifier:@"YXUserTextFieldTableViewCell"];
+    
+    UIView *view  = [[UIView alloc] initWithFrame:CGRectMake(0, -300, self.view.bounds.size.width, 305)];
+    view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.tableView addSubview:view];
 }
 
 #pragma mark --TabelViewDelegate, TabelViewDataSource
@@ -202,7 +206,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return 14;
+        return 19;
     }
     return 0.01;
 }
