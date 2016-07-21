@@ -165,7 +165,7 @@
     }else{
         [self.noLeadScoreView removeFromSuperview];
         [self.contentView addSubview:self.leadScoreLabel];
-        self.leadScoreLabel.text = [NSString stringWithFormat:@"%@分",data.userGetScore];
+        self.leadScoreLabel.text = [NSString stringWithFormat:@"%@",data.userGetScore];
         [self.contentView addSubview:self.leadScoreLabel];
         [self.leadScoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.leadScoreTitleLabel.mas_bottom).mas_offset(10);
@@ -184,7 +184,7 @@
     }else{
         [self.noExpScoreView removeFromSuperview];
         [self.contentView addSubview:self.expScoreLabel];
-        self.expScoreLabel.text = [NSString stringWithFormat:@"%@分",data.bounsscore];
+        self.expScoreLabel.text = [NSString stringWithFormat:@"%@",data.bounsscore];
         [self.contentView addSubview:self.expScoreLabel];
         [self.expScoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.expScoreTitleLabel.mas_bottom).mas_offset(10);
