@@ -66,9 +66,9 @@
     UIPageControl *pageControl = [[UIPageControl alloc] init];
     pageControl.backgroundColor = [UIColor lightGrayColor];
     pageControl.numberOfPages = self.pages;
-    pageControl.center = CGPointMake(self.view.center.x, self.view.frame.size.height-80);
-    pageControl.currentPageIndicatorTintColor = [UIColor orangeColor];
-    pageControl.pageIndicatorTintColor = [UIColor grayColor];
+    pageControl.center = CGPointMake(self.view.center.x, self.view.frame.size.height-30);
+    pageControl.currentPageIndicatorTintColor = [UIColor colorWithHexString:@"3592e0"];
+    pageControl.pageIndicatorTintColor = [UIColor colorWithHexString:@"e0e0e0"];
     [self.view addSubview:pageControl];
     self.pageControl = pageControl;
 }

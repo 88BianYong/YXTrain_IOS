@@ -181,12 +181,10 @@
 }
 
 - (NSArray *)configGuideArray {
-    [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];
-    YXGuideModel *model_1 = [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];;
-    YXGuideModel *model_2 = [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];;
-    YXGuideModel *model_3 = [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];;
-    YXGuideModel *model_4 = [self guideModelWithImageName:@"" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:YES];;
-    NSArray *guideArry = @[model_1,model_2,model_3,model_4];
+    YXGuideModel *model_0 = [self guideModelWithImageName:@"高效" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];
+    YXGuideModel *model_1 = [self guideModelWithImageName:@"便捷" title:@"便捷" detail:@"随时随地参与培训\n轻松便捷在线学习" isShowButton:NO];;
+    YXGuideModel *model_2 = [self guideModelWithImageName:@"全新2.0" title:@"全新2.0" detail:@"通知动态随时查看\n海量资源尽情下载" isShowButton:YES];;
+    NSArray *guideArry = @[model_0,model_1,model_2];
     return guideArry;
 }
 
