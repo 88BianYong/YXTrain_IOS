@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     //self.bNeedHeader = FALSE;
     YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+    emptyView.backgroundColor = [UIColor whiteColor];
     emptyView.imageName = @"没有合适的资源";
     emptyView.title = @"没有符合条件的资源";
     self.emptyView = emptyView;
@@ -137,6 +138,14 @@
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationItem.leftBarButtonItems = nil;
     [self.navigationItem setHidesBackButton:YES animated:NO];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
 @end
