@@ -185,6 +185,7 @@
     // Toggle visiblity of our custom navigation bar according to the ql navigationbar
     if ([keyPath isEqualToString:@"hidden"]) {
         self.overlayNavigationBar.hidden = self.qlNavigationBar.isHidden;
+        [UIApplication sharedApplication].statusBarHidden = self.qlNavigationBar.isHidden;
     }
 }
 
