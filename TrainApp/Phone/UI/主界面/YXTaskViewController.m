@@ -38,6 +38,20 @@
     [self setupUI];
     [self getData];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
+                                                          [UIFont boldSystemFontOfSize:17], NSFontAttributeName,
+                                                          nil]];
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                     [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
+                                                                     [UIFont systemFontOfSize:17], NSFontAttributeName,
+                                                                     nil]];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

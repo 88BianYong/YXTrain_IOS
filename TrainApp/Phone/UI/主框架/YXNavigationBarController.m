@@ -16,7 +16,7 @@
     [UINavigationBar appearance].shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                 [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
-                                                [UIFont boldSystemFontOfSize:17], NSFontAttributeName,
+                                                [UIFont systemFontOfSize:17], NSFontAttributeName,
                                                 nil]];
 }
 

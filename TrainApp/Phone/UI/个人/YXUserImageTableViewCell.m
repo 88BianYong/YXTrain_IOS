@@ -68,7 +68,7 @@
     
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
-        make.top.mas_equalTo(self.userImageView.mas_bottom).offset(-10);
+        make.top.mas_equalTo(self.userImageView.mas_bottom).offset(-15);
         make.size.mas_equalTo(CGSizeMake(25, 25));
     }];
     

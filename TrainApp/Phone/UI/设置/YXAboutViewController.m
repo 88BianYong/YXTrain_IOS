@@ -70,7 +70,7 @@
         make.height.mas_equalTo(50.0f);
         make.width.mas_equalTo(150.0f);
         make.centerX.equalTo(self.view.mas_centerX);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-27.0f/667.0f * height);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-27.0f);
     }];
 }
 

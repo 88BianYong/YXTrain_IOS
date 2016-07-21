@@ -54,6 +54,7 @@
     DDLogDebug(@"release");
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
@@ -760,11 +761,13 @@
     [super viewWillAppear:animated];
     [[IQKeyboardManager sharedManager] setEnable:YES];
     [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 40;
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
 /*

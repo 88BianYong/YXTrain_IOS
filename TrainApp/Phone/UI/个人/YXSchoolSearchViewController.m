@@ -64,14 +64,17 @@
     _searchBar.delegate = self;
     _searchBar.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     _searchBar.backgroundImage = [[UIImage alloc] init];
-    [_searchBar setImage:[UIImage imageNamed:@"输入搜索学校名称icon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
+//    [_searchBar setImage:[UIImage imageNamed:@"输入搜索学校名称icon"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     //    _searchBar.barTintColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.view addSubview:_searchBar];
     
-//    UITextField *searchField = [_searchBar valueForKey:@"searchField"];
-//    if (searchField) {
-//        searchField.layer.cornerRadius = 4.0f;
-//    }
+    UITextField *searchField = [_searchBar valueForKey:@"searchField"];
+    if (searchField) {
+        searchField.layer.cornerRadius = 4.0f;
+        searchField.font = [UIFont systemFontOfSize:14.0f];
+//        [searchField setValue:[UIColor colorWithHexString:@"dfe2e6"] forKeyPath:@"_placeholderLabel.textColor"];
+        [searchField setValue:[UIFont systemFontOfSize:14.0f] forKeyPath:@"_placeholderLabel.font"];
+    }
     _rangeLabel = [[UILabel alloc] init];
     _rangeLabel.text = [NSString stringWithFormat:@"范围:  %@ ",self.areaName];
     _rangeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
