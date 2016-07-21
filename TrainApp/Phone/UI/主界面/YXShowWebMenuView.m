@@ -32,7 +32,7 @@
     [self.maskView addGestureRecognizer:tapGesture];
     [self addSubview:self.maskView];
     
-    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.1];
+    self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     self.tableView = [[UITableView alloc]init];
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

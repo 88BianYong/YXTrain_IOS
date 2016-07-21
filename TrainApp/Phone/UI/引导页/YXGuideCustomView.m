@@ -61,12 +61,14 @@
         }];
         
         self.startButton = [[UIButton alloc] init];
-        self.startButton.backgroundColor = [UIColor whiteColor];
         self.startButton.layer.borderWidth = 1;
         self.startButton.layer.cornerRadius = 2;
         self.startButton.layer.borderColor = [[UIColor colorWithHexString:@"2582d0"] CGColor];
         [self.startButton setTitle:@"开始体验" forState:UIControlStateNormal];
         [self.startButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+        [self.startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [self.startButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+        [self.startButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0067be"]] forState:UIControlStateHighlighted];
         self.startButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [self.startButton addTarget:self action:@selector(startButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.startButton];
@@ -81,6 +83,10 @@
 
 - (void)configWithGuideModel:(YXGuideModel *)guideModel {
     self.titileLabel.text = guideModel.guideTitle;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:guideModel.guideDetail];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:5];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, guideModel.guideDetail.length)];
     self.detailLabel.text = guideModel.guideDetail;
     self.startButton.hidden = !guideModel.isShowButton;
     self.iconImageView.image = [UIImage imageNamed:guideModel.guideImageString];
