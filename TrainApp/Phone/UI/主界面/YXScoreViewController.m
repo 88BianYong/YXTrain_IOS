@@ -102,6 +102,15 @@
 }
 
 - (void)setupUI{
+    YXScoreTotalScoreCell *totalCell = [[YXScoreTotalScoreCell alloc]init];
+    totalCell.data = self.data;
+    [self.view addSubview:totalCell];
+    [totalCell mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(190);
+    }];
+    [totalCell startAnimation];
+    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
@@ -109,7 +118,8 @@
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
+        make.top.mas_equalTo(totalCell.mas_bottom);
+        make.left.right.bottom.mas_equalTo(0);
     }];
     [self.tableView registerClass:[YXScoreTotalScoreCell class] forCellReuseIdentifier:@"YXScoreTotalScoreCell"];
     [self.tableView registerClass:[YXScoreTypeCell class] forCellReuseIdentifier:@"YXScoreTypeCell"];
@@ -124,21 +134,21 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.data.leadingVoList.count + self.data.bounsVoList.count + 1 + 2 + self.expItemArray.count;
+    return self.data.leadingVoList.count + self.data.bounsVoList.count + 2 + self.expItemArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0 || section == 1) {
+    if (section == 0) {
         return 1;
-    }else if (section < self.data.leadingVoList.count+2){
-        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[section-2];
+    }else if (section < self.data.leadingVoList.count+1){
+        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[section-1];
         return vo.toolExamineVoList.count+2;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
+    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
         return 0;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count+1){
+    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
         return 1;
     }else{
-        NSInteger index = section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count+1);
+        NSInteger index = section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count);
         YXExpItem *item = self.expItemArray[index];
         return item.subItemArray.count+2;
     }
@@ -146,16 +156,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        YXScoreTotalScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreTotalScoreCell"];
-        cell.data = self.data;
-        [cell startAnimation];
-        return cell;
-    }else if (indexPath.section == 1){
         YXScoreTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreTypeCell"];
         cell.type = YXScoreCellType_Lead;
         return cell;
-    }else if (indexPath.section < self.data.leadingVoList.count+2){
-        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[indexPath.section-2];
+    }else if (indexPath.section < self.data.leadingVoList.count+1){
+        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[indexPath.section-1];
         if (indexPath.row == 0 || indexPath.row == vo.toolExamineVoList.count+1) {
             YXScoreBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreBlankCell"];
             return cell;
@@ -164,14 +169,14 @@
             cell.data = vo.toolExamineVoList[indexPath.row-1];
             return cell;
         }
-    }else if (indexPath.section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
+    }else if (indexPath.section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
         return nil;
-    }else if (indexPath.section < self.data.leadingVoList.count+2+self.data.bounsVoList.count+1){
+    }else if (indexPath.section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
         YXScoreTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreTypeCell"];
         cell.type = YXScoreCellType_Exp;
         return cell;
     }else{
-        YXExpItem *item = self.expItemArray[indexPath.section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count+1)];
+        YXExpItem *item = self.expItemArray[indexPath.section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count)];
         if (indexPath.row == 0 || indexPath.row == item.subItemArray.count+1) {
             YXScoreBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreBlankCell"];
             return cell;
@@ -187,22 +192,22 @@
 
 #pragma mark - UITableViewDelegate
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 0 || section == 1) {
+    if (section == 0) {
         return nil;
-    }else if (section < self.data.leadingVoList.count+2){
+    }else if (section < self.data.leadingVoList.count+1){
         YXScorePhaseHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXScorePhaseHeaderView"];
-        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[section-2];
+        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[section-1];
+        header.data = vo;
+        return header;
+    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
+        YXScoreTaskScoreHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXScoreTaskScoreHeaderView"];
+        YXExamineRequestItem_body_bounsVoData *vo = self.data.bounsVoList[section-1-self.data.leadingVoList.count];
         header.data = vo;
         return header;
     }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        YXScoreTaskScoreHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXScoreTaskScoreHeaderView"];
-        YXExamineRequestItem_body_bounsVoData *vo = self.data.bounsVoList[section-2-self.data.leadingVoList.count];
-        header.data = vo;
-        return header;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count+1){
         return nil;
     }else {
-        YXExpItem *item = self.expItemArray[section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count+1)];
+        YXExpItem *item = self.expItemArray[section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count)];
         YXScoreExpHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXScoreExpHeaderView"];
         header.title = item.name;
         header.score = item.score;
@@ -211,16 +216,16 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section == 0 || section == 1) {
+    if (section == 0) {
         return nil;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        if (section == self.data.leadingVoList.count+2+self.data.bounsVoList.count-1) {
+    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
+        if (section == self.data.leadingVoList.count+1+self.data.bounsVoList.count-1) {
             return nil;
         }else{
             YXExamBlankHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
             return footer;
         }
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count+1){
+    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
         return nil;
     }else {
         YXExamBlankHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
@@ -230,22 +235,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 190;
-    }else if (indexPath.section == 1){
         return 55;
-    }else if (indexPath.section < self.data.leadingVoList.count+2){
-        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[indexPath.section-2];
+    }else if (indexPath.section < self.data.leadingVoList.count+1){
+        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[indexPath.section-1];
         if (indexPath.row == 0 || indexPath.row == vo.toolExamineVoList.count+1) {
             return 8;
         }else{
             return 30;
         }
-    }else if (indexPath.section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
+    }else if (indexPath.section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
         return 0;
-    }else if (indexPath.section < self.data.leadingVoList.count+2+self.data.bounsVoList.count+1){
+    }else if (indexPath.section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
         return 55;
     }else{
-        YXExpItem *item = self.expItemArray[indexPath.section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count+1)];
+        YXExpItem *item = self.expItemArray[indexPath.section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count)];
         if (indexPath.row == 0 || indexPath.row == item.subItemArray.count+1) {
             return 8;
         }else{
@@ -255,11 +258,11 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0 || section == 1) {
+    if (section == 0) {
         return 0.1;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
+    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
         return 37;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count+1){
+    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
         return 0.1;
     }else{
         return 37;
@@ -267,15 +270,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 0 || section == 1) {
+    if (section == 0) {
         return 0.1;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        if (section == self.data.leadingVoList.count+2+self.data.bounsVoList.count-1) {
+    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
+        if (section == self.data.leadingVoList.count+1+self.data.bounsVoList.count-1) {
             return 0.1;
         }else{
             return 5;
         }
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count+1){
+    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
         return 0.1;
     }else{
         return 5;
