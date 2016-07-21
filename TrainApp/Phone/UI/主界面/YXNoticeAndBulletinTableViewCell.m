@@ -125,7 +125,7 @@
     
     [self.publisherLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.dateLabel.mas_centerY);
-        make.left.mas_equalTo(self.dateLabel.mas_right).offset(15);
+        make.left.mas_equalTo(self.dateLabel.mas_right).offset(10);
         make.right.mas_lessThanOrEqualTo(-15);
     }];
 }

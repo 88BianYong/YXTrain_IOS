@@ -52,6 +52,7 @@
     if (self.layoutDone) {
         return;
     }
+    self.clipsToBounds = YES;
     [self setupUI];
     [self setupObservers];
     self.layoutDone = YES;

@@ -73,7 +73,7 @@
         make.left.mas_equalTo(14);
         make.width.mas_equalTo(35);
         make.height.mas_equalTo(35);
-        make.centerY.equalTo(self.titleLabel.mas_centerY);
+        make.top.equalTo(self.contentView.mas_top).offset(18.0f);
     }];
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titleLabel.mas_left);

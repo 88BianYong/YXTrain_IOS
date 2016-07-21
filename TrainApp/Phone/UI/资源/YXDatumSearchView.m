@@ -53,7 +53,7 @@
     [self.searchImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.left.mas_equalTo(5);
-        make.size.mas_equalTo(CGSizeMake(30, 30));
+        make.size.mas_equalTo(CGSizeMake(25, 25));
     }];
     
     [self.searchTextField mas_makeConstraints:^(MASConstraintMaker *make) {

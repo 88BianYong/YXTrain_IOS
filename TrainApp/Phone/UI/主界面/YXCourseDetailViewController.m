@@ -28,6 +28,15 @@
 - (void)dealloc{
     [[YXRecordManager sharedManager]clear];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+    
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

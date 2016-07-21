@@ -8,7 +8,7 @@
 
 #import "YXGuideCustomView.h"
 
-#define kScreenSpaceHeight   ([UIScreen mainScreen].bounds.size.height - 376)
+#define kScreenSpaceHeight   [UIScreen mainScreen].bounds.size.height / 667.0f
 @interface YXGuideCustomView ()
 
 @property (nonatomic, strong) UIImageView *iconImageView;
@@ -37,17 +37,17 @@
         [self addSubview:self.iconImageView];
         [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
-            make.top.mas_equalTo(0.38 * kScreenSpaceHeight);
-            make.size.mas_equalTo(CGSizeMake(215, 215));
+            make.top.mas_equalTo(110.0f * kScreenSpaceHeight);
+            make.size.mas_equalTo(CGSizeMake(215 * kScreenSpaceHeight , 215 * kScreenSpaceHeight));
         }];
         
         self.titileLabel = [[UILabel alloc] init];
         self.titileLabel.textColor = [UIColor colorWithHexString:@"0067be"];
-        self.titileLabel.font = [UIFont systemFontOfSize:27];
+        self.titileLabel.font = [UIFont boldSystemFontOfSize:27];
         [self addSubview:self.titileLabel];
         [self.titileLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
-            make.top.equalTo(self.iconImageView.mas_bottom).offset(0.33 * kScreenSpaceHeight);
+            make.top.equalTo(self.iconImageView.mas_bottom).offset(80.0f * kScreenSpaceHeight);
         }];
         
         self.detailLabel = [[UILabel alloc] init];
@@ -57,7 +57,7 @@
         [self addSubview:self.detailLabel];
         [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
-            make.top.equalTo(self.titileLabel.mas_bottom).offset(0.08 * kScreenSpaceHeight);
+            make.top.equalTo(self.titileLabel.mas_bottom).offset(21.0f);
         }];
         
         self.startButton = [[UIButton alloc] init];
@@ -74,7 +74,7 @@
         [self addSubview:self.startButton];
         [self.startButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
-            make.top.equalTo(self.detailLabel.mas_bottom).offset(0.07 * kScreenSpaceHeight);
+            make.top.equalTo(self.detailLabel.mas_bottom).offset(20.0f);
             make.size.mas_offset(CGSizeMake(120, 34));
         }];
     }
@@ -87,7 +87,7 @@
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:5];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, guideModel.guideDetail.length)];
-    self.detailLabel.text = guideModel.guideDetail;
+    self.detailLabel.attributedText = attributedString;
     self.startButton.hidden = !guideModel.isShowButton;
     self.iconImageView.image = [UIImage imageNamed:guideModel.guideImageString];
 }

@@ -9,11 +9,11 @@
 #import "YXGuideViewController.h"
 #import "YXGuideCustomView.h"
 #import "YXGuideModel.h"
-
+#import "YXPageControl.h"
 @interface YXGuideViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, assign) NSInteger pages;
-@property (nonatomic, strong) UIPageControl *pageControl;
+@property (nonatomic, strong) YXPageControl *pageControl;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, assign)int tempPage;
 
@@ -63,7 +63,7 @@
 }
 
 - (void)setupPageControl {
-    UIPageControl *pageControl = [[UIPageControl alloc] init];
+    YXPageControl *pageControl = [[YXPageControl alloc] init];
     pageControl.backgroundColor = [UIColor lightGrayColor];
     pageControl.numberOfPages = self.pages;
     pageControl.center = CGPointMake(self.view.center.x, self.view.frame.size.height-30);

@@ -115,9 +115,9 @@
     
     [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(_cancelButton.mas_bottom);
-        make.right.mas_equalTo(-15);
-        make.left.mas_equalTo(15);
-        make.height.mas_equalTo(0.5);
+        make.right.mas_equalTo(0);
+        make.left.mas_equalTo(0);
+        make.height.mas_equalTo(1.0f/[UIScreen mainScreen].scale);
     }];
     
     [_pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -129,20 +129,23 @@
 
 - (void)showPickerView:(BOOL)animated
 {
-    if (animated) {
-        CGFloat height = CGRectGetHeight(self.view.bounds);
-        CGFloat width = CGRectGetWidth(self.view.bounds);
-        CGFloat contentHeight = CGRectGetHeight(self.contentView.bounds);
-        CGRect frame = CGRectMake(0, height - contentHeight, width, contentHeight);
-        self.contentView.frame = CGRectMake(0, height, width, contentHeight);
-        [UIView animateWithDuration:0.3f
-                         animations:^{
-                             self.contentView.frame = frame;
-                         } completion:^(BOOL finished) {
-                             
-                         }];
-    }
-    self.view.hidden = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TBD:为初始化马上动画有闪动问题
+        if (animated) {
+            CGFloat height = CGRectGetHeight(self.view.bounds);
+            CGFloat width = CGRectGetWidth(self.view.bounds);
+            CGFloat contentHeight = CGRectGetHeight(self.contentView.bounds);
+            CGRect frame = CGRectMake(0, height - contentHeight, width, contentHeight);
+            self.contentView.frame = CGRectMake(0, height, width, contentHeight);
+            [UIView animateWithDuration:0.3f
+                             animations:^{
+                                 self.contentView.frame = frame;
+                             } completion:^(BOOL finished) {
+                                 
+                             }];
+        }
+        self.view.hidden = NO;
+    });
+
 }
 
 - (void)hidePickerView:(BOOL)animated

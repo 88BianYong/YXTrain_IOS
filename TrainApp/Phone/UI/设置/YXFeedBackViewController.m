@@ -33,11 +33,13 @@
     
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -135,7 +137,8 @@
         make.right.equalTo(_contentView.mas_right);
     }];
     [_feedBackTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(_feedBackView).offset(15.0f);
+        make.top.equalTo(_feedBackView).offset(5.0f);
+        make.left.equalTo(_feedBackView).offset(15.0f);
         make.right.equalTo(_feedBackView.mas_right).offset(-15.0f);
         make.bottom.equalTo(_feedBackView.mas_bottom);
     }];

@@ -27,6 +27,15 @@
 
 @implementation YXAboutViewController
 
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -59,7 +68,7 @@
     
     
     UIButton *footerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    footerButton.frame = CGRectMake(0, 0, 150, 50.0f);
+    footerButton.frame = CGRectMake(0, 0, 150, 30.0f);
     footerButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     footerButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [footerButton setTitle:@"使用条款和隐私策略" forState:UIControlStateNormal];
@@ -67,10 +76,10 @@
     [footerButton addTarget:self action:@selector(goProvisionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:footerButton];
     [footerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(50.0f);
+        make.height.mas_equalTo(28.0f);
         make.width.mas_equalTo(150.0f);
         make.centerX.equalTo(self.view.mas_centerX);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-27.0f);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-24.0f);
     }];
 }
 

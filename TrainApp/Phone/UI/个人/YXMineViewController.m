@@ -20,6 +20,7 @@
 #import "UIImage+YXImage.h"
 #import "YXUploadHeadImgRequest.h"
 #import "HJCActionSheet.h"
+#import "APPDelegate.h"
 
 
 @interface YXMineViewController ()<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,HJCActionSheetDelegate>
@@ -339,7 +340,7 @@
 {
     if (!_pickerViewController) {
         _pickerViewController = [[YXPickerViewController alloc] init];
-        _pickerViewController.view.frame = self.view.bounds;
+        _pickerViewController.view.frame = [UIScreen mainScreen].bounds;
         _pickerViewController.pickerView.delegate = self;
         _pickerViewController.pickerView.dataSource = self;
         @weakify(self);
@@ -371,8 +372,10 @@
                     break;
             }
         };
-        [self.view addSubview:_pickerViewController.view];
-        [self addChildViewController:_pickerViewController];
+        [self.navigationController.view addSubview:_pickerViewController.view];
+        
+//        [self.view addSubview:_pickerViewController.view];
+        //[self addChildViewController:_pickerViewController];
     }
     return _pickerViewController;
 }
@@ -614,6 +617,8 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    UILabel* selectLabel = (UILabel *)[pickerView viewForRow:row forComponent:component];
+    selectLabel.textColor = [UIColor colorWithHexString:@"0067be"];
     switch (self.pickerType) {
         case YXPickerTypeStageAndSubject:
             switch (component) {

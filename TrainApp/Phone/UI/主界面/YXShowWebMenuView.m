@@ -45,7 +45,7 @@
     
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(64);
+        make.top.mas_equalTo(66);
         make.right.mas_equalTo(-5);
         make.height.mas_equalTo(135);
         make.width.mas_equalTo(149);

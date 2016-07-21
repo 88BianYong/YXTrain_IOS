@@ -32,6 +32,15 @@
 - (void)dealloc{
     [self.header free];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+    
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -69,7 +78,7 @@
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-    self.collectionView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.collectionView.alwaysBounceVertical = YES;
@@ -84,6 +93,10 @@
     
     self.header = [MJRefreshHeaderView header];
     self.header.scrollView = self.collectionView;
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, -290, self.view.bounds.size.width, 360.0f)];
+    topView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [_header addSubview:topView];
+    [_header sendSubviewToBack:topView];
     WEAK_SELF
     self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
@@ -100,23 +113,26 @@
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXCourseRecordRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
-        [self.header endRefreshing];
-        if (error) {
-            self.errorView.frame = self.view.bounds;
-            [self.view addSubview:self.errorView];
-            return;
-        }
-        YXCourseRecordRequestItem *item = (YXCourseRecordRequestItem *)retItem;
-        if (item.body.modules.count == 0) {
-            self.emptyView.frame = self.view.bounds;
-            [self.view addSubview:self.emptyView];
-            return;
-        }
-        [self.errorView removeFromSuperview];
-        [self.emptyView removeFromSuperview];
-        
-        [self dealWithRecordItem:retItem];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self stopLoading];
+            [self.header endRefreshing];
+            if (error) {
+                self.errorView.frame = self.view.bounds;
+                [self.view addSubview:self.errorView];
+                return;
+            }
+            YXCourseRecordRequestItem *item = (YXCourseRecordRequestItem *)retItem;
+            if (item.body.modules.count == 0) {
+                self.emptyView.frame = self.view.bounds;
+                [self.view addSubview:self.emptyView];
+                return;
+            }
+            [self.errorView removeFromSuperview];
+            [self.emptyView removeFromSuperview];
+            
+            [self dealWithRecordItem:retItem];
+        });
+
     }];
 }
 

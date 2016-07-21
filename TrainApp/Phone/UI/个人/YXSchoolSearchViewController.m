@@ -46,8 +46,13 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_searchRequest stopRequest];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+    
+}
 #pragma mark - UI setting
 - (void)setupUI{
     _addButton = [[UIButton alloc] init];
@@ -70,7 +75,7 @@
     
     UITextField *searchField = [_searchBar valueForKey:@"searchField"];
     if (searchField) {
-        searchField.layer.cornerRadius = 4.0f;
+        searchField.layer.cornerRadius = 2.0f;
         searchField.font = [UIFont systemFontOfSize:14.0f];
 //        [searchField setValue:[UIColor colorWithHexString:@"dfe2e6"] forKeyPath:@"_placeholderLabel.textColor"];
         [searchField setValue:[UIFont systemFontOfSize:14.0f] forKeyPath:@"_placeholderLabel.font"];

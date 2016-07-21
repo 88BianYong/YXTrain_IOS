@@ -56,7 +56,7 @@
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.courseImageView.mas_right).mas_offset(15);
-        make.top.mas_equalTo(22);
+        make.top.mas_equalTo(18);
         make.right.mas_equalTo(-20);
     }];
     self.historyImageView = [[UIImageView alloc]init];
@@ -81,7 +81,7 @@
     [self.contentView addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.courseImageView.mas_left);
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
@@ -93,7 +93,8 @@
     
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:course.course_title];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:7];//调整行间距
+    [paragraphStyle setLineSpacing:0];//调整行间距
+    paragraphStyle.minimumLineHeight = 20;
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;

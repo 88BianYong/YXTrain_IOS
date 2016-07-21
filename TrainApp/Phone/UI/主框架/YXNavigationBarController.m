@@ -106,8 +106,7 @@
 
 + (UIButton *)naviButtonForTitle:(NSString *)title {
     UIButton *b = [[UIButton alloc]init];
-    [b setTitle:title forState:UIControlStateNormal];
-    [b setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+    [b setImage:[UIImage imageNamed:@"收藏正常态"] forState:UIControlStateNormal];
 //    [b setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateDisabled];
     b.titleLabel.font = [UIFont systemFontOfSize:13];
     CGSize size = [title sizeWithAttributes:@{NSFontAttributeName:b.titleLabel.font}];
