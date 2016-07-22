@@ -28,7 +28,6 @@ UICollectionViewDelegate
     int _pageIndex;
     NSMutableArray *_dataMutableArray;
 }
-@property (nonatomic ,assign) NSInteger fillInteger;
 @end
 
 @implementation YXWorkshopMemberViewController
@@ -87,7 +86,6 @@ UICollectionViewDelegate
         [self requestForWorkshopMember:self ->_pageIndex];
     };
     
-    
     _footer = [MJRefreshFooterView footer];
     _footer.scrollView = _collectionView;
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 360.0f)];
@@ -98,6 +96,7 @@ UICollectionViewDelegate
        STRONG_SELF
         [self requestForWorkshopMember:self ->_pageIndex];
     };
+    [self setPullupViewHidden:_hiddenPullupBool];
     
     _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     _errorView.retryBlock = ^{
@@ -167,11 +166,10 @@ UICollectionViewDelegate
     WEAK_SELF
     [_memberFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
             [self->_footer endRefreshing];
             [self->_header endRefreshing];
-        });//多次加载
-
+        });
         [self stopLoading];
         if (pageIndex == 0) {//首次添加 如果错误添加错误界面如果空添加空界面
             if (error) {
@@ -179,21 +177,7 @@ UICollectionViewDelegate
                 [self.view addSubview:self ->_errorView];
             }
             else{
-                if (retItemArray.count > 0) {
-                    _pageIndex ++;
-                    [self.cachMutableArray removeAllObjects];
-                    [self.cachMutableArray addObjectsFromArray:retItemArray];
-                    [self ->_dataMutableArray removeAllObjects];
-                    [self ->_dataMutableArray addObjectsFromArray:retItemArray];
-                    
-                    [self ->_collectionView reloadData];
-                    [self -> _emptyView removeFromSuperview];
-                    [self -> _errorView removeFromSuperview];
-                }
-                else{
-                    self ->_emptyView.frame = self.view.bounds;
-                    [self.view addSubview:self ->_emptyView];
-                }
+                [self setExceptionViewAndData:retItemArray withPageIndex:pageIndex];
                 [self setPullupViewHidden:self ->_dataMutableArray.count >= total];
             }
         }else{//加载更多错误弹出提示
@@ -201,11 +185,7 @@ UICollectionViewDelegate
                [self showToast:error.localizedDescription];
             }
             else{
-                if (retItemArray.count > 0) {
-                    _pageIndex ++ ;
-                    [self ->_dataMutableArray addObjectsFromArray:retItemArray];
-                    [self ->_collectionView reloadData];
-                }
+                [self setExceptionViewAndData:retItemArray withPageIndex:pageIndex];
                 [self setPullupViewHidden:self ->_dataMutableArray.count >= total];
             }
         }
@@ -215,5 +195,32 @@ UICollectionViewDelegate
 - (void)setPullupViewHidden:(BOOL)hidden
 {
     _footer.alpha = hidden ? 0:1;
+}
+
+- (void)setExceptionViewAndData:(NSArray *)retItemArray withPageIndex:(int)pageIndex{
+    if (pageIndex == 0) {
+        if (retItemArray.count > 0) {
+            _pageIndex ++;
+            [self.cachMutableArray removeAllObjects];
+            [self.cachMutableArray addObjectsFromArray:retItemArray];
+            [_dataMutableArray removeAllObjects];
+            [_dataMutableArray addObjectsFromArray:retItemArray];
+            
+            [_collectionView reloadData];
+            [_emptyView removeFromSuperview];
+            [_errorView removeFromSuperview];
+        }
+        else{
+            self ->_emptyView.frame = self.view.bounds;
+            [self.view addSubview:self ->_emptyView];
+        }
+    }
+    else{
+        if (retItemArray.count > 0) {
+            _pageIndex ++ ;
+            [self ->_dataMutableArray addObjectsFromArray:retItemArray];
+            [self ->_collectionView reloadData];
+        }
+    }
 }
 @end

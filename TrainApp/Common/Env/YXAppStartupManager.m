@@ -117,9 +117,9 @@
     // backgroundTimeRemaining 属性包含了程序留给的我们的时间
     NSTimeInterval backgroundTimeRemaining =[[UIApplication sharedApplication] backgroundTimeRemaining];
     if (backgroundTimeRemaining == DBL_MAX){
-        NSLog(@"Background Time Remaining = Undetermined");
+        DDLogDebug(@"Background Time Remaining = Undetermined");
     } else {
-        NSLog(@"Background Time Remaining = %.02f Seconds", backgroundTimeRemaining);
+        DDLogDebug(@"Background Time Remaining = %.02f Seconds", backgroundTimeRemaining);
     }
 }
 #pragma mark - APNS相关

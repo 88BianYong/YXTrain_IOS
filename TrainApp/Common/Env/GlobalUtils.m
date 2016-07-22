@@ -17,10 +17,24 @@
 
 #import <objc/runtime.h>
 #import <Aspects.h>
-
-int ddLogLevel = DDLogLevelVerbose;
-
+#ifdef DEBUG
+ int ddLogLevel =  DDLogLevelVerbose;
+#else
+ int ddLogLevel =  DDLogLevelWarning;
+#endif
+void FLUncaughtExceptionHandler(NSException * exception)
+{
+    NSArray * arr = [exception callStackSymbols];
+    NSString * reason = [exception reason];
+    NSString * name = [exception name];
+    NSString * url = [NSString stringWithFormat:@"========异常错误报告========\nname:%@\nreason:\n%@\ncallStackSymbols:\n%@",name,reason,[arr componentsJoinedByString:@"\n"]];
+    DDLogError(@"%@\n\n",url);
+}
 @implementation GlobalUtils
++ (void)setDefaultExceptionHandler{
+    NSSetUncaughtExceptionHandler(&FLUncaughtExceptionHandler);
+}
+
 + (void)checkMainThread {
     if ([NSThread currentThread] == [NSThread mainThread]) {
         DDLogWarn(@"main thread");
@@ -51,8 +65,9 @@ int ddLogLevel = DDLogLevelVerbose;
     UIColor *pink = [UIColor colorWithRed:(255 / 255.0) green:(58 / 255.0) blue:(159 / 255.0) alpha:1.0];
     [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor redColor] backgroundColor:nil forFlag:DDLogFlagError];
     [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor yellowColor] backgroundColor:nil forFlag:DDLogFlagWarning];
-    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor greenColor] backgroundColor:nil forFlag:DDLogFlagDebug];
+    [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor blueColor] backgroundColor:nil forFlag:DDLogFlagInfo];
     [[DDTTYLogger sharedInstance] setForegroundColor:pink backgroundColor:nil forFlag:DDLogFlagVerbose];
+        [[DDTTYLogger sharedInstance] setForegroundColor:[UIColor colorWithHexString:@"fb7299"] backgroundColor:nil forFlag:DDLogFlagDebug];
     [[DDTTYLogger sharedInstance] setLogFormatter:formatter];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
@@ -60,6 +75,7 @@ int ddLogLevel = DDLogLevelVerbose;
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     
     NSString *logPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    DDLogDebug(@"%@",logPath);
     DDLogFileManagerDefault *fm = [[DDLogFileManagerDefault alloc] initWithLogsDirectory:logPath];
     FileLogger *fl = [[FileLogger alloc] initWithLogFileManager:fm];
     [fl setLogFormatter:formatter];

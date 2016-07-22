@@ -46,6 +46,7 @@
     }
     if ([YXDatumGlobalSingleton sharedInstance].filterModel && isExist) {
         self.filterModel = [YXDatumGlobalSingleton sharedInstance].filterModel;
+        [YXFilterModel resetFilters:self.filterModel];//BUG 666 重置筛选条件
     }else{
         [self getFilter];
     }

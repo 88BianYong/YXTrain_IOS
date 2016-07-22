@@ -18,7 +18,9 @@
 #import "YXGuideModel.h"
 
 
-@interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>{
+    NSArray *_titleArray;
+}
 
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UITableView *tableView;
@@ -38,6 +40,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _titleArray = @[@{@"title":@"资源",@"icon":@"资源1"},
+                    @{@"title":@"我的工作坊",@"icon":@"我的工作坊icon"}];
+    
+    
     [self registerNotifications];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
@@ -186,17 +192,11 @@
 - (void)tapHeaderGesture:(UIGestureRecognizer *)gesture
 {
     if (gesture.state == UIGestureRecognizerStateEnded) {
-        //
-        NSLog(@"tapHeader");
+        WEAK_SELF
         YXMineViewController *vc = [[YXMineViewController alloc] init];
-        vc.nameModifySuccess = ^(NSString *name) {
-            _nameLabel.text = name;
-        };
-        vc.schoolModifySuccess = ^(NSString *schoolName) {
-            _schoolNameLabel.text = schoolName;
-        };
-        vc.userPicModifySuccess = ^(NSString *image) {
-            [_iconImageView sd_setImageWithURL:[NSURL URLWithString:image] placeholderImage:[UIImage imageNamed:@"用户默认头像"]];
+        vc.userInfoModifySuccess = ^(){
+            STRONG_SELF
+            [self reloadUserProfileView];
         };
         [self.navigationController pushViewController:vc animated:YES];
 //        YXGuideViewController *vc = [[YXGuideViewController alloc] init];
@@ -226,7 +226,7 @@
 {
     if (gesture.state == UIGestureRecognizerStateEnded) {
         //
-        NSLog(@"tapFooter");
+        DDLogDebug(@"tapFooter");
     }
 }
 
@@ -247,7 +247,6 @@
 - (void)reloadUserProfileView
 {
     self.profile = [YXUserManager sharedManager].userModel.profile;
-    
     _nameLabel.text = self.profile.realName;
     _schoolNameLabel.text = self.profile.school;
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"用户默认头像"]];
@@ -267,7 +266,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return _titleArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -276,12 +275,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXSideTableViewCell" forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        [cell updateWithIconNamed:@"资源1" andName:@"资源"];
-    }
-    if (indexPath.section == 1) {
-        [cell updateWithIconNamed:@"我的工作坊icon" andName:@"我的工作坊"];
-    }
+    [cell updateWithIconNamed:_titleArray[indexPath.section][@"icon"] andName:_titleArray[indexPath.section][@"title"]];
     return cell;
 }
 
@@ -339,4 +333,5 @@
     YXMySettingViewController *datumVc = [[YXMySettingViewController alloc] init];
     [self.navigationController pushViewController:datumVc animated:YES];
 }
+
 @end

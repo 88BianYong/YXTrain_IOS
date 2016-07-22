@@ -19,6 +19,9 @@
 #import "YXUploadHeadImgRequest.h"
 
 @interface YXProjectMainViewController ()
+{
+    UIViewController *_selectedViewController;
+}
 @property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
 @property (nonatomic, strong) YXCourseRecordViewController *recordVC;
 
@@ -69,6 +72,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self showProjectSelectionView];
+    [_selectedViewController viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -109,7 +113,7 @@
     WEAK_SELF
     selectionView.projectChangeBlock = ^(NSInteger index){
         STRONG_SELF
-        NSLog(@"project change index: %@",@(index));
+        DDLogDebug(@"project change index: %@",@(index));
         [self showProjectWithIndex:index];
     };
     self.projectSelectionView = selectionView;
@@ -125,6 +129,11 @@
     [YXTrainManager sharedInstance].currentProjectIndex = index;
     if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
         YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
+        WEAK_SELF
+        containerView.selectedViewContrller = ^(UIViewController *vc){
+            STRONG_SELF
+            self ->_selectedViewController = vc;
+        };
         YXExamViewController *examVC = [[YXExamViewController alloc]init];
         YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
         YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
@@ -132,6 +141,7 @@
         YXNoticeViewController *bulletinVC = [[YXNoticeViewController alloc]init];
         bulletinVC.flag = YXFlag_Bulletin;
         containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
+        _selectedViewController = examVC;
         [self.view addSubview:containerView];
     }else{
         self.recordVC = [[YXCourseRecordViewController alloc]init];

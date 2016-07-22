@@ -53,13 +53,11 @@ NSString *const YXUpdateProfileTypeKey = @"kYXUpdateProfileTypeKey";
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXUpdateProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
+        if (retItem && !error) {
+            [self saveDataWithParam:param type:type];
+        }
         if (completion) {
             completion(error);
-        }
-        if (retItem && !error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self saveDataWithParam:param type:type];
-            });
         }
     }];
 }

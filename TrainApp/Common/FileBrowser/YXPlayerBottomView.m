@@ -50,9 +50,9 @@ UIView *_sepView;
     sep.backgroundColor = [UIColor colorWithHexString:@"#868686"];
     [self addSubview:sep];
     [sep mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(1).priorityLow();
         make.left.mas_equalTo(self.slideProgressView.mas_right);
         make.top.bottom.mas_equalTo(0);
-        make.width.mas_equalTo(1);
     }];
     _sepView = sep;
     

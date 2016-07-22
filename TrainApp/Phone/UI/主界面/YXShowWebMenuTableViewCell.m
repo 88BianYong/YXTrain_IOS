@@ -42,10 +42,14 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
     [super setHighlighted:highlighted animated:animated];
     if (highlighted) {
-        self.menuImageView.image = [UIImage imageNamed:self.highlightImage];
+        if (self.highlightImage) {
+            self.menuImageView.image = [UIImage imageNamed:self.highlightImage];
+        }
     }
     else{
-        self.menuImageView.image = [UIImage imageNamed:self.normalImage];
+        if (self.normalImage) {
+            self.menuImageView.image = [UIImage imageNamed:self.normalImage];
+        }
     }
 }
 

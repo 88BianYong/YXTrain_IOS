@@ -31,6 +31,7 @@
     
     NSMutableArray *_dataMutableArray;
     YXWorkshopDetailRequestItem *_detailItem;
+    BOOL _hiddenPullupBool;
     
     YXWorkshopDetailRequest *_detailRequest;
     YXWorkshopMemberFetcher *_memberFetcher;
@@ -46,11 +47,6 @@
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     
 }
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
-}
-
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear: animated];
     if (_detailRequest) {
@@ -136,6 +132,7 @@
         YXWorkshopMemberViewController *memberVC = [[YXWorkshopMemberViewController alloc] init];
         memberVC.cachMutableArray = dic[@"member"];
         memberVC.baridString = self.baridString;
+        memberVC.hiddenPullupBool = _hiddenPullupBool;
         [self.navigationController pushViewController:memberVC animated:YES];
     }else if(indexPath.section == 1 && indexPath.row == 1){
         YXWorkshopDatumViewController *datumVC = [[YXWorkshopDatumViewController alloc] init];
@@ -174,6 +171,9 @@
     }
 }
 #pragma mark - request
+/**
+ *  请求工作坊详情
+ */
 - (void)requestForWorkshopDetail{
     if (_detailRequest) {
         [_detailRequest stopRequest];
@@ -201,7 +201,9 @@
     }];
     _detailRequest = request;
 }
-
+/**
+ *  请求成员列表 默认请求40个为列表详情页公用数据
+ */
 - (void)requestForWorkshopMember{
     if (_memberFetcher) {
         [_memberFetcher stop];
@@ -217,12 +219,18 @@
             NSMutableDictionary *mutableDictionary = _dataMutableArray[1][0];
             [mutableDictionary setValue:[NSMutableArray arrayWithArray:retItemArray] forKey:@"member"];
             [self ->_tableView reloadData];
+            self -> _hiddenPullupBool = retItemArray.count >= total ? YES : NO;
         }
     }];
 }
 
 #pragma mark - data format
-- (void)workshopDetailDataFormat:(YXWorkshopDetailRequestItem *)item{
+/**
+ *  格式化显示数据
+ *
+ *  @param item 工作坊详情数据
+ */
+- (void)workshopDetailDataFormat:(YXWorkshopDetailRequestItem * __nullable)item{
     NSString *(^formatContent)(NSString *)= ^NSString *(NSString *content){
         return [content yx_isValidString] ? content : @"暂无";;
     };

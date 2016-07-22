@@ -182,8 +182,8 @@
                     YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
                     [cell configUIwithTitle:@"学校" content:schoolName];
                     self.profile = [YXUserManager sharedManager].userModel.profile;
-                    if (self.schoolModifySuccess) {
-                        self.schoolModifySuccess(schoolName);
+                    if (self.userInfoModifySuccess) {
+                        self.userInfoModifySuccess();
                     }
                 };
                 [self.navigationController pushViewController:vc animated:YES];
@@ -228,7 +228,7 @@
 {
     [self resetSelectedSubjectsWithProfile:profile];
     [self resetSelectedProvinceDataWithProfile:profile];
-    [self resetMineViewData:profile];
+    [self resetMineViewData];
 }
 
 - (void)resetSelectedSubjectsWithProfile:(YXUserProfile *)profile
@@ -279,15 +279,9 @@
         }
     }];
 }
-- (void)resetMineViewData:(YXUserProfile *)profile{
-    if (self.schoolModifySuccess) {
-        self.schoolModifySuccess(profile.school);
-    }
-    if (self.userPicModifySuccess) {
-        self.userPicModifySuccess(profile.head);
-    }
-    if (self.nameModifySuccess) {
-        self.nameModifySuccess(profile.realName);
+- (void)resetMineViewData{
+    if (self.userInfoModifySuccess) {
+        self.userInfoModifySuccess();
     }
 }
 
@@ -393,8 +387,8 @@
         if (!error) {
             self.profile = [YXUserManager sharedManager].userModel.profile;
             [cell setUserName:name];
-            if (self.nameModifySuccess) {
-                self.nameModifySuccess(name);
+            if (self.userInfoModifySuccess) {
+                self.userInfoModifySuccess();
             }
         } else {
             [cell setUserName:self.profile.realName];
@@ -750,8 +744,8 @@
             [cell setImageWithDataImage:image];
             [[NSNotificationCenter defaultCenter] postNotificationName:YXUploadUserPicSuccessNotification
                                                                 object:nil];
-            if (self.userPicModifySuccess) {
-                self.userPicModifySuccess(self.profile.head);
+            if (self.userInfoModifySuccess) {
+                self.userInfoModifySuccess();
             }
             
         } else {
@@ -776,7 +770,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
-    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
 /*
@@ -788,9 +781,4 @@
     // Pass the selected object to the new view controller.
 }
 */
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    YXSchoolSearchViewController *searchVC = [[YXSchoolSearchViewController alloc] init];
-//    searchVC.areaName = @"";
-//    [self.navigationController pushViewController:searchVC animated:YES];
-//}
 @end

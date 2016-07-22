@@ -42,7 +42,6 @@
 - (instancetype)init{
     if (self = [super init]) {
         self.previewItem = [[YXQLPreviewItem alloc]init];
-        self.dataSource = self;
     }
     return self;
 }
@@ -64,6 +63,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.dataSource = self;
     self.beginDate = [NSDate date];
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {

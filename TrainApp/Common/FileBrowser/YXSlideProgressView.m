@@ -146,7 +146,7 @@
     CGRect rect = self.thumbNormalView.frame;
     rect.size.width  = rect.size.width + 8;//拖动按钮的区域增加8个像素
     rect.size.height = rect.size.height + 8;
-    NSLog(@"%@", NSStringFromCGRect(rect));
+    DDLogDebug(@"%@", NSStringFromCGRect(rect));
     return rect;
 }
 

@@ -27,11 +27,6 @@ UITableViewDataSource
 
 @implementation YXMySettingViewController
 
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
-}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
@@ -134,7 +129,7 @@ UITableViewDataSource
                 [[SDImageCache sharedImageCache] clearDisk];
                 [[SDImageCache sharedImageCache] clearMemory];
                 
-                // 清下载
+                // 清缓存
                 NSString *dp = [BaseDownloader downloadFolderPath];
                 [[NSFileManager defaultManager] removeItemAtPath:dp error:nil];
                 [self showToast:@"清除成功"];

@@ -249,7 +249,7 @@
             NSArray *elements = [pair componentsSeparatedByString:@"="];
             NSString *key = [elements objectAtIndex:0];
             NSString *val = [elements objectAtIndex:1];
-            NSLog(@"%@  %@",key, val);
+            DDLogDebug(@"%@  %@",key, val);
             // 添加到字典中
             [dict setObject:val forKey:key];
         }
@@ -259,7 +259,7 @@
         NSArray *elements = [query componentsSeparatedByString:@"="];
         NSString *key = [elements objectAtIndex:0];
         NSString *val = [elements objectAtIndex:1];
-        NSLog(@"%@  %@",key, val);
+        DDLogDebug(@"%@  %@",key, val);
         // 添加到字典中
         [dict setObject:val forKey:key];
     }

@@ -32,8 +32,12 @@ static const CGFloat kAnimationDuration = 0.3;
 - (void)setupUI{
     self.paneViewController.view.frame = self.view.bounds;
     [self.view addSubview:self.paneViewController.view];
-    self.drawerViewController.view.frame = CGRectMake(-self.drawerWidth, 0, self.drawerWidth, self.view.bounds.size.height);
     [self.view addSubview:self.drawerViewController.view];
+    [self.drawerViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view.mas_left);
+        make.top.equalTo(self.view.mas_top);
+        make.height.equalTo(self.view.mas_height);
+    }];
     
     self.gestureView = [[UIView alloc]init];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
@@ -54,13 +58,19 @@ static const CGFloat kAnimationDuration = 0.3;
     [self.view addSubview:self.gestureView];
     [UIView animateWithDuration:[self drawerDurationForShow:YES]
                      animations:^{
-                         self.drawerViewController.view.center = CGPointMake(self.drawerWidth/2, self.view.bounds.size.height/2);
+                         [self.drawerViewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+                             make.left.equalTo(self.view.mas_left);
+                             make.top.equalTo(self.view.mas_top);
+                             make.height.equalTo(self.view.mas_height);
+                         }];
                          self.gestureView.frame = CGRectMake(self.drawerWidth, 0, self.view.frame.size.width-self.drawerWidth, self.view.frame.size.height);
                          self.gestureView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
-    }
+                         [self.view layoutIfNeeded];
+                     }
                      completion:^(BOOL finished) {
                          self.isAnimating = NO;
-    }];
+                     }];
+    
 }
 
 - (void)hideDrawer{
@@ -68,7 +78,12 @@ static const CGFloat kAnimationDuration = 0.3;
     [((YXSideMenuViewController *)self.drawerViewController) dismissShadowView];
     [UIView animateWithDuration:[self drawerDurationForShow:NO]
                      animations:^{
-                         self.drawerViewController.view.center = CGPointMake(-self.drawerWidth/2, self.view.bounds.size.height/2);
+                         [self.drawerViewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+                             make.right.equalTo(self.view.mas_left);
+                             make.top.equalTo(self.view.mas_top);
+                             make.height.equalTo(self.view.mas_height);
+                         }];
+                         [self.view layoutIfNeeded];
                          self.gestureView.frame = self.view.bounds;
                          self.gestureView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0];
                      }

@@ -156,11 +156,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     self.tableView.showsVerticalScrollIndicator = YES;
 
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     self.tableView.showsVerticalScrollIndicator = NO;
 }
 

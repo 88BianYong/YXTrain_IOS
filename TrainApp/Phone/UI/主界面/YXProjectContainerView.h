@@ -10,4 +10,5 @@
 
 @interface YXProjectContainerView : UIView
 @property (nonatomic, strong) NSArray *viewControllers;
+@property (nonatomic, copy) void (^selectedViewContrller)(UIViewController *vc);
 @end

@@ -12,8 +12,48 @@
 
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
 {
-    return [NSString stringWithFormat:@"%-20s %-15@ %4lu | %@",
-            [[logMessage->_file lastPathComponent] cStringUsingEncoding:NSUTF8StringEncoding],
+    NSString *path = logMessage->_file;
+    NSString *levelString = @"";
+    switch (logMessage->_flag) {
+        case DDLogFlagError:
+        {
+            levelString = @"[ERROR]";
+        }
+            break;
+        case DDLogFlagWarning:
+        {
+            levelString = @"[WARNING]";
+        }
+            break;
+        case DDLogFlagInfo:
+        {
+            levelString = @"[INFO]";
+        }
+            break;
+        case DDLogFlagDebug:
+        {
+            levelString = @"[DEBUG]";
+        }
+            break;
+        case DDLogFlagVerbose:
+        {
+            levelString = @"[VERBOSE]";
+        }
+            break;
+            
+        default:
+        {
+            levelString = @"";
+        }
+            break;
+    }
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:logMessage ->_timestamp];
+    NSDate *localeDate = [logMessage ->_timestamp dateByAddingTimeInterval:interval];
+    return [NSString stringWithFormat:@"%@%@ >> %-20s %-15@ %4lu | %@",
+            levelString,
+            localeDate,
+            [[path lastPathComponent] cStringUsingEncoding:NSUTF8StringEncoding],
             logMessage->_function,
             (unsigned long)logMessage->_line,
             logMessage->_message];

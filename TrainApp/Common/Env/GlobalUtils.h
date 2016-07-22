@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h> 
 
 @interface GlobalUtils : NSObject
++ (void)setDefaultExceptionHandler;
+
 + (void)checkMainThread;
 + (void)setupCore;
 + (void)clearCore;

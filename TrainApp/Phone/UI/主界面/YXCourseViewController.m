@@ -258,7 +258,7 @@
     YXCourseFilterGroup *group3 = self.filterModel.groupArray[3];
     YXCourseFilter *stageItem = group3.filterArray[num3.integerValue];
     
-    NSLog(@"Changed: 学段:%@，学科:%@，类型:%@，阶段:%@",segmentItem.name,studyItem.name,typeItem.name,stageItem.name);
+    DDLogDebug(@"Changed: 学段:%@，学科:%@，类型:%@，阶段:%@",segmentItem.name,studyItem.name,typeItem.name,stageItem.name);
     
     YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
     fetcher.studyid = studyItem.filterID;

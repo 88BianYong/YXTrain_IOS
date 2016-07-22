@@ -12,6 +12,7 @@
 #import "YXDatumSearchViewController.h"
 #import "YXDatumSearchView.h"
 #import "YXNavigationController.h"
+#import "UIWindow+YXAddtion.h"
 
 @interface YXDatumViewController ()
 
@@ -26,7 +27,9 @@
 @end
 
 @implementation YXDatumViewController
-
+- (void)dealloc{
+    DDLogInfo(@"release====>%@",NSStringFromClass([self class]));
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     _selectedIndex = 0;
@@ -111,13 +114,14 @@
         YXDatumSearchViewController *vc = [[YXDatumSearchViewController alloc] init];
         YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
         vc.keyWord = text;
-        [self.currentViewController presentViewController:navi animated:YES completion:^{
+        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+        UIViewController *rootVC = [window visibleViewController];
+        [rootVC presentViewController:navi animated:YES completion:^{
             if (self.maskView) {
                 [self.maskView removeFromSuperview];
                 self.maskView = nil;
             }
-        }];
-        
+        }];        
     };
     self.navigationItem.titleView = self.seachView;
     self.navigationItem.rightBarButtonItems = nil;

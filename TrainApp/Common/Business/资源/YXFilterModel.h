@@ -29,4 +29,5 @@
 
 - (void)loadLatestFilter;
 - (void)saveFilter;
++ (void)resetFilters:(YXFilterModel *)model;
 @end

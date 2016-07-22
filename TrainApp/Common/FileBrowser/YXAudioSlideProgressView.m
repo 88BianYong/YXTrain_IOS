@@ -99,7 +99,7 @@
 
 - (CGRect)slidePointImageRect {
     CGRect rect = self.thumbNormalView.frame;
-    NSLog(@"%@", NSStringFromCGRect(rect));
+    DDLogDebug(@"%@", NSStringFromCGRect(rect));
     return rect;
 }
 

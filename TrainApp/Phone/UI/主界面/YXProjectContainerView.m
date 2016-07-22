@@ -137,8 +137,10 @@ static const NSUInteger kTagBase = 3333;
     [UIView animateWithDuration:0.3 animations:^{
         self.sliderView.center = CGPointMake(self.topView.frame.size.width/4/2*(1+index*2), self.sliderView.center.y);
     }];
-
     self.bottomScrollView.contentOffset = CGPointMake(self.bottomScrollView.frame.size.width*index, 0);
+    if (self.selectedViewContrller && self.viewControllers.count > index) {
+        self.selectedViewContrller(self.viewControllers[index]);
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

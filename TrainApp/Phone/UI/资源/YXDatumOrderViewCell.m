@@ -77,7 +77,7 @@
         self.selectionImageView.image = [UIImage imageNamed:@"选择对号"];
     }else{
         self.orderLabel.textColor = [UIColor colorWithHexString:@"334466"];
-        self.selectionImageView.image = [UIImage imageNamed:@""];
+        self.selectionImageView.image = nil;
     }
 }
 

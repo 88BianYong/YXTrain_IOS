@@ -20,7 +20,7 @@
     
     _memberRequest.pageindex = [NSString stringWithFormat:@"%d", self.pageindex + 1];
     _memberRequest.pagesize = [NSString stringWithFormat:@"%d", self.pagesize];
-    NSLog(@"%d", self.pageindex);
+    DDLogDebug(@"%d", self.pageindex);
     [_memberRequest startRequestWithRetClass:[YXWorkshopMemberRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         if (error) {
            aCompleteBlock(0, nil, error);

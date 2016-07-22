@@ -263,13 +263,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     self.tableView.showsVerticalScrollIndicator = YES;
      self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     self.tableView.showsVerticalScrollIndicator = NO;
-     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
 

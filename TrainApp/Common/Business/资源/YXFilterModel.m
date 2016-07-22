@@ -96,4 +96,19 @@
         }
     }
 }
++ (void)resetFilters:(YXFilterModel *)model{
+    for (int i = 0; i < model.filterArray.count; i ++) {
+        YXFilterType *type = model.filterArray[i];
+        for (int j = 0; j < type.subtypeArray.count; j ++) {
+            YXFilterSubtype * subtype = type.subtypeArray[j];
+            if (j == 0) {
+                subtype.selected = YES;
+            }
+            else{
+               subtype.selected = NO;
+            }
+        }
+        
+    }
+}
 @end

@@ -80,7 +80,7 @@
         }];
         [alertVC addAction:backAction];
         [alertVC addAction:goAction];
-        [self.baseViewController presentViewController:alertVC animated:YES completion:nil];
+        [self managerPresentViewController:alertVC animated:YES completion:nil];
         return;
     }
     
@@ -165,7 +165,7 @@
     }
     qlVC.exitDelegate = self;
     qlVC.browseTimeDelegate = self;
-    [self.baseViewController presentViewController:qlVC animated:YES completion:nil];
+    [self managerPresentViewController:qlVC animated:YES completion:nil];
 }
 
 - (void)openPic:(NSString *)path{
@@ -187,7 +187,7 @@
     vc.exitDelegate = self;
     
     YXNavigationController *navi = [[YXNavigationController alloc]initWithRootViewController:vc];
-    [self.baseViewController presentViewController:navi animated:NO completion:nil];
+    [self managerPresentViewController:navi animated:YES completion:nil];
 }
 
 - (void)openHtml{
@@ -202,7 +202,7 @@
     webView.titleString = self.fileItem.name;
     webView.exitDelegate = self;
     webView.browseTimeDelegate = self;
-    [self.baseViewController.navigationController pushViewController:webView animated:YES];
+    [self managerPresentViewController:webView animated:YES completion:nil];
 }
 
 - (void)openVideo{
@@ -232,14 +232,7 @@
     vc.title = videoItem.name;
     vc.delegate = self;
     vc.exitDelegate = self;
-    if (self.baseViewController.presentingViewController) {
-      [self.baseViewController.navigationController presentViewController:vc animated:YES completion:nil];
-    }
-    else{
-        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-        UIViewController *rootVC = [window visibleViewController];
-        [rootVC presentViewController:vc animated:YES completion:nil];
-    }
+    [self managerPresentViewController:vc animated:YES completion:nil];
 }
 
 - (void)openAudio{
@@ -253,7 +246,7 @@
     vc.title = self.fileItem.name;
     vc.delegate = self;
     vc.exitDelegate = self;
-    [self.baseViewController presentViewController:vc animated:YES completion:nil];
+    [self managerPresentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - YXBrowserExitDelegate
@@ -290,6 +283,16 @@
     BLOCK_EXEC(self.addFavorCompleteBlock);
 }
 
+- (void)managerPresentViewController:(UIViewController *)viewControllerToPresent animated: (BOOL)flag completion:(void (^ __nullable)(void))completion{
+    if (self.baseViewController.presentingViewController) {
+        [self.baseViewController presentViewController:viewControllerToPresent animated:flag completion:completion];
+    }
+    else{
+        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+        UIViewController *rootVC = [window visibleViewController];
+        [rootVC presentViewController:viewControllerToPresent animated:YES completion:completion];
+    }
+}
 
 
 

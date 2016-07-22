@@ -41,7 +41,6 @@
     [self.contentView addSubview:self.btnLabel];
     
     self.btnImageView = [[UIImageView alloc] init];
-    self.btnImageView.image = [UIImage imageNamed:@"排序"];
     self.btnImageView.userInteractionEnabled = NO;
     [self.contentView addSubview:self.btnImageView];
     

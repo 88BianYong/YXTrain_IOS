@@ -49,6 +49,7 @@
     [[YXInitHelper sharedHelper] requestCompeletion:nil];
     
     [self setupUI];
+    [GlobalUtils setDefaultExceptionHandler];
     return YES;
 }
 
