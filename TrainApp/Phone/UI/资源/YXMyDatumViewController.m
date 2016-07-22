@@ -187,7 +187,9 @@
             if (error) {
                 [self showToast:error.localizedDescription];
             }
-            [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:retItem];
+            else{
+                [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:retItem];
+            }//TBD:7 22 测试需要结果
         }];
     }
 }
