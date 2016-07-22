@@ -22,6 +22,7 @@
 }
 
 + (void)showToast:(NSString *)text inView:(UIView *)view{
+    [MBProgressHUD hideAllHUDsForView:view animated:NO];    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = text;
