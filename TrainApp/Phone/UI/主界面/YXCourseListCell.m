@@ -100,15 +100,16 @@
     self.titleLabel.attributedText = attributedString;
     
     int second = course.record.intValue;
-    int minute = second / 60;
-    int hour = minute / 60;
-    minute = minute % 60;
-    second = second % 60;
-    self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
-    self.historyImageView.image = [UIImage imageNamed:@"已观看时间icon"];
     if (second == 0) {
         self.recordLabel.text = @"未观看";
         self.historyImageView.image = [UIImage imageNamed:@"未观看时间icon"];
+    }else{
+        int minute = second / 60;
+        int hour = minute / 60;
+        minute = minute % 60;
+        second = second % 60;
+        self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
+        self.historyImageView.image = [UIImage imageNamed:@"已观看时间icon"];
     }
 }
 
