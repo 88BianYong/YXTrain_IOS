@@ -47,7 +47,7 @@
     emptyView.imageName = @"没有符合条件的课程";
     self.emptyView = emptyView;
     
-    if (self.stageID) {
+    if (self.stageID || self.fromCourseMarket) {
         self.isWaitingForFilter = YES;
     }
     [super viewDidLoad];
@@ -111,8 +111,24 @@
         
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         self.filterModel = [item filterModel];
+        if (self.fromCourseMarket) {
+            [self setupStageForCourseMarket];
+        }
         self.isWaitingForFilter = NO;
         [self firstPageFetch];
+    }];
+}
+
+- (void)setupStageForCourseMarket{
+    YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+    [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        YXCourseFilter *filter = (YXCourseFilter *)obj;
+        if ([filter.name isEqualToString:@"课程超市"]) {
+            self.stageID = filter.filterID;
+            YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
+            fetcher.stageid = filter.filterID;
+            *stop = YES;
+        }
     }];
 }
 
