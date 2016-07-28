@@ -189,7 +189,7 @@
             }
             else{
                 [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:retItem];
-            }//TBD:7 22 测试需要结果
+            }//7 22 测试需要结果 郑小龙
         }];
     }
 }

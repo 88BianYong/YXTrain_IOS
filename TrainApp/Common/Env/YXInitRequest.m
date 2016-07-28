@@ -203,7 +203,9 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
         } else if(status == ReachableViaWWAN){
             YXAlertView *showAlertView = [YXAlertView alertViewWithTitle:@"当前网络非WIFi环境，是否继续更新"];
-            [showAlertView addButtonWithTitle:@"否"];
+            if (![body isForce]) {
+                [showAlertView addButtonWithTitle:@"否"];
+            }
             [showAlertView addButtonWithTitle:@"继续" action:^{
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
             }];

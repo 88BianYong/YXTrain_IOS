@@ -236,10 +236,10 @@
     @weakify(self);
     [self.request startRequestWithRetClass:[YXLoginRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         @strongify(self);
-        [self stopLoading];
         YXLoginRequestItem *item = (YXLoginRequestItem *)retItem;
         if (!error && item) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self stopLoading];
                 [self saveUserDataWithLoginItem:retItem];
             });
 //            if ([item.actiFlag integerValue] == 1) {
@@ -260,6 +260,7 @@
 //                });
 //            }
         } else {
+            [self stopLoading];
             [self showToast:error.localizedDescription];
         }
     }];

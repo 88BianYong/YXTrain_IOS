@@ -41,6 +41,7 @@
     self.textField.textColor = [UIColor colorWithHexString:@"ffffff"];
     self.textField.font = [UIFont fontWithName:YXFontMetro_Light size:20];
     self.textField.keyboardType = UIKeyboardTypeNumberPad;
+    self.textField.returnKeyType = UIReturnKeyDone;
     NSString *placeholder = @"请输入密码";
     self.textField.placeholder = placeholder;
     [self.textField setValue:[UIColor colorWithHexString:@"ffffff"] forKeyPath:@"_placeholderLabel.textColor"];
@@ -83,11 +84,15 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if (self.textChangedBlock) {
-        self.textChangedBlock(text);
+    if ([string isEqualToString:@"\n"]) {
+        [textField resignFirstResponder];
+    }else{
+        NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        if (self.textChangedBlock) {
+            self.textChangedBlock(text);
+        }
+        self.rightButton.hidden = text.length == 0? YES:NO;
     }
-    self.rightButton.hidden = text.length == 0? YES:NO;
     return YES;
 }
 
