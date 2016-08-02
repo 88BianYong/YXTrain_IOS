@@ -34,5 +34,8 @@ pod 'Base64'
 pod 'CommonCrypto'
 pod 'FCUUID'
 pod 'IQKeyboardManager'
+
+pod 'SCRecorder', '~> 2.6.1'
+pod 'Qiniu', '~> 7.0'
 #pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 inhibit_all_warnings!
