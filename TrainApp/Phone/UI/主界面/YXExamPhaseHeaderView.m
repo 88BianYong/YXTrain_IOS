@@ -106,9 +106,9 @@
 
 - (void)btnTouchDownAction{
     if (self.isFold) {
-        self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头-点击态"];
+        self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头"];
     }else{
-        self.enterImageView.image = [UIImage imageNamed:@"第二阶段收起箭头-点击态"];
+        self.enterImageView.image = [UIImage imageNamed:@"第二阶段收起箭头"];
     }
 }
 

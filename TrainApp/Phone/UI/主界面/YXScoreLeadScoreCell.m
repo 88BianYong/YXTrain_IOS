@@ -44,7 +44,7 @@
     self.scoreLabel = [[UILabel alloc]init];
     self.scoreLabel.font = [UIFont fontWithName:YXFontMetro_Medium size:13];
     self.scoreLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
-    self.scoreLabel.textAlignment = NSTextAlignmentCenter;
+    self.scoreLabel.textAlignment = NSTextAlignmentRight;
     
     self.totalScoreLabel = [[UILabel alloc]init];
     self.totalScoreLabel.font = [UIFont systemFontOfSize:12];
@@ -90,7 +90,9 @@
         [self.contentView addSubview:self.scoreLabel];
         self.scoreLabel.text = data.userscore;
         [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.mas_equalTo(0);
+            make.centerX.mas_equalTo(-30.0f);
+            make.centerY.mas_equalTo(0.0f);
+            make.width.mas_offset(60.0f);
         }];
         [self.contentView addSubview:self.nameLabel];
         self.nameLabel.text = data.name;

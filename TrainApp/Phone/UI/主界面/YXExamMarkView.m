@@ -23,7 +23,7 @@
 
 - (void)setupUI{
     self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 111, 44)];
-    self.imageView.image = [UIImage imageNamed:@"等待坊主点评"];
+    self.imageView.image = [UIImage imageNamed:@"_等待坊主点评-弹窗"];
 //    self.imageView.backgroundColor = [UIColor blueColor];
     [self addSubview:self.imageView];
     
@@ -38,7 +38,7 @@
 - (void)setOriginRect:(CGRect)originRect{
     _originRect = originRect;
     CGRect rect = self.imageView.bounds;
-    rect.origin.x = originRect.origin.x - (rect.size.width-originRect.size.width);
+    rect.origin.x = originRect.origin.x - (rect.size.width - originRect.size.width - 27.0f + 6.0f);
     rect.origin.y = originRect.origin.y - rect.size.height;
     self.imageView.frame = rect;
 }
