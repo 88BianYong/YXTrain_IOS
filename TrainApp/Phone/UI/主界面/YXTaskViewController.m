@@ -144,7 +144,10 @@
         YXCourseViewController *vc = [[YXCourseViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        [self showToast:@"相关功能暂未开放"];
+        //[self showToast:@"相关功能暂未开放"];
+        NSString *string = @"YXWorkViewController";
+        UIViewController *VC = [[NSClassFromString(string) alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
     }
 }
 

@@ -17,7 +17,6 @@
 #import "YXAudioPlayerViewController.h"
 #import "YXNavigationController.h"
 #import "YXBroseWebView.h"
-#import "UIWindow+YXAddtion.h"
 
 @interface YXFileBrowseManager()<YXBrowserExitDelegate,YXFileFavorDelegate,YXPlayProgressDelegate,YXBrowseTimeDelegate>
 @property (nonatomic, strong) UrlDownloader *downloader;
@@ -284,14 +283,7 @@
 }
 
 - (void)managerPresentViewController:(UIViewController *)viewControllerToPresent animated: (BOOL)flag completion:(void (^ __nullable)(void))completion{
-    if (self.baseViewController.presentingViewController) {
-        [self.baseViewController presentViewController:viewControllerToPresent animated:flag completion:completion];
-    }
-    else{
-        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-        UIViewController *rootVC = [window visibleViewController];
-        [rootVC presentViewController:viewControllerToPresent animated:YES completion:completion];
-    }
+    [[self.baseViewController visibleViewController] presentViewController:viewControllerToPresent animated:YES completion:completion];
 }
 
 

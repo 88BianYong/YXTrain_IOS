@@ -12,7 +12,6 @@
 #import "YXDatumSearchViewController.h"
 #import "YXDatumSearchView.h"
 #import "YXNavigationController.h"
-#import "UIWindow+YXAddtion.h"
 
 @interface YXDatumViewController ()
 
@@ -114,9 +113,7 @@
         YXDatumSearchViewController *vc = [[YXDatumSearchViewController alloc] init];
         YXNavigationController *navi = [[YXNavigationController alloc] initWithRootViewController:vc];
         vc.keyWord = text;
-        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-        UIViewController *rootVC = [window visibleViewController];
-        [rootVC presentViewController:navi animated:YES completion:^{
+        [[self visibleViewController] presentViewController:navi animated:YES completion:^{
             if (self.maskView) {
                 [self.maskView removeFromSuperview];
                 self.maskView = nil;

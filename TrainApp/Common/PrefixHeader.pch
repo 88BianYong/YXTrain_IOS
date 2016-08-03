@@ -36,6 +36,8 @@ extern int ddLogLevel;
 #import <SAMTextView.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import <IQKeyboardManager.h>
+#import <SCRecorder.h>
+#import <QiniuSDK.h>
 
 #pragma mark - Category
 #import "UIViewController+Keyboard.h"
@@ -46,6 +48,7 @@ extern int ddLogLevel;
 #import "UIView+YXShadowColor.h"
 #import "UIImage+YXResize.h"
 #import "NSString+YXString.h"
+#import "UIViewController+YXAddtion.h"
 
 #pragma mark - Other
 #import "YXDefinitions.h"
@@ -66,5 +69,6 @@ extern int ddLogLevel;
 #import "YXTriangleView.h"
 #import "YXErrorView.h"
 #import "YXEmptyView.h"
+#import "YXTrainConst.h"
 
 #endif /* PrefixHeader_pch */
