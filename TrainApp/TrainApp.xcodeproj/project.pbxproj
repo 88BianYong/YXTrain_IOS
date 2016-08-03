@@ -174,6 +174,10 @@
 		920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D221D5094D000636A51 /* YXGetQiNiuTokenRequest.m */; };
 		920F1D261D50986E00636A51 /* YXQiNiuVideoUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D251D50986E00636A51 /* YXQiNiuVideoUpload.m */; };
 		920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D2C1D50AA2D00636A51 /* YXTrainConst.m */; };
+		920F1D301D518C1600636A51 /* YXHomeworkListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D2F1D518C1600636A51 /* YXHomeworkListRequest.m */; };
+		920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D321D519A0900636A51 /* YXHomeworkInfoRequest.m */; };
+		920F1D3B1D51A40D00636A51 /* homeworklist_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 920F1D3A1D51A40D00636A51 /* homeworklist_mock.json */; };
+		920F1D3E1D51A42A00636A51 /* homeworkInfo_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 920F1D3D1D51A42A00636A51 /* homeworkInfo_mock.json */; };
 		9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */; };
 		9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8041D2BAA2C000F74DF /* YXWorkshopDetailRequest.m */; };
 		9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */; };
@@ -645,6 +649,12 @@
 		920F1D251D50986E00636A51 /* YXQiNiuVideoUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXQiNiuVideoUpload.m; sourceTree = "<group>"; };
 		920F1D2B1D50AA2D00636A51 /* YXTrainConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrainConst.h; sourceTree = "<group>"; };
 		920F1D2C1D50AA2D00636A51 /* YXTrainConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTrainConst.m; sourceTree = "<group>"; };
+		920F1D2E1D518C1600636A51 /* YXHomeworkListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkListRequest.h; sourceTree = "<group>"; };
+		920F1D2F1D518C1600636A51 /* YXHomeworkListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkListRequest.m; sourceTree = "<group>"; };
+		920F1D311D519A0900636A51 /* YXHomeworkInfoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkInfoRequest.h; sourceTree = "<group>"; };
+		920F1D321D519A0900636A51 /* YXHomeworkInfoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkInfoRequest.m; sourceTree = "<group>"; };
+		920F1D3A1D51A40D00636A51 /* homeworklist_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = homeworklist_mock.json; sourceTree = "<group>"; };
+		920F1D3D1D51A42A00636A51 /* homeworkInfo_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = homeworkInfo_mock.json; sourceTree = "<group>"; };
 		9223C8001D2B9DD5000F74DF /* YXWorkshopListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopListRequest.h; sourceTree = "<group>"; };
 		9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopListRequest.m; sourceTree = "<group>"; };
 		9223C8031D2BAA2C000F74DF /* YXWorkshopDetailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailRequest.h; sourceTree = "<group>"; };
@@ -1856,6 +1866,12 @@
 				920F1D221D5094D000636A51 /* YXGetQiNiuTokenRequest.m */,
 				920F1D241D50986E00636A51 /* YXQiNiuVideoUpload.h */,
 				920F1D251D50986E00636A51 /* YXQiNiuVideoUpload.m */,
+				920F1D2E1D518C1600636A51 /* YXHomeworkListRequest.h */,
+				920F1D2F1D518C1600636A51 /* YXHomeworkListRequest.m */,
+				920F1D311D519A0900636A51 /* YXHomeworkInfoRequest.h */,
+				920F1D321D519A0900636A51 /* YXHomeworkInfoRequest.m */,
+				920F1D3A1D51A40D00636A51 /* homeworklist_mock.json */,
+				920F1D3D1D51A42A00636A51 /* homeworkInfo_mock.json */,
 			);
 			name = "作业";
 			sourceTree = "<group>";
@@ -2263,6 +2279,7 @@
 				7C2C3B6F1D24C8A600A03635 /* coursedetail_mock.json in Resources */,
 				7CF844801D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */,
 				7C3F258D1D20C6C100F0A17A /* trainlist_mock.json in Resources */,
+				920F1D3E1D51A42A00636A51 /* homeworkInfo_mock.json in Resources */,
 				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
 				9223C83A1D2F82D8000F74DF /* search.txt in Resources */,
 				CBF66E421D2F840800F4E408 /* stagesSubjects in Resources */,
@@ -2279,6 +2296,7 @@
 				9223C81D1D2D0EB6000F74DF /* temp.txt in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
 				CBF66E4A1D2F8F8500F4E408 /* province_data.xml in Resources */,
+				920F1D3B1D51A40D00636A51 /* homeworklist_mock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2483,6 +2501,7 @@
 				7C2C3B401D21320E00A03635 /* YXScoreTaskScoreHeaderView.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
+				920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */,
 				CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
@@ -2494,6 +2513,7 @@
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
 				7C2C3B4F1D2364E300A03635 /* YXTaskCell.m in Sources */,
 				7CF844691D2C9E5700B1CE55 /* YXRecordContent.m in Sources */,
+				920F1D301D518C1600636A51 /* YXHomeworkListRequest.m in Sources */,
 				7C2C3B911D26406400A03635 /* YXTrainManager.m in Sources */,
 				CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,

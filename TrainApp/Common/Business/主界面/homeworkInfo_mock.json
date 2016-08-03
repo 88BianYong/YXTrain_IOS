@@ -1,0 +1,19 @@
+{
+    "code": "0",
+    "debugDesc": "[debug_token: http-nio-45901-exec-4-1466492260388-12_7_45901 ] backen code[0]+ Focus fetching code[0],desc[返回数据成功]",
+    "desc": "success",
+    "body": {
+        "id": 19164,
+        "title": "测试作业1",
+        "description": "测试作业1",
+        "pcreatetime": "2016-07-04",
+        "templateid": "132",
+        "ismyrec": 1,
+        "homeworkid": 188982,
+        "recommend": 0,
+        "type": 0,
+        "score": 90,
+        "endDate": "2016-08-07",
+        "isFinished": 0
+    }
+}

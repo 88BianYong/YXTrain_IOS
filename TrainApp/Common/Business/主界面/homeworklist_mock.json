@@ -1,0 +1,110 @@
+{
+    "code": "0",
+    "debugDesc": "[debug_token: http-nio-45901-exec-4-1466492260388-12_7_45901 ] backen code[0]+ Focus fetching code[0],desc[返回数据成功]",
+    "desc": "success",
+    "body": {
+        "endDate": "2016-07-04",
+        "stages": [
+                   {
+                   "id": 2227,
+                   "name": "走你",
+                   "subject": "第一阶段",
+                   "homeworks": [
+                                 {
+                                 "id": 19164,
+                                 "title": "测试作业1",
+                                 "description": "测试作业1",
+                                 "createtime": "2016-07-04",
+                                 "templateid": "132",
+                                 "ismyrec": 1,
+                                 "homeworkid": 188982,
+                                 "recommend": 0,
+                                 "type": 0,
+                                 "isFinished": 0
+                                 },
+                                 {
+                                 "id": 19165,
+                                 "title": "测试作业2",
+                                 "description": "测试作业2",
+                                 "createtime": "2016-07-04",
+                                 "templateid": "132",
+                                 "ismyrec": 1,
+                                 "homeworkid": 188983,
+                                 "recommend": 0,
+                                 "type": 1,
+                                 "isFinished": 0
+                                 }
+                                 ]
+                   },
+                   {
+                   "id": 2229,
+                   "name": "哈",
+                   "subject": "第二阶段",
+                   "homeworks": [
+                                 {
+                                 "id": 19166,
+                                 "title": "测试作业3",
+                                 "description": "测试作业3",
+                                 "createtime": "2016-07-04",
+                                 "templateid": "132",
+                                 "ismyrec": 0,
+                                 "homeworkid": 188984,
+                                 "recommend": 0,
+                                 "type": 0,
+                                 "isFinished": 0
+                                 }
+                                 ]
+                   },
+                   {
+                   "id": 2232,
+                   "name": "哈",
+                   "subject": "第三阶段",
+                   "homeworks": [
+                                 {
+                                 "id": 19166,
+                                 "title": "测试作业3",
+                                 "description": "测试作业3",
+                                 "createtime": "2016-07-04",
+                                 "templateid": "132",
+                                 "ismyrec": 0,
+                                 "homeworkid": 188984,
+                                 "recommend": 0,
+                                 "type": 1,
+                                 "isFinished": 0
+                                 },
+                                 {
+                                 "id": 19167,
+                                 "title": "测试作业4",
+                                 "description": "测试作业4",
+                                 "createtime": "2016-07-04",
+                                 "templateid": "132",
+                                 "ismyrec": 0,
+                                 "homeworkid": 188985,
+                                 "recommend": 0,
+                                 "type": 0,
+                                 "isFinished": 0
+                                 }
+                                 ]
+                   },
+                   {
+                   "id": 2234,
+                   "name": "哈",
+                   "subject": "第四阶段",
+                   "homeworks": [
+                                 {
+                                 "id": 19168,
+                                 "title": "测试作业5",
+                                 "description": "测试作业5",
+                                 "createtime": "2016-07-04",
+                                 "templateid": "132",
+                                 "ismyrec": 0,
+                                 "homeworkid": 188986,
+                                 "recommend": 0,
+                                 "type": 1,
+                                 "isFinished": 0
+                                 }
+                                 ]
+                   }
+                   ]
+    }
+}
