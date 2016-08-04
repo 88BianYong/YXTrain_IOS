@@ -120,7 +120,7 @@
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
     loginButton.layer.borderColor = [[UIColor colorWithHexString:@"41c694"] CGColor];
     loginButton.layer.borderWidth = 1;
-    loginButton.layer.cornerRadius = 2;
+    loginButton.layer.cornerRadius = YXTrainCornerRadii;
     loginButton.layer.masksToBounds = YES;
     [containerView addSubview:loginButton];
     

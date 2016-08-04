@@ -62,7 +62,7 @@
         
         self.startButton = [[UIButton alloc] init];
         self.startButton.layer.borderWidth = 1;
-        self.startButton.layer.cornerRadius = 2;
+        self.startButton.layer.cornerRadius = YXTrainCornerRadii;
         self.startButton.layer.borderColor = [[UIColor colorWithHexString:@"2582d0"] CGColor];
         [self.startButton setTitle:@"开始体验" forState:UIControlStateNormal];
         [self.startButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];

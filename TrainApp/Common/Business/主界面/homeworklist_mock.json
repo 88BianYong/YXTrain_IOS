@@ -20,7 +20,7 @@
                                  "homeworkid": 188982,
                                  "recommend": 0,
                                  "type": 0,
-                                 "isFinished": 0
+                                 "isFinished": 1
                                  },
                                  {
                                  "id": 19165,
@@ -30,7 +30,7 @@
                                  "templateid": "132",
                                  "ismyrec": 1,
                                  "homeworkid": 188983,
-                                 "recommend": 0,
+                                 "recommend": 1,
                                  "type": 1,
                                  "isFinished": 0
                                  }
@@ -47,7 +47,7 @@
                                  "description": "测试作业3",
                                  "createtime": "2016-07-04",
                                  "templateid": "132",
-                                 "ismyrec": 0,
+                                 "ismyrec": 1,
                                  "homeworkid": 188984,
                                  "recommend": 0,
                                  "type": 0,
@@ -68,21 +68,21 @@
                                  "templateid": "132",
                                  "ismyrec": 0,
                                  "homeworkid": 188984,
-                                 "recommend": 0,
+                                 "recommend": 1,
                                  "type": 1,
                                  "isFinished": 0
                                  },
                                  {
                                  "id": 19167,
-                                 "title": "测试作业4",
+                                 "title": "对大家看回访电话发货打开哈看的发快点好罚款分开发阿道夫看到测试作业4",
                                  "description": "测试作业4",
                                  "createtime": "2016-07-04",
                                  "templateid": "132",
-                                 "ismyrec": 0,
+                                 "ismyrec": 1,
                                  "homeworkid": 188985,
-                                 "recommend": 0,
+                                 "recommend": 1,
                                  "type": 0,
-                                 "isFinished": 0
+                                 "isFinished": 1
                                  }
                                  ]
                    },

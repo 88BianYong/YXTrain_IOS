@@ -22,15 +22,15 @@
 @property (nonatomic, copy) NSString *isFinished;//0--未完成，1 已完成
 @end
 
-
-@interface YXHomeworkListRequestItem_Body_Stages : JSONModel
-@end
 @protocol YXHomeworkListRequestItem_Body_Stages <NSObject>
+@end
+@interface YXHomeworkListRequestItem_Body_Stages : JSONModel
 @property (nonatomic, copy) NSString *stagesId;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *subject;
 @property (nonatomic, strong) NSMutableArray<YXHomeworkListRequestItem_Body_Stages_Homeworks ,Optional> *homeworks;
 @end
+
 
 @interface YXHomeworkListRequestItem_Body : JSONModel
 @property (nonatomic, copy) NSString *endDate;

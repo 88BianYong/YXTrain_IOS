@@ -50,7 +50,7 @@
     
     self.contentBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 8, self.bounds.size.width, self.bounds.size.height-8)];
     self.contentBgView.backgroundColor = [UIColor whiteColor];
-    self.contentBgView.layer.cornerRadius = 2;
+    self.contentBgView.layer.cornerRadius = YXTrainCornerRadii;
     self.contentBgView.clipsToBounds = YES;
     [self addSubview:self.contentBgView];
 }

@@ -112,7 +112,7 @@
 			<array>
 				<dict>
 					<key>fileName</key>
-					<string>examine_mock.json</string>
+					<string>homeworklist_mock.json</string>
 					<key>percent</key>
 					<integer>100</integer>
 				</dict>
@@ -126,7 +126,7 @@
 			<array>
 				<dict>
 					<key>fileName</key>
-					<string>examine_mock.json</string>
+					<string>homeworkInfo_mock.json</string>
 					<key>percent</key>
 					<integer>100</integer>
 				</dict>

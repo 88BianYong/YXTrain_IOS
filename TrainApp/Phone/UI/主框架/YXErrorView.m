@@ -64,7 +64,7 @@
     [self.retryButton setTitle:@"刷新" forState:UIControlStateNormal];
     [self.retryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.retryButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
-    self.retryButton.layer.cornerRadius = 2;
+    self.retryButton.layer.cornerRadius = YXTrainCornerRadii;
     self.retryButton.clipsToBounds = YES;
     [self addSubview:self.retryButton];
     [self.retryButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -63,7 +63,7 @@
     self.tableView.rowHeight = 44;
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.layer.cornerRadius = 2;
+    self.tableView.layer.cornerRadius = YXTrainCornerRadii;
     self.tableView.layer.masksToBounds = YES;
     [self addSubview:self.tableView];
     

@@ -145,7 +145,7 @@
         [self.navigationController pushViewController:vc animated:YES];
     }else{
         //[self showToast:@"相关功能暂未开放"];
-        NSString *string = @"YXWorkViewController";
+        NSString *string = @"YXHomeworkListViewController";
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
     }

@@ -9,3 +9,8 @@
 #define PATH_OF_VIDEO   [PATH_OF_DOCUMENT stringByAppendingPathComponent:@"VideoRecord"]
 #define PATH_OF_VIDEO_CACHE [PATH_OF_DOCUMENT stringByAppendingPathComponent:@"VideoCache"]
 
+#define kScreenHeightScale(f) [UIScreen mainScreen].bounds.size.height / 667.0f * f
+#define kScreenWidthScale(f) [UIScreen mainScreen].bounds.size.width / 375.0f * f
+
+
+extern const CGFloat YXTrainCornerRadii;

@@ -85,7 +85,7 @@
     [self.downloadButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
     self.downloadButton.userInteractionEnabled = NO;
     self.downloadButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    self.downloadButton.layer.cornerRadius = 2;
+    self.downloadButton.layer.cornerRadius = YXTrainCornerRadii;
     self.downloadButton.layer.borderColor = [UIColor colorWithHexString:@"0e7ac9"].CGColor;
     self.downloadButton.layer.borderWidth = 1;
     self.downloadButton.layer.masksToBounds = YES;

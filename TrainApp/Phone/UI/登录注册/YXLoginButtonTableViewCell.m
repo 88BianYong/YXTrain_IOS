@@ -42,7 +42,7 @@
     [self.btn setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
     [self.btn setTitleColor:[UIColor colorWithHexString:@"41c694"] forState:UIControlStateNormal];
     [self.btn addTarget:self action:@selector(btnClicked) forControlEvents:UIControlEventTouchUpInside];
-    self.btn.layer.cornerRadius = 2;
+    self.btn.layer.cornerRadius = YXTrainCornerRadii;
     self.btn.layer.masksToBounds = YES;
     [self.contentView addSubview:self.btn];
     [self.btn mas_makeConstraints:^(MASConstraintMaker *make) {

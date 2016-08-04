@@ -28,7 +28,7 @@
 }
 
 - (void)setUpUI {
-    self.layer.cornerRadius = 2;
+    self.layer.cornerRadius = YXTrainCornerRadii;
     self.layer.masksToBounds = YES;
     self.rightButton = [[UIButton alloc]init];
     [self.rightButton setBackgroundImage:[UIImage imageNamed:@"删除当前输入内容"] forState:UIControlStateNormal];

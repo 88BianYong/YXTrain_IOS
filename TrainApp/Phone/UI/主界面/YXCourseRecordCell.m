@@ -30,7 +30,7 @@
     self.courseImageView = [[UIImageView alloc]init];
     self.courseImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.courseImageView.clipsToBounds = YES;
-    self.courseImageView.layer.cornerRadius = 2;
+    self.courseImageView.layer.cornerRadius = YXTrainCornerRadii;
     [self.contentView addSubview:self.courseImageView];
     [self.courseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
@@ -52,7 +52,7 @@
     UIView *recordBgView = [[UIView alloc]init];
     recordBgView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.38];
     recordBgView.clipsToBounds = YES;
-    recordBgView.layer.cornerRadius = 2;
+    recordBgView.layer.cornerRadius = YXTrainCornerRadii;
     [self.courseImageView addSubview:recordBgView];
     [recordBgView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.mas_equalTo(14);

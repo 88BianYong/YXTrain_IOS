@@ -42,7 +42,7 @@
     self.courseImageView = [[UIImageView alloc]init];
     self.courseImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.courseImageView.clipsToBounds = YES;
-    self.courseImageView.layer.cornerRadius = 2;
+    self.courseImageView.layer.cornerRadius = YXTrainCornerRadii;
     [self.contentView addSubview:self.courseImageView];
     [self.courseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
