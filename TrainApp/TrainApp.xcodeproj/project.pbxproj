@@ -187,6 +187,7 @@
 		920F1D541D53332600636A51 /* YXCategoryListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D531D53332600636A51 /* YXCategoryListRequest.m */; };
 		920F1D591D533E8B00636A51 /* YXWriteHomeworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D581D533E8B00636A51 /* YXWriteHomeworkRequest.m */; };
 		920F1D5C1D53456700636A51 /* YXSaveHomeWorkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D5B1D53456700636A51 /* YXSaveHomeWorkRequest.m */; };
+		920F1D621D5448A700636A51 /* YXHomeworkInfoFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D611D5448A700636A51 /* YXHomeworkInfoFooterView.m */; };
 		9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */; };
 		9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8041D2BAA2C000F74DF /* YXWorkshopDetailRequest.m */; };
 		9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */; };
@@ -682,6 +683,8 @@
 		920F1D581D533E8B00636A51 /* YXWriteHomeworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkRequest.m; sourceTree = "<group>"; };
 		920F1D5A1D53456700636A51 /* YXSaveHomeWorkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSaveHomeWorkRequest.h; sourceTree = "<group>"; };
 		920F1D5B1D53456700636A51 /* YXSaveHomeWorkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSaveHomeWorkRequest.m; sourceTree = "<group>"; };
+		920F1D601D5448A700636A51 /* YXHomeworkInfoFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkInfoFooterView.h; sourceTree = "<group>"; };
+		920F1D611D5448A700636A51 /* YXHomeworkInfoFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkInfoFooterView.m; sourceTree = "<group>"; };
 		9223C8001D2B9DD5000F74DF /* YXWorkshopListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopListRequest.h; sourceTree = "<group>"; };
 		9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopListRequest.m; sourceTree = "<group>"; };
 		9223C8031D2BAA2C000F74DF /* YXWorkshopDetailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailRequest.h; sourceTree = "<group>"; };
@@ -1917,6 +1920,8 @@
 				920F1D4D1D531B8000636A51 /* YXHomeworkPromptView.m */,
 				920F1D4F1D53298C00636A51 /* YXHomeworkInfoHeaderView.h */,
 				920F1D501D53298C00636A51 /* YXHomeworkInfoHeaderView.m */,
+				920F1D601D5448A700636A51 /* YXHomeworkInfoFooterView.h */,
+				920F1D611D5448A700636A51 /* YXHomeworkInfoFooterView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2504,6 +2509,7 @@
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
 				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
+				920F1D621D5448A700636A51 /* YXHomeworkInfoFooterView.m in Sources */,
 				CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
 				9223C8201D2DF93A000F74DF /* YXFeedBackViewController.m in Sources */,

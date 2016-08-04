@@ -11,6 +11,7 @@
 #import "YXHomeworkListCell.h"
 #import "YXHomeworkListHeaderView.h"
 #import "YXHomeworkPromptView.h"
+#import "YXHomeworkInfoViewController.h"
 @interface YXHomeworkListViewController ()
 <
   UITableViewDelegate,
@@ -62,6 +63,7 @@
     [self.view addSubview:_tableView];
     
     _promptView = [[YXHomeworkPromptView alloc] init];
+    _promptView.hidden = YES;
     [self.view addSubview:_promptView];
     
 }
@@ -102,6 +104,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -124,7 +128,6 @@
 
 
 #pragma mark - request
-
 - (void)requestForHomeworkList{
     YXHomeworkListRequest *request = [[YXHomeworkListRequest alloc] init];
     request.pid = self.pidString;

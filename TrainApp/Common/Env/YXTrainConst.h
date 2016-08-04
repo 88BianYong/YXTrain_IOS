@@ -12,5 +12,6 @@
 #define kScreenHeightScale(f) [UIScreen mainScreen].bounds.size.height / 667.0f * f
 #define kScreenWidthScale(f) [UIScreen mainScreen].bounds.size.width / 375.0f * f
 
-
+#define kScreenHeight [UIScreen mainScreen].bounds.size.height
+#define kScreenWidth   [UIScreen mainScreen].bounds.size.width
 extern const CGFloat YXTrainCornerRadii;

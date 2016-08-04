@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YXHomeworkInfoRequest.h"
 @interface YXHomeworkInfoHeaderView : UIView
-
+@property (nonatomic ,strong) YXHomeworkInfoRequestItem_Body *body;
 @end
