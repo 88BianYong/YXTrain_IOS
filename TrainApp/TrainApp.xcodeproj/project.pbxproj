@@ -183,6 +183,10 @@
 		920F1D481D51F09200636A51 /* YXHomeworkListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D471D51F09200636A51 /* YXHomeworkListHeaderView.m */; };
 		920F1D4B1D51F0D700636A51 /* YXHomeworkListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D4A1D51F0D700636A51 /* YXHomeworkListCell.m */; };
 		920F1D4E1D531B8000636A51 /* YXHomeworkPromptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D4D1D531B8000636A51 /* YXHomeworkPromptView.m */; };
+		920F1D511D53298C00636A51 /* YXHomeworkInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D501D53298C00636A51 /* YXHomeworkInfoHeaderView.m */; };
+		920F1D541D53332600636A51 /* YXCategoryListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D531D53332600636A51 /* YXCategoryListRequest.m */; };
+		920F1D591D533E8B00636A51 /* YXWriteHomeworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D581D533E8B00636A51 /* YXWriteHomeworkRequest.m */; };
+		920F1D5C1D53456700636A51 /* YXSaveHomeWorkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D5B1D53456700636A51 /* YXSaveHomeWorkRequest.m */; };
 		9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */; };
 		9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8041D2BAA2C000F74DF /* YXWorkshopDetailRequest.m */; };
 		9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */; };
@@ -670,6 +674,14 @@
 		920F1D4A1D51F0D700636A51 /* YXHomeworkListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkListCell.m; sourceTree = "<group>"; };
 		920F1D4C1D531B8000636A51 /* YXHomeworkPromptView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkPromptView.h; sourceTree = "<group>"; };
 		920F1D4D1D531B8000636A51 /* YXHomeworkPromptView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkPromptView.m; sourceTree = "<group>"; };
+		920F1D4F1D53298C00636A51 /* YXHomeworkInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkInfoHeaderView.h; sourceTree = "<group>"; };
+		920F1D501D53298C00636A51 /* YXHomeworkInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkInfoHeaderView.m; sourceTree = "<group>"; };
+		920F1D521D53332600636A51 /* YXCategoryListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCategoryListRequest.h; sourceTree = "<group>"; };
+		920F1D531D53332600636A51 /* YXCategoryListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCategoryListRequest.m; sourceTree = "<group>"; };
+		920F1D571D533E8B00636A51 /* YXWriteHomeworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkRequest.h; sourceTree = "<group>"; };
+		920F1D581D533E8B00636A51 /* YXWriteHomeworkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkRequest.m; sourceTree = "<group>"; };
+		920F1D5A1D53456700636A51 /* YXSaveHomeWorkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSaveHomeWorkRequest.h; sourceTree = "<group>"; };
+		920F1D5B1D53456700636A51 /* YXSaveHomeWorkRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSaveHomeWorkRequest.m; sourceTree = "<group>"; };
 		9223C8001D2B9DD5000F74DF /* YXWorkshopListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopListRequest.h; sourceTree = "<group>"; };
 		9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopListRequest.m; sourceTree = "<group>"; };
 		9223C8031D2BAA2C000F74DF /* YXWorkshopDetailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailRequest.h; sourceTree = "<group>"; };
@@ -1882,14 +1894,12 @@
 		920F1D201D5094A300636A51 /* 作业 */ = {
 			isa = PBXGroup;
 			children = (
+				920F1D551D53333500636A51 /* 作业 */,
+				920F1D561D53338C00636A51 /* 视频上传 */,
 				920F1D211D5094D000636A51 /* YXGetQiNiuTokenRequest.h */,
 				920F1D221D5094D000636A51 /* YXGetQiNiuTokenRequest.m */,
 				920F1D241D50986E00636A51 /* YXQiNiuVideoUpload.h */,
 				920F1D251D50986E00636A51 /* YXQiNiuVideoUpload.m */,
-				920F1D2E1D518C1600636A51 /* YXHomeworkListRequest.h */,
-				920F1D2F1D518C1600636A51 /* YXHomeworkListRequest.m */,
-				920F1D311D519A0900636A51 /* YXHomeworkInfoRequest.h */,
-				920F1D321D519A0900636A51 /* YXHomeworkInfoRequest.m */,
 				920F1D3A1D51A40D00636A51 /* homeworklist_mock.json */,
 				920F1D3D1D51A42A00636A51 /* homeworkInfo_mock.json */,
 			);
@@ -1905,8 +1915,34 @@
 				920F1D4A1D51F0D700636A51 /* YXHomeworkListCell.m */,
 				920F1D4C1D531B8000636A51 /* YXHomeworkPromptView.h */,
 				920F1D4D1D531B8000636A51 /* YXHomeworkPromptView.m */,
+				920F1D4F1D53298C00636A51 /* YXHomeworkInfoHeaderView.h */,
+				920F1D501D53298C00636A51 /* YXHomeworkInfoHeaderView.m */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		920F1D551D53333500636A51 /* 作业 */ = {
+			isa = PBXGroup;
+			children = (
+				920F1D2E1D518C1600636A51 /* YXHomeworkListRequest.h */,
+				920F1D2F1D518C1600636A51 /* YXHomeworkListRequest.m */,
+				920F1D311D519A0900636A51 /* YXHomeworkInfoRequest.h */,
+				920F1D321D519A0900636A51 /* YXHomeworkInfoRequest.m */,
+			);
+			name = "作业";
+			sourceTree = "<group>";
+		};
+		920F1D561D53338C00636A51 /* 视频上传 */ = {
+			isa = PBXGroup;
+			children = (
+				920F1D521D53332600636A51 /* YXCategoryListRequest.h */,
+				920F1D531D53332600636A51 /* YXCategoryListRequest.m */,
+				920F1D571D533E8B00636A51 /* YXWriteHomeworkRequest.h */,
+				920F1D581D533E8B00636A51 /* YXWriteHomeworkRequest.m */,
+				920F1D5A1D53456700636A51 /* YXSaveHomeWorkRequest.h */,
+				920F1D5B1D53456700636A51 /* YXSaveHomeWorkRequest.m */,
+			);
+			name = "视频上传";
 			sourceTree = "<group>";
 		};
 		9223C8241D2E0DFC000F74DF /* 设置 */ = {
@@ -2453,7 +2489,9 @@
 				9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */,
 				922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */,
 				CB52FCFB1D2BC1720096D8DC /* YXNoticeListFetch.m in Sources */,
+				920F1D5C1D53456700636A51 /* YXSaveHomeWorkRequest.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
+				920F1D541D53332600636A51 /* YXCategoryListRequest.m in Sources */,
 				CB227EA21D34AB4C00D5327B /* YXGuideViewController.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
 				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
@@ -2490,6 +2528,7 @@
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
 				9223C80C1D2CA4E4000F74DF /* YXWorkshopMemberCell.m in Sources */,
+				920F1D511D53298C00636A51 /* YXHomeworkInfoHeaderView.m in Sources */,
 				92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */,
 				7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreCell.m in Sources */,
 				CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */,
@@ -2644,6 +2683,7 @@
 				CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */,
 				CB3510B51D18E9830081EA3B /* YXDatumOrderFilterMenuView.m in Sources */,
 				CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */,
+				920F1D591D533E8B00636A51 /* YXWriteHomeworkRequest.m in Sources */,
 				CB748EDD1D223E2B004BCFBF /* YXFilterCustomButton.m in Sources */,
 				CB3510B61D18E9830081EA3B /* YXDatumOrderView.m in Sources */,
 				7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */,
