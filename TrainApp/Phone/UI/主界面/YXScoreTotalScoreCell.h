@@ -11,6 +11,4 @@
 
 @interface YXScoreTotalScoreCell : UITableViewCell
 @property (nonatomic, strong) YXExamineRequestItem_body *data;
-
-- (void)startAnimation;
 @end

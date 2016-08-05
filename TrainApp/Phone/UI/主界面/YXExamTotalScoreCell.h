@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YXWaveView.h"
 @interface YXExamTotalScoreCell : UITableViewCell
 
 @property (nonatomic, strong) NSString *totalScore;
 @property (nonatomic, strong) NSString *totalPoint;
+@property (nonatomic, strong) YXWaveView *waveView;
+
 
 - (void)startAnimation;
 

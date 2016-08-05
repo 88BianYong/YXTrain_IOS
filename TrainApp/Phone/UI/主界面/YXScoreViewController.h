@@ -11,4 +11,5 @@
 
 @interface YXScoreViewController : YXBaseViewController
 @property (nonatomic, strong) YXExamineRequestItem_body *data;
+@property (nonatomic,strong) UIView *waveView;
 @end

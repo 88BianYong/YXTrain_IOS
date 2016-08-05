@@ -11,5 +11,4 @@
 @interface YXWaveView : UIView
 
 - (void)startAnimation;
-
 @end

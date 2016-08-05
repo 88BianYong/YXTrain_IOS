@@ -20,6 +20,8 @@
 #import "YXExamMarkView.h"
 #import "YXCourseViewController.h"
 
+
+
 @interface YXExamViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) YXExamineRequest *request;
@@ -28,6 +30,8 @@
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 
 @property (nonatomic, strong) YXErrorView *errorView;
+
+@property (nonatomic,strong) UIView *waveView;
 @end
 
 @implementation YXExamViewController
@@ -38,14 +42,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    YXExamTotalScoreCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    if (cell) {
-           [cell startAnimation];
-    }
+    [self startAnimation];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
 }
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 }
@@ -275,8 +277,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
+        YXExamTotalScoreCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        self.waveView =  [cell.waveView snapshotViewAfterScreenUpdates:NO];
         YXScoreViewController *vc = [[YXScoreViewController alloc]init];
         vc.data = self.examineItem.body;
+        vc.waveView = self.waveView;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section <= self.examineItem.body.leadingVoList.count){
         YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[indexPath.section-1];
@@ -292,7 +297,12 @@
         }
     }
 }
-
+- (void)startAnimation{
+    YXExamTotalScoreCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    if (cell) {
+        [cell startAnimation];
+    }
+}
 
 
 @end

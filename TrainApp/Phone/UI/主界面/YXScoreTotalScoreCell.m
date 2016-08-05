@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UILabel *leadScoreLabel;
 @property (nonatomic, strong) UILabel *expScoreTitleLabel;
 @property (nonatomic, strong) UILabel *expScoreLabel;
-@property (nonatomic, strong) YXWaveView *waveView;
+//@property (nonatomic, strong) YXWaveView *waveView;
 @property (nonatomic, strong) YXExamNoScoreView *noScoreView;
 @property (nonatomic, strong) YXScoreNoScoreView *noLeadScoreView;
 @property (nonatomic, strong) YXScoreNoScoreView *noExpScoreView;
@@ -47,12 +47,12 @@
 
 - (void)setupUI{
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.waveView = [[YXWaveView alloc]init];
-    self.waveView.userInteractionEnabled = NO;
-    [self.contentView addSubview:self.waveView];
-    [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
+//    self.waveView = [[YXWaveView alloc]init];
+//    self.waveView.userInteractionEnabled = NO;
+//    [self.contentView addSubview:self.waveView];
+//    [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(0);
+//    }];
     self.scoreTitleLabel = [[UILabel alloc]init];
     self.scoreTitleLabel.font = [UIFont systemFontOfSize:12];
     self.scoreTitleLabel.textColor = [UIColor colorWithHexString:@"334466"];
@@ -201,8 +201,8 @@
     return attr;
 }
 
-- (void)startAnimation{
-    [self.waveView startAnimation];
-}
+//- (void)startAnimation{
+//    [self.waveView startAnimation];
+//}
 
 @end

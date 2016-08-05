@@ -7,7 +7,6 @@
 //
 
 #import "YXExamTotalScoreCell.h"
-#import "YXWaveView.h"
 #import "YXExamNoScoreView.h"
 
 @interface YXExamTotalScoreCell()
@@ -15,7 +14,6 @@
 @property (nonatomic, strong) UILabel *scoreLabel;
 @property (nonatomic, strong) UILabel *pointTitleLabel;
 @property (nonatomic, strong) UILabel *pointLabel;
-@property (nonatomic, strong) YXWaveView *waveView;
 @property (nonatomic, strong) YXExamNoScoreView *leftNoScoreView;
 @property (nonatomic, strong) YXExamNoScoreView *rightNoScoreView;
 @property (nonatomic, strong) UIImageView *enterImageView;

@@ -74,10 +74,15 @@
     [self showProjectSelectionView];
     [_selectedViewController viewWillAppear:animated];
 }
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [_selectedViewController viewDidAppear:animated];
+}
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self hideProjectSelectionView];
+    [_selectedViewController viewWillDisappear:animated];
 }
 
 - (void)getProjectList{
@@ -133,6 +138,9 @@
         containerView.selectedViewContrller = ^(UIViewController *vc){
             STRONG_SELF
             self ->_selectedViewController = vc;
+            if ([vc isKindOfClass:[YXExamViewController class]]){
+                [(YXExamViewController *)vc startAnimation];
+            }
         };
         YXExamViewController *examVC = [[YXExamViewController alloc]init];
         YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];

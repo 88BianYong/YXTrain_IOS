@@ -9,5 +9,5 @@
 #import "YXBaseViewController.h"
 
 @interface YXExamViewController : YXBaseViewController
-
+- (void)startAnimation;
 @end

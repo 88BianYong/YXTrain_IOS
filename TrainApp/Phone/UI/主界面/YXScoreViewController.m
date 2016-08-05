@@ -108,7 +108,17 @@
         make.top.left.right.mas_equalTo(0);
         make.height.mas_equalTo(190);
     }];
-    [totalCell startAnimation];
+    [totalCell addSubview:self.waveView];
+    [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(totalCell.mas_left);
+        make.right.equalTo(totalCell.mas_right);
+        make.bottom.equalTo(totalCell.mas_bottom);
+        make.height.mas_equalTo(self.waveView.frame.size.height);
+    }];
+    
+
+    
+    
     
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -129,6 +139,8 @@
     [self.tableView registerClass:[YXScoreTaskScoreHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXScoreTaskScoreHeaderView"];
     [self.tableView registerClass:[YXScoreExpHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXScoreExpHeaderView"];
     [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
+    
+
 }
 
 #pragma mark - UITableViewDataSource
