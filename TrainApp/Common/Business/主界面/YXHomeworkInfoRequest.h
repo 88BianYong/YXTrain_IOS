@@ -32,6 +32,19 @@
 @property (nonatomic ,copy) NSString<Optional> *endDate;//结束时间
 @property (nonatomic, copy) NSString<Optional> *isFinished;//0--未完成，1 已完成
 @property (nonatomic ,strong) YXHomeworkInfoRequestItem_Body_Detail<Optional> *detail;//视频作业详细信息，只有视频作业是已完成，才显示该部分内容
+
+/**
+ *  视频保存需要信息
+ */
+@property (nonatomic, copy) NSString<Optional> *uid;
+@property (nonatomic, copy) NSString<Optional> *pid;
+@property (nonatomic, copy) NSString<Optional> *filePath;
+@property (nonatomic, copy) NSString<Optional> *fileName;
+@property (nonatomic, assign) YXVideoLessonStatus lessonStatus;
+@property (nonatomic, assign) CGFloat   uploadPercent;
+@property (nonatomic, assign) BOOL isUploadSuccess;
+
+
 @end
 
 @interface YXHomeworkInfoRequestItem : HttpBaseRequestItem

@@ -110,6 +110,7 @@
     YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
     VC.requireid =  homework.requireId;
     VC.hwid = homework.homeworkid;
+    VC.titleString = homework.title;
     [self.navigationController pushViewController:VC animated:YES];
 }
 

@@ -14,6 +14,10 @@
 {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"requireId",@"description":@"depiction"}];
 }
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
 @end
 
 @implementation YXHomeworkInfoRequest

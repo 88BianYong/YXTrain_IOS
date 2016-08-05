@@ -7,7 +7,8 @@
 //
 
 #import "YXBaseViewController.h"
-
+@class  YXHomeworkInfoRequestItem_Body;
 @interface YXVideoRecordViewController : YXBaseViewController
+@property (nonatomic, strong)YXHomeworkInfoRequestItem_Body  *videoModel;
 
 @end

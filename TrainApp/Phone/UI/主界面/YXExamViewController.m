@@ -230,6 +230,10 @@
             }else if ([data.toolid isEqualToString:@"201"]||[data.toolid isEqualToString:@"301"]) { // 课程
                 YXCourseViewController *vc = [[YXCourseViewController alloc]init];
                 [self.navigationController pushViewController:vc animated:YES];
+            }else if ([data.toolid isEqualToString:@"205"]){
+                NSString *string = @"YXHomeworkListViewController";
+                UIViewController *VC = [[NSClassFromString(string) alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
             }else{
                 [self showToast:@"相关功能暂未开放"];
             }
@@ -291,7 +295,12 @@
                 YXCourseViewController *vc = [[YXCourseViewController alloc]init];
                 vc.stageID = vo.voID;
                 [self.navigationController pushViewController:vc animated:YES];
-            }else{
+            }else if (data.toolid.integerValue == 203){
+                NSString *string = @"YXHomeworkListViewController";
+                UIViewController *VC = [[NSClassFromString(string) alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+            }
+            else{
                 [self showToast:@"相关功能暂未开放"];
             }
         }

@@ -84,7 +84,7 @@
 - (void)setTask:(YXTaskListRequestItem_body_task *)task{
     _task = task;
     self.typeLabel.text = task.name;
-    if (task.toolid.integerValue == 201) {  // 课程
+    if (task.toolid.integerValue == 201 || task.toolid.integerValue == 203) {  // 课程 || 作业
         self.typeLabel.textColor = [UIColor colorWithHexString:@"334466"];
         self.enterImageView.hidden = NO;
     }else{

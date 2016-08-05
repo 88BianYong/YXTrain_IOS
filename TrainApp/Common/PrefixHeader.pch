@@ -49,6 +49,7 @@ extern int ddLogLevel;
 #import "UIImage+YXResize.h"
 #import "NSString+YXString.h"
 #import "UIViewController+YXAddtion.h"
+#import "UIView+YXAddtion.h"
 
 #pragma mark - Other
 #import "YXDefinitions.h"

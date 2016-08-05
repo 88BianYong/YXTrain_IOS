@@ -52,7 +52,7 @@
     _pointLabel = [[UILabel alloc] init];
     _pointLabel.font = [UIFont fontWithName:YXFontMetro_Medium size:36];
     _pointLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
-    _pointLabel.text = @"  ";
+    _pointLabel.text = @"未批改";
     _pointLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_pointLabel];
     
@@ -170,7 +170,12 @@
 #pragma mark - data
 - (void)setBody:(YXHomeworkInfoRequestItem_Body *)body{
     _body = body;
-    _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
+    if(!_body.isFinished.boolValue && !_body.score.boolValue){
+        _pointLabel.attributedText = [[NSAttributedString alloc] initWithString:@"未批改" attributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontFZLBJW_GB1 size:36],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"e5581a"]}];
+    }else{
+        _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
+    }
+    
     _endDateLabel.text = [NSString stringWithFormat:@"截止日期  %@",_body.endDate];
     _finishedLabel.text = [NSString stringWithFormat:@"作业状态  %@",[_body.isFinished boolValue]?@"已完成":@"未完成"];
     _finishedImageView.hidden = ![_body.isFinished boolValue];
