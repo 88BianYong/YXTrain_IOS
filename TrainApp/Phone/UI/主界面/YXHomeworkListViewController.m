@@ -99,12 +99,17 @@
     YXHomeworkListHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXHomeworkListHeaderView"];
     YXHomeworkListRequestItem_Body_Stages *stages = (YXHomeworkListRequestItem_Body_Stages *)_listItem.body.stages[section];
     view.titleString = stages.subject;
+    view.isLast = stages.homeworks.count == 0 ? YES : NO;
     return view;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    YXHomeworkListRequestItem_Body_Stages *stages = (YXHomeworkListRequestItem_Body_Stages *)_listItem.body.stages[indexPath.section];
+    YXHomeworkListRequestItem_Body_Stages_Homeworks *homework = stages.homeworks[indexPath.row];
     YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
+    VC.requireid =  homework.requireId;
+    VC.hwid = homework.homeworkid;
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -130,7 +135,7 @@
 #pragma mark - request
 - (void)requestForHomeworkList{
     YXHomeworkListRequest *request = [[YXHomeworkListRequest alloc] init];
-    request.pid = self.pidString;
+    request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     [self startLoading];
     WEAK_SELF
     [request startRequestWithRetClass:[YXHomeworkListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

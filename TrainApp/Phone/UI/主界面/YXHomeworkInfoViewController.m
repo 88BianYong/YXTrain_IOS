@@ -81,6 +81,9 @@
 #pragma mark - request
 - (void)requestForHomeworkInfo{
     YXHomeworkInfoRequest *request = [[YXHomeworkInfoRequest alloc] init];
+    request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    request.requireid = self.requireid;
+    request.hwid = self.hwid;
     [self startLoading];
     WEAK_SELF
     [request startRequestWithRetClass:[YXHomeworkInfoRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

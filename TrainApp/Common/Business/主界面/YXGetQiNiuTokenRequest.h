@@ -9,7 +9,7 @@
 #import "YXGetRequest.h"
 @interface YXGetQiNiuTokenRequestItem : HttpBaseRequestItem
 
-@property (nonatomic, copy) NSString *uploadToken;
+@property (nonatomic, copy) NSString<Optional> *uploadToken;
 @end
 
 @interface YXGetQiNiuTokenRequest : YXGetRequest

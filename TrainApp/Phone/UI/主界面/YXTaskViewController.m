@@ -143,11 +143,13 @@
     if (task.toolid.integerValue == 201) {
         YXCourseViewController *vc = [[YXCourseViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
-    }else{
-        //[self showToast:@"相关功能暂未开放"];
+    }else if (task.toolid.integerValue == 203){
         NSString *string = @"YXHomeworkListViewController";
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
+        //[YXTrainManager sharedInstance].currentProject.pid;
+    }else{
+        [self showToast:@"相关功能暂未开放"];
     }
 }
 

@@ -107,7 +107,7 @@
 		<key>YXHomeworkListRequest</key>
 		<dict>
 			<key>mockEnable</key>
-			<true/>
+			<false/>
 			<key>mockFile</key>
 			<array>
 				<dict>
@@ -121,7 +121,7 @@
 		<key>YXHomeworkInfoRequest</key>
 		<dict>
 			<key>mockEnable</key>
-			<true/>
+			<false/>
 			<key>mockFile</key>
 			<array>
 				<dict>

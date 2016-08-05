@@ -10,7 +10,7 @@
 @interface YXHomeworkListHeaderView()
 {
     UILabel *_titleLabel;
-    BOOL _isFirst;
+    CAShapeLayer *_maskLayer;
 }
 @end
 
@@ -18,7 +18,6 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
-        _isFirst = YES;
         self.contentView.backgroundColor = [UIColor whiteColor];
         [self setupUI];
     }
@@ -27,6 +26,7 @@
 
 #pragma mark - setupUI
 - (void)setupUI{
+    _maskLayer = [CAShapeLayer layer];
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     _titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
@@ -35,14 +35,6 @@
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    if (_isFirst) {
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(YXTrainCornerRadii, YXTrainCornerRadii)];
-        CAShapeLayer *maskLayer = [CAShapeLayer layer];
-        maskLayer.frame = self.bounds;
-        maskLayer.path = maskPath.CGPath;
-        self.layer.mask = maskLayer;
-        _isFirst = NO;
-    }
 }
 
 - (void)layoutInterface{
@@ -50,6 +42,21 @@
         make.left.mas_equalTo(15.0f);
         make.centerY.mas_equalTo(0);
     }];
+}
+
+- (void)setIsLast:(BOOL)isLast{
+    _isLast = isLast;
+    if (_isLast) {
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, kScreenWidth - 10.0f, 45.0f) byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(YXTrainCornerRadii, YXTrainCornerRadii)];
+        _maskLayer.frame = self.bounds;
+        _maskLayer.path = maskPath.CGPath;
+        self.layer.mask = _maskLayer;
+    }else{
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, kScreenWidth - 10.0f, 45.0f) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(YXTrainCornerRadii, YXTrainCornerRadii)];
+        _maskLayer.frame = self.bounds;
+        _maskLayer.path = maskPath.CGPath;
+        self.layer.mask = _maskLayer;
+    }
 }
 
 - (void)setTitleString:(NSString *)titleString{

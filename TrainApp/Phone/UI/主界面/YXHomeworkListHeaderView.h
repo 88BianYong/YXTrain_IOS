@@ -10,4 +10,5 @@
 
 @interface YXHomeworkListHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, copy) NSString *titleString;
+@property (nonatomic, assign) BOOL isLast;
 @end

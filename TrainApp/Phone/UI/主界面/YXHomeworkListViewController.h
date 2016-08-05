@@ -9,5 +9,4 @@
 #import "YXBaseViewController.h"
 
 @interface YXHomeworkListViewController : YXBaseViewController
-@property(nonatomic ,copy) NSString *pidString;
 @end
