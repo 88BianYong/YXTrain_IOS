@@ -60,6 +60,7 @@
     [self.contentView addSubview:_endDataLabel];
     
     _finishedImageView = [[UIImageView alloc] init];
+    _finishedImageView.hidden = NO;
     _finishedImageView.image = [UIImage imageNamed:@"作业-已完成标签"];
     [self.contentView addSubview:_finishedImageView];
     
@@ -126,26 +127,41 @@
 
 - (void)setHomework:(YXHomeworkListRequestItem_Body_Stages_Homeworks *)homework{
     _homework = homework;
-    if ([_homework.type isEqualToString:@"1"]) {
-        _typeImageView.image = [UIImage imageNamed:@"作业名称图标"];
-    }else{
-       _typeImageView.image = [UIImage imageNamed:@"作业名称视频类的标签"];
-    }
-    _nameLabel.text = _homework.title;
-    _endDataLabel.text = [NSString stringWithFormat:@"截止日期  %@",_homework.createtime?:@"暂无"];
-    if([_homework.isFinished isEqualToString:@"1"]){
-        _finishedImageView.hidden = NO;
+    if (_homework != nil){
+        if ([_homework.type isEqualToString:@"1"]) {
+            _typeImageView.image = [UIImage imageNamed:@"作业名称图标"];
+        }else{
+            _typeImageView.image = [UIImage imageNamed:@"作业名称视频类的标签"];
+        }
+        _nameLabel.text = _homework.title;
+        _nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
+        _endDataLabel.text = [NSString stringWithFormat:@"截止日期  %@",_homework.createtime?:@"暂无"];
+        _endDataLabel.hidden = NO;
+        if([_homework.isFinished isEqualToString:@"1"]){
+            _finishedImageView.hidden = NO;
+        }
+        else{
+            _finishedImageView.hidden = YES;
+        }
+        [self layoutInterface:[_homework.recommend boolValue] withIsmyrec:[_homework.ismyrec boolValue]];
     }
     else{
+        _typeImageView.image = [UIImage imageNamed:@"作业名称图标"];
+        _nameLabel.text = @"该阶段无作业";
+        _nameLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
         _finishedImageView.hidden = YES;
+        _recommendImageView.hidden = YES;
+        _ismyrecImageView.hidden = YES;
     }
-    [self layoutInterface:[_homework.recommend boolValue] withIsmyrec:[_homework.ismyrec boolValue]];
+
 }
 
 - (void)layoutInterface:(BOOL)recommendBool withIsmyrec:(BOOL)ismyrecBool{
     [_recommendImageView removeFromSuperview];
     [_ismyrecImageView removeFromSuperview];
     if (recommendBool && ismyrecBool) {//全部都有
+        _recommendImageView.hidden = NO;
+        _ismyrecImageView.hidden = NO;
         [self.contentView addSubview:_recommendImageView];
         [self.contentView addSubview:_ismyrecImageView];
         [_recommendImageView mas_remakeConstraints:^(MASConstraintMaker *make) {

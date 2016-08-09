@@ -121,14 +121,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     YXHomeworkListRequestItem_Body_Stages *stages = (YXHomeworkListRequestItem_Body_Stages *)_listItem.body.stages[section];
-    return stages.homeworks.count;
+    return MAX(stages.homeworks.count, 1);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHomeworkListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeworkListCell" forIndexPath:indexPath];
     YXHomeworkListRequestItem_Body_Stages *stages = (YXHomeworkListRequestItem_Body_Stages *)_listItem.body.stages[indexPath.section];
-    cell.homework = stages.homeworks[indexPath.row];
-    cell.isLast = indexPath.row == (stages.homeworks.count - 1) ? YES : NO;
+    if (stages.homeworks.count == 0) {
+        cell.homework = nil;
+        cell.isLast = YES;
+    }else{
+        cell.homework = stages.homeworks[indexPath.row];
+        cell.isLast = indexPath.row == (stages.homeworks.count - 1) ? YES : NO;
+    }
+    
     return cell;
 }
 

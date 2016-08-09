@@ -12,9 +12,13 @@
 #import <MDRadialProgressLabel.h>
 @interface YXSaveVideoProgressView()
 {
-    MDRadialProgressView *_radialView;
-    UIView *_backgroundView;
-    UILabel *_titleLabel;
+    MDRadialProgressView *_radialView;//外进度条
+    UIView *_innerCircleView;//内圆
+    UILabel *_titleLabel;//提示
+    UIButton *_closeButton;
+    
+    UIView *_backgroundView;//
+    
 }
 @end
 
@@ -29,12 +33,16 @@
 }
 
 - (void)setupUI{
+    
     _backgroundView = [[UIView alloc] init];
-    _backgroundView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.7f];
-    _backgroundView.layer.cornerRadius = 25.0f;
+    _backgroundView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
+    _backgroundView.layer.cornerRadius = YXTrainCornerRadii;
     [self addSubview:_backgroundView];
     
-    
+    _innerCircleView = [[UIView alloc] init];
+    _innerCircleView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.7f];
+    _innerCircleView.layer.cornerRadius = 25.0f;
+    [self addSubview:_innerCircleView];
     
     _radialView = [[MDRadialProgressView alloc] initWithFrame:CGRectMake(0, 0, 56, 56)];
     [self addSubview:_radialView];
@@ -59,24 +67,43 @@
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.text = @"视频保存中...";
     [self addSubview:_titleLabel];
+    
+    _closeButton = [[UIButton alloc] init];
+    [_closeButton setImage:[UIImage imageNamed:@"关闭按钮"] forState:UIControlStateNormal];
+    [_closeButton addTarget:self action:@selector(closeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:_closeButton];
 
 }
 
 - (void)layoutInterface{
-    [_radialView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(56.0f, 56.0f));
-        make.top.equalTo(self.mas_top);
-        make.centerX.equalTo(self.mas_centerX);
+    [_backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top).offset(20.0f);
+        make.left.equalTo(self.mas_left);
+        make.bottom.equalTo(self.mas_bottom);
+        make.right.equalTo(self.mas_right).offset(-20.0f);
     }];
     
-    [_backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_radialView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(56.0f, 56.0f));
+        make.top.equalTo(self.mas_top).offset(23.0f + 20.0f);
+        make.centerX.equalTo(_backgroundView.mas_centerX);
+    }];
+    
+    [_innerCircleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(50.0f, 50.0f));
         make.center.equalTo(_radialView);
     }];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_radialView.mas_bottom).offset(14.0f);
-        make.centerX.equalTo(self.mas_centerX);
+        make.centerX.equalTo(_backgroundView.mas_centerX);
+        make.bottom.equalTo(self.mas_bottom).offset(-23.0f);
+    }];
+    
+    [_closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.right.equalTo(self.mas_right);
+        make.size.mas_equalTo(CGSizeMake(20.0f, 20.0f));
     }];
 }
 
@@ -86,26 +113,11 @@
     _radialView.label.text = [NSString stringWithFormat:@"%d%%", (int)(100 * _progress)];
 }
 
-//    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [closeButton setImage:[UIImage imageNamed:@"进度条-关闭"] forState:UIControlStateNormal];
-//    //[closeButton setImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
-//    [self addSubview:closeButton];
-//    [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(@20);
-//        make.right.mas_equalTo(@0);
-//        make.size.mas_equalTo(CGSizeMake(44, 44));
-//    }];
-//    [closeButton addTarget:self action:@selector(closeAction) forControlEvents:UIControlEventTouchUpInside];
-//
-//    self.titleLabel = [[UILabel alloc] init];
-//    self.titleLabel.font = [UIFont systemFontOfSize:15];
-//    self.titleLabel.textColor = [UIColor whiteColor];
-//    [self addSubview:self.titleLabel];
-//    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.mas_equalTo(@0);
-//        make.top.mas_equalTo(radialView.mas_bottom).mas_offset(@10);
-//    }];
-
-
-
+- (void)closeButtonAction:(UIButton *)sender{
+    BLOCK_EXEC(self.closeHandler);
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [super touchesBegan:touches withEvent:event];
+    BLOCK_EXEC(self.closeHandler);
+}
 @end

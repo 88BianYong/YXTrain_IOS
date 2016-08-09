@@ -88,7 +88,7 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_lessonStatus == YXVideoLessonStatus_NoRecord) {
+    if (self.lessonStatus == YXVideoLessonStatus_NoRecord || self.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
         return MAX(kScreenHeight - 64.0f - 336.0f, 150.0f);
     }
     return 0.0f;

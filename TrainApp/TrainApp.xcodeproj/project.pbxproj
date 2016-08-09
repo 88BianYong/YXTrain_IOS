@@ -194,6 +194,7 @@
 		920F1D711D5983E500636A51 /* YXVideoRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D701D5983E500636A51 /* YXVideoRecordManager.m */; };
 		920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D731D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m */; };
 		920F1D771D59D1B500636A51 /* YXNotAutorotateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D761D59D1B500636A51 /* YXNotAutorotateView.m */; };
+		920F1D7A1D5ADDEE00636A51 /* YXAlertCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D791D5ADDEE00636A51 /* YXAlertCustomView.m */; };
 		9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */; };
 		9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8041D2BAA2C000F74DF /* YXWorkshopDetailRequest.m */; };
 		9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */; };
@@ -703,6 +704,8 @@
 		920F1D731D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkInfoNoRecordCell.m; sourceTree = "<group>"; };
 		920F1D751D59D1B500636A51 /* YXNotAutorotateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNotAutorotateView.h; sourceTree = "<group>"; };
 		920F1D761D59D1B500636A51 /* YXNotAutorotateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNotAutorotateView.m; sourceTree = "<group>"; };
+		920F1D781D5ADDEE00636A51 /* YXAlertCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAlertCustomView.h; sourceTree = "<group>"; };
+		920F1D791D5ADDEE00636A51 /* YXAlertCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAlertCustomView.m; sourceTree = "<group>"; };
 		9223C8001D2B9DD5000F74DF /* YXWorkshopListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopListRequest.h; sourceTree = "<group>"; };
 		9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopListRequest.m; sourceTree = "<group>"; };
 		9223C8031D2BAA2C000F74DF /* YXWorkshopDetailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailRequest.h; sourceTree = "<group>"; };
@@ -1718,6 +1721,8 @@
 				7CFBA6BE1D33374B005D08B1 /* YXErrorView.m */,
 				7CFBA6C01D33375D005D08B1 /* YXEmptyView.h */,
 				7CFBA6C11D33375D005D08B1 /* YXEmptyView.m */,
+				920F1D781D5ADDEE00636A51 /* YXAlertCustomView.h */,
+				920F1D791D5ADDEE00636A51 /* YXAlertCustomView.m */,
 			);
 			name = "样式";
 			sourceTree = "<group>";
@@ -2596,6 +2601,7 @@
 				7CFBA6C21D33375D005D08B1 /* YXEmptyView.m in Sources */,
 				7C3177BD1D0EBA79004AAC90 /* UIView+YXShadowColor.m in Sources */,
 				CB74627F1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m in Sources */,
+				920F1D7A1D5ADDEE00636A51 /* YXAlertCustomView.m in Sources */,
 				7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */,
 				7CF844651D2B622200B1CE55 /* YXRecordManager.m in Sources */,
 				7C2C3B521D23A01A00A03635 /* YXCourseFilterBgView.m in Sources */,

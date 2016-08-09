@@ -14,6 +14,7 @@
 #import "YXVideoRecordManager.h"
 #import "YXNotAutorotateView.h"
 #import "YXHomeworkInfoRequest.h"
+#import "YXAlertCustomView.h"
 @interface YXVideoRecordViewController()<SCRecorderDelegate, SCAssetExportSessionDelegate>
 {
     BOOL _stateBool;
@@ -85,7 +86,7 @@
     _bottomView = [[YXVideoRecordBottomView alloc] initWithFrame:CGRectMake(0, kScreenHeight -  110.0f, kScreenWidth, 110.0f)];
     [self.view addSubview:_bottomView];
     
-    _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 75.0f, 75.0f)];
+    _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 143.0f , 143.0f)];
     _progressView.hidden = YES;
     [self.view addSubview:_progressView];
     [self setupHandler];
@@ -116,9 +117,23 @@
                 break;
             case YXVideoRecordStatus_Delete:
             {
-                self ->_bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
-                [self stopCaptureWithSaveFlag:NO];
-                self ->_topView.recordTime = 0.0f;
+                YXAlertAction *waiverAlertAct = [[YXAlertAction alloc] init];
+                waiverAlertAct.title = @"放弃";
+                waiverAlertAct.style = YXAlertActionStyleCancel;
+                waiverAlertAct.block = ^(id sender) {
+                    STRONG_SELF
+                    self ->_bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
+                    [self stopCaptureWithSaveFlag:NO];
+                    self ->_topView.recordTime = 0.0f;
+                };
+                YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
+                cancelAlertAct.title = @"取消";
+                cancelAlertAct.style = YXAlertActionStyleDefault;
+                cancelAlertAct.block = ^(id sender) {
+                    STRONG_SELF
+                };
+                YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"确定放弃已录制的视频?" image:@"胶卷" actions:@[waiverAlertAct,cancelAlertAct]];
+                [alertView showAlertView:self.view];
             }
                 break;
             case YXVideoRecordStatus_StopMax:
@@ -141,6 +156,11 @@
         [self dismissViewControllerAnimated:YES completion:^{
             
         }];
+    };
+    
+    _progressView.closeHandler = ^{
+        STRONG_SELF
+        [self.exportSession cancelExport];
     };
 }
 
@@ -224,13 +244,32 @@
     WEAK_SELF
     self.completionHandle = ^(NSURL *url, NSError *error){
         STRONG_SELF
-        if (error == nil) {
+        if (error != nil) {
             [self saveSuccessWithVideoPath:url.path];
         } else {
+            YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
+            cancelAlertAct.title = @"取消";
+            cancelAlertAct.style = YXAlertActionStyleCancel;
+            cancelAlertAct.block = ^(id sender) {
+                STRONG_SELF
+            };
+            
+            YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
+            retryAlertAct.title = @"重试";
+            retryAlertAct.style = YXAlertActionStyleDefault;
+            retryAlertAct.block = ^(id sender) {
+                STRONG_SELF
+                [self saveRecordVideo];
+            };
+
+            YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频保存失败" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
+            [alertView showAlertView:self.view];
+            
+            
+            
             DDLogError(@"%@",error.localizedDescription);
         }
     };
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     self.exportSession = [[SCAssetExportSession alloc] initWithAsset:_recorder.session.assetRepresentingSegments];
     self.exportSession.videoConfiguration.preset = SCPresetLowQuality;
     self.exportSession.videoConfiguration.sizeAsSquare = NO;
@@ -242,14 +281,12 @@
         [[NSFileManager defaultManager] createDirectoryAtPath:PATH_OF_VIDEO withIntermediateDirectories:YES attributes:nil error:nil];
     }
     NSString *videoPathName = [NSString stringWithFormat:@"%@.mp4",[YXVideoRecordManager getFileNameWithJobId:self.videoModel.requireId]];
-    self.videoModel.fileName = videoPathName;
     self.exportSession.outputUrl = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:videoPathName]];
     CFTimeInterval time = CACurrentMediaTime();
     [self.exportSession exportAsynchronouslyWithCompletionHandler:^{
         STRONG_SELF
         [self.player play];
         self ->_topView.recordTime = 0.0f;
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         self.completionHandle(self.exportSession.outputUrl, self.exportSession.error);
         DDLogDebug(@"Completed compression in %fs", CACurrentMediaTime() - time);
         self -> _progressView.hidden = YES;
@@ -261,13 +298,12 @@
     [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     [YXVideoRecordManager cleartmpFile];
     NSArray * nameArray = [[NSFileManager defaultManager] componentsToDisplayForPath:videoPath];
-    self.videoModel.filePath = nameArray.lastObject;
+    self.videoModel.fileName = nameArray.lastObject;
+    self.videoModel.filePath = videoPath;
     self.videoModel.lessonStatus = YXVideoLessonStatus_AlreadyRecord;
     [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
     _bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
     [self removePreviewView];
-//    [self yx_leftCancelButtonPressed:nil];
-    
  //   [self gotoShangchuan];
 }
 - (void)removePreviewView
