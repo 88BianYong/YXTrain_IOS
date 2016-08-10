@@ -114,3 +114,52 @@
 }
 
 @end
+
+@implementation NSString (YXFormatDate)
+
++ (NSString *)timeStringWithDate:(NSDate *)date{
+    {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *destDateString = [formatter stringFromDate:date];
+        return destDateString;
+    }
+}
+
++ (NSString *)sizeStringWithFileSize:(unsigned long long)fileSize
+{
+    // 小于1KB
+    if (fileSize < 1024) {
+        return @"< 1K";
+        //        return [NSString stringWithFormat:@"%lldB", aBytes];
+    }
+    
+    // 1KB - 1MB
+    if ((fileSize >= 1024) && (fileSize < 1024*1024)) {
+        //        unsigned long long kb = aBytes / 1024ll;
+        //        return [NSString stringWithFormat:@"%lldK", kb];
+        float kb = (float)fileSize / 1024.f;
+        return [NSString stringWithFormat:@"%.2fK", kb];
+    }
+    
+    // 1MB - 1GB
+    if ((fileSize >= 1024*1024) && (fileSize < 1024*1024*1024)) {
+        float mb = (float)fileSize / (1024.f*1024.f);
+        return [NSString stringWithFormat:@"%.2fM", mb];
+    }
+    
+    // 大于等于1GB
+    if (fileSize >= 1024*1024*1024) {
+        float gb = (float)fileSize / (1024.f*1024.f*1024.f);
+        return [NSString stringWithFormat:@"%.2fG", gb];
+    }
+    
+    return @"";
+}
++ (NSString *)stringWithFormatFloat:(CGFloat)time
+{
+    NSInteger newTime = (NSInteger)time;
+    NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld",(long)newTime/60,(long)newTime%60];
+    return timeString;
+}
+@end

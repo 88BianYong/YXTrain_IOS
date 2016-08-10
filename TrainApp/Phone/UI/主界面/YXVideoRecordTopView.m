@@ -11,7 +11,6 @@
 {
     UILabel *_recordTimeLabel;
     UIView *_pointView;
-    UIButton *_canleButton;
     BOOL _isAnimate;
 }
 @end
@@ -79,6 +78,7 @@
 }
 - (void)startAnimatetion{
     _pointView.hidden = NO;
+    _canleButton.hidden = YES;
     if (!_isAnimate) {
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^{
             _pointView.alpha = 1.0f;

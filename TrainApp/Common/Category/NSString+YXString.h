@@ -45,3 +45,21 @@
 - (NSString *)yx_md5;
 
 @end
+
+
+@interface NSString (YXFormatDate)
+/*
+ /   得到“2016-01-08”格式的时间字符串。
+ */
++ (NSString *)timeStringWithDate:(NSDate *)date;
+
+/*
+ /   得到“203M”格式字符串。
+ */
++ (NSString *)sizeStringWithFileSize:(unsigned long long)fileSize;
+
+/*
+ /   得到“00:00”格式的时间字符串。time是秒数。
+ */
++ (NSString *)stringWithFormatFloat:(CGFloat)time;
+@end

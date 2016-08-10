@@ -17,6 +17,8 @@
 
 + (BOOL)isSupportRecordVideoShowView:(UIView *)view;
 
++ (BOOL)isSupportMicrophoneShow:(UIView *)view;
+
 //保存录像信息。
 + (void)saveVideoArrayWithModel:(YXHomeworkInfoRequestItem_Body *)model;
 

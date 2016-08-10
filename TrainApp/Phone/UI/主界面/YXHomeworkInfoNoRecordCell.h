@@ -7,11 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef NS_ENUM(NSInteger ,YXHomeworkInfoNoRecordCellType) {
-    YXHomeworkInfoNoRecordCell_Record = 1,
-    YXHomeworkInfoNoRecordCell_Explanation = 2,
-};
 
 @interface YXHomeworkInfoNoRecordCell : UITableViewCell
-@property (nonatomic ,copy) void(^noRecordHandler)(YXHomeworkInfoNoRecordCellType type);
+@property (nonatomic ,copy) void(^noRecordHandler)(YXRecordVideoInterfaceStatus type);
 @end

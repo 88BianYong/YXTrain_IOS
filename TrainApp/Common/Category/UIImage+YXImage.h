@@ -42,4 +42,7 @@
 
 + (UIImage *)yx_resizableImageNamed:(NSString *)name;
 
+
++ (UIImage*)yx_thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time;
+
 @end

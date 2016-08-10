@@ -38,7 +38,6 @@
  */
 @property (nonatomic, copy) NSString<Optional> *uid;
 @property (nonatomic, copy) NSString<Optional> *pid;
-@property (nonatomic, copy) NSString<Optional> *filePath;
 @property (nonatomic, copy) NSString<Optional> *fileName;
 @property (nonatomic, assign) YXVideoLessonStatus lessonStatus;
 @property (nonatomic, assign) CGFloat   uploadPercent;

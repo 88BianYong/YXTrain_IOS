@@ -28,7 +28,7 @@
 
 - (void)setupUI{
     _recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _recordButton.tag = 1;
+    _recordButton.tag = YXRecordVideoInterfaceStatus_Record;
     [_recordButton setImage:[UIImage imageNamed:@"录制视频图标"] forState:UIControlStateNormal];
     [_recordButton setImage:[UIImage imageNamed:@"录制视频图标-点击态"] forState:UIControlStateHighlighted];
     [_recordButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
@@ -46,7 +46,7 @@
     
     
     _directionsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _directionsButton.tag = 2;
+    _directionsButton.tag = YXRecordVideoInterfaceStatus_Depiction;
     [_directionsButton setImage:[UIImage imageNamed:@"视频上传说明图标"] forState:UIControlStateNormal];
     [_directionsButton setImage:[UIImage imageNamed:@"视频上传说明图标"] forState:UIControlStateHighlighted];
     [_directionsButton setTitle:@"视频录制上传说明" forState:UIControlStateNormal];
@@ -61,8 +61,8 @@
     [_recordButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(50.0f);
         make.centerX.equalTo(self.contentView.mas_centerX);
-        make.width.equalTo(self.contentView.mas_width).multipliedBy(450.0f/750.0f);
-        make.height.mas_offset(50.0f);
+        make.height.mas_offset(44.0f);
+        make.width.mas_offset(225.0f);
     }];
     
     [_directionsButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -8,6 +8,7 @@
 
 #import "YXVideoRecordManager.h"
 #import "YXHomeworkInfoRequest.h"
+#import "YXAlertView.h"
 #include <sys/stat.h>
 #include <sys/mount.h>
 #include <sys/sysctl.h>
@@ -41,23 +42,52 @@
 
 + (BOOL)isSupportRecordVideoShowView:(UIView *)view
 {
-    BOOL isSupport = NO;
+    __block BOOL isSupport = NO;
     UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
     if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
         AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
         if (authStatus == AVAuthorizationStatusDenied
             || authStatus == AVAuthorizationStatusRestricted) {
-            [YXPromtController showToast:@"相机权限受限\n请在设置-隐私-相机中开启" inView:view];
-            isSupport = NO;
+            WEAK_SELF
+            YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问相机" message:@"请到“设置->隐私->相机”中设置为允许访问相机！"];
+            [alertView addButtonWithTitle:@"确定" action:^{
+                STRONG_SELF
+              isSupport = [self isSupportMicrophoneShow:view];
+            }];
+            [alertView show];
         }else{
-            isSupport = YES;
+            isSupport = [self isSupportMicrophoneShow:view];
         }
     } else {
         [YXPromtController showToast:@"设备不支持拍照功能！" inView:view];
         isSupport = NO;
     }
-    
     return isSupport;
+}
++ (BOOL)isSupportMicrophoneShow:(UIView *)view
+{
+    __block BOOL bCanRecord = YES;
+    if ([[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending)
+    {
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
+            [audioSession performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
+                if (granted) {
+                    bCanRecord = YES;
+                }
+                else {
+                    bCanRecord = NO;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问麦克风" message:@"请到“设置->隐私->麦克风”中设置为允许访麦克风！"];
+                        [alertView addButtonWithTitle:@"确定"];
+                        [alertView show];
+                    });
+                }
+            }];
+        }
+    }
+    return bCanRecord;
 }
 
 + (void)saveVideoArrayWithModel:(YXHomeworkInfoRequestItem_Body *)model
@@ -124,7 +154,7 @@
     NSMutableArray * videoArray = [user objectForKey:kVideoUserDefaultsKey];
     [videoArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXHomeworkInfoRequestItem_Body *model = [[YXHomeworkInfoRequestItem_Body alloc] initWithDictionary:obj error:nil];
-        NSString *localPath = [PATH_OF_VIDEO stringByAppendingPathComponent:model.filePath];
+        NSString *localPath = [PATH_OF_VIDEO stringByAppendingPathComponent:model.fileName];
         if ([[NSFileManager defaultManager] fileExistsAtPath:localPath]) {
             if ([[NSFileManager defaultManager] removeItemAtPath:localPath error:nil]){
                 

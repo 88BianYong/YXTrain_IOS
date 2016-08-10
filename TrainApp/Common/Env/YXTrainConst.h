@@ -37,4 +37,17 @@ typedef NS_ENUM (NSInteger, YXVideoLessonStatus) {
 };
 
 
+typedef NS_ENUM (NSInteger, YXRecordVideoInterfaceStatus) {
+    YXRecordVideoInterfaceStatus_Record = 1, //录制 YXVideoRecordViewController
+    YXRecordVideoInterfaceStatus_Depiction = 2, //说明 YXUploadDepictionViewController
+    YXRecordVideoInterfaceStatus_Write = 3,// 填写 YXWriteHomeworkInfoViewController
+    YXRecordVideoInterfaceStatus_Play = 4,//播放
+    
+};
+
+
 extern const CGFloat YXTrainCornerRadii;
+
+extern NSString *const YXTrainUploadDepictionString;
+
+extern NSString *const YXTrainFirstGoInHomeworkList;

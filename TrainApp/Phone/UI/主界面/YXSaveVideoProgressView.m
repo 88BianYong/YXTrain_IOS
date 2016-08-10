@@ -47,7 +47,7 @@
     _radialView = [[MDRadialProgressView alloc] initWithFrame:CGRectMake(0, 0, 56, 56)];
     [self addSubview:_radialView];
     _radialView.progressTotal = 100;
-    _radialView.progressCounter = 30.0f;
+    _radialView.progressCounter = 0.0f;
     _radialView.startingSlice = 1;
     _radialView.theme.sliceDividerHidden = YES;
     _radialView.theme.sliceDividerThickness = 1;
@@ -109,15 +109,17 @@
 
 - (void)setProgress:(CGFloat)progress {
     _progress = MIN(MAX(0, progress), 1);
+    if (_progress == 1.0f) {
+       _titleLabel.text = @"视频保存成功";
+    }else{
+        _titleLabel.text = @"视频保存中...";
+    }
+    
     _radialView.progressCounter = (int)100 * _progress;
     _radialView.label.text = [NSString stringWithFormat:@"%d%%", (int)(100 * _progress)];
 }
 
 - (void)closeButtonAction:(UIButton *)sender{
-    BLOCK_EXEC(self.closeHandler);
-}
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    [super touchesBegan:touches withEvent:event];
     BLOCK_EXEC(self.closeHandler);
 }
 @end

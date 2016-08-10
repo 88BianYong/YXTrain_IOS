@@ -63,7 +63,7 @@
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(_backgroundView);
         make.bottom.equalTo(_backgroundView.mas_bottom).offset(-60.0f);
-        make.height.mas_offset(kScreenWidthScale(1.0f));
+        make.height.mas_offset(1/[UIScreen mainScreen].scale);
     }];
     
     if (actions.count > 2.0f || actions.count == 0) {

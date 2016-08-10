@@ -225,6 +225,12 @@
 		922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD31D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m */; };
 		922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
+		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
+		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
+		92EDC7B71D5C6C61005B91DD /* YXWriteHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */; };
+		92EDC7BA1D5C7323005B91DD /* YXWriteHomeworkInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B91D5C7323005B91DD /* YXWriteHomeworkInfoCell.m */; };
+		92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7BC1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m */; };
+		92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7BF1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 		CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */; };
 		CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */; };
@@ -764,6 +770,18 @@
 		922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailInfoCell.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
+		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
+		92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUploadDepictionViewController.m; sourceTree = "<group>"; };
+		92EDC7B01D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkAlreadyRecordCell.h; sourceTree = "<group>"; };
+		92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkAlreadyRecordCell.m; sourceTree = "<group>"; };
+		92EDC7B51D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoViewController.h; sourceTree = "<group>"; };
+		92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoViewController.m; sourceTree = "<group>"; };
+		92EDC7B81D5C7323005B91DD /* YXWriteHomeworkInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoCell.h; sourceTree = "<group>"; };
+		92EDC7B91D5C7323005B91DD /* YXWriteHomeworkInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoCell.m; sourceTree = "<group>"; };
+		92EDC7BB1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoHeaderView.h; sourceTree = "<group>"; };
+		92EDC7BC1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoHeaderView.m; sourceTree = "<group>"; };
+		92EDC7BE1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoFooterView.h; sourceTree = "<group>"; };
+		92EDC7BF1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoFooterView.m; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CB0904CE1D1AA3CC00026C9D /* PersistentUrlDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentUrlDownloader.h; sourceTree = "<group>"; };
 		CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentUrlDownloader.m; sourceTree = "<group>"; };
@@ -1166,9 +1184,9 @@
 				CBB62E071D2CB98300DAA6DE /* NSDate+Utilities.h */,
 				CBB62E081D2CB98300DAA6DE /* NSDate+Utilities.m */,
 				CB2CF34C1D1BF00300E76B34 /* NSString+YXString.h */,
+				CB2CF34D1D1BF00300E76B34 /* NSString+YXString.m */,
 				CBBA47A31D25FED80000EA84 /* UIImageView+AnimationCompletion.h */,
 				CBBA47A41D25FED80000EA84 /* UIImageView+AnimationCompletion.m */,
-				CB2CF34D1D1BF00300E76B34 /* NSString+YXString.m */,
 				7C3177B31D0EB7F1004AAC90 /* UIViewController+Keyboard.h */,
 				7C3177B41D0EB7F1004AAC90 /* UIViewController+Keyboard.m */,
 				7C3177AA1D0EB738004AAC90 /* UIImage+Color.h */,
@@ -1915,6 +1933,10 @@
 				920F1D431D51F00700636A51 /* YXHomeworkInfoViewController.m */,
 				920F1D171D50499500636A51 /* YXVideoRecordViewController.h */,
 				920F1D181D50499500636A51 /* YXVideoRecordViewController.m */,
+				92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */,
+				92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */,
+				92EDC7B51D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.h */,
+				92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */,
 			);
 			name = "作业";
 			sourceTree = "<group>";
@@ -1951,10 +1973,18 @@
 				920F1D671D58347600636A51 /* YXVideoRecordBottomView.m */,
 				920F1D6C1D59759D00636A51 /* YXSaveVideoProgressView.h */,
 				920F1D6D1D59759D00636A51 /* YXSaveVideoProgressView.m */,
-				920F1D721D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.h */,
-				920F1D731D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m */,
 				920F1D751D59D1B500636A51 /* YXNotAutorotateView.h */,
 				920F1D761D59D1B500636A51 /* YXNotAutorotateView.m */,
+				920F1D721D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.h */,
+				920F1D731D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m */,
+				92EDC7B01D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.h */,
+				92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */,
+				92EDC7B81D5C7323005B91DD /* YXWriteHomeworkInfoCell.h */,
+				92EDC7B91D5C7323005B91DD /* YXWriteHomeworkInfoCell.m */,
+				92EDC7BB1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.h */,
+				92EDC7BC1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m */,
+				92EDC7BE1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.h */,
+				92EDC7BF1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2494,11 +2524,13 @@
 				922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */,
 				9223C81B1D2D0144000F74DF /* YXWorkshopDatumRequest.m in Sources */,
 				7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */,
+				92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
 				920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */,
+				92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m in Sources */,
 				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
 				7C3177B51D0EB7F1004AAC90 /* UIViewController+Keyboard.m in Sources */,
@@ -2509,6 +2541,7 @@
 				7C31780B1D12830A004AAC90 /* YXFileFavorWrapper.m in Sources */,
 				7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */,
 				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
+				92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */,
 				7C2C3B341D2114DC00A03635 /* YXScoreTypeCell.m in Sources */,
 				CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */,
 				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
@@ -2582,6 +2615,7 @@
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
 				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
+				92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */,
 				920F1D711D5983E500636A51 /* YXVideoRecordManager.m in Sources */,
 				CBB62E0D1D2CBDB000DAA6DE /* YXBriefListRequest.m in Sources */,
 				920F1D6B1D58419900636A51 /* UIView+YXAddtion.m in Sources */,
@@ -2657,6 +2691,7 @@
 				922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */,
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
 				CB4D91831D1A73EA00B5F1D0 /* YXDatumSearchViewController.m in Sources */,
+				92EDC7B71D5C6C61005B91DD /* YXWriteHomeworkInfoViewController.m in Sources */,
 				CB8524641D334BFB009FA14B /* HJCActionSheet.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
 				920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */,
@@ -2682,6 +2717,7 @@
 				CBF66E291D2E36EE00F4E408 /* YXUserProfileRequest.m in Sources */,
 				7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */,
 				9223C8381D2F78E3000F74DF /* YXSchoolSearchRequest.m in Sources */,
+				92EDC7BA1D5C7323005B91DD /* YXWriteHomeworkInfoCell.m in Sources */,
 				CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */,
 				CB3510D11D1912DD0081EA3B /* YXAttachmentTypeHelper.m in Sources */,
 				CBF66E451D2F86DD00F4E408 /* YXPickerViewController.m in Sources */,

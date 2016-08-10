@@ -101,7 +101,7 @@
     }];
     
     [_endDataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_nameLabel.mas_bottom).offset(8.0f);
+        make.top.equalTo(_nameLabel.mas_bottom).offset(6.0f);
         make.left.equalTo(_nameLabel.mas_left);
         make.bottom.equalTo(bottomView.mas_top);
     }];
@@ -135,7 +135,7 @@
         }
         _nameLabel.text = _homework.title;
         _nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
-        _endDataLabel.text = [NSString stringWithFormat:@"截止日期  %@",_homework.createtime?:@"暂无"];
+        _endDataLabel.text = [NSString stringWithFormat:@"截止日期  %@",_homework.createtime?:@"无"];
         _endDataLabel.hidden = NO;
         if([_homework.isFinished isEqualToString:@"1"]){
             _finishedImageView.hidden = NO;
@@ -153,7 +153,6 @@
         _recommendImageView.hidden = YES;
         _ismyrecImageView.hidden = YES;
     }
-
 }
 
 - (void)layoutInterface:(BOOL)recommendBool withIsmyrec:(BOOL)ismyrecBool{

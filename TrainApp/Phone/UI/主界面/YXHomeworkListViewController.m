@@ -10,7 +10,6 @@
 #import "YXHomeworkListRequest.h"
 #import "YXHomeworkListCell.h"
 #import "YXHomeworkListHeaderView.h"
-#import "YXHomeworkPromptView.h"
 #import "YXHomeworkInfoViewController.h"
 @interface YXHomeworkListViewController ()
 <
@@ -19,7 +18,7 @@
 >
 {
     UITableView * _tableView;
-    YXHomeworkPromptView *_promptView;
+    YXErrorView *_errorView;
     
     YXHomeworkListRequestItem *_listItem;
     
@@ -61,10 +60,21 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 10.0f)];
     _tableView.tableHeaderView = headerView;
     [self.view addSubview:_tableView];
-    
-    _promptView = [[YXHomeworkPromptView alloc] init];
-    _promptView.hidden = YES;
-    [self.view addSubview:_promptView];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:YXTrainFirstGoInHomeworkList]) {
+        static NSString * staticString = @"YXHomeworkPromptView";
+        UIView *promptView = [[NSClassFromString(staticString) alloc] init];
+        [self.view addSubview:promptView];
+        [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:YXTrainFirstGoInHomeworkList];
+    }
+    WEAK_SELF
+    _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    _errorView.retryBlock = ^{
+        STRONG_SELF
+        [self requestForHomeworkList];
+    };
     
 }
 
@@ -76,9 +86,6 @@
         make.right.equalTo(self.view.mas_right).offset(-5.0f);
     }];
     
-    [_promptView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
 
 }
 
@@ -98,7 +105,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     YXHomeworkListHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXHomeworkListHeaderView"];
     YXHomeworkListRequestItem_Body_Stages *stages = (YXHomeworkListRequestItem_Body_Stages *)_listItem.body.stages[section];
-    view.titleString = stages.subject;
+    view.titleString = stages.name;
     view.isLast = stages.homeworks.count == 0 ? YES : NO;
     return view;
 }
@@ -106,12 +113,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     YXHomeworkListRequestItem_Body_Stages *stages = (YXHomeworkListRequestItem_Body_Stages *)_listItem.body.stages[indexPath.section];
-    YXHomeworkListRequestItem_Body_Stages_Homeworks *homework = stages.homeworks[indexPath.row];
-    YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
-    VC.requireid =  homework.requireId;
-    VC.hwid = homework.homeworkid;
-    VC.titleString = homework.title;
-    [self.navigationController pushViewController:VC animated:YES];
+    if (stages.homeworks.count > 0) {
+        YXHomeworkListRequestItem_Body_Stages_Homeworks *homework = stages.homeworks[indexPath.row];
+        YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
+        VC.requireid =  homework.requireId;
+        VC.hwid = homework.homeworkid;
+        VC.titleString = homework.title;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -130,11 +139,12 @@
     if (stages.homeworks.count == 0) {
         cell.homework = nil;
         cell.isLast = YES;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else{
         cell.homework = stages.homeworks[indexPath.row];
         cell.isLast = indexPath.row == (stages.homeworks.count - 1) ? YES : NO;
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
-    
     return cell;
 }
 
@@ -149,8 +159,10 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            
+            self ->_errorView.frame = self.view.bounds;
+            [self.view addSubview:self ->_errorView];
         }else{
+            [self -> _errorView removeFromSuperview];
             YXHomeworkListRequestItem *item = retItem;
             self -> _listItem = item;
             [_tableView reloadData];

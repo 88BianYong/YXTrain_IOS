@@ -25,7 +25,7 @@
     NSTimer *_startRecordTimer;
     UIView *_statusBar;
     YXSaveVideoProgressView *_progressView;
-    
+    UIDeviceOrientation _deviceOrientation;
 }
 @property (nonatomic, strong) SCRecorder    *recorder;
 @property (nonatomic, strong) SCRecorderToolsView *focusView;
@@ -41,6 +41,7 @@
 @implementation YXVideoRecordViewController
 - (void)dealloc{
     DDLogDebug(@"release=====>%@",NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (YXNotAutorotateView *)autorotateView{
@@ -57,6 +58,25 @@
     self.view.backgroundColor = [UIColor blackColor];
     [self setupUI];
     [self layoutInterface:CGSizeMake(kScreenWidth, kScreenHeight)];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil]; //监听是否触发home键挂起程序.
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector (deviceOrientationDidChange:)
+                                                 name: UIDeviceOrientationDidChangeNotification
+                                               object: nil];
+}
+- (void)deviceOrientationDidChange:(NSNotification *)noti {
+    _statusBar.hidden = YES;
+    if ([UIDevice currentDevice].orientation == UIDeviceOrientationFaceUp  || [UIDevice currentDevice].orientation == UIDeviceOrientationFaceDown || [UIDevice currentDevice].orientation == UIDeviceOrientationUnknown ||  _deviceOrientation == [UIDevice currentDevice].orientation) {
+    }
+    else{
+        if (self.autorotateView.hidden && _bottomView.videoRecordStatus == YXVideoRecordStatus_Recording) {
+            self.autorotateView.hidden = NO;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.autorotateView.hidden = YES;
+            });
+        }
+    }
 }
 
 - (void)setupUI{
@@ -76,9 +96,6 @@
     self.recorder.delegate = self;
     self.recorder.autoSetVideoOrientation = YES;
     self.recorder.initializeSessionLazily = NO;
-    _focusView = [[SCRecorderToolsView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    _focusView.recorder = self.recorder;
-    _focusView.outsideFocusTargetImage = [UIImage imageNamed:@"03动态详情页UI-附件全屏浏览-按下效果-修改版"];
     [_scanPreviewView addSubview:_focusView];
     _topView = [[YXVideoRecordTopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44.0f)];
     [self.view addSubview:_topView];
@@ -96,17 +113,18 @@
     WEAK_SELF
     _bottomView.recordHandler = ^(YXVideoRecordStatus recordStatus){
         STRONG_SELF
-        _stateBool = YES;
+        self ->_stateBool = YES;
         [self ->_topView stopAnimatetion];
         switch (recordStatus) {
             case YXVideoRecordStatus_Ready:
             {
-                _stateBool = NO;
+                self->_stateBool = NO;
+                self ->_topView.canleButton.hidden = NO;
             }
                 break;
             case YXVideoRecordStatus_Recording:
             {
-                
+                self ->_deviceOrientation = [UIDevice currentDevice].orientation;
                 [self ->_topView startAnimatetion];
                 [self.recorder record];
             }
@@ -120,7 +138,7 @@
                 YXAlertAction *waiverAlertAct = [[YXAlertAction alloc] init];
                 waiverAlertAct.title = @"放弃";
                 waiverAlertAct.style = YXAlertActionStyleCancel;
-                waiverAlertAct.block = ^(id sender) {
+                waiverAlertAct.block = ^{
                     STRONG_SELF
                     self ->_bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
                     [self stopCaptureWithSaveFlag:NO];
@@ -129,7 +147,7 @@
                 YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
                 cancelAlertAct.title = @"取消";
                 cancelAlertAct.style = YXAlertActionStyleDefault;
-                cancelAlertAct.block = ^(id sender) {
+                cancelAlertAct.block = ^ {
                     STRONG_SELF
                 };
                 YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"确定放弃已录制的视频?" image:@"胶卷" actions:@[waiverAlertAct,cancelAlertAct]];
@@ -138,12 +156,32 @@
                 break;
             case YXVideoRecordStatus_StopMax:
             {
-                [self stopCaptureWithSaveFlag:YES];
+                
+                self -> _bottomView.videoRecordStatus = YXVideoRecordStatus_Pause;
+                YXAlertAction *knowAction = [[YXAlertAction alloc] init];
+                knowAction.title = @"我知道了";
+                knowAction.style = YXAlertActionStyleAlone;
+                knowAction.block = ^ {
+                    STRONG_SELF
+                };
+                YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频时长已达到上限" image:@"失败icon" actions:@[knowAction]];
+                [alertView showAlertView:nil];
             }
                 break;
             case YXVideoRecordStatus_Save:
             {
-                [self saveRecordVideo];
+                if(self.isGreaterTenMinute){
+                    if (self ->_topView.recordTime >= 600.0f) {
+                       [self saveRecordVideo];
+                    }else{
+                        
+                    }
+                    
+                }
+                else{
+                    [self saveRecordVideo];
+                }
+                
             }
                 break;
             default:
@@ -157,7 +195,6 @@
             
         }];
     };
-    
     _progressView.closeHandler = ^{
         STRONG_SELF
         [self.exportSession cancelExport];
@@ -169,7 +206,8 @@
     _scanPreviewView.frame = frame;
     _topView.frame = CGRectMake(0, 0, size.width, 44.0f);
     _bottomView.frame = CGRectMake(0, size.height -  110.0f, size.width, 110.0f);
-    _progressView.center = self.view.center;
+    _progressView.center = CGPointMake(size.width/2.0f, size.height/2.0f);
+    _autorotateView.center = CGPointMake(size.width/2.0f, size.height/2.0f);
     self.recorder.videoConfiguration.size = size;
     self.recorder.previewView = _scanPreviewView;
 }
@@ -209,7 +247,7 @@
         }else{
             SCRecordSession *recordSession = _recorder.session;
             if (recordSession != nil) {
-                _recorder.session = nil;
+                self ->_recorder.session = nil;
                 [recordSession cancelSession:nil];
             }
             [self prepareSession];
@@ -244,29 +282,34 @@
     WEAK_SELF
     self.completionHandle = ^(NSURL *url, NSError *error){
         STRONG_SELF
-        if (error != nil) {
-            [self saveSuccessWithVideoPath:url.path];
+        if (error == nil) {
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            if([fileManager fileExistsAtPath:url.path]){
+               [self saveSuccessWithVideoPath:url.path];
+            }
+            else{
+                self -> _progressView.hidden = YES;
+                DDLogError(@"不存在");
+            }
         } else {
+            self -> _progressView.hidden = YES;
             YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
             cancelAlertAct.title = @"取消";
             cancelAlertAct.style = YXAlertActionStyleCancel;
-            cancelAlertAct.block = ^(id sender) {
+            cancelAlertAct.block = ^{
                 STRONG_SELF
             };
             
             YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
             retryAlertAct.title = @"重试";
             retryAlertAct.style = YXAlertActionStyleDefault;
-            retryAlertAct.block = ^(id sender) {
+            retryAlertAct.block = ^{
                 STRONG_SELF
                 [self saveRecordVideo];
             };
 
             YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频保存失败" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
             [alertView showAlertView:self.view];
-            
-            
-            
             DDLogError(@"%@",error.localizedDescription);
         }
     };
@@ -285,11 +328,8 @@
     CFTimeInterval time = CACurrentMediaTime();
     [self.exportSession exportAsynchronouslyWithCompletionHandler:^{
         STRONG_SELF
-        [self.player play];
-        self ->_topView.recordTime = 0.0f;
         self.completionHandle(self.exportSession.outputUrl, self.exportSession.error);
         DDLogDebug(@"Completed compression in %fs", CACurrentMediaTime() - time);
-        self -> _progressView.hidden = YES;
     }];
 }
 //保存成功视频之后
@@ -299,12 +339,14 @@
     [YXVideoRecordManager cleartmpFile];
     NSArray * nameArray = [[NSFileManager defaultManager] componentsToDisplayForPath:videoPath];
     self.videoModel.fileName = nameArray.lastObject;
-    self.videoModel.filePath = videoPath;
     self.videoModel.lessonStatus = YXVideoLessonStatus_AlreadyRecord;
     [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
     _bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
     [self removePreviewView];
- //   [self gotoShangchuan];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self -> _progressView.hidden = YES;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 - (void)removePreviewView
 {
@@ -329,12 +371,6 @@
 
 - (BOOL)shouldAutorotate{
     if (_stateBool) {
-        if (self.autorotateView.hidden) {
-            self.autorotateView.hidden = NO;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.autorotateView.hidden = YES;
-            });
-        }
         return NO;
     }
     else{
@@ -343,7 +379,6 @@
 
 }
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations{
-    
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id <UIViewControllerTransitionCoordinator>)coordinator{
@@ -376,5 +411,12 @@
 //        self.isSaveVideo = NO;
 //        [self saveRecordVideo];
 //    }
+}
+
+#pragma mark - notification
+- (void)applicationWillResignActive:(NSNotification *)notification{
+    if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Recording){
+      _bottomView.videoRecordStatus = YXVideoRecordStatus_Pause;
+    }
 }
 @end

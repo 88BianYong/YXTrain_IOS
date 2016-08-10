@@ -114,22 +114,22 @@
 
 - (void)layoutInterface{
     [_scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(24.0f);
+        make.top.equalTo(self.mas_top).offset(24.5f);
         make.centerX.equalTo(self.mas_centerX);
     }];
     
     [_pointLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_scoreLabel.mas_bottom).offset(12.0f);
+        make.top.equalTo(_scoreLabel.mas_bottom).offset(6.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
 
     [_endDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_pointLabel.mas_bottom).offset(27.0f);
+        make.top.equalTo(_pointLabel.mas_bottom).offset(16.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
 
     [_finishedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_endDateLabel.mas_bottom).offset(9.0f);
+        make.top.equalTo(_endDateLabel.mas_bottom).offset(6.0f);
         make.left.equalTo(_endDateLabel.mas_left);
     }];
 
@@ -147,7 +147,7 @@
     
     [_finishedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_finishedLabel.mas_left).offset(80.0f);
-        make.top.equalTo(_firstImageView.mas_bottom).offset(36.0f + 10.0f);//动态调整 10 标注不同
+        make.top.equalTo(_firstImageView.mas_bottom).offset(36.0f);//动态调整 10 标注不同
         make.width.height.mas_offset(45.0f);
     }];
     
@@ -171,12 +171,12 @@
 - (void)setBody:(YXHomeworkInfoRequestItem_Body *)body{
     _body = body;
     if(!_body.isFinished.boolValue && !_body.score.boolValue){
-        _pointLabel.attributedText = [[NSAttributedString alloc] initWithString:@"未批改" attributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontFZLBJW_GB1 size:36],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"e5581a"]}];
+        _pointLabel.attributedText = [[NSAttributedString alloc] initWithString:@"未批改" attributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontFZLBJW_GB1 size:36],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"eba180"]}];
     }else{
         _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
     }
     
-    _endDateLabel.text = [NSString stringWithFormat:@"截止日期  %@",_body.endDate];
+    _endDateLabel.text = [NSString stringWithFormat:@"截止日期  %@",_body.endDate?:@"无"];
     _finishedLabel.text = [NSString stringWithFormat:@"作业状态  %@",[_body.isFinished boolValue]?@"已完成":@"未完成"];
     _finishedImageView.hidden = ![_body.isFinished boolValue];
     _descriptionLabel.attributedText = [self descriptionStringWithDesc:_body.depiction];
