@@ -30,10 +30,6 @@ UITableViewDataSource
     YXHomeworkInfoRequest *_infoRequest;
     YXQiNiuVideoUpload *_uploadRequest;
     YXGetQiNiuTokenRequest *_getQiNiuTokenRequest;
-    
-    
-    YXHomeworkInfoRequestItem *_infoItem;
-    
 }
 @property (nonatomic ,strong)YXHomeworkInfoHeaderView *headerView;
 
@@ -44,11 +40,17 @@ UITableViewDataSource
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.title = self.titleString;
     [self setupRightWithTitle:@"       "];
     [self setupUI];
     [self layoutInterface];
-    [self requestForHomeworkInfo];
+    if (![self.itemBody.type isEqualToString:@"1"]) {
+        self.title = self.itemBody.title;
+        [self requestForHomeworkInfo];
+    }
+    else{
+        _tableView.hidden = NO;
+         [self findVideoHomeworkInformation:self.itemBody];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -78,6 +80,7 @@ UITableViewDataSource
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.hidden = YES;
     [_tableView registerClass:[YXHomeworkInfoNoRecordCell class] forCellReuseIdentifier:@"YXHomeworkInfoNoRecordCell"];
     [_tableView registerClass:[YXHomeworkAlreadyRecordCell class] forCellReuseIdentifier:@"YXHomeworkAlreadyRecordCell"];
     [self.view addSubview:_tableView];
@@ -98,9 +101,9 @@ UITableViewDataSource
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_infoItem.body.lessonStatus == YXVideoLessonStatus_NoRecord ) {
+    if (self.itemBody.lessonStatus == YXVideoLessonStatus_NoRecord ) {
         return MAX(kScreenHeight - 64.0f - 336.0f, 150.0f);
-    }else if (_infoItem.body.lessonStatus == YXVideoLessonStatus_AlreadyRecord){
+    }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord){
         return 280.0f;
     }
     return 0.0f;
@@ -112,7 +115,7 @@ UITableViewDataSource
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (_infoItem.body.type.integerValue == 2 || _infoItem.body.type.integerValue == 3) {
+    if (self.itemBody.type.integerValue == 2 || self.itemBody.type.integerValue == 3) {
         return 1;
     }else{
         return 0;
@@ -121,7 +124,7 @@ UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WEAK_SELF
-    if (_infoItem.body.lessonStatus == YXVideoLessonStatus_NoRecord ) {
+    if (self.itemBody.lessonStatus == YXVideoLessonStatus_NoRecord ) {
         YXHomeworkInfoNoRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeworkInfoNoRecordCell" forIndexPath:indexPath];
         cell.noRecordHandler = ^(YXRecordVideoInterfaceStatus type){
             STRONG_SELF
@@ -129,9 +132,9 @@ UITableViewDataSource
         };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else if(_infoItem.body.lessonStatus == YXVideoLessonStatus_AlreadyRecord){
+    }else if(self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord){
         YXHomeworkAlreadyRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeworkAlreadyRecordCell" forIndexPath:indexPath];
-        cell.filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:_infoItem.body.fileName];
+        cell.filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName];
         cell.buttonActionHandler = ^(YXRecordVideoInterfaceStatus type){
             STRONG_SELF
             [self gotoNextViewController:type];
@@ -146,8 +149,8 @@ UITableViewDataSource
 - (void)requestForHomeworkInfo{
     YXHomeworkInfoRequest *request = [[YXHomeworkInfoRequest alloc] init];
     request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    request.requireid = self.requireid;
-    request.hwid = self.hwid;
+    request.requireid = self.itemBody.requireId;
+    request.hwid = self.itemBody.homeworkid;
     [self startLoading];
     WEAK_SELF
     [request startRequestWithRetClass:[YXHomeworkInfoRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -163,8 +166,8 @@ UITableViewDataSource
                 item.body.uid = [YXUserManager sharedManager].userModel.uid;
                 item.body.pid = [YXTrainManager sharedInstance].currentProject.pid;
                 item.body.lessonStatus = YXVideoLessonStatus_NoRecord;
-                self ->_infoItem = item;
-                [self findVideoHomeworkInformation:self ->_infoItem];
+                self.itemBody = item.body;
+                [self findVideoHomeworkInformation:self.itemBody];
             }
         }
     }];
@@ -186,22 +189,24 @@ UITableViewDataSource
 }
 
 #pragma mark - format Data
-- (void)findVideoHomeworkInformation:(YXHomeworkInfoRequestItem *)item{
+- (void)findVideoHomeworkInformation:(YXHomeworkInfoRequestItem_Body *)item{
     NSArray *saveArray = [YXVideoRecordManager getVideoArrayWithModel];
     [saveArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXHomeworkInfoRequestItem_Body *model = obj;
-        if ([model.fileName yx_isValidString] && [model.uid isEqualToString:item.body.uid] && [model.pid isEqualToString:item.body.pid] && [model.requireId isEqualToString:item.body.requireId]) {
-             NSString *filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:model.fileName];
+        if ([model.fileName yx_isValidString] && [model.uid isEqualToString:item.uid] && [model.pid isEqualToString:item.pid] && [model.requireId isEqualToString:item.requireId]) {
+            NSString *filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:model.fileName];
             if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-                item.body.fileName = model.fileName;
-                item.body.lessonStatus = model.lessonStatus;
-                item.body.uploadPercent = model.uploadPercent;
-                item.body.isUploadSuccess = model.isUploadSuccess;
+                item.fileName = model.fileName;
+                item.lessonStatus = model.lessonStatus;
+                item.uploadPercent = model.uploadPercent;
+                item.isUploadSuccess = model.isUploadSuccess;
             }
         }
     }];
     _tableView.tableHeaderView = self.headerView;
-    self.headerView.body = _infoItem.body;
+    self.headerView.body = item;
+    self.title = self.itemBody.title;
+    _tableView.hidden = NO;
     [_tableView reloadData];
 }
 
@@ -212,7 +217,7 @@ UITableViewDataSource
         {
             if ([YXVideoRecordManager isSupportRecordVideoShowView:self.view]) {//判断权限
                 if ([YXVideoRecordManager isEnoughDeviceSpace]) {//判断空间大小
-                    if(_infoItem.body.type.integerValue == 3){//判断是否是限制时间的视频
+                    if(self.itemBody.type.integerValue == 3){//判断是否是限制时间的视频
                         WEAK_SELF
                         YXAlertAction *knowAction = [[YXAlertAction alloc] init];
                         knowAction.title = @"我知道了";
@@ -220,7 +225,7 @@ UITableViewDataSource
                         knowAction.block = ^ {
                             STRONG_SELF
                             YXVideoRecordViewController *VC = [[YXVideoRecordViewController alloc] init];
-                            VC.videoModel = self ->_infoItem.body;
+                            VC.videoModel = self.itemBody;
                             [[self visibleViewController] presentViewController:VC animated:YES completion:^{
                                 
                             }];
@@ -230,7 +235,7 @@ UITableViewDataSource
                     }
                     else{
                         YXVideoRecordViewController *VC = [[YXVideoRecordViewController alloc] init];
-                        VC.videoModel = self ->_infoItem.body;
+                        VC.videoModel = self.itemBody;
                         [[self visibleViewController] presentViewController:VC animated:YES completion:^{
                             
                         }];
@@ -239,7 +244,7 @@ UITableViewDataSource
                     [self showToast:@"系统空间不足200M,至少需要200M存储空间"];
                 }
             }
-
+            
         }
             break;
         case YXRecordVideoInterfaceStatus_Depiction:

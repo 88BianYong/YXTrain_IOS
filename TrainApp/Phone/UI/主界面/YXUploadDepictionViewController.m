@@ -53,15 +53,16 @@
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"334466"] range:NSMakeRange(0, [dLabelString length])];
     [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0f] range:NSMakeRange(0, [dLabelString length])];
     _contentLabel.attributedText = attributedString;
-    [_contentLabel setLineBreakMode:NSLineBreakByTruncatingTail];
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top).offset(25.0f);
+        make.top.equalTo(_scrollView.mas_top).offset(25.0f);
         make.left.equalTo(self.view.mas_left).offset(25.0f);
         make.right.equalTo(self.view.mas_right).offset(-25.0f);
     }];
 }
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    _scrollView.contentSize = _contentLabel.frame.size;
+    CGSize size = _contentLabel.frame.size;
+    size.height += 30.0f;
+    _scrollView.contentSize = size;
 }
 @end

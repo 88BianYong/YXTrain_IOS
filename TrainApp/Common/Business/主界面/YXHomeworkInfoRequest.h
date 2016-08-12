@@ -7,6 +7,9 @@
 //
 
 #import "YXGetRequest.h"
+@protocol YXHomeworkInfoRequestItem_Body <NSObject>
+@end
+
 
 @interface YXHomeworkInfoRequestItem_Body_Detail : JSONModel
 @property (nonatomic ,copy) NSString<Optional> *title;

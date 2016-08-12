@@ -125,7 +125,7 @@
     }];
 }
 
-- (void)setHomework:(YXHomeworkListRequestItem_Body_Stages_Homeworks *)homework{
+- (void)setHomework:(YXHomeworkInfoRequestItem_Body *)homework{
     _homework = homework;
     if (_homework != nil){
         if ([_homework.type isEqualToString:@"1"]) {
@@ -135,7 +135,7 @@
         }
         _nameLabel.text = _homework.title;
         _nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
-        _endDataLabel.text = [NSString stringWithFormat:@"截止日期  %@",_homework.createtime?:@"无"];
+        _endDataLabel.text = [NSString stringWithFormat:@"截止日期  %@",_homework.endDate?:@"无"];
         _endDataLabel.hidden = NO;
         if([_homework.isFinished isEqualToString:@"1"]){
             _finishedImageView.hidden = NO;
@@ -152,7 +152,9 @@
         _finishedImageView.hidden = YES;
         _recommendImageView.hidden = YES;
         _ismyrecImageView.hidden = YES;
+        _endDataLabel.hidden = YES;
     }
+    [self.contentView bringSubviewToFront:_finishedImageView];
 }
 
 - (void)layoutInterface:(BOOL)recommendBool withIsmyrec:(BOOL)ismyrecBool{

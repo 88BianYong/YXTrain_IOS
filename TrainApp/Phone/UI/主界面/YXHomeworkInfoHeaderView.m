@@ -7,6 +7,7 @@
 //
 
 #import "YXHomeworkInfoHeaderView.h"
+#import "YXHomeworkInfoRequest.h"
 @interface YXHomeworkInfoHeaderView()
 {
     UILabel *_scoreLabel;//成绩
@@ -170,7 +171,7 @@
 #pragma mark - data
 - (void)setBody:(YXHomeworkInfoRequestItem_Body *)body{
     _body = body;
-    if(!_body.isFinished.boolValue && !_body.score.boolValue){
+    if(!_body.score.boolValue){
         _pointLabel.attributedText = [[NSAttributedString alloc] initWithString:@"未批改" attributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontFZLBJW_GB1 size:36],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"eba180"]}];
     }else{
         _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
@@ -179,9 +180,9 @@
     _endDateLabel.text = [NSString stringWithFormat:@"截止日期  %@",_body.endDate?:@"无"];
     _finishedLabel.text = [NSString stringWithFormat:@"作业状态  %@",[_body.isFinished boolValue]?@"已完成":@"未完成"];
     _finishedImageView.hidden = ![_body.isFinished boolValue];
-    _descriptionLabel.attributedText = [self descriptionStringWithDesc:_body.depiction];
+    _descriptionLabel.attributedText = [self descriptionStringWithDesc:_body.depiction ?: @" "];
     [self layoutInterface:[_body.recommend boolValue] withIsmyrec:[_body.ismyrec boolValue]];
-    _scrollView.contentSize = [self scrollViewContentSizeWithDescription:_body.depiction];
+    _scrollView.contentSize = [self scrollViewContentSizeWithDescription:_body.depiction ?: @" "];
 }
 
 - (CGSize)scrollViewContentSizeWithDescription:(NSString*)desc{

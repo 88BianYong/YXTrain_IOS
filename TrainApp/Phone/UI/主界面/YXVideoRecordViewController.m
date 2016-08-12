@@ -67,16 +67,16 @@
 }
 - (void)deviceOrientationDidChange:(NSNotification *)noti {
     _statusBar.hidden = YES;
-    if ([UIDevice currentDevice].orientation == UIDeviceOrientationFaceUp  || [UIDevice currentDevice].orientation == UIDeviceOrientationFaceDown || [UIDevice currentDevice].orientation == UIDeviceOrientationUnknown ||  _deviceOrientation == [UIDevice currentDevice].orientation) {
-    }
-    else{
-        if (self.autorotateView.hidden && _bottomView.videoRecordStatus == YXVideoRecordStatus_Recording) {
-            self.autorotateView.hidden = NO;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.autorotateView.hidden = YES;
-            });
-        }
-    }
+//    if ([UIDevice currentDevice].orientation == UIDeviceOrientationFaceUp  || [UIDevice currentDevice].orientation == UIDeviceOrientationFaceDown || [UIDevice currentDevice].orientation == UIDeviceOrientationUnknown ||  _deviceOrientation == [UIDevice currentDevice].orientation) {
+//    }
+//    else{
+//        if (self.autorotateView.hidden && _bottomView.videoRecordStatus == YXVideoRecordStatus_Recording) {
+//            self.autorotateView.hidden = NO;
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                self.autorotateView.hidden = YES;
+//            });
+//        }
+//    }
 }
 
 - (void)setupUI{
@@ -96,6 +96,10 @@
     self.recorder.delegate = self;
     self.recorder.autoSetVideoOrientation = YES;
     self.recorder.initializeSessionLazily = NO;
+    [_scanPreviewView addSubview:_focusView];
+    _focusView = [[SCRecorderToolsView alloc] initWithFrame:_scanPreviewView.frame];
+    _focusView.recorder = self.recorder;
+    _focusView.outsideFocusTargetImage = [[UIImage alloc] init];
     [_scanPreviewView addSubview:_focusView];
     _topView = [[YXVideoRecordTopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44.0f)];
     [self.view addSubview:_topView];
@@ -127,6 +131,11 @@
                 self ->_deviceOrientation = [UIDevice currentDevice].orientation;
                 [self ->_topView startAnimatetion];
                 [self.recorder record];
+                self.autorotateView.hidden = NO;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    self.autorotateView.hidden = YES;
+                });
+
             }
                 break;
             case YXVideoRecordStatus_Pause:{
@@ -204,6 +213,7 @@
 - (void)layoutInterface:(CGSize)size{    
     CGRect frame = CGRectMake(0, 0, size.width, size.height);
     _scanPreviewView.frame = frame;
+    _focusView.frame = frame;
     _topView.frame = CGRectMake(0, 0, size.width, 44.0f);
     _bottomView.frame = CGRectMake(0, size.height -  110.0f, size.width, 110.0f);
     _progressView.center = CGPointMake(size.width/2.0f, size.height/2.0f);
@@ -326,8 +336,10 @@
     NSString *videoPathName = [NSString stringWithFormat:@"%@.mp4",[YXVideoRecordManager getFileNameWithJobId:self.videoModel.requireId]];
     self.exportSession.outputUrl = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:videoPathName]];
     CFTimeInterval time = CACurrentMediaTime();
+    _bottomView.userInteractionEnabled = NO;
     [self.exportSession exportAsynchronouslyWithCompletionHandler:^{
         STRONG_SELF
+        _bottomView.userInteractionEnabled = YES;
         self.completionHandle(self.exportSession.outputUrl, self.exportSession.error);
         DDLogDebug(@"Completed compression in %fs", CACurrentMediaTime() - time);
     }];
@@ -417,6 +429,9 @@
 - (void)applicationWillResignActive:(NSNotification *)notification{
     if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Recording){
       _bottomView.videoRecordStatus = YXVideoRecordStatus_Pause;
+    }
+    if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Save) {
+        [self.exportSession cancelExport];
     }
 }
 @end

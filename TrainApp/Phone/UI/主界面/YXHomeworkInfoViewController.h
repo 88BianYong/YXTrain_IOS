@@ -7,9 +7,7 @@
 //
 
 #import "YXBaseViewController.h"
-
+@class YXHomeworkInfoRequestItem_Body;
 @interface YXHomeworkInfoViewController : YXBaseViewController
-@property(nonatomic ,copy) NSString *requireid;
-@property(nonatomic ,copy) NSString *hwid;
-@property(nonatomic ,copy) NSString *titleString;
+@property(nonatomic ,strong, nonnull) YXHomeworkInfoRequestItem_Body *itemBody;
 @end

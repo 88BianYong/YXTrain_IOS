@@ -14,8 +14,8 @@
 #import "MJRefresh.h"
 @interface YXHomeworkListViewController ()
 <
-  UITableViewDelegate,
-  UITableViewDataSource
+UITableViewDelegate,
+UITableViewDataSource
 >
 {
     UITableView * _tableView;
@@ -99,7 +99,7 @@
         make.right.equalTo(self.view.mas_right).offset(-5.0f);
     }];
     
-
+    
 }
 
 #pragma mark - UITableViewDelegate
@@ -127,11 +127,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     YXHomeworkListRequestItem_Body_Stages *stages = (YXHomeworkListRequestItem_Body_Stages *)_listItem.body.stages[indexPath.section];
     if (stages.homeworks.count > 0) {
-        YXHomeworkListRequestItem_Body_Stages_Homeworks *homework = stages.homeworks[indexPath.row];
+        YXHomeworkInfoRequestItem_Body *homework = stages.homeworks[indexPath.row];
         YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
-        VC.requireid =  homework.requireId;
-        VC.hwid = homework.homeworkid;
-        VC.titleString = homework.title;
+        VC.itemBody = homework;
         [self.navigationController pushViewController:VC animated:YES];
     }
 }

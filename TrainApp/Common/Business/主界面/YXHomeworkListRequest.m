@@ -17,12 +17,6 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"stagesId"}];
 }
 @end
-@implementation YXHomeworkListRequestItem_Body_Stages_Homeworks
-+ (JSONKeyMapper *)keyMapper
-{
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"requireId",@"description":@"depiction"}];
-}
-@end
 
 
 @implementation YXHomeworkListRequest

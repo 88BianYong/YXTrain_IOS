@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "YXHomeworkListRequest.h"
 @interface YXHomeworkListCell : UITableViewCell
-@property (nonatomic ,strong) YXHomeworkListRequestItem_Body_Stages_Homeworks *homework;
+@property (nonatomic ,strong) YXHomeworkInfoRequestItem_Body *homework;
 @property (nonatomic ,assign) BOOL isLast;
 @end
