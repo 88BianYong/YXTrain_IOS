@@ -93,6 +93,7 @@
     _uploadButton.layer.borderWidth = 1.0f;
     _uploadButton.clipsToBounds = YES;
     _uploadButton.layer.masksToBounds = YES;
+    [_uploadButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_uploadButton];
     
     _againLabel = [[UILabel alloc] init];
@@ -106,12 +107,14 @@
     [_againButton setTitle:@"重新录制" forState:UIControlStateNormal];
     [_againButton setTitleColor:[UIColor colorWithHexString:@"0070c9"] forState:UIControlStateNormal];
     [_againButton.titleLabel setFont:[UIFont systemFontOfSize:12.0f]];
+    [_againButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_againButton];
     
     _playButton = [[UIButton alloc] init];
     _playButton.tag = YXRecordVideoInterfaceStatus_Play;
     [_playButton setImage:[UIImage imageNamed:@"播放视频按钮-正常态"] forState:UIControlStateNormal];
     [_playButton setImage:[UIImage imageNamed:@"播放视频按钮-点击态"] forState:UIControlStateHighlighted];
+    [_playButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_playButton];
 }
 

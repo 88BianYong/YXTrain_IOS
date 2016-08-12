@@ -11,6 +11,7 @@
 #import "YXHomeworkListCell.h"
 #import "YXHomeworkListHeaderView.h"
 #import "YXHomeworkInfoViewController.h"
+#import "MJRefresh.h"
 @interface YXHomeworkListViewController ()
 <
   UITableViewDelegate,
@@ -19,6 +20,7 @@
 {
     UITableView * _tableView;
     YXErrorView *_errorView;
+    MJRefreshHeaderView *_header;
     
     YXHomeworkListRequestItem *_listItem;
     
@@ -28,6 +30,9 @@
 @end
 
 @implementation YXHomeworkListViewController
+- (void)dealloc{
+    [_header free];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,6 +80,14 @@
         STRONG_SELF
         [self requestForHomeworkList];
     };
+    
+    _header = [MJRefreshHeaderView header];
+    _header.scrollView = _tableView;
+    _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        STRONG_SELF
+        [self requestForHomeworkList];
+    };
+    
     
 }
 
@@ -158,6 +171,7 @@
     [request startRequestWithRetClass:[YXHomeworkListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
+        [self->_header endRefreshing];
         if (error) {
             self ->_errorView.frame = self.view.bounds;
             [self.view addSubview:self ->_errorView];
