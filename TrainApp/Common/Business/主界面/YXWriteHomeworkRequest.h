@@ -31,7 +31,7 @@
 
 
 
-@interface YXWriteHomeworkRequestItem : HttpBaseRequest
+@interface YXWriteHomeworkRequestItem : HttpBaseRequestItem
 @property (nonatomic, strong) YXWriteHomeworkRequestItem_Body<Optional> *body;
 @end
 @interface YXWriteHomeworkRequest : YXGetRequest

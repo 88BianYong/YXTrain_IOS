@@ -6,7 +6,6 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 #import "YXQiNiuVideoUpload.h"
-#import "FileHash.h"
 
 @interface YXQiNiuVideoUpload()
 @property (nonatomic, copy) NSString *fileCachePath;//最终文件路径为fileCachePath／key
@@ -26,7 +25,6 @@
         NSError *error = nil;
         self.fileCachePath = PATH_OF_VIDEO_CACHE ;
         self.fileRecorder = [QNFileRecorder fileRecorderWithFolder:self.fileCachePath error:&error];
-        NSLog(@"recorder error %@", error);
         self.filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:fileName];
         self.qiNiuToken = qiNiuToken;
         self.keyName = [NSString stringWithFormat:@"%@.mp4",[FileHash md5HashOfFileAtPath:[PATH_OF_VIDEO stringByAppendingPathComponent:fileName]]];
@@ -34,8 +32,9 @@
         self.upManager = [[QNUploadManager alloc] initWithRecorder:self.fileRecorder
                           ];
         self.opt = [[QNUploadOption alloc] initWithMime:nil progressHandler:^(NSString *key, float percent) {
-            NSLog(@"<<<<<<%@",key);
-            
+            if ([self.delegate respondsToSelector:@selector(uploadProgress:)] && self.delegate) {
+                [self.delegate uploadProgress:percent];
+            }
         } params:nil checkCrc:NO cancellationSignal:^BOOL{
             return NO;
         }];
@@ -49,24 +48,18 @@
     [_upManager putFile: self.filePath key:keyUp token:self.qiNiuToken   complete: ^(QNResponseInfo *i, NSString *k, NSDictionary *resp) {
         key = k;
         info = i;
-        NSLog(@">>>%@=====%@",i,k);
-//        if(self.isDiscard && self.isCancel) {
-//            [QNFileRecorder removeKey:self.keyName directory:self.fileCachePath encodeKey:NO];
-//        }
-//        if (i.statusCode == 200) {
-//            if ([self.delegate respondsToSelector:@selector(uploadCompleteWithHash:)]) {
-//                [self.delegate uploadCompleteWithHash:[resp objectForKey:@"hash"]];
-//            }
-//        } else if (i.statusCode == 614) {
-//            if ([self.delegate respondsToSelector:@selector(uploadCompleteWithHash:)]) {
-//                [self.delegate uploadCompleteWithHash:nil];
-//            }
-//        }
-        //        if (i.statusCode == -999||i.statusCode == -2) {
-        //            if ([self.delegate respondsToSelector:@selector(susuPendUploadWithProgress:)]) {
-        //                [self.delegate susuPendUploadWithProgress:self.percent];
-        //            }
-        //        }
+        if (i.statusCode == 200) {
+            if ([self.delegate respondsToSelector:@selector(uploadCompleteWithHash:)]) {
+                [self.delegate uploadCompleteWithHash:[resp objectForKey:@"hash"]];
+            }
+        } else if (i.statusCode == 614) {
+            if ([self.delegate respondsToSelector:@selector(uploadCompleteWithHash:)]) {
+                [self.delegate uploadCompleteWithHash:nil];
+            }
+        }
     } option:self.opt];
+}
+- (void)discardUpload{
+    [QNFileRecorder removeKey:self.keyName directory:self.fileCachePath encodeKey:NO];
 }
 @end

@@ -7,8 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "FileHash.h"
+@protocol YXQiNiuUploadDelegate;
 @interface YXQiNiuVideoUpload : NSObject
+@property (nonatomic, weak) id<YXQiNiuUploadDelegate> delegate;
 - (id)initWithFileName:(NSString *)fileName qiNiuToken:(NSString *)qiNiuToken;
 - (void)startUpload;
+- (void)discardUpload;
+@end
+@protocol YXQiNiuUploadDelegate <NSObject>
+
+- (void)uploadProgress:(float)progress;
+
+- (void)uploadCompleteWithHash:(NSString *)hashStr;
+
 @end

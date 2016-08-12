@@ -152,7 +152,7 @@
         return;
     }
     // 业务逻辑错误
-    if (item.code.integerValue != 0) {
+    if (item.code.integerValue != 0 && item.code.integerValue != 1) {
         error = [NSError errorWithDomain:@"network" code:item.code.integerValue userInfo:@{NSLocalizedDescriptionKey: item.desc.length==0? @"请求失败":item.desc}];
         _completeBlock(item, error, self->_isMock);
         return;

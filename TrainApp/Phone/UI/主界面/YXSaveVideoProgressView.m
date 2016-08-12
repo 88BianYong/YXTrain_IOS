@@ -40,7 +40,7 @@
     [self addSubview:_backgroundView];
     
     _innerCircleView = [[UIView alloc] init];
-    _innerCircleView.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.7f];
+    _innerCircleView.backgroundColor = [UIColor whiteColor];
     _innerCircleView.layer.cornerRadius = 25.0f;
     [self addSubview:_innerCircleView];
     

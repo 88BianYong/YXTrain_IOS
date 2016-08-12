@@ -25,7 +25,7 @@
 @property (nonatomic, copy) NSString<Optional> *hwid;
 @end
 
-@interface YXSaveHomeWorkRequestItem : HttpBaseRequest
+@interface YXSaveHomeWorkRequestItem : HttpBaseRequestItem
 @property (nonatomic, copy) NSString<Optional> *resid;
 @end
 

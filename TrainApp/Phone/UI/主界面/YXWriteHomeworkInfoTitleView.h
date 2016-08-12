@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YXWriteHomeworkInfoHeaderView : UITableViewHeaderFooterView
-
+@interface YXWriteHomeworkInfoTitleView : UITableViewHeaderFooterView
+@property (nonatomic, copy) void (^titleStringHandler)(NSString *title);
 @end

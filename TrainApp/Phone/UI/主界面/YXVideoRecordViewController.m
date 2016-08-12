@@ -14,7 +14,6 @@
 #import "YXVideoRecordManager.h"
 #import "YXNotAutorotateView.h"
 #import "YXHomeworkInfoRequest.h"
-#import "YXAlertCustomView.h"
 @interface YXVideoRecordViewController()<SCRecorderDelegate, SCAssetExportSessionDelegate>
 {
     BOOL _stateBool;
@@ -179,18 +178,7 @@
                 break;
             case YXVideoRecordStatus_Save:
             {
-                if(self.isGreaterTenMinute){
-                    if (self ->_topView.recordTime >= 600.0f) {
-                       [self saveRecordVideo];
-                    }else{
-                        
-                    }
-                    
-                }
-                else{
-                    [self saveRecordVideo];
-                }
-                
+                [self saveRecordVideo];
             }
                 break;
             default:

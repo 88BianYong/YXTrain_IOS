@@ -196,7 +196,7 @@
     thumbnailImageRef = [assetImageGenerator copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)actualTime:NULL error:&thumbnailImageGenerationError];
     
     if(!thumbnailImageRef)
-        NSLog(@"thumbnailImageGenerationError %@",thumbnailImageGenerationError);
+        DDLogError(@"thumbnailImageGenerationError %@",thumbnailImageGenerationError);
     
     UIImage*thumbnailImage = thumbnailImageRef ? [[UIImage alloc]initWithCGImage: thumbnailImageRef] : nil;
     

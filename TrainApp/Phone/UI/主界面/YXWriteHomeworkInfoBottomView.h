@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YXWriteHomeworkInfoFooterView : UITableViewHeaderFooterView
-
+@interface YXWriteHomeworkInfoBottomView : UIView
+@property (nonatomic, copy) void (^topicStringHandler)(NSString *topic);
+@property (nonatomic, strong) UIButton *saveButton;
 @end

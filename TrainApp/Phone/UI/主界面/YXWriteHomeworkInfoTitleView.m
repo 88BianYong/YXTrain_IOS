@@ -6,18 +6,26 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "YXWriteHomeworkInfoHeaderView.h"
+#import "YXWriteHomeworkInfoTitleView.h"
 #import "SAMTextView.h"
-@interface YXWriteHomeworkInfoHeaderView()
+@interface YXWriteHomeworkInfoTitleView()
+<
+  UITextViewDelegate
+>
 {
     UILabel *_titleLabel;
     SAMTextView *_textView;
 }
 @end
-@implementation YXWriteHomeworkInfoHeaderView
+@implementation YXWriteHomeworkInfoTitleView
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewDidChange) name:UITextViewTextDidChangeNotification object:_textView];
         [self setupUI];
         [self layoutInterface];
     }
@@ -34,9 +42,11 @@
     [self.contentView addSubview:_titleLabel];
     
     _textView = [[SAMTextView alloc] init];
+    _textView.delegate = self;
     _textView.font = [UIFont systemFontOfSize:14.0f];
     _textView.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
-    _textView.textContainerInset = UIEdgeInsetsMake(15.0f, 15.0f, 0.0f, 0.0f);
+    _textView.layer.cornerRadius = YXTrainCornerRadii;
+    _textView.textContainerInset = UIEdgeInsetsMake(15.0f, 10.0f, 0.0f, 0.0f);
     [self.contentView addSubview:_textView];
     _textView.placeholder = @"标题文字最多显示30字";
 }
@@ -52,7 +62,26 @@
         make.left.equalTo(_titleLabel.mas_right);
         make.top.equalTo(self.contentView.mas_top).offset(10.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
-        make.height.equalTo(_textView.mas_width).priority(180.0f/610.0f);
+        make.height.equalTo(_textView.mas_width).multipliedBy(180.0f/610.0f);
     }];
+}
+
+#pragma mark - textViewDelegate
+- (void)textViewDidEndEditing:(UITextView *)textView{
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if (range.location >30) {
+        return NO;
+    }
+    return YES;
+}
+
+- (void)textViewDidChange
+{
+    if (_textView.text.length > 30) {
+        _textView.text = [_textView.text substringToIndex:30];
+    }
+    BLOCK_EXEC(self.titleStringHandler,_textView.text);
 }
 @end

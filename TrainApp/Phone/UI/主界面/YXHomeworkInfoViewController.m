@@ -10,14 +10,11 @@
 #import "YXHomeworkInfoHeaderView.h"
 #import "YXHomeworkInfoRequest.h"
 #import "YXVideoRecordViewController.h"
-#import "YXGetQiNiuTokenRequest.h"
-#import "YXQiNiuVideoUpload.h"
 #import "YXVideoRecordManager.h"
 #import "YXHomeworkInfoNoRecordCell.h"
 #import "YXHomeworkAlreadyRecordCell.h"
-#import "YXAlertCustomView.h"
 #import "YXUploadDepictionViewController.h"
-
+#import "YXWriteHomeworkInfoViewController.h"
 @interface YXHomeworkInfoViewController ()
 <
 UITableViewDelegate,
@@ -28,8 +25,6 @@ UITableViewDataSource
     YXErrorView *_errorView;
     
     YXHomeworkInfoRequest *_infoRequest;
-    YXQiNiuVideoUpload *_uploadRequest;
-    YXGetQiNiuTokenRequest *_getQiNiuTokenRequest;
 }
 @property (nonatomic ,strong)YXHomeworkInfoHeaderView *headerView;
 
@@ -57,6 +52,15 @@ UITableViewDataSource
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     [_tableView reloadData];
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    NSString *key = [[NSString alloc] initWithData:[NSData dataWithBytes:(unsigned char []){0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x61, 0x72} length:9] encoding:NSASCIIStringEncoding];
+    id object = [UIApplication sharedApplication];
+    if ([object respondsToSelector:NSSelectorFromString(key)]) {
+        UIView *statusBar = [object valueForKey:key];
+        statusBar.hidden = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,6 +109,8 @@ UITableViewDataSource
         return MAX(kScreenHeight - 64.0f - 336.0f, 150.0f);
     }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord){
         return 280.0f;
+    }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete){
+        return 280.0f;
     }
     return 0.0f;
 };
@@ -132,7 +138,7 @@ UITableViewDataSource
         };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else if(self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord){
+    }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord || 1){
         YXHomeworkAlreadyRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeworkAlreadyRecordCell" forIndexPath:indexPath];
         cell.filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName];
         cell.buttonActionHandler = ^(YXRecordVideoInterfaceStatus type){
@@ -142,7 +148,6 @@ UITableViewDataSource
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    return nil;
 }
 
 #pragma mark - request
@@ -174,20 +179,6 @@ UITableViewDataSource
     
     _infoRequest = request;
 }
-
-#pragma mark - upload video
-- (void)uploadVideoForQiNiu{
-    WEAK_SELF
-    _getQiNiuTokenRequest = [[YXGetQiNiuTokenRequest alloc] init];
-    [_getQiNiuTokenRequest  startRequestWithRetClass:[YXGetQiNiuTokenRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        YXGetQiNiuTokenRequestItem *item = retItem;
-        DDLogDebug(@"%@",item.uploadToken);
-        _uploadRequest = [[YXQiNiuVideoUpload alloc] initWithFileName:@"1129632018079.mp4" qiNiuToken:item.uploadToken];
-        [_uploadRequest  startUpload];
-    }];
-}
-
 #pragma mark - format Data
 - (void)findVideoHomeworkInformation:(YXHomeworkInfoRequestItem_Body *)item{
     NSArray *saveArray = [YXVideoRecordManager getVideoArrayWithModel];
@@ -230,7 +221,7 @@ UITableViewDataSource
                                 
                             }];
                         };
-                        YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频录制时长需要大于10分钟~" image:@"胶卷" actions:@[knowAction]];
+                        YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频录制时长需要大于10分钟~" image:@"提醒icon" actions:@[knowAction]];
                         [alertView showAlertView:nil];
                     }
                     else{
@@ -260,7 +251,9 @@ UITableViewDataSource
             break;
         case YXRecordVideoInterfaceStatus_Write:
         {
-            
+            YXWriteHomeworkInfoViewController *VC = [[YXWriteHomeworkInfoViewController alloc] init];
+            VC.videoModel = self.itemBody;
+            [self.navigationController pushViewController:VC animated:YES];
         }
             break;
             

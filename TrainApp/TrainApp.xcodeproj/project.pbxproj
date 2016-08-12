@@ -229,8 +229,12 @@
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
 		92EDC7B71D5C6C61005B91DD /* YXWriteHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */; };
 		92EDC7BA1D5C7323005B91DD /* YXWriteHomeworkInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B91D5C7323005B91DD /* YXWriteHomeworkInfoCell.m */; };
-		92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7BC1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m */; };
-		92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7BF1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m */; };
+		92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7BC1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.m */; };
+		92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7BF1D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m */; };
+		92EDC7C51D5DDD0E005B91DD /* YXWriteHomeworkInfoMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7C41D5DDD0E005B91DD /* YXWriteHomeworkInfoMenuView.m */; };
+		92EDC7C81D61AD76005B91DD /* YXSelectHomeworkInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7C71D61AD76005B91DD /* YXSelectHomeworkInfoView.m */; };
+		92EDC7CB1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7CA1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m */; };
+		92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7CD1D62C33A005B91DD /* YXChapterListRequest.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 		CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */; };
 		CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */; };
@@ -778,10 +782,18 @@
 		92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoViewController.m; sourceTree = "<group>"; };
 		92EDC7B81D5C7323005B91DD /* YXWriteHomeworkInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoCell.h; sourceTree = "<group>"; };
 		92EDC7B91D5C7323005B91DD /* YXWriteHomeworkInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoCell.m; sourceTree = "<group>"; };
-		92EDC7BB1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoHeaderView.h; sourceTree = "<group>"; };
-		92EDC7BC1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoHeaderView.m; sourceTree = "<group>"; };
-		92EDC7BE1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoFooterView.h; sourceTree = "<group>"; };
-		92EDC7BF1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoFooterView.m; sourceTree = "<group>"; };
+		92EDC7BB1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoTitleView.h; sourceTree = "<group>"; };
+		92EDC7BC1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoTitleView.m; sourceTree = "<group>"; };
+		92EDC7BE1D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoBottomView.h; sourceTree = "<group>"; };
+		92EDC7BF1D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoBottomView.m; sourceTree = "<group>"; };
+		92EDC7C31D5DDD0E005B91DD /* YXWriteHomeworkInfoMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoMenuView.h; sourceTree = "<group>"; };
+		92EDC7C41D5DDD0E005B91DD /* YXWriteHomeworkInfoMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWriteHomeworkInfoMenuView.m; sourceTree = "<group>"; };
+		92EDC7C61D61AD76005B91DD /* YXSelectHomeworkInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSelectHomeworkInfoView.h; sourceTree = "<group>"; };
+		92EDC7C71D61AD76005B91DD /* YXSelectHomeworkInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSelectHomeworkInfoView.m; sourceTree = "<group>"; };
+		92EDC7C91D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXWriteHomeworkInfoViewController+Format.h"; sourceTree = "<group>"; };
+		92EDC7CA1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXWriteHomeworkInfoViewController+Format.m"; sourceTree = "<group>"; };
+		92EDC7CC1D62C33A005B91DD /* YXChapterListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXChapterListRequest.h; sourceTree = "<group>"; };
+		92EDC7CD1D62C33A005B91DD /* YXChapterListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXChapterListRequest.m; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CB0904CE1D1AA3CC00026C9D /* PersistentUrlDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentUrlDownloader.h; sourceTree = "<group>"; };
 		CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentUrlDownloader.m; sourceTree = "<group>"; };
@@ -1937,6 +1949,8 @@
 				92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */,
 				92EDC7B51D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.h */,
 				92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */,
+				92EDC7C91D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.h */,
+				92EDC7CA1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m */,
 			);
 			name = "作业";
 			sourceTree = "<group>";
@@ -1981,10 +1995,14 @@
 				92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */,
 				92EDC7B81D5C7323005B91DD /* YXWriteHomeworkInfoCell.h */,
 				92EDC7B91D5C7323005B91DD /* YXWriteHomeworkInfoCell.m */,
-				92EDC7BB1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.h */,
-				92EDC7BC1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m */,
-				92EDC7BE1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.h */,
-				92EDC7BF1D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m */,
+				92EDC7BB1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.h */,
+				92EDC7BC1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.m */,
+				92EDC7C31D5DDD0E005B91DD /* YXWriteHomeworkInfoMenuView.h */,
+				92EDC7C41D5DDD0E005B91DD /* YXWriteHomeworkInfoMenuView.m */,
+				92EDC7BE1D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.h */,
+				92EDC7BF1D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m */,
+				92EDC7C61D61AD76005B91DD /* YXSelectHomeworkInfoView.h */,
+				92EDC7C71D61AD76005B91DD /* YXSelectHomeworkInfoView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2011,6 +2029,8 @@
 				920F1D5B1D53456700636A51 /* YXSaveHomeWorkRequest.m */,
 				920F1D6F1D5983E500636A51 /* YXVideoRecordManager.h */,
 				920F1D701D5983E500636A51 /* YXVideoRecordManager.m */,
+				92EDC7CC1D62C33A005B91DD /* YXChapterListRequest.h */,
+				92EDC7CD1D62C33A005B91DD /* YXChapterListRequest.m */,
 			);
 			name = "视频上传";
 			sourceTree = "<group>";
@@ -2524,13 +2544,13 @@
 				922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */,
 				9223C81B1D2D0144000F74DF /* YXWorkshopDatumRequest.m in Sources */,
 				7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */,
-				92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoHeaderView.m in Sources */,
+				92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
 				920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */,
-				92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoFooterView.m in Sources */,
+				92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m in Sources */,
 				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
 				7C3177B51D0EB7F1004AAC90 /* UIViewController+Keyboard.m in Sources */,
@@ -2622,6 +2642,7 @@
 				7C2C3B6C1D24C74F00A03635 /* YXModuleDetailRequest.m in Sources */,
 				CB1606041D2FC7C60071BA01 /* YXImagePickerController.m in Sources */,
 				920F1D771D59D1B500636A51 /* YXNotAutorotateView.m in Sources */,
+				92EDC7C81D61AD76005B91DD /* YXSelectHomeworkInfoView.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
 				7C2C3B601D23D68500A03635 /* YXCourseListFilterModel.m in Sources */,
 				7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */,
@@ -2775,6 +2796,7 @@
 				7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
+				92EDC7CB1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m in Sources */,
 				920F1D1F1D506DE500636A51 /* UIViewController+YXAddtion.m in Sources */,
 				CB3510B71D18E9830081EA3B /* YXDatumOrderViewCell.m in Sources */,
 				CBBE95071D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m in Sources */,
@@ -2792,7 +2814,9 @@
 				CB3510C81D18F62A0081EA3B /* YXWholeDatumFetcher.m in Sources */,
 				7CF888371D17ECB800E7C04D /* YXAudioSlideProgressView.m in Sources */,
 				920F1D4B1D51F0D700636A51 /* YXHomeworkListCell.m in Sources */,
+				92EDC7C51D5DDD0E005B91DD /* YXWriteHomeworkInfoMenuView.m in Sources */,
 				CB748EEC1D24F3CD004BCFBF /* YXPagedListEmptyView.m in Sources */,
+				92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */,
 				7C3178241D129C01004AAC90 /* ReaderContentTile.m in Sources */,
 				7C3177811D0E8A1D004AAC90 /* GlobalUtils.m in Sources */,
 			);

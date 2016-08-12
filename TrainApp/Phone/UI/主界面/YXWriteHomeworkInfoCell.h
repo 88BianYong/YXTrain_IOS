@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface YXWriteHomeworkInfoCell : UITableViewCell
-
+@property (nonatomic, copy) NSString *titleString;
+@property (nonatomic, copy) NSString *contentString;
+@property (nonatomic, assign)YXWriteHomeworkListStatus status;
+@property (nonatomic, copy) void (^openCloseHandler)(UIView *sender, YXWriteHomeworkListStatus status);
+@property (nonatomic, assign) BOOL isEnabled;
 @end
