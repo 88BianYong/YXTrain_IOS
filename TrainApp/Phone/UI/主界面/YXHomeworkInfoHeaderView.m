@@ -154,10 +154,10 @@
     
     UILabel *label = [self viewWithTag:1001];
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label.mas_bottom).offset(22.0f);
+        make.top.equalTo(label.mas_bottom).offset(18.0f);
         make.left.equalTo(self.mas_left).offset(10.0f);
         make.right.equalTo(self.mas_right).offset(-10.0f);
-        make.height.mas_offset(100.0f);
+        make.height.mas_offset(80.0f);
     }];
     
     [_descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {

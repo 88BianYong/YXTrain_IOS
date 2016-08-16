@@ -29,6 +29,7 @@ typedef NS_ENUM (NSInteger, YXVideoRecordStatus) {
 };//录制视频状态
 
 typedef NS_ENUM (NSInteger, YXVideoLessonStatus) {
+    YXVideoLessonStatus_Finish = -1,//作业完成 本地没有视频
     YXVideoLessonStatus_NoRecord = 0, //未录制
     YXVideoLessonStatus_AlreadyRecord = 1, //已经录制未上传 未创建作业
     YXVideoLessonStatus_Uploading = 2,//上传中 已经创建作业
@@ -42,6 +43,7 @@ typedef NS_ENUM (NSInteger, YXRecordVideoInterfaceStatus) {
     YXRecordVideoInterfaceStatus_Depiction = 2, //说明 YXUploadDepictionViewController
     YXRecordVideoInterfaceStatus_Write = 3,// 填写 YXWriteHomeworkInfoViewController
     YXRecordVideoInterfaceStatus_Play = 4,//播放
+    YXRecordVideoInterfaceStatus_Change = 5,//修改 YXWriteHomeworkInfoViewController
     
 };
 

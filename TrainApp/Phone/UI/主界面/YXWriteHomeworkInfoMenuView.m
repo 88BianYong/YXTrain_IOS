@@ -39,7 +39,6 @@
     UILabel *_titleLabel;
     UIView * _backgroundView;
     UITableView *_tableView;
-    NSIndexPath *_indexPath;
     
 }
 @end
@@ -137,7 +136,7 @@
     YXChapterListRequestItem_sub *sub = _item.data[indexPath.section];
     YXChapterListRequestItem_sub *model = sub.sub[indexPath.row];
     NSString *chapterId = [NSString stringWithFormat:@"%@,%@",sub.chapterId,model.chapterId];
-    BLOCK_EXEC(self.chapterIdHandler,chapterId);
+    BLOCK_EXEC(self.chapterIdHandler,chapterId?:@"",model.name?:@"");
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -172,5 +171,11 @@
     _item = item;
     [_tableView reloadData];
 }
-
+- (void)setIndexPath:(NSIndexPath *)indexPath{
+    _indexPath = indexPath;
+    if (_indexPath) {
+        [_tableView scrollToRowAtIndexPath:_indexPath
+                          atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
+}
 @end

@@ -13,7 +13,7 @@
 @property (nonatomic, copy)void(^tapCloseView)(YXWriteHomeworkListStatus status);
 - (void)setViewWithDataArray:(NSArray *)itemArray
                  withStatus:(YXWriteHomeworkListStatus)status
-              withSelectedId:(NSInteger)integerId
+              withSelectedId:(NSString *)integerId
                  withOriginY:(CGFloat)y;
 
 @end

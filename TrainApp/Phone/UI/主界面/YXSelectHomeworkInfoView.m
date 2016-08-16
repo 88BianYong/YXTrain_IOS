@@ -13,7 +13,7 @@
 @end
 
 @implementation YXSelectHomeworkInfoCell
-- (void)awakeFromNib {file:///Users/zhengxiaolong/Desktop/YXTrain_IOS/TrainApp/Phone/UI/主界面/YXSelectHomeworkInfoView.m
+- (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
@@ -87,7 +87,7 @@
 @property (nonatomic, assign) CGFloat originY;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *maskView;
-@property (nonatomic, assign) NSInteger selectedId;
+@property (nonatomic, copy  ) NSString * selectedId;
 
 @property (nonatomic, strong) UIImageView *topTriangleImageView;
 @end
@@ -102,13 +102,13 @@
 
 - (void)setViewWithDataArray:(NSArray *)itemArray
                   withStatus:(YXWriteHomeworkListStatus)status
-              withSelectedId:(NSInteger)integerId
+              withSelectedId:(NSString *)integerId
                  withOriginY:(CGFloat)y{
     [self.itemMutableArray addObjectsFromArray:itemArray];
     self.index = status;
     self.selectedId = integerId;
     self.originY = y;
-    CGFloat tableHeight = MIN(_itemMutableArray.count*44, 330);
+    CGFloat tableHeight = MIN(_itemMutableArray.count*44, 242);
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.originY);
         make.left.mas_equalTo(55.0f);
@@ -171,7 +171,7 @@
     YXSelectHomeworkInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXSelectHomeworkInfoCell" forIndexPath:indexPath];
     YXCategoryListRequestItem_Data *data = _itemMutableArray[indexPath.row];
     cell.orderLabel.text = data.name;
-    if (data.categoryId.integerValue == self.selectedId) {
+    if ([data.categoryId isEqualToString: self.selectedId]) {
         cell.isSelectBool = YES;
     }else{
         cell.isSelectBool = NO;

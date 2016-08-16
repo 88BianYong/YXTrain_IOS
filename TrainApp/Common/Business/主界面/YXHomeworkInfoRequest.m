@@ -19,6 +19,9 @@
     return YES;
 }
 @end
+@implementation YXHomeworkInfoRequestItem_Body_Detail
+
+@end
 
 @implementation YXHomeworkInfoRequest
 - (instancetype)init

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YXChapterListRequest.h"
 @interface YXWriteHomeworkInfoMenuView : UITableViewHeaderFooterView
+@property (nonatomic, strong)NSIndexPath *indexPath;
 @property (nonatomic, strong)YXChapterListRequestItem *item;
-@property (nonatomic, copy) void (^chapterIdHandler)(NSString *chapter);
+@property (nonatomic, copy) void (^chapterIdHandler)(NSString *chapterId, NSString *chapterName);
 @end

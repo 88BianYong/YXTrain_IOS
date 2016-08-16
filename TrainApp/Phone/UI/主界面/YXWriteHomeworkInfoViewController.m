@@ -17,7 +17,6 @@
 #import "YXSaveVideoProgressView.h"
 #import "YXVideoRecordManager.h"
 #import "YXSaveHomeWorkRequest.h"
-#import "YXWriteHomeworkRequest.h"
 @interface YXWriteHomeworkInfoViewController()
 <
   UITableViewDelegate,
@@ -33,12 +32,15 @@
     
     NSArray *_titleArray;
     YXCategoryListRequestItem *_listItem;
+
     
     YXCategoryListRequest *_listRequest;
     YXChapterListRequest *_chapterRequest;
     YXQiNiuVideoUpload *_uploadRequest;
     YXGetQiNiuTokenRequest *_getQiNiuTokenRequest;
     YXSaveHomeWorkRequest *_saveRequest;
+    YXWriteHomeworkRequest *_homeworkRequest;
+    
 }
 @end
 @implementation YXWriteHomeworkInfoViewController
@@ -90,7 +92,6 @@
 - (YXWriteHomeworkInfoMenuView *)menuView{
     return (YXWriteHomeworkInfoMenuView *)[_tableView footerViewForSection:0];
 }
-
 
 #pragma mark - setupUI
 - (void)setupUI{
@@ -160,16 +161,18 @@
         STRONG_SELF
         [self showWorkhomeInfo:YXWriteHomeworkListStatus_Title withChangeObj:title];
     };
+    view.titleString = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
     return view;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     YXWriteHomeworkInfoMenuView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXWriteHomeworkInfoMenuView"];
     view.item = _chapterList;
     WEAK_SELF
-    view.chapterIdHandler = ^(NSString *chapterId){
+    view.chapterIdHandler = ^(NSString *chapterId, NSString *chapterName){
         STRONG_SELF
-        [self showWorkhomeInfo:YXWriteHomeworkListStatus_Menu withChangeObj:chapterId];
+        [self showWorkhomeInfo:YXWriteHomeworkListStatus_Menu withChangeObj:@[chapterId,chapterName]];
     };
+    view.indexPath = _chapterIndexPath;
     return view;
 }
 
@@ -209,9 +212,11 @@
 - (void)showWorkhomeInfoChooseMenu:(CGRect)rect withStatus:(YXWriteHomeworkListStatus)status{
     [self yx_hideKeyboard];
     CGFloat originY = rect.origin.y;
-    if (rect.origin.y > (_tableView.frame.size.height - 330.0f)) {
-        [_tableView setContentOffset:CGPointMake(0, 330 - _tableView.frame.size.height +  rect.origin.y) animated:YES];
-        originY = _tableView.frame.size.height - 330.0f;
+    if (rect.origin.y > (_tableView.frame.size.height - 300.0f)) {
+        CGPoint point = _tableView.contentOffset;
+        point.y += rect.origin.y - (_tableView.frame.size.height - 300.0f) ;
+        [_tableView setContentOffset:point animated:YES];
+        originY = _tableView.frame.size.height - 300.0f;
     }
     YXSelectHomeworkInfoView *infoView = [[YXSelectHomeworkInfoView alloc]initWithFrame:self.view.window.bounds];
     WEAK_SELF
@@ -226,7 +231,7 @@
     };
     [infoView setViewWithDataArray:_listMutableDictionary[@(status)]
                         withStatus:status
-                    withSelectedId:[_selectedMutableDictionary[@(status)][0] integerValue]
+                    withSelectedId:_selectedMutableDictionary[@(status)][0]
                        withOriginY:originY + 100.0f];
     
     [self.view.window addSubview:infoView];
@@ -252,6 +257,9 @@
             self ->_listItem = retItem;
             [self schoolSectionWithData];
             [self -> _tableView reloadData];
+            if (self.videoModel.homeworkid.integerValue != 0) {
+                [self requestForHomeworkInfo];
+            }
         }
     }];
     _listRequest = request;
@@ -272,9 +280,10 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            
+            [self showToast:@"作业章节获取失败"];
         }else{
-            self ->_chapterList = retItem;
+            self.chapterList = retItem;
+            [self saveChapterList];
             [self -> _tableView reloadData];
         }
     }];
@@ -317,7 +326,22 @@
             self.videoModel.homeworkid = item.resid;
             self.videoModel.uploadPercent = 0.0;
             self.videoModel.isUploadSuccess = NO;
-            self.videoModel.lessonStatus = YXVideoLessonStatus_UploadComplete;
+            NSString *filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:self.videoModel.fileName];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                self.videoModel.lessonStatus = YXVideoLessonStatus_UploadComplete;
+            }
+            else{
+               self.videoModel.lessonStatus = YXVideoLessonStatus_Finish;
+            }
+            YXHomeworkInfoRequestItem_Body_Detail *detail = [[YXHomeworkInfoRequestItem_Body_Detail alloc] init];
+            detail.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
+            detail.segmentName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][1];
+            detail.gradeName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][1];
+            detail.studyName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][1];
+            detail.chapterName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Menu)][1];
+            detail.versionName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][1];
+            detail.keyword =  self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
+            self.videoModel.detail = detail;
             [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
             [self.navigationController popViewControllerAnimated:YES];
         }else{
@@ -325,9 +349,34 @@
         }
     }];
     _saveRequest = request;
-    
-    
 }
+
+- (void)requestForHomeworkInfo{
+    if (_homeworkRequest) {
+        [_homeworkRequest stopRequest];
+    }
+    WEAK_SELF
+    YXWriteHomeworkRequest *request = [[YXWriteHomeworkRequest alloc] init];
+    request.projectid = self.videoModel.pid;
+    request.hwid = self.videoModel.homeworkid;
+    [request startRequestWithRetClass:[YXWriteHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error) {
+            [self showToast:@"目录信息获取失败"];
+        }else{
+            YXWriteHomeworkRequestItem *item = retItem;
+            self ->_homeworkItem = item;
+            [self saveWorkhomeInfo:item.body];
+            [self -> _tableView reloadData];
+            if (!isEmpty(self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][1])) {
+              [self requestForChapterList];
+            };
+        }
+    }];
+    _homeworkRequest = request;
+}
+
+
 #pragma mark - upload video
 - (void)uploadVideoForQiNiu{
     if (_getQiNiuTokenRequest) {
@@ -373,7 +422,12 @@
 #pragma mark - button Action
 - (void)buttonActionForSave:(UIButton *)sender{
     if (sender.selected) {
-        [self uploadVideoForQiNiu];
+        if (self.isChangeHomeworkInfo) {
+            [self requestSaveHomework:nil];
+        }else{
+          [self uploadVideoForQiNiu];
+        }
+        
         
     }else{
         if (![self saveInfoHomeWorkShowToast:YES]) {

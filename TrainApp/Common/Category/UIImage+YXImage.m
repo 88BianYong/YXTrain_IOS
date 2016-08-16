@@ -190,10 +190,12 @@
     AVAssetImageGenerator *assetImageGenerator =[[AVAssetImageGenerator alloc] initWithAsset:asset];
     assetImageGenerator.appliesPreferredTrackTransform = YES;
     assetImageGenerator.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    assetImageGenerator.maximumSize = CGSizeMake(740, 400);
     CGImageRef thumbnailImageRef = NULL;
-    CFTimeInterval thumbnailImageTime = time;
+    CFTimeInterval thumbnailImageTime = time * 60.0f;
     NSError *thumbnailImageGenerationError = nil;
     thumbnailImageRef = [assetImageGenerator copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)actualTime:NULL error:&thumbnailImageGenerationError];
+    
     
     if(!thumbnailImageRef)
         DDLogError(@"thumbnailImageGenerationError %@",thumbnailImageGenerationError);

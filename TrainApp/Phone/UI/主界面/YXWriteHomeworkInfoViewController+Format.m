@@ -47,6 +47,7 @@
 - (void)chapterWithGrade{
     self.chapterList = nil;
     self.menuView.item = nil;
+    [self.listMutableDictionary removeObjectForKey:@(YXWriteHomeworkListStatus_Menu)];
 }
 
 - (BOOL)analyzingInformationNotComplete:(YXWriteHomeworkListStatus)status{
@@ -232,7 +233,8 @@
             break;
         case YXWriteHomeworkListStatus_Menu:
         {
-            [self.selectedMutableDictionary setObject:@[(NSString *)changeObj,@""]
+            NSArray *menuArray = (NSArray *)changeObj;
+            [self.selectedMutableDictionary setObject:@[menuArray[0],menuArray[1]]
                                                forKey:@(status)];
         }
             break;
@@ -259,5 +261,68 @@
                      self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][0]?:@"",
                      self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][0]]?:@"";
     return cId;
+}
+
+- (void)saveWorkhomeInfo:(YXWriteHomeworkRequestItem_Body *)body{
+    //学段
+    NSArray *schoolSection = self.listMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)];
+    for (YXCategoryListRequestItem_Data *model in schoolSection) {
+        if ([model.categoryId isEqualToString:body.meizi_segment]) {
+            [self.selectedMutableDictionary setObject:@[model.categoryId,model.name] forKey:@(YXWriteHomeworkListStatus_SchoolSection)];
+            [self subjectWithSchoolSection:model];
+        }
+    }
+    //学科
+    NSArray *subject = self.listMutableDictionary[@(YXWriteHomeworkListStatus_Subject)];
+    for (YXCategoryListRequestItem_Data *model in subject) {
+        if ([model.categoryId isEqualToString:body.meizi_study]) {
+            [self.selectedMutableDictionary setObject:@[model.categoryId,model.name] forKey:@(YXWriteHomeworkListStatus_Subject)];
+            [self versionWithSubject:model];
+        }
+    }
+    //版本
+    NSArray *version = self.listMutableDictionary[@(YXWriteHomeworkListStatus_Version)];
+    for (YXCategoryListRequestItem_Data *model in version) {
+        if ([model.categoryId isEqualToString:body.meizi_edition]) {
+            [self.selectedMutableDictionary setObject:@[model.categoryId,model.name] forKey:@(YXWriteHomeworkListStatus_Version)];
+            [self gradeWithVersion:model];
+        }
+    }
+    //年级
+    NSArray *grade = self.listMutableDictionary[@(YXWriteHomeworkListStatus_Grade)];
+    for (YXCategoryListRequestItem_Data *model in grade) {
+        if ([model.categoryId isEqualToString:body.meizi_grade]) {
+            [self.selectedMutableDictionary setObject:@[model.categoryId,model.name] forKey:@(YXWriteHomeworkListStatus_Grade)];
+            [self chapterWithGrade];
+        }
+    }
+    [self.selectedMutableDictionary setObject:@[@"",body.title] forKey:@(YXWriteHomeworkListStatus_Title)];
+    [self.selectedMutableDictionary setObject:@[@"",body.meizi_keyword] forKey:@(YXWriteHomeworkListStatus_Topic)];
+    self.videoModel.fileName = body.upload.fileName;
+    self.bottomView.topicString = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
+}
+- (void)saveChapterList{
+    if (!isEmpty(self.homeworkItem.body.meizi_chapter)) {
+        NSArray *array = [self.homeworkItem.body.meizi_chapter componentsSeparatedByString:@","];
+        __block  YXChapterListRequestItem_sub *sub = nil;
+        __block  NSInteger section = 0;
+        __block  NSInteger row = 0;
+        [self.chapterList.data enumerateObjectsUsingBlock:^(YXChapterListRequestItem_sub * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.chapterId isEqualToString:array[0]]) {
+                section = idx;
+                sub = obj;
+                *stop = YES;
+            }
+        }];
+        [sub.sub enumerateObjectsUsingBlock:^(YXChapterListRequestItem_sub *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.chapterId isEqualToString:array[1]]) {
+                row = idx;
+                [self.selectedMutableDictionary setObject:@[self.homeworkItem.body.meizi_chapter?:@"",obj.name?:@""] forKey:@(YXWriteHomeworkListStatus_Menu)];
+                *stop = YES;
+            }
+        }];
+        self.chapterIndexPath = [NSIndexPath indexPathForRow:row inSection:section];
+    }
+    self.bottomView.saveButton.selected = [self saveInfoHomeWorkShowToast:NO];
 }
 @end

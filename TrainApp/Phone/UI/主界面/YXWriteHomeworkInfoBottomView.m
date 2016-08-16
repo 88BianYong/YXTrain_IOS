@@ -126,5 +126,9 @@
     }
     BLOCK_EXEC(self.topicStringHandler,_textView.text);
 }
+- (void)setTopicString:(NSString *)topicString{
+    _topicString = topicString;
+    _textView.text = _topicString;
+}
 
 @end

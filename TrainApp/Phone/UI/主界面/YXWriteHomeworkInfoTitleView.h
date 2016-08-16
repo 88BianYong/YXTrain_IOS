@@ -10,4 +10,5 @@
 
 @interface YXWriteHomeworkInfoTitleView : UITableViewHeaderFooterView
 @property (nonatomic, copy) void (^titleStringHandler)(NSString *title);
+@property (nonatomic, copy) NSString *titleString;
 @end

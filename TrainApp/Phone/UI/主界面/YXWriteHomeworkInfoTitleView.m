@@ -84,4 +84,8 @@
     }
     BLOCK_EXEC(self.titleStringHandler,_textView.text);
 }
+- (void)setTitleString:(NSString *)titleString{
+    _titleString = titleString;
+    _textView.text = _titleString;
+}
 @end

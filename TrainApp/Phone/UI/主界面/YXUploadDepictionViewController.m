@@ -41,13 +41,13 @@
     }];
     _contentLabel = [[UILabel alloc] init];
     _contentLabel.backgroundColor = [UIColor clearColor];
-    _contentLabel.numberOfLines = 0.0f;
+    _contentLabel.numberOfLines = 0;
     [_scrollView addSubview:_contentLabel];
     NSString *dLabelString = YXTrainUploadDepictionString;
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:dLabelString];
     NSMutableParagraphStyle   *paragraphStyle   = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7.0];
-    [paragraphStyle setParagraphSpacing:10.0];
+    [paragraphStyle setParagraphSpacing:12.0];
     [paragraphStyle setFirstLineHeadIndent:0.0f];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [dLabelString length])];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"334466"] range:NSMakeRange(0, [dLabelString length])];

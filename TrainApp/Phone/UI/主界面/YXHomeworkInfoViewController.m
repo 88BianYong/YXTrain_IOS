@@ -15,6 +15,9 @@
 #import "YXHomeworkAlreadyRecordCell.h"
 #import "YXUploadDepictionViewController.h"
 #import "YXWriteHomeworkInfoViewController.h"
+#import "YXHomeworkUploadCompleteView.h"
+#import "YXHomeworkInfoFinishHeaderView.h"
+#import "YXHomeworkPlayVideoCell.h"
 @interface YXHomeworkInfoViewController ()
 <
 UITableViewDelegate,
@@ -27,10 +30,31 @@ UITableViewDataSource
     YXHomeworkInfoRequest *_infoRequest;
 }
 @property (nonatomic ,strong)YXHomeworkInfoHeaderView *headerView;
+@property (nonatomic ,strong)YXHomeworkUploadCompleteView *footerView;
 
 @end
 
 @implementation YXHomeworkInfoViewController
+
+#pragma mark - propetry
+- (YXHomeworkInfoHeaderView *)headerView{
+    if (!_headerView) {
+        _headerView = [[YXHomeworkInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 310.0f)];
+    }
+    return _headerView;
+}
+
+- (YXHomeworkUploadCompleteView *)footerView{
+    if (!_footerView) {
+        WEAK_SELF
+        _footerView = [[YXHomeworkUploadCompleteView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 300.0f)];
+        _footerView.buttonActionHandler = ^(YXRecordVideoInterfaceStatus type){
+            STRONG_SELF
+            [self gotoNextViewController:type];
+        };
+    }
+    return _footerView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,7 +75,7 @@ UITableViewDataSource
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-    [_tableView reloadData];
+    [self reloadView];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -68,16 +92,9 @@ UITableViewDataSource
     // Dispose of any resources that can be recreated.
 }
 
-- (YXHomeworkInfoHeaderView *)headerView{
-    if (!_headerView) {
-        _headerView = [[YXHomeworkInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 336.0f)];
-    }
-    return _headerView;
-}
-
 #pragma mark - setupUI
 - (void)setupUI{
-    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -87,8 +104,9 @@ UITableViewDataSource
     _tableView.hidden = YES;
     [_tableView registerClass:[YXHomeworkInfoNoRecordCell class] forCellReuseIdentifier:@"YXHomeworkInfoNoRecordCell"];
     [_tableView registerClass:[YXHomeworkAlreadyRecordCell class] forCellReuseIdentifier:@"YXHomeworkAlreadyRecordCell"];
+    [_tableView registerClass:[YXHomeworkInfoFinishHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXHomeworkInfoFinishHeaderView"];
     [self.view addSubview:_tableView];
-    
+    [_tableView registerClass:[YXHomeworkPlayVideoCell class] forCellReuseIdentifier:@"YXHomeworkPlayVideoCell"];
     WEAK_SELF
     _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     _errorView.retryBlock = ^{
@@ -110,10 +128,31 @@ UITableViewDataSource
     }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord){
         return 280.0f;
     }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete){
-        return 280.0f;
+        return kScreenHeightScale(200.0f);
     }
     return 0.0f;
 };
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (self.itemBody.lessonStatus == YXVideoLessonStatus_Finish || self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete) {
+        return 55.0f;
+    }else{
+        return 0.1f;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.1f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (self.itemBody.lessonStatus == YXVideoLessonStatus_Finish || self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete) {
+        YXHomeworkInfoFinishHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXHomeworkInfoFinishHeaderView"];
+        view.titleString = _itemBody.detail.title;
+        return view;
+    }else{
+        return nil;
+    }    
+}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -122,7 +161,12 @@ UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.itemBody.type.integerValue == 2 || self.itemBody.type.integerValue == 3) {
-        return 1;
+        if (self.itemBody.lessonStatus == YXVideoLessonStatus_Finish){
+            return 0;
+        }else{
+            return 1; 
+        }
+
     }else{
         return 0;
     }
@@ -138,7 +182,7 @@ UITableViewDataSource
         };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord || 1){
+    }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord){
         YXHomeworkAlreadyRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeworkAlreadyRecordCell" forIndexPath:indexPath];
         cell.filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName];
         cell.buttonActionHandler = ^(YXRecordVideoInterfaceStatus type){
@@ -147,7 +191,16 @@ UITableViewDataSource
         };
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
+    }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete){
+        YXHomeworkPlayVideoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHomeworkPlayVideoCell" forIndexPath:indexPath];
+        cell.imageName = [PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName];
+        cell.buttonActionHandler = ^(YXRecordVideoInterfaceStatus type){
+            STRONG_SELF
+            [self gotoNextViewController:type];
+        };
+        return cell;
     }
+    return nil;
 }
 
 #pragma mark - request
@@ -170,9 +223,14 @@ UITableViewDataSource
             if (item) {
                 item.body.uid = [YXUserManager sharedManager].userModel.uid;
                 item.body.pid = [YXTrainManager sharedInstance].currentProject.pid;
-                item.body.lessonStatus = YXVideoLessonStatus_NoRecord;
+                if (item.body.detail) {
+                  item.body.lessonStatus = YXVideoLessonStatus_Finish;
+                }else{
+                   item.body.lessonStatus = YXVideoLessonStatus_NoRecord; 
+                }
                 self.itemBody = item.body;
                 [self findVideoHomeworkInformation:self.itemBody];
+                 _tableView.hidden = NO;
             }
         }
     }];
@@ -195,12 +253,22 @@ UITableViewDataSource
         }
     }];
     _tableView.tableHeaderView = self.headerView;
-    self.headerView.body = item;
+    self.headerView.body = self.itemBody;
     self.title = self.itemBody.title;
-    _tableView.hidden = NO;
-    [_tableView reloadData];
+    [self reloadView];
 }
 
+- (void)reloadView{
+    if (self.itemBody.detail && (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_Finish )) {
+        _tableView.tableFooterView = self.footerView;
+        self.footerView.detail = self.itemBody.detail;
+    }
+    else{
+        _tableView.tableFooterView = nil;
+    }
+    [_tableView reloadData];
+    
+}
 #pragma mark - present ViewController
 - (void)gotoNextViewController:(YXRecordVideoInterfaceStatus)type{
     switch (type) {
@@ -253,6 +321,14 @@ UITableViewDataSource
         {
             YXWriteHomeworkInfoViewController *VC = [[YXWriteHomeworkInfoViewController alloc] init];
             VC.videoModel = self.itemBody;
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+            break;
+        case YXRecordVideoInterfaceStatus_Change:
+        {
+            YXWriteHomeworkInfoViewController *VC = [[YXWriteHomeworkInfoViewController alloc] init];
+            VC.videoModel = self.itemBody;
+            VC.isChangeHomeworkInfo = YES;
             [self.navigationController pushViewController:VC animated:YES];
         }
             break;
