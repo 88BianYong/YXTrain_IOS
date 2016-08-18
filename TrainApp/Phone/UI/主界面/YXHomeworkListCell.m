@@ -135,7 +135,11 @@
         }
         _nameLabel.text = _homework.title;
         _nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
-        _endDataLabel.text = [NSString stringWithFormat:@"截止日期  %@",_homework.endDate?:@"无"];
+        if (isEmpty(_homework.endDate)) {
+            _endDataLabel.text = @"截止日期:  无";
+        }else{
+           _endDataLabel.text = [NSString stringWithFormat:@"截止日期:  %@",_homework.endDate];
+        }
         _endDataLabel.hidden = NO;
         if([_homework.isFinished isEqualToString:@"1"]){
             _finishedImageView.hidden = NO;

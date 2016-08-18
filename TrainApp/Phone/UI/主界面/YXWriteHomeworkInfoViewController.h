@@ -13,6 +13,7 @@
 #import "YXChapterListRequest.h"
 #import "YXWriteHomeworkInfoMenuView.h"
 #import "YXWriteHomeworkRequest.h"
+#import "YXUpdVideoHomeworkRequest.h"
 @interface YXWriteHomeworkInfoViewController : YXBaseViewController
 @property (nonatomic, strong)YXHomeworkInfoRequestItem_Body  *videoModel;
 @property (nonatomic, strong)NSMutableDictionary *listMutableDictionary;

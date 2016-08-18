@@ -314,7 +314,14 @@ UITableViewDataSource
             break;
         case YXRecordVideoInterfaceStatus_Play:
         {
-            
+            YXFileVideoItem *videoItem = [[YXFileVideoItem alloc] init];
+            videoItem.type = YXFileTypeVideo;
+            videoItem.isLocal = NO;
+            videoItem.name = self.itemBody.title;
+            videoItem.url = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName]].absoluteString;
+            [YXFileBrowseManager sharedManager].fileItem = videoItem;
+            [YXFileBrowseManager sharedManager].baseViewController = self;
+            [[YXFileBrowseManager sharedManager] browseFile];
         }
             break;
         case YXRecordVideoInterfaceStatus_Write:

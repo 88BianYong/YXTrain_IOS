@@ -40,6 +40,7 @@
     YXGetQiNiuTokenRequest *_getQiNiuTokenRequest;
     YXSaveHomeWorkRequest *_saveRequest;
     YXWriteHomeworkRequest *_homeworkRequest;
+    YXUpdVideoHomeworkRequest *_uploadInfoRequest;
     
 }
 @end
@@ -365,7 +366,7 @@
             [self showToast:@"目录信息获取失败"];
         }else{
             YXWriteHomeworkRequestItem *item = retItem;
-            self ->_homeworkItem = item;
+            self.homeworkItem = item;
             [self saveWorkhomeInfo:item.body];
             [self -> _tableView reloadData];
             if (!isEmpty(self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][1])) {
@@ -376,6 +377,40 @@
     _homeworkRequest = request;
 }
 
+- (void)requestForUpdVideoHomework{
+    if (_uploadInfoRequest) {
+        [_uploadInfoRequest stopRequest];
+    }
+    YXUpdVideoHomeworkRequest *request = [[YXUpdVideoHomeworkRequest alloc] init];
+    request.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
+    request.pid = self.videoModel.pid;
+    request.requireid = self.videoModel.requireId;
+    request.hwid = self.videoModel.homeworkid;
+    request.content = [self formatUploadVideoHomeworkContent];
+    [request startRequestWithRetClass:[YXUpdVideoHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        if (!error) {
+            YXUpdVideoHomeworkRequestItem *item = retItem;
+            self.videoModel.homeworkid = item.data.hwid;
+            self.videoModel.uploadPercent = 0.0;
+            self.videoModel.isUploadSuccess = NO;
+            self.videoModel.lessonStatus = YXVideoLessonStatus_Finish;
+            YXHomeworkInfoRequestItem_Body_Detail *detail = [[YXHomeworkInfoRequestItem_Body_Detail alloc] init];
+            detail.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
+            detail.segmentName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][1];
+            detail.gradeName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][1];
+            detail.studyName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][1];
+            detail.chapterName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Menu)][1];
+            detail.versionName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][1];
+            detail.keyword =  self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
+            self.videoModel.detail = detail;
+            [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self showToast:@"修改作业信息失败"];
+        }
+    }];
+    _uploadInfoRequest = request;
+}
 
 #pragma mark - upload video
 - (void)uploadVideoForQiNiu{
@@ -423,12 +458,10 @@
 - (void)buttonActionForSave:(UIButton *)sender{
     if (sender.selected) {
         if (self.isChangeHomeworkInfo) {
-            [self requestSaveHomework:nil];
+            [self requestForUpdVideoHomework];
         }else{
           [self uploadVideoForQiNiu];
         }
-        
-        
     }else{
         if (![self saveInfoHomeWorkShowToast:YES]) {
             YXAlertAction *knowAction = [[YXAlertAction alloc] init];
@@ -437,7 +470,6 @@
             YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"字段不能为空哦,请补充完整" image:@"失败icon" actions:@[knowAction]];
             [alertView showAlertView:nil];
         }
-        
     }
 }
 

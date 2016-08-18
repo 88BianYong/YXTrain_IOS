@@ -259,7 +259,7 @@
                      self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][0]?:@"",
                      self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][0]?:@"",
                      self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][0]?:@"",
-                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][0]]?:@"";
+                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][0]?:@""];
     return cId;
 }
 
@@ -298,8 +298,8 @@
     }
     [self.selectedMutableDictionary setObject:@[@"",body.title] forKey:@(YXWriteHomeworkListStatus_Title)];
     [self.selectedMutableDictionary setObject:@[@"",body.meizi_keyword] forKey:@(YXWriteHomeworkListStatus_Topic)];
-    self.videoModel.fileName = body.upload.fileName;
     self.bottomView.topicString = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
+    self.bottomView.saveButton.selected = [self saveInfoHomeWorkShowToast:NO];
 }
 - (void)saveChapterList{
     if (!isEmpty(self.homeworkItem.body.meizi_chapter)) {
@@ -324,5 +324,25 @@
         self.chapterIndexPath = [NSIndexPath indexPathForRow:row inSection:section];
     }
     self.bottomView.saveButton.selected = [self saveInfoHomeWorkShowToast:NO];
+}
+
+- (NSString *)formatUploadVideoHomeworkContent{
+    NSDictionary *segment = @{@"id":@"meizi_segment",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][0]};
+    
+    NSDictionary *study = @{@"id":@"meizi_study",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][0]};
+    
+    NSDictionary *edition = @{@"id":@"meizi_edition",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][0]};
+    
+    NSDictionary *grade = @{@"id":@"meizi_grade",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][0]};
+    
+    NSDictionary *chapter = @{@"id":@"meizi_chapter",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Menu)][0]};
+    
+    NSDictionary *keyword = @{@"id":@"meizi_keyword",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1]};
+    
+    NSDictionary *upload = @{@"id":@"upload",@"content":self.homeworkItem.body.upload.toDictionary};
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithObjects:segment,study,edition,grade,chapter,keyword,upload, nil];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:mutableArray options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *jsonString =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    return jsonString;
 }
 @end

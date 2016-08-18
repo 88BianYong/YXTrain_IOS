@@ -52,6 +52,8 @@
     if (self.fileItem.isLocal) {
         if (self.fileItem.type == YXFileTypePhoto) {
             [self openPic:self.fileItem.url];
+        }else if(self.fileItem.type == YXFileTypeVideo){
+            [self openVideo];
         }else{
             [self openDoc:self.fileItem.url];
         }

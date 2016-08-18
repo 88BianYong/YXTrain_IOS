@@ -14,4 +14,5 @@
 - (NSString *)getCategoryIds;
 - (void)saveWorkhomeInfo:(YXWriteHomeworkRequestItem_Body *)body;
 - (void)saveChapterList;
+- (NSString *)formatUploadVideoHomeworkContent;
 @end
