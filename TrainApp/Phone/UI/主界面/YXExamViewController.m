@@ -20,7 +20,8 @@
 #import "YXExamMarkView.h"
 #import "YXCourseViewController.h"
 
-
+#import "YXPopUpContainerView.h"
+#import "YXAppUpdatePopUpView.h"
 
 @interface YXExamViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -35,6 +36,33 @@
 @end
 
 @implementation YXExamViewController
+
+/**
+ *  这里需要接入真正逻辑
+ */
+- (void)test {
+    YXPopUpContainerView *v = [[YXPopUpContainerView alloc] init];
+    YXAppUpdateData *data = [[YXAppUpdateData alloc] init];
+    data.title = @"alert";
+    data.content = @"Look into my eye. You will see. What you mean to me.";
+    WEAK_SELF
+    YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
+    cancelAlertAct.block = ^{
+        STRONG_SELF
+        [v hide];
+    };
+    
+    YXAlertAction *downloadUpdateAlertAct = [[YXAlertAction alloc] init];
+    downloadUpdateAlertAct.block = ^{
+        STRONG_SELF
+        [v hide];
+    };
+    
+    YXAppUpdatePopUpView *popView = [[YXAppUpdatePopUpView alloc] init];
+    [popView setupConstrainsInContainerView:v];
+    [popView updateWithData:data actions:@[cancelAlertAct, downloadUpdateAlertAct]];
+    [v showInView:nil];
+}
 
 - (void)dealloc{
     [self.header free];
@@ -54,6 +82,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self performSelector:@selector(test) withObject:nil afterDelay:3];
+
     // Do any additional setup after loading the view.
     self.title = @"考核";
     WEAK_SELF
