@@ -26,7 +26,6 @@
 
 - (void)setupUI{
     self.containerView = [[UIView alloc] init];
-    self.containerView.backgroundColor = [UIColor redColor];
     [self addSubview:self.containerView];
     
     

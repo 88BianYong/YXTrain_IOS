@@ -98,6 +98,14 @@
 //            });
 //        }
 //    }
+    
+//    if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) {
+//        self.recorder.videoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+//    }else if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight){
+//        self.recorder.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
+//    }else{
+//        self.recorder.videoOrientation = AVCaptureVideoOrientationPortrait;
+//    }
 }
 
 - (void)setupUI{
@@ -142,11 +150,13 @@
     _bottomView.recordHandler = ^(YXVideoRecordStatus recordStatus){
         STRONG_SELF
         self ->_stateBool = YES;
+        self.recorder.autoSetVideoOrientation = NO;
         [self ->_topView stopAnimatetion];
         switch (recordStatus) {
             case YXVideoRecordStatus_Ready:
             {
                 self->_stateBool = NO;
+                self.recorder.autoSetVideoOrientation = YES;
                 self ->_topView.canleButton.hidden = NO;
             }
                 break;
