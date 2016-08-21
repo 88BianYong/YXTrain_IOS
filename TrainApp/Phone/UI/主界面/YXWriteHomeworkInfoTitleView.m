@@ -47,6 +47,7 @@
     _textView.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
     _textView.layer.cornerRadius = YXTrainCornerRadii;
     _textView.textContainerInset = UIEdgeInsetsMake(15.0f, 10.0f, 0.0f, 0.0f);
+    _textView.returnKeyType = UIReturnKeyDone;
     [self.contentView addSubview:_textView];
     _textView.placeholder = @"标题文字最多显示30字";
 }
@@ -71,6 +72,10 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
     if (range.location >30) {
         return NO;
     }

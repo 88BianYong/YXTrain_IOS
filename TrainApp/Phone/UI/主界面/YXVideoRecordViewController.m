@@ -56,14 +56,36 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     [self setupUI];
-    [self layoutInterface:CGSizeMake(kScreenWidth, kScreenHeight)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil]; //监听是否触发home键挂起程序.
-    
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector (deviceOrientationDidChange:)
                                                  name: UIDeviceOrientationDidChangeNotification
                                                object: nil];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.recorder.session == nil) {
+        SCRecordSession *session = [SCRecordSession recordSession];
+        session.fileType = AVFileTypeMPEG4;
+        self.recorder.session = session;
+    }
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    [self.recorder startRunning];
+    _statusBar.hidden = YES;
+    [self layoutInterface:CGSizeMake(kScreenWidth, kScreenHeight)];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    _statusBar.hidden = NO;
+}
+
 - (void)deviceOrientationDidChange:(NSNotification *)noti {
     _statusBar.hidden = YES;
 //    if ([UIDevice currentDevice].orientation == UIDeviceOrientationFaceUp  || [UIDevice currentDevice].orientation == UIDeviceOrientationFaceDown || [UIDevice currentDevice].orientation == UIDeviceOrientationUnknown ||  _deviceOrientation == [UIDevice currentDevice].orientation) {
@@ -101,13 +123,16 @@
     _focusView.outsideFocusTargetImage = [[UIImage alloc] init];
     [_scanPreviewView addSubview:_focusView];
     _topView = [[YXVideoRecordTopView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 44.0f)];
+    _topView.hidden = YES;
     [self.view addSubview:_topView];
     
     _bottomView = [[YXVideoRecordBottomView alloc] initWithFrame:CGRectMake(0, kScreenHeight -  110.0f, kScreenWidth, 110.0f)];
+    _bottomView.hidden = YES;
     [self.view addSubview:_bottomView];
     
     _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 143.0f , 143.0f)];
     _progressView.hidden = YES;
+    _progressView.titleString = @"视频保存中...";
     [self.view addSubview:_progressView];
     [self setupHandler];
     [self.view addSubview:self.autorotateView];
@@ -203,34 +228,13 @@
     _scanPreviewView.frame = frame;
     _focusView.frame = frame;
     _topView.frame = CGRectMake(0, 0, size.width, 44.0f);
+    _topView.hidden = NO;
     _bottomView.frame = CGRectMake(0, size.height -  110.0f, size.width, 110.0f);
+    _bottomView.hidden = NO;
     _progressView.center = CGPointMake(size.width/2.0f, size.height/2.0f);
     _autorotateView.center = CGPointMake(size.width/2.0f, size.height/2.0f);
     self.recorder.videoConfiguration.size = size;
     self.recorder.previewView = _scanPreviewView;
-}
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (self.recorder.session == nil) {
-        SCRecordSession *session = [SCRecordSession recordSession];
-        session.fileType = AVFileTypeMPEG4;
-        self.recorder.session = session;
-    }
-}
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
-    [self.recorder startRunning];
-    _statusBar.hidden = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    _statusBar.hidden = NO;
 }
 
 #pragma mark - recordVideo saveVideo so on
@@ -335,7 +339,7 @@
 //保存成功视频之后
 - (void)saveSuccessWithVideoPath:(NSString *)videoPath
 {
-    [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+    _progressView.titleString = @"视频保存成功";
     [YXVideoRecordManager cleartmpFile];
     NSArray * nameArray = [[NSFileManager defaultManager] componentsToDisplayForPath:videoPath];
     self.videoModel.fileName = nameArray.lastObject;
@@ -389,6 +393,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         float progress = assetExportSession.progress;
+        _progressView.titleString = @"视频保存中...";
         _progressView.progress = progress;
     });
 }

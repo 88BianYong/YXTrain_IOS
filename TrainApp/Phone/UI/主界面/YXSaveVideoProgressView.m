@@ -108,15 +108,13 @@
 }
 
 - (void)setProgress:(CGFloat)progress {
-    _progress = MIN(MAX(0, progress), 1);
-    if (_progress == 1.0f) {
-       _titleLabel.text = @"视频保存成功";
-    }else{
-        _titleLabel.text = @"视频保存中...";
-    }
-    
+    _progress = MIN(MAX(0, progress), 1);    
     _radialView.progressCounter = (int)100 * _progress;
     _radialView.label.text = [NSString stringWithFormat:@"%d%%", (int)(100 * _progress)];
+}
+- (void)setTitleString:(NSString *)titleString{
+    _titleString = titleString;
+    _titleLabel.text = _titleString;
 }
 
 - (void)closeButtonAction:(UIButton *)sender{

@@ -131,6 +131,7 @@
     [window addSubview:_bgView];
     _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 143.0f , 143.0f)];
     _progressView.center = _bgView.center;
+    _progressView.titleString = @"视频上传中...";
     _progressView.closeHandler = ^(){
         STRONG_SELF
         self ->_bgView.hidden = YES;
@@ -381,6 +382,8 @@
     if (_uploadInfoRequest) {
         [_uploadInfoRequest stopRequest];
     }
+    [self startLoading];
+    WEAK_SELF
     YXUpdVideoHomeworkRequest *request = [[YXUpdVideoHomeworkRequest alloc] init];
     request.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
     request.pid = self.videoModel.pid;
@@ -388,6 +391,8 @@
     request.hwid = self.videoModel.homeworkid;
     request.content = [self formatUploadVideoHomeworkContent];
     [request startRequestWithRetClass:[YXUpdVideoHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
         if (!error) {
             YXUpdVideoHomeworkRequestItem *item = retItem;
             self.videoModel.homeworkid = item.data.hwid;
@@ -437,7 +442,11 @@
 }
 #pragma mark -qiniu delegate
 - (void)uploadProgress:(float)progress{
-    _progressView.progress = progress;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _progressView.progress = progress;
+    });
+    
+    
 }
 - (void)uploadCompleteWithHash:(NSString *)hashStr {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -457,6 +466,7 @@
 #pragma mark - button Action
 - (void)buttonActionForSave:(UIButton *)sender{
     if (sender.selected) {
+        [self yx_hideKeyboard];
         if (self.isChangeHomeworkInfo) {
             [self requestForUpdVideoHomework];
         }else{
