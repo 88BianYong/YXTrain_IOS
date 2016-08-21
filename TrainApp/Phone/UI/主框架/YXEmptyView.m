@@ -9,6 +9,7 @@
 #import "YXEmptyView.h"
 
 @interface YXEmptyView()
+@property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subTitleLabel;
 @property (nonatomic, strong) UIImageView *imageView;
@@ -24,39 +25,52 @@
 }
 
 - (void)setupUI{
+    self.containerView = [[UIView alloc] init];
+    self.containerView.backgroundColor = [UIColor redColor];
+    [self addSubview:self.containerView];
+    
+    
+    
     self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.imageView = [[UIImageView alloc]init];
     self.imageView.image = [UIImage imageNamed:@"无内容"];
-    //self.imageView.backgroundColor = [UIColor redColor];
-    [self addSubview:self.imageView];
-    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(0);
-        make.centerY.mas_equalTo(self.mas_centerY).mas_offset(-110);
-        make.size.mas_equalTo(CGSizeMake(202, 202));
-    }];
+    [self.containerView addSubview:self.imageView];
+
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     self.titleLabel.text = @"无内容";
-    [self addSubview:self.titleLabel];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(self.imageView.mas_bottom).mas_offset(5);
-    }];
+    [self.containerView addSubview:self.titleLabel];
+    
     self.subTitleLabel = [[UILabel alloc]init];
     self.subTitleLabel.font = [UIFont systemFontOfSize:12];
     self.subTitleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     self.subTitleLabel.textAlignment = NSTextAlignmentCenter;
     self.subTitleLabel.numberOfLines = 0;
-    [self addSubview:self.subTitleLabel];
+    [self.containerView addSubview:self.subTitleLabel];
+    
+    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(202, 202));
+    }];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.equalTo(self.imageView.mas_bottom).mas_offset(2);
+    }];
+    
     [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(10);
+        make.left.right.mas_equalTo(0);
+        make.top.equalTo(self.titleLabel.mas_bottom).mas_offset(8);
+        make.bottom.equalTo(self.containerView.mas_bottom);
+    }];
+
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.centerY.equalTo(self.mas_centerY).offset(-32.0f);
     }];
 }
 
@@ -73,6 +87,23 @@
 - (void)setImageName:(NSString *)imageName{
     _imageName = imageName;
     self.imageView.image = [UIImage imageNamed:imageName];
+}
+- (void)updateWithImageNamed:(NSString *)imagename
+                    andTitle:(NSString *)title
+                 andSubTitle:(NSString *)subTitle{
+    if (!isEmpty(imagename)) {
+        self.imageView.backgroundColor = [UIColor clearColor];
+        self.imageView.image = [UIImage imageNamed:imagename];
+    }
+    
+    if (!isEmpty(title)) {
+        self.titleLabel.text = title;
+    }
+
+    if (!isEmpty(subTitle)) {
+        self.subTitleLabel.text = subTitle;
+    }
+    [self setNeedsLayout];
 }
 
 @end

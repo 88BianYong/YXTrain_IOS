@@ -83,7 +83,12 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            if (self.tasklistItem.body.tasks.count == 0) {
+            if (error.code == 1) {
+                self.emptyView.frame = self.view.bounds;
+                self.emptyView.imageName = @"数据错误";
+                self.emptyView.title = @"数据错误";
+                [self.view addSubview:self->_emptyView];
+            }else if (self.tasklistItem.body.tasks.count == 0) {
                 self.errorView.frame = self.view.bounds;
                 [self.view addSubview:self.errorView];
             }else{

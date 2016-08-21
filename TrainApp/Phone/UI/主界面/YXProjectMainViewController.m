@@ -92,8 +92,16 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            self.errorView.frame = self.view.bounds;
-            [self.view addSubview:self.errorView];
+            if (error.code == 1) {
+                self.emptyView.frame = self.view.bounds;
+                self.emptyView.imageName = @"无培训项目";
+                self.emptyView.title = @"您没有已参加的培训项目";
+                [self.view addSubview:self.emptyView];
+            }
+            else{
+                self.errorView.frame = self.view.bounds;
+                [self.view addSubview:self.errorView];
+            }
             return;
         }
         if (projects.count == 0) {

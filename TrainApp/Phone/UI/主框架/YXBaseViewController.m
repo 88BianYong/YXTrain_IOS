@@ -10,10 +10,14 @@
 #import "YXDrawerController.h"
 
 @interface YXBaseViewController ()
-
 @end
-
 @implementation YXBaseViewController
+-(YXEmptyAndErrorView *)dataErrorView{
+    if (!_dataErrorView) {
+        _dataErrorView = [[YXEmptyAndErrorView alloc] init];
+    }
+    return _dataErrorView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +31,7 @@
         }
     }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

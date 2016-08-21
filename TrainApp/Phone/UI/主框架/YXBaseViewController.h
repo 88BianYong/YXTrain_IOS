@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YXEmptyAndErrorView.h"
 
 @interface YXBaseViewController : UIViewController
-
+/**
+ *  数据错误或者内容为空界面
+ */
+@property (nonatomic, strong)YXEmptyAndErrorView *dataErrorView;
 /**
  *  设置导航右端图片
  *

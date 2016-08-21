@@ -112,8 +112,16 @@
             [self stopLoading];
             [self.header endRefreshing];
             if (error) {
-                self.errorView.frame = self.view.bounds;
-                [self.view addSubview:self.errorView];
+                if (error.code == 1) {
+                    self.emptyView.frame = self.view.bounds;
+                    self.emptyView.imageName = @"数据错误";
+                    self.emptyView.title = @"数据错误";
+                    [self.view addSubview:self->_emptyView];
+                }
+                else{
+                    self.errorView.frame = self.view.bounds;
+                    [self.view addSubview:self ->_errorView];
+                }
                 return;
             }
             YXCourseRecordRequestItem *item = (YXCourseRecordRequestItem *)retItem;

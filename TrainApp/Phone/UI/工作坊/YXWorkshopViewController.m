@@ -124,8 +124,16 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            self ->_errorView.frame = self.view.bounds;
-            [self.view addSubview:self ->_errorView];
+            if (error.code == 1) {
+                self->_emptyView.frame = self.view.bounds;
+                self->_emptyView.imageName = @"数据错误";
+                self->_emptyView.title = @"数据错误";
+                [self.view addSubview:self->_emptyView];
+            }
+            else{
+                self ->_errorView.frame = self.view.bounds;
+                [self.view addSubview:self ->_errorView];
+            }
         }
         else{
             YXWorkshopListRequestItem *item = (YXWorkshopListRequestItem *)retItem;
