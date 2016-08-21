@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 itcast. All rights reserved.
 
 #import <UIKit/UIKit.h>
-
+#import "YXLoadView.h"
 /**
  枚举
  */
@@ -78,6 +78,7 @@ typedef void (^RefreshStateChangeBlock)(MJRefreshBaseView *refreshView, MJRefres
 @property (nonatomic, weak, readonly) UILabel *lastUpdateTimeLabel;
 @property (nonatomic, weak, readonly) UILabel *statusLabel;
 @property (nonatomic, weak, readonly) UIImageView *arrowImage;
+@property (nonatomic, strong,readonly) YXLoadView *loadView;
 
 // Block回调
 @property (nonatomic, copy) BeginRefreshingBlock beginRefreshingBlock;

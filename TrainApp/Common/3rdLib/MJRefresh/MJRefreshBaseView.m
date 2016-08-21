@@ -119,6 +119,13 @@
         
         // 6.设置默认状态
         [self setState:MJRefreshStateNormal];
+        _loadView = [[YXLoadView alloc] initWithFrame:CGRectMake(0, 0, 60.0f, 60.0f)];
+        _loadView.layer.cornerRadius = 30.0f;
+        _loadView.layer.borderColor = [UIColor colorWithHexString:@"b3bdc6"].CGColor;
+        _loadView.layer.borderWidth = 4.0f;
+        _loadView.hidden = YES;
+        [self addSubview:_loadView];
+
     }
     return self;
 }
@@ -139,10 +146,10 @@
     CGFloat statusWidth = w;
     // 1.状态标签
     _statusLabel.frame = CGRectMake(statusX, statusY, statusWidth, statusHeight);
-    
     // 2.时间标签
     CGFloat lastUpdateY = statusY + statusHeight + 5;
     _lastUpdateTimeLabel.frame = CGRectMake(statusX, lastUpdateY, statusWidth, statusHeight);
+
     
     // 3.箭头
     CGFloat arrowX = w * 0.5 - 100;
@@ -150,6 +157,10 @@
     
     // 4.指示器
     _activityView.center = _arrowImage.center;
+    _activityView.hidden = YES;
+    CGPoint center = CGPointMake(self.center.x, 32.0f);
+    center.y -= 22.5f;
+    _loadView.center = center;
 }
 
 - (void)setBounds:(CGRect)bounds
@@ -182,9 +193,24 @@
     
     // scrollView所滚动的Y值 * 控件的类型（头部控件是-1，尾部控件是1）
     CGFloat offsetY = _scrollView.contentOffset.y * self.viewType;
+    CGFloat scale = MIN(offsetY/100.0f, 1.0f);
+    
+    if (offsetY/100.0f > 1.0f) {
+       [_loadView stopAnimate];
+    }
+    if (offsetY == -0.0f && _state == MJRefreshStateNormal) {
+        [UIView animateWithDuration:MJRefreshAnimationDuration delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
+            _loadView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+        }completion:^(BOOL finished) {
+            
+        }];
+    }
+    else{
+        _loadView.transform = CGAffineTransformMakeScale(scale, scale);
+    }
+    
     CGFloat validY = self.validY;
     if (offsetY <= validY) return;
-    
     if (_scrollView.isDragging) {
         CGFloat validOffsetY = validY + MJRefreshViewHeight;
         CGFloat r = offsetY / validOffsetY;
@@ -210,6 +236,7 @@
             if (_refreshStateChangeBlock) {
                 _refreshStateChangeBlock(self, MJRefreshStateNormal);
             }
+           [_loadView startAnimate];
         } else if (_state == MJRefreshStateNormal && offsetY > validOffsetY) {
             // 转为即将刷新状态
             [self setState:MJRefreshStatePulling];
@@ -222,6 +249,7 @@
             if (_refreshStateChangeBlock) {
                 _refreshStateChangeBlock(self, MJRefreshStatePulling);
             }
+            [_loadView startAnimate];
         }
     } else { // 即将刷新 && 手松开
         if (_state == MJRefreshStatePulling) {
@@ -236,6 +264,7 @@
             if (_refreshStateChangeBlock) {
                 _refreshStateChangeBlock(self, MJRefreshStateRefreshing);
             }
+            [_loadView startAnimate];
         }
     }
 }

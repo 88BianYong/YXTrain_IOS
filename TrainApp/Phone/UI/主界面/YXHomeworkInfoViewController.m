@@ -35,6 +35,9 @@ UITableViewDataSource
 @end
 
 @implementation YXHomeworkInfoViewController
+- (void)dealloc{
+    DDLogDebug(@"release=====>%@",NSStringFromClass([self class]));
+}
 
 #pragma mark - propetry
 - (YXHomeworkInfoHeaderView *)headerView{
@@ -230,7 +233,7 @@ UITableViewDataSource
                 }
                 self.itemBody = item.body;
                 [self findVideoHomeworkInformation:self.itemBody];
-                 _tableView.hidden = NO;
+                 self ->_tableView.hidden = NO;
             }
         }
     }];

@@ -5,6 +5,10 @@
 //  Created by mj on 14-1-3.
 //  Copyright (c) 2014年 itcast. All rights reserved.
 //
+#import <Foundation/Foundation.h>
+
+#import <UIKit/UIKit.h>
+
 
 const CGFloat MJRefreshViewHeight = 64.0;
 const CGFloat MJRefreshAnimationDuration = 0.25;

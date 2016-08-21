@@ -86,9 +86,7 @@ UITableViewDataSource
     _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
         [self requestForHomeworkList];
-    };
-    
-    
+    };    
 }
 
 - (void)layoutInterface{
@@ -177,7 +175,7 @@ UITableViewDataSource
             [self -> _errorView removeFromSuperview];
             YXHomeworkListRequestItem *item = retItem;
             self -> _listItem = item;
-            [_tableView reloadData];
+            [self ->_tableView reloadData];
         }
     }];
     _listRequest = request;
