@@ -39,6 +39,7 @@
     UILabel *_titleLabel;
     UIView * _backgroundView;
     UITableView *_tableView;
+    UILabel *_errorLabel;
     
 }
 @end
@@ -76,6 +77,20 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 10.0f)];
     _tableView.tableHeaderView = headerView;
     [_backgroundView addSubview:_tableView];
+    
+    
+    _errorLabel = [[UILabel alloc] init];
+    _errorLabel.text = @"目录信息获取失败，请点击重试";
+    _errorLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    _errorLabel.font = [UIFont systemFontOfSize:14.0f];
+    _errorLabel.textAlignment = NSTextAlignmentCenter;
+    _errorLabel.hidden = NO;
+    _errorLabel.userInteractionEnabled = YES;
+    [_backgroundView addSubview:_errorLabel];
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(againRequest)];
+    [_errorLabel addGestureRecognizer:recognizer];
+    
 }
 
 - (void)layoutInterface{
@@ -98,6 +113,10 @@
         make.right.equalTo(_backgroundView.mas_right).offset(0.0f);
         make.top.equalTo(_backgroundView.mas_top);
         make.bottom.equalTo(_backgroundView.mas_bottom);
+    }];
+    
+    [_errorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(_backgroundView);
     }];
 }
 
@@ -184,5 +203,12 @@
         [_tableView scrollToRowAtIndexPath:_indexPath
                           atScrollPosition:UITableViewScrollPositionTop animated:YES];
     }
+}
+- (void)setIsError:(BOOL)isError{
+    _isError = isError;
+    _errorLabel.hidden = !_isError;
+}
+- (void)againRequest{
+    BLOCK_EXEC(self.errorHandler);
 }
 @end

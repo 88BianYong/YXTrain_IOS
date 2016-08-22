@@ -26,7 +26,7 @@
 @property (nonatomic, weak)YXWriteHomeworkInfoCell *versionCell;
 @property (nonatomic, weak)YXWriteHomeworkInfoCell *gradeCell;
 @property (nonatomic, weak)YXWriteHomeworkInfoMenuView *menuView;
-@property (nonatomic, assign)NSIndexPath *chapterIndexPath;
+@property (nonatomic, strong)NSIndexPath *chapterIndexPath;
 @property (nonatomic ,assign) BOOL isChangeHomeworkInfo;
 - (void)requestForChapterList;
 @end

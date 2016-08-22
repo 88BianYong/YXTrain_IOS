@@ -47,6 +47,7 @@
 @implementation YXWriteHomeworkInfoViewController
 
 - (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     DDLogError(@"release===>%@",NSStringFromClass([self class]));
 }
 
@@ -56,6 +57,7 @@
     self.title = @"填写作业信息";
     _listMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:4];
     _selectedMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:7];
+    
     [self setupUI];
     [self layoutInterface];
     [self requestForCategoryId];
@@ -71,6 +73,20 @@
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.hidden = NO;
     [[IQKeyboardManager sharedManager] setEnable:NO];
+}
+
+- (void)setNetObserver {
+    Reachability *reach = [Reachability reachabilityForInternetConnection];
+    WEAK_SELF
+    reach.unreachableBlock = ^(Reachability*reach)
+    {
+        STRONG_SELF
+        [self ->_uploadRequest cancelUpload];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self ->_bgView.hidden = YES;
+        });
+    };
+    [reach startNotifier];
 }
 
 #pragma mark property
@@ -135,7 +151,7 @@
     _progressView.closeHandler = ^(){
         STRONG_SELF
         self ->_bgView.hidden = YES;
-        [self ->_uploadRequest  discardUpload];
+        [self ->_uploadRequest  cancelUpload];
     };
     [_bgView addSubview:_progressView];
 }
@@ -173,6 +189,10 @@
     view.chapterIdHandler = ^(NSString *chapterId, NSString *chapterName){
         STRONG_SELF
         [self showWorkhomeInfo:YXWriteHomeworkListStatus_Menu withChangeObj:@[chapterId,chapterName]];
+    };
+    view.errorHandler = ^(){
+        STRONG_SELF
+        [self requestForChapterList];
     };
     view.indexPath = _chapterIndexPath;
     return view;
@@ -262,6 +282,7 @@
             if (self.videoModel.homeworkid.integerValue != 0) {
                 [self requestForHomeworkInfo];
             }
+            [self -> _errorView removeFromSuperview];
         }
     }];
     _listRequest = request;
@@ -282,8 +303,9 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            [self showToast:@"作业章节获取失败"];
+            self.menuView.isError = YES;
         }else{
+            self.menuView.isError = NO;
             self.chapterList = retItem;
             [self saveChapterList];
             [self -> _tableView reloadData];
@@ -364,7 +386,7 @@
     [request startRequestWithRetClass:[YXWriteHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         if (error) {
-            [self showToast:@"目录信息获取失败"];
+            [self showToast:@"作业信息获取失败"];
         }else{
             YXWriteHomeworkRequestItem *item = retItem;
             self.homeworkItem = item;
@@ -398,7 +420,6 @@
             self.videoModel.homeworkid = item.data.hwid;
             self.videoModel.uploadPercent = 0.0;
             self.videoModel.isUploadSuccess = NO;
-            self.videoModel.lessonStatus = YXVideoLessonStatus_Finish;
             YXHomeworkInfoRequestItem_Body_Detail *detail = [[YXHomeworkInfoRequestItem_Body_Detail alloc] init];
             detail.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
             detail.segmentName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][1];
@@ -409,9 +430,13 @@
             detail.keyword =  self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
             self.videoModel.detail = detail;
             [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self showToast:@"保存成功"];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+               [self.navigationController popViewControllerAnimated:YES];
+            });
+            
         }else{
-            [self showToast:@"修改作业信息失败"];
+            [self showToast:@"网络异常,请稍后重试"];
         }
     }];
     _uploadInfoRequest = request;
@@ -444,9 +469,7 @@
 - (void)uploadProgress:(float)progress{
     dispatch_async(dispatch_get_main_queue(), ^{
         _progressView.progress = progress;
-    });
-    
-    
+    });    
 }
 - (void)uploadCompleteWithHash:(NSString *)hashStr {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -462,7 +485,6 @@
     [_listMutableDictionary setObject:_listItem.data forKey:@(YXWriteHomeworkListStatus_SchoolSection)];
 }
 
-
 #pragma mark - button Action
 - (void)buttonActionForSave:(UIButton *)sender{
     if (sender.selected) {
@@ -470,7 +492,33 @@
         if (self.isChangeHomeworkInfo) {
             [self requestForUpdVideoHomework];
         }else{
-          [self uploadVideoForQiNiu];
+            Reachability *r = [Reachability reachabilityForInternetConnection];
+            if (![r isReachable]) {
+                [self showToast:@"网络异常，请稍候重试"];
+                return;
+            }
+            if ([r isReachableViaWWAN] && ![r isReachableViaWiFi]) {
+                WEAK_SELF
+                YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
+                cancelAlertAct.title = @"上传";
+                cancelAlertAct.style = YXAlertActionStyleCancel;
+                cancelAlertAct.block = ^{
+                    STRONG_SELF
+                    [self setNetObserver];
+                    [self uploadVideoForQiNiu];
+                };
+                YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
+                retryAlertAct.title = @"取消";
+                retryAlertAct.style = YXAlertActionStyleDefault;
+                retryAlertAct.block = ^{
+                    STRONG_SELF
+                };
+                YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"当前处于非Wi-Fi环境\n仍要继续吗" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
+                [alertView showAlertView:nil];
+                return;
+            }
+            [self setNetObserver];
+            [self uploadVideoForQiNiu];
         }
     }else{
         if (![self saveInfoHomeWorkShowToast:YES]) {

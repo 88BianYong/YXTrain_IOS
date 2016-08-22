@@ -48,6 +48,7 @@
     self.chapterList = nil;
     self.menuView.item = nil;
     [self.listMutableDictionary removeObjectForKey:@(YXWriteHomeworkListStatus_Menu)];
+    [self.selectedMutableDictionary removeObjectForKey:@(YXWriteHomeworkListStatus_Menu)];
 }
 
 - (BOOL)analyzingInformationNotComplete:(YXWriteHomeworkListStatus)status{
@@ -89,7 +90,7 @@
         case YXWriteHomeworkListStatus_Menu:
         {
             if (isEmpty([self.selectedMutableDictionary objectForKey:@(status)])
-                && self.chapterList) {
+                && ((NSArray *)self.listMutableDictionary[@(YXWriteHomeworkListStatus_Grade)]).count > 0) {
                 return YES;
             }
         }
@@ -305,8 +306,8 @@
     if (!isEmpty(self.homeworkItem.body.meizi_chapter)) {
         NSArray *array = [self.homeworkItem.body.meizi_chapter componentsSeparatedByString:@","];
         __block  YXChapterListRequestItem_sub *sub = nil;
-        __block  NSInteger section = 0;
-        __block  NSInteger row = 0;
+        __block  NSUInteger section = 0;
+        __block  NSUInteger row = 0;
         [self.chapterList.data enumerateObjectsUsingBlock:^(YXChapterListRequestItem_sub * obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj.chapterId isEqualToString:array[0]]) {
                 section = idx;
@@ -327,17 +328,17 @@
 }
 
 - (NSString *)formatUploadVideoHomeworkContent{
-    NSDictionary *segment = @{@"id":@"meizi_segment",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][0]};
+    NSDictionary *segment = @{@"id":@"meizi_segment",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][0]?:@""};
     
-    NSDictionary *study = @{@"id":@"meizi_study",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][0]};
+    NSDictionary *study = @{@"id":@"meizi_study",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][0]?:@""};
     
-    NSDictionary *edition = @{@"id":@"meizi_edition",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][0]};
+    NSDictionary *edition = @{@"id":@"meizi_edition",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][0]?:@""};
     
-    NSDictionary *grade = @{@"id":@"meizi_grade",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][0]};
+    NSDictionary *grade = @{@"id":@"meizi_grade",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][0]?:@""};
     
-    NSDictionary *chapter = @{@"id":@"meizi_chapter",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Menu)][0]};
+    NSDictionary *chapter = @{@"id":@"meizi_chapter",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Menu)][0]?:@""};
     
-    NSDictionary *keyword = @{@"id":@"meizi_keyword",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1]};
+    NSDictionary *keyword = @{@"id":@"meizi_keyword",@"content":self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1]?:@""};
     
     NSDictionary *upload = @{@"id":@"upload",@"content":self.homeworkItem.body.upload.toDictionary};
     NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithObjects:segment,study,edition,grade,chapter,keyword,upload, nil];

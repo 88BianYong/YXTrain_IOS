@@ -70,6 +70,7 @@
     _saveButton.clipsToBounds = YES;
     _saveButton.layer.masksToBounds = YES;
     _saveButton.selected = NO;
+    _saveButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
     [self addSubview:_saveButton];
 }
 
@@ -129,6 +130,7 @@
 {
     if (_textView.text.length > 30) {
         _textView.text = [_textView.text substringToIndex:30];
+        [_textView setContentOffset:CGPointMake(0, 0) animated:NO];
     }
     BLOCK_EXEC(self.topicStringHandler,_textView.text);
 }

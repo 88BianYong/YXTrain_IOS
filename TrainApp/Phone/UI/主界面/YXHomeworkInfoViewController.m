@@ -78,7 +78,12 @@ UITableViewDataSource
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-    [self reloadView];
+    if (self.itemBody.detail) {
+        self.itemBody.lessonStatus = YXVideoLessonStatus_Finish;
+    }else{
+        self.itemBody.lessonStatus = YXVideoLessonStatus_NoRecord;
+    }
+    [self findVideoHomeworkInformation:self.itemBody];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -255,13 +260,10 @@ UITableViewDataSource
             }
         }
     }];
+    self.itemBody = item;
     _tableView.tableHeaderView = self.headerView;
     self.headerView.body = self.itemBody;
     self.title = self.itemBody.title;
-    [self reloadView];
-}
-
-- (void)reloadView{
     if (self.itemBody.detail && (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_Finish )) {
         _tableView.tableFooterView = self.footerView;
         self.footerView.detail = self.itemBody.detail;
@@ -270,7 +272,6 @@ UITableViewDataSource
         _tableView.tableFooterView = nil;
     }
     [_tableView reloadData];
-    
 }
 #pragma mark - present ViewController
 - (void)gotoNextViewController:(YXRecordVideoInterfaceStatus)type{
@@ -280,27 +281,28 @@ UITableViewDataSource
             if ([YXVideoRecordManager isSupportRecordVideoShowView:self.view]) {//判断权限
                 if ([YXVideoRecordManager isEnoughDeviceSpace]) {//判断空间大小
                     if(self.itemBody.type.integerValue == 3){//判断是否是限制时间的视频
-                        WEAK_SELF
-                        YXAlertAction *knowAction = [[YXAlertAction alloc] init];
-                        knowAction.title = @"我知道了";
-                        knowAction.style = YXAlertActionStyleAlone;
-                        knowAction.block = ^ {
-                            STRONG_SELF
-                            YXVideoRecordViewController *VC = [[YXVideoRecordViewController alloc] init];
-                            VC.videoModel = self.itemBody;
-                            [[self visibleViewController] presentViewController:VC animated:YES completion:^{
-                                
-                            }];
-                        };
-                        YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频录制时长需要大于10分钟~" image:@"提醒icon" actions:@[knowAction]];
-                        [alertView showAlertView:nil];
+                        if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
+                            [self againRecordVideo];
+                        }
+                        else{
+                            WEAK_SELF
+                            YXAlertAction *knowAction = [[YXAlertAction alloc] init];
+                            knowAction.title = @"我知道了";
+                            knowAction.style = YXAlertActionStyleAlone;
+                            knowAction.block = ^ {
+                                STRONG_SELF
+                                [self gotoVideoRecordVC];
+                            };
+                            YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频录制时长需要大于10分钟~" image:@"提醒icon" actions:@[knowAction]];
+                            [alertView showAlertView:nil];
+                        }
                     }
                     else{
-                        YXVideoRecordViewController *VC = [[YXVideoRecordViewController alloc] init];
-                        VC.videoModel = self.itemBody;
-                        [[self visibleViewController] presentViewController:VC animated:YES completion:^{
-                            
-                        }];
+                        if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
+                            [self againRecordVideo];
+                        }else{
+                            [self gotoVideoRecordVC];
+                        }
                     }
                 }else{
                     [self showToast:@"系统空间不足200M,至少需要200M存储空间"];
@@ -324,11 +326,22 @@ UITableViewDataSource
             videoItem.url = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName]].absoluteString;
             [YXFileBrowseManager sharedManager].fileItem = videoItem;
             [YXFileBrowseManager sharedManager].baseViewController = self;
+            if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
+                [YXFileBrowseManager sharedManager].isDeleteVideo = YES;
+            }
             [[YXFileBrowseManager sharedManager] browseFile];
         }
             break;
         case YXRecordVideoInterfaceStatus_Write:
         {
+            NSString *filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName];
+            AVURLAsset *mp4Asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:filePath] options:nil];
+            CMTime itmeTime = mp4Asset.duration;
+            CGFloat durationTime = CMTimeGetSeconds(itmeTime);
+            if (self.itemBody.type.integerValue == 3 && durationTime < 600.0f) {
+                [self showToast:@"视频时长需大于10分钟"];
+                return;
+            }
             YXWriteHomeworkInfoViewController *VC = [[YXWriteHomeworkInfoViewController alloc] init];
             VC.videoModel = self.itemBody;
             [self.navigationController pushViewController:VC animated:YES];
@@ -346,5 +359,31 @@ UITableViewDataSource
         default:
             break;
     }
+}
+
+- (void)againRecordVideo{
+    WEAK_SELF
+    YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
+    cancelAlertAct.title = @"录制";
+    cancelAlertAct.style = YXAlertActionStyleCancel;
+    cancelAlertAct.block = ^{
+        STRONG_SELF
+        [self gotoVideoRecordVC];
+    };
+    YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
+    retryAlertAct.title = @"取消";
+    retryAlertAct.style = YXAlertActionStyleDefault;
+    retryAlertAct.block = ^{
+        STRONG_SELF
+    };
+    YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"重新录制将覆盖当前视频\n确定重新录制?" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
+    [alertView showAlertView:nil];
+}
+- (void)gotoVideoRecordVC{
+    YXVideoRecordViewController *VC = [[YXVideoRecordViewController alloc] init];
+    VC.videoModel = self.itemBody;
+    [[self visibleViewController] presentViewController:VC animated:YES completion:^{
+        
+    }];
 }
 @end

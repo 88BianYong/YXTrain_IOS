@@ -88,14 +88,14 @@
 - (void)getProjectList{
     [self startLoading];
     WEAK_SELF
-    [[YXTrainManager sharedInstance]getProjectsWithCompleteBlock:^(NSArray *projects, NSError *error) {
+    [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(NSArray *projects, NSError *error) {
         STRONG_SELF
         [self stopLoading];
         if (error) {
             if (error.code == 1) {
                 self.emptyView.frame = self.view.bounds;
-                self.emptyView.imageName = @"无培训项目";
-                self.emptyView.title = @"您没有已参加的培训项目";
+                self.emptyView.imageName = @"数据错误";
+                self.emptyView.title = @"数据错误";
                 [self.view addSubview:self.emptyView];
             }
             else{
@@ -106,6 +106,8 @@
         }
         if (projects.count == 0) {
             self.emptyView.frame = self.view.bounds;
+            self.emptyView.imageName = @"无培训项目";
+            self.emptyView.title = @"您没有已参加的培训项目";
             [self.view addSubview:self.emptyView];
             return;
         }

@@ -42,6 +42,7 @@
     _recordButton.layer.borderWidth = 1.0f;
     _recordButton.clipsToBounds = YES;
     _recordButton.layer.masksToBounds = YES;
+    _recordButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
     [self.contentView addSubview:_recordButton];
     
     

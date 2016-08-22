@@ -108,6 +108,7 @@
 }
 
 - (void)setProgress:(CGFloat)progress {
+    
     _progress = MIN(MAX(0, progress), 1);    
     _radialView.progressCounter = (int)100 * _progress;
     _radialView.label.text = [NSString stringWithFormat:@"%d%%", (int)(100 * _progress)];

@@ -16,6 +16,7 @@
     UILabel *_durationLabel;//视频时长
     UILabel *_recordSizeLabel;//视频大小
     UIView *_lineView;
+    UIView *_playView;
     
     UIButton *_playButton;
     UIButton *_uploadButton;
@@ -93,6 +94,7 @@
     _uploadButton.layer.borderWidth = 1.0f;
     _uploadButton.clipsToBounds = YES;
     _uploadButton.layer.masksToBounds = YES;
+    _uploadButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
     [_uploadButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_uploadButton];
     
@@ -116,6 +118,12 @@
     [_playButton setImage:[UIImage imageNamed:@"播放视频按钮-点击态"] forState:UIControlStateHighlighted];
     [_playButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_playButton];
+    
+    _playView = [[UIView alloc] init];
+    _playView.tag = YXRecordVideoInterfaceStatus_Record;
+    [self.contentView addSubview:_playView];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playVideo:)];
+    [_playView addGestureRecognizer:recognizer];
 }
 
 #pragma mark - layoutInterface
@@ -178,6 +186,10 @@
         make.centerY.equalTo(_posterImageView.mas_centerY);
         make.width.height.mas_offset(30.0f);
     }];
+    [_playView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.contentView);
+        make.bottom.equalTo(_lineView.mas_bottom);
+    }];
 }
 
 - (void)setFilePath:(NSString *)filePath{
@@ -204,7 +216,9 @@
 - (void)buttonAction:(UIButton *)sender{
     BLOCK_EXEC(self.buttonActionHandler,sender.tag);
 }
-
+- (void)playVideo:(UIGestureRecognizer *)sender{
+    BLOCK_EXEC(self.buttonActionHandler,[sender view].tag);
+}
 
 
 @end

@@ -233,6 +233,7 @@
     vc.title = videoItem.name;
     vc.delegate = self;
     vc.exitDelegate = self;
+    vc.isPreRecord = self.isDeleteVideo;
     [self managerPresentViewController:vc animated:YES completion:nil];
 }
 

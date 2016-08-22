@@ -86,6 +86,7 @@
 {
     if (_textView.text.length > 30) {
         _textView.text = [_textView.text substringToIndex:30];
+        [_textView setContentOffset:CGPointMake(0, 0) animated:NO];
     }
     BLOCK_EXEC(self.titleStringHandler,_textView.text);
 }

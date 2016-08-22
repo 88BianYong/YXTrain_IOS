@@ -13,7 +13,7 @@
 @property (nonatomic, weak) id<YXQiNiuUploadDelegate> delegate;
 - (id)initWithFileName:(NSString *)fileName qiNiuToken:(NSString *)qiNiuToken;
 - (void)startUpload;
-- (void)discardUpload;
+- (void)cancelUpload;
 @end
 @protocol YXQiNiuUploadDelegate <NSObject>
 

@@ -13,6 +13,7 @@
 @property (nonatomic, strong) QNUploadManager *upManager;
 @property (nonatomic, strong) QNUploadOption *opt;
 @property (nonatomic, copy) NSString *filePath;
+@property (nonatomic, assign) BOOL isCancel;
 @property (nonatomic, copy) NSString *qiNiuToken;
 @property (nonatomic, copy) NSString *keyName;
 
@@ -22,6 +23,8 @@
 - (id)initWithFileName:(NSString *)fileName qiNiuToken:(NSString *)qiNiuToken{
     self = [super init];
     if (self) {
+        
+        self.isCancel = NO;
         NSError *error = nil;
         self.fileCachePath = PATH_OF_VIDEO_CACHE ;
         self.fileRecorder = [QNFileRecorder fileRecorderWithFolder:self.fileCachePath error:&error];
@@ -31,17 +34,21 @@
         
         self.upManager = [[QNUploadManager alloc] initWithRecorder:self.fileRecorder
                           ];
+        WEAK_SELF
         self.opt = [[QNUploadOption alloc] initWithMime:nil progressHandler:^(NSString *key, float percent) {
+            STRONG_SELF
             if ([self.delegate respondsToSelector:@selector(uploadProgress:)] && self.delegate) {
                 [self.delegate uploadProgress:percent];
             }
         } params:nil checkCrc:NO cancellationSignal:^BOOL{
-            return NO;
+            
+            return self.isCancel;
         }];
     }
     return self;
 }
 - (void)startUpload{
+    self.isCancel = NO;
     NSString *keyUp = self.keyName;
     __block NSString *key = nil;
     __block QNResponseInfo *info = nil;
@@ -59,7 +66,7 @@
         }
     } option:self.opt];
 }
-- (void)discardUpload{
-    [QNFileRecorder removeKey:self.keyName directory:self.fileCachePath encodeKey:NO];
+- (void)cancelUpload{
+    self.isCancel = YES;
 }
 @end

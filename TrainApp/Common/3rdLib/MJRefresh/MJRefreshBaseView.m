@@ -159,7 +159,6 @@
     _activityView.center = _arrowImage.center;
     _activityView.hidden = YES;
     CGPoint center = CGPointMake(self.center.x, 32.0f);
-    center.y -= 22.5f;
     _loadView.center = center;
 }
 

@@ -127,6 +127,7 @@
     if (action.style == YXAlertActionStyleCancel) {
         [button setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateNormal];
         [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateHighlighted];
         button.layer.cornerRadius = YXTrainCornerRadii;
         button.clipsToBounds = YES;
         button.titleLabel.font = [UIFont systemFontOfSize:14.0f];
@@ -135,6 +136,7 @@
     else if (action.style == YXAlertActionStyleDefault){
       [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
       [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
       button.layer.cornerRadius = YXTrainCornerRadii;
         button.clipsToBounds = YES;
         button.titleLabel.font = [UIFont systemFontOfSize:14.0f];

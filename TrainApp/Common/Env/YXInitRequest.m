@@ -10,6 +10,8 @@
 #import "YXConfigManager.h"
 #import "YXAlertView.h"
 #import "YXUserManager.h"
+#import "YXPopUpContainerView.h"
+#import "YXAppUpdatePopUpView.h"
 
 NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 
@@ -192,27 +194,32 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     if (![body.fileURL yx_isHttpLink]) { //http链接
         return;
     }
-    YXAlertView *alertView = [YXAlertView alertViewWithTitle:body.title message:body.content];
-    if (![body isForce]) {
+    if ([body isForce]) {
+        YXAlertView *alertView = [YXAlertView alertViewWithTitle:body.title message:body.content];
+        [alertView addButtonWithTitle:@"取消"];
+        [alertView addButtonWithTitle:@"升级" action:^{
+            Reachability *r = [Reachability reachabilityForInternetConnection];
+            NetworkStatus status = [r currentReachabilityStatus];
+            if (status == ReachableViaWiFi) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
+            } else if(status == ReachableViaWWAN){
+                YXAlertView *showAlertView = [YXAlertView alertViewWithTitle:@"当前网络非WIFi环境，是否继续更新"];
+                if (![body isForce]) {
+                    [showAlertView addButtonWithTitle:@"否"];
+                }
+                [showAlertView addButtonWithTitle:@"继续" action:^{
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
+                }];
+                [showAlertView show];
+            }
+        }];
+        [alertView show];
         [alertView addButtonWithTitle:@"取消"];
     }
-    [alertView addButtonWithTitle:@"升级" action:^{
-        Reachability *r = [Reachability reachabilityForInternetConnection];
-        NetworkStatus status = [r currentReachabilityStatus];
-        if (status == ReachableViaWiFi) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
-        } else if(status == ReachableViaWWAN){
-            YXAlertView *showAlertView = [YXAlertView alertViewWithTitle:@"当前网络非WIFi环境，是否继续更新"];
-            if (![body isForce]) {
-                [showAlertView addButtonWithTitle:@"否"];
-            }
-            [showAlertView addButtonWithTitle:@"继续" action:^{
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
-            }];
-            [showAlertView show];
-        }
-    }];
-    [alertView show];
+    else{
+        [self showUploadTitle:body.title andContent:body.content];
+    }
+
 }
 
 - (BOOL)isAppleChecking
@@ -232,6 +239,46 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         [[NSUserDefaults standardUserDefaults] setObject:isAppleChecking forKey:@"isAppleChecking"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+}
+/**
+ *  这里需要接入真正逻辑
+ */
+- (void)showUploadTitle:(NSString *)titleString andContent:(NSString *)contentString {
+    YXPopUpContainerView *v = [[YXPopUpContainerView alloc] init];
+    YXAppUpdateData *data = [[YXAppUpdateData alloc] init];
+    data.title = titleString;
+    data.content = contentString;
+    WEAK_SELF
+    YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
+    cancelAlertAct.block = ^{
+        STRONG_SELF
+        [v hide];
+    };
+    
+    YXAlertAction *downloadUpdateAlertAct = [[YXAlertAction alloc] init];
+    downloadUpdateAlertAct.block = ^{
+        STRONG_SELF
+        YXInitRequestItem_Body *body = self.item.body[0];
+        Reachability *r = [Reachability reachabilityForInternetConnection];
+        NetworkStatus status = [r currentReachabilityStatus];
+        if (status == ReachableViaWiFi) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
+        } else if(status == ReachableViaWWAN){
+            YXAlertView *showAlertView = [YXAlertView alertViewWithTitle:@"当前网络非WIFi环境，是否继续更新"];
+            if (![body isForce]) {
+                [showAlertView addButtonWithTitle:@"否"];
+            }
+            [showAlertView addButtonWithTitle:@"继续" action:^{
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
+            }];
+            [showAlertView show];
+        }
+        [v hide];
+    };
+    YXAppUpdatePopUpView *popView = [[YXAppUpdatePopUpView alloc] init];
+    [popView setupConstrainsInContainerView:v];
+    [popView updateWithData:data actions:@[cancelAlertAct, downloadUpdateAlertAct]];
+    [v showInView:nil];
 }
 
 @end

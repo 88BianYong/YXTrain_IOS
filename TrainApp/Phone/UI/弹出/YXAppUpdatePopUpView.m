@@ -95,7 +95,7 @@ static const CGFloat YXScrollMargin = 30.f;
         DDLogError(@"两个button，请提供两个action");
         return;
     }
-    data = [self mockData];
+    data.imageName = @"下载版本更新icon";
     self.data = data;
     
     self.imageView.image = [UIImage imageNamed:data.imageName];
@@ -179,7 +179,6 @@ static const CGFloat YXScrollMargin = 30.f;
 
 - (YXAppUpdateData *)mockData {
     YXAppUpdateData *data = [[YXAppUpdateData alloc] init];
-    data.imageName = @"下载版本更新icon";
     data.title = @"V2.1版本更新提示";
     data.content = @"look into my eye, you will see, what you mean to me";
     data.content = @"1.整体结构调整更加精简，全新界面设计更加清晰\n2.增加考核模块，查看学习进度及成绩明细\n3.增加任务模块，完成学习相关任务\n4.增加通知、简报，查看学习群组重要通知信息";

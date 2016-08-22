@@ -26,6 +26,7 @@
 
 #pragma mark - setupUI
 - (void)setupUI{
+    self.layer.cornerRadius = YXTrainCornerRadii;
     _imageView = [[UIImageView alloc] init];
     _imageView.image = [UIImage imageNamed:@"视频上传说明图标"];
     [self addSubview:_imageView];

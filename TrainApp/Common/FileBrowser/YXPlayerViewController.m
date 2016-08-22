@@ -101,10 +101,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
     if (self.isPreRecord == YES) {
         UIButton *deleteButton = [[UIButton alloc]init];
-        [deleteButton setTitle:@"删除" forState:UIControlStateNormal];
-        [deleteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [deleteButton setTitleColor:[[UIColor whiteColor]colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
-        deleteButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        [deleteButton setImage:[UIImage imageNamed:@"垃圾箱A"] forState:UIControlStateNormal];
+        [deleteButton setImage:[UIImage imageNamed:@"垃圾箱-点击态A"] forState:UIControlStateHighlighted];
         [deleteButton addTarget:self action:@selector(deleteButton:) forControlEvents:UIControlEventTouchUpInside];
         self.topView.previewFavorButton = deleteButton;
     }
@@ -699,22 +697,32 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
 - (void)deleteButton:(UIButton *)btn
 {
-    @weakify(self);
+    WEAK_SELF
     [self.player pause];
-    JKAlertDialog *popView = [[JKAlertDialog alloc] initWithTitle:nil message:@"确认删除此视频课例？"];
-    [popView addButton:Button_OTHER withTitle:@"删除" handler:^(JKAlertDialogItem *item) {
-        @strongify(self);
-        if (self.deleteHandle) {
-            self.deleteHandle(btn);
+    YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
+    cancelAlertAct.title = @"删除";
+    cancelAlertAct.style = YXAlertActionStyleCancel;
+    cancelAlertAct.block = ^{
+        STRONG_SELF
+        NSError *error = nil;
+        if ([[NSFileManager defaultManager] removeItemAtURL:[NSURL URLWithString:self.videoUrl] error:&error]){
+            [self showToast:@"删除成功"];
+            [self performSelector:@selector(backAction) withObject:nil afterDelay:2.0];
         }
-        [self performSelector:@selector(backAction) withObject:nil afterDelay:0];
-    }];
-    [popView addButton:Button_OTHER withTitle:@"点错了！" handler:^(JKAlertDialogItem *item) {
-        @strongify(self);
+        else{
+            DDLogError(@"DDLogFileInfo: Error deleting archive (%@): %@", self.self.videoUrl, error);
+        }
+    };
+    
+    YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
+    retryAlertAct.title = @"取消";
+    retryAlertAct.style = YXAlertActionStyleDefault;
+    retryAlertAct.block = ^{
+        STRONG_SELF
         [self.player play];
-    }];
-
-    [popView show];
+    };
+    YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"删除后视频将无法恢复\n确定删除?" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
+    [alertView showAlertView:self.view];
 }
 
 #pragma mark - 默认清晰度的保存与读取
