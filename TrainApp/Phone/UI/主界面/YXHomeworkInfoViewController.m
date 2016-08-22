@@ -26,6 +26,7 @@ UITableViewDataSource
 {
     UITableView *_tableView;
     YXErrorView *_errorView;
+    YXEmptyView *_emptyView;
     
     YXHomeworkInfoRequest *_infoRequest;
 }
@@ -121,6 +122,7 @@ UITableViewDataSource
         STRONG_SELF
         [self requestForHomeworkInfo];
     };
+    _emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
 }
 
 - (void)layoutInterface{
@@ -223,8 +225,15 @@ UITableViewDataSource
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            self ->_errorView.frame = self.view.bounds;
-            [self.view addSubview:self ->_errorView];
+            if (error.code == 1) {
+                self->_emptyView.frame = self.view.bounds;
+                self->_emptyView.imageName = @"数据错误";
+                self->_emptyView.title = @"数据错误";
+                [self.view addSubview:self->_emptyView];
+            }else{
+                self ->_errorView.frame = self.view.bounds;
+                [self.view addSubview:self ->_errorView];
+            }
         }else{
             [self -> _errorView removeFromSuperview];
             YXHomeworkInfoRequestItem *item = retItem;

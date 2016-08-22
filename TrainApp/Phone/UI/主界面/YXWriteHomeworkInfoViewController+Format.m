@@ -111,22 +111,21 @@
 - (BOOL)saveInfoHomeWorkShowToast:(BOOL)isShow {
     if([self analyzingInformationNotComplete:YXWriteHomeworkListStatus_Title]) {
         if (isShow) {
-            
-            //[self showToast:@"请填写作业标题"];
+            [self showToast:@"请填写作业标题"];
         }
         return NO;
     }
     
     if([self analyzingInformationNotComplete:YXWriteHomeworkListStatus_SchoolSection]) {
         if (isShow) {
-            //[self showToast:@"请选择学段信息"];
+            [self showToast:@"请选择学段信息"];
         }
         return NO;
     }
     
     if([self analyzingInformationNotComplete:YXWriteHomeworkListStatus_Subject]) {
         if (isShow) {
-            //[self showToast:@"请选择学科信息"];
+            [self showToast:@"请选择学科信息"];
         }
         return NO;
     }
@@ -134,14 +133,14 @@
     
     if([self analyzingInformationNotComplete:YXWriteHomeworkListStatus_Version]) {
         if (isShow) {
-            //[self showToast:@"请选择版本信息"];
+            [self showToast:@"请选择版本信息"];
         }
         return NO;
     }
     
     if([self analyzingInformationNotComplete:YXWriteHomeworkListStatus_Grade]) {
         if (isShow) {
-            //[self showToast:@"请选择年级信息"];
+            [self showToast:@"请选择书册信息"];
         }
         return NO;
     }
@@ -149,7 +148,7 @@
     
     if([self analyzingInformationNotComplete:YXWriteHomeworkListStatus_Menu]) {
         if (isShow) {
-            //[self showToast:@"请选择目录信息"];
+            [self showToast:@"请选择目录信息"];
         }
         return NO;
     }
@@ -157,7 +156,7 @@
     
     if([self analyzingInformationNotComplete:YXWriteHomeworkListStatus_Topic]) {
         if (isShow) {
-            //[self showToast:@"请填写研修重难点"];
+            [self showToast:@"请填写研修重难点"];
         }
         return NO;
     }

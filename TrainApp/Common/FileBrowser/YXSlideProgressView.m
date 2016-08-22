@@ -32,44 +32,47 @@
     self.bSliding = NO;
     
     self.wholeProgressView = [[UIView alloc] init];
-    self.wholeProgressView.backgroundColor = [UIColor colorWithHexString:@"#868686"];
+    self.wholeProgressView.backgroundColor = [UIColor colorWithHexString:@"#919191"];
     [self addSubview:self.wholeProgressView];
     self.wholeProgressView.userInteractionEnabled = NO;
     
     self.bufferProgressView = [[UIView alloc] init];
-    self.bufferProgressView.backgroundColor = [UIColor whiteColor];
+    self.bufferProgressView.backgroundColor = [UIColor colorWithHexString:@"91b9ed"];
     [self addSubview:self.bufferProgressView];
     self.bufferProgressView.userInteractionEnabled = NO;
     
     self.playProgressView = [[UIView alloc] init];
-    self.playProgressView.backgroundColor = [UIColor colorWithHexString:@"2c97dd"];
+    self.playProgressView.backgroundColor = [UIColor colorWithHexString:@"4688f1"];
     [self addSubview:self.playProgressView];
     self.playProgressView.userInteractionEnabled = NO;
     
     _iconImage = [UIImage imageNamed:@"03动态详情页UI-附件全屏浏览-未按-修改版"];
     
     self.thumbNormalView = [[UIImageView alloc] init];
-    self.thumbNormalView.frame = CGRectMake(0, 0, _iconImage.size.width, _iconImage.size.height);
-    self.thumbNormalView.image = _iconImage;
+    self.thumbNormalView.frame = CGRectMake(0, 0, 16.0f, 16.0f);
+    self.thumbNormalView.backgroundColor = [UIColor whiteColor];
+    self.thumbNormalView.layer.cornerRadius = 8.0f;
+    self.thumbNormalView.clipsToBounds = YES;
+    self.thumbNormalView.layer.masksToBounds = YES;
     [self addSubview:self.thumbNormalView];
     
     self.timeLabel = [[UILabel alloc] init];
     self.timeLabel.font = [UIFont systemFontOfSize:11];
-    self.timeLabel.textColor = [UIColor colorWithHexString:@"#868686"];
+    self.timeLabel.textColor = [UIColor colorWithHexString:@"#919191"];
     self.timeLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:self.timeLabel];
     
     [self.wholeProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.thumbNormalView.bounds.size.width * 0.5);
         make.centerY.mas_equalTo(@0);
-        make.height.mas_equalTo(@2);
+        make.height.mas_equalTo(@3.0f);
+        make.right.equalTo(self.timeLabel.mas_left).offset(-5.0f);
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.wholeProgressView.mas_right).mas_offset(20);
-        //make.width.mas_equalTo(100);
+        
         make.centerY.mas_equalTo(@0);
-        make.right.mas_equalTo(@-10);
+        make.right.mas_equalTo(@-15);
     }];
 }
 
@@ -94,12 +97,21 @@
     }];
     
     [self.thumbNormalView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(_iconImage.size.width, _iconImage.size.height));
+        make.size.mas_equalTo(CGSizeMake(16.0f, 16.0f));
         make.centerX.mas_equalTo(self.wholeProgressView.mas_left).mas_offset(self.wholeProgressView.bounds.size.width * self.playProgress);
         make.centerY.mas_equalTo(self.wholeProgressView.mas_centerY);
     }];
     
-    self.timeLabel.text = [NSString stringWithFormat:@"%@/%@", [self timeString:self.duration * self.playProgress], [self timeString:self.duration]];
+    self.timeLabel.attributedText = [self palyTime:[self timeString:self.duration * self.playProgress] withContent:[self timeString:self.duration]];
+}
+
+- (NSMutableAttributedString *)palyTime:(NSString *)playTime withContent:(NSString *)durationTime{
+    NSString *temString = [NSString stringWithFormat:@"%@/%@",playTime,durationTime];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]
+                                                   initWithString:temString];
+    [attributedString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"919191"]} range:NSMakeRange(0, [temString length])];
+    [attributedString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:11.0f],NSForegroundColorAttributeName:[UIColor whiteColor]} range:NSMakeRange(0, playTime.length + 1)];
+    return attributedString;
 }
 
 - (NSString *)timeString:(NSTimeInterval)time {
@@ -116,7 +128,8 @@
     DDLogWarn(@"%@", NSStringFromCGPoint(touchPoint));
     if (CGRectContainsPoint([self slidePointImageRect], touchPoint)) {
         self.bSliding = YES;
-        self.thumbNormalView.image = [UIImage imageNamed:@"03动态详情页UI-附件全屏浏览-按下效果-修改版"];
+//        self.thumbNormalView.image = [UIImage imageNamed:@"03动态详情页UI-附件全屏浏览-按下效果-修改版"];
+        self.thumbNormalView.image = [UIImage yx_imageWithColor:[UIColor whiteColor]];
         return YES;
     }
     
@@ -139,7 +152,8 @@
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
     self.bSliding = NO;
-    self.thumbNormalView.image = [UIImage imageNamed:@"03动态详情页UI-附件全屏浏览-未按-修改版"];
+//    self.thumbNormalView.image = [UIImage imageNamed:@"03动态详情页UI-附件全屏浏览-未按-修改版"];
+    self.thumbNormalView.image = [UIImage yx_imageWithColor:[UIColor whiteColor]];
 }
 
 - (CGRect)slidePointImageRect {

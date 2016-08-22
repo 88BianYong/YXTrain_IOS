@@ -120,7 +120,7 @@
     [self.contentView addSubview:_playButton];
     
     _playView = [[UIView alloc] init];
-    _playView.tag = YXRecordVideoInterfaceStatus_Record;
+    _playView.tag = YXRecordVideoInterfaceStatus_Play;
     [self.contentView addSubview:_playView];
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playVideo:)];
     [_playView addGestureRecognizer:recognizer];
@@ -208,7 +208,12 @@
         _recordTimeLabel.text = [NSString stringWithFormat:@"录制时间  %@",[NSString timeStringWithDate:fileCreateDate]];
         _recordSizeLabel.text = [NSString stringWithFormat:@"大小  %@",[NSString sizeStringWithFileSize:fileSize]];
         _durationLabel.text = [NSString stringWithFormat:@"时长  %@",[NSString stringWithFormatFloat:durationTime]];
-        _posterImageView.image = [UIImage yx_thumbnailImageForVideo:[NSURL fileURLWithPath:_filePath] atTime:5.0f];
+        UIImage  *image = [UIImage yx_thumbnailImageForVideo:[NSURL fileURLWithPath:_filePath] atTime:5.0f];
+        if (image){
+            _posterImageView.image = image;
+        }else{
+            _posterImageView.image = [UIImage imageNamed:@"默认的录制未上传5S视频"];
+        }
     }
 }
 

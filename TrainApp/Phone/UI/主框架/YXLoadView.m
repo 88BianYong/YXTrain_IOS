@@ -21,8 +21,8 @@
 
 #pragma mark - setup UI
 - (void)setupUI{
-    UIImageView *handImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4.0f, 11.0f, 3.0f, 14.0f)];
-    handImageView.image = [UIImage imageNamed:@"短针"];
+    UIImageView *handImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4.5f, 4.0f, 17, 3.0f)];
+    handImageView.image = [UIImage imageNamed:@"长针"];
     [self addSubview:handImageView];
 }
 @end
@@ -42,8 +42,8 @@
 
 #pragma mark - setup UI
 - (void)setupUI{
-    UIImageView *handImageView = [[UIImageView alloc] initWithFrame:CGRectMake(11.0f, 4.0f, 17, 3.0f)];
-    handImageView.image = [UIImage imageNamed:@"长针"];
+    UIImageView *handImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4.0f, 4.5f, 3.0f, 14.0f)];
+    handImageView.image = [UIImage imageNamed:@"短针"];
     [self addSubview:handImageView];
 }
 
@@ -79,29 +79,26 @@
     _ringView.layer.borderColor = [UIColor colorWithHexString:@"2d87cf"].CGColor;
     [self addSubview:_ringView];
     
-    
-    _hourHand = [[YXHourView alloc] init];
-    _hourHand.frame = CGRectMake(8.5f, 5.0f, 27, 11.0f);
-    _hourHand.center = self.center;
-    _hourHand.layer.shouldRasterize = YES;
-    [self setAnchor:CGPointMake((float)5.5f/22.5f, 0.5f) forView:_hourHand];
-    [self addSubview:_hourHand];
-    
-    
     _minuteHand = [[YXMinuteView alloc] init];
-    _minuteHand.frame = CGRectMake(8.5f, 7.0f, 11.0f, 24.0f);
+    _minuteHand.frame = CGRectMake(0.0f, 0.0f, 21.5f, 11.0f);
     _minuteHand.center = self.center;
     _minuteHand.layer.shouldRasterize = YES;
-    [self setAnchor:CGPointMake(0.5f,(float)5.5f/18.5f) forView:_minuteHand];
+    [self setAnchor:CGPointMake(0.0f, 0.5f) forView:_minuteHand];
     [self addSubview:_minuteHand];
+    
+    _hourHand = [[YXHourView alloc] init];
+    _hourHand.frame = CGRectMake(0.0f, 0.0f, 11.0f, 17.5);
+    _hourHand.center = self.center;
+    _hourHand.layer.shouldRasterize = YES;
+    [self setAnchor:CGPointMake(0.5f,0.0f) forView:_hourHand];
+    [self addSubview:_hourHand];
     imageviewAngle = 0.0f;
     _isRuning = NO;
 }
 
 - (void)setAnchor:(CGPoint)aPoint forView:(UIView *)aView {
     aView.layer.anchorPoint = aPoint;
-    aView.layer.position = CGPointMake(aView.layer.position.x + (aPoint.x - aView.layer.anchorPoint.x) * aView.bounds.size.width,
-                                       aView.layer.position.y + (aPoint.y - aView.layer.anchorPoint.y) * aView.bounds.size.height);
+    aView.layer.position = CGPointMake(aView.layer.position.x + (aPoint.x - aView.layer.anchorPoint.x) * aView.bounds.size.width, aView.layer.position.y + (aPoint.y - aView.layer.anchorPoint.y) * aView.bounds.size.height);
 }
 - (void)startAnimate{
     if (!_isRuning) {
@@ -116,7 +113,7 @@
 {
     if(_isRuning == YES)
     {
-        [UIView animateWithDuration:0.1f delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
+        [UIView animateWithDuration:0.6f delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
             _hourHand.transform = CGAffineTransformRotate(_hourHand.transform, M_PI / 60.0f);
             _minuteHand.transform = CGAffineTransformRotate(_minuteHand.transform, M_PI);
         }completion:^(BOOL finished) {

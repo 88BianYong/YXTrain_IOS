@@ -84,7 +84,7 @@
     _errorLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     _errorLabel.font = [UIFont systemFontOfSize:14.0f];
     _errorLabel.textAlignment = NSTextAlignmentCenter;
-    _errorLabel.hidden = NO;
+    _errorLabel.hidden = YES;
     _errorLabel.userInteractionEnabled = YES;
     [_backgroundView addSubview:_errorLabel];
     

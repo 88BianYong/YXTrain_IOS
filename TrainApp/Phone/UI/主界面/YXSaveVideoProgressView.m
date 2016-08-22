@@ -62,7 +62,7 @@
     _radialView.label.text  =@"0%";
     
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    _titleLabel.textColor = [UIColor whiteColor];
     _titleLabel.font = [UIFont systemFontOfSize:15.0f];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     _titleLabel.text = @"视频保存中...";

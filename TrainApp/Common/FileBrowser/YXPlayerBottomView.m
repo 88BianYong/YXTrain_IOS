@@ -24,9 +24,9 @@
 UIView *_sepView;
 - (void)_setupUI {
     //self.backgroundColor = [[UIColor colorWithHexString:@"#1f1f1f"] colorWithAlphaComponent:0.2];
-    self.backgroundColor = [UIColor colorWithHexString:@"#1f1f1f"];
+    self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
     self.playPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.playPauseButton setImage:[UIImage imageNamed:@"播放器暂停"] forState:UIControlStateNormal];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮"] forState:UIControlStateNormal];
     [self addSubview:self.playPauseButton];
     
     [self.playPauseButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -39,7 +39,7 @@ UIView *_sepView;
     [self addSubview:self.slideProgressView];
     
     [self.slideProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.playPauseButton.mas_right).mas_offset(@10);
+        make.left.equalTo(self.mas_left).mas_offset(55.0f);
         make.right.mas_equalTo(-80);
         make.top.bottom.mas_equalTo(@0);
     }];
@@ -68,12 +68,12 @@ UIView *_sepView;
 
 - (void)setPlaying {
     _playPauseState = PlayerView_State_Playing;
-    [self.playPauseButton setImage:[UIImage imageNamed:@"播放器暂停"] forState:UIControlStateNormal];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮"] forState:UIControlStateNormal];
 }
 
 - (void)setPaused {
     _playPauseState = PlayerView_State_Paused;
-    [self.playPauseButton setImage:[UIImage imageNamed:@"播放器播放"] forState:UIControlStateNormal];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"播放按钮"] forState:UIControlStateNormal];
 }
 
 - (void)setBShowDefinition:(BOOL)bShowDefinition {

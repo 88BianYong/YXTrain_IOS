@@ -165,7 +165,7 @@
     _segmentLabel.attributedText = [self homeworkInfo:@"学段:" withContent:_detail.segmentName?:@""];
     _studyLabel.attributedText = [self homeworkInfo:@"学科:" withContent:_detail.studyName?:@""];
     _versionLabel.attributedText = [self homeworkInfo:@"版本:" withContent:_detail.versionName ?:@""];
-    _gradeLabel.attributedText = [self homeworkInfo:@"年级:" withContent:_detail.gradeName?:@""];
+    _gradeLabel.attributedText = [self homeworkInfo:@"书册:" withContent:_detail.gradeName?:@""];
     _chapterLabel.attributedText = [self homeworkInfo:@"目录:" withContent:_detail.chapterName?:@""];
     _keywordLabel.attributedText = [self homeworkInfo:@"本次作业主要知识点:" withContent:_detail.keyword?:@""];
     _versionLabel.lineBreakMode = NSLineBreakByTruncatingTail;

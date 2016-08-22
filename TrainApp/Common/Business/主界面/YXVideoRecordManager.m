@@ -171,7 +171,6 @@
     NSFileManager *manger = [NSFileManager defaultManager];
     NSArray * subPaths = [manger subpathsAtPath:[YXVideoRecordManager tmpPath]];
     [subPaths enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        DDLogDebug(@"%@",obj);
         NSString *pathString = obj;
         if ([[pathString pathExtension] isEqualToString:@"mp4"]) {
             NSString *fullsubpath = [[YXVideoRecordManager tmpPath] stringByAppendingPathComponent:pathString];

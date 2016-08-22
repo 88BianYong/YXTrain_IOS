@@ -89,10 +89,10 @@
             [self stopLoading];
             if (error) {
                 if (error.code == 1) {
-                    self->_emptyView.frame = self.view.bounds;
-                    self->_emptyView.imageName = @"数据错误";
-                    self->_emptyView.title = @"数据错误";
-                    [self.view addSubview:self->_emptyView];
+                    self.emptyView.frame = self.view.bounds;
+                    self.emptyView.imageName = @"数据错误";
+                    self.emptyView.title = @"数据错误";
+                    [self.view addSubview:self.emptyView];
                 }
                 else if ([error.domain isEqualToString:@"network"]) { // 业务逻辑错误
                     self.emptyView.frame = self.view.bounds;

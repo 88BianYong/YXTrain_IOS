@@ -53,7 +53,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    _titleArray = @[@"学段",@"学科",@"版本",@"年级"];
+    _titleArray = @[@"学段",@"学科",@"版本",@"书册"];
     self.title = @"填写作业信息";
     _listMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:4];
     _selectedMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:7];
@@ -521,13 +521,7 @@
             [self uploadVideoForQiNiu];
         }
     }else{
-        if (![self saveInfoHomeWorkShowToast:YES]) {
-            YXAlertAction *knowAction = [[YXAlertAction alloc] init];
-            knowAction.title = @"确定";
-            knowAction.style = YXAlertActionStyleAlone;
-            YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"字段不能为空哦,请补充完整" image:@"失败icon" actions:@[knowAction]];
-            [alertView showAlertView:nil];
-        }
+        [self saveInfoHomeWorkShowToast:YES];
     }
 }
 

@@ -52,7 +52,13 @@
 }
 - (void)setImageName:(NSString *)imageName{
     _imageName = imageName;
-    _imageView.image = [UIImage yx_thumbnailImageForVideo:[NSURL fileURLWithPath:imageName] atTime:5.0f];
+    
+    UIImage  *image = [UIImage yx_thumbnailImageForVideo:[NSURL fileURLWithPath:imageName] atTime:5.0f];
+    if (image){
+        _imageView.image = image;
+    }else{
+        _imageView.image = [UIImage imageNamed:@"默认的一上传视频5S图片"];
+    }
 }
 
 #pragma mark - buttonAction

@@ -52,7 +52,7 @@ typedef NS_ENUM (NSInteger ,YXWriteHomeworkListStatus) {
     YXWriteHomeworkListStatus_SchoolSection = 0,//学段
     YXWriteHomeworkListStatus_Subject = 1,//学科
     YXWriteHomeworkListStatus_Version = 2,//版本
-    YXWriteHomeworkListStatus_Grade = 3,//年级
+    YXWriteHomeworkListStatus_Grade = 3,//书册
     YXWriteHomeworkListStatus_Menu = 4,//目录
     YXWriteHomeworkListStatus_Topic = 5,//重难点题目
 };

@@ -119,8 +119,8 @@
         
         // 6.设置默认状态
         [self setState:MJRefreshStateNormal];
-        _loadView = [[YXLoadView alloc] initWithFrame:CGRectMake(0, 0, 60.0f, 60.0f)];
-        _loadView.layer.cornerRadius = 30.0f;
+        _loadView = [[YXLoadView alloc] initWithFrame:CGRectMake(0, 0, 55.0f, 55.0f)];
+        _loadView.layer.cornerRadius = 27.5f;
         _loadView.layer.borderColor = [UIColor colorWithHexString:@"b3bdc6"].CGColor;
         _loadView.layer.borderWidth = 4.0f;
         _loadView.hidden = YES;

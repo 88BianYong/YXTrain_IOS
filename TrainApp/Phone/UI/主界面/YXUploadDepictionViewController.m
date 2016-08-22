@@ -47,7 +47,7 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:dLabelString];
     NSMutableParagraphStyle   *paragraphStyle   = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7.0];
-    [paragraphStyle setParagraphSpacing:12.0];
+    [paragraphStyle setParagraphSpacing:18.5f];
     [paragraphStyle setFirstLineHeadIndent:0.0f];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [dLabelString length])];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"334466"] range:NSMakeRange(0, [dLabelString length])];

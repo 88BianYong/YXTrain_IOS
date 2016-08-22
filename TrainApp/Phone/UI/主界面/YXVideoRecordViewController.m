@@ -28,11 +28,14 @@
 }
 @property (nonatomic, strong) SCRecorder    *recorder;
 @property (nonatomic, strong) SCRecorderToolsView *focusView;
-@property (nonatomic, strong) SCPlayer  *player;
+//@property (nonatomic, strong) SCPlayer  *player;
 @property (nonatomic, strong) SCAssetExportSession *exportSession;
 @property (nonatomic, strong) YXGetQiNiuTokenRequest *getQiNiuTokenRequest;
 @property (nonatomic, copy) void(^completionHandle)(NSURL *url, NSError *error);
 @property (nonatomic, strong) YXNotAutorotateView *autorotateView;
+@property (nonatomic, assign) BOOL isComplete;
+@property (nonatomic, assign) BOOL isSaveVideo;
+
 
 
 @end
@@ -213,7 +216,13 @@
                 break;
             case YXVideoRecordStatus_Save:
             {
-                [self saveRecordVideo];
+                if (self.isComplete) {
+                    self.isComplete = NO;
+                    self.isSaveVideo = NO;
+                    [self saveRecordVideo];
+                } else {
+                    self.isSaveVideo = YES;
+                }
             }
                 break;
             default:
@@ -276,16 +285,16 @@
 
 - (void)configPreviewView
 {
-    self.player = [SCPlayer player];
-    SCVideoPlayerView   *playerView = [[SCVideoPlayerView alloc] initWithPlayer:self.player];
-    playerView.tag = 555;
-    playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    playerView.frame = _scanPreviewView.bounds;
-    playerView.autoresizingMask = _scanPreviewView.autoresizingMask;
-    [_scanPreviewView addSubview:playerView];
-    self.player.loopEnabled = YES;
-    [self.player setItemByAsset:self.recorder.session.assetRepresentingSegments];
-    [self.player play];
+//    self.player = [SCPlayer player];
+//    SCVideoPlayerView   *playerView = [[SCVideoPlayerView alloc] initWithPlayer:self.player];
+//    playerView.tag = 555;
+//    playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+//    playerView.frame = _scanPreviewView.bounds;
+//    playerView.autoresizingMask = _scanPreviewView.autoresizingMask;
+//    [_scanPreviewView addSubview:playerView];
+//    self.player.loopEnabled = YES;
+//    [self.player setItemByAsset:self.recorder.session.assetRepresentingSegments];
+//    [self.player play];
 }
 
 
@@ -294,6 +303,8 @@
     WEAK_SELF
     self.completionHandle = ^(NSURL *url, NSError *error){
         STRONG_SELF
+        self.isComplete = NO;
+        self.isSaveVideo = NO;
         if (error == nil) {
             NSFileManager *fileManager = [NSFileManager defaultManager];
             if([fileManager fileExistsAtPath:url.path]){
@@ -364,13 +375,13 @@
 }
 - (void)removePreviewView
 {
-    [self.player pause];
-    self.player = nil;
-    for (UIView *subview in _scanPreviewView.subviews) {
-        if (subview.tag == 555) {
-            [subview removeFromSuperview];
-        }
-    }
+//    [self.player pause];
+//    self.player = nil;
+//    for (UIView *subview in _scanPreviewView.subviews) {
+//        if (subview.tag == 555) {
+//            [subview removeFromSuperview];
+//        }
+//    }
     [self stopCaptureWithSaveFlag:NO];
 }
 
@@ -420,12 +431,12 @@
 }
 
 - (void)recorder:(SCRecorder *__nonnull)recorder didCompleteSegment:(SCRecordSessionSegment *__nullable)segment inSession:(SCRecordSession *__nonnull)session error:(NSError *__nullable)error {
-//    self.isComplete = YES;
-//    if (self.isSaveVideo) {
-//        self.isComplete = NO;
-//        self.isSaveVideo = NO;
-//        [self saveRecordVideo];
-//    }
+    self.isComplete = YES;
+    if (self.isSaveVideo) {
+        self.isComplete = NO;
+        self.isSaveVideo = NO;
+        [self saveRecordVideo];
+    }
 }
 
 #pragma mark - notification
