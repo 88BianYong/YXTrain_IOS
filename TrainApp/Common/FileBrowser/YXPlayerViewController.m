@@ -59,6 +59,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 //- (void)setVideoUrl:(NSString *)videoUrl {
 //    _videoUrl = videoUrl;
 //}
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (void)viewDidLoad {
     _playTime = 0;
@@ -159,6 +162,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         [self recordPlayerDuration];
     }];
     //[self _setupDefinitions];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];// TD: fix bug 192
+}
+- (void)applicationDidBecomeActive:(NSNotification *)notification{
+    if (self.player.state == PlayerView_State_Playing) {
+        [self.player play];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

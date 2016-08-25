@@ -112,7 +112,7 @@
             [self stopLoading];
             [self.header endRefreshing];
             if (error) {
-                if (error.code == 1) {
+                if (error.code == -2) {
                     self.emptyView.frame = self.view.bounds;
                     self.emptyView.imageName = @"数据错误";
                     self.emptyView.title = @"数据错误";

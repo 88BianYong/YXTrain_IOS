@@ -124,7 +124,7 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            if (error.code == 1) {
+            if (error.code == -2) {
                 self->_emptyView.frame = self.view.bounds;
                 self->_emptyView.imageName = @"数据错误";
                 self->_emptyView.title = @"数据错误";

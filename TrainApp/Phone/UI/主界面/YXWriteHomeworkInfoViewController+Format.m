@@ -156,7 +156,7 @@
     
     if([self analyzingInformationNotComplete:YXWriteHomeworkListStatus_Topic]) {
         if (isShow) {
-            [self showToast:@"请填写研修重难点"];
+            [self showToast:@"请填写主要知识点"];
         }
         return NO;
     }

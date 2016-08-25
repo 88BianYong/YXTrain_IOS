@@ -44,9 +44,12 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 
 @end
 
+
+
 @implementation YXInitRequestItem
 
 @end
+
 
 @implementation YXInitRequest
 
@@ -96,6 +99,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 
 @property (nonatomic, strong) YXInitRequest *request;
 @property (nonatomic, strong) YXInitRequestItem *item;
+@property (nonatomic,copy) void (^upgradeHandler)(BOOL);
 
 @end
 
@@ -136,7 +140,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 
 }
 
-- (void)requestCompeletion:(void (^)(YXInitRequestItem *, NSError *))completion
+- (void)requestCompeletion:(void (^)(BOOL))completion
 {
     if (self.request) {
         [self.request stopRequest];
@@ -146,9 +150,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     [self.request startRequestWithRetClass:[YXInitRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         @strongify(self); if (!self) return;
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (completion) {
-                completion(retItem, error);
-            }
+            self.upgradeHandler = completion;
             self.item = retItem;
             [self showUpgradeForInit:YES];
             [self saveAppleCheckingStatusToLocal];
@@ -179,6 +181,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 - (void)showUpgradeForInit:(BOOL)isInit
 {
     if (!self.item || self.item.body.count <= 0) {
+        BLOCK_EXEC(self.upgradeHandler,isInit);
         return;
     }
     
@@ -189,14 +192,15 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 #endif
     }
     if (![body isForce] && !isInit) { //非强制升级只在初始化弹出一次
+        BLOCK_EXEC(self.upgradeHandler,isInit);
         return;
     }
     if (![body.fileURL yx_isHttpLink]) { //http链接
+        BLOCK_EXEC(self.upgradeHandler,isInit);
         return;
     }
     if ([body isForce]) {
         YXAlertView *alertView = [YXAlertView alertViewWithTitle:body.title message:body.content];
-        [alertView addButtonWithTitle:@"取消"];
         [alertView addButtonWithTitle:@"升级" action:^{
             Reachability *r = [Reachability reachabilityForInternetConnection];
             NetworkStatus status = [r currentReachabilityStatus];
@@ -204,9 +208,6 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
             } else if(status == ReachableViaWWAN){
                 YXAlertView *showAlertView = [YXAlertView alertViewWithTitle:@"当前网络非WIFi环境，是否继续更新"];
-                if (![body isForce]) {
-                    [showAlertView addButtonWithTitle:@"否"];
-                }
                 [showAlertView addButtonWithTitle:@"继续" action:^{
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
                 }];
@@ -217,7 +218,10 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         [alertView addButtonWithTitle:@"取消"];
     }
     else{
-        [self showUploadTitle:body.title andContent:body.content];
+        BLOCK_EXEC(self.upgradeHandler,isInit);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self showUploadTitle:body.title andContent:body.content];
+        });
     }
 
 }

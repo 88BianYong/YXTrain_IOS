@@ -6,8 +6,6 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 #import "YXVideoRecordViewController.h"
-#import "YXGetQiNiuTokenRequest.h"
-#import "YXQiNiuVideoUpload.h"
 #import "YXVideoRecordTopView.h"
 #import "YXVideoRecordBottomView.h"
 #import "YXSaveVideoProgressView.h"
@@ -18,7 +16,6 @@
 {
     BOOL _stateBool;
     UIView * _scanPreviewView;
-    YXQiNiuVideoUpload *upload;
     YXVideoRecordTopView *_topView;
     YXVideoRecordBottomView *_bottomView;
     NSTimer *_startRecordTimer;
@@ -30,11 +27,8 @@
 @property (nonatomic, strong) SCRecorderToolsView *focusView;
 //@property (nonatomic, strong) SCPlayer  *player;
 @property (nonatomic, strong) SCAssetExportSession *exportSession;
-@property (nonatomic, strong) YXGetQiNiuTokenRequest *getQiNiuTokenRequest;
 @property (nonatomic, copy) void(^completionHandle)(NSURL *url, NSError *error);
 @property (nonatomic, strong) YXNotAutorotateView *autorotateView;
-@property (nonatomic, assign) BOOL isComplete;
-@property (nonatomic, assign) BOOL isSaveVideo;
 
 
 
@@ -80,17 +74,25 @@
     [super viewDidAppear:animated];
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     [self.recorder startRunning];
-    _statusBar.hidden = YES;
     [self layoutInterface:CGSizeMake(kScreenWidth, kScreenHeight)];
+    [UIApplication sharedApplication].statusBarHidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     _statusBar.hidden = NO;
+    [UIApplication sharedApplication].statusBarHidden = YES;
+
+}
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    [self.recorder stopRunning];
 }
 
 - (void)deviceOrientationDidChange:(NSNotification *)noti {
-    _statusBar.hidden = YES;
+//    _statusBar.hidden = YES;
 //    if ([UIDevice currentDevice].orientation == UIDeviceOrientationFaceUp  || [UIDevice currentDevice].orientation == UIDeviceOrientationFaceDown || [UIDevice currentDevice].orientation == UIDeviceOrientationUnknown ||  _deviceOrientation == [UIDevice currentDevice].orientation) {
 //    }
 //    else{
@@ -101,30 +103,18 @@
 //            });
 //        }
 //    }
-    
-//    if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeLeft) {
-//        self.recorder.videoOrientation = AVCaptureVideoOrientationLandscapeLeft;
-//    }else if ([UIDevice currentDevice].orientation == UIDeviceOrientationLandscapeRight){
-//        self.recorder.videoOrientation = AVCaptureVideoOrientationLandscapeRight;
-//    }else{
-//        self.recorder.videoOrientation = AVCaptureVideoOrientationPortrait;
-//    }
 }
 
+
+
 - (void)setupUI{
-    NSString *key = [[NSString alloc] initWithData:[NSData dataWithBytes:(unsigned char []){0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x61, 0x72} length:9] encoding:NSASCIIStringEncoding];
-    id object = [UIApplication sharedApplication];
-    if ([object respondsToSelector:NSSelectorFromString(key)]) {
-        _statusBar = [object valueForKey:key];
-    }
-    
     _scanPreviewView = [[UIView alloc] init];
     _scanPreviewView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:_scanPreviewView];
     
     self.recorder = [SCRecorder recorder];
     self.recorder.captureSessionPreset = [SCRecorderTools bestCaptureSessionPresetCompatibleWithAllDevices];
-    self.recorder.maxRecordDuration = CMTimeMake(30 * 2400, 30);
+    self.recorder.maxRecordDuration = CMTimeMake(20 * 2400, 20);
     self.recorder.delegate = self;
     self.recorder.autoSetVideoOrientation = YES;
     self.recorder.initializeSessionLazily = NO;
@@ -147,6 +137,11 @@
     [self.view addSubview:_progressView];
     [self setupHandler];
     [self.view addSubview:self.autorotateView];
+    NSError *error;
+    if (![_recorder prepare:&error]) {
+        DDLogError(@"Prepare error: %@", error.localizedDescription);
+    }
+    
 }
 - (void)setupHandler{
     WEAK_SELF
@@ -216,13 +211,7 @@
                 break;
             case YXVideoRecordStatus_Save:
             {
-                if (self.isComplete) {
-                    self.isComplete = NO;
-                    self.isSaveVideo = NO;
-                    [self saveRecordVideo];
-                } else {
-                    self.isSaveVideo = YES;
-                }
+                [self saveRecordVideo];
             }
                 break;
             default:
@@ -303,17 +292,12 @@
     WEAK_SELF
     self.completionHandle = ^(NSURL *url, NSError *error){
         STRONG_SELF
-        self.isComplete = NO;
-        self.isSaveVideo = NO;
-        if (error == nil) {
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            if([fileManager fileExistsAtPath:url.path]){
-               [self saveSuccessWithVideoPath:url.path];
-            }
-            else{
-                self -> _progressView.hidden = YES;
-                DDLogError(@"不存在");
-            }
+        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url.absoluteURL options:nil];
+        CMTime itmeTime = asset.duration;
+        CGFloat durationTime = CMTimeGetSeconds(itmeTime);
+         DDLogDebug(@">>>%@===>%@",error,asset);
+        if (error == nil && durationTime > 0.0f) {
+            [self saveSuccessWithVideoPath:url.path];
         } else {
             self -> _progressView.hidden = YES;
             YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
@@ -385,15 +369,6 @@
     [self stopCaptureWithSaveFlag:NO];
 }
 
-- (void)gotoShangchuan{
-    self.getQiNiuTokenRequest = [[YXGetQiNiuTokenRequest alloc] init];
-    [self.getQiNiuTokenRequest  startRequestWithRetClass:[YXGetQiNiuTokenRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        YXGetQiNiuTokenRequestItem *item = retItem;
-        upload = [[YXQiNiuVideoUpload alloc] initWithFileName:self.videoModel.fileName qiNiuToken:item.uploadToken];
-        [upload  startUpload];
-    }];
-}
-
 - (BOOL)shouldAutorotate{
     if (_stateBool) {
         return NO;
@@ -431,12 +406,6 @@
 }
 
 - (void)recorder:(SCRecorder *__nonnull)recorder didCompleteSegment:(SCRecordSessionSegment *__nullable)segment inSession:(SCRecordSession *__nonnull)session error:(NSError *__nullable)error {
-    self.isComplete = YES;
-    if (self.isSaveVideo) {
-        self.isComplete = NO;
-        self.isSaveVideo = NO;
-        [self saveRecordVideo];
-    }
 }
 
 #pragma mark - notification

@@ -119,8 +119,8 @@
         
         // 6.设置默认状态
         [self setState:MJRefreshStateNormal];
-        _loadView = [[YXLoadView alloc] initWithFrame:CGRectMake(0, 0, 55.0f, 55.0f)];
-        _loadView.layer.cornerRadius = 27.5f;
+        _loadView = [[YXLoadView alloc] initWithFrame:CGRectMake(0, 0, 45.0f, 45.0f)];
+        _loadView.layer.cornerRadius = 22.5f;
         _loadView.layer.borderColor = [UIColor colorWithHexString:@"b3bdc6"].CGColor;
         _loadView.layer.borderWidth = 4.0f;
         _loadView.hidden = YES;
@@ -192,22 +192,21 @@
     
     // scrollView所滚动的Y值 * 控件的类型（头部控件是-1，尾部控件是1）
     CGFloat offsetY = _scrollView.contentOffset.y * self.viewType;
-    CGFloat scale = MIN(offsetY/100.0f, 1.0f);
-    
     if (offsetY/100.0f > 1.0f) {
        [_loadView stopAnimate];
     }
-    if (offsetY == -0.0f && _state == MJRefreshStateNormal) {
-        [UIView animateWithDuration:MJRefreshAnimationDuration delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
-            _loadView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
-        }completion:^(BOOL finished) {
-            
-        }];
-    }
-    else{
-        _loadView.transform = CGAffineTransformMakeScale(scale, scale);
-    }
-    
+//    CGFloat scale = MIN(offsetY/100.0f, 1.0f);
+//    if (offsetY == -0.0f && _state == MJRefreshStateNormal) {
+//        [UIView animateWithDuration:MJRefreshAnimationDuration delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
+//            _loadView.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
+//        }completion:^(BOOL finished) {
+//            
+//        }];
+//    }
+//    else{
+//        _loadView.transform = CGAffineTransformMakeScale(scale, scale);
+//    }
+//    
     CGFloat validY = self.validY;
     if (offsetY <= validY) return;
     if (_scrollView.isDragging) {

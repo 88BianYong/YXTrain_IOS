@@ -151,6 +151,13 @@
                                                             object:nil];
         return;
     }
+    // 业务逻辑错误 code为1数据错误 登录时特殊处理
+    if (item.code.integerValue == 1) {
+        error = [NSError errorWithDomain:@"数据错误" code:-2 userInfo:@{NSLocalizedDescriptionKey:item.desc}];
+        _completeBlock(item, error, self->_isMock);
+        return;
+    }
+    
     // 业务逻辑错误
     if (item.code.integerValue != 0) {
         error = [NSError errorWithDomain:@"network" code:item.code.integerValue userInfo:@{NSLocalizedDescriptionKey: item.desc.length==0? @"请求失败":item.desc}];

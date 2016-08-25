@@ -15,6 +15,7 @@
 #import "YXNavigationController.h"
 #import "YXDrawerViewController.h"
 #import "YXLoginViewController.h"
+#import "YXStartViewController.h"
 
 #import "YXUserProfileRequest.h"
 #import "YXLoginViewController.h"
@@ -46,17 +47,24 @@
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = NO;
     
-    [[YXInitHelper sharedHelper] requestCompeletion:nil];
-    
-    [self setupUI];
+    [YXNavigationBarController setup];
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    YXStartViewController *VC = [[YXStartViewController alloc] init];
+    self.window.rootViewController = VC;
+    [self.window makeKeyAndVisible];
+    WEAK_SELF
+    [[YXInitHelper sharedHelper] requestCompeletion:^(BOOL upgrade) {
+        STRONG_SELF
+        if (upgrade) {
+            [self setupUI];
+        }
+    }];
     [GlobalUtils setDefaultExceptionHandler];
     return YES;
 }
 
 - (void)setupUI {
-    [YXNavigationBarController setup];
-    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
     if ([YXConfigManager sharedInstance].testFrameworkOn.boolValue) {
         YXTestViewController *vc = [[YXTestViewController alloc] init];
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -77,7 +85,6 @@
             [self startRootVC];
         }
     }
-    [self.window makeKeyAndVisible];
 }
 
 - (void)startRootVC {

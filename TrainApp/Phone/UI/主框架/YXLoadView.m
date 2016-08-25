@@ -21,7 +21,7 @@
 
 #pragma mark - setup UI
 - (void)setupUI{
-    UIImageView *handImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4.5f, 4.0f, 17, 3.0f)];
+    UIImageView *handImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 4.0f, 17, 3.0f)];
     handImageView.image = [UIImage imageNamed:@"长针"];
     [self addSubview:handImageView];
 }
@@ -42,7 +42,7 @@
 
 #pragma mark - setup UI
 - (void)setupUI{
-    UIImageView *handImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4.0f, 4.5f, 3.0f, 14.0f)];
+    UIImageView *handImageView = [[UIImageView alloc] initWithFrame:CGRectMake(4.0f, 0.0f, 3.0f, 14.0f)];
     handImageView.image = [UIImage imageNamed:@"短针"];
     [self addSubview:handImageView];
 }
@@ -52,8 +52,8 @@
 
 #import "YXLoadView.h"
 @interface YXLoadView(){
-    YXMinuteView *_minuteHand;
-    YXHourView *_hourHand;
+    UIImageView *_minuteHand;
+    UIImageView *_hourHand;
     double imageviewAngle;
     BOOL _isRuning;
     UIView *_ringView;
@@ -71,27 +71,31 @@
 
 #pragma mark - setupUI
 - (void)setupUI{
+    _minuteHand = [[UIImageView alloc] init];
+    _minuteHand.image = [UIImage imageNamed:@"长针"];
+    _minuteHand.frame = CGRectMake(0.0f, 0.0f, 17.0f, 3.0f);
+    _minuteHand.center = self.center;
+    _minuteHand.layer.shouldRasterize = YES;
+    [self setAnchor:CGPointMake(0.0f, 0.5f) forView:_minuteHand];
+    [self addSubview:_minuteHand];
+    
+    _hourHand = [[UIImageView alloc] init];
+    _hourHand.image = [UIImage imageNamed:@"短针"];
+    _hourHand.frame = CGRectMake(0.0f, 0.0f, 3.0f, 13.0f);
+    _hourHand.center = self.center;
+    _hourHand.layer.shouldRasterize = YES;
+    [self setAnchor:CGPointMake(0.5f,0.0f) forView:_hourHand];
+    [self addSubview:_hourHand];
+    
     _ringView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 11.0f, 11.0f)];
-    _ringView.backgroundColor = [UIColor clearColor];
+    _ringView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     _ringView.layer.cornerRadius = 5.5f;
     _ringView.layer.borderWidth = 3.0f;
     _ringView.center = self.center;
     _ringView.layer.borderColor = [UIColor colorWithHexString:@"2d87cf"].CGColor;
     [self addSubview:_ringView];
     
-    _minuteHand = [[YXMinuteView alloc] init];
-    _minuteHand.frame = CGRectMake(0.0f, 0.0f, 21.5f, 11.0f);
-    _minuteHand.center = self.center;
-    _minuteHand.layer.shouldRasterize = YES;
-    [self setAnchor:CGPointMake(0.0f, 0.5f) forView:_minuteHand];
-    [self addSubview:_minuteHand];
     
-    _hourHand = [[YXHourView alloc] init];
-    _hourHand.frame = CGRectMake(0.0f, 0.0f, 11.0f, 17.5);
-    _hourHand.center = self.center;
-    _hourHand.layer.shouldRasterize = YES;
-    [self setAnchor:CGPointMake(0.5f,0.0f) forView:_hourHand];
-    [self addSubview:_hourHand];
     imageviewAngle = 0.0f;
     _isRuning = NO;
 }

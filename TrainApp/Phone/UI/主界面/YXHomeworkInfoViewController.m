@@ -88,12 +88,6 @@ UITableViewDataSource
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    NSString *key = [[NSString alloc] initWithData:[NSData dataWithBytes:(unsigned char []){0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x42, 0x61, 0x72} length:9] encoding:NSASCIIStringEncoding];
-    id object = [UIApplication sharedApplication];
-    if ([object respondsToSelector:NSSelectorFromString(key)]) {
-        UIView *statusBar = [object valueForKey:key];
-        statusBar.hidden = NO;
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -225,7 +219,7 @@ UITableViewDataSource
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            if (error.code == 1) {
+            if (error.code == -2) {
                 self->_emptyView.frame = self.view.bounds;
                 self->_emptyView.imageName = @"数据错误";
                 self->_emptyView.title = @"数据错误";
@@ -330,13 +324,16 @@ UITableViewDataSource
         {
             YXFileVideoItem *videoItem = [[YXFileVideoItem alloc] init];
             videoItem.type = YXFileTypeVideo;
-            videoItem.isLocal = NO;
+            videoItem.isLocal = YES;
             videoItem.name = self.itemBody.title;
             videoItem.url = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName]].absoluteString;
             [YXFileBrowseManager sharedManager].fileItem = videoItem;
             [YXFileBrowseManager sharedManager].baseViewController = self;
             if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
                 [YXFileBrowseManager sharedManager].isDeleteVideo = YES;
+            }
+            else{
+                 [YXFileBrowseManager sharedManager].isDeleteVideo = NO;
             }
             [[YXFileBrowseManager sharedManager] browseFile];
         }

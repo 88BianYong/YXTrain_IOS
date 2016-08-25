@@ -10,8 +10,6 @@
 #import "YXWorkshopMemberCell.h"
 #import "YXWorkshopMemberFetcher.h"
 #import "MJRefresh.h"
-#define IS_IPHONE_6P ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )736 ) < DBL_EPSILON )
-#define IS_IPHONE_6 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )667 ) < DBL_EPSILON )
 @interface YXWorkshopMemberViewController ()
 <
 UICollectionViewDataSource,
