@@ -48,6 +48,10 @@ UITableViewDataSource
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+}
 
 #pragma mark - setupUI
 
@@ -152,6 +156,7 @@ UITableViewDataSource
     }else{
         cell.homework = stages.homeworks[indexPath.row];
         cell.isLast = indexPath.row == (stages.homeworks.count - 1) ? YES : NO;
+        cell.isFirst = indexPath.row == 0 ? YES : NO;
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
     return cell;

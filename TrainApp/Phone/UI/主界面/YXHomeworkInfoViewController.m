@@ -128,7 +128,7 @@ UITableViewDataSource
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.itemBody.lessonStatus == YXVideoLessonStatus_NoRecord ) {
-        return MAX(kScreenHeight - 64.0f - 336.0f, 150.0f);
+        return MAX(kScreenHeight - 64.0f - 310.0f, 150.0f);
     }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord){
         return 280.0f;
     }else if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete){

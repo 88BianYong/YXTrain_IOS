@@ -11,4 +11,5 @@
 @interface YXHomeworkListCell : UITableViewCell
 @property (nonatomic ,strong) YXHomeworkInfoRequestItem_Body *homework;
 @property (nonatomic ,assign) BOOL isLast;
+@property (nonatomic ,assign) BOOL isFirst;
 @end

@@ -31,7 +31,6 @@
         make.top.equalTo(self.view.mas_top).offset(5.0f);
     }];
     
-    
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.backgroundColor = [UIColor clearColor];
     _scrollView.showsHorizontalScrollIndicator = NO;

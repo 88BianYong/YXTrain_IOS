@@ -44,6 +44,13 @@
     }
     return self;
 }
+- (instancetype)initWithFrame:(CGRect)frame{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupUI];
+    }
+    return self;
+}
 
 - (void)setupUI{
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -88,7 +95,7 @@
     self.noScoreView = [[YXExamNoScoreView alloc]init];
     
     UIView *sep = [[UIView alloc]init];
-    sep.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
+    sep.backgroundColor = [UIColor clearColor];//TD:2.1UI修改
     [self.contentView addSubview:sep];
     [sep mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.scoreTitleLabel.mas_bottom).mas_offset(60);

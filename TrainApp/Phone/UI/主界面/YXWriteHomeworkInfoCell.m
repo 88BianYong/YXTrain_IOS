@@ -108,9 +108,10 @@
 - (void)setIsEnabled:(BOOL)isEnabled{
     _isEnabled = isEnabled;
     if (_isEnabled) {
-        _writeView.stateImageView.image = [UIImage imageNamed:@"第一阶段展开箭头-点击态"];
-    }else{
         _writeView.stateImageView.image = [UIImage imageNamed:@"第一阶段展开箭头A"];
+        _writeView.stateImageView.hidden = NO;
+    }else{
+        _writeView.stateImageView.hidden = YES;
     }
     //第一阶段展开收起箭头
 }

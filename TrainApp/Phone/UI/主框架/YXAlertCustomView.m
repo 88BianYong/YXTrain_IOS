@@ -50,11 +50,11 @@
     [_backgroundView addSubview:_imageView];
     
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.text = title;
-    _titleLabel.numberOfLines = 0;
+    _titleLabel.attributedText = [self titleString:title];
     _titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     _titleLabel.font = [UIFont systemFontOfSize:15.0f];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
+    _titleLabel.numberOfLines = 0;
     [_backgroundView addSubview:_titleLabel];
     
     UIView *lineView = [[UIView alloc] init];
@@ -100,6 +100,15 @@
         }
     }
 }
+- (NSMutableAttributedString *)titleString:(NSString *)title{
+    NSRange range = NSMakeRange(0, title.length);
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:title];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:5];
+    [attributedString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"],NSParagraphStyleAttributeName:paragraphStyle} range:range];
+    return attributedString;
+}
+
 
 - (void)layoutInterface{
     [_backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,22 +135,24 @@
     [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     if (action.style == YXAlertActionStyleCancel) {
         [button setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"a9acae"]] forState:UIControlStateHighlighted];
         button.layer.cornerRadius = YXTrainCornerRadii;
         button.clipsToBounds = YES;
         button.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        
     }
     else if (action.style == YXAlertActionStyleDefault){
       [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
       [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"003686"]] forState:UIControlStateHighlighted];
       button.layer.cornerRadius = YXTrainCornerRadii;
         button.clipsToBounds = YES;
         button.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     }else if(action.style == YXAlertActionStyleAlone){
         [button setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"003686"]] forState:UIControlStateHighlighted];
         button.titleLabel.font = [UIFont systemFontOfSize:15.0f];
     }
     return button;

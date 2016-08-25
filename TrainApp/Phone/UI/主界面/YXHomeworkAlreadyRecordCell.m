@@ -163,14 +163,14 @@
     }];
     
     [_uploadButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_lineView.mas_bottom).offset(35.0f);
+        make.top.equalTo(_lineView.mas_bottom).offset(32.0f);
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.height.mas_offset(44.0f);
         make.width.mas_offset(225.0f);
     }];
     
     [_againLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_uploadButton.mas_bottom).offset(20.0f);
+        make.top.equalTo(_uploadButton.mas_bottom).offset(18.0f);
         make.right.equalTo(self.contentView.mas_centerX);
     }];
     

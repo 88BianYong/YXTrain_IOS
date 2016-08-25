@@ -43,8 +43,9 @@
     _innerCircleView.backgroundColor = [UIColor whiteColor];
     _innerCircleView.layer.cornerRadius = 25.0f;
     [self addSubview:_innerCircleView];
+
     
-    _radialView = [[MDRadialProgressView alloc] initWithFrame:CGRectMake(0, 0, 56, 56)];
+    _radialView = [[MDRadialProgressView alloc] initWithFrame:CGRectMake(0, 0, 59, 59)];
     [self addSubview:_radialView];
     _radialView.progressTotal = 100;
     _radialView.progressCounter = 0.0f;
@@ -55,7 +56,7 @@
     _radialView.theme.labelShadowOffset = CGSizeMake(0, 0);
     _radialView.theme.completedColor = [UIColor colorWithHexString:@"2c97dd"];
     _radialView.theme.centerColor = [UIColor clearColor];
-    _radialView.theme.thickness = 13.0f;
+    _radialView.theme.thickness = 17.0f;
     _radialView.theme.sliceDividerColor = [UIColor blueColor];
     _radialView.label.textColor = [UIColor colorWithHexString:@"0070c9"];
     _radialView.label.font = [UIFont systemFontOfSize:14];
@@ -72,7 +73,6 @@
     [_closeButton setImage:[UIImage imageNamed:@"关闭按钮"] forState:UIControlStateNormal];
     [_closeButton addTarget:self action:@selector(closeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:_closeButton];
-
 }
 
 - (void)layoutInterface{
@@ -84,7 +84,7 @@
     }];
     
     [_radialView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(56.0f, 56.0f));
+        make.size.mas_equalTo(CGSizeMake(59.0f, 59.0f));
         make.top.equalTo(self.mas_top).offset(23.0f + 20.0f);
         make.centerX.equalTo(_backgroundView.mas_centerX);
     }];

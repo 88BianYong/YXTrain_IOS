@@ -63,11 +63,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (self.recorder.session == nil) {
-        SCRecordSession *session = [SCRecordSession recordSession];
-        session.fileType = AVFileTypeMPEG4;
-        self.recorder.session = session;
-    }
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -81,13 +76,14 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     _statusBar.hidden = NO;
-    [UIApplication sharedApplication].statusBarHidden = YES;
+    [UIApplication sharedApplication].statusBarHidden = NO;
 
 }
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
     [UIApplication sharedApplication].idleTimerDisabled = NO;
+    [UIApplication sharedApplication].statusBarHidden = NO;
     [self.recorder stopRunning];
 }
 
@@ -118,6 +114,9 @@
     self.recorder.delegate = self;
     self.recorder.autoSetVideoOrientation = YES;
     self.recorder.initializeSessionLazily = NO;
+    SCRecordSession *session = [SCRecordSession recordSession];
+    session.fileType = AVFileTypeMPEG4;
+    self.recorder.session = session;
     [_scanPreviewView addSubview:_focusView];
     _focusView = [[SCRecorderToolsView alloc] initWithFrame:_scanPreviewView.frame];
     _focusView.recorder = self.recorder;
@@ -131,7 +130,7 @@
     _bottomView.hidden = YES;
     [self.view addSubview:_bottomView];
     
-    _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 143.0f , 143.0f)];
+    _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 150.0f , 150.0f)];
     _progressView.hidden = YES;
     _progressView.titleString = @"视频保存中...";
     [self.view addSubview:_progressView];
@@ -141,6 +140,7 @@
     if (![_recorder prepare:&error]) {
         DDLogError(@"Prepare error: %@", error.localizedDescription);
     }
+      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];// TD: fix bug 192
     
 }
 - (void)setupHandler{
@@ -221,6 +221,7 @@
     
     _topView.cancleHandler = ^{
         STRONG_SELF
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [self dismissViewControllerAnimated:YES completion:^{
             
         }];
@@ -354,6 +355,7 @@
     [self removePreviewView];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self -> _progressView.hidden = YES;
+         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [self dismissViewControllerAnimated:YES completion:nil];
     });
 }
@@ -394,6 +396,8 @@
     });
 }
 
+
+
 #pragma mark - SCRecorderDelegate
 - (void)recorder:(SCRecorder *)recorder didAppendVideoSampleBufferInSession:(SCRecordSession *)recordSession
 {
@@ -412,9 +416,18 @@
 - (void)applicationWillResignActive:(NSNotification *)notification{
     if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Recording){
       _bottomView.videoRecordStatus = YXVideoRecordStatus_Pause;
+        [self -> _recorder unprepare];
     }
     if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Save) {
         [self.exportSession cancelExport];
     }
+}
+- (void)applicationDidBecomeActive:(NSNotification *)notification{
+    NSError *error;
+    if (![_recorder prepare:&error]) {
+        DDLogError(@"Prepare error: %@", error.localizedDescription);
+    }
+    [self.recorder startRunning];
+
 }
 @end

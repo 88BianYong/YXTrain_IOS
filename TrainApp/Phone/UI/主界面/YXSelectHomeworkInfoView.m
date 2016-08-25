@@ -108,7 +108,8 @@
     self.index = status;
     self.selectedId = integerId;
     self.originY = y;
-    CGFloat tableHeight = MIN(_itemMutableArray.count*44, 242);
+    CGFloat tableHeight = 265.0f;
+    //MIN(_itemMutableArray.count*44, 242);
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.originY);
         make.left.mas_equalTo(55.0f);

@@ -209,6 +209,18 @@
         self.layer.mask = nil;
     }
 }
+- (void)setIsFirst:(BOOL)isFirst{
+    _isFirst = isFirst;
+    if (_isFirst) {
+        [_lineView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left);
+        }];
+    }else{
+        [_lineView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(14.0f);
+        }];
+    }
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
