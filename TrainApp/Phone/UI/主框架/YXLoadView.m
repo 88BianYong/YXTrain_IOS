@@ -95,7 +95,6 @@
     _ringView.layer.borderColor = [UIColor colorWithHexString:@"2d87cf"].CGColor;
     [self addSubview:_ringView];
     
-    
     imageviewAngle = 0.0f;
     _isRuning = NO;
 }
@@ -118,8 +117,8 @@
     if(_isRuning == YES)
     {
         [UIView animateWithDuration:0.1f delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
-            _minuteHand.transform = CGAffineTransformRotate(_minuteHand.transform, M_PI/4.0f);
-            _hourHand.transform = CGAffineTransformRotate(_hourHand.transform, M_PI / 28.0f);
+            _minuteHand.transform = CGAffineTransformRotate(_minuteHand.transform, M_PI/3.0f);
+            _hourHand.transform = CGAffineTransformRotate(_hourHand.transform, M_PI / 36.0f);
 
         }completion:^(BOOL finished) {
             [self rorateAnimatetion];

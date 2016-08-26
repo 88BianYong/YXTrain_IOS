@@ -17,6 +17,7 @@
 #import "YXCourseRecordViewController.h"
 #import "YXUserProfileRequest.h"
 #import "YXUploadHeadImgRequest.h"
+#import "YXInitRequest.h"
 
 @interface YXProjectMainViewController ()
 {
@@ -36,6 +37,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
     // Do any additional setup after loading the view, typically from a nib.
     
     UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];

@@ -66,11 +66,13 @@ extern NSString *const YXInitSuccessNotification;
 @end
 
 @interface YXInitHelper : NSObject
+@property (nonatomic, strong) YXInitRequestItem *item;
 
 + (instancetype)sharedHelper;
 
 - (void)requestCompeletion:(void(^)(BOOL))completion;
 - (void)requestLoginCompeletion:(void (^)(YXInitRequestItem *, NSError *))completion;
 - (BOOL)isAppleChecking;
+- (void)showNoRestraintUpgrade;
 
 @end

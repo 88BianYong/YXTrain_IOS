@@ -98,7 +98,6 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 @interface YXInitHelper ()
 
 @property (nonatomic, strong) YXInitRequest *request;
-@property (nonatomic, strong) YXInitRequestItem *item;
 @property (nonatomic,copy) void (^upgradeHandler)(BOOL);
 
 @end
@@ -219,11 +218,25 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     }
     else{
         BLOCK_EXEC(self.upgradeHandler,isInit);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self showUploadTitle:body.title andContent:body.content];
-        });
     }
 
+}
+- (void)showNoRestraintUpgrade{
+    if (!self.item || self.item.body.count <= 0) {
+        return;
+    }
+    YXInitRequestItem_Body *body = self.item.body[0];
+    if ([body isTest]) { //测试环境
+#ifndef DEBUG
+        return;
+#endif
+    }
+    if (![body.fileURL yx_isHttpLink]) { //http链接
+        return;
+    }
+    if ([body.upgradetype isEqualToString:@"2"]) {
+        [self showUploadTitle:body.title andContent:body.content];
+    }
 }
 
 - (BOOL)isAppleChecking

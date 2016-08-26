@@ -116,10 +116,6 @@
         make.height.mas_equalTo(self.waveView.frame.size.height);
     }];
     
-
-    
-    
-    
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
