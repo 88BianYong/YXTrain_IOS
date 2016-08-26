@@ -117,9 +117,10 @@
 {
     if(_isRuning == YES)
     {
-        [UIView animateWithDuration:0.6f delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
-            _hourHand.transform = CGAffineTransformRotate(_hourHand.transform, M_PI / 60.0f);
-            _minuteHand.transform = CGAffineTransformRotate(_minuteHand.transform, M_PI);
+        [UIView animateWithDuration:0.1f delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
+            _minuteHand.transform = CGAffineTransformRotate(_minuteHand.transform, M_PI/4.0f);
+            _hourHand.transform = CGAffineTransformRotate(_hourHand.transform, M_PI / 28.0f);
+
         }completion:^(BOOL finished) {
             [self rorateAnimatetion];
         }];

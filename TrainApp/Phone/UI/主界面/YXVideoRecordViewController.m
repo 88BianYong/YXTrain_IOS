@@ -296,28 +296,16 @@
         AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url.absoluteURL options:nil];
         CMTime itmeTime = asset.duration;
         CGFloat durationTime = CMTimeGetSeconds(itmeTime);
-         DDLogDebug(@">>>%@===>%@",error,asset);
         if (error == nil && durationTime > 0.0f) {
             [self saveSuccessWithVideoPath:url.path];
         } else {
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            if([fileManager fileExistsAtPath:url.path]){
+                [self saveVideoFail];
+            }else{
+                DDLogDebug(@"不存在");
+            }
             self -> _progressView.hidden = YES;
-            YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
-            cancelAlertAct.title = @"取消";
-            cancelAlertAct.style = YXAlertActionStyleCancel;
-            cancelAlertAct.block = ^{
-                STRONG_SELF
-            };
-            
-            YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
-            retryAlertAct.title = @"重试";
-            retryAlertAct.style = YXAlertActionStyleDefault;
-            retryAlertAct.block = ^{
-                STRONG_SELF
-                [self saveRecordVideo];
-            };
-
-            YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频保存失败" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
-            [alertView showAlertView:self.view];
             DDLogError(@"%@",error.localizedDescription);
         }
     };
@@ -341,6 +329,26 @@
         self.completionHandle(self.exportSession.outputUrl, self.exportSession.error);
         DDLogDebug(@"Completed compression in %fs", CACurrentMediaTime() - time);
     }];
+}
+- (void)saveVideoFail{
+    WEAK_SELF
+    YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
+    cancelAlertAct.title = @"取消";
+    cancelAlertAct.style = YXAlertActionStyleCancel;
+    cancelAlertAct.block = ^{
+    };
+    
+    YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
+    retryAlertAct.title = @"重试";
+    retryAlertAct.style = YXAlertActionStyleDefault;
+    retryAlertAct.block = ^{
+        STRONG_SELF
+        [self saveRecordVideo];
+    };
+    
+    YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频保存失败" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
+    [alertView showAlertView:self.view];
+    
 }
 //保存成功视频之后
 - (void)saveSuccessWithVideoPath:(NSString *)videoPath
@@ -410,17 +418,17 @@
 }
 
 - (void)recorder:(SCRecorder *__nonnull)recorder didCompleteSegment:(SCRecordSessionSegment *__nullable)segment inSession:(SCRecordSession *__nonnull)session error:(NSError *__nullable)error {
+    DDLogDebug(@"didCompleteSegment");
 }
-
 #pragma mark - notification
 - (void)applicationWillResignActive:(NSNotification *)notification{
     if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Recording){
       _bottomView.videoRecordStatus = YXVideoRecordStatus_Pause;
-        [self -> _recorder unprepare];
     }
     if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Save) {
         [self.exportSession cancelExport];
     }
+    [self -> _recorder unprepare];
 }
 - (void)applicationDidBecomeActive:(NSNotification *)notification{
     NSError *error;
