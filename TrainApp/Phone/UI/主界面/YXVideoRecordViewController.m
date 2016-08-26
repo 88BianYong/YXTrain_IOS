@@ -296,20 +296,16 @@
     WEAK_SELF
     self.completionHandle = ^(NSURL *url, NSError *error){
         STRONG_SELF
-        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url.absoluteURL options:nil];
-        CMTime itmeTime = asset.duration;
-        CGFloat durationTime = CMTimeGetSeconds(itmeTime);
-        if (error == nil && durationTime > 0.0f) {
-            [self saveSuccessWithVideoPath:url.path];
-        } else {
+        self ->_progressView.hidden = YES;
+        if (error) {
+           [self saveVideoFail];
+        }else{
             NSFileManager *fileManager = [NSFileManager defaultManager];
             if([fileManager fileExistsAtPath:url.path]){
-                [self saveVideoFail];
+               [self saveSuccessWithVideoPath:url.path];
             }else{
                 DDLogDebug(@"不存在");
             }
-            self -> _progressView.hidden = YES;
-            DDLogError(@"%@",error.localizedDescription);
         }
     };
     self.exportSession = [[SCAssetExportSession alloc] initWithAsset:self->_recorder.session.assetRepresentingSegments];

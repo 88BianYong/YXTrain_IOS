@@ -3070,7 +3070,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
+				PROVISIONING_PROFILE = "75708598-3471-4f46-aeb5-f045020c67aa";
 			};
 			name = Debug;
 		};
@@ -3088,7 +3088,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
+				PROVISIONING_PROFILE = "75708598-3471-4f46-aeb5-f045020c67aa";
 			};
 			name = Release;
 		};
@@ -3119,10 +3119,12 @@
 		7C31774E1D0E4D6C004AAC90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: xingfu liu (J63VXZH2U7)";
 				INFOPLIST_FILE = TrainAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "75708598-3471-4f46-aeb5-f045020c67aa";
 				TEST_TARGET_NAME = TrainApp;
 			};
 			name = Debug;
@@ -3134,6 +3136,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = yanxiu.TrainAppUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "75708598-3471-4f46-aeb5-f045020c67aa";
 				TEST_TARGET_NAME = TrainApp;
 			};
 			name = Release;
