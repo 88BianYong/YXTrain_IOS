@@ -36,8 +36,10 @@
 
 @implementation YXVideoRecordViewController
 - (void)dealloc{
-    DDLogDebug(@"release=====>%@",NSStringFromClass([self class]));
+    DDLogWarn(@"release=====>%@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    self->_focusView.recorder = nil;
 }
 
 - (YXNotAutorotateView *)autorotateView{
@@ -137,7 +139,7 @@
     [self setupHandler];
     [self.view addSubview:self.autorotateView];
     NSError *error;
-    if (![_recorder prepare:&error]) {
+    if (![self->_recorder prepare:&error]) {
         DDLogError(@"Prepare error: %@", error.localizedDescription);
     }
       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];// TD: fix bug 192
@@ -188,6 +190,7 @@
                 YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
                 cancelAlertAct.title = @"取消";
                 cancelAlertAct.style = YXAlertActionStyleDefault;
+                WEAK_SELF
                 cancelAlertAct.block = ^ {
                     STRONG_SELF
                 };
@@ -256,7 +259,7 @@
             //TODO 出现保存界面。
             [self configPreviewView];
         }else{
-            SCRecordSession *recordSession = _recorder.session;
+            SCRecordSession *recordSession = self->_recorder.session;
             if (recordSession != nil) {
                 self ->_recorder.session = nil;
                 [recordSession cancelSession:nil];
@@ -309,7 +312,7 @@
             DDLogError(@"%@",error.localizedDescription);
         }
     };
-    self.exportSession = [[SCAssetExportSession alloc] initWithAsset:_recorder.session.assetRepresentingSegments];
+    self.exportSession = [[SCAssetExportSession alloc] initWithAsset:self->_recorder.session.assetRepresentingSegments];
     self.exportSession.videoConfiguration.preset = SCPresetLowQuality;
     self.exportSession.videoConfiguration.sizeAsSquare = NO;
     self.exportSession.videoConfiguration.size = self.view.frame.size;
@@ -321,11 +324,11 @@
     }
     NSString *videoPathName = [NSString stringWithFormat:@"%@.mp4",[YXVideoRecordManager getFileNameWithJobId:self.videoModel.requireId]];
     self.exportSession.outputUrl = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:videoPathName]];
-    CFTimeInterval time = CACurrentMediaTime();
+    __block CFTimeInterval time = CACurrentMediaTime();
     _bottomView.userInteractionEnabled = NO;
     [self.exportSession exportAsynchronouslyWithCompletionHandler:^{
         STRONG_SELF
-        _bottomView.userInteractionEnabled = YES;
+        self->_bottomView.userInteractionEnabled = YES;
         self.completionHandle(self.exportSession.outputUrl, self.exportSession.error);
         DDLogDebug(@"Completed compression in %fs", CACurrentMediaTime() - time);
     }];
@@ -432,7 +435,7 @@
 }
 - (void)applicationDidBecomeActive:(NSNotification *)notification{
     NSError *error;
-    if (![_recorder prepare:&error]) {
+    if (![self->_recorder prepare:&error]) {
         DDLogError(@"Prepare error: %@", error.localizedDescription);
     }
     [self.recorder startRunning];
