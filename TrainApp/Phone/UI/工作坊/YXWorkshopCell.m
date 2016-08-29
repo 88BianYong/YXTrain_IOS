@@ -49,7 +49,7 @@
 }
 - (void)setupUI{
     _iconImageView = [[UIImageView alloc] init];
-    _iconImageView.image = [UIImage imageNamed:@"工作坊列表小图标"];
+    _iconImageView.image = [UIImage imageNamed:@"工作坊icon"];
     _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:_iconImageView];
     
@@ -63,7 +63,7 @@
 }
 - (void)layoutInterface{
     [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(15.0f);
+        make.left.equalTo(self.contentView.mas_left).offset(14.0f);
         make.width.height.offset(40.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];

@@ -29,6 +29,7 @@
 @property (nonatomic, strong) SCAssetExportSession *exportSession;
 @property (nonatomic, copy) void(^completionHandle)(NSURL *url, NSError *error);
 @property (nonatomic, strong) YXNotAutorotateView *autorotateView;
+@property (nonatomic, strong) NSTimer *timer;
 
 
 
@@ -38,7 +39,8 @@
 - (void)dealloc{
     DDLogWarn(@"release=====>%@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+    [self.timer invalidate];
+    self.timer = nil;
     self->_focusView.recorder = nil;
 }
 
@@ -166,6 +168,8 @@
                 [self ->_topView startAnimatetion];
                 [self.recorder record];
                 self.autorotateView.hidden = NO;
+                [self startTimer];
+                [self timerAction];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     self.autorotateView.hidden = YES;
                 });
@@ -174,6 +178,7 @@
                 break;
             case YXVideoRecordStatus_Pause:{
                 [self.recorder pause];
+                [self stopTimer];
             }
                 break;
             case YXVideoRecordStatus_Delete:
@@ -200,7 +205,7 @@
                 break;
             case YXVideoRecordStatus_StopMax:
             {
-                
+                [self stopTimer];
                 self -> _bottomView.videoRecordStatus = YXVideoRecordStatus_Pause;
                 YXAlertAction *knowAction = [[YXAlertAction alloc] init];
                 knowAction.title = @"我知道了";
@@ -214,6 +219,7 @@
                 break;
             case YXVideoRecordStatus_Save:
             {
+                [self stopTimer];
                 [self saveRecordVideo];
             }
                 break;
@@ -296,18 +302,29 @@
     WEAK_SELF
     self.completionHandle = ^(NSURL *url, NSError *error){
         STRONG_SELF
-        self ->_progressView.hidden = YES;
         if (error) {
+           self ->_progressView.hidden = YES;
            [self saveVideoFail];
         }else{
             NSFileManager *fileManager = [NSFileManager defaultManager];
             if([fileManager fileExistsAtPath:url.path]){
                [self saveSuccessWithVideoPath:url.path];
             }else{
-                DDLogDebug(@"不存在");
+                self ->_progressView.hidden = YES;
+                DDLogError(@"不存在");
             }
         }
     };
+//    unsigned long long fileSize = 0;
+//    NSError *error = nil;
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+//    if([fileManager fileExistsAtPath:self->_recorder.session.outputUrl.path]){
+//        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:self->_recorder.session.outputUrl.path error:&error];
+//        NSString * fileSizeString = [fileAttributes objectForKey:@"NSFileSize"];
+//        fileSize = [fileSizeString longLongValue];
+//        DDLogDebug(@"%llu",fileSize);
+//    }
+//    
     self.exportSession = [[SCAssetExportSession alloc] initWithAsset:self->_recorder.session.assetRepresentingSegments];
     self.exportSession.videoConfiguration.preset = SCPresetLowQuality;
     self.exportSession.videoConfiguration.sizeAsSquare = NO;
@@ -347,7 +364,6 @@
     
     YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频保存失败" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
     [alertView showAlertView:self.view];
-    
 }
 //保存成功视频之后
 - (void)saveSuccessWithVideoPath:(NSString *)videoPath
@@ -431,10 +447,37 @@
 }
 - (void)applicationDidBecomeActive:(NSNotification *)notification{
     NSError *error;
+    [self -> _recorder unprepare];
     if (![self->_recorder prepare:&error]) {
         DDLogError(@"Prepare error: %@", error.localizedDescription);
     }
     [self.recorder startRunning];
 
+}
+
+
+- (void)startTimer{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+}
+
+- (void)stopTimer{
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+- (void)timerAction{
+    if ([[YXVideoRecordManager freeSpace] longLongValue] < 180 * 1024 *1024) {
+        _bottomView.videoRecordStatus = YXVideoRecordStatus_Pause;
+        WEAK_SELF
+        YXAlertAction *knowAction = [[YXAlertAction alloc] init];
+        knowAction.title = @"我知道了";
+        knowAction.style = YXAlertActionStyleAlone;
+        knowAction.block = ^ {
+            STRONG_SELF
+        };
+        YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"系统空间不足" image:@"失败icon" actions:@[knowAction]];
+        [alertView showAlertView:nil];
+        [self stopTimer];
+    }
 }
 @end

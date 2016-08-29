@@ -70,7 +70,7 @@ static const CGFloat YXScrollMargin = 30.f;
     [self.cancelButton setBackgroundColor:[UIColor colorWithHexString:@"f3f7fa"]];
     self.cancelButton.titleLabel.font = [UIFont systemFontOfSize:14];
     self.cancelButton.layer.cornerRadius = 2;
-    self.cancelButton.tag = YXTagBase + 0;
+    self.cancelButton.tag = YXTagBase + 1;
     [self.cancelButton addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.cancelButton];
     
@@ -80,7 +80,7 @@ static const CGFloat YXScrollMargin = 30.f;
     [self.downloadUpdateButton setBackgroundColor:[UIColor colorWithHexString:@"0070c9"]];
     self.downloadUpdateButton.titleLabel.font = [UIFont systemFontOfSize:14];
     self.downloadUpdateButton.layer.cornerRadius = 2;
-    self.downloadUpdateButton.tag = YXTagBase + 1;
+    self.downloadUpdateButton.tag = YXTagBase + 0;
     [self.downloadUpdateButton addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.downloadUpdateButton];
 }
@@ -91,10 +91,10 @@ static const CGFloat YXScrollMargin = 30.f;
 }
 
 - (void)updateWithData:(YXAppUpdateData *)data actions:(NSArray *)actions {
-    if (actions.count != 2) {
-        DDLogError(@"两个button，请提供两个action");
-        return;
-    }
+//    if (actions.count != 2) {
+//        DDLogError(@"两个button，请提供两个action");
+//        return;
+//    }
     data.imageName = @"下载版本更新icon";
     self.data = data;
     
@@ -105,13 +105,13 @@ static const CGFloat YXScrollMargin = 30.f;
     [paragraphStyle setLineSpacing:7];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [data.content length])];
     self.contentLabel.attributedText = attributedString;
-    [self updateConstrainsForScrollView];
+    [self updateConstrainsForScrollView:actions.count];
     
     self.actionArray = actions;
     [self layoutIfNeeded];
 }
 
-- (void)updateConstrainsForScrollView {
+- (void)updateConstrainsForScrollView:(NSInteger)number {
     [self.contentScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(14);
         make.left.mas_equalTo(YXScrollMargin);
@@ -136,6 +136,24 @@ static const CGFloat YXScrollMargin = 30.f;
             make.height.mas_equalTo([self maxContentNonScrollHeight]);
         }];
         self.contentScrollView.contentSize = CGSizeMake(self.contentScrollView.frame.size.width, h);
+    }
+    if (number == 2) {
+        [self.cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(95, 29));
+            make.left.mas_equalTo(30);
+            make.bottom.mas_equalTo(-15.5);
+        }];
+        [self.downloadUpdateButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(95, 29));
+            make.right.mas_equalTo(-30);
+            make.bottom.mas_equalTo(-15.5);
+        }];
+    }else{
+        [self.downloadUpdateButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(95, 29));
+            make.centerX.equalTo(self.mas_centerX);
+            make.bottom.mas_equalTo(-15.5);
+        }];
     }
 }
 
@@ -163,17 +181,6 @@ static const CGFloat YXScrollMargin = 30.f;
         make.left.right.mas_equalTo(0);
         make.bottom.mas_equalTo(-60);
         make.top.mas_equalTo(self.contentScrollView.mas_bottom).mas_offset(14);
-    }];
-    
-    [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(95, 29));
-        make.left.mas_equalTo(30);
-        make.bottom.mas_equalTo(-15.5);
-    }];
-    [self.downloadUpdateButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(95, 29));
-        make.right.mas_equalTo(-30);
-        make.bottom.mas_equalTo(-15.5);
     }];
 }
 

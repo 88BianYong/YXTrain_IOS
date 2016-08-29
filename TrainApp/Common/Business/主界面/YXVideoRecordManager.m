@@ -34,7 +34,7 @@
 
 + (BOOL)isEnoughDeviceSpace
 {
-    if ([[self freeSpace] longLongValue] < 400 * 1024 *1024) {
+    if ([[self freeSpace] longLongValue] < 200 * 1024 *1024) {
         return NO;
     }
     return YES;

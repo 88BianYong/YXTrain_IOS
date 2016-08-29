@@ -32,6 +32,10 @@
 @end
 
 @implementation YXHourView
+- (void)dealloc{
+    DDLogDebug(@"release=======>%@",NSStringFromClass([self class]));
+}
+
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -57,6 +61,7 @@
     double imageviewAngle;
     BOOL _isRuning;
     UIView *_ringView;
+    NSDate *_anHourAgo;
 }
 @end
 
@@ -104,24 +109,35 @@
     aView.layer.position = CGPointMake(aView.layer.position.x + (aPoint.x - aView.layer.anchorPoint.x) * aView.bounds.size.width, aView.layer.position.y + (aPoint.y - aView.layer.anchorPoint.y) * aView.bounds.size.height);
 }
 - (void)startAnimate{
-    if (!_isRuning) {
+    NSDate * now = [NSDate date];
+    if (!_anHourAgo) {
+        _anHourAgo = [now dateByAddingTimeInterval:-0.2f];
+    }
+    NSTimeInterval timeBetween = [now timeIntervalSinceDate:_anHourAgo];
+    if (!_isRuning  && timeBetween > 0.1f) {
         _isRuning = YES;
         [self rorateAnimatetion];
+        _anHourAgo = [NSDate date];
+        DDLogDebug(@"start");
     }
 }
 - (void)stopAnimate{
     _isRuning = NO;
+    DDLogDebug(@"stop");
 }
 - (void)rorateAnimatetion
 {
-    if(_isRuning == YES)
+
+    if(_isRuning)
     {
         [UIView animateWithDuration:0.1f delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
             _minuteHand.transform = CGAffineTransformRotate(_minuteHand.transform, M_PI/3.0f);
             _hourHand.transform = CGAffineTransformRotate(_hourHand.transform, M_PI / 36.0f);
-
+            
         }completion:^(BOOL finished) {
-            [self rorateAnimatetion];
+            if(finished){
+                [self rorateAnimatetion];
+            }
         }];
     }
 }

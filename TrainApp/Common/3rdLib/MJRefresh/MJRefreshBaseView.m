@@ -221,7 +221,6 @@
             [self bringSubviewToFront:_imageView];
         }
         
-        
         if (_state == MJRefreshStatePulling && offsetY <= validOffsetY) {
             // 转为普通状态
             [self setState:MJRefreshStateNormal];
@@ -262,7 +261,9 @@
             if (_refreshStateChangeBlock) {
                 _refreshStateChangeBlock(self, MJRefreshStateRefreshing);
             }
-            [_loadView startAnimate];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [_loadView startAnimate];
+            });
         }
     }
 }
@@ -403,6 +404,7 @@
 #pragma mark 结束刷新
 - (void)endRefreshing
 {
+    [_loadView stopAnimate];
     double delayInSeconds = self.viewType == MJRefreshViewTypeFooter ? 0.3 : 0.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){

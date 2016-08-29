@@ -145,7 +145,7 @@
     _bgView = [[UIView alloc] initWithFrame:window.bounds];
     _bgView.hidden = YES;
     [window addSubview:_bgView];
-    _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 143.0f , 143.0f)];
+    _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 150.0f , 150.0f)];
     _progressView.center = _bgView.center;
     _progressView.titleString = @"视频上传中...";
     _progressView.closeHandler = ^(){
@@ -383,8 +383,10 @@
     YXWriteHomeworkRequest *request = [[YXWriteHomeworkRequest alloc] init];
     request.projectid = self.videoModel.pid;
     request.hwid = self.videoModel.homeworkid;
+    [self startLoading];
     [request startRequestWithRetClass:[YXWriteHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
+        [self stopLoading];
         if (error) {
             [self showToast:@"作业信息获取失败"];
         }else{
