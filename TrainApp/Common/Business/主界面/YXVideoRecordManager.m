@@ -78,7 +78,6 @@
                 else {
                     bCanRecord = NO;
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        
                         YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问麦克风" message:@"请到“设置->隐私->麦克风”中设置为允许访麦克风！"];
                         [alertView addButtonWithTitle:@"确定"];
                         [alertView show];

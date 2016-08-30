@@ -27,7 +27,7 @@
 @property (nonatomic, strong) SCRecorderToolsView *focusView;
 //@property (nonatomic, strong) SCPlayer  *player;
 @property (nonatomic, strong) SCAssetExportSession *exportSession;
-@property (nonatomic, copy) void(^completionHandle)(NSURL *url, NSError *error);
+@property (nonatomic, copy) void(^completionHandle)(NSURL *url, NSError *error ,BOOL cancle);
 @property (nonatomic, strong) YXNotAutorotateView *autorotateView;
 @property (nonatomic, strong) NSTimer *timer;
 
@@ -39,8 +39,7 @@
 - (void)dealloc{
     DDLogWarn(@"release=====>%@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self.timer invalidate];
-    self.timer = nil;
+    [self stopTimer];
     self->_focusView.recorder = nil;
 }
 
@@ -52,12 +51,26 @@
     }
     return _autorotateView;
 }
+- (SCAssetExportSession *)exportSession{
+    if (!_exportSession) {
+        _exportSession = [[SCAssetExportSession alloc] init];
+    }
+    return _exportSession;
+}
+
 
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     [self setupUI];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil]; //监听是否触发home键挂起程序.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil]; 
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidBecomeActive:)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];// TD: fix bug 192
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector (deviceOrientationDidChange:)
                                                  name: UIDeviceOrientationDidChangeNotification
@@ -144,8 +157,6 @@
     if (![self->_recorder prepare:&error]) {
         DDLogError(@"Prepare error: %@", error.localizedDescription);
     }
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];// TD: fix bug 192
-    
 }
 - (void)setupHandler{
     WEAK_SELF
@@ -220,7 +231,12 @@
             case YXVideoRecordStatus_Save:
             {
                 [self stopTimer];
-                [self saveRecordVideo];
+                self ->_progressView.progress = 0.0f;
+                self ->_progressView.hidden = NO;
+                self ->_bottomView.userInteractionEnabled = NO;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self saveRecordVideo];
+                });//fix bug 245 录制时间过长会保存失败
             }
                 break;
             default:
@@ -298,34 +314,34 @@
 
 
 - (void)saveRecordVideo{
+    self ->_progressView.progress = 0.0f;
     _progressView.hidden = NO;
+    _bottomView.userInteractionEnabled = NO;
     WEAK_SELF
-    self.completionHandle = ^(NSURL *url, NSError *error){
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+    });
+    self.completionHandle = ^(NSURL *url, NSError *error ,BOOL cancle){
         STRONG_SELF
-        if (error) {
-           self ->_progressView.hidden = YES;
-           [self saveVideoFail];
+        if (cancle) {
+            self ->_progressView.hidden = YES;
+            self->_bottomView.userInteractionEnabled = YES;
+           DDLogError(@"取消");
+            return;
+        }
+        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:url.absoluteURL options:nil];
+        CMTime itmeTime = asset.duration;
+        CGFloat durationTime = CMTimeGetSeconds(itmeTime);
+        if (error == nil &&  durationTime > 0.1f) {
+            [self saveSuccessWithVideoPath:url.path];
         }else{
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            if([fileManager fileExistsAtPath:url.path]){
-               [self saveSuccessWithVideoPath:url.path];
-            }else{
-                self ->_progressView.hidden = YES;
-                DDLogError(@"不存在");
-            }
+             [self saveVideoFail];
+            self ->_progressView.hidden = YES;
+            self->_bottomView.userInteractionEnabled = YES;
         }
     };
-//    unsigned long long fileSize = 0;
-//    NSError *error = nil;
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    if([fileManager fileExistsAtPath:self->_recorder.session.outputUrl.path]){
-//        NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:self->_recorder.session.outputUrl.path error:&error];
-//        NSString * fileSizeString = [fileAttributes objectForKey:@"NSFileSize"];
-//        fileSize = [fileSizeString longLongValue];
-//        DDLogDebug(@"%llu",fileSize);
-//    }
-//    
-    self.exportSession = [[SCAssetExportSession alloc] initWithAsset:self->_recorder.session.assetRepresentingSegments];
+    self.exportSession.inputAsset = self->_recorder.session.assetRepresentingSegments;
+    DDLogDebug(@"%@",self->_recorder.session.assetRepresentingSegments);
     self.exportSession.videoConfiguration.preset = SCPresetLowQuality;
     self.exportSession.videoConfiguration.sizeAsSquare = NO;
     self.exportSession.videoConfiguration.size = self.view.frame.size;
@@ -338,11 +354,9 @@
     NSString *videoPathName = [NSString stringWithFormat:@"%@.mp4",[YXVideoRecordManager getFileNameWithJobId:self.videoModel.requireId]];
     self.exportSession.outputUrl = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:videoPathName]];
     __block CFTimeInterval time = CACurrentMediaTime();
-    _bottomView.userInteractionEnabled = NO;
     [self.exportSession exportAsynchronouslyWithCompletionHandler:^{
         STRONG_SELF
-        self->_bottomView.userInteractionEnabled = YES;
-        self.completionHandle(self.exportSession.outputUrl, self.exportSession.error);
+        self.completionHandle(self.exportSession.outputUrl, self.exportSession.error ,self.exportSession.cancelled);
         DDLogDebug(@"Completed compression in %fs", CACurrentMediaTime() - time);
     }];
 }
@@ -378,6 +392,7 @@
     [self removePreviewView];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self -> _progressView.hidden = YES;
+        self->_bottomView.userInteractionEnabled = YES;
          [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [self dismissViewControllerAnimated:YES completion:nil];
     });
@@ -414,8 +429,8 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         float progress = assetExportSession.progress;
-        _progressView.titleString = @"视频保存中...";
-        _progressView.progress = progress;
+        self ->_progressView.titleString = @"视频保存中...";
+        self ->_progressView.progress = progress;
     });
 }
 
@@ -432,9 +447,9 @@
     _bottomView.videoRecordStatus = YXVideoRecordStatus_StopMax;
 }
 
-- (void)recorder:(SCRecorder *__nonnull)recorder didCompleteSegment:(SCRecordSessionSegment *__nullable)segment inSession:(SCRecordSession *__nonnull)session error:(NSError *__nullable)error {
-    DDLogDebug(@"didCompleteSegment");
-}
+//- (void)recorder:(SCRecorder *__nonnull)recorder didCompleteSegment:(SCRecordSessionSegment *__nullable)segment inSession:(SCRecordSession *__nonnull)session error:(NSError *__nullable)error {
+//    DDLogDebug(@"didCompleteSegment");
+//}
 #pragma mark - notification
 - (void)applicationWillResignActive:(NSNotification *)notification{
     if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Recording){
@@ -443,7 +458,6 @@
     if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Save) {
         [self.exportSession cancelExport];
     }
-    [self -> _recorder unprepare];
 }
 - (void)applicationDidBecomeActive:(NSNotification *)notification{
     NSError *error;

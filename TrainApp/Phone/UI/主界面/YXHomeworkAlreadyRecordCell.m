@@ -8,7 +8,7 @@
 
 #import "YXHomeworkAlreadyRecordCell.h"
 #import "UIImage+YXImage.h"
-@interface YXHomeworkAlreadyRecordCell()
+@interface YXHomeworkAlreadyRecordCell()<UIGestureRecognizerDelegate>
 {
     UIImageView *_posterImageView;//视频图
     UILabel *_titleLabel;//视频状态
@@ -116,14 +116,18 @@
     _playButton.tag = YXRecordVideoInterfaceStatus_Play;
     [_playButton setImage:[UIImage imageNamed:@"播放视频按钮-正常态"] forState:UIControlStateNormal];
     [_playButton setImage:[UIImage imageNamed:@"播放视频按钮-点击态"] forState:UIControlStateHighlighted];
+    _playButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    _playButton.contentHorizontalAlignment = UIControlContentVerticalAlignmentTop;
     [_playButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_playButton setImageEdgeInsets:UIEdgeInsetsMake(0,backgrounView.bounds.size.width - 30.0f -kScreenWidthScale(26.0f)/2.0f, 0, 0.0f)];
     [self.contentView addSubview:_playButton];
     
-    _playView = [[UIView alloc] init];
-    _playView.tag = YXRecordVideoInterfaceStatus_Play;
-    [self.contentView addSubview:_playView];
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playVideo:)];
-    [_playView addGestureRecognizer:recognizer];
+//    _playView = [[UIView alloc] init];
+//    _playView.tag = YXRecordVideoInterfaceStatus_Play;
+//    [self.contentView addSubview:_playView];
+//    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playVideo:)];
+//    recognizer.delegate = self;
+//    [_playView addGestureRecognizer:recognizer];
 }
 
 #pragma mark - layoutInterface
@@ -182,9 +186,11 @@
     }];
     
     [_playButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView.mas_right).offset(kScreenWidthScale(-26.0f));
-        make.centerY.equalTo(_posterImageView.mas_centerY);
-        make.width.height.mas_offset(30.0f);
+//        make.right.equalTo(self.contentView.mas_right).offset(kScreenWidthScale(-26.0f));
+//        make.centerY.equalTo(_posterImageView.mas_centerY);
+//        make.width.height.mas_offset(30.0f);
+        make.top.left.right.equalTo(self.contentView);
+        make.bottom.equalTo(_lineView.mas_bottom);
     }];
     [_playView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.contentView);
@@ -221,9 +227,13 @@
 - (void)buttonAction:(UIButton *)sender{
     BLOCK_EXEC(self.buttonActionHandler,sender.tag);
 }
-- (void)playVideo:(UIGestureRecognizer *)sender{
-    BLOCK_EXEC(self.buttonActionHandler,[sender view].tag);
-}
-
+//- (void)playVideo:(UIGestureRecognizer *)sender{
+//    [_playButton setImage:[UIImage imageNamed:@"播放视频按钮-正常态"] forState:UIControlStateNormal];
+//    BLOCK_EXEC(self.buttonActionHandler,[sender view].tag);
+//}
+//- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
+//    [_playButton setImage:[UIImage imageNamed:@"播放视频按钮-点击态"] forState:UIControlStateNormal];
+//    return YES;
+//}
 
 @end

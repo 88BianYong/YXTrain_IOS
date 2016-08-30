@@ -49,7 +49,8 @@
     self.versionLabel = [[UILabel alloc] init];
     self.versionLabel.font = [UIFont fontWithName:YXFontMetro_Italic size:16];
     self.versionLabel.textColor = [UIColor colorWithHexString:@"bbc2c9"];
-    self.versionLabel.text = @"V2.0";
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    self.versionLabel.text = [NSString stringWithFormat:@"V%@",[infoDictionary objectForKey:@"CFBundleShortVersionString"]];
     [self addSubview:self.versionLabel];
     
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
