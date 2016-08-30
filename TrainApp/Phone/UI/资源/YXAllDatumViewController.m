@@ -57,7 +57,7 @@
     self.errorView.retryBlock = ^(){
         @strongify(self);
         [self startLoading];
-        [self firstPageFetch];
+        [self firstPageFetch:YES];
     };
     self.view.backgroundColor = [UIColor redColor];
     self.menuView = [[YXDatumOrderFilterMenuView alloc]initWithFrame:CGRectZero];
@@ -93,7 +93,7 @@
 
 - (void)firstPageFetch {
     self.wholeDatumFetcher.condition = self.currentConditon;
-    [super firstPageFetch];
+    [super firstPageFetch:YES];
 }
 
 - (void)setupDataFetcher{

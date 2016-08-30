@@ -59,12 +59,12 @@
     self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     self.errorView.retryBlock = ^{
         STRONG_SELF
-        [self getData];
+        [self getDataShowLoading:YES];
     };
     
     self.foldStatusDic = [NSMutableDictionary dictionary];
     [self setupUI];
-    [self getData];
+    [self getDataShowLoading:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,16 +95,18 @@
     WEAK_SELF
     self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
-        [self getData];
+        [self getDataShowLoading:NO];
     };
 }
 
-- (void)getData{
+- (void)getDataShowLoading:(BOOL)isShow{
     [self.request stopRequest];
     self.request = [[YXExamineRequest alloc]init];
     self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     self.request.w = [YXTrainManager sharedInstance].currentProject.w;
-    [self startLoading];
+    if (isShow) {
+        [self startLoading];
+    }
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

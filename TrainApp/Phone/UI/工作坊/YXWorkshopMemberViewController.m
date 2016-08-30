@@ -45,7 +45,7 @@ UICollectionViewDelegate
     [self layoutInterface];
     if (_dataMutableArray.count == 0) {
         _pageIndex = 0;
-        [self requestForWorkshopMember:_pageIndex];
+        [self requestForWorkshopMember:_pageIndex withShowLoading:YES];
     }
     else{
         _pageIndex = 1;
@@ -81,7 +81,7 @@ UICollectionViewDelegate
     _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
         self->_pageIndex = 0;
-        [self requestForWorkshopMember:self ->_pageIndex];
+        [self requestForWorkshopMember:self ->_pageIndex withShowLoading:NO];
     };
     
     _footer = [MJRefreshFooterView footer];
@@ -92,14 +92,14 @@ UICollectionViewDelegate
     [_footer sendSubviewToBack:bottomView];
     _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
        STRONG_SELF
-        [self requestForWorkshopMember:self ->_pageIndex];
+        [self requestForWorkshopMember:self ->_pageIndex withShowLoading:NO];
     };
     [self setPullupViewHidden:_hiddenPullupBool];
     
     _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     _errorView.retryBlock = ^{
         STRONG_SELF
-        [self requestForWorkshopMember:self ->_pageIndex];
+        [self requestForWorkshopMember:self ->_pageIndex withShowLoading:NO];
     };
     _emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
     _emptyView.title = @"暂无成员";
@@ -153,14 +153,16 @@ UICollectionViewDelegate
 }
 
 #pragma mark - request
-- (void)requestForWorkshopMember:(int)pageIndex{
+- (void)requestForWorkshopMember:(int)pageIndex withShowLoading:(BOOL)isShow{
     if (!_memberFetcher) {
         _memberFetcher = [[YXWorkshopMemberFetcher alloc] init];
     }
     _memberFetcher.pageindex = pageIndex;
     _memberFetcher.barid = self.baridString;
     _memberFetcher.pagesize = 40;
-    [self startLoading];
+    if (isShow) {
+        [self startLoading];
+    }
     WEAK_SELF
     [_memberFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF

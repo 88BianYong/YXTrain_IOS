@@ -65,7 +65,7 @@
     [self.errorView setRetryBlock:^{
         @strongify(self); if (!self) return;
         [self startLoading];
-        [self firstPageFetch];
+        [self firstPageFetch:YES];
     }];
     [self.view addSubview:self.errorView];
     [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,7 +88,7 @@
         _header.scrollView = self.tableView;
         _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
             @strongify(self); if (!self) return;
-            [self firstPageFetch];
+            [self firstPageFetch:NO];
         };
     }
     
@@ -96,10 +96,10 @@
     [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
     _total = (int)[self.dataArray count];
 
-    [self firstPageFetch];
+    [self firstPageFetch:YES];
 }
 
-- (void)firstPageFetch {
+- (void)firstPageFetch:(BOOL)isShow {
     if (!self.dataFetcher) {
         return;
     }
@@ -116,7 +116,9 @@
     if (!self.dataFetcher.pagesize) {
         self.dataFetcher.pagesize = 20;
     }
-    [self startLoading];
+    if (isShow) {
+        [self startLoading];
+    }
     @weakify(self);
     [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         @strongify(self); if (!self) return;

@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) UIView *emptyView;
 
-- (void)firstPageFetch;
+- (void)firstPageFetch:(BOOL)isShow;
 - (void)stopAnimation;
 - (void)setPulldownViewHidden:(BOOL)hidden;
 - (void)setPullupViewHidden:(BOOL)hidden;

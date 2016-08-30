@@ -34,7 +34,7 @@
     [self setupDataFetcher];
     // Do any additional setup after loading the view.
     [self setupUI];
-    [self firstPageFetch];
+    [self firstPageFetch:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,7 +129,7 @@
         }
         YXDatumSearchFetcher *fetcher = (YXDatumSearchFetcher *)self.dataFetcher;
         fetcher.keyWord = text;
-        [self firstPageFetch];
+        [self firstPageFetch:YES];
     };
     seachView.cancelButtonClickedBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];

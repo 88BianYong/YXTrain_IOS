@@ -49,7 +49,7 @@
     self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     self.errorView.retryBlock = ^{
         STRONG_SELF
-        [self getData];
+        [self getDataShowLoading:YES];
     };
     self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
     if ([[YXTrainManager sharedInstance].currentProject.w isEqualToString:@"3"]) {
@@ -62,7 +62,7 @@
     }
     
     [self setupUI];
-    [self getData];
+    [self getDataShowLoading:YES];
     [self setupObservers];
 }
 
@@ -99,16 +99,18 @@
     WEAK_SELF
     self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
-        [self getData];
+        [self getDataShowLoading:NO];
     };
 }
 
-- (void)getData{
+- (void)getDataShowLoading:(BOOL)isShow{
     [self.request stopRequest];
     self.request = [[YXCourseRecordRequest alloc]init];
     self.request.w = [YXTrainManager sharedInstance].currentProject.w;
     self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    [self startLoading];
+    if (isShow) {
+        [self startLoading];
+    }
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXCourseRecordRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

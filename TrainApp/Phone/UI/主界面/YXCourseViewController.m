@@ -136,7 +136,7 @@
     if (self.isWaitingForFilter) {
         return;
     }
-    [super firstPageFetch];
+    [super firstPageFetch:YES];
 }
 
 - (void)dealWithFilterModel:(YXCourseListFilterModel *)model{

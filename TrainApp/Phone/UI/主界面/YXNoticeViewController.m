@@ -47,7 +47,7 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
     headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.tableHeaderView = headerView;
-    [self firstPageFetch];
+    [self firstPageFetch:YES];
     // Do any additional setup after loading the view.
 }
 

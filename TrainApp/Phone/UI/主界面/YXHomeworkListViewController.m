@@ -40,7 +40,7 @@ UITableViewDataSource
     self.title = @"作业列表";
     [self setupUI];
     [self layoutInterface];
-    [self requestForHomeworkList];
+    [self requestForHomeworkList:YES];
     
 }
 
@@ -86,14 +86,14 @@ UITableViewDataSource
     _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     _errorView.retryBlock = ^{
         STRONG_SELF
-        [self requestForHomeworkList];
+        [self requestForHomeworkList:YES];
     };
     
     _header = [MJRefreshHeaderView header];
     _header.scrollView = _tableView;
     _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
-        [self requestForHomeworkList];
+        [self requestForHomeworkList:NO];
     };    
 }
 
@@ -168,10 +168,12 @@ UITableViewDataSource
 
 
 #pragma mark - request
-- (void)requestForHomeworkList{
+- (void)requestForHomeworkList:(BOOL)isShow{
     YXHomeworkListRequest *request = [[YXHomeworkListRequest alloc] init];
     request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    [self startLoading];
+    if (isShow) {
+       [self startLoading];
+    }
     WEAK_SELF
     [request startRequestWithRetClass:[YXHomeworkListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
