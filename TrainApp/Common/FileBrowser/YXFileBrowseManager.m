@@ -203,7 +203,7 @@
     webView.titleString = self.fileItem.name;
     webView.exitDelegate = self;
     webView.browseTimeDelegate = self;
-    [self managerPresentViewController:webView animated:YES completion:nil];
+    [self.baseViewController.navigationController pushViewController:webView animated:YES];
 }
 
 - (void)openVideo{
@@ -233,7 +233,7 @@
     vc.title = videoItem.name;
     vc.delegate = self;
     vc.exitDelegate = self;
-    vc.isPreRecord = self.isDeleteVideo;
+    vc.isPreRecord = videoItem.isDeleteVideo;
     [self managerPresentViewController:vc animated:YES completion:nil];
 }
 

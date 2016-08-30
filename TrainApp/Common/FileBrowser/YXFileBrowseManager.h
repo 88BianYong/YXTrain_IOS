@@ -16,8 +16,6 @@
 
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 @property (nonatomic, weak) YXBaseViewController *baseViewController;
-@property (nonatomic, assign) BOOL isDeleteVideo;// 需要删除按键YES  default is NO
-
 - (void)addFavorWithData:(id)data completion:(void(^)())completeBlock; // 如果需要收藏，则调用此方法
 
 - (void)browseFile;

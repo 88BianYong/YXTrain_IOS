@@ -22,6 +22,7 @@
     UIView *_statusBar;
     YXSaveVideoProgressView *_progressView;
     UIDeviceOrientation _deviceOrientation;
+    NSInteger _againInteger;
 }
 @property (nonatomic, strong) SCRecorder    *recorder;
 @property (nonatomic, strong) SCRecorderToolsView *focusView;
@@ -178,6 +179,8 @@
                 self ->_deviceOrientation = [UIDevice currentDevice].orientation;
                 [self ->_topView startAnimatetion];
                 [self.recorder record];
+                [self.recorder pause];
+                [self.recorder record];
                 self.autorotateView.hidden = NO;
                 [self startTimer];
                 [self timerAction];
@@ -314,16 +317,15 @@
 
 
 - (void)saveRecordVideo{
+    _againInteger += 1;
     self ->_progressView.progress = 0.0f;
     _progressView.hidden = NO;
     _bottomView.userInteractionEnabled = NO;
     WEAK_SELF
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-    });
     self.completionHandle = ^(NSURL *url, NSError *error ,BOOL cancle){
         STRONG_SELF
         if (cancle) {
+            _againInteger = 0;
             self ->_progressView.hidden = YES;
             self->_bottomView.userInteractionEnabled = YES;
            DDLogError(@"取消");
@@ -333,15 +335,22 @@
         CMTime itmeTime = asset.duration;
         CGFloat durationTime = CMTimeGetSeconds(itmeTime);
         if (error == nil &&  durationTime > 0.1f) {
+            _againInteger = 0;
             [self saveSuccessWithVideoPath:url.path];
         }else{
-             [self saveVideoFail];
-            self ->_progressView.hidden = YES;
-            self->_bottomView.userInteractionEnabled = YES;
+            if (_againInteger < 6) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self saveRecordVideo];
+                });
+            }else{
+                _againInteger = 0;
+                [self saveVideoFail];
+                self ->_progressView.hidden = YES;
+                self->_bottomView.userInteractionEnabled = YES;
+            }
         }
     };
     self.exportSession.inputAsset = self->_recorder.session.assetRepresentingSegments;
-    DDLogDebug(@"%@",self->_recorder.session.assetRepresentingSegments);
     self.exportSession.videoConfiguration.preset = SCPresetLowQuality;
     self.exportSession.videoConfiguration.sizeAsSquare = NO;
     self.exportSession.videoConfiguration.size = self.view.frame.size;
@@ -382,15 +391,17 @@
 //保存成功视频之后
 - (void)saveSuccessWithVideoPath:(NSString *)videoPath
 {
+    self ->_progressView.progress = 1.0f;
     _progressView.titleString = @"视频保存成功";
     [YXVideoRecordManager cleartmpFile];
     NSArray * nameArray = [[NSFileManager defaultManager] componentsToDisplayForPath:videoPath];
     self.videoModel.fileName = nameArray.lastObject;
     self.videoModel.lessonStatus = YXVideoLessonStatus_AlreadyRecord;
     [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
-    _bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
+    
     [self removePreviewView];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self ->_bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
         self -> _progressView.hidden = YES;
         self->_bottomView.userInteractionEnabled = YES;
          [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
@@ -429,8 +440,10 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         float progress = assetExportSession.progress;
-        self ->_progressView.titleString = @"视频保存中...";
-        self ->_progressView.progress = progress;
+        if (progress <=1.0f) {
+            self ->_progressView.titleString = @"视频保存中...";
+            self ->_progressView.progress = progress;
+        }
     });
 }
 

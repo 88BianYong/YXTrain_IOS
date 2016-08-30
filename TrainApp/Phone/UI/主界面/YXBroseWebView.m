@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.titleString;
-    
+    [self setupLeftBack];
     WEAK_SELF
     [self setupRightWithImageNamed:@"更多icon" highlightImageNamed:@"更多icon-点击态"];
     self.webView = [UIWebView new];

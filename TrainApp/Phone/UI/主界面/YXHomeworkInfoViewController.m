@@ -327,14 +327,14 @@ UITableViewDataSource
             videoItem.isLocal = YES;
             videoItem.name = self.itemBody.title;
             videoItem.url = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName]].absoluteString;
-            [YXFileBrowseManager sharedManager].fileItem = videoItem;
-            [YXFileBrowseManager sharedManager].baseViewController = self;
             if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
-                [YXFileBrowseManager sharedManager].isDeleteVideo = YES;
+                videoItem.isDeleteVideo = YES;
             }
             else{
-                 [YXFileBrowseManager sharedManager].isDeleteVideo = NO;
+                videoItem.isDeleteVideo = NO;
             }
+            [YXFileBrowseManager sharedManager].fileItem = videoItem;
+            [YXFileBrowseManager sharedManager].baseViewController = self;
             [[YXFileBrowseManager sharedManager] browseFile];
         }
             break;

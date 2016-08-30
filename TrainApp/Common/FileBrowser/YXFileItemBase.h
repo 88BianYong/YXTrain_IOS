@@ -23,5 +23,5 @@ typedef NS_ENUM(NSUInteger, YXFileType) {
 @property (nonatomic, assign) BOOL isLocal; // whether is a local file, default is NO.
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *url;
-
+@property (nonatomic, assign) BOOL isDeleteVideo;// 需要删除按键YES  default is NO
 @end
