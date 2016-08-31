@@ -123,7 +123,7 @@
     }];
 
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_imageView.mas_bottom).offset(6.0f);
+        make.top.equalTo(_imageView.mas_bottom).offset(3.0f);
         make.centerX.equalTo(_imageView.mas_centerX);
         make.width.equalTo(_backgroundView.mas_width).offset(-30.0f);
     }];

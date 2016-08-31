@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UILabel *leadScoreLabel;
 @property (nonatomic, strong) UILabel *expScoreTitleLabel;
 @property (nonatomic, strong) UILabel *expScoreLabel;
-//@property (nonatomic, strong) YXWaveView *waveView;
+@property (nonatomic, strong) YXWaveView *waveView;
 @property (nonatomic, strong) YXExamNoScoreView *noScoreView;
 @property (nonatomic, strong) YXScoreNoScoreView *noLeadScoreView;
 @property (nonatomic, strong) YXScoreNoScoreView *noExpScoreView;
@@ -38,12 +38,12 @@
     // Configure the view for the selected state
 }
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self setupUI];
-    }
-    return self;
-}
+//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+//    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+//        [self setupUI];
+//    }
+//    return self;
+//}
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -56,6 +56,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 //    self.waveView = [[YXWaveView alloc]init];
 //    self.waveView.userInteractionEnabled = NO;
+//    self.waveView.hidden = YES;
 //    [self.contentView addSubview:self.waveView];
 //    [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.edges.mas_equalTo(0);
@@ -93,9 +94,8 @@
     self.scoreLabel.textAlignment = NSTextAlignmentCenter;
     
     self.noScoreView = [[YXExamNoScoreView alloc]init];
-    
     UIView *sep = [[UIView alloc]init];
-    sep.backgroundColor = [UIColor clearColor];//TD:2.1UI修改
+    sep.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
     [self.contentView addSubview:sep];
     [sep mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.scoreTitleLabel.mas_bottom).mas_offset(60);

@@ -152,8 +152,8 @@
         return;
     }
     // 业务逻辑错误 code为1数据错误 登录时特殊处理
-    if (item.code.integerValue == 1) {
-        error = [NSError errorWithDomain:@"数据错误" code:-2 userInfo:@{NSLocalizedDescriptionKey:item.desc}];
+    if (item.code.integerValue == 1) {//code转为-2 因为code为1 网络错误占据  ASIConnectionFailureErrorType = 1,
+        error = [NSError errorWithDomain:@"数据错误" code:-2 userInfo:@{NSLocalizedDescriptionKey:item.desc.length==0? @"数据错误":item.desc}];
         _completeBlock(item, error, self->_isMock);
         return;
     }

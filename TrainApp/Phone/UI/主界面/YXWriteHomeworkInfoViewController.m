@@ -489,7 +489,7 @@
 
 #pragma mark - button Action
 - (void)buttonActionForSave:(UIButton *)sender{
-    if (sender.selected) {
+    if (!sender.selected) {
         [self yx_hideKeyboard];
         if (self.isChangeHomeworkInfo) {
             [self requestForUpdVideoHomework];

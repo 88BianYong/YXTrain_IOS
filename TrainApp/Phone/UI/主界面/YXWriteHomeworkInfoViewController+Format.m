@@ -252,7 +252,7 @@
         default:
             break;
     }
-    self.bottomView.saveButton.selected = [self saveInfoHomeWorkShowToast:NO];
+    self.bottomView.saveButton.selected = ![self saveInfoHomeWorkShowToast:NO];
 }
 - (NSString *)getCategoryIds{
     NSString *cId = [NSString stringWithFormat:@"%@,%@,%@,%@",
@@ -299,14 +299,15 @@
     [self.selectedMutableDictionary setObject:@[@"",body.title] forKey:@(YXWriteHomeworkListStatus_Title)];
     [self.selectedMutableDictionary setObject:@[@"",body.meizi_keyword] forKey:@(YXWriteHomeworkListStatus_Topic)];
     self.bottomView.topicString = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
-    self.bottomView.saveButton.selected = [self saveInfoHomeWorkShowToast:NO];
+    self.bottomView.saveButton.selected = ![self saveInfoHomeWorkShowToast:NO];
 }
 - (void)saveChapterList{
+    [self.selectedMutableDictionary removeObjectForKey:@(YXWriteHomeworkListStatus_Menu)];
     if (!isEmpty(self.homeworkItem.body.meizi_chapter)) {
         NSArray *array = [self.homeworkItem.body.meizi_chapter componentsSeparatedByString:@","];
         __block  YXChapterListRequestItem_sub *sub = nil;
-        __block  NSUInteger section = 0;
-        __block  NSUInteger row = 0;
+        __block  NSInteger section = -1;
+        __block  NSInteger row = -1;
         [self.chapterList.data enumerateObjectsUsingBlock:^(YXChapterListRequestItem_sub * obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj.chapterId isEqualToString:array[0]]) {
                 section = idx;
@@ -321,9 +322,14 @@
                 *stop = YES;
             }
         }];
-        self.chapterIndexPath = [NSIndexPath indexPathForRow:row inSection:section];
+        if (section < 0 || row < 0) {
+            self.chapterIndexPath = nil;
+        }else{
+            self.chapterIndexPath = [NSIndexPath indexPathForRow:row inSection:section];
+
+        }
     }
-    self.bottomView.saveButton.selected = [self saveInfoHomeWorkShowToast:NO];
+    self.bottomView.saveButton.selected = ![self saveInfoHomeWorkShowToast:NO];
 }
 
 - (NSString *)formatUploadVideoHomeworkContent{

@@ -75,6 +75,7 @@
     _writeButton.tag = YXRecordVideoInterfaceStatus_Change;
     [_writeButton setTitle:@"修改作业信息" forState:UIControlStateNormal];
     [_writeButton setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateNormal];
+    [_writeButton setTitleColor:[UIColor colorWithHexString:@"0070c9"] forState:UIControlStateHighlighted];
     [_writeButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 10.0f, 0, 0)];
     _writeButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
     [_writeButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -130,7 +131,7 @@
     
     [_keywordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_segmentLabel.mas_left);
-        make.top.equalTo(_chapterLabel.mas_bottom).offset(15.0f);
+        make.top.equalTo(_chapterLabel.mas_bottom).offset(10.0f);
         make.right.equalTo(_studyLabel.mas_right);
     }];
     

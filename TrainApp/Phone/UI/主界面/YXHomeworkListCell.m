@@ -217,7 +217,7 @@
         }];
     }else{
         [_lineView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView.mas_left).offset(14.0f);
+            make.left.equalTo(self.contentView.mas_left).offset(30.0f);
         }];
     }
 }

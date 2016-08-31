@@ -40,7 +40,7 @@
     hud.detailsLabelText = text;
     hud.detailsLabelFont = [UIFont boldSystemFontOfSize:16.0f];
     hud.removeFromSuperViewOnHide = YES;
-    [hud hide:YES afterDelay:1];
+    [hud hide:YES afterDelay:2];
 }
 
 @end

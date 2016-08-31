@@ -54,15 +54,15 @@
     [self addSubview:_textView];
     _textView.placeholder = @"内容文字最多显示30字";
     
-    _saveButton = [[UIButton alloc] init];
-    [_saveButton setImage:[UIImage imageNamed:@"上传视频图标不可点击态"] forState:UIControlStateNormal];
+    _saveButton =  [UIButton buttonWithType:UIButtonTypeCustom];
+    [_saveButton setImage:[UIImage imageNamed:@"上传视频图标正常态"] forState:UIControlStateNormal];
     [_saveButton setImage:[UIImage imageNamed:@"上传视频图标点击态"] forState:UIControlStateHighlighted];
-    [_saveButton setImage:[UIImage imageNamed:@"上传视频图标正常态"] forState:UIControlStateSelected];
+    [_saveButton setImage:[UIImage imageNamed:@"上传视频图标不可点击态"] forState:UIControlStateSelected];
     [_saveButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
     [_saveButton setTitle:@"保存并上传" forState:UIControlStateNormal];
-    [_saveButton setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateNormal];
+    [_saveButton setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateSelected];
     [_saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [_saveButton setTitleColor:[UIColor colorWithHexString:@"0070c9"] forState:UIControlStateSelected];
+    [_saveButton setTitleColor:[UIColor colorWithHexString:@"0070c9"] forState:UIControlStateNormal];
     [_saveButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 10.0f, 0, 0)];
     _saveButton.layer.cornerRadius = YXTrainCornerRadii;
     _saveButton.layer.borderWidth = 1.0f;
@@ -104,9 +104,9 @@
                        context:(void *)context {
     if ([keyPath isEqualToString:@"selected"]) {
         if (_saveButton.selected) {
-             _saveButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
+            _saveButton.layer.borderColor = [UIColor colorWithHexString:@"dfe2e6"].CGColor;
         }else{
-             _saveButton.layer.borderColor = [UIColor colorWithHexString:@"dfe2e6"].CGColor;
+            _saveButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
         }
     }
 }

@@ -202,6 +202,8 @@
     if (_indexPath) {
         [_tableView scrollToRowAtIndexPath:_indexPath
                           atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }else{
+        [_tableView setContentOffset:CGPointMake(0, 0) animated:NO];
     }
 }
 - (void)setIsError:(BOOL)isError{

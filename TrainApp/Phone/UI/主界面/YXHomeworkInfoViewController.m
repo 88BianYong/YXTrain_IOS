@@ -78,16 +78,19 @@ UITableViewDataSource
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     if (self.itemBody.detail) {
         self.itemBody.lessonStatus = YXVideoLessonStatus_Finish;
     }else{
         self.itemBody.lessonStatus = YXVideoLessonStatus_NoRecord;
     }
     [self findVideoHomeworkInformation:self.itemBody];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+
 }
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
 - (void)didReceiveMemoryWarning {
