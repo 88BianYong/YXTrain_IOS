@@ -116,6 +116,7 @@
                     self.emptyView.frame = self.view.bounds;
                     self.emptyView.imageName = @"数据错误";
                     self.emptyView.title = @"数据错误";
+                    self.emptyView.subTitle = @"";
                     [self.view addSubview:self->_emptyView];
                 }
                 else{

@@ -317,17 +317,17 @@
 
 
 - (void)saveRecordVideo{
-    _againInteger += 1;
+    self ->_againInteger += 1;
     self ->_progressView.progress = 0.0f;
-    _progressView.hidden = NO;
-    _bottomView.userInteractionEnabled = NO;
+    self ->_progressView.hidden = NO;
+    self ->_bottomView.userInteractionEnabled = NO;
     WEAK_SELF
     self.completionHandle = ^(NSURL *url, NSError *error ,BOOL cancle){
         STRONG_SELF
         if (cancle) {
-            _againInteger = 0;
+            self ->_againInteger = 0;
             self ->_progressView.hidden = YES;
-            self->_bottomView.userInteractionEnabled = YES;
+            self ->_bottomView.userInteractionEnabled = YES;
            DDLogError(@"取消");
             return;
         }
@@ -335,18 +335,18 @@
         CMTime itmeTime = asset.duration;
         CGFloat durationTime = CMTimeGetSeconds(itmeTime);
         if (error == nil &&  durationTime > 0.1f) {
-            _againInteger = 0;
+            self ->_againInteger = 0;
             [self saveSuccessWithVideoPath:url.path];
         }else{
-            if (_againInteger < 6) {
+            if (self ->_againInteger < 6) {
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self saveRecordVideo];
                 });
             }else{
-                _againInteger = 0;
+                self ->_againInteger = 0;
                 [self saveVideoFail];
                 self ->_progressView.hidden = YES;
-                self->_bottomView.userInteractionEnabled = YES;
+                self ->_bottomView.userInteractionEnabled = YES;
             }
         }
     };
@@ -392,18 +392,17 @@
 - (void)saveSuccessWithVideoPath:(NSString *)videoPath
 {
     self ->_progressView.progress = 1.0f;
-    _progressView.titleString = @"视频保存成功";
+    self ->_progressView.titleString = @"视频保存成功";
     [YXVideoRecordManager cleartmpFile];
     NSArray * nameArray = [[NSFileManager defaultManager] componentsToDisplayForPath:videoPath];
     self.videoModel.fileName = nameArray.lastObject;
     self.videoModel.lessonStatus = YXVideoLessonStatus_AlreadyRecord;
     [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
-    
     [self removePreviewView];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self ->_bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
         self -> _progressView.hidden = YES;
-        self->_bottomView.userInteractionEnabled = YES;
+        self ->_bottomView.userInteractionEnabled = YES;
          [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [self dismissViewControllerAnimated:YES completion:nil];
     });
