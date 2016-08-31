@@ -55,6 +55,7 @@
 }
 #pragma mark - UI setting
 - (void)setupUI{
+    //TD:嘉伦要求去掉学校添加按键 0901
     _addButton = [[UIButton alloc] init];
     [_addButton addTarget:self action:@selector(schoolAddButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [_addButton setTitle:@"添加" forState:UIControlStateNormal];
@@ -62,6 +63,7 @@
     _addButton.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     _addButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     _addButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
+    _addButton.hidden = YES;
     [self.view addSubview:_addButton];
     
     _searchBar = [[UISearchBar alloc] init];
@@ -111,13 +113,14 @@
     [_searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.mas_equalTo(0.0f);
         make.height.mas_equalTo(40.0f);
+        make.width.equalTo(self.view.mas_width);
     }];
-    [_addButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_searchBar.mas_right).offset(-10.0f);
-        make.right.equalTo(self.view.mas_right);
-        make.height.equalTo(_searchBar.mas_height);
-        make.width.mas_equalTo(57.0f);
-    }];
+//    [_addButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(_searchBar.mas_right).offset(-10.0f);
+//        make.right.equalTo(self.view.mas_right);
+//        make.height.equalTo(_searchBar.mas_height);
+//        make.width.mas_equalTo(57.0f);
+//    }];
     
     [_rangeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(15.0f);

@@ -74,6 +74,12 @@
     self.navigationController.navigationBar.hidden = NO;
     [[IQKeyboardManager sharedManager] setEnable:NO];
 }
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+}
+
 
 - (void)setNetObserver {
     Reachability *reach = [Reachability reachabilityForInternetConnection];
@@ -84,6 +90,7 @@
         [self ->_uploadRequest cancelUpload];
         dispatch_async(dispatch_get_main_queue(), ^{
             self ->_bgView.hidden = YES;
+            [UIApplication sharedApplication].idleTimerDisabled = NO;
         });
     };
     [reach startNotifier];
@@ -152,6 +159,7 @@
         STRONG_SELF
         self ->_bgView.hidden = YES;
         [self ->_uploadRequest  cancelUpload];
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
     };
     [_bgView addSubview:_progressView];
 }
@@ -451,8 +459,10 @@
     }
     YXGetQiNiuTokenRequest *request = [[YXGetQiNiuTokenRequest alloc] init];
     WEAK_SELF
+    [self startLoading];
     [request  startRequestWithRetClass:[YXGetQiNiuTokenRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
+        [self stopLoading];
         if (error) {
             [self showToast:@"网络异常,请稍后重试"];
         }else{
@@ -461,6 +471,7 @@
             self ->_uploadRequest = [[YXQiNiuVideoUpload alloc] initWithFileName:self.videoModel.fileName qiNiuToken:item.uploadToken];
             self ->_uploadRequest.delegate = self;
             self ->_bgView.hidden = NO;
+            [UIApplication sharedApplication].idleTimerDisabled = YES;
             [self ->_uploadRequest  startUpload];
         }
     }];
@@ -476,6 +487,7 @@
 - (void)uploadCompleteWithHash:(NSString *)hashStr {
     dispatch_async(dispatch_get_main_queue(), ^{
         _bgView.hidden = YES;
+        [UIApplication sharedApplication].idleTimerDisabled = NO;
         self.videoModel.isUploadSuccess = YES;
         self.videoModel.uploadPercent = 1;
         [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];

@@ -439,7 +439,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         float progress = assetExportSession.progress;
-        if (progress <=1.0f) {
+        if (progress < 1.0f) {
             self ->_progressView.titleString = @"视频保存中...";
             self ->_progressView.progress = progress;
         }
@@ -477,6 +477,7 @@
     if (![self->_recorder prepare:&error]) {
         DDLogError(@"Prepare error: %@", error.localizedDescription);
     }
+    self.recorder.videoOrientation = (AVCaptureVideoOrientation)[UIDevice currentDevice].orientation;
     [self.recorder startRunning];
 
 }

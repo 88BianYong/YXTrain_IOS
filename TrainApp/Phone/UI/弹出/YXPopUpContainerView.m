@@ -33,8 +33,6 @@
     [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-    
-    NSLog(@"%@", self.popView);
     self.popView.transform = CGAffineTransformMakeScale(1.2, 1.2);
     [UIView animateWithDuration:0.6
                           delay:0
