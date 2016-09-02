@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "YXExamineRequest.h"
 
-@interface YXScoreTaskScoreHeaderView : UITableViewHeaderFooterView
+@interface YXScoreBounsScoreCell : UITableViewCell
 @property (nonatomic, strong) YXExamineRequestItem_body_bounsVoData *data;
 @end

@@ -6,37 +6,29 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "YXScoreTypeCell.h"
+#import "YXScoreTypeHeaderView.h"
 
-@interface YXScoreTypeCell()
+@interface YXScoreTypeHeaderView()
 @property (nonatomic, strong) UIImageView *typeImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @end
 
-@implementation YXScoreTypeCell
+@implementation YXScoreTypeHeaderView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self setupUI];
     }
     return self;
 }
 
+
 - (void)setupUI{
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    
     self.typeImageView = [[UIImageView alloc]init];
     [self.contentView addSubview:self.typeImageView];
     [self.typeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -55,9 +47,9 @@
     }];
 }
 
-- (void)setType:(YXScoreCellType)type{
+- (void)setType:(YXScoreHeaderViewType)type{
     _type = type;
-    if (type == YXScoreCellType_Lead) {
+    if (type == YXScoreHeaderViewType_Lead) {
         self.typeImageView.image = [UIImage imageNamed:@"引领"];
         self.titleLabel.text = @"引领学习";
     }else{

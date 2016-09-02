@@ -179,8 +179,6 @@
                 self ->_deviceOrientation = [UIDevice currentDevice].orientation;
                 [self ->_topView startAnimatetion];
                 [self.recorder record];
-                [self.recorder pause];
-                [self.recorder record];
                 self.autorotateView.hidden = NO;
                 [self startTimer];
                 [self timerAction];
@@ -338,7 +336,7 @@
             self ->_againInteger = 0;
             [self saveSuccessWithVideoPath:url.path];
         }else{
-            if (self ->_againInteger < 6) {
+            if (self ->_againInteger < 6) {//TD:视频保存错误自动重试
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self saveRecordVideo];
                 });

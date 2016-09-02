@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "YXExamineRequest.h"
 
-@interface YXScoreTotalScoreCell : UITableViewCell
+@interface YXScoreTotalScoreHeaderView : UIView
 @property (nonatomic, strong) YXExamineRequestItem_body *data;
 @end

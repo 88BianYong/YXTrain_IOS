@@ -8,7 +8,6 @@
 
 #import "YXBaseViewController.h"
 #import "YXExamineRequest.h"
-
 @interface YXScoreViewController : YXBaseViewController
 @property (nonatomic, strong) YXExamineRequestItem_body *data;
 @property (nonatomic,strong) UIView *waveView;

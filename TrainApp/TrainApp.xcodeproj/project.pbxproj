@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B2A1D20FF5700A03635 /* YXScoreViewController.m */; };
-		7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreCell.m */; };
+		7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreHeaderView.m */; };
 		7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B301D21043A00A03635 /* YXScoreNoScoreView.m */; };
-		7C2C3B341D2114DC00A03635 /* YXScoreTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B331D2114DC00A03635 /* YXScoreTypeCell.m */; };
+		7C2C3B341D2114DC00A03635 /* YXScoreTypeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B331D2114DC00A03635 /* YXScoreTypeHeaderView.m */; };
 		7C2C3B371D2119BB00A03635 /* YXScorePhaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B361D2119BB00A03635 /* YXScorePhaseHeaderView.m */; };
 		7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B391D212C9200A03635 /* YXScoreBlankCell.m */; };
 		7C2C3B3D1D212D6700A03635 /* YXScoreLeadScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B3C1D212D6700A03635 /* YXScoreLeadScoreCell.m */; };
-		7C2C3B401D21320E00A03635 /* YXScoreTaskScoreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B3F1D21320E00A03635 /* YXScoreTaskScoreHeaderView.m */; };
+		7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B3F1D21320E00A03635 /* YXScoreBounsScoreCell.m */; };
 		7C2C3B431D21351F00A03635 /* YXScoreExpHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B421D21351F00A03635 /* YXScoreExpHeaderView.m */; };
 		7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B451D21404700A03635 /* YXScoreExpScoreCell.m */; };
 		7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B481D22596B00A03635 /* YXExamHelper.m */; };
@@ -228,6 +228,8 @@
 		9232371A1D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237191D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m */; };
 		9232372C1D69A5DD00FDACFE /* YXLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232372B1D69A5DD00FDACFE /* YXLoadView.m */; };
 		923237311D6E9F3000FDACFE /* YXStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237301D6E9F3000FDACFE /* YXStartViewController.m */; };
+		923237351D79623E00FDACFE /* YXScoreLeadingGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237341D79623E00FDACFE /* YXScoreLeadingGroupCell.m */; };
+		923237381D7975F300FDACFE /* YXScoreExpGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237371D7975F300FDACFE /* YXScoreExpGroupCell.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
@@ -360,20 +362,20 @@
 		69A44E0C17A8C88A304B21CA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7C2C3B291D20FF5700A03635 /* YXScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreViewController.h; sourceTree = "<group>"; };
 		7C2C3B2A1D20FF5700A03635 /* YXScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreViewController.m; sourceTree = "<group>"; };
-		7C2C3B2C1D21007D00A03635 /* YXScoreTotalScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreTotalScoreCell.h; sourceTree = "<group>"; };
-		7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreTotalScoreCell.m; sourceTree = "<group>"; };
+		7C2C3B2C1D21007D00A03635 /* YXScoreTotalScoreHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreTotalScoreHeaderView.h; sourceTree = "<group>"; };
+		7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreTotalScoreHeaderView.m; sourceTree = "<group>"; };
 		7C2C3B2F1D21043A00A03635 /* YXScoreNoScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreNoScoreView.h; sourceTree = "<group>"; };
 		7C2C3B301D21043A00A03635 /* YXScoreNoScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreNoScoreView.m; sourceTree = "<group>"; };
-		7C2C3B321D2114DC00A03635 /* YXScoreTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreTypeCell.h; sourceTree = "<group>"; };
-		7C2C3B331D2114DC00A03635 /* YXScoreTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreTypeCell.m; sourceTree = "<group>"; };
+		7C2C3B321D2114DC00A03635 /* YXScoreTypeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreTypeHeaderView.h; sourceTree = "<group>"; };
+		7C2C3B331D2114DC00A03635 /* YXScoreTypeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreTypeHeaderView.m; sourceTree = "<group>"; };
 		7C2C3B351D2119BB00A03635 /* YXScorePhaseHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScorePhaseHeaderView.h; sourceTree = "<group>"; };
 		7C2C3B361D2119BB00A03635 /* YXScorePhaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScorePhaseHeaderView.m; sourceTree = "<group>"; };
 		7C2C3B381D212C9200A03635 /* YXScoreBlankCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreBlankCell.h; sourceTree = "<group>"; };
 		7C2C3B391D212C9200A03635 /* YXScoreBlankCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreBlankCell.m; sourceTree = "<group>"; };
 		7C2C3B3B1D212D6700A03635 /* YXScoreLeadScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreLeadScoreCell.h; sourceTree = "<group>"; };
 		7C2C3B3C1D212D6700A03635 /* YXScoreLeadScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreLeadScoreCell.m; sourceTree = "<group>"; };
-		7C2C3B3E1D21320E00A03635 /* YXScoreTaskScoreHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreTaskScoreHeaderView.h; sourceTree = "<group>"; };
-		7C2C3B3F1D21320E00A03635 /* YXScoreTaskScoreHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreTaskScoreHeaderView.m; sourceTree = "<group>"; };
+		7C2C3B3E1D21320E00A03635 /* YXScoreBounsScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreBounsScoreCell.h; sourceTree = "<group>"; };
+		7C2C3B3F1D21320E00A03635 /* YXScoreBounsScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreBounsScoreCell.m; sourceTree = "<group>"; };
 		7C2C3B411D21351F00A03635 /* YXScoreExpHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreExpHeaderView.h; sourceTree = "<group>"; };
 		7C2C3B421D21351F00A03635 /* YXScoreExpHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreExpHeaderView.m; sourceTree = "<group>"; };
 		7C2C3B441D21404700A03635 /* YXScoreExpScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreExpScoreCell.h; sourceTree = "<group>"; };
@@ -790,6 +792,10 @@
 		9232372B1D69A5DD00FDACFE /* YXLoadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLoadView.m; sourceTree = "<group>"; };
 		9232372F1D6E9F3000FDACFE /* YXStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXStartViewController.h; path = "启动/YXStartViewController.h"; sourceTree = "<group>"; };
 		923237301D6E9F3000FDACFE /* YXStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXStartViewController.m; path = "启动/YXStartViewController.m"; sourceTree = "<group>"; };
+		923237331D79623E00FDACFE /* YXScoreLeadingGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreLeadingGroupCell.h; sourceTree = "<group>"; };
+		923237341D79623E00FDACFE /* YXScoreLeadingGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreLeadingGroupCell.m; sourceTree = "<group>"; };
+		923237361D7975F300FDACFE /* YXScoreExpGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreExpGroupCell.h; sourceTree = "<group>"; };
+		923237371D7975F300FDACFE /* YXScoreExpGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreExpGroupCell.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
@@ -1925,24 +1931,28 @@
 				7C2C3B4B1D226D3D00A03635 /* YXExamMarkView.m */,
 				7C2C3B471D22596B00A03635 /* YXExamHelper.h */,
 				7C2C3B481D22596B00A03635 /* YXExamHelper.m */,
-				7C2C3B2C1D21007D00A03635 /* YXScoreTotalScoreCell.h */,
-				7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreCell.m */,
+				7C2C3B2C1D21007D00A03635 /* YXScoreTotalScoreHeaderView.h */,
+				7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreHeaderView.m */,
 				7C2C3B2F1D21043A00A03635 /* YXScoreNoScoreView.h */,
 				7C2C3B301D21043A00A03635 /* YXScoreNoScoreView.m */,
-				7C2C3B321D2114DC00A03635 /* YXScoreTypeCell.h */,
-				7C2C3B331D2114DC00A03635 /* YXScoreTypeCell.m */,
+				7C2C3B321D2114DC00A03635 /* YXScoreTypeHeaderView.h */,
+				7C2C3B331D2114DC00A03635 /* YXScoreTypeHeaderView.m */,
 				7C2C3B351D2119BB00A03635 /* YXScorePhaseHeaderView.h */,
 				7C2C3B361D2119BB00A03635 /* YXScorePhaseHeaderView.m */,
 				7C2C3B381D212C9200A03635 /* YXScoreBlankCell.h */,
 				7C2C3B391D212C9200A03635 /* YXScoreBlankCell.m */,
 				7C2C3B3B1D212D6700A03635 /* YXScoreLeadScoreCell.h */,
 				7C2C3B3C1D212D6700A03635 /* YXScoreLeadScoreCell.m */,
-				7C2C3B3E1D21320E00A03635 /* YXScoreTaskScoreHeaderView.h */,
-				7C2C3B3F1D21320E00A03635 /* YXScoreTaskScoreHeaderView.m */,
+				7C2C3B3E1D21320E00A03635 /* YXScoreBounsScoreCell.h */,
+				7C2C3B3F1D21320E00A03635 /* YXScoreBounsScoreCell.m */,
 				7C2C3B411D21351F00A03635 /* YXScoreExpHeaderView.h */,
 				7C2C3B421D21351F00A03635 /* YXScoreExpHeaderView.m */,
 				7C2C3B441D21404700A03635 /* YXScoreExpScoreCell.h */,
 				7C2C3B451D21404700A03635 /* YXScoreExpScoreCell.m */,
+				923237331D79623E00FDACFE /* YXScoreLeadingGroupCell.h */,
+				923237341D79623E00FDACFE /* YXScoreLeadingGroupCell.m */,
+				923237361D7975F300FDACFE /* YXScoreExpGroupCell.h */,
+				923237371D7975F300FDACFE /* YXScoreExpGroupCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2671,7 +2681,7 @@
 				7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */,
 				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
 				92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */,
-				7C2C3B341D2114DC00A03635 /* YXScoreTypeCell.m in Sources */,
+				7C2C3B341D2114DC00A03635 /* YXScoreTypeHeaderView.m in Sources */,
 				CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */,
 				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
 				CB16060D1D2FCB390071BA01 /* YXUploadHeadImgRequest.m in Sources */,
@@ -2730,6 +2740,7 @@
 				920F1D441D51F00700636A51 /* YXHomeworkInfoViewController.m in Sources */,
 				7CF8887C1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m in Sources */,
 				9232371A1D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m in Sources */,
+				923237381D7975F300FDACFE /* YXScoreExpGroupCell.m in Sources */,
 				CB7462641D1D44F10065113A /* YXScanQRBackgroundView.m in Sources */,
 				9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
@@ -2737,7 +2748,7 @@
 				9223C80C1D2CA4E4000F74DF /* YXWorkshopMemberCell.m in Sources */,
 				920F1D511D53298C00636A51 /* YXHomeworkInfoHeaderView.m in Sources */,
 				92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */,
-				7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreCell.m in Sources */,
+				7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreHeaderView.m in Sources */,
 				CB4D91711D1A5EC800B5F1D0 /* YXFilterModel.m in Sources */,
 				92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */,
 				7C2C3B851D24F6F700A03635 /* YXCourseRecordCell.m in Sources */,
@@ -2786,7 +2797,7 @@
 				7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */,
 				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
-				7C2C3B401D21320E00A03635 /* YXScoreTaskScoreHeaderView.m in Sources */,
+				7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
 				920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */,
@@ -2905,6 +2916,7 @@
 				920F1D591D533E8B00636A51 /* YXWriteHomeworkRequest.m in Sources */,
 				CB748EDD1D223E2B004BCFBF /* YXFilterCustomButton.m in Sources */,
 				CB3510B61D18E9830081EA3B /* YXDatumOrderView.m in Sources */,
+				923237351D79623E00FDACFE /* YXScoreLeadingGroupCell.m in Sources */,
 				7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */,
 				7C3177ED1D114DC1004AAC90 /* YXFileBrowseManager.m in Sources */,
 				7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */,

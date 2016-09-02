@@ -6,27 +6,35 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "YXScoreTaskScoreHeaderView.h"
+#import "YXScoreBounsScoreCell.h"
 #import "YXScoreNoScoreView.h"
 
-@interface YXScoreTaskScoreHeaderView()
+@interface YXScoreBounsScoreCell()
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *scoreLabel;
 @property (nonatomic, strong) UILabel *totalScoreLabel;
 @property (nonatomic, strong) YXScoreNoScoreView *noScoreView;
 @end
 
-@implementation YXScoreTaskScoreHeaderView
+@implementation YXScoreBounsScoreCell
 
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
-    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setupUI];
     }
     return self;
 }
 
 - (void)setupUI{
-    self.contentView.backgroundColor = [UIColor whiteColor];
+    self.contentView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0.0f);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-5.0f);
+    }];
+    
     self.nameLabel = [[UILabel alloc]init];
     self.nameLabel.font = [UIFont systemFontOfSize:13];
     self.nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
@@ -58,7 +66,8 @@
     if (data.userscore.length == 0) {
         [self.contentView addSubview:self.noScoreView];
         [self.noScoreView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.mas_equalTo(0);
+            make.centerX.mas_equalTo(0);
+            make.centerY.mas_equalTo(0).offset(-5.0f);
             make.width.mas_equalTo(20);
             make.height.mas_equalTo(2);
         }];
@@ -66,7 +75,7 @@
         self.nameLabel.text = data.name;
         [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
-            make.centerY.mas_equalTo(0);
+            make.centerY.mas_equalTo(0).offset(-5.0f);
             make.right.mas_equalTo(self.noScoreView.mas_left).mas_offset(-10).priorityHigh();
         }];
         [self.contentView addSubview:self.totalScoreLabel];
@@ -74,21 +83,21 @@
         [self.totalScoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.left.mas_equalTo(self.noScoreView.mas_right).mas_offset(10).priorityHigh();
-            make.centerY.mas_equalTo(0);
+            make.centerY.mas_equalTo(0).offset(-5.0f);
         }];
     }else{
         [self.contentView addSubview:self.scoreLabel];
         self.scoreLabel.text = data.userscore;
         [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(-30.0f);
-            make.centerY.mas_equalTo(0.0f);
+            make.centerY.mas_equalTo(0.0f).offset(-5.0f);
             make.width.mas_offset(60.0f);
         }];
         [self.contentView addSubview:self.nameLabel];
         self.nameLabel.text = data.name;
         [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(15);
-            make.centerY.mas_equalTo(0);
+            make.centerY.mas_equalTo(0).offset(-5.0f);
             make.right.mas_equalTo(self.scoreLabel.mas_left).mas_offset(-10).priorityHigh();
         }];
         [self.contentView addSubview:self.totalScoreLabel];
@@ -96,7 +105,7 @@
         [self.totalScoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-15);
             make.left.mas_equalTo(self.scoreLabel.mas_right).mas_offset(10).priorityHigh();
-            make.centerY.mas_equalTo(0);
+            make.centerY.mas_equalTo(0).offset(-5.0f);
         }];
     }
 }

@@ -6,13 +6,13 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "YXScoreTotalScoreCell.h"
+#import "YXScoreTotalScoreHeaderView.h"
 #import "YXScoreNoScoreView.h"
 #import "YXWaveView.h"
 #import "YXExamNoScoreView.h"
 #import "YXScoreNoScoreView.h"
 
-@interface YXScoreTotalScoreCell()
+@interface YXScoreTotalScoreHeaderView()
 @property (nonatomic, strong) UILabel *scoreTitleLabel;
 @property (nonatomic, strong) UILabel *scoreLabel;
 @property (nonatomic, strong) UILabel *leadScoreTitleLabel;
@@ -25,39 +25,27 @@
 @property (nonatomic, strong) YXScoreNoScoreView *noExpScoreView;
 @end
 
-@implementation YXScoreTotalScoreCell
+@implementation YXScoreTotalScoreHeaderView
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
-//- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-//    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-//        [self setupUI];
-//    }
-//    return self;
-//}
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor whiteColor];
         [self setupUI];
     }
     return self;
 }
 
 - (void)setupUI{
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
 //    self.waveView = [[YXWaveView alloc]init];
 //    self.waveView.userInteractionEnabled = NO;
 //    self.waveView.hidden = YES;
-//    [self.contentView addSubview:self.waveView];
+//    [self addSubview:self.waveView];
 //    [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.edges.mas_equalTo(0);
 //    }];
@@ -65,14 +53,14 @@
     self.scoreTitleLabel.font = [UIFont systemFontOfSize:12];
     self.scoreTitleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.scoreTitleLabel.textAlignment = NSTextAlignmentCenter;
-    [self.contentView addSubview:self.scoreTitleLabel];
+    [self addSubview:self.scoreTitleLabel];
     [self.scoreTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(25);
         make.centerX.mas_equalTo(0);
     }];
     UIView *l = [[UIView alloc]init];
     l.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
-    [self.contentView addSubview:l];
+    [self addSubview:l];
     [l mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.scoreTitleLabel.mas_centerY);
         make.right.mas_equalTo(self.scoreTitleLabel.mas_left).mas_offset(-15);
@@ -81,7 +69,7 @@
     }];
     UIView *r = [[UIView alloc]init];
     r.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
-    [self.contentView addSubview:r];
+    [self addSubview:r];
     [r mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.scoreTitleLabel.mas_centerY);
         make.left.mas_equalTo(self.scoreTitleLabel.mas_right).mas_offset(15);
@@ -96,7 +84,7 @@
     self.noScoreView = [[YXExamNoScoreView alloc]init];
     UIView *sep = [[UIView alloc]init];
     sep.backgroundColor = [UIColor colorWithHexString:@"dfdfdf"];
-    [self.contentView addSubview:sep];
+    [self addSubview:sep];
     [sep mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.scoreTitleLabel.mas_bottom).mas_offset(60);
         make.centerX.mas_equalTo(0);
@@ -107,7 +95,7 @@
     self.leadScoreTitleLabel.font = [UIFont systemFontOfSize:11];
     self.leadScoreTitleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.leadScoreTitleLabel.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:self.leadScoreTitleLabel];
+    [self addSubview:self.leadScoreTitleLabel];
     [self.leadScoreTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(sep.mas_top);
         make.right.mas_equalTo(sep.mas_left).mas_offset(-15);
@@ -123,7 +111,7 @@
     self.expScoreTitleLabel.font = [UIFont systemFontOfSize:11];
     self.expScoreTitleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.expScoreTitleLabel.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:self.expScoreTitleLabel];
+    [self addSubview:self.expScoreTitleLabel];
     [self.expScoreTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(sep.mas_top);
         make.left.mas_equalTo(sep.mas_right).mas_offset(20);
@@ -143,7 +131,7 @@
     self.expScoreTitleLabel.text = [NSString stringWithFormat:@"拓展学习（满分%@）",data.punofficial];
     if (data.totalscore.length == 0) {
         [self.scoreLabel removeFromSuperview];
-        [self.contentView addSubview:self.noScoreView];
+        [self addSubview:self.noScoreView];
         [self.noScoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.scoreTitleLabel.mas_bottom).mas_offset(35);
             make.centerX.mas_equalTo(self.scoreTitleLabel.mas_centerX);
@@ -152,9 +140,9 @@
         }];
     }else{
         [self.noScoreView removeFromSuperview];
-        [self.contentView addSubview:self.scoreLabel];
+        [self addSubview:self.scoreLabel];
         self.scoreLabel.attributedText = [self totalScoreStringWithScore:data.totalscore];
-        [self.contentView addSubview:self.scoreLabel];
+        [self addSubview:self.scoreLabel];
         [self.scoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.scoreTitleLabel.mas_bottom).mas_offset(6);
             make.centerX.mas_equalTo(self.scoreTitleLabel.mas_centerX);
@@ -162,7 +150,7 @@
     }
     if (data.userGetScore.length == 0) {
         [self.leadScoreLabel removeFromSuperview];
-        [self.contentView addSubview:self.noLeadScoreView];
+        [self addSubview:self.noLeadScoreView];
         [self.noLeadScoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.leadScoreTitleLabel.mas_bottom).mas_offset(20);
             make.right.mas_equalTo(self.leadScoreTitleLabel.mas_right).mas_offset(-5);
@@ -171,9 +159,9 @@
         }];
     }else{
         [self.noLeadScoreView removeFromSuperview];
-        [self.contentView addSubview:self.leadScoreLabel];
+        [self addSubview:self.leadScoreLabel];
         self.leadScoreLabel.text = [NSString stringWithFormat:@"%@",data.userGetScore];
-        [self.contentView addSubview:self.leadScoreLabel];
+        [self addSubview:self.leadScoreLabel];
         [self.leadScoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.leadScoreTitleLabel.mas_bottom).mas_offset(10);
             make.right.mas_equalTo(self.leadScoreTitleLabel.mas_right).mas_offset(-5);
@@ -181,7 +169,7 @@
     }
     if (data.bounsscore.length == 0) {
         [self.expScoreLabel removeFromSuperview];
-        [self.contentView addSubview:self.noExpScoreView];
+        [self addSubview:self.noExpScoreView];
         [self.noExpScoreView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.expScoreTitleLabel.mas_bottom).mas_offset(20);
             make.left.mas_equalTo(self.expScoreTitleLabel.mas_left);
@@ -190,9 +178,9 @@
         }];
     }else{
         [self.noExpScoreView removeFromSuperview];
-        [self.contentView addSubview:self.expScoreLabel];
+        [self addSubview:self.expScoreLabel];
         self.expScoreLabel.text = [NSString stringWithFormat:@"%@",data.bounsscore];
-        [self.contentView addSubview:self.expScoreLabel];
+        [self addSubview:self.expScoreLabel];
         [self.expScoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.expScoreTitleLabel.mas_bottom).mas_offset(10);
             make.left.mas_equalTo(self.expScoreTitleLabel.mas_left);

@@ -7,30 +7,14 @@
 //
 
 #import "YXScoreViewController.h"
-#import "YXScoreTotalScoreCell.h"
-#import "YXScoreTypeCell.h"
-#import "YXScorePhaseHeaderView.h"
+#import "YXScoreTotalScoreHeaderView.h"
+#import "YXScoreTypeHeaderView.h"
+
 #import "YXScoreBlankCell.h"
-#import "YXScoreLeadScoreCell.h"
-#import "YXScoreTaskScoreHeaderView.h"
-#import "YXScoreExpHeaderView.h"
-#import "YXScoreExpScoreCell.h"
+#import "YXScoreBounsScoreCell.h"
 #import "YXExamBlankHeaderFooterView.h"
-
-@interface YXExpSubItem : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *score;
-@end
-@implementation YXExpSubItem
-@end
-
-@interface YXExpItem : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *score;
-@property (nonatomic, strong) NSArray *subItemArray;
-@end
-@implementation YXExpItem
-@end
+#import "YXScoreLeadingGroupCell.h"
+#import "YXScoreExpGroupCell.h"
 
 @interface YXScoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -70,6 +54,7 @@
     expItem3.score = data.bounsVo.bouns3;
     expItem3.subItemArray = @[item7,item8,item9,item10];
     [self.expItemArray addObject:expItem3];
+    [self.tableView reloadData];
 }
 
 - (YXExpSubItem *)expSubItemWithName:(NSString *)name score:(NSString *)score{
@@ -78,6 +63,7 @@
     item.score = score;
     return item;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -102,195 +88,104 @@
 }
 
 - (void)setupUI{
-    YXScoreTotalScoreCell *totalCell = [[YXScoreTotalScoreCell alloc]init];
-    totalCell.data = self.data;
-    [self.view addSubview:totalCell];
-    [totalCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(190);
-    }];
-    [totalCell addSubview:self.waveView];
+    YXScoreTotalScoreHeaderView *totalHeaderView = [[YXScoreTotalScoreHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 190.0f)];
+    totalHeaderView.data = self.data;
+    [totalHeaderView addSubview:self.waveView];
     [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(totalCell.mas_left);
-        make.right.equalTo(totalCell.mas_right);
-        make.bottom.equalTo(totalCell.mas_bottom);
+        make.left.equalTo(totalHeaderView.mas_left);
+        make.right.equalTo(totalHeaderView.mas_right);
+        make.bottom.equalTo(totalHeaderView.mas_bottom);
         make.height.mas_equalTo(self.waveView.frame.size.height);
     }];
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.tableHeaderView = totalHeaderView;
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(totalCell.mas_bottom);
-        make.left.right.bottom.mas_equalTo(0);
+        make.edges.equalTo(self.view);
     }];
-    [self.tableView registerClass:[YXScoreTotalScoreCell class] forCellReuseIdentifier:@"YXScoreTotalScoreCell"];
-    [self.tableView registerClass:[YXScoreTypeCell class] forCellReuseIdentifier:@"YXScoreTypeCell"];
-    [self.tableView registerClass:[YXScoreBlankCell class] forCellReuseIdentifier:@"YXScoreBlankCell"];
-    [self.tableView registerClass:[YXScoreLeadScoreCell class] forCellReuseIdentifier:@"YXScoreLeadScoreCell"];
-    [self.tableView registerClass:[YXScoreExpScoreCell class] forCellReuseIdentifier:@"YXScoreExpScoreCell"];
-    [self.tableView registerClass:[YXScorePhaseHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXScorePhaseHeaderView"];
-    [self.tableView registerClass:[YXScoreTaskScoreHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXScoreTaskScoreHeaderView"];
-    [self.tableView registerClass:[YXScoreExpHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXScoreExpHeaderView"];
-    [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
-    
-
+    [self.tableView registerClass:[YXScoreTypeHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXScoreTypeHeaderView"];
+    [self.tableView registerClass:[YXScoreLeadingGroupCell class] forCellReuseIdentifier:@"YXScoreLeadingGroupCell"];
+    [self.tableView registerClass:[YXScoreBounsScoreCell class] forCellReuseIdentifier:@"YXScoreBounsScoreCell"];
+    [self.tableView registerClass:[YXScoreExpGroupCell class] forCellReuseIdentifier:@"YXScoreExpGroupCell"];
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.data.leadingVoList.count + self.data.bounsVoList.count + 2 + self.expItemArray.count;
+    NSInteger number = 1;
+    if (self.data.leadingVoList.count + self.data.bounsVoList.count > 0) {
+        number ++ ;
+    }
+    return number;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 1;
-    }else if (section < self.data.leadingVoList.count+1){
-        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[section-1];
-        return vo.toolExamineVoList.count+2;
-    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
-        return 0;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        return 1;
+    if (section == 0 && (self.data.leadingVoList.count + self.data.bounsVoList.count) > 0) {
+        return self.data.leadingVoList.count + self.data.bounsVoList.count;
     }else{
-        NSInteger index = section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count);
-        YXExpItem *item = self.expItemArray[index];
-        return item.subItemArray.count+2;
+        return 3;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        YXScoreTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreTypeCell"];
-        cell.type = YXScoreCellType_Lead;
-        return cell;
-    }else if (indexPath.section < self.data.leadingVoList.count+1){
-        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[indexPath.section-1];
-        if (indexPath.row == 0 || indexPath.row == vo.toolExamineVoList.count+1) {
-            YXScoreBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreBlankCell"];
+    if (indexPath.section == 0  && (self.data.leadingVoList.count + self.data.bounsVoList.count) > 0) {
+        if (indexPath.row < self.data.leadingVoList.count) {
+            YXScoreLeadingGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreLeadingGroupCell"];
+            cell.data = self.data.leadingVoList[indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }else{
-            YXScoreLeadScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreLeadScoreCell"];
-            cell.data = vo.toolExamineVoList[indexPath.row-1];
+            YXScoreBounsScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreBounsScoreCell"];
+            cell.data = self.data.bounsVoList[indexPath.row - self.data.leadingVoList.count];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
-    }else if (indexPath.section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
-        return nil;
-    }else if (indexPath.section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        YXScoreTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreTypeCell"];
-        cell.type = YXScoreCellType_Exp;
-        return cell;
+        
     }else{
-        YXExpItem *item = self.expItemArray[indexPath.section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count)];
-        if (indexPath.row == 0 || indexPath.row == item.subItemArray.count+1) {
-            YXScoreBlankCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreBlankCell"];
-            return cell;
-        }else{
-            YXScoreExpScoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreExpScoreCell"];
-            YXExpSubItem *subItem = item.subItemArray[indexPath.row-1];
-            cell.title = subItem.name;
-            cell.score = subItem.score;
-            return cell;
-        }
+        YXScoreExpGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreExpGroupCell"];
+        cell.data = self.expItemArray[indexPath.section];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
+    
 }
 
 #pragma mark - UITableViewDelegate
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return nil;
-    }else if (section < self.data.leadingVoList.count+1){
-        YXScorePhaseHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXScorePhaseHeaderView"];
-        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[section-1];
-        header.data = vo;
-        return header;
-    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
-        YXScoreTaskScoreHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXScoreTaskScoreHeaderView"];
-        YXExamineRequestItem_body_bounsVoData *vo = self.data.bounsVoList[section-1-self.data.leadingVoList.count];
-        header.data = vo;
-        return header;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        return nil;
-    }else {
-        YXExpItem *item = self.expItemArray[section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count)];
-        YXScoreExpHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXScoreExpHeaderView"];
-        header.title = item.name;
-        header.score = item.score;
-        return header;
+    YXScoreTypeHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXScoreTypeHeaderView"];
+    if (section == 0  && (self.data.leadingVoList.count + self.data.bounsVoList.count) > 0){
+        headerView.type = YXScoreHeaderViewType_Lead;
     }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section == 0) {
-        return nil;
-    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
-        if (section == self.data.leadingVoList.count+1+self.data.bounsVoList.count-1) {
-            return nil;
-        }else{
-            YXExamBlankHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
-            return footer;
-        }
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        return nil;
-    }else {
-        YXExamBlankHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
-        return footer;
+    else{
+        headerView.type = YXScoreHeaderViewType_Exp;
     }
+    return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        return 55;
-    }else if (indexPath.section < self.data.leadingVoList.count+1){
-        YXExamineRequestItem_body_leadingVo *vo = self.data.leadingVoList[indexPath.section-1];
-        if (indexPath.row == 0 || indexPath.row == vo.toolExamineVoList.count+1) {
-            return 8;
+    if (indexPath.section == 0  && (self.data.leadingVoList.count + self.data.bounsVoList.count) > 0) {
+        if (indexPath.row < self.data.leadingVoList.count) {
+            YXExamineRequestItem_body_leadingVo *list = self.data.leadingVoList[indexPath.row];
+            return 37.0f + list.toolExamineVoList.count * 30.0f + 5.0f;
         }else{
-            return 30;
+            return 35.0f;
         }
-    }else if (indexPath.section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
-        return 0;
-    }else if (indexPath.section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        return 55;
     }else{
-        YXExpItem *item = self.expItemArray[indexPath.section-(self.data.leadingVoList.count+2+self.data.bounsVoList.count)];
-        if (indexPath.row == 0 || indexPath.row == item.subItemArray.count+1) {
-            return 8;
-        }else{
-            return 30;
-        }
+        YXExpItem *item = self.expItemArray[indexPath.section];
+        return 37.0f + item.subItemArray.count * 30.0f + 5.0f;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 0.1;
-    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
-        return 37;
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        return 0.1;
-    }else{
-        return 37;
-    }
+    return 55.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    if (section == 0) {
-        return 0.1;
-    }else if (section < self.data.leadingVoList.count+1+self.data.bounsVoList.count){
-        if (section == self.data.leadingVoList.count+1+self.data.bounsVoList.count-1) {
-            return 0.1;
-        }else{
-            return 5;
-        }
-    }else if (section < self.data.leadingVoList.count+2+self.data.bounsVoList.count){
-        return 0.1;
-    }else{
-        return 5;
-    }
+    return 0.1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
