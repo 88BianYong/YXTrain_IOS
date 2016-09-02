@@ -3070,7 +3070,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4ba9ccd2-5b0a-4082-a0d1-db79a55766b4";
+				PROVISIONING_PROFILE = "80f38209-e592-4fa2-9514-548e2910330a";
 			};
 			name = Debug;
 		};
