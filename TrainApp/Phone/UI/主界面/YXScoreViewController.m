@@ -9,8 +9,6 @@
 #import "YXScoreViewController.h"
 #import "YXScoreTotalScoreHeaderView.h"
 #import "YXScoreTypeHeaderView.h"
-
-#import "YXScoreBlankCell.h"
 #import "YXScoreBounsScoreCell.h"
 #import "YXExamBlankHeaderFooterView.h"
 #import "YXScoreLeadingGroupCell.h"

@@ -168,7 +168,6 @@
 		7CFBA6BF1D33374B005D08B1 /* YXErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFBA6BE1D33374B005D08B1 /* YXErrorView.m */; };
 		7CFBA6C21D33375D005D08B1 /* YXEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFBA6C11D33375D005D08B1 /* YXEmptyView.m */; };
 		7CFBA6C51D3633E7005D08B1 /* YXModuleListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFBA6C41D3633E7005D08B1 /* YXModuleListRequest.m */; };
-		920F1D161D5048EF00636A51 /* YXWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D151D5048EF00636A51 /* YXWorkViewController.m */; };
 		920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D181D50499500636A51 /* YXVideoRecordViewController.m */; };
 		920F1D1F1D506DE500636A51 /* UIViewController+YXAddtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D1E1D506DE500636A51 /* UIViewController+YXAddtion.m */; };
 		920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D221D5094D000636A51 /* YXGetQiNiuTokenRequest.m */; };
@@ -676,8 +675,6 @@
 		7CFBA6C11D33375D005D08B1 /* YXEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEmptyView.m; sourceTree = "<group>"; };
 		7CFBA6C31D3633E7005D08B1 /* YXModuleListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXModuleListRequest.h; sourceTree = "<group>"; };
 		7CFBA6C41D3633E7005D08B1 /* YXModuleListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXModuleListRequest.m; sourceTree = "<group>"; };
-		920F1D141D5048EF00636A51 /* YXWorkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkViewController.h; sourceTree = "<group>"; };
-		920F1D151D5048EF00636A51 /* YXWorkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkViewController.m; sourceTree = "<group>"; };
 		920F1D171D50499500636A51 /* YXVideoRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVideoRecordViewController.h; sourceTree = "<group>"; };
 		920F1D181D50499500636A51 /* YXVideoRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXVideoRecordViewController.m; sourceTree = "<group>"; };
 		920F1D1D1D506DE500636A51 /* UIViewController+YXAddtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YXAddtion.h"; sourceTree = "<group>"; };
@@ -1982,8 +1979,6 @@
 			isa = PBXGroup;
 			children = (
 				920F1D451D51F05000636A51 /* view */,
-				920F1D141D5048EF00636A51 /* YXWorkViewController.h */,
-				920F1D151D5048EF00636A51 /* YXWorkViewController.m */,
 				920F1D3F1D51EFB100636A51 /* YXHomeworkListViewController.h */,
 				920F1D401D51EFB100636A51 /* YXHomeworkListViewController.m */,
 				920F1D421D51F00700636A51 /* YXHomeworkInfoViewController.h */,
@@ -2775,7 +2770,6 @@
 				7C3178071D123935004AAC90 /* YXQLPreviewController.m in Sources */,
 				7C3177CB1D10F496004AAC90 /* YXNavigationController.m in Sources */,
 				7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */,
-				920F1D161D5048EF00636A51 /* YXWorkViewController.m in Sources */,
 				CB4D91771D1A635400B5F1D0 /* YXMyDatumCell.m in Sources */,
 				CBBE94FE1D1D193400C935C8 /* YXLoginButtonTableViewCell.m in Sources */,
 				7CFBA6C21D33375D005D08B1 /* YXEmptyView.m in Sources */,

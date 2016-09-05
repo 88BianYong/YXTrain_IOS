@@ -92,6 +92,7 @@ PODS:
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
+  - SocketRocket (0.5.1)
   - StyledPageControl (1.0)
   - TOWebViewController (2.0.14)
   - UICKeyChainStore (2.1.0)
@@ -129,6 +130,7 @@ DEPENDENCIES:
   - RMDateSelectionViewController (= 1.3.0)
   - SAMTextView (= 0.2.2)
   - SCRecorder (~> 2.6.1)
+  - SocketRocket
   - StyledPageControl (= 1.0)
   - TOWebViewController (= 2.0.14)
   - UIColor-Utilities (= 1.0.1)
@@ -171,6 +173,7 @@ SPEC CHECKSUMS:
   SAMTextView: 979c43bb1fa5859ddfbfeb35e9c296a2b0ec55fd
   SCRecorder: ef11bc34094c43201cc7c94fa9aeb5266e5b9cf7
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   StyledPageControl: b49f33cb65b99370a78a490fac127b1ca6472fd0
   TOWebViewController: 2cfd0032d781cabd88a0995fbca9692c11f0797e
   UICKeyChainStore: f1cbd42216a113f0165de1e733e62905b8823432

@@ -69,6 +69,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
         [self setupUI];
     }
     return self;
