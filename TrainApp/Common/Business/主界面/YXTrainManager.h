@@ -20,4 +20,6 @@
 
 - (void)clear;
 
+- (BOOL)isShowCMSView:(NSArray *)rotate;
+
 @end

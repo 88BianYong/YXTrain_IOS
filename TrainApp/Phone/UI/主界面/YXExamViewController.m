@@ -239,6 +239,10 @@
                 NSString *string = @"YXHomeworkListViewController";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+            }else if ([data.toolid isEqualToString:@"216"] || [data.toolid isEqualToString:@"316"]){//小组作业
+                NSString *string = @"YXHomeworkListViewController";
+                UIViewController *VC = [[NSClassFromString(string) alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
             }else {
                 [self showToast:@"相关功能暂未开放"];
             }
@@ -305,6 +309,10 @@
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
             }else if ([data.toolid isEqualToString:@"205"] || [data.toolid isEqualToString:@"305"]){//研修总结
+                NSString *string = @"YXHomeworkListViewController";
+                UIViewController *VC = [[NSClassFromString(string) alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if ([data.toolid isEqualToString:@"216"] || [data.toolid isEqualToString:@"316"]){//小组作业
                 NSString *string = @"YXHomeworkListViewController";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];

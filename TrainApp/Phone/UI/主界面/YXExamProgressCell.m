@@ -119,6 +119,8 @@
         self.typeImageView.image = [UIImage imageNamed:@"活动"];
     }else if (item.toolid.integerValue == 203 || item.toolid.integerValue == 303){
         self.typeImageView.image = [UIImage imageNamed:@"作业"];
+    }else if (item.toolid.integerValue == 216 || item.toolid.integerValue == 316){
+        self.typeImageView.image = [UIImage imageNamed:@"作业"];
     }else{
         self.typeImageView.image = nil;
     }

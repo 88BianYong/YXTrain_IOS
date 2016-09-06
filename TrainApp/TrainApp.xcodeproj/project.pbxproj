@@ -229,6 +229,10 @@
 		923237311D6E9F3000FDACFE /* YXStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237301D6E9F3000FDACFE /* YXStartViewController.m */; };
 		923237351D79623E00FDACFE /* YXScoreLeadingGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237341D79623E00FDACFE /* YXScoreLeadingGroupCell.m */; };
 		923237381D7975F300FDACFE /* YXScoreExpGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237371D7975F300FDACFE /* YXScoreExpGroupCell.m */; };
+		9232373D1D7E630700FDACFE /* YXRotateListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232373C1D7E630700FDACFE /* YXRotateListRequest.m */; };
+		923237401D7E660000FDACFE /* YXCMSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232373F1D7E660000FDACFE /* YXCMSManager.m */; };
+		923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237421D7EA80E00FDACFE /* YXCMSCustomView.m */; };
+		923237461D7EA9FE00FDACFE /* YXCMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237451D7EA9FE00FDACFE /* YXCMSTimerView.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
@@ -793,6 +797,14 @@
 		923237341D79623E00FDACFE /* YXScoreLeadingGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreLeadingGroupCell.m; sourceTree = "<group>"; };
 		923237361D7975F300FDACFE /* YXScoreExpGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreExpGroupCell.h; sourceTree = "<group>"; };
 		923237371D7975F300FDACFE /* YXScoreExpGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreExpGroupCell.m; sourceTree = "<group>"; };
+		9232373B1D7E630700FDACFE /* YXRotateListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXRotateListRequest.h; sourceTree = "<group>"; };
+		9232373C1D7E630700FDACFE /* YXRotateListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXRotateListRequest.m; sourceTree = "<group>"; };
+		9232373E1D7E660000FDACFE /* YXCMSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCMSManager.h; sourceTree = "<group>"; };
+		9232373F1D7E660000FDACFE /* YXCMSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCMSManager.m; sourceTree = "<group>"; };
+		923237411D7EA80E00FDACFE /* YXCMSCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCMSCustomView.h; sourceTree = "<group>"; };
+		923237421D7EA80E00FDACFE /* YXCMSCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCMSCustomView.m; sourceTree = "<group>"; };
+		923237441D7EA9FE00FDACFE /* YXCMSTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCMSTimerView.h; sourceTree = "<group>"; };
+		923237451D7EA9FE00FDACFE /* YXCMSTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCMSTimerView.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
@@ -1209,6 +1221,7 @@
 		7C3177641D0E688D004AAC90 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				9232373A1D7E627E00FDACFE /* CMS */,
 				CB227EAB1D34D10700D5327B /* 引导页 */,
 				9223C8241D2E0DFC000F74DF /* 设置 */,
 				7CF888451D18E88500E7C04D /* 登录注册 */,
@@ -1379,6 +1392,7 @@
 				7C3178381D13949C004AAC90 /* 工作坊 */,
 				7C3178391D13949C004AAC90 /* 资源 */,
 				92529A721D2A337C007E26D8 /* 设置 */,
+				923237391D7E621600FDACFE /* CMS */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2180,6 +2194,28 @@
 			name = "启动";
 			sourceTree = "<group>";
 		};
+		923237391D7E621600FDACFE /* CMS */ = {
+			isa = PBXGroup;
+			children = (
+				923237411D7EA80E00FDACFE /* YXCMSCustomView.h */,
+				923237421D7EA80E00FDACFE /* YXCMSCustomView.m */,
+				923237441D7EA9FE00FDACFE /* YXCMSTimerView.h */,
+				923237451D7EA9FE00FDACFE /* YXCMSTimerView.m */,
+			);
+			path = CMS;
+			sourceTree = "<group>";
+		};
+		9232373A1D7E627E00FDACFE /* CMS */ = {
+			isa = PBXGroup;
+			children = (
+				9232373B1D7E630700FDACFE /* YXRotateListRequest.h */,
+				9232373C1D7E630700FDACFE /* YXRotateListRequest.m */,
+				9232373E1D7E660000FDACFE /* YXCMSManager.h */,
+				9232373F1D7E660000FDACFE /* YXCMSManager.m */,
+			);
+			path = CMS;
+			sourceTree = "<group>";
+		};
 		92529A721D2A337C007E26D8 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2690,6 +2726,7 @@
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */,
 				922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */,
+				923237401D7E660000FDACFE /* YXCMSManager.m in Sources */,
 				7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
 				7CF8445E1D2A5E4800B1CE55 /* FileRecordEntity.m in Sources */,
@@ -2715,6 +2752,7 @@
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
 				9223C8201D2DF93A000F74DF /* YXFeedBackViewController.m in Sources */,
 				F7E8F8DE1D65CE3700CDAAF4 /* YXPopUpContainerView.m in Sources */,
+				923237461D7EA9FE00FDACFE /* YXCMSTimerView.m in Sources */,
 				9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */,
 				CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */,
 				CBB62E131D2CCB0F00DAA6DE /* YXBroseWebView.m in Sources */,
@@ -2853,6 +2891,7 @@
 				9223C80F1D2CADD6000F74DF /* YXWorkshopMemberRequest.m in Sources */,
 				9223C8231D2E0060000F74DF /* YXAboutViewController.m in Sources */,
 				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
+				9232373D1D7E630700FDACFE /* YXRotateListRequest.m in Sources */,
 				7C2C3B731D24C98D00A03635 /* YXCourseDetailViewController.m in Sources */,
 				CBF66E291D2E36EE00F4E408 /* YXUserProfileRequest.m in Sources */,
 				7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */,
@@ -2916,6 +2955,7 @@
 				7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
+				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,
 				92EDC7CB1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m in Sources */,
 				920F1D1F1D506DE500636A51 /* UIViewController+YXAddtion.m in Sources */,
 				CB3510B71D18E9830081EA3B /* YXDatumOrderViewCell.m in Sources */,

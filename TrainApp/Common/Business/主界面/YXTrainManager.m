@@ -82,4 +82,17 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
+- (BOOL)isShowCMSView:(NSArray *)rotate{
+    BOOL isShow = NO;
+    for (YXTrainListRequestItem_body_train *p in self.trainlistItem.body.trains) {
+        for (NSString *string in rotate) {
+            if ([p.pid isEqualToString:string]) {
+                isShow = YES;
+                return isShow;
+            }
+        }
+    }
+    return isShow;
+}
+
 @end

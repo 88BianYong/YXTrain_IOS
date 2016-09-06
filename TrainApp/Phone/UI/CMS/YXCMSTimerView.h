@@ -1,0 +1,14 @@
+//
+//  YXCMSTimerView.h
+//  TrainApp
+//
+//  Created by 郑小龙 on 16/9/6.
+//  Copyright © 2016年 niuzhaowang. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface YXCMSTimerView : UIView
+@property (nonatomic, copy) void (^stopTimerBlock)();
+- (void)startWithSeconds:(NSInteger)seconds;
+@end
