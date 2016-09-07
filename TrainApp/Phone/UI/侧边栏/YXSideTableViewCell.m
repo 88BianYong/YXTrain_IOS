@@ -24,7 +24,21 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
+    if (!selected) {
+        self.iconImageView.image = self.nameDictionary[@"normalIcon"] ? [UIImage imageNamed:self.nameDictionary[@"normalIcon"]] : nil;
+        self.sideLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    }
+}
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.iconImageView.image = self.nameDictionary[@"hightIcon"] ? [UIImage imageNamed:self.nameDictionary[@"hightIcon"]]:nil;
+        self.sideLabel.textColor = [UIColor colorWithHexString:@"0067be"];
+    }
+    else{
+        self.iconImageView.image = self.nameDictionary[@"normalIcon"] ? [UIImage imageNamed:self.nameDictionary[@"normalIcon"]] : nil;
+        self.sideLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    }
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -57,10 +71,10 @@
         make.centerY.mas_equalTo(0);
     }];
 }
-
-- (void)updateWithIconNamed:(NSString *)icon andName:(NSString *)name {
-    self.iconImageView.image = [UIImage imageNamed:icon];
-    self.sideLabel.text = name;
+- (void)setNameDictionary:(NSDictionary *)nameDictionary{
+    _nameDictionary = nameDictionary;
+    self.iconImageView.image = [UIImage imageNamed:self.nameDictionary[@"normalIcon"]];
+    self.sideLabel.text = self.nameDictionary[@"title"];
 }
 
 @end

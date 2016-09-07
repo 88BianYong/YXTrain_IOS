@@ -107,7 +107,7 @@
     YXDrawerViewController *drawerVC = [[YXDrawerViewController alloc]init];
     drawerVC.drawerViewController = menuVC;
     drawerVC.paneViewController = projectNavi;
-    drawerVC.drawerWidth = [UIScreen mainScreen].bounds.size.width * 600/750;
+    drawerVC.drawerWidth = [UIScreen mainScreen].bounds.size.width * YXTrainLeftDrawerWidth/750.0f;
     return drawerVC;
 }
 

@@ -40,8 +40,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _titleArray = @[@{@"title":@"资源",@"icon":@"资源1"},
-                    @{@"title":@"我的工作坊",@"icon":@"我的工作坊icon"}];
+    _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
+                    @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
+                    @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
+                    @{@"title":@"消息动态",@"normalIcon":@"消息动态icon-正常态",@"hightIcon":@"消息动态icon-点击态"}];
     
     
     [self registerNotifications];
@@ -63,10 +65,7 @@
 
     self.headerView = [[UIView alloc] init];
     [self.view addSubview:self.headerView];
-    self.headerView.backgroundColor = [UIColor whiteColor];
-    UITapGestureRecognizer * tapHeaderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapHeaderGesture:)];
-    [self.headerView addGestureRecognizer:tapHeaderGesture];
-    
+    self.headerView.backgroundColor = [UIColor colorWithHexString:@"1378cd"];
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -79,18 +78,16 @@
     self.footerView = [[UIView alloc] init];
     self.footerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_footerView];
-    UITapGestureRecognizer * tapFooterGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapFooterGesture:)];
-    [self.footerView addGestureRecognizer:tapFooterGesture];
     
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.mas_equalTo(@0);
-        make.height.mas_equalTo(@108);
-        make.width.mas_equalTo(@([UIScreen mainScreen].bounds.size.width * 600/750));
+        make.height.mas_equalTo(@121);
+        make.width.mas_equalTo(@(kScreenWidth * YXTrainLeftDrawerWidth/750.0f));
     }];
     [self.footerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.mas_equalTo(@0);
         make.height.mas_equalTo(60);
-        make.width.mas_equalTo(@([UIScreen mainScreen].bounds.size.width * 600/750));
+        make.width.mas_equalTo(@(kScreenWidth * YXTrainLeftDrawerWidth/750.0f));
     }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -105,52 +102,56 @@
     
     _nameLabel = [[UILabel alloc] init];
     _nameLabel.font = [UIFont boldSystemFontOfSize:17];
-    _nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
-    _nameLabel.text = @"123";
+    _nameLabel.textColor = [UIColor whiteColor];
+    _nameLabel.text = @"1";
     [self.headerView addSubview:_nameLabel];
     
     _schoolNameLabel = [[UILabel alloc] init];
     _schoolNameLabel.font = [UIFont systemFontOfSize:12];
-    _schoolNameLabel.textColor = [UIColor colorWithHexString:@"505f84"];
-    _schoolNameLabel.text = @"1233455";
+    _schoolNameLabel.textColor = [UIColor whiteColor];
+    _schoolNameLabel.text = @"1";
     [self.headerView addSubview:_schoolNameLabel];
     
-    UIImageView *headerIconImageView = [[UIImageView alloc] init];
-    headerIconImageView.image = [UIImage imageNamed:@"进入编辑个人中心icon"];
-    [self.headerView addSubview:headerIconImageView];
+    UIButton *editButton = [[UIButton alloc] init];
+    [editButton setImage:[UIImage imageNamed:@"进入编辑个人中心icon正常态"]
+                forState:UIControlStateNormal];
+    [editButton setImage:[UIImage imageNamed:@"进入编辑个人中心icon-点击态"]
+                forState:UIControlStateHighlighted];
+    editButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [editButton addTarget:self action:@selector(pushMineButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [editButton setImageEdgeInsets:UIEdgeInsetsMake(0,kScreenWidth *YXTrainLeftDrawerWidth/750.f - 10.0f - 18.0f, 0, 0.0f)];
+    [self.headerView addSubview:editButton];
     UIView *headerBottomView = [[UIView alloc] init];
     headerBottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.headerView addSubview:headerBottomView];
     
     [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(@15);
-        make.bottom.mas_equalTo(@-21);
-        make.size.mas_equalTo(CGSizeMake(45, 45));
+        make.centerY.equalTo(self.headerView.mas_centerY).offset(10.0f);
+        make.size.mas_equalTo(CGSizeMake(44, 44));
     }];
-    _iconImageView.layer.cornerRadius = 45.0/2;
+    _iconImageView.layer.cornerRadius = 44.0/2;
     _iconImageView.layer.masksToBounds = YES;
     
-    [headerIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-15);
-        make.size.mas_equalTo(CGSizeMake(25, 25));
-        make.centerY.equalTo(_iconImageView.mas_centerY);
+    [editButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.mas_equalTo(0);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(45);
-        make.left.mas_equalTo(self->_iconImageView.mas_right).mas_offset(@12);
-        make.right.mas_equalTo(headerIconImageView.mas_left).offset(-20);
+        make.top.mas_equalTo(25.0f + 18.0f);
+        make.left.mas_equalTo(self->_iconImageView.mas_right).mas_offset(10.0f);
+        make.right.mas_equalTo(self.headerView.mas_right).offset(-50.0f);
     }];
     
     [_schoolNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self->_iconImageView.mas_bottom);
-        make.left.mas_equalTo(self->_iconImageView.mas_right).mas_offset(@12);
-        make.right.mas_equalTo(headerIconImageView.mas_left).offset(-20);
+        make.top.mas_equalTo(self->_nameLabel.mas_bottom).offset(11.0f - 5.0f);
+        make.left.mas_equalTo(self->_iconImageView.mas_right).mas_offset(10.0f);
+        make.right.mas_equalTo(self.headerView.mas_right).offset(-50.0f);
     }];
     
     [headerBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(1.0f / [UIScreen mainScreen].scale);
     }];
     
     UIView *footerBottomView = [[UIView alloc] init];
@@ -159,10 +160,16 @@
     UIButton *footerButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [footerButton addTarget:self action:@selector(pushSettingButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [footerButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
+    [footerButton setImage:[UIImage imageNamed:@"设置icon-正常态"]
+                forState:UIControlStateNormal];
+    [footerButton setImage:[UIImage imageNamed:@"设置icon-点击态"]
+                forState:UIControlStateHighlighted];
+    footerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [footerButton setImageEdgeInsets:UIEdgeInsetsMake(0,25.0f, 0, 0.0f)];
+    
+    
     [self.footerView addSubview:footerButton];
-    UIImageView *footerIconImageView = [[UIImageView alloc] init];
-    footerIconImageView.image = [UIImage imageNamed:@"设置icon"];
-    [self.footerView addSubview:footerIconImageView];
+    
     UILabel *footerLabel = [[UILabel alloc] init];
     footerLabel.text = @"设置";
     footerLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -171,38 +178,16 @@
     
     [footerBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(1);
-    }];
-    [footerIconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(25);
-        make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(25, 25));
+        make.height.mas_equalTo(1.0f / [UIScreen mainScreen].scale);
     }];
     [footerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(footerIconImageView.mas_right).offset(21);
+        make.left.equalTo(self.footerView.mas_left).offset(69.0f);
         make.centerY.mas_equalTo(0);
     }];
     [footerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.footerView);
     }];
-    
     [self loadUserProfile];
-}
-
-- (void)tapHeaderGesture:(UIGestureRecognizer *)gesture
-{
-    if (gesture.state == UIGestureRecognizerStateEnded) {
-        WEAK_SELF
-        YXMineViewController *vc = [[YXMineViewController alloc] init];
-        vc.userInfoModifySuccess = ^(){
-            STRONG_SELF
-            [self reloadUserProfileView];
-        };
-        [self.navigationController pushViewController:vc animated:YES];
-//        YXGuideViewController *vc = [[YXGuideViewController alloc] init];
-//        vc.guideDataArray = [self configGuideArray];
-//        [self.navigationController pushViewController:vc animated:YES];
-    }
 }
 
 - (NSArray *)configGuideArray {
@@ -220,14 +205,6 @@
     model.guideImageString = name;
     model.isShowButton = isShowButton;
     return model;
-}
-
-- (void)tapFooterGesture:(UIGestureRecognizer *)gesture
-{
-    if (gesture.state == UIGestureRecognizerStateEnded) {
-        //
-        DDLogDebug(@"tapFooter");
-    }
 }
 
 - (void)loadUserProfile
@@ -275,19 +252,39 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXSideTableViewCell" forIndexPath:indexPath];
-    [cell updateWithIconNamed:_titleArray[indexPath.section][@"icon"] andName:_titleArray[indexPath.section][@"title"]];
+    cell.nameDictionary = _titleArray[indexPath.section];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
-        YXDatumViewController *datumVc = [[YXDatumViewController alloc] init];
-        [self.navigationController pushViewController:datumVc animated:YES];
-    }else if(indexPath.section == 1){
-        YXWorkshopViewController *workshopVc = [[YXWorkshopViewController alloc] init];
-        [self.navigationController pushViewController:workshopVc animated:YES];
+    switch (indexPath.section) {
+        case 0:
+        {
+            
+        }
+            break;
+        case 1:
+        {
+            YXDatumViewController *datumVc = [[YXDatumViewController alloc] init];
+            [self.navigationController pushViewController:datumVc animated:YES];
+        }
+            break;
+        case 2:
+        {
+            YXWorkshopViewController *workshopVc = [[YXWorkshopViewController alloc] init];
+            [self.navigationController pushViewController:workshopVc animated:YES];
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
     }
 }
 
@@ -333,5 +330,15 @@
     YXMySettingViewController *datumVc = [[YXMySettingViewController alloc] init];
     [self.navigationController pushViewController:datumVc animated:YES];
 }
+- (void)pushMineButtonAction:(UIButton *)sender{
+    WEAK_SELF
+    YXMineViewController *vc = [[YXMineViewController alloc] init];
+    vc.userInfoModifySuccess = ^(){
+        STRONG_SELF
+        [self reloadUserProfileView];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 @end

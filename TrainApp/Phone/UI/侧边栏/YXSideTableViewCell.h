@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YXSideTableViewCell : UITableViewCell
-
-- (void)updateWithIconNamed:(NSString *)icon andName:(NSString *)name;
-
+@property (nonatomic ,strong) NSDictionary *nameDictionary;
 @end

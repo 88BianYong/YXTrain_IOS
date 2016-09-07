@@ -62,6 +62,7 @@ typedef NS_ENUM (NSInteger ,YXWriteHomeworkListStatus) {
     YXWriteHomeworkListStatus_Topic = 5,//重难点题目
 };
 
+extern const CGFloat YXTrainLeftDrawerWidth;
 
 extern const CGFloat YXTrainCornerRadii;
 
