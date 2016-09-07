@@ -11,14 +11,14 @@
 @interface YXCMSCustomView()
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) YXCMSTimerView *timerView;
-@property (nonatomic, strong) YXCMSModel *model;
+@property (nonatomic, strong) YXRotateListRequestItem_Rotates *model;
 @end
 
 @implementation YXCMSCustomView
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        
+        [self setupUI];
     }
     return self;
 }
@@ -58,14 +58,14 @@
     }];
 
 }
-- (void)reloadWithModel:(YXCMSModel *)model
+- (void)reloadWithModel:(YXRotateListRequestItem_Rotates *)model
 {
     self.model = model;
     UIImage *image = [model localImage];
-    NSURL *URL = [NSURL URLWithString:model.imageUrl];
+    NSURL *URL = [NSURL URLWithString:model.startpageurl];
     if (image) {
         self.imageView.image = image;
-        [self.timerView startWithSeconds:self.model.seconds];
+        [self.timerView startWithSeconds:self.model.seconds.integerValue];
     } else if (URL) {
         WEAK_SELF
         [self.imageView sd_setImageWithURL:URL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {

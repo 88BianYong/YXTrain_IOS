@@ -1,0 +1,16 @@
+{
+    "BaseBeanCreateTime": 1467106797781,
+    "code": "0",
+    "debugDesc": "[debug_token:  http-nio-45002-exec-5-1467106797689-12_7_45002 ] 返回数据成功 backen code[0]",
+    "desc": "返回数据成功",
+    "rotates": [
+                {
+                "id": "18",
+                "name": "测试活动5",
+                "resurl": "http://scc.jsyxw.cn/answer/images/2016/0907/file_57cfb99b29350.jpeg",
+                "startpageurl": "http://scc.jsyxw.cn/answer/images/2016/0907/file_57cfb99b29350.jpeg",
+                "typelink": "http://news.sina.com.cn/pl/2016-09-07/doc-ifxvqcts9741690.shtml",
+                "projectId": "1847,1848"
+                }
+                ]
+}

@@ -233,6 +233,7 @@
 		923237401D7E660000FDACFE /* YXCMSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232373F1D7E660000FDACFE /* YXCMSManager.m */; };
 		923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237421D7EA80E00FDACFE /* YXCMSCustomView.m */; };
 		923237461D7EA9FE00FDACFE /* YXCMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237451D7EA9FE00FDACFE /* YXCMSTimerView.m */; };
+		923237481D800DA900FDACFE /* getRotateList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 923237471D800DA800FDACFE /* getRotateList_mock.json */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
@@ -805,6 +806,7 @@
 		923237421D7EA80E00FDACFE /* YXCMSCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCMSCustomView.m; sourceTree = "<group>"; };
 		923237441D7EA9FE00FDACFE /* YXCMSTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCMSTimerView.h; sourceTree = "<group>"; };
 		923237451D7EA9FE00FDACFE /* YXCMSTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCMSTimerView.m; sourceTree = "<group>"; };
+		923237471D800DA800FDACFE /* getRotateList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getRotateList_mock.json; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
@@ -2208,6 +2210,7 @@
 		9232373A1D7E627E00FDACFE /* CMS */ = {
 			isa = PBXGroup;
 			children = (
+				923237471D800DA800FDACFE /* getRotateList_mock.json */,
 				9232373B1D7E630700FDACFE /* YXRotateListRequest.h */,
 				9232373C1D7E630700FDACFE /* YXRotateListRequest.m */,
 				9232373E1D7E660000FDACFE /* YXCMSManager.h */,
@@ -2597,6 +2600,7 @@
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
 				7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */,
 				7C2C3B571D23B87B00A03635 /* courselist_mock.json in Resources */,
+				923237481D800DA900FDACFE /* getRotateList_mock.json in Resources */,
 				7CF888821D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf in Resources */,
 				CB748EEE1D250086004BCFBF /* PhoneImage.xcassets in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,

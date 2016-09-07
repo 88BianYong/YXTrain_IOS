@@ -9,12 +9,9 @@
 #import "YXRotateListRequest.h"
 
 @implementation YXRotateListRequestItem_Rotates
-- (BOOL)isFinished
++ (JSONKeyMapper *)keyMapper
 {
-    if ([self.status integerValue] == 0) {
-        return YES;
-    }
-    return NO;
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"rotateId"}];
 }
 
 - (NSString<Optional> *)resurl
@@ -24,6 +21,42 @@
     }
     return _resurl;
 }
+- (NSString <Optional> *)seconds
+{
+    return [NSString stringWithFormat:@"%ld",(long)YXTrainCornerStartpageTime];
+}
+- (UIImage *)localImage
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self localImagePath]]) {
+        NSData *data = [NSData dataWithContentsOfFile:[self localImagePath]];
+        return [UIImage imageWithData:data];
+    }
+    return nil;
+}
+
+- (NSString *)localImagePath
+{
+    NSString *directory = [NSString stringWithFormat:@"%@/cms", [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]];
+    BOOL isDirectory = NO;
+    BOOL isExist = [[NSFileManager defaultManager] fileExistsAtPath:directory isDirectory:&isDirectory];
+    if (!(isExist && isDirectory)) {
+        NSError *error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:directory
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:&error];
+    }
+    return [NSString stringWithFormat:@"%@/%@", directory, [self.startpageurl md5]];
+}
+
+- (void)saveImageToDisk:(UIImage *)image
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *data = UIImageJPEGRepresentation(image, 1);
+        [data writeToFile:[self localImagePath] atomically:YES];
+    });
+}
+
 
 @end
 

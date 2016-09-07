@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YXCMSManager.h"
 @interface YXCMSCustomView : UIView
-@property (nonatomic, copy) void (^clickedBlock)(YXCMSModel *model);
-- (void)reloadWithModel:(YXCMSModel *)model;
+@property (nonatomic, copy) void (^clickedBlock)(YXRotateListRequestItem_Rotates *model);
+- (void)reloadWithModel:(YXRotateListRequestItem_Rotates *)model;
 
 @end

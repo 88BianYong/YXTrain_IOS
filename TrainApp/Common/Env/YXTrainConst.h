@@ -66,6 +66,8 @@ extern const CGFloat YXTrainLeftDrawerWidth;
 
 extern const CGFloat YXTrainCornerRadii;
 
+extern const NSInteger YXTrainCornerStartpageTime;
+
 extern NSString *const YXTrainUploadDepictionString;
 
 extern NSString *const YXTrainFirstGoInHomeworkList;
