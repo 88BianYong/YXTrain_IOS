@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *sideLabel;
+@property (nonatomic, strong) UIView *redPointView;
 
 @end
 
@@ -28,6 +29,7 @@
         self.iconImageView.image = self.nameDictionary[@"normalIcon"] ? [UIImage imageNamed:self.nameDictionary[@"normalIcon"]] : nil;
         self.sideLabel.textColor = [UIColor colorWithHexString:@"334466"];
     }
+    self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
 }
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
     [super setHighlighted:highlighted animated:animated];
@@ -39,6 +41,7 @@
         self.iconImageView.image = self.nameDictionary[@"normalIcon"] ? [UIImage imageNamed:self.nameDictionary[@"normalIcon"]] : nil;
         self.sideLabel.textColor = [UIColor colorWithHexString:@"334466"];
     }
+    self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -60,6 +63,13 @@
     self.sideLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.sideLabel];
     
+    self.redPointView = [[UIView alloc] init];
+    self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
+    self.redPointView.layer.cornerRadius = 2.5f;
+    self.redPointView.hidden = YES;
+    [self.contentView addSubview:self.redPointView];
+    
+    
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(25);
         make.centerY.mas_equalTo(0);
@@ -70,6 +80,12 @@
         make.left.equalTo(self.iconImageView.mas_right).offset(21);
         make.centerY.mas_equalTo(0);
     }];
+    
+    [self.redPointView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.sideLabel.mas_right).offset(2.0f);
+        make.top.equalTo(self.sideLabel.mas_top).offset(-2.0f);
+        make.size.mas_equalTo(CGSizeMake(5.0f, 5.0f));
+    }];
 }
 - (void)setNameDictionary:(NSDictionary *)nameDictionary{
     _nameDictionary = nameDictionary;
@@ -77,4 +93,8 @@
     self.sideLabel.text = self.nameDictionary[@"title"];
 }
 
+-(void)setIsShowRedPoint:(BOOL)isShowRedPoint{
+    _isShowRedPoint = isShowRedPoint;
+    self.redPointView.hidden = !_isShowRedPoint;
+}
 @end

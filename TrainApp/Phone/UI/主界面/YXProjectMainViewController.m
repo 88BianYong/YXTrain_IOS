@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) YXErrorView *errorView;
 @property (nonatomic, strong) YXEmptyView *emptyView;
+@property (nonatomic, strong) UIView *redPointView;
 @end
 
 @implementation YXProjectMainViewController
@@ -38,33 +39,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
-    // Do any additional setup after loading the view, typically from a nib.
-    
-    UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
-    [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.profile.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXUploadUserPicSuccessNotification object:nil]subscribeNext:^(id x) {
-        [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.profile.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
-    }];
-    
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXUserProfileGetSuccessNotification object:nil]subscribeNext:^(id x) {
-        [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.profile.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
-    }];
-    b.backgroundColor = [UIColor redColor];
-    b.layer.cornerRadius = 16;
-    b.clipsToBounds = YES;
-    [b addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
-    [self setupLeftWithCustomView:b];
-    
-    WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-    self.errorView.retryBlock = ^{
-        STRONG_SELF
-        [self getProjectList];
-    };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    
+    [self setupUI];
+
     [self getProjectList];
 }
 
@@ -88,6 +65,41 @@
     [self hideProjectSelectionView];
     [_selectedViewController viewWillDisappear:animated];
 }
+#pragma mark - setupUI
+- (void)setupUI{
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 37.0f, 32.0f)];
+    UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
+    [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.profile.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXUploadUserPicSuccessNotification object:nil]subscribeNext:^(id x) {
+        [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.profile.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
+    }];
+    
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:YXUserProfileGetSuccessNotification object:nil]subscribeNext:^(id x) {
+        [b sd_setBackgroundImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.profile.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
+    }];
+    b.backgroundColor = [UIColor redColor];
+    b.layer.cornerRadius = 16;
+    b.clipsToBounds = YES;
+    [b addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
+    [headView addSubview:b];
+    
+    self.redPointView = [[UIView alloc] initWithFrame:CGRectMake(32.0f, 0.0f, 5.0f, 5.0f)];
+    self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
+    self.redPointView.layer.cornerRadius = 2.5f;
+    [headView addSubview:self.redPointView];
+    [self setupLeftWithCustomView:headView];
+    
+    WEAK_SELF
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self getProjectList];
+    };
+    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    
+}
+
+
 
 - (void)getProjectList{
     [self startLoading];

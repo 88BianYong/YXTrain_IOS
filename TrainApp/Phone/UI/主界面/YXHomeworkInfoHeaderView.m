@@ -20,6 +20,8 @@
     
     UIImageView *_firstImageView;//第一个状态
     UIImageView *_secondImageView;//第二个状态
+    NSTextAttachment *_textAttachment;
+
 }
 @end
 
@@ -29,6 +31,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        _textAttachment= [[NSTextAttachment alloc] init];
         [self setupUI];
         [self layoutInterface];
     }
@@ -202,10 +205,12 @@
 }
 
 - (NSMutableAttributedString *)totalScoreStringWithScore:(NSString *)score{
-    NSString *completeStr = [NSString stringWithFormat:@"%@分",score];
-    NSRange range = [completeStr rangeOfString:@"分"];
-    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
-    [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontFZLBJW_GB1 size:36] range:range];
+    _textAttachment.image = [UIImage imageNamed:@"成绩详情页面的分"];
+    _textAttachment.bounds = CGRectMake(0, -6.0f, 34.0f, 34.0f);
+    NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:score];
+    [attr appendAttributedString:attrStringWithImage];
+    return attr;
     return attr;
 }
 - (void)layoutInterface:(BOOL)recommendBool withIsmyrec:(BOOL)ismyrecBool{

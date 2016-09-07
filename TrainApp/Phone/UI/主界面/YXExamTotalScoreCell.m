@@ -17,6 +17,7 @@
 @property (nonatomic, strong) YXExamNoScoreView *leftNoScoreView;
 @property (nonatomic, strong) YXExamNoScoreView *rightNoScoreView;
 @property (nonatomic, strong) UIImageView *enterImageView;
+@property (nonatomic ,strong) NSTextAttachment *textAttachment;
 @end
 
 @implementation YXExamTotalScoreCell
@@ -42,6 +43,7 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.textAttachment = [[NSTextAttachment alloc] init];
         [self setupUI];
     }
     return self;
@@ -154,12 +156,13 @@
         }];
     }
 }
-
+//考核页面的的分
 - (NSMutableAttributedString *)totalScoreStringWithScore:(NSString *)score{
-    NSString *completeStr = [NSString stringWithFormat:@"%@分",score];
-    NSRange range = [completeStr rangeOfString:@"分"];
-    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
-    [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontFZLBJW_GB1 size:23] range:range];
+    self.textAttachment.image = [UIImage imageNamed:@"考核页面的的分"];
+    self.textAttachment.bounds = CGRectMake(0, -2.5f, 21.0f, 21.0f);
+    NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:self.textAttachment];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:score];
+    [attr appendAttributedString:attrStringWithImage];
     return attr;
 }
 

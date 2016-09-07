@@ -253,6 +253,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXSideTableViewCell" forIndexPath:indexPath];
     cell.nameDictionary = _titleArray[indexPath.section];
+    if (indexPath.section == 0) {
+        cell.isShowRedPoint = YES;
+    }else{
+        cell.isShowRedPoint = NO;
+    }
     return cell;
 }
 

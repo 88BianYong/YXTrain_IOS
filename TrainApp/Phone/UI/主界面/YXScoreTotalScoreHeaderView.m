@@ -23,6 +23,7 @@
 @property (nonatomic, strong) YXExamNoScoreView *noScoreView;
 @property (nonatomic, strong) YXScoreNoScoreView *noLeadScoreView;
 @property (nonatomic, strong) YXScoreNoScoreView *noExpScoreView;
+@property (nonatomic, strong) NSTextAttachment *textAttachment;
 @end
 
 @implementation YXScoreTotalScoreHeaderView
@@ -36,6 +37,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        self.textAttachment= [[NSTextAttachment alloc] init];
         [self setupUI];
     }
     return self;
@@ -189,10 +191,11 @@
 }
 
 - (NSMutableAttributedString *)totalScoreStringWithScore:(NSString *)score{
-    NSString *completeStr = [NSString stringWithFormat:@"%@分",score];
-    NSRange range = [completeStr rangeOfString:@"分"];
-    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
-    [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontFZLBJW_GB1 size:36] range:range];
+    self.textAttachment.image = [UIImage imageNamed:@"成绩详情页面的分"];
+    self.textAttachment.bounds = CGRectMake(0, -6.0f, 34.0f, 34.0f);
+    NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:self.textAttachment];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:score];
+    [attr appendAttributedString:attrStringWithImage];
     return attr;
 }
 

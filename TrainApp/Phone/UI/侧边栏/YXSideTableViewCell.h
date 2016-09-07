@@ -10,4 +10,5 @@
 
 @interface YXSideTableViewCell : UITableViewCell
 @property (nonatomic ,strong) NSDictionary *nameDictionary;
+@property (nonatomic ,assign) BOOL isShowRedPoint;
 @end
