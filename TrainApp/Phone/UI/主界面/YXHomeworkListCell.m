@@ -133,6 +133,9 @@
         }else{
             _typeImageView.image = [UIImage imageNamed:@"作业名称视频类的标签"];
         }
+        if ([_homework.group isEqualToString:@"1"]){
+           _typeImageView.image = [UIImage imageNamed:@"任务－小组作业icon"];
+        }
         _nameLabel.text = _homework.title;
         _nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
         if (isEmpty(_homework.endDate)) {

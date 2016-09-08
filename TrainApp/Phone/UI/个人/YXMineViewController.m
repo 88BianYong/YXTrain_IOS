@@ -14,13 +14,13 @@
 #import "YXUserProfileRequest.h"
 #import "YXStageAndSubjectRequest.h"
 #import "YXPickerViewController.h"
-#import "YXProvinceList.h"
 #import "YXUpdateProfileRequest.h"
 #import "YXImagePickerController.h"
 #import "UIImage+YXImage.h"
 #import "YXUploadHeadImgRequest.h"
 #import "HJCActionSheet.h"
 #import "APPDelegate.h"
+#import "YXProvincesRequest.h"
 
 
 @interface YXMineViewController ()<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,HJCActionSheetDelegate>
@@ -36,16 +36,19 @@
 @property (nonatomic, strong) YXStageAndSubjectItem_Stage_Subject *selectedSubject;
 @property (nonatomic, strong) YXPickerViewController *pickerViewController;
 
-@property (nonatomic, strong) NSArray *selectedCitys;
-@property (nonatomic, strong) NSArray *selectedCounties;
-@property (nonatomic, strong) YXProvince *selectedProvince;
-@property (nonatomic, strong) YXCity *selectedCity;
-@property (nonatomic, strong) YXCounty *selectedCounty;
-@property (nonatomic, strong) YXProvinceList *provinceList;
+@property (nonatomic, strong) NSArray<YXProvincesRequestItem_subArea> *selectedCitys;
+@property (nonatomic, strong) NSArray<YXProvincesRequestItem_subArea> *selectedCounties;
+@property (nonatomic, strong) YXProvincesRequestItem_subArea *selectedProvince;
+
+@property (nonatomic, strong) YXProvincesRequestItem_subArea *selectedCity;
+@property (nonatomic, strong) YXProvincesRequestItem_subArea *selectedCounty;
+@property (nonatomic ,strong) YXProvincesRequestItem *provincesRequestItem;
+
 
 @property (nonatomic, strong) YXImagePickerController *imagePickerController;
 @property (nonatomic, strong) HJCActionSheet *actionSheet;
 @property (nonatomic, strong) YXUploadHeadImgRequest *uploadHeadImgRequest;
+
 
 
 @end
@@ -257,27 +260,41 @@
     if (!profile) {
         return;
     }
-    [self parseProvinceList];
-    [self.provinceList.provinces enumerateObjectsUsingBlock:^(YXProvince *province, NSUInteger idx, BOOL *stop) {
-        if ([profile.province isEqualToString:province.name]) {
-            self.selectedProvince = province;
-            self.selectedCitys = self.selectedProvince.citys;
+    [self getProvinceList];
+    [self.provincesRequestItem.data enumerateObjectsUsingBlock:^(YXProvincesRequestItem_subArea *subArea, NSUInteger idx, BOOL *stop) {
+        if ([profile.province isEqualToString:subArea.name]) {
+            self.selectedProvince = subArea;
+            self.selectedCitys = self.selectedProvince.subArea;
             *stop = YES;
         }
     }];
-    [self.selectedCitys enumerateObjectsUsingBlock:^(YXCity *city, NSUInteger idx, BOOL *stop) {
-        if ([profile.city isEqualToString:city.name]) {
-            self.selectedCity = city;
-            self.selectedCounties = city.counties;
+    [self.selectedCitys enumerateObjectsUsingBlock:^(YXProvincesRequestItem_subArea *subArea, NSUInteger idx, BOOL *stop) {
+        if ([profile.city isEqualToString:subArea.name]) {
+            self.selectedCity = subArea;
+            self.selectedCounties = self.selectedCity.subArea;
             *stop = YES;
         }
     }];
-    [self.selectedCounties enumerateObjectsUsingBlock:^(YXCounty *county, NSUInteger idx, BOOL *stop) {
-        if ([profile.region isEqualToString:county.name]) {
-            self.selectedCounty = county;
+    [self.selectedCounties enumerateObjectsUsingBlock:^(YXProvincesRequestItem_subArea *subArea, NSUInteger idx, BOOL *stop) {
+        if ([profile.region isEqualToString:subArea.name]) {
+            self.selectedCounty = subArea;
             *stop = YES;
         }
     }];
+}
+- (void)getProvinceList{
+    NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+     filePath = [filePath stringByAppendingPathComponent:@"provinceData.json"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        filePath = [[NSBundle mainBundle] pathForResource:@"provinceData" ofType:@"json"];
+    }
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    if (data) {
+        NSError *error;
+        self.provincesRequestItem = [[YXProvincesRequestItem alloc] initWithData:data error:&error];
+    }
+    
+    
 }
 - (void)resetMineViewData{
     if (self.userInfoModifySuccess) {
@@ -289,35 +306,29 @@
 - (void)showProvinceListPicker
 {
     self.pickerType = YXPickerTypeProvince;
-    if (!self.provinceList || !self.provinceList.provinces) {
-        [self parseProvinceList];
+    if (!self.provincesRequestItem) {
+        [self getProvinceList];
     }
     [self reloadPickerViewWithResetSelectedProvinceData];
+
 }
 
-- (void)parseProvinceList
-{
-    if (!self.provinceList || !self.provinceList.provinces) {
-        self.provinceList = [[YXProvinceList alloc] init];
-        [self.provinceList startParse];
-    }
-}
 
 - (void)reloadPickerViewWithResetSelectedProvinceData
 {
     NSInteger selectedRowInComponent0 = 0;
     NSInteger selectedRowInComponent1 = 0;
     NSInteger selectedRowInComponent2 = 0;
-    if ([self.provinceList.provinces containsObject:self.selectedProvince]) {
-        selectedRowInComponent0 = [self.provinceList.provinces indexOfObject:self.selectedProvince];
-    } else if (self.provinceList.provinces.count > 0) {
-        self.selectedCitys = ((YXProvince *)self.provinceList.provinces[0]).citys;
+    if ([self.provincesRequestItem.data containsObject:self.selectedProvince]) {
+        selectedRowInComponent0 = [self.provincesRequestItem.data indexOfObject:self.selectedProvince];
+    } else if (self.provincesRequestItem.data > 0) {
+        self.selectedCitys = ((YXProvincesRequestItem_subArea *)self.provincesRequestItem.data[0]).subArea;
     }
     
     if ([self.selectedCitys containsObject:self.selectedCity]) {
         selectedRowInComponent1 = [self.selectedCitys indexOfObject:self.selectedCity];
     } else if (self.selectedCitys.count > 0) {
-        self.selectedCounties = ((YXCity *)self.selectedCitys[0]).counties;
+        self.selectedCounties = ((YXProvincesRequestItem_subArea *)self.selectedCitys[0]).subArea;
     }
     
     if ([self.selectedCounties containsObject:self.selectedCounty]) {
@@ -353,7 +364,7 @@
                 case YXPickerTypeProvince:
                 {
                     NSInteger row = [self.pickerViewController.pickerView selectedRowInComponent:0];
-                    self.selectedProvince = self.provinceList.provinces[row];
+                    self.selectedProvince = self.provincesRequestItem.data[row];
                     row = [self.pickerViewController.pickerView selectedRowInComponent:1];
                     self.selectedCity = self.selectedCitys[row];
                     row = [self.pickerViewController.pickerView selectedRowInComponent:2];
@@ -425,11 +436,11 @@
 
 - (void)updateArea
 {
-    if ([self.selectedCounty.zipcode isEqualToString:[YXUserManager sharedManager].userModel.profile.regionId]) {
+    if ([self.selectedCounty.number isEqualToString:[YXUserManager sharedManager].userModel.profile.regionId]) {
         return;
     }
     
-    NSDictionary *param = @{@"areaId":self.selectedCounty.zipcode,
+    NSDictionary *param = @{@"areaId":self.selectedCounty.number,
                             @"province":self.selectedProvince.name,
                             @"city":self.selectedCity.name,
                             @"region":self.selectedCounty.name};
@@ -544,7 +555,7 @@
         {
             switch (component) {
                 case 0:
-                    return self.provinceList.provinces.count;
+                    return self.provincesRequestItem.data.count;
                 case 1:
                     return self.selectedCitys.count;
                 case 2:
@@ -594,11 +605,14 @@
         {
             switch (component) {
                 case 0:
-                    return ((YXProvince *)self.provinceList.provinces[row]).name;
+                {
+                    YXProvincesRequestItem_subArea *subArea = self.provincesRequestItem.data[row];
+                    return subArea.name;
+                }
                 case 1:
-                    return ((YXCity *)self.selectedCitys[row]).name;
+                    return ((YXProvincesRequestItem_subArea *)self.selectedCitys[row]).name;
                 case 2:
-                    return ((YXCounty *)self.selectedCounties[row]).name;
+                    return ((YXProvincesRequestItem_subArea *)self.selectedCounties[row]).name;
                 default:
                     return nil;
             }
@@ -632,8 +646,8 @@
             switch (component) {
                 case 0:
                 {
-                    self.selectedCitys = ((YXProvince *)self.provinceList.provinces[row]).citys;
-                    self.selectedCounties = ((YXCity *)self.selectedCitys[0]).counties;
+                    self.selectedCitys = ((YXProvincesRequestItem_subArea *)self.provincesRequestItem.data[row]).subArea;
+                    self.selectedCounties = ((YXProvincesRequestItem_subArea *)self.selectedCitys[0]).subArea;
                     [pickerView reloadComponent:1];
                     [pickerView reloadComponent:2];
                     [pickerView selectRow:0 inComponent:1 animated:NO];
@@ -642,7 +656,7 @@
                     break;
                 case 1:
                 {
-                    self.selectedCounties = ((YXCity *)self.selectedCitys[row]).counties;
+                    self.selectedCounties = ((YXProvincesRequestItem_subArea *)self.selectedCitys[row]).subArea;
                     [pickerView reloadComponent:2];
                     [pickerView selectRow:0 inComponent:2 animated:NO];
                 }

@@ -175,7 +175,14 @@
 - (void)setBody:(YXHomeworkInfoRequestItem_Body *)body{
     _body = body;
     if(!_body.score.boolValue){
-        _pointLabel.attributedText = [[NSAttributedString alloc] initWithString:@"未批改" attributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontFZLBJW_GB1 size:36],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"eba180"]}];
+        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
+        _textAttachment.image = [UIImage imageNamed:@"未批改"];
+        _textAttachment.bounds = CGRectMake(0, 0.0f, 105.0f, 28.0f);
+        NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
+        [attr appendAttributedString:attrStringWithImage];
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@" "];
+        [attr appendAttributedString:attrString];
+        _pointLabel.attributedText = attr;
     }else{
         _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
     }
@@ -210,7 +217,6 @@
     NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:score];
     [attr appendAttributedString:attrStringWithImage];
-    return attr;
     return attr;
 }
 - (void)layoutInterface:(BOOL)recommendBool withIsmyrec:(BOOL)ismyrecBool{

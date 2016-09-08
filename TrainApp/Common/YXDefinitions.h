@@ -26,6 +26,5 @@
 #define YXFontMetro_Light        @"Metro-Light"
 #define YXFontMetro_Italic        @"Metro-Italic"
 #define YXFontMetro_DemiBold        @"Metro-DemiBold"
-#define YXFontFZLBJW_GB1        @"FZLBJW--GB1-0"
 
 #endif /* YXDefinitions_h */

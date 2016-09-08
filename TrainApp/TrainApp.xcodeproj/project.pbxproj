@@ -127,7 +127,6 @@
 		7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8447A1D2E400D00B1CE55 /* YXProjectSelectionBgView.m */; };
 		7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8447D1D2E43EC00B1CE55 /* YXProjectSelectionCell.m */; };
 		7CF844801D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8447F1D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF */; };
-		7CF844821D2F61F800B1CE55 /* fzlbjw.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 7CF844811D2F61F800B1CE55 /* fzlbjw.TTF */; };
 		7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */; };
 		7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */; };
 		7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */; };
@@ -234,6 +233,9 @@
 		923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237421D7EA80E00FDACFE /* YXCMSCustomView.m */; };
 		923237461D7EA9FE00FDACFE /* YXCMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237451D7EA9FE00FDACFE /* YXCMSTimerView.m */; };
 		923237481D800DA900FDACFE /* getRotateList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 923237471D800DA800FDACFE /* getRotateList_mock.json */; };
+		9232374B1D80F40700FDACFE /* YXProvincesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232374A1D80F40600FDACFE /* YXProvincesRequest.m */; };
+		923237511D81021A00FDACFE /* AppDelegate+GetInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237501D81021A00FDACFE /* AppDelegate+GetInfoList.m */; };
+		923237591D81122700FDACFE /* provinceData.json in Resources */ = {isa = PBXBuildFile; fileRef = 923237581D81122700FDACFE /* provinceData.json */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
@@ -595,7 +597,6 @@
 		7CF8447C1D2E43EC00B1CE55 /* YXProjectSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProjectSelectionCell.h; sourceTree = "<group>"; };
 		7CF8447D1D2E43EC00B1CE55 /* YXProjectSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProjectSelectionCell.m; sourceTree = "<group>"; };
 		7CF8447F1D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "METRO-DEMIBOLD PLAYTYPE.OTF"; sourceTree = "<group>"; };
-		7CF844811D2F61F800B1CE55 /* fzlbjw.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = fzlbjw.TTF; sourceTree = "<group>"; };
 		7CF887F61D17A77400E7C04D /* YXDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDrawerViewController.h; sourceTree = "<group>"; };
 		7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDrawerViewController.m; sourceTree = "<group>"; };
 		7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
@@ -807,6 +808,11 @@
 		923237441D7EA9FE00FDACFE /* YXCMSTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCMSTimerView.h; sourceTree = "<group>"; };
 		923237451D7EA9FE00FDACFE /* YXCMSTimerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCMSTimerView.m; sourceTree = "<group>"; };
 		923237471D800DA800FDACFE /* getRotateList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = getRotateList_mock.json; sourceTree = "<group>"; };
+		923237491D80F40600FDACFE /* YXProvincesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProvincesRequest.h; sourceTree = "<group>"; };
+		9232374A1D80F40600FDACFE /* YXProvincesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProvincesRequest.m; sourceTree = "<group>"; };
+		9232374F1D81021A00FDACFE /* AppDelegate+GetInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+GetInfoList.h"; sourceTree = "<group>"; };
+		923237501D81021A00FDACFE /* AppDelegate+GetInfoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+GetInfoList.m"; sourceTree = "<group>"; };
+		923237581D81122700FDACFE /* provinceData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = provinceData.json; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
@@ -1178,6 +1184,8 @@
 				7CF888801D1BD4A900E7C04D /* 字体 */,
 				7C3177521D0E5E04004AAC90 /* AppDelegate.h */,
 				7C3177531D0E5E04004AAC90 /* AppDelegate.m */,
+				9232374F1D81021A00FDACFE /* AppDelegate+GetInfoList.h */,
+				923237501D81021A00FDACFE /* AppDelegate+GetInfoList.m */,
 				7C3177551D0E5E04004AAC90 /* main.m */,
 				7C31775D1D0E5EA9004AAC90 /* InfoPhone.plist */,
 				7C31776D1D0E6E92004AAC90 /* YXConfig.plist */,
@@ -1193,6 +1201,7 @@
 				CBF66E491D2F8F8500F4E408 /* province_data.xml */,
 				CBF66E411D2F840800F4E408 /* stagesSubjects */,
 				7CF888571D194B8300E7C04D /* PrefixHeader.pch */,
+				923237581D81122700FDACFE /* provinceData.json */,
 				7CF888581D194B8300E7C04D /* YXDefinitions.h */,
 				7CF888171D17E51200E7C04D /* Player */,
 				7C3177F11D1177E0004AAC90 /* Download */,
@@ -1627,6 +1636,8 @@
 				9223C8371D2F78E3000F74DF /* YXSchoolSearchRequest.m */,
 				9223C83E1D2F93D7000F74DF /* YXUpdateProfileRequest.h */,
 				9223C83F1D2F93D7000F74DF /* YXUpdateProfileRequest.m */,
+				923237491D80F40600FDACFE /* YXProvincesRequest.h */,
+				9232374A1D80F40600FDACFE /* YXProvincesRequest.m */,
 			);
 			path = "个人";
 			sourceTree = "<group>";
@@ -1977,7 +1988,6 @@
 				CB7462861D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf */,
 				7CF888811D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf */,
 				7CF8447F1D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF */,
-				7CF844811D2F61F800B1CE55 /* fzlbjw.TTF */,
 			);
 			path = "字体";
 			sourceTree = "<group>";
@@ -2594,7 +2604,7 @@
 				9223C83A1D2F82D8000F74DF /* search.txt in Resources */,
 				CBF66E421D2F840800F4E408 /* stagesSubjects in Resources */,
 				7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */,
-				7CF844821D2F61F800B1CE55 /* fzlbjw.TTF in Resources */,
+				923237591D81122700FDACFE /* provinceData.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
@@ -2704,6 +2714,7 @@
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
 				920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */,
+				9232374B1D80F40700FDACFE /* YXProvincesRequest.m in Sources */,
 				92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m in Sources */,
 				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
@@ -2927,6 +2938,7 @@
 				7C3F258B1D20C42D00F0A17A /* YXTrainListRequest.m in Sources */,
 				CB52FCF41D2BB5280096D8DC /* YXNoticeTopTableViewCell.m in Sources */,
 				7CF888851D1BE20400E7C04D /* YXExamPhaseShadowCell.m in Sources */,
+				923237511D81021A00FDACFE /* AppDelegate+GetInfoList.m in Sources */,
 				7CF888671D1BC49200E7C04D /* YXWaveView.m in Sources */,
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,
 				7CF844611D2A609500B1CE55 /* YXFileRecordManager.m in Sources */,

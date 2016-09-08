@@ -63,7 +63,15 @@
     self.model = model;
     UIImage *image = [model localImage];
     NSURL *URL = [NSURL URLWithString:model.startpageurl];
-    if (image) {
+    NSArray *array = [model.projectId componentsSeparatedByString:@","];
+    __block BOOL isShow = NO;
+    [array enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:obj]) {
+            isShow = YES;
+            *stop = YES;
+        }
+    }];    
+    if (image && isShow) {
         self.imageView.image = image;
         [self.timerView startWithSeconds:self.model.seconds.integerValue];
     } else if (URL) {
