@@ -28,7 +28,6 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) YXUserProfile *profile;
 
-@property (nonatomic, strong) YXStageAndSubjectRequest *stageAndSubjectRequest;
 @property (nonatomic, strong) YXStageAndSubjectItem *stageAndSubjectItem;
 @property (nonatomic, assign) YXPickerType pickerType;
 @property (nonatomic, strong) NSArray *selectedSubjects;
@@ -283,6 +282,9 @@
     }];
 }
 - (void)getProvinceList{
+    if (self.provincesRequestItem) {
+        return;
+    }
     NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
      filePath = [filePath stringByAppendingPathComponent:@"provinceData.json"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -462,32 +464,7 @@
 - (void)showStageAndSubjectPicker
 {
     self.pickerType = YXPickerTypeStageAndSubject;
-    if (self.stageAndSubjectItem) {
-        [self reloadPickerViewWithResetSelectedSubjects];
-    } else {
-        [self requestStageAndSubject];
-    }
-}
-
-- (void)requestStageAndSubject
-{
-    if (self.stageAndSubjectRequest) {
-        [self.stageAndSubjectRequest stopRequest];
-    }
-    self.stageAndSubjectRequest = [[YXStageAndSubjectRequest alloc] init];
-    @weakify(self);
-    [self startLoading];
-    [self.stageAndSubjectRequest startRequestWithRetClass:[YXStageAndSubjectItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        @strongify(self);
-        [self stopLoading];
-        YXStageAndSubjectItem *item = retItem;
-        if (item) {
-            self.stageAndSubjectItem = item;
-        } else {
-            [self loadLocalStagesAndSubjects];
-        }
-        [self reloadPickerViewWithResetSelectedSubjects];
-    }];
+    [self reloadPickerViewWithResetSelectedSubjects];
 }
 
 - (void)loadLocalStagesAndSubjects
@@ -495,12 +472,15 @@
     if (self.stageAndSubjectItem) {
         return;
     }
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"stagesSubjects" ofType:@""];
+    NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    filePath = [filePath stringByAppendingPathComponent:@"stageAndSubject.json"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+        filePath = [[NSBundle mainBundle] pathForResource:@"stageAndSubject" ofType:@"json"];
+    }
     NSData *data = [NSData dataWithContentsOfFile:filePath];
-    NSError *error;
-    id json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if ([json isKindOfClass:[NSDictionary class]]) {
-        self.stageAndSubjectItem = [[YXStageAndSubjectItem alloc] initWithDictionary:json error:&error];
+    if (data) {
+        NSError *error;
+        self.stageAndSubjectItem = [[YXStageAndSubjectItem alloc] initWithData:data error:&error];
     }
 }
 

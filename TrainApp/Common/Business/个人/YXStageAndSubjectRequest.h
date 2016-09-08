@@ -29,7 +29,8 @@
 @protocol YXStageAndSubjectItem_Stage @end
 @interface YXStageAndSubjectItem : HttpBaseRequestItem
 
-@property (nonatomic, copy) NSArray<YXStageAndSubjectItem_Stage, Optional> *stages;
+@property (nonatomic, strong) NSArray<YXStageAndSubjectItem_Stage, Optional> *stages;
+@property (nonatomic, copy) NSString *version;
 
 @end
 

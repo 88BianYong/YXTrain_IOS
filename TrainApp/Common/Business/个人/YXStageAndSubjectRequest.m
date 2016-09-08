@@ -35,7 +35,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"psprofile/stageSubjectList"];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"stageSubject"];
     }
     return self;
 }
