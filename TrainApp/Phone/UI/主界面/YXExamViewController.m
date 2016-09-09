@@ -226,10 +226,15 @@
         header.clickAction = ^{
             if ([data.toolid isEqualToString:@"315"]||[data.toolid isEqualToString:@"215"]) { // 课程超市
                 YXCourseViewController *vc = [[YXCourseViewController alloc]init];
-                vc.fromCourseMarket = YES;
+                vc.status = YXCourseFromStatus_Market;
                 [self.navigationController pushViewController:vc animated:YES];
             }else if ([data.toolid isEqualToString:@"201"]||[data.toolid isEqualToString:@"301"]) { // 课程
                 YXCourseViewController *vc = [[YXCourseViewController alloc]init];
+                vc.status = YXCourseFromStatus_Course;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else if ([data.toolid isEqualToString:@"217"]||[data.toolid isEqualToString:@"317"]) { //本地课程
+                YXCourseViewController *vc = [[YXCourseViewController alloc]init];
+                vc.status = YXCourseFromStatus_Local;
                 [self.navigationController pushViewController:vc animated:YES];
             }else if ([data.toolid isEqualToString:@"203"] || [data.toolid isEqualToString:@"303"]){//作业
                 NSString *string = @"YXHomeworkListViewController";
@@ -303,6 +308,7 @@
             if ([data.toolid isEqualToString:@"201"]) { // 课程
                 YXCourseViewController *vc = [[YXCourseViewController alloc]init];
                 vc.stageID = vo.voID;
+                vc.status = YXCourseFromStatus_Stage;
                 [self.navigationController pushViewController:vc animated:YES];
             }else if ([data.toolid isEqualToString:@"203"] || [data.toolid isEqualToString:@"303"]){//作业
                 NSString *string = @"YXHomeworkListViewController";

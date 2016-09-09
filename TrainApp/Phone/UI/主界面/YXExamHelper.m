@@ -12,7 +12,7 @@
 + (NSAttributedString *)toolCompleteStatusStringWithID:(NSString *)toolid finishNum:(NSString *)finishNum totalNum:(NSString *)totalNum{
     NSString *lStr = nil;
     NSString *rStr = nil;
-    if (toolid.integerValue == 201 || toolid.integerValue == 301 || toolid.integerValue == 215 || toolid.integerValue == 315) {
+    if (toolid.integerValue == 201 || toolid.integerValue == 301 || toolid.integerValue == 215 || toolid.integerValue == 315 || toolid.integerValue == 217 || toolid.integerValue == 317) {
         lStr = [NSString stringWithFormat:@"已观看%@分钟",finishNum];
         rStr = [NSString stringWithFormat:@"／%@分钟",totalNum];
     }else if (toolid.integerValue == 202 || toolid.integerValue == 302){

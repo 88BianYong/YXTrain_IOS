@@ -147,6 +147,7 @@
     YXTaskListRequestItem_body_task *task = self.tasklistItem.body.tasks[indexPath.row];
     if (task.toolid.integerValue == 201) {
         YXCourseViewController *vc = [[YXCourseViewController alloc]init];
+        vc.status = YXCourseFromStatus_Course;
         [self.navigationController pushViewController:vc animated:YES];
     }else if ([task.toolid isEqualToString:@"203"] || [task.toolid isEqualToString:@"303"]){//作业
         NSString *string = @"YXHomeworkListViewController";

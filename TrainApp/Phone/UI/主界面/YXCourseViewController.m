@@ -47,7 +47,7 @@
     emptyView.imageName = @"没有符合条件的课程";
     self.emptyView = emptyView;
     
-    if (self.stageID || self.fromCourseMarket) {
+    if (self.status != YXCourseFromStatus_Course) {
         self.isWaitingForFilter = YES;
     }
     [super viewDidLoad];
@@ -111,8 +111,9 @@
         
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         self.filterModel = [item filterModel];
-        if (self.fromCourseMarket) {
-            [self setupStageForCourseMarket];
+        
+        if (self.status == YXCourseFromStatus_Local || self.status == YXCourseFromStatus_Market) {
+          [self setupStageForCourseMarket];
         }
         self.isWaitingForFilter = NO;
         [self firstPageFetch];
@@ -123,12 +124,22 @@
     YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
     [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXCourseFilter *filter = (YXCourseFilter *)obj;
-        if ([filter.name isEqualToString:@"课程超市"]) {
-            self.stageID = filter.filterID;
-            YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
-            fetcher.stageid = filter.filterID;
-            *stop = YES;
+        if (self.status == YXCourseFromStatus_Market) {
+            if ([filter.name isEqualToString:@"课程超市"]) {
+                self.stageID = filter.filterID;
+                YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
+                fetcher.stageid = filter.filterID;
+                *stop = YES;
+            }
+        }else{
+            if ([filter.name isEqualToString:@"本地课程"]) {
+                self.stageID = filter.filterID;
+                YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
+                fetcher.stageid = filter.filterID;
+                *stop = YES;
+            }
         }
+
     }];
 }
 
@@ -173,7 +184,7 @@
             [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
         }
     }
-    if (self.fromCourseMarket) {
+    if (self.status == YXCourseFromStatus_Market) {
         YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
         __block NSInteger stageIndex = -1;
         [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -187,20 +198,21 @@
             [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
         }
     }
-//    if (self.isElective) {
-//        YXCourseFilterGroup *typeGroup = self.filterModel.groupArray[2];
-//        __block NSInteger typeIndex = -1;
-//        [typeGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            YXCourseFilter *filter = (YXCourseFilter *)obj;
-//            if ([@"101" isEqualToString:filter.filterID]) {
-//                typeIndex = idx;
-//                *stop = YES;
-//            }
-//        }];
-//        if (typeIndex >= 0) {
-//            [self.filterView setCurrentIndex:typeIndex forKey:typeGroup.name];
-//        }
-//    }
+    
+    if (self.status == YXCourseFromStatus_Local) {
+        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+        __block NSInteger stageIndex = -1;
+        [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            YXCourseFilter *filter = (YXCourseFilter *)obj;
+            if ([filter.name isEqualToString:@"本地课程"]) {
+                stageIndex = idx;
+                *stop = YES;
+            }
+        }];
+        if (stageIndex >= 0) {
+            [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
+        }
+    }
 }
 
 - (void)setupObservers{
