@@ -19,16 +19,18 @@
 
 #pragma mark - layout
 - (void)layoutInterface{
+    [self.posterImageView removeFromSuperview];
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(25.0f);
-        make.right.equalTo(self.contentView.mas_right).offset(15.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(20.0f);
+        make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
     }];
     
     [self.timeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(14.0f);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(10.0f);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-21.0f);
     }];
-    self.posterImageView.hidden = YES;
+    
 }
 @end

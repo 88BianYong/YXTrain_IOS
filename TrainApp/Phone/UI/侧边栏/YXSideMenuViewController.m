@@ -16,6 +16,7 @@
 #import "YXMineViewController.h"
 #import "YXGuideViewController.h"
 #import "YXGuideModel.h"
+#import "YXHotspotViewController.h"
 
 
 @interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>{
@@ -267,7 +268,8 @@
     switch (indexPath.section) {
         case 0:
         {
-            
+            YXHotspotViewController *hotspot = [[YXHotspotViewController alloc] init];
+            [self.navigationController pushViewController:hotspot animated:YES];
         }
             break;
         case 1:
