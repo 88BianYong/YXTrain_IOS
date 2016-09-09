@@ -8,7 +8,7 @@
 
 #import "YXMySettingViewController.h"
 #import "PersistentUrlDownloader.h"
-#import "YXFeedBackViewController.h"
+#import "YXHelpViewController.h"
 #import "YXAboutViewController.h"
 #import "YXMySettingCell.h"
 @interface YXMySettingViewController ()
@@ -40,7 +40,7 @@ UITableViewDataSource
     [super viewDidLoad];
     self.title = @"设置";
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    _titleArray = @[@[@"清空缓存",@"意见反馈",@"去AppStore评分",@"关于我们"],@[@"退出登录"]];
+    _titleArray = @[@[@"清空缓存",@"帮助与反馈",@"去AppStore评分",@"关于我们"],@[@"退出登录"]];
     [self setupUI];
     [self layoutInterface];
 }
@@ -141,8 +141,8 @@ UITableViewDataSource
                 break;
             case 1:
             {
-                YXFeedBackViewController *feedBackVC = [[YXFeedBackViewController alloc] init];
-                [self.navigationController pushViewController:feedBackVC animated:YES];
+                YXHelpViewController *helpVC = [[YXHelpViewController alloc] init];
+                [self.navigationController pushViewController:helpVC animated:YES];
             }
                 break;
             case 2:

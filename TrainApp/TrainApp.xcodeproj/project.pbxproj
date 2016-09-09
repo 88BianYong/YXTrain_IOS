@@ -242,6 +242,9 @@
 		9232376B1D8151B900FDACFE /* YXHotspotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232376A1D8151B900FDACFE /* YXHotspotViewController.m */; };
 		9232376E1D81668000FDACFE /* YXCheckRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232376D1D81668000FDACFE /* YXCheckRequest.m */; };
 		923237701D816DAD00FDACFE /* stageAndSubject.json in Resources */ = {isa = PBXBuildFile; fileRef = 9232376F1D816DAD00FDACFE /* stageAndSubject.json */; };
+		923237731D825C6500FDACFE /* YXHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237721D825C6500FDACFE /* YXHelpViewController.m */; };
+		923237771D82609F00FDACFE /* YXHelpHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237761D82609F00FDACFE /* YXHelpHeaderView.m */; };
+		9232377B1D826CC800FDACFE /* YXHelpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232377A1D826CC800FDACFE /* YXHelpCell.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
@@ -829,6 +832,12 @@
 		9232376C1D81668000FDACFE /* YXCheckRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCheckRequest.h; sourceTree = "<group>"; };
 		9232376D1D81668000FDACFE /* YXCheckRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCheckRequest.m; sourceTree = "<group>"; };
 		9232376F1D816DAD00FDACFE /* stageAndSubject.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stageAndSubject.json; sourceTree = "<group>"; };
+		923237711D825C6500FDACFE /* YXHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHelpViewController.h; sourceTree = "<group>"; };
+		923237721D825C6500FDACFE /* YXHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHelpViewController.m; sourceTree = "<group>"; };
+		923237751D82609F00FDACFE /* YXHelpHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHelpHeaderView.h; sourceTree = "<group>"; };
+		923237761D82609F00FDACFE /* YXHelpHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHelpHeaderView.m; sourceTree = "<group>"; };
+		923237791D826CC800FDACFE /* YXHelpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHelpCell.h; sourceTree = "<group>"; };
+		9232377A1D826CC800FDACFE /* YXHelpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHelpCell.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
@@ -2113,6 +2122,10 @@
 				9223C82E1D2E36F0000F74DF /* YXAboutCell.m */,
 				9223C8441D360DE0000F74DF /* YXMySettingCell.h */,
 				9223C8451D360DE0000F74DF /* YXMySettingCell.m */,
+				923237751D82609F00FDACFE /* YXHelpHeaderView.h */,
+				923237761D82609F00FDACFE /* YXHelpHeaderView.m */,
+				923237791D826CC800FDACFE /* YXHelpCell.h */,
+				9232377A1D826CC800FDACFE /* YXHelpCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2292,6 +2305,8 @@
 			children = (
 				92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */,
 				92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */,
+				923237711D825C6500FDACFE /* YXHelpViewController.h */,
+				923237721D825C6500FDACFE /* YXHelpViewController.m */,
 				9223C81E1D2DF93A000F74DF /* YXFeedBackViewController.h */,
 				9223C81F1D2DF93A000F74DF /* YXFeedBackViewController.m */,
 				9223C8211D2E0060000F74DF /* YXAboutViewController.h */,
@@ -2754,6 +2769,7 @@
 				9232372C1D69A5DD00FDACFE /* YXLoadView.m in Sources */,
 				7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */,
 				922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */,
+				923237771D82609F00FDACFE /* YXHelpHeaderView.m in Sources */,
 				9223C81B1D2D0144000F74DF /* YXWorkshopDatumRequest.m in Sources */,
 				923237311D6E9F3000FDACFE /* YXStartViewController.m in Sources */,
 				7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */,
@@ -2882,6 +2898,7 @@
 				920F1D7A1D5ADDEE00636A51 /* YXAlertCustomView.m in Sources */,
 				7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */,
 				7CF844651D2B622200B1CE55 /* YXRecordManager.m in Sources */,
+				9232377B1D826CC800FDACFE /* YXHelpCell.m in Sources */,
 				7C2C3B521D23A01A00A03635 /* YXCourseFilterBgView.m in Sources */,
 				923237651D81508300FDACFE /* YXHotspotWordsCell.m in Sources */,
 				CB3510E01D1A41C40081EA3B /* YXResourceCollectionRequest.m in Sources */,
@@ -2975,6 +2992,7 @@
 				CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */,
 				CB3510DA1D1924110081EA3B /* YXAllDatumTableViewCell.m in Sources */,
 				CB1606071D2FC8490071BA01 /* UIImage+YXImage.m in Sources */,
+				923237731D825C6500FDACFE /* YXHelpViewController.m in Sources */,
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
