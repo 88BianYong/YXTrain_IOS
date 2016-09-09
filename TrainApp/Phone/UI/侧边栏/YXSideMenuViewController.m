@@ -17,6 +17,7 @@
 #import "YXGuideViewController.h"
 #import "YXGuideModel.h"
 #import "YXHotspotViewController.h"
+#import "YXDynamicViewController.h"
 
 
 @interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>{
@@ -286,6 +287,8 @@
             break;
         case 3:
         {
+            YXDynamicViewController *dynamicVc = [[YXDynamicViewController alloc] init];
+            [self.navigationController pushViewController:dynamicVc animated:YES];
             
         }
             break;

@@ -245,6 +245,8 @@
 		923237731D825C6500FDACFE /* YXHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237721D825C6500FDACFE /* YXHelpViewController.m */; };
 		923237771D82609F00FDACFE /* YXHelpHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237761D82609F00FDACFE /* YXHelpHeaderView.m */; };
 		9232377B1D826CC800FDACFE /* YXHelpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232377A1D826CC800FDACFE /* YXHelpCell.m */; };
+		9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232377D1D82D76100FDACFE /* YXDynamicViewController.m */; };
+		923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237821D82D87800FDACFE /* YXDynamicCell.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
@@ -838,6 +840,10 @@
 		923237761D82609F00FDACFE /* YXHelpHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHelpHeaderView.m; sourceTree = "<group>"; };
 		923237791D826CC800FDACFE /* YXHelpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHelpCell.h; sourceTree = "<group>"; };
 		9232377A1D826CC800FDACFE /* YXHelpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHelpCell.m; sourceTree = "<group>"; };
+		9232377C1D82D76100FDACFE /* YXDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDynamicViewController.h; sourceTree = "<group>"; };
+		9232377D1D82D76100FDACFE /* YXDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDynamicViewController.m; sourceTree = "<group>"; };
+		923237811D82D87800FDACFE /* YXDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDynamicCell.h; sourceTree = "<group>"; };
+		923237821D82D87800FDACFE /* YXDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDynamicCell.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
@@ -1605,6 +1611,8 @@
 		7C3178361D13949C004AAC90 /* 动态 */ = {
 			isa = PBXGroup;
 			children = (
+				9232377F1D82D7A200FDACFE /* view */,
+				923237801D82D7B000FDACFE /* controller */,
 			);
 			path = "动态";
 			sourceTree = "<group>";
@@ -2291,6 +2299,24 @@
 			name = view;
 			sourceTree = "<group>";
 		};
+		9232377F1D82D7A200FDACFE /* view */ = {
+			isa = PBXGroup;
+			children = (
+				923237811D82D87800FDACFE /* YXDynamicCell.h */,
+				923237821D82D87800FDACFE /* YXDynamicCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		923237801D82D7B000FDACFE /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				9232377C1D82D76100FDACFE /* YXDynamicViewController.h */,
+				9232377D1D82D76100FDACFE /* YXDynamicViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
 		92529A721D2A337C007E26D8 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2921,6 +2947,7 @@
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
+				923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */,
 				7CF844751D2E2EA000B1CE55 /* YXTriangleView.m in Sources */,
 				7C3177711D0E7EB0004AAC90 /* YXConfigManager.m in Sources */,
 				7C3177D61D10FF0A004AAC90 /* YXTestPushViewController.m in Sources */,
@@ -3067,6 +3094,7 @@
 				92EDC7D11D632357005B91DD /* YXHomeworkUploadCompleteView.m in Sources */,
 				CB748EEC1D24F3CD004BCFBF /* YXPagedListEmptyView.m in Sources */,
 				92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */,
+				9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */,
 				7C3178241D129C01004AAC90 /* ReaderContentTile.m in Sources */,
 				7C3177811D0E8A1D004AAC90 /* GlobalUtils.m in Sources */,
 			);

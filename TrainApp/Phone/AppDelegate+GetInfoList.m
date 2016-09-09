@@ -23,6 +23,7 @@
     YXCheckRequest *request = [[YXCheckRequest alloc] init];
     [request startRequestWithRetClass:[YXCheckRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         if (!error) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kGetInfoListTime];
             STRONG_SELF
             YXCheckRequestItem *item = retItem;
             NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
