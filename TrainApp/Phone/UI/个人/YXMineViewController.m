@@ -368,9 +368,14 @@
                     NSInteger row = [self.pickerViewController.pickerView selectedRowInComponent:0];
                     self.selectedProvince = self.provincesRequestItem.data[row];
                     row = [self.pickerViewController.pickerView selectedRowInComponent:1];
-                    self.selectedCity = self.selectedCitys[row];
-                    row = [self.pickerViewController.pickerView selectedRowInComponent:2];
-                    self.selectedCounty = self.selectedCounties[row];
+                    if (self.self.selectedCitys.count > 0){
+                        self.selectedCity = self.selectedCitys[row];
+                        row = [self.pickerViewController.pickerView selectedRowInComponent:2];
+                        if (self.selectedCounties.count > 0) {
+                           self.selectedCounty = self.selectedCounties[row];
+                        }
+                    }
+ 
                     [self updateArea];
                 }
                     break;
@@ -627,7 +632,12 @@
                 case 0:
                 {
                     self.selectedCitys = ((YXProvincesRequestItem_subArea *)self.provincesRequestItem.data[row]).subArea;
-                    self.selectedCounties = ((YXProvincesRequestItem_subArea *)self.selectedCitys[0]).subArea;
+                    if (self.selectedCitys.count > 0){
+                      self.selectedCounties = ((YXProvincesRequestItem_subArea *)self.selectedCitys[0]).subArea;
+                    }else{
+                        self.selectedCounties = nil;
+                    }
+                    
                     [pickerView reloadComponent:1];
                     [pickerView reloadComponent:2];
                     [pickerView selectRow:0 inComponent:1 animated:NO];
@@ -636,7 +646,11 @@
                     break;
                 case 1:
                 {
-                    self.selectedCounties = ((YXProvincesRequestItem_subArea *)self.selectedCitys[row]).subArea;
+                    if (self.selectedCitys.count > 0){
+                        self.selectedCounties = ((YXProvincesRequestItem_subArea *)self.selectedCitys[0]).subArea;
+                    }else{
+                        self.selectedCounties = nil;
+                    }
                     [pickerView reloadComponent:2];
                     [pickerView selectRow:0 inComponent:2 animated:NO];
                 }
