@@ -280,6 +280,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     YXAppUpdatePopUpView *popView = [[YXAppUpdatePopUpView alloc] init];
     [popView setupConstrainsInContainerView:v];
     [popView updateWithData:data actions:@[downloadUpdateAlertAct,cancelAlertAct]];
+    self.isShowUpgrade = YES;
     [v showInView:nil];
 }
 

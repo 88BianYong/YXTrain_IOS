@@ -28,6 +28,7 @@
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:16.0f];
     self.titleLabel.numberOfLines = 2;
+    self.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
     [self.contentView addSubview:self.titleLabel];
     
     self.timeLabel = [[UILabel alloc] init];
@@ -51,16 +52,12 @@
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f).priorityLow();
         make.height.mas_offset(1.0f / [UIScreen mainScreen].scale);
     }];
+    [self.titleLabel sizeToFit];
+
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-//    [paragraphStyle setLineSpacing:7];//调整行间距
-//    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-//    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
-//    self.titleLabel.attributedText = attributedString;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

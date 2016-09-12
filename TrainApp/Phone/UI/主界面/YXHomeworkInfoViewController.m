@@ -37,7 +37,7 @@ UITableViewDataSource
 
 @implementation YXHomeworkInfoViewController
 - (void)dealloc{
-    DDLogDebug(@"release=====>%@",NSStringFromClass([self class]));
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
 
 #pragma mark - propetry

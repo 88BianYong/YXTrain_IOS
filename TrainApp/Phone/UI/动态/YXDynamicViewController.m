@@ -8,6 +8,7 @@
 
 #import "YXDynamicViewController.h"
 #import "YXDynamicCell.h"
+#import "YXDynamicDatumFetch.h"
 @interface YXDynamicViewController ()
 
 @end
@@ -15,11 +16,26 @@
 @implementation YXDynamicViewController
 
 - (void)viewDidLoad {
-    self.bIsGroupedTableViewStyle = YES;
+//    YXDynamicDatumFetch *fetcher = [[YXDynamicDatumFetch alloc] init];
+//    fetcher.pagesize = 10;
+//    self.dataFetcher = fetcher;
+//    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+////    emptyView.title = @"暂无资源";
+////    emptyView.imageName = @"暂无资源";
+//    self.emptyView = emptyView;
+//    self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.title = @"动态";
     [self setupUI];
     [self layoutInterface];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,14 +66,7 @@
     YXDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXDynamicCell" forIndexPath:indexPath];
     return cell;
 }
-- (NSMutableAttributedString *)contentStringWithDesc:(NSString *)desc{
-    NSRange range = NSMakeRange(0, desc.length);
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:desc];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:5];
-    [attributedString addAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"],NSParagraphStyleAttributeName:paragraphStyle} range:range];
-    return attributedString;
-}
+
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

@@ -42,7 +42,7 @@
     UILabel *_schoolNameLabel;
 }
 - (void)dealloc{
-    DDLogWarn(@"release=====>%@",[self class]);
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserver:self forKeyPath:@"_redPointMutableArray"];
 }

@@ -27,7 +27,7 @@
 
 @implementation YXDatumViewController
 - (void)dealloc{
-    DDLogInfo(@"release====>%@",NSStringFromClass([self class]));
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

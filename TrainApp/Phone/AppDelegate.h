@@ -10,11 +10,13 @@
 #import "YXProvincesRequest.h"
 #import "YXStageAndSubjectRequest.h"
 #import "YXCheckRequest.h"
+#import "YXCMSCustomView.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) YXProvincesRequest *provincesRequest;
 @property (nonatomic, strong) YXStageAndSubjectRequest *stageAndSubjectRequest;
 @property (nonatomic ,strong) YXCheckRequest *checkRequest;
+@property (nonatomic, strong) YXCMSCustomView *cmsView;
 @end
 

@@ -19,7 +19,10 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(applicationDidBecomeActive:)
+                                                     name:UIApplicationDidBecomeActiveNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -84,12 +87,17 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-        if ([dic[@"type"] isEqualToString:@"2"] || [dic[@"type"] isEqualToString:@"3"]) {//有热点动态发送通知
+        if ([dic[@"type"] integerValue] == 2 || [dic[@"type"] integerValue] == 3) {//有热点动态发送通知
             [[NSNotificationCenter defaultCenter] postNotificationName:YXTrainWebSocketReceiveMessage object:dic[@"type"]];
         }else{
             
 
         }
+    }
+}
+- (void)applicationDidBecomeActive:(NSNotification *)notification{
+    if (_webSocket.readyState != SR_OPEN) {//连接关闭打开连接
+       [self setupData];
     }
 }
 
@@ -99,6 +107,7 @@
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket{
     DDLogDebug(@"链接成功");
     NSDictionary *dic = @{@"type":@"1",@"token":[YXUserManager sharedManager].userModel.token?:@""};
+    DDLogDebug(@"%@",dic);
    [_webSocket send:[self dictionaryToJsonData:dic]];
     if (_state != YXWebSocketMangerState_Normal) {//如有需要待发信息 重新发送
         [_webSocket send:[self dictionaryToJsonData:@{@"type":[NSString stringWithFormat:@"%lu",(unsigned long)_state]}]];

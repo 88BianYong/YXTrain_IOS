@@ -9,9 +9,9 @@
 #import "YXAboutViewController.h"
 #import "YXAboutHeaderView.h"
 #import "YXAboutCell.h"
-#import "YXProvisionViewController.h"
 #import "YXActionSheet.h"
 #import "YXAlertView.h"
+#import "YXWebViewController.h"
 @interface YXAboutViewController ()
 <
   UITableViewDelegate,
@@ -151,7 +151,10 @@
 }
 
 - (void)goProvisionButtonAction:(UIButton *)sender{
-    YXProvisionViewController *provisionVC = [[YXProvisionViewController alloc] init];
+    YXWebViewController *provisionVC = [[YXWebViewController alloc] init];
+    provisionVC.urlString = @"http://www.yanxiu.com/common/agreement.html";
+    provisionVC.titleString = @"服务条款";
+    provisionVC.isUpdatTitle = YES;
     [self.navigationController pushViewController:provisionVC animated:YES];
 }
 @end

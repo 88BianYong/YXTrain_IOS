@@ -33,7 +33,7 @@
 
 @implementation YXHourView
 - (void)dealloc{
-    DDLogDebug(@"release=======>%@",NSStringFromClass([self class]));
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
 
 - (instancetype)initWithFrame:(CGRect)frame{

@@ -23,8 +23,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setupUI];
-        [self mockData];
         [self layoutInterface];
+        [self mockData];
     }
     return self;
 }
@@ -63,7 +63,7 @@
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView.mas_bottom);
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
-        make.right.equalTo(self.contentView.mas_right).offset(-15.0f).priorityLow();
+        make.right.equalTo(self.contentView.mas_right).priorityLow();
         make.height.mas_offset(1.0f / [UIScreen mainScreen].scale);
     }];
     
@@ -72,7 +72,6 @@
     self.redPointView.layer.cornerRadius = 2.5f;
     [self.contentView addSubview:self.redPointView];
 }
-
 - (void)layoutInterface{
     [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
@@ -80,7 +79,7 @@
         make.centerY.equalTo(self.titleLabel.mas_centerY);
     }];
     
-    [self.redPointView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.redPointView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.iconImageView.mas_right);
         make.top.equalTo(self.iconImageView.mas_top);
         make.size.mas_equalTo(CGSizeMake(5.0f, 5.0f));
@@ -94,7 +93,7 @@
     
     [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel.mas_left);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(10.0f);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(8.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-25.0f);
     }];
     
@@ -103,6 +102,20 @@
         make.top.equalTo(self.contentLabel.mas_bottom).offset(14.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
     }];
+
+}
+
+- (void)updateLayoutInterfaceSingle:(BOOL)boolSingle{//TD 解决单行Lable 出现行间距问题
+    if (boolSingle){
+        [self.timeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentLabel.mas_bottom).offset(10.0f);
+        }];
+    }
+    else{
+        [self.timeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentLabel.mas_bottom).offset(13.0f);
+        }];
+    }
 }
 
 - (void)awakeFromNib {
@@ -118,9 +131,16 @@
 
 - (void)mockData{
     self.titleLabel.text = @"和水电费和山东省地方大家收发接口的回复:";
-    self.contentLabel.attributedText = [self contentStringWithDesc:@"饭还是好地方是否六点十分离婚时分类考核老是发回来卡机的回复路口见对方发顺丰啊阿发是"];
+    self.contentLabel.attributedText = [self contentStringWithDesc:@"饭还是好地方是否六点十"];
     self.contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.timeLabel.text = @"30分钟前";
+    [self.titleLabel sizeToFit];
+    CGRect frame = self.titleLabel.frame;
+    if (frame.size.width > kScreenWidth - 30.0f){
+        [self updateLayoutInterfaceSingle:NO];
+    }else{
+        [self updateLayoutInterfaceSingle:YES];
+    }
     
 }
 - (NSMutableAttributedString *)contentStringWithDesc:(NSString *)desc{

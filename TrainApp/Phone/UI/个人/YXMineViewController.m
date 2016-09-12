@@ -54,7 +54,7 @@
 
 @implementation YXMineViewController
 - (void)dealloc{
-    DDLogDebug(@"release");
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
 
 
@@ -126,7 +126,7 @@
     if (indexPath.section == 0) {
         YXUserImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXUserImageTableViewCell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell setImageWithUrl:self.profile.head];
+        [cell setImageWithUrl:self.profile.headDetail ?: self.profile.head];
         cell.userImageTap = ^(){
             STRONG_SELF
             [self.view endEditing:YES];

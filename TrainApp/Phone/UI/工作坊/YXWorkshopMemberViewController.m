@@ -31,6 +31,7 @@ UICollectionViewDelegate
 @implementation YXWorkshopMemberViewController
 - (void)dealloc
 {
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [_header free];
     [_footer free];
     [_memberFetcher stop];

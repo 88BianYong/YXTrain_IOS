@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YXRotateListRequest.h"
 @interface YXHotspotBaseCell : UITableViewCell
 @property (nonatomic ,strong) UILabel *titleLabel;
 @property (nonatomic ,strong) UILabel *timeLabel;
 @property (nonatomic ,strong) UIImageView *posterImageView;
 @property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) YXRotateListRequestItem_Rotates *rotate;
 @end

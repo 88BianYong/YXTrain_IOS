@@ -38,7 +38,7 @@
 
 @implementation YXVideoRecordViewController
 - (void)dealloc{
-    DDLogWarn(@"release=====>%@",NSStringFromClass([self class]));
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self stopTimer];
     self->_focusView.recorder = nil;

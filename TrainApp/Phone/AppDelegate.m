@@ -25,15 +25,13 @@
 #import "YXInitRequest.h"
 #import "YXGuideViewController.h"
 #import "YXGuideModel.h"
-#import "YXCMSCustomView.h"
-#import "YXBroseWebView.h"
 
 #import "AppDelegate+GetInfoList.h"
+#import "AppDelegate+CMSView.h"
 @interface AppDelegate ()<YXLoginDelegate>
 
 @property (strong, nonatomic) YXDrawerViewController *drawerVC;
 @property (strong, nonatomic) YXLoginViewController *loginVC;
-@property (nonatomic, strong) YXCMSCustomView *cmsView;
 
 
 
@@ -96,7 +94,9 @@
     if ([[YXUserManager sharedManager] isLogin]) {
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
-        [self showCMSView];
+        if (![YXInitHelper sharedHelper].isShowUpgrade){
+            [self showCMSView];
+        }
     } else
     {
         self.loginVC = [[YXLoginViewController alloc] init];
@@ -179,7 +179,7 @@
 }
 
 - (void)logoutSuccess {
-    if ([self.window.rootViewController isKindOfClass:[YXDrawerViewController class]]) {
+    if (![self.window.rootViewController isKindOfClass:[YXLoginViewController class]]) {
         self.loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
     }
@@ -188,7 +188,7 @@
 - (void)tokenInvalid {
     [[YXUserManager sharedManager] resetUserData];
     [YXPromtController showToast:@"帐号授权已失效，请重新登录" inView:self.window];
-    if ([self.window.rootViewController isKindOfClass:[YXDrawerViewController class]]) {
+    if (![self.window.rootViewController isKindOfClass:[YXLoginViewController class]]) {
         self.loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
     }
@@ -209,37 +209,6 @@
     model.guideDetail = detail;
     model.isShowButton = isShowButton;
     return model;
-}
-
-
-- (void)showCMSView
-{
-    if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-        return;
-    }
-    self.cmsView = [[YXCMSCustomView alloc] init];
-    [self.window addSubview:self.cmsView];
-    [self.cmsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    WEAK_SELF
-    [[YXCMSManager sharedManager] requestWithType:@"1" completion:^(NSArray *rotates, NSError *error) {
-        STRONG_SELF
-        if (error || rotates.count <= 0) {
-            [self.cmsView removeFromSuperview];
-            return;
-        }
-        YXRotateListRequestItem_Rotates *rotate = rotates[0];
-        [self.cmsView reloadWithModel:rotate];
-        WEAK_SELF
-        self.cmsView.clickedBlock = ^(YXRotateListRequestItem_Rotates *model) {
-            STRONG_SELF
-            YXBroseWebView *webView = [[YXBroseWebView alloc] init];
-            webView.urlString = model.typelink;
-            webView.titleString = model.name;
-            [self.window.rootViewController.navigationController pushViewController:webView animated:YES];
-        };
-    }];
 }
 
 @end

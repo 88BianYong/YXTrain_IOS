@@ -25,7 +25,7 @@
 
 @implementation YXWorkshopViewController
 - (void)dealloc{
-    
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
 
 - (void)viewWillAppear:(BOOL)animated{

@@ -20,6 +20,7 @@
 
 @implementation YXWriteHomeworkInfoBottomView
 - (void)dealloc{
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [_saveButton removeObserver:self forKeyPath:@"selected"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

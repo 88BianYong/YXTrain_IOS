@@ -74,7 +74,7 @@
     if (image && isShow) {
         self.imageView.image = image;
         [self.timerView startWithSeconds:self.model.seconds.integerValue];
-    } else if (URL) {
+    } else if (URL && isShow) {
         WEAK_SELF
         [self.imageView sd_setImageWithURL:URL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             STRONG_SELF

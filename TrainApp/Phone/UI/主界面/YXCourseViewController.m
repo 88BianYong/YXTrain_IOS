@@ -116,7 +116,7 @@
           [self setupStageForCourseMarket];
         }
         self.isWaitingForFilter = NO;
-        [self firstPageFetch];
+        [self firstPageFetch:YES];
     }];
 }
 
@@ -143,7 +143,7 @@
     }];
 }
 
-- (void)firstPageFetch{
+- (void)firstPageFetch:(BOOL)isShow{
     if (self.isWaitingForFilter) {
         return;
     }
@@ -170,6 +170,7 @@
 }
 
 - (void)setupWithCurrentFilters{
+    
     if (self.stageID) {
         YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
         __block NSInteger stageIndex = -1;
@@ -293,7 +294,7 @@
     fetcher.segid = segmentItem.filterID;
     fetcher.type = typeItem.filterID;
     fetcher.stageid = stageItem.filterID;
-    [self firstPageFetch];
+    [self firstPageFetch:YES];
 }
 
 @end

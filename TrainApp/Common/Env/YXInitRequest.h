@@ -67,6 +67,7 @@ extern NSString *const YXInitSuccessNotification;
 
 @interface YXInitHelper : NSObject
 @property (nonatomic, strong) YXInitRequestItem *item;
+@property (nonatomic, assign) BOOL isShowUpgrade;
 
 + (instancetype)sharedHelper;
 

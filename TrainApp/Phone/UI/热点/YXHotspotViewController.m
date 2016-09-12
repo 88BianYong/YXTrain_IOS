@@ -10,7 +10,8 @@
 #import "YXHotspotWordsCell.h"
 #import "YXHotspotPictureCell.h"
 #import "YXRotateListRequest.h"
-#import "YXBroseWebView.h"
+#import "YXWebViewController.h"
+#import "YXHotspotDatumFetch.h"
 @interface YXHotspotViewController ()
 
 @end
@@ -18,6 +19,13 @@
 @implementation YXHotspotViewController
 
 - (void)viewDidLoad {
+    YXHotspotDatumFetch *fetcher = [[YXHotspotDatumFetch alloc] init];
+    fetcher.pagesize = 10;
+    self.dataFetcher = fetcher;
+    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+//    emptyView.title = @"暂无资源";
+//    emptyView.imageName = @"暂无资源";
+    self.emptyView = emptyView;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.title = @"热点";
@@ -31,6 +39,14 @@
         [self.dataArray addObjectsFromArray:requestItem.rotates];
         [self.tableView reloadData];
     }
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,24 +78,13 @@
     YXRotateListRequestItem_Rotates *rotate = self.dataArray[indexPath.row];
     if (indexPath.row % 2 == 0) {
         YXHotspotWordsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHotspotWordsCell" forIndexPath:indexPath];
-        cell.titleLabel.attributedText = [self contentStringWithDesc:rotate.name];
-        cell.timeLabel.text= [NSString timeStringWithTimeStamp:rotate.begintime];
+        cell.rotate = rotate;
         return cell;
     } else {
         YXHotspotPictureCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHotspotPictureCell" forIndexPath:indexPath];
-        cell.titleLabel.attributedText = [self contentStringWithDesc:rotate.name];
-        cell.timeLabel.text= [NSString timeStringWithTimeStamp:rotate.begintime];
-        [cell.posterImageView sd_setImageWithURL:[NSURL URLWithString:rotate.resurl]];
+        cell.rotate = rotate;
         return cell;
     }
-}
-- (NSMutableAttributedString *)contentStringWithDesc:(NSString *)desc{
-    NSRange range = NSMakeRange(0, desc.length);
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:desc];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:5];
-    [attributedString addAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"],NSParagraphStyleAttributeName:paragraphStyle} range:range];
-    return attributedString;
 }
 
 #pragma mark - UITableViewDelegate
@@ -97,7 +102,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     YXRotateListRequestItem_Rotates *model = self.dataArray[indexPath.row];
-    YXBroseWebView *webView = [[YXBroseWebView alloc] init];
+    YXWebViewController *webView = [[YXWebViewController alloc] init];
     webView.urlString = model.typelink;
     webView.titleString = model.name;
     [self.navigationController pushViewController:webView animated:YES];

@@ -47,8 +47,8 @@
 @implementation YXWriteHomeworkInfoViewController
 
 - (void)dealloc{
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    DDLogError(@"release===>%@",NSStringFromClass([self class]));
 }
 
 - (void)viewDidLoad{

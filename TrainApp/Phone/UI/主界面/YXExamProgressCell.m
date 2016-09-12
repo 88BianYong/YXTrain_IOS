@@ -121,6 +121,8 @@
         self.typeImageView.image = [UIImage imageNamed:@"作业"];
     }else if (item.toolid.integerValue == 216 || item.toolid.integerValue == 316){
         self.typeImageView.image = [UIImage imageNamed:@"小组作业icon"];
+    }else if (item.toolid.integerValue == 218 || item.toolid.integerValue == 318){
+        self.typeImageView.image = [UIImage imageNamed:@"线下活动icon"];
     }else{
         self.typeImageView.image = nil;
     }
