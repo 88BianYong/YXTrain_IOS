@@ -11,6 +11,7 @@
 #import "YXHelpViewController.h"
 #import "YXAboutViewController.h"
 #import "YXMySettingCell.h"
+#import "YXWebSocketManger.h"
 @interface YXMySettingViewController ()
 <
 UITableViewDelegate,
@@ -161,6 +162,7 @@ UITableViewDataSource
         }
         
     }else{
+        [[YXWebSocketManger sharedInstance] close];
         [[YXUserManager sharedManager] logout];
     }
 }

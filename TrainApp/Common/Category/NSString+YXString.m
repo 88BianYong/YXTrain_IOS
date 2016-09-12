@@ -162,4 +162,26 @@
     NSString *timeString = [NSString stringWithFormat:@"%02ld:%02ld",(long)newTime/60,(long)newTime%60];
     return timeString;
 }
+
++ (NSString *)timeStringWithTimeStamp:(NSString *)time{
+    double timeStamp = time.doubleValue;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeStamp/1000.0f];
+    NSTimeInterval interval = -[date timeIntervalSinceNow];
+    if (interval < 60) {//小于1分钟
+       return @"1分钟前";
+    }else if (interval < 60 * 60){//小于60分钟
+        return [NSString stringWithFormat:@"%d分钟前",(int)(interval/60.0f)];
+    }
+    else if (interval < 24 * 60 * 60){
+        return [NSString stringWithFormat:@"%d小时前",(int)(interval/60.0f/60.0f)];
+    }
+    else if (interval < 7 * 24 * 60 * 60){
+        return [NSString stringWithFormat:@"%d天前",(int)(interval/60.0f/60.0f/24.0f)];
+    }
+    else {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+        [formatter setDateFormat:@"yyyy年MM月dd日"];
+        return [formatter stringFromDate:date];
+    }
+}
 @end

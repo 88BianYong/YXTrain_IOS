@@ -38,7 +38,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:YXTrainWebSocketReceiveMessage object:nil];
     [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
     [self setupUI];
 
@@ -86,6 +86,7 @@
     self.redPointView = [[UIView alloc] initWithFrame:CGRectMake(32.0f, 0.0f, 5.0f, 5.0f)];
     self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
     self.redPointView.layer.cornerRadius = 2.5f;
+    self.redPointView.hidden = YES;
     [headView addSubview:self.redPointView];
     [self setupLeftWithCustomView:headView];
     
@@ -131,6 +132,15 @@
         [self.emptyView removeFromSuperview];
         [self dealWithProjects:projects];
     }];
+}
+- (void)webSocketReceiveMessage:(NSNotification *)aNotification{
+    NSInteger integer = [aNotification.object integerValue];
+    if (integer == 0) {
+        self.redPointView.hidden = YES;
+    }else{
+        self.redPointView.hidden = NO;
+    }
+    
 }
 
 - (void)dealWithProjects:(NSArray *)projects{

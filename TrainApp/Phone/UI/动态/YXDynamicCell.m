@@ -13,6 +13,8 @@
 @property (nonatomic ,strong) UILabel *contentLabel;
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic ,strong) UIImageView *iconImageView;
+@property (nonatomic, strong) UIView *redPointView;
+
 @end
 @implementation YXDynamicCell
 
@@ -64,6 +66,11 @@
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f).priorityLow();
         make.height.mas_offset(1.0f / [UIScreen mainScreen].scale);
     }];
+    
+    self.redPointView = [[UIView alloc] init];
+    self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
+    self.redPointView.layer.cornerRadius = 2.5f;
+    [self.contentView addSubview:self.redPointView];
 }
 
 - (void)layoutInterface{
@@ -71,6 +78,12 @@
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
         make.size.mas_offset(CGSizeMake(21.0f, 21.0f));
         make.centerY.equalTo(self.titleLabel.mas_centerY);
+    }];
+    
+    [self.redPointView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.iconImageView.mas_right);
+        make.top.equalTo(self.iconImageView.mas_top);
+        make.size.mas_equalTo(CGSizeMake(5.0f, 5.0f));
     }];
     
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -105,8 +118,18 @@
 
 - (void)mockData{
     self.titleLabel.text = @"和水电费和山东省地方大家收发接口的回复:";
-    self.contentLabel.text = @"饭还是好地方是否六点十分离婚时分类考核老是发回来卡机的回复路口见对方发顺丰啊阿发是";
+    self.contentLabel.attributedText = [self contentStringWithDesc:@"饭还是好地方是否六点十分离婚时分类考核老是发回来卡机的回复路口见对方发顺丰啊阿发是"];
+    self.contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.timeLabel.text = @"30分钟前";
+    
+}
+- (NSMutableAttributedString *)contentStringWithDesc:(NSString *)desc{
+    NSRange range = NSMakeRange(0, desc.length);
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:desc];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:4];
+    [attributedString addAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:15.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"],NSParagraphStyleAttributeName:paragraphStyle} range:range];
+    return attributedString;
 }
 
 @end

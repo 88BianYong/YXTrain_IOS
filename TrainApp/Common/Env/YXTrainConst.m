@@ -13,3 +13,5 @@ NSString *const YXTrainUploadDepictionString = @"1.视频时间控制在15-40分
 
 NSString *const YXTrainFirstGoInHomeworkList = @"the first to enter the work list interface";
 
+NSString *const YXTrainWebSocketReceiveMessage = @"the websocket receive message for hotspot and dynamic";
+

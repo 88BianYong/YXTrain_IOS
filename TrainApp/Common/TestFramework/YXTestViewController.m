@@ -21,9 +21,6 @@ static NSInteger integer;
 - (void)viewDidLoad {
     self.devTestActions = @[@"122"];
     [super viewDidLoad];
-    [self setupData];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:9.0f target:self selector:@selector(sendString) userInfo:nil repeats:YES];
-    
 }
 
 - (void)sendString{

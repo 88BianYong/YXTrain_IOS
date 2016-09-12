@@ -62,4 +62,9 @@
  /   得到“00:00”格式的时间字符串。time是秒数。
  */
 + (NSString *)stringWithFormatFloat:(CGFloat)time;
+
+/*
+ /   格式化时间显示(动态 热点使用)
+ */
++ (NSString *)timeStringWithTimeStamp:(NSString *)time;
 @end

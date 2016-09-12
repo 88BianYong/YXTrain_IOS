@@ -18,6 +18,7 @@
 #import "YXGuideModel.h"
 #import "YXHotspotViewController.h"
 #import "YXDynamicViewController.h"
+#import "YXWebSocketManger.h"
 
 
 @interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>{
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) YXUserProfile *profile;
+@property (nonatomic, strong) NSMutableArray *redPointMutableArray;
 
 @property (nonatomic, strong) UIView *shadowView;
 
@@ -39,9 +41,15 @@
     UILabel *_nameLabel;
     UILabel *_schoolNameLabel;
 }
+- (void)dealloc{
+    DDLogWarn(@"release=====>%@",[self class]);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self removeObserver:self forKeyPath:@"_redPointMutableArray"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setWebSocket];
     _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
                     @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
                     @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
@@ -235,12 +243,29 @@
 
 - (void)registerNotifications
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self
                selector:@selector(reloadUserProfileView)
                    name:YXUserProfileGetSuccessNotification
                  object:nil];
+}
+
+- (void)setWebSocket{
+    self.redPointMutableArray = [@[@"0",@"0",@"0",@"0"] mutableCopy];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:YXTrainWebSocketReceiveMessage object:nil];
+    [self addObserver:self forKeyPath:@"_redPointMutableArray"options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [[YXWebSocketManger sharedInstance] open];
+}
+
+- (void)webSocketReceiveMessage:(NSNotification *)aNotification{
+    NSInteger integer = [aNotification.object integerValue];
+    if (integer == 2) {
+        [self mutableArrayValueForKey:@"_redPointMutableArray"][0] = @"1";
+    }else if (integer == 3){
+        [self mutableArrayValueForKey:@"_redPointMutableArray"][3] = @"1";
+    }
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark - UITableViewDataSource
@@ -255,7 +280,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXSideTableViewCell" forIndexPath:indexPath];
     cell.nameDictionary = _titleArray[indexPath.section];
-    if (indexPath.section == 0) {
+    if ([self.redPointMutableArray[indexPath.section] integerValue] == 1) {
         cell.isShowRedPoint = YES;
     }else{
         cell.isShowRedPoint = NO;
@@ -266,9 +291,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self mutableArrayValueForKey:@"_redPointMutableArray"][indexPath.section] = @"0";
     switch (indexPath.section) {
         case 0:
         {
+            [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Hotspot];
             YXHotspotViewController *hotspot = [[YXHotspotViewController alloc] init];
             [self.navigationController pushViewController:hotspot animated:YES];
         }
@@ -287,6 +314,7 @@
             break;
         case 3:
         {
+            [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
             YXDynamicViewController *dynamicVc = [[YXDynamicViewController alloc] init];
             [self.navigationController pushViewController:dynamicVc animated:YES];
             
@@ -350,5 +378,22 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
+#pragma mark - observer
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change
+                       context:(void *)context {
+    if ([keyPath isEqualToString:@"_redPointMutableArray"]) {
+        BOOL isShowRed = NO;
+        for (NSString *string in self.redPointMutableArray) {
+            if (string.integerValue == 1) {
+                isShowRed = YES;
+                break;
+            }
+        }
+        if (isShowRed) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:YXTrainWebSocketReceiveMessage object:@"0"];
+                    }
+    }
+}
 @end

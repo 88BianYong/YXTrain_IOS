@@ -63,12 +63,12 @@
     if (indexPath.row % 2 == 0) {
         YXHotspotWordsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHotspotWordsCell" forIndexPath:indexPath];
         cell.titleLabel.attributedText = [self contentStringWithDesc:rotate.name];
-        cell.timeLabel.text= @"5小时前发布";
+        cell.timeLabel.text= [NSString timeStringWithTimeStamp:rotate.begintime];
         return cell;
     } else {
         YXHotspotPictureCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHotspotPictureCell" forIndexPath:indexPath];
         cell.titleLabel.attributedText = [self contentStringWithDesc:rotate.name];
-        cell.timeLabel.text= @"5小时前发布";
+        cell.timeLabel.text= [NSString timeStringWithTimeStamp:rotate.begintime];
         [cell.posterImageView sd_setImageWithURL:[NSURL URLWithString:rotate.resurl]];
         return cell;
     }

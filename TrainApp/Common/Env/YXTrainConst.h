@@ -24,6 +24,7 @@
 #define kGetInfoListTime @"get_Info_List_time"//获取学科学段地区列表
 
 
+
 typedef NS_ENUM (NSInteger, YXVideoRecordStatus) {
     YXVideoRecordStatus_Ready = 0,
     YXVideoRecordStatus_Recording = 1,
@@ -72,3 +73,7 @@ extern const NSInteger YXTrainCornerStartpageTime;
 extern NSString *const YXTrainUploadDepictionString;
 
 extern NSString *const YXTrainFirstGoInHomeworkList;
+
+extern NSString *const YXTrainWebSocketReceiveMessage;
+
+
