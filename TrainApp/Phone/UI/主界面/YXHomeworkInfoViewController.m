@@ -284,37 +284,38 @@ UITableViewDataSource
     switch (type) {
         case YXRecordVideoInterfaceStatus_Record:
         {
-            if ([YXVideoRecordManager isSupportRecordVideoShowView:self.view]) {//判断权限
-                if ([YXVideoRecordManager isEnoughDeviceSpace]) {//判断空间大小
-                    if(self.itemBody.type.integerValue == 3){//判断是否是限制时间的视频
-                        if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
-                            [self againRecordVideo];
-                        }
-                        else{
-                            WEAK_SELF
-                            YXAlertAction *knowAction = [[YXAlertAction alloc] init];
-                            knowAction.title = @"我知道了";
-                            knowAction.style = YXAlertActionStyleAlone;
-                            knowAction.block = ^ {
-                                STRONG_SELF
-                                [self gotoVideoRecordVC];
-                            };
-                            YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频录制时长需要大于10分钟~" image:@"提醒icon" actions:@[knowAction]];
-                            [alertView showAlertView:nil];
-                        }
-                    }
-                    else{
-                        if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
-                            [self againRecordVideo];
-                        }else{
-                            [self gotoVideoRecordVC];
-                        }
-                    }
-                }else{
-                    [self showToast:@"系统空间不足200M,至少需要200M存储空间"];
+            if (![YXVideoRecordManager isSupportRecordVideoShowView:self.view]) {//判断权限
+                return;
+            }
+            if (![YXVideoRecordManager isEnoughDeviceSpace]){//判断空间大小
+                [self showToast:@"系统空间不足200M,至少需要200M存储空间"];
+                return;
+            }
+            if(self.itemBody.type.integerValue == 3){//判断是否是限制时间的视频
+                if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
+                    [self againRecordVideo];
+                }
+                else{
+                    WEAK_SELF
+                    YXAlertAction *knowAction = [[YXAlertAction alloc] init];
+                    knowAction.title = @"我知道了";
+                    knowAction.style = YXAlertActionStyleAlone;
+                    knowAction.block = ^ {
+                        STRONG_SELF
+                        [self gotoVideoRecordVC];
+                    };
+                    YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频录制时长需要大于10分钟~" image:@"提醒icon" actions:@[knowAction]];
+                    [alertView showAlertView:nil];
                 }
             }
-            
+            else{
+                if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
+                    [self againRecordVideo];
+                }else{
+                    [self gotoVideoRecordVC];
+                }
+            }
+            break;
         }
             break;
         case YXRecordVideoInterfaceStatus_Depiction:

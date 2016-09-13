@@ -278,10 +278,7 @@
     WEAK_SELF
     [self.recorder pause:^{
         STRONG_SELF
-        if (saveFlag) {
-            //TODO 出现保存界面。
-            [self configPreviewView];
-        }else{
+        if (!saveFlag) {
             SCRecordSession *recordSession = self->_recorder.session;
             if (recordSession != nil) {
                 self ->_recorder.session = nil;
@@ -298,21 +295,6 @@
         self.recorder.session = session;
     }
 }
-
-- (void)configPreviewView
-{
-//    self.player = [SCPlayer player];
-//    SCVideoPlayerView   *playerView = [[SCVideoPlayerView alloc] initWithPlayer:self.player];
-//    playerView.tag = 555;
-//    playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-//    playerView.frame = _scanPreviewView.bounds;
-//    playerView.autoresizingMask = _scanPreviewView.autoresizingMask;
-//    [_scanPreviewView addSubview:playerView];
-//    self.player.loopEnabled = YES;
-//    [self.player setItemByAsset:self.recorder.session.assetRepresentingSegments];
-//    [self.player play];
-}
-
 
 - (void)saveRecordVideo{
     self ->_againInteger += 1;
@@ -396,7 +378,7 @@
     self.videoModel.fileName = nameArray.lastObject;
     self.videoModel.lessonStatus = YXVideoLessonStatus_AlreadyRecord;
     [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
-    [self removePreviewView];
+    [self stopCaptureWithSaveFlag:NO];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self ->_bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
         self -> _progressView.hidden = YES;
@@ -404,17 +386,6 @@
          [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [self dismissViewControllerAnimated:YES completion:nil];
     });
-}
-- (void)removePreviewView
-{
-//    [self.player pause];
-//    self.player = nil;
-//    for (UIView *subview in _scanPreviewView.subviews) {
-//        if (subview.tag == 555) {
-//            [subview removeFromSuperview];
-//        }
-//    }
-    [self stopCaptureWithSaveFlag:NO];
 }
 
 - (BOOL)shouldAutorotate{
@@ -456,10 +427,6 @@
 {
     _bottomView.videoRecordStatus = YXVideoRecordStatus_StopMax;
 }
-
-//- (void)recorder:(SCRecorder *__nonnull)recorder didCompleteSegment:(SCRecordSessionSegment *__nullable)segment inSession:(SCRecordSession *__nonnull)session error:(NSError *__nullable)error {
-//    DDLogDebug(@"didCompleteSegment");
-//}
 #pragma mark - notification
 - (void)applicationWillResignActive:(NSNotification *)notification{
     if (_bottomView.videoRecordStatus == YXVideoRecordStatus_Recording){
@@ -505,4 +472,20 @@
         [self stopTimer];
     }
 }
+
+
+//- (void)configPreviewView
+//{
+//    //    self.player = [SCPlayer player];
+//    //    SCVideoPlayerView   *playerView = [[SCVideoPlayerView alloc] initWithPlayer:self.player];
+//    //    playerView.tag = 555;
+//    //    playerView.playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+//    //    playerView.frame = _scanPreviewView.bounds;
+//    //    playerView.autoresizingMask = _scanPreviewView.autoresizingMask;
+//    //    [_scanPreviewView addSubview:playerView];
+//    //    self.player.loopEnabled = YES;
+//    //    [self.player setItemByAsset:self.recorder.session.assetRepresentingSegments];
+//    //    [self.player play];
+//}
+
 @end

@@ -21,8 +21,8 @@
 
 @interface YXWorkshopDetailViewController ()
 <
-  UITableViewDelegate,
-  UITableViewDataSource
+UITableViewDelegate,
+UITableViewDataSource
 >
 {
     UITableView *_tableView;
@@ -116,7 +116,7 @@
     if (indexPath.section == 1 && indexPath.row == 0) {
         return 60.0f;
     }else{
-          return 44.0f;
+        return 44.0f;
     }
 }
 
@@ -239,9 +239,9 @@
     };
     [_dataMutableArray  removeAllObjects];
     NSArray *infoArray = @[@{@"title":@"学科",@"content":formatContent(item.subject)},
-                                        @{@"title":@"学段",@"content":formatContent(item.stage)},
-                                        @{@"title":@"学年",@"content":formatContent(item.grade)},
-                                        @{@"title":@"简介",@"content":formatContent(item.barDesc)}];
+                           @{@"title":@"学段",@"content":formatContent(item.stage)},
+                           @{@"title":@"学年",@"content":formatContent(item.grade)},
+                           @{@"title":@"简介",@"content":formatContent(item.barDesc)}];
     [_dataMutableArray addObject:infoArray];
     NSMutableDictionary *memberMutableDictionary =[@{@"title":@"成员",@"content":formatContent(item.memberNum)} mutableCopy];
     [memberMutableDictionary setValue:[NSMutableArray array] forKey:@"member"];

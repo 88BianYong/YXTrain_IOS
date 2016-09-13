@@ -88,7 +88,7 @@
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
         if ([dic[@"type"] integerValue] == 2 || [dic[@"type"] integerValue] == 3) {//有热点动态发送通知
-            [[NSNotificationCenter defaultCenter] postNotificationName:YXTrainWebSocketReceiveMessage object:dic[@"type"]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainWebSocketReceiveMessage object:dic[@"type"]];
         }else{
             
 

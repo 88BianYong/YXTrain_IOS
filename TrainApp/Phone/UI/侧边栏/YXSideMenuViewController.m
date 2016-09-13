@@ -252,7 +252,7 @@
 
 - (void)setWebSocket{
     self.redPointMutableArray = [@[@"0",@"0",@"0",@"0"] mutableCopy];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:YXTrainWebSocketReceiveMessage object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:kYXTrainWebSocketReceiveMessage object:nil];
     [self addObserver:self forKeyPath:@"_redPointMutableArray"options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [[YXWebSocketManger sharedInstance] open];
 }
@@ -392,7 +392,7 @@
             }
         }
         if (isShowRed) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:YXTrainWebSocketReceiveMessage object:@"0"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainWebSocketReceiveMessage object:@"0"];
                     }
     }
 }

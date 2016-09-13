@@ -63,8 +63,12 @@
  */
 + (NSString *)stringWithFormatFloat:(CGFloat)time;
 
-/*
- /   格式化时间显示(动态 热点使用)
+/**
+ *  格式化时间显示(动态 热点使用)
+ *
+ *  @param time 时间戳 单位毫秒
+ *
+ *  @return 需要显示的时间文本
  */
 + (NSString *)timeStringWithTimeStamp:(NSString *)time;
 @end

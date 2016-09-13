@@ -19,10 +19,6 @@
 #define PATH_OF_DOCUMENT         [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 #define PATH_OF_VIDEO   [PATH_OF_DOCUMENT stringByAppendingPathComponent:@"VideoRecord"]
 #define PATH_OF_VIDEO_CACHE [PATH_OF_DOCUMENT stringByAppendingPathComponent:@"VideoCache"]
-#define kVideoUserDefaultsKey @"kVideoUserDefaultsKey"
-
-#define kGetInfoListTime @"get_Info_List_time"//获取学科学段地区列表
-
 
 
 typedef NS_ENUM (NSInteger, YXVideoRecordStatus) {
@@ -64,16 +60,48 @@ typedef NS_ENUM (NSInteger ,YXWriteHomeworkListStatus) {
     YXWriteHomeworkListStatus_Topic = 5,//重难点题目
 };
 
+//定义key值
+
+/**
+ *  是否第一次进入作业界面
+ */
+extern NSString *const kYXTrainFirstGoInHomeworkList;
+/**
+ *  websocket发送消息
+ */
+extern NSString *const kYXTrainWebSocketReceiveMessage;
+/**
+ *  视频作业保存
+ */
+extern NSString *const  kYXTrainVideoUserDefaultsKey;
+/**
+ *  获取学科学段和地区的时间
+ */
+extern NSString *const  kYXTrainGetInfoListTime;
+
+
+
+
+
+
+
+/**
+ *  左划宽度 按屏幕750
+ */
 extern const CGFloat YXTrainLeftDrawerWidth;
-
+/**
+ *  圆角
+ */
 extern const CGFloat YXTrainCornerRadii;
-
+/**
+ *  广告页启动时间
+ */
 extern const NSInteger YXTrainCornerStartpageTime;
-
+/**
+ *  视频说明
+ */
 extern NSString *const YXTrainUploadDepictionString;
 
-extern NSString *const YXTrainFirstGoInHomeworkList;
 
-extern NSString *const YXTrainWebSocketReceiveMessage;
 
 

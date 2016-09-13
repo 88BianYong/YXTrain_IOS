@@ -10,7 +10,7 @@
 
 @implementation AppDelegate (GetInfoList)
 - (void)getInfoListUpdateDate{
-    NSDate *agoDate = [[NSUserDefaults standardUserDefaults] objectForKey:kGetInfoListTime];
+    NSDate *agoDate = [[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainGetInfoListTime];
     if ([agoDate timeIntervalSinceNow] > 3 * 24 * 60 * 60) {
         [self requestForCheckRequest];
     }
@@ -23,7 +23,7 @@
     YXCheckRequest *request = [[YXCheckRequest alloc] init];
     [request startRequestWithRetClass:[YXCheckRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         if (!error) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kGetInfoListTime];
+            [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:kYXTrainGetInfoListTime];
             STRONG_SELF
             YXCheckRequestItem *item = retItem;
             NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];

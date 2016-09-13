@@ -125,8 +125,10 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+}
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:YES];
+    self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
 }
 
 - (void)mockData{

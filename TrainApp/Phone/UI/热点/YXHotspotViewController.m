@@ -23,8 +23,6 @@
     fetcher.pagesize = 10;
     self.dataFetcher = fetcher;
     YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-//    emptyView.title = @"暂无资源";
-//    emptyView.imageName = @"暂无资源";
     self.emptyView = emptyView;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];

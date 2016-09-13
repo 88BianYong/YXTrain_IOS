@@ -23,20 +23,32 @@
 
 #pragma mark - setupUI
 - (void)setupAndLayoutInterface{
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:view];
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0.0f);
-        make.top.equalTo(self.view.mas_top).offset(5.0f);
-    }];
-    
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.backgroundColor = [UIColor clearColor];
     _scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:_scrollView];
     [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
+    }];
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor whiteColor];
+    [_scrollView addSubview:backgroundView];
+    [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_scrollView.mas_top);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+    
+    
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [_scrollView addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_scrollView.mas_top);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.offset(5.0f);
     }];
     _contentLabel = [[UILabel alloc] init];
     _contentLabel.backgroundColor = [UIColor clearColor];

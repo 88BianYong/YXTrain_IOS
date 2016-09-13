@@ -20,10 +20,8 @@
 //    fetcher.pagesize = 10;
 //    self.dataFetcher = fetcher;
 //    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-////    emptyView.title = @"暂无资源";
-////    emptyView.imageName = @"暂无资源";
 //    self.emptyView = emptyView;
-//    self.bIsGroupedTableViewStyle = YES;
+    self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.title = @"动态";
     [self setupUI];
@@ -72,13 +70,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.01f;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *headView = [[UIView alloc] init];
     headView.backgroundColor = [UIColor whiteColor];
     return headView;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01f;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
 @end

@@ -92,7 +92,7 @@
 + (void)saveVideoArrayWithModel:(YXHomeworkInfoRequestItem_Body *)model
 {
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSMutableArray * videoArray = [user objectForKey:kVideoUserDefaultsKey];
+    NSMutableArray * videoArray = [user objectForKey:kYXTrainVideoUserDefaultsKey];
     __block YXHomeworkInfoRequestItem_Body *hasModel = nil;
     [videoArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXHomeworkInfoRequestItem_Body *tempModel = [[YXHomeworkInfoRequestItem_Body alloc] initWithDictionary:obj error:nil];
@@ -109,14 +109,14 @@
     NSDictionary *videoMulDict = model.toDictionary;
     [newVideoArray addObject:videoMulDict];
     
-    [user setObject:newVideoArray forKey:kVideoUserDefaultsKey];
+    [user setObject:newVideoArray forKey:kYXTrainVideoUserDefaultsKey];
     [user synchronize];
 }
 
 + (void)deleteVideoWithModel:(YXHomeworkInfoRequestItem_Body *)model
 {
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSMutableArray * videoArray = [user objectForKey:kVideoUserDefaultsKey];
+    NSMutableArray * videoArray = [user objectForKey:kYXTrainVideoUserDefaultsKey];
     __block YXHomeworkInfoRequestItem_Body *hasModel = nil;
     [videoArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXHomeworkInfoRequestItem_Body *tempModel = [[YXHomeworkInfoRequestItem_Body alloc] initWithDictionary:obj error:nil];
@@ -130,9 +130,9 @@
         [newVideoArray removeObject:hasModel];
     }
     if (newVideoArray.count == 0) {
-        [user setObject:nil forKey:kVideoUserDefaultsKey];
+        [user setObject:nil forKey:kYXTrainVideoUserDefaultsKey];
     }else{
-        [user setObject:newVideoArray forKey:kVideoUserDefaultsKey];
+        [user setObject:newVideoArray forKey:kYXTrainVideoUserDefaultsKey];
     }
     [user synchronize];
 }
@@ -140,7 +140,7 @@
 + (NSArray *)getVideoArrayWithModel
 {
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSMutableArray * videoArray = [user objectForKey:kVideoUserDefaultsKey];
+    NSMutableArray * videoArray = [user objectForKey:kYXTrainVideoUserDefaultsKey];
     __block NSMutableArray * newVideoArray = [NSMutableArray array];
     [videoArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXHomeworkInfoRequestItem_Body *model = [[YXHomeworkInfoRequestItem_Body alloc] initWithDictionary:obj error:nil];
@@ -150,7 +150,7 @@
 }
 + (void)clearVideoArray{
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    NSMutableArray * videoArray = [user objectForKey:kVideoUserDefaultsKey];
+    NSMutableArray * videoArray = [user objectForKey:kYXTrainVideoUserDefaultsKey];
     [videoArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXHomeworkInfoRequestItem_Body *model = [[YXHomeworkInfoRequestItem_Body alloc] initWithDictionary:obj error:nil];
         NSString *localPath = [PATH_OF_VIDEO stringByAppendingPathComponent:model.fileName];
@@ -161,7 +161,7 @@
         }
     }];
     
-    [user setObject:nil forKey:kVideoUserDefaultsKey];
+    [user setObject:nil forKey:kYXTrainVideoUserDefaultsKey];
     [user synchronize];
 }
 
