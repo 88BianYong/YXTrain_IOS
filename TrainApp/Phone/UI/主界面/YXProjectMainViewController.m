@@ -144,13 +144,9 @@
 }
 
 - (void)dealWithProjects:(NSArray *)projects{
-    NSMutableArray *pArray = [NSMutableArray array];
-    for (YXTrainListRequestItem_body_train *p in projects) {
-        [pArray addObject:p.name];
-    }
     YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
     selectionView.currentIndex = [YXTrainManager sharedInstance].currentProjectIndex;
-    selectionView.projectArray = pArray;
+    selectionView.projectArray = projects;
     WEAK_SELF
     selectionView.projectChangeBlock = ^(NSInteger index){
         STRONG_SELF

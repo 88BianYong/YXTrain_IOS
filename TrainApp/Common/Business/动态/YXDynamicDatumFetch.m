@@ -7,7 +7,6 @@
 //
 
 #import "YXDynamicDatumFetch.h"
-#import "YXDynamicRequest.h"
 @interface YXDynamicDatumFetch ()
 @property (nonatomic, strong)YXDynamicRequest *dynamicRequest;
 @end
@@ -16,8 +15,8 @@
 @implementation YXDynamicDatumFetch
 - (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock{
     YXDynamicRequest *request = [[YXDynamicRequest alloc] init];
-    request.pageindex = [NSString stringWithFormat:@"%d", self.pageindex + 1];
-    request.pagesize = [NSString stringWithFormat:@"%d", self.pagesize];
+    request.pageNo = [NSString stringWithFormat:@"%d", self.pageindex + 1];
+    request.pageSize = [NSString stringWithFormat:@"%d", self.pagesize];
     [request startRequestWithRetClass:[YXDynamicRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         if (error) {
             aCompleteBlock(0, nil, error);

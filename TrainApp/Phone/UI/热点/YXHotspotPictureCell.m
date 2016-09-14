@@ -57,11 +57,11 @@
     }
 
 }
-- (void)setRotate:(YXRotateListRequestItem_Rotates *)rotate{
-    self.titleLabel.attributedText = [self contentStringWithDesc:rotate.name];
-    self.timeLabel.text= [NSString timeStringWithTimeStamp:rotate.begintime];
+- (void)setData:(YXHotspotRequestItem_Data *)data{
+    self.titleLabel.attributedText = [self contentStringWithDesc:data.title];
+    self.timeLabel.text= data.timer;
     self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    [self.posterImageView sd_setImageWithURL:[NSURL URLWithString:rotate.resurl]];
+    [self.posterImageView sd_setImageWithURL:[NSURL URLWithString:data.picUrl]];
     [self.titleLabel sizeToFit];
     CGRect frame = self.titleLabel.frame;
     if (frame.size.width > kScreenWidth - 30.0f){

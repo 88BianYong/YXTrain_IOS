@@ -256,6 +256,8 @@
 		92CE51591D87E6C00071DE79 /* AppDelegate+CMSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51581D87E6C00071DE79 /* AppDelegate+CMSView.m */; };
 		92CE515E1D87EF3D0071DE79 /* YXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE515D1D87EF3D0071DE79 /* YXWebViewController.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
+		92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */; };
+		92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */; };
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
 		92EDC7B71D5C6C61005B91DD /* YXWriteHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */; };
 		92EDC7BA1D5C7323005B91DD /* YXWriteHomeworkInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B91D5C7323005B91DD /* YXWriteHomeworkInfoCell.m */; };
@@ -868,6 +870,10 @@
 		92CE515D1D87EF3D0071DE79 /* YXWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWebViewController.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
 		92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUploadDepictionViewController.m; sourceTree = "<group>"; };
+		92E8FD671D8E1F8D00004700 /* YXHotReadedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHotReadedRequest.h; sourceTree = "<group>"; };
+		92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHotReadedRequest.m; sourceTree = "<group>"; };
+		92E8FD6A1D8E1FE600004700 /* YXMsgReadedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMsgReadedRequest.h; sourceTree = "<group>"; };
+		92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMsgReadedRequest.m; sourceTree = "<group>"; };
 		92EDC7B01D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkAlreadyRecordCell.h; sourceTree = "<group>"; };
 		92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkAlreadyRecordCell.m; sourceTree = "<group>"; };
 		92EDC7B51D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoViewController.h; sourceTree = "<group>"; };
@@ -2383,6 +2389,8 @@
 				92CE51551D87D4C70071DE79 /* YXDynamicRequest.m */,
 				92CE514E1D87D46A0071DE79 /* YXDynamicDatumFetch.h */,
 				92CE514F1D87D46A0071DE79 /* YXDynamicDatumFetch.m */,
+				92E8FD6A1D8E1FE600004700 /* YXMsgReadedRequest.h */,
+				92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */,
 			);
 			path = "动态";
 			sourceTree = "<group>";
@@ -2394,6 +2402,8 @@
 				92CE51521D87D4AE0071DE79 /* YXHotspotRequest.m */,
 				92CE514B1D87D4180071DE79 /* YXHotspotDatumFetch.h */,
 				92CE514C1D87D4180071DE79 /* YXHotspotDatumFetch.m */,
+				92E8FD671D8E1F8D00004700 /* YXHotReadedRequest.h */,
+				92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */,
 			);
 			path = "热点";
 			sourceTree = "<group>";
@@ -2846,6 +2856,7 @@
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */,
+				92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */,
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
@@ -3117,6 +3128,7 @@
 				9223C8351D2F4BD2000F74DF /* YXSchoolSearchViewController.m in Sources */,
 				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
+				92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */,
 				CBF66E371D2E647100F4E408 /* YXUserTextFieldTableViewCell.m in Sources */,
 				CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */,
 				CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */,

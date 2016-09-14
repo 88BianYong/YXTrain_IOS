@@ -73,11 +73,15 @@ extern NSString *const kYXTrainWebSocketReceiveMessage;
 /**
  *  视频作业保存
  */
-extern NSString *const  kYXTrainVideoUserDefaultsKey;
+extern NSString *const kYXTrainVideoUserDefaultsKey;
 /**
  *  获取学科学段和地区的时间
  */
-extern NSString *const  kYXTrainGetInfoListTime;
+extern NSString *const kYXTrainGetInfoListTime;
+/**
+ *  消息动态任务到期提醒
+ */
+extern NSString *const kYXTrainCurrentProjectIndex;
 
 
 

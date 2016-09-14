@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "YXDynamicRequest.h"
 @interface YXDynamicCell : UITableViewCell
-
+@property (nonatomic, strong) YXDynamicRequestItem_Data *data;
 @end

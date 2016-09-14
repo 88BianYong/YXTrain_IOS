@@ -30,7 +30,7 @@
 @property (nonatomic ,copy) NSString<Optional> *ismyrec;// 0--普通， 1--自鉴
 @property (nonatomic ,copy) NSString<Optional> *homeworkid;
 @property (nonatomic ,copy) NSString<Optional> *recommend;//0--普通， 1--优
-@property (nonatomic ,copy) NSString<Optional> *type;//作业类型 1普通作业 2视频作业 3需要判断录制时间的视频作业
+@property (nonatomic ,copy) NSString<Optional> *type;//作业类型 1普通作业 2视频作业 3需要判断录制时间的视频作业 4自定义消息动态界面进入
 @property (nonatomic ,copy) NSString<Optional> *score;//分数
 @property (nonatomic ,copy) NSString<Optional> *endDate;//结束时间
 @property (nonatomic, copy) NSString<Optional> *isFinished;//0--未完成，1 已完成

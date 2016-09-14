@@ -24,7 +24,6 @@
     if (self) {
         [self setupUI];
         [self layoutInterface];
-        [self mockData];
     }
     return self;
 }
@@ -131,11 +130,12 @@
     self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
 }
 
-- (void)mockData{
-    self.titleLabel.text = @"和水电费和山东省地方大家收发接口的回复:";
-    self.contentLabel.attributedText = [self contentStringWithDesc:@"饭还是好地方是否六点十"];
+- (void)setData:(YXDynamicRequestItem_Data *)data{
+    self.titleLabel.text = data.projectName;
+    self.contentLabel.attributedText = [self contentStringWithDesc:data.title];
     self.contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.timeLabel.text = @"30分钟前";
+    self.timeLabel.text = data.timer;
+    self.redPointView.hidden = data.status.boolValue ? YES : NO;
     [self.titleLabel sizeToFit];
     CGRect frame = self.titleLabel.frame;
     if (frame.size.width > kScreenWidth - 30.0f){

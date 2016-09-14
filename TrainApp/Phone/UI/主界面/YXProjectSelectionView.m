@@ -24,9 +24,13 @@ static const CGFloat kImageWidth = 30;
 @end
 
 @implementation YXProjectSelectionView
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDynamicNotification:) name:kYXTrainCurrentProjectIndex object:nil];
         [self setupUI];
     }
     return self;
@@ -74,7 +78,8 @@ static const CGFloat kImageWidth = 30;
         return;
     }
 //    self.currentIndex = 0;
-    NSString *currentProject = projectArray[self.currentIndex];
+    YXTrainListRequestItem_body_train *train = _projectArray[self.currentIndex];
+    NSString *currentProject = train.name;
     [self setupTitleWithProject:currentProject];
 }
 
@@ -121,6 +126,31 @@ static const CGFloat kImageWidth = 30;
     self.rightImageView.image = [UIImage imageNamed:@"切换标题模块的按钮"];
 }
 
+- (void)currentProjectIndex:(NSInteger)index{
+    if (self.currentIndex == index) {
+        [self hideSelectionView];
+        return;
+    }
+    self.currentIndex = index;
+    YXTrainListRequestItem_body_train *train = self.projectArray[self.currentIndex];
+    [self setupTitleWithProject:train.name];
+    [self hideSelectionView];
+    BLOCK_EXEC(self.projectChangeBlock,self.currentIndex);
+    
+}
+- (void)receiveDynamicNotification:(NSNotification *)aNotification{
+    NSString *pid = aNotification.object;
+    __block NSInteger index = -1;
+    [self.projectArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.pid isEqualToString:pid]) {
+            index = idx;
+            [self currentProjectIndex:index];
+            *stop = YES;
+        }
+    }];
+}
+
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.projectArray.count;
@@ -128,7 +158,8 @@ static const CGFloat kImageWidth = 30;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXProjectSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXProjectSelectionCell"];
-    cell.name = self.projectArray[indexPath.row];
+    YXTrainListRequestItem_body_train *train = self.projectArray[indexPath.row];
+    cell.name = train.name;
     cell.isCurrent = (indexPath.row == self.currentIndex);
     return cell;
 }
@@ -136,14 +167,8 @@ static const CGFloat kImageWidth = 30;
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.currentIndex == indexPath.row) {
-        [self hideSelectionView];
-        return;
-    }
-    self.currentIndex = indexPath.row;
-    [self setupTitleWithProject:self.projectArray[self.currentIndex]];
-    [self hideSelectionView];
-    BLOCK_EXEC(self.projectChangeBlock,self.currentIndex);
+    [self currentProjectIndex:indexPath.row];
 }
+
 
 @end

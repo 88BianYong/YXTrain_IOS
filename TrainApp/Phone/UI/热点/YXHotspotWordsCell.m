@@ -49,14 +49,14 @@
 
     
 }
-- (void)setRotate:(YXRotateListRequestItem_Rotates *)rotate{
-    self.titleLabel.attributedText = [self contentStringWithDesc:rotate.name];
-    self.timeLabel.text= [NSString timeStringWithTimeStamp:rotate.begintime];
+- (void)setData:(YXHotspotRequestItem_Data *)data{
+    self.titleLabel.attributedText = [self contentStringWithDesc:data.title];
+    self.timeLabel.text= data.timer;
     self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     [self.titleLabel sizeToFit];
     CGRect frame = self.titleLabel.frame;
     if (frame.size.width > kScreenWidth - 30.0f){
-      [self layoutInterfaceSingle:NO];
+        [self layoutInterfaceSingle:NO];
     }else{
         [self layoutInterfaceSingle:YES];
     }

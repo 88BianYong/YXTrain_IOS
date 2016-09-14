@@ -10,7 +10,7 @@
 
 @interface YXTrainManager()
 @property (nonatomic, strong) YXTrainListRequest *request;
-@property (nonatomic, strong) YXTrainListRequestItem *trainlistItem;
+
 @end
 
 @implementation YXTrainManager

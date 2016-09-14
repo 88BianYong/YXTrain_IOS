@@ -18,3 +18,5 @@ NSString *const  kYXTrainVideoUserDefaultsKey = @"kVideoUserDefaultsKey";
 
 NSString *const  kYXTrainGetInfoListTime = @"get_Info_List_time";
 
+NSString *const kYXTrainCurrentProjectIndex = @"project transition jump";
+

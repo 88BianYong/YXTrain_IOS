@@ -7,7 +7,7 @@
 //
 
 #import "PagedListFetcherBase.h"
-
+#import "YXDynamicRequest.h"
 @interface YXDynamicDatumFetch : PagedListFetcherBase
 
 @end

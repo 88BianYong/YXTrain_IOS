@@ -9,10 +9,11 @@
 #import "YXHotspotViewController.h"
 #import "YXHotspotWordsCell.h"
 #import "YXHotspotPictureCell.h"
-#import "YXRotateListRequest.h"
 #import "YXWebViewController.h"
 #import "YXHotspotDatumFetch.h"
+#import "YXHotReadedRequest.h"
 @interface YXHotspotViewController ()
+@property (nonatomic, strong) YXHotReadedRequest *readedRequest;
 
 @end
 
@@ -29,14 +30,6 @@
     self.title = @"热点";
     [self setupUI];
     [self layoutInterface];
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"getRotateList_mock" ofType:@"json"];
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    if (data) {
-        NSError *error;
-        YXRotateListRequestItem *requestItem = [[YXRotateListRequestItem alloc] initWithData:data error:&error];
-        [self.dataArray addObjectsFromArray:requestItem.rotates];
-        [self.tableView reloadData];
-    }
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -73,14 +66,14 @@
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXRotateListRequestItem_Rotates *rotate = self.dataArray[indexPath.row];
-    if (indexPath.row % 2 == 0) {
+    YXHotspotRequestItem_Data *data = self.dataArray[indexPath.row];
+    if (isEmpty(data.picUrl)) {
         YXHotspotWordsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHotspotWordsCell" forIndexPath:indexPath];
-        cell.rotate = rotate;
+        cell.data = data;
         return cell;
     } else {
         YXHotspotPictureCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHotspotPictureCell" forIndexPath:indexPath];
-        cell.rotate = rotate;
+        cell.data = data;
         return cell;
     }
 }
@@ -99,10 +92,33 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    YXRotateListRequestItem_Rotates *model = self.dataArray[indexPath.row];
+    YXHotspotRequestItem_Data *data = self.dataArray[indexPath.row];
+    if (data.status.integerValue == 0) {
+        [self requestForHotspotReaded:data.hotspotId];
+    }
     YXWebViewController *webView = [[YXWebViewController alloc] init];
-    webView.urlString = model.typelink;
-    webView.titleString = model.name;
+    webView.urlString = data.linkUrl;
+    webView.titleString = data.title;
     [self.navigationController pushViewController:webView animated:YES];
+}
+
+#pragma mark - request
+- (void)requestForHotspotReaded:(NSString *)hotspotId{
+    if (self.readedRequest) {
+        [self.readedRequest stopRequest];
+    }
+    YXHotReadedRequest *request = [[YXHotReadedRequest alloc] init];
+    request.hotspotId = hotspotId;
+    WEAK_SELF
+    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (!error) {
+            HttpBaseRequestItem *item = retItem;
+            if (item.code.integerValue == 0) {
+                DDLogDebug(@"上报成功");
+            }
+        }
+    }];
+    self.readedRequest = request;
 }
 @end

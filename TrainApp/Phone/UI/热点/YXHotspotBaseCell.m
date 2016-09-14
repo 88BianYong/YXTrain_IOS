@@ -37,7 +37,6 @@
     [self.contentView addSubview:self.timeLabel];
     
     self.posterImageView = [[UIImageView alloc] init];
-    self.posterImageView.backgroundColor = [UIColor redColor];
     self.posterImageView.layer.cornerRadius = YXTrainCornerRadii;
     self.posterImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:self.posterImageView];

@@ -7,7 +7,7 @@
 //
 
 #import "PagedListFetcherBase.h"
-
+#import "YXHotspotRequest.h"
 @interface YXHotspotDatumFetch : PagedListFetcherBase
 
 @end

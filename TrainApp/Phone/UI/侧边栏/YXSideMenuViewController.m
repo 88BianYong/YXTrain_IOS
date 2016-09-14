@@ -265,7 +265,6 @@
         [self mutableArrayValueForKey:@"_redPointMutableArray"][3] = @"1";
     }
     [self.tableView reloadData];
-    
 }
 
 #pragma mark - UITableViewDataSource
@@ -391,7 +390,7 @@
                 break;
             }
         }
-        if (isShowRed) {
+        if (!isShowRed) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainWebSocketReceiveMessage object:@"0"];
                     }
     }

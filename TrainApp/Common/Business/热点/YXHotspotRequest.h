@@ -10,16 +10,23 @@
 @protocol YXHotspotRequestItem_Data
 @end
 @interface YXHotspotRequestItem_Data:JSONModel
+@property (nonatomic, copy) NSString<Optional> *hotspotId;
+@property (nonatomic, copy) NSString<Optional> *title;
+@property (nonatomic, copy) NSString<Optional> *projectId;
+@property (nonatomic, copy) NSString<Optional> *picUrl;
+@property (nonatomic, copy) NSString<Optional> *linkUrl;
+@property (nonatomic, copy) NSString<Optional> *status;//0-未读  1已读
+@property (nonatomic, copy) NSString<Optional> *publishTime;
+@property (nonatomic, copy) NSString<Optional> *timer;
 @end
 
-
-@interface YXHotspotRequestItem:HttpBaseRequest
-@property (nonatomic, strong) NSString<Optional> *total;
-@property (nonatomic ,strong)NSArray <YXHotspotRequestItem_Data, Optional>*data;
+@interface YXHotspotRequestItem:HttpBaseRequestItem
+@property (nonatomic, copy) NSString<Optional> *total;
+@property (nonatomic ,strong)NSMutableArray <YXHotspotRequestItem_Data, Optional>*data;
 
 @end
 
 @interface YXHotspotRequest : YXGetRequest
-@property (nonatomic, copy) NSString *pageindex;
-@property (nonatomic, copy) NSString *pagesize;
+@property (nonatomic, copy) NSString *pageNo;
+@property (nonatomic, copy) NSString *pageSize;
 @end

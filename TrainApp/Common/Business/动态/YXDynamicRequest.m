@@ -7,6 +7,13 @@
 //
 
 #import "YXDynamicRequest.h"
+@implementation YXDynamicRequestItem_Data
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"msgId"}];
+}
+@end
+
 @implementation YXDynamicRequestItem
 
 @end
@@ -16,7 +23,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@" "];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"notice/getMessages"];
     }
     return self;
 }

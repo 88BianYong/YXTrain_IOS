@@ -7,6 +7,14 @@
 //
 
 #import "YXHotspotRequest.h"
+@implementation YXHotspotRequestItem_Data
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"hotspotId"}];
+}
+
+@end
+
 @implementation YXHotspotRequestItem
 
 @end
@@ -16,7 +24,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@" "];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"notice/getHotspots"];
     }
     return self;
 }

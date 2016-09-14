@@ -11,6 +11,7 @@
 @interface YXWebSocketManger()<SRWebSocketDelegate>
 {
     SRWebSocket *_webSocket;
+    NSTimer *_timer;
 }
 @end
 
@@ -22,7 +23,8 @@
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(applicationDidBecomeActive:)
                                                      name:UIApplicationDidBecomeActiveNotification
-                                                   object:nil];
+                                                   object:nil];//返回前台检测网络
+        [self setNetObserver];//注册网络检测
     }
     return self;
 }
@@ -35,11 +37,22 @@
     });
     return manager;
 }
+- (void)setNetObserver {
+    Reachability *reach = [Reachability reachabilityForInternetConnection];
+    WEAK_SELF
+    reach.reachableBlock = ^(Reachability*reach)//有网重连
+    {
+        STRONG_SELF
+        if (self ->_webSocket.readyState != SR_OPEN) {//连接关闭打开连接
+            [self setupData];
+        }
+    };
+    [reach startNotifier];
+}
 
 - (void)open{
     _state = YXWebSocketMangerState_Normal;
     [self setupData];
-//    _timer = [NSTimer scheduledTimerWithTimeInterval:9.0f target:self selector:@selector(keepConnection) userInfo:nil repeats:YES];
 }
 - (void)close{
     [_webSocket close];
@@ -69,6 +82,17 @@
         [self setupData];
     }
 }
+- (void)startTimer{
+    _timer = [NSTimer scheduledTimerWithTimeInterval:9.0f target:self selector:@selector(setupData) userInfo:nil repeats:YES];
+
+}
+
+- (void)stopTimer{
+    [_timer invalidate];
+    _timer = nil;
+}
+
+
 #pragma mark - format data
 
 -(NSString *)dictionaryToJsonData:(NSDictionary *)object
@@ -106,19 +130,24 @@
 //连接成功
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket{
     DDLogDebug(@"链接成功");
-    NSDictionary *dic = @{@"type":@"1",@"token":[YXUserManager sharedManager].userModel.token?:@""};
+    NSDictionary *dic = @{@"type":@"1",@"token":[YXUserManager sharedManager].userModel.token?:@"",@"seqno":[YXConfigManager sharedInstance].deviceID?:@"1"};
     DDLogDebug(@"%@",dic);
    [_webSocket send:[self dictionaryToJsonData:dic]];
     if (_state != YXWebSocketMangerState_Normal) {//如有需要待发信息 重新发送
         [_webSocket send:[self dictionaryToJsonData:@{@"type":[NSString stringWithFormat:@"%lu",(unsigned long)_state]}]];
         _state = YXWebSocketMangerState_Normal;
     }
+    [self stopTimer];
 }
 
 //连接失败
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error{
     DDLogDebug(@"链接失败");
     _webSocket = nil;
+    Reachability *r = [Reachability reachabilityForInternetConnection];
+    if ([r isReachable]) {//链接失败有网10秒重试
+        [self startTimer];
+    }
 }
 
 //接收到新消息的处理
