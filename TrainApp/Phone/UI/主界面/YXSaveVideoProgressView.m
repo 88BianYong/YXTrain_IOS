@@ -18,6 +18,7 @@
     UIButton *_closeButton;
     
     UIView *_backgroundView;//
+    UIView *_obscuredView;
     
 }
 @end
@@ -33,6 +34,10 @@
 }
 
 - (void)setupUI{
+    
+    _obscuredView = [[UIView alloc] init];
+    _obscuredView.backgroundColor = [UIColor clearColor];
+    [self addSubview:_obscuredView];
     
     _backgroundView = [[UIView alloc] init];
     _backgroundView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
@@ -76,16 +81,19 @@
 }
 
 - (void)layoutInterface{
+    [_obscuredView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+    
     [_backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(20.0f);
-        make.left.equalTo(self.mas_left);
-        make.bottom.equalTo(self.mas_bottom);
-        make.right.equalTo(self.mas_right).offset(-20.0f);
+        make.size.mas_offset(CGSizeMake(150.0f, 150.0f));
+        make.centerX.equalTo(self.mas_centerX).offset(-10.0f);
+        make.centerY.equalTo(self.mas_centerY).offset(10.0f);
     }];
     
     [_radialView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(59.0f, 59.0f));
-        make.top.equalTo(self.mas_top).offset(23.0f + 20.0f);
+        make.top.equalTo(_backgroundView.mas_top).offset(23.0f);
         make.centerX.equalTo(_backgroundView.mas_centerX);
     }];
     
@@ -97,12 +105,12 @@
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_radialView.mas_bottom).offset(14.0f);
         make.centerX.equalTo(_backgroundView.mas_centerX);
-        make.bottom.equalTo(self.mas_bottom).offset(-23.0f);
+        make.bottom.equalTo(_backgroundView.mas_bottom).offset(-23.0f);
     }];
     
     [_closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top);
-        make.right.equalTo(self.mas_right);
+        make.top.equalTo(_backgroundView.mas_top).offset(-20.0f);
+        make.left.equalTo(_backgroundView.mas_right);
         make.size.mas_equalTo(CGSizeMake(20.0f, 20.0f));
     }];
 }
@@ -120,5 +128,17 @@
 
 - (void)closeButtonAction:(UIButton *)sender{
     BLOCK_EXEC(self.closeHandler);
+}
+- (void)isShowView:(UIView *)view{
+    if (view == nil){
+        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+        [window addSubview:self];
+    }
+    else{
+        [view addSubview:self];
+    }
+    [self mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
 }
 @end

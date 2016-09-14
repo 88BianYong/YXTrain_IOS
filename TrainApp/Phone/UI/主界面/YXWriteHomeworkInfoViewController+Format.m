@@ -7,8 +7,14 @@
 //
 
 #import "YXWriteHomeworkInfoViewController+Format.h"
+#import "YXWriteHomeworkInfoViewController+Request.h"
 #import "YXCategoryListRequest.h"
 @implementation YXWriteHomeworkInfoViewController (Format)
+
+- (void)schoolSectionWithData{
+    [self.listMutableDictionary setObject:self.listItem.data forKey:@(YXWriteHomeworkListStatus_SchoolSection)];
+}
+
 - (void)subjectWithSchoolSection:(YXCategoryListRequestItem_Data *)model {
     self.subjectCell.contentString = @"";
     [self.selectedMutableDictionary removeObjectForKey:@(YXWriteHomeworkListStatus_Subject)];

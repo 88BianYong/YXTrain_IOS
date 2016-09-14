@@ -9,14 +9,13 @@
 #import "YXWriteHomeworkInfoViewController.h"
 #import "YXWriteHomeworkInfoTitleView.h"
 #import "YXWriteHomeworkInfoMenuView.h"
-#import "YXCategoryListRequest.h"
 #import "YXSelectHomeworkInfoView.h"
-#import "YXWriteHomeworkInfoViewController+Format.h"
-#import "YXGetQiNiuTokenRequest.h"
-#import "YXQiNiuVideoUpload.h"
 #import "YXSaveVideoProgressView.h"
 #import "YXVideoRecordManager.h"
-#import "YXSaveHomeWorkRequest.h"
+#import "YXGetQiNiuTokenRequest.h"
+#import "YXQiNiuVideoUpload.h"
+#import "YXWriteHomeworkInfoViewController+Request.h"
+#import "YXWriteHomeworkInfoViewController+Format.h"
 @interface YXWriteHomeworkInfoViewController()
 <
   UITableViewDelegate,
@@ -24,24 +23,15 @@
   YXQiNiuUploadDelegate
 >
 {
-    UITableView *_tableView;
-    YXErrorView *_errorView;
-    UIView *_bgView;
     YXSelectHomeworkInfoView *_infoView;
     YXSaveVideoProgressView *_progressView;
     
     NSArray *_titleArray;
-    YXCategoryListRequestItem *_listItem;
-
     
-    YXCategoryListRequest *_listRequest;
-    YXChapterListRequest *_chapterRequest;
     YXQiNiuVideoUpload *_uploadRequest;
     YXGetQiNiuTokenRequest *_getQiNiuTokenRequest;
-    YXSaveHomeWorkRequest *_saveRequest;
-    YXWriteHomeworkRequest *_homeworkRequest;
-    YXUpdVideoHomeworkRequest *_uploadInfoRequest;
-    
+  
+
 }
 @end
 @implementation YXWriteHomeworkInfoViewController
@@ -89,7 +79,7 @@
         STRONG_SELF
         [self ->_uploadRequest cancelUpload];
         dispatch_async(dispatch_get_main_queue(), ^{
-            self ->_bgView.hidden = YES;
+            self ->_progressView.hidden = YES;
             [UIApplication sharedApplication].idleTimerDisabled = NO;
         });
     };
@@ -147,21 +137,16 @@
         STRONG_SELF
         [self requestForCategoryId];
     };
-    
-    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    _bgView = [[UIView alloc] initWithFrame:window.bounds];
-    _bgView.hidden = YES;
-    [window addSubview:_bgView];
     _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 150.0f , 150.0f)];
-    _progressView.center = _bgView.center;
     _progressView.titleString = @"视频上传中...";
+    _progressView.hidden = YES;
     _progressView.closeHandler = ^(){
         STRONG_SELF
-        self ->_bgView.hidden = YES;
+        self ->_progressView.hidden = YES;
         [self ->_uploadRequest  cancelUpload];
         [UIApplication sharedApplication].idleTimerDisabled = NO;
     };
-    [_bgView addSubview:_progressView];
+    [_progressView isShowView:nil];
 }
 
 - (void)layoutInterface{
@@ -252,7 +237,7 @@
     WEAK_SELF
     infoView.tapCloseView = ^(YXWriteHomeworkListStatus status){
         STRONG_SELF
-        YXWriteHomeworkInfoCell  *oldCell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:status inSection:0]];
+        YXWriteHomeworkInfoCell  *oldCell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:status inSection:0]];
         oldCell.isEnabled = YES;
     };
     infoView.didSeletedItem = ^(NSInteger index ,YXWriteHomeworkListStatus status){
@@ -265,191 +250,6 @@
                        withOriginY:originY + 100.0f];
     
     [self.view.window addSubview:infoView];
-}
-
-#pragma mark - request
-- (void)requestForCategoryId{
-    if (_listRequest) {
-        [_listRequest stopRequest];
-    }
-    YXCategoryListRequest *request  = [[YXCategoryListRequest alloc] init];
-    request.flag = @"0";
-    request.code = @"version_grade";
-    [self startLoading];
-    WEAK_SELF
-    [request startRequestWithRetClass:[YXCategoryListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        if (error) {
-            self ->_errorView.frame = self.view.bounds;
-            [self.view addSubview:self ->_errorView];
-        }else{
-            self ->_listItem = retItem;
-            [self schoolSectionWithData];
-            [self -> _tableView reloadData];
-            if (self.videoModel.homeworkid.integerValue != 0) {
-                [self requestForHomeworkInfo];
-            }
-            [self -> _errorView removeFromSuperview];
-        }
-    }];
-    _listRequest = request;
-}
-
-- (void)requestForChapterList{
-    if (_chapterRequest) {
-        [_chapterRequest stopRequest];
-    }
-    YXChapterListRequest *request = [[YXChapterListRequest alloc] init];
-    request.stage_id = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][0];
-    request.subject_id = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][0];
-    request.version_id = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][0];
-    request.grade_id = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][0];
-    [self startLoading];
-    WEAK_SELF
-    [request startRequestWithRetClass:[YXChapterListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        if (error) {
-            self.menuView.isError = YES;
-        }else{
-            self.menuView.isError = NO;
-            self.chapterList = retItem;
-            [self saveChapterList];
-            [self -> _tableView reloadData];
-        }
-    }];
-    _chapterRequest = request;
-}
-
-- (void)requestSaveHomework:(NSString *)hashStr{
-    if(_saveRequest){
-        [_saveRequest stopRequest];
-    }
-    NSError *error = nil;
-    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.videoModel.fileName] error:&error];
-    NSString * fileSizeString = [fileAttributes objectForKey:@"NSFileSize"];
-    unsigned long long fileSize = [fileSizeString longLongValue];
-    YXSaveHomeWorkRequest *request = [[YXSaveHomeWorkRequest alloc] init];
-    request.rid = [FileHash md5HashOfFileAtPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.videoModel.fileName]];
-    request.ext = @"mp4";
-    request.action = @"qiniuc";
-    request.filename = self.videoModel.fileName;
-    request.filesize = [NSString stringWithFormat:@"%llu",fileSize];
-    YXSaveHomeWorkRequestModel *model = [[YXSaveHomeWorkRequestModel alloc] init];
-    model.categoryIds = [self getCategoryIds];
-    model.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
-    model.chapter = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Menu)][0];
-    model.des = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
-    model.projectid = self.videoModel.pid;
-    model.requireid = self.videoModel.requireId;
-    model.typeId = @"1004";
-    model.hwid = self.videoModel.homeworkid;
-    model.shareType = @"0";
-    model.status = @"-1";
-    request.reserve = model.toJSONString;
-    [self startLoading];
-    WEAK_SELF
-    [request startRequestWithRetClass:[YXSaveHomeWorkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        if (!error) {
-            YXSaveHomeWorkRequestItem *item = retItem;
-            self.videoModel.homeworkid = item.resid;
-            self.videoModel.uploadPercent = 0.0;
-            self.videoModel.isUploadSuccess = NO;
-            NSString *filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:self.videoModel.fileName];
-            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-                self.videoModel.lessonStatus = YXVideoLessonStatus_UploadComplete;
-            }
-            else{
-               self.videoModel.lessonStatus = YXVideoLessonStatus_Finish;
-            }
-            YXHomeworkInfoRequestItem_Body_Detail *detail = [[YXHomeworkInfoRequestItem_Body_Detail alloc] init];
-            detail.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
-            detail.segmentName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][1];
-            detail.gradeName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][1];
-            detail.studyName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][1];
-            detail.chapterName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Menu)][1];
-            detail.versionName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][1];
-            detail.keyword =  self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
-            self.videoModel.detail = detail;
-            [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
-            [self.navigationController popViewControllerAnimated:YES];
-        }else{
-            [self showToast:@"视频作业上传失败"];
-        }
-    }];
-    _saveRequest = request;
-}
-
-- (void)requestForHomeworkInfo{
-    if (_homeworkRequest) {
-        [_homeworkRequest stopRequest];
-    }
-    WEAK_SELF
-    YXWriteHomeworkRequest *request = [[YXWriteHomeworkRequest alloc] init];
-    request.projectid = self.videoModel.pid;
-    request.hwid = self.videoModel.homeworkid;
-    [self startLoading];
-    [request startRequestWithRetClass:[YXWriteHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        if (error) {
-            [self showToast:@"作业信息获取失败"];
-        }else{
-            YXWriteHomeworkRequestItem *item = retItem;
-            self.homeworkItem = item;
-            [self saveWorkhomeInfo:item.body];
-            [self -> _tableView reloadData];
-            if (!isEmpty(self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][1])) {
-              [self requestForChapterList];
-            };
-        }
-    }];
-    _homeworkRequest = request;
-}
-
-- (void)requestForUpdVideoHomework{
-    if (_uploadInfoRequest) {
-        [_uploadInfoRequest stopRequest];
-    }
-    [self startLoading];
-    WEAK_SELF
-    YXUpdVideoHomeworkRequest *request = [[YXUpdVideoHomeworkRequest alloc] init];
-    request.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
-    request.pid = self.videoModel.pid;
-    request.requireid = self.videoModel.requireId;
-    request.hwid = self.videoModel.homeworkid;
-    request.content = [self formatUploadVideoHomeworkContent];
-    [request startRequestWithRetClass:[YXUpdVideoHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        if (!error) {
-            YXUpdVideoHomeworkRequestItem *item = retItem;
-            self.videoModel.homeworkid = item.data.hwid;
-            self.videoModel.uploadPercent = 0.0;
-            self.videoModel.isUploadSuccess = NO;
-            YXHomeworkInfoRequestItem_Body_Detail *detail = [[YXHomeworkInfoRequestItem_Body_Detail alloc] init];
-            detail.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
-            detail.segmentName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][1];
-            detail.gradeName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][1];
-            detail.studyName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][1];
-            detail.chapterName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Menu)][1];
-            detail.versionName = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][1];
-            detail.keyword =  self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
-            self.videoModel.detail = detail;
-            [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
-            [self showToast:@"保存成功"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-               [self.navigationController popViewControllerAnimated:YES];
-            });
-            
-        }else{
-            [self showToast:@"网络异常,请稍后重试"];
-        }
-    }];
-    _uploadInfoRequest = request;
 }
 
 #pragma mark - upload video
@@ -470,7 +270,7 @@
             DDLogDebug(@"%@",item.uploadToken);
             self ->_uploadRequest = [[YXQiNiuVideoUpload alloc] initWithFileName:self.videoModel.fileName qiNiuToken:item.uploadToken];
             self ->_uploadRequest.delegate = self;
-            self ->_bgView.hidden = NO;
+            self ->_progressView.hidden = NO;
             [UIApplication sharedApplication].idleTimerDisabled = YES;
             [self ->_uploadRequest  startUpload];
         }
@@ -478,25 +278,24 @@
     _getQiNiuTokenRequest = request;
     
 }
+
+
+
 #pragma mark -qiniu delegate
 - (void)uploadProgress:(float)progress{
     dispatch_async(dispatch_get_main_queue(), ^{
-        _progressView.progress = progress;
+        self ->_progressView.progress = progress;
     });    
 }
 - (void)uploadCompleteWithHash:(NSString *)hashStr {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _bgView.hidden = YES;
+        self ->_progressView.hidden = YES;
         [UIApplication sharedApplication].idleTimerDisabled = NO;
         self.videoModel.isUploadSuccess = YES;
         self.videoModel.uploadPercent = 1;
         [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
         [self requestSaveHomework:hashStr];
     });
-}
-#pragma mark - format data
-- (void)schoolSectionWithData{
-    [_listMutableDictionary setObject:_listItem.data forKey:@(YXWriteHomeworkListStatus_SchoolSection)];
 }
 
 #pragma mark - button Action

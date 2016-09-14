@@ -9,6 +9,7 @@
 #import "YXWriteHomeworkInfoViewController.h"
 
 @interface YXWriteHomeworkInfoViewController (Format)
+- (void)schoolSectionWithData;
 - (void)showWorkhomeInfo:(YXWriteHomeworkListStatus)status withChangeObj:(id)changeObj;
 - (BOOL)saveInfoHomeWorkShowToast:(BOOL)isShow;
 - (NSString *)getCategoryIds;

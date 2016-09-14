@@ -149,9 +149,8 @@
     [self.view addSubview:_bottomView];
     
     _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 150.0f , 150.0f)];
-    _progressView.hidden = YES;
     _progressView.titleString = @"视频保存中...";
-    [self.view addSubview:_progressView];
+    [_progressView isShowView:self.view];
     [self setupHandler];
     [self.view addSubview:self.autorotateView];
     NSError *error;
@@ -266,7 +265,6 @@
     _topView.hidden = NO;
     _bottomView.frame = CGRectMake(0, size.height -  110.0f, size.width, 110.0f);
     _bottomView.hidden = NO;
-    _progressView.center = CGPointMake(size.width/2.0f, size.height/2.0f);
     _autorotateView.center = CGPointMake(size.width/2.0f, size.height/2.0f);
     self.recorder.videoConfiguration.size = size;
     self.recorder.previewView = _scanPreviewView;

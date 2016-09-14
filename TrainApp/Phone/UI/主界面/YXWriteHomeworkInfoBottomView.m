@@ -70,7 +70,7 @@
     _saveButton.layer.borderColor = [UIColor colorWithHexString:@"dfe2e6"].CGColor;
     _saveButton.clipsToBounds = YES;
     _saveButton.layer.masksToBounds = YES;
-    _saveButton.selected = NO;
+    _saveButton.selected = YES;
     _saveButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
     [self addSubview:_saveButton];
 }

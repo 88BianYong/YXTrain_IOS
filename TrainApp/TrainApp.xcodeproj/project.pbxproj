@@ -267,6 +267,7 @@
 		92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7CD1D62C33A005B91DD /* YXChapterListRequest.m */; };
 		92EDC7D11D632357005B91DD /* YXHomeworkUploadCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D01D632357005B91DD /* YXHomeworkUploadCompleteView.m */; };
 		92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */; };
+		92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 		CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */; };
 		CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */; };
@@ -889,6 +890,8 @@
 		92EDC7D01D632357005B91DD /* YXHomeworkUploadCompleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkUploadCompleteView.m; sourceTree = "<group>"; };
 		92EDC7D21D6323AD005B91DD /* YXHomeworkPlayVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkPlayVideoCell.h; sourceTree = "<group>"; };
 		92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkPlayVideoCell.m; sourceTree = "<group>"; };
+		92F370B41D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXWriteHomeworkInfoViewController+Request.h"; sourceTree = "<group>"; };
+		92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXWriteHomeworkInfoViewController+Request.m"; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CB0904CE1D1AA3CC00026C9D /* PersistentUrlDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentUrlDownloader.h; sourceTree = "<group>"; };
 		CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentUrlDownloader.m; sourceTree = "<group>"; };
@@ -2073,6 +2076,8 @@
 				92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */,
 				92EDC7C91D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.h */,
 				92EDC7CA1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m */,
+				92F370B41D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.h */,
+				92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */,
 			);
 			name = "作业";
 			sourceTree = "<group>";
@@ -2915,6 +2920,7 @@
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
 				CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
+				92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */,
 				9223C8201D2DF93A000F74DF /* YXFeedBackViewController.m in Sources */,
 				F7E8F8DE1D65CE3700CDAAF4 /* YXPopUpContainerView.m in Sources */,
 				923237461D7EA9FE00FDACFE /* YXCMSTimerView.m in Sources */,
