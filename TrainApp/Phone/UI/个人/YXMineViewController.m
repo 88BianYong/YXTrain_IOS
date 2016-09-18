@@ -287,10 +287,11 @@
     }
     NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
      filePath = [filePath stringByAppendingPathComponent:@"provinceData.json"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        filePath = [[NSBundle mainBundle] pathForResource:@"provinceData" ofType:@"json"];
-    }
     NSData *data = [NSData dataWithContentsOfFile:filePath];
+    if (!data) {
+       filePath = [[NSBundle mainBundle] pathForResource:@"provinceData" ofType:@"json"];
+        data = [NSData dataWithContentsOfFile:filePath];
+    }
     if (data) {
         NSError *error;
         self.provincesRequestItem = [[YXProvincesRequestItem alloc] initWithData:data error:&error];
@@ -368,7 +369,7 @@
                     NSInteger row = [self.pickerViewController.pickerView selectedRowInComponent:0];
                     self.selectedProvince = self.provincesRequestItem.data[row];
                     row = [self.pickerViewController.pickerView selectedRowInComponent:1];
-                    if (self.self.selectedCitys.count > 0){
+                    if (self.selectedCitys.count > 0){
                         self.selectedCity = self.selectedCitys[row];
                         row = [self.pickerViewController.pickerView selectedRowInComponent:2];
                         if (self.selectedCounties.count > 0) {
@@ -479,10 +480,11 @@
     }
     NSString *filePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     filePath = [filePath stringByAppendingPathComponent:@"stageAndSubject.json"];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-        filePath = [[NSBundle mainBundle] pathForResource:@"stageAndSubject" ofType:@"json"];
-    }
     NSData *data = [NSData dataWithContentsOfFile:filePath];
+    if (!data) {
+        filePath = [[NSBundle mainBundle] pathForResource:@"stageAndSubject" ofType:@"json"];
+        data = [NSData dataWithContentsOfFile:filePath];
+    }
     if (data) {
         NSError *error;
         self.stageAndSubjectItem = [[YXStageAndSubjectItem alloc] initWithData:data error:&error];
@@ -646,8 +648,8 @@
                     break;
                 case 1:
                 {
-                    if (self.selectedCitys.count > 0){
-                        self.selectedCounties = ((YXProvincesRequestItem_subArea *)self.selectedCitys[0]).subArea;
+                    if (self.selectedCitys.count > row){
+                        self.selectedCounties = ((YXProvincesRequestItem_subArea *)self.selectedCitys[row]).subArea;
                     }else{
                         self.selectedCounties = nil;
                     }
@@ -669,7 +671,7 @@
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
     UILabel* pickerLabel = (UILabel*)view;
     if (!pickerLabel){
-        pickerLabel = [[UILabel alloc] init];
+        pickerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth/3.0f - 15.0f, 30)];
         pickerLabel.textAlignment = NSTextAlignmentCenter;
         [pickerLabel setBackgroundColor:[UIColor whiteColor]];
         [pickerLabel setFont:[UIFont systemFontOfSize:15]];

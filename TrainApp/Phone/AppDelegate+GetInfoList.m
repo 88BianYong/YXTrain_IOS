@@ -11,7 +11,7 @@
 @implementation AppDelegate (GetInfoList)
 - (void)getInfoListUpdateDate{
     NSDate *agoDate = [[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainGetInfoListTime];
-    if ([agoDate timeIntervalSinceNow] > 3 * 24 * 60 * 60) {
+    if ([agoDate timeIntervalSinceNow] > 3 * 24 * 60 * 60 || agoDate == nil) {
         [self requestForCheckRequest];
     }
 }

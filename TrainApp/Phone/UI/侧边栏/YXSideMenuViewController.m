@@ -323,6 +323,7 @@
         default:
             break;
     }
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDelegate
