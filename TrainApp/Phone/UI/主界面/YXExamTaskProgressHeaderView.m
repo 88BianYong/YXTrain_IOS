@@ -29,7 +29,7 @@ static const CGFloat kTotalDuration = 1.f;
 }
 
 - (void)setupUI{
-    self.contentView.backgroundColor = [UIColor colorWithHexString:@"f0f6fe"];
+    self.contentView.backgroundColor = [UIColor colorWithHexString:@"f6f6f6"];
     UIButton *bgButton = [[UIButton alloc]init];
     [bgButton addTarget:self action:@selector(bgButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:bgButton];

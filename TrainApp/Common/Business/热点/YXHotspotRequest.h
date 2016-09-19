@@ -22,7 +22,7 @@
 
 @interface YXHotspotRequestItem:HttpBaseRequestItem
 @property (nonatomic, copy) NSString<Optional> *total;
-@property (nonatomic ,strong)NSMutableArray <YXHotspotRequestItem_Data, Optional>*data;
+@property (nonatomic ,strong)NSMutableArray <YXHotspotRequestItem_Data, Optional>*body;
 
 @end
 

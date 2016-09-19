@@ -23,7 +23,7 @@
         }
         else{
             YXDynamicRequestItem *item = (YXDynamicRequestItem *)retItem;
-            aCompleteBlock([item.total intValue],item.data,nil);
+            aCompleteBlock([item.total intValue],item.body,nil);
         }
     }];
     self.dynamicRequest = request;

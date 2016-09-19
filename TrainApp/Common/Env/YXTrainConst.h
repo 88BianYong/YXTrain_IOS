@@ -19,6 +19,7 @@
 #define PATH_OF_DOCUMENT         [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 #define PATH_OF_VIDEO   [PATH_OF_DOCUMENT stringByAppendingPathComponent:@"VideoRecord"]
 #define PATH_OF_VIDEO_CACHE [PATH_OF_DOCUMENT stringByAppendingPathComponent:@"VideoCache"]
+#define PATH_OF_VIDEO_RECORD [PATH_OF_DOCUMENT stringByAppendingPathComponent:@"VideoRecordCache"]
 
 
 typedef NS_ENUM (NSInteger, YXVideoRecordStatus) {

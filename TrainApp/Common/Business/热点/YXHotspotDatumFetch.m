@@ -22,7 +22,7 @@
         }
         else{
             YXHotspotRequestItem *item = (YXHotspotRequestItem *)retItem;
-            aCompleteBlock([item.total intValue],item.data,nil);
+            aCompleteBlock([item.total intValue],item.body,nil);
         }
     }];
     self.hotspotRequest = request;

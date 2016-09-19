@@ -70,7 +70,10 @@
             isShow = YES;
             *stop = YES;
         }
-    }];    
+    }];
+    if (array.count == 0) {
+       isShow = YES;
+    }
     if (image && isShow) {
         self.imageView.image = image;
         [self.timerView startWithSeconds:self.model.seconds.integerValue];

@@ -150,6 +150,7 @@
     
     _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 150.0f , 150.0f)];
     _progressView.titleString = @"视频保存中...";
+    _progressView.hidden = YES;
     [_progressView isShowView:self.view];
     [self setupHandler];
     [self.view addSubview:self.autorotateView];
@@ -335,11 +336,11 @@
     self.exportSession.videoConfiguration.maxFrameRate = 35;
     self.exportSession.outputFileType = AVFileTypeMPEG4;
     self.exportSession.delegate = self;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:PATH_OF_VIDEO]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:PATH_OF_VIDEO withIntermediateDirectories:YES attributes:nil error:nil];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:PATH_OF_VIDEO_RECORD]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:PATH_OF_VIDEO_RECORD withIntermediateDirectories:YES attributes:nil error:nil];
     }
     NSString *videoPathName = [NSString stringWithFormat:@"%@.mp4",[YXVideoRecordManager getFileNameWithJobId:self.videoModel.requireId]];
-    self.exportSession.outputUrl = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:videoPathName]];
+    self.exportSession.outputUrl = [NSURL fileURLWithPath:[PATH_OF_VIDEO_RECORD stringByAppendingPathComponent:videoPathName]];
     __block CFTimeInterval time = CACurrentMediaTime();
     [self.exportSession exportAsynchronouslyWithCompletionHandler:^{
         STRONG_SELF
@@ -369,6 +370,10 @@
 //保存成功视频之后
 - (void)saveSuccessWithVideoPath:(NSString *)videoPath
 {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:PATH_OF_VIDEO]) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:PATH_OF_VIDEO withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    [[NSFileManager defaultManager] moveItemAtPath:videoPath toPath:[PATH_OF_VIDEO stringByAppendingPathComponent:[videoPath lastPathComponent]] error:nil];
     self ->_progressView.progress = 1.0f;
     self ->_progressView.titleString = @"视频保存成功";
     [YXVideoRecordManager cleartmpFile];

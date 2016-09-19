@@ -25,7 +25,7 @@
 
 @interface YXDynamicRequestItem: HttpBaseRequestItem
 @property (nonatomic, strong) NSString<Optional> *total;
-@property (nonatomic ,strong)NSMutableArray <YXDynamicRequestItem_Data, Optional>*data;
+@property (nonatomic ,strong)NSMutableArray <YXDynamicRequestItem_Data, Optional>*body;
 @end
 
 @interface YXDynamicRequest : YXGetRequest

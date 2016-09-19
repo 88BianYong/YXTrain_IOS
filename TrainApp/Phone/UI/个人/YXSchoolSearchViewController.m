@@ -208,14 +208,10 @@
             }
             else{
                 YXSchoolSearchItem *item = retItem;
-                //            NSString *pathString = [[NSBundle mainBundle] pathForResource:@"search" ofType:@"txt"];
-                //            NSString *string = [NSString stringWithContentsOfFile:pathString encoding:NSUTF8StringEncoding error:nil];
-                //            YXSchoolSearchItem *item = [[YXSchoolSearchItem alloc] initWithString:string error:nil];
                 if (item.schools.count > 0) {
                     self ->_item = item;
                     [self ->_tableView reloadData];
                     [self ->_emptyView removeFromSuperview];
-                    
                 }
                 else{
                     [self.view addSubview:self ->_emptyView];
@@ -258,10 +254,10 @@
     }
     NSDictionary *param = @{@"schoolName": school.name,
                             @"schoolId": school.sid?:@""};
-    @weakify(self);
+    WEAK_SELF
     [self startLoading];
     [[YXUpdateProfileHelper instance] requestWithType:YXUpdateProfileTypeSchool param:param completion:^(NSError *error) {
-        @strongify(self);
+        STRONG_SELF
         [self stopLoading];
         if (error) {
             [self showToast:error.localizedDescription];
