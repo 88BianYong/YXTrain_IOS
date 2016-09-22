@@ -7,12 +7,14 @@
 //
 
 #import "YXExamPhaseHeaderView.h"
-
+#import "YXGradientView.h"
 @interface YXExamPhaseHeaderView()
 @property (nonatomic, strong) UIButton *bgButton;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *statusImageView;
 @property (nonatomic, strong) UIImageView *enterImageView;
+@property (nonatomic, strong) YXGradientView *gradientView;
+
 @end
 
 @implementation YXExamPhaseHeaderView
@@ -25,6 +27,7 @@
 }
 
 - (void)setupUI{
+    self.contentView.clipsToBounds = YES;
     self.contentView.backgroundColor = [UIColor whiteColor];
     self.bgButton = [[UIButton alloc]init];
     [self.bgButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
@@ -39,7 +42,7 @@
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15).priorityHigh();
-        make.centerY.mas_equalTo(0);
+        make.top.mas_equalTo(15.0f);
         make.right.mas_equalTo(-40).priorityHigh();
     }];
     self.enterImageView = [[UIImageView alloc]init];
@@ -47,7 +50,7 @@
     [self.contentView addSubview:self.enterImageView];
     [self.enterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15);
-        make.centerY.mas_equalTo(0);
+        make.top.mas_equalTo(15.0f);
         make.size.mas_equalTo(CGSizeMake(15, 15));
     }];
     self.statusImageView = [[UIImageView alloc]init];
@@ -59,6 +62,14 @@
 //        make.right.mas_equalTo(self.enterImageView.mas_left).mas_offset(-10);
 //        make.width.mas_equalTo(60);
 //    }];
+    UIColor *color = [UIColor colorWithHexString:@"f1f1f1"];
+    self.gradientView = [[YXGradientView alloc]initWithStartColor:color endColor:[color colorWithAlphaComponent:0] orientation:YXGradientTopToBottom];
+    [self.contentView addSubview:self.gradientView];
+    [self.gradientView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView.mas_top).offset(45.0f);
+        make.left.right.equalTo(self.contentView);
+        make.height.mas_offset(25.0f);
+    }];
 }
 
 - (void)setTitle:(NSString *)title{
@@ -80,19 +91,19 @@
     if (isFinished) {
         [self.contentView addSubview:self.statusImageView];
         [self.statusImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.mas_equalTo(0);
+            make.top.mas_equalTo(15);
             make.size.mas_equalTo(CGSizeMake(46, 38));
             make.right.mas_equalTo(self.enterImageView.mas_left).mas_offset(-10);
         }];
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.statusImageView.mas_left).mas_offset(-10).priorityHigh();
             make.left.mas_equalTo(15);
-            make.centerY.mas_equalTo(0);
+            make.top.mas_equalTo(15);
         }];
     }else{
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(15).priorityHigh();
-            make.centerY.mas_equalTo(0);
+            make.top.mas_equalTo(15);
             make.right.mas_equalTo(self.enterImageView.mas_left).mas_offset(-10).priorityHigh();
         }];
         [self.statusImageView removeFromSuperview];

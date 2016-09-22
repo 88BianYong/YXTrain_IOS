@@ -216,7 +216,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
             STRONG_SELF
             [self.foldStatusDic setValue:@(!status.boolValue) forKey:vo.voID];
             [tableView beginUpdates];
-            [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
             [tableView endUpdates];
         };
         return header;
@@ -287,7 +287,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         if (indexPath.row == vo.toolExamineVoList.count+1){
             return 44;
         }else if (indexPath.row == 0){
-            return 25;
+            return 0.1f;
         }
         return 76;
     }
@@ -296,6 +296,16 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return 10;
+    }
+    if (section <= self.examineItem.body.leadingVoList.count){
+        YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[section-1];
+        NSNumber *status = [self.foldStatusDic valueForKey:vo.voID];
+        if (status.boolValue) {
+            return 45;
+        }
+        else{
+           return 45 + 25.0f;
+        }
     }
     return 45;
 }
