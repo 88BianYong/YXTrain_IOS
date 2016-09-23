@@ -14,6 +14,9 @@
 
 @implementation YXExamEndDateCell
 
+- (void)dealloc{
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
+}
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

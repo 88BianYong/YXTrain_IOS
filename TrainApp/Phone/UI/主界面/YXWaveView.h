@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YXWaveView : UIView
-
-- (void)startAnimation;
+//- (void)startAnimation;
 @end

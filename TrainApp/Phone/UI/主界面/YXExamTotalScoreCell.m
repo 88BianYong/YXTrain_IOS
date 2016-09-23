@@ -21,6 +21,9 @@
 @end
 
 @implementation YXExamTotalScoreCell
+- (void)dealloc{
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -53,6 +56,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.waveView = [[YXWaveView alloc]init];
     self.waveView.userInteractionEnabled = NO;
+    self.waveView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.waveView];
     [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
@@ -167,7 +171,7 @@
 }
 
 - (void)startAnimation{
-    [self.waveView startAnimation];
+    //[self.waveView startAnimation];
 }
 
 @end
