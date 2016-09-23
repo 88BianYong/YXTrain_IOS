@@ -65,6 +65,10 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
                                                                      nil]];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

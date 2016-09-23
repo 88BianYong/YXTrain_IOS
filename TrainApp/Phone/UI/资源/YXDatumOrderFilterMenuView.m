@@ -97,6 +97,7 @@
             } else {
                 orderViewArray = ((YXFilterType *)self.filterModel.filterArray[index -1]).subtypeArray;
             }
+            orderView.isNavBarHidden = self.isNavBarHidden;
             [orderView setViewWithDataArray:orderViewArray index:index buttonCount:self.filterModel.filterArray.count + 1];
             orderView.didSeletedDatumOrderItem = ^(NSInteger selectedIndex){
                 NSString *condition = [self currentCondition];

@@ -69,7 +69,7 @@ static  NSString *const trackPageName = @"全部资源页面";
         [self startLoading];
         [self firstPageFetch:YES];
     };
-    self.view.backgroundColor = [UIColor redColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.menuView = [[YXDatumOrderFilterMenuView alloc]initWithFrame:CGRectZero];
     self.menuView.refreshFilterBlock = ^(NSString *condition) {
         @strongify(self);
@@ -81,8 +81,9 @@ static  NSString *const trackPageName = @"全部资源页面";
     [self.menuView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(0);
         make.height.mas_equalTo(45);
+        make.top.equalTo(self.view.mas_top).offset(0.0f);
+        
     }];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.estimatedRowHeight = 800;
@@ -92,8 +93,9 @@ static  NSString *const trackPageName = @"全部资源页面";
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
-        make.top.mas_equalTo(self.menuView.mas_bottom);
         make.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(self.menuView.mas_bottom);
+        
     }];
     
     UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
@@ -168,14 +170,39 @@ static  NSString *const trackPageName = @"全部资源页面";
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark scrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentSize.height >= kScreenHeight -  45 + 10.0f){
+        CGPoint point = scrollView.contentOffset;
+        if (point.y >= 5) {
+            self.menuView.isNavBarHidden = YES;
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            [self.menuView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(0);
+                make.right.mas_equalTo(0);
+                make.height.mas_equalTo(45);
+                make.top.equalTo(self.view.mas_top).offset(20.0f);
+            }];
+        }else{
+            self.menuView.isNavBarHidden = NO;
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            [self.menuView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.mas_equalTo(0);
+                make.right.mas_equalTo(0);
+                make.height.mas_equalTo(45);
+                make.top.equalTo(self.view.mas_top).offset(0.0f);
+            }];
+        }
+    }else{
+        self.menuView.isNavBarHidden = NO;
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        [self.menuView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.height.mas_equalTo(45);
+            make.top.equalTo(self.view.mas_top).offset(20.0f);
+        }];
+    }
 }
-*/
 
 @end

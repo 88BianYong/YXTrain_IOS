@@ -92,7 +92,6 @@ extern NSString *const kYXTrainListDynamic;
 
 
 
-
 /**
  *  左划宽度 按屏幕750
  */

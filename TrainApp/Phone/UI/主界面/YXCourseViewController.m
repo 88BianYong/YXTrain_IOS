@@ -20,6 +20,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 @property (nonatomic, assign) BOOL isWaitingForFilter;
 
 @property (nonatomic, strong) YXErrorView *filterErrorView;
+@property (nonatomic, assign) BOOL isNavBarHidden;
 @end
 
 @implementation YXCourseViewController
@@ -77,10 +78,18 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+    if (self.isNavBarHidden) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+        
+    }else{
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -302,6 +311,39 @@ static  NSString *const trackPageName = @"课程列表页面";
     fetcher.type = typeItem.filterID;
     fetcher.stageid = stageItem.filterID;
     [self firstPageFetch:YES];
+}
+#pragma mark scrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentSize.height >= kScreenHeight -  44 + 10.0f){
+        CGPoint point = scrollView.contentOffset;
+        if (point.y >= 5 && !self.isNavBarHidden) {
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
+            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.top.mas_equalTo(64);
+            }];
+            DDLogDebug(@"隐藏");
+            self.isNavBarHidden = YES;
+        }else if (point.y < 5 && self.isNavBarHidden) {
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
+            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.top.mas_equalTo(44);
+            }];
+            DDLogDebug(@"显示");
+            self.isNavBarHidden = NO;
+        }
+    }else{
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+        self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(44);
+        }];
+        self.isNavBarHidden = NO;
+    }
 }
 
 @end

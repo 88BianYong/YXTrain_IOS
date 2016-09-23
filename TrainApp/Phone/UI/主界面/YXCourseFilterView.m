@@ -65,6 +65,7 @@ static const NSUInteger kTagBase = 876;
     self.tableBottomView = [[UIView alloc]init];
     self.tableBottomView.clipsToBounds = YES;
     self.tableBottomView.backgroundColor = [UIColor clearColor];
+    
 }
 
 - (void)addFilters:(NSArray *)filters forKey:(NSString *)key{

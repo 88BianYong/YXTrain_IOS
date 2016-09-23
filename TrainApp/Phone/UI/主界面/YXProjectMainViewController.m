@@ -40,6 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:kYXTrainWebSocketReceiveMessage object:nil];
+    
     [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
     [self setupUI];
 
@@ -197,6 +198,7 @@
         bulletinVC.flag = YXFlag_Bulletin;
         containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
         _selectedViewController = examVC;
+        containerView.tag = 10001;
         [self.view addSubview:containerView];
         [self addChildViewController:examVC];
         [self addChildViewController:taskVC];
@@ -223,5 +225,4 @@
 - (void)hideProjectSelectionView{
     [self.projectSelectionView removeFromSuperview];
 }
-
 @end

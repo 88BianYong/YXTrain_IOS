@@ -37,7 +37,11 @@
     CGFloat tableHeight = MIN(array.count*44, 242);
     [self setTriangleFrame];
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(109);
+        if (self.isNavBarHidden) {
+            make.top.mas_equalTo(109 - 45.0f);
+        }else{
+            make.top.mas_equalTo(109);
+        }
         make.left.mas_equalTo(6);
         make.right.mas_equalTo(-6);
         make.height.mas_equalTo(tableHeight);
@@ -124,7 +128,11 @@
 }
 
 - (void)setTriangleFrame {
-    self.topTriangleImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width/self.btnCount) * (0.5 + self.index) - 8, 101, 18, 8);
+    if (self.isNavBarHidden) {
+        self.topTriangleImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width/self.btnCount) * (0.5 + self.index) - 8, 101 - 44.0f, 18, 8);
+    }else{
+        self.topTriangleImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width/self.btnCount) * (0.5 + self.index) - 8, 101, 18, 8);
+    }
 }
 
 @end

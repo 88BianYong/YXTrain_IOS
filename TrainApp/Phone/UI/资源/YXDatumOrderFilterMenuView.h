@@ -11,5 +11,6 @@
 @interface YXDatumOrderFilterMenuView : UIView
 
 @property (nonatomic, copy) void(^refreshFilterBlock)(NSString *condition);
+@property (nonatomic, assign)BOOL isNavBarHidden;
 
 @end

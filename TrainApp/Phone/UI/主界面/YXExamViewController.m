@@ -370,6 +370,4 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     }
     [YXDataStatisticsManger trackPage:trackPageName withStatus:status];
 }
-
-
 @end
