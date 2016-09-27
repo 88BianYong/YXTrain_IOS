@@ -144,11 +144,11 @@ UITableViewDataSource
     if (self.itemBody.lessonStatus == YXVideoLessonStatus_Finish || self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete) {
         return 55.0f;
     }else{
-        return 0.1f;
+        return 0.01f;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.1f;
+    return 0.01f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -213,7 +213,7 @@ UITableViewDataSource
 #pragma mark - request
 - (void)requestForHomeworkInfo{
     YXHomeworkInfoRequest *request = [[YXHomeworkInfoRequest alloc] init];
-    request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    request.pid = self.itemBody.pid;
     request.requireid = self.itemBody.requireId;
     request.hwid = self.itemBody.homeworkid;
     [self startLoading];

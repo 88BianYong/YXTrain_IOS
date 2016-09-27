@@ -9,5 +9,5 @@
 #import "YXGetRequest.h"
 
 @interface YXMsgReadedRequest : YXGetRequest
-@property (nonatomic, copy) NSString *masgId;
+@property (nonatomic, copy) NSString *msgId;
 @end

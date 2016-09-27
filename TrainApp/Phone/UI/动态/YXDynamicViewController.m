@@ -91,7 +91,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     YXDynamicRequestItem_Data *data = self.dataArray[indexPath.row];
     if (data.status.integerValue == 0) {
-        [self requestForMagReaded:data.masgId andIndexPatch:indexPath];
+        [self requestForMagReaded:data andIndexPatch:indexPath];
     }
     switch (data.type.integerValue) {//1-通知  2-简报  3-打分  4-推优  5-任务到期提醒
         case 1:
@@ -117,6 +117,7 @@
             itemBody.requireId = @"";
             itemBody.homeworkid = data.objectId;
             itemBody.title = data.projectName;
+            itemBody.pid = data.projectId;
             YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
             VC.itemBody = itemBody;
             [self.navigationController pushViewController:VC animated:YES];
@@ -129,6 +130,7 @@
             itemBody.requireId = @"";
             itemBody.homeworkid = data.objectId;
             itemBody.title = data.projectName;
+            itemBody.pid = data.projectId;
             YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
             VC.itemBody = itemBody;
             [self.navigationController pushViewController:VC animated:YES];
@@ -136,7 +138,7 @@
             break;
         case 5:
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:data.objectId];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:data.projectId];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
             break;
@@ -148,18 +150,18 @@
 }
 
 #pragma mark - request
-- (void)requestForMagReaded:(NSString *)masgId andIndexPatch:(NSIndexPath *)indexPath{
+- (void)requestForMagReaded:(YXDynamicRequestItem_Data *)data andIndexPatch:(NSIndexPath *)indexPath{
     if (self.readedRequest) {
         [self.readedRequest stopRequest];
     }
     YXMsgReadedRequest *request = [[YXMsgReadedRequest alloc] init];
-    request.masgId = masgId;
+    request.msgId = data.msgId;
     WEAK_SELF
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         if (!error) {
             HttpBaseRequestItem *item = retItem;
-            if (item.code.integerValue == 0) {
+            if (item.code.integerValue == 0 && data.type.integerValue != 5) {
                 YXDynamicRequestItem_Data *data = self.dataArray[indexPath.row];
                 data.status = @"1";
                 [self.tableView beginUpdates];

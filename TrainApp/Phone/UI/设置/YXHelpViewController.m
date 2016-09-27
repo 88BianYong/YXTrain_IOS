@@ -9,6 +9,7 @@
 #import "YXHelpViewController.h"
 #import "YXHelpHeaderView.h"
 #import "YXHelpCell.h"
+#import "YXEmptCell.h"
 #import "YXFeedBackViewController.h"
 @interface YXHelpItem :NSObject
 @property (nonatomic ,copy) NSString *titleString;
@@ -87,6 +88,7 @@
     
     [self.tableView registerClass:[YXHelpHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXHelpHeaderView"];
     [self.tableView registerClass:[YXHelpCell class] forCellReuseIdentifier:@"YXHelpCell"];
+    [self.tableView registerClass:[YXEmptCell class] forCellReuseIdentifier:@"YXEmptCell"];
 }
 
 - (void)layoutInterface{
@@ -112,9 +114,7 @@
     return headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 60;
-//    YXHelpItem *item = self.dataMutableArray[section];
-//    return item.isOpen ? 50.0f : 60.0f;
+    return 55.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01f;
@@ -124,14 +124,20 @@
     return self.dataMutableArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    YXHelpItem *item = self.dataMutableArray[section];
-    return item.isOpen ? 1 : 0;
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXHelpCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHelpCell" forIndexPath:indexPath];
     YXHelpItem *item = self.dataMutableArray[indexPath.section];
-    cell.contentString = item.contentString;
-    return cell;
+    if (item.isOpen) {
+        YXHelpCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXHelpCell" forIndexPath:indexPath];
+        cell.contentString = item.contentString;
+        return cell;
+    }else{
+        YXEmptCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXEmptCell" forIndexPath:indexPath];
+        return cell;
+    }
+    return nil;
+
 }
 
 #pragma mark - fromat data

@@ -9,6 +9,10 @@
 #import "YXMsgReadedRequest.h"
 
 @implementation YXMsgReadedRequest
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"msgId"}];
+}
 - (instancetype)init
 {
     if (self = [super init]) {

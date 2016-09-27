@@ -130,7 +130,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.1f;
+    return 0.01f;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     YXMenuHeaderView * view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXMenuHeaderView"];

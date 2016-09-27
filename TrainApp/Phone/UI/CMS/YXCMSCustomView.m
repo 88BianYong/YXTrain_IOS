@@ -42,6 +42,9 @@
     }];
     
     _timerView = [[YXCMSTimerView alloc] init];
+    _timerView.layer.cornerRadius = 14.5f;
+    _timerView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
+    _timerView.hidden = YES;
     WEAK_SELF
     _timerView.stopTimerBlock = ^ {
         STRONG_SELF
@@ -54,7 +57,8 @@
     [_timerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(20);
         make.right.mas_equalTo(-15);
-        make.width.height.mas_equalTo(30);
+        make.width.mas_equalTo(94.0f);
+        make.height.mas_offset(29.0f);
     }];
 
 }
@@ -75,6 +79,7 @@
        isShow = YES;
     }
     if (image && isShow) {
+        _timerView.hidden = NO;
         self.imageView.image = image;
         [self.timerView startWithSeconds:self.model.seconds.integerValue];
     } else if (URL && isShow) {

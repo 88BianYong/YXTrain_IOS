@@ -10,7 +10,7 @@
 @protocol YXDynamicRequestItem_Data
 @end
 @interface YXDynamicRequestItem_Data:JSONModel
-@property (nonatomic, copy) NSString<Optional> *masgId;
+@property (nonatomic, copy) NSString<Optional> *msgId;
 @property (nonatomic, copy) NSString<Optional> *title;
 @property (nonatomic, copy) NSString<Optional> *type;//1-通知  2-简报  3-打分  4-推优  5-任务到期提醒
 @property (nonatomic, copy) NSString<Optional> *projectId;

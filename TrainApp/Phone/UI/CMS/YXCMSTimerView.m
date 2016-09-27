@@ -11,7 +11,9 @@
 @interface YXCMSTimerView ()
 
 @property (nonatomic, strong) UILabel *secondsLabel;
+@property (nonatomic, strong) UILabel *skipLabel;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, assign) NSInteger seconds;
 
 @end
@@ -22,15 +24,33 @@
 {
     if (self = [super initWithFrame:frame]) {
         _secondsLabel = [[UILabel alloc] init];
-        _secondsLabel.textAlignment = NSTextAlignmentCenter;
-        _secondsLabel.backgroundColor = [UIColor whiteColor];
-        _secondsLabel.textColor = [UIColor blackColor];
-        _secondsLabel.clipsToBounds = YES;
-        _secondsLabel.layer.cornerRadius = 15.f;
+        _secondsLabel.textColor = [UIColor whiteColor];
+        _secondsLabel.font = [UIFont systemFontOfSize:14.0f];
         [self addSubview:_secondsLabel];
         [_secondsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
+            make.centerY.equalTo(self.mas_centerY);
+            make.left.equalTo(self.mas_left).offset(10.0f);
         }];
+        
+        _skipLabel = [[UILabel alloc] init];
+        _skipLabel.font = [UIFont systemFontOfSize:12.0f];
+        _skipLabel.textColor = [UIColor colorWithHexString:@"0067be"];
+        _skipLabel.text = @"跳过广告";
+        [self addSubview:_skipLabel];
+        [_skipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.mas_centerY);
+        }];
+        
+        _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"箭头"]];
+        [self addSubview:_imageView];
+        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.mas_centerY);
+            make.right.equalTo(self.mas_right).offset(-10.0f);
+            make.left.equalTo(_skipLabel.mas_right).offset(3.0f);
+            make.width.mas_offset(8.0f);
+            make.height.mas_offset(17.0f);
+        }];
+        
     }
     return self;
 }

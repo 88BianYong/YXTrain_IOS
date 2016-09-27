@@ -134,6 +134,7 @@ UITableViewDataSource
     YXHomeworkListRequestItem_Body_Stages *stages = (YXHomeworkListRequestItem_Body_Stages *)_listItem.body.stages[indexPath.section];
     if (stages.homeworks.count > 0) {
         YXHomeworkInfoRequestItem_Body *homework = stages.homeworks[indexPath.row];
+        homework.pid = [YXTrainManager sharedInstance].currentProject.pid;
         YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
         VC.itemBody = homework;
         [self.navigationController pushViewController:VC animated:YES];

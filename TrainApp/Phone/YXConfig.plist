@@ -20,7 +20,7 @@
 	<key>server</key>
 	<string>http://mobile.yanxiu.com/test/api/</string>
 	<key>mockFrameworkOn</key>
-	<true/>
+	<false/>
 	<key>testFrameworkOn</key>
 	<false/>
 </dict>

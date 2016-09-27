@@ -247,6 +247,7 @@
 		9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232377D1D82D76100FDACFE /* YXDynamicViewController.m */; };
 		923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237821D82D87800FDACFE /* YXDynamicCell.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
+		92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */; };
 		92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51441D87D2C00071DE79 /* YXWebSocketManger.m */; };
 		92CE51481D87D2FF0071DE79 /* YXGuideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51471D87D2FF0071DE79 /* YXGuideModel.m */; };
 		92CE514D1D87D4180071DE79 /* YXHotspotDatumFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE514C1D87D4180071DE79 /* YXHotspotDatumFetch.m */; };
@@ -852,6 +853,8 @@
 		923237821D82D87800FDACFE /* YXDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDynamicCell.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
+		92AFFAFB1D9B7ADA00E1526C /* YXEmptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEmptCell.h; sourceTree = "<group>"; };
+		92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEmptCell.m; sourceTree = "<group>"; };
 		92CE51431D87D2C00071DE79 /* YXWebSocketManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWebSocketManger.h; sourceTree = "<group>"; };
 		92CE51441D87D2C00071DE79 /* YXWebSocketManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWebSocketManger.m; sourceTree = "<group>"; };
 		92CE51461D87D2FF0071DE79 /* YXGuideModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGuideModel.h; sourceTree = "<group>"; };
@@ -2158,6 +2161,8 @@
 				923237761D82609F00FDACFE /* YXHelpHeaderView.m */,
 				923237791D826CC800FDACFE /* YXHelpCell.h */,
 				9232377A1D826CC800FDACFE /* YXHelpCell.m */,
+				92AFFAFB1D9B7ADA00E1526C /* YXEmptCell.h */,
+				92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3004,6 +3009,7 @@
 				9223C82F1D2E36F0000F74DF /* YXAboutCell.m in Sources */,
 				CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */,
 				7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */,
+				92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */,
 				920F1D261D50986E00636A51 /* YXQiNiuVideoUpload.m in Sources */,
 				92CE51531D87D4AE0071DE79 /* YXHotspotRequest.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
