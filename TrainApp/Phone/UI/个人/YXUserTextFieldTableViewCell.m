@@ -51,7 +51,7 @@
     UIButton *editIconButton = [[UIButton alloc] init];
     [editIconButton addTarget:self action:@selector(editButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [editIconButton setImage:[UIImage imageNamed:@"修改个人资料icon"] forState:UIControlStateNormal];
-    //editIconImageView.image = [UIImage imageNamed:@"修改个人资料icon"];
+    editIconButton.hidden = YES;
     [self.contentView addSubview:editIconButton];
     
     self.contentTextField = [[UITextField alloc] init];

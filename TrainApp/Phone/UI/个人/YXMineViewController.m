@@ -141,6 +141,7 @@
             STRONG_SELF
             [self updateUserNameWithString:name];
         };
+        cell.userInteractionEnabled = NO;
         return cell;
     } else {
         YXUserInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXUserInfoTableViewCell"];
@@ -191,6 +192,7 @@
                 [self.navigationController pushViewController:vc animated:YES];
             };
         }
+        cell.userInteractionEnabled = NO;
         return cell;
     }
 }
