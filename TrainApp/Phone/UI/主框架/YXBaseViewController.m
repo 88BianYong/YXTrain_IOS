@@ -111,6 +111,15 @@
 - (void)stopLoading{
     [YXNavigationBarController enableRightNavigationItem:self.navigationItem];
     [YXPromtController stopLoadingInView:self.view];
+    dispatch_async(dispatch_get_main_queue(), ^{//fix bug 367
+        NSArray *subviews = [self.view subviews];
+        for (UIView *view in subviews) {
+            if ([view isKindOfClass:[MBProgressHUD class]]) {
+                [self.view bringSubviewToFront:view];
+                break;
+            }
+        }
+    });
 }
 
 - (void)showToast:(NSString *)text{

@@ -90,7 +90,7 @@
     if ([contentString yx_isValidString] && contentString.length > 0) {
         self.contentLabel.text = contentString;
     } else {
-        self.contentLabel.text = @"点击编辑～";
+        self.contentLabel.text = @"";
     }
 }
 

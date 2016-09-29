@@ -46,6 +46,7 @@
 }
 #pragma mark - setupUI
 - (void)setupUI{
+    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.estimatedRowHeight = 30.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -53,6 +54,7 @@
     [self.tableView registerClass:[YXHotspotWordsCell class] forCellReuseIdentifier:@"YXHotspotWordsCell"];
     [self.tableView registerClass:[YXHotspotPictureCell class] forCellReuseIdentifier:@"YXHotspotPictureCell"];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 5.0f)];
+    headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.tableHeaderView = headerView;
 }
 
@@ -62,9 +64,11 @@
     }];
 }
 #pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.dataArray.count > 0 ? 1 : 0;
 }
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHotspotRequestItem_Data *data = self.dataArray[indexPath.row];
     if (isEmpty(data.picUrl)) {
@@ -93,9 +97,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     YXHotspotRequestItem_Data *data = self.dataArray[indexPath.row];
-    if (data.status.integerValue == 0) {
-        [self requestForHotspotReaded:data.hotspotId];
-    }
+//    if (data.status.integerValue == 0) {
+//        [self requestForHotspotReaded:data.hotspotId];
+//    }
     YXWebViewController *webView = [[YXWebViewController alloc] init];
     webView.urlString = data.linkUrl;
     webView.titleString = data.title;

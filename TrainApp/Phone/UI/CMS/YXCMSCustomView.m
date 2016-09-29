@@ -15,6 +15,9 @@
 @end
 
 @implementation YXCMSCustomView
+- (void)dealloc{
+    DDLogWarn(@"release=====>%@",NSStringFromClass([self class]));
+}
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
@@ -83,14 +86,13 @@
         self.imageView.image = image;
         [self.timerView startWithSeconds:self.model.seconds.integerValue];
     } else if (URL && isShow) {
-        WEAK_SELF
         [self.imageView sd_setImageWithURL:URL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            STRONG_SELF
             if (image) {
                 [model saveImageToDisk:image];
             }
             [self removeCMSView];
         }];
+
     } else {
         [self removeCMSView];
     }

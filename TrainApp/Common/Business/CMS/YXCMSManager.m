@@ -30,11 +30,14 @@
        [self.listRequest stopRequest];
     }
     YXRotateListRequest *request = [[YXRotateListRequest alloc] init];
-    request.type = type;
+//    request.type = type;
     [request startRequestWithRetClass:[YXRotateListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         if (!error) {
             YXRotateListRequestItem *item = retItem;
             completion(item.rotates,error);
+        }else{
+            completion(nil,error);
+            DDLogDebug(@"启动热点请求错误");
         }
     }];
     self.listRequest = request;

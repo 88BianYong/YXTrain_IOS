@@ -361,6 +361,7 @@
 }
 - (void)dismissShadowView {
     self.shadowView.hidden = YES;
+    [[YXWebSocketManger sharedInstance] open];
 }
 
 #pragma mark - button Action

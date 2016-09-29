@@ -29,6 +29,7 @@
 @end
 
 @interface YXDynamicRequest : YXGetRequest
+@property (nonatomic, copy) NSString *projectId;
 @property (nonatomic, copy) NSString *pageNo;
 @property (nonatomic, copy) NSString *pageSize;
 @end

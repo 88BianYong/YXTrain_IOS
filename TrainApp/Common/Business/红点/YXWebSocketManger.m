@@ -51,8 +51,10 @@
 }
 
 - (void)open{
-    _state = YXWebSocketMangerState_Normal;
-    [self setupData];
+    if (self ->_webSocket.readyState != SR_OPEN) {
+        _state = YXWebSocketMangerState_Normal;
+        [self setupData];
+    }
 }
 - (void)close{
     [_webSocket close];

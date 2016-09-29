@@ -30,7 +30,12 @@
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
+    NSURL *url = [NSURL URLWithString:self.urlString];
+    if (![url.scheme isEqualToString:@"http"] && ![url.scheme isEqualToString:@"https"]) {
+        NSString *urlString = [NSString stringWithFormat:@"http://%@",url.resourceSpecifier];
+        url = [NSURL URLWithString:urlString];
+    }
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
     [self.webView loadRequest:request];
 
@@ -67,6 +72,9 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+    if (webView.isLoading){
+        return;
+    }
     [self stopLoading];
     if (self.isUpdatTitle){
         self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
@@ -76,7 +84,6 @@
         self.errorView = nil;
     }
 }
-
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [self stopLoading];
     if (error.code == -1009) {

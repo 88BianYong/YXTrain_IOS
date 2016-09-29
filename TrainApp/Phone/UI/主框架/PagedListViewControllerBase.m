@@ -131,7 +131,13 @@
             if (error) {
                 if (isEmpty(self.dataArray)) {  // no cache 强提示, 加载失败界面
                     self->_total = 0;
-                    [self showErroView];
+                    if (error.code == -2) {
+                        self.emptyView.imageName = @"数据错误";
+                        self.emptyView.title = @"数据错误";
+                        self.emptyView.hidden = NO;
+                    }else{
+                        [self showErroView];
+                    }
                 } else {
                     self->_total = 0;
                     [self showToast:error.localizedDescription];
@@ -148,6 +154,8 @@
             [self.dataArray removeAllObjects];
             
             if (isEmpty(retItemArray)) {
+                self.emptyView.imageName = @"无内容";
+                self.emptyView.title = @"无内容";
                 self.emptyView.hidden = NO;
             } else {
                 self.emptyView.hidden = YES;

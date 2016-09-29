@@ -25,6 +25,7 @@
 #import "YXInitRequest.h"
 #import "YXGuideViewController.h"
 #import "YXGuideModel.h"
+#import "YXWebSocketManger.h"
 
 #import "AppDelegate+GetInfoList.h"
 #import "AppDelegate+CMSView.h"
@@ -127,8 +128,7 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-	// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-	// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [[YXWebSocketManger  sharedInstance] close];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -147,6 +147,7 @@
 #pragma mark - ApiStubForTransfer
 
 - (void)applicationWillTerminate:(UIApplication *)application {
+    
 }
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {

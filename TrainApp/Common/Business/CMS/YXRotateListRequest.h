@@ -30,5 +30,5 @@
 @property (nonatomic, strong) NSArray<YXRotateListRequestItem_Rotates, Optional> *rotates;
 @end
 @interface YXRotateListRequest : YXGetRequest
-@property (nonatomic, strong) NSString *type; //1启动图 2轮播图
+//@property (nonatomic, strong) NSString *type; //1启动图 2轮播图
 @end
