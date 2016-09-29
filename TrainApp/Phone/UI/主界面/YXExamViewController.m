@@ -19,7 +19,7 @@
 #import "YXScoreViewController.h"
 #import "YXExamMarkView.h"
 #import "YXCourseViewController.h"
-
+static  NSString *const trackPageName = @"考核页面";
 @interface YXExamViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) YXExamineRequest *request;
@@ -41,6 +41,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     [self startAnimation];
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -49,6 +50,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
 }
 
 - (void)viewDidLoad {

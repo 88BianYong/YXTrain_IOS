@@ -12,6 +12,7 @@
 #import "YXHomeworkListHeaderView.h"
 #import "YXHomeworkInfoViewController.h"
 #import "MJRefresh.h"
+static  NSString *const trackPageName = @"作业列表页面";
 @interface YXHomeworkListViewController ()
 <
 UITableViewDelegate,
@@ -50,10 +51,12 @@ UITableViewDataSource
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 

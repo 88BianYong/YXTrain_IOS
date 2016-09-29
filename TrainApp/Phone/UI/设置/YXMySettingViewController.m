@@ -12,6 +12,7 @@
 #import "YXAboutViewController.h"
 #import "YXMySettingCell.h"
 #import "YXWebSocketManger.h"
+static  NSString *const trackPageName = @"设置页面";
 @interface YXMySettingViewController ()
 <
 UITableViewDelegate,
@@ -30,10 +31,12 @@ UITableViewDataSource
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 

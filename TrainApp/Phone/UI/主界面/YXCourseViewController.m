@@ -12,7 +12,7 @@
 #import "YXCourseListCell.h"
 #import "YXCourseDetailViewController.h"
 #import "YXCourseRecordViewController.h"
-
+static  NSString *const trackPageName = @"课程列表页面";
 @interface YXCourseViewController ()<YXCourseFilterViewDelegate>
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXCourseListFilterModel *filterModel;
@@ -74,7 +74,14 @@
         [self getFilters];
     }
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -359,6 +359,14 @@
 		CBF66E401D2F5A4800F4E408 /* YXStageAndSubjectRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E3F1D2F5A4800F4E408 /* YXStageAndSubjectRequest.m */; };
 		CBF66E451D2F86DD00F4E408 /* YXPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E441D2F86DD00F4E408 /* YXPickerViewController.m */; };
 		CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF66E4C1D2F8FE500F4E408 /* YXProvinceList.m */; };
+		E90C60A21D9CFE4D001652CF /* libTalkingData.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60A01D9CFE4D001652CF /* libTalkingData.a */; };
+		E90C60A41D9CFEBC001652CF /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60A31D9CFEBC001652CF /* AdSupport.framework */; };
+		E90C60A61D9CFEC5001652CF /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60A51D9CFEC5001652CF /* CoreTelephony.framework */; };
+		E90C60A81D9CFED0001652CF /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60A71D9CFED0001652CF /* CoreMotion.framework */; };
+		E90C60AA1D9CFEDB001652CF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60A91D9CFEDB001652CF /* Security.framework */; };
+		E90C60AC1D9CFEE5001652CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AB1D9CFEE5001652CF /* SystemConfiguration.framework */; };
+		E90C60AE1D9CFEEF001652CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AD1D9CFEEF001652CF /* libz.tbd */; };
+		E90C60B21D9D0012001652CF /* YXDataStatisticsManger.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */; };
 		F7E8F8D51D65AEE000CDAAF4 /* YXEmptyAndErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8F8D41D65AEE000CDAAF4 /* YXEmptyAndErrorView.m */; };
 		F7E8F8DB1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8F8DA1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m */; };
 		F7E8F8DE1D65CE3700CDAAF4 /* YXPopUpContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8F8DD1D65CE3700CDAAF4 /* YXPopUpContainerView.m */; };
@@ -1073,6 +1081,16 @@
 		CBF66E441D2F86DD00F4E408 /* YXPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPickerViewController.m; sourceTree = "<group>"; };
 		CBF66E4B1D2F8FE500F4E408 /* YXProvinceList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProvinceList.h; sourceTree = "<group>"; };
 		CBF66E4C1D2F8FE500F4E408 /* YXProvinceList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProvinceList.m; sourceTree = "<group>"; };
+		E90C60A01D9CFE4D001652CF /* libTalkingData.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTalkingData.a; path = TalkingData_Analytics_iOS_SDK_V2.2.36/libTalkingData.a; sourceTree = SOURCE_ROOT; };
+		E90C60A11D9CFE4D001652CF /* TalkingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TalkingData.h; path = TalkingData_Analytics_iOS_SDK_V2.2.36/TalkingData.h; sourceTree = SOURCE_ROOT; };
+		E90C60A31D9CFEBC001652CF /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		E90C60A51D9CFEC5001652CF /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		E90C60A71D9CFED0001652CF /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		E90C60A91D9CFEDB001652CF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E90C60AB1D9CFEE5001652CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E90C60AD1D9CFEEF001652CF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		E90C60B01D9D0012001652CF /* YXDataStatisticsManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDataStatisticsManger.h; sourceTree = "<group>"; };
+		E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDataStatisticsManger.m; sourceTree = "<group>"; };
 		F7E8F8D31D65AEE000CDAAF4 /* YXEmptyAndErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEmptyAndErrorView.h; sourceTree = "<group>"; };
 		F7E8F8D41D65AEE000CDAAF4 /* YXEmptyAndErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEmptyAndErrorView.m; sourceTree = "<group>"; };
 		F7E8F8D81D65CC9000CDAAF4 /* YXPopUpViewSetDataAndActionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPopUpViewSetDataAndActionProtocol.h; sourceTree = "<group>"; };
@@ -1088,6 +1106,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90C60AE1D9CFEEF001652CF /* libz.tbd in Frameworks */,
+				E90C60AC1D9CFEE5001652CF /* SystemConfiguration.framework in Frameworks */,
+				E90C60AA1D9CFEDB001652CF /* Security.framework in Frameworks */,
+				E90C60A81D9CFED0001652CF /* CoreMotion.framework in Frameworks */,
+				E90C60A61D9CFEC5001652CF /* CoreTelephony.framework in Frameworks */,
+				E90C60A41D9CFEBC001652CF /* AdSupport.framework in Frameworks */,
+				E90C60A21D9CFE4D001652CF /* libTalkingData.a in Frameworks */,
 				C677FF965C8046594C12A055 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1112,6 +1137,12 @@
 		474FC1E22840EC4E9214EE1A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E90C60AD1D9CFEEF001652CF /* libz.tbd */,
+				E90C60AB1D9CFEE5001652CF /* SystemConfiguration.framework */,
+				E90C60A91D9CFEDB001652CF /* Security.framework */,
+				E90C60A71D9CFED0001652CF /* CoreMotion.framework */,
+				E90C60A51D9CFEC5001652CF /* CoreTelephony.framework */,
+				E90C60A31D9CFEBC001652CF /* AdSupport.framework */,
 				22524766F0C73BA9FCA8F5C7 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -1247,6 +1278,7 @@
 				9232374F1D81021A00FDACFE /* AppDelegate+GetInfoList.h */,
 				923237501D81021A00FDACFE /* AppDelegate+GetInfoList.m */,
 				7C3177551D0E5E04004AAC90 /* main.m */,
+				E90C609F1D9CFE36001652CF /* TalkingData */,
 				7C31775D1D0E5EA9004AAC90 /* InfoPhone.plist */,
 				7C31776D1D0E6E92004AAC90 /* YXConfig.plist */,
 				7C3177611D0E61C4004AAC90 /* Empty.xib */,
@@ -1258,6 +1290,7 @@
 		7C31775C1D0E5E0F004AAC90 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E90C60AF1D9CFFDF001652CF /* DataStatisticsManger */,
 				9232376F1D816DAD00FDACFE /* stageAndSubject.json */,
 				7CF888571D194B8300E7C04D /* PrefixHeader.pch */,
 				923237581D81122700FDACFE /* provinceData.json */,
@@ -2623,6 +2656,25 @@
 			name = controllers;
 			sourceTree = "<group>";
 		};
+		E90C609F1D9CFE36001652CF /* TalkingData */ = {
+			isa = PBXGroup;
+			children = (
+				E90C60A01D9CFE4D001652CF /* libTalkingData.a */,
+				E90C60A11D9CFE4D001652CF /* TalkingData.h */,
+			);
+			name = TalkingData;
+			path = ../Common;
+			sourceTree = "<group>";
+		};
+		E90C60AF1D9CFFDF001652CF /* DataStatisticsManger */ = {
+			isa = PBXGroup;
+			children = (
+				E90C60B01D9D0012001652CF /* YXDataStatisticsManger.h */,
+				E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */,
+			);
+			name = DataStatisticsManger;
+			sourceTree = "<group>";
+		};
 		F7E8F8D21D65AEB600CDAAF4 /* 为空&错误 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2861,6 +2913,7 @@
 				7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */,
 				7C2C3B691D24C53000A03635 /* YXCourseDetailItem.m in Sources */,
 				7C2C3B5D1D23C66900A03635 /* YXCourseListCell.m in Sources */,
+				E90C60B21D9D0012001652CF /* YXDataStatisticsManger.m in Sources */,
 				7C3177FC1D1177F9004AAC90 /* DownloaderEntity.m in Sources */,
 				92CE51501D87D46A0071DE79 /* YXDynamicDatumFetch.m in Sources */,
 				CB4D91741D1A5F2000B5F1D0 /* YXDatumFilterRequest.m in Sources */,
@@ -3310,9 +3363,13 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Phone/InfoPhone.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TalkingData_Analytics_iOS_SDK_V2.2.36",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "80f38209-e592-4fa2-9514-548e2910330a";
+				PROVISIONING_PROFILE = "b6214ff8-17d2-4351-908a-60c311bea42b";
 			};
 			name = Debug;
 		};
@@ -3328,6 +3385,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Phone/InfoPhone.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TalkingData_Analytics_iOS_SDK_V2.2.36",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "929499e8-44fe-4228-ab41-f2f889322d59";

@@ -65,6 +65,7 @@
         }
     }];
     [GlobalUtils setDefaultExceptionHandler];
+    [YXDataStatisticsManger sessionStarted:@"2D51075BBBC948E36A11E656DABC1775" withChannelId:@"AppStore"];
     return YES;
 }
 

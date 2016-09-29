@@ -10,7 +10,7 @@
 #import "YXCourseViewController.h"
 #import "YXTaskCell.h"
 #import "YXTaskListRequest.h"
-
+static  NSString *const trackPageName = @"任务列表页面";
 @interface YXTaskViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) YXTaskListRequest *request;
@@ -40,6 +40,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
                                                           [UIFont boldSystemFontOfSize:17], NSFontAttributeName,
@@ -47,6 +48,7 @@
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
                                                                      [UIFont systemFontOfSize:17], NSFontAttributeName,

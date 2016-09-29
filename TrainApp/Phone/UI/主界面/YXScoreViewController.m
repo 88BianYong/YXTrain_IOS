@@ -13,7 +13,7 @@
 #import "YXExamBlankHeaderFooterView.h"
 #import "YXScoreLeadingGroupCell.h"
 #import "YXScoreExpGroupCell.h"
-
+static  NSString *const trackPageName = @"成绩详情页面";
 @interface YXScoreViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *expItemArray;
@@ -77,11 +77,13 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
         self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
