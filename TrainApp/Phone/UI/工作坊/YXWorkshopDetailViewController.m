@@ -84,12 +84,12 @@ UITableViewDataSource
     _tableView.layoutMargins = UIEdgeInsetsZero;
     _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
     _tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    _headerView = [[YXWorkshopDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 165.0f)];
-    [self.view addSubview:_headerView];
     [_tableView registerClass:[YXWorkshopDetailGroupCell class] forCellReuseIdentifier:@"YXWorkshopDetailGroupCell"];
     [_tableView registerClass:[YXWorkshopDetailInfoCell class] forCellReuseIdentifier:@"YXWorkshopDetailInfoCell"];
     [_tableView registerClass:[YXWorkshopDetailDatumCell class] forCellReuseIdentifier:@"YXWorkshopDetailDatumCell"];
     [self.view addSubview:_tableView];
+    _headerView = [[YXWorkshopDetailHeaderView alloc]initWithFrame:CGRectMake(0, 0, _tableView.bounds.size.width, 165.0f)];
+    _tableView.tableHeaderView = _headerView;
     
     WEAK_SELF
     _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
@@ -101,14 +101,13 @@ UITableViewDataSource
 }
 
 - (void)layoutInterface{
-    [_headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.right.equalTo(self.view);
-        make.height.mas_offset(165.0f);
-    }];
-    
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
-        make.top.equalTo(_headerView.mas_bottom);
+        make.left.right.top.bottom.equalTo(self.view);
+//        make.top.equalTo(_headerView.mas_bottom);
+    }];
+    [_headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.width.equalTo(_tableView);
+        make.height.mas_offset(165.0f);
     }];
 }
 #pragma mark - UITableViewDelegate
