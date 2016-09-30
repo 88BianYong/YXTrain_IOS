@@ -312,18 +312,22 @@ static  NSString *const trackPageName = @"考核页面";
                 vc.stageID = vo.voID;
                 vc.status = YXCourseFromStatus_Stage;
                 [self.navigationController pushViewController:vc animated:YES];
+                [YXDataStatisticsManger trackEvent:@"课程列表" label:@"考核跳转" parameters:nil];
             }else if ([data.toolid isEqualToString:@"203"] || [data.toolid isEqualToString:@"303"]){//作业
                 NSString *string = @"YXHomeworkListViewController";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+                [YXDataStatisticsManger trackEvent:@"作业列表" label:@"考核跳转" parameters:nil];
             }else if ([data.toolid isEqualToString:@"205"] || [data.toolid isEqualToString:@"305"]){//研修总结
                 NSString *string = @"YXHomeworkListViewController";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+                [YXDataStatisticsManger trackEvent:@"作业列表" label:@"考核跳转" parameters:nil];
             }else if ([data.toolid isEqualToString:@"216"] || [data.toolid isEqualToString:@"316"]){//小组作业
                 NSString *string = @"YXHomeworkListViewController";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+                [YXDataStatisticsManger trackEvent:@"作业列表" label:@"考核跳转" parameters:nil];
             }else{
                 [self showToast:@"相关功能暂未开放"];
             }

@@ -755,6 +755,7 @@ static  NSString *const trackPageName = @"个人信息页面";
             [cell setImageWithDataImage:image];
             [[NSNotificationCenter defaultCenter] postNotificationName:YXUploadUserPicSuccessNotification
                                                                 object:nil];
+            [YXDataStatisticsManger trackEvent:@"修改头像" label:@"成功修改头像" parameters:nil];
             if (self.userInfoModifySuccess) {
                 self.userInfoModifySuccess();
             }

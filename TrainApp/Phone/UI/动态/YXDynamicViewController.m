@@ -98,6 +98,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [YXDataStatisticsManger trackEvent:@"消息动态跳转" label:@"点击消息成功跳转" parameters:nil];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     YXDynamicRequestItem_Data *data = self.dataArray[indexPath.row];
     if (data.status.integerValue == 0) {

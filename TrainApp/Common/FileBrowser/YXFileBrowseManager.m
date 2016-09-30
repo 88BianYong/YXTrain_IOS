@@ -158,7 +158,7 @@
         [self.baseViewController showToast:@"该文件无法预览"];
         return;
     }
-
+    
     if (self.favorData) {
         YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:self.favorData baseVC:qlVC];
         wrapper.delegate = self;
@@ -192,12 +192,12 @@
 }
 
 - (void)openHtml{
-//    YXTOWebViewController * webViewController = [[YXTOWebViewController alloc] initWithURLString:self.fileItem.url];
-//    webViewController.title = self.fileItem.name;
-//    webViewController.showPageTitles = NO;
-//    webViewController.exitDelegate = self;
-//    webViewController.browseTimeDelegate = self;
-//    [self.baseViewController.navigationController pushViewController:webViewController animated:YES];
+    //    YXTOWebViewController * webViewController = [[YXTOWebViewController alloc] initWithURLString:self.fileItem.url];
+    //    webViewController.title = self.fileItem.name;
+    //    webViewController.showPageTitles = NO;
+    //    webViewController.exitDelegate = self;
+    //    webViewController.browseTimeDelegate = self;
+    //    [self.baseViewController.navigationController pushViewController:webViewController animated:YES];
     YXBroseWebView *webView = [[YXBroseWebView alloc] init];
     webView.urlString = self.fileItem.url;
     webView.titleString = self.fileItem.name;
@@ -229,7 +229,7 @@
     d2.url = videoItem.surl;
     
     vc.definitionArray = @[d0, d1, d2];
-
+    
     vc.title = videoItem.name;
     vc.delegate = self;
     vc.exitDelegate = self;
@@ -263,7 +263,21 @@
 - (void)playerProgress:(CGFloat)progress totalDuration:(NSTimeInterval)duration stayTime:(NSTimeInterval)time{
     if ([YXRecordManager sharedManager].isActive) {
         [[YXRecordManager sharedManager]updateFragmentWithDuration:duration record:duration*progress watchedTime:time];
+        NSInteger min = duration / 60;
+        NSInteger sec = (NSInteger)duration % 60;
+        NSString *playbackTime = [NSString stringWithFormat:@"%02d分:%02d秒",min,sec];
+        if (self.fileItem.sourceType == YXSourceTypeCourse) {
+            NSDictionary *dict = @{
+                                   @"时长": playbackTime
+                                   };
+            [YXDataStatisticsManger trackEvent:@"课程播放" label:@"播放视频课程" parameters:dict];
+            
+        }
+//        if () {
+//            <#statements#>
+//        }
     }
+    
 }
 
 - (CGFloat)preProgress{

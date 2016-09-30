@@ -247,7 +247,7 @@
         htmlItem.name = fragment.fragment_name;
         item = htmlItem;
     }
-    
+    item.sourceType = YXSourceTypeCourse;
     if (item) {
         [YXFileBrowseManager sharedManager].fileItem = item;
         [YXFileBrowseManager sharedManager].baseViewController = self;

@@ -203,6 +203,7 @@
                     self ->_bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
                     [self stopCaptureWithSaveFlag:NO];
                     self ->_topView.recordTime = 0.0f;
+                    [YXDataStatisticsManger trackEvent:@"视频录制" label:@"放弃已录制的视频" parameters:nil];
                 };
                 YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
                 cancelAlertAct.title = @"取消";

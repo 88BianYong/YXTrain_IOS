@@ -141,6 +141,7 @@ UITableViewDataSource
                 NSString *dp = [BaseDownloader downloadFolderPath];
                 [[NSFileManager defaultManager] removeItemAtPath:dp error:nil];
                 [self showToast:@"清除成功"];
+                [YXDataStatisticsManger trackEvent:@"清理缓存" label:@"成功清理缓存" parameters:nil];
             }
                 break;
             case 1:
@@ -167,6 +168,7 @@ UITableViewDataSource
     }else{
         [[YXWebSocketManger sharedInstance] close];
         [[YXUserManager sharedManager] logout];
+        [YXDataStatisticsManger trackEvent:@"退出登录" label:@"成功登出" parameters:nil];
     }
 }
 

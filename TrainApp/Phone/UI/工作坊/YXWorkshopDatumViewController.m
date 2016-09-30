@@ -103,12 +103,14 @@ static  NSString *const trackPageName = @"工作坊资源列表页面";
     if (!data.isFavor) {
         [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:YXFavorSuccessNotification object:data userInfo:nil];
+            [YXDataStatisticsManger trackEvent:@"工作坊资源" label:@"收藏工作坊资源" parameters:nil];
             [self.tableView reloadData];
         }];
     }
     [YXFileBrowseManager sharedManager].fileItem = item;
     [YXFileBrowseManager sharedManager].baseViewController = self;
     [[YXFileBrowseManager sharedManager] browseFile];
+    [YXDataStatisticsManger trackEvent:@"工作坊资源" label:@"预览工作坊资源" parameters:nil];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 5.0f;

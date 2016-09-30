@@ -12,6 +12,7 @@
 #import "YXEmptCell.h"
 #import "YXFeedBackViewController.h"
 static  NSString *const trackPageName = @"帮助与反馈页面";
+static  NSString *const trackEventName = @"常见问题";
 @interface YXHelpItem :NSObject
 @property (nonatomic ,copy) NSString *titleString;
 @property (nonatomic ,copy) NSString *contentString;
@@ -122,6 +123,33 @@ static  NSString *const trackPageName = @"帮助与反馈页面";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01f;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+            [YXDataStatisticsManger trackEvent:trackEventName label:@"《找到项目》" parameters:nil];
+            break;
+        case 1:
+            [YXDataStatisticsManger trackEvent:trackEventName label:@"《哪里看课》" parameters:nil];
+            break;
+        case 2:
+            [YXDataStatisticsManger trackEvent:trackEventName label:@"《看课记录在哪》" parameters:nil];
+            break;
+        case 3:
+            [YXDataStatisticsManger trackEvent:trackEventName label:@"《无法写作业参加活动》" parameters:nil];
+            break;
+        case 4:
+            [YXDataStatisticsManger trackEvent:trackEventName label:@"《哪里看成绩》" parameters:nil];
+            break;
+        case 5:
+            [YXDataStatisticsManger trackEvent:trackEventName label:@"《能否传资源》" parameters:nil];
+            break;
+        case 6:
+            [YXDataStatisticsManger trackEvent:trackEventName label:@"《能否发问答》" parameters:nil];
+            break;
+        default:
+            break;
+    }
+}
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.dataMutableArray.count;
@@ -140,7 +168,7 @@ static  NSString *const trackPageName = @"帮助与反馈页面";
         return cell;
     }
     return nil;
-
+    
 }
 
 #pragma mark - fromat data

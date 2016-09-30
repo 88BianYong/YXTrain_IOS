@@ -297,6 +297,7 @@ UITableViewDataSource
             }
             if(self.itemBody.type.integerValue == 3){//判断是否是限制时间的视频
                 if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
+//                     [YXDataStatisticsManger trackEvent:@"重新录制" label:@"重新录制视频并成功保存" parameters:nil];
                     [self againRecordVideo];
                 }
                 else{
@@ -314,6 +315,7 @@ UITableViewDataSource
             }
             else{
                 if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
+//                    [YXDataStatisticsManger trackEvent:@"重新录制" label:@"重新录制视频并成功保存" parameters:nil];
                     [self againRecordVideo];
                 }else{
                     [self gotoVideoRecordVC];

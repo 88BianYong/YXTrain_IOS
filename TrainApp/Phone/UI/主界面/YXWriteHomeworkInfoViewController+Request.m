@@ -10,6 +10,7 @@
 #import "YXWriteHomeworkInfoViewController+Format.h"
 #import "YXVideoRecordManager.h"
 #import "FileHash.h"
+static  NSString *const trackEventName = @"上传作业";
 @implementation YXWriteHomeworkInfoViewController (Request)
 - (void)requestForCategoryId{
     if (self.listRequest) {
@@ -119,6 +120,7 @@
             self.videoModel.detail = detail;
             [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
             [self.navigationController popViewControllerAnimated:YES];
+            [YXDataStatisticsManger trackEvent:trackEventName label:@"成功上传作业" parameters:nil];
         }else{
             [self showToast:@"视频作业上传失败"];
         }
@@ -184,6 +186,7 @@
             self.videoModel.detail = detail;
             [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
             [self showToast:@"保存成功"];
+            [YXDataStatisticsManger trackEvent:trackEventName label:@"成功修改作业信息" parameters:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });

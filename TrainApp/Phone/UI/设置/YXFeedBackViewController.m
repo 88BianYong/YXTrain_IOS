@@ -221,6 +221,7 @@
         YXFeedBackRequestItem *item = retItem;
         if (item && !error) {
             [self showToast:@"提交成功，感谢您的宝贵意见"];
+            [YXDataStatisticsManger trackEvent:@"意见反馈" label:@"成功提交意见反馈" parameters:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self.navigationController popViewControllerAnimated:YES];
             });

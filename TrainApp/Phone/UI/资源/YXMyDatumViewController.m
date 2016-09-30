@@ -145,6 +145,7 @@ static  NSString *const trackPageName = @"我的资源页面";
     [YXFileBrowseManager sharedManager].fileItem = item;
     [YXFileBrowseManager sharedManager].baseViewController = self;
     [[YXFileBrowseManager sharedManager] browseFile];
+    [YXDataStatisticsManger trackEvent:@"资源" label:@"预览资源" parameters:nil];
 
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -221,6 +222,7 @@ static  NSString *const trackPageName = @"我的资源页面";
 
 #pragma mark - YXMyDatumCellDelegate
 - (void)myDatumCellDownloadButtonClicked:(YXMyDatumCell *)myDatumCell{
+    [YXDataStatisticsManger trackEvent:@"资源" label:@"下载资源" parameters:nil];
     YXDatumCellModel *model = myDatumCell.cellModel;
     if (model.downloadState != DownloadStatusDownloading) { // 当前点击是未下载
         if (self.downloader.state == DownloadStatusDownloading) { // 当有任务下载时不能下载

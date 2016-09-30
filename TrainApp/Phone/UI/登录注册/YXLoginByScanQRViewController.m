@@ -18,7 +18,6 @@
 #import "YXUserProfileRequest.h"
 #import "YXUserManager.h"
 #import "YXAlertView.h"
-
 @interface YXLoginByScanQRViewController ()<AVCaptureMetadataOutputObjectsDelegate>{
     YXScanQRBackgroundView *_scanBackgroundView;
     //YXLoginTopBarView *_topBarView;
@@ -147,6 +146,7 @@
                     return;
                 }
                 [self saveUserDataAndLogin];
+                [YXDataStatisticsManger trackEvent:@"扫码登录" label:@"扫描二维码并成功登录" parameters:nil];
             }];
         } else {
             [self showToast:@"无法识别该二维码"];

@@ -134,6 +134,7 @@ static  NSString *const trackPageName = @"关于我们页面";
                 [YXAlertView showAlertViewWithMessage:@"此设备不支持通话！"];
             }
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
+            [YXDataStatisticsManger trackEvent:@"客服热线" label:@"客服热线拨打时" parameters:nil];
         }];
         [sheet addCancelButtonWithTitle:@"取消" action:^{
             [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -150,6 +151,7 @@ static  NSString *const trackPageName = @"关于我们页面";
         UIMenuController * menu = [UIMenuController sharedMenuController];
         [menu setTargetRect: [cell frame] inView: [self view]];
         [menu setMenuVisible: YES animated: YES];
+        [YXDataStatisticsManger trackEvent:@"官方微信" label:@"成功拷贝官方微信号" parameters:nil];
     }
 }
 
