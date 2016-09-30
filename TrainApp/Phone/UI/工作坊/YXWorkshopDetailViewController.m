@@ -18,7 +18,7 @@
 
 #import "YXWorkshopDetailRequest.h"
 #import "YXWorkshopMemberFetcher.h"
-
+static  NSString *const trackPageName = @"工作坊详情页面";
 @interface YXWorkshopDetailViewController ()
 <
 UITableViewDelegate,
@@ -44,10 +44,12 @@ UITableViewDataSource
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [_tableView reloadData];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 - (void)viewDidAppear:(BOOL)animated{

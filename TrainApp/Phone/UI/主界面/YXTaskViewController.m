@@ -42,13 +42,16 @@ static  NSString *const trackPageName = @"任务列表页面";
     [super viewWillAppear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                          [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
-                                                          [UIFont boldSystemFontOfSize:17], NSFontAttributeName,
-                                                          nil]];
+                                                                     [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
+                                                                     [UIFont boldSystemFontOfSize:17], NSFontAttributeName,
+                                                                     nil]];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
                                                                      [UIFont systemFontOfSize:17], NSFontAttributeName,

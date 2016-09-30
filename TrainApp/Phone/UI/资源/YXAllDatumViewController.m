@@ -15,7 +15,7 @@
 #import "YXAttachmentTypeHelper.h"
 #import "YXResourceCollectionRequest.h"
 #import "YXPagedListEmptyView.h"
-
+static  NSString *const trackPageName = @"全部资源页面";
 @interface YXAllDatumViewController ()
 
 @property (nonatomic, strong) YXDatumOrderFilterMenuView *menuView;
@@ -157,12 +157,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.tableView.showsVerticalScrollIndicator = YES;
 
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.tableView.showsVerticalScrollIndicator = NO;
 }
 

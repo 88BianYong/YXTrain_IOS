@@ -49,9 +49,12 @@ UITableViewDataSource
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+}
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 - (void)viewWillDisappear:(BOOL)animated{
@@ -97,7 +100,7 @@ UITableViewDataSource
     _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
         [self requestForHomeworkList:NO];
-    };    
+    };
 }
 
 - (void)layoutInterface{
@@ -176,7 +179,7 @@ UITableViewDataSource
     YXHomeworkListRequest *request = [[YXHomeworkListRequest alloc] init];
     request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     if (isShow) {
-       [self startLoading];
+        [self startLoading];
     }
     WEAK_SELF
     [request startRequestWithRetClass:[YXHomeworkListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

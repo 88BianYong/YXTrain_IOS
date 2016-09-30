@@ -11,6 +11,7 @@
 #import "YXHelpCell.h"
 #import "YXEmptCell.h"
 #import "YXFeedBackViewController.h"
+static  NSString *const trackPageName = @"帮助与反馈页面";
 @interface YXHelpItem :NSObject
 @property (nonatomic ,copy) NSString *titleString;
 @property (nonatomic ,copy) NSString *contentString;
@@ -39,10 +40,12 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 

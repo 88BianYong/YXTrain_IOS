@@ -12,6 +12,7 @@
 #import "YXWebViewController.h"
 #import "YXHotspotDatumFetch.h"
 #import "YXHotReadedRequest.h"
+static  NSString *const trackPageName = @"热点列表页面";
 @interface YXHotspotViewController ()
 @property (nonatomic, strong) YXHotReadedRequest *readedRequest;
 @property (nonatomic, assign) CGPoint contentPoint;
@@ -34,6 +35,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     DDLogDebug(@"%@",NSStringFromCGPoint(self.tableView.contentOffset));
 }
@@ -45,6 +47,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
     DDLogDebug(@"%@",NSStringFromCGPoint(self.tableView.contentOffset));
 }

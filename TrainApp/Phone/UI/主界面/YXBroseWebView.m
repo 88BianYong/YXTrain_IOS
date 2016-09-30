@@ -8,7 +8,10 @@
 
 #import "YXBroseWebView.h"
 #import "YXShowWebMenuView.h"
-
+static  NSString *const noticeSourceTitle = @"通知";
+static  NSString *const bulletinSourceTitle = @"简报";
+static  NSString *const trackNoticeDetailsPageName = @"通知详情页面";
+static  NSString *const trackBulletinDetailsPageName = @"简报详情页面";
 @interface YXBroseWebView ()<UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
@@ -48,7 +51,24 @@
         SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
     }];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if ([self.sourceControllerTitile isEqualToString:noticeSourceTitle]) {
+        [YXDataStatisticsManger trackPage:trackNoticeDetailsPageName withStatus:YES];
+    }
+    if ([self.sourceControllerTitile isEqualToString:bulletinSourceTitle]) {
+        [YXDataStatisticsManger trackPage:trackBulletinDetailsPageName withStatus:YES];
+    }
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if ([self.sourceControllerTitile isEqualToString:noticeSourceTitle]) {
+        [YXDataStatisticsManger trackPage:trackNoticeDetailsPageName withStatus:NO];
+    }
+    if ([self.sourceControllerTitile isEqualToString:bulletinSourceTitle]) {
+        [YXDataStatisticsManger trackPage:trackBulletinDetailsPageName withStatus:NO];
+    }
+}
 - (void)naviRightAction{
     YXShowWebMenuView *menuView = [[YXShowWebMenuView alloc]initWithFrame:self.view.window.bounds];
     menuView.didSeletedItem = ^(NSInteger index) {

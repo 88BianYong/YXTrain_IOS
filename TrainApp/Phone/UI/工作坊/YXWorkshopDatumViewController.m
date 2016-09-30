@@ -11,6 +11,7 @@
 #import "YXPagedListEmptyView.h"
 #import "YXAllDatumTableViewCell.h"
 #import "YXAttachmentTypeHelper.h"
+static  NSString *const trackPageName = @"工作坊资源列表页面";
 @interface YXWorkshopDatumViewController ()
 {
     YXWorkshopDatumFetch *_datumFetch;
@@ -21,10 +22,12 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 - (void)viewDidLoad {

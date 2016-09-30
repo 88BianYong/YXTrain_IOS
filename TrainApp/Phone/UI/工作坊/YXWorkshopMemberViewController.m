@@ -10,6 +10,7 @@
 #import "YXWorkshopMemberCell.h"
 #import "YXWorkshopMemberFetcher.h"
 #import "MJRefresh.h"
+static  NSString *const trackPageName = @"成员列表页面";
 @interface YXWorkshopMemberViewController ()
 <
 UICollectionViewDataSource,
@@ -52,7 +53,14 @@ UICollectionViewDelegate
         _pageIndex = 1;
     }
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

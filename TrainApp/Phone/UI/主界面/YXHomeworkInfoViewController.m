@@ -18,6 +18,8 @@
 #import "YXHomeworkUploadCompleteView.h"
 #import "YXHomeworkInfoFinishHeaderView.h"
 #import "YXHomeworkPlayVideoCell.h"
+static  NSString *const trackPageName = @"作业详情页面";
+
 @interface YXHomeworkInfoViewController ()
 <
 UITableViewDelegate,
@@ -84,12 +86,14 @@ UITableViewDataSource
         self.itemBody.lessonStatus = YXVideoLessonStatus_NoRecord;
     }
     [self findVideoHomeworkInformation:self.itemBody];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 

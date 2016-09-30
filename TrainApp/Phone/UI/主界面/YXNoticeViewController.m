@@ -11,7 +11,8 @@
 #import "YXNoticeListFetch.h"
 #import "YXBriefListFetch.h"
 #import "YXBroseWebView.h"
-
+static  NSString *const trackNoticePageName = @"通知列表页面";
+static  NSString *const trackBulletinPageName = @"简报列表页面";
 @interface YXNoticeViewController ()
 
 @end
@@ -50,7 +51,26 @@
     [self firstPageFetch:YES];
     // Do any additional setup after loading the view.
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (self.flag == YXFlag_Notice) {
+        [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:YES];
+    }
+    if (self.flag == YXFlag_Bulletin) {
+        [YXDataStatisticsManger trackPage:trackBulletinPageName withStatus:YES];
+    }
 
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (self.flag == YXFlag_Notice) {
+        [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:NO];
+    }
+    if (self.flag == YXFlag_Bulletin) {
+        [YXDataStatisticsManger trackPage:trackBulletinPageName withStatus:NO];
+    }
+
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -71,6 +91,7 @@
     YXBroseWebView *webView = [[YXBroseWebView alloc] init];
     webView.urlString = item.url;
     webView.titleString = item.title;
+    webView.sourceControllerTitile = self.title;
     [self.navigationController pushViewController:webView animated:NO];
 }
 

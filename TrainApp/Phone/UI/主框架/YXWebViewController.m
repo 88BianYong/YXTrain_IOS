@@ -14,7 +14,7 @@
 @property (nonatomic, assign) BOOL isShowLoding;
 @property (nonatomic, strong) NSTimer *timer;
 @end
-
+static  NSString *const trackPageName = @"热点详情页面";
 @implementation YXWebViewController
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
@@ -46,7 +46,14 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
 
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

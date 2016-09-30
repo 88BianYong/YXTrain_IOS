@@ -13,7 +13,7 @@
 #import "YXResourceCollectionRequest.h"
 #import "YXDatumDelSourseRequest.h"
 #import "YXAttachmentTypeHelper.h"
-
+static  NSString *const trackPageName = @"我的资源页面";
 @interface YXMyDatumViewController ()<YXMyDatumCellDelegate>
 
 @property (nonatomic, strong) YXMyDatumFetcher *myDatumFetcher;
@@ -265,12 +265,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tableView.showsVerticalScrollIndicator = YES;
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
      self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.tableView.showsVerticalScrollIndicator = NO;
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 
