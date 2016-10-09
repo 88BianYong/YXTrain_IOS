@@ -11,4 +11,5 @@
 @interface YXVideoRecordViewController : YXBaseViewController
 @property (nonatomic, strong)YXHomeworkInfoRequestItem_Body  *videoModel;
 @property (nonatomic ,assign) BOOL isGreaterTenMinute;
+@property (nonatomic ,assign) BOOL isReRecording;//此属性目前仅用于上报数据时判断是否重新录制视频用
 @end

@@ -384,11 +384,32 @@
     self.videoModel.lessonStatus = YXVideoLessonStatus_AlreadyRecord;
     [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
     [self stopCaptureWithSaveFlag:NO];
+    unsigned long long fileSize = 0;
+    NSError *error = nil;
+    AVURLAsset *mp4Asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.videoModel.fileName]] options:nil];
+    CMTime itmeTime = mp4Asset.duration;
+    CGFloat durationTime = CMTimeGetSeconds(itmeTime);
+    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.videoModel.fileName] error:&error];
+    fileSize = [[fileAttributes objectForKey:@"NSFileSize"] longLongValue];
+    NSString *fileSizeString = [NSString stringWithFormat:@"%@",[NSString sizeStringWithFileSize:fileSize]];
+    NSInteger min = durationTime / 60;
+    NSInteger sec = (NSInteger)durationTime % 60;
+    NSString *videoTimeLength = [NSString stringWithFormat:@"%02zd分:%02zd秒",min,sec];
+    NSDictionary *dict = @{
+                           @"时长": videoTimeLength,
+                           @"大小": fileSizeString
+                           };
+    if (!self.isReRecording) {
+        [YXDataStatisticsManger trackEvent:@"视频录制" label:@"成功保存已录制的视频" parameters:dict];
+    }
+    if (self.isReRecording) {
+        [YXDataStatisticsManger trackEvent:@"重新录制" label:@"重新录制视频并成功保存" parameters:dict];
+    }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self ->_bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
         self -> _progressView.hidden = YES;
         self ->_bottomView.userInteractionEnabled = YES;
-         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
         [self dismissViewControllerAnimated:YES completion:nil];
     });
 }

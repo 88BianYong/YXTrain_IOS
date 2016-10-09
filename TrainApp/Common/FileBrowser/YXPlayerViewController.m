@@ -717,6 +717,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         NSError *error = nil;
         if ([[NSFileManager defaultManager] removeItemAtURL:[NSURL URLWithString:self.videoUrl] error:&error]){
             [self showToast:@"删除成功"];
+            [YXDataStatisticsManger trackEvent:@"未上传视频操作" label:@"未上传时成功删除录制的视频" parameters:nil];
             [self performSelector:@selector(backAction) withObject:nil afterDelay:2.0];
         }
         else{

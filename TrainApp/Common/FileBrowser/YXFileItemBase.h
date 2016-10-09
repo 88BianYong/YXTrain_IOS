@@ -17,8 +17,8 @@ typedef NS_ENUM(NSUInteger, YXFileType) {
     YXFileTypeUnknown
 };
 typedef NS_ENUM(NSUInteger, YXSourceType) {
-    YXSourceTypeCourse,
-    YXSourceTypeHomework,
+    YXSourceTypeCourse,//课程播放
+    YXSourceTypeTaskNoUploadedVideos//作业:未上传时播放
 };
 @interface YXFileItemBase : NSObject
 

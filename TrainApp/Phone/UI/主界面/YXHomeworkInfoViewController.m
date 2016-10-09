@@ -297,7 +297,6 @@ UITableViewDataSource
             }
             if(self.itemBody.type.integerValue == 3){//判断是否是限制时间的视频
                 if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
-//                     [YXDataStatisticsManger trackEvent:@"重新录制" label:@"重新录制视频并成功保存" parameters:nil];
                     [self againRecordVideo];
                 }
                 else{
@@ -307,7 +306,7 @@ UITableViewDataSource
                     knowAction.style = YXAlertActionStyleAlone;
                     knowAction.block = ^ {
                         STRONG_SELF
-                        [self gotoVideoRecordVC];
+                        [self gotoVideoRecordVC:NO];
                     };
                     YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频录制时长需要大于10分钟~" image:@"提醒icon" actions:@[knowAction]];
                     [alertView showAlertView:nil];
@@ -315,10 +314,9 @@ UITableViewDataSource
             }
             else{
                 if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
-//                    [YXDataStatisticsManger trackEvent:@"重新录制" label:@"重新录制视频并成功保存" parameters:nil];
                     [self againRecordVideo];
                 }else{
-                    [self gotoVideoRecordVC];
+                    [self gotoVideoRecordVC:NO];
                 }
             }
             break;
@@ -339,6 +337,7 @@ UITableViewDataSource
             videoItem.url = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName]].absoluteString;
             if (self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
                 videoItem.isDeleteVideo = YES;
+                videoItem.sourceType = YXSourceTypeTaskNoUploadedVideos;
             }
             else{
                 videoItem.isDeleteVideo = NO;
@@ -384,7 +383,7 @@ UITableViewDataSource
     cancelAlertAct.style = YXAlertActionStyleCancel;
     cancelAlertAct.block = ^{
         STRONG_SELF
-        [self gotoVideoRecordVC];
+        [self gotoVideoRecordVC:YES];
     };
     YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
     retryAlertAct.title = @"取消";
@@ -395,9 +394,15 @@ UITableViewDataSource
     YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"重新录制将覆盖当前视频\n确定重新录制?" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
     [alertView showAlertView:nil];
 }
-- (void)gotoVideoRecordVC{
+- (void)gotoVideoRecordVC:(BOOL)isReRecording{
     YXVideoRecordViewController *VC = [[YXVideoRecordViewController alloc] init];
     VC.videoModel = self.itemBody;
+    if (isReRecording) {
+        VC.isReRecording = YES;
+    }
+    if (!isReRecording) {
+        VC.isReRecording = NO;
+    }
     [[self visibleViewController] presentViewController:VC animated:YES completion:^{
         
     }];

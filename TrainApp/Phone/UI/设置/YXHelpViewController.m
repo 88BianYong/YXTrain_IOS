@@ -111,6 +111,34 @@ static  NSString *const trackEventName = @"常见问题";
     headerView.openAndClosedHandler = ^(BOOL boolState){
         STRONG_SELF
         item.isOpen = !boolState;
+        if (item.isOpen) {
+            switch (section) {
+                case 0:
+                    [YXDataStatisticsManger trackEvent:trackEventName label:@"《找到项目》" parameters:nil];
+                    break;
+                case 1:
+                    [YXDataStatisticsManger trackEvent:trackEventName label:@"《哪里看课》" parameters:nil];
+                    break;
+                case 2:
+                    [YXDataStatisticsManger trackEvent:trackEventName label:@"《看课记录在哪》" parameters:nil];
+                    break;
+                case 3:
+                    [YXDataStatisticsManger trackEvent:trackEventName label:@"《无法写作业参加活动》" parameters:nil];
+                    break;
+                case 4:
+                    [YXDataStatisticsManger trackEvent:trackEventName label:@"《哪里看成绩》" parameters:nil];
+                    break;
+                case 5:
+                    [YXDataStatisticsManger trackEvent:trackEventName label:@"《能否传资源》" parameters:nil];
+                    break;
+                case 6:
+                    [YXDataStatisticsManger trackEvent:trackEventName label:@"《能否发问答》" parameters:nil];
+                    break;
+                default:
+                    break;
+            }
+
+        }
         [tableView beginUpdates];
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
         [tableView endUpdates];
@@ -122,33 +150,6 @@ static  NSString *const trackEventName = @"常见问题";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01f;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    switch (indexPath.row) {
-        case 0:
-            [YXDataStatisticsManger trackEvent:trackEventName label:@"《找到项目》" parameters:nil];
-            break;
-        case 1:
-            [YXDataStatisticsManger trackEvent:trackEventName label:@"《哪里看课》" parameters:nil];
-            break;
-        case 2:
-            [YXDataStatisticsManger trackEvent:trackEventName label:@"《看课记录在哪》" parameters:nil];
-            break;
-        case 3:
-            [YXDataStatisticsManger trackEvent:trackEventName label:@"《无法写作业参加活动》" parameters:nil];
-            break;
-        case 4:
-            [YXDataStatisticsManger trackEvent:trackEventName label:@"《哪里看成绩》" parameters:nil];
-            break;
-        case 5:
-            [YXDataStatisticsManger trackEvent:trackEventName label:@"《能否传资源》" parameters:nil];
-            break;
-        case 6:
-            [YXDataStatisticsManger trackEvent:trackEventName label:@"《能否发问答》" parameters:nil];
-            break;
-        default:
-            break;
-    }
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
