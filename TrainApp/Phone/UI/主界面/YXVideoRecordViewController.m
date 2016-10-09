@@ -373,6 +373,7 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:PATH_OF_VIDEO]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:PATH_OF_VIDEO withIntermediateDirectories:YES attributes:nil error:nil];
     }
+    [[NSFileManager defaultManager] removeItemAtPath:[PATH_OF_VIDEO stringByAppendingPathComponent:[videoPath lastPathComponent]]  error:nil];
     [[NSFileManager defaultManager] moveItemAtPath:videoPath toPath:[PATH_OF_VIDEO stringByAppendingPathComponent:[videoPath lastPathComponent]] error:nil];
     self ->_progressView.progress = 1.0f;
     self ->_progressView.titleString = @"视频保存成功";
