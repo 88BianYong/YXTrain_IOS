@@ -11,8 +11,7 @@
 #import "YXBrowseTimeDelegate.h"
 
 @interface YXBroseWebView : YXBaseViewController
-//此属性只作为数据上报时使用(区分控制器跳转来源)
-@property (nonatomic, copy) NSString *sourceControllerTitile;
+@property (nonatomic, copy) NSString *sourceControllerTitile;//此属性只作为数据上报时使用(区分控制器跳转来源)
 @property (nonatomic, copy) NSString *urlString;
 @property (nonatomic, copy) NSString *titleString;
 @property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;

@@ -1290,11 +1290,11 @@
 		7C31775C1D0E5E0F004AAC90 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E90C60AF1D9CFFDF001652CF /* DataStatisticsManger */,
 				9232376F1D816DAD00FDACFE /* stageAndSubject.json */,
 				7CF888571D194B8300E7C04D /* PrefixHeader.pch */,
 				923237581D81122700FDACFE /* provinceData.json */,
 				7CF888581D194B8300E7C04D /* YXDefinitions.h */,
+				E90C60AF1D9CFFDF001652CF /* DataStatisticsManger */,
 				7CF888171D17E51200E7C04D /* Player */,
 				7C3177F11D1177E0004AAC90 /* Download */,
 				7C3177DA1D114735004AAC90 /* FileBrowser */,
