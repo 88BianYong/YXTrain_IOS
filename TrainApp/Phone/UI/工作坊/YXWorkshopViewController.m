@@ -142,7 +142,7 @@
             YXWorkshopListRequestItem *item = (YXWorkshopListRequestItem *)retItem;
             if (item.group.count > 0) {
                 [self -> _dataMutableArray addObjectsFromArray:item.group];
-                [_tableView reloadData];
+                [self -> _tableView reloadData];
                 [self -> _emptyView removeFromSuperview];
                 [self -> _errorView removeFromSuperview];
             }

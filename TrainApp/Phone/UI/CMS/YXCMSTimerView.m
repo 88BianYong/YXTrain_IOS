@@ -37,13 +37,16 @@
         _skipLabel.textColor = [UIColor colorWithHexString:@"0067be"];
         _skipLabel.text = @"跳过";
         [self addSubview:_skipLabel];
-        [_skipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.mas_centerY);
-            make.centerX.equalTo(self.mas_centerX);
-        }];
         
         _imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"箭头"]];
         [self addSubview:_imageView];
+        
+        
+        [_skipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.mas_centerY);
+            make.right.equalTo(_imageView.mas_left).offset(-3.0f);
+        }];
+        
         [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.mas_centerY);
             make.right.equalTo(self.mas_right).offset(-10.0f);

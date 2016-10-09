@@ -82,4 +82,7 @@
               imageUrl:(NSString *)imageUrl{
     _nameLabel.text = text;
 }
+- (void)dealloc{
+    DDLogError(@"release=====>%@",NSStringFromClass([self class]));
+}
 @end

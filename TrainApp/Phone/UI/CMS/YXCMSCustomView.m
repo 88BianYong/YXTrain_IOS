@@ -60,7 +60,7 @@
     [_timerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(20);
         make.right.mas_equalTo(-15);
-        make.width.mas_equalTo(94.0f);
+        make.width.mas_equalTo(70.0f);
         make.height.mas_offset(29.0f);
     }];
 

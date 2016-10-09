@@ -50,12 +50,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setWebSocket];
-    _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
-                    @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
-                    @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
-                    @{@"title":@"消息动态",@"normalIcon":@"消息动态icon-正常态",@"hightIcon":@"消息动态icon-点击态"}];
+    NSArray *trainArray = [YXTrainManager sharedInstance].trainlistItem.body.trains;
+    __block BOOL isShow = NO;
+    [trainArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.w.integerValue >= 3) {
+            isShow = YES;
+            *stop = YES;
+        }
+    }];
     
-    
+    if (isShow){
+        _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
+                        @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
+                        @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
+                        @{@"title":@"消息动态",@"normalIcon":@"消息动态icon-正常态",@"hightIcon":@"消息动态icon-点击态"}];
+    }else{
+        _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
+                        @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
+                        @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"}];
+    }
     [self registerNotifications];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
@@ -236,7 +249,7 @@
     self.profile = [YXUserManager sharedManager].userModel.profile;
     _nameLabel.text = self.profile.realName;
     _schoolNameLabel.text = self.profile.school;
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"用户默认头像"]];
+    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
     [self.view setNeedsLayout];
 }
 
@@ -358,10 +371,10 @@
 
 - (void)displayShadowView {
     self.shadowView.hidden = NO;
+    [[YXWebSocketManger sharedInstance] open];
 }
 - (void)dismissShadowView {
     self.shadowView.hidden = YES;
-    [[YXWebSocketManger sharedInstance] open];
 }
 
 #pragma mark - button Action
