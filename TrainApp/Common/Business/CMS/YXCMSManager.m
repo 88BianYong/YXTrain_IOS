@@ -37,7 +37,7 @@
             completion(item.rotates,error);
         }else{
             completion(nil,error);
-            DDLogDebug(@"启动热点请求错误");
+            //DDLogDebug(@"启动热点请求错误");
         }
     }];
     self.listRequest = request;

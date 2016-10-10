@@ -57,7 +57,7 @@
     }
 }
 - (void)close{
-    [_webSocket close];
+    //[_webSocket close];
 }
 
 - (void)keepConnection{
@@ -69,7 +69,7 @@
 - (void)setupData{
     _webSocket.delegate = nil;
     [_webSocket close];
-    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://mobile.yanxiu.com/test/api/websocket"]]];
+    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://mobile.yanxiu.com/v20/api/websocket"]]];
     _webSocket.delegate = self;
     [_webSocket open];
 }
@@ -146,10 +146,8 @@
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error{
     DDLogDebug(@"链接失败");
     _webSocket = nil;
-    Reachability *r = [Reachability reachabilityForInternetConnection];
-    if ([r isReachable]) {//链接失败有网10秒重试
-        [self startTimer];
-    }
+    [self webSocketRetry];
+
 }
 
 //接收到新消息的处理
@@ -162,5 +160,12 @@
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean{
     DDLogDebug(@"连接关闭");
     _webSocket = nil;
+    [self webSocketRetry];
+}
+- (void)webSocketRetry{
+    Reachability *r = [Reachability reachabilityForInternetConnection];
+    if ([r isReachable]) {//链接失败有网10秒重试
+        [self startTimer];
+    }
 }
 @end

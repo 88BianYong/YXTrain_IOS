@@ -67,6 +67,7 @@
 - (void)saveToCache{
     [[NSUserDefaults standardUserDefaults]setValue:[self.trainlistItem toJSONString] forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainListDynamic object:nil];
 }
 
 - (void)loadFromCache{

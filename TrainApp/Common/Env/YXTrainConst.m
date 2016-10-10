@@ -14,9 +14,12 @@ NSString *const YXTrainUploadDepictionString = @"1.视频时间控制在15-40分
 NSString *const kYXTrainFirstGoInHomeworkList = @"the first to enter the work list interface";
 
 NSString *const kYXTrainWebSocketReceiveMessage = @"the websocket receive message for hotspot and dynamic";
-NSString *const  kYXTrainVideoUserDefaultsKey = @"kVideoUserDefaultsKey";
 
-NSString *const  kYXTrainGetInfoListTime = @"get_Info_List_time";
+NSString *const kYXTrainVideoUserDefaultsKey = @"kVideoUserDefaultsKey";
+
+NSString *const kYXTrainGetInfoListTime = @"get_Info_List_time";
 
 NSString *const kYXTrainCurrentProjectIndex = @"project transition jump";
+
+NSString *const kYXTrainListDynamic = @"according to the list of items to determine whether the message is displayed dynamic";
 

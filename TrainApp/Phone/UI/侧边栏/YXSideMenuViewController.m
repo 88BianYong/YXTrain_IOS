@@ -50,29 +50,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setWebSocket];
-    NSArray *trainArray = [YXTrainManager sharedInstance].trainlistItem.body.trains;
-    __block BOOL isShow = NO;
-    [trainArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.w.integerValue >= 3) {
-            isShow = YES;
-            *stop = YES;
-        }
-    }];
-    
-    if (isShow){
-        _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
-                        @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
-                        @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
-                        @{@"title":@"消息动态",@"normalIcon":@"消息动态icon-正常态",@"hightIcon":@"消息动态icon-点击态"}];
-    }else{
-        _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
-                        @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
-                        @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"}];
-    }
     [self registerNotifications];
-    // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
-
     self.shadowView = [[UIView alloc] init];
     self.shadowView.backgroundColor = [UIColor whiteColor];
     self.shadowView.layer.shadowColor = [UIColor colorWithHexString:@"dfe2e6"].CGColor;
@@ -101,6 +80,7 @@
     self.footerView = [[UIView alloc] init];
     self.footerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_footerView];
+    [self reloadMenuTableView];
     
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.mas_equalTo(@0);
@@ -252,6 +232,27 @@
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
     [self.view setNeedsLayout];
 }
+- (void)reloadMenuTableView{
+    NSArray *trainArray = [YXTrainManager sharedInstance].trainlistItem.body.trains;
+    __block BOOL isShow = NO;
+    [trainArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.w.integerValue >= 3) {
+            isShow = YES;
+            *stop = YES;
+        }
+    }];
+    if (isShow){
+        _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
+                        @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
+                        @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
+                        @{@"title":@"消息动态",@"normalIcon":@"消息动态icon-正常态",@"hightIcon":@"消息动态icon-点击态"}];
+    }else{
+        _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
+                        @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
+                        @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"}];
+    }
+    [self.tableView reloadData];
+}
 
 
 - (void)registerNotifications
@@ -261,6 +262,8 @@
                selector:@selector(reloadUserProfileView)
                    name:YXUserProfileGetSuccessNotification
                  object:nil];
+    
+    [center addObserver:self selector:@selector(reloadMenuTableView) name:kYXTrainListDynamic  object:nil];
 }
 
 - (void)setWebSocket{

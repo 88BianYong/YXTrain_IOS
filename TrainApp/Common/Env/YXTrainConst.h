@@ -83,7 +83,10 @@ extern NSString *const kYXTrainGetInfoListTime;
  *  消息动态任务到期提醒
  */
 extern NSString *const kYXTrainCurrentProjectIndex;
-
+/**
+ *  根据项目列表判断是否显示消息动态
+ */
+extern NSString *const kYXTrainListDynamic;
 
 
 
