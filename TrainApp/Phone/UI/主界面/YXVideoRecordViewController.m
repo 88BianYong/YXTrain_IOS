@@ -491,6 +491,10 @@
     NSInteger min = durationTime / 60;
     NSInteger sec = (NSInteger)durationTime % 60;
     NSString *videoTimeLength = [NSString stringWithFormat:@"%02zd分:%02zd秒",min,sec];
+    if ((fileSize >= 1024) && (fileSize < 1024*1024)) {
+        float mb = (float)fileSize / (1024.f*1024.f);
+        fileSizeString = [NSString stringWithFormat:@"%.2fM", mb];
+    }
     NSDictionary *dict = @{
                            @"时长": videoTimeLength,
                            @"大小": fileSizeString
