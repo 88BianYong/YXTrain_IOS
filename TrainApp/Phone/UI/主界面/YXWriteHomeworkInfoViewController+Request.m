@@ -119,8 +119,8 @@ static  NSString *const trackEventName = @"上传作业";
             detail.keyword =  self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
             self.videoModel.detail = detail;
             [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
-            [self.navigationController popViewControllerAnimated:YES];
             [YXDataStatisticsManger trackEvent:trackEventName label:@"成功上传作业" parameters:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         }else{
             [self showToast:@"视频作业上传失败"];
         }

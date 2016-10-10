@@ -24,4 +24,10 @@
         parameters:(NSDictionary *)parameters{
       [TalkingData trackEvent:eventId label:eventLabel parameters:parameters];
 }
++ (void)setGlobalKV:(NSString *)key value:(id)value{
+      [TalkingData setGlobalKV:key value:value];
+}
++ (void)removeGlobalKV:(NSString *)key{
+     [TalkingData removeGlobalKV: key];
+}
 @end

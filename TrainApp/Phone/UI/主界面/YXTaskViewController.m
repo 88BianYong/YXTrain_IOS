@@ -11,6 +11,7 @@
 #import "YXTaskCell.h"
 #import "YXTaskListRequest.h"
 static  NSString *const trackPageName = @"任务列表页面";
+static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 @interface YXTaskViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) YXTaskListRequest *request;
@@ -154,17 +155,17 @@ static  NSString *const trackPageName = @"任务列表页面";
         YXCourseViewController *vc = [[YXCourseViewController alloc]init];
         vc.status = YXCourseFromStatus_Course;
         [self.navigationController pushViewController:vc animated:YES];
-        [YXDataStatisticsManger trackEvent:@"课程列表" label:@"任务跳转" parameters:nil];
+        [YXDataStatisticsManger trackEvent:@"课程列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else if ([task.toolid isEqualToString:@"203"] || [task.toolid isEqualToString:@"303"]){//作业
         NSString *string = @"YXHomeworkListViewController";
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
-        [YXDataStatisticsManger trackEvent:@"作业列表" label:@"任务跳转" parameters:nil];
+        [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else if ([task.toolid isEqualToString:@"205"] || [task.toolid isEqualToString:@"305"]){//研修总结
         NSString *string = @"YXHomeworkListViewController";
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
-        [YXDataStatisticsManger trackEvent:@"作业列表" label:@"任务跳转" parameters:nil];
+        [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else{
         [self showToast:@"相关功能暂未开放"];
     }

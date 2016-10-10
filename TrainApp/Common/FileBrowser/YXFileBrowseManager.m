@@ -264,18 +264,18 @@
     if ([YXRecordManager sharedManager].isActive) {
         [[YXRecordManager sharedManager]updateFragmentWithDuration:duration record:duration*progress watchedTime:time];
     }
-       NSInteger min = duration * progress / 60;
-       NSInteger sec = (NSInteger)(duration * progress) % 60;
-        NSString *playTime = [NSString stringWithFormat:@"%02zd分:%02zd秒",min,sec];
-        NSDictionary *dict = @{
-                               @"时长": playTime
-                               };
-        if (self.fileItem.sourceType == YXSourceTypeCourse) {
-            [YXDataStatisticsManger trackEvent:@"课程播放" label:@"播放视频课程" parameters:dict];
-        }
-        if (self.fileItem.sourceType == YXSourceTypeTaskNoUploadedVideos) {
-            [YXDataStatisticsManger trackEvent:@"未上传视频操作" label:@"未上传时播放视频" parameters:dict];
-        }
+    NSInteger min = duration * progress / 60;
+    NSInteger sec = (NSInteger)(duration * progress) % 60;
+    NSString *playTime = [NSString stringWithFormat:@"%02zd分:%02zd秒",min,sec];
+    NSDictionary *dict = @{
+                           @"时长": playTime
+                           };
+    if (self.fileItem.sourceType == YXSourceTypeCourse) {
+        [YXDataStatisticsManger trackEvent:@"课程播放" label:@"播放视频课程" parameters:dict];
+    }
+    if (self.fileItem.sourceType == YXSourceTypeTaskNoUploadedVideos) {
+        [YXDataStatisticsManger trackEvent:@"未上传视频操作" label:@"未上传时播放视频" parameters:dict];
+    }
 }
 
 - (CGFloat)preProgress{
