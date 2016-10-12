@@ -42,7 +42,17 @@ static  NSString *const trackPageName = @"全部资源页面";
     [self configUI];
     // Do any additional setup after loading the view.
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+    self.tableView.showsVerticalScrollIndicator = YES;
+    
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+    self.tableView.showsVerticalScrollIndicator = NO;
+}
 - (void)configUI {
     [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(44);
@@ -157,18 +167,6 @@ static  NSString *const trackPageName = @"全部资源页面";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
-    self.tableView.showsVerticalScrollIndicator = YES;
-
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
-    self.tableView.showsVerticalScrollIndicator = NO;
-}
 
 /*
 #pragma mark - Navigation

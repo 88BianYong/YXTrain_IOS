@@ -41,6 +41,16 @@ UITableViewDataSource
 @implementation YXWorkshopDetailViewController
 
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"工作坊详情";
+    _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:2];
+    [self workshopDetailDataFormat:nil];
+    _detailItem = [[YXWorkshopDetailRequestItem alloc] init];
+    [self setupUI];
+    [self layoutInterface];
+    [self requestForWorkshopDetail];
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [_tableView reloadData];
@@ -61,18 +71,6 @@ UITableViewDataSource
         [_memberFetcher stop];
     }
 }
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"工作坊详情";
-    _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:2];
-    [self workshopDetailDataFormat:nil];
-    _detailItem = [[YXWorkshopDetailRequestItem alloc] init];
-    [self setupUI];
-    [self layoutInterface];
-    [self requestForWorkshopDetail];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

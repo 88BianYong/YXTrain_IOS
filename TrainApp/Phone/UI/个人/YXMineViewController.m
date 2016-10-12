@@ -64,6 +64,19 @@ static  NSString *const trackPageName = @"个人信息页面";
     [self reloadUserProfileData];
     // Do any additional setup after loading the view.
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 40;
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+}
 - (void)reloadUserProfileData
 {
 //    self.profile = [YXUserManager sharedManager].userModel.profile;
@@ -772,20 +785,7 @@ static  NSString *const trackPageName = @"个人信息页面";
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[IQKeyboardManager sharedManager] setEnable:YES];
-    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 40;
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
-    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-}
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [[IQKeyboardManager sharedManager] setEnable:NO];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
-    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
-}
 
 /*
 #pragma mark - Navigation

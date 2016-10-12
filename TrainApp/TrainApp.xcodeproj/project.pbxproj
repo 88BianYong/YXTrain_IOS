@@ -3385,7 +3385,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b6214ff8-17d2-4351-908a-60c311bea42b";
+				PROVISIONING_PROFILE = "dd0fdb86-c92c-46d5-9b1f-be3972ecc01d";
 			};
 			name = Debug;
 		};

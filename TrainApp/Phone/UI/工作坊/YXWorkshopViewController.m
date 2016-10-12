@@ -29,6 +29,14 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.title = @"我的工作坊";
+    _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
+    [self setupUI];
+    [self layoutInterface];
+    [self requestForWorkshopList];
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
@@ -39,15 +47,6 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.title = @"我的工作坊";
-    _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
-    [self setupUI];
-    [self layoutInterface];
-    [self requestForWorkshopList];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -28,18 +28,6 @@ UITableViewDataSource
 @end
 
 @implementation YXMySettingViewController
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
-    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-}
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
-    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"设置";
@@ -48,7 +36,16 @@ UITableViewDataSource
     [self setupUI];
     [self layoutInterface];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

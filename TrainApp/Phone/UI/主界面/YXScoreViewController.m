@@ -69,12 +69,6 @@ static  NSString *const trackPageName = @"成绩详情页面";
     self.title = @"成绩详情";
     [self setupUI];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
@@ -86,7 +80,10 @@ static  NSString *const trackPageName = @"成绩详情页面";
     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
         self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
-
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 - (void)setupUI{
     YXScoreTotalScoreHeaderView *totalHeaderView = [[YXScoreTotalScoreHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 190.0f)];
     totalHeaderView.data = self.data;

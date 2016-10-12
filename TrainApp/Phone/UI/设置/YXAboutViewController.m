@@ -28,6 +28,13 @@ static  NSString *const trackPageName = @"关于我们页面";
 
 @implementation YXAboutViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"关于我们";
+    _phoneString = @"400-7799-010";
+    [self setupUI];
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
@@ -38,15 +45,6 @@ static  NSString *const trackPageName = @"关于我们页面";
     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"关于我们";
-    _phoneString = @"400-7799-010";
-    [self setupUI];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

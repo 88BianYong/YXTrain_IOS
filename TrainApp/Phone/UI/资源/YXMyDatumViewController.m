@@ -52,7 +52,18 @@ static  NSString *const trackPageName = @"我的资源页面";
     self.tableView.tableHeaderView = tableViewHeaderView;
     // Do any additional setup after loading the view.
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.tableView.showsVerticalScrollIndicator = YES;
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.tableView.showsVerticalScrollIndicator = NO;
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -264,19 +275,7 @@ static  NSString *const trackPageName = @"我的资源页面";
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.tableView.showsVerticalScrollIndicator = YES;
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
-     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-}
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    self.tableView.showsVerticalScrollIndicator = NO;
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
-    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
-}
 
 
 /*

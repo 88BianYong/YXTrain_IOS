@@ -45,20 +45,13 @@
 
     [self getProjectList];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self showProjectSelectionView];
-    [_selectedViewController viewWillAppear:animated];
+//    [_selectedViewController viewWillAppear:animated];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    [_selectedViewController viewDidAppear:animated];
     UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];//TD:优化xu
     NSArray *array = window.subviews;
     for (UIView *view in array) {
@@ -67,11 +60,9 @@
         }
     }
 }
-
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self hideProjectSelectionView];
-    [_selectedViewController viewWillDisappear:animated];
     UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
     NSArray *array = window.subviews;
     for (UIView *view in array) {
@@ -82,7 +73,10 @@
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 #pragma mark - setupUI
 - (void)setupUI{
@@ -204,6 +198,10 @@
         containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
         _selectedViewController = examVC;
         [self.view addSubview:containerView];
+        [self addChildViewController:examVC];
+        [self addChildViewController:taskVC];
+        [self addChildViewController:notiVC];
+        [self addChildViewController:bulletinVC];
     }else{
         self.recordVC = [[YXCourseRecordViewController alloc]init];
         self.recordVC.view.frame = self.view.bounds;
