@@ -82,13 +82,13 @@
     if (section == 0) {
         return 5.0f;
     }
-    return 0.01f;
+    return 0.001f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if (section == self.dataArray.count -1 ) {
         return 40;
     }
-    return 0.01f;
+    return 0.001f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

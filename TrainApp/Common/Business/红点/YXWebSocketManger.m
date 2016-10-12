@@ -53,11 +53,12 @@
 - (void)open{
     if (self ->_webSocket.readyState != SR_OPEN) {
         _state = YXWebSocketMangerState_Normal;
+        DDLogDebug(@"开始连接");
         [self setupData];
     }
 }
 - (void)close{
-    //[_webSocket close];
+    [_webSocket close];
 }
 
 - (void)keepConnection{
@@ -69,7 +70,7 @@
 - (void)setupData{
     _webSocket.delegate = nil;
     [_webSocket close];
-    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://mobile.yanxiu.com/v20/api/websocket"]]];
+    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[YXConfigManager sharedInstance].websocket]]];
     _webSocket.delegate = self;
     [_webSocket open];
 }
@@ -160,7 +161,7 @@
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean{
     DDLogDebug(@"连接关闭");
     _webSocket = nil;
-    [self webSocketRetry];
+    //[self webSocketRetry];
 }
 - (void)webSocketRetry{
     Reachability *r = [Reachability reachabilityForInternetConnection];

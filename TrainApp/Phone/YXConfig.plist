@@ -19,6 +19,8 @@
 	<string>http://u.yanxiu.com/</string>
 	<key>server</key>
 	<string>http://mobile.yanxiu.com/v20/api/</string>
+	<key>websocket</key>
+	<string>ws://mobile.yanxiu.com/websocket</string>
 	<key>mockFrameworkOn</key>
 	<false/>
 	<key>testFrameworkOn</key>
