@@ -149,7 +149,7 @@ static  NSString *const trackPageName = @"关于我们页面";
         UIMenuController * menu = [UIMenuController sharedMenuController];
         [menu setTargetRect: [cell frame] inView: [self view]];
         [menu setMenuVisible: YES animated: YES];
-        [YXDataStatisticsManger trackEvent:@"官方微信" label:@"成功拷贝官方微信号" parameters:nil];
+//        [YXDataStatisticsManger trackEvent:@"官方微信" label:@"成功拷贝官方微信号" parameters:nil];
     }
 }
 

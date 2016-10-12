@@ -277,14 +277,12 @@
         [YXDataStatisticsManger trackEvent:@"未上传视频操作" label:@"未上传时播放视频" parameters:dict];
     }
 }
-
 - (CGFloat)preProgress{
     if ([YXRecordManager sharedManager].isActive) {
         return [[YXRecordManager sharedManager]preProgress];
     }
     return 0;
 }
-
 #pragma mark - YXBrowseTimeDelegate
 - (void)browseTimeUpdated:(NSTimeInterval)time{
     if ([YXRecordManager sharedManager].isActive) {
