@@ -31,6 +31,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @property (nonatomic, strong) YXErrorView *errorView;
 
 @property (nonatomic,strong) UIView *waveView;
+@property (nonatomic,assign) BOOL  isSelected;
 @end
 
 @implementation YXExamViewController
@@ -42,8 +43,11 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     [self startAnimation];
+    if (self.isSelected) {
+        DDLogDebug(@"选中%@",self.title);
+        [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+    }
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -51,13 +55,16 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+    if (self.isSelected) {
+        DDLogDebug(@"离开%@",self.title);
+        [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+    }
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"考核";
+    self.isSelected = YES;
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     self.errorView.retryBlock = ^{
@@ -340,6 +347,16 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     if (cell) {
         [cell startAnimation];
     }
+}
+- (void)report:(BOOL)status{
+    if (status) {
+        self.isSelected = YES;
+        DDLogDebug(@"选中%@",self.title);
+    }else{
+        self.isSelected = NO;
+        DDLogDebug(@"离开%@",self.title);
+    }
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:status];
 }
 
 

@@ -160,6 +160,10 @@ static const NSUInteger kTagBase = 3333;
             }
         }
     }
+    if (self.selectedViewContrller && self.viewControllers.count > index) {
+        self.selectedViewContrller(self.viewControllers[index]);
+    }
+
 }
 
 @end

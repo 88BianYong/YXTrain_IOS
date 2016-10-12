@@ -22,7 +22,7 @@
 
 @interface YXProjectMainViewController ()
 {
-    UIViewController *_selectedViewController;
+    UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
 }
 @property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
 @property (nonatomic, strong) YXCourseRecordViewController *recordVC;
@@ -186,9 +186,11 @@
     if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
         YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
         WEAK_SELF
-        containerView.selectedViewContrller = ^(UIViewController *vc){
+        containerView.selectedViewContrller = ^(UIViewController<YXTrackPageDataProtocol> *vc){
             STRONG_SELF
+            [self ->_selectedViewController report:NO];
             self ->_selectedViewController = vc;
+            [self ->_selectedViewController report:YES];
             if ([vc isKindOfClass:[YXExamViewController class]]){
                 [(YXExamViewController *)vc startAnimation];
             }

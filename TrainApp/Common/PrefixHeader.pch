@@ -73,4 +73,5 @@ extern int ddLogLevel;
 #import "YXEmptyView.h"
 #import "YXTrainConst.h"
 #import "YXDataStatisticsManger.h"
+#import "YXTrackPageDataProtocol.h"
 #endif /* PrefixHeader_pch */

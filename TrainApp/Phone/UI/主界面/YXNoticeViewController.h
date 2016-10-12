@@ -12,7 +12,7 @@ typedef NS_ENUM (NSInteger, YXNoticeAndBulletinFlag) {
     YXFlag_Bulletin = 1,
 };
 
-@interface YXNoticeViewController : PagedListViewControllerBase
+@interface YXNoticeViewController : PagedListViewControllerBase<YXTrackPageDataProtocol>
 
 @property (nonatomic, assign) YXNoticeAndBulletinFlag flag;
 

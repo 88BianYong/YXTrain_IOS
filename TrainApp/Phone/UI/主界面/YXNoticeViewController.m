@@ -14,7 +14,7 @@
 static  NSString *const trackNoticePageName = @"通知列表页面";
 static  NSString *const trackBulletinPageName = @"简报列表页面";
 @interface YXNoticeViewController ()
-
+@property (nonatomic,assign) BOOL  isSelected;
 @end
 
 @implementation YXNoticeViewController
@@ -42,6 +42,7 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
         YXBriefListFetch *fetcher = [[YXBriefListFetch alloc] init];
         self.dataFetcher = fetcher;
     }
+    self.isSelected = NO;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXNoticeAndBulletinTableViewCell class] forCellReuseIdentifier:@"YXNoticeAndBulletinTableViewCell"];
@@ -53,23 +54,30 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if (self.flag == YXFlag_Notice) {
-        [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:YES];
+    if (self.isSelected) {
+        if (self.flag == YXFlag_Notice) {
+            [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:YES];
+            DDLogDebug(@"选中%@",self.title);
+        }
+        if (self.flag == YXFlag_Bulletin) {
+            [YXDataStatisticsManger trackPage:trackBulletinPageName withStatus:YES];
+            DDLogDebug(@"选中%@",self.title);
+        }
     }
-    if (self.flag == YXFlag_Bulletin) {
-        [YXDataStatisticsManger trackPage:trackBulletinPageName withStatus:YES];
-    }
-
+    
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    if (self.flag == YXFlag_Notice) {
-        [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:NO];
+    if (self.isSelected) {
+        if (self.flag == YXFlag_Notice) {
+            [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:NO];
+            DDLogDebug(@"离开%@",self.title);
+        }
+        if (self.flag == YXFlag_Bulletin) {
+            [YXDataStatisticsManger trackPage:trackBulletinPageName withStatus:NO];
+            DDLogDebug(@"离开%@",self.title);
+        }
     }
-    if (self.flag == YXFlag_Bulletin) {
-        [YXDataStatisticsManger trackPage:trackBulletinPageName withStatus:NO];
-    }
-
 }
 #pragma mark - UITableViewDataSource
 
@@ -131,8 +139,6 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
         return [UIView new];
     }
 }
-
-
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == self.dataArray.count - 1) {
         UIView *headerView = [[UIView alloc] init];
@@ -142,8 +148,21 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
         return [UIView new];
     }
 }
-
-
+- (void)report:(BOOL)status{
+    if (status) {
+        self.isSelected = YES;
+        DDLogDebug(@"选中%@",self.title);
+    }else{
+        self.isSelected = NO;
+        DDLogDebug(@"离开%@",self.title);
+    }
+    if (self.flag == YXFlag_Notice) {
+        [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:status];
+    }
+    if (self.flag == YXFlag_Bulletin) {
+        [YXDataStatisticsManger trackPage:trackBulletinPageName withStatus:status];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

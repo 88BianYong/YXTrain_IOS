@@ -8,6 +8,6 @@
 
 #import "YXBaseViewController.h"
 
-@interface YXTaskViewController : YXBaseViewController
+@interface YXTaskViewController : YXBaseViewController<YXTrackPageDataProtocol>
 
 @end

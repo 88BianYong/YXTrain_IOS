@@ -12,6 +12,7 @@
 #import "YXWebViewController.h"
 #import "YXHotspotDatumFetch.h"
 #import "YXHotReadedRequest.h"
+#import "YXDetailHotspotViewController.h"
 static  NSString *const trackPageName = @"热点列表页面";
 @interface YXHotspotViewController ()
 @property (nonatomic, strong) YXHotReadedRequest *readedRequest;
@@ -127,7 +128,7 @@ static  NSString *const trackPageName = @"热点列表页面";
 //    if (data.status.integerValue == 0) {
 //        [self requestForHotspotReaded:data.hotspotId];
 //    }
-    YXWebViewController *webView = [[YXWebViewController alloc] init];
+    YXDetailHotspotViewController *webView = [[YXDetailHotspotViewController alloc] init];
     webView.urlString = data.linkUrl;
     webView.titleString = data.title;
     [self.navigationController pushViewController:webView animated:YES];

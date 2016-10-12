@@ -19,6 +19,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 
 @property (nonatomic, strong) YXErrorView *errorView;
 @property (nonatomic, strong) YXEmptyView *emptyView;
+@property (nonatomic,assign) BOOL  isSelected;
 @end
 
 @implementation YXTaskViewController
@@ -27,6 +28,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"任务";
+    self.isSelected = NO;
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     self.errorView.retryBlock = ^{
@@ -41,7 +43,10 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+    if (self.isSelected) {
+        DDLogDebug(@"选中%@",self.title);
+        [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
+    }
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
                                                                      [UIColor colorWithHexString:@"334466"], NSForegroundColorAttributeName,
                                                                      [UIFont boldSystemFontOfSize:17], NSFontAttributeName,
@@ -49,7 +54,10 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+    if (self.isSelected) {
+        DDLogDebug(@"离开%@",self.title);
+        [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
+    }
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -170,5 +178,15 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         [self showToast:@"相关功能暂未开放"];
     }
 }
-
+- (void)report:(BOOL)status{
+    if (status) {
+        self.isSelected = YES;
+        DDLogDebug(@"选中%@",self.title);
+    }else{
+        self.isSelected = NO;
+        DDLogDebug(@"离开%@",self.title);
+    }
+    
+    [YXDataStatisticsManger trackPage:trackPageName withStatus:status];
+}
 @end

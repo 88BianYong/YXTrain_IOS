@@ -110,6 +110,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
             YXBroseWebView *webView = [[YXBroseWebView alloc] init];
             webView.urlString = data.linkUrl;
             webView.titleString = data.projectName;
+            webView.sourceControllerTitile = @"通知";
             [self.navigationController pushViewController:webView animated:NO];
         }
             break;
@@ -118,6 +119,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
             YXBroseWebView *webView = [[YXBroseWebView alloc] init];
             webView.urlString = data.linkUrl;
             webView.titleString = data.projectName;
+            webView.sourceControllerTitile = @"简报";
             [self.navigationController pushViewController:webView animated:NO];
         }
             break;
