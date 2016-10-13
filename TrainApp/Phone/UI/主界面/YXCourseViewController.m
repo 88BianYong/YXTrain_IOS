@@ -147,7 +147,7 @@
     if (self.isWaitingForFilter) {
         return;
     }
-    [super firstPageFetch:YES];
+    [super firstPageFetch:isShow];
 }
 
 - (void)dealWithFilterModel:(YXCourseListFilterModel *)model{

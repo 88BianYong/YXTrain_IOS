@@ -47,8 +47,8 @@
 #pragma mark - setupUI
 - (void)setupUI{
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.tableView.estimatedRowHeight = 30.0f;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 30.0f;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXDynamicCell class] forCellReuseIdentifier:@"YXDynamicCell"];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 5.0f)];
@@ -73,6 +73,12 @@
 
 
 #pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXDynamicRequestItem_Data *data = self.dataArray[indexPath.row];
+    return [tableView fd_heightForCellWithIdentifier:@"YXDynamicCell" configuration:^(YXDynamicCell *cell) {
+        cell.data = data;
+    }];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.01f;
 }

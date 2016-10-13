@@ -14,7 +14,7 @@
 #import "YXHotReadedRequest.h"
 @interface YXHotspotViewController ()
 @property (nonatomic, strong) YXHotReadedRequest *readedRequest;
-
+@property (nonatomic, assign) CGPoint contentPoint;
 @end
 
 @implementation YXHotspotViewController
@@ -27,6 +27,7 @@
     self.emptyView = emptyView;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
+    self.contentPoint = CGPointMake(0, 0);
     self.title = @"热点";
     [self setupUI];
     [self layoutInterface];
@@ -34,10 +35,22 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+    DDLogDebug(@"%@",NSStringFromCGPoint(self.tableView.contentOffset));
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    //[self.tableView setContentOffset:self.contentPoint animated:NO];
+    DDLogDebug(@"%@",NSStringFromCGPoint(self.tableView.contentOffset));
+
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+    DDLogDebug(@"%@",NSStringFromCGPoint(self.tableView.contentOffset));
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    DDLogDebug(@"%@",NSStringFromCGPoint(self.tableView.contentOffset));
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,8 +61,8 @@
 - (void)setupUI{
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.tableView.estimatedRowHeight = 30.0f;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 44.0f;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXHotspotWordsCell class] forCellReuseIdentifier:@"YXHotspotWordsCell"];
     [self.tableView registerClass:[YXHotspotPictureCell class] forCellReuseIdentifier:@"YXHotspotPictureCell"];
@@ -68,7 +81,6 @@
     return self.dataArray.count > 0 ? 1 : 0;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXHotspotRequestItem_Data *data = self.dataArray[indexPath.row];
     if (isEmpty(data.picUrl)) {
@@ -83,6 +95,18 @@
 }
 
 #pragma mark - UITableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXHotspotRequestItem_Data *data = self.dataArray[indexPath.row];
+    if (isEmpty(data.picUrl)) {
+        return [tableView fd_heightForCellWithIdentifier:@"YXHotspotWordsCell" configuration:^(YXHotspotWordsCell *cell) {
+            cell.data = data;
+        }];
+    } else {
+        return [tableView fd_heightForCellWithIdentifier:@"YXHotspotPictureCell" configuration:^(YXHotspotPictureCell *cell) {
+            cell.data = data;
+        }];
+    }
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 3.0f;
 }
@@ -104,6 +128,7 @@
     webView.urlString = data.linkUrl;
     webView.titleString = data.title;
     [self.navigationController pushViewController:webView animated:YES];
+    self.contentPoint = tableView.contentOffset;
 }
 
 #pragma mark - request
