@@ -44,7 +44,6 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (self.isSelected) {
-        DDLogDebug(@"选中%@",self.title);
         [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     }
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -55,7 +54,6 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if (self.isSelected) {
-        DDLogDebug(@"离开%@",self.title);
         [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     }
 }
@@ -181,10 +179,8 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 - (void)report:(BOOL)status{
     if (status) {
         self.isSelected = YES;
-        DDLogDebug(@"选中%@",self.title);
     }else{
         self.isSelected = NO;
-        DDLogDebug(@"离开%@",self.title);
     }
     
     [YXDataStatisticsManger trackPage:trackPageName withStatus:status];

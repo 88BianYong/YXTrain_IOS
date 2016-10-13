@@ -113,12 +113,14 @@ static  NSString *const trackPageName = @"搜索结果页面";
     }
     if (!data.isFavor) {
         [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
+            [YXDataStatisticsManger trackEvent:@"资源" label:@"收藏资源" parameters:nil];
             [self.tableView reloadData];
         }];
     }
     [YXFileBrowseManager sharedManager].fileItem = item;
     [YXFileBrowseManager sharedManager].baseViewController = self;
     [[YXFileBrowseManager sharedManager] browseFile];
+    [YXDataStatisticsManger trackEvent:@"资源" label:@"预览资源" parameters:nil];
 }
 
 

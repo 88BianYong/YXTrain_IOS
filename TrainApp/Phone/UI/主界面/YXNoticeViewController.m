@@ -57,11 +57,9 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
     if (self.isSelected) {
         if (self.flag == YXFlag_Notice) {
             [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:YES];
-            DDLogDebug(@"选中%@",self.title);
         }
         if (self.flag == YXFlag_Bulletin) {
             [YXDataStatisticsManger trackPage:trackBulletinPageName withStatus:YES];
-            DDLogDebug(@"选中%@",self.title);
         }
     }
     
@@ -71,11 +69,9 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
     if (self.isSelected) {
         if (self.flag == YXFlag_Notice) {
             [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:NO];
-            DDLogDebug(@"离开%@",self.title);
         }
         if (self.flag == YXFlag_Bulletin) {
             [YXDataStatisticsManger trackPage:trackBulletinPageName withStatus:NO];
-            DDLogDebug(@"离开%@",self.title);
         }
     }
 }
@@ -151,10 +147,8 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
 - (void)report:(BOOL)status{
     if (status) {
         self.isSelected = YES;
-        DDLogDebug(@"选中%@",self.title);
     }else{
         self.isSelected = NO;
-        DDLogDebug(@"离开%@",self.title);
     }
     if (self.flag == YXFlag_Notice) {
         [YXDataStatisticsManger trackPage:trackNoticePageName withStatus:status];

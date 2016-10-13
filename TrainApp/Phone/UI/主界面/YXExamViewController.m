@@ -45,7 +45,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     [super viewWillAppear:animated];
     [self startAnimation];
     if (self.isSelected) {
-        DDLogDebug(@"选中%@",self.title);
         [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     }
 }
@@ -56,7 +55,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     if (self.isSelected) {
-        DDLogDebug(@"离开%@",self.title);
         [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     }
 }
@@ -351,10 +349,8 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 - (void)report:(BOOL)status{
     if (status) {
         self.isSelected = YES;
-        DDLogDebug(@"选中%@",self.title);
     }else{
         self.isSelected = NO;
-        DDLogDebug(@"离开%@",self.title);
     }
     [YXDataStatisticsManger trackPage:trackPageName withStatus:status];
 }
