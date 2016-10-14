@@ -132,7 +132,7 @@
                 forState:UIControlStateHighlighted];
     editButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [editButton addTarget:self action:@selector(pushMineButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [editButton setImageEdgeInsets:UIEdgeInsetsMake(0,kScreenWidth *YXTrainLeftDrawerWidth/750.f - 10.0f - 18.0f, 0, 0.0f)];
+    [editButton setImageEdgeInsets:UIEdgeInsetsMake(0,kScreenWidth *YXTrainLeftDrawerWidth/750.f - 10.0f - 18.0f, -13.0f, 0.0f)];
     [self.headerView addSubview:editButton];
     UIView *headerBottomView = [[UIView alloc] init];
     headerBottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
@@ -151,13 +151,13 @@
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(25.0f + 18.0f);
+        make.top.mas_equalTo(30.0f + 20.0f);
         make.left.mas_equalTo(self->_iconImageView.mas_right).mas_offset(10.0f);
         make.right.mas_equalTo(self.headerView.mas_right).offset(-50.0f);
     }];
     
     [_schoolNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self->_nameLabel.mas_bottom).offset(11.0f - 5.0f);
+        make.bottom.mas_equalTo(self.headerView.mas_bottom).offset(-30.0f);
         make.left.mas_equalTo(self->_iconImageView.mas_right).mas_offset(10.0f);
         make.right.mas_equalTo(self.headerView.mas_right).offset(-50.0f);
     }];

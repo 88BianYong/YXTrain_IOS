@@ -65,7 +65,7 @@
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(47.0f);
         make.top.equalTo(self.contentView.mas_top);
-        make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
+        make.right.equalTo(self.contentView.mas_right).offset(-25.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-20.0f);
     }];
     

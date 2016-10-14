@@ -44,7 +44,7 @@
     if (highlighted) {
         if (self.highlightImage) {
             self.menuImageView.image = [UIImage imageNamed:self.highlightImage];
-            self.menuTitleLabel.textColor = [UIColor blueColor];
+            self.menuTitleLabel.textColor = [UIColor colorWithHexString:@"0067be"];
         }
     }
     else{
