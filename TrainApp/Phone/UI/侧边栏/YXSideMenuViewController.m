@@ -165,8 +165,8 @@
     [footerButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
     [footerButton setImage:[UIImage imageNamed:@"设置icon-正常态"]
                 forState:UIControlStateNormal];
-    [footerButton setImage:[UIImage imageNamed:@"设置icon-点击态"]
-                forState:UIControlStateHighlighted];
+//    [footerButton setImage:[UIImage imageNamed:@"设置icon-点击态"]
+//                forState:UIControlStateHighlighted];
     footerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [footerButton setImageEdgeInsets:UIEdgeInsetsMake(0,25.0f, 0, 0.0f)];
     

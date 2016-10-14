@@ -18,6 +18,7 @@
 #import "YXUserProfileRequest.h"
 #import "YXUploadHeadImgRequest.h"
 #import "YXInitRequest.h"
+#import "YXPopUpContainerView.h"
 
 @interface YXProjectMainViewController ()
 {
@@ -58,12 +59,30 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [_selectedViewController viewDidAppear:animated];
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];//TD:优化xu
+    NSArray *array = window.subviews;
+    for (UIView *view in array) {
+        if ([view isKindOfClass:[YXPopUpContainerView class]]) {
+            view.hidden = NO;
+        }
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self hideProjectSelectionView];
     [_selectedViewController viewWillDisappear:animated];
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    NSArray *array = window.subviews;
+    for (UIView *view in array) {
+        if ([view isKindOfClass:[YXPopUpContainerView class]]) {
+            view.hidden = YES;
+        }
+    }
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+
 }
 #pragma mark - setupUI
 - (void)setupUI{

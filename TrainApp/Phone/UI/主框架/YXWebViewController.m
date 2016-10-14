@@ -11,15 +11,20 @@
 @interface YXWebViewController ()<UIWebViewDelegate>
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) YXErrorView *errorView;
+@property (nonatomic, assign) BOOL isShowLoding;
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation YXWebViewController
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isShowLoding = YES;
     self.title = self.titleString;
     [self setupLeftBack];
     [self setupRightWithImageNamed:@"更多icon" highlightImageNamed:@"更多icon-点击态"];
@@ -35,9 +40,10 @@
         NSString *urlString = [NSString stringWithFormat:@"http://%@",url.resourceSpecifier];
         url = [NSURL URLWithString:urlString];
     }
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:30];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
     [self.webView loadRequest:request];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
 
 }
 
@@ -68,7 +74,9 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-    [self startLoading];
+    if (self.isShowLoding) {
+        [self startLoading];
+    }
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
@@ -98,6 +106,10 @@
             [self.view addSubview:self.errorView];
         }
     }
+}
+- (void)timerAction{
+    [self stopLoading];
+    self.isShowLoding = NO;
 }
 
 

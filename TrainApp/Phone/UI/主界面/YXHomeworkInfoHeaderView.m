@@ -177,7 +177,7 @@
     if(!_body.score.boolValue){
         NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
         _textAttachment.image = [UIImage imageNamed:@"未批改"];
-        _textAttachment.bounds = CGRectMake(0, 0.0f, 105.0f, 28.0f);
+        _textAttachment.bounds = CGRectMake(0, -3.0f, 105.0f, 28.0f);
         NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
         [attr appendAttributedString:attrStringWithImage];
         NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@" "];

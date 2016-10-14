@@ -95,9 +95,10 @@
     if ([[YXUserManager sharedManager] isLogin]) {
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
-        if (![YXInitHelper sharedHelper].isShowUpgrade){
-            [self showCMSView];
-        }
+//        if (![YXInitHelper sharedHelper].isShowUpgrade){
+//            [self showCMSView];
+//        }
+        [self showCMSView];
     } else
     {
         self.loginVC = [[YXLoginViewController alloc] init];

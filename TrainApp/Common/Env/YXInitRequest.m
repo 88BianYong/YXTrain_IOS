@@ -12,6 +12,7 @@
 #import "YXUserManager.h"
 #import "YXPopUpContainerView.h"
 #import "YXAppUpdatePopUpView.h"
+#import "YXCMSCustomView.h"
 
 NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 
@@ -202,6 +203,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         [self showForceUploadTitle:body.title andContent:body.content];
     }
     else{
+        self.isShowUpgrade = YES;
         BLOCK_EXEC(self.upgradeHandler,isInit);
     }
 
@@ -246,6 +248,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
  *  这里需要接入真正逻辑
  */
 - (void)showUploadTitle:(NSString *)titleString andContent:(NSString *)contentString {
+    self.isShowUpgrade = YES;
     YXPopUpContainerView *v = [[YXPopUpContainerView alloc] init];
     YXAppUpdateData *data = [[YXAppUpdateData alloc] init];
     data.title = titleString;
@@ -280,8 +283,15 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     YXAppUpdatePopUpView *popView = [[YXAppUpdatePopUpView alloc] init];
     [popView setupConstrainsInContainerView:v];
     [popView updateWithData:data actions:@[downloadUpdateAlertAct,cancelAlertAct]];
-    self.isShowUpgrade = YES;
     [v showInView:nil];
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    NSArray *array = window.subviews;
+    for (UIView *view in array) {
+        if ([view isKindOfClass:[YXCMSCustomView class]]) {
+            [window bringSubviewToFront:view];
+        }
+    }
+    
 }
 
 - (void)showForceUploadTitle:(NSString *)titleString andContent:(NSString *)contentString {
