@@ -44,11 +44,13 @@
     if (highlighted) {
         if (self.highlightImage) {
             self.menuImageView.image = [UIImage imageNamed:self.highlightImage];
+            self.menuTitleLabel.textColor = [UIColor blueColor];
         }
     }
     else{
         if (self.normalImage) {
             self.menuImageView.image = [UIImage imageNamed:self.normalImage];
+            self.menuTitleLabel.textColor = [UIColor colorWithHexString:@"334466"];
         }
     }
 }

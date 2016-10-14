@@ -114,6 +114,16 @@
     _schoolNameLabel.textColor = [UIColor whiteColor];
     _schoolNameLabel.text = @"1";
     [self.headerView addSubview:_schoolNameLabel];
+    UIView *topView = [[UIView alloc] init];
+    topView.backgroundColor = [UIColor whiteColor];
+    [self.headerView addSubview:topView];
+    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.headerView.mas_left);
+        make.top.equalTo(self.headerView.mas_top);
+        make.right.equalTo(self.headerView.mas_right);
+        make.height.mas_offset(20.0f);
+    }];
+    
     
     UIButton *editButton = [[UIButton alloc] init];
     [editButton setImage:[UIImage imageNamed:@"进入编辑个人中心icon正常态"]

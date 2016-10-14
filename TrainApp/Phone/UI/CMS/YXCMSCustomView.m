@@ -86,11 +86,11 @@
         self.imageView.image = image;
         [self.timerView startWithSeconds:self.model.seconds.integerValue];
     } else if (URL) {
+        [self removeCMSView];
         [self.imageView sd_setImageWithURL:URL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (image) {
                 [model saveImageToDisk:image];
             }
-            [self removeCMSView];
         }];
 
     } else {
@@ -100,6 +100,8 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    [super touchesBegan:touches withEvent:event];
+    DDLogDebug(@"dianji");
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     if (CGRectContainsPoint(self.timerView.frame, point)) {

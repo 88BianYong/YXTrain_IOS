@@ -27,7 +27,8 @@
     self.emptyView = emptyView;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
-    self.title = @"动态";
+    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.title = @"消息动态";
     [self setupUI];
     [self layoutInterface];
 }

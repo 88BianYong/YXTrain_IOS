@@ -88,6 +88,7 @@
     _feedBackTextView = [[SAMTextView alloc] init];
     _feedBackTextView.delegate = self;
     _feedBackTextView.font = [UIFont systemFontOfSize:14.0f];
+    _feedBackTextView.textColor = [UIColor colorWithHexString:@"334466"];
     [_feedBackView addSubview:_feedBackTextView];
     _feedBackTextView.placeholder = @"请简单描述您的问题，或对我们提出宝贵建议(4-500字)";
     

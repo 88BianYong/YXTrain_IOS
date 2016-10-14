@@ -41,7 +41,7 @@
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+    self.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.contentView addSubview:self.titleLabel];
     
     self.contentLabel = [[UILabel alloc] init];
