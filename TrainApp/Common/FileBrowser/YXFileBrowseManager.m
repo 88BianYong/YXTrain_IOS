@@ -264,8 +264,8 @@
     if ([YXRecordManager sharedManager].isActive) {
         [[YXRecordManager sharedManager]updateFragmentWithDuration:duration record:duration*progress watchedTime:time];
     }
-    NSInteger min = duration * progress / 60;
-    NSInteger sec = (NSInteger)(duration * progress) % 60;
+    NSInteger min = time / 60;
+    NSInteger sec = (NSInteger)time % 60;
     NSString *playTime = [NSString stringWithFormat:@"%02zd分:%02zd秒",min,sec];
     NSDictionary *dict = @{
                            @"时长": playTime

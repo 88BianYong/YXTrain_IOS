@@ -235,27 +235,33 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
             if ([data.toolid isEqualToString:@"315"]||[data.toolid isEqualToString:@"215"]) { // 课程超市
                 YXCourseViewController *vc = [[YXCourseViewController alloc]init];
                 vc.status = YXCourseFromStatus_Market;
+                [YXDataStatisticsManger trackEvent:@"课程列表" label:trackLabelOfJumpFromExeam parameters:nil];
                 [self.navigationController pushViewController:vc animated:YES];
             }else if ([data.toolid isEqualToString:@"201"]||[data.toolid isEqualToString:@"301"]) { // 课程
                 YXCourseViewController *vc = [[YXCourseViewController alloc]init];
                 vc.status = YXCourseFromStatus_Course;
                 [self.navigationController pushViewController:vc animated:YES];
+                [YXDataStatisticsManger trackEvent:@"课程列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else if ([data.toolid isEqualToString:@"217"]||[data.toolid isEqualToString:@"317"]) { //本地课程
                 YXCourseViewController *vc = [[YXCourseViewController alloc]init];
                 vc.status = YXCourseFromStatus_Local;
                 [self.navigationController pushViewController:vc animated:YES];
+                [YXDataStatisticsManger trackEvent:@"课程列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else if ([data.toolid isEqualToString:@"203"] || [data.toolid isEqualToString:@"303"]){//作业
                 NSString *string = @"YXHomeworkListViewController";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+                [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else if ([data.toolid isEqualToString:@"205"] || [data.toolid isEqualToString:@"305"]){//研修总结
                 NSString *string = @"YXHomeworkListViewController";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+                [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else if ([data.toolid isEqualToString:@"216"] || [data.toolid isEqualToString:@"316"]){//小组作业
                 NSString *string = @"YXHomeworkListViewController";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+                [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else {
                 [self showToast:@"相关功能暂未开放"];
             }
