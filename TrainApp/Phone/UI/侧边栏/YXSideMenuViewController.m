@@ -118,7 +118,7 @@
     UIButton *editButton = [[UIButton alloc] init];
     [editButton setImage:[UIImage imageNamed:@"进入编辑个人中心icon正常态"]
                 forState:UIControlStateNormal];
-    [editButton setImage:[UIImage imageNamed:@"进入编辑个人中心icon-点击态"]
+    [editButton setImage:[UIImage imageNamed:@"进入编辑个人中心icon正常态"]
                 forState:UIControlStateHighlighted];
     editButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [editButton addTarget:self action:@selector(pushMineButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -165,8 +165,8 @@
     [footerButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
     [footerButton setImage:[UIImage imageNamed:@"设置icon-正常态"]
                 forState:UIControlStateNormal];
-//    [footerButton setImage:[UIImage imageNamed:@"设置icon-点击态"]
-//                forState:UIControlStateHighlighted];
+    [footerButton setImage:[UIImage imageNamed:@"设置icon-点击态"]
+                forState:UIControlStateHighlighted];
     footerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [footerButton setImageEdgeInsets:UIEdgeInsetsMake(0,25.0f, 0, 0.0f)];
     
