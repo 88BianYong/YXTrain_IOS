@@ -70,22 +70,22 @@
     self.model = model;
     UIImage *image = [model localImage];
     NSURL *URL = [NSURL URLWithString:model.startpageurl];
-    NSArray *array = [model.projectId componentsSeparatedByString:@","];
-    __block BOOL isShow = NO;
-    [array enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:obj]) {
-            isShow = YES;
-            *stop = YES;
-        }
-    }];
-    if (array.count == 0) {
-       isShow = YES;
-    }
-    if (image && isShow) {
+//    NSArray *array = [model.projectId componentsSeparatedByString:@","];
+//    __block BOOL isShow = NO;
+//    [array enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:obj]) {
+//            isShow = YES;
+//            *stop = YES;
+//        }
+//    }];
+//    if (array.count == 0) {
+//       isShow = YES;
+//    }
+    if (image) {
         _timerView.hidden = NO;
         self.imageView.image = image;
         [self.timerView startWithSeconds:self.model.seconds.integerValue];
-    } else if (URL && isShow) {
+    } else if (URL) {
         [self.imageView sd_setImageWithURL:URL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (image) {
                 [model saveImageToDisk:image];
