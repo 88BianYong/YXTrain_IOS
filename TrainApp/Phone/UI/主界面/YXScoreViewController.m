@@ -88,6 +88,7 @@ static  NSString *const trackPageName = @"成绩详情页面";
     YXScoreTotalScoreHeaderView *totalHeaderView = [[YXScoreTotalScoreHeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 190.0f)];
     totalHeaderView.data = self.data;
     [totalHeaderView addSubview:self.waveView];
+    [totalHeaderView sendSubviewToBack:self.waveView];
     [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(totalHeaderView.mas_left);
         make.right.equalTo(totalHeaderView.mas_right);

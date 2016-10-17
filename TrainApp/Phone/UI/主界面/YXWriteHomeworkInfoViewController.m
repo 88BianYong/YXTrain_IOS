@@ -258,19 +258,19 @@
         [_getQiNiuTokenRequest stopRequest];
     }
     YXGetQiNiuTokenRequest *request = [[YXGetQiNiuTokenRequest alloc] init];
+    _progressView.hidden = NO;
+    _progressView.progress = 0.0f;
     WEAK_SELF
-    [self startLoading];
     [request  startRequestWithRetClass:[YXGetQiNiuTokenRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
         if (error) {
+            _progressView.hidden = YES;
             [self showToast:@"网络异常,请稍后重试"];
         }else{
             YXGetQiNiuTokenRequestItem *item = retItem;
             DDLogDebug(@"%@",item.uploadToken);
             self ->_uploadRequest = [[YXQiNiuVideoUpload alloc] initWithFileName:self.videoModel.fileName qiNiuToken:item.uploadToken];
             self ->_uploadRequest.delegate = self;
-            self ->_progressView.hidden = NO;
             [UIApplication sharedApplication].idleTimerDisabled = YES;
             [self ->_uploadRequest  startUpload];
         }

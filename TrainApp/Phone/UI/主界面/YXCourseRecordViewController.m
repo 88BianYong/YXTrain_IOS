@@ -43,7 +43,7 @@ static  NSString *const trackPageName = @"看课记录页面";
         [self getDataShowLoading:YES];
     };
     self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    if ([[YXTrainManager sharedInstance].currentProject.w isEqualToString:@"3"]) {
+    if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
         self.emptyView.title = @"您还没有开始看课";
         self.emptyView.imageName = @"没开始看课";
     }else{
