@@ -157,7 +157,7 @@ static  NSString *const trackPageName = @"我的资源页面";
     [YXFileBrowseManager sharedManager].baseViewController = self;
     [[YXFileBrowseManager sharedManager] browseFile];
     [YXDataStatisticsManger trackEvent:@"资源" label:@"预览资源" parameters:nil];
-
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.01f;
@@ -233,7 +233,6 @@ static  NSString *const trackPageName = @"我的资源页面";
 
 #pragma mark - YXMyDatumCellDelegate
 - (void)myDatumCellDownloadButtonClicked:(YXMyDatumCell *)myDatumCell{
-    [YXDataStatisticsManger trackEvent:@"资源" label:@"下载资源" parameters:nil];
     YXDatumCellModel *model = myDatumCell.cellModel;
     if (model.downloadState != DownloadStatusDownloading) { // 当前点击是未下载
         if (self.downloader.state == DownloadStatusDownloading) { // 当有任务下载时不能下载
@@ -251,6 +250,7 @@ static  NSString *const trackPageName = @"我的资源页面";
             [self setupObserversWithCellModel:model];
             [self.downloader start];
             self.currentDownloadingModel = model;
+            [YXDataStatisticsManger trackEvent:@"资源" label:@"下载资源" parameters:nil];
         }
     }else{
         [self.downloader stop];
@@ -279,13 +279,13 @@ static  NSString *const trackPageName = @"我的资源页面";
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

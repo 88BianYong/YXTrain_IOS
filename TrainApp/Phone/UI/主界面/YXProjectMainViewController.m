@@ -205,9 +205,11 @@
         [self addChildViewController:notiVC];
         [self addChildViewController:bulletinVC];
     }else{
-        self.recordVC = [[YXCourseRecordViewController alloc]init];
+        YXCourseRecordViewController *recordVc = [[YXCourseRecordViewController alloc]init];
+        self.recordVC = recordVc;
         self.recordVC.view.frame = self.view.bounds;
         [self.view addSubview:self.recordVC.view];
+        [self addChildViewController:recordVc];
     }
 }
 
