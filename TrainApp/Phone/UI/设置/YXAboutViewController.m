@@ -99,7 +99,7 @@ static  NSString *const trackPageName = @"关于我们页面";
     if (indexPath.row == 0) {
         cell.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
         cell.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        cell.titleLabel.text = @"官方微信  lstong910";
+        cell.titleLabel.text = @"官方微信  zgjsyxw";
         cell.titleLabel.textAlignment = NSTextAlignmentCenter;
         cell.delegate = self;
     }

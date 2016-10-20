@@ -240,7 +240,7 @@ UITableViewDataSource
             YXHomeworkInfoRequestItem *item = retItem;
             if (item) {
                 item.body.uid = [YXUserManager sharedManager].userModel.uid;
-                item.body.pid = [YXTrainManager sharedInstance].currentProject.pid;
+                item.body.pid = self.itemBody.pid;
                 if (item.body.detail) {
                   item.body.lessonStatus = YXVideoLessonStatus_Finish;
                 }else{
