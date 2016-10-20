@@ -16,9 +16,11 @@
 #import "YXUpdVideoHomeworkRequest.h"
 #import "YXCategoryListRequest.h"
 #import "YXSaveHomeWorkRequest.h"
-
-
-
+typedef NS_ENUM(NSUInteger, YXHomeworkRequestStatus){
+    YXHomeworkRequestStatus_Category = 1,
+    YXHomeworkRequestStatus_Info = 2,
+    YXHomeworkRequestStatus_ChapterList = 3
+};
 
 @interface YXWriteHomeworkInfoViewController : YXBaseViewController
 @property (nonatomic, strong)YXHomeworkInfoRequestItem_Body  *videoModel;
@@ -46,6 +48,7 @@
 @property (nonatomic, strong)YXSaveHomeWorkRequest *saveRequest;
 @property (nonatomic, strong)YXWriteHomeworkRequest *homeworkRequest;
 @property (nonatomic, strong)YXUpdVideoHomeworkRequest *uploadInfoRequest;
+@property (nonatomic, copy) void(^homeworkCompleteBlock)(NSError *error, YXHomeworkRequestStatus status);
 
 
 @end

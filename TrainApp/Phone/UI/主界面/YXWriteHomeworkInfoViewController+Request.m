@@ -9,9 +9,16 @@
 #import "YXWriteHomeworkInfoViewController+Request.h"
 #import "YXWriteHomeworkInfoViewController+Format.h"
 #import "YXVideoRecordManager.h"
-#import "FileHash.h"
+#import "FileHash.h" 
 static  NSString *const trackEventName = @"上传作业";
 @implementation YXWriteHomeworkInfoViewController (Request)
+//- (void)requestForHomeworkCompleteBlock:(void(^)(NSError *error, YXHomeworkRequestStatus status))completeBlock{
+//    self.homeworkCompleteBlock = completeBlock;
+//    [self requestForCategoryId];
+//}
+
+
+
 - (void)requestForCategoryId{
     if (self.listRequest) {
         [self.listRequest stopRequest];
@@ -23,18 +30,23 @@ static  NSString *const trackEventName = @"上传作业";
     WEAK_SELF
     [request startRequestWithRetClass:[YXCategoryListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
         if (error) {
+            [self stopLoading];
             self.errorView.frame = self.view.bounds;
             [self.view addSubview:self.errorView];
+
+//            self.homeworkCompleteBlock(error,YXHomeworkRequestStatus_Category);
         }else{
             self.listItem = retItem;
             [self schoolSectionWithData];
+            [self.errorView removeFromSuperview];
             [self.tableView reloadData];
             if (self.videoModel.homeworkid.integerValue != 0) {
                 [self requestForHomeworkInfo];
+            }else{
+                [self stopLoading];
             }
-            [self.errorView removeFromSuperview];
+            
         }
     }];
     self.listRequest = request;
@@ -139,8 +151,8 @@ static  NSString *const trackEventName = @"上传作业";
     [self startLoading];
     [request startRequestWithRetClass:[YXWriteHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
         if (error) {
+            [self stopLoading];
             [self showToast:@"作业信息获取失败"];
         }else{
             YXWriteHomeworkRequestItem *item = retItem;
@@ -149,7 +161,9 @@ static  NSString *const trackEventName = @"上传作业";
             [self.tableView reloadData];
             if (!isEmpty(self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][1])) {
                 [self requestForChapterList];
-            };
+            }else{
+                [self stopLoading];
+            }
         }
     }];
     self.homeworkRequest = request;
