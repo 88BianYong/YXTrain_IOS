@@ -10,7 +10,9 @@
 		<string>http://mobile.yanxiu.com/v20/api/</string>
 		<key>uploadServer</key>
 		<string>http://upload.yanxiu.com/resource/index.jsp</string>
-		<key>loginServer</key>
+		<key>testLoginServer</key>
+		<string>http://u.yanxiu.com/test/</string>
+		<key>releaseLoginServer</key>
 		<string>http://u.yanxiu.com/</string>
 	</dict>
 	<key>uploadServer</key>

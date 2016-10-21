@@ -19,6 +19,8 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        _title = @"无内容";
+        _imageName = @"无内容";
         [self setupUI];
     }
     return self;
@@ -27,7 +29,6 @@
 - (void)setupUI{
     self.containerView = [[UIView alloc] init];
     [self addSubview:self.containerView];
-    
     
     
     self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];

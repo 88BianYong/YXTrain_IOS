@@ -14,6 +14,8 @@
     
     MJRefreshFooterView *_footer;
     MJRefreshHeaderView *_header;
+    NSString *_emptyImageString;
+    NSString *_emptyTitleString;
 }
 
 @end
@@ -97,6 +99,8 @@
     _total = (int)[self.dataArray count];
 
     [self firstPageFetch:YES];
+    _emptyImageString = self.emptyView.imageName;
+    _emptyTitleString = self.emptyView.title;
 }
 
 - (void)firstPageFetch:(BOOL)isShow {
@@ -154,8 +158,8 @@
             [self.dataArray removeAllObjects];
             
             if (isEmpty(retItemArray)) {
-                self.emptyView.imageName = @"无内容";
-                self.emptyView.title = @"无内容";
+                self.emptyView.imageName = self ->_emptyImageString;
+                self.emptyView.title = self ->_emptyTitleString;
                 self.emptyView.hidden = NO;
             } else {
                 self.emptyView.hidden = YES;
