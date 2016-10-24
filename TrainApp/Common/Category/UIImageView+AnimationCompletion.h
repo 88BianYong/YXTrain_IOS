@@ -32,7 +32,7 @@
 #import <UIKit/UIKit.h>
 
 typedef void (^Block)(BOOL success);
-@interface UIImageView (AnimationCompletion)
+@interface UIImageView (AnimationCompletion)<CAAnimationDelegate>
 -(void)startAnimatingWithCompletionBlock:(Block)block;
 
 -(void)startAnimatingWithDelayTime:(NSTimeInterval)time CompletionBlock:(Block)block;
