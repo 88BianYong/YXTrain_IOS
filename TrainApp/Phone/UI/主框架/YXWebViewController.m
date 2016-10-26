@@ -75,6 +75,7 @@
 }
 - (void)naviLeftAction{
     [self.navigationController popViewControllerAnimated:YES];
+    BLOCK_EXEC(self.BackBlock);
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{

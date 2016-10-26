@@ -51,7 +51,9 @@
     WEAK_SELF
     _timerView.stopTimerBlock = ^ {
         STRONG_SELF
-        [self removeCMSView];
+        if (self.superview != nil) {
+          [self removeCMSView:NO];
+        }
     };
     [self addSubview:_timerView];
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -70,23 +72,12 @@
     self.model = model;
     UIImage *image = [model localImage];
     NSURL *URL = [NSURL URLWithString:model.startpageurl];
-//    NSArray *array = [model.projectId componentsSeparatedByString:@","];
-//    __block BOOL isShow = NO;
-//    [array enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:obj]) {
-//            isShow = YES;
-//            *stop = YES;
-//        }
-//    }];
-//    if (array.count == 0) {
-//       isShow = YES;
-//    }
     if (image) {
         _timerView.hidden = NO;
         self.imageView.image = image;
         [self.timerView startWithSeconds:self.model.seconds.integerValue];
     } else if (URL) {
-        [self removeCMSView];
+        [self removeCMSView:NO];
         [self.imageView sd_setImageWithURL:URL completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             if (image) {
                 [model saveImageToDisk:image];
@@ -94,14 +85,13 @@
         }];
 
     } else {
-        [self removeCMSView];
+        [self removeCMSView:NO];
     }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    DDLogDebug(@"dianji");
     UITouch *touch = [touches anyObject];
     CGPoint point = [touch locationInView:self];
     if (CGRectContainsPoint(self.timerView.frame, point)) {
@@ -114,7 +104,7 @@
 
 - (void)clickTimerViewAction
 {
-    [self removeCMSView];
+    [self removeCMSView:NO];
 }
 
 - (void)enterCMSViewAction
@@ -122,11 +112,14 @@
     if (self.clickedBlock) {
         self.clickedBlock(self.model);
     }
-    [self removeCMSView];
+    [self removeCMSView:YES];
 }
 
-- (void)removeCMSView
+- (void)removeCMSView:(BOOL)isJump
 {
+    if (!isJump) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainShowUpdate object:nil];
+    }
     [self removeFromSuperview];
 }
 

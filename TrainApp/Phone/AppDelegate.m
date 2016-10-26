@@ -96,12 +96,9 @@
     if ([[YXUserManager sharedManager] isLogin]) {
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
-//        if (![YXInitHelper sharedHelper].isShowUpgrade){
-//            [self showCMSView];
-//        }
         [self showCMSView];
-    } else
-    {
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainShowUpdate object:nil];
         self.loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
     }

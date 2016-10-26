@@ -40,8 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:kYXTrainWebSocketReceiveMessage object:nil];
-    
-    [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showoUpdateInterface:) name:kYXTrainShowUpdate object:nil];
     [self setupUI];
 
     [self getProjectList];
@@ -49,28 +48,13 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self showProjectSelectionView];
-//    [_selectedViewController viewWillAppear:animated];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];//TD:优化xu
-    NSArray *array = window.subviews;
-    for (UIView *view in array) {
-        if ([view isKindOfClass:[YXPopUpContainerView class]]) {
-            view.hidden = NO;
-        }
-    }
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self hideProjectSelectionView];
-    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    NSArray *array = window.subviews;
-    for (UIView *view in array) {
-        if ([view isKindOfClass:[YXPopUpContainerView class]]) {
-            view.hidden = YES;
-        }
-    }
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -154,9 +138,11 @@
     }else{
         self.redPointView.hidden = NO;
     }
-    
 }
 
+- (void)showoUpdateInterface:(NSNotification *)aNotification{
+    [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
+}
 - (void)dealWithProjects:(NSArray *)projects{
     YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
     selectionView.currentIndex = [YXTrainManager sharedInstance].currentProjectIndex;

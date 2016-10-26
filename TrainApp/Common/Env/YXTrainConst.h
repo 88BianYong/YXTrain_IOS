@@ -87,6 +87,10 @@ extern NSString *const kYXTrainCurrentProjectIndex;
  *  根据项目列表判断是否显示消息动态
  */
 extern NSString *const kYXTrainListDynamic;
+/**
+ *  显示更新view
+ */
+extern NSString *const kYXTrainShowUpdate;
 
 
 

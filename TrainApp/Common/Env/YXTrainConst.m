@@ -22,3 +22,5 @@ NSString *const kYXTrainGetInfoListTime = @"get_Info_List_time";
 NSString *const kYXTrainCurrentProjectIndex = @"project transition jump";
 
 NSString *const kYXTrainListDynamic = @"according to the list of items to determine whether the message is displayed dynamic";
+
+NSString *const kYXTrainShowUpdate = @"show optional update interface";

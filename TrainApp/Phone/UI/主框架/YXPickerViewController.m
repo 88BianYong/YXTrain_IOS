@@ -129,7 +129,7 @@
 
 - (void)showPickerView:(BOOL)animated
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TBD:为初始化马上动画有闪动问题
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TD:为初始化马上动画有闪动问题
         if (animated) {
             CGFloat height = CGRectGetHeight(self.view.bounds);
             CGFloat width = CGRectGetWidth(self.view.bounds);
