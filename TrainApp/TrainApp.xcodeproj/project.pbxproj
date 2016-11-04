@@ -167,6 +167,8 @@
 		7CFBA6BF1D33374B005D08B1 /* YXErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFBA6BE1D33374B005D08B1 /* YXErrorView.m */; };
 		7CFBA6C21D33375D005D08B1 /* YXEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFBA6C11D33375D005D08B1 /* YXEmptyView.m */; };
 		7CFBA6C51D3633E7005D08B1 /* YXModuleListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CFBA6C41D3633E7005D08B1 /* YXModuleListRequest.m */; };
+		92006C8C1DCC79E500F80488 /* ActivityPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92006C8B1DCC79E500F80488 /* ActivityPlayViewController.m */; };
+		9202DA491DD168A70020F57D /* ActivityCommentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9202DA481DD168A70020F57D /* ActivityCommentTableView.m */; };
 		920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D181D50499500636A51 /* YXVideoRecordViewController.m */; };
 		920F1D1F1D506DE500636A51 /* UIViewController+YXAddtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D1E1D506DE500636A51 /* UIViewController+YXAddtion.m */; };
 		920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D221D5094D000636A51 /* YXGetQiNiuTokenRequest.m */; };
@@ -215,6 +217,8 @@
 		9223C8401D2F93D7000F74DF /* YXUpdateProfileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C83F1D2F93D7000F74DF /* YXUpdateProfileRequest.m */; };
 		9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8451D360DE0000F74DF /* YXMySettingCell.m */; };
 		9223C8521D40D0A1000F74DF /* YXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8511D40D0A1000F74DF /* YXPageControl.m */; };
+		922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922850C31DD05DF500A64AB7 /* ActivityPlayManagerView.m */; };
+		922850C71DD05E3000A64AB7 /* ActivityPlayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922850C61DD05E3000A64AB7 /* ActivityPlayBottomView.m */; };
 		922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */; };
 		922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */; };
 		922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */; };
@@ -247,6 +251,7 @@
 		9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232377D1D82D76100FDACFE /* YXDynamicViewController.m */; };
 		923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237821D82D87800FDACFE /* YXDynamicCell.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
+		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
 		92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */; };
 		92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51441D87D2C00071DE79 /* YXWebSocketManger.m */; };
 		92CE51481D87D2FF0071DE79 /* YXGuideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51471D87D2FF0071DE79 /* YXGuideModel.m */; };
@@ -271,6 +276,10 @@
 		92EDC7D11D632357005B91DD /* YXHomeworkUploadCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D01D632357005B91DD /* YXHomeworkUploadCompleteView.m */; };
 		92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */; };
 		92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */; };
+		92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED8841DD18B1600457228 /* ActivityCommentInputView.m */; };
+		92FED8891DD1C37200457228 /* ActitvityCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED8881DD1C37200457228 /* ActitvityCommentCell.m */; };
+		92FED88C1DD1C38E00457228 /* ActitvityCommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED88B1DD1C38E00457228 /* ActitvityCommentHeaderView.m */; };
+		92FED88F1DD1C39E00457228 /* ActitvityCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED88E1DD1C39E00457228 /* ActitvityCommentFooterView.m */; };
 		C677FF965C8046594C12A055 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 22524766F0C73BA9FCA8F5C7 /* libPods.a */; };
 		CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */; };
 		CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB0904D21D1B97CC00026C9D /* YXLoginViewController.m */; };
@@ -720,6 +729,11 @@
 		7CFBA6C11D33375D005D08B1 /* YXEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEmptyView.m; sourceTree = "<group>"; };
 		7CFBA6C31D3633E7005D08B1 /* YXModuleListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXModuleListRequest.h; sourceTree = "<group>"; };
 		7CFBA6C41D3633E7005D08B1 /* YXModuleListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXModuleListRequest.m; sourceTree = "<group>"; };
+		92006C8A1DCC79E500F80488 /* ActivityPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayViewController.h; sourceTree = "<group>"; };
+		92006C8B1DCC79E500F80488 /* ActivityPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlayViewController.m; sourceTree = "<group>"; };
+		9202DA471DD168A70020F57D /* ActivityCommentTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCommentTableView.h; sourceTree = "<group>"; };
+		9202DA481DD168A70020F57D /* ActivityCommentTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCommentTableView.m; sourceTree = "<group>"; };
+		9202DA4B1DD175D60020F57D /* ActivityCommentInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCommentInputView.h; sourceTree = "<group>"; };
 		920F1D171D50499500636A51 /* YXVideoRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVideoRecordViewController.h; sourceTree = "<group>"; };
 		920F1D181D50499500636A51 /* YXVideoRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXVideoRecordViewController.m; sourceTree = "<group>"; };
 		920F1D1D1D506DE500636A51 /* UIViewController+YXAddtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YXAddtion.h"; sourceTree = "<group>"; };
@@ -812,6 +826,10 @@
 		9223C8451D360DE0000F74DF /* YXMySettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingCell.m; sourceTree = "<group>"; };
 		9223C8501D40D0A1000F74DF /* YXPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPageControl.h; sourceTree = "<group>"; };
 		9223C8511D40D0A1000F74DF /* YXPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXPageControl.m; sourceTree = "<group>"; };
+		922850C21DD05DF500A64AB7 /* ActivityPlayManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayManagerView.h; sourceTree = "<group>"; };
+		922850C31DD05DF500A64AB7 /* ActivityPlayManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlayManagerView.m; sourceTree = "<group>"; };
+		922850C51DD05E3000A64AB7 /* ActivityPlayBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayBottomView.h; sourceTree = "<group>"; };
+		922850C61DD05E3000A64AB7 /* ActivityPlayBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlayBottomView.m; sourceTree = "<group>"; };
 		922F3AC61D2A61DE00CBF7C3 /* YXWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopViewController.h; sourceTree = "<group>"; };
 		922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopViewController.m; sourceTree = "<group>"; };
 		922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopCell.h; sourceTree = "<group>"; };
@@ -873,6 +891,8 @@
 		923237821D82D87800FDACFE /* YXDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDynamicCell.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
+		92A770071DD18A5800C578F2 /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
+		92A770081DD18A5800C578F2 /* InputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextView.m; sourceTree = "<group>"; };
 		92AFFAFB1D9B7ADA00E1526C /* YXEmptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEmptCell.h; sourceTree = "<group>"; };
 		92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEmptCell.m; sourceTree = "<group>"; };
 		92CE51431D87D2C00071DE79 /* YXWebSocketManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWebSocketManger.h; sourceTree = "<group>"; };
@@ -921,6 +941,13 @@
 		92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkPlayVideoCell.m; sourceTree = "<group>"; };
 		92F370B41D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXWriteHomeworkInfoViewController+Request.h"; sourceTree = "<group>"; };
 		92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXWriteHomeworkInfoViewController+Request.m"; sourceTree = "<group>"; };
+		92FED8841DD18B1600457228 /* ActivityCommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCommentInputView.m; sourceTree = "<group>"; };
+		92FED8871DD1C37200457228 /* ActitvityCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActitvityCommentCell.h; sourceTree = "<group>"; };
+		92FED8881DD1C37200457228 /* ActitvityCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActitvityCommentCell.m; sourceTree = "<group>"; };
+		92FED88A1DD1C38E00457228 /* ActitvityCommentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActitvityCommentHeaderView.h; sourceTree = "<group>"; };
+		92FED88B1DD1C38E00457228 /* ActitvityCommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActitvityCommentHeaderView.m; sourceTree = "<group>"; };
+		92FED88D1DD1C39E00457228 /* ActitvityCommentFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActitvityCommentFooterView.h; sourceTree = "<group>"; };
+		92FED88E1DD1C39E00457228 /* ActitvityCommentFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActitvityCommentFooterView.m; sourceTree = "<group>"; };
 		B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CB0904CE1D1AA3CC00026C9D /* PersistentUrlDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentUrlDownloader.h; sourceTree = "<group>"; };
 		CB0904CF1D1AA3CC00026C9D /* PersistentUrlDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentUrlDownloader.m; sourceTree = "<group>"; };
@@ -1837,6 +1864,7 @@
 			isa = PBXGroup;
 			children = (
 				E9BBA5F01DD05C6B000CA413 /* 活动 */,
+				92006C821DCAEFCD00F80488 /* 活动 */,
 				920F1D101D5047A300636A51 /* 作业 */,
 				7CF888381D18DA4B00E7C04D /* 课程 */,
 				7C3178501D139A2A004AAC90 /* YXTaskViewController.h */,
@@ -2132,6 +2160,28 @@
 				B87DB3CD06EADD2E0C34A2F9 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		92006C821DCAEFCD00F80488 /* 活动 */ = {
+			isa = PBXGroup;
+			children = (
+				92006C861DCC693500F80488 /* view */,
+				92006C8A1DCC79E500F80488 /* ActivityPlayViewController.h */,
+				92006C8B1DCC79E500F80488 /* ActivityPlayViewController.m */,
+			);
+			name = "活动";
+			sourceTree = "<group>";
+		};
+		92006C861DCC693500F80488 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92FED8861DD1C33500457228 /* 评论 */,
+				922850C21DD05DF500A64AB7 /* ActivityPlayManagerView.h */,
+				922850C31DD05DF500A64AB7 /* ActivityPlayManagerView.m */,
+				922850C51DD05E3000A64AB7 /* ActivityPlayBottomView.h */,
+				922850C61DD05E3000A64AB7 /* ActivityPlayBottomView.m */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		920F1D101D5047A300636A51 /* 作业 */ = {
@@ -2486,6 +2536,25 @@
 				92CE515D1D87EF3D0071DE79 /* YXWebViewController.m */,
 			);
 			name = "网页";
+			sourceTree = "<group>";
+		};
+		92FED8861DD1C33500457228 /* 评论 */ = {
+			isa = PBXGroup;
+			children = (
+				92FED8871DD1C37200457228 /* ActitvityCommentCell.h */,
+				92FED8881DD1C37200457228 /* ActitvityCommentCell.m */,
+				92FED88A1DD1C38E00457228 /* ActitvityCommentHeaderView.h */,
+				92FED88B1DD1C38E00457228 /* ActitvityCommentHeaderView.m */,
+				92FED88D1DD1C39E00457228 /* ActitvityCommentFooterView.h */,
+				92FED88E1DD1C39E00457228 /* ActitvityCommentFooterView.m */,
+				9202DA471DD168A70020F57D /* ActivityCommentTableView.h */,
+				9202DA481DD168A70020F57D /* ActivityCommentTableView.m */,
+				92A770071DD18A5800C578F2 /* InputTextView.h */,
+				92A770081DD18A5800C578F2 /* InputTextView.m */,
+				9202DA4B1DD175D60020F57D /* ActivityCommentInputView.h */,
+				92FED8841DD18B1600457228 /* ActivityCommentInputView.m */,
+			);
+			name = "评论";
 			sourceTree = "<group>";
 		};
 		CB0904D41D1BC73D00026C9D /* controllers */ = {
@@ -3020,12 +3089,14 @@
 				92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
+				92A770091DD18A5800C578F2 /* InputTextView.m in Sources */,
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
 				920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */,
 				9232374B1D80F40700FDACFE /* YXProvincesRequest.m in Sources */,
 				92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m in Sources */,
 				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
+				92006C8C1DCC79E500F80488 /* ActivityPlayViewController.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
 				7C3177B51D0EB7F1004AAC90 /* UIViewController+Keyboard.m in Sources */,
 				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
@@ -3053,6 +3124,7 @@
 				E9BBA6091DD0A303000CA413 /* ActivityFilterCell.m in Sources */,
 				922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */,
 				923237401D7E660000FDACFE /* YXCMSManager.m in Sources */,
+				92FED8891DD1C37200457228 /* ActitvityCommentCell.m in Sources */,
 				7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
 				7CF8445E1D2A5E4800B1CE55 /* FileRecordEntity.m in Sources */,
@@ -3069,6 +3141,7 @@
 				7CF8888B1D1D09B100E7C04D /* YXExamineRequest.m in Sources */,
 				7CF8886D1D1BC5C300E7C04D /* YXGradientView.m in Sources */,
 				CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */,
+				92FED88C1DD1C38E00457228 /* ActitvityCommentHeaderView.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
@@ -3083,6 +3156,7 @@
 				9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */,
 				CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */,
 				CBB62E131D2CCB0F00DAA6DE /* YXBroseWebView.m in Sources */,
+				92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */,
 				7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
 				F7E8F8DB1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m in Sources */,
@@ -3096,6 +3170,7 @@
 				CB3510AA1D18E9730081EA3B /* YXDatumViewController.m in Sources */,
 				920F1D411D51EFB100636A51 /* YXHomeworkListViewController.m in Sources */,
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
+				922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
 				920F1D441D51F00700636A51 /* YXHomeworkInfoViewController.m in Sources */,
 				7CF8887C1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m in Sources */,
@@ -3178,6 +3253,7 @@
 				7C3177711D0E7EB0004AAC90 /* YXConfigManager.m in Sources */,
 				7C3177D61D10FF0A004AAC90 /* YXTestPushViewController.m in Sources */,
 				9223C8401D2F93D7000F74DF /* YXUpdateProfileRequest.m in Sources */,
+				922850C71DD05E3000A64AB7 /* ActivityPlayBottomView.m in Sources */,
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
 				7C2C3B4F1D2364E300A03635 /* YXTaskCell.m in Sources */,
 				9232376B1D8151B900FDACFE /* YXHotspotViewController.m in Sources */,
@@ -3243,6 +3319,7 @@
 				CBBE94FB1D1D16AF00C935C8 /* YXLoginFieldTableViewCell.m in Sources */,
 				CB3510D11D1912DD0081EA3B /* YXAttachmentTypeHelper.m in Sources */,
 				CBF66E451D2F86DD00F4E408 /* YXPickerViewController.m in Sources */,
+				92FED88F1DD1C39E00457228 /* ActitvityCommentFooterView.m in Sources */,
 				7C3177981D0EA6A8004AAC90 /* UploadRequest.m in Sources */,
 				7C3177A11D0EA723004AAC90 /* YXGetRequest.m in Sources */,
 				7C31782A1D129C01004AAC90 /* UIXToolbarView.m in Sources */,
@@ -3287,6 +3364,7 @@
 				9223C8321D2E3F72000F74DF /* YXWorkshopDetailDatumCell.m in Sources */,
 				7C3177B01D0EB738004AAC90 /* UIImage+Color.m in Sources */,
 				7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */,
+				9202DA491DD168A70020F57D /* ActivityCommentTableView.m in Sources */,
 				9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,
 				7C3177B81D0EB9EE004AAC90 /* UIView+ViewController.m in Sources */,

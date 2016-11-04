@@ -7,92 +7,34 @@
 //
 
 #import "YXTestViewController.h"
-#import "SRWebSocket.h"
 
-@interface YXTestViewController ()<SRWebSocketDelegate>
+@interface YXTestViewController ()
 {
-    SRWebSocket *_webSocket;
-    NSTimer *_timer;
+    UIView *headerView;
 }
 @end
 
 @implementation YXTestViewController
-static NSInteger integer;
 - (void)viewDidLoad {
-    self.devTestActions = @[@"122"];
+    self.devTestActions = @[@"122",@"23",@"34",@"45"];
     [super viewDidLoad];
+    headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    headerView.backgroundColor = [UIColor redColor];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 50, 50);
+    button.backgroundColor = [UIColor blueColor];
+    [button addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:button];
+    
+    self.tableView.tableHeaderView = headerView;
+    
 }
-
-- (void)sendString{
-    integer ++;
-    [_webSocket send:[NSString stringWithFormat:@"哇哈哈%ld",(long)integer]];
-    DDLogDebug(@">>>>%ld",(long)_webSocket.readyState);
-}
-- (void)setupData{
-    _webSocket.delegate = nil;
-    
-    [_webSocket close];
-    
-    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://mobile.yanxiu.com/test/api/websocket"]]];
-    
-    _webSocket.delegate = self;
-    
-    [_webSocket open];
+- (void)test{
+    [UIView animateWithDuration:0.3 animations:^{
+        headerView.frame = CGRectMake(0, 0, 320, 200.0f);
+        self.tableView.tableHeaderView = headerView;
         
-//    [self webSocketDidOpen:_webSocket];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-//连接成功
-- (void)webSocketDidOpen:(SRWebSocket *)webSocket;
-
-{
-    NSLog(@"Websocket Connected");
-    NSString *sendString = @"爱你一万年";
-    [_webSocket send:sendString];
+    }];
     
 }
-
-//连接失败
-
-- (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error;
-
-{
-    
-    NSLog(@":( Websocket Failed With Error %@", error);
-    
-    _webSocket = nil;
-    
-}
-
-//接收到新消息的处理
-
-- (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message;
-
-{
-    
-    NSLog(@"Received \"%@\"", message);
-    
-}
-
-//连接关闭
-
-- (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean;
-
-{
-    
-    NSLog(@"WebSocket closed");
-    
-    //self.title = @"Connection Closed! (see logs)";
-    
-    _webSocket = nil;
-    
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self setupData];
-}
-
 @end

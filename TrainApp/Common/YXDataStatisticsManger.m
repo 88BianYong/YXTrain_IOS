@@ -10,24 +10,34 @@
 #import "TalkingData.h"
 @implementation YXDataStatisticsManger
 + (void)sessionStarted:(NSString *)appKey withChannelId:(NSString *)channelId{
-      [TalkingData sessionStarted:appKey withChannelId:channelId];
+    if([YXConfigManager sharedInstance].talkingDataReport.boolValue){
+        [TalkingData sessionStarted:appKey withChannelId:channelId];
+    }
 }
 + (void)trackPage:(NSString *)pageName withStatus:(BOOL)status{
-    if (status) {
-         [TalkingData trackPageBegin:pageName];
-    }else{
-          [TalkingData trackPageEnd:pageName];
+    if([YXConfigManager sharedInstance].talkingDataReport.boolValue){
+        if (status) {
+            [TalkingData trackPageBegin:pageName];
+        }else{
+            [TalkingData trackPageEnd:pageName];
+        }
     }
 }
 + (void)trackEvent:(NSString *)eventId
              label:(NSString *)eventLabel
         parameters:(NSDictionary *)parameters{
-      [TalkingData trackEvent:eventId label:eventLabel parameters:parameters];
+    if([YXConfigManager sharedInstance].talkingDataReport.boolValue){
+        [TalkingData trackEvent:eventId label:eventLabel parameters:parameters];
+    }
 }
 + (void)setGlobalKV:(NSString *)key value:(id)value{
-      [TalkingData setGlobalKV:key value:value];
+    if([YXConfigManager sharedInstance].talkingDataReport.boolValue){
+        [TalkingData setGlobalKV:key value:value];
+    }
 }
 + (void)removeGlobalKV:(NSString *)key{
-     [TalkingData removeGlobalKV: key];
+    if([YXConfigManager sharedInstance].talkingDataReport.boolValue){
+        [TalkingData removeGlobalKV: key];
+    }
 }
 @end

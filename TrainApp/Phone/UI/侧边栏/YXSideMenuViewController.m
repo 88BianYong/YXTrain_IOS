@@ -423,4 +423,12 @@
                     }
     }
 }
+
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations NS_AVAILABLE_IOS(6_0) {
+    return UIInterfaceOrientationMaskLandscapeRight;
+}
 @end

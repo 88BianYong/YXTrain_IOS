@@ -8,7 +8,7 @@
 
 #import "YXDrawerViewController.h"
 #import "YXSideMenuViewController.h"
-
+#import "YXNavigationController.h"
 static const CGFloat kAnimationDuration = 0.3;
 
 @interface YXDrawerViewController ()<UIGestureRecognizerDelegate>
@@ -138,5 +138,14 @@ static const CGFloat kAnimationDuration = 0.3;
     }
     return YES;
 }
+- (BOOL)shouldAutorotate {
+        return ((YXNavigationController *)self.paneViewController).topViewController.shouldAutorotate;
+}
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations NS_AVAILABLE_IOS(6_0) {
+    return ((YXNavigationController *)self.paneViewController).topViewController.supportedInterfaceOrientations;
+}
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    [((YXNavigationController *)self.paneViewController).topViewController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+}
 @end
