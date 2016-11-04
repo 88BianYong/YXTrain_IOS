@@ -18,9 +18,6 @@
 @property (nonatomic, strong) YXModuleDetailRequest *moduleDetailRequest;
 @property (nonatomic, strong) YXCourseDetailRequest *courseDetailRequest;
 @property (nonatomic, strong) YXCourseDetailItem *courseItem;
-
-//@property (nonatomic, strong) YXErrorView *errorView;
-//@property (nonatomic, strong) YXEmptyView *emptyView;
 @end
 
 @implementation YXCourseDetailViewController
@@ -32,13 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.course.course_title;
-    WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-    self.errorView.retryBlock = ^{
-        STRONG_SELF
-        [self getData];
-    };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
     
     [self setupUI];
     [self getData];
@@ -73,6 +63,18 @@
     
     [self.tableView registerClass:[YXCourseDetailCell class] forCellReuseIdentifier:@"YXCourseDetailCell"];
     [self.tableView registerClass:[YXCourseDetailHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXCourseDetailHeaderView"];
+    WEAK_SELF
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self getData];
+    };
+    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self getData];
+    };
 }
 
 - (void)getData{
@@ -89,10 +91,8 @@
             [self stopLoading];
             if (error) {
                 if (error.code == -2) {
-                    self.emptyView.frame = self.view.bounds;
-                    self.emptyView.imageName = @"数据错误";
-                    self.emptyView.title = @"数据错误";
-                    [self.view addSubview:self.emptyView];
+                    self.dataErrorView.frame = self.view.bounds;
+                    [self.view addSubview:self.dataErrorView];
                 }
                 else if ([error.domain isEqualToString:@"network"]) { // 业务逻辑错误
                     self.emptyView.frame = self.view.bounds;
@@ -111,7 +111,7 @@
             }
             [self.errorView removeFromSuperview];
             [self.emptyView removeFromSuperview];
-            
+            [self.dataErrorView removeFromSuperview];
             [self dealWithCourseItem:item.body];
         }];
     }else{
@@ -127,10 +127,8 @@
             [self stopLoading];
             if (error) {
                 if (error.code == -2) {
-                    self.emptyView.frame = self.view.bounds;
-                    self.emptyView.imageName = @"数据错误";
-                    self.emptyView.title = @"数据错误";
-                    [self.view addSubview:self.emptyView];
+                    self.dataErrorView.frame = self.view.bounds;
+                    [self.view addSubview:self.dataErrorView];
                 }else if ([error.domain isEqualToString:@"network"]) { // 业务逻辑错误
                     self.emptyView.frame = self.view.bounds;
                     [self.view addSubview:self.emptyView];
@@ -148,7 +146,7 @@
             }
             [self.errorView removeFromSuperview];
             [self.emptyView removeFromSuperview];
-            
+            [self.dataErrorView removeFromSuperview];
             [self dealWithCourseItem:item.body];
         }];
     }

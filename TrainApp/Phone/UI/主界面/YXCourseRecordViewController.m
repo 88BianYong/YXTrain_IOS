@@ -20,11 +20,8 @@ static  NSString *const trackPageName = @"看课记录页面";
 @property (nonatomic, strong) YXCourseRecordRequest *request;
 @property (nonatomic, strong) YXCourseRecordRequestItem *recordItem;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
-
 @property (nonatomic, strong) YXModuleListRequest *moduleListRequest;
 
-//@property (nonatomic, strong) YXErrorView *errorView;
-//@property (nonatomic, strong) YXEmptyView *emptyView;
 @end
 
 @implementation YXCourseRecordViewController
@@ -36,21 +33,6 @@ static  NSString *const trackPageName = @"看课记录页面";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"看课记录";
-    WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-    self.errorView.retryBlock = ^{
-        STRONG_SELF
-        [self getDataShowLoading:YES];
-    };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
-        self.emptyView.title = @"您还没有开始看课";
-        self.emptyView.imageName = @"没开始看课";
-    }else{
-        self.emptyView.title = @"您还没有选课";
-        self.emptyView.subTitle = @"请您先在电脑登录研修网选课";
-        self.emptyView.imageName = @"没选课";
-    }
     
     [self setupUI];
     [self getDataShowLoading:YES];
@@ -102,6 +84,26 @@ static  NSString *const trackPageName = @"看课记录页面";
         STRONG_SELF
         [self getDataShowLoading:NO];
     };
+    
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self getDataShowLoading:YES];
+    };
+    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
+        self.emptyView.title = @"您还没有开始看课";
+        self.emptyView.imageName = @"没开始看课";
+    }else{
+        self.emptyView.title = @"您还没有选课";
+        self.emptyView.subTitle = @"请您先在电脑登录研修网选课";
+        self.emptyView.imageName = @"没选课";
+    }
+    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self getDataShowLoading:YES];
+    };
 }
 
 - (void)getDataShowLoading:(BOOL)isShow{
@@ -120,11 +122,8 @@ static  NSString *const trackPageName = @"看课记录页面";
             [self.header endRefreshing];
             if (error) {
                 if (error.code == -2) {
-                    self.emptyView.frame = self.view.bounds;
-                    self.emptyView.imageName = @"数据错误";
-                    self.emptyView.title = @"数据错误";
-                    self.emptyView.subTitle = @"";
-                    [self.view addSubview:self.emptyView];
+                    self.dataErrorView.frame = self.view.bounds;
+                    [self.view addSubview:self.dataErrorView];
                 }
                 else{
                     self.errorView.frame = self.view.bounds;
@@ -140,10 +139,10 @@ static  NSString *const trackPageName = @"看课记录页面";
             }
             [self.errorView removeFromSuperview];
             [self.emptyView removeFromSuperview];
-            
+            [self.dataErrorView removeFromSuperview];
             [self dealWithRecordItem:retItem];
         });
-
+        
     }];
 }
 

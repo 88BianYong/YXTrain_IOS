@@ -14,11 +14,7 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
 @interface YXWorkshopViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     UITableView *_tableView;
-    YXErrorView *_errorView;
-    YXEmptyView *_emptyView;
-    
     NSMutableArray *_dataMutableArray;
-    
     YXWorkshopListRequest *_listRequest;
 
 }
@@ -63,14 +59,19 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
     [self.view addSubview:_tableView];
     
     WEAK_SELF
-    _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-    _errorView.retryBlock = ^{
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestForWorkshopList];
     };
-    _emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    _emptyView.title = @"暂无内容";
-    _emptyView.imageName = @"无内容";
+    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    self.emptyView.title = @"暂无内容";
+    self.emptyView.imageName = @"无内容";
+    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self requestForWorkshopList];
+    };
 }
 - (void)layoutInterface{
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -130,14 +131,12 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
         [self stopLoading];
         if (error) {
             if (error.code == -2) {
-                self->_emptyView.frame = self.view.bounds;
-                self->_emptyView.imageName = @"数据错误";
-                self->_emptyView.title = @"数据错误";
-                [self.view addSubview:self->_emptyView];
+                self.dataErrorView.frame = self.view.bounds;
+                [self.view addSubview:self.dataErrorView];
             }
             else{
-                self ->_errorView.frame = self.view.bounds;
-                [self.view addSubview:self ->_errorView];
+                self.errorView.frame = self.view.bounds;
+                [self.view addSubview:self.errorView];
             }
         }
         else{
@@ -145,12 +144,13 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
             if (item.group.count > 0) {
                 [self -> _dataMutableArray addObjectsFromArray:item.group];
                 [self -> _tableView reloadData];
-                [self -> _emptyView removeFromSuperview];
-                [self -> _errorView removeFromSuperview];
+                [self.emptyView removeFromSuperview];
+                [self.errorView removeFromSuperview];
+                [self.dataErrorView removeFromSuperview];
             }
             else{
-                self ->_emptyView.frame = self.view.bounds;
-                [self.view addSubview:self ->_emptyView];
+                self.emptyView.frame = self.view.bounds;
+                [self.view addSubview:self.emptyView];
             }
         }
     }];

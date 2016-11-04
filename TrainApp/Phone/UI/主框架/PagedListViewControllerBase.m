@@ -75,6 +75,14 @@
     }];
     [self hideErrorView];
     
+    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:self.dataErrorView];
+    self.dataErrorView.hidden = YES;
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self firstPageFetch:YES];
+    };
+    
     if (self.bNeedFooter) {
         _footer = [MJRefreshFooterView footer];
         _footer.scrollView = self.tableView;
@@ -136,9 +144,8 @@
                 if (isEmpty(self.dataArray)) {  // no cache 强提示, 加载失败界面
                     self->_total = 0;
                     if (error.code == -2) {
-                        self.emptyView.imageName = @"数据错误";
-                        self.emptyView.title = @"数据错误";
-                        self.emptyView.hidden = NO;
+                        self.dataErrorView.hidden = NO;
+                        [self.view bringSubviewToFront:self.dataErrorView];
                     }else{
                         [self showErroView];
                     }
@@ -152,7 +159,7 @@
             
             // 隐藏失败界面
             [self hideErrorView];
-            
+            self.dataErrorView.hidden = YES;
             [self->_header setLastUpdateTime:[NSDate date]];
             self->_total = total;
             [self.dataArray removeAllObjects];

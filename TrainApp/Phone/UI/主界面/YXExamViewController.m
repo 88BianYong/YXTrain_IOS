@@ -28,8 +28,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @property (nonatomic, strong) NSMutableDictionary *foldStatusDic;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 
-//@property (nonatomic, strong) YXErrorView *errorView;
-
 @property (nonatomic,strong) UIView *waveView;
 @property (nonatomic,assign) BOOL  isSelected;
 @end

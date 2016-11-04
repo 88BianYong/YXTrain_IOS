@@ -16,9 +16,6 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) YXTaskListRequest *request;
 @property (nonatomic, strong) YXTaskListRequestItem *tasklistItem;
-
-//@property (nonatomic, strong) YXErrorView *errorView;
-//@property (nonatomic, strong) YXEmptyView *emptyView;
 @property (nonatomic,assign) BOOL  isSelected;
 @end
 
@@ -29,13 +26,6 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     // Do any additional setup after loading the view.
     self.title = @"任务";
     self.isSelected = NO;
-    WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-    self.errorView.retryBlock = ^{
-        STRONG_SELF
-        [self getData];
-    };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
     
     [self loadCache];
     [self setupUI];
@@ -86,6 +76,19 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         make.edges.mas_equalTo(0);
     }];
     [self.tableView registerClass:[YXTaskCell class] forCellReuseIdentifier:@"YXTaskCell"];
+    
+    WEAK_SELF
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self getData];
+    };
+    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self getData];
+    };
 }
 
 - (void)getData{
@@ -100,10 +103,8 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         [self stopLoading];
         if (error) {
             if (error.code == -2) {
-                self.emptyView.frame = self.view.bounds;
-                self.emptyView.imageName = @"数据错误";
-                self.emptyView.title = @"数据错误";
-                [self.view addSubview:self.emptyView];
+                self.dataErrorView.frame = self.view.bounds;
+                [self.view addSubview:self.dataErrorView];
             }else if (self.tasklistItem.body.tasks.count == 0) {
                 self.errorView.frame = self.view.bounds;
                 [self.view addSubview:self.errorView];
@@ -120,6 +121,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         }
         [self.errorView removeFromSuperview];
         [self.emptyView removeFromSuperview];
+        [self.dataErrorView removeFromSuperview];
         
         self.tasklistItem = retItem;
         [self.tableView reloadData];

@@ -27,9 +27,6 @@ UITableViewDataSource
 >
 {
     UITableView *_tableView;
-    YXErrorView *_errorView;
-    YXEmptyView *_emptyView;
-    
     YXHomeworkInfoRequest *_infoRequest;
 }
 @property (nonatomic ,strong)YXHomeworkInfoHeaderView *headerView;
@@ -74,7 +71,7 @@ UITableViewDataSource
     }
     else{
         _tableView.hidden = NO;
-         [self findVideoHomeworkInformation:self.itemBody];
+        [self findVideoHomeworkInformation:self.itemBody];
     }
 }
 
@@ -88,7 +85,7 @@ UITableViewDataSource
     [self findVideoHomeworkInformation:self.itemBody];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -118,12 +115,17 @@ UITableViewDataSource
     [self.view addSubview:_tableView];
     [_tableView registerClass:[YXHomeworkPlayVideoCell class] forCellReuseIdentifier:@"YXHomeworkPlayVideoCell"];
     WEAK_SELF
-    _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-    _errorView.retryBlock = ^{
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestForHomeworkInfo];
     };
-    _emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    //    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self requestForHomeworkInfo];
+    };
 }
 
 - (void)layoutInterface{
@@ -162,7 +164,7 @@ UITableViewDataSource
         return view;
     }else{
         return nil;
-    }    
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -175,9 +177,9 @@ UITableViewDataSource
         if (self.itemBody.lessonStatus == YXVideoLessonStatus_Finish){
             return 0;
         }else{
-            return 1; 
+            return 1;
         }
-
+        
     }else{
         return 0;
     }
@@ -227,28 +229,27 @@ UITableViewDataSource
         [self stopLoading];
         if (error) {
             if (error.code == -2) {
-                self->_emptyView.frame = self.view.bounds;
-                self->_emptyView.imageName = @"数据错误";
-                self->_emptyView.title = @"数据错误";
-                [self.view addSubview:self->_emptyView];
+                self.dataErrorView.frame = self.view.bounds;
+                [self.view addSubview:self.dataErrorView];
             }else{
-                self ->_errorView.frame = self.view.bounds;
-                [self.view addSubview:self ->_errorView];
+                self.errorView.frame = self.view.bounds;
+                [self.view addSubview:self.errorView];
             }
         }else{
-            [self -> _errorView removeFromSuperview];
+            [self.errorView removeFromSuperview];
+            [self.dataErrorView removeFromSuperview];
             YXHomeworkInfoRequestItem *item = retItem;
             if (item) {
                 item.body.uid = [YXUserManager sharedManager].userModel.uid;
                 item.body.pid = self.itemBody.pid;
                 if (item.body.detail) {
-                  item.body.lessonStatus = YXVideoLessonStatus_Finish;
+                    item.body.lessonStatus = YXVideoLessonStatus_Finish;
                 }else{
-                   item.body.lessonStatus = YXVideoLessonStatus_NoRecord; 
+                    item.body.lessonStatus = YXVideoLessonStatus_NoRecord;
                 }
                 self.itemBody = item.body;
                 [self findVideoHomeworkInformation:self.itemBody];
-                 self ->_tableView.hidden = NO;
+                self ->_tableView.hidden = NO;
             }
         }
     }];
