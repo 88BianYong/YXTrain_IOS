@@ -19,7 +19,6 @@
 #import "YXUploadHeadImgRequest.h"
 #import "YXInitRequest.h"
 #import "YXPopUpContainerView.h"
-#import "DataErrorView.h"
 @interface YXProjectMainViewController ()
 {
     UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
@@ -39,7 +38,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:kYXTrainWebSocketReceiveMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showoUpdateInterface:) name:kYXTrainShowUpdate object:nil];
     [self setupUI];
-    
     [self getProjectList];
 }
 - (void)viewWillAppear:(BOOL)animated{
