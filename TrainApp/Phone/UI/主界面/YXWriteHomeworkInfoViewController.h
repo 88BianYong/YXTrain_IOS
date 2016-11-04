@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, YXHomeworkRequestStatus){
 @property (nonatomic, weak)YXWriteHomeworkInfoCell *versionCell;
 @property (nonatomic, weak)YXWriteHomeworkInfoCell *gradeCell;
 @property (nonatomic, weak)YXWriteHomeworkInfoMenuView *menuView;
-@property (nonatomic, strong)YXErrorView *errorView;
+//@property (nonatomic, strong)YXErrorView *errorView;
 @property (nonatomic, strong)UITableView *tableView;
 
 

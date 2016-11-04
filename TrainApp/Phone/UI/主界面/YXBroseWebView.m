@@ -16,7 +16,7 @@ static  NSString *const trackBulletinDetailsPageName = @"简报详情页面";
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) NSDate *beginDate;
-@property (nonatomic, strong) YXErrorView *errorView;
+//@property (nonatomic, strong) YXErrorView *errorView;
 
 @end
 

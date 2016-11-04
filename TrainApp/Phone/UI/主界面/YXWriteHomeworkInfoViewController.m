@@ -132,8 +132,8 @@
     _tableView.tableFooterView = _bottomView;
     [self.view addSubview:_tableView];
 
-    _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-    _errorView.retryBlock = ^{
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestForCategoryId];
     };

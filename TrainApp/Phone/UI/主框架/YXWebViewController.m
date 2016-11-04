@@ -10,7 +10,7 @@
 #import "YXShowWebMenuView.h"
 @interface YXWebViewController ()<UIWebViewDelegate>
 @property (nonatomic, strong) UIWebView *webView;
-@property (nonatomic, strong) YXErrorView *errorView;
+//@property (nonatomic, strong) YXErrorView *errorView;
 @property (nonatomic, assign) BOOL isShowLoding;
 @property (nonatomic, strong) NSTimer *timer;
 @end

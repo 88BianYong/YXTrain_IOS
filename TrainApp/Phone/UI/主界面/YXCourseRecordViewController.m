@@ -23,8 +23,8 @@ static  NSString *const trackPageName = @"看课记录页面";
 
 @property (nonatomic, strong) YXModuleListRequest *moduleListRequest;
 
-@property (nonatomic, strong) YXErrorView *errorView;
-@property (nonatomic, strong) YXEmptyView *emptyView;
+//@property (nonatomic, strong) YXErrorView *errorView;
+//@property (nonatomic, strong) YXEmptyView *emptyView;
 @end
 
 @implementation YXCourseRecordViewController
@@ -124,11 +124,11 @@ static  NSString *const trackPageName = @"看课记录页面";
                     self.emptyView.imageName = @"数据错误";
                     self.emptyView.title = @"数据错误";
                     self.emptyView.subTitle = @"";
-                    [self.view addSubview:self->_emptyView];
+                    [self.view addSubview:self.emptyView];
                 }
                 else{
                     self.errorView.frame = self.view.bounds;
-                    [self.view addSubview:self ->_errorView];
+                    [self.view addSubview:self.errorView];
                 }
                 return;
             }

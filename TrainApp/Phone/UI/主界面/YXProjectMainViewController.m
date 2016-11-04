@@ -19,7 +19,7 @@
 #import "YXUploadHeadImgRequest.h"
 #import "YXInitRequest.h"
 #import "YXPopUpContainerView.h"
-
+#import "DataErrorView.h"
 @interface YXProjectMainViewController ()
 {
     UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
@@ -27,8 +27,9 @@
 @property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
 @property (nonatomic, strong) YXCourseRecordViewController *recordVC;
 
-@property (nonatomic, strong) YXErrorView *errorView;
-@property (nonatomic, strong) YXEmptyView *emptyView;
+//@property (nonatomic, strong) YXErrorView *errorView;
+//@property (nonatomic, strong) YXEmptyView *emptyView;
+//@property (nonatomic, strong) DataErrorView *dataErrorView;
 @property (nonatomic, strong) UIView *redPointView;
 @end
 
@@ -42,12 +43,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:kYXTrainWebSocketReceiveMessage object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showoUpdateInterface:) name:kYXTrainShowUpdate object:nil];
     [self setupUI];
-
+    
     [self getProjectList];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self showProjectSelectionView];
+    //    [_selectedViewController viewWillAppear:animated];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -95,7 +97,11 @@
         [self getProjectList];
     };
     self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    
+    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self getProjectList];
+    };
 }
 
 
@@ -108,10 +114,8 @@
         [self stopLoading];
         if (error) {
             if (error.code == -2) {
-                self.emptyView.frame = self.view.bounds;
-                self.emptyView.imageName = @"数据错误";
-                self.emptyView.title = @"数据错误";
-                [self.view addSubview:self.emptyView];
+                self.dataErrorView.frame = self.view.bounds;
+                [self.view addSubview:self.dataErrorView];
             }
             else{
                 self.errorView.frame = self.view.bounds;

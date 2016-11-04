@@ -17,9 +17,9 @@
 @property (nonatomic, assign) BOOL bNeedFooter;
 
 @property (nonatomic, strong) PagedListFetcherBase *dataFetcher;
-@property (nonatomic, strong) YXErrorView *errorView;
-
-@property (nonatomic, strong) YXEmptyView *emptyView;
+//@property (nonatomic, strong) YXErrorView *errorView;
+//
+//@property (nonatomic, strong) YXEmptyView *emptyView;
 
 - (void)firstPageFetch:(BOOL)isShow;
 - (void)stopAnimation;

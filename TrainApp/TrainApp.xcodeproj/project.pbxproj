@@ -367,6 +367,7 @@
 		E90C60AC1D9CFEE5001652CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AB1D9CFEE5001652CF /* SystemConfiguration.framework */; };
 		E90C60AE1D9CFEEF001652CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AD1D9CFEEF001652CF /* libz.tbd */; };
 		E90C60B21D9D0012001652CF /* YXDataStatisticsManger.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */; };
+		E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C06181DCB1F9400666265 /* DataErrorView.m */; };
 		E9BD43E31DAC9507007BE8F6 /* YXDetailHotspotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD43E21DAC9507007BE8F6 /* YXDetailHotspotViewController.m */; };
 		F7E8F8D51D65AEE000CDAAF4 /* YXEmptyAndErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8F8D41D65AEE000CDAAF4 /* YXEmptyAndErrorView.m */; };
 		F7E8F8DB1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8F8DA1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m */; };
@@ -1093,6 +1094,8 @@
 		E90C60B01D9D0012001652CF /* YXDataStatisticsManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDataStatisticsManger.h; sourceTree = "<group>"; };
 		E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDataStatisticsManger.m; sourceTree = "<group>"; };
 		E927702C1DADD24000B2991C /* YXTrackPageDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrackPageDataProtocol.h; sourceTree = "<group>"; };
+		E93C06171DCB1F9400666265 /* DataErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataErrorView.h; sourceTree = "<group>"; };
+		E93C06181DCB1F9400666265 /* DataErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataErrorView.m; sourceTree = "<group>"; };
 		E9BD43E11DAC9507007BE8F6 /* YXDetailHotspotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDetailHotspotViewController.h; sourceTree = "<group>"; };
 		E9BD43E21DAC9507007BE8F6 /* YXDetailHotspotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDetailHotspotViewController.m; sourceTree = "<group>"; };
 		F7E8F8D31D65AEE000CDAAF4 /* YXEmptyAndErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEmptyAndErrorView.h; sourceTree = "<group>"; };
@@ -1912,6 +1915,8 @@
 				7CFBA6BE1D33374B005D08B1 /* YXErrorView.m */,
 				7CFBA6C01D33375D005D08B1 /* YXEmptyView.h */,
 				7CFBA6C11D33375D005D08B1 /* YXEmptyView.m */,
+				E93C06171DCB1F9400666265 /* DataErrorView.h */,
+				E93C06181DCB1F9400666265 /* DataErrorView.m */,
 				920F1D781D5ADDEE00636A51 /* YXAlertCustomView.h */,
 				920F1D791D5ADDEE00636A51 /* YXAlertCustomView.m */,
 				9232372A1D69A5DD00FDACFE /* YXLoadView.h */,
@@ -3244,6 +3249,7 @@
 				CB748EEC1D24F3CD004BCFBF /* YXPagedListEmptyView.m in Sources */,
 				92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */,
 				9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */,
+				E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */,
 				7C3178241D129C01004AAC90 /* ReaderContentTile.m in Sources */,
 				7C3177811D0E8A1D004AAC90 /* GlobalUtils.m in Sources */,
 			);

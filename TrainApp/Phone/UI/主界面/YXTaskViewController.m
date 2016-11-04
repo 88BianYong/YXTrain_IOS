@@ -17,8 +17,8 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 @property (nonatomic, strong) YXTaskListRequest *request;
 @property (nonatomic, strong) YXTaskListRequestItem *tasklistItem;
 
-@property (nonatomic, strong) YXErrorView *errorView;
-@property (nonatomic, strong) YXEmptyView *emptyView;
+//@property (nonatomic, strong) YXErrorView *errorView;
+//@property (nonatomic, strong) YXEmptyView *emptyView;
 @property (nonatomic,assign) BOOL  isSelected;
 @end
 
@@ -103,7 +103,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
                 self.emptyView.frame = self.view.bounds;
                 self.emptyView.imageName = @"数据错误";
                 self.emptyView.title = @"数据错误";
-                [self.view addSubview:self->_emptyView];
+                [self.view addSubview:self.emptyView];
             }else if (self.tasklistItem.body.tasks.count == 0) {
                 self.errorView.frame = self.view.bounds;
                 [self.view addSubview:self.errorView];
