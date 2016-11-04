@@ -120,7 +120,6 @@ UITableViewDataSource
         STRONG_SELF
         [self requestForHomeworkInfo];
     };
-    //    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
     self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
