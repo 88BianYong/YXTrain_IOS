@@ -19,6 +19,7 @@
 #import "YXScoreViewController.h"
 #import "YXExamMarkView.h"
 #import "YXCourseViewController.h"
+#import "ActivityListViewController.h"
 static  NSString *const trackPageName = @"考核页面";
 static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @interface YXExamViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -260,6 +261,11 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
                 [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
+            }else if ([data.toolid isEqualToString:@"202"] || [data.toolid isEqualToString:@"302"]){//活动
+                NSString *string = @"ActivityListViewController";
+                UIViewController *VC = [[NSClassFromString(string) alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+                //                [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else {
                 [self showToast:@"相关功能暂未开放"];
             }
@@ -348,6 +354,11 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 UIViewController *VC = [[NSClassFromString(string) alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
                 [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
+            }else if ([data.toolid isEqualToString:@"202"] || [data.toolid isEqualToString:@"302"]){//活动
+                NSString *string = @"ActivityListViewController";
+                UIViewController *VC = [[NSClassFromString(string) alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+//                [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else{
                 [self showToast:@"相关功能暂未开放"];
             }

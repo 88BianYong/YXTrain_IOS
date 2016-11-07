@@ -84,7 +84,7 @@
 - (void)setTask:(YXTaskListRequestItem_body_task *)task{
     _task = task;
     self.typeLabel.text = task.name;
-    if (task.toolid.integerValue == 201 || task.toolid.integerValue == 203) {  // 课程 || 作业
+    if (task.toolid.integerValue == 201 || task.toolid.integerValue == 203 || task.toolid.integerValue == 202) {  // 课程 || 作业 || 活动
         self.typeLabel.textColor = [UIColor colorWithHexString:@"334466"];
         self.enterImageView.hidden = NO;
     }else{
@@ -95,7 +95,7 @@
     if (task.toolid.integerValue == 201) {
         self.typeImageView.image = [UIImage imageNamed:@"课程icon"];
     }else if (task.toolid.integerValue == 202){
-        self.typeImageView.image = [UIImage imageNamed:@"活动icon"];
+        self.typeImageView.image = [UIImage imageNamed:@"活动icon-1"];
     }else if (task.toolid.integerValue == 203){
         self.typeImageView.image = [UIImage imageNamed:@"作业icon"];
     }else if (task.toolid.integerValue == 209){
