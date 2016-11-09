@@ -97,9 +97,6 @@
         [self getProjectList];
     };
 }
-
-
-
 - (void)getProjectList{
     [self startLoading];
     WEAK_SELF

@@ -18,7 +18,6 @@ static  NSString *const trackPageName = @"课程列表页面";
 @property (nonatomic, strong) YXCourseListFilterModel *filterModel;
 @property (nonatomic, strong) YXCourseListRequest *request;
 @property (nonatomic, assign) BOOL isWaitingForFilter;
-
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 @end

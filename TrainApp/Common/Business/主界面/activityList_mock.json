@@ -1,0 +1,54 @@
+{
+    "code":"0",
+    "debugDesc":"[debug_token: 1466492260388-12_7_45901 ][返回数据成功]",
+    "desc":"success",
+    "body":{
+        "actives":[
+                   {
+                   "aid":234224,
+                   "title":"hello,world",
+                   "joinUserCount":0,
+                   "actTypeName":"专题研讨",
+                   "startTime":"2016-11-08 12:01",
+                   "endTime":"2016-11-15 12:01",
+                   "level":0,
+                   "hasJoin":0,
+                   "createUserid":11389565,
+                   "createUsername":"县级辅导教师1",
+                   "studyName":"幼儿教育",
+                   "segmentName":"学前",
+                   "isJoin":0,
+                   "desc":"<p>hello,world,desc<br /></p>",
+                   "publishtime":"2016-11-08 12:03:54",
+                   "createtime":"2016-11-08 12:01:03",
+                   "status":2,
+                   "pic":"http://s1.jsyxw.cn/res/web/3.0/img/active/default.jpg",
+                   "source":"club"
+                   },
+                   {
+                   "aid":234225,
+                   "title":"你好,世界",
+                   "joinUserCount":0,
+                   "actTypeName":"专题研讨",
+                   "startTime":"2016-11-08 12:01",
+                   "endTime":"2016-11-15 12:01",
+                   "level":0,
+                   "hasJoin":0,
+                   "createUserid":11389565,
+                   "createUsername":"县级辅导教师1",
+                   "studyName":"幼儿教育",
+                   "segmentName":"学前",
+                   "isJoin":0,
+                   "desc":"<p>hello,world,desc<br /></p>",
+                   "publishtime":"2016-11-08 12:03:54",
+                   "createtime":"2016-11-08 12:01:03",
+                   "status":2,
+                   "pic":"http://s1.jsyxw.cn/res/web/3.0/img/active/default.jpg",
+                   "source":"club"
+                   }
+                   ],
+        "pageSize":1,
+        "page":1,
+        "totalPage":19
+    }
+}

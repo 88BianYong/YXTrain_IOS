@@ -262,8 +262,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 [self.navigationController pushViewController:VC animated:YES];
                 [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else if ([data.toolid isEqualToString:@"202"] || [data.toolid isEqualToString:@"302"]){//活动
-                NSString *string = @"ActivityListViewController";
-                UIViewController *VC = [[NSClassFromString(string) alloc] init];
+                ActivityListViewController *VC = [[ActivityListViewController alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
                 //                [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else {
@@ -355,9 +354,10 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 [self.navigationController pushViewController:VC animated:YES];
                 [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else if ([data.toolid isEqualToString:@"202"] || [data.toolid isEqualToString:@"302"]){//活动
-                NSString *string = @"ActivityListViewController";
-                UIViewController *VC = [[NSClassFromString(string) alloc] init];
+                ActivityListViewController *VC = [[ActivityListViewController alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+                VC.stageID = vo.voID;
+                VC.status = ActivityFromStatus_Stage;
 //                [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else{
                 [self showToast:@"相关功能暂未开放"];

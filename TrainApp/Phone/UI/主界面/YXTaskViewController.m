@@ -179,10 +179,10 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
         [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
-    }else if ([task.toolid isEqualToString:@"202"] || [task.toolid isEqualToString:@"302"]){//研修总结
-        NSString *string = @"ActivityListViewController";
-        UIViewController *VC = [[NSClassFromString(string) alloc] init];
+    }else if ([task.toolid isEqualToString:@"202"] || [task.toolid isEqualToString:@"302"]){//活动
+        ActivityListViewController *VC = [[ActivityListViewController alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
+
 //        [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else{
         [self showToast:@"相关功能暂未开放"];
