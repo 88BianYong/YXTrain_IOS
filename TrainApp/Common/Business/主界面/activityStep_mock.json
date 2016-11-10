@@ -1,0 +1,87 @@
+{
+    "code": "0",
+    "debugDesc": "[debug_token: 1466492260388-12_7_45901 ][返回数据成功]",
+    "desc": "success",
+    "body": {
+        "steps": [
+                  {
+                  "stepid": "1",
+                  "desc": "hello,world",
+                  "title": "幼儿教育是什么东西",
+                  "tools" :[
+                            {
+                            "toolid":234225,
+                            "title":"你好,世界",
+                            "desc":0,
+                            "tooltype":"专题研讨"
+                            },
+                            {
+                            "toolid":234225,
+                            "title":"你好,世界",
+                            "desc":0,
+                            "tooltype":"专题研讨"
+                            },
+                            {
+                            "toolid":234225,
+                            "title":"你好,世界",
+                            "desc":0,
+                            "tooltype":"专题研讨"
+                            }
+                            ]
+                  
+                  },
+                  {
+                  "stepid": "1",
+                  "desc": "hello,world",
+                  "title": "社会主义发展初级阶段",
+                  "tools" :[
+                            {
+                            "toolid":234225,
+                            "title":"你好,世界",
+                            "desc":0,
+                            "tooltype":"专题研讨"
+                            },
+                            {
+                            "toolid":234225,
+                            "title":"你好,世界",
+                            "desc":0,
+                            "tooltype":"专题研讨"
+                            },
+                            {
+                            "toolid":234225,
+                            "title":"你好,世界",
+                            "desc":0,
+                            "tooltype":"专题研讨"
+                            }
+                            ]
+                  
+                  },
+                  {
+                  "stepid": "1",
+                  "title": "的时间发送了贷款纠纷龙宽九段;付了款就是;放大了恐惧感;了快速减肥的; 立刻就分手的;联发科",
+                  "desc": "hello,world",
+                  "tools" :[
+                            {
+                            "toolid":234225,
+                            "title":"你好,世界",
+                            "desc":0,
+                            "tooltype":"专题研讨"
+                            },
+                            {
+                            "toolid":234225,
+                            "title":"你好,世界",
+                            "desc":0,
+                            "tooltype":"专题研讨"
+                            },
+                            {
+                            "toolid":234225,
+                            "title":"你好,世界",
+                            "desc":0,
+                            "tooltype":"专题研讨"
+                            }
+                            ]
+                  
+                  }
+                  ]
+    }
+}

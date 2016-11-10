@@ -12,6 +12,7 @@
 #import "ActivityListCell.h"
 #import "ActivityFilterRequest.h"
 #import "ActivityFilterModel.h"
+#import "ActivityDetailViewController.h"
 
 @interface ActivityListViewController ()<ActivityFilterViewDelegate>
 @property (nonatomic, strong) ActivityFilterView *filterView;
@@ -168,7 +169,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    DDLogDebug(@"跳转到活动详情页面");
+    ActivityDetailViewController *detailVC = [[ActivityDetailViewController alloc] init];
+    detailVC.activity = self.dataArray[indexPath.row];
+    [self.navigationController pushViewController:detailVC animated:YES];
 }
 #pragma mark - YXCourseFilterViewDelegate
 - (void)filterChanged:(NSArray *)filterArray {

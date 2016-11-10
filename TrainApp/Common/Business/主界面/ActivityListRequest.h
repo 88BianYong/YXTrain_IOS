@@ -15,6 +15,11 @@
 @property (nonatomic, strong) NSString<Optional> *title;
 @property (nonatomic, strong) NSString<Optional> *startTime;
 @property (nonatomic, strong) NSString<Optional> *isJoin;
+@property (nonatomic, strong) NSString<Optional> *createUsername;
+@property (nonatomic, strong) NSString<Optional> *studyName;
+@property (nonatomic, strong) NSString<Optional> *segmentName;
+@property (nonatomic, strong) NSString<Optional> *desc;
+@property (nonatomic, strong) NSString<Optional> *status;
 @end
 
 @interface ActivityListRequestItem_body : JSONModel

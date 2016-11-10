@@ -11,6 +11,7 @@
 @interface YXTestViewController ()
 {
     UIView *headerView;
+    CGFloat height;
 }
 @end
 
@@ -25,16 +26,27 @@
     button.backgroundColor = [UIColor blueColor];
     [button addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];
     [headerView addSubview:button];
+    height = 100.0f;
     
-    self.tableView.tableHeaderView = headerView;
+//    self.tableView.tableHeaderView = headerView;
     
 }
 - (void)test{
+    height = 200.0f;
+    headerView.frame = CGRectMake(0, 0, 320, 200.0f);
+    [self.tableView beginUpdates];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView endUpdates];
     [UIView animateWithDuration:0.3 animations:^{
-        headerView.frame = CGRectMake(0, 0, 320, 200.0f);
-        self.tableView.tableHeaderView = headerView;
-        
+
     }];
     
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    return headerView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return height;
+}
 @end
+
