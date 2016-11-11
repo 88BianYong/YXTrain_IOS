@@ -357,7 +357,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 ActivityListViewController *VC = [[ActivityListViewController alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
                 VC.stageID = vo.voID;
-                VC.status = ActivityFromStatus_Stage;
 //                [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else{
                 [self showToast:@"相关功能暂未开放"];
