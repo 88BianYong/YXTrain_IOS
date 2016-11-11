@@ -18,9 +18,6 @@
 + (ActivityFilterModel *)modelFromRawData:(ActivityFilterRequestItem *)item {
     // 学段
     NSMutableArray *segmentArray = [NSMutableArray array];
-    ActivityFilter *segmentWholeItem = [[ActivityFilter alloc]init];
-    segmentWholeItem.name = @"全部";
-    [segmentArray addObject:segmentWholeItem];
     for (ActivityFilterRequestItem_body_segment *segment in item.body.segments) {
         ActivityFilter *item = [[ActivityFilter alloc]init];
         item.filterID = segment.segmentID;
@@ -32,9 +29,6 @@
     segmentGroup.filterArray = segmentArray;
     // 学科
     NSMutableArray *studyArray = [NSMutableArray array];
-    ActivityFilter *studyWholeItem = [[ActivityFilter alloc]init];
-    studyWholeItem.name = @"全部";
-    [studyArray addObject:studyWholeItem];
     for (ActivityFilterRequestItem_body_study *study in item.body.studys) {
         ActivityFilter *item = [[ActivityFilter alloc]init];
         item.filterID = study.studyID;
@@ -46,9 +40,6 @@
     studyGroup.filterArray = studyArray;
     // 阶段
     NSMutableArray *stageArray = [NSMutableArray array];
-    ActivityFilter *stageWholeItem = [[ActivityFilter alloc]init];
-    stageWholeItem.name = @"全部";
-    [stageArray addObject:stageWholeItem];
     for (ActivityFilterRequestItem_body_stage *stage in item.body.stages) {
         ActivityFilter *item = [[ActivityFilter alloc]init];
         item.filterID = stage.stageID;

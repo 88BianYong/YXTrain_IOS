@@ -26,4 +26,5 @@
 @property (nonatomic, assign) int emptyViewTopInset;
 
 - (void)tableViewWillRefresh;
+
 @end

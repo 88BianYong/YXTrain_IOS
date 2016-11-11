@@ -18,9 +18,9 @@
 @end
 
 @interface ActivityListRequestItem_body : JSONModel
-@property (nonatomic, strong) NSString<Optional> *pageSize;//每页显示的数量
-@property (nonatomic, strong) NSString<Optional> *page;//当前页
-@property (nonatomic, strong) NSString<Optional> *totalPage;//总页数
+@property (nonatomic, strong) NSString<Optional> *pageSize;
+@property (nonatomic, strong) NSString<Optional> *page;
+@property (nonatomic, strong) NSString<Optional> *totalPage;
 @property (nonatomic, strong) NSArray<ActivityListRequestItem_body_activity,Optional> *actives;
 @end
 
@@ -32,7 +32,7 @@
 @interface ActivityListRequest : YXGetRequest
 @property (nonatomic, strong) NSString *projectId;
 @property (nonatomic, strong) NSString *segmentId;
-@property (nonatomic, strong) NSString *stageid;
+@property (nonatomic, strong) NSString *stageId;
 @property (nonatomic, strong) NSString *studyId;
 @property (nonatomic, strong) NSString *page;
 @property (nonatomic, strong) NSString *pagesize;

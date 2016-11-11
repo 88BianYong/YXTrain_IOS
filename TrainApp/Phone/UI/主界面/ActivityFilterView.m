@@ -9,26 +9,30 @@
 #import "ActivityFilterView.h"
 #import "ActivityFilterCell.h"
 #import "YXCourseFilterBgView.h"
+static const NSUInteger kTagBase = 10000;
+
 @interface ActivityFilterItem:NSObject
 @property (nonatomic, strong) NSString *typeName;
 @property (nonatomic, strong) NSArray *filterArray;
 @property (nonatomic, assign) NSInteger currentIndex;
 @end
+
 @implementation ActivityFilterItem
 
 @end
 
 @interface ActivityFilterView ()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, strong) ActivityFilterItem *currentFilterItem;
+@property (nonatomic, strong) NSMutableArray *filterItemArray;
 @property (nonatomic, strong) UIView *typeContainerView;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UITableView *selectionTableView;
 @property (nonatomic, strong) UIView *tableBottomView;
-@property (nonatomic, strong) NSMutableArray *filterItemArray;
-@property (nonatomic, strong) ActivityFilterItem *currentFilterItem;
 @property (nonatomic, assign) BOOL layoutComplete;
 @property (nonatomic, assign) BOOL isAnimating;
+
 @end
-static const NSUInteger kTagBase = 10000;
+
 @implementation ActivityFilterView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -41,7 +45,6 @@ static const NSUInteger kTagBase = 10000;
 - (void)setupUI {
     self.typeContainerView = [[UIView alloc]initWithFrame:self.bounds];
     [self addSubview:self.typeContainerView];
-    
     self.maskView = [[UIView alloc]init];
     self.maskView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
@@ -85,37 +88,36 @@ static const NSUInteger kTagBase = 10000;
     CGFloat lineWidth = 1/[UIScreen mainScreen].scale;
     [self.filterItemArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ActivityFilterItem *item = (ActivityFilterItem *)obj;
-        UIButton *b = [self typeButtonWithName:[self currentFilterNameForItem:item]];
-        b.frame = CGRectMake(btnWidth*idx, 0, btnWidth, self.typeContainerView.bounds.size.height);
-        b.tag = kTagBase + idx;
-        [self exchangeTitleImagePositionForButton:b];
+        UIButton *button = [self typeButtonWithName:[self currentFilterNameForItem:item]];
+        button.frame = CGRectMake(btnWidth*idx, 0, btnWidth, self.typeContainerView.bounds.size.height);
+        button.tag = kTagBase + idx;
+        [self exchangeTitleImagePositionForButton:button];
         BOOL status = item.currentIndex>=0 ? YES:NO;
-        [self changeButton:b selectedStatus:status];
-        [self.typeContainerView addSubview:b];
+        [self changeButton:button selectedStatus:status];
+        [self.typeContainerView addSubview:button];
         if (idx < self.filterItemArray.count-1) {
-            CGFloat h = 15;
-            CGFloat y = (self.typeContainerView.bounds.size.height-h)/2;
-            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(b.frame.origin.x+b.frame.size.width-lineWidth, y, lineWidth, h)];
+            CGFloat height = 15;
+            CGFloat y = (self.typeContainerView.bounds.size.height-height)/2;
+            UIView *line = [[UIView alloc]initWithFrame:CGRectMake(button.frame.origin.x+button.frame.size.width-lineWidth, y, lineWidth, height)];
             line.backgroundColor = [UIColor colorWithHexString:@"d6d7db"];
             [self.typeContainerView addSubview:line];
         }
     }];
-    
     self.layoutComplete = YES;
+}
+- (UIButton *)typeButtonWithName:(NSString *)name {
+    UIButton *button = [[UIButton alloc]init];
+    [button setTitle:name forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:13];
+    [button addTarget:self action:@selector(typeButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self changeButton:button foldStatus:YES];
+    return button;
 }
 - (NSString *)currentFilterNameForItem:(ActivityFilterItem *)item {
     if (item.currentIndex < 0) {
         return item.typeName;
     }
     return item.filterArray[item.currentIndex];
-}
-- (UIButton *)typeButtonWithName:(NSString *)name {
-    UIButton *b = [[UIButton alloc]init];
-    [b setTitle:name forState:UIControlStateNormal];
-    b.titleLabel.font = [UIFont systemFontOfSize:13];
-    [b addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self changeButton:b foldStatus:YES];
-    return b;
 }
 - (void)exchangeTitleImagePositionForButton:(UIButton *)button {
     NSString *title = [button titleForState:UIControlStateNormal];
@@ -139,7 +141,7 @@ static const NSUInteger kTagBase = 10000;
         [b setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
     }
 }
-- (void)btnAction:(UIButton *)sender {
+- (void)typeButtonAction:(UIButton *)sender {
     if (self.isAnimating) {
         return;
     }
@@ -171,7 +173,6 @@ static const NSUInteger kTagBase = 10000;
     [superview addSubview:bgView];
     [self.selectionTableView reloadData];
 }
-
 - (void)hideFilterSelectionView {
     [self.selectionTableView.superview removeFromSuperview];
     [self.maskView removeFromSuperview];
@@ -206,12 +207,12 @@ static const NSUInteger kTagBase = 10000;
     SAFE_CALL_OneParam(self.delegate, filterChanged, array);
     
     NSInteger index = [self.filterItemArray indexOfObject:self.currentFilterItem];
-    UIButton *b = [self.typeContainerView viewWithTag:kTagBase+index];
-    [b setTitle:self.currentFilterItem.filterArray[indexPath.row] forState:UIControlStateNormal];
-    [self changeButton:b foldStatus:YES];
-    [self changeButton:b selectedStatus:YES];
-    [self exchangeTitleImagePositionForButton:b];
+    UIButton *button = [self.typeContainerView viewWithTag:kTagBase+index];
+    [button setTitle:self.currentFilterItem.filterArray[indexPath.row] forState:UIControlStateNormal];
+    [self changeButton:button foldStatus:YES];
+    [self changeButton:button selectedStatus:YES];
+    [self exchangeTitleImagePositionForButton:button];
+    
     [self hideFilterSelectionView];
 }
-
 @end

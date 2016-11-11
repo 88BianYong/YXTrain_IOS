@@ -14,33 +14,51 @@
 #import "ActivityFilterModel.h"
 
 @interface ActivityListViewController ()<ActivityFilterViewDelegate>
-@property (nonatomic, strong) ActivityFilterView *filterView;
-@property (nonatomic, strong) ActivityFilterModel *filterModel;
 @property (nonatomic, strong) ActivityFilterRequest *filterRequest;
-@property (nonatomic, assign) BOOL isWaitingForFilter;
+@property (nonatomic, strong) ActivityFilterModel *filterModel;
+@property (nonatomic, strong) ActivityFilterView *filterView;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
+@property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 @end
 
 @implementation ActivityListViewController
-
 - (void)viewDidLoad {
     [self setupFetcher];
     YXEmptyView *emptyView = [[YXEmptyView alloc]init];
     emptyView.title = @"没有符合条件的活动";
     emptyView.imageName = @"没有符合条件的课程";
     self.emptyView = emptyView;
-    if (self.status != ActivityFromStatus_Activity) {
-        self.isWaitingForFilter = YES;
-    }
+    self.isWaitingForFilter = YES;
     [super viewDidLoad];
     [self setupUI];
-    [self getFilters];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.isNavBarHidden) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }else {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 - (void)setupFetcher {
     ActivityListFetcher *fetcher = [[ActivityListFetcher alloc]init];
     fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
     fetcher.stageid = self.stageID;
+    fetcher.pageindex = 0;
+    fetcher.pagesize = 10;
+    WEAK_SELF
+    fetcher.listCompleteBlock = ^(){
+        STRONG_SELF
+        if (self.filterView) {
+            return;
+        }
+        [self dealWithFilterModel:self.filterModel];
+    };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
 }
@@ -49,10 +67,6 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ActivityListCell class] forCellReuseIdentifier:@"ActivityListCell"];
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(44);
-    }];
     [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(44);
         make.left.right.bottom.mas_equalTo(0);
@@ -62,14 +76,16 @@
         WEAK_SELF
         self.filterErrorView.retryBlock = ^{
             STRONG_SELF
-            [self getFilters];
+            [self allFilters];
         };
-        [self getFilters];
+        [self allFilters];
     }
 }
-- (void)getFilters {
+- (void)allFilters {
     [self.filterRequest stopRequest];
     self.filterRequest = [[ActivityFilterRequest alloc]init];
+    self.filterRequest.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    self.filterRequest.w = [YXTrainManager sharedInstance].currentProject.w;
     [self startLoading];
     WEAK_SELF
     [self.filterRequest startRequestWithRetClass:[ActivityFilterRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -83,43 +99,13 @@
         [self.filterErrorView removeFromSuperview];
         ActivityFilterRequestItem *item = (ActivityFilterRequestItem *)retItem;
         self.filterModel = [item filterModel];
-        [self dealWithFilterModel:self.filterModel];
         self.isWaitingForFilter = NO;
         [self firstPageFetch:YES];
     }];
 }
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    if (self.isNavBarHidden) {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-        
-    }else {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    }
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-- (void)tableViewWillRefresh {
-    CGFloat top = 0.f;
-    if (self.filterView) {
-        top = 44.f;
-    }
-    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(top);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
-}
-- (void)firstPageFetch:(BOOL)isShow {
-    if (self.isWaitingForFilter) {
-        return;
-    }
-    [super firstPageFetch:isShow];
-}
-
 - (void)dealWithFilterModel:(ActivityFilterModel *)model {
     ActivityFilterView *filterView = [[ActivityFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    self.filterView = filterView;
     for (ActivityFilterGroup *group in model.groupArray) {
         NSMutableArray *array = [NSMutableArray array];
         for (ActivityFilter *filter in group.filterArray) {
@@ -130,7 +116,10 @@
     [self setupWithCurrentFilters];
     filterView.delegate = self;
     [self.view addSubview:filterView];
-    self.filterView = filterView;
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(44);
+    }];
 }
 - (void)setupWithCurrentFilters {
     if (self.stageID) {
@@ -148,6 +137,22 @@
         }
     }
 }
+- (void)tableViewWillRefresh {
+    CGFloat top = 0.f;
+    if (self.filterView) {
+        top = 44.f;
+    }
+    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(top);
+        make.left.right.bottom.mas_equalTo(0);
+    }];
+}
+- (void)firstPageFetch:(BOOL)isShow {
+    if (self.isWaitingForFilter) {
+        return;
+    }
+    [super firstPageFetch:isShow];
+}
 #pragma mark - UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ActivityListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityListCell"];
@@ -158,11 +163,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 104;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 5;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.1;
 }

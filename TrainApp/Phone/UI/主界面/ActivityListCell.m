@@ -11,7 +11,7 @@
 @property (nonatomic, strong) UIImageView *activityImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *startTimeLabel;
-@property (nonatomic, strong) UILabel *alreadyParticipatedLabel;
+@property (nonatomic, strong) UILabel *hasJoinLabel;
 @property (nonatomic, strong) UIView *lineView;
 @end
 @implementation ActivityListCell
@@ -50,15 +50,15 @@
     self.startTimeLabel.font = [UIFont systemFontOfSize:11];
     self.startTimeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     
-    self.alreadyParticipatedLabel = [[UILabel alloc]init];
-    self.alreadyParticipatedLabel.font = [UIFont systemFontOfSize:10];
-    self.alreadyParticipatedLabel.layer.cornerRadius = 3;
-    self.alreadyParticipatedLabel.layer.borderColor = [UIColor colorWithHexString:@"efa280"].CGColor;
-    self.alreadyParticipatedLabel.layer.masksToBounds = YES;
-    self.alreadyParticipatedLabel.textColor = [UIColor whiteColor];
-    self.alreadyParticipatedLabel.text = @"已参加";
-    self.alreadyParticipatedLabel.textAlignment = NSTextAlignmentCenter;
-    self.alreadyParticipatedLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
+    self.hasJoinLabel = [[UILabel alloc]init];
+    self.hasJoinLabel.font = [UIFont systemFontOfSize:10];
+    self.hasJoinLabel.layer.cornerRadius = 3;
+    self.hasJoinLabel.layer.borderColor = [UIColor colorWithHexString:@"efa280"].CGColor;
+    self.hasJoinLabel.layer.masksToBounds = YES;
+    self.hasJoinLabel.textColor = [UIColor whiteColor];
+    self.hasJoinLabel.text = @"已参加";
+    self.hasJoinLabel.textAlignment = NSTextAlignmentCenter;
+    self.hasJoinLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
     
     UIView *line = [[UIView alloc]init];
     line.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
@@ -77,7 +77,7 @@
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.activityImageView.mas_right).mas_offset(15);
-        make.top.equalTo(self.contentView).offset(22);
+        make.top.mas_equalTo(22);
         make.right.mas_equalTo(-20);
     }];
     [self.startTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -92,30 +92,24 @@
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
 }
-//- (void)setupMockData{
-//    self.activityImageView.image = [UIImage imageNamed:@"默认图片"];
-//    self.titleLabel.text = @"既然选择了远方,便只顾风雨兼程";
-//    self.startTimeLabel.text = @"开始时间  2017-7-12 12:00";
-//}
-- (void)setActivity:(ActivityListRequestItem_body_activity *)activity{
+- (void)setActivity:(ActivityListRequestItem_body_activity *)activity {
     _activity = activity;
     [self.activityImageView sd_setImageWithURL:[NSURL URLWithString:activity.pic]];
-    //    self.activityImageView.image = [UIImage imageNamed:@"默认图片"];
     self.titleLabel.text = activity.title;
     self.startTimeLabel.text = [NSString stringWithFormat:@"开始时间  %@",activity.startTime];
     if ([activity.isJoin isEqualToString:@"1"]) {
-        [self.contentView addSubview:self.alreadyParticipatedLabel];
-        [self.alreadyParticipatedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView addSubview:self.hasJoinLabel];
+        [self.hasJoinLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.equalTo(self.activityImageView).offset(5);
             make.bottom.equalTo(self.activityImageView).offset(-5);
             make.size.mas_equalTo(CGSizeMake(39, 15));
         }];
-    }else{
-        [self.alreadyParticipatedLabel removeFromSuperview];
+    }else {
+        [self.hasJoinLabel removeFromSuperview];
     }
     NSMutableAttributedString *titleLabelAttributedString = [[NSMutableAttributedString alloc] initWithString:self.titleLabel.text];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:0];//调整行间距
+    [paragraphStyle setLineSpacing:0];
     paragraphStyle.minimumLineHeight = 22;
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [titleLabelAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.titleLabel.text length])];

@@ -8,6 +8,7 @@
 
 #import "ActivityListFetcher.h"
 #import "ActivityListRequest.h"
+#import "ActivityFilterRequest.h"
 @interface ActivityListFetcher()
 @property (nonatomic, strong) ActivityListRequest *request;
 @end
@@ -21,8 +22,8 @@
     self.request.pagesize = [NSString stringWithFormat:@"%d", self.pagesize];
     self.request.studyId = self.studyid;
     self.request.segmentId = self.segid;
-    self.request.stageid = self.stageid;
-    WEAK_SELF
+    self.request.stageId = self.stageid;
+     WEAK_SELF
     [self.request startRequestWithRetClass:[ActivityListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         if (error) {
@@ -30,8 +31,13 @@
             return;
         }
         ActivityListRequestItem *item = (ActivityListRequestItem *)retItem;
-        BLOCK_EXEC(aCompleteBlock,item.body.totalPage.intValue,[item allActivities],nil);
+        BLOCK_EXEC(self.listCompleteBlock,nil);
+        BOOL isLastPage = [self.request.page isEqualToString:item.body.totalPage];
+        if (isLastPage) {
+            BLOCK_EXEC(aCompleteBlock,0,[item allActivities],nil);
+        }else {
+            BLOCK_EXEC(aCompleteBlock,(int)NSIntegerMax,[item allActivities],nil);
+        }
     }];
 }
-
 @end

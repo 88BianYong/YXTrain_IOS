@@ -43,5 +43,6 @@
 @end
 
 @interface ActivityFilterRequest : YXGetRequest
-
+@property (nonatomic, strong) NSString *projectId;
+@property (nonatomic, strong) NSString *w;
 @end

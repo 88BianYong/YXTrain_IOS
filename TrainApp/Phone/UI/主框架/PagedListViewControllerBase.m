@@ -217,6 +217,7 @@
             }
             
             [self.dataArray addObjectsFromArray:retItemArray];
+            self->_total = total;
             [self.tableView reloadData];
             [self checkHasMore];
         });

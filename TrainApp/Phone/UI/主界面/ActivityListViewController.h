@@ -7,11 +7,6 @@
 //
 
 #import "PagedListViewControllerBase.h"
-typedef NS_ENUM(NSUInteger, ActivityFromStatus){
-    ActivityFromStatus_Activity = 0,//任务-活动
-    ActivityFromStatus_Stage = 1,//阶段-活动
-};
 @interface ActivityListViewController : PagedListViewControllerBase
-@property (nonatomic, strong) NSString *stageID;// 从考核的阶段课程进入需要传阶段的id
-@property (nonatomic, assign) ActivityFromStatus status; // 哪个入口进入
+@property (nonatomic, strong) NSString *stageID;//阶段的id
 @end
