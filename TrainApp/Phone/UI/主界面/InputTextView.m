@@ -27,7 +27,7 @@ static NSUInteger kPlaceHoldermaxChars = 33;
                                                  selector:@selector(didReceiveTextDidChangeNotification:)
                                                      name:UITextViewTextDidChangeNotification
                                                    object:self];
-        _placeHolderTextColor = [UIColor lightGrayColor];
+        _placeHolderTextColor = [UIColor colorWithHexString:@"a1a7ae"];
 
     }
     return self;
@@ -35,16 +35,16 @@ static NSUInteger kPlaceHoldermaxChars = 33;
 
 #pragma mark - setupUI
 - (void)setupUI {
-    self.backgroundColor = [UIColor colorWithHexString:@"616163"];
-    self.layer.borderColor = [UIColor clearColor].CGColor;
-    self.layer.borderWidth = 0.1f;
-    self.layer.cornerRadius = YXTrainCornerRadii;
+    self.layer.cornerRadius = 15.0f;
+    self.layer.borderWidth = 1.0f / [UIScreen mainScreen].scale;
+    self.layer.borderColor = [UIColor colorWithHexString:@"d0d2d5"].CGColor;
+    self.backgroundColor = [UIColor whiteColor];
     self.scrollIndicatorInsets = UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 8.0f);
     self.contentInset = UIEdgeInsetsZero;
     self.scrollEnabled = YES;
     self.scrollsToTop = NO;
     self.userInteractionEnabled = YES;
-    self.font = [UIFont systemFontOfSize:16.0f];
+    self.font = [UIFont systemFontOfSize:14.0f];
     self.textColor = [UIColor blackColor];
     self.keyboardAppearance = UIKeyboardAppearanceDark;
     self.keyboardType = UIReturnKeySend;

@@ -24,6 +24,10 @@
     [super setSelected:selected animated:animated];
     
     // Configure the view for the selected state
+};
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    self.hasJoinLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -53,7 +57,6 @@
     self.hasJoinLabel = [[UILabel alloc]init];
     self.hasJoinLabel.font = [UIFont systemFontOfSize:10];
     self.hasJoinLabel.layer.cornerRadius = 3;
-    self.hasJoinLabel.layer.borderColor = [UIColor colorWithHexString:@"efa280"].CGColor;
     self.hasJoinLabel.layer.masksToBounds = YES;
     self.hasJoinLabel.textColor = [UIColor whiteColor];
     self.hasJoinLabel.text = @"已参加";

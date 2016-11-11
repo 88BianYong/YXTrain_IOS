@@ -252,7 +252,11 @@
 		923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237821D82D87800FDACFE /* YXDynamicCell.m */; };
 		9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9237FF761DD489390057FFDE /* ActivityStepListRequest.m */; };
 		9237FF791DD48F800057FFDE /* activityStep_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 9237FF781DD48F800057FFDE /* activityStep_mock.json */; };
+		9237FF7C1DD572400057FFDE /* ActivityFirstCommentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
+		92780F601DD9666700548424 /* ActivitySlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F5F1DD9666700548424 /* ActivitySlideProgressView.m */; };
+		92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F621DD96E3E00548424 /* ActivityPlayTopView.m */; };
+		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
 		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
 		92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */; };
 		92B2C0A41DD41EFA003E27F9 /* Image.html in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A31DD41EFA003E27F9 /* Image.html */; };
@@ -282,6 +286,7 @@
 		92EDC7D11D632357005B91DD /* YXHomeworkUploadCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D01D632357005B91DD /* YXHomeworkUploadCompleteView.m */; };
 		92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */; };
 		92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */; };
+		92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */; };
 		92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED8841DD18B1600457228 /* ActivityCommentInputView.m */; };
 		92FED8891DD1C37200457228 /* ActitvityCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED8881DD1C37200457228 /* ActitvityCommentCell.m */; };
 		92FED88C1DD1C38E00457228 /* ActitvityCommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED88B1DD1C38E00457228 /* ActitvityCommentHeaderView.m */; };
@@ -898,8 +903,17 @@
 		9237FF751DD489390057FFDE /* ActivityStepListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStepListRequest.h; sourceTree = "<group>"; };
 		9237FF761DD489390057FFDE /* ActivityStepListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStepListRequest.m; sourceTree = "<group>"; };
 		9237FF781DD48F800057FFDE /* activityStep_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activityStep_mock.json; sourceTree = "<group>"; };
+		9237FF7A1DD572400057FFDE /* ActivityFirstCommentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFirstCommentRequest.h; sourceTree = "<group>"; };
+		9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFirstCommentRequest.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
+		92780F5E1DD9666700548424 /* ActivitySlideProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySlideProgressView.h; sourceTree = "<group>"; };
+		92780F5F1DD9666700548424 /* ActivitySlideProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySlideProgressView.m; sourceTree = "<group>"; };
+		92780F611DD96E3E00548424 /* ActivityPlayTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayTopView.h; sourceTree = "<group>"; };
+		92780F621DD96E3E00548424 /* ActivityPlayTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlayTopView.m; sourceTree = "<group>"; };
+		92780F641DD99FC300548424 /* CommentPageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentPageListViewController.h; sourceTree = "<group>"; };
+		92780F651DD99FC300548424 /* CommentPageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPageListViewController.m; sourceTree = "<group>"; };
+		92780F671DD9A01600548424 /* CommentPagedListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentPagedListFetcher.h; sourceTree = "<group>"; };
 		92A770071DD18A5800C578F2 /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
 		92A770081DD18A5800C578F2 /* InputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextView.m; sourceTree = "<group>"; };
 		92AFFAFB1D9B7ADA00E1526C /* YXEmptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEmptCell.h; sourceTree = "<group>"; };
@@ -956,6 +970,7 @@
 		92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkPlayVideoCell.m; sourceTree = "<group>"; };
 		92F370B41D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXWriteHomeworkInfoViewController+Request.h"; sourceTree = "<group>"; };
 		92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXWriteHomeworkInfoViewController+Request.m"; sourceTree = "<group>"; };
+		92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPagedListFetcher.m; sourceTree = "<group>"; };
 		92FED8841DD18B1600457228 /* ActivityCommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCommentInputView.m; sourceTree = "<group>"; };
 		92FED8871DD1C37200457228 /* ActitvityCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActitvityCommentCell.h; sourceTree = "<group>"; };
 		92FED8881DD1C37200457228 /* ActitvityCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActitvityCommentCell.m; sourceTree = "<group>"; };
@@ -2554,8 +2569,12 @@
 			children = (
 				922850C21DD05DF500A64AB7 /* ActivityPlayManagerView.h */,
 				922850C31DD05DF500A64AB7 /* ActivityPlayManagerView.m */,
+				92780F611DD96E3E00548424 /* ActivityPlayTopView.h */,
+				92780F621DD96E3E00548424 /* ActivityPlayTopView.m */,
 				922850C51DD05E3000A64AB7 /* ActivityPlayBottomView.h */,
 				922850C61DD05E3000A64AB7 /* ActivityPlayBottomView.m */,
+				92780F5E1DD9666700548424 /* ActivitySlideProgressView.h */,
+				92780F5F1DD9666700548424 /* ActivitySlideProgressView.m */,
 			);
 			name = "视频";
 			sourceTree = "<group>";
@@ -2813,6 +2832,8 @@
 				92FED8921DD2BDA000457228 /* ActivityDetailViewController.m */,
 				92006C8A1DCC79E500F80488 /* ActivityPlayViewController.h */,
 				92006C8B1DCC79E500F80488 /* ActivityPlayViewController.m */,
+				92780F641DD99FC300548424 /* CommentPageListViewController.h */,
+				92780F651DD99FC300548424 /* CommentPageListViewController.m */,
 			);
 			name = "活动";
 			sourceTree = "<group>";
@@ -2842,9 +2863,13 @@
 				E9BBA5F81DD06932000CA413 /* ActivityListFetcher.m */,
 				9237FF751DD489390057FFDE /* ActivityStepListRequest.h */,
 				9237FF761DD489390057FFDE /* ActivityStepListRequest.m */,
+				9237FF7A1DD572400057FFDE /* ActivityFirstCommentRequest.h */,
+				9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */,
 				E9BBA61E1DD310EA000CA413 /* activityFilter_mock.json */,
 				E9BBA61F1DD310EA000CA413 /* activityList_mock.json */,
 				9237FF781DD48F800057FFDE /* activityStep_mock.json */,
+				92780F671DD9A01600548424 /* CommentPagedListFetcher.h */,
+				92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */,
 			);
 			name = "活动";
 			sourceTree = "<group>";
@@ -3096,6 +3121,7 @@
 				92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */,
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */,
+				92780F601DD9666700548424 /* ActivitySlideProgressView.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
 				7C2C3B7D1D24F23600A03635 /* YXCourseRecordRequest.m in Sources */,
 				7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */,
@@ -3147,6 +3173,7 @@
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
 				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
+				92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */,
 				CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */,
 				922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */,
 				923237401D7E660000FDACFE /* YXCMSManager.m in Sources */,
@@ -3173,6 +3200,7 @@
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
 				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
+				92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
 				CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
@@ -3198,6 +3226,7 @@
 				920F1D411D51EFB100636A51 /* YXHomeworkListViewController.m in Sources */,
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
 				92FED8931DD2BDA000457228 /* ActivityDetailViewController.m in Sources */,
+				92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */,
 				922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
 				920F1D441D51F00700636A51 /* YXHomeworkInfoViewController.m in Sources */,
@@ -3316,6 +3345,7 @@
 				CB8524641D334BFB009FA14B /* HJCActionSheet.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
 				920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */,
+				9237FF7C1DD572400057FFDE /* ActivityFirstCommentRequest.m in Sources */,
 				CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */,
 				9232376E1D81668000FDACFE /* YXCheckRequest.m in Sources */,
 				92CE51481D87D2FF0071DE79 /* YXGuideModel.m in Sources */,

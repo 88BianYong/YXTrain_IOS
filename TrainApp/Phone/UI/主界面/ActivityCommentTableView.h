@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ActivityFirstCommentRequest.h"
 @interface ActivityCommentTableView : UITableView
-
+@property (nonatomic, strong) NSMutableArray *dataMutableArray;
 @end

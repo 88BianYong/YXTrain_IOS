@@ -63,16 +63,15 @@
     [self addSubview:self.timeLabel];
     
     [self.wholeProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.thumbNormalView.bounds.size.width * 0.5);
+        make.left.mas_equalTo(self.thumbNormalView.bounds.size.width * 0.5).priorityHigh();
         make.centerY.mas_equalTo(@0);
         make.height.mas_equalTo(@3.0f);
-        make.right.equalTo(self.timeLabel.mas_left).offset(-5.0f);
+        make.right.equalTo(self.timeLabel.mas_left).offset(-5.0f).priorityHigh();
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
         make.centerY.mas_equalTo(@0);
-        make.right.mas_equalTo(@-15);
+        make.right.mas_equalTo(@-15).priorityHigh();
     }];
 }
 
@@ -125,10 +124,8 @@
 #pragma mark - touch event
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
     CGPoint touchPoint = [touch locationInView:self];
-    DDLogWarn(@"%@", NSStringFromCGPoint(touchPoint));
     if (CGRectContainsPoint([self slidePointImageRect], touchPoint)) {
         self.bSliding = YES;
-//        self.thumbNormalView.image = [UIImage imageNamed:@"03动态详情页UI-附件全屏浏览-按下效果-修改版"];
         self.thumbNormalView.image = [UIImage yx_imageWithColor:[UIColor whiteColor]];
         return YES;
     }
@@ -152,7 +149,6 @@
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event{
     self.bSliding = NO;
-//    self.thumbNormalView.image = [UIImage imageNamed:@"03动态详情页UI-附件全屏浏览-未按-修改版"];
     self.thumbNormalView.image = [UIImage yx_imageWithColor:[UIColor whiteColor]];
 }
 

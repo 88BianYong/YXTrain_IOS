@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-@class ActivityPlayBottomView;
 typedef void (^BackActionBlock)(void);
 typedef void (^RotateScreenBlock)(BOOL isVertical);
 @interface ActivityPlayManagerView : UIView
-@property (nonatomic, strong) ActivityPlayBottomView *bottomView;
+@property (nonatomic, assign) BOOL isFullscreen;
 - (void)setBackActionBlock:(BackActionBlock)block;
 - (void)setRotateScreenBlock:(RotateScreenBlock)block;
 @end

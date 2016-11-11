@@ -6,8 +6,8 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "YXBaseViewController.h"
+#import "CommentPageListViewController.h"
 
-@interface ActivityPlayViewController : YXBaseViewController
+@interface ActivityPlayViewController : CommentPageListViewController
 
 @end

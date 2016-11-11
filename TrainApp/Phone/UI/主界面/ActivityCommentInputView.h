@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActivityCommentInputView : UITextView
+@interface ActivityCommentInputView : UIView
 @end

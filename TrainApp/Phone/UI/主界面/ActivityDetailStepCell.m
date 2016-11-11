@@ -10,6 +10,7 @@
 @interface ActivityDetailStepCell ()
 @property (nonatomic, strong) UILabel *stepLabel;
 @property (nonatomic, strong) UIView *pointView;
+@property (nonatomic, strong) UIImageView *nextImageView;
 @end
 
 @implementation ActivityDetailStepCell
@@ -39,10 +40,12 @@
     if (highlighted) {
         self.stepLabel.textColor = [UIColor whiteColor];
         self.pointView.backgroundColor = [UIColor colorWithHexString:@"334466"];
+        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头点击态"];
     }
     else{
         self.stepLabel.textColor = [UIColor colorWithHexString:@"334466"];
         self.pointView.backgroundColor = [UIColor colorWithHexString:@"334466"];
+        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
     }
 }
 
@@ -67,10 +70,9 @@
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     
-    UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.backgroundColor = [UIColor redColor];
-    [self.contentView addSubview:imageView];
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.nextImageView = [[UIImageView alloc] init];
+    [self.contentView addSubview:self.nextImageView];
+    [self.nextImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f - 11.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
         make.size.mas_offset(CGSizeMake(16.0f, 16.0f));
@@ -83,7 +85,7 @@
     [self.stepLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.pointView.mas_left).offset(9.0f);
         make.centerY.equalTo(self.mas_centerY);
-        make.right.equalTo(imageView.mas_left).offset(-15.0f);
+        make.right.lessThanOrEqualTo(self.nextImageView.mas_left).offset(-15.0f);
     }];
 }
 #pragma mark - set

@@ -14,6 +14,7 @@
 @implementation ActivityPlayBottomView
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
         [self setupUI];
         [self setupLayout];
     }
@@ -22,33 +23,32 @@
 #pragma mark - setupUI
 - (void)setupUI{
     self.playPauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.playPauseButton.backgroundColor = [UIColor redColor];
+    [self.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
     [self addSubview:self.playPauseButton];
     
     self.rotateButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.rotateButton.backgroundColor = [UIColor redColor];
     [self addSubview:self.rotateButton];
-    self.slideProgressView = [[YXSlideProgressView alloc] init];
-    self.slideProgressView.backgroundColor = [UIColor clearColor];
+    self.slideProgressView = [[ActivitySlideProgressView alloc] init];
     [self addSubview:self.slideProgressView];
 
 }
 
 - (void)setupLayout{
     [self.playPauseButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(40.0f, 40.0f));
+        make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
         make.centerY.equalTo(self.mas_centerY);
-        make.left.equalTo(self.mas_left).offset(10.0f);
+        make.left.equalTo(self.mas_left).offset(5.0f);
     }];
     
     [self.rotateButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(40.0f, 40.0f));
+        make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
         make.centerY.equalTo(self.mas_centerY);
-        make.right.equalTo(self.mas_right).offset(-10.0f);
+        make.right.equalTo(self.mas_right).offset(-15.0f);
     }];
-    [self.slideProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).mas_offset(55.0f);
-        make.right.mas_equalTo(-80);
+    
+    [self.slideProgressView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.playPauseButton.mas_right).offset(20.0f);
+        make.right.equalTo(self.rotateButton.mas_left).offset(15.0f);
         make.top.bottom.mas_equalTo(@0);
     }];
     [self.slideProgressView updateUI];

@@ -11,15 +11,20 @@
 #import "LePlayer.h"
 #import "LePlayerView.h"
 #import "YXPlayerBufferingView.h"
+#import "ActivityPlayTopView.h"
+static const NSTimeInterval kTopBottomHiddenTime = 5;
 @interface ActivityPlayManagerView()
 @property (nonatomic, strong) LePlayer *player;
 @property (nonatomic, strong) LePlayerView *playerView;
 @property (nonatomic, strong) YXPlayerBufferingView *bufferingView;
-
+@property (nonatomic, strong) ActivityPlayBottomView *bottomView;
+@property (nonatomic, strong) ActivityPlayTopView *topView;
 
 @property (nonatomic, copy) BackActionBlock backBlock;
 @property (nonatomic, copy) RotateScreenBlock rotateBlock;
 @property (nonatomic, strong) NSMutableArray *disposableMutableArray;
+@property (nonatomic, strong) NSTimer *topBottomHideTimer;
+@property (nonatomic, assign) BOOL isTopBottomHidden;
 @end
 
 @implementation ActivityPlayManagerView
@@ -33,6 +38,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.disposableMutableArray = [[NSMutableArray alloc] initWithCapacity:5];
+        self.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
         [self setupObserver];
@@ -44,17 +50,23 @@
 - (void)setupUI {
     self.player = [[LePlayer alloc] init];
     self.playerView = (LePlayerView *)[self.player playerViewWithFrame:CGRectZero];
-    self.playerView.backgroundColor = [UIColor blueColor];
     [self addSubview:self.playerView];
     self.bottomView = [[ActivityPlayBottomView alloc] init];
     [self addSubview:self.bottomView];
     [self.bottomView.playPauseButton addTarget:self action:@selector(playAndPauseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView.rotateButton addTarget:self action:@selector(rotateScreenButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView.slideProgressView addTarget:self action:@selector(progressAction) forControlEvents:UIControlEventTouchUpInside];
     self.bufferingView = [[YXPlayerBufferingView alloc] init];
     [self addSubview:self.bufferingView];
     self.player.videoUrl = [NSURL URLWithString:@"http://coursecdn.teacherclub.com.cn/course/cf/ts/ts_gg/ptcz-xybnx_qxgly/video/qxgly/qxgly.m3u8"];
     
-
+    self.topView = [[ActivityPlayTopView alloc] init];
+    [self addSubview:self.topView];
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizer)];
+    recognizer.numberOfTapsRequired = 1;
+    self.playerView.userInteractionEnabled = YES;
+    [self.playerView addGestureRecognizer:recognizer];
 }
 - (void)setupLayout {
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -64,19 +76,24 @@
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         make.bottom.equalTo(self.mas_bottom);
-        make.height.mas_offset(50.0f);
+        make.height.mas_offset(44.0f);
     }];
     [self.bufferingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(@0);
         make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
     }];
+    
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.height.mas_offset(44.0f);
+    }];
 }
 
 #pragma mark - notification
 - (void)setupObserver {
-    // 2G / wifi
     Reachability *r = [Reachability reachabilityForInternetConnection];
-    // 播放中，网络切换为2G
     @weakify(r);
     WEAK_SELF
     [r setReachableBlock:^void (Reachability * reachability) {
@@ -92,7 +109,7 @@
     [r startNotifier];
     
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if ([x unsignedIntegerValue] == PlayerView_State_Buffering) {
             self.bufferingView.hidden = NO;
             [self.bufferingView start];
@@ -102,22 +119,26 @@
         }
         switch ([x unsignedIntegerValue]) {
             case PlayerView_State_Buffering:
-                DDLogInfo(@"buffering");
+            {
+            }
                 break;
             case PlayerView_State_Playing:
-                DDLogInfo(@"Playing");
-    [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"音频全屏浏览-stop"] forState:UIControlStateNormal];                break;
+            {
+                [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
+            }
+                break;
             case PlayerView_State_Paused:
-                DDLogInfo(@"Paused");
-                    [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"音频全屏浏览-play"] forState:UIControlStateNormal];
+            {
+                [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
+            }
                 break;
             case PlayerView_State_Finished:
-                DDLogInfo(@"Finished");
+            {
                 BLOCK_EXEC(self.backBlock);
+            }
                 break;
             case PlayerView_State_Error:
             {
-                DDLogError(@"Error");
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.bufferingView stop];
                     self.bufferingView.hidden = YES;
@@ -134,32 +155,29 @@
                                                 options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
                                                observer:self
                                                   block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
-                                                      @strongify(self); if (!self) return;
+                                                      STRONG_SELF
                                                       if ([value boolValue]) {
                                                           self.bufferingView.hidden = YES;
                                                           [self.bufferingView stop];
-//                                                          [self showTop];
-//                                                          [self showBottom];
-//                                                          self.bTopBottomHidden = NO;
-//                                                          [self resetTopBottomHideTimer];
-//                                                          self.gestureView.userInteractionEnabled = YES;
+                                                          [self showTopView];
+                                                          [self showBottomView];
+                                                          self.isTopBottomHidden = NO;
+                                                          [self resetTopBottomHideTimer];
+                                                          self.playerView.userInteractionEnabled = YES;
                                                       }
                                                   }];
     
     RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         self.bottomView.slideProgressView.duration = [x doubleValue];
-        if (self.bottomView.slideProgressView.bufferProgress > 0) {
-            [self.bottomView.slideProgressView updateUI];
-        }
+        [self.bottomView.slideProgressView updateUI];
     }];
     
     RACDisposable *r3 = [RACObserve(self.player, timeBuffered) subscribeNext:^(id x) {
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if (self.bottomView.slideProgressView.bSliding) {
             return;
         }
-        
         if (self.bottomView.slideProgressView.duration > 0) {
             self.bottomView.slideProgressView.bufferProgress = [x floatValue] / self.bottomView.slideProgressView.duration;
             if (self.bottomView.slideProgressView.bufferProgress > 0) {
@@ -169,11 +187,10 @@
     }];
     
     RACDisposable *r4 = [RACObserve(self.player, timePlayed) subscribeNext:^(id x) {
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if (self.bottomView.slideProgressView.bSliding) {
             return;
         }
-        
         if (self.bottomView.slideProgressView.duration > 0) {
             self.bottomView.slideProgressView.playProgress = [x floatValue] / self.bottomView.slideProgressView.duration;
             if (self.bottomView.slideProgressView.playProgress > 0) { // walkthrough 换url时slide跳动
@@ -181,7 +198,7 @@
             }
         }
     }];
-
+    
     [self.disposableMutableArray addObject:r0];
     [self.disposableMutableArray addObject:r1];
     [self.disposableMutableArray addObject:r2];
@@ -215,10 +232,83 @@
     }
     return nil;
 }
+#pragma mark - top / bottom hide
+- (void)tapGestureRecognizer {
+    if (self.isTopBottomHidden) {
+        [self showTopView];
+        [self showBottomView];
+    } else {
+        [self hiddenTopView];
+        [self hiddenBottomView];
+    }
+    self.isTopBottomHidden = !self.isTopBottomHidden;
+    [self resetTopBottomHideTimer];
+}
+
+- (void)resetTopBottomHideTimer {
+    [self.topBottomHideTimer invalidate];
+    self.topBottomHideTimer = [NSTimer scheduledTimerWithTimeInterval:kTopBottomHiddenTime
+                                                               target:self
+                                                             selector:@selector(topBottomHideTimerAction)
+                                                             userInfo:nil
+                                                              repeats:YES];
+}
+
+- (void)topBottomHideTimerAction {
+    [self hiddenTopView];
+    [self hiddenBottomView];
+    self.isTopBottomHidden = YES;
+}
+
+- (void)hiddenTopView {
+    [UIView animateWithDuration:0.6 animations:^{
+        [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).offset(-44.0f);
+        }];
+        [self layoutIfNeeded];
+    }];
+}
+- (void)hiddenBottomView {
+    [UIView animateWithDuration:0.6 animations:^{
+        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom).offset(44.0f);
+        }];
+        [self layoutIfNeeded];
+    }];
+}
+- (void)showTopView {
+    [UIView animateWithDuration:0.6 animations:^{
+        [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top);
+        }];
+        [self layoutIfNeeded];
+    }];
+}
+- (void)showBottomView {
+    [UIView animateWithDuration:0.6 animations:^{
+        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom);
+        }];
+        [self layoutIfNeeded];
+    }];
+}
+
+- (void)progressAction {
+    [self resetTopBottomHideTimer];
+    [self.player seekTo:self.player.duration * self.bottomView.slideProgressView.playProgress];
+}
 
 #pragma mark - button Action
 - (void)playAndPauseButtonAction:(UIButton *)sender{
-    
+    [self resetTopBottomHideTimer];
+    if (self.player.state == PlayerView_State_Paused) {
+        [self.player play];
+    } else if (self.player.state == PlayerView_State_Finished) {
+        [self.player seekTo:0];
+        [self.player play];
+    } else {
+        [self.player pause];
+    }
 }
 - (void)rotateScreenButtonAction:(UIButton *)sender{
     self.bottomView.isFullscreen = !self.bottomView.isFullscreen;
@@ -229,5 +319,15 @@
 }
 - (void)setRotateScreenBlock:(RotateScreenBlock)block{
     self.rotateBlock = block;
+}
+- (void)setIsFullscreen:(BOOL)isFullscreen {
+    _isFullscreen = isFullscreen;
+    if (_isFullscreen) {
+        [self.bottomView.rotateButton setImage:[UIImage imageNamed:@"缩小按钮-"] forState:UIControlStateNormal];
+        self.topView.hidden = NO;
+    }else {
+        [self.bottomView.rotateButton setImage:[UIImage imageNamed:@"放大按钮"] forState:UIControlStateNormal];
+        self.topView.hidden = YES;
+    }
 }
 @end

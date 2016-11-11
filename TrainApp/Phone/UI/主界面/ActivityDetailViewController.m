@@ -118,9 +118,11 @@
     }
     ActivityStepListRequest *request = [[ActivityStepListRequest alloc] init];
     request.aid = self.activity.aid;
+    [self startLoading];
     WEAK_SELF
     [request startRequestWithRetClass:[ActivityStepListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF;
+        [self stopLoading];
         self.listItem = (ActivityStepListRequestItem *)retItem;
         [self.tableView reloadData];
     }];

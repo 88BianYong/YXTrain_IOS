@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ActivityFirstCommentRequest.h"
+typedef NS_OPTIONS(NSInteger, ActitvityCommentCellStatus) {
+    ActitvityCommentCellStatus_Top = 1<<0,
+    ActitvityCommentCellStatus_Middle = 1<<1,
+    ActitvityCommentCellStatus_Bottom = 1<<2,
+};
 @interface ActitvityCommentCell : UITableViewCell
-
+@property (nonatomic, strong) ActivityFirstCommentRequestItem_Body_Replies *reply;
+@property (nonatomic, assign) ActitvityCommentCellStatus cellStatus;
 @end

@@ -11,9 +11,9 @@
 #import "ActivityCommentTableView.h"
 #import "ActivityCommentInputView.h"
 #import "InputTextView.h"
+#import "CommentPagedListFetcher.h"
 @interface ActivityPlayViewController ()
 @property (nonatomic, strong) ActivityPlayManagerView *playMangerView;
-@property (nonatomic, strong) ActivityCommentTableView *commentTableView;
 @property (nonatomic, strong) ActivityCommentInputView *inputTextView;
 @property (nonatomic ,strong) InputTextView *textView;
 @end
@@ -21,9 +21,8 @@
 @implementation ActivityPlayViewController
 
 - (void)viewDidLoad {
+    self.dataFetcher = [[CommentPagedListFetcher alloc] init];
     [super viewDidLoad];
-    [self setupUI];
-    [self setupLayout];
     self.view.backgroundColor = [UIColor blackColor];
 }
 
@@ -34,8 +33,8 @@
 
 #pragma mark - setupUI
 - (void)setupUI{
+    [super setupUI];
     self.playMangerView = [[ActivityPlayManagerView alloc] init];
-    self.playMangerView.backgroundColor =[UIColor grayColor];
     WEAK_SELF
     [self.playMangerView setRotateScreenBlock:^(BOOL isVertical) {
         STRONG_SELF
@@ -43,31 +42,30 @@
     }];
     [self.view addSubview:self.playMangerView];
     
-    self.commentTableView = [[ActivityCommentTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    [self.view addSubview:self.commentTableView];
-
-    self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 50.0f, kScreenWidth, 50.0f)];
-    self.inputTextView.backgroundColor = [UIColor redColor];
+    self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
     [self.view addSubview:self.inputTextView];
 }
 - (void)setupLayout {
-    [self.commentTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [super setupLayout];
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom).offset(-50.0f);
         make.top.equalTo(self.playMangerView.mas_bottom);
     }];
     [self remakeForHalfSize];
-    [self.inputTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.inputTextView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
         make.height.mas_offset(50.0f);
     }];
+    [self.tableView reloadData];
 }
 
 - (void)remakeForFullSize{
     self.inputTextView.hidden = YES;
+    self.playMangerView.isFullscreen = YES;
     self.navigationController.navigationBar.hidden = YES;
     [self.playMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -77,6 +75,7 @@
 
 - (void)remakeForHalfSize{
     self.inputTextView.hidden = NO;
+    self.playMangerView.isFullscreen = NO;
     self.navigationController.navigationBar.hidden = NO;
     [self.playMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top);
