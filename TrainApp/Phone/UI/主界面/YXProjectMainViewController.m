@@ -100,7 +100,7 @@
 - (void)getProjectList{
     [self startLoading];
     WEAK_SELF
-    [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(NSArray *projects, NSError *error) {
+    [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(YXTrainListRequestItem_body *body, NSError *error) {
         STRONG_SELF
         [self stopLoading];
         if (error) {
@@ -114,7 +114,7 @@
             }
             return;
         }
-        if (projects.count == 0) {
+        if (body.training.count == 0 && body.trained.count == 0) {
             self.emptyView.frame = self.view.bounds;
             self.emptyView.imageName = @"无培训项目";
             self.emptyView.title = @"您没有已参加的培训项目";
@@ -124,7 +124,7 @@
         [self.errorView removeFromSuperview];
         [self.emptyView removeFromSuperview];
         [self.dataErrorView removeFromSuperview];
-        [self dealWithProjects:projects];
+        [self dealWithTrainLisItemBody:body];
     }];
 }
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
@@ -135,31 +135,30 @@
         self.redPointView.hidden = NO;
     }
 }
-
 - (void)showoUpdateInterface:(NSNotification *)aNotification{
     [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
 }
-- (void)dealWithProjects:(NSArray *)projects{
+- (void)dealWithTrainLisItemBody:(YXTrainListRequestItem_body *)body{
     YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
-    selectionView.currentIndex = [YXTrainManager sharedInstance].currentProjectIndex;
-    selectionView.projectArray = projects;
+    selectionView.currentIndexPath = [YXTrainManager sharedInstance].currentProjectIndexPath;
+    selectionView.trainingProjectArray = body.training;
+    selectionView.trainedProjectArray = body.trained;
     WEAK_SELF
-    selectionView.projectChangeBlock = ^(NSInteger index){
+    selectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
         STRONG_SELF
-        DDLogDebug(@"project change index: %@",@(index));
-        [self showProjectWithIndex:index];
+        DDLogDebug(@"project change indexPath: %@",indexPath);
+        [self showProjectWithIndexPath:indexPath];
     };
     self.projectSelectionView = selectionView;
     [self showProjectSelectionView];
     
-    [self showProjectWithIndex:[YXTrainManager sharedInstance].currentProjectIndex];
+    [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
 }
-
-- (void)showProjectWithIndex:(NSInteger)index{
+- (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
     for (UIView *v in self.view.subviews) {
         [v removeFromSuperview];
     }
-    [YXTrainManager sharedInstance].currentProjectIndex = index;
+    [YXTrainManager sharedInstance].currentProjectIndexPath = indexPath;
     if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
         YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
         WEAK_SELF
@@ -194,7 +193,6 @@
         [self addChildViewController:recordVc];
     }
 }
-
 - (void)btnAction{
     [YXDrawerController showDrawer];
 }

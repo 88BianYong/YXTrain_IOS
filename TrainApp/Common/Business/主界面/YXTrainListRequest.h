@@ -17,11 +17,14 @@
 @property (nonatomic, strong) NSString<Optional> *name;
 @property (nonatomic, strong) NSString<Optional> *w;
 @property (nonatomic, strong) NSString<Optional> *pic;
+@property (nonatomic, strong) NSString<Optional> *status;//1-training;0-trained
 @end
 
 @interface YXTrainListRequestItem_body : JSONModel
 @property (nonatomic, strong) NSString<Optional> *total;
-@property (nonatomic, strong) NSString<Optional> *index;//现在没有了这个接口~
+//@property (nonatomic, strong) NSIndexPath<Optional> *indexPath;//现在没有了这个接口~//自己写的
+@property (nonatomic, strong) NSString<Optional> *indexPathSection;
+@property (nonatomic, strong) NSString<Optional> *indexPathRow;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trains;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *training;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trained;

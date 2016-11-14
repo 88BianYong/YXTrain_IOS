@@ -13,30 +13,28 @@
 static const CGFloat kImageWidth = 30;
 
 @interface YXProjectSelectionView()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, strong) NSMutableArray *projectArray;
 @property (nonatomic, strong) UIButton *bgButton;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *rightImageView;
-
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) YXProjectSelectionBgView *selectionBgView;
 @property (nonatomic, strong) UITableView *selectionTableView;
-@property (nonatomic, strong) UIView *sectionHeaderView;
 @end
 
 @implementation YXProjectSelectionView
-- (void)dealloc{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-- (instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDynamicNotification:) name:kYXTrainCurrentProjectIndex object:nil];
+        self.projectArray = [NSMutableArray array];
         [self setupUI];
     }
     return self;
 }
-
-- (void)setupUI{
+- (void)setupUI {
     self.bgButton = [[UIButton alloc]initWithFrame:self.bounds];
     [self.bgButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     self.bgButton.userInteractionEnabled = NO;
@@ -58,7 +56,7 @@ static const CGFloat kImageWidth = 30;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
     [self.maskView addGestureRecognizer:tap];
     
-    CGFloat w = 220;
+    CGFloat w = 230;
     CGFloat x = ([UIScreen mainScreen].bounds.size.width-w)/2;
     CGFloat y = 57;
     self.selectionBgView = [[YXProjectSelectionBgView alloc]initWithFrame:CGRectMake(x, y, w, 0) triangleX:w/2];
@@ -71,47 +69,60 @@ static const CGFloat kImageWidth = 30;
     self.selectionTableView.delegate = self;
     self.selectionTableView.sectionFooterHeight = 0.1;
     [self.selectionTableView registerClass:[YXProjectSelectionCell class] forCellReuseIdentifier:@"YXProjectSelectionCell"];
-    self.sectionHeaderView = [[UIView alloc]init];
 }
-
-- (void)setProjectArray:(NSArray *)projectArray{
-    _projectArray = projectArray;
-    if (projectArray.count == 0) {
+- (void)setTrainingProjectArray:(NSArray *)trainingProjectArray{
+    _trainingProjectArray = trainingProjectArray;
+    if (trainingProjectArray.count == 0) {
         return;
     }
-    //    self.currentIndex = 0;
-    YXTrainListRequestItem_body_train *train = _projectArray[self.currentIndex];
-    NSString *currentProject = train.name;
-    [self setupTitleWithProject:currentProject];
+    [self.projectArray addObject:_trainingProjectArray];
+    if (self.currentIndexPath.section == 0) {
+        YXTrainListRequestItem_body_train *train = trainingProjectArray[self.currentIndexPath.row];
+        NSString *currentProject = train.name;
+        [self setupTitleWithProject:currentProject];
+    }
 }
-
-- (void)setupTitleWithProject:(NSString *)pName{
-    CGSize size = [pName sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
+- (void)setTrainedProjectArray:(NSArray *)trainedProjectArray{
+    _trainedProjectArray = trainedProjectArray;
+    if (trainedProjectArray.count == 0) {
+        return;
+    }
+    [self.projectArray addObject:trainedProjectArray];
+    if (self.currentIndexPath.section == 1) {
+        YXTrainListRequestItem_body_train *train = trainedProjectArray[self.currentIndexPath.row];
+        NSString *currentProject = train.name;
+        [self setupTitleWithProject:currentProject];
+    }
+}
+- (void)setupTitleWithProject:(NSString *)projectName {
+    CGSize size = [projectName sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
     CGFloat titleWidth = MIN(ceilf(size.width), self.bounds.size.width-kImageWidth);
     self.titleLabel.frame = CGRectMake((self.bounds.size.width-titleWidth-kImageWidth)/2, 0, titleWidth, self.bounds.size.height);
-    self.titleLabel.text = pName;
-    if (self.projectArray.count > 1) {
+    self.titleLabel.text = projectName;
+    if (self.trainingProjectArray.count > 1 || self.trainedProjectArray.count > 1) {
         self.rightImageView.hidden = NO;
         self.rightImageView.frame = CGRectMake(self.titleLabel.frame.origin.x+self.titleLabel.frame.size.width, (self.bounds.size.height-kImageWidth)/2, kImageWidth, kImageWidth);
         self.bgButton.userInteractionEnabled = YES;
     }
 }
-
-- (void)btnAction{
+- (void)btnAction {
     [self showSelectionView];
 }
 
-- (void)tapAction{
+- (void)tapAction {
     [self hideSelectionView];
 }
-
 #pragma mark - show & hide
-- (void)showSelectionView{
+- (void)showSelectionView {
     self.rightImageView.image = [UIImage imageNamed:@"切换标题模块的按钮-拷贝"];
     UIView *superview = self.window;
     [superview addSubview:self.maskView];
-    
-    CGFloat tableHeight = MIN(self.projectArray.count*self.selectionTableView.rowHeight, 180 + 22);
+    CGFloat tableHeight;
+    if (self.projectArray.count == 2) {
+        tableHeight = MIN((self.trainingProjectArray.count + self.trainedProjectArray.count)*self.selectionTableView.rowHeight + 45 * 2, 292.5);
+    }else {
+        tableHeight = MIN(([self.projectArray.firstObject count])*self.selectionTableView.rowHeight + 45, 247.5);
+    }
     CGRect rect = self.selectionBgView.frame;
     rect.size.height = tableHeight+8;
     self.selectionBgView.frame = rect;
@@ -122,88 +133,121 @@ static const CGFloat kImageWidth = 30;
     [self.selectionTableView reloadData];
 }
 
-- (void)hideSelectionView{
+- (void)hideSelectionView {
     [self.selectionBgView removeFromSuperview];
     [self.maskView removeFromSuperview];
     self.rightImageView.image = [UIImage imageNamed:@"切换标题模块的按钮"];
 }
-
-- (void)currentProjectIndex:(NSInteger)index{
-    if (self.currentIndex == index) {
+- (void)currentProjectIndexPath:(NSIndexPath *)indexPath {
+    if (self.currentIndexPath == indexPath) {
         [self hideSelectionView];
         return;
     }
-    self.currentIndex = index;
-    YXTrainListRequestItem_body_train *train = self.projectArray[self.currentIndex];
+    self.currentIndexPath = indexPath;
+    YXTrainListRequestItem_body_train *train = [[YXTrainListRequestItem_body_train alloc]init];
+    if (indexPath.section == 0) {
+        train = self.trainingProjectArray[indexPath.row];
+    }else {
+        train = self.trainedProjectArray[indexPath.row];
+    }
     [self setupTitleWithProject:train.name];
     [self hideSelectionView];
-    BLOCK_EXEC(self.projectChangeBlock,self.currentIndex);
+    BLOCK_EXEC(self.projectChangeBlock,self.currentIndexPath);
     
 }
-- (void)receiveDynamicNotification:(NSNotification *)aNotification{
+- (void)receiveDynamicNotification:(NSNotification *)aNotification {
     NSString *pid = aNotification.object;
     __block NSInteger index = -1;
-    [self.projectArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.trainingProjectArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj.pid isEqualToString:pid]) {
             index = idx;
-            [self currentProjectIndex:index];
+            [self currentProjectIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+            *stop = YES;
+        }
+    }];
+    [self.trainedProjectArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj.pid isEqualToString:pid]) {
+            index = idx;
+            [self currentProjectIndexPath:[NSIndexPath indexPathForRow:index inSection:1]];
             *stop = YES;
         }
     }];
 }
 
-
 #pragma mark - UITableViewDataSource
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.projectArray.count;
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return self.projectArray.count;
-    }
-    else{
-        return 1;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if([self numberOfSectionsInTableView:tableView] == 2) {
+        if (section == 0) {
+            return self.trainingProjectArray.count;
+        }else {
+            return self.trainedProjectArray.count;
+        }
+    }else {
+        return [self.projectArray.firstObject count];
     }
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YXProjectSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXProjectSelectionCell"];
-    YXTrainListRequestItem_body_train *train = self.projectArray[indexPath.row];
+    YXTrainListRequestItem_body_train *train = [[YXTrainListRequestItem_body_train alloc]init];
+    if(self.projectArray.count == 2) {
+        if (indexPath.section == 0) {
+            train = self.trainingProjectArray[indexPath.row];
+        }else {
+            train = self.trainedProjectArray[indexPath.row];
+        }
+    }else {
+        train = self.projectArray.firstObject[indexPath.row];
+    }
     cell.name = train.name;
-    cell.isCurrent = (indexPath.row == self.currentIndex);
+    cell.isCurrent = (indexPath == self.currentIndexPath);
     return cell;
 }
-
 #pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self currentProjectIndex:indexPath.row];
+    [self currentProjectIndexPath:indexPath];
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 45;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.1;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        [self sectionHeaderViewWithTitle:@"在培项目" imageName:@"在培项目icon"];
-    }else{
-        [self sectionHeaderViewWithTitle:@"历史项目" imageName:@"历史项目icon"];
+    if (self.projectArray.count == 2) {
+        if (section == 0) {
+            return [self sectionHeaderViewWithTitle:@"在培项目" imageName:@"在培项目icon"];
+        }else{
+            return [self sectionHeaderViewWithTitle:@"历史项目" imageName:@"历史项目icon"];
+        }
+    }else {
+        NSArray *projects = self.projectArray.firstObject;
+        YXTrainListRequestItem_body_train *train = projects.firstObject;
+        if ([train.status isEqualToString:@"1"]) {
+            return [self sectionHeaderViewWithTitle:@"在培项目" imageName:@"在培项目icon"];
+        }else {
+            return [self sectionHeaderViewWithTitle:@"历史项目" imageName:@"历史项目icon"];
+        }
     }
-    return self.sectionHeaderView;
 }
-- (void)sectionHeaderViewWithTitle:(NSString *)title imageName:(NSString *)imageName {
+- (UIView *)sectionHeaderViewWithTitle:(NSString *)title imageName:(NSString *)imageName {
+    UIView *sectionHeaderView = [[UIView alloc]init];
+    
     UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = [UIColor colorWithHexString:@"d0d3d6"];
     
     UIImageView *iconView = [[UIImageView  alloc]initWithImage:[UIImage imageNamed:imageName]];
+    
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.text = title;
     titleLabel.font = [UIFont systemFontOfSize:12];
     titleLabel.textColor = [UIColor whiteColor];
     CGFloat titleLabelWidth = [title sizeWithAttributes:@{NSFontAttributeName:titleLabel.font}].width;
     
-    [self.sectionHeaderView addSubview:headerView];
+    [sectionHeaderView addSubview:headerView];
     [headerView addSubview:iconView];
     [headerView addSubview:titleLabel];
     [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -221,5 +265,6 @@ static const CGFloat kImageWidth = 30;
         make.centerY.mas_equalTo(iconView);
         make.left.equalTo(iconView.mas_right).offset(5);
     }];
+    return sectionHeaderView;
 }
 @end
