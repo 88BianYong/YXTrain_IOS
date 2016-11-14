@@ -20,7 +20,7 @@ static const CGFloat kImageWidth = 30;
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) YXProjectSelectionBgView *selectionBgView;
 @property (nonatomic, strong) UITableView *selectionTableView;
-
+@property (nonatomic, strong) UIView *sectionHeaderView;
 @end
 
 @implementation YXProjectSelectionView
@@ -63,13 +63,15 @@ static const CGFloat kImageWidth = 30;
     CGFloat y = 57;
     self.selectionBgView = [[YXProjectSelectionBgView alloc]initWithFrame:CGRectMake(x, y, w, 0) triangleX:w/2];
     
-    self.selectionTableView = [[UITableView alloc]init];
+    self.selectionTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.selectionTableView.backgroundColor = [UIColor clearColor];
     self.selectionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.selectionTableView.rowHeight = 45;
     self.selectionTableView.dataSource = self;
     self.selectionTableView.delegate = self;
+    self.selectionTableView.sectionFooterHeight = 0.1;
     [self.selectionTableView registerClass:[YXProjectSelectionCell class] forCellReuseIdentifier:@"YXProjectSelectionCell"];
+    self.sectionHeaderView = [[UIView alloc]init];
 }
 
 - (void)setProjectArray:(NSArray *)projectArray{
@@ -77,7 +79,7 @@ static const CGFloat kImageWidth = 30;
     if (projectArray.count == 0) {
         return;
     }
-//    self.currentIndex = 0;
+    //    self.currentIndex = 0;
     YXTrainListRequestItem_body_train *train = _projectArray[self.currentIndex];
     NSString *currentProject = train.name;
     [self setupTitleWithProject:currentProject];
@@ -152,10 +154,17 @@ static const CGFloat kImageWidth = 30;
 
 
 #pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.projectArray.count;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
 }
-
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 0) {
+        return self.projectArray.count;
+    }
+    else{
+        return 1;
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXProjectSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXProjectSelectionCell"];
     YXTrainListRequestItem_body_train *train = self.projectArray[indexPath.row];
@@ -169,6 +178,48 @@ static const CGFloat kImageWidth = 30;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self currentProjectIndex:indexPath.row];
 }
-
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 45;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        [self sectionHeaderViewWithTitle:@"在培项目" imageName:@"在培项目icon"];
+    }else{
+        [self sectionHeaderViewWithTitle:@"历史项目" imageName:@"历史项目icon"];
+    }
+    return self.sectionHeaderView;
+}
+- (void)sectionHeaderViewWithTitle:(NSString *)title imageName:(NSString *)imageName {
+    UIView *headerView = [[UIView alloc]init];
+    headerView.backgroundColor = [UIColor colorWithHexString:@"d0d3d6"];
+    
+    UIImageView *iconView = [[UIImageView  alloc]initWithImage:[UIImage imageNamed:imageName]];
+    UILabel *titleLabel = [[UILabel alloc]init];
+    titleLabel.text = title;
+    titleLabel.font = [UIFont systemFontOfSize:12];
+    titleLabel.textColor = [UIColor whiteColor];
+    CGFloat titleLabelWidth = [title sizeWithAttributes:@{NSFontAttributeName:titleLabel.font}].width;
+    
+    [self.sectionHeaderView addSubview:headerView];
+    [headerView addSubview:iconView];
+    [headerView addSubview:titleLabel];
+    [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(15);
+        make.left.mas_equalTo(20);
+        make.right.mas_equalTo(-20);
+        make.height.mas_equalTo(30);
+    }];
+    [iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(headerView);
+        make.centerX.equalTo(headerView.mas_centerX).offset(-(5 + titleLabelWidth * 0.5));
+        make.size.mas_equalTo(CGSizeMake(13, 13));
+    }];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(iconView);
+        make.left.equalTo(iconView.mas_right).offset(5);
+    }];
+}
 @end

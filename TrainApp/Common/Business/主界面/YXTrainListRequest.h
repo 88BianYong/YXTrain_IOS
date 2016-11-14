@@ -21,8 +21,10 @@
 
 @interface YXTrainListRequestItem_body : JSONModel
 @property (nonatomic, strong) NSString<Optional> *total;
-@property (nonatomic, strong) NSString<Optional> *index;
+@property (nonatomic, strong) NSString<Optional> *index;//现在没有了这个接口~
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trains;
+@property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *training;
+@property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trained;
 @end
 
 @interface YXTrainListRequestItem : HttpBaseRequestItem
