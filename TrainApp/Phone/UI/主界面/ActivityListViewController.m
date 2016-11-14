@@ -171,7 +171,12 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    DDLogDebug(@"跳转到活动详情页面");
+    ActivityListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if ([cell.activity.source isEqualToString:@"zgjiaoyan"]) {
+        [self showToast:@"暂不支持教研网活动"];
+    }else {
+        DDLogDebug(@"跳转到活动详情页面");
+    }
 }
 #pragma mark - YXCourseFilterViewDelegate
 - (void)filterChanged:(NSArray *)filterArray {
