@@ -385,12 +385,10 @@
 		E90C60AE1D9CFEEF001652CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AD1D9CFEEF001652CF /* libz.tbd */; };
 		E90C60B21D9D0012001652CF /* YXDataStatisticsManger.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */; };
 		E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C06181DCB1F9400666265 /* DataErrorView.m */; };
+		E9A7B5D61DDADD0A00136335 /* ActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */; };
 		E9BBA5F51DD05CC4000CA413 /* ActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA5F41DD05CC4000CA413 /* ActivityListViewController.m */; };
 		E9BBA5F91DD06932000CA413 /* ActivityListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA5F81DD06932000CA413 /* ActivityListFetcher.m */; };
-		E9BBA5FC1DD06987000CA413 /* ActivityFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA5FB1DD06987000CA413 /* ActivityFilterView.m */; };
-		E9BBA6031DD06DAD000CA413 /* ActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA6021DD06DAD000CA413 /* ActivityListCell.m */; };
 		E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA6051DD09530000CA413 /* ActivityListRequest.m */; };
-		E9BBA6091DD0A303000CA413 /* ActivityFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA6081DD0A303000CA413 /* ActivityFilterCell.m */; };
 		E9BBA6141DD2DEFB000CA413 /* ActivityFilterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA6131DD2DEFB000CA413 /* ActivityFilterRequest.m */; };
 		E9BBA6171DD2EDB2000CA413 /* ActivityFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA6161DD2EDB2000CA413 /* ActivityFilterModel.m */; };
 		E9BBA6201DD310EA000CA413 /* activityFilter_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BBA61E1DD310EA000CA413 /* activityFilter_mock.json */; };
@@ -1154,18 +1152,14 @@
 		E927702C1DADD24000B2991C /* YXTrackPageDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrackPageDataProtocol.h; sourceTree = "<group>"; };
 		E93C06171DCB1F9400666265 /* DataErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataErrorView.h; sourceTree = "<group>"; };
 		E93C06181DCB1F9400666265 /* DataErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataErrorView.m; sourceTree = "<group>"; };
+		E9A7B5D41DDADD0A00136335 /* ActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListCell.h; sourceTree = "<group>"; };
+		E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListCell.m; sourceTree = "<group>"; };
 		E9BBA5F31DD05CC4000CA413 /* ActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListViewController.h; sourceTree = "<group>"; };
 		E9BBA5F41DD05CC4000CA413 /* ActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListViewController.m; sourceTree = "<group>"; };
 		E9BBA5F71DD06932000CA413 /* ActivityListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityListFetcher.h; path = "../../../Phone/UI/主界面/ActivityListFetcher.h"; sourceTree = "<group>"; };
 		E9BBA5F81DD06932000CA413 /* ActivityListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityListFetcher.m; path = "../../../Phone/UI/主界面/ActivityListFetcher.m"; sourceTree = "<group>"; };
-		E9BBA5FA1DD06987000CA413 /* ActivityFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFilterView.h; sourceTree = "<group>"; };
-		E9BBA5FB1DD06987000CA413 /* ActivityFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFilterView.m; sourceTree = "<group>"; };
-		E9BBA6011DD06DAD000CA413 /* ActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListCell.h; sourceTree = "<group>"; };
-		E9BBA6021DD06DAD000CA413 /* ActivityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListCell.m; sourceTree = "<group>"; };
 		E9BBA6041DD09530000CA413 /* ActivityListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListRequest.h; sourceTree = "<group>"; };
 		E9BBA6051DD09530000CA413 /* ActivityListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListRequest.m; sourceTree = "<group>"; };
-		E9BBA6071DD0A303000CA413 /* ActivityFilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFilterCell.h; sourceTree = "<group>"; };
-		E9BBA6081DD0A303000CA413 /* ActivityFilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFilterCell.m; sourceTree = "<group>"; };
 		E9BBA6121DD2DEFB000CA413 /* ActivityFilterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFilterRequest.h; sourceTree = "<group>"; };
 		E9BBA6131DD2DEFB000CA413 /* ActivityFilterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFilterRequest.m; sourceTree = "<group>"; };
 		E9BBA6151DD2EDB2000CA413 /* ActivityFilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFilterModel.h; sourceTree = "<group>"; };
@@ -2829,12 +2823,8 @@
 				92FED8951DD2BE3500457228 /* 活动详情 */,
 				92FED8941DD2BE2400457228 /* 视频 */,
 				92FED8861DD1C33500457228 /* 评论 */,
-				E9BBA5FA1DD06987000CA413 /* ActivityFilterView.h */,
-				E9BBA5FB1DD06987000CA413 /* ActivityFilterView.m */,
-				E9BBA6011DD06DAD000CA413 /* ActivityListCell.h */,
-				E9BBA6021DD06DAD000CA413 /* ActivityListCell.m */,
-				E9BBA6071DD0A303000CA413 /* ActivityFilterCell.h */,
-				E9BBA6081DD0A303000CA413 /* ActivityFilterCell.m */,
+				E9A7B5D41DDADD0A00136335 /* ActivityListCell.h */,
+				E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3158,7 +3148,6 @@
 				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */,
-				E9BBA6091DD0A303000CA413 /* ActivityFilterCell.m in Sources */,
 				922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */,
 				923237401D7E660000FDACFE /* YXCMSManager.m in Sources */,
 				92FED8891DD1C37200457228 /* ActitvityCommentCell.m in Sources */,
@@ -3256,7 +3245,6 @@
 				CB4D91771D1A635400B5F1D0 /* YXMyDatumCell.m in Sources */,
 				CBBE94FE1D1D193400C935C8 /* YXLoginButtonTableViewCell.m in Sources */,
 				7CFBA6C21D33375D005D08B1 /* YXEmptyView.m in Sources */,
-				E9BBA5FC1DD06987000CA413 /* ActivityFilterView.m in Sources */,
 				7C3177BD1D0EBA79004AAC90 /* UIView+YXShadowColor.m in Sources */,
 				CB74627F1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m in Sources */,
 				920F1D7A1D5ADDEE00636A51 /* YXAlertCustomView.m in Sources */,
@@ -3283,6 +3271,7 @@
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
 				920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */,
+				E9A7B5D61DDADD0A00136335 /* ActivityListCell.m in Sources */,
 				CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
@@ -3446,7 +3435,6 @@
 				92EDC7C51D5DDD0E005B91DD /* YXWriteHomeworkInfoMenuView.m in Sources */,
 				92EDC7D11D632357005B91DD /* YXHomeworkUploadCompleteView.m in Sources */,
 				CB748EEC1D24F3CD004BCFBF /* YXPagedListEmptyView.m in Sources */,
-				E9BBA6031DD06DAD000CA413 /* ActivityListCell.m in Sources */,
 				92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */,
 				9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */,
 				E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */,

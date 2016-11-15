@@ -7,17 +7,16 @@
 //
 
 #import "ActivityListViewController.h"
-#import "ActivityFilterView.h"
 #import "ActivityListFetcher.h"
 #import "ActivityListCell.h"
 #import "ActivityFilterRequest.h"
 #import "ActivityFilterModel.h"
 #import "ActivityDetailViewController.h"
-
-@interface ActivityListViewController ()<ActivityFilterViewDelegate>
+#import "YXCourseFilterView.h"
+@interface ActivityListViewController ()<YXCourseFilterViewDelegate>
 @property (nonatomic, strong) ActivityFilterRequest *filterRequest;
 @property (nonatomic, strong) ActivityFilterModel *filterModel;
-@property (nonatomic, strong) ActivityFilterView *filterView;
+@property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, assign) BOOL isNavBarHidden;
@@ -105,7 +104,7 @@
     }];
 }
 - (void)dealWithFilterModel:(ActivityFilterModel *)model {
-    ActivityFilterView *filterView = [[ActivityFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    YXCourseFilterView *filterView = [[YXCourseFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     self.filterView = filterView;
     for (ActivityFilterGroup *group in model.groupArray) {
         NSMutableArray *array = [NSMutableArray array];

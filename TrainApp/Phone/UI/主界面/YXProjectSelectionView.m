@@ -235,12 +235,9 @@ static const CGFloat kImageWidth = 30;
 }
 - (UIView *)sectionHeaderViewWithTitle:(NSString *)title imageName:(NSString *)imageName {
     UIView *sectionHeaderView = [[UIView alloc]init];
-    
     UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = [UIColor colorWithHexString:@"d0d3d6"];
-    
     UIImageView *iconView = [[UIImageView  alloc]initWithImage:[UIImage imageNamed:imageName]];
-    
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.text = title;
     titleLabel.font = [UIFont systemFontOfSize:12];
