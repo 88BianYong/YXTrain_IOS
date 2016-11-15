@@ -56,7 +56,6 @@
         item.body.indexPathSection = [NSString stringWithFormat:@"%@",@(indexPath.section)];
         item.body.indexPathRow = [NSString stringWithFormat:@"%@",@(indexPath.row)];
         self.trainlistItem = item;
-        self.trainlistItem.token = [YXUserManager sharedManager].userModel.token;
         [self saveToCache];
         BLOCK_EXEC(completeBlock,item.body,nil);
     }];
@@ -87,17 +86,4 @@
     [[NSUserDefaults standardUserDefaults]setValue:nil forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
-- (BOOL)isShowCMSView:(NSArray *)rotate {
-    BOOL isShow = NO;
-    for (YXTrainListRequestItem_body_train *p in self.trainlistItem.body.trains) {
-        for (NSString *string in rotate) {
-            if ([p.pid isEqualToString:string]) {
-                isShow = YES;
-                return isShow;
-            }
-        }
-    }
-    return isShow;
-}
-
 @end

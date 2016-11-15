@@ -22,7 +22,6 @@
 
 @interface YXTrainListRequestItem_body : JSONModel
 @property (nonatomic, strong) NSString<Optional> *total;
-//@property (nonatomic, strong) NSIndexPath<Optional> *indexPath;//现在没有了这个接口~//自己写的
 @property (nonatomic, strong) NSString<Optional> *indexPathSection;
 @property (nonatomic, strong) NSString<Optional> *indexPathRow;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trains;
@@ -32,7 +31,6 @@
 
 @interface YXTrainListRequestItem : HttpBaseRequestItem
 @property (nonatomic, strong) YXTrainListRequestItem_body<Optional> *body;
-@property (nonatomic, strong) NSString<Optional> *token;//目前仅用来判断用户登出后再次登录时是否是同一账户,用来切换项目使用
 @end
 
 @interface YXTrainListRequest : YXGetRequest
