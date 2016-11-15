@@ -32,6 +32,7 @@
 
 @interface YXTrainListRequestItem : HttpBaseRequestItem
 @property (nonatomic, strong) YXTrainListRequestItem_body<Optional> *body;
+@property (nonatomic, strong) NSString<Optional> *token;//目前仅用来判断用户登出后再次登录时是否是同一账户,用来切换项目使用
 @end
 
 @interface YXTrainListRequest : YXGetRequest

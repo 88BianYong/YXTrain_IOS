@@ -15,7 +15,7 @@
 
 @implementation YXTrainManager
 @synthesize currentProjectIndexPath = _currentProjectIndexPath;
-+ (instancetype)sharedInstance{
++ (instancetype)sharedInstance {
     static YXTrainManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -25,7 +25,7 @@
     return manager;
 }
 
-- (YXTrainListRequestItem_body_train *)currentProject{
+- (YXTrainListRequestItem_body_train *)currentProject {
     if (isEmpty(self.trainlistItem.body.training) && isEmpty(self.trainlistItem.body.trained)) {
         return nil;
     }
@@ -37,7 +37,7 @@
         return self.trainlistItem.body.trained[currentProjectIndex];
     }
 }
-- (void)getProjectsWithCompleteBlock:(void(^)(YXTrainListRequestItem_body *body, NSError *error))completeBlock{
+- (void)getProjectsWithCompleteBlock:(void(^)(YXTrainListRequestItem_body *body, NSError *error))completeBlock {
     if (self.trainlistItem) {
         BLOCK_EXEC(completeBlock,self.trainlistItem.body,nil);
         return;
@@ -56,41 +56,38 @@
         item.body.indexPathSection = [NSString stringWithFormat:@"%@",@(indexPath.section)];
         item.body.indexPathRow = [NSString stringWithFormat:@"%@",@(indexPath.row)];
         self.trainlistItem = item;
+        self.trainlistItem.token = [YXUserManager sharedManager].userModel.token;
         [self saveToCache];
         BLOCK_EXEC(completeBlock,item.body,nil);
     }];
 }
-- (void)setCurrentProjectIndexPath:(NSIndexPath *)currentProjectIndexPath{
+- (void)setCurrentProjectIndexPath:(NSIndexPath *)currentProjectIndexPath {
     self.trainlistItem.body.indexPathSection = [NSString stringWithFormat:@"%@",@(currentProjectIndexPath.section)];
     self.trainlistItem.body.indexPathRow = [NSString stringWithFormat:@"%@",@(currentProjectIndexPath.row)];
-//    self.trainlistItem.body.indexPath = currentProjectIndexPath;
     [self saveToCache];
 }
-- (NSIndexPath *)currentProjectIndexPath{
+- (NSIndexPath *)currentProjectIndexPath {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.trainlistItem.body.indexPathRow.integerValue inSection:self.trainlistItem.body.indexPathSection.integerValue];
-//    return self.trainlistItem.body.indexPath;
     return indexPath;
 }
-- (void)saveToCache{
+- (void)saveToCache {
     [[NSUserDefaults standardUserDefaults]setValue:[self.trainlistItem toJSONString] forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainListDynamic object:nil];
 }
 
-- (void)loadFromCache{
+- (void)loadFromCache {
     NSString *json = [[NSUserDefaults standardUserDefaults]valueForKey:@"kTrainListItem"];
     if (json) {
         self.trainlistItem = [[YXTrainListRequestItem alloc]initWithString:json error:nil];
     }
 }
-
-- (void)clear{
+- (void)clear {
     self.trainlistItem = nil;
     [[NSUserDefaults standardUserDefaults]setValue:nil forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
-
-- (BOOL)isShowCMSView:(NSArray *)rotate{
+- (BOOL)isShowCMSView:(NSArray *)rotate {
     BOOL isShow = NO;
     for (YXTrainListRequestItem_body_train *p in self.trainlistItem.body.trains) {
         for (NSString *string in rotate) {

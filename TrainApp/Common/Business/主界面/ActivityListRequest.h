@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString<Optional> *title;
 @property (nonatomic, strong) NSString<Optional> *startTime;
 @property (nonatomic, strong) NSString<Optional> *isJoin;
-@property (nonatomic, strong) NSString<Optional> *source;
+@property (nonatomic, strong) NSString<Optional> *source;//club或train->研修网;zgjiaoyan->教研网
 @end
 
 @interface ActivityListRequestItem_body : JSONModel
