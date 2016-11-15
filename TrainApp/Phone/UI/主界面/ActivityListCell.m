@@ -96,6 +96,7 @@
     _activity = activity;
     [self.activityImageView sd_setImageWithURL:[NSURL URLWithString:activity.pic]];
     self.titleLabel.text = activity.title;
+
     self.startTimeLabel.text = [NSString stringWithFormat:@"开始时间  %@",activity.startTime];
     if ([activity.isJoin isEqualToString:@"1"]) {
         [self.contentView addSubview:self.hasJoinLabel];
@@ -106,6 +107,10 @@
         }];
     }else {
         [self.hasJoinLabel removeFromSuperview];
+    }
+    self.titleLabel.text = activity.title;
+    if ([activity.source isEqualToString:@"zgjiaoyan"]) {
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"a1ae7a"];
     }
     NSMutableAttributedString *titleLabelAttributedString = [[NSMutableAttributedString alloc] initWithString:self.titleLabel.text];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

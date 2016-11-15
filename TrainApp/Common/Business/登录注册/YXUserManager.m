@@ -18,15 +18,15 @@ NSString *const YXUserLogoutSuccessNotification = @"kYXUserLogoutSuccessNotifica
 
 //- (void)setUid:(NSString<Optional> *)uid {
 //    _uid = uid;
-//    
+//
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 //    NSString *pushStatusSettedKey = @"YXPushStatusSetted";
-//    
+//
 //    if (([defaults objectForKey:pushStatusSettedKey]) && (![[[NSUserDefaults standardUserDefaults] objectForKey:@"YXPushNotification"] boolValue])) {
 //        [XGPush unRegisterDevice];
 //        return;
 //    };
-//    
+//
 //    if (!isEmpty(uid)) {
 //        [XGPush unRegisterDevice];
 //    }
@@ -77,13 +77,17 @@ NSString *const YXUserLogoutSuccessNotification = @"kYXUserLogoutSuccessNotifica
 - (void)login
 {
     [self saveUserData];
+    if ([self.userModel.token isEqualToString:[YXTrainManager sharedInstance].trainlistItem.token]) {
+    }else {
+        [[YXTrainManager sharedInstance]clear];
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:YXUserLoginSuccessNotification
                                                         object:nil];
 }
 
 - (void)logout
 {
-    [[YXTrainManager sharedInstance]clear];
+    //    [[YXTrainManager sharedInstance]clear];
     [self logoutIsTokenInvalid:NO];
 }
 

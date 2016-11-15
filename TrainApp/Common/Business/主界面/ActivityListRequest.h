@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString<Optional> *segmentName;
 @property (nonatomic, strong) NSString<Optional> *desc;
 @property (nonatomic, strong) NSString<Optional> *status;
+@property (nonatomic, strong) NSString<Optional> *source;//club或train->研修网;zgjiaoyan->教研网
 @end
 
 @interface ActivityListRequestItem_body : JSONModel
