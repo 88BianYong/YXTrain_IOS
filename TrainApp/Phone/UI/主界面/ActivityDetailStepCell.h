@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ActivityStepListRequest.h"
+#import "ActivityListRequest.h"
 @interface ActivityDetailStepCell : UITableViewCell
-@property (nonatomic, strong) ActivityStepListRequestItem_Body_Steps *stepContent;
+@property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps *steps;
 @end

@@ -7,12 +7,6 @@
 //
 
 #import "ActivityStepListRequest.h"
-@implementation ActivityStepListRequestItem_Body_Steps_Tools
-@end
-
-@implementation ActivityStepListRequestItem_Body_Steps
-@end
-
 @implementation ActivityStepListRequestItem_Body
 @end
 
@@ -22,7 +16,7 @@
 @implementation ActivityStepListRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/active/steps"];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/active"];
     }
     return self;
 }

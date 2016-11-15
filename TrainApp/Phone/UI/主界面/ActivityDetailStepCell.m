@@ -89,8 +89,8 @@
     }];
 }
 #pragma mark - set
-- (void)setStepContent:(ActivityStepListRequestItem_Body_Steps *)stepContent {
-    _stepContent = stepContent;
-    self.stepLabel.text = _stepContent.title;
+- (void)setSteps:(ActivityListRequestItem_Body_Activity_Steps *)steps {
+    _steps = steps;
+    self.stepLabel.text = steps.title;
 }
 @end

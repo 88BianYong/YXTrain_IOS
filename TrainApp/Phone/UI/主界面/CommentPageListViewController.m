@@ -17,10 +17,8 @@
 @end
 
 @implementation CommentPageListViewController
-
-- (void)dealloc
-{
-    DDLogWarn(@"PagedListViewController Dealloc");
+- (void)dealloc {
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [self.headerView free];
     [self.footerView free];
     [self.dataFetcher stop];
@@ -31,8 +29,9 @@
     [self setupUI];
     [self setupLayout];
     [self firstPageFetch:YES];
-
 }
+
+#pragma mark - setupUI
 - (void)setupUI {
     self.tableView = [[ActivityCommentTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     [self.view addSubview:self.tableView];
@@ -91,14 +90,12 @@
     }];
 }
 
-
-
+#pragma mark - request
 - (void)firstPageFetch:(BOOL)isShow {
     if (!self.dataFetcher) {
         return;
     }
     [self.dataFetcher stop];
-
     self.dataFetcher.pageindex = 0;
     if (!self.dataFetcher.pageSize) {
         self.dataFetcher.pageSize = 20;
@@ -118,8 +115,7 @@
                 if (isEmpty(self.dataMutableArray)) {
                     self.totalPage = 0;
                     if (error.code == -2) {
-                        self.dataErrorView.hidden = NO;
-                        [self.view bringSubviewToFront:self.dataErrorView];
+                        [self showDataErrorView];
                     }else{
                         [self showErroView];
                     }
@@ -191,9 +187,16 @@
     self.errorView.hidden = NO;
     [self.view bringSubviewToFront:self.errorView];
 }
-
 - (void)hideErrorView {
     self.errorView.hidden = YES;
+}
+
+- (void)showDataErrorView {
+    self.dataErrorView.hidden = NO;
+    [self.view bringSubviewToFront:self.dataErrorView];
+}
+- (void)hideDataErrorView {
+    
 }
 #pragma mark - tableview
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex

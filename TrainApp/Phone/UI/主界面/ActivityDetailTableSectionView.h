@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ActivityDetailTableSectionView : UITableViewHeaderFooterView
-
+@property (nonatomic, copy) NSString *titleString;
 @end

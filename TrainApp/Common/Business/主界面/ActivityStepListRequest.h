@@ -7,33 +7,15 @@
 //
 
 #import "YXGetRequest.h"
-@protocol ActivityStepListRequestItem_Body_Steps_Tools <NSObject>
-@end
-@protocol ActivityStepListRequestItem_Body_Steps <NSObject>
-@end
-
-@interface ActivityStepListRequestItem_Body_Steps_Tools : JSONModel
-@property (nonatomic, strong) NSString<Optional> *toolid;
-@property (nonatomic, strong) NSString<Optional> *title;
-@property (nonatomic, strong) NSString<Optional> *desc;
-@property (nonatomic, strong) NSString<Optional> *tooltype;
-@end
-
-@interface ActivityStepListRequestItem_Body_Steps : JSONModel
-@property (nonatomic, strong) NSString<Optional> *stepid;
-@property (nonatomic, strong) NSString<Optional> *title;
-@property (nonatomic, strong) NSString<Optional> *desc;
-@property (nonatomic, strong) NSArray<ActivityStepListRequestItem_Body_Steps_Tools,Optional> *tools;
-@end
-
+#import "ActivityListRequest.h"
 @interface ActivityStepListRequestItem_Body : JSONModel
-@property (nonatomic, strong) NSArray<ActivityStepListRequestItem_Body_Steps,Optional> *steps;
+@property (nonatomic, strong) ActivityListRequestItem_body_activity<Optional> *active;
 @end
-
 @interface ActivityStepListRequestItem : HttpBaseRequestItem
 @property (nonatomic, strong) ActivityStepListRequestItem_Body<Optional> *body;
 @end
 
 @interface ActivityStepListRequest : YXGetRequest
 @property (nonatomic, strong) NSString *aid;
+@property (nonatomic, strong) NSString *source;
 @end

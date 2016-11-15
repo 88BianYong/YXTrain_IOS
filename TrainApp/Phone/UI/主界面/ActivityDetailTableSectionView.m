@@ -21,15 +21,16 @@
     self.clipsToBounds = YES;
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = [UIColor colorWithHexString:@"b1b6bc"];
-    [self addSubview:lineView];
+    [self.contentView addSubview:lineView];
     
     UILabel *stepLabel = [[UILabel alloc] init];
     stepLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     stepLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     stepLabel.text = @"活动步骤";
+    stepLabel.tag = 10001;
     stepLabel.textAlignment = NSTextAlignmentCenter;
     stepLabel.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    [self addSubview:stepLabel];
+    [self.contentView addSubview:stepLabel];
     
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
@@ -43,5 +44,11 @@
         make.centerX.equalTo(self.mas_centerX);
         make.width.mas_offset(100.0f);
     }];
+}
+- (void)setTitleString:(NSString *)titleString {
+    _titleString = titleString;
+    UILabel *label = [self.contentView viewWithTag:10001];
+    label.backgroundColor = [UIColor whiteColor];
+    label.text = _titleString;
 }
 @end

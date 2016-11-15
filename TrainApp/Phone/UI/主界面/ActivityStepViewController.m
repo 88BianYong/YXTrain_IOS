@@ -1,34 +1,31 @@
 //
-//  ActivityDetailViewController.m
+//  ActivityStepViewController.m
 //  TrainApp
 //
-//  Created by 郑小龙 on 16/11/9.
+//  Created by 郑小龙 on 16/11/15.
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "ActivityDetailViewController.h"
-#import "ActivityDetailTableHeaderView.h"
+#import "ActivityStepViewController.h"
+#import "ActivityStepCollectionCell.h"
+#import "ActivityStepHeaderView.h"
 #import "ActivityDetailTableSectionView.h"
-#import "ActivityDetailStepCell.h"
-#import "ActivityStepListRequest.h"
-@interface ActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
+#import "ActivityStepTableCell.h"
+@interface ActivityStepViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) ActivityDetailTableHeaderView *headerView;
+@property (nonatomic, strong) ActivityStepHeaderView *headerView;
 
-@property (nonatomic, strong) ActivityStepListRequest *stepListRequest;
-@property (nonatomic, strong) ActivityStepListRequestItem *listItem;
 @end
 
-@implementation ActivityDetailViewController
+@implementation ActivityStepViewController
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"活动";
+    self.title = @"步骤详情";
     [self setupUI];
     [self setupLayout];
-    [self requestForActivityStepList];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,30 +42,32 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[ActivityDetailTableSectionView class] forHeaderFooterViewReuseIdentifier:@"ActivityDetailTableSectionView"];
-    [self.tableView registerClass:[ActivityDetailStepCell class] forCellReuseIdentifier:@"ActivityDetailStepCell"];
-    self.headerView = [[ActivityDetailTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 355 + 300.0)];
+    [self.tableView registerClass:[ActivityStepTableCell class] forCellReuseIdentifier:@"ActivityStepTableCell"];
+    self.headerView = [[ActivityStepHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 125 + 300.0)];
+    self.headerView.activity = nil;
     WEAK_SELF
     [self.headerView setActivityHtmlOpenAndCloseBlock:^(BOOL isStatus) {
         STRONG_SELF
         if (isStatus) {
             [UIView animateWithDuration:0.3 animations:^{
-                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 355.0f + self.headerView.htmlHeight);
+                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 125.0f + self.headerView.htmlHeight);
                 self.tableView.tableHeaderView = self.headerView;
                 [self.headerView relayoutHtmlText];
             }];
         }else {
             [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
-            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 355.0f + 300.0f);
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 125.0f + 300.0f);
             self.tableView.tableHeaderView = self.headerView;
             [self.headerView relayoutHtmlText];
         }
     }];
     [self.headerView setActivityHtmlHeightChangeBlock:^(BOOL height) {
         STRONG_SELF
-        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 355.0f + self.headerView.htmlHeight);
+        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 325.0f + self.headerView.htmlHeight);
         self.tableView.tableHeaderView = self.headerView;
         [self.headerView relayoutHtmlText];
     }];
+    self.tableView.tableHeaderView = self.headerView;
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,6 +86,8 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     ActivityDetailTableSectionView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActivityDetailTableSectionView"];
+    view.titleString = @"步骤工具";
+    view.contentView.backgroundColor = [UIColor whiteColor];
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -97,16 +98,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    //NSString *string = @"ActivityPlayViewController";
-    NSString *string = @"ActivityStepViewController";
+    NSString *string = @"ActivityPlayViewController";
     UIViewController *VC = [[NSClassFromString(string) alloc] init];
     [self.navigationController pushViewController:VC animated:YES];
     
 }
-
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.listItem.body.active.steps.count;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -114,32 +113,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ActivityDetailStepCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityDetailStepCell" forIndexPath:indexPath];
-    cell.steps = self.listItem.body.active.steps[indexPath.section];
+    ActivityStepTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityStepTableCell" forIndexPath:indexPath];
     return cell;
-}
-
-#pragma mark - request
-- (void)requestForActivityStepList{
-    if (self.stepListRequest) {
-        [self.stepListRequest stopRequest];
-    }
-    ActivityStepListRequest *request = [[ActivityStepListRequest alloc] init];
-    request.aid = self.activity.aid;
-    request.source = self.activity.source;
-    [self startLoading];
-    WEAK_SELF
-    [request startRequestWithRetClass:[ActivityStepListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF;
-        [self stopLoading];
-        self.listItem = (ActivityStepListRequestItem *)retItem;
-        self.listItem.body.active.joinUserCount = self.activity.joinUserCount;
-        self.listItem.body.active.studyName = self.activity.studyName;
-        self.listItem.body.active.segmentName = self.activity.segmentName;
-        self.headerView.activity = self.listItem.body.active;
-        self.tableView.tableHeaderView = self.headerView;
-        [self.tableView reloadData];
-    }];
-    self.stepListRequest = request;
 }
 @end

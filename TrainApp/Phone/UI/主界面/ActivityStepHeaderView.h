@@ -1,8 +1,8 @@
 //
-//  ActivityDetailTableHeaderView.h
+//  ActivityStepHeaderView.h
 //  TrainApp
 //
-//  Created by 郑小龙 on 16/11/9.
+//  Created by 郑小龙 on 16/11/15.
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "ActivityListRequest.h"
 typedef void(^ActivityHtmlOpenAndCloseBlock)(BOOL isStatus);
 typedef void(^ActivityHtmlHeightChangeBlock) (BOOL height);
-@interface ActivityDetailTableHeaderView : UIView
+@interface ActivityStepHeaderView : UIView
 @property (nonatomic, strong) ActivityListRequestItem_body_activity *activity;
 @property (nonatomic, assign, readonly) CGFloat htmlHeight;
 - (void)setActivityHtmlOpenAndCloseBlock:(ActivityHtmlOpenAndCloseBlock)block;

@@ -7,11 +7,9 @@
 //
 
 #import "ActivityDetailTableHeaderView.h"
-@interface ActivityDetailTableHeaderView ()<
-DTAttributedTextContentViewDelegate,
-DTLazyImageViewDelegate,
-UIActionSheetDelegate
->
+#import "CoreTextViewHandler.h"
+#import "YXGradientView.h"
+@interface ActivityDetailTableHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *statusImageView;
 @property (nonatomic, strong) UILabel *publisherTitleLabel;
@@ -25,10 +23,12 @@ UIActionSheetDelegate
 @property (nonatomic, strong) UILabel *descriptionLabel;
 @property (nonatomic, strong) DTAttributedTextContentView *htmlView;
 @property (nonatomic, strong) UIButton *openCloseButton;
+@property (nonatomic, strong) CoreTextViewHandler *coreTextHandler;
+@property (nonatomic, strong) YXGradientView *gradientView;
 
 
-@property (nonatomic, strong) NSURL *lastActionLink;
 @property (nonatomic, copy) ActivityHtmlOpenAndCloseBlock openCloseBlock;
+@property (nonatomic, copy) ActivityHtmlHeightChangeBlock heightChangeBlock;
 
 @end
 @implementation ActivityDetailTableHeaderView
@@ -62,7 +62,6 @@ UIActionSheetDelegate
     [self addSubview:self.titleLabel];
     
     self.statusImageView = [[UIImageView alloc] init];
-    self.statusImageView.backgroundColor = [UIColor redColor];
     [self addSubview:self.statusImageView];
     
     self.publisherTitleLabel = [self formatTitleLabel];
@@ -110,9 +109,18 @@ UIActionSheetDelegate
     
     
     self.htmlView = [[DTAttributedTextContentView alloc] init];
-    self.htmlView.delegate = self;
     self.htmlView.clipsToBounds = YES;
     [self addSubview:self.htmlView];
+    self.coreTextHandler = [[CoreTextViewHandler alloc]initWithCoreTextView:self.htmlView maxWidth:kScreenWidth - 50.0f];
+    WEAK_SELF
+    self.coreTextHandler.heightChangeBlock = ^(CGFloat height) {
+        STRONG_SELF
+        self ->_htmlHeight = height;
+        [self updateHtmlViewWithHeight:height];
+        if (height < 300.0f) {
+          BLOCK_EXEC(self.heightChangeBlock,height);
+        }
+    };
     
     self.openCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.openCloseButton.layer.cornerRadius = YXTrainCornerRadii;
@@ -126,8 +134,8 @@ UIActionSheetDelegate
     [self.openCloseButton addTarget:self action:@selector(openCloseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:self.openCloseButton];
-    
-    
+    self.gradientView = [[YXGradientView alloc] initWithColor:[UIColor whiteColor] orientation:YXGradientBottomToTop];
+    [self.htmlView addSubview:self.gradientView];
 }
 
 - (void)setupLayout {
@@ -137,7 +145,7 @@ UIActionSheetDelegate
         make.top.equalTo(self.mas_top).offset(37.0f + 5.0f);
     }];
     [self.statusImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_offset(CGSizeMake(108.0f, 72.0f));
+        make.size.mas_offset(CGSizeMake(108.0f, 52.0f));
         make.top.equalTo(self.titleLabel.mas_bottom).offset(16.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
@@ -197,7 +205,27 @@ UIActionSheetDelegate
         make.centerX.equalTo(self.mas_centerX);
         make.bottom.equalTo(self.mas_bottom).offset(-20.0f);
     }];
+    
+    [self.gradientView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.htmlView.mas_bottom);
+        make.height.mas_offset(60.0f);
+    }];
 }
+- (void)updateHtmlViewWithHeight:(CGFloat)height {
+    if (height < 300.0f) {
+        [self.htmlView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.descriptionLabel.mas_bottom).offset(22.0f);
+            make.left.equalTo(self.mas_left).offset(25.0f);
+            make.right.equalTo(self.mas_right).offset(-25.0f);
+            make.bottom.equalTo(self.mas_bottom).offset (-3.0f);
+        }];
+        self.openCloseButton.hidden = YES;
+        self.gradientView.hidden = YES;
+    }
+}
+
 #pragma mark - format label
 - (UILabel *)formatTitleLabel {
     UILabel *label = [[UILabel alloc] init];
@@ -214,125 +242,58 @@ UIActionSheetDelegate
     label.font = [UIFont systemFontOfSize:12.0f];
     return label;
 }
-
-#pragma mark DTAttributedTextContentViewDelegate
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame {
-    if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
-        DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
-        imageView.delegate = self;
-        imageView.image = [(DTImageTextAttachment *)attachment image];
-        imageView.url = attachment.contentURL;
-        return imageView;
-    }
-    return nil;
-}
-
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForLink:(NSURL *)url identifier:(NSString *)identifier frame:(CGRect)frame {
-    DTLinkButton *button = [[DTLinkButton alloc] initWithFrame:frame];
-    button.URL = url;
-    button.minimumHitSize = CGSizeMake(25, 25);
-    button.GUID = identifier;
-    [button addTarget:self action:@selector(linkPushed:) forControlEvents:UIControlEventTouchUpInside];
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(linkLongPressed:)];
-    [button addGestureRecognizer:longPress];
-    return button;
-}
-
-#pragma mark - DTLazyImageViewDelegate
-- (void)lazyImageView:(DTLazyImageView *)lazyImageView didChangeImageSize:(CGSize)size {
-    NSURL *url = lazyImageView.url;
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
-    CGFloat maxWidth = kScreenWidth - 50.0f;
-    if (size.width > maxWidth) {
-        CGFloat height = size.height * maxWidth / size.width;
-        size = CGSizeMake(maxWidth, floorf(height));
-    }
-    BOOL needUpdate = NO;
-    for (DTTextAttachment *oneAttachment in [self.htmlView.layoutFrame textAttachmentsWithPredicate:pred]) {
-        if (!CGSizeEqualToSize(oneAttachment.displaySize, size)) {
-            oneAttachment.displaySize = size;
-            oneAttachment.verticalAlignment = DTTextAttachmentVerticalAlignmentCenter;
-            needUpdate = YES;
-        }
-    }
-    if (needUpdate) {
-        self.htmlView.layouter = nil;
-        [self.htmlView relayoutText];
-    }
-}
-
 #pragma mark - Actions
 - (void)openCloseButtonAction:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.selected) {
+        self.gradientView.hidden = YES;
         [sender setTitle:@"收起" forState:UIControlStateNormal];
     }else {
+        self.gradientView.hidden = NO;
         [sender setTitle:@"查看全文" forState:UIControlStateNormal];
     }
     BLOCK_EXEC(self.openCloseBlock,sender.selected);
 }
-
-- (void)linkPushed:(DTLinkButton *)button {
-    [[UIApplication sharedApplication] openURL:[button.URL absoluteURL]];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex != actionSheet.cancelButtonIndex)
-    {
-        [[UIApplication sharedApplication] openURL:[self.lastActionLink absoluteURL]];
-    }
-}
-
-- (void)linkLongPressed:(UILongPressGestureRecognizer *)gesture {
-    if (gesture.state == UIGestureRecognizerStateBegan)
-    {
-        DTLinkButton *button = (id)[gesture view];
-        button.highlighted = NO;
-        self.lastActionLink = button.URL;
-        if ([[UIApplication sharedApplication] canOpenURL:[button.URL absoluteURL]])
-        {
-            UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:[[button.URL absoluteURL] description] delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"打开 Safari", nil];
-            [action showFromRect:button.frame inView:button.superview animated:YES];
-        }
-    }
-}
-
 #pragma mark - set
-- (void)setActivityHtmlOpenAndCloseBlock:(ActivityHtmlOpenAndCloseBlock)block{
+- (void)setActivityHtmlOpenAndCloseBlock:(ActivityHtmlOpenAndCloseBlock)block {
     self.openCloseBlock = block;
 }
-
+- (void)setActivityHtmlHeightChangeBlock:(ActivityHtmlHeightChangeBlock)block {
+    self.heightChangeBlock = block;
+}
 - (void)setActivity:(ActivityListRequestItem_body_activity *)activity{
     _activity = activity;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:activity.title];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.lineSpacing = 7.0f;
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [activity.title length])];
-    self.titleLabel.attributedText = attributedString;
+    self.titleLabel.attributedText = [self attributedStringForTitle:_activity.title];
     self.publisherContentLabel.text = activity.createUsername;
     self.studyContentLabel.text = activity.studyName;
     self.segmentContentLabel.text = activity.segmentName;
     self.participantsContentLabel.text = @"14人";
-    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
-    NSString *html = [NSString stringWithContentsOfFile:readmePath
-                                               encoding:NSUTF8StringEncoding
-                                                  error:NULL];
-    NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
-    CGSize maxImageSize = CGSizeMake(kScreenWidth - 50.0f, kScreenHeight - 100.0f);
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithFloat:1.25], NSTextSizeMultiplierDocumentOption,
-                             [UIColor colorWithHexString:@"#334466"], DTDefaultTextColor,
-                             [NSNumber numberWithFloat:1.5], DTDefaultLineHeightMultiplier,
-                             [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
-                             [UIColor colorWithHexString:@"#0067be"], DTDefaultLinkColor,
-                             [NSNumber numberWithFloat:1.0], DTAttachmentParagraphSpacingAttribute,
-                             nil];
-    NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:options documentAttributes:nil];
+    if (activity.status.integerValue == 0) {
+        self.statusImageView.image = [UIImage imageNamed:@"未开始标签"];
+    }else if (activity.status.integerValue == 0) {
+        self.statusImageView.image = [UIImage imageNamed:@"进行中标签"];
+    }else {
+        self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];
+    }
+//    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
+//    NSString *html = [NSString stringWithContentsOfFile:readmePath
+//                                               encoding:NSUTF8StringEncoding
+//                                                  error:NULL];
+    NSData *data = [_activity.desc dataUsingEncoding:NSUTF8StringEncoding];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions]documentAttributes:nil];
     self.htmlView.attributedString = string;
 }
 
+#pragma mark - format data
+- (NSMutableAttributedString *)attributedStringForTitle:(NSString *)titleString {
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:titleString];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 7.0f;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [titleString length])];
+    return attributedString;
+}
 - (void)relayoutHtmlText{
     [self.htmlView relayoutText];
 }

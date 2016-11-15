@@ -19,10 +19,13 @@
 @end
 
 @implementation ActivityPlayViewController
-
+- (void)dealloc{
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
+}
 - (void)viewDidLoad {
     self.dataFetcher = [[CommentPagedListFetcher alloc] init];
     [super viewDidLoad];
+    self.title = @"视频";
     self.view.backgroundColor = [UIColor blackColor];
 }
 
@@ -63,7 +66,7 @@
     [self.tableView reloadData];
 }
 
-- (void)remakeForFullSize{
+- (void)remakeForFullSize {
     self.inputTextView.hidden = YES;
     self.playMangerView.isFullscreen = YES;
     self.navigationController.navigationBar.hidden = YES;
@@ -73,7 +76,7 @@
     [self.view layoutIfNeeded];
 }
 
-- (void)remakeForHalfSize{
+- (void)remakeForHalfSize {
     self.inputTextView.hidden = NO;
     self.playMangerView.isFullscreen = NO;
     self.navigationController.navigationBar.hidden = NO;
@@ -85,8 +88,8 @@
     }];
     [self.view layoutIfNeeded];
 }
-#pragma mark -
-- (void)rotateScreenAction{
+#pragma mark - action
+- (void)rotateScreenAction {
     UIInterfaceOrientation screenDirection = [UIApplication sharedApplication].statusBarOrientation;
     if(screenDirection == UIInterfaceOrientationLandscapeLeft || screenDirection ==UIInterfaceOrientationLandscapeRight){
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
@@ -94,6 +97,7 @@
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeLeft] forKey:@"orientation"];
     }
 }
+
 - (void)naviLeftAction{
     UIInterfaceOrientation screenDirection = [UIApplication sharedApplication].statusBarOrientation;
     if(screenDirection == UIInterfaceOrientationLandscapeLeft || screenDirection ==UIInterfaceOrientationLandscapeRight){
