@@ -171,14 +171,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ActivityDetailViewController *detailVC = [[ActivityDetailViewController alloc] init];
-    detailVC.activity = self.dataArray[indexPath.row];
-    [self.navigationController pushViewController:detailVC animated:YES];
     ActivityListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.activity.source isEqualToString:@"zgjiaoyan"]) {//目前暂不支持教研网的活动
         [self showToast:@"暂不支持教研网活动"];
     }else {
         DDLogDebug(@"跳转到活动详情页面");
+        ActivityDetailViewController *detailVC = [[ActivityDetailViewController alloc] init];
+        detailVC.activity = self.dataArray[indexPath.row];
+        [self.navigationController pushViewController:detailVC animated:YES];
     }
 }
 #pragma mark - YXCourseFilterViewDelegate
