@@ -11,6 +11,7 @@
 #import "ActivityDetailTableSectionView.h"
 #import "ActivityStepTableCell.h"
 #import "ActivityPlayViewController.h"
+#import "ShareResourcesViewController.h"
 @interface ActivityStepViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ActivityStepHeaderView *headerView;
@@ -143,6 +144,11 @@
     } else {
         [self showToast:@"暂不支持该类型的工具"];
     }
+    ShareResourcesViewController *shareResourceVC = [[ShareResourcesViewController alloc]init];
+    shareResourceVC.aid = tool.aid;
+    shareResourceVC.toolId = tool.toolid;
+    shareResourceVC.toolTitle = tool.title;
+    [self.navigationController pushViewController:shareResourceVC animated:YES];
 }
 #pragma mark - format data
 - (ActivityListRequestItem_Body_Activity_Steps_Tools *)obtainActivityTool:(NSInteger)integer {

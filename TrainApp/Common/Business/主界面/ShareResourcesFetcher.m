@@ -1,0 +1,61 @@
+//
+//  ShareResourcesFetcher.m
+//  TrainApp
+//
+//  Created by ZLL on 2016/11/16.
+//  Copyright © 2016年 niuzhaowang. All rights reserved.
+//
+
+#import "ShareResourcesFetcher.h"
+#import "YXDatumCellModel.h"
+#import "ShareResourcesRequest.h"
+@interface ShareResourcesFetcher ()
+@property (nonatomic, strong) ShareResourcesRequest *request;
+@end
+@implementation ShareResourcesFetcher
+- (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock {
+    [self stop];
+    self.request = [[ShareResourcesRequest alloc] init];
+    self.request.aid = self.aid;
+    self.request.toolId = self.toolId;
+    self.request.page = [NSString stringWithFormat:@"%d", self.pageindex + 1];
+    self.request.pagesize = [NSString stringWithFormat:@"%d", self.pagesize];
+    @weakify(self);
+    [self.request startRequestWithRetClass:[ShareResourcesRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        @strongify(self); if (!self) return;
+        if (error) {
+            aCompleteBlock(0, nil, error);
+            return;
+        }
+        if (self.pageindex == 0) {
+            self.page0RetItem = retItem;
+            [self saveToCache];
+        }
+        ShareResourcesRequestItem *datumItem = retItem;
+        aCompleteBlock((int)datumItem.body.resources.count, datumItem.body.resources, nil);
+    }];
+    
+}
+
+- (void)stop {
+    [self.request stopRequest];
+}
+
+- (void)saveToCache {
+    // 只cache第一页结果
+    NSString *cachedJson = [self.page0RetItem toJSONString];
+    [[NSUserDefaults standardUserDefaults] setObject:cachedJson forKey:@"资源分享 first page cache"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSArray *)cachedItemArray {
+    NSString *cachedJson = [[NSUserDefaults standardUserDefaults] objectForKey:@"资源分享 first page cache"];
+    ShareResourcesRequestItem *item = [[ShareResourcesRequestItem alloc] initWithString:cachedJson error:nil];
+    self.page0RetItem = item;
+    if (!item) {
+        return nil;
+    }
+    return [NSArray arrayWithArray:item.body.resources];
+}
+
+@end

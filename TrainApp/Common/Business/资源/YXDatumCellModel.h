@@ -10,6 +10,7 @@
 #import "BaseDownloader.h"
 #import "YXDatumSearchRequest.h"
 #import "YXMyDatumRequest.h"
+#import "ShareResourcesRequest.h"
 extern NSString *const YXFavorSuccessNotification;
 @interface YXDatumCellModel : NSObject
 @property (nonatomic, copy) NSString *uid;
@@ -29,4 +30,5 @@ extern NSString *const YXFavorSuccessNotification;
 @property (nonatomic, strong) YXDatumSearchRequestItem_data *rawData;
 + (YXDatumCellModel *)modelFromSearchRequestItemData:(YXDatumSearchRequestItem_data *)data;
 + (YXDatumCellModel *)modelFromMyDatumRequestResultList:(YXMyDatumRequestItem_result_list *)list;
+//+ (YXDatumCellModel *)modelFromShareResourceRequestItemData:(ActivityListRequestItem_body_resource *)data;
 @end

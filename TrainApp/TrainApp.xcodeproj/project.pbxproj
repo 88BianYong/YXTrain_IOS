@@ -399,6 +399,10 @@
 		E90C60B21D9D0012001652CF /* YXDataStatisticsManger.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */; };
 		E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C06181DCB1F9400666265 /* DataErrorView.m */; };
 		E9A7B5D61DDADD0A00136335 /* ActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */; };
+		E9A7B5EB1DDC3EAA00136335 /* ShareResourcesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5E81DDC3EAA00136335 /* ShareResourcesTableViewCell.m */; };
+		E9A7B5EC1DDC3EAA00136335 /* ShareResourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5EA1DDC3EAA00136335 /* ShareResourcesViewController.m */; };
+		E9A7B5EF1DDC3EE400136335 /* ShareResourcesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5EE1DDC3EE400136335 /* ShareResourcesRequest.m */; };
+		E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5F11DDC46CA00136335 /* ShareResourcesFetcher.m */; };
 		E9BBA5F51DD05CC4000CA413 /* ActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA5F41DD05CC4000CA413 /* ActivityListViewController.m */; };
 		E9BBA5F91DD06932000CA413 /* ActivityListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA5F81DD06932000CA413 /* ActivityListFetcher.m */; };
 		E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA6051DD09530000CA413 /* ActivityListRequest.m */; };
@@ -1193,6 +1197,14 @@
 		E93C06181DCB1F9400666265 /* DataErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataErrorView.m; sourceTree = "<group>"; };
 		E9A7B5D41DDADD0A00136335 /* ActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListCell.h; sourceTree = "<group>"; };
 		E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListCell.m; sourceTree = "<group>"; };
+		E9A7B5E71DDC3EAA00136335 /* ShareResourcesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesTableViewCell.h; sourceTree = "<group>"; };
+		E9A7B5E81DDC3EAA00136335 /* ShareResourcesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareResourcesTableViewCell.m; sourceTree = "<group>"; };
+		E9A7B5E91DDC3EAA00136335 /* ShareResourcesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesViewController.h; sourceTree = "<group>"; };
+		E9A7B5EA1DDC3EAA00136335 /* ShareResourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareResourcesViewController.m; sourceTree = "<group>"; };
+		E9A7B5ED1DDC3EE400136335 /* ShareResourcesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesRequest.h; sourceTree = "<group>"; };
+		E9A7B5EE1DDC3EE400136335 /* ShareResourcesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareResourcesRequest.m; sourceTree = "<group>"; };
+		E9A7B5F01DDC46CA00136335 /* ShareResourcesFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesFetcher.h; sourceTree = "<group>"; };
+		E9A7B5F11DDC46CA00136335 /* ShareResourcesFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareResourcesFetcher.m; sourceTree = "<group>"; };
 		E9BBA5F31DD05CC4000CA413 /* ActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListViewController.h; sourceTree = "<group>"; };
 		E9BBA5F41DD05CC4000CA413 /* ActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListViewController.m; sourceTree = "<group>"; };
 		E9BBA5F71DD06932000CA413 /* ActivityListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityListFetcher.h; path = "../../../Phone/UI/主界面/ActivityListFetcher.h"; sourceTree = "<group>"; };
@@ -2576,6 +2588,8 @@
 				92FAE4AD1DDAE2A7000C3C00 /* ActivityStepHeaderView.m */,
 				92DE3BB21DDAFDEE0011CFB7 /* ActivityStepTableCell.h */,
 				92DE3BB31DDAFDEE0011CFB7 /* ActivityStepTableCell.m */,
+				E9A7B5E71DDC3EAA00136335 /* ShareResourcesTableViewCell.h */,
+				E9A7B5E81DDC3EAA00136335 /* ShareResourcesTableViewCell.m */,
 			);
 			name = "步骤详情";
 			sourceTree = "<group>";
@@ -2861,6 +2875,17 @@
 			name = DataStatisticsManger;
 			sourceTree = "<group>";
 		};
+		E9A7B5E61DDC3E4600136335 /* 资源分享 */ = {
+			isa = PBXGroup;
+			children = (
+				E9A7B5ED1DDC3EE400136335 /* ShareResourcesRequest.h */,
+				E9A7B5EE1DDC3EE400136335 /* ShareResourcesRequest.m */,
+				E9A7B5F01DDC46CA00136335 /* ShareResourcesFetcher.h */,
+				E9A7B5F11DDC46CA00136335 /* ShareResourcesFetcher.m */,
+			);
+			name = "资源分享";
+			sourceTree = "<group>";
+		};
 		E9BBA5F01DD05C6B000CA413 /* 活动 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2877,6 +2902,8 @@
 				92DE3BBA1DDC329A0011CFB7 /* SecondCommentViewController.m */,
 				92006C8A1DCC79E500F80488 /* ActivityPlayViewController.h */,
 				92006C8B1DCC79E500F80488 /* ActivityPlayViewController.m */,
+				E9A7B5E91DDC3EAA00136335 /* ShareResourcesViewController.h */,
+				E9A7B5EA1DDC3EAA00136335 /* ShareResourcesViewController.m */,
 			);
 			name = "活动";
 			sourceTree = "<group>";
@@ -2897,6 +2924,7 @@
 		E9BBA5FD1DD069F6000CA413 /* 活动 */ = {
 			isa = PBXGroup;
 			children = (
+				E9A7B5E61DDC3E4600136335 /* 资源分享 */,
 				E9BBA6041DD09530000CA413 /* ActivityListRequest.h */,
 				E9BBA6051DD09530000CA413 /* ActivityListRequest.m */,
 				E9BBA6121DD2DEFB000CA413 /* ActivityFilterRequest.h */,
@@ -3174,6 +3202,7 @@
 				7C2C3B7D1D24F23600A03635 /* YXCourseRecordRequest.m in Sources */,
 				7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */,
 				7C2C3B691D24C53000A03635 /* YXCourseDetailItem.m in Sources */,
+				E9A7B5EF1DDC3EE400136335 /* ShareResourcesRequest.m in Sources */,
 				7C2C3B5D1D23C66900A03635 /* YXCourseListCell.m in Sources */,
 				E90C60B21D9D0012001652CF /* YXDataStatisticsManger.m in Sources */,
 				7C3177FC1D1177F9004AAC90 /* DownloaderEntity.m in Sources */,
@@ -3390,6 +3419,7 @@
 				CB227EA51D34C3A800D5327B /* YXGuideCustomView.m in Sources */,
 				9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
+				E9A7B5EB1DDC3EAA00136335 /* ShareResourcesTableViewCell.m in Sources */,
 				7C2C3B821D24F5BE00A03635 /* YXCourseRecordViewController.m in Sources */,
 				922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */,
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
@@ -3469,6 +3499,7 @@
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
 				9223C8351D2F4BD2000F74DF /* YXSchoolSearchViewController.m in Sources */,
 				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
+				E9A7B5EC1DDC3EAA00136335 /* ShareResourcesViewController.m in Sources */,
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
 				E9BD43E31DAC9507007BE8F6 /* YXDetailHotspotViewController.m in Sources */,
 				92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */,
@@ -3495,6 +3526,7 @@
 				7C3177ED1D114DC1004AAC90 /* YXFileBrowseManager.m in Sources */,
 				7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
+				E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
 				9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */,
 				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,

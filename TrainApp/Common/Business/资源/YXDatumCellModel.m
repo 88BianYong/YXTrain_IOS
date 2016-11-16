@@ -67,5 +67,26 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     model.date = [formatter stringFromDate:date];
     return model;
 }
-
+//+ (YXDatumCellModel *)modelFromShareResourceRequestItemData:(ActivityListRequestItem_body_resource *)data {
+//     YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
+//    model.title = data.resName;
+//    model.size = data.resSize.longLongValue;
+////    model.isFavor = data.isCollection.boolValue;
+////    model.url = data.url;
+//    if ([PersistentUrlDownloader fileExist:model.url]) {
+//        model.downloadState = DownloadStatusFinished;
+//    }
+//    model.aid = data.resId;
+////    model.uid = data.uid;
+//    model.type = data.resType;
+//    // set image
+//    NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:data.resType];
+//    model.image = [UIImage imageNamed:imageName];
+//    // set date
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"yyyy-MM-dd"];
+//    NSDate *date = [NSDate dateWithTimeIntervalSince1970:data.publishTime.doubleValue/1000];
+//    model.date = [formatter stringFromDate:date];
+//    return model;
+//}
 @end
