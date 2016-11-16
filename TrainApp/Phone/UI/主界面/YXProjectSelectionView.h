@@ -10,7 +10,7 @@
 
 
 @interface YXProjectSelectionView : UIView
-@property (nonatomic, assign) NSIndexPath *currentIndexPath;
+@property (nonatomic, strong) NSIndexPath *currentIndexPath;
 @property (nonatomic, strong) NSArray *trainingProjectArray;
 @property (nonatomic, strong) NSArray *trainedProjectArray;
 @property (nonatomic, strong) void(^projectChangeBlock)(NSIndexPath *indexPath);
