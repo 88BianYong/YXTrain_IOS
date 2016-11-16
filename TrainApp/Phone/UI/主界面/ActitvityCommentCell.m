@@ -160,7 +160,7 @@
     }else if (_cellStatus == ActitvityCommentCellStatus_Middle) {
         self.topView.layer.cornerRadius = 0.0f;
         self.bottomView.layer.cornerRadius = 0.0f;
-        self.lineView.hidden = NO;
+        self.lineView.hidden = YES;
     }else if (_cellStatus == ActitvityCommentCellStatus_Bottom){
         self.topView.layer.cornerRadius = 0.0f;
         self.bottomView.layer.cornerRadius = YXTrainCornerRadii;

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef void(^ActitvitySeeAllCommentReplyBlock) (NSInteger tagInteger);
 @interface ActitvityCommentFooterView : UITableViewHeaderFooterView
-
+- (void)setActitvitySeeAllCommentReplyBlock:(ActitvitySeeAllCommentReplyBlock)block;
 @end

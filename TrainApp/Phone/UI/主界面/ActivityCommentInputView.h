@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ActivityCommentInputView : UIView
+@property (nonatomic, strong) SAMTextView *textView;
 @end

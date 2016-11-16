@@ -122,12 +122,14 @@
     [cell setActivityStepTableCellBlock:^(ActivityListRequestItem_Body_Activity_Steps_Tools *tool) {
         STRONG_SELF
         [self goToNextActivityStepToolContent:tool];
+        
     }];
     return cell;
 }
 - (void)goToNextActivityStepToolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
-    
-    
+    NSString *string = @"FirstCommentViewController";
+    UIViewController *VC = [[NSClassFromString(string) alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];    
 }
 #pragma mark - format data
 - (ActivityListRequestItem_Body_Activity_Steps_Tools *)obtainActivityTool:(NSInteger)integer {

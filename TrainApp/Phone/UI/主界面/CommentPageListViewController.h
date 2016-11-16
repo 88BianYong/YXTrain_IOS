@@ -8,7 +8,6 @@
 
 #import "YXBaseViewController.h"
 @class CommentPagedListFetcher;
-@class ActivityCommentTableView;
 @interface CommentPageListViewController : YXBaseViewController
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) CommentPagedListFetcher *dataFetcher;

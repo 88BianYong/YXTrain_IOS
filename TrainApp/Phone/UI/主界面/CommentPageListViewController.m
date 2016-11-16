@@ -9,8 +9,10 @@
 #import "CommentPageListViewController.h"
 #import "MJRefresh.h"
 #import "CommentPagedListFetcher.h"
-#import "ActivityCommentTableView.h"
-@interface CommentPageListViewController ()
+#import "ActitvityCommentHeaderView.h"
+#import "ActitvityCommentCell.h"
+#import "ActitvityCommentFooterView.h"
+@interface CommentPageListViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) int totalPage;
 @property (nonatomic, strong) MJRefreshFooterView *footerView;
 @property (nonatomic, strong) MJRefreshHeaderView *headerView;
@@ -29,11 +31,36 @@
     [self setupUI];
     [self setupLayout];
     [self firstPageFetch:YES];
+    [self setupMorkData];
 }
-
+- (void)setupMorkData {
+    ActivityFirstCommentRequestItem_Body *body = [[ActivityFirstCommentRequestItem_Body alloc] init];
+    ActivityFirstCommentRequestItem_Body_Replies *replie = [[ActivityFirstCommentRequestItem_Body_Replies alloc] init];
+    replie.headUrl = @"http://s1.jsyxw.cn/yanxiu/u/32/81/Img828132_60.jpg";
+    replie.time = @"2016年11月09日 13:54";
+    replie.userName = @"李四";
+    replie.up = @"5";
+    replie.childNum = @"5";
+    replie.content = @"是分开了涉及到法律会计师的两款发动机谁离开就疯了空间上浪费的空间个";
+    NSMutableArray<ActivityFirstCommentRequestItem_Body_Replies> *mutableArray = [@[replie,replie,replie,replie,replie] mutableCopy];
+    NSMutableArray<ActivityFirstCommentRequestItem_Body_Replies> *mutableArrayA = [@[replie,replie] mutableCopy];
+    replie.reply = mutableArrayA;
+    body.replies = mutableArray;
+    self.dataMutableArray = body.replies;
+}
 #pragma mark - setupUI
 - (void)setupUI {
-    self.tableView = [[ActivityCommentTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44.0f;
+    self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedSectionHeaderHeight = 44.0f;
+    [self.tableView registerClass:[ActitvityCommentCell class] forCellReuseIdentifier:@"ActitvityCommentCell"];
+    [self.tableView registerClass:[ActitvityCommentHeaderView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentHeaderView"];
+    [self.tableView registerClass:[ActitvityCommentFooterView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentFooterView"];
     [self.view addSubview:self.tableView];
     
     self.emptyView = [[YXEmptyView alloc] init];
@@ -198,20 +225,56 @@
 - (void)hideDataErrorView {
     
 }
-#pragma mark - tableview
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
-    return [self.dataMutableArray count];
+#pragma mark - UITableViewDelegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.dataMutableArray.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
+    return replie.reply.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[indexPath.section];
+    ActivityFirstCommentRequestItem_Body_Replies *reply = replie.reply[indexPath.row];
+    ActitvityCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActitvityCommentCell" forIndexPath:indexPath];
+    cell.reply = reply;
+    if (cell.reply.childNum.integerValue <= 1) {
+        cell.cellStatus = ActitvityCommentCellStatus_Top | ActitvityCommentCellStatus_Bottom;
+    }else {
+        if (indexPath.row == 0) {
+            cell.cellStatus = ActitvityCommentCellStatus_Top;
+        } else if ((replie.childNum.integerValue == reply.reply.count) && (indexPath.row == reply.reply.count - 1)) {
+            cell.cellStatus = ActitvityCommentCellStatus_Bottom;
+        } else {
+            cell.cellStatus = ActitvityCommentCellStatus_Middle;
+        }
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row];
     return cell;
+}
+
+#pragma mark - UITableViewDataSource
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
+    ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
+    headerView.replie = replie;
+    return headerView;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
+    footerView.tag = section + 1000;
+    WEAK_SELF
+    [footerView setActitvitySeeAllCommentReplyBlock:^(NSInteger tagInteger) {
+        STRONG_SELF
+        NSString *string = @"SecondCommentViewController";
+        UIViewController *VC = [[NSClassFromString(string) alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }];
+    return footerView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 29.0f;
 }
 @end

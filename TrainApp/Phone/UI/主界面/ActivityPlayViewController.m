@@ -8,14 +8,11 @@
 
 #import "ActivityPlayViewController.h"
 #import "ActivityPlayManagerView.h"
-#import "ActivityCommentTableView.h"
 #import "ActivityCommentInputView.h"
-#import "InputTextView.h"
 #import "CommentPagedListFetcher.h"
 @interface ActivityPlayViewController ()
 @property (nonatomic, strong) ActivityPlayManagerView *playMangerView;
 @property (nonatomic, strong) ActivityCommentInputView *inputTextView;
-@property (nonatomic ,strong) InputTextView *textView;
 @end
 
 @implementation ActivityPlayViewController
@@ -61,7 +58,7 @@
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
-        make.height.mas_offset(50.0f);
+        make.height.mas_offset(140.0f);
     }];
     [self.tableView reloadData];
 }
