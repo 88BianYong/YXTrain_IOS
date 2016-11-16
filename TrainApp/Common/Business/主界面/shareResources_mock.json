@@ -1,0 +1,25 @@
+{
+    "code":"0",
+    "debugDesc":"[debug_token: 1466492260388-12_7_45901 ][返回数据成功]",
+    "desc":"success",
+    "body":{
+        "resources":[
+                     {
+                     "resid":24508545,
+                     "title":"spring-framework-reference.pdf",
+                     "resname":"spring-framework-reference.pdf",
+                     "createUsername":"测试坊主125",
+                     "publishTime":"2016-11-11 13:51:46",
+                     "convertstatus":2,
+                     "previewurl":"http://upload.ugc.yanxiu.com/video/2525284ac4d_0.m3u8?from=108&rid=22945759",
+                     "downloadurl":"http://upload.ugc.yanxiu.com/video/6gtt.flv&attachment=true",
+                     "res_type":"flv",
+                     "res_size":23434343
+                     }
+                     ],
+        "count":4,
+        "page":1,
+        "toolid":328536,
+        "totalPage":1
+    }
+}

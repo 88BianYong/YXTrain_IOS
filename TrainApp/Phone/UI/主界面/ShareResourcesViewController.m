@@ -12,6 +12,7 @@
 #import "YXWholeDatumFetcher.h"
 #import "YXAllDatumTableViewCell.h"
 #import "ShareResourcesTableViewCell.h"
+#import "ShareResourcesFetcher.h"
 @interface ShareResourcesViewController ()
 @property (nonatomic, strong) YXWholeDatumFetcher *wholeDatumFetcher;
 

@@ -188,6 +188,20 @@
 				</dict>
 			</array>
 		</dict>
+		<key>ShareResourcesRequest</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
+				<dict>
+					<key>fileName</key>
+					<string>shareResources_mock.json</string>
+					<key>percent</key>
+					<integer>100</integer>
+				</dict>
+			</array>
+		</dict>
 	</dict>
 </dict>
 </plist>

@@ -32,7 +32,12 @@
             [self saveToCache];
         }
         ShareResourcesRequestItem *datumItem = retItem;
-        aCompleteBlock((int)datumItem.body.resources.count, datumItem.body.resources, nil);
+        NSMutableArray *array = [NSMutableArray array];
+//        for (ActivityListRequestItem_body_resource *resource in datumItem.body.resources) {
+//            YXDatumCellModel *model = [YXDatumCellModel modelFromShareResourceRequestItemData:resource];
+//            [array addObject:model];
+//        }
+        aCompleteBlock((int)datumItem.body.resources.count, array, nil);
     }];
     
 }
