@@ -165,9 +165,9 @@
 - (void)setActivityHtmlHeightChangeBlock:(ActivityHtmlHeightChangeBlock)block {
     self.heightChangeBlock = block;
 }
-- (void)setActivity:(ActivityListRequestItem_body_activity *)activity{
-    _activity = activity;
-    self.titleLabel.text = @"是电风扇的恢复了华盛顿绿肥红瘦了";
+- (void)setActivityStep:(ActivityListRequestItem_Body_Activity_Steps *)activityStep{
+    _activityStep = activityStep;
+    self.titleLabel.text = _activityStep.title;
     NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:readmePath
                                                encoding:NSUTF8StringEncoding

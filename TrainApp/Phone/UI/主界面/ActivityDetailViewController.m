@@ -11,6 +11,7 @@
 #import "ActivityDetailTableSectionView.h"
 #import "ActivityDetailStepCell.h"
 #import "ActivityStepListRequest.h"
+#import "ActivityStepViewController.h"
 @interface ActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ActivityDetailTableHeaderView *headerView;
@@ -97,11 +98,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    //NSString *string = @"ActivityPlayViewController";
-    NSString *string = @"ActivityStepViewController";
-    UIViewController *VC = [[NSClassFromString(string) alloc] init];
+    ActivityListRequestItem_Body_Activity_Steps *step = self.listItem.body.active.steps[indexPath.section];
+    ActivityStepViewController *VC = [[ActivityStepViewController alloc] init];
+    VC.activityStep = step;
     [self.navigationController pushViewController:VC animated:YES];
-    
 }
 
 #pragma mark - UITableViewDataSource

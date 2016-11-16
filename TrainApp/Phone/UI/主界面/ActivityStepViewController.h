@@ -7,7 +7,7 @@
 //
 
 #import "YXBaseViewController.h"
-
+#import "ActivityListRequest.h"
 @interface ActivityStepViewController : YXBaseViewController
-
+@property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps *activityStep;
 @end

@@ -290,7 +290,6 @@
 		92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */; };
 		92FAE4A41DDAA845000C3C00 /* CoreTextViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A31DDAA845000C3C00 /* CoreTextViewHandler.m */; };
 		92FAE4A71DDAC9ED000C3C00 /* ActivityStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A61DDAC9ED000C3C00 /* ActivityStepViewController.m */; };
-		92FAE4AB1DDADECD000C3C00 /* ActivityStepCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4AA1DDADECD000C3C00 /* ActivityStepCollectionCell.m */; };
 		92FAE4AE1DDAE2A7000C3C00 /* ActivityStepHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4AD1DDAE2A7000C3C00 /* ActivityStepHeaderView.m */; };
 		92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED8841DD18B1600457228 /* ActivityCommentInputView.m */; };
 		92FED8891DD1C37200457228 /* ActitvityCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED8881DD1C37200457228 /* ActitvityCommentCell.m */; };
@@ -982,8 +981,6 @@
 		92FAE4A31DDAA845000C3C00 /* CoreTextViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextViewHandler.m; sourceTree = "<group>"; };
 		92FAE4A51DDAC9ED000C3C00 /* ActivityStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStepViewController.h; sourceTree = "<group>"; };
 		92FAE4A61DDAC9ED000C3C00 /* ActivityStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStepViewController.m; sourceTree = "<group>"; };
-		92FAE4A91DDADECD000C3C00 /* ActivityStepCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStepCollectionCell.h; sourceTree = "<group>"; };
-		92FAE4AA1DDADECD000C3C00 /* ActivityStepCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStepCollectionCell.m; sourceTree = "<group>"; };
 		92FAE4AC1DDAE2A7000C3C00 /* ActivityStepHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStepHeaderView.h; sourceTree = "<group>"; };
 		92FAE4AD1DDAE2A7000C3C00 /* ActivityStepHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStepHeaderView.m; sourceTree = "<group>"; };
 		92FED8841DD18B1600457228 /* ActivityCommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCommentInputView.m; sourceTree = "<group>"; };
@@ -2563,8 +2560,6 @@
 		92FAE4A81DDADE96000C3C00 /* 步骤详情 */ = {
 			isa = PBXGroup;
 			children = (
-				92FAE4A91DDADECD000C3C00 /* ActivityStepCollectionCell.h */,
-				92FAE4AA1DDADECD000C3C00 /* ActivityStepCollectionCell.m */,
 				92FAE4AC1DDAE2A7000C3C00 /* ActivityStepHeaderView.h */,
 				92FAE4AD1DDAE2A7000C3C00 /* ActivityStepHeaderView.m */,
 				92DE3BB21DDAFDEE0011CFB7 /* ActivityStepTableCell.h */,
@@ -2858,12 +2853,12 @@
 				E9BBA5F41DD05CC4000CA413 /* ActivityListViewController.m */,
 				92FED8911DD2BDA000457228 /* ActivityDetailViewController.h */,
 				92FED8921DD2BDA000457228 /* ActivityDetailViewController.m */,
-				92006C8A1DCC79E500F80488 /* ActivityPlayViewController.h */,
-				92006C8B1DCC79E500F80488 /* ActivityPlayViewController.m */,
-				92780F641DD99FC300548424 /* CommentPageListViewController.h */,
-				92780F651DD99FC300548424 /* CommentPageListViewController.m */,
 				92FAE4A51DDAC9ED000C3C00 /* ActivityStepViewController.h */,
 				92FAE4A61DDAC9ED000C3C00 /* ActivityStepViewController.m */,
+				92780F641DD99FC300548424 /* CommentPageListViewController.h */,
+				92780F651DD99FC300548424 /* CommentPageListViewController.m */,
+				92006C8A1DCC79E500F80488 /* ActivityPlayViewController.h */,
+				92006C8B1DCC79E500F80488 /* ActivityPlayViewController.m */,
 			);
 			name = "活动";
 			sourceTree = "<group>";
@@ -3192,7 +3187,6 @@
 				CB7462851D1FF00D0065113A /* YXResetPasswordRequest.m in Sources */,
 				7C31780B1D12830A004AAC90 /* YXFileFavorWrapper.m in Sources */,
 				7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */,
-				92FAE4AB1DDADECD000C3C00 /* ActivityStepCollectionCell.m in Sources */,
 				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
 				92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */,
 				7C2C3B341D2114DC00A03635 /* YXScoreTypeHeaderView.m in Sources */,
@@ -3651,7 +3645,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1449c42d-9048-4a02-9ebb-1edfcd331cc5";
+				PROVISIONING_PROFILE = "b7749d42-a4ec-4c1b-80d6-79f2671606d0";
 			};
 			name = Debug;
 		};
@@ -3673,7 +3667,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b70b569c-4e0b-4d25-900a-3a55e15705a8";
+				PROVISIONING_PROFILE = "b7749d42-a4ec-4c1b-80d6-79f2671606d0";
 			};
 			name = Release;
 		};

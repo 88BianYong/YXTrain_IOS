@@ -7,7 +7,6 @@
 //
 
 #import "ActivityStepViewController.h"
-#import "ActivityStepCollectionCell.h"
 #import "ActivityStepHeaderView.h"
 #import "ActivityDetailTableSectionView.h"
 #import "ActivityStepTableCell.h"
@@ -40,11 +39,13 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.estimatedRowHeight = 150.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[ActivityDetailTableSectionView class] forHeaderFooterViewReuseIdentifier:@"ActivityDetailTableSectionView"];
     [self.tableView registerClass:[ActivityStepTableCell class] forCellReuseIdentifier:@"ActivityStepTableCell"];
     self.headerView = [[ActivityStepHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 125 + 300.0)];
-    self.headerView.activity = nil;
+    self.headerView.activityStep = self.activityStep;
     WEAK_SELF
     [self.headerView setActivityHtmlOpenAndCloseBlock:^(BOOL isStatus) {
         STRONG_SELF
@@ -90,18 +91,16 @@
     view.contentView.backgroundColor = [UIColor whiteColor];
     return view;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.0001f;
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    return view;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 45.0f;
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 30.0f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    NSString *string = @"ActivityPlayViewController";
-    UIViewController *VC = [[NSClassFromString(string) alloc] init];
-    [self.navigationController pushViewController:VC animated:YES];
-    
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -109,11 +108,33 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return ceilf((float)self.activityStep.tools.count/4.0f);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivityStepTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityStepTableCell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.firstTool = [self obtainActivityTool:indexPath.row * 4 + 0];
+    cell.secondTool = [self obtainActivityTool:indexPath.row * 4 + 1];
+    cell.thirdTool = [self obtainActivityTool:indexPath.row * 4 + 2];
+    cell.fourthTool = [self obtainActivityTool:indexPath.row * 4 + 3];
+    WEAK_SELF
+    [cell setActivityStepTableCellBlock:^(ActivityListRequestItem_Body_Activity_Steps_Tools *tool) {
+        STRONG_SELF
+        [self goToNextActivityStepToolContent:tool];
+    }];
     return cell;
+}
+- (void)goToNextActivityStepToolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
+    
+    
+}
+#pragma mark - format data
+- (ActivityListRequestItem_Body_Activity_Steps_Tools *)obtainActivityTool:(NSInteger)integer {
+    if (self.activityStep.tools.count > integer) {
+        return self.activityStep.tools[integer];
+    }else {
+        return nil;
+    }
 }
 @end

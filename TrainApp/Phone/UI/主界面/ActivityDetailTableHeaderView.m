@@ -219,7 +219,7 @@
             make.top.equalTo(self.descriptionLabel.mas_bottom).offset(22.0f);
             make.left.equalTo(self.mas_left).offset(25.0f);
             make.right.equalTo(self.mas_right).offset(-25.0f);
-            make.bottom.equalTo(self.mas_bottom).offset (-3.0f);
+            make.bottom.equalTo(self.mas_bottom).offset (-15.0f);
         }];
         self.openCloseButton.hidden = YES;
         self.gradientView.hidden = YES;
@@ -263,7 +263,7 @@
 }
 - (void)setActivity:(ActivityListRequestItem_body_activity *)activity{
     _activity = activity;
-    self.titleLabel.attributedText = [self attributedStringForTitle:_activity.title];
+    self.titleLabel.attributedText = [self attributedStringForTitle:_activity.title?:@""];
     self.publisherContentLabel.text = activity.createUsername;
     self.studyContentLabel.text = activity.studyName;
     self.segmentContentLabel.text = activity.segmentName;
@@ -279,8 +279,8 @@
 //    NSString *html = [NSString stringWithContentsOfFile:readmePath
 //                                               encoding:NSUTF8StringEncoding
 //                                                  error:NULL];
-    NSData *data = [_activity.desc dataUsingEncoding:NSUTF8StringEncoding];
-    NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions]documentAttributes:nil];
+    NSData *data = [_activity.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions] documentAttributes:nil];
     self.htmlView.attributedString = string;
 }
 

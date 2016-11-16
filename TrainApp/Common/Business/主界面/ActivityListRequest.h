@@ -15,13 +15,15 @@
 
 @interface ActivityListRequestItem_Body_Activity_Steps_Tools : JSONModel
 @property (nonatomic, strong) NSString<Optional> *toolid;
+@property (nonatomic, strong) NSString<Optional> *aid;
 @property (nonatomic, strong) NSString<Optional> *title;
 @property (nonatomic, strong) NSString<Optional> *desc;
-@property (nonatomic, strong) NSString<Optional> *tooltype;
+@property (nonatomic, strong) NSString<Optional> *toolType;
 @end
 
 @interface ActivityListRequestItem_Body_Activity_Steps : JSONModel
 @property (nonatomic, strong) NSString<Optional> *stepid;
+@property (nonatomic, strong) NSString<Optional> *aid;
 @property (nonatomic, strong) NSString<Optional> *title;
 @property (nonatomic, strong) NSString<Optional> *desc;
 @property (nonatomic, strong) NSArray<ActivityListRequestItem_Body_Activity_Steps_Tools,Optional> *tools;
@@ -55,7 +57,6 @@
 
 @interface ActivityListRequestItem : HttpBaseRequestItem
 @property (nonatomic, strong) ActivityListRequestItem_body<Optional> *body;
-- (NSArray *)allActivities;
 @end
 
 @interface ActivityListRequest : YXGetRequest

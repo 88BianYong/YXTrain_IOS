@@ -97,7 +97,7 @@ UIActionSheetDelegate
 - (void)lazyImageView:(DTLazyImageView *)lazyImageView didChangeImageSize:(CGSize)size {
     NSURL *url = lazyImageView.url;
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
-    CGFloat maxWidth = kScreenWidth - 50.0f;
+    CGFloat maxWidth = self.maxWidth;
     if (size.width > maxWidth) {
         CGFloat height = size.height * maxWidth / size.width;
         size = CGSizeMake(maxWidth, floorf(height));

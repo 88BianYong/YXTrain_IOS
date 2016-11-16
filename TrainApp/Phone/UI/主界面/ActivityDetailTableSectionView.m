@@ -20,7 +20,7 @@
 - (void)setupUI {
     self.clipsToBounds = YES;
     UIView *lineView = [[UIView alloc] init];
-    lineView.backgroundColor = [UIColor colorWithHexString:@"b1b6bc"];
+    lineView.backgroundColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:lineView];
     
     UILabel *stepLabel = [[UILabel alloc] init];

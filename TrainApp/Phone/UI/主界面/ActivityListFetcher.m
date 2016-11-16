@@ -34,9 +34,9 @@
         BLOCK_EXEC(self.listCompleteBlock,nil);
         BOOL isLastPage = [self.request.page isEqualToString:item.body.totalPage];
         if (isLastPage) {
-            BLOCK_EXEC(aCompleteBlock,0,[item allActivities],nil);
+            BLOCK_EXEC(aCompleteBlock,0,item.body.actives,nil);
         }else {
-            BLOCK_EXEC(aCompleteBlock,(int)NSIntegerMax,[item allActivities],nil);
+            BLOCK_EXEC(aCompleteBlock,(int)NSIntegerMax,item.body.actives,nil);
         }
     }];
 }

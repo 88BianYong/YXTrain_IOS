@@ -11,7 +11,7 @@
 typedef void(^ActivityHtmlOpenAndCloseBlock)(BOOL isStatus);
 typedef void(^ActivityHtmlHeightChangeBlock) (BOOL height);
 @interface ActivityStepHeaderView : UIView
-@property (nonatomic, strong) ActivityListRequestItem_body_activity *activity;
+@property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps *activityStep;
 @property (nonatomic, assign, readonly) CGFloat htmlHeight;
 - (void)setActivityHtmlOpenAndCloseBlock:(ActivityHtmlOpenAndCloseBlock)block;
 - (void)setActivityHtmlHeightChangeBlock:(ActivityHtmlHeightChangeBlock)block;
