@@ -28,8 +28,8 @@
     
     self.rotateButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:self.rotateButton];
-    self.slideProgressView = [[ActivitySlideProgressView alloc] init];
-    [self addSubview:self.slideProgressView];
+    self.slideProgressControl = [[ActivitySlideProgressControl alloc] init];
+    [self addSubview:self.slideProgressControl];
 
 }
 
@@ -46,12 +46,12 @@
         make.right.equalTo(self.mas_right).offset(-15.0f);
     }];
     
-    [self.slideProgressView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.slideProgressControl mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.playPauseButton.mas_right).offset(20.0f);
         make.right.equalTo(self.rotateButton.mas_left).offset(15.0f);
         make.top.bottom.mas_equalTo(@0);
     }];
-    [self.slideProgressView updateUI];
+    [self.slideProgressControl updateUI];
 }
 
 #pragma mark - set

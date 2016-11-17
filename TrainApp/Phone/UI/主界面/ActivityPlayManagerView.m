@@ -12,12 +12,14 @@
 #import "LePlayerView.h"
 #import "YXPlayerBufferingView.h"
 #import "ActivityPlayTopView.h"
+#import "ActivitySlideProgressView.h"
 static const NSTimeInterval kTopBottomHiddenTime = 5;
 @interface ActivityPlayManagerView()
 @property (nonatomic, strong) LePlayer *player;
 @property (nonatomic, strong) LePlayerView *playerView;
 @property (nonatomic, strong) YXPlayerBufferingView *bufferingView;
 @property (nonatomic, strong) ActivityPlayBottomView *bottomView;
+@property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
 @property (nonatomic, strong) ActivityPlayTopView *topView;
 
 @property (nonatomic, copy) BackActionBlock backBlock;
@@ -55,7 +57,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self addSubview:self.bottomView];
     [self.bottomView.playPauseButton addTarget:self action:@selector(playAndPauseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView.rotateButton addTarget:self action:@selector(rotateScreenButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.bottomView.slideProgressView addTarget:self action:@selector(progressAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView.slideProgressControl addTarget:self action:@selector(progressAction) forControlEvents:UIControlEventTouchUpInside];
     self.bufferingView = [[YXPlayerBufferingView alloc] init];
     [self addSubview:self.bufferingView];
     self.player.videoUrl = [NSURL URLWithString:@"http://coursecdn.teacherclub.com.cn/course/cf/ts/ts_gg/ptcz-xybnx_qxgly/video/qxgly/qxgly.m3u8"];
@@ -67,6 +69,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     recognizer.numberOfTapsRequired = 1;
     self.playerView.userInteractionEnabled = YES;
     [self.playerView addGestureRecognizer:recognizer];
+    
+    self.slideProgressView = [[ActivitySlideProgressView alloc] init];
+    self.slideProgressView.hidden = YES;
+    [self addSubview:self.slideProgressView];
 }
 - (void)setupLayout {
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,6 +94,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.right.equalTo(self.mas_right);
         make.top.equalTo(self.mas_top);
         make.height.mas_offset(44.0f);
+    }];
+    [self.slideProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.mas_bottom);
+        make.height.mas_offset(3.0f);
     }];
 }
 
@@ -169,32 +181,36 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     
     RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
         STRONG_SELF
-        self.bottomView.slideProgressView.duration = [x doubleValue];
-        [self.bottomView.slideProgressView updateUI];
+        self.bottomView.slideProgressControl.duration = [x doubleValue];
+        [self.bottomView.slideProgressControl updateUI];
     }];
     
     RACDisposable *r3 = [RACObserve(self.player, timeBuffered) subscribeNext:^(id x) {
         STRONG_SELF
-        if (self.bottomView.slideProgressView.bSliding) {
+        if (self.bottomView.slideProgressControl.bSliding) {
             return;
         }
-        if (self.bottomView.slideProgressView.duration > 0) {
-            self.bottomView.slideProgressView.bufferProgress = [x floatValue] / self.bottomView.slideProgressView.duration;
-            if (self.bottomView.slideProgressView.bufferProgress > 0) {
-                [self.bottomView.slideProgressView updateUI];
+        if (self.bottomView.slideProgressControl.duration > 0) {
+            CGFloat bufferProgress = [x floatValue] / self.bottomView.slideProgressControl.duration;
+            self.bottomView.slideProgressControl.bufferProgress = bufferProgress;
+            self.slideProgressView.bufferProgress = bufferProgress;
+            if (self.bottomView.slideProgressControl.bufferProgress > 0) {
+                [self.bottomView.slideProgressControl updateUI];
             }
         }
     }];
     
     RACDisposable *r4 = [RACObserve(self.player, timePlayed) subscribeNext:^(id x) {
         STRONG_SELF
-        if (self.bottomView.slideProgressView.bSliding) {
+        if (self.bottomView.slideProgressControl.bSliding) {
             return;
         }
-        if (self.bottomView.slideProgressView.duration > 0) {
-            self.bottomView.slideProgressView.playProgress = [x floatValue] / self.bottomView.slideProgressView.duration;
-            if (self.bottomView.slideProgressView.playProgress > 0) { // walkthrough 换url时slide跳动
-                [self.bottomView.slideProgressView updateUI];
+        if (self.bottomView.slideProgressControl.duration > 0) {
+            CGFloat playProgres = [x floatValue] / self.bottomView.slideProgressControl.duration;
+            self.bottomView.slideProgressControl.playProgress = playProgres;
+            self.slideProgressView.playProgress = playProgres;
+            if (self.bottomView.slideProgressControl.playProgress > 0) { // walkthrough 换url时slide跳动
+                [self.bottomView.slideProgressControl updateUI];
             }
         }
     }];
@@ -269,11 +285,16 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }];
 }
 - (void)hiddenBottomView {
-    [UIView animateWithDuration:0.6 animations:^{
+    [UIView animateWithDuration:0.6f animations:^{
         [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom).offset(44.0f);
         }];
         [self layoutIfNeeded];
+        
+    } completion:^(BOOL finished) {
+        if (finished) {
+            self.slideProgressView.hidden = NO;
+        }
     }];
 }
 - (void)showTopView {
@@ -285,17 +306,19 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }];
 }
 - (void)showBottomView {
-    [UIView animateWithDuration:0.6 animations:^{
+    self.slideProgressView.hidden = YES;
+    [UIView animateWithDuration:0.6f animations:^{
         [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.bottom.equalTo(self.mas_bottom);
         }];
         [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
     }];
 }
 
 - (void)progressAction {
     [self resetTopBottomHideTimer];
-    [self.player seekTo:self.player.duration * self.bottomView.slideProgressView.playProgress];
+    [self.player seekTo:self.player.duration * self.bottomView.slideProgressControl.playProgress];
 }
 
 #pragma mark - button Action

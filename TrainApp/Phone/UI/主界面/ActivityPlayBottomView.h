@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ActivitySlideProgressView.h"
+#import "ActivitySlideProgressControl.h"
 @interface ActivityPlayBottomView : UIView
 @property (nonatomic, strong) UIButton *playPauseButton;
-@property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
+@property (nonatomic, strong) ActivitySlideProgressControl *slideProgressControl;
 @property (nonatomic, strong) UIButton *rotateButton;
 @property (nonatomic, assign) BOOL isFullscreen;
 

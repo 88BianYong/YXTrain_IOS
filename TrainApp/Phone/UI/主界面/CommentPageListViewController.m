@@ -12,10 +12,16 @@
 #import "ActitvityCommentHeaderView.h"
 #import "ActitvityCommentCell.h"
 #import "ActitvityCommentFooterView.h"
+#import "ActivityCommentInputView.h"
+#import "SendCommentView.h"
 @interface CommentPageListViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) int totalPage;
 @property (nonatomic, strong) MJRefreshFooterView *footerView;
 @property (nonatomic, strong) MJRefreshHeaderView *headerView;
+@property (nonatomic, strong) ActivityCommentInputView *inputTextView;
+@property (nonatomic, strong) UIView *translucentView;
+@property (nonatomic, strong) SendCommentView *sendView;
+
 @end
 
 @implementation CommentPageListViewController
@@ -24,6 +30,10 @@
     [self.headerView free];
     [self.footerView free];
     [self.dataFetcher stop];
+    [self.inputTextView removeFromSuperview];
+    self.inputTextView = nil;
+    [self.translucentView removeFromSuperview];
+    self.translucentView = nil;
 }
 
 - (void)viewDidLoad {
@@ -101,6 +111,41 @@
     };
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     self.totalPage = (int)[self.dataMutableArray count];
+    
+    if (!self.isHiddenInputView) {
+        self.sendView = [[SendCommentView alloc] init];
+        [self.view addSubview:self.sendView];
+        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showCommentInputView)];
+        [self.sendView addGestureRecognizer:recognizer];
+        
+        
+        self.translucentView = [[UIView alloc] init];
+        self.translucentView.alpha = 0.0f;
+        self.translucentView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
+        [self.navigationController.view addSubview:self.translucentView];
+        UITapGestureRecognizer *showRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenCommentInputView)];
+        [self.translucentView addGestureRecognizer:showRecognizer];
+        
+        self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
+        WEAK_SELF
+        [self.inputTextView setActivityCommentShowInputViewBlock:^(BOOL isShow) {
+            STRONG_SELF
+            if (isShow) {
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.translucentView.alpha = 1.0f;
+                }];
+            }else {
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.translucentView.alpha = 0.0f;
+                }];
+            }
+        }];
+        [self.inputTextView setActivityCommentInputTextBlock:^(NSString *inputText) {
+            STRONG_SELF
+            
+        }];
+        [self.navigationController.view addSubview:self.inputTextView];
+    }
 }
 
 - (void)setupLayout {
@@ -115,6 +160,28 @@
     [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(@0);
     }];
+    
+    [self.translucentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.navigationController.view);
+    }];
+    if (!self.isHiddenInputView) {
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_left);
+            make.right.equalTo(self.view.mas_right);
+            make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+            make.top.equalTo(self.view.mas_top);
+        }];
+        [self.inputTextView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.navigationController.view.mas_left);
+            make.right.equalTo(self.navigationController.view.mas_right);
+            make.bottom.equalTo(self.navigationController.view.mas_bottom).offset(140.0f);
+            make.height.mas_offset(140.0f);
+        }];
+        [self.sendView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.equalTo(self.view);
+            make.height.mas_offset(44.0f);
+        }];
+    }
 }
 
 #pragma mark - request
@@ -152,7 +219,7 @@
                 }
                 [self pullupViewHidden:!(totalPage >= currentPage)];
             }else {
-                [self hideErrorView];
+                self.errorView.hidden = YES;
                 self.dataErrorView.hidden = YES;
                 [self.headerView setLastUpdateTime:[NSDate date]];
                 self.totalPage = totalPage;
@@ -214,16 +281,10 @@
     self.errorView.hidden = NO;
     [self.view bringSubviewToFront:self.errorView];
 }
-- (void)hideErrorView {
-    self.errorView.hidden = YES;
-}
 
 - (void)showDataErrorView {
     self.dataErrorView.hidden = NO;
     [self.view bringSubviewToFront:self.dataErrorView];
-}
-- (void)hideDataErrorView {
-    
 }
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -259,6 +320,15 @@
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
     headerView.replie = replie;
+    WEAK_SELF
+    [headerView setActitvityCommentReplyBlock:^(ActivityFirstCommentRequestItem_Body_Replies *replie) {
+        STRONG_SELF
+        [self inputActitvityCommentReply:replie];
+    }];
+    [headerView setActitvityCommentFavorBlock:^(ActivityFirstCommentRequestItem_Body_Replies *replie) {
+        STRONG_SELF
+        
+    }];
     return headerView;
 }
 
@@ -277,4 +347,24 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 29.0f;
 }
+
+#pragma mark - inputView
+- (void)showCommentInputView {
+    [self.inputTextView.textView becomeFirstResponder];
+}
+- (void)hiddenCommentInputView {
+    [self.inputTextView.textView resignFirstResponder];
+}
+
+- (void)inputActitvityCommentReply:(ActivityFirstCommentRequestItem_Body_Replies *)replies {
+    self.inputTextView.textView.placeholder = [NSString stringWithFormat:@"回复 %@:",replies.userName];
+    [self showCommentInputView];
+    DDLogDebug(@">>>>%@",self.inputTextView.textView.placeholder);
+    
+}
+
+- (void)reportActitvityCommentReply:(NSString *)replyString {
+    
+}
+
 @end

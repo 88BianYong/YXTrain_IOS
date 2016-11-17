@@ -9,13 +9,16 @@
 //NSFoundationVersionNumber_iOS_7_0
 #import "ActivityCommentInputView.h"
 @interface ActivityCommentInputView()
-@property (nonatomic, strong) UILabel *textNumberLabel;
+@property (nonatomic, strong) UILabel *inputNumberLabel;
+@property (nonatomic, strong) UILabel *totalNumberLabel;
 @property (nonatomic, strong) UIButton *sendButton;
+@property (nonatomic, copy) ActivityCommentShowInputViewBlock isShowBlock;
+@property (nonatomic, copy) ActivityCommentInputTextBlock inputTextBlock;
 @end
 
 @implementation ActivityCommentInputView
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
@@ -23,6 +26,8 @@
         [self setupLayout];
         self.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:UITextViewTextDidChangeNotification object:nil];
+        
     }
     return self;
 }
@@ -48,12 +53,21 @@
     self.sendButton.layer.borderWidth = 1.0f;
     self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"b9c0c7"].CGColor;
     self.sendButton.enabled = NO;
+    self.sendButton.clipsToBounds = YES;
+    [self.sendButton addTarget:self action:@selector(sendButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.sendButton];
     
-    self.textNumberLabel = [[UILabel alloc] init];
-    self.textNumberLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.textNumberLabel.text = @"98 / 200";
-    [self addSubview:self.textNumberLabel];
+    self.inputNumberLabel = [[UILabel alloc] init];
+    self.inputNumberLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.inputNumberLabel.text = @"0";
+    self.inputNumberLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    [self addSubview:self.inputNumberLabel];
+    
+    self.totalNumberLabel = [[UILabel alloc] init];
+    self.totalNumberLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.totalNumberLabel.text = @" / 200";
+    self.totalNumberLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    [self addSubview:self.totalNumberLabel];
 }
 - (void)setupLayout {
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -70,33 +84,64 @@
         make.bottom.equalTo(self.mas_bottom).offset(-11.0f);
     }];
     
-    [self.textNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.inputNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.textView.mas_left).offset(15.0f);
         make.centerY.equalTo(self.sendButton.mas_centerY);
     }];
     
+    [self.totalNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.inputNumberLabel.mas_right);
+        make.centerY.equalTo(self.sendButton.mas_centerY);
+    }];
+    
+}
+#pragma mark - button Action 
+- (void)sendButtonAction:(UIButton *)sender {
+    BLOCK_EXEC(self.inputTextBlock,self.textView.text);
 }
 
-- (void)keyboardWillChangeFrame:(NSNotification *)notification {
-    NSDictionary *userInfo = notification.userInfo;
+#pragma mark - notification
+- (void)keyboardWillChangeFrame:(NSNotification *)aNotification {
+    NSDictionary *userInfo = aNotification.userInfo;
     CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     if (endFrame.origin.y != kScreenHeight) {
-        self.textView.textAlignment = NSTextAlignmentLeft;
+        BLOCK_EXEC(self.isShowBlock, YES);
         [UIView animateWithDuration:curve animations:^{
             [self mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self.superview.mas_bottom).offset(-endFrame.size.height);
             }];
         }];
     }else{
-        self.textView.textAlignment = NSTextAlignmentCenter;
+        BLOCK_EXEC(self.isShowBlock, NO);
         [UIView animateWithDuration:curve animations:^{
             [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self.superview.mas_bottom);
+                make.bottom.equalTo(self.superview.mas_bottom).offset(140.0f);
             }];
         }];
     }
     [self.superview layoutIfNeeded];
+}
+- (void)textDidChange:(NSNotification *)aNotification {
+    UITextView *tempTextView = (UITextView *)aNotification.object;
+    if (tempTextView.text.length == 0) {
+        self.inputNumberLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+        self.sendButton.enabled = NO;
+        self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"b9c0c7"].CGColor;
+    }else {
+        self.inputNumberLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
+        self.sendButton.enabled = YES;
+        self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
+
+    }
+    self.inputNumberLabel.text = [NSString stringWithFormat:@"%d",(200 - (int)tempTextView.text.length)];
+}
+
+- (void)setActivityCommentShowInputViewBlock:(ActivityCommentShowInputViewBlock)block {
+    self.isShowBlock = block;
+}
+- (void)setActivityCommentInputTextBlock:(ActivityCommentInputTextBlock)block {
+    self.inputTextBlock = block;
 }
 
 @end

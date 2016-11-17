@@ -14,6 +14,10 @@
 @property (nonatomic, strong) UILabel *favorLabel;
 @property (nonatomic, strong) UIButton *favorButton;
 @property (nonatomic, strong) UILabel *contentLabel;
+
+@property (nonatomic, copy) ActitvityCommentFavorBlock favorBlock;
+@property (nonatomic, copy) ActitvityCommentReplyBlock replyBlock;
+
 @end
 @implementation ActitvityCommentHeaderView
 
@@ -59,6 +63,9 @@
     [self.favorButton setImage:[UIImage imageNamed:@"点赞icon-点击状态"] forState:UIControlStateSelected];
     [self.favorButton addTarget:self action:@selector(favorButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.favorButton];
+    
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(replyCommentAction:)];
+    [self.contentView addGestureRecognizer:recognizer];
 }
 - (void)setupLayout {
    [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,12 +76,12 @@
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.headerImageView.mas_right).offset(11.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(33.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(30.0f);
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel.mas_left);
-        make.top.equalTo(self.nameLabel.mas_bottom).offset(8.0f);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(6.0f);
     }];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -99,7 +106,12 @@
 
 #pragma mark - button Action 
 - (void)favorButtonAction:(UIButton *)sender{
-    
+    BLOCK_EXEC(self.favorBlock, self.replie);
+}
+- (void)replyCommentAction:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        BLOCK_EXEC(self.replyBlock,self.replie);
+    }
 }
 
 #pragma mark - set
@@ -116,5 +128,12 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [replie.content?:@"" length])];
     self.contentLabel.attributedText = attributedString;
     
+}
+
+- (void)setActitvityCommentFavorBlock:(ActitvityCommentFavorBlock)block {
+    self.favorBlock = block;
+}
+- (void)setActitvityCommentReplyBlock:(ActitvityCommentReplyBlock)block {
+    self.replyBlock = block;
 }
 @end

@@ -10,6 +10,7 @@
 #import "ActivityStepHeaderView.h"
 #import "ActivityDetailTableSectionView.h"
 #import "ActivityStepTableCell.h"
+#import "ActivityPlayViewController.h"
 @interface ActivityStepViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ActivityStepHeaderView *headerView;
@@ -127,9 +128,15 @@
     return cell;
 }
 - (void)goToNextActivityStepToolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
-    NSString *string = @"FirstCommentViewController";
-    UIViewController *VC = [[NSClassFromString(string) alloc] init];
-    [self.navigationController pushViewController:VC animated:YES];    
+    if ([tool.toolType isEqualToString:@"video"]) {
+        ActivityPlayViewController *VC = [[ActivityPlayViewController alloc] init];
+        VC.tool = tool;
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if ([tool.toolType isEqualToString:@"discuss"]){
+        NSString *string = @"CommentPageListViewController";
+        UIViewController *VC = [[NSClassFromString(string) alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 #pragma mark - format data
 - (ActivityListRequestItem_Body_Activity_Steps_Tools *)obtainActivityTool:(NSInteger)integer {
