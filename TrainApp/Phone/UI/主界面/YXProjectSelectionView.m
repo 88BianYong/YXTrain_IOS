@@ -13,7 +13,7 @@
 static const CGFloat kImageWidth = 30;
 
 @interface YXProjectSelectionView()<UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic, strong) NSMutableArray *projectArray;
+//@property (nonatomic, strong) NSMutableArray *projectArray;
 @property (nonatomic, strong) UIButton *bgButton;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *rightImageView;
@@ -29,7 +29,6 @@ static const CGFloat kImageWidth = 30;
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveDynamicNotification:) name:kYXTrainCurrentProjectIndex object:nil];
-        self.projectArray = [NSMutableArray array];
         [self setupUI];
     }
     return self;
@@ -70,36 +69,23 @@ static const CGFloat kImageWidth = 30;
     self.selectionTableView.sectionFooterHeight = 0.1;
     [self.selectionTableView registerClass:[YXProjectSelectionCell class] forCellReuseIdentifier:@"YXProjectSelectionCell"];
 }
-- (void)setTrainingProjectArray:(NSArray *)trainingProjectArray{
-    _trainingProjectArray = trainingProjectArray;
-    if (trainingProjectArray.count == 0) {
+- (void)setProjectGroup:(NSArray *)projectGroup {
+    _projectGroup = projectGroup;
+    if (projectGroup.count == 0) {
         return;
     }
-    [self.projectArray addObject:_trainingProjectArray];
-    if (self.currentIndexPath.section == 0) {
-        YXTrainListRequestItem_body_train *train = trainingProjectArray[self.currentIndexPath.row];
-        NSString *currentProject = train.name;
-        [self setupTitleWithProject:currentProject];
-    }
-}
-- (void)setTrainedProjectArray:(NSArray *)trainedProjectArray{
-    _trainedProjectArray = trainedProjectArray;
-    if (trainedProjectArray.count == 0) {
-        return;
-    }
-    [self.projectArray addObject:trainedProjectArray];
-    if (self.currentIndexPath.section == 1) {
-        YXTrainListRequestItem_body_train *train = trainedProjectArray[self.currentIndexPath.row];
-        NSString *currentProject = train.name;
-        [self setupTitleWithProject:currentProject];
-    }
+    TrainListProjectGroup *group = projectGroup[self.currentIndexPath.section];
+    NSArray *items = group.items;
+    YXTrainListRequestItem_body_train *train = items[self.currentIndexPath.row];
+    NSString *currentProject = train.name;
+    [self setupTitleWithProject:currentProject];
 }
 - (void)setupTitleWithProject:(NSString *)projectName {
     CGSize size = [projectName sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
     CGFloat titleWidth = MIN(ceilf(size.width), self.bounds.size.width-kImageWidth);
     self.titleLabel.frame = CGRectMake((self.bounds.size.width-titleWidth-kImageWidth)/2, 0, titleWidth, self.bounds.size.height);
     self.titleLabel.text = projectName;
-    if (self.trainingProjectArray.count > 1 || self.trainedProjectArray.count > 1) {
+    if (self.projectGroup.firstObject.items.count >1 || self.projectGroup.lastObject.items.count > 1) {
         self.rightImageView.hidden = NO;
         self.rightImageView.frame = CGRectMake(self.titleLabel.frame.origin.x+self.titleLabel.frame.size.width, (self.bounds.size.height-kImageWidth)/2, kImageWidth, kImageWidth);
         self.bgButton.userInteractionEnabled = YES;
@@ -108,7 +94,6 @@ static const CGFloat kImageWidth = 30;
 - (void)btnAction {
     [self showSelectionView];
 }
-
 - (void)tapAction {
     [self hideSelectionView];
 }
@@ -118,10 +103,10 @@ static const CGFloat kImageWidth = 30;
     UIView *superview = self.window;
     [superview addSubview:self.maskView];
     CGFloat tableHeight;
-    if (self.projectArray.count == 2) {
-        tableHeight = MIN((self.trainingProjectArray.count + self.trainedProjectArray.count)*self.selectionTableView.rowHeight + 45 * 2, 292.5);
+    if (self.projectGroup.count == 2) {
+        tableHeight = MIN((self.projectGroup.firstObject.items.count + self.projectGroup.lastObject.items.count)*self.selectionTableView.rowHeight + 45 * 2, 292.5);
     }else {
-        tableHeight = MIN(([self.projectArray.firstObject count])*self.selectionTableView.rowHeight + 45, 247.5);
+        tableHeight = MIN(([self.projectGroup.firstObject.items count])*self.selectionTableView.rowHeight + 45, 247.5);
     }
     CGRect rect = self.selectionBgView.frame;
     rect.size.height = tableHeight+8;
@@ -144,12 +129,8 @@ static const CGFloat kImageWidth = 30;
         return;
     }
     self.currentIndexPath = indexPath;
-    YXTrainListRequestItem_body_train *train = [[YXTrainListRequestItem_body_train alloc]init];
-    if (indexPath.section == 0) {
-        train = self.trainingProjectArray[indexPath.row];
-    }else {
-        train = self.trainedProjectArray[indexPath.row];
-    }
+    NSArray *items = self.projectGroup[indexPath.section].items;
+    YXTrainListRequestItem_body_train *train = items[indexPath.row];
     [self setupTitleWithProject:train.name];
     [self hideSelectionView];
     BLOCK_EXEC(self.projectChangeBlock,self.currentIndexPath);
@@ -158,49 +139,29 @@ static const CGFloat kImageWidth = 30;
 - (void)receiveDynamicNotification:(NSNotification *)aNotification {
     NSString *pid = aNotification.object;
     __block NSInteger index = -1;
-    [self.trainingProjectArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.pid isEqualToString:pid]) {
-            index = idx;
-            [self currentProjectIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-            *stop = YES;
-        }
-    }];
-    [self.trainedProjectArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.pid isEqualToString:pid]) {
-            index = idx;
-            [self currentProjectIndexPath:[NSIndexPath indexPathForRow:index inSection:1]];
-            *stop = YES;
-        }
+    [self.projectGroup enumerateObjectsUsingBlock:^(TrainListProjectGroup * _Nonnull group, NSUInteger idx, BOOL * _Nonnull stop) {
+        [group.items enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.pid isEqualToString:pid]) {
+                index = idx;
+                [self currentProjectIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                *stop = YES;
+            }
+        }];
     }];
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.projectArray.count;
+    return self.projectGroup.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if([self numberOfSectionsInTableView:tableView] == 2) {
-        if (section == 0) {
-            return self.trainingProjectArray.count;
-        }else {
-            return self.trainedProjectArray.count;
-        }
-    }else {
-        return [self.projectArray.firstObject count];
-    }
+    NSArray *items = self.projectGroup[section].items;
+    return items.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YXProjectSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXProjectSelectionCell"];
-    YXTrainListRequestItem_body_train *train = [[YXTrainListRequestItem_body_train alloc]init];
-    if(self.projectArray.count == 2) {
-        if (indexPath.section == 0) {
-            train = self.trainingProjectArray[indexPath.row];
-        }else {
-            train = self.trainedProjectArray[indexPath.row];
-        }
-    }else {
-        train = self.projectArray.firstObject[indexPath.row];
-    }
+    NSArray *items = self.projectGroup[indexPath.section].items;
+    YXTrainListRequestItem_body_train *train = items[indexPath.row];
     cell.name = train.name;
     cell.isCurrent = (indexPath == self.currentIndexPath);
     return cell;
@@ -217,23 +178,11 @@ static const CGFloat kImageWidth = 30;
     return 0.1;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.projectArray.count == 2) {
-        if (section == 0) {
-            return [self sectionHeaderViewWithTitle:@"在培项目" imageName:@"在培项目icon"];
-        }else{
-            return [self sectionHeaderViewWithTitle:@"历史项目" imageName:@"历史项目icon"];
-        }
-    }else {
-        NSArray *projects = self.projectArray.firstObject;
-        YXTrainListRequestItem_body_train *train = projects.firstObject;
-        if ([train.status isEqualToString:@"1"]) {
-            return [self sectionHeaderViewWithTitle:@"在培项目" imageName:@"在培项目icon"];
-        }else {
-            return [self sectionHeaderViewWithTitle:@"历史项目" imageName:@"历史项目icon"];
-        }
-    }
+    TrainListProjectGroup *group = self.projectGroup[section];
+    return [self sectionHeaderViewWithTitle:group.name];
 }
-- (UIView *)sectionHeaderViewWithTitle:(NSString *)title imageName:(NSString *)imageName {
+- (UIView *)sectionHeaderViewWithTitle:(NSString *)title {
+    NSString *imageName = [NSString stringWithFormat:@"%@icon",title];
     UIView *sectionHeaderView = [[UIView alloc]init];
     UIView *headerView = [[UIView alloc]init];
     headerView.backgroundColor = [UIColor colorWithHexString:@"d0d3d6"];

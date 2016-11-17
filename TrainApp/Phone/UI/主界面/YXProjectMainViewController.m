@@ -100,7 +100,7 @@
 - (void)getProjectList{
     [self startLoading];
     WEAK_SELF
-    [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(YXTrainListRequestItem_body *body, NSError *error) {
+    [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(NSArray *groups, NSError *error) {
         STRONG_SELF
         [self stopLoading];
         if (error) {
@@ -114,7 +114,7 @@
             }
             return;
         }
-        if (body.training.count == 0 && body.trained.count == 0) {
+        if (groups.count == 0) {
             self.emptyView.frame = self.view.bounds;
             self.emptyView.imageName = @"无培训项目";
             self.emptyView.title = @"您没有已参加的培训项目";
@@ -124,7 +124,7 @@
         [self.errorView removeFromSuperview];
         [self.emptyView removeFromSuperview];
         [self.dataErrorView removeFromSuperview];
-        [self dealWithTrainLisItemBody:body];
+        [self dealWithProjectGroups:groups];
     }];
 }
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
@@ -138,11 +138,10 @@
 - (void)showoUpdateInterface:(NSNotification *)aNotification{
     [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
 }
-- (void)dealWithTrainLisItemBody:(YXTrainListRequestItem_body *)body{
+- (void)dealWithProjectGroups:(NSArray *)groups{
     YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
     selectionView.currentIndexPath = [YXTrainManager sharedInstance].currentProjectIndexPath;
-    selectionView.trainingProjectArray = body.training;
-    selectionView.trainedProjectArray = body.trained;
+    selectionView.projectGroup = groups;
     WEAK_SELF
     selectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
         STRONG_SELF

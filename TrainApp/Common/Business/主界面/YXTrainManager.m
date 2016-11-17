@@ -37,9 +37,9 @@
         return self.trainlistItem.body.trained[currentProjectIndex];
     }
 }
-- (void)getProjectsWithCompleteBlock:(void(^)(YXTrainListRequestItem_body *body, NSError *error))completeBlock {
+- (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock {
     if (self.trainlistItem) {
-        BLOCK_EXEC(completeBlock,self.trainlistItem.body,nil);
+        BLOCK_EXEC(completeBlock,[TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body],nil);
         return;
     }
     [self.request stopRequest];
@@ -57,7 +57,8 @@
         item.body.indexPathRow = [NSString stringWithFormat:@"%@",@(indexPath.row)];
         self.trainlistItem = item;
         [self saveToCache];
-        BLOCK_EXEC(completeBlock,item.body,nil);
+        NSArray *projectGroupArray = [TrainListProjectGroup projectGroupsWithRawData:item.body];
+        BLOCK_EXEC(completeBlock,projectGroupArray,nil);
     }];
 }
 - (void)setCurrentProjectIndexPath:(NSIndexPath *)currentProjectIndexPath {

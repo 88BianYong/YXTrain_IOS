@@ -1,0 +1,27 @@
+//
+//  TrainListProjectGroup.m
+//  TrainApp
+//
+//  Created by ZLL on 2016/11/17.
+//  Copyright © 2016年 niuzhaowang. All rights reserved.
+//
+
+#import "TrainListProjectGroup.h"
+
+@implementation TrainListProjectGroup
++ (NSArray *)projectGroupsWithRawData:(YXTrainListRequestItem_body *)data {
+    NSMutableArray *trainGroupArray = [NSMutableArray array];
+    
+    TrainListProjectGroup *trainingGroup = [[TrainListProjectGroup alloc]init];
+    trainingGroup.name = @"在培项目";
+    trainingGroup.items = data.training;
+    [trainGroupArray addObject:trainingGroup];
+    
+    TrainListProjectGroup *trainedGroup = [[TrainListProjectGroup alloc]init];
+    trainedGroup.name = @"历史项目";
+    trainedGroup.items = data.trained;
+    [trainGroupArray addObject:trainedGroup];
+    
+    return trainGroupArray.copy;
+}
+@end

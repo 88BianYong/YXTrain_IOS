@@ -404,6 +404,7 @@
 		E9A7B5EF1DDC3EE400136335 /* ShareResourcesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5EE1DDC3EE400136335 /* ShareResourcesRequest.m */; };
 		E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5F11DDC46CA00136335 /* ShareResourcesFetcher.m */; };
 		E9A7B5F41DDC63EF00136335 /* shareResources_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = E9A7B5F31DDC63EF00136335 /* shareResources_mock.json */; };
+		E9A7B5F71DDD91DC00136335 /* TrainListProjectGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5F61DDD91DC00136335 /* TrainListProjectGroup.m */; };
 		E9BBA5F51DD05CC4000CA413 /* ActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA5F41DD05CC4000CA413 /* ActivityListViewController.m */; };
 		E9BBA5F91DD06932000CA413 /* ActivityListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA5F81DD06932000CA413 /* ActivityListFetcher.m */; };
 		E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA6051DD09530000CA413 /* ActivityListRequest.m */; };
@@ -1207,6 +1208,8 @@
 		E9A7B5F01DDC46CA00136335 /* ShareResourcesFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesFetcher.h; sourceTree = "<group>"; };
 		E9A7B5F11DDC46CA00136335 /* ShareResourcesFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareResourcesFetcher.m; sourceTree = "<group>"; };
 		E9A7B5F31DDC63EF00136335 /* shareResources_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shareResources_mock.json; sourceTree = "<group>"; };
+		E9A7B5F51DDD91DC00136335 /* TrainListProjectGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainListProjectGroup.h; sourceTree = "<group>"; };
+		E9A7B5F61DDD91DC00136335 /* TrainListProjectGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainListProjectGroup.m; sourceTree = "<group>"; };
 		E9BBA5F31DD05CC4000CA413 /* ActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListViewController.h; sourceTree = "<group>"; };
 		E9BBA5F41DD05CC4000CA413 /* ActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListViewController.m; sourceTree = "<group>"; };
 		E9BBA5F71DD06932000CA413 /* ActivityListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityListFetcher.h; path = "../../../Phone/UI/主界面/ActivityListFetcher.h"; sourceTree = "<group>"; };
@@ -1899,6 +1902,8 @@
 				7C3F258C1D20C6C100F0A17A /* trainlist_mock.json */,
 				7C2C3B8F1D26406400A03635 /* YXTrainManager.h */,
 				7C2C3B901D26406400A03635 /* YXTrainManager.m */,
+				E9A7B5F51DDD91DC00136335 /* TrainListProjectGroup.h */,
+				E9A7B5F61DDD91DC00136335 /* TrainListProjectGroup.m */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -3357,6 +3362,7 @@
 				7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */,
 				92CE515E1D87EF3D0071DE79 /* YXWebViewController.m in Sources */,
 				CB4D91771D1A635400B5F1D0 /* YXMyDatumCell.m in Sources */,
+				E9A7B5F71DDD91DC00136335 /* TrainListProjectGroup.m in Sources */,
 				CBBE94FE1D1D193400C935C8 /* YXLoginButtonTableViewCell.m in Sources */,
 				7CFBA6C21D33375D005D08B1 /* YXEmptyView.m in Sources */,
 				7C3177BD1D0EBA79004AAC90 /* UIView+YXShadowColor.m in Sources */,
