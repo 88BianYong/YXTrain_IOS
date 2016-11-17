@@ -70,6 +70,17 @@
         self.tableView.tableHeaderView = self.headerView;
         [self.headerView relayoutHtmlText];
     }];
+    
+    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self requestForActivityStepList];
+    };
+    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self requestForActivityStepList];
+    };
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -132,13 +143,23 @@
     [request startRequestWithRetClass:[ActivityStepListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF;
         [self stopLoading];
-        self.listItem = (ActivityStepListRequestItem *)retItem;
-        self.listItem.body.active.joinUserCount = self.activity.joinUserCount;
-        self.listItem.body.active.studyName = self.activity.studyName;
-        self.listItem.body.active.segmentName = self.activity.segmentName;
-        self.headerView.activity = self.listItem.body.active;
-        self.tableView.tableHeaderView = self.headerView;
-        [self.tableView reloadData];
+        if (error) {
+            if (error.code == -2) {
+                self.dataErrorView.frame = self.view.bounds;
+                [self.view addSubview:self.dataErrorView];
+            }else{
+                self.errorView.frame = self.view.bounds;
+                [self.view addSubview:self.errorView];
+            }
+        }else {
+            self.listItem = (ActivityStepListRequestItem *)retItem;
+            self.listItem.body.active.joinUserCount = self.activity.joinUserCount;
+            self.listItem.body.active.studyName = self.activity.studyName;
+            self.listItem.body.active.segmentName = self.activity.segmentName;
+            self.headerView.activity = self.listItem.body.active;
+            self.tableView.tableHeaderView = self.headerView;
+            [self.tableView reloadData];
+        }
     }];
     self.stepListRequest = request;
 }

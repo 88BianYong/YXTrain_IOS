@@ -275,10 +275,6 @@
     }else {
         self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];
     }
-//    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
-//    NSString *html = [NSString stringWithContentsOfFile:readmePath
-//                                               encoding:NSUTF8StringEncoding
-//                                                  error:NULL];
     NSData *data = [_activity.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions] documentAttributes:nil];
     self.htmlView.attributedString = string;

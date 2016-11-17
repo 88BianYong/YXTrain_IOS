@@ -49,7 +49,7 @@
     [self.contentView addSubview:self.favorLabel];
     
     self.contentLabel = [[UILabel alloc] init];
-    self.contentLabel.font = [UIFont systemFontOfSize:16.0f];
+    self.contentLabel.font = [UIFont boldSystemFontOfSize:16.0f];
     self.contentLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.contentLabel.numberOfLines = 0;
     [self.contentView addSubview:self.contentLabel];

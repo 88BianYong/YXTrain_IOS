@@ -20,8 +20,6 @@
 }
 - (void)setupUI {
     self.iconButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.iconButton.backgroundColor = [UIColor redColor];
-    self.iconButton.layer.cornerRadius = 25.0f;
     [self addSubview:self.iconButton];
     
     self.iconLabel = [[UILabel alloc] init];
@@ -49,11 +47,27 @@
 @property (nonatomic, strong) ActivityStepIconView *thirdStepView;
 @property (nonatomic, strong) ActivityStepIconView *fourthStepView;
 @property (nonatomic, copy) ActivityStepTableCellBlock toolBlock;
+@property (nonatomic, strong) NSDictionary *iconDictionary;
 @end
 @implementation ActivityStepTableCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.iconDictionary = @{ //key          imageName       title
+                                @"resdisc" : @[@"资源下载",@"资源下载"],
+                                @"resources" : @[@"资源分享",@"资源分享"],
+                                @"homework" : @[@"作业A",@"作业"],
+                                @"collab" : @[@"协作文档",@"协作文档"],
+                                @"wenjuan" : @[@"问卷",@"问卷"],
+                                @"topics" : @[@"问答",@"问答"],
+                                @"discuss" : @[@"讨论",@"讨论"],
+                                @"video" : @[@"视频A",@"视频"],
+                                @"comments" : @[@"评价",@"评价"],
+                                @"course" : @[@"课件",@"课件"],
+                                @"debate" : @[@"辩论",@"辩论"],
+                                };
+        
+        
         [self setupUI];
         [self setupLayout];
     }
@@ -121,7 +135,7 @@
     _firstTool = firstTool;
     if (_firstTool) {
         self.firstStepView.hidden = NO;
-        self.firstStepView.iconLabel.text = _firstTool.title;
+        [self formatIconView:self.firstStepView ToolContent:_firstTool];
     }else {
         self.firstStepView.hidden =  YES;
     }
@@ -130,7 +144,7 @@
     _secondTool = secondTool;
     if (_secondTool) {
         self.secondStepView.hidden = NO;
-        self.secondStepView.iconLabel.text = _firstTool.title;
+        [self formatIconView:self.secondStepView ToolContent:_secondTool];
     }else {
         self.secondStepView.hidden = YES;
     }
@@ -139,7 +153,7 @@
     _thirdTool = thirdTool;
     if (_thirdTool) {
         self.thirdStepView.hidden = NO;
-        self.thirdStepView.iconLabel.text = _firstTool.title;
+        [self formatIconView:self.thirdStepView ToolContent:_thirdTool];
     }else {
         self.thirdStepView.hidden = YES;
     }
@@ -148,14 +162,29 @@
     _fourthTool = fourthTool;
     if (_fourthTool) {
         self.fourthStepView.hidden = NO;
-        self.fourthStepView.iconLabel.text = _firstTool.title;
+        [self formatIconView:self.fourthStepView ToolContent:_fourthTool];
     }else {
         self.fourthStepView.hidden = YES;
     }
 }
+- (void)formatIconView:(ActivityStepIconView *)iconView
+              ToolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
+    if ([tool.toolType isEqualToString:@"discuss"] || [tool.toolType isEqualToString:@"resdisc"] ||
+        [tool.toolType isEqualToString:@"resources"] ||[tool.toolType isEqualToString:@"video"]) {
+        iconView.iconLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    }else {
+        iconView.iconLabel.textColor = [UIColor colorWithHexString:@"a1a7ad"];
+    }
+    iconView.iconLabel.text = self.iconDictionary[tool.toolType][1];
+    [iconView.iconButton setImage:[UIImage imageNamed:self.iconDictionary[tool.toolType][0]] forState:UIControlStateNormal];
+    [iconView.iconButton setImage:[UIImage imageNamed:self.iconDictionary[tool.toolType][0]] forState:UIControlStateHighlighted];
+    
+}
+
 - (void)setActivityStepTableCellBlock:(ActivityStepTableCellBlock)block {
     self.toolBlock = block;
 }
+
 
 #pragma mark - button Action
 - (void)stepToolButonAction:(UIButton *)sender {
