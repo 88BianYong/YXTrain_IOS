@@ -14,15 +14,15 @@
 @end
 @implementation ShareResourcesFetcher
 - (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock {
-    [self stop];
+    [self.request stopRequest];
     self.request = [[ShareResourcesRequest alloc] init];
     self.request.aid = self.aid;
     self.request.toolId = self.toolId;
     self.request.page = [NSString stringWithFormat:@"%d", self.pageindex + 1];
     self.request.pagesize = [NSString stringWithFormat:@"%d", self.pagesize];
-    @weakify(self);
+    WEAK_SELF
     [self.request startRequestWithRetClass:[ShareResourcesRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if (error) {
             aCompleteBlock(0, nil, error);
             return;
@@ -33,19 +33,14 @@
         }
         ShareResourcesRequestItem *datumItem = retItem;
         NSMutableArray *array = [NSMutableArray array];
-//        for (ActivityListRequestItem_body_resource *resource in datumItem.body.resources) {
-//            YXDatumCellModel *model = [YXDatumCellModel modelFromShareResourceRequestItemData:resource];
-//            [array addObject:model];
-//        }
-        aCompleteBlock((int)datumItem.body.resources.count, array, nil);
+        for (ShareResourcesRequestItem_body_resource *resource in datumItem.body.resources) {
+            YXDatumCellModel *model = [YXDatumCellModel modelFromShareResourceRequestItemBodyResource:resource];
+            [array addObject:model];
+        }
+        aCompleteBlock(datumItem.count.intValue, array, nil);
     }];
     
 }
-
-- (void)stop {
-    [self.request stopRequest];
-}
-
 - (void)saveToCache {
     // 只cache第一页结果
     NSString *cachedJson = [self.page0RetItem toJSONString];
@@ -60,7 +55,12 @@
     if (!item) {
         return nil;
     }
-    return [NSArray arrayWithArray:item.body.resources];
+     NSMutableArray *array = [NSMutableArray array];
+    for (ShareResourcesRequestItem_body_resource *resource in item.body.resources) {
+        YXDatumCellModel *model = [YXDatumCellModel modelFromShareResourceRequestItemBodyResource:resource];
+        [array addObject:model];
+    }
+    return [NSArray arrayWithArray:array];
 }
 
 @end

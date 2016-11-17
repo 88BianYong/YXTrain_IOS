@@ -7,7 +7,7 @@
 //
 
 #import "ShareResourcesRequest.h"
-@implementation ActivityListRequestItem_body_resource
+@implementation ShareResourcesRequestItem_body_resource
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"resid":@"resId",
                                                        @"resname":@"resName",
@@ -19,7 +19,7 @@
 }
 @end
 
-@implementation ShareResourcesRequest_body
+@implementation ShareResourcesRequestItem_body
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"toolid":@"toolId"}];
 }

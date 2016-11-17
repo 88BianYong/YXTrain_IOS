@@ -8,9 +8,9 @@
 
 #import "YXGetRequest.h"
 
-@protocol ActivityListRequestItem_body_resource <NSObject>
+@protocol ShareResourcesRequestItem_body_resource <NSObject>
 @end
-@interface ActivityListRequestItem_body_resource : JSONModel
+@interface ShareResourcesRequestItem_body_resource : JSONModel
 
 @property (nonatomic, strong) NSString<Optional> *resId;
 @property (nonatomic, strong) NSString<Optional> *resName;
@@ -22,16 +22,16 @@
 @property (nonatomic, strong) NSString<Optional> *downloadUrl;
 @end
 
-@interface ShareResourcesRequest_body : JSONModel
+@interface ShareResourcesRequestItem_body : JSONModel
+@property (nonatomic, strong) NSArray<ShareResourcesRequestItem_body_resource,Optional> *resources;
+@end
+
+@interface ShareResourcesRequestItem : HttpBaseRequestItem
 @property (nonatomic, strong) NSString<Optional> *count;
 @property (nonatomic, strong) NSString<Optional> *toolid;
 @property (nonatomic, strong) NSString<Optional> *page;
 @property (nonatomic, strong) NSString<Optional> *totalPage;
-@property (nonatomic, strong) NSArray<ActivityListRequestItem_body_resource,Optional> *resources;
-@end
-
-@interface ShareResourcesRequestItem : HttpBaseRequestItem
-@property (nonatomic, strong) ShareResourcesRequest_body<Optional> *body;
+@property (nonatomic, strong) ShareResourcesRequestItem_body<Optional> *body;
 @end
 
 @interface ShareResourcesRequest : YXGetRequest

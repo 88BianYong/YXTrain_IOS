@@ -77,7 +77,7 @@
         make.left.mas_equalTo(14);
         make.width.mas_equalTo(35);
         make.height.mas_equalTo(35);
-        make.centerY.equalTo(self.titleLabel);
+        make.top.mas_equalTo(18);
     }];
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titleLabel.mas_left);
@@ -103,9 +103,9 @@
 
 - (void)setCellModel:(YXDatumCellModel *)cellModel{
     _cellModel = cellModel;
+    self.typeImageView.image = cellModel.image;
     self.titleLabel.text = cellModel.title;
     self.dateLabel.text = cellModel.date;
-    self.dateLabel.text = @"2016-11-11 13:51:46";
     self.sizeLabel.text = [BaseDownloader sizeStringForBytes:cellModel.size];
     self.typeImageView.image = cellModel.image;
     if (cellModel.isFavor) {

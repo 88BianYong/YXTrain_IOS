@@ -30,5 +30,5 @@ extern NSString *const YXFavorSuccessNotification;
 @property (nonatomic, strong) YXDatumSearchRequestItem_data *rawData;
 + (YXDatumCellModel *)modelFromSearchRequestItemData:(YXDatumSearchRequestItem_data *)data;
 + (YXDatumCellModel *)modelFromMyDatumRequestResultList:(YXMyDatumRequestItem_result_list *)list;
-+ (YXDatumCellModel *)modelFromShareResourceRequestItemBodyResource:(ActivityListRequestItem_body_resource *)resource;
++ (YXDatumCellModel *)modelFromShareResourceRequestItemBodyResource:(ShareResourcesRequestItem_body_resource *)resource;
 @end

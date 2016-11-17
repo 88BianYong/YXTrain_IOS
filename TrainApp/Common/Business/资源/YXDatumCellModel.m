@@ -24,7 +24,10 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     }
     return self;
 }
-
++(BOOL)propertyIsOptional:(NSString*)propertyName
+{
+    return YES;
+}
 + (YXDatumCellModel *)modelFromSearchRequestItemData:(YXDatumSearchRequestItem_data *)data{
     YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
     model.title = data.filename;
@@ -67,26 +70,19 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     model.date = [formatter stringFromDate:date];
     return model;
 }
-+ (YXDatumCellModel *)modelFromShareResourceRequestItemBodyResource:(ActivityListRequestItem_body_resource *)resource {
++ (YXDatumCellModel *)modelFromShareResourceRequestItemBodyResource:(ShareResourcesRequestItem_body_resource *)resource {
      YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
     model.title = resource.resName;
     model.size = resource.resSize.longLongValue;
-//    model.isFavor = data.isCollection.boolValue;
-//    model.url = data.url;
-    if ([PersistentUrlDownloader fileExist:model.url]) {
-        model.downloadState = DownloadStatusFinished;
-    }
     model.aid = resource.resId;
-//    model.uid = data.uid;
+#warning 预览和下载两个url,先用这个测试
+    model.url = resource.previewUrl;//先用这个接口~
     model.type = resource.resType;
     // set image
     NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.resType];
     model.image = [UIImage imageNamed:imageName];
     // set date
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:resource.publishTime.doubleValue/1000];
-    model.date = [formatter stringFromDate:date];
+    model.date = resource.publishTime;
     return model;
 }
 @end

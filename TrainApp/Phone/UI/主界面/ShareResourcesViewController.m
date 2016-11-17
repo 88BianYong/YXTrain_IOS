@@ -14,8 +14,6 @@
 #import "ShareResourcesTableViewCell.h"
 #import "ShareResourcesFetcher.h"
 @interface ShareResourcesViewController ()
-@property (nonatomic, strong) YXWholeDatumFetcher *wholeDatumFetcher;
-
 @property (nonatomic, strong) YXResourceCollectionRequest *collectionRequest;
 
 @property (nonatomic, copy) NSString *currentConditon;//错误刷新用到
@@ -33,6 +31,7 @@
     [super viewDidLoad];
     self.title = self.toolTitle;
     [self setupUI];
+//    [self firstPageFetch];
     // Do any additional setup after loading the view.
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -107,24 +106,13 @@
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
 - (void)firstPageFetch {
-    self.wholeDatumFetcher.condition = self.currentConditon;
     [super firstPageFetch:YES];
 }
 - (void)setupDataFetcher {
-    self.wholeDatumFetcher = [[YXWholeDatumFetcher alloc]init];
-    self.wholeDatumFetcher.pagesize = 20;
-    NSDictionary *dic = @{@"interf":@"SearchFilter",@"source":@"ios"};
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:&error];
-    if (error) {
-        self.wholeDatumFetcher.condition = nil;
-        self.currentConditon = nil;
-    } else {
-        NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
-        self.wholeDatumFetcher.condition = jsonString;
-        self.currentConditon = jsonString;
-    }
-    self.dataFetcher = self.wholeDatumFetcher;
+    ShareResourcesFetcher *shareResourcesFetcher = [[ShareResourcesFetcher alloc]init];
+    shareResourcesFetcher.aid = self.aid;
+    shareResourcesFetcher.toolId = self.toolId;
+    self.dataFetcher = shareResourcesFetcher;
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

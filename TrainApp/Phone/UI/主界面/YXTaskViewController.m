@@ -181,8 +181,10 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else if ([task.toolid isEqualToString:@"202"] || [task.toolid isEqualToString:@"302"]){//活动
         ActivityListViewController *VC = [[ActivityListViewController alloc] init];
+#warning 此处因server的接口不支持阶段下"全部",所以默认先先传一个"工作坊"
+        VC.stageID = @"-2";
         [self.navigationController pushViewController:VC animated:YES];
-        [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromTaskList parameters:nil];
+//        [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else{
         [self showToast:@"相关功能暂未开放"];
     }

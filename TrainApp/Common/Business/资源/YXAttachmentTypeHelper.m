@@ -23,6 +23,7 @@
              @"ppt":@(YXFileTypeDoc),
              @"word":@(YXFileTypeDoc),
              @"excel":@(YXFileTypeDoc),
+             @"html":@(YXFileTypeHtml),
              @"unknown":@(YXFileTypeUnknown)
              };
 }
@@ -40,6 +41,8 @@
              @"ppt":@"ppt",
              @"word":@"word",
              @"excel":@"excel",
+#warning 待UI图出来之后替换为新设计的图!
+             @"html":@"未知",//待UI图出来之后替换为新设计的图
              @"unknown":@"未知"
              };
 }
