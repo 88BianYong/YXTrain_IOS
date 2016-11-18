@@ -9,6 +9,7 @@
 #import "ActivityDetailTableHeaderView.h"
 #import "CoreTextViewHandler.h"
 #import "YXGradientView.h"
+#import "YXWebViewController.h"
 @interface ActivityDetailTableHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *statusImageView;
@@ -113,14 +114,21 @@
     [self addSubview:self.htmlView];
     self.coreTextHandler = [[CoreTextViewHandler alloc]initWithCoreTextView:self.htmlView maxWidth:kScreenWidth - 50.0f];
     WEAK_SELF
-    self.coreTextHandler.heightChangeBlock = ^(CGFloat height) {
+    [self.coreTextHandler setCoreTextViewHeightChangeBlock:^(CGFloat height) {
         STRONG_SELF
-        self ->_htmlHeight = height;
+        self ->_changeHeight = height + self.titleLabel.bounds.size.height;
         [self updateHtmlViewWithHeight:height];
         if (height < 300.0f) {
-          BLOCK_EXEC(self.heightChangeBlock,height);
+            BLOCK_EXEC(self.heightChangeBlock,height + self.titleLabel.bounds.size.height);
         }
-    };
+    }];
+    [self.coreTextHandler setCoreTextViewLinkPushedBlock:^(NSURL *url) {
+        STRONG_SELF
+        YXWebViewController *VC = [[YXWebViewController alloc] init];
+        VC.urlString = url.absoluteString;
+        VC.isUpdatTitle = YES;
+        [[self viewController].navigationController pushViewController:VC animated:YES];
+    }];
     
     self.openCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.openCloseButton.layer.cornerRadius = YXTrainCornerRadii;
@@ -270,7 +278,7 @@
     self.participantsContentLabel.text = @"14人";
     if (activity.status.integerValue == 0) {
         self.statusImageView.image = [UIImage imageNamed:@"未开始标签"];
-    }else if (activity.status.integerValue == 0) {
+    }else if (activity.status.integerValue == 2 || activity.status.integerValue == 1) {
         self.statusImageView.image = [UIImage imageNamed:@"进行中标签"];
     }else {
         self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];
@@ -292,5 +300,15 @@
 }
 - (void)relayoutHtmlText{
     [self.htmlView relayoutText];
+}
+- (UIViewController *)viewController
+{
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 @end

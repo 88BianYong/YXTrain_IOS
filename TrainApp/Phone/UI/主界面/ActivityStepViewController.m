@@ -23,7 +23,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"步骤详情";
+    self.title = self.activityStep.title;
     [self setupUI];
     [self setupLayout];
 }
@@ -52,20 +52,20 @@
         STRONG_SELF
         if (isStatus) {
             [UIView animateWithDuration:0.3 animations:^{
-                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 125.0f + self.headerView.htmlHeight);
+                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f + self.headerView.changeHeight);
                 self.tableView.tableHeaderView = self.headerView;
                 [self.headerView relayoutHtmlText];
             }];
         }else {
             [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
-            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 125.0f + 300.0f);
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f + 300.0f);
             self.tableView.tableHeaderView = self.headerView;
             [self.headerView relayoutHtmlText];
         }
     }];
-    [self.headerView setActivityHtmlHeightChangeBlock:^(BOOL height) {
+    [self.headerView setActivityHtmlHeightChangeBlock:^(CGFloat height) {
         STRONG_SELF
-        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 325.0f + self.headerView.htmlHeight);
+        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f + height);
         self.tableView.tableHeaderView = self.headerView;
         [self.headerView relayoutHtmlText];
     }];
@@ -128,14 +128,20 @@
     return cell;
 }
 - (void)goToNextActivityStepToolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
-    if ([tool.toolType isEqualToString:@"video"]) {
+    if ([tool.toolType isEqualToString:@"video"]) {//视频
         ActivityPlayViewController *VC = [[ActivityPlayViewController alloc] init];
         VC.tool = tool;
         [self.navigationController pushViewController:VC animated:YES];
-    }else if ([tool.toolType isEqualToString:@"discuss"]){
+    }else if ([tool.toolType isEqualToString:@"discuss"]){//讨论
         NSString *string = @"CommentPageListViewController";
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
+    } else if ([tool.toolType isEqualToString:@"resdisc"]) {//资源下载
+        
+    } else if ([tool.toolType isEqualToString:@"resources"]) {//资源分享
+        
+    } else {
+        [self showToast:@"暂不支持该类型的工具"];
     }
 }
 #pragma mark - format data

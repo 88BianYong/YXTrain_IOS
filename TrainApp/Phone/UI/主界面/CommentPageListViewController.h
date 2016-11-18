@@ -14,6 +14,7 @@
 @property (nonatomic, strong) CommentPagedListFetcher *dataFetcher;
 @property (nonatomic, strong) NSMutableArray *dataMutableArray;
 @property (nonatomic, assign) BOOL isHiddenInputView;
+
 - (void)setupUI;
 - (void)setupLayout;
 - (void)inputActitvityCommentReply:(ActivityFirstCommentRequestItem_Body_Replies *)replies;

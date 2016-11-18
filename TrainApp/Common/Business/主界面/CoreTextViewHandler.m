@@ -15,8 +15,16 @@ UIActionSheetDelegate
 @property(nonatomic, strong) DTAttributedTextContentView *htmlView;
 @property (nonatomic, assign) CGFloat maxWidth;
 @property (nonatomic, strong) NSURL *lastActionLink;
+
+@property (nonatomic, copy) CoreTextViewrRelayoutBlock relayoutBlock;
+@property (nonatomic, copy) CoreTextViewLinkPushedBlock linkPushedBlock;
+@property (nonatomic, copy) CoreTextViewHeightChangeBlock heightChangeBlock;
+
 @end
 @implementation CoreTextViewHandler
+- (void)dealloc {
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
+}
 + (NSDictionary *)defaultCoreTextOptions{
     CGSize maxImageSize = CGSizeMake(kScreenWidth - 50.0f, kScreenHeight - 100.0f);
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -68,7 +76,7 @@ UIActionSheetDelegate
 }
 
 - (void)linkPushed:(DTLinkButton *)button {
-    [[UIApplication sharedApplication] openURL:[button.URL absoluteURL]];
+    BLOCK_EXEC(self.linkPushedBlock,[button.URL absoluteURL]);
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -117,6 +125,19 @@ UIActionSheetDelegate
 }
 - (void)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView didDrawLayoutFrame:(DTCoreTextLayoutFrame *)layoutFrame inContext:(CGContextRef)context {
     BLOCK_EXEC(self.heightChangeBlock,ceilf(layoutFrame.frame.size.height));
+}
+
+#pragma mark - set 
+- (void)setCoreTextViewrRelayoutBlock:(CoreTextViewrRelayoutBlock)block {
+    self.relayoutBlock = block;
+}
+
+- (void)setCoreTextViewLinkPushedBlock:(CoreTextViewLinkPushedBlock)block {
+    self.linkPushedBlock = block;
+}
+
+- (void)setCoreTextViewHeightChangeBlock:(CoreTextViewHeightChangeBlock)block {
+    self.heightChangeBlock = block;
 }
 
 @end

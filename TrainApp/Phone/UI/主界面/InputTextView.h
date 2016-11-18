@@ -11,5 +11,6 @@ typedef void(^InputTextViewHeightBlock)(CGFloat height);
 @interface InputTextView : UITextView
 @property (nonatomic, copy) NSString *placeHolder;
 @property (nonatomic, strong) UIColor *placeHolderTextColor;
+
 - (void)setInputTextViewHeight:(InputTextViewHeightBlock)block;
 @end

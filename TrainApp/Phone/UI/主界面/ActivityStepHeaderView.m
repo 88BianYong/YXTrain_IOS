@@ -9,6 +9,7 @@
 #import "ActivityStepHeaderView.h"
 #import "CoreTextViewHandler.h"
 #import "YXGradientView.h"
+#import "YXWebViewController.h"
 @interface ActivityStepHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *descriptionLabel;
@@ -16,7 +17,6 @@
 @property (nonatomic, strong) UIButton *openCloseButton;
 @property (nonatomic, strong) CoreTextViewHandler *coreTextHandler;
 @property (nonatomic, strong) YXGradientView *gradientView;
-
 
 @property (nonatomic, copy) ActivityHtmlOpenAndCloseBlock openCloseBlock;
 @property (nonatomic, copy) ActivityHtmlHeightChangeBlock heightChangeBlock;
@@ -73,15 +73,22 @@
     [self addSubview:self.htmlView];
     self.coreTextHandler = [[CoreTextViewHandler alloc]initWithCoreTextView:self.htmlView maxWidth:kScreenWidth - 50.0f];
     WEAK_SELF
-    self.coreTextHandler.heightChangeBlock = ^(CGFloat height) {
+    [self.coreTextHandler setCoreTextViewLinkPushedBlock:^(NSURL *url) {
         STRONG_SELF
-        self ->_htmlHeight = height;
+        YXWebViewController *VC = [[YXWebViewController alloc] init];
+        VC.urlString = url.absoluteString;
+        VC.isUpdatTitle = YES;
+        [[self viewController].navigationController pushViewController:VC animated:YES];
+        
+    }];
+    [self.coreTextHandler setCoreTextViewHeightChangeBlock:^(CGFloat height) {
+        STRONG_SELF
+        self ->_changeHeight = height + self.titleLabel.bounds.size.height;
         [self updateHtmlViewWithHeight:height];
         if (height < 300.0f) {
-            BLOCK_EXEC(self.heightChangeBlock,height);
+            BLOCK_EXEC(self.heightChangeBlock,height + self.titleLabel.bounds.size.height);
         }
-    };
-    
+    }];
     self.openCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.openCloseButton.layer.cornerRadius = YXTrainCornerRadii;
     self.openCloseButton.layer.borderWidth = 1.0f;
@@ -114,7 +121,7 @@
         make.top.equalTo(self.descriptionLabel.mas_bottom).offset(22.0f);
         make.left.equalTo(self.mas_left).offset(25.0f);
         make.right.equalTo(self.mas_right).offset(-25.0f);
-        make.bottom.equalTo(self.mas_bottom).offset (-61.0f);
+        make.bottom.equalTo(self.mas_bottom).offset (-41.0f);
     }];
     [self.gradientView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
@@ -126,7 +133,7 @@
     [self.openCloseButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_offset(CGSizeMake(80.0f, 24.0f));
         make.centerX.equalTo(self.mas_centerX);
-        make.bottom.equalTo(self.mas_bottom).offset(-20.0f);
+        make.bottom.equalTo(self.mas_bottom);
     }];
 }
 - (void)updateHtmlViewWithHeight:(CGFloat)height {
@@ -135,7 +142,7 @@
             make.top.equalTo(self.descriptionLabel.mas_bottom).offset(22.0f);
             make.left.equalTo(self.mas_left).offset(25.0f);
             make.right.equalTo(self.mas_right).offset(-25.0f);
-            make.bottom.equalTo(self.mas_bottom).offset (-3.0f);
+            make.bottom.equalTo(self.mas_bottom);
         }];
         self.openCloseButton.hidden = YES;
         self.gradientView.hidden = YES;
@@ -168,13 +175,23 @@
 - (void)setActivityStep:(ActivityListRequestItem_Body_Activity_Steps *)activityStep{
     _activityStep = activityStep;
     self.titleLabel.text = _activityStep.title;
-    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
-    NSString *html = [NSString stringWithContentsOfFile:readmePath
-                                               encoding:NSUTF8StringEncoding
-                                                  error:NULL];
-    NSData *data = [html dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
+//    NSString *html = [NSString stringWithContentsOfFile:readmePath
+//                                               encoding:NSUTF8StringEncoding
+//                                                  error:NULL];
+    NSData *data = [_activityStep.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions]documentAttributes:nil];
     self.htmlView.attributedString = string;
+}
+- (UIViewController *)viewController
+{
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 
 @end

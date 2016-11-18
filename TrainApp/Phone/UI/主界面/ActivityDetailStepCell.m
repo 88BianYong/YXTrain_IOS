@@ -25,7 +25,6 @@
         [selectedBgView addSubview:backgroundView];
         self.selectedBackgroundView = selectedBgView;
         [self setupUI];
-        
     }
     return self;
 }

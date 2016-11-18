@@ -26,7 +26,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"活动";
+    self.title = self.activity.title;
     [self setupUI];
     [self setupLayout];
     [self requestForActivityStepList];
@@ -47,26 +47,26 @@
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[ActivityDetailTableSectionView class] forHeaderFooterViewReuseIdentifier:@"ActivityDetailTableSectionView"];
     [self.tableView registerClass:[ActivityDetailStepCell class] forCellReuseIdentifier:@"ActivityDetailStepCell"];
-    self.headerView = [[ActivityDetailTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 355 + 300.0)];
+    self.headerView = [[ActivityDetailTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 335 + 300.0)];
     WEAK_SELF
     [self.headerView setActivityHtmlOpenAndCloseBlock:^(BOOL isStatus) {
         STRONG_SELF
         if (isStatus) {
             [UIView animateWithDuration:0.3 animations:^{
-                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 355.0f + self.headerView.htmlHeight);
+                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 335.0f + self.headerView.changeHeight);
                 self.tableView.tableHeaderView = self.headerView;
                 [self.headerView relayoutHtmlText];
             }];
         }else {
             [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
-            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 355.0f + 300.0f);
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 335.0f + 300.0f);
             self.tableView.tableHeaderView = self.headerView;
             [self.headerView relayoutHtmlText];
         }
     }];
-    [self.headerView setActivityHtmlHeightChangeBlock:^(BOOL height) {
+    [self.headerView setActivityHtmlHeightChangeBlock:^(CGFloat height) {
         STRONG_SELF
-        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 355.0f + self.headerView.htmlHeight);
+        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 335.0f + height);
         self.tableView.tableHeaderView = self.headerView;
         [self.headerView relayoutHtmlText];
     }];
@@ -109,10 +109,14 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    ActivityListRequestItem_Body_Activity_Steps *step = self.listItem.body.active.steps[indexPath.section];
-    ActivityStepViewController *VC = [[ActivityStepViewController alloc] init];
-    VC.activityStep = step;
-    [self.navigationController pushViewController:VC animated:YES];
+    if (self.activity.status.integerValue > 0) {
+        ActivityListRequestItem_Body_Activity_Steps *step = self.listItem.body.active.steps[indexPath.section];
+        ActivityStepViewController *VC = [[ActivityStepViewController alloc] init];
+        VC.activityStep = step;
+        [self.navigationController pushViewController:VC animated:YES];
+    }else {
+        [self showToast:@"活动尚未开始"];
+    }
 }
 
 #pragma mark - UITableViewDataSource

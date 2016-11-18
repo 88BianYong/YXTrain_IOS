@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ActivityListRequest.h"
 typedef void(^ActivityHtmlOpenAndCloseBlock)(BOOL isStatus);
-typedef void(^ActivityHtmlHeightChangeBlock) (BOOL height);
+typedef void(^ActivityHtmlHeightChangeBlock) (CGFloat height);
 @interface ActivityDetailTableHeaderView : UIView
 @property (nonatomic, strong) ActivityListRequestItem_body_activity *activity;
-@property (nonatomic, assign, readonly) CGFloat htmlHeight;
+@property (nonatomic, assign, readonly) CGFloat changeHeight;
 - (void)setActivityHtmlOpenAndCloseBlock:(ActivityHtmlOpenAndCloseBlock)block;
 - (void)setActivityHtmlHeightChangeBlock:(ActivityHtmlHeightChangeBlock)block;
 - (void)relayoutHtmlText;
