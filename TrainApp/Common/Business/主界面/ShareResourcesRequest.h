@@ -12,14 +12,15 @@
 @end
 @interface ShareResourcesRequestItem_body_resource : JSONModel
 
-@property (nonatomic, strong) NSString<Optional> *resId;
-@property (nonatomic, strong) NSString<Optional> *resName;
-@property (nonatomic, strong) NSString<Optional> *publishTime;
-@property (nonatomic, strong) NSString<Optional> *createUsername;
-@property (nonatomic, strong) NSString<Optional> *resType;
-@property (nonatomic, strong) NSString<Optional> *resSize;
-@property (nonatomic, strong) NSString<Optional> *previewUrl;
-@property (nonatomic, strong) NSString<Optional> *downloadUrl;
+@property (nonatomic, copy) NSString<Optional> *resId;
+@property (nonatomic, copy) NSString<Optional> *resName;
+@property (nonatomic, copy) NSString<Optional> *publishTime;
+@property (nonatomic, copy) NSString<Optional> *createUsername;
+@property (nonatomic, copy) NSString<Optional> *resType;
+@property (nonatomic, copy) NSString<Optional> *resSize;
+@property (nonatomic, copy) NSString<Optional> *previewUrl;
+@property (nonatomic, copy) NSString<Optional> *downloadUrl;
+@property (nonatomic, copy) NSString<Optional> *isCollection;
 @end
 
 @interface ShareResourcesRequestItem_body : JSONModel
@@ -27,16 +28,17 @@
 @end
 
 @interface ShareResourcesRequestItem : HttpBaseRequestItem
-@property (nonatomic, strong) NSString<Optional> *count;
-@property (nonatomic, strong) NSString<Optional> *toolid;
-@property (nonatomic, strong) NSString<Optional> *page;
-@property (nonatomic, strong) NSString<Optional> *totalPage;
+@property (nonatomic, copy) NSString<Optional> *count;
+@property (nonatomic, copy) NSString<Optional> *toolid;
+@property (nonatomic, copy) NSString<Optional> *page;
+@property (nonatomic, copy) NSString<Optional> *totalPage;
 @property (nonatomic, strong) ShareResourcesRequestItem_body<Optional> *body;
 @end
 
 @interface ShareResourcesRequest : YXGetRequest
-@property (nonatomic, strong) NSString *aid;
-@property (nonatomic, strong) NSString *toolId;
-@property (nonatomic, strong) NSString *page;
-@property (nonatomic, strong) NSString *pagesize;
+@property (nonatomic, copy) NSString *aid;
+@property (nonatomic, copy) NSString *toolId;
+@property (nonatomic, copy) NSString *w;//区分哪个平台项目，目前3（15项目），4（16项目）
+@property (nonatomic, copy) NSString *page;
+@property (nonatomic, copy) NSString *pageSize;
 @end

@@ -105,9 +105,9 @@
     sender.backgroundColor = [UIColor colorWithHexString:@"0070c9"];
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
-- (void)firstPageFetch {
-    [super firstPageFetch:YES];
-}
+//- (void)firstPageFetch {
+//    [super firstPageFetch:YES];
+//}
 - (void)setupDataFetcher {
     ShareResourcesFetcher *shareResourcesFetcher = [[ShareResourcesFetcher alloc]init];
     shareResourcesFetcher.aid = self.aid;

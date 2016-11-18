@@ -71,7 +71,7 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     return model;
 }
 + (YXDatumCellModel *)modelFromShareResourceRequestItemBodyResource:(ShareResourcesRequestItem_body_resource *)resource {
-     YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
+    YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
     model.title = resource.resName;
     model.size = resource.resSize.longLongValue;
     model.aid = resource.resId;
@@ -81,8 +81,8 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     // set image
     NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.resType];
     model.image = [UIImage imageNamed:imageName];
-    // set date
     model.date = resource.publishTime;
+    model.isFavor = resource.isCollection.boolValue;
     return model;
 }
 @end

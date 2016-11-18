@@ -2889,6 +2889,7 @@
 				E9A7B5EE1DDC3EE400136335 /* ShareResourcesRequest.m */,
 				E9A7B5F01DDC46CA00136335 /* ShareResourcesFetcher.h */,
 				E9A7B5F11DDC46CA00136335 /* ShareResourcesFetcher.m */,
+				E9A7B5F31DDC63EF00136335 /* shareResources_mock.json */,
 			);
 			name = "资源分享";
 			sourceTree = "<group>";
@@ -2946,7 +2947,6 @@
 				9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */,
 				E9BBA61E1DD310EA000CA413 /* activityFilter_mock.json */,
 				E9BBA61F1DD310EA000CA413 /* activityList_mock.json */,
-				E9A7B5F31DDC63EF00136335 /* shareResources_mock.json */,
 				9237FF781DD48F800057FFDE /* activityStep_mock.json */,
 				92780F671DD9A01600548424 /* CommentPagedListFetcher.h */,
 				92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */,

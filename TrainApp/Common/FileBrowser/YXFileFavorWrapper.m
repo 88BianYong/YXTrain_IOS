@@ -15,6 +15,7 @@
 @property (nonatomic, weak) UIViewController *baseVC;
 @property (nonatomic, strong) UIButton *favorButton;
 @property (nonatomic, strong) YXResourceCollectionRequest *collectionRequest;
+@property (nonatomic, strong) NSSet *collectionResourceSet;
 @end
 
 @implementation YXFileFavorWrapper

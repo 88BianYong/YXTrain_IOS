@@ -11,22 +11,22 @@
 @protocol ActivityFilterRequestItem_body_stage <NSObject>
 @end
 @interface ActivityFilterRequestItem_body_stage : JSONModel
-@property (nonatomic, strong) NSString<Optional> *stageID;
-@property (nonatomic, strong) NSString<Optional> *name;
+@property (nonatomic, copy) NSString<Optional> *stageID;
+@property (nonatomic, copy) NSString<Optional> *name;
 @end
 
 @protocol ActivityFilterRequestItem_body_study <NSObject>
 @end
 @interface ActivityFilterRequestItem_body_study : JSONModel
-@property (nonatomic, strong) NSString<Optional> *studyID;
-@property (nonatomic, strong) NSString<Optional> *name;
+@property (nonatomic, copy) NSString<Optional> *studyID;
+@property (nonatomic, copy) NSString<Optional> *name;
 @end
 
 @protocol ActivityFilterRequestItem_body_segment <NSObject>
 @end
 @interface ActivityFilterRequestItem_body_segment : JSONModel
-@property (nonatomic, strong) NSString<Optional> *segmentID;
-@property (nonatomic, strong) NSString<Optional> *name;
+@property (nonatomic, copy) NSString<Optional> *segmentID;
+@property (nonatomic, copy) NSString<Optional> *name;
 @end
 
 @protocol ActivityFilterRequestItem_body <NSObject>
@@ -43,6 +43,6 @@
 @end
 
 @interface ActivityFilterRequest : YXGetRequest
-@property (nonatomic, strong) NSString *projectId;
-@property (nonatomic, strong) NSString *w;
+@property (nonatomic, copy) NSString *projectId;
+@property (nonatomic, copy) NSString *w;
 @end

@@ -9,9 +9,9 @@
 #import "PagedListFetcherBase.h"
 @class ActivityFilterModel;
 @interface ActivityListFetcher : PagedListFetcherBase
-@property (nonatomic, strong) NSString *studyid; //学科id
-@property (nonatomic, strong) NSString *segid;   //学段id
-@property (nonatomic, strong) NSString *stageid; //阶段id
-@property (nonatomic, strong) NSString *pid;
-@property (nonatomic, strong) void(^listCompleteBlock)();
+@property (nonatomic, copy) NSString *studyid; //学科id
+@property (nonatomic, copy) NSString *segid;   //学段id
+@property (nonatomic, copy) NSString *stageid; //阶段id
+@property (nonatomic, copy) NSString *pid;
+@property (nonatomic, copy) void(^listCompleteBlock)();
 @end

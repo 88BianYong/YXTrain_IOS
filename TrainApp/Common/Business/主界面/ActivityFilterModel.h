@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 @class ActivityFilterRequestItem;
 @interface ActivityFilter : NSObject
-@property (nonatomic, strong) NSString *filterID;
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, copy) NSString *filterID;
+@property (nonatomic, copy) NSString *name;
 @end
 
 @interface ActivityFilterGroup : NSObject
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) NSArray *filterArray;
 @end
 
