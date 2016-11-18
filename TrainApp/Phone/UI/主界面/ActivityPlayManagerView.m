@@ -60,7 +60,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.bottomView.slideProgressControl addTarget:self action:@selector(progressAction) forControlEvents:UIControlEventTouchUpInside];
     self.bufferingView = [[YXPlayerBufferingView alloc] init];
     [self addSubview:self.bufferingView];
-    self.player.videoUrl = [NSURL URLWithString:@"http://coursecdn.teacherclub.com.cn/course/cf/ts/ts_gg/ptcz-xybnx_qxgly/video/qxgly/qxgly.m3u8"];
+
     
     self.topView = [[ActivityPlayTopView alloc] init];
     [self addSubview:self.topView];
@@ -352,5 +352,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         [self.bottomView.rotateButton setImage:[UIImage imageNamed:@"放大按钮"] forState:UIControlStateNormal];
         self.topView.hidden = YES;
     }
+}
+- (void)setVideoUrl:(NSURL *)videoUrl {
+    _videoUrl = videoUrl;
+    self.player.videoUrl = _videoUrl;
+//    [NSURL URLWithString:@"http://coursecdn.teacherclub.com.cn/course/cf/ts/ts_gg/ptcz-xybnx_qxgly/video/qxgly/qxgly.m3u8"];
 }
 @end

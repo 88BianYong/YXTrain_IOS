@@ -27,6 +27,9 @@
     }else if (toolid.integerValue == 211 || toolid.integerValue == 311){
         lStr = [NSString stringWithFormat:@"已提问%@个",finishNum];
         rStr = [NSString stringWithFormat:@"／%@个",totalNum];
+    }else if (toolid.integerValue == 220 || toolid.integerValue == 320){
+        lStr = [NSString stringWithFormat:@"已被点评%@篇",finishNum];
+        rStr = [NSString stringWithFormat:@"／%@篇",totalNum];
     }else{
         lStr = [NSString stringWithFormat:@"已完成%@个",finishNum];
         rStr = [NSString stringWithFormat:@"／%@个",totalNum];

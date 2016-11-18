@@ -14,6 +14,7 @@
 @interface ActivityPlayViewController ()
 @property (nonatomic, strong) ActivityPlayManagerView *playMangerView;
 @property (nonatomic, strong) ActivityToolVideoRequest *videoRequest;
+@property (nonatomic, strong) ActivityToolVideoRequestItem *toolVideoItem;
 
 
 @end
@@ -119,8 +120,18 @@
     ActivityToolVideoRequest *request = [[ActivityToolVideoRequest alloc] init];
     request.aid = self.tool.aid;
     request.toolId = self.tool.toolid;
+    request.w = [YXTrainManager sharedInstance].currentProject.w;
+    WEAK_SELF
     [request startRequestWithRetClass:[ActivityToolVideoRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        DDLogDebug(@"qwq");
+        STRONG_SELF
+        if (error) {
+            
+            
+        }else {
+            ActivityToolVideoRequestItem *item = (ActivityToolVideoRequestItem *)retItem;
+            self.toolVideoItem = item;
+            self.playMangerView.videoUrl = [NSURL URLWithString:[item.body formatToolVideo].previewurl];
+        }
     }];
     self.videoRequest = request;
 }

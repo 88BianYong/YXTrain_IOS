@@ -11,6 +11,7 @@ typedef void (^BackActionBlock)(void);
 typedef void (^RotateScreenBlock)(BOOL isVertical);
 @interface ActivityPlayManagerView : UIView
 @property (nonatomic, assign) BOOL isFullscreen;
+@property (nonatomic, strong) NSURL *videoUrl;
 
 - (void)setBackActionBlock:(BackActionBlock)block;
 - (void)setRotateScreenBlock:(RotateScreenBlock)block;

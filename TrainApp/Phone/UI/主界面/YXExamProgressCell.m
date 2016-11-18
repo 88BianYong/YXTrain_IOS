@@ -123,7 +123,9 @@
         self.typeImageView.image = [UIImage imageNamed:@"小组作业icon"];
     }else if (item.toolid.integerValue == 218 || item.toolid.integerValue == 318){
         self.typeImageView.image = [UIImage imageNamed:@"线下活动icon"];
-    }else{
+    }else if (item.toolid.integerValue == 219 || item.toolid.integerValue == 319){
+        self.typeImageView.image = [UIImage imageNamed: @"作业互评icon"];
+    }else {
         self.typeImageView.image = nil;
     }
 }
