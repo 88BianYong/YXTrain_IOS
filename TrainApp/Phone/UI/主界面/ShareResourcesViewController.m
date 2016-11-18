@@ -136,7 +136,7 @@
     YXDatumCellModel *data = self.dataArray[indexPath.row];
     YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
     item.name = data.title;
-    item.url = data.url;
+    item.url = data.previewUrl;
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
     if(item.type == YXFileTypeUnknown) {
         [self showToast:@"暂不支持该格式文件预览"];

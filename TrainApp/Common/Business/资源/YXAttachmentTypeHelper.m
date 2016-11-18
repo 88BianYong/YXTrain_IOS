@@ -33,16 +33,15 @@
 }
 
 + (NSDictionary *)picNameMap {
-    return @{@"video":@"视频",
-             @"audio":@"MP3",
-             @"text":@"TXT",
-             @"image":@"image",
+    return @{@"video":@"mp4／m3u8",
+             @"audio":@"mp3",
+             @"text":@"txt",
+             @"image":@"jpg-png-bmp",
              @"pdf":@"pdf",
              @"ppt":@"ppt",
              @"word":@"word",
              @"excel":@"excel",
-#warning 待UI图出来之后替换为新设计的图!
-             @"html":@"未知",//待UI图出来之后替换为新设计的图
+             @"html":@"html",
              @"unknown":@"未知"
              };
 }

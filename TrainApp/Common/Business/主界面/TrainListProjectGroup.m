@@ -13,15 +13,17 @@
     NSMutableArray *trainGroupArray = [NSMutableArray array];
     
     TrainListProjectGroup *trainingGroup = [[TrainListProjectGroup alloc]init];
-    trainingGroup.name = @"在培项目";
-    trainingGroup.items = data.training;
-    [trainGroupArray addObject:trainingGroup];
-    
+    if (data.training.count > 0) {
+        trainingGroup.name = @"在培项目";
+        trainingGroup.items = data.training;
+        [trainGroupArray addObject:trainingGroup];
+    }
     TrainListProjectGroup *trainedGroup = [[TrainListProjectGroup alloc]init];
-    trainedGroup.name = @"历史项目";
-    trainedGroup.items = data.trained;
-    [trainGroupArray addObject:trainedGroup];
-    
+    if (data.trained.count > 0) {
+        trainedGroup.name = @"历史项目";
+        trainedGroup.items = data.trained;
+        [trainGroupArray addObject:trainedGroup];
+    }
     return trainGroupArray.copy;
 }
 @end

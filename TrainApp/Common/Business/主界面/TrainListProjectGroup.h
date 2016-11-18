@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "YXTrainListRequest.h"
 @interface TrainListProjectGroup : NSObject
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train *> *items;
 + (NSArray *)projectGroupsWithRawData:(YXTrainListRequestItem_body *)data;
 @end

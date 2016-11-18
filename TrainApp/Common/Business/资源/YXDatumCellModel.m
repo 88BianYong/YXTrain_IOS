@@ -75,10 +75,9 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     model.title = resource.resName;
     model.size = resource.resSize.longLongValue;
     model.aid = resource.resId;
-#warning 预览和下载两个url,先用这个测试
-    model.url = resource.previewUrl;//先用这个接口~
+    model.previewUrl = resource.previewUrl;
+    model.url = resource.downloadUrl;
     model.type = resource.resType;
-    // set image
     NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.resType];
     model.image = [UIImage imageNamed:imageName];
     model.date = resource.publishTime;

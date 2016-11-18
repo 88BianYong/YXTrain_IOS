@@ -97,7 +97,11 @@
 }
 - (void)setActivity:(ActivityListRequestItem_body_activity *)activity {
     _activity = activity;
-    [self.activityImageView sd_setImageWithURL:[NSURL URLWithString:activity.pic]];
+    if (activity.pic) {
+        [self.activityImageView sd_setImageWithURL:[NSURL URLWithString:activity.pic]];
+    }else {
+        self.activityImageView.image = [UIImage imageNamed:@"默认图片"];
+    }
     self.titleLabel.text = activity.title;
 
     self.startTimeLabel.text = [NSString stringWithFormat:@"开始时间  %@",activity.startTime];

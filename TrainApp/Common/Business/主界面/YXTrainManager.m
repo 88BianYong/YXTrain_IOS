@@ -26,16 +26,13 @@
 }
 
 - (YXTrainListRequestItem_body_train *)currentProject {
-    if (isEmpty(self.trainlistItem.body.training) && isEmpty(self.trainlistItem.body.trained)) {
+    NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body];
+    if (isEmpty(groups)) {
         return nil;
     }
-    NSInteger section = self.currentProjectIndexPath.section;
-    NSInteger currentProjectIndex = self.currentProjectIndexPath.row;
-    if (section== 0) {
-        return self.trainlistItem.body.training[currentProjectIndex];
-    }else{
-        return self.trainlistItem.body.trained[currentProjectIndex];
-    }
+    TrainListProjectGroup *group = groups[self.currentProjectIndexPath.section];
+    NSArray *items = group.items;
+    return items[self.currentProjectIndexPath.row];
 }
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock {
     if (self.trainlistItem) {

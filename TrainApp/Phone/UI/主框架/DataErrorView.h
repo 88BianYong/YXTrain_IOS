@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DataErrorView : UIView
-@property (nonatomic, strong) void(^refreshBlock)();
+@property (nonatomic, copy) void(^refreshBlock)();
 @end

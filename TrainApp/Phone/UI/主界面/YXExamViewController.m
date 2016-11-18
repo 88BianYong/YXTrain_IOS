@@ -264,7 +264,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
             }else if ([data.toolid isEqualToString:@"202"] || [data.toolid isEqualToString:@"302"]){//活动
                 ActivityListViewController *VC = [[ActivityListViewController alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
-                //                [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else {
                 [self showToast:@"相关功能暂未开放"];
             }
@@ -357,7 +356,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 ActivityListViewController *VC = [[ActivityListViewController alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
                 VC.stageID = vo.voID;
-//                [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else{
                 [self showToast:@"相关功能暂未开放"];
             }

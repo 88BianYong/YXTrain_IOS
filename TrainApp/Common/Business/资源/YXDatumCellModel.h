@@ -21,6 +21,7 @@ extern NSString *const YXFavorSuccessNotification;
 @property (nonatomic, assign) unsigned long long size;
 @property (nonatomic, assign) BOOL isFavor;
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *previewUrl;//资源预览的预览和下载分两个url
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, copy) NSString *type;
 // 下载
