@@ -11,7 +11,6 @@
 @protocol ShareResourcesRequestItem_body_resource <NSObject>
 @end
 @interface ShareResourcesRequestItem_body_resource : JSONModel
-
 @property (nonatomic, copy) NSString<Optional> *resId;
 @property (nonatomic, copy) NSString<Optional> *resName;
 @property (nonatomic, copy) NSString<Optional> *publishTime;
@@ -23,6 +22,8 @@
 @property (nonatomic, copy) NSString<Optional> *isCollection;
 @end
 
+@protocol ShareResourcesRequestItem_body <NSObject>
+@end
 @interface ShareResourcesRequestItem_body : JSONModel
 @property (nonatomic, strong) NSArray<ShareResourcesRequestItem_body_resource,Optional> *resources;
 @end

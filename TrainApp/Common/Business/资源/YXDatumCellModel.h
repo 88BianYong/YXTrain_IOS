@@ -11,6 +11,7 @@
 #import "YXDatumSearchRequest.h"
 #import "YXMyDatumRequest.h"
 #import "ShareResourcesRequest.h"
+#import "ResourcesDownloadRequest.h"
 extern NSString *const YXFavorSuccessNotification;
 @interface YXDatumCellModel : NSObject
 @property (nonatomic, copy) NSString *uid;
@@ -24,6 +25,7 @@ extern NSString *const YXFavorSuccessNotification;
 @property (nonatomic, strong) NSString *previewUrl;//资源预览的预览和下载分两个url
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *createUsername;//资源分享和下载里 上传资源者
 // 下载
 @property (nonatomic, assign) unsigned long long downloadedSize;
 @property (nonatomic, assign) DownloaderState downloadState;
@@ -32,4 +34,5 @@ extern NSString *const YXFavorSuccessNotification;
 + (YXDatumCellModel *)modelFromSearchRequestItemData:(YXDatumSearchRequestItem_data *)data;
 + (YXDatumCellModel *)modelFromMyDatumRequestResultList:(YXMyDatumRequestItem_result_list *)list;
 + (YXDatumCellModel *)modelFromShareResourceRequestItemBodyResource:(ShareResourcesRequestItem_body_resource *)resource;
++ (YXDatumCellModel *)modelFromResourceDownloadRequestItemBodyResource:(ResourcesDownloadRequestItem_body_resource *)resource;
 @end

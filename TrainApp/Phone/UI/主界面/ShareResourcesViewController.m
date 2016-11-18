@@ -13,6 +13,7 @@
 #import "YXAllDatumTableViewCell.h"
 #import "ShareResourcesTableViewCell.h"
 #import "ShareResourcesFetcher.h"
+#import "ActivityListRequest.h"
 @interface ShareResourcesViewController ()
 @property (nonatomic, strong) YXResourceCollectionRequest *collectionRequest;
 
@@ -29,10 +30,8 @@
     self.emptyView = emptyView;
     
     [super viewDidLoad];
-    self.title = self.toolTitle;
+    self.title = self.tool.title;
     [self setupUI];
-//    [self firstPageFetch];
-    // Do any additional setup after loading the view.
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -110,8 +109,8 @@
 //}
 - (void)setupDataFetcher {
     ShareResourcesFetcher *shareResourcesFetcher = [[ShareResourcesFetcher alloc]init];
-    shareResourcesFetcher.aid = self.aid;
-    shareResourcesFetcher.toolId = self.toolId;
+    shareResourcesFetcher.aid = self.tool.aid;
+    shareResourcesFetcher.toolId = self.tool.toolid;
     self.dataFetcher = shareResourcesFetcher;
 }
 #pragma mark - UITableViewDataSource

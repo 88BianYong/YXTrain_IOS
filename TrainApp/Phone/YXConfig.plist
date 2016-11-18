@@ -24,7 +24,7 @@
 	<key>websocket</key>
 	<string>ws://mobile.yanxiu.com/websocket</string>
 	<key>mockFrameworkOn</key>
-	<true/>
+	<false/>
 	<key>testFrameworkOn</key>
 	<false/>
 	<key>talkingDataReport</key>

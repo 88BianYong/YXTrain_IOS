@@ -61,7 +61,7 @@
     self.uploadLabel = [[UILabel alloc]init];
     self.uploadLabel.font = [UIFont systemFontOfSize:12];
     self.uploadLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    self.uploadLabel.text = @"上传  王的拉萨";
+//    self.uploadLabel.text = @"上传  王的拉萨";
     [self.contentView addSubview:self.uploadLabel];
     
     self.cellSeperatorView = [[UIView alloc]init];
@@ -108,6 +108,7 @@
     self.dateLabel.text = cellModel.date;
     self.sizeLabel.text = [BaseDownloader sizeStringForBytes:cellModel.size];
     self.typeImageView.image = cellModel.image;
+    self.uploadLabel.text = [NSString stringWithFormat:@"上传  %@",cellModel.createUsername];
     if (cellModel.isFavor) {
         self.titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     } else {
