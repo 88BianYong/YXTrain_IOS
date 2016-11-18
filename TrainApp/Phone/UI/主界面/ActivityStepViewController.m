@@ -139,18 +139,16 @@
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
     } else if ([tool.toolType isEqualToString:@"resdisc"]) {//资源下载
-        
+        ResourcesDownloadViewController *downloadVc = [[ResourcesDownloadViewController alloc]init];
+        downloadVc.tool = tool;
+        [self.navigationController pushViewController:downloadVc animated:YES];
     } else if ([tool.toolType isEqualToString:@"resources"]) {//资源分享
-        
+        ShareResourcesViewController *shareResourceVC = [[ShareResourcesViewController alloc]init];
+        shareResourceVC.tool = tool;
+        [self.navigationController pushViewController:shareResourceVC animated:YES];
     } else {
         [self showToast:@"暂不支持该类型的工具"];
     }
-    ShareResourcesViewController *shareResourceVC = [[ShareResourcesViewController alloc]init];
-    shareResourceVC.tool = tool;
-    [self.navigationController pushViewController:shareResourceVC animated:YES];
-//        ResourcesDownloadViewController *downloadVc = [[ResourcesDownloadViewController alloc]init];
-//    downloadVc.tool = tool;
-//        [self.navigationController pushViewController:downloadVc animated:YES];
 }
 #pragma mark - format data
 - (ActivityListRequestItem_Body_Activity_Steps_Tools *)obtainActivityTool:(NSInteger)integer {
