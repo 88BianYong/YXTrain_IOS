@@ -21,6 +21,8 @@
 @property (nonatomic, copy) NSString<Optional> *downloadurl;
 @property (nonatomic, copy) NSString<Optional> *res_type;
 @property (nonatomic, copy) NSString<Optional> *res_size;
+@property (nonatomic, copy) NSString<Optional> *res_thumb;
+@property (nonatomic, copy) NSString<Optional> *isCollection;
 @end
 
 @interface ActivityToolVideoRequestItem_Body : JSONModel

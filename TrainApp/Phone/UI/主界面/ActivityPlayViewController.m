@@ -11,11 +11,12 @@
 #import "ActivityCommentInputView.h"
 #import "CommentPagedListFetcher.h"
 #import "ActivityToolVideoRequest.h"
+//#import "ActivityEnclosureViewController.h"
+#import "YXWebViewController.h"
 @interface ActivityPlayViewController ()
 @property (nonatomic, strong) ActivityPlayManagerView *playMangerView;
 @property (nonatomic, strong) ActivityToolVideoRequest *videoRequest;
 @property (nonatomic, strong) ActivityToolVideoRequestItem *toolVideoItem;
-
 
 @end
 
@@ -41,9 +42,20 @@
     [super setupUI];
     self.playMangerView = [[ActivityPlayManagerView alloc] init];
     WEAK_SELF
-    [self.playMangerView setRotateScreenBlock:^(BOOL isVertical) {
+    [self.playMangerView setActivityPlayManagerRotateScreenBlock:^(BOOL isVertical) {
         STRONG_SELF
         [self rotateScreenAction];
+    }];
+    [self.playMangerView setActivityPlayManagerPlayVideoBlock:^(ActivityPlayManagerStatus status) {
+        STRONG_SELF
+        if (status == ActivityPlayManagerStatus_Unknown) {
+            YXWebViewController *VC = [[YXWebViewController alloc] init];
+            VC.urlString = [self.toolVideoItem.body formatToolVideo].previewurl;
+            VC.isUpdatTitle = YES;
+            [self.navigationController pushViewController:VC animated:YES];
+        }else {
+          [self requestForActivityToolVideo];
+        }
     }];
     [self.view addSubview:self.playMangerView];
 }
@@ -78,6 +90,18 @@
     }];
     [self.view layoutIfNeeded];
 }
+
+- (void)showEnclosureButton:(ActivityToolVideoRequestItem_Body_Content *)content {
+    if (content) {
+        [self setupRightWithTitle:@"附件"];
+    }
+}
+- (void)naviRightAction {
+//    ActivityEnclosureViewController *VC = [[ActivityEnclosureViewController alloc] init];
+//    VC.content = [self.toolVideoItem.body formatToolEnclosure];
+//    [self.navigationController pushViewController:VC animated:YES];
+}
+
 #pragma mark - action
 - (void)rotateScreenAction {
     UIInterfaceOrientation screenDirection = [UIApplication sharedApplication].statusBarOrientation;
@@ -125,15 +149,19 @@
     [request startRequestWithRetClass:[ActivityToolVideoRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         if (error) {
-            
+            if (error.code == -2) {
+                self.playMangerView.playStatus = ActivityPlayManagerStatus_DataError;
+            }else {
+                self.playMangerView.playStatus = ActivityPlayManagerStatus_NetworkError;
+            }
             
         }else {
             ActivityToolVideoRequestItem *item = (ActivityToolVideoRequestItem *)retItem;
             self.toolVideoItem = item;
-            self.playMangerView.videoUrl = [NSURL URLWithString:[item.body formatToolVideo].previewurl];
+            self.playMangerView.content = [item.body formatToolVideo];
+            [self showEnclosureButton:[item.body formatToolEnclosure]];
         }
     }];
     self.videoRequest = request;
 }
-
 @end

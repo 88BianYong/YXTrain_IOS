@@ -23,7 +23,7 @@
 - (ActivityToolVideoRequestItem_Body_Content * __nullable)formatToolEnclosure{
     __block ActivityToolVideoRequestItem_Body_Content *content = nil;
     [self.content enumerateObjectsUsingBlock:^(ActivityToolVideoRequestItem_Body_Content * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (![obj.res_type isEqualToString:@"flv"] && ![obj.res_type isEqualToString:@"mp4"] && [obj.res_type isEqualToString:@"mpg"] && ![obj.res_type isEqualToString:@"unknown"] ) {
+        if (![obj.res_type isEqualToString:@"flv"] && ![obj.res_type isEqualToString:@"mp4"] && ![obj.res_type isEqualToString:@"mpg"] && ![obj.res_type isEqualToString:@"unknown"] ) {
             content = obj;
             *stop = YES;
         }

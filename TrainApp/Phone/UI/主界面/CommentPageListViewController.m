@@ -52,7 +52,7 @@
     replie.up = @"5";
     replie.childNum = @"5";
     replie.content = @"是分开了涉及到法律会计师的两款发动机谁离开就疯了空间上浪费的空间个";
-    NSMutableArray<ActivityFirstCommentRequestItem_Body_Replies> *mutableArray = [@[replie,replie,replie,replie,replie] mutableCopy];
+    NSMutableArray<ActivityFirstCommentRequestItem_Body_Replies> *mutableArray = [@[replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie,replie] mutableCopy];
     NSMutableArray<ActivityFirstCommentRequestItem_Body_Replies> *mutableArrayA = [@[replie,replie] mutableCopy];
     replie.reply = mutableArrayA;
     body.replies = mutableArray;
@@ -111,7 +111,6 @@
     };
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     self.totalPage = (int)[self.dataMutableArray count];
-    
     if (!self.isHiddenInputView) {
         self.sendView = [[SendCommentView alloc] init];
         [self.view addSubview:self.sendView];
@@ -293,7 +292,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    return replie.reply.count;
+    return (replie.reply.count > 2) ? 2 : replie.reply.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -312,6 +311,7 @@
             cell.cellStatus = ActitvityCommentCellStatus_Middle;
         }
     }
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.section];
     return cell;
 }
 

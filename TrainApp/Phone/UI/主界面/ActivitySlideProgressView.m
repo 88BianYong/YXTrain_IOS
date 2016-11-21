@@ -62,21 +62,22 @@
 }
 - (void)setPlayProgress:(CGFloat)playProgress {
     _playProgress = playProgress;
-    [self.bufferProgressView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.playProgressView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.wholeProgressView.mas_left);
         make.top.mas_equalTo(self.wholeProgressView.mas_top);
         make.bottom.mas_equalTo(self.wholeProgressView.mas_bottom);
-        make.width.mas_equalTo(self.wholeProgressView.mas_width).multipliedBy(self.bufferProgress).priorityHigh();
+        make.width.mas_equalTo(self.wholeProgressView.mas_width).multipliedBy(_playProgress).priorityHigh();
     }];
 }
 
 - (void)setBufferProgress:(CGFloat)bufferProgress {
     _bufferProgress = bufferProgress;
-    [self.playProgressView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.bufferProgressView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.wholeProgressView.mas_left);
         make.top.mas_equalTo(self.wholeProgressView.mas_top);
         make.bottom.mas_equalTo(self.wholeProgressView.mas_bottom);
-        make.width.mas_equalTo(self.wholeProgressView.mas_width).multipliedBy(self.playProgress).priorityHigh();
+        make.width.mas_equalTo(self.wholeProgressView.mas_width).multipliedBy(_bufferProgress).priorityHigh();
     }];
+
 }
 @end

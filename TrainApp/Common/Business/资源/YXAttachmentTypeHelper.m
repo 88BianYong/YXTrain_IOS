@@ -39,6 +39,8 @@
              };
 }
 
+
+
 + (NSString *)picNameWithTypeName:(NSString *)typeName {
     return [self picNameMap][typeName];
 }

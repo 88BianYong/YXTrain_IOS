@@ -7,12 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void (^BackActionBlock)(void);
-typedef void (^RotateScreenBlock)(BOOL isVertical);
+#import "ActivityToolVideoRequest.h"
+typedef NS_ENUM(NSInteger, ActivityPlayManagerStatus) {
+    ActivityPlayManagerStatus_Unknown,//外部链接
+    
+    ActivityPlayManagerStatus_NotWifi,//非wifi
+    ActivityPlayManagerStatus_PlayError,//播放出错
+    ActivityPlayManagerStatus_NetworkError,//网络出错
+    ActivityPlayManagerStatus_DataError,//数据出错
+};
+
+typedef void (^ActivityPlayManagerBackActionBlock)(void);
+typedef void (^ActivityPlayManagerRotateScreenBlock)(BOOL isVertical);
+typedef void (^ActivityPlayManagerPlayVideoBlock)(ActivityPlayManagerStatus status);
+
 @interface ActivityPlayManagerView : UIView
 @property (nonatomic, assign) BOOL isFullscreen;
-@property (nonatomic, strong) NSURL *videoUrl;
+@property (nonatomic, strong) ActivityToolVideoRequestItem_Body_Content *content;
+@property (nonatomic, assign) ActivityPlayManagerStatus playStatus;
 
-- (void)setBackActionBlock:(BackActionBlock)block;
-- (void)setRotateScreenBlock:(RotateScreenBlock)block;
+- (void)setActivityPlayManagerBackActionBlock:(ActivityPlayManagerBackActionBlock)block;
+- (void)setActivityPlayManagerRotateScreenBlock:(ActivityPlayManagerRotateScreenBlock)block;
+- (void)setActivityPlayManagerPlayVideoBlock:(ActivityPlayManagerPlayVideoBlock)block;
 @end

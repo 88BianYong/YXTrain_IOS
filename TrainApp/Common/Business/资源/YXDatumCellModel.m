@@ -100,4 +100,18 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     model.createUsername = resource.createUsername;
     return model;
 }
+
++ (YXDatumCellModel *)modelFromActivityToolVideoRequestItemBodyResource:( ActivityToolVideoRequestItem_Body_Content *)resource {
+    YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
+    model.title = resource.resname;
+    model.size = resource.res_size.longLongValue;
+    model.aid = resource.downloadurl;
+    model.type = resource.res_type;
+    NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.res_type];
+    model.image = [UIImage imageNamed:imageName];
+    model.date = resource.publishTime;
+    model.isFavor = resource.isCollection.boolValue;
+    model.createUsername = resource.createUsername;
+    return model;
+}
 @end

@@ -143,7 +143,7 @@
     
     [self addSubview:self.openCloseButton];
     self.gradientView = [[YXGradientView alloc] initWithColor:[UIColor whiteColor] orientation:YXGradientBottomToTop];
-    [self.htmlView addSubview:self.gradientView];
+    [self addSubview:self.gradientView];
 }
 
 - (void)setupLayout {
@@ -205,7 +205,7 @@
         make.top.equalTo(self.descriptionLabel.mas_bottom).offset(22.0f);
         make.left.equalTo(self.mas_left).offset(25.0f);
         make.right.equalTo(self.mas_right).offset(-25.0f);
-        make.bottom.equalTo(self.mas_bottom).offset (-61.0f);
+        make.bottom.equalTo(self.mas_bottom).offset(-61.0f);
     }];
     
     [self.openCloseButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -217,7 +217,7 @@
     [self.gradientView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-        make.bottom.equalTo(self.htmlView.mas_bottom);
+        make.bottom.equalTo(self.mas_bottom).offset(-61.0f);
         make.height.mas_offset(60.0f);
     }];
 }
@@ -275,7 +275,7 @@
     self.publisherContentLabel.text = activity.createUsername;
     self.studyContentLabel.text = activity.studyName;
     self.segmentContentLabel.text = activity.segmentName;
-    self.participantsContentLabel.text = @"14人";
+    self.participantsContentLabel.text = activity.joinUserCount;
     if (activity.status.integerValue == 0) {
         self.statusImageView.image = [UIImage imageNamed:@"未开始标签"];
     }else if (activity.status.integerValue == 2 || activity.status.integerValue == 1) {

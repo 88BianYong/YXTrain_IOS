@@ -13,6 +13,8 @@
 #import "YXPlayerBufferingView.h"
 #import "ActivityPlayTopView.h"
 #import "ActivitySlideProgressView.h"
+#import "ActivityPlayExceptionView.h"
+#import "UIImage+YXImage.h"
 static const NSTimeInterval kTopBottomHiddenTime = 5;
 @interface ActivityPlayManagerView()
 @property (nonatomic, strong) LePlayer *player;
@@ -21,12 +23,18 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, strong) ActivityPlayBottomView *bottomView;
 @property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
 @property (nonatomic, strong) ActivityPlayTopView *topView;
+@property (nonatomic, strong) ActivityPlayExceptionView *exceptionView;
+@property (nonatomic, strong) UIButton *playButton;
+@property (nonatomic, strong) UIImageView *thumbImageView;
 
-@property (nonatomic, copy) BackActionBlock backBlock;
-@property (nonatomic, copy) RotateScreenBlock rotateBlock;
+@property (nonatomic, copy) ActivityPlayManagerBackActionBlock backBlock;
+@property (nonatomic, copy) ActivityPlayManagerRotateScreenBlock rotateBlock;
+@property (nonatomic, copy) ActivityPlayManagerPlayVideoBlock playBlock;
 @property (nonatomic, strong) NSMutableArray *disposableMutableArray;
 @property (nonatomic, strong) NSTimer *topBottomHideTimer;
 @property (nonatomic, assign) BOOL isTopBottomHidden;
+@property (nonatomic, strong) NSURL *videoUrl;
+@property (nonatomic, assign) BOOL isFirstBool;
 @end
 
 @implementation ActivityPlayManagerView
@@ -41,9 +49,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     if (self = [super initWithFrame:frame]) {
         self.disposableMutableArray = [[NSMutableArray alloc] initWithCapacity:5];
         self.clipsToBounds = YES;
+        self.isFirstBool = YES;
         [self setupUI];
         [self setupLayout];
         [self setupObserver];
+        self.thumbImageView.hidden = NO;
     }
     return self;
 }
@@ -53,6 +63,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.player = [[LePlayer alloc] init];
     self.playerView = (LePlayerView *)[self.player playerViewWithFrame:CGRectZero];
     [self addSubview:self.playerView];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizer)];
+    recognizer.numberOfTapsRequired = 1;
+    [self.playerView addGestureRecognizer:recognizer];
+
     self.bottomView = [[ActivityPlayBottomView alloc] init];
     [self addSubview:self.bottomView];
     [self.bottomView.playPauseButton addTarget:self action:@selector(playAndPauseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -61,18 +75,31 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.bufferingView = [[YXPlayerBufferingView alloc] init];
     [self addSubview:self.bufferingView];
 
-    
     self.topView = [[ActivityPlayTopView alloc] init];
+    [self.topView.backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.topView];
-    
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizer)];
-    recognizer.numberOfTapsRequired = 1;
-    self.playerView.userInteractionEnabled = YES;
-    [self.playerView addGestureRecognizer:recognizer];
     
     self.slideProgressView = [[ActivitySlideProgressView alloc] init];
     self.slideProgressView.hidden = YES;
     [self addSubview:self.slideProgressView];
+    
+    self.thumbImageView = [[UIImageView alloc] init];
+    self.thumbImageView.image = [UIImage imageNamed:@"默认的录制未上传5S视频"];
+    self.thumbImageView.userInteractionEnabled = YES;
+    [self addSubview:self.thumbImageView];
+    self.playButton = [[UIButton alloc] init];
+    [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-正常态A"]
+                     forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-点击态A"]
+                     forState:UIControlStateHighlighted];
+    [self.playButton addTarget:self action:@selector(playButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.thumbImageView addSubview:_playButton];
+    
+    self.exceptionView = [[ActivityPlayExceptionView alloc] init];
+    [self.exceptionView.exceptionButton  addTarget:self action:@selector(exceptionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.exceptionView.hidden = YES;
+    [self addSubview:self.exceptionView];
+    
 }
 - (void)setupLayout {
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -100,6 +127,19 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.right.equalTo(self.mas_right);
         make.bottom.equalTo(self.mas_bottom);
         make.height.mas_offset(3.0f);
+    }];
+    
+    [self.exceptionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+    
+    [self.thumbImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+    
+    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.thumbImageView);
+        make.width.height.mas_offset(50.0f);
     }];
 }
 
@@ -132,6 +172,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         switch ([x unsignedIntegerValue]) {
             case PlayerView_State_Buffering:
             {
+                self.thumbImageView.hidden = YES;
             }
                 break;
             case PlayerView_State_Playing:
@@ -142,11 +183,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Paused:
             {
                 [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
+                
             }
                 break;
             case PlayerView_State_Finished:
             {
-                BLOCK_EXEC(self.backBlock);
+                [self playVideoFinished];
             }
                 break;
             case PlayerView_State_Error:
@@ -154,7 +196,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.bufferingView stop];
                     self.bufferingView.hidden = YES;
-                    [(YXBaseViewController *)[self viewController] showToast:@"播放失败！"];
+                    self.playStatus = ActivityPlayManagerStatus_PlayError;
                 });
                 break;
             }
@@ -175,7 +217,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                                                           [self showBottomView];
                                                           self.isTopBottomHidden = NO;
                                                           [self resetTopBottomHideTimer];
-                                                          self.playerView.userInteractionEnabled = YES;
                                                       }
                                                   }];
     
@@ -223,31 +264,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 - (void)do3GCheck {
     [self.player pause];
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"网络连接提示" message:@"当前处于非Wi-Fi环境，仍要继续吗？" preferredStyle:UIAlertControllerStyleAlert];
-    WEAK_SELF
-    UIAlertAction *backAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        STRONG_SELF
-        BLOCK_EXEC(self.backBlock);
-        return;
-    }];
-    UIAlertAction *goAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        STRONG_SELF
-        [self.player play];
-    }];
-    [alertVC addAction:backAction];
-    [alertVC addAction:goAction];
-    [[self viewController] presentViewController:alertVC animated:YES completion:nil];
+    self.playStatus = ActivityPlayManagerStatus_NotWifi;
 }
-- (UIViewController *)viewController
-{
-    for (UIView* next = [self superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    return nil;
-}
+
 #pragma mark - top / bottom hide
 - (void)tapGestureRecognizer {
     if (self.isTopBottomHidden) {
@@ -321,6 +340,16 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.player seekTo:self.player.duration * self.bottomView.slideProgressControl.playProgress];
 }
 
+- (void)playVideoFinished {
+    [self.player seekTo:0];
+    self.bottomView.slideProgressControl.playProgress = 0.0f;
+    self.slideProgressView.playProgress = 0.0f;
+    self.bottomView.slideProgressControl.bufferProgress = 0.0f;
+    self.slideProgressView.bufferProgress = 0.0f;
+    [self.bottomView.slideProgressControl updateUI];
+    [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
+}
+
 #pragma mark - button Action
 - (void)playAndPauseButtonAction:(UIButton *)sender{
     [self resetTopBottomHideTimer];
@@ -333,15 +362,43 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         [self.player pause];
     }
 }
-- (void)rotateScreenButtonAction:(UIButton *)sender{
+- (void)rotateScreenButtonAction:(UIButton *)sender {
     self.bottomView.isFullscreen = !self.bottomView.isFullscreen;
     BLOCK_EXEC(self.rotateBlock,self.bottomView.isFullscreen)
 }
-- (void)setBackActionBlock:(BackActionBlock)block{
+
+- (void)playButtonAction:(UIButton *)sender {
+    if ([self.content.res_type isEqualToString:@"unknown"]) {
+        BLOCK_EXEC(self.playBlock,ActivityPlayManagerStatus_Unknown);
+    }else {
+        self.player.videoUrl = self.videoUrl;
+        self.isFirstBool = NO;
+        self.thumbImageView.hidden = YES;
+    }
+}
+
+- (void)backButtonAction:(UIButton *)sender {
+    BLOCK_EXEC(self.backBlock);
+}
+
+- (void)exceptionButtonAction:(UIButton *)sender {
+    if (self.playStatus == ActivityPlayManagerStatus_NotWifi) {
+        [self.player play];
+    }else {
+        BLOCK_EXEC(self.playBlock,self.playStatus);
+    }
+    self.exceptionView.hidden = YES;
+}
+
+#pragma mark - set
+- (void)setActivityPlayManagerBackActionBlock:(ActivityPlayManagerBackActionBlock)block {
     self.backBlock = block;
 }
-- (void)setRotateScreenBlock:(RotateScreenBlock)block{
+- (void)setActivityPlayManagerRotateScreenBlock:(ActivityPlayManagerRotateScreenBlock)block {
     self.rotateBlock = block;
+}
+- (void)setActivityPlayManagerPlayVideoBlock:(ActivityPlayManagerPlayVideoBlock)block {
+    self.playBlock = block;
 }
 - (void)setIsFullscreen:(BOOL)isFullscreen {
     _isFullscreen = isFullscreen;
@@ -353,9 +410,45 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         self.topView.hidden = YES;
     }
 }
-- (void)setVideoUrl:(NSURL *)videoUrl {
-    _videoUrl = videoUrl;
-    self.player.videoUrl = _videoUrl;
-//    [NSURL URLWithString:@"http://coursecdn.teacherclub.com.cn/course/cf/ts/ts_gg/ptcz-xybnx_qxgly/video/qxgly/qxgly.m3u8"];
+- (void)setContent:(ActivityToolVideoRequestItem_Body_Content *)content {
+    _content = content;
+    self.videoUrl = [NSURL URLWithString:_content.previewurl];
+    [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:content.res_thumb] placeholderImage:[UIImage imageNamed:@"默认的录制未上传5S视频"]];
+    if (!self.isFirstBool) {
+        self.player.videoUrl = self.videoUrl;
+    }
+}
+
+- (void)setPlayStatus:(ActivityPlayManagerStatus)playStatus {
+    _playStatus = playStatus;
+    self.exceptionView.hidden = NO;
+    switch (_playStatus) {
+        case  ActivityPlayManagerStatus_NotWifi:
+        {
+            self.exceptionView.exceptionLabel.text = @"当前为非wifi网络,继续播放会产生流量费用";
+            [self.exceptionView.exceptionButton setTitle:@"继续观看" forState:UIControlStateNormal];
+        }
+            break;
+        case  ActivityPlayManagerStatus_PlayError:
+        {
+            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
+            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
+        }
+            break;
+        case  ActivityPlayManagerStatus_NetworkError:
+        {
+            self.exceptionView.exceptionLabel.text = @"网络已断开,请检查网络设置";
+            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
+        }
+            break;
+        case  ActivityPlayManagerStatus_DataError:
+        {
+            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
+            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
+        }
+            break;
+        default:
+            break;
+    }
 }
 @end

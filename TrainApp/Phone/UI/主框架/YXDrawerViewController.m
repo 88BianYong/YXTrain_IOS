@@ -9,6 +9,7 @@
 #import "YXDrawerViewController.h"
 #import "YXSideMenuViewController.h"
 #import "YXNavigationController.h"
+#import "YXVideoRecordViewController.h"
 static const CGFloat kAnimationDuration = 0.3;
 
 @interface YXDrawerViewController ()<UIGestureRecognizerDelegate>
@@ -139,13 +140,25 @@ static const CGFloat kAnimationDuration = 0.3;
     return YES;
 }
 - (BOOL)shouldAutorotate {
+    if ([self.presentedViewController isKindOfClass:[YXVideoRecordViewController class]]) {
+        return self.presentedViewController.shouldAutorotate;
+    }else {
         return ((YXNavigationController *)self.paneViewController).topViewController.shouldAutorotate;
+    }
 }
 
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations NS_AVAILABLE_IOS(6_0) {
-    return ((YXNavigationController *)self.paneViewController).topViewController.supportedInterfaceOrientations;
+    if ([self.presentedViewController isKindOfClass:[YXVideoRecordViewController class]]) {
+        return self.presentedViewController.supportedInterfaceOrientations;
+    }else {
+        return ((YXNavigationController *)self.paneViewController).topViewController.supportedInterfaceOrientations;
+    }
 }
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
-    [((YXNavigationController *)self.paneViewController).topViewController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    if ([self.presentedViewController isKindOfClass:[YXVideoRecordViewController class]]) {
+        [self.presentedViewController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    }else {
+        [((YXNavigationController *)self.paneViewController).topViewController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    }
 }
 @end
