@@ -124,7 +124,8 @@ static const CGFloat kImageWidth = 30;
     self.rightImageView.image = [UIImage imageNamed:@"切换标题模块的按钮"];
 }
 - (void)currentProjectIndexPath:(NSIndexPath *)indexPath {
-    if (self.currentIndexPath == indexPath) {
+    BOOL isEqual = ([self.currentIndexPath compare:indexPath] == NSOrderedSame) ? YES : NO;
+    if (isEqual) {
         [self hideSelectionView];
         return;
     }
@@ -163,7 +164,8 @@ static const CGFloat kImageWidth = 30;
     NSArray *items = self.projectGroup[indexPath.section].items;
     YXTrainListRequestItem_body_train *train = items[indexPath.row];
     cell.name = train.name;
-    cell.isCurrent = (indexPath == self.currentIndexPath);
+     BOOL isEqual = ([self.currentIndexPath compare:indexPath] == NSOrderedSame) ? YES : NO;
+    cell.isCurrent = isEqual;
     return cell;
 }
 #pragma mark - UITableViewDelegate
