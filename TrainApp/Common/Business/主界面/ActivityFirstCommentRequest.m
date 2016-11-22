@@ -14,10 +14,6 @@
 }
 @end
 @implementation ActivityFirstCommentRequestItem_Body
-+(BOOL)propertyIsOptional:(NSString*)propertyName
-{
-    return YES;
-}
 @end
 @implementation ActivityFirstCommentRequestItem
 @end

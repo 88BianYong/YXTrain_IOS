@@ -22,6 +22,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"全部回复";
 }
 
 - (void)didReceiveMemoryWarning {

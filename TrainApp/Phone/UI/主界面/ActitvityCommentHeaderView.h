@@ -12,6 +12,7 @@ typedef void(^ActitvityCommentReplyBlock) (ActivityFirstCommentRequestItem_Body_
 typedef void(^ActitvityCommentFavorBlock) (ActivityFirstCommentRequestItem_Body_Replies * replie);
 @interface ActitvityCommentHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) ActivityFirstCommentRequestItem_Body_Replies *replie;
+@property (nonatomic, assign) BOOL isFirstBool;
 
 - (void)setActitvityCommentReplyBlock:(ActitvityCommentReplyBlock)block;
 - (void)setActitvityCommentFavorBlock:(ActitvityCommentFavorBlock)block;

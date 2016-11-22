@@ -38,10 +38,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [self setupUI];
     [self setupLayout];
     [self firstPageFetch:YES];
-    [self setupMorkData];
+    //[self setupMorkData];
 }
 - (void)setupMorkData {
     ActivityFirstCommentRequestItem_Body *body = [[ActivityFirstCommentRequestItem_Body alloc] init];
@@ -57,6 +58,8 @@
     replie.reply = mutableArrayA;
     body.replies = mutableArray;
     self.dataMutableArray = body.replies;
+    DDLogDebug(@"%@",body.toJSONString);
+    DDLogDebug(@"%@",body.toJSONString);
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -189,12 +192,12 @@
         return;
     }
     [self.dataFetcher stop];
-    self.dataFetcher.pageindex = 0;
+    self.dataFetcher.pageIndex = 0;
     if (!self.dataFetcher.pageSize) {
         self.dataFetcher.pageSize = 20;
     }
     if (isShow) {
-        //[self startLoading];
+        [self startLoading];
     }
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, NSMutableArray *retItemArray, NSError *error) {
@@ -254,7 +257,7 @@
 
 - (void)morePageFetch {
     [self.dataFetcher stop];
-    self.dataFetcher.pageindex++;
+    self.dataFetcher.pageIndex++;
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, NSMutableArray *retItemArray, NSError *error) {
         STRONG_SELF
@@ -263,7 +266,7 @@
             STRONG_SELF
             [self.footerView endRefreshing];
             if (error) {
-                self.dataFetcher.pageindex--;
+                self.dataFetcher.pageIndex--;
                 [self showToast:error.localizedDescription];
                 return;
             }else {
@@ -300,18 +303,17 @@
     ActivityFirstCommentRequestItem_Body_Replies *reply = replie.reply[indexPath.row];
     ActitvityCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActitvityCommentCell" forIndexPath:indexPath];
     cell.reply = reply;
-    if (cell.reply.childNum.integerValue <= 1) {
+    if (replie.childNum.integerValue <= 1) {
         cell.cellStatus = ActitvityCommentCellStatus_Top | ActitvityCommentCellStatus_Bottom;
     }else {
         if (indexPath.row == 0) {
             cell.cellStatus = ActitvityCommentCellStatus_Top;
-        } else if ((replie.childNum.integerValue == reply.reply.count) && (indexPath.row == reply.reply.count - 1)) {
+        } else if ((replie.childNum.integerValue == replie.reply.count) && (indexPath.row == replie.reply.count - 1)) {
             cell.cellStatus = ActitvityCommentCellStatus_Bottom;
         } else {
             cell.cellStatus = ActitvityCommentCellStatus_Middle;
         }
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.section];
     return cell;
 }
 
@@ -320,6 +322,7 @@
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
     headerView.replie = replie;
+    headerView.isFirstBool = section == 0 ? YES : NO;
     WEAK_SELF
     [headerView setActitvityCommentReplyBlock:^(ActivityFirstCommentRequestItem_Body_Replies *replie) {
         STRONG_SELF
@@ -327,25 +330,35 @@
     }];
     [headerView setActitvityCommentFavorBlock:^(ActivityFirstCommentRequestItem_Body_Replies *replie) {
         STRONG_SELF
-        
     }];
     return headerView;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
-    footerView.tag = section + 1000;
-    WEAK_SELF
-    [footerView setActitvitySeeAllCommentReplyBlock:^(NSInteger tagInteger) {
-        STRONG_SELF
-        NSString *string = @"SecondCommentViewController";
-        UIViewController *VC = [[NSClassFromString(string) alloc] init];
-        [self.navigationController pushViewController:VC animated:YES];
-    }];
-    return footerView;
+    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
+    if (replie.childNum.integerValue <= 2) {
+        return nil;
+    }else {
+        ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
+        footerView.tag = section + 1000;
+        WEAK_SELF
+        [footerView setActitvitySeeAllCommentReplyBlock:^(NSInteger tagInteger) {
+            STRONG_SELF
+            NSString *string = @"SecondCommentViewController";
+            UIViewController *VC = [[NSClassFromString(string) alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }];
+        return footerView;
+    }
+
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 29.0f;
+    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
+    if (replie.childNum.integerValue <= 2) {
+        return 0.0001f;
+    }else {
+      return 29.0f;
+    }
 }
 
 #pragma mark - inputView

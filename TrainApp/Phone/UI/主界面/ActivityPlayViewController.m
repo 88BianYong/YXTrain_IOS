@@ -11,7 +11,7 @@
 #import "ActivityCommentInputView.h"
 #import "CommentPagedListFetcher.h"
 #import "ActivityToolVideoRequest.h"
-//#import "ActivityEnclosureViewController.h"
+#import "ActivityEnclosureViewController.h"
 #import "YXWebViewController.h"
 @interface ActivityPlayViewController ()
 @property (nonatomic, strong) ActivityPlayManagerView *playMangerView;
@@ -26,10 +26,24 @@
 }
 - (void)viewDidLoad {
     self.dataFetcher = [[CommentPagedListFetcher alloc] init];
+    self.dataFetcher.aid = self.tool.aid;
+    self.dataFetcher.topicid = self.tool.toolid;
+    self.dataFetcher.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.dataFetcher.pageIndex = 1;
+    self.dataFetcher.pageSize = 10;
     [super viewDidLoad];
     self.title = @"视频";
     self.view.backgroundColor = [UIColor blackColor];
     [self requestForActivityToolVideo];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.playMangerView viewWillAppear];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.playMangerView viewWillDisappear];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,6 +72,18 @@
         }
     }];
     [self.view addSubview:self.playMangerView];
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
+    headerView.backgroundColor = [UIColor whiteColor];
+    UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 12.0f, 200, 12.0f)];
+    commentLabel.text = @"评论";
+    commentLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    commentLabel.font = [UIFont systemFontOfSize:12.0f];
+    [headerView addSubview:commentLabel];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 30.0f - 1.0f / [UIScreen mainScreen].scale, kScreenWidth, 1.0f / [UIScreen mainScreen].scale)];
+    lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [headerView addSubview:lineView];
+    self.tableView.tableHeaderView = headerView;
 }
 - (void)setupLayout {
     [super setupLayout];
@@ -97,9 +123,9 @@
     }
 }
 - (void)naviRightAction {
-//    ActivityEnclosureViewController *VC = [[ActivityEnclosureViewController alloc] init];
-//    VC.content = [self.toolVideoItem.body formatToolEnclosure];
-//    [self.navigationController pushViewController:VC animated:YES];
+    ActivityEnclosureViewController *VC = [[ActivityEnclosureViewController alloc] init];
+    VC.content = [self.toolVideoItem.body formatToolEnclosure];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 #pragma mark - action
@@ -117,6 +143,7 @@
     if(screenDirection == UIInterfaceOrientationLandscapeLeft || screenDirection ==UIInterfaceOrientationLandscapeRight){
         [self rotateScreenAction];
     }else{
+        [self.playMangerView playVideoClear];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

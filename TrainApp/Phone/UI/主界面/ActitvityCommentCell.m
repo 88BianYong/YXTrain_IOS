@@ -141,7 +141,11 @@
     _reply = reply;
     self.nameLabel.text = reply.userName;
     self.timeLabel.text = reply.time;
-    self.favorLabel.text = reply.up;
+    if (reply.up.integerValue >= 10000) {
+        self.favorLabel.text = @"9999+";
+    }else {
+        self.favorLabel.text = reply.up;
+    }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:reply.content?:@""];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 7.0f;
@@ -180,7 +184,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

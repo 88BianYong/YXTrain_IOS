@@ -19,10 +19,11 @@
     }
     ActivityFirstCommentRequest *request = [[ActivityFirstCommentRequest alloc] init];
     request.aid = self.aid;
-    request.page = [NSString stringWithFormat:@"%d", self.pageindex];
+    request.page = [NSString stringWithFormat:@"%d", self.pageIndex];
     request.pageSize = [NSString stringWithFormat:@"%d", self.pageSize];
     request.topicid = self.topicid;
     request.parentid = self.parentid;
+    request.w = self.w;
     WEAK_SELF
     [request startRequestWithRetClass:[ActivityFirstCommentRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
@@ -33,6 +34,7 @@
             BLOCK_EXEC(aCompleteBlock,item.body.totalPage.intValue,item.body.page.intValue,item.body.replies,nil);
         }
     }];
+    self.commentRequest = request;
 }
 
 - (void)stop {

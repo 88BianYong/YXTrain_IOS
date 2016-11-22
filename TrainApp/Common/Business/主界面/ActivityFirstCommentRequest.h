@@ -32,18 +32,18 @@
 @property (nonatomic, strong) NSString<Optional> *pageSize;
 @property (nonatomic, strong) NSString<Optional> *page;
 @property (nonatomic, strong) NSString<Optional> *totalPage;
-@property (nonatomic, assign) BOOL isOpen;
 @property (nonatomic, strong) NSMutableArray<ActivityFirstCommentRequestItem_Body_Replies,Optional> *replies;
 @end
 
 @interface ActivityFirstCommentRequestItem : HttpBaseRequestItem
-@property (nonatomic, strong) ActivityFirstCommentRequestItem_Body *body;
+@property (nonatomic, strong) ActivityFirstCommentRequestItem_Body<Optional> *body;
 @end
 
 @interface ActivityFirstCommentRequest : YXGetRequest
 @property (nonatomic, strong) NSString *aid;
 @property (nonatomic, strong) NSString *topicid;
 @property (nonatomic, strong) NSString *parentid;
+@property (nonatomic, strong) NSString *w;
 @property (nonatomic, strong) NSString *page;
 @property (nonatomic, strong) NSString *pageSize;
 @end

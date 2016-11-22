@@ -53,13 +53,13 @@
         STRONG_SELF
         if (isStatus) {
             [UIView animateWithDuration:0.3 animations:^{
-                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 335.0f + self.headerView.changeHeight);
+                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 340.0f + self.headerView.changeHeight);
                 self.tableView.tableHeaderView = self.headerView;
                 [self.headerView relayoutHtmlText];
             }];
         }else {
             [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
-            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 335.0f + 300.0f);
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 340.0f + 300.0f);
             self.tableView.tableHeaderView = self.headerView;
             [self.headerView relayoutHtmlText];
         }

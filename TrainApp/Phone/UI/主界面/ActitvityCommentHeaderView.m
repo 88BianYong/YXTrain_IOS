@@ -76,7 +76,7 @@
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.headerImageView.mas_right).offset(11.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(30.0f);
+        make.top.equalTo(self.headerImageView.mas_top);
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -98,7 +98,7 @@
     
     [self.favorButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-25.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(33.0f);
+        make.top.equalTo(self.headerImageView.mas_top).offset(3.0f);
         make.size.mas_offset(CGSizeMake(16.0f, 16.0f));
     }];
     
@@ -127,7 +127,18 @@
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [replie.content?:@"" length])];
     self.contentLabel.attributedText = attributedString;
-    
+}
+- (void)setIsFirstBool:(BOOL)isFirstBool {
+    _isFirstBool = isFirstBool;
+    if (_isFirstBool) {
+        [self.headerImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView.mas_top).offset(15.0f);
+        }];
+    }else {
+        [self.headerImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.contentView.mas_top).offset(30.0f);
+        }];
+    }
 }
 
 - (void)setActitvityCommentFavorBlock:(ActitvityCommentFavorBlock)block {

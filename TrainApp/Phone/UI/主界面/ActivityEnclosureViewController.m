@@ -10,7 +10,7 @@
 #import "ResourceMessageView.h"
 @interface ActivityEnclosureViewController ()
 @property (nonatomic, strong) ResourceMessageView *resourceMessageView;
-
+@property (nonatomic, strong) YXDatumCellModel *dataModel;
 @end
 
 @implementation ActivityEnclosureViewController
@@ -31,7 +31,8 @@
 - (void)setupUI {
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.resourceMessageView = [[ResourceMessageView alloc]initWithFrame:CGRectMake((kScreenWidth - 345) *  0.5,(kScreenHeight - 144 - 201) * 0.5, 345, 201)];
-    self.resourceMessageView.data = [YXDatumCellModel modelFromActivityToolVideoRequestItemBodyResource:self.content];
+    self.dataModel = [YXDatumCellModel modelFromActivityToolVideoRequestItemBodyResource:self.content];
+    self.resourceMessageView.data = self.dataModel;
     [self.view addSubview:self.resourceMessageView];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     tapGesture.numberOfTapsRequired = 1; //点击次数
@@ -49,7 +50,7 @@
 }
 
 -(void)tapGesture:(UITapGestureRecognizer *)sender {
-    YXDatumCellModel *data = self.resourceMessageView.data;
+    YXDatumCellModel *data = self.dataModel;
     YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
     item.name = data.title;
     item.url = data.previewUrl;
@@ -58,8 +59,17 @@
         [self showToast:@"暂不支持该格式文件预览"];
         return;
     }
+    if (!self.dataModel.isFavor) {
+        [[YXFileBrowseManager sharedManager]addFavorWithData:self.dataModel completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:YXFavorSuccessNotification object:self.dataModel userInfo:nil];
+            [self reloadData];
+        }];
+    }
     [YXFileBrowseManager sharedManager].fileItem = item;
     [YXFileBrowseManager sharedManager].baseViewController = self;
     [[YXFileBrowseManager sharedManager] browseFile];
+}
+- (void)reloadData {
+    self.resourceMessageView.data = self.dataModel;
 }
 @end

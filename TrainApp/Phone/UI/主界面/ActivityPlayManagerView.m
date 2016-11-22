@@ -26,6 +26,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, strong) ActivityPlayExceptionView *exceptionView;
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UIImageView *thumbImageView;
+@property (nonatomic, strong) UIImageView *placeholderImageView;
 
 @property (nonatomic, copy) ActivityPlayManagerBackActionBlock backBlock;
 @property (nonatomic, copy) ActivityPlayManagerRotateScreenBlock rotateBlock;
@@ -35,13 +36,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, assign) BOOL isTopBottomHidden;
 @property (nonatomic, strong) NSURL *videoUrl;
 @property (nonatomic, assign) BOOL isFirstBool;
+@property (nonatomic, assign) BOOL isManualPause;
 @end
 
 @implementation ActivityPlayManagerView
 - (void)dealloc{
-    for (RACDisposable *d in self.disposableMutableArray) {
-        [d dispose];
-    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -83,10 +82,20 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.slideProgressView.hidden = YES;
     [self addSubview:self.slideProgressView];
     
+    self.exceptionView = [[ActivityPlayExceptionView alloc] init];
+    [self.exceptionView.exceptionButton  addTarget:self action:@selector(exceptionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.exceptionView.hidden = YES;
+    [self addSubview:self.exceptionView];
+    
     self.thumbImageView = [[UIImageView alloc] init];
-    self.thumbImageView.image = [UIImage imageNamed:@"默认的录制未上传5S视频"];
+    self.thumbImageView.backgroundColor = [UIColor colorWithHexString:@"ff0000"];
     self.thumbImageView.userInteractionEnabled = YES;
     [self addSubview:self.thumbImageView];
+    
+    self.placeholderImageView = [[UIImageView alloc] init];
+    self.placeholderImageView.image = [UIImage imageNamed:@"视频未读取过来的默认图片"];
+    [self.thumbImageView addSubview:self.placeholderImageView];
+    
     self.playButton = [[UIButton alloc] init];
     [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-正常态A"]
                      forState:UIControlStateNormal];
@@ -94,11 +103,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                      forState:UIControlStateHighlighted];
     [self.playButton addTarget:self action:@selector(playButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.thumbImageView addSubview:_playButton];
-    
-    self.exceptionView = [[ActivityPlayExceptionView alloc] init];
-    [self.exceptionView.exceptionButton  addTarget:self action:@selector(exceptionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.exceptionView.hidden = YES;
-    [self addSubview:self.exceptionView];
     
 }
 - (void)setupLayout {
@@ -135,6 +139,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     
     [self.thumbImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
+    }];
+    [self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_offset(CGSizeMake(180.0f, 180.0f));
+        make.center.equalTo(self.thumbImageView);
     }];
     
     [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -183,7 +191,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Paused:
             {
                 [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
-                
             }
                 break;
             case PlayerView_State_Finished:
@@ -219,13 +226,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                                                           [self resetTopBottomHideTimer];
                                                       }
                                                   }];
-    
+
     RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
         STRONG_SELF
         self.bottomView.slideProgressControl.duration = [x doubleValue];
         [self.bottomView.slideProgressControl updateUI];
     }];
-    
+
     RACDisposable *r3 = [RACObserve(self.player, timeBuffered) subscribeNext:^(id x) {
         STRONG_SELF
         if (self.bottomView.slideProgressControl.bSliding) {
@@ -255,7 +262,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             }
         }
     }];
-    
+
     [self.disposableMutableArray addObject:r0];
     [self.disposableMutableArray addObject:r1];
     [self.disposableMutableArray addObject:r2];
@@ -355,11 +362,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self resetTopBottomHideTimer];
     if (self.player.state == PlayerView_State_Paused) {
         [self.player play];
+        self.isManualPause = NO;
     } else if (self.player.state == PlayerView_State_Finished) {
         [self.player seekTo:0];
         [self.player play];
+        self.isManualPause = NO;
     } else {
         [self.player pause];
+        self.isManualPause = YES;
     }
 }
 - (void)rotateScreenButtonAction:(UIButton *)sender {
@@ -368,12 +378,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 - (void)playButtonAction:(UIButton *)sender {
-    if ([self.content.res_type isEqualToString:@"unknown"]) {
+    self.thumbImageView.hidden = YES;
+    if ([self.content.filetype isEqualToString:@"unknown"]) {
         BLOCK_EXEC(self.playBlock,ActivityPlayManagerStatus_Unknown);
     }else {
-        self.player.videoUrl = self.videoUrl;
+        if (self.videoUrl) {
+            self.player.videoUrl = self.videoUrl;
+        }
         self.isFirstBool = NO;
-        self.thumbImageView.hidden = YES;
     }
 }
 
@@ -413,7 +425,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)setContent:(ActivityToolVideoRequestItem_Body_Content *)content {
     _content = content;
     self.videoUrl = [NSURL URLWithString:_content.previewurl];
-    [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:content.res_thumb] placeholderImage:[UIImage imageNamed:@"默认的录制未上传5S视频"]];
+    WEAK_SELF
+    [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:content.res_thumb] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        STRONG_SELF
+        if (!error) {
+            self.placeholderImageView.hidden = YES;
+        }
+    }];
     if (!self.isFirstBool) {
         self.player.videoUrl = self.videoUrl;
     }
@@ -451,4 +469,23 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             break;
     }
 }
+- (void)viewWillAppear {
+    if (!self.isManualPause) {
+        [self.player play];
+    }
+}
+
+- (void)viewWillDisappear {
+    [self.player pause];
+}
+
+- (void)playVideoClear {
+    [self.player pause];
+    self.player = nil;
+    [self.topBottomHideTimer invalidate];
+    for (RACDisposable *d in self.disposableMutableArray) {
+        [d dispose];
+    }
+}
+
 @end

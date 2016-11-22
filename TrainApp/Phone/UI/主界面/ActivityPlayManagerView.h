@@ -29,4 +29,8 @@ typedef void (^ActivityPlayManagerPlayVideoBlock)(ActivityPlayManagerStatus stat
 - (void)setActivityPlayManagerBackActionBlock:(ActivityPlayManagerBackActionBlock)block;
 - (void)setActivityPlayManagerRotateScreenBlock:(ActivityPlayManagerRotateScreenBlock)block;
 - (void)setActivityPlayManagerPlayVideoBlock:(ActivityPlayManagerPlayVideoBlock)block;
+- (void)viewWillAppear;
+- (void)viewWillDisappear;
+
+- (void)playVideoClear;
 @end
