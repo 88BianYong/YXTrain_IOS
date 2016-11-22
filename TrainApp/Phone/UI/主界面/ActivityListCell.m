@@ -44,6 +44,7 @@
     self.activityImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.activityImageView.clipsToBounds = YES;
     self.activityImageView.layer.cornerRadius = YXTrainCornerRadii;
+    self.activityImageView.image = [UIImage imageNamed:@"默认图片"];
     
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14];

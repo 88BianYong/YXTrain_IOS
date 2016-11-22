@@ -12,7 +12,7 @@
 #import "ActivityStepTableCell.h"
 #import "ActivityPlayViewController.h"
 #import "ShareResourcesViewController.h"
-#import "ResourcesDownloadViewController.h"
+#import "DownloadResourceViewController.h"
 @interface ActivityStepViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ActivityStepHeaderView *headerView;
@@ -139,7 +139,7 @@
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
     } else if ([tool.toolType isEqualToString:@"resdisc"]) {//资源下载
-        ResourcesDownloadViewController *downloadVc = [[ResourcesDownloadViewController alloc]init];
+        DownloadResourceViewController *downloadVc = [[DownloadResourceViewController alloc]init];
         downloadVc.tool = tool;
         [self.navigationController pushViewController:downloadVc animated:YES];
     } else if ([tool.toolType isEqualToString:@"resources"]) {//资源分享

@@ -16,8 +16,6 @@
 #import "ActivityListRequest.h"
 @interface ShareResourcesViewController ()
 @property (nonatomic, strong) YXResourceCollectionRequest *collectionRequest;
-
-@property (nonatomic, copy) NSString *currentConditon;//错误刷新用到
 @property (nonatomic, strong) UIView *bottomView;
 @end
 
@@ -28,9 +26,8 @@
     emptyView.imageName = @"暂无资源";
     emptyView.title = @"没有符合条件的资源";
     self.emptyView = emptyView;
-    
     [super viewDidLoad];
-    self.title = self.tool.title;
+    self.title = @"资源分享";
     [self setupUI];
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -41,6 +38,12 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     self.tableView.showsVerticalScrollIndicator = NO;
+}
+- (void)setupDataFetcher {
+    ShareResourcesFetcher *shareResourcesFetcher = [[ShareResourcesFetcher alloc]init];
+    shareResourcesFetcher.aid = self.tool.aid;
+    shareResourcesFetcher.toolId = self.tool.toolid;
+    self.dataFetcher = shareResourcesFetcher;
 }
 - (void)setupUI {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -96,9 +99,13 @@
     }];
 }
 - (void)viewCommentsButtonAction:(UIButton *)sender {
-    DDLogDebug(@"查看评论");
     sender.backgroundColor = [UIColor clearColor];
     [sender setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+    [self goToViewComments:self.tool];
+    
+}
+- (void)goToViewComments:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
+    DDLogDebug(@"查看评论");
 }
 - (void)changeViewCommentsButtonAction:(UIButton *)sender {
     sender.backgroundColor = [UIColor colorWithHexString:@"0070c9"];
@@ -107,12 +114,6 @@
 //- (void)firstPageFetch {
 //    [super firstPageFetch:YES];
 //}
-- (void)setupDataFetcher {
-    ShareResourcesFetcher *shareResourcesFetcher = [[ShareResourcesFetcher alloc]init];
-    shareResourcesFetcher.aid = self.tool.aid;
-    shareResourcesFetcher.toolId = self.tool.toolid;
-    self.dataFetcher = shareResourcesFetcher;
-}
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.dataArray count];
@@ -137,6 +138,8 @@
     item.name = data.title;
     item.url = data.previewUrl;
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    //    item.url = @"http://upload.yanxiu.com/resource/index.jsp?action=download&id=12474817";
+    //    item.type = YXFileTypeDoc;
     if(item.type == YXFileTypeUnknown) {
         [self showToast:@"暂不支持该格式文件预览"];
         return;

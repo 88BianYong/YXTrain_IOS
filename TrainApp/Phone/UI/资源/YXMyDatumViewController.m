@@ -44,9 +44,7 @@ static  NSString *const trackPageName = @"我的资源页面";
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXFavorSuccessNotification object:nil] subscribeNext:^(NSNotification *x) {
         @strongify(self);
         if (!self) return;
-        YXDatumCellModel *model = x.object;
-        [self.dataArray insertObject:model atIndex:0];
-        [self.tableView reloadData];
+        [self firstPageFetch:NO];
     }];
     
     self.tableView.tableHeaderView = tableViewHeaderView;

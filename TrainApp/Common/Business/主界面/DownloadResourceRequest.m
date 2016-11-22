@@ -1,17 +1,17 @@
 //
-//  ResourcesDownloadRequest.m
+//  DownloadResourceRequest.m
 //  TrainApp
 //
-//  Created by ZLL on 2016/11/18.
+//  Created by ZLL on 2016/11/22.
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "ResourcesDownloadRequest.h"
-@implementation ResourcesDownloadRequestItem_body_resource
+#import "DownloadResourceRequest.h"
+@implementation DownloadResourceRequestItem_body_resource
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"resid":@"resId",
                                                        @"resname":@"resName",
-                                                       @"res_type":@"resType",
+                                                       @"filetype":@"fileType",
                                                        @"res_size":@"resSize",
                                                        @"previewurl":@"previewUrl",
                                                        @"downloadurl":@"downloadUrl"
@@ -19,17 +19,17 @@
 }
 @end
 
-@implementation ResourcesDownloadRequestItem_body
+@implementation DownloadResourceRequestItem_body
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"toolid":@"toolId"}];
 }
 @end
 
-@implementation ResourcesDownloadRequestItem
+@implementation DownloadResourceRequestItem
 
 @end
 
-@implementation ResourcesDownloadRequest
+@implementation DownloadResourceRequest
 - (instancetype)init {
     if (self = [super init]) {
         self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/active/tool/download"];

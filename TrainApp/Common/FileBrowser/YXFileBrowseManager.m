@@ -150,14 +150,31 @@
 
 #pragma mark - Open file
 - (void)openDoc:(NSString *)path{
+//    NSData *fileData = [NSData dataWithContentsOfFile:path];
+//    //判断是UNICODE编码
+//    NSString *isUNICODE = [[NSString alloc] initWithData:fileData encoding:NSUTF8StringEncoding];
+//    //还是ANSI编码（-2147483623，-2147482591，-2147482062，-2147481296）encoding 任选一个就可以了
+//    NSString *isANSI = [[NSString alloc] initWithData:fileData encoding:-2147483623];
+//    if (isUNICODE) {
+//        NSString *retStr = [[NSString alloc]initWithCString:[isUNICODE UTF8String] encoding:NSUTF8StringEncoding];
+//        NSData *data = [retStr dataUsingEncoding:NSUTF16StringEncoding];
+//        BOOL result = [data writeToFile:path atomically:YES];
+//        NSLog(@"result : %@",@(result));
+//    }
+//    else if(isANSI){
+//        NSData *data = [isANSI dataUsingEncoding:NSUTF16StringEncoding];
+//        BOOL result = [data writeToFile:path atomically:YES];
+//        NSLog(@"result : %@",@(result));
+//    }
+//    NSString *testPath = [[NSBundle mainBundle]pathForResource:@"工作簿1" ofType:@"xlsx"];
     YXQLPreviewController *qlVC = [[YXQLPreviewController alloc]init];
     qlVC.qlUrl = path;
     qlVC.qlTitle = self.fileItem.name;
     
-    if (![qlVC canPreview]) {
-        [self.baseViewController showToast:@"该文件无法预览"];
-        return;
-    }
+//    if (![qlVC canPreview]) {
+//        [self.baseViewController showToast:@"该文件无法预览"];
+//        return;
+//    }
     
     if (self.favorData) {
         YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:self.favorData baseVC:qlVC];

@@ -400,14 +400,11 @@
 		E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C06181DCB1F9400666265 /* DataErrorView.m */; };
 		E9A7B5D61DDADD0A00136335 /* ActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */; };
 		E9A7B5EB1DDC3EAA00136335 /* ShareResourcesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5E81DDC3EAA00136335 /* ShareResourcesTableViewCell.m */; };
-		E9A7B5EC1DDC3EAA00136335 /* ShareResourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5EA1DDC3EAA00136335 /* ShareResourcesViewController.m */; };
 		E9A7B5EF1DDC3EE400136335 /* ShareResourcesRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5EE1DDC3EE400136335 /* ShareResourcesRequest.m */; };
 		E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5F11DDC46CA00136335 /* ShareResourcesFetcher.m */; };
 		E9A7B5F41DDC63EF00136335 /* shareResources_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = E9A7B5F31DDC63EF00136335 /* shareResources_mock.json */; };
 		E9A7B5F71DDD91DC00136335 /* TrainListProjectGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5F61DDD91DC00136335 /* TrainListProjectGroup.m */; };
-		E9A7B5FD1DDEB82700136335 /* ResourcesDownloadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5FC1DDEB82700136335 /* ResourcesDownloadViewController.m */; };
 		E9A7B6001DDECB5D00136335 /* ResourceMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5FF1DDECB5D00136335 /* ResourceMessageView.m */; };
-		E9A7B6041DDEE62400136335 /* ResourcesDownloadRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B6031DDEE62400136335 /* ResourcesDownloadRequest.m */; };
 		E9BBA5F51DD05CC4000CA413 /* ActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA5F41DD05CC4000CA413 /* ActivityListViewController.m */; };
 		E9BBA5F91DD06932000CA413 /* ActivityListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA5F81DD06932000CA413 /* ActivityListFetcher.m */; };
 		E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BBA6051DD09530000CA413 /* ActivityListRequest.m */; };
@@ -416,6 +413,10 @@
 		E9BBA6201DD310EA000CA413 /* activityFilter_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BBA61E1DD310EA000CA413 /* activityFilter_mock.json */; };
 		E9BBA6211DD310EA000CA413 /* activityList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = E9BBA61F1DD310EA000CA413 /* activityList_mock.json */; };
 		E9BD43E31DAC9507007BE8F6 /* YXDetailHotspotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9BD43E21DAC9507007BE8F6 /* YXDetailHotspotViewController.m */; };
+		E9CD95791DE3E36500AE6704 /* ShareResourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9CD95781DE3E36500AE6704 /* ShareResourcesViewController.m */; };
+		E9CD957F1DE3E47C00AE6704 /* DownloadResourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9CD957E1DE3E47C00AE6704 /* DownloadResourceViewController.m */; };
+		E9CD95821DE3E7E300AE6704 /* DownloadResourceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E9CD95811DE3E7E300AE6704 /* DownloadResourceRequest.m */; };
+		E9CD95841DE3E8C600AE6704 /* downloadResource_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = E9CD95831DE3E8C500AE6704 /* downloadResource_mock.json */; };
 		F7E8F8D51D65AEE000CDAAF4 /* YXEmptyAndErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8F8D41D65AEE000CDAAF4 /* YXEmptyAndErrorView.m */; };
 		F7E8F8DB1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8F8DA1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m */; };
 		F7E8F8DE1D65CE3700CDAAF4 /* YXPopUpContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E8F8DD1D65CE3700CDAAF4 /* YXPopUpContainerView.m */; };
@@ -1204,8 +1205,6 @@
 		E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListCell.m; sourceTree = "<group>"; };
 		E9A7B5E71DDC3EAA00136335 /* ShareResourcesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesTableViewCell.h; sourceTree = "<group>"; };
 		E9A7B5E81DDC3EAA00136335 /* ShareResourcesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareResourcesTableViewCell.m; sourceTree = "<group>"; };
-		E9A7B5E91DDC3EAA00136335 /* ShareResourcesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesViewController.h; sourceTree = "<group>"; };
-		E9A7B5EA1DDC3EAA00136335 /* ShareResourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareResourcesViewController.m; sourceTree = "<group>"; };
 		E9A7B5ED1DDC3EE400136335 /* ShareResourcesRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesRequest.h; sourceTree = "<group>"; };
 		E9A7B5EE1DDC3EE400136335 /* ShareResourcesRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareResourcesRequest.m; sourceTree = "<group>"; };
 		E9A7B5F01DDC46CA00136335 /* ShareResourcesFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesFetcher.h; sourceTree = "<group>"; };
@@ -1213,12 +1212,8 @@
 		E9A7B5F31DDC63EF00136335 /* shareResources_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = shareResources_mock.json; sourceTree = "<group>"; };
 		E9A7B5F51DDD91DC00136335 /* TrainListProjectGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainListProjectGroup.h; sourceTree = "<group>"; };
 		E9A7B5F61DDD91DC00136335 /* TrainListProjectGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainListProjectGroup.m; sourceTree = "<group>"; };
-		E9A7B5FB1DDEB82700136335 /* ResourcesDownloadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcesDownloadViewController.h; sourceTree = "<group>"; };
-		E9A7B5FC1DDEB82700136335 /* ResourcesDownloadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcesDownloadViewController.m; sourceTree = "<group>"; };
 		E9A7B5FE1DDECB5D00136335 /* ResourceMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceMessageView.h; sourceTree = "<group>"; };
 		E9A7B5FF1DDECB5D00136335 /* ResourceMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceMessageView.m; sourceTree = "<group>"; };
-		E9A7B6021DDEE62400136335 /* ResourcesDownloadRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcesDownloadRequest.h; sourceTree = "<group>"; };
-		E9A7B6031DDEE62400136335 /* ResourcesDownloadRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcesDownloadRequest.m; sourceTree = "<group>"; };
 		E9BBA5F31DD05CC4000CA413 /* ActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListViewController.h; sourceTree = "<group>"; };
 		E9BBA5F41DD05CC4000CA413 /* ActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListViewController.m; sourceTree = "<group>"; };
 		E9BBA5F71DD06932000CA413 /* ActivityListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityListFetcher.h; path = "../../../Phone/UI/主界面/ActivityListFetcher.h"; sourceTree = "<group>"; };
@@ -1233,6 +1228,13 @@
 		E9BBA61F1DD310EA000CA413 /* activityList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activityList_mock.json; sourceTree = "<group>"; };
 		E9BD43E11DAC9507007BE8F6 /* YXDetailHotspotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDetailHotspotViewController.h; sourceTree = "<group>"; };
 		E9BD43E21DAC9507007BE8F6 /* YXDetailHotspotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDetailHotspotViewController.m; sourceTree = "<group>"; };
+		E9CD95771DE3E36500AE6704 /* ShareResourcesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareResourcesViewController.h; sourceTree = "<group>"; };
+		E9CD95781DE3E36500AE6704 /* ShareResourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareResourcesViewController.m; sourceTree = "<group>"; };
+		E9CD957D1DE3E47C00AE6704 /* DownloadResourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadResourceViewController.h; sourceTree = "<group>"; };
+		E9CD957E1DE3E47C00AE6704 /* DownloadResourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadResourceViewController.m; sourceTree = "<group>"; };
+		E9CD95801DE3E7E300AE6704 /* DownloadResourceRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadResourceRequest.h; sourceTree = "<group>"; };
+		E9CD95811DE3E7E300AE6704 /* DownloadResourceRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadResourceRequest.m; sourceTree = "<group>"; };
+		E9CD95831DE3E8C500AE6704 /* downloadResource_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = downloadResource_mock.json; sourceTree = "<group>"; };
 		F7E8F8D31D65AEE000CDAAF4 /* YXEmptyAndErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEmptyAndErrorView.h; sourceTree = "<group>"; };
 		F7E8F8D41D65AEE000CDAAF4 /* YXEmptyAndErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEmptyAndErrorView.m; sourceTree = "<group>"; };
 		F7E8F8D81D65CC9000CDAAF4 /* YXPopUpViewSetDataAndActionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXPopUpViewSetDataAndActionProtocol.h; sourceTree = "<group>"; };
@@ -2906,8 +2908,9 @@
 		E9A7B6011DDEE60C00136335 /* 资源下载 */ = {
 			isa = PBXGroup;
 			children = (
-				E9A7B6021DDEE62400136335 /* ResourcesDownloadRequest.h */,
-				E9A7B6031DDEE62400136335 /* ResourcesDownloadRequest.m */,
+				E9CD95801DE3E7E300AE6704 /* DownloadResourceRequest.h */,
+				E9CD95811DE3E7E300AE6704 /* DownloadResourceRequest.m */,
+				E9CD95831DE3E8C500AE6704 /* downloadResource_mock.json */,
 			);
 			name = "资源下载";
 			sourceTree = "<group>";
@@ -2928,10 +2931,10 @@
 				92DE3BBA1DDC329A0011CFB7 /* SecondCommentViewController.m */,
 				92006C8A1DCC79E500F80488 /* ActivityPlayViewController.h */,
 				92006C8B1DCC79E500F80488 /* ActivityPlayViewController.m */,
-				E9A7B5E91DDC3EAA00136335 /* ShareResourcesViewController.h */,
-				E9A7B5EA1DDC3EAA00136335 /* ShareResourcesViewController.m */,
-				E9A7B5FB1DDEB82700136335 /* ResourcesDownloadViewController.h */,
-				E9A7B5FC1DDEB82700136335 /* ResourcesDownloadViewController.m */,
+				E9CD95771DE3E36500AE6704 /* ShareResourcesViewController.h */,
+				E9CD95781DE3E36500AE6704 /* ShareResourcesViewController.m */,
+				E9CD957D1DE3E47C00AE6704 /* DownloadResourceViewController.h */,
+				E9CD957E1DE3E47C00AE6704 /* DownloadResourceViewController.m */,
 			);
 			name = "活动";
 			sourceTree = "<group>";
@@ -3133,6 +3136,7 @@
 				920F1D3E1D51A42A00636A51 /* homeworkInfo_mock.json in Resources */,
 				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
 				9223C83A1D2F82D8000F74DF /* search.txt in Resources */,
+				E9CD95841DE3E8C600AE6704 /* downloadResource_mock.json in Resources */,
 				7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */,
 				923237591D81122700FDACFE /* provinceData.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
@@ -3253,6 +3257,7 @@
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
 				92A770091DD18A5800C578F2 /* InputTextView.m in Sources */,
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
+				E9CD95791DE3E36500AE6704 /* ShareResourcesViewController.m in Sources */,
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
 				920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */,
 				9232374B1D80F40700FDACFE /* YXProvincesRequest.m in Sources */,
@@ -3311,6 +3316,7 @@
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
 				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
+				E9CD95821DE3E7E300AE6704 /* DownloadResourceRequest.m in Sources */,
 				92FAE4A71DDAC9ED000C3C00 /* ActivityStepViewController.m in Sources */,
 				92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
@@ -3442,7 +3448,6 @@
 				9223C8151D2CFF89000F74DF /* YXWorkshopDatumViewController.m in Sources */,
 				7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */,
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
-				E9A7B5FD1DDEB82700136335 /* ResourcesDownloadViewController.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
 				922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */,
@@ -3455,6 +3460,7 @@
 				9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
 				E9A7B5EB1DDC3EAA00136335 /* ShareResourcesTableViewCell.m in Sources */,
+				E9CD957F1DE3E47C00AE6704 /* DownloadResourceViewController.m in Sources */,
 				7C2C3B821D24F5BE00A03635 /* YXCourseRecordViewController.m in Sources */,
 				922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */,
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
@@ -3522,7 +3528,6 @@
 				7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */,
 				7C3178271D129C01004AAC90 /* ReaderDocumentOutline.m in Sources */,
 				CB3510AB1D18E9730081EA3B /* YXMyDatumViewController.m in Sources */,
-				E9A7B6041DDEE62400136335 /* ResourcesDownloadRequest.m in Sources */,
 				7C3F258B1D20C42D00F0A17A /* YXTrainListRequest.m in Sources */,
 				CB52FCF41D2BB5280096D8DC /* YXNoticeTopTableViewCell.m in Sources */,
 				7CF888851D1BE20400E7C04D /* YXExamPhaseShadowCell.m in Sources */,
@@ -3535,7 +3540,6 @@
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
 				9223C8351D2F4BD2000F74DF /* YXSchoolSearchViewController.m in Sources */,
 				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
-				E9A7B5EC1DDC3EAA00136335 /* ShareResourcesViewController.m in Sources */,
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
 				E9BD43E31DAC9507007BE8F6 /* YXDetailHotspotViewController.m in Sources */,
 				92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */,

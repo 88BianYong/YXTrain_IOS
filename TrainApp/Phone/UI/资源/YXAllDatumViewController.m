@@ -147,6 +147,9 @@ static  NSString *const trackPageName = @"全部资源页面";
     YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
     item.name = data.title;
     item.url = data.url;
+//    item.url = @"http://upload.yanxiu.com/resource/index.jsp?action=download&id=12474817";
+    //http://upload.yanxiu.com/resource/index.jsp?action=download&id=12476600
+    //YXFileTypeDoc;
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
     if(item.type == YXFileTypeUnknown) {
         [self showToast:@"暂不支持该格式文件预览"];

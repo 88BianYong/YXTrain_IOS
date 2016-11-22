@@ -15,7 +15,8 @@
 @property (nonatomic, copy) NSString<Optional> *resName;
 @property (nonatomic, copy) NSString<Optional> *publishTime;
 @property (nonatomic, copy) NSString<Optional> *createUsername;
-@property (nonatomic, copy) NSString<Optional> *resType;
+//@property (nonatomic, copy) NSString<Optional> *resType;
+@property (nonatomic, copy) NSString<Optional> *fileType;
 @property (nonatomic, copy) NSString<Optional> *resSize;
 @property (nonatomic, copy) NSString<Optional> *previewUrl;
 @property (nonatomic, copy) NSString<Optional> *downloadUrl;

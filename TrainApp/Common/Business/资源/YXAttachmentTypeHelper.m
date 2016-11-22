@@ -24,6 +24,17 @@
              @"word":@(YXFileTypeDoc),
              @"excel":@(YXFileTypeDoc),
              @"html":@(YXFileTypeHtml),
+//             @"mp4":@(YXFileTypeVideo),
+//             @"m3u8":@(YXFileTypeVideo),
+//             @"txt":@(YXFileTypeDoc),
+//             @"docx":@(YXFileTypeDoc),
+//             @"mp3":@(YXFileTypeAudio),
+//             @"jpg":@(YXFileTypePhoto),
+//             @"bmp":@(YXFileTypePhoto),
+//             @"png":@(YXFileTypePhoto),
+//             @"xls":@(YXFileTypeDoc),
+//             @"xlsx":@(YXFileTypeDoc),
+//             @"rar":@(YXFileTypeUnknown),
              @"unknown":@(YXFileTypeUnknown)
              };
 }
@@ -42,6 +53,17 @@
              @"word":@"word",
              @"excel":@"excel",
              @"html":@"html",
+//             @"mp4":@"mp4／m3u8",
+//             @"m3u8":@"mp4／m3u8",
+//             @"txt":@"txt",
+//             @"docx":@"word",
+//             @"mp3":@"mp3",
+//             @"jpg":@"jpg-png-bmp",
+//             @"bmp":@"jpg-png-bmp",
+//             @"png":@"jpg-png-bmp",
+//            @"xls":@"excel",
+//             @"xlsx":@"excel",
+//             @"rar":@"未知",
              @"unknown":@"未知"
              };
 }

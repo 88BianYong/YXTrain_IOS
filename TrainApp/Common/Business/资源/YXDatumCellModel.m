@@ -77,23 +77,23 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     model.aid = resource.resId;
     model.previewUrl = resource.downloadUrl;
     model.url = resource.downloadUrl;//resource.previewUrl打不开!
-    model.type = resource.resType;
-    NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.resType];
+    model.type = resource.fileType;
+    NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.fileType];
     model.image = [UIImage imageNamed:imageName];
     model.date = resource.publishTime;
     model.isFavor = resource.isCollection.boolValue;
     model.createUsername = resource.createUsername;
     return model;
 }
-+ (YXDatumCellModel *)modelFromResourceDownloadRequestItemBodyResource:(ResourcesDownloadRequestItem_body_resource *)resource {
++ (YXDatumCellModel *)modelFromDownloadResourceRequestItemBodyResource:(DownloadResourceRequestItem_body_resource *)resource {
     YXDatumCellModel *model = [[YXDatumCellModel alloc]init];
     model.title = resource.resName;
     model.size = resource.resSize.longLongValue;
     model.aid = resource.resId;
     model.previewUrl = resource.previewUrl;
     model.url = resource.downloadUrl;
-    model.type = resource.resType;
-    NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.resType];
+    model.type = resource.fileType;
+    NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.fileType];
     model.image = [UIImage imageNamed:imageName];
     model.date = resource.publishTime;
     model.isFavor = resource.isCollection.boolValue;

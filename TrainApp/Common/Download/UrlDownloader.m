@@ -175,7 +175,7 @@
 
 - (NSString *)desFilePath {
     NSString *ret = [[[self class] downloadFolderPath] stringByAppendingPathComponent:[[self.url lastPathComponent] md5]];
-    ret = [ret stringByAppendingString:@".pdf"];
+    ret = [ret stringByAppendingString:@".xls"];
     return ret;
 }
 

@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *sizeLabel;
 @property (nonatomic, strong) UILabel *uploadInfoLabel;
+//@property (nonatomic, assign) CGFloat dateLbelWidth;
+//@property (nonatomic, assign) CGFloat sizeLabelWidth;
 @end
 
 @implementation ResourceMessageView
@@ -34,15 +36,12 @@
     self.layer.borderWidth = 1;
     self.layer.masksToBounds = YES;
     self.iconView = [[UIImageView alloc]init];
-    self.iconView.backgroundColor = [UIColor yellowColor];
     
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.titleLabel.numberOfLines = 2;
-    self.titleLabel.backgroundColor = [UIColor blackColor];
-    self.titleLabel.text = @"测试主题";
     
     self.lineView = [[UIView alloc]init];
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
@@ -51,22 +50,16 @@
     self.dateLabel.font = [UIFont systemFontOfSize:12];
     self.dateLabel.textAlignment = NSTextAlignmentCenter;
     self.dateLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    self.dateLabel.backgroundColor = [UIColor blueColor];
-     self.dateLabel.text = @"测试日期";
     
     self.sizeLabel = [[UILabel alloc]init];
     self.sizeLabel.font = [UIFont systemFontOfSize:12];
     self.sizeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     self.sizeLabel.textAlignment = NSTextAlignmentCenter;
-    self.sizeLabel.backgroundColor = [UIColor yellowColor];
-    self.sizeLabel.text = @"测试大小";
     
     self.uploadInfoLabel = [[UILabel alloc]init];
     self.uploadInfoLabel.font = [UIFont systemFontOfSize:12];
     self.uploadInfoLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     self.uploadInfoLabel.textAlignment = NSTextAlignmentCenter;
-    self.uploadInfoLabel.backgroundColor = [UIColor brownColor];
-    self.uploadInfoLabel.text = @"测试上传";
 }
 - (void)setupLayout {
     [self addSubview:self.iconView];
@@ -95,10 +88,10 @@
     }];
     CGFloat dateLbelWidth = [self.dateLabel.text sizeWithAttributes:@{NSFontAttributeName:self.dateLabel.font}].width;
     CGFloat sizeLabelWidth = [self.sizeLabel.text sizeWithAttributes:@{NSFontAttributeName:self.sizeLabel.font}].width;
-    CGFloat dateLabelX = (self.bounds.size.width - dateLbelWidth - sizeLabelWidth - 13) * 0.5;
+    CGFloat margin = (self.bounds.size.width - dateLbelWidth - sizeLabelWidth - 13) * 0.5;
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.lineView.mas_bottom).offset(15);
-        make.left.mas_equalTo(dateLabelX);
+        make.left.mas_equalTo(margin);
     }];
     [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.dateLabel);
@@ -109,6 +102,19 @@
         make.centerX.equalTo(self);
     }];
 }
+- (void)updateLayout {
+    CGFloat dateLbelWidth = [self.dateLabel.text sizeWithAttributes:@{NSFontAttributeName:self.dateLabel.font}].width;
+    CGFloat sizeLabelWidth = [self.sizeLabel.text sizeWithAttributes:@{NSFontAttributeName:self.sizeLabel.font}].width;
+    CGFloat margin = (self.bounds.size.width - dateLbelWidth - sizeLabelWidth - 13) * 0.5;
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.lineView.mas_bottom).offset(15);
+        make.left.mas_equalTo(margin);
+    }];
+    [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.dateLabel);
+        make.left.equalTo(self.dateLabel.mas_right).offset(13);
+    }];
+}
 - (void)setData:(YXDatumCellModel *)data {
     _data =data;
     self.iconView.image = data.image;
@@ -116,5 +122,9 @@
     self.dateLabel.text = data.date;
     self.sizeLabel.text = [BaseDownloader sizeStringForBytes:data.size];
     self.uploadInfoLabel.text = [NSString stringWithFormat:@"上传  %@",data.createUsername];
+    if (data.isFavor) {
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    }
+    [self updateLayout];
 }
 @end

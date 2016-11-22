@@ -11,7 +11,7 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"resid":@"resId",
                                                        @"resname":@"resName",
-                                                       @"res_type":@"resType",
+                                                       @"filetype":@"fileType",
                                                        @"res_size":@"resSize",
                                                         @"previewurl":@"previewUrl",
                                                         @"downloadurl":@"downloadUrl"
