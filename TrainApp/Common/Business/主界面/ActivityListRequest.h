@@ -37,13 +37,13 @@
 @property (nonatomic, copy) NSString<Optional> *pic;
 @property (nonatomic, copy) NSString<Optional> *title;
 @property (nonatomic, copy) NSString<Optional> *startTime;
-@property (nonatomic, copy) NSString<Optional> *isJoin;
+@property (nonatomic, copy) NSString<Optional> *isJoin;//是否参与  0：未参与  1：已参与
 @property (nonatomic, copy) NSString<Optional> *createUsername;
 @property (nonatomic, copy) NSString<Optional> *studyName;
 @property (nonatomic, copy) NSString<Optional> *segmentName;
 @property (nonatomic, copy) NSString<Optional> *desc;
 @property (nonatomic, copy) NSString<Optional> *status;
-@property (nonatomic, copy) NSString<Optional> *source;//club或train->研修网;zgjiaoyan->教研网
+@property (nonatomic, copy) NSString<Optional> *source;//活动来源 club或train->研修网;zgjiaoyan->教研网
 @property (nonatomic, copy) NSString<Optional> *joinUserCount;
 @property (nonatomic, strong) NSArray<ActivityListRequestItem_Body_Activity_Steps,Optional> *steps;
 @end

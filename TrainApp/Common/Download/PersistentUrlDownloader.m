@@ -18,7 +18,7 @@
 
 - (NSString *)desFilePath {
     NSString *ret = [[[self class] downloadFolderPath] stringByAppendingPathComponent:[self uid]];
-    ret = [ret stringByAppendingString:@".txt"];
+    ret = [ret stringByAppendingString:@".pdf"];
     return ret;
 }
 

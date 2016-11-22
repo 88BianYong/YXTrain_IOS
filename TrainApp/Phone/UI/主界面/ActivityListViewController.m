@@ -62,6 +62,40 @@
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
 }
+- (void)dealWithFilterModel:(ActivityFilterModel *)model {
+    YXCourseFilterView *filterView = [[YXCourseFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    self.filterView = filterView;
+    for (ActivityFilterGroup *group in model.groupArray) {
+        NSMutableArray *array = [NSMutableArray array];
+        for (ActivityFilter *filter in group.filterArray) {
+            [array addObject:filter.name];
+        }
+        [filterView addFilters:array forKey:group.name];
+    }
+    [self setupWithCurrentFilters];
+    filterView.delegate = self;
+    [self.view addSubview:filterView];
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(44);
+    }];
+}
+- (void)setupWithCurrentFilters {
+    if (self.stageID) {
+        ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+        __block NSInteger stageIndex = -1;
+        [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            ActivityFilter *filter = (ActivityFilter *)obj;
+            if ([self.stageID isEqualToString:filter.filterID]) {
+                stageIndex = idx;
+                *stop = YES;
+            }
+        }];
+        if (stageIndex >= 0) {
+            [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
+        }
+    }
+}
 - (void)setupUI {
     self.title = @"活动列表";
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
@@ -103,40 +137,6 @@
         [self firstPageFetch:YES];
     }];
 }
-- (void)dealWithFilterModel:(ActivityFilterModel *)model {
-    YXCourseFilterView *filterView = [[YXCourseFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-    self.filterView = filterView;
-    for (ActivityFilterGroup *group in model.groupArray) {
-        NSMutableArray *array = [NSMutableArray array];
-        for (ActivityFilter *filter in group.filterArray) {
-            [array addObject:filter.name];
-        }
-        [filterView addFilters:array forKey:group.name];
-    }
-    [self setupWithCurrentFilters];
-    filterView.delegate = self;
-    [self.view addSubview:filterView];
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(44);
-    }];
-}
-- (void)setupWithCurrentFilters {
-    if (self.stageID) {
-        ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
-        __block NSInteger stageIndex = -1;
-        [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            ActivityFilter *filter = (ActivityFilter *)obj;
-            if ([self.stageID isEqualToString:filter.filterID]) {
-                stageIndex = idx;
-                *stop = YES;
-            }
-        }];
-        if (stageIndex >= 0) {
-            [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
-        }
-    }
-}
 - (void)tableViewWillRefresh {
     CGFloat top = 0.f;
     if (self.filterView) {
@@ -175,7 +175,6 @@
     if ([cell.activity.source isEqualToString:@"zgjiaoyan"]) {//目前暂不支持教研网的活动
         [self showToast:@"暂不支持教研网活动"];
     }else {
-        DDLogDebug(@"跳转到活动详情页面");
         ActivityDetailViewController *detailVC = [[ActivityDetailViewController alloc] init];
         detailVC.activity = self.dataArray[indexPath.row];
         [self.navigationController pushViewController:detailVC animated:YES];
