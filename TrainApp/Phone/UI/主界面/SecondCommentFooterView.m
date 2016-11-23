@@ -25,4 +25,9 @@
     label.tag = 1000;
     [self.contentView addSubview:label];
 }
+
+- (void)setReplyNumber:(NSInteger)replyNumber {
+    UILabel *label = [self.contentView viewWithTag:1000];
+    label.text = [NSString stringWithFormat:@"%ld条回复",(long)replyNumber];
+}
 @end

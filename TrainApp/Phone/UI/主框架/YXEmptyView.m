@@ -88,22 +88,18 @@
     _imageName = imageName;
     self.imageView.image = [UIImage imageNamed:imageName];
 }
-- (void)updateWithImageNamed:(NSString *)imagename
-                    andTitle:(NSString *)title
-                 andSubTitle:(NSString *)subTitle{
-    if (!isEmpty(imagename)) {
-        self.imageView.backgroundColor = [UIColor clearColor];
-        self.imageView.image = [UIImage imageNamed:imagename];
-    }
-    
-    if (!isEmpty(title)) {
-        self.titleLabel.text = title;
-    }
 
-    if (!isEmpty(subTitle)) {
-        self.subTitleLabel.text = subTitle;
+- (void)setIsActivityVideo:(BOOL)isActivityVideo {
+    _isActivityVideo = isActivityVideo;
+    if (_isActivityVideo) {
+        self.imageView.hidden = YES;
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.containerView);
+        }];
+        [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.mas_centerX);
+            make.centerY.equalTo(self.mas_centerY);
+        }];
     }
-    [self setNeedsLayout];
 }
-
 @end

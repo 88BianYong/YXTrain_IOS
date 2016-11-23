@@ -13,6 +13,7 @@
 #import "ActivityPlayViewController.h"
 #import "ShareResourcesViewController.h"
 #import "DownloadResourceViewController.h"
+#import "CommentPageListViewController.h"
 @interface ActivityStepViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ActivityStepHeaderView *headerView;
@@ -133,10 +134,12 @@
     if ([tool.toolType isEqualToString:@"video"]) {//视频
         ActivityPlayViewController *VC = [[ActivityPlayViewController alloc] init];
         VC.tool = tool;
+        VC.status = self.status;
         [self.navigationController pushViewController:VC animated:YES];
     }else if ([tool.toolType isEqualToString:@"discuss"]){//讨论
-        NSString *string = @"CommentPageListViewController";
-        UIViewController *VC = [[NSClassFromString(string) alloc] init];
+        CommentPageListViewController *VC = [[CommentPageListViewController alloc] init];
+        VC.tool = tool;
+        VC.status = self.status;
         [self.navigationController pushViewController:VC animated:YES];
     } else if ([tool.toolType isEqualToString:@"resdisc"]) {//资源下载
         DownloadResourceViewController *downloadVc = [[DownloadResourceViewController alloc]init];

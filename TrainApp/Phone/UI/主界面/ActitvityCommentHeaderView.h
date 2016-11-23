@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityFirstCommentRequest.h"
+static NSString *kContentSeparator = @"<br />";
+static NSString *kNameSeparator = @"：";
+static CGFloat kDistanceTopLong = 30.0f;
+static CGFloat kDistanceTopShort = 15.0f;
+
 typedef void(^ActitvityCommentReplyBlock) (ActivityFirstCommentRequestItem_Body_Replies * replie);
-typedef void(^ActitvityCommentFavorBlock) (ActivityFirstCommentRequestItem_Body_Replies * replie);
+typedef void(^ActitvityCommentFavorBlock) ();
 @interface ActitvityCommentHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) ActivityFirstCommentRequestItem_Body_Replies *replie;
-@property (nonatomic, assign) BOOL isFirstBool;
+@property (nonatomic, assign) CGFloat distanceTop;
+@property (nonatomic, assign) BOOL isFontBold;
 
 - (void)setActitvityCommentReplyBlock:(ActitvityCommentReplyBlock)block;
 - (void)setActitvityCommentFavorBlock:(ActitvityCommentFavorBlock)block;

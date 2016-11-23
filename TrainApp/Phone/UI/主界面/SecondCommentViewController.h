@@ -9,5 +9,6 @@
 #import "CommentPageListViewController.h"
 
 @interface SecondCommentViewController : CommentPageListViewController
-
+@property (nonatomic, strong) NSString *parentID;
+@property (nonatomic, strong) ActivityFirstCommentRequestItem_Body_Replies *replie;
 @end

@@ -10,7 +10,7 @@
 typedef void(^PagedListFetcherCompleteBlock)(int totalPage, int currentPage, NSMutableArray *retItemArray, NSError *error);
 @interface CommentPagedListFetcher : NSObject
 @property (nonatomic, strong) NSString *aid;
-@property (nonatomic, strong) NSString *topicid;
+@property (nonatomic, strong) NSString *toolid;
 @property (nonatomic, strong) NSString *parentid;
 @property (nonatomic, strong) NSString *w;
 @property (nonatomic, assign) int  pageIndex;

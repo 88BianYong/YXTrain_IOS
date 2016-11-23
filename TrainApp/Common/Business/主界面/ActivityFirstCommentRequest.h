@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString<Optional> *topicid;
 @property (nonatomic, strong) NSString<Optional> *pic;
 @property (nonatomic, strong) NSString<Optional> *up;
-@property (nonatomic, strong) NSString<Optional> *commentID;
+@property (nonatomic, strong) NSString<Optional> *replyID;
 @property (nonatomic, strong) NSString<Optional> *content;
 @property (nonatomic, strong) NSString<Optional> *zJFlag;
 @property (nonatomic, strong) NSString<Optional> *isDel;
@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSString<Optional> *childNum;
 @property (nonatomic, strong) NSString<Optional> *isFloor;
 @property (nonatomic, strong) NSString<Optional> *headUrl;
-@property (nonatomic, strong) NSMutableArray<ActivityFirstCommentRequestItem_Body_Replies,Optional> *reply;
+@property (nonatomic, strong) NSMutableArray<ActivityFirstCommentRequestItem_Body_Replies,Optional> *replies;
 @end
 @interface ActivityFirstCommentRequestItem_Body : JSONModel
 @property (nonatomic, strong) NSString<Optional> *pageSize;
@@ -41,7 +41,7 @@
 
 @interface ActivityFirstCommentRequest : YXGetRequest
 @property (nonatomic, strong) NSString *aid;
-@property (nonatomic, strong) NSString *topicid;
+@property (nonatomic, strong) NSString *toolid;
 @property (nonatomic, strong) NSString *parentid;
 @property (nonatomic, strong) NSString *w;
 @property (nonatomic, strong) NSString *page;

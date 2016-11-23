@@ -12,6 +12,7 @@
 #import "ActitvityCommentCell.h"
 #import "ActitvityCommentFooterView.h"
 #import "SecondCommentFooterView.h"
+#import "UITableView+TemplateLayoutHeaderView.h"
 @interface SecondCommentViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @end
@@ -31,6 +32,14 @@
 }
 
 - (void)setupUI{
+    self.dataFetcher = [[CommentPagedListFetcher alloc] init];
+    self.dataFetcher.aid = self.tool.aid;
+    self.dataFetcher.toolid = self.tool.toolid;
+    self.dataFetcher.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.dataFetcher.pageIndex = 1;
+    self.dataFetcher.pageSize = 20;
+    self.dataFetcher.parentid = self.parentID;
+    self.isHiddenInputView = YES;
     [super setupUI];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -51,14 +60,43 @@
 
 #pragma mark - UITableViewDataSource
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
-    headerView.replie = replie;
+    if (section == 0) {
+        headerView.replie = self.replie;
+        headerView.isFontBold = YES;
+    }else {
+        ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
+        headerView.replie = replie;
+        headerView.isFontBold = NO;
+    }
+    headerView.distanceTop = kDistanceTopShort;
+    WEAK_SELF
+    [headerView setActitvityCommentFavorBlock:^{
+        STRONG_SELF
+        [self requestForCommentLaud:[NSString stringWithFormat:@"%ld",(long)section]];
+    }];
     return headerView;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    WEAK_SELF
+    return [tableView yx_heightForCellWithIdentifier:@"ActitvityCommentHeaderView" configuration:^(ActitvityCommentHeaderView *header) {
+        STRONG_SELF
+        if (section == 0) {
+            header.isFontBold = YES;
+            header.replie = self.replie;
+        }else {
+            ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
+            header.isFontBold = NO;
+            header.replie = replie;
+        }
+        header.distanceTop = kDistanceTopShort;
+    }];
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == 0) {
         SecondCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SecondCommentFooterView"];
+        footerView.replyNumber = self.dataMutableArray.count;
         return footerView;
     }else {
         return nil;
@@ -70,5 +108,8 @@
     }else {
         return 0.0001f;
     }
+}
+- (void)formatCommentContent{
+    [self.dataMutableArray insertObject:self.replie atIndex:0];
 }
 @end

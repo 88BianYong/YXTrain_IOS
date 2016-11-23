@@ -115,10 +115,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (self.activity.status.integerValue > 0) {
+    if (self.listItem.body.active.status.integerValue > 0) {
         ActivityListRequestItem_Body_Activity_Steps *step = self.listItem.body.active.steps[indexPath.section];
         ActivityStepViewController *VC = [[ActivityStepViewController alloc] init];
         VC.activityStep = step;
+        VC.status = self.listItem.body.active.status;
         [self.navigationController pushViewController:VC animated:YES];
     }else {
         [self showToast:@"活动尚未开始"];
@@ -162,6 +163,8 @@
                 [self.view addSubview:self.errorView];
             }
         }else {
+            [self.dataErrorView removeFromSuperview];
+            [self.errorView removeFromSuperview];
             self.listItem = (ActivityStepListRequestItem *)retItem;
             self.listItem.body.active.joinUserCount = self.activity.joinUserCount;
             self.listItem.body.active.studyName = self.activity.studyName;

@@ -21,7 +21,7 @@
     request.aid = self.aid;
     request.page = [NSString stringWithFormat:@"%d", self.pageIndex];
     request.pageSize = [NSString stringWithFormat:@"%d", self.pageSize];
-    request.topicid = self.topicid;
+    request.toolid = self.toolid;
     request.parentid = self.parentid;
     request.w = self.w;
     WEAK_SELF

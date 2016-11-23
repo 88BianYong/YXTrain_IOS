@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UIButton *favorButton;
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UIView *lineView;
+
+@property (nonatomic, copy) ActitvityCommentCellFavorBlock favorBlock;
 @end
 @implementation ActitvityCommentCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -65,7 +67,7 @@
     
     self.favorButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.favorButton setImage:[UIImage imageNamed:@"点赞icon"] forState:UIControlStateNormal];
-    [self.favorButton setImage:[UIImage imageNamed:@"点赞icon-点击状态"] forState:UIControlStateSelected];
+    [self.favorButton setImage:[UIImage imageNamed:@"点赞icon-点击状态"] forState:UIControlStateDisabled];
     [self.favorButton addTarget:self action:@selector(favorButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.favorButton];
     
@@ -133,7 +135,7 @@
 
 #pragma mark - button Action
 - (void)favorButtonAction:(UIButton *)sender{
-    
+    BLOCK_EXEC(self.favorBlock);
 }
 
 #pragma mark - set
@@ -145,6 +147,11 @@
         self.favorLabel.text = @"9999+";
     }else {
         self.favorLabel.text = reply.up;
+    }
+    if ([_reply.isRanked isEqualToString:@"true"]) {
+        self.favorButton.enabled = NO;
+    }else {
+        self.favorButton.enabled = YES;
     }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:reply.content?:@""];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -176,6 +183,10 @@
     }
 }
 
+- (void)setActitvityCommentCellFavorBlock:(ActitvityCommentCellFavorBlock)block {
+    self.favorBlock = block;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -187,7 +198,24 @@
     
     // Configure the view for the selected state
 }
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    CGPoint location = [[[event allTouches] anyObject] locationInView:self];
+    if (CGRectContainsPoint(self.favorButton.frame, location) && self.favorButton.enabled == NO) {
+      [(YXBaseViewController *)[self viewController] showToast:@"您已经赞过了哦"];
+    }
+}
 
+- (UIViewController *)viewController
+{
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
 
 
 @end

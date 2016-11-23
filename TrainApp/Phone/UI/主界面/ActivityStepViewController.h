@@ -10,4 +10,5 @@
 #import "ActivityListRequest.h"
 @interface ActivityStepViewController : YXBaseViewController
 @property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps *activityStep;
+@property (nonatomic, copy) NSString *status;
 @end

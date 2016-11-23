@@ -13,6 +13,7 @@
 #import "ActivityToolVideoRequest.h"
 #import "ActivityEnclosureViewController.h"
 #import "YXWebViewController.h"
+#import "VideoCommentErrorView.h"
 @interface ActivityPlayViewController ()
 @property (nonatomic, strong) ActivityPlayManagerView *playMangerView;
 @property (nonatomic, strong) ActivityToolVideoRequest *videoRequest;
@@ -27,10 +28,11 @@
 - (void)viewDidLoad {
     self.dataFetcher = [[CommentPagedListFetcher alloc] init];
     self.dataFetcher.aid = self.tool.aid;
-    self.dataFetcher.topicid = self.tool.toolid;
+    self.dataFetcher.toolid = self.tool.toolid;
     self.dataFetcher.w = [YXTrainManager sharedInstance].currentProject.w;
     self.dataFetcher.pageIndex = 1;
     self.dataFetcher.pageSize = 10;
+    self.commentErrorView = [[VideoCommentErrorView alloc] init];
     [super viewDidLoad];
     self.title = @"视频";
     self.view.backgroundColor = [UIColor blackColor];
@@ -84,9 +86,32 @@
     lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [headerView addSubview:lineView];
     self.tableView.tableHeaderView = headerView;
+    self.tableView.tableHeaderView.hidden = YES;
+    self.dataErrorView.isActivityVideo = YES;
+    self.emptyView.isActivityVideo = YES;
 }
 - (void)setupLayout {
     [super setupLayout];
+    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+        make.top.equalTo(self.playMangerView.mas_bottom).offset(30.0f);
+    }];
+    
+    [self.commentErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.top.equalTo(self.playMangerView.mas_bottom).offset(30.0f);
+    }];
+    [self.dataErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.top.equalTo(self.playMangerView.mas_bottom).offset(30.0f);
+    }];
+
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);

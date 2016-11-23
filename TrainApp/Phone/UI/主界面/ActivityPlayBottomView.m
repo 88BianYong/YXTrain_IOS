@@ -47,7 +47,7 @@
     }];
     
     [self.slideProgressControl mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.playPauseButton.mas_right).offset(20.0f);
+        make.left.equalTo(self.playPauseButton.mas_right).offset(10.0f);
         make.right.equalTo(self.rotateButton.mas_left).offset(15.0f);
         make.top.bottom.mas_equalTo(@0);
     }];

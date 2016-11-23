@@ -7,7 +7,5 @@
 //
 
 #import "CommentPageListViewController.h"
-#import "ActivityListRequest.h"
 @interface ActivityPlayViewController : CommentPageListViewController
-@property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps_Tools *tool;
 @end

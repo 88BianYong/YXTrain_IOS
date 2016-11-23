@@ -218,6 +218,10 @@
 		9223C8521D40D0A1000F74DF /* YXPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8511D40D0A1000F74DF /* YXPageControl.m */; };
 		922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922850C31DD05DF500A64AB7 /* ActivityPlayManagerView.m */; };
 		922850C71DD05E3000A64AB7 /* ActivityPlayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922850C61DD05E3000A64AB7 /* ActivityPlayBottomView.m */; };
+		922901561DE576F5001474CE /* CommentReplyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901551DE576F5001474CE /* CommentReplyRequest.m */; };
+		922901591DE57971001474CE /* CommentLaudRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901581DE57971001474CE /* CommentLaudRequest.m */; };
+		9229015C1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229015B1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m */; };
+		9229015F1DE6C241001474CE /* VideoCommentErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229015E1DE6C241001474CE /* VideoCommentErrorView.m */; };
 		922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */; };
 		922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */; };
 		922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */; };
@@ -861,6 +865,14 @@
 		922850C31DD05DF500A64AB7 /* ActivityPlayManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlayManagerView.m; sourceTree = "<group>"; };
 		922850C51DD05E3000A64AB7 /* ActivityPlayBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayBottomView.h; sourceTree = "<group>"; };
 		922850C61DD05E3000A64AB7 /* ActivityPlayBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlayBottomView.m; sourceTree = "<group>"; };
+		922901541DE576F5001474CE /* CommentReplyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentReplyRequest.h; sourceTree = "<group>"; };
+		922901551DE576F5001474CE /* CommentReplyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentReplyRequest.m; sourceTree = "<group>"; };
+		922901571DE57971001474CE /* CommentLaudRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentLaudRequest.h; sourceTree = "<group>"; };
+		922901581DE57971001474CE /* CommentLaudRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentLaudRequest.m; sourceTree = "<group>"; };
+		9229015A1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+TemplateLayoutHeaderView.h"; sourceTree = "<group>"; };
+		9229015B1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+TemplateLayoutHeaderView.m"; sourceTree = "<group>"; };
+		9229015D1DE6C241001474CE /* VideoCommentErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCommentErrorView.h; sourceTree = "<group>"; };
+		9229015E1DE6C241001474CE /* VideoCommentErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCommentErrorView.m; sourceTree = "<group>"; };
 		922F3AC61D2A61DE00CBF7C3 /* YXWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopViewController.h; sourceTree = "<group>"; };
 		922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopViewController.m; sourceTree = "<group>"; };
 		922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopCell.h; sourceTree = "<group>"; };
@@ -2559,6 +2571,10 @@
 				9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */,
 				92780F671DD9A01600548424 /* CommentPagedListFetcher.h */,
 				92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */,
+				922901541DE576F5001474CE /* CommentReplyRequest.h */,
+				922901551DE576F5001474CE /* CommentReplyRequest.m */,
+				922901571DE57971001474CE /* CommentLaudRequest.h */,
+				922901581DE57971001474CE /* CommentLaudRequest.m */,
 			);
 			name = "评论";
 			sourceTree = "<group>";
@@ -2652,6 +2668,10 @@
 				92DE3BBD1DDC45DE0011CFB7 /* SecondCommentFooterView.m */,
 				92DE3BC21DDC590D0011CFB7 /* SendCommentView.h */,
 				92DE3BC31DDC590D0011CFB7 /* SendCommentView.m */,
+				9229015A1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.h */,
+				9229015B1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m */,
+				9229015D1DE6C241001474CE /* VideoCommentErrorView.h */,
+				9229015E1DE6C241001474CE /* VideoCommentErrorView.m */,
 			);
 			name = "评论";
 			sourceTree = "<group>";
@@ -3363,6 +3383,7 @@
 				923237161D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m in Sources */,
 				CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */,
 				CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */,
+				922901591DE57971001474CE /* CommentLaudRequest.m in Sources */,
 				7C2C3B3D1D212D6700A03635 /* YXScoreLeadScoreCell.m in Sources */,
 				7C2C3B5A1D23BEE100A03635 /* YXCourseListFetcher.m in Sources */,
 				7C3F25901D20CB5F00F0A17A /* YXTaskListRequest.m in Sources */,
@@ -3470,7 +3491,9 @@
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
 				920F1D681D58347600636A51 /* YXVideoRecordBottomView.m in Sources */,
 				CB52FCF11D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m in Sources */,
+				9229015F1DE6C241001474CE /* VideoCommentErrorView.m in Sources */,
 				7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */,
+				9229015C1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m in Sources */,
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
 				9223C8151D2CFF89000F74DF /* YXWorkshopDatumViewController.m in Sources */,
 				7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */,
@@ -3513,6 +3536,7 @@
 				7CFBA6BF1D33374B005D08B1 /* YXErrorView.m in Sources */,
 				7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */,
 				CB748EE91D23E118004BCFBF /* YXDatumSearchView.m in Sources */,
+				922901561DE576F5001474CE /* CommentReplyRequest.m in Sources */,
 				7C2C3B431D21351F00A03635 /* YXScoreExpHeaderView.m in Sources */,
 				9223C82B1D2E30A5000F74DF /* YXAboutHeaderView.m in Sources */,
 				9223C80F1D2CADD6000F74DF /* YXWorkshopMemberRequest.m in Sources */,

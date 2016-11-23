@@ -60,7 +60,7 @@
     
     self.favorButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.favorButton setImage:[UIImage imageNamed:@"点赞icon"] forState:UIControlStateNormal];
-    [self.favorButton setImage:[UIImage imageNamed:@"点赞icon-点击状态"] forState:UIControlStateSelected];
+    [self.favorButton setImage:[UIImage imageNamed:@"点赞icon-点击状态"] forState:UIControlStateDisabled];
     [self.favorButton addTarget:self action:@selector(favorButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.favorButton];
     
@@ -106,38 +106,79 @@
 
 #pragma mark - button Action 
 - (void)favorButtonAction:(UIButton *)sender{
-    BLOCK_EXEC(self.favorBlock, self.replie);
+    BLOCK_EXEC(self.favorBlock);
 }
 - (void)replyCommentAction:(UITapGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateEnded) {
+    CGPoint point = [sender locationInView:self.contentView];
+    if (sender.state == UIGestureRecognizerStateEnded &&
+        !CGRectContainsPoint(self.favorButton.frame,point)) {
         BLOCK_EXEC(self.replyBlock,self.replie);
+    }else {
+        [(YXBaseViewController *)[self viewController] showToast:@"您已经赞过了哦"];
     }
 }
 
 #pragma mark - set
 - (void)setReplie:(ActivityFirstCommentRequestItem_Body_Replies *)replie{
     _replie = replie;
-    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:replie.headUrl] placeholderImage:nil];
-    self.nameLabel.text = replie.userName;
-    self.timeLabel.text = replie.time;
-    self.favorLabel.text = replie.up;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:replie.content?:@""];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:replie.headUrl] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
+    self.nameLabel.text = _replie.userName;
+    self.timeLabel.text = _replie.time;
+    if (_replie.up.integerValue >= 10000) {
+        self.favorLabel.text = @"9999+";
+    }else {
+        self.favorLabel.text = _replie.up;
+    }
+    if ([_replie.isRanked isEqualToString:@"true"]) {
+        self.favorButton.enabled = NO;
+    }else {
+        self.favorButton.enabled = YES;
+    }
+    if (![self isFormatContent:replie.content?:@""]) {
+        NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:replie.content?:@""];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.lineSpacing = 7.0f;
+        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+        [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [replie.content?:@"" length])];
+        self.contentLabel.attributedText = attributedString;
+    }else {
+        self.contentLabel.attributedText = [self formatSenondCommentContnet:replie.content];
+    }
+}
+//判断是否为15年2级评论
+- (BOOL)isFormatContent:(NSString *)contentString {
+    return ([contentString rangeOfString:kContentSeparator].location != NSNotFound) &&
+           ([contentString rangeOfString:kContentSeparator].location != NSNotFound) &&
+           ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3);
+}
+- (NSMutableAttributedString *)formatSenondCommentContnet:(NSString *)content {
+    NSRange contentRange = [content rangeOfString:kContentSeparator];
+    NSString *contentString = [content substringFromIndex:contentRange.location + contentRange.length];
+    NSRange nameRange = [[content substringToIndex:contentRange.location] rangeOfString:kNameSeparator];
+    NSString *nameString = [[content substringToIndex:contentRange.location] substringFromIndex:nameRange.length + nameRange.location];
+    NSString *tempString = [NSString stringWithFormat:@"回复%@: %@",nameString,contentString];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:tempString];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 7.0f;
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [replie.content?:@"" length])];
-    self.contentLabel.attributedText = attributedString;
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [tempString length])];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"a1a7ae"] range:NSMakeRange(0, [nameString length] + 3)];
+    return attributedString;
 }
-- (void)setIsFirstBool:(BOOL)isFirstBool {
-    _isFirstBool = isFirstBool;
-    if (_isFirstBool) {
-        [self.headerImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top).offset(15.0f);
-        }];
-    }else {
-        [self.headerImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top).offset(30.0f);
-        }];
+
+
+- (void)setDistanceTop:(CGFloat)distanceTop {
+    _distanceTop = distanceTop;
+    [self.headerImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.contentView.mas_top).offset(_distanceTop);
+    }];
+}
+- (void)setIsFontBold:(BOOL)isFontBold {
+    _isFontBold = isFontBold;
+    if (_isFontBold) {
+        self.contentLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+    }else{
+        self.contentLabel.font = [UIFont systemFontOfSize:16.0f];
     }
 }
 
@@ -146,5 +187,16 @@
 }
 - (void)setActitvityCommentReplyBlock:(ActitvityCommentReplyBlock)block {
     self.replyBlock = block;
+}
+
+- (UIViewController *)viewController
+{
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 @end

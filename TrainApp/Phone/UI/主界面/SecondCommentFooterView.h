@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SecondCommentFooterView : UITableViewHeaderFooterView
-@property (nonatomic, copy) NSString *replyNumberString;
+@property (nonatomic, assign) NSInteger replyNumber;
 @end

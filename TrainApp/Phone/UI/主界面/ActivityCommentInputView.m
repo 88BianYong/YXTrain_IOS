@@ -8,6 +8,7 @@
 
 //NSFoundationVersionNumber_iOS_7_0
 #import "ActivityCommentInputView.h"
+#import "YXPromtController.h"
 @interface ActivityCommentInputView()
 @property (nonatomic, strong) UILabel *inputNumberLabel;
 @property (nonatomic, strong) UILabel *totalNumberLabel;
@@ -35,7 +36,7 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.textView = [[SAMTextView alloc] init];
-    self.textView.placeholder = @"开始评论";
+    self.textView.placeholder = @"评论 :";
     self.textView.textContainerInset = UIEdgeInsetsMake(15.0f, 15.0f, 0.0f, 15.0f);
     self.textView.layer.cornerRadius = YXTrainCornerRadii;
     self.textView.layer.borderWidth = 1.0f / [UIScreen mainScreen].scale;
@@ -97,7 +98,22 @@
 }
 #pragma mark - button Action 
 - (void)sendButtonAction:(UIButton *)sender {
-    BLOCK_EXEC(self.inputTextBlock,self.textView.text);
+    if ([[self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0) {
+        BLOCK_EXEC(self.inputTextBlock,self.textView.text);
+    }else {
+        [YXPromtController showToast:@"发布内容不能为空" inView:[self viewController].view];
+    }
+    
+}
+- (UIViewController *)viewController
+{
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
 }
 
 #pragma mark - notification
@@ -133,6 +149,9 @@
         self.sendButton.enabled = YES;
         self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
 
+    }
+    if (tempTextView.text.length > 200) {
+         tempTextView.text = [tempTextView.text substringToIndex:200];
     }
     self.inputNumberLabel.text = [NSString stringWithFormat:@"%d",(200 - (int)tempTextView.text.length)];
 }

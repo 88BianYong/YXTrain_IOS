@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityFirstCommentRequest.h"
+typedef void (^ActitvityCommentCellFavorBlock) ();
 typedef NS_OPTIONS(NSInteger, ActitvityCommentCellStatus) {
     ActitvityCommentCellStatus_Top = 1<<0,
     ActitvityCommentCellStatus_Middle = 1<<1,
@@ -16,4 +17,6 @@ typedef NS_OPTIONS(NSInteger, ActitvityCommentCellStatus) {
 @interface ActitvityCommentCell : UITableViewCell
 @property (nonatomic, strong) ActivityFirstCommentRequestItem_Body_Replies *reply;
 @property (nonatomic, assign) ActitvityCommentCellStatus cellStatus;
+
+- (void)setActitvityCommentCellFavorBlock:(ActitvityCommentCellFavorBlock)block;
 @end
