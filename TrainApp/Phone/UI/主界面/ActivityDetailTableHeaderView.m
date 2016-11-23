@@ -30,11 +30,15 @@
 
 @property (nonatomic, copy) ActivityHtmlOpenAndCloseBlock openCloseBlock;
 @property (nonatomic, copy) ActivityHtmlHeightChangeBlock heightChangeBlock;
+@property (nonatomic, assign) BOOL isFirstRefresh;
 
 @end
 @implementation ActivityDetailTableHeaderView
+
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.isFirstRefresh = YES;
         [self setupUI];
         [self setupLayout];
     }
@@ -59,7 +63,7 @@
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:16.0f];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.numberOfLines = 2;
+    self.titleLabel.numberOfLines = 0;
     [self addSubview:self.titleLabel];
     
     self.statusImageView = [[UIImageView alloc] init];
@@ -117,10 +121,13 @@
     [self.coreTextHandler setCoreTextViewHeightChangeBlock:^(CGFloat height) {
         STRONG_SELF
         self ->_changeHeight = height + self.titleLabel.bounds.size.height;
-        [self updateHtmlViewWithHeight:height];
-        if (height < 300.0f) {
-            BLOCK_EXEC(self.heightChangeBlock,height + self.titleLabel.bounds.size.height);
+        if (self.isFirstRefresh) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self updateHtmlViewWithHeight:height];
+                BLOCK_EXEC(self.heightChangeBlock,height,self.titleLabel.bounds.size.height);
+            });
         }
+        self.isFirstRefresh = NO;
     }];
     [self.coreTextHandler setCoreTextViewLinkPushedBlock:^(NSURL *url) {
         STRONG_SELF
@@ -150,17 +157,17 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(25.0f);
         make.right.equalTo(self.mas_right).offset(-25.0f);
-        make.top.equalTo(self.mas_top).offset(37.0f + 5.0f);
+        make.top.equalTo(self.mas_top).offset(35.0f + 5.0f);
     }];
     [self.statusImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_offset(CGSizeMake(108.0f, 52.0f));
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(16.0f);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(11.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
     
     [self.publisherTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_centerX).offset(-9.0f);
-        make.top.equalTo(self.statusImageView.mas_bottom).offset(17.0f);
+        make.top.equalTo(self.statusImageView.mas_bottom).offset(14.0f);
     }];
     [self.publisherContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_centerX).offset(9.0f);
@@ -169,7 +176,7 @@
     
     [self.studyTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.publisherTitleLabel.mas_right);
-        make.top.equalTo(self.publisherTitleLabel.mas_bottom).offset(15.0f);
+        make.top.equalTo(self.publisherTitleLabel.mas_bottom).offset(12.0f);
     }];
     [self.studyContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.publisherContentLabel.mas_left);
@@ -178,25 +185,25 @@
     
     [self.segmentTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.publisherTitleLabel.mas_right);
-        make.top.equalTo(self.studyTitleLabel.mas_bottom).offset(15.0f);
+        make.top.equalTo(self.studyTitleLabel.mas_bottom).offset(12.0f);
     }];
     [self.segmentContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.publisherContentLabel.mas_left);
-        make.top.equalTo(self.studyContentLabel.mas_bottom).offset(15.0f);
+        make.top.equalTo(self.segmentTitleLabel.mas_top);
     }];
     
     [self.participantsTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.publisherTitleLabel.mas_right);
-        make.top.equalTo(self.segmentTitleLabel.mas_bottom).offset(15.0f);
+        make.top.equalTo(self.segmentTitleLabel.mas_bottom).offset(12.0f);
 
     }];
     [self.participantsContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.publisherContentLabel.mas_left);
-        make.top.equalTo(self.segmentTitleLabel.mas_bottom).offset(15.0f);
+        make.top.equalTo(self.participantsTitleLabel.mas_top);
     }];
     
     [self.descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.participantsContentLabel.mas_bottom).offset(40.0f);
+        make.top.equalTo(self.participantsContentLabel.mas_bottom).offset(36.0f);
         make.centerX.equalTo(self.mas_centerX);
         make.width.mas_offset(100.0f);
     }];
@@ -283,6 +290,10 @@
     }else {
         self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];
     }
+//    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
+//    _activity.desc = [NSString stringWithContentsOfFile:readmePath
+//                                                   encoding:NSUTF8StringEncoding
+//                                                      error:NULL];
     NSData *data = [_activity.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions] documentAttributes:nil];
     self.htmlView.attributedString = string;

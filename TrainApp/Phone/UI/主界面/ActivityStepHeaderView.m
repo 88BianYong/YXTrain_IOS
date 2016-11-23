@@ -175,10 +175,6 @@
 - (void)setActivityStep:(ActivityListRequestItem_Body_Activity_Steps *)activityStep{
     _activityStep = activityStep;
     self.titleLabel.text = _activityStep.title;
-//    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
-//    NSString *html = [NSString stringWithContentsOfFile:readmePath
-//                                               encoding:NSUTF8StringEncoding
-//                                                  error:NULL];
     NSData *data = [_activityStep.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions]documentAttributes:nil];
     self.htmlView.attributedString = string;

@@ -39,12 +39,12 @@
     if (highlighted) {
         self.stepLabel.textColor = [UIColor whiteColor];
         self.pointView.backgroundColor = [UIColor colorWithHexString:@"334466"];
-        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头点击态"];
+        self.nextImageView.image = [UIImage imageNamed:@"活动步骤箭头点击态"];
     }
     else{
         self.stepLabel.textColor = [UIColor colorWithHexString:@"334466"];
         self.pointView.backgroundColor = [UIColor colorWithHexString:@"334466"];
-        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
+        self.nextImageView.image = [UIImage imageNamed:@"活动步骤箭头正常态"];
     }
 }
 

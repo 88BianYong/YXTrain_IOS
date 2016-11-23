@@ -88,7 +88,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self addSubview:self.exceptionView];
     
     self.thumbImageView = [[UIImageView alloc] init];
-    self.thumbImageView.backgroundColor = [UIColor colorWithHexString:@"ff0000"];
+    self.thumbImageView.backgroundColor = [UIColor colorWithHexString:@"e7e8ec"];
     self.thumbImageView.userInteractionEnabled = YES;
     [self addSubview:self.thumbImageView];
     
