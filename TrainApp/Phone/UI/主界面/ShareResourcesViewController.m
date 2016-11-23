@@ -7,15 +7,13 @@
 //
 
 #import "ShareResourcesViewController.h"
+#import "ActivityListRequest.h"
 #import "ShareResourcesRequest.h"
-#import "YXResourceCollectionRequest.h"
 #import "YXWholeDatumFetcher.h"
-#import "YXAllDatumTableViewCell.h"
 #import "ShareResourcesTableViewCell.h"
 #import "ShareResourcesFetcher.h"
-#import "ActivityListRequest.h"
+#import "YXDatumCellModel.h"
 @interface ShareResourcesViewController ()
-@property (nonatomic, strong) YXResourceCollectionRequest *collectionRequest;
 @property (nonatomic, strong) UIView *bottomView;
 @end
 
@@ -40,10 +38,12 @@
     self.tableView.showsVerticalScrollIndicator = NO;
 }
 - (void)setupDataFetcher {
-    ShareResourcesFetcher *shareResourcesFetcher = [[ShareResourcesFetcher alloc]init];
-    shareResourcesFetcher.aid = self.tool.aid;
-    shareResourcesFetcher.toolId = self.tool.toolid;
-    self.dataFetcher = shareResourcesFetcher;
+    ShareResourcesFetcher *fetcher = [[ShareResourcesFetcher alloc]init];
+    fetcher.aid = self.tool.aid;
+    fetcher.toolId = self.tool.toolid;
+    fetcher.pageindex = 0;
+    fetcher.pagesize = 20;
+    self.dataFetcher = fetcher;
 }
 - (void)setupUI {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -66,12 +66,10 @@
 - (void)setupBottomView {
     UIView *bottomView = [[UIView alloc]init];
     bottomView.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
-    [self.view addSubview:bottomView];
     self.bottomView = bottomView;
     
     UIView *lineView = [[UIView alloc]init];
     lineView.backgroundColor = [UIColor colorWithHexString:@"d0d2d5"];
-    [self.bottomView addSubview:lineView];
     
     UIButton *viewCommentsButton = [UIButton buttonWithType:UIButtonTypeCustom];
     viewCommentsButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -83,8 +81,10 @@
     viewCommentsButton.layer.masksToBounds = YES;
     [viewCommentsButton addTarget:self action:@selector(viewCommentsButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [viewCommentsButton addTarget:self action:@selector(changeViewCommentsButtonAction:) forControlEvents:UIControlEventTouchDown];
-    [self.bottomView addSubview:viewCommentsButton];
     
+    [self.view addSubview:self.bottomView];
+    [self.bottomView addSubview:lineView];
+    [self.bottomView addSubview:viewCommentsButton];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.height.mas_equalTo(44);
@@ -102,7 +102,6 @@
     sender.backgroundColor = [UIColor clearColor];
     [sender setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
     [self goToViewComments:self.tool];
-    
 }
 - (void)goToViewComments:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
     DDLogDebug(@"查看评论");
@@ -111,9 +110,6 @@
     sender.backgroundColor = [UIColor colorWithHexString:@"0070c9"];
     [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 }
-//- (void)firstPageFetch {
-//    [super firstPageFetch:YES];
-//}
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.dataArray count];
@@ -138,8 +134,6 @@
     item.name = data.title;
     item.url = data.previewUrl;
     item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
-    //    item.url = @"http://upload.yanxiu.com/resource/index.jsp?action=download&id=12474817";
-    //    item.type = YXFileTypeDoc;
     if(item.type == YXFileTypeUnknown) {
         [self showToast:@"暂不支持该格式文件预览"];
         return;

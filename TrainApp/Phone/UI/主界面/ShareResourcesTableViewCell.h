@@ -10,6 +10,4 @@
 @class YXDatumCellModel;
 @interface ShareResourcesTableViewCell : UITableViewCell
 @property (nonatomic, strong) YXDatumCellModel *cellModel;
-//- (void)hiddenBottomView:(BOOL)hidden;
-
 @end

@@ -7,15 +7,15 @@
 //
 
 #import "DownloadResourceViewController.h"
-#import "ResourceMessageView.h"
 #import "ActivityListRequest.h"
+#import "ResourceMessageView.h"
 #import "DownloadResourceRequest.h"
 @interface DownloadResourceViewController ()
+@property (nonatomic, strong) DownloadResourceRequestItem *requestItem;
 @property (nonatomic, strong) DownloadResourceRequest *request;
 @property (nonatomic, strong) YXDatumCellModel *dataModel;
 @property (nonatomic, strong) ResourceMessageView *resourceMessageView;
 @property (nonatomic, strong) UIView *bottomView;
-@property (nonatomic, strong) DownloadResourceRequestItem *requestItem;
 
 @end
 
@@ -26,12 +26,12 @@
     emptyView.imageName = @"暂无资源";
     emptyView.title = @"没有符合条件的资源";
     self.emptyView = emptyView;
+    
     [super viewDidLoad];
     self.title = @"资源下载";
     self.dataModel = [self cachedItem];
     [self setupUI];
     [self requestResource];
-    // Do any additional setup after loading the view.
 }
 - (void)setupUI {
     WEAK_SELF
@@ -48,11 +48,13 @@
     };
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.resourceMessageView = [[ResourceMessageView alloc]initWithFrame:CGRectMake((kScreenWidth - kScreenWidthScale(345.0f)) *  0.5,(kScreenHeight - 144 - 201) * 0.5,kScreenWidthScale(345.0f), 201)];
-    self.resourceMessageView.data = self.dataModel;
     [self.view addSubview:self.resourceMessageView];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     tapGesture.numberOfTapsRequired = 1;
     [self.resourceMessageView addGestureRecognizer:tapGesture];
+    if (self.dataModel) {
+        self.resourceMessageView.data = self.dataModel;
+    }
     [self setupBottomView];
 }
 - (void)setupBottomView {
@@ -91,6 +93,7 @@
     }];
 }
 - (void)requestResource {
+    [self.request stopRequest];
     [self startLoading];
     self.request = [[DownloadResourceRequest alloc] init];
     self.request.aid = self.tool.aid;
@@ -113,8 +116,6 @@
         }
         if (!retItem) {
             self.emptyView.frame = self.view.bounds;
-            self.emptyView.imageName = @"暂无资源";
-            self.emptyView.title = @"没有符合条件的资源";
             [self.view addSubview:self.emptyView];
             return;
         }

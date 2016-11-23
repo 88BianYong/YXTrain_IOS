@@ -31,6 +31,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setupUI];
+        [self setupLayout];
     }
     return self;
 }
@@ -43,44 +44,44 @@
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.titleLabel.numberOfLines = 2;
-    [self.contentView addSubview:self.titleLabel];
     
     self.typeImageView = [[UIImageView alloc]init];
-    [self.contentView addSubview:self.typeImageView];
     
     self.dateLabel = [[UILabel alloc]init];
     self.dateLabel.font = [UIFont systemFontOfSize:12];
     self.dateLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    [self.contentView addSubview:self.dateLabel];
     
     self.sizeLabel = [[UILabel alloc]init];
     self.sizeLabel.font = [UIFont systemFontOfSize:12];
     self.sizeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    [self.contentView addSubview:self.sizeLabel];
     
     self.uploadLabel = [[UILabel alloc]init];
     self.uploadLabel.font = [UIFont systemFontOfSize:12];
     self.uploadLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-//    self.uploadLabel.text = @"上传  王的拉萨";
-    [self.contentView addSubview:self.uploadLabel];
     
     self.cellSeperatorView = [[UIView alloc]init];
     self.cellSeperatorView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+}
+- (void)setupLayout {
+    [self.contentView addSubview:self.typeImageView];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.dateLabel];
+    [self.contentView addSubview:self.sizeLabel];
+    [self.contentView addSubview:self.uploadLabel];
     [self.contentView addSubview:self.cellSeperatorView];
-    
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.typeImageView.mas_right).offset(13);
-        make.top.mas_equalTo(18);
-        make.right.mas_equalTo(-20);
-    }];
     [self.typeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(14);
         make.width.mas_equalTo(35);
         make.height.mas_equalTo(35);
+        make.top.equalTo(self.titleLabel);
+    }];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.typeImageView.mas_right).offset(11);
         make.top.mas_equalTo(18);
+        make.right.mas_equalTo(-20);
     }];
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.titleLabel.mas_left);
+        make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(10);
     }];
     [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,10 +98,9 @@
         make.left.mas_equalTo(60);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(0.5);
+        make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
 }
-
 - (void)setCellModel:(YXDatumCellModel *)cellModel{
     _cellModel = cellModel;
     self.typeImageView.image = cellModel.image;

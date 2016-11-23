@@ -85,7 +85,7 @@
         make.left.mas_equalTo(self.dateLabel.mas_left);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(0.5);
+        make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
 }
 

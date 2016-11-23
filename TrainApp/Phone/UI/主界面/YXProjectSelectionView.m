@@ -104,9 +104,9 @@ static const CGFloat kImageWidth = 30;
     [superview addSubview:self.maskView];
     CGFloat tableHeight;
     if (self.projectGroup.count == 2) {
-        tableHeight = MIN((self.projectGroup.firstObject.items.count + self.projectGroup.lastObject.items.count)*self.selectionTableView.rowHeight + 45 * 2, 292.5);
+        tableHeight = MIN((self.projectGroup.firstObject.items.count + self.projectGroup.lastObject.items.count)*self.selectionTableView.rowHeight + 45 * 2, 45 * 6 + 20);
     }else {
-        tableHeight = MIN(([self.projectGroup.firstObject.items count])*self.selectionTableView.rowHeight + 45, 247.5);
+        tableHeight = MIN(([self.projectGroup.firstObject.items count])*self.selectionTableView.rowHeight + 45, 45 * 5 + 20);
     }
     CGRect rect = self.selectionBgView.frame;
     rect.size.height = tableHeight+8;
