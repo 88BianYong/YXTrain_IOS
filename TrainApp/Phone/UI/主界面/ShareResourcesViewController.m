@@ -62,6 +62,18 @@
     UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
     tableViewHeaderView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.tableHeaderView = tableViewHeaderView;
+    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.bottomView.mas_top);
+        make.left.right.top.mas_equalTo(0);
+    }];
+    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.bottomView.mas_top);
+        make.left.right.top.mas_equalTo(0);
+    }];
+    [self.dataErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.bottomView.mas_top);
+        make.left.right.top.mas_equalTo(0);
+    }];
 }
 - (void)setupBottomView {
     UIView *bottomView = [[UIView alloc]init];

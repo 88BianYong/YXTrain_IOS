@@ -179,6 +179,10 @@ static  NSString *const trackPageName = @"我的资源页面";
         [self.delSourceRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             @strongify(self);
             [self stopLoading];
+            if (error) {
+                [self showToast:error.localizedDescription];
+                return;
+            }
             [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:retItem];
         }];
     }else{  // 我的收藏

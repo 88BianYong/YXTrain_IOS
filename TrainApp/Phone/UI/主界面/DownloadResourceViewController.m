@@ -29,32 +29,31 @@
     
     [super viewDidLoad];
     self.title = @"资源下载";
-    self.dataModel = [self cachedItem];
     [self setupUI];
+    self.dataModel = [self cachedItem];
+    if (self.dataModel) {
+        self.resourceMessageView.data = self.dataModel;
+    }
     [self requestResource];
 }
 - (void)setupUI {
     WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestResource];
     };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self requestResource];
     };
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.resourceMessageView = [[ResourceMessageView alloc]initWithFrame:CGRectMake((kScreenWidth - kScreenWidthScale(345.0f)) *  0.5,(kScreenHeight - 144 - 201) * 0.5,kScreenWidthScale(345.0f), 201)];
+    self.resourceMessageView = [[ResourceMessageView alloc]initWithFrame:CGRectMake((kScreenWidth - kScreenWidthScale(345.0f)) *  0.5,(kScreenHeight - 144 - 201 + 44) * 0.5,kScreenWidthScale(345.0f), 201)];
     [self.view addSubview:self.resourceMessageView];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     tapGesture.numberOfTapsRequired = 1;
     [self.resourceMessageView addGestureRecognizer:tapGesture];
-    if (self.dataModel) {
-        self.resourceMessageView.data = self.dataModel;
-    }
     [self setupBottomView];
 }
 - (void)setupBottomView {
@@ -105,18 +104,27 @@
         [self stopLoading];
         if (error) {
             if (error.code == -2) {
-                self.dataErrorView.frame = self.view.bounds;
                 [self.view addSubview:self.dataErrorView];
+                [self.dataErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.bottom.equalTo(self.bottomView.mas_top);
+                    make.left.right.top.mas_equalTo(0);
+                }];
             }
             else{
-                self.errorView.frame = self.view.bounds;
                 [self.view addSubview:self.errorView];
+                [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.bottom.equalTo(self.bottomView.mas_top);
+                    make.left.right.top.mas_equalTo(0);
+                }];
             }
             return;
         }
         if (!retItem) {
-            self.emptyView.frame = self.view.bounds;
             [self.view addSubview:self.emptyView];
+            [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.bottom.equalTo(self.bottomView.mas_top);
+                make.left.right.top.mas_equalTo(0);
+            }];
             return;
         }
         [self.errorView removeFromSuperview];

@@ -164,7 +164,7 @@ static const CGFloat kImageWidth = 30;
     NSArray *items = self.projectGroup[indexPath.section].items;
     YXTrainListRequestItem_body_train *train = items[indexPath.row];
     cell.name = train.name;
-     BOOL isEqual = ([self.currentIndexPath compare:indexPath] == NSOrderedSame) ? YES : NO;
+    BOOL isEqual = ([self.currentIndexPath compare:indexPath] == NSOrderedSame) ? YES : NO;
     cell.isCurrent = isEqual;
     return cell;
 }
