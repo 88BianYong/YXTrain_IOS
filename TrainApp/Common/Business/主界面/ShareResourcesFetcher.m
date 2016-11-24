@@ -43,12 +43,10 @@
     
 }
 - (void)saveToCache {
-    // 只cache第一页结果
     NSString *cachedJson = [self.page0RetItem toJSONString];
     NSString *cashedSign = [NSString stringWithFormat:@"%@%@",self.request.aid,self.request.toolId];
     NSDictionary *dict = @{cashedSign:cachedJson};
     [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"资源分享 first page cache"];
-//    [[NSUserDefaults standardUserDefaults] setObject:cachedJson forKey:@"资源分享 first page cache"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -57,8 +55,6 @@
     NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"资源分享 first page cache"];
     NSString *cachedJson = dict[cashedSign];
         ShareResourcesRequestItem *item = [[ShareResourcesRequestItem alloc] initWithString:cachedJson error:nil];
-//    NSString *cachedJson = [[NSUserDefaults standardUserDefaults] objectForKey:@"资源分享 first page cache"];
-//    ShareResourcesRequestItem *item = [[ShareResourcesRequestItem alloc] initWithString:cachedJson error:nil];
     self.page0RetItem = item;
     if (!item) {
         return nil;

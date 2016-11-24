@@ -1,21 +1,22 @@
 {
     "code":"0",
-    "debugDesc":"[debug_token: 1466492260388-12_7_45901 ][返回数据成功]",
     "desc":"success",
+    "debug":"http-nio-45901-exec-3-1479969198046-12_7_45901",
     "body":{
         "resource":{
-            "resid":24508545,
-            "title":"spring-framework-reference.pdf",
-            "resname":"资源下载测试.pdf",
-            "createUsername":"测试坊主125",
-            "publishTime":"2016-11-11 13:51:46",
-            "convertstatus":2,
-            "previewurl":"http://upload.ugc.yanxiu.com/video/2525284ac4d_0.m3u8?from=108&rid=22945759",
-            "downloadurl":"http://upload.ugc.yanxiu.com/video/6gtt.flv&attachment=true",
-            "res_type":"pdf",
-            "res_size":23434343,
-            "filetype":"pdf",
-            "isCollection":0
+            "res_size":"0",
+            "title":"测试html的资源下载",
+            "res_type":"unknown",
+            "isCollection":"0",
+            "filetype":"html",
+            "res_thumb":"http://s13.jsyxw.cn/res/mobile/images/other@2x.png",
+            "publishTime":"2016-11-23 14:11:26",
+            "createUsername":"县级辅导教师4",
+            "resid":"12487971",
+            "resname":"linux",
+            "downloadurl":"http://upload.yanxiu.com/resource/index.jsp?action=download&id=12487971",
+            "previewurl":"http://upload.yanxiu.com/resource/index.jsp?action=previewSwf&resId=12487971",
+            "externalUrl":"http://www.baidu.com.com"
         }
     }
 }

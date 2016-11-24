@@ -2,7 +2,7 @@
 //  DownloadResourceViewController.m
 //  TrainApp
 //
-//  Created by ZLL on 2016/11/22.
+//  Created by ZLL on 2016/11/18.
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
@@ -109,8 +109,7 @@
                     make.bottom.equalTo(self.bottomView.mas_top);
                     make.left.right.top.mas_equalTo(0);
                 }];
-            }
-            else{
+            }else {
                 [self.view addSubview:self.errorView];
                 [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.bottom.equalTo(self.bottomView.mas_top);

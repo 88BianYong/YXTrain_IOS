@@ -75,10 +75,13 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     model.title = resource.resName;
     model.size = resource.resSize.longLongValue;
     model.aid = resource.resId;
-//    model.previewUrl = resource.downloadUrl;
-//    model.url = resource.downloadUrl;//resource.previewUrl打不开!
-    model.previewUrl = resource.previewUrl;
-    model.url = resource.previewUrl;//
+    if ([resource.fileType isEqualToString:@"html"]) {
+        model.previewUrl = resource.externalUrl;
+        model.url = resource.externalUrl;
+    }else {
+        model.previewUrl = resource.previewUrl;
+        model.url = resource.previewUrl;
+    }
     model.type = resource.fileType;
     NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.fileType];
     model.image = [UIImage imageNamed:imageName];
@@ -92,8 +95,13 @@ NSString *const YXFavorSuccessNotification = @"YXFavorSuccessNotification";
     model.title = resource.resName;
     model.size = resource.resSize.longLongValue;
     model.aid = resource.resId;
-    model.previewUrl = resource.previewUrl;
-    model.url = resource.downloadUrl;
+    if ([resource.fileType isEqualToString:@"html"]) {
+        model.previewUrl = resource.externalUrl;
+        model.url = resource.externalUrl;
+    }else {
+        model.previewUrl = resource.previewUrl;
+        model.url = resource.previewUrl;
+    }
     model.type = resource.fileType;
     NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:resource.fileType];
     model.image = [UIImage imageNamed:imageName];

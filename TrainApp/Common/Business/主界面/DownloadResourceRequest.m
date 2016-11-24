@@ -9,12 +9,15 @@
 #import "DownloadResourceRequest.h"
 @implementation DownloadResourceRequestItem_body_resource
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"resid":@"resId",
+    return [[JSONKeyMapper alloc] initWithDictionary:@{
+                                                       @"resid":@"resId",
                                                        @"resname":@"resName",
                                                        @"filetype":@"fileType",
                                                        @"res_size":@"resSize",
+                                                       @"res_type":@"resType",
                                                        @"previewurl":@"previewUrl",
-                                                       @"downloadurl":@"downloadUrl"
+                                                       @"downloadurl":@"downloadUrl",
+                                                       @"external_url":@"externalUrl"
                                                        }];
 }
 @end

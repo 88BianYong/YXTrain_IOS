@@ -11,16 +11,19 @@
 @protocol ShareResourcesRequestItem_body_resource <NSObject>
 @end
 @interface ShareResourcesRequestItem_body_resource : JSONModel
+@property (nonatomic, copy) NSString<Optional> *title;
 @property (nonatomic, copy) NSString<Optional> *resId;
 @property (nonatomic, copy) NSString<Optional> *resName;
 @property (nonatomic, copy) NSString<Optional> *publishTime;
 @property (nonatomic, copy) NSString<Optional> *createUsername;
-//@property (nonatomic, copy) NSString<Optional> *resType;
+@property (nonatomic, copy) NSString<Optional> *resType;
 @property (nonatomic, copy) NSString<Optional> *fileType;
 @property (nonatomic, copy) NSString<Optional> *resSize;
-@property (nonatomic, copy) NSString<Optional> *previewUrl;
+@property (nonatomic, copy) NSString<Optional> *previewUrl;//资源中心转换格式后,统一用resource.previewUrl!
 @property (nonatomic, copy) NSString<Optional> *downloadUrl;
 @property (nonatomic, copy) NSString<Optional> *isCollection;
+@property (nonatomic, copy) NSString<Optional> *externalUrl;
+@property (nonatomic, copy) NSString<Optional> *res_thumb;
 @end
 
 @protocol ShareResourcesRequestItem_body <NSObject>
@@ -31,7 +34,7 @@
 
 @interface ShareResourcesRequestItem : HttpBaseRequestItem
 @property (nonatomic, copy) NSString<Optional> *count;
-@property (nonatomic, copy) NSString<Optional> *toolid;
+@property (nonatomic, copy) NSString<Optional> *toolId;
 @property (nonatomic, copy) NSString<Optional> *page;
 @property (nonatomic, copy) NSString<Optional> *totalPage;
 @property (nonatomic, strong) ShareResourcesRequestItem_body<Optional> *body;
