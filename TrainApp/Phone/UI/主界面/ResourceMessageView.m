@@ -15,8 +15,6 @@
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *sizeLabel;
 @property (nonatomic, strong) UILabel *uploadInfoLabel;
-//@property (nonatomic, assign) CGFloat dateLbelWidth;
-//@property (nonatomic, assign) CGFloat sizeLabelWidth;
 @end
 
 @implementation ResourceMessageView
@@ -85,17 +83,6 @@
         make.centerX.equalTo(self.titleLabel);
         make.width.mas_equalTo(315);
         make.height.mas_equalTo(0.5);
-    }];
-    CGFloat dateLbelWidth = [self.dateLabel.text sizeWithAttributes:@{NSFontAttributeName:self.dateLabel.font}].width;
-    CGFloat sizeLabelWidth = [self.sizeLabel.text sizeWithAttributes:@{NSFontAttributeName:self.sizeLabel.font}].width;
-    CGFloat margin = (self.bounds.size.width - dateLbelWidth - sizeLabelWidth - 13) * 0.5;
-    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.lineView.mas_bottom).offset(15);
-        make.left.mas_equalTo(margin);
-    }];
-    [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.dateLabel);
-        make.left.equalTo(self.dateLabel.mas_right).offset(13);
     }];
     [self.uploadInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.dateLabel.mas_bottom).offset(10);
