@@ -185,21 +185,29 @@
     // 学段
     NSNumber *num0 = filterArray[0];
     ActivityFilterGroup *group0 = self.filterModel.groupArray[0];
-    ActivityFilter *segmentItem = group0.filterArray[num0.integerValue];
+    ActivityFilter *segmentItem = [[ActivityFilter alloc]init];
+    if (group0.filterArray.count > 0) {
+       segmentItem = group0.filterArray[num0.integerValue];
+    }
     // 学科
     NSNumber *num1 = filterArray[1];
     ActivityFilterGroup *group1 = self.filterModel.groupArray[1];
-    ActivityFilter *studyItem = group1.filterArray[num1.integerValue];
+    ActivityFilter *studyItem = [[ActivityFilter alloc]init];
+    if (group0.filterArray.count > 0) {
+        studyItem = group1.filterArray[num1.integerValue];
+    }
     // 阶段
     NSNumber *num2 = filterArray[2];
     ActivityFilterGroup *group2 = self.filterModel.groupArray[2];
-    ActivityFilter *stageItem = group2.filterArray[num2.integerValue];
-    
+    ActivityFilter *stageItem = [[ActivityFilter alloc]init];
+    if (group2.filterArray.count > 0) {
+        stageItem = group2.filterArray[num2.integerValue];
+    }
     DDLogDebug(@"Changed: 学段:%@，学科:%@，阶段:%@",segmentItem.name,studyItem.name,stageItem.name);
     ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
-    fetcher.studyid = studyItem.filterID;
-    fetcher.segid = segmentItem.filterID;
-    fetcher.stageid = stageItem.filterID;
+    fetcher.studyid = studyItem.filterID?:@"0";//服务端数据返回空的处理:"0"-全部,即不做筛选
+    fetcher.segid = segmentItem.filterID?:@"0";
+    fetcher.stageid = stageItem.filterID?:@"0";
     [self firstPageFetch:YES];
 }
 #pragma mark scrollViewDelegate

@@ -180,8 +180,13 @@ static const NSUInteger kTagBase = 876;
     [superview addSubview:self.maskView];
     
     CGRect rect = [self convertRect:self.bounds toView:superview];
-    
-    CGFloat tableHeight = MIN(self.currentFilterItem.filterArray.count*self.selectionTableView.rowHeight, 242);
+    CGFloat tableHeight;
+    if (self.currentFilterItem.filterArray.count == 0) {//服务端数据返回为空时 显示
+        tableHeight = 44;
+    }else {
+        tableHeight = MIN(self.currentFilterItem.filterArray.count*self.selectionTableView.rowHeight , 242);
+    }
+//    CGFloat tableHeight = MIN(self.currentFilterItem.filterArray.count*self.selectionTableView.rowHeight + 14, 242 + 14);
     
     YXCourseFilterBgView *bgView = [[YXCourseFilterBgView alloc]initWithFrame:CGRectMake(6, rect.origin.y+rect.size.height-5, rect.size.width-6-6, tableHeight+8) triangleX:self.bounds.size.width/(self.filterItemArray.count * 2)*(1+2*index)-6];
     self.selectionTableView.frame = CGRectMake(0, 8, bgView.bounds.size.width, tableHeight);
