@@ -49,8 +49,14 @@
         [self requestResource];
     };
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.resourceMessageView = [[ResourceMessageView alloc]initWithFrame:CGRectMake((kScreenWidth - kScreenWidthScale(345.0f)) *  0.5,(kScreenHeight - 144 - 201 + 44) * 0.5,kScreenWidthScale(345.0f), 201)];
+    self.resourceMessageView = [[ResourceMessageView alloc]initWithFrame:CGRectZero];
     [self.view addSubview:self.resourceMessageView];
+    [self.resourceMessageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.view).offset(-22);
+        make.centerX.equalTo(self.view);
+        make.width.mas_equalTo(kScreenWidthScale(345.0f));
+        make.height.mas_equalTo(201);
+    }];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     tapGesture.numberOfTapsRequired = 1;
     [self.resourceMessageView addGestureRecognizer:tapGesture];

@@ -90,13 +90,13 @@
     }];
 }
 - (void)updateLayout {
-    CGFloat dateLbelWidth = [self.dateLabel.text sizeWithAttributes:@{NSFontAttributeName:self.dateLabel.font}].width;
     CGFloat sizeLabelWidth = [self.sizeLabel.text sizeWithAttributes:@{NSFontAttributeName:self.sizeLabel.font}].width;
-    CGFloat margin = (self.bounds.size.width - dateLbelWidth - sizeLabelWidth - 13) * 0.5;
+    CGFloat margin = sizeLabelWidth * 0.5 + 13;
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.lineView.mas_bottom).offset(15);
-        make.left.mas_equalTo(margin);
+        make.centerX.equalTo(self).offset(-margin);
     }];
+
     [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.dateLabel);
         make.left.equalTo(self.dateLabel.mas_right).offset(13);
