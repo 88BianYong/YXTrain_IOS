@@ -31,6 +31,7 @@
 @property (nonatomic, strong) CommentReplyRequest *replyRequest;
 @property (nonatomic, strong) CommentLaudRequest *laudRequest;
 @property (nonatomic, assign) NSInteger replyInteger;
+@property (nonatomic, assign) BOOL isManualBool;
 
 @end
 
@@ -66,7 +67,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.inputTextView.textView.text = nil;
+    [self.inputTextView inputTextViewClear];
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -78,7 +79,6 @@
     [self.tableView registerClass:[ActitvityCommentHeaderView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentHeaderView"];
     [self.tableView registerClass:[ActitvityCommentFooterView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentFooterView"];
     [self.view addSubview:self.tableView];
-    
     self.emptyView = [[YXEmptyView alloc] init];
     self.emptyView.hidden = YES;
     [self.view addSubview:self.emptyView];
@@ -221,7 +221,7 @@
         [self startLoading];
     }
     WEAK_SELF
-    [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, NSMutableArray *retItemArray, NSError *error) {
+    [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {
         STRONG_SELF
         WEAK_SELF
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -241,8 +241,8 @@
                     self.totalPage = 0;
                     [self showToast:error.localizedDescription];
                 }
-                [self pullupViewHidden:!(totalPage >= currentPage)];
             }else {
+                self.totalNum = totalNum;
                 self.commentErrorView.hidden = YES;
                 self.dataErrorView.hidden = YES;
                 [self.headerView setLastUpdateTime:[NSDate date]];
@@ -254,7 +254,7 @@
                     self.emptyView.hidden = YES;
                     [self.dataMutableArray addObjectsFromArray:retItemArray];
                     [self formatCommentContent];
-                    [self pullupViewHidden:(totalPage >= currentPage)];
+                    [self pullupViewHidden:!(totalPage > currentPage)];
                 }
                 [self.tableView reloadData];
                 self.tableView.contentOffset = CGPointZero;
@@ -266,7 +266,7 @@
     [self.dataFetcher stop];
     self.dataFetcher.pageIndex++;
     WEAK_SELF
-    [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, NSMutableArray *retItemArray, NSError *error) {
+    [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {
         STRONG_SELF
         WEAK_SELF
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -276,10 +276,11 @@
                 self.dataFetcher.pageIndex--;
                 [self showToast:error.localizedDescription];
             }else {
+                self.totalNum = totalNum;
                 [self.dataMutableArray addObjectsFromArray:retItemArray];
                 self.totalPage = totalPage;
                 [self.tableView reloadData];
-                [self pullupViewHidden:(totalPage >= currentPage)];
+                [self pullupViewHidden:!(totalPage > currentPage)];
             }
         });
     }];
@@ -294,6 +295,7 @@
 }
 - (void)pullupViewHidden:(BOOL)hidden
 {
+    self.isManualBool = !hidden;
     self.footerView.alpha = hidden ? 0:1;
 }
 - (void)showErroView {
@@ -350,17 +352,17 @@
                     }else {
                         reply.replies = [@[item.body.reply] mutableCopy];
                     }
-                    reply.childNum = [NSString stringWithFormat:@"%lu",(unsigned long)reply.replies.count];
+                    reply.childNum = [NSString stringWithFormat:@"%lu",reply.childNum.integerValue + 1];
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:self.replyInteger] withRowAnimation:UITableViewRowAnimationAutomatic];
                 }else {
-                    if (self.dataMutableArray.count <= 20) {
+                    if (self.isManualBool) {
                         [self.dataMutableArray addObject:item.body.reply];
                         [self.tableView reloadData];
                     }
                 }
             }
             self.emptyView.hidden = YES;
-            self.inputTextView.textView.text = nil;
+            [self.inputTextView inputTextViewClear];
         }
     }];
     self.replyRequest = request;
@@ -488,11 +490,13 @@
     WEAK_SELF
     [headerView setActitvityCommentReplyBlock:^(ActivityFirstCommentRequestItem_Body_Replies *replie) {
         STRONG_SELF
-        if (self.replyInteger != section) {
-            self.inputTextView.textView.text = nil;
+        if ([self isCheckActivityStatus]) {
+            if (self.replyInteger != section) {
+                [self.inputTextView inputTextViewClear];
+            }
+            self.replyInteger = section;
+            [self inputActitvityCommentReply:replie];
         }
-        self.replyInteger = section;
-        [self inputActitvityCommentReply:replie];
         
     }];
     [headerView setActitvityCommentFavorBlock:^{
@@ -519,6 +523,11 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     if (replie.childNum.integerValue <= 2 || [YXTrainManager sharedInstance].currentProject.w.integerValue <= 3) {
+        if (section + 1 == self.dataMutableArray.count && replie.childNum.integerValue <= 2) {
+            UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
+            footerView.backgroundColor = [UIColor whiteColor];
+            return footerView;
+        }
         return nil;
     }else {
         ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
@@ -539,6 +548,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     if (replie.childNum.integerValue <= 2 || [YXTrainManager sharedInstance].currentProject.w.integerValue <= 3) {
+        if (section + 1 == self.dataMutableArray.count && replie.childNum.integerValue <= 2) {
+            return 20.0f;
+        }
         return 0.0001f;
     }else {
         return 29.0f;
@@ -548,11 +560,12 @@
 #pragma mark - inputView
 - (void)userPublishComment{
     if (self.replyInteger != -1) {
-        self.inputTextView.textView.text = nil;
+        [self.inputTextView inputTextViewClear];
     }
     self.replyInteger = -1;
     self.inputTextView.textView.placeholder = @"评论 :";
     [self showCommentInputView];
+    
 }
 
 - (void)showCommentInputView {

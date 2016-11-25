@@ -28,10 +28,10 @@
     [request startRequestWithRetClass:[ActivityFirstCommentRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         if (error) {
-            BLOCK_EXEC(aCompleteBlock,0,0,nil,error);
+            BLOCK_EXEC(aCompleteBlock,0,0,0,nil,error);
         }else {
             ActivityFirstCommentRequestItem *item = (ActivityFirstCommentRequestItem *)retItem;
-            BLOCK_EXEC(aCompleteBlock,item.body.totalPage.intValue,item.body.page.intValue,item.body.replies,nil);
+            BLOCK_EXEC(aCompleteBlock,item.body.totalPage.intValue,item.body.page.intValue, item.body.totalNum.intValue,item.body.replies,nil);
         }
     }];
     self.commentRequest = request;

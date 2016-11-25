@@ -20,6 +20,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
+        self.clipsToBounds = YES;
     }
     return self;
 }

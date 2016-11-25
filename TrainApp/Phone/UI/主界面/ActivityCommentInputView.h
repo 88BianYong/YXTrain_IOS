@@ -14,4 +14,5 @@ typedef void(^ActivityCommentInputTextBlock) (NSString *inputText);
 
 - (void)setActivityCommentShowInputViewBlock:(ActivityCommentShowInputViewBlock)block;
 - (void)setActivityCommentInputTextBlock:(ActivityCommentInputTextBlock)block;
+- (void)inputTextViewClear;
 @end

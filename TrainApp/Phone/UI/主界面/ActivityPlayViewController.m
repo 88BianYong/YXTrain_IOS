@@ -73,6 +73,10 @@
           [self requestForActivityToolVideo];
         }
     }];
+    [self.playMangerView setActivityPlayManagerBackActionBlock:^{
+        STRONG_SELF
+        [self rotateScreenAction];
+    }];
     [self.view addSubview:self.playMangerView];
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];

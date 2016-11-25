@@ -162,5 +162,11 @@
 - (void)setActivityCommentInputTextBlock:(ActivityCommentInputTextBlock)block {
     self.inputTextBlock = block;
 }
-
+- (void)inputTextViewClear {
+    self.textView.text = nil;
+    self.inputNumberLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    self.sendButton.enabled = NO;
+    self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"b9c0c7"].CGColor;
+    self.self.inputNumberLabel.text = @"0";
+}
 @end

@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSMutableArray *dataMutableArray;
 @property (nonatomic, assign) BOOL isHiddenInputView;
 @property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps_Tools *tool;
+@property (nonatomic, assign) NSInteger totalNum;
 
 
 - (void)setupUI;

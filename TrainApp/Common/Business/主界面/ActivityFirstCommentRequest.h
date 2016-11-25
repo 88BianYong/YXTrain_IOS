@@ -32,6 +32,7 @@
 @property (nonatomic, strong) NSString<Optional> *pageSize;
 @property (nonatomic, strong) NSString<Optional> *page;
 @property (nonatomic, strong) NSString<Optional> *totalPage;
+@property (nonatomic, strong) NSString<Optional> *totalNum;
 @property (nonatomic, strong) NSMutableArray<ActivityFirstCommentRequestItem_Body_Replies,Optional> *replies;
 @end
 

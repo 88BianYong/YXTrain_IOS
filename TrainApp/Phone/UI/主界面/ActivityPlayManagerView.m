@@ -354,7 +354,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.bottomView.slideProgressControl.bufferProgress = 0.0f;
     self.slideProgressView.bufferProgress = 0.0f;
     [self.bottomView.slideProgressControl updateUI];
-    [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
+    [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
 }
 
 #pragma mark - button Action

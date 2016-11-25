@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-typedef void(^PagedListFetcherCompleteBlock)(int totalPage, int currentPage, NSMutableArray *retItemArray, NSError *error);
+typedef void(^PagedListFetcherCompleteBlock)(int totalPage, int currentPage, int totalNum ,NSMutableArray *retItemArray, NSError *error);
 @interface CommentPagedListFetcher : NSObject
 @property (nonatomic, strong) NSString *aid;
 @property (nonatomic, strong) NSString *toolid;

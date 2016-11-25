@@ -73,7 +73,9 @@
     WEAK_SELF
     [headerView setActitvityCommentFavorBlock:^{
         STRONG_SELF
-        [self requestForCommentLaud:[NSString stringWithFormat:@"%ld",(long)section]];
+        if ([self isCheckActivityStatus]) {
+            [self requestForCommentLaud:[NSString stringWithFormat:@"%ld",(long)section]];
+        }
     }];
     return headerView;
 }
@@ -96,7 +98,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == 0) {
         SecondCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"SecondCommentFooterView"];
-        footerView.replyNumber = self.dataMutableArray.count;
+        footerView.replyNumber = self.totalNum;
         return footerView;
     }else {
         return nil;

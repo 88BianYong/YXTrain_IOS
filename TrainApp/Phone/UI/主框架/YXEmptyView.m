@@ -22,6 +22,7 @@
         _title = @"无内容";
         _imageName = @"无内容";
         [self setupUI];
+        self.clipsToBounds = YES;
     }
     return self;
 }
