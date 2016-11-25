@@ -86,6 +86,7 @@
             self.window.rootViewController = vc;
             [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            [[YXTrainManager sharedInstance] clear];
         }else {
             [self startRootVC];
         }
