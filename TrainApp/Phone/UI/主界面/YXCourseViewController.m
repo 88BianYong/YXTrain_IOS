@@ -9,7 +9,7 @@
 #import "YXCourseViewController.h"
 #import "YXCourseFilterView.h"
 #import "YXCourseListFetcher.h"
-#import "YXCourseListCell.h"
+#import "BeijingCourseListCell.h"
 #import "YXCourseDetailViewController.h"
 #import "YXCourseRecordViewController.h"
 static  NSString *const trackPageName = @"课程列表页面";
@@ -57,7 +57,9 @@ static  NSString *const trackPageName = @"课程列表页面";
     [self setupObservers];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[YXCourseListCell class] forCellReuseIdentifier:@"YXCourseListCell"];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 104.0f;
+    [self.tableView registerClass:[BeijingCourseListCell class] forCellReuseIdentifier:@"BeijingCourseListCell"];
     
     [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(44);
@@ -256,15 +258,15 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 #pragma mark - UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    YXCourseListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXCourseListCell"];
+    BeijingCourseListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BeijingCourseListCell"];
     cell.course = self.dataArray[indexPath.row];
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 104;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return 104;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 5;

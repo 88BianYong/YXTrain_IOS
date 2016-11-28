@@ -112,7 +112,10 @@ extern const NSInteger YXTrainCornerStartpageTime;
  *  视频说明
  */
 extern NSString *const YXTrainUploadDepictionString;
-
+/**
+ *  北京项目ID
+ */
+extern NSString *const YXTrainBeijingProjectId;
 
 
 

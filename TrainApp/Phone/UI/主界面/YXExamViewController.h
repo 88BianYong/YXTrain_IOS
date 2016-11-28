@@ -9,5 +9,4 @@
 #import "YXBaseViewController.h"
 
 @interface YXExamViewController : YXBaseViewController<YXTrackPageDataProtocol>
-- (void)startAnimation;
 @end
