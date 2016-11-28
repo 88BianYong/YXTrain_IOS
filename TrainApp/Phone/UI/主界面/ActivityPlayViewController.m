@@ -75,7 +75,7 @@
     }];
     [self.playMangerView setActivityPlayManagerBackActionBlock:^{
         STRONG_SELF
-        [self rotateScreenAction];
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     }];
     [self.view addSubview:self.playMangerView];
     
@@ -106,7 +106,7 @@
     [self.commentErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom);
+        make.bottom.equalTo(self.view.mas_bottom).priorityLow();
         make.top.equalTo(self.playMangerView.mas_bottom).offset(30.0f);
     }];
     [self.dataErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -128,6 +128,7 @@
 - (void)remakeForFullSize {
     self.playMangerView.isFullscreen = YES;
     self.navigationController.navigationBar.hidden = YES;
+    [UIApplication sharedApplication].statusBarHidden = YES;
     [self.playMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
@@ -137,6 +138,7 @@
 - (void)remakeForHalfSize {
     self.playMangerView.isFullscreen = NO;
     self.navigationController.navigationBar.hidden = NO;
+    [UIApplication sharedApplication].statusBarHidden = NO;
     [self.playMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top);
         make.left.equalTo(self.view.mas_left);

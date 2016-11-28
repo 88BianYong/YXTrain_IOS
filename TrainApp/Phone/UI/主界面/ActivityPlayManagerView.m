@@ -196,6 +196,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Finished:
             {
                 [self playVideoFinished];
+                self.thumbImageView.hidden = NO;
             }
                 break;
             case PlayerView_State_Error:
@@ -348,13 +349,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 - (void)playVideoFinished {
-    [self.player seekTo:0];
     self.bottomView.slideProgressControl.playProgress = 0.0f;
     self.slideProgressView.playProgress = 0.0f;
     self.bottomView.slideProgressControl.bufferProgress = 0.0f;
     self.slideProgressView.bufferProgress = 0.0f;
     [self.bottomView.slideProgressControl updateUI];
-    [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
+    [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
+    BLOCK_EXEC(self.backBlock);
 }
 
 #pragma mark - button Action
@@ -394,6 +395,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 - (void)exceptionButtonAction:(UIButton *)sender {
+    self.bufferingView.hidden = NO;
+    [self.bufferingView start];
     if (self.playStatus == ActivityPlayManagerStatus_NotWifi) {
         [self.player play];
     }else {

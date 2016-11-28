@@ -218,7 +218,7 @@
         self.dataFetcher.pageSize = 20;
     }
     if (isShow) {
-        [self startLoading];
+        [YXPromtController startLoadingInView:self.tableView];
     }
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {
@@ -226,7 +226,7 @@
         WEAK_SELF
         dispatch_async(dispatch_get_main_queue(), ^{
             STRONG_SELF
-            [self stopLoading];
+            [YXPromtController stopLoadingInView:self.tableView];
             [self stopAnimation];
             self.tableView.tableHeaderView.hidden = NO;
             if (error) {

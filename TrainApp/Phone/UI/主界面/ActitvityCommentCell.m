@@ -116,13 +116,13 @@
     
     [self.favorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.favorButton.mas_top);
-        make.right.equalTo(self.favorButton.mas_left).offset(-6.0f);
+        make.right.equalTo(self.favorButton.mas_left).offset(2.0f);
     }];
     
     [self.favorButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView.mas_right).offset(-13.0f - 10.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(15.0f);
-        make.size.mas_offset(CGSizeMake(16.0f, 16.0f));
+        make.right.equalTo(self.contentView.mas_right).offset(-13.0f - 10.0f + 6.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(12.0f);
+        make.size.mas_offset(CGSizeMake(32.0f, 16.0f + 3.0f + 3.0f));
     }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {

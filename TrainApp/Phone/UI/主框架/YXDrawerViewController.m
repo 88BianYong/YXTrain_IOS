@@ -161,4 +161,11 @@ static const CGFloat kAnimationDuration = 0.3;
         [((YXNavigationController *)self.paneViewController).topViewController viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     }
 }
+- (BOOL)prefersStatusBarHidden {
+    if ([self.presentedViewController isKindOfClass:[YXVideoRecordViewController class]]) {
+        return [self.presentedViewController prefersStatusBarHidden];
+    }else {
+        return [((YXNavigationController *)self.paneViewController).topViewController prefersStatusBarHidden];
+    }
+}
 @end
