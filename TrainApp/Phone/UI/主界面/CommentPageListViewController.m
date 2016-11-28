@@ -88,14 +88,12 @@
         self.commentErrorView.hidden = YES;
         [(YXErrorView *)self.commentErrorView setRetryBlock:^{
             STRONG_SELF
-            [self startLoading];
             [self firstPageFetch:YES];
         }];
     }else {
         self.commentErrorView.hidden = YES;
         [(VideoCommentErrorView *)self.commentErrorView setRetryBlock:^{
             STRONG_SELF
-            [self startLoading];
             [self firstPageFetch:YES];
         }];
     }
@@ -161,7 +159,12 @@
         [self.navigationController.view addSubview:self.inputTextView];
     }
 }
-
+- (void)startLoading {
+    [YXPromtController startLoadingInView:self.tableView];
+}
+- (void)stopLoading {
+     [YXPromtController stopLoadingInView:self.tableView];
+}
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0);
@@ -218,7 +221,7 @@
         self.dataFetcher.pageSize = 20;
     }
     if (isShow) {
-        [YXPromtController startLoadingInView:self.tableView];
+        [self startLoading];
     }
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {
@@ -226,7 +229,7 @@
         WEAK_SELF
         dispatch_async(dispatch_get_main_queue(), ^{
             STRONG_SELF
-            [YXPromtController stopLoadingInView:self.tableView];
+            [self stopLoading];
             [self stopAnimation];
             self.tableView.tableHeaderView.hidden = NO;
             if (error) {
@@ -559,13 +562,14 @@
 
 #pragma mark - inputView
 - (void)userPublishComment{
-    if (self.replyInteger != -1) {
-        [self.inputTextView inputTextViewClear];
+    if ([self isCheckActivityStatus]) {
+        if (self.replyInteger != -1) {
+            [self.inputTextView inputTextViewClear];
+        }
+        self.replyInteger = -1;
+        self.inputTextView.textView.placeholder = @"评论 :";
+        [self showCommentInputView];
     }
-    self.replyInteger = -1;
-    self.inputTextView.textView.placeholder = @"评论 :";
-    [self showCommentInputView];
-    
 }
 
 - (void)showCommentInputView {

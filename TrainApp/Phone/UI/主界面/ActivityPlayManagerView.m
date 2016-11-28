@@ -181,6 +181,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Buffering:
             {
                 self.thumbImageView.hidden = YES;
+                if(![r isReachable]) {
+                   self.playStatus = ActivityPlayManagerStatus_PlayError; 
+                }
             }
                 break;
             case PlayerView_State_Playing:

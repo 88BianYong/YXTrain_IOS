@@ -288,7 +288,7 @@
     }else if (activity.status.integerValue == 2 || activity.status.integerValue == 1) {
         self.statusImageView.image = [UIImage imageNamed:@"进行中标签"];
     }else {
-        self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];
+        self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];//3
     }
 //    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
 //    _activity.desc = [NSString stringWithContentsOfFile:readmePath
