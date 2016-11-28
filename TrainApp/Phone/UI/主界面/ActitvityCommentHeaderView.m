@@ -68,34 +68,30 @@
     [self.contentView addGestureRecognizer:recognizer];
 }
 - (void)setupLayout {
-   [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-       make.left.equalTo(self.contentView.mas_left).offset(15.0f);
-       make.top.equalTo(self.contentView.mas_top).offset(30.0f);
-       make.size.mas_offset(CGSizeMake(36.0f, 36.0f));
-   }];
-    
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.headerImageView.mas_right).offset(11.0f);
-        make.top.equalTo(self.headerImageView.mas_top);
+    [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(15.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(30.0f);
+        make.size.mas_offset(CGSizeMake(36.0f, 36.0f));
     }];
-    
-    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel.mas_left);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(6.0f);
     }];
-    
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.timeLabel.mas_left);
         make.top.equalTo(self.timeLabel.mas_bottom).offset(15.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
     }];
-    
     [self.favorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.favorButton.mas_top);
         make.right.equalTo(self.favorButton.mas_left).offset(2.0f);
     }];
-    
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.headerImageView.mas_right).offset(11.0f);
+        make.top.equalTo(self.headerImageView.mas_top);
+        make.right.equalTo(self.favorLabel.mas_left);
+    }];
     [self.favorButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-25.0f + 8.0f);
         make.top.equalTo(self.headerImageView.mas_top).offset(0.0f);
@@ -104,7 +100,7 @@
     
 }
 
-#pragma mark - button Action 
+#pragma mark - button Action
 - (void)favorButtonAction:(UIButton *)sender{
     BLOCK_EXEC(self.favorBlock);
 }
@@ -148,8 +144,8 @@
 //判断是否为15年2级评论
 - (BOOL)isFormatContent:(NSString *)contentString {
     return ([contentString rangeOfString:kContentSeparator].location != NSNotFound) &&
-           ([contentString rangeOfString:kContentSeparator].location != NSNotFound) &&
-           ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3);
+    ([contentString rangeOfString:kContentSeparator].location != NSNotFound) &&
+    ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3);
 }
 - (NSMutableAttributedString *)formatSenondCommentContnet:(NSString *)content {
     NSRange contentRange = [content rangeOfString:kContentSeparator];

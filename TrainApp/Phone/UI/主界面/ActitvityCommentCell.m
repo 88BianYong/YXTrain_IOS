@@ -96,12 +96,6 @@
         make.bottom.equalTo(self.contentView.mas_bottom);
         make.height.mas_offset(17.0f);
     }];
-    
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.topView.mas_left).offset(15.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(15.0f);
-    }];
-    
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel.mas_left);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(8.0f);
@@ -118,7 +112,11 @@
         make.top.equalTo(self.favorButton.mas_top);
         make.right.equalTo(self.favorButton.mas_left).offset(2.0f);
     }];
-    
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.topView.mas_left).offset(15.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(15.0f);
+        make.right.equalTo(self.favorLabel.mas_left);
+    }];
     [self.favorButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-13.0f - 10.0f + 6.0f);
         make.top.equalTo(self.contentView.mas_top).offset(12.0f);
@@ -202,7 +200,7 @@
     [super touchesEnded:touches withEvent:event];
     CGPoint location = [[[event allTouches] anyObject] locationInView:self];
     if (CGRectContainsPoint(self.favorButton.frame, location) && self.favorButton.enabled == NO) {
-      [(YXBaseViewController *)[self viewController] showToast:@"您已经赞过了哦"];
+        [(YXBaseViewController *)[self viewController] showToast:@"您已经赞过了哦"];
     }
 }
 
