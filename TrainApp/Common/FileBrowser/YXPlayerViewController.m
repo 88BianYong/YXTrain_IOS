@@ -85,7 +85,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     self.tabBarController.tabBar.hidden = YES;
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeRight] forKey:@"orientation"];
     [UIApplication sharedApplication].statusBarHidden = YES;
@@ -260,7 +260,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.player pause];
     
     self.player = nil;
-    self.navigationController.navigationBarHidden = NO;
+//    self.navigationController.navigationBarHidden = NO;
     [UIApplication sharedApplication].statusBarHidden = NO;
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     [self dismissViewControllerAnimated:YES completion:nil];
