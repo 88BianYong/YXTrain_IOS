@@ -20,6 +20,7 @@
 #import "YXInitRequest.h"
 #import "YXPopUpContainerView.h"
 #import "AppDelegate+CMSView.h"
+#import "BeijingExamViewController.h"
 @interface YXProjectMainViewController ()
 {
     UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
@@ -48,7 +49,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self showProjectSelectionView];
-    //    [_selectedViewController viewWillAppear:animated];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -101,6 +101,12 @@
         STRONG_SELF
         [self getProjectList];
     };
+    
+    
+//    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [rightButton setImage:[UIImage imageNamed:@"消息动态icon-正常态A"] forState:UIControlStateNormal];
+    [self setupRightWithImageNamed:@"消息动态icon-正常态A" highlightImageNamed:@"消息动态icon点击态-正常态-拷贝"];
+    
 }
 - (void)getProjectList{
     [self startLoading];
@@ -171,11 +177,13 @@
             [self ->_selectedViewController report:NO];
             self ->_selectedViewController = vc;
             [self ->_selectedViewController report:YES];
-            if ([vc isKindOfClass:[YXExamViewController class]]){
-                [(YXExamViewController *)vc startAnimation];
-            }
         };
-        YXExamViewController *examVC = [[YXExamViewController alloc]init];
+        UIViewController<YXTrackPageDataProtocol> *examVC = nil;
+        if ([YXTrainManager sharedInstance].isBeijingProject || YES) {
+            examVC = [[BeijingExamViewController alloc]init];
+        }else {
+            examVC = [[YXExamViewController alloc]init];
+        }
         YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
         YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
         notiVC.flag = YXFlag_Notice;

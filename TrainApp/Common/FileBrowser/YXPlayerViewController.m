@@ -14,7 +14,8 @@
 #import "YXPlayerBufferingView.h"
 #import "AppDelegate.h"
 #import "JKAlertDialog.h"
-
+#import "PreventHangingCourseView.h"
+static NSInteger kPreventHangingCourseDefaultTime = 10;
 @implementation YXPlayerDefinition
 
 - (BOOL)isEqual:(id)object {
@@ -52,6 +53,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, strong) NSTimer *topBottomHideTimer;
 
 @property (nonatomic, strong) NSMutableArray *disposableArray;
+
+
+@property (nonatomic, assign) NSInteger preventHangingCourseInteger;
+@property (nonatomic, strong) dispatch_source_t preventHangingCourseTime;
+@property (nonatomic, strong) PreventHangingCourseView *preventView;
 @end
 
 @implementation YXPlayerViewController
@@ -65,6 +71,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
 - (void)viewDidLoad {
     _playTime = 0;
+    _preventHangingCourseInteger = 0;
     self.bottomView = [[YXPlayerBottomView alloc] init];
     [self _setupDefinitions];
     if (!isEmpty(_internalDefaultDefinition.url)) {
@@ -164,6 +171,20 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     //[self _setupDefinitions];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];// TD: fix bug 192
+    
+    
+    self.preventView = [[PreventHangingCourseView alloc] init];
+    [self.preventView setPreventHangingCourseBlock:^{
+        STRONG_SELF
+        [self.player play];
+    }];
+    [self.view addSubview:self.preventView];
+    self.preventView.hidden = YES;
+    [self.preventView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    [self startPreventHangingCourseTime];
 }
 - (void)applicationDidBecomeActive:(NSNotification *)notification{
     if (self.player.state == PlayerView_State_Playing) {
@@ -185,15 +206,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     } else {
         self.player.videoUrl = [NSURL URLWithString:url];
     }
-    
-//    for (RACDisposable *d in self.disposableArray) {
-//        [d dispose];
-//    }
-//    [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.mas_equalTo(@55);
-//    }];
-//    
-//    [self setupObserver];
 }
 
 - (void)checkNetwork {
@@ -240,6 +252,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 - (void)backAction {
+    dispatch_source_cancel(self.preventHangingCourseTime);
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     
     if ((self.delegate) && [self.delegate respondsToSelector:@selector(playerProgress:totalDuration:stayTime:)]) {
@@ -751,7 +764,28 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 //    return definitionID;
 }
 
-
-
+- (void)startPreventHangingCourseTime {
+    WEAK_SELF
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    self.preventHangingCourseTime = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_source_set_timer(self.preventHangingCourseTime, dispatch_walltime(NULL, 0), 1.0 * NSEC_PER_SEC, 0.0f);
+    dispatch_source_set_event_handler(self.preventHangingCourseTime, ^{
+        STRONG_SELF
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (self.player.state == PlayerView_State_Playing) {
+                self.preventHangingCourseInteger ++;
+            }
+        });
+    });
+    dispatch_resume(self.preventHangingCourseTime);
+}
+- (void)setPreventHangingCourseInteger:(NSInteger)preventHangingCourseInteger {
+    if (_preventHangingCourseInteger/kPreventHangingCourseDefaultTime !=
+        preventHangingCourseInteger/kPreventHangingCourseDefaultTime) {
+        [self.player pause];
+        self.preventView.hidden = NO;
+    }
+    _preventHangingCourseInteger = preventHangingCourseInteger;
+}
 
 @end

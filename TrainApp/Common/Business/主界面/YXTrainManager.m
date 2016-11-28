@@ -84,4 +84,8 @@
     [[NSUserDefaults standardUserDefaults]setValue:nil forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
+
+- (BOOL)isIsBeijingProject {
+    return [self.currentProject.pid isEqualToString:YXTrainBeijingProjectId];
+}
 @end
