@@ -383,7 +383,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
 - (void)playButtonAction:(UIButton *)sender {
     self.thumbImageView.hidden = YES;
-    if ([self.content.filetype isEqualToString:@"unknown"]) {
+    if ([self.content.res_type isEqualToString:@"unknown"]) {
         BLOCK_EXEC(self.playBlock,ActivityPlayManagerStatus_Unknown);
     }else {
         if (self.videoUrl) {
