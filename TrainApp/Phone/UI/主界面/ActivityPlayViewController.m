@@ -66,7 +66,7 @@
         STRONG_SELF
         if (status == ActivityPlayManagerStatus_Unknown) {
             YXWebViewController *VC = [[YXWebViewController alloc] init];
-            VC.urlString = [self.toolVideoItem.body formatToolVideo].previewurl;
+            VC.urlString = [self.toolVideoItem.body formatToolVideo].external_url;
             VC.isUpdatTitle = YES;
             [self.navigationController pushViewController:VC animated:YES];
         }else {

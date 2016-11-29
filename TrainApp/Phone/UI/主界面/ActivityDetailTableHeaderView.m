@@ -115,6 +115,7 @@
     
     self.htmlView = [[DTAttributedTextContentView alloc] init];
     self.htmlView.clipsToBounds = YES;
+    self.htmlView.shouldDrawImages = NO;
     [self addSubview:self.htmlView];
     self.coreTextHandler = [[CoreTextViewHandler alloc]initWithCoreTextView:self.htmlView maxWidth:kScreenWidth - 50.0f];
     WEAK_SELF
