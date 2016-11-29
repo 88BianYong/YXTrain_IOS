@@ -31,7 +31,7 @@
 @property (nonatomic, strong) CommentReplyRequest *replyRequest;
 @property (nonatomic, strong) CommentLaudRequest *laudRequest;
 @property (nonatomic, assign) NSInteger replyInteger;
-@property (nonatomic, assign) BOOL isManualBool;
+@property (nonatomic, assign) BOOL isManual;
 
 @end
 
@@ -59,7 +59,7 @@
         self.dataFetcher.pageSize = 20;
     }
     self.replyInteger = -1;
-    self.isManualBool = YES;
+    self.isManual = YES;
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [self setupUI];
     [self setupLayout];
@@ -297,7 +297,7 @@
 }
 - (void)pullupViewHidden:(BOOL)hidden
 {
-    self.isManualBool = hidden;
+    self.isManual = hidden;
     self.footerView.alpha = hidden ? 0:1;
 }
 - (void)showErroView {
@@ -359,7 +359,7 @@
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:self.replyInteger] withRowAnimation:UITableViewRowAnimationNone];
                     [self.tableView endUpdates];
                 }else {
-                    if (self.isManualBool) {
+                    if (self.isManual) {
                         [self.dataMutableArray addObject:item.body.reply];
                         [self.tableView reloadData];
                     }
