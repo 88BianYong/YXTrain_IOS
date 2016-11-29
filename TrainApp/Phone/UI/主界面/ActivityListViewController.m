@@ -94,6 +94,10 @@
         if (stageIndex >= 0) {
             [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
         }
+    }else {
+        ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;//11.29因为server端无法做到"全部"时返回全部的活动,暂时解决方案:从任务跳转时默认选中"第一阶段"
+        NSInteger stageIndex = 0;
+         [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
     }
 }
 - (void)setupUI {
