@@ -297,7 +297,7 @@
 }
 - (void)pullupViewHidden:(BOOL)hidden
 {
-    self.isManualBool = !hidden;
+    self.isManualBool = hidden;
     self.footerView.alpha = hidden ? 0:1;
 }
 - (void)showErroView {
@@ -355,7 +355,9 @@
                         reply.replies = [@[item.body.reply] mutableCopy];
                     }
                     reply.childNum = [NSString stringWithFormat:@"%d",(int)(reply.childNum.integerValue + 1)];
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:self.replyInteger] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    [self.tableView beginUpdates];
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:self.replyInteger] withRowAnimation:UITableViewRowAnimationNone];
+                    [self.tableView endUpdates];
                 }else {
                     if (self.isManualBool) {
                         [self.dataMutableArray addObject:item.body.reply];
