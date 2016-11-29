@@ -405,7 +405,7 @@
 - (void)endRefreshing
 {
     [_loadView stopAnimate];
-    double delayInSeconds = self.viewType == MJRefreshViewTypeFooter ? 0.3 : 0.0;
+    double delayInSeconds = self.viewType == MJRefreshViewTypeFooter ? 1.0f : 0.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self setState:MJRefreshStateNormal];

@@ -59,6 +59,7 @@
         self.dataFetcher.pageSize = 20;
     }
     self.replyInteger = -1;
+    self.isManualBool = YES;
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [self setupUI];
     [self setupLayout];
@@ -273,21 +274,17 @@
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {
         STRONG_SELF
-        WEAK_SELF
-        dispatch_async(dispatch_get_main_queue(), ^{
-            STRONG_SELF
-            [self.footerView endRefreshing];
-            if (error) {
-                self.dataFetcher.pageIndex--;
-                [self showToast:error.localizedDescription];
-            }else {
-                self.totalNum = totalNum;
-                [self.dataMutableArray addObjectsFromArray:retItemArray];
-                self.totalPage = totalPage;
-                [self.tableView reloadData];
-                [self pullupViewHidden:!(totalPage > currentPage)];
-            }
-        });
+        [self.footerView endRefreshing];
+        if (error) {
+            self.dataFetcher.pageIndex--;
+            [self showToast:error.localizedDescription];
+        }else {
+            self.totalNum = totalNum;
+            [self.dataMutableArray addObjectsFromArray:retItemArray];
+            self.totalPage = totalPage;
+            [self.tableView reloadData];
+            [self pullupViewHidden:!(totalPage > currentPage)];
+        }
     }];
 }
 - (void)stopAnimation
@@ -338,13 +335,13 @@
         STRONG_SELF
         [self stopLoading];
         CommentReplyRequestItem *item = retItem;
-        if (error || item.body.reply == nil) {
-            if (error.code == -2 || item == nil) {
+        if (error) {
+            if (error.code == -2) {
                 [self showToast:@"数据错误"];
             }else{
                 [self showToast:@"网络异常"];
             }
-        }else {
+        }else if (item.body.reply != nil){
             if ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3) {
                 [self.dataMutableArray insertObject:item.body.reply atIndex:0];
                 [self.tableView reloadData];
@@ -357,7 +354,7 @@
                     }else {
                         reply.replies = [@[item.body.reply] mutableCopy];
                     }
-                    reply.childNum = [NSString stringWithFormat:@"%lu",reply.childNum.integerValue + 1];
+                    reply.childNum = [NSString stringWithFormat:@"%d",(int)(reply.childNum.integerValue + 1)];
                     [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:self.replyInteger] withRowAnimation:UITableViewRowAnimationAutomatic];
                 }else {
                     if (self.isManualBool) {
@@ -368,6 +365,8 @@
             }
             self.emptyView.hidden = YES;
             [self.inputTextView inputTextViewClear];
+        }else {
+           [self showToast:@"数据错误"]; 
         }
     }];
     self.replyRequest = request;

@@ -73,7 +73,7 @@
         make.top.equalTo(self.contentView.mas_top).offset(30.0f);
         make.size.mas_offset(CGSizeMake(36.0f, 36.0f));
     }];
-     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel.mas_left);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(6.0f);
     }];
@@ -143,9 +143,12 @@
 }
 //判断是否为15年2级评论
 - (BOOL)isFormatContent:(NSString *)contentString {
-    return ([contentString rangeOfString:kContentSeparator].location != NSNotFound) &&
-    ([contentString rangeOfString:kContentSeparator].location != NSNotFound) &&
-    ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3);
+    NSRange contentRange = [contentString rangeOfString:kContentSeparator];
+    NSRange nameRange = [contentString rangeOfString:kNameSeparator];
+    return (contentRange.location != NSNotFound) &&
+           (nameRange.location != NSNotFound) &&
+           (contentRange.location > nameRange.location) &&
+           ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3);
 }
 - (NSMutableAttributedString *)formatSenondCommentContnet:(NSString *)content {
     NSRange contentRange = [content rangeOfString:kContentSeparator];
