@@ -65,7 +65,7 @@
 - (void)checkNetwork {
     Reachability *r = [Reachability reachabilityForInternetConnection];
     if (![r isReachable]) {
-        [self.baseViewController showToast:@"网络异常，请稍候重试"];
+        [self.baseViewController showToast:@"网络异常,请稍候重试"];
         return;
     }
     

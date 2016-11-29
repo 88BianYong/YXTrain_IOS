@@ -9,7 +9,7 @@
 //NSFoundationVersionNumber_iOS_7_0
 #import "ActivityCommentInputView.h"
 #import "YXPromtController.h"
-@interface ActivityCommentInputView()
+@interface ActivityCommentInputView ()<UITextViewDelegate>
 @property (nonatomic, strong) UILabel *inputNumberLabel;
 @property (nonatomic, strong) UILabel *totalNumberLabel;
 @property (nonatomic, strong) UIButton *sendButton;
@@ -36,6 +36,9 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.textView = [[SAMTextView alloc] init];
+    if ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3) {//只有15评论不支持表情
+        self.textView.delegate = self;
+    }
     self.textView.placeholder = @"评论 :";
     self.textView.textContainerInset = UIEdgeInsetsMake(15.0f, 15.0f, 0.0f, 15.0f);
     self.textView.layer.cornerRadius = YXTrainCornerRadii;
@@ -153,7 +156,7 @@
     if (tempTextView.text.length > 200) {
          tempTextView.text = [tempTextView.text substringToIndex:200];
     }
-    self.inputNumberLabel.text = [NSString stringWithFormat:@"%d",(200 - (int)tempTextView.text.length)];
+    self.inputNumberLabel.text = [NSString stringWithFormat:@"%d",(int)tempTextView.text.length];
 }
 
 - (void)setActivityCommentShowInputViewBlock:(ActivityCommentShowInputViewBlock)block {
@@ -168,5 +171,37 @@
     self.sendButton.enabled = NO;
     self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"b9c0c7"].CGColor;
     self.self.inputNumberLabel.text = @"0";
+}
+
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {    
+    if ([[[textView textInputMode] primaryLanguage] isEqualToString:@"emoji"] || ![[textView textInputMode] primaryLanguage] || [self stringContainsEmoji:text]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)stringContainsEmoji:(NSString *)string {
+    __block BOOL returnValue = NO;
+    [string enumerateSubstringsInRange:NSMakeRange(0, [string length])
+                               options:NSStringEnumerationByComposedCharacterSequences
+                            usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                const unichar high = [substring characterAtIndex: 0];
+                                // Surrogate pair (U+1D000-1F9FF)
+                                if (0xD800 <= high && high <= 0xDBFF) {
+                                    const unichar low = [substring characterAtIndex: 1];
+                                    const int codepoint = ((high - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
+                                    if (0x1D000 <= codepoint && codepoint <= 0x1F9FF){
+                                        returnValue = YES;
+                                    }
+                                    // Not surrogate pair (U+2100-27BF)
+                                } else {
+                                    if (0x2100 <= high && high <= 0x27BF){
+                                        returnValue = YES;
+                                    }
+                                }
+                            }];
+    
+    return returnValue;
 }
 @end

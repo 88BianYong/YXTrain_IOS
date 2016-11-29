@@ -105,9 +105,9 @@
             && [error.domain isEqualToString:NetworkRequestErrorDomain]) {
             NSString *title = @"";
             if (error.code == ASIConnectionFailureErrorType) {
-                title = @"网络异常，请稍后重试";
+                title = @"网络异常,请稍后重试";
             } else if (error.code == ASIRequestTimedOutErrorType) {
-                title = @"请求超时，请稍后重试";
+                title = @"请求超时,请稍后重试";
             }
             error = [NSError errorWithDomain:NetworkRequestErrorDomain code:ASIConnectionFailureErrorType userInfo:@{NSLocalizedDescriptionKey:title}]; // 网络异常提示
         }

@@ -339,7 +339,7 @@
             if (error.code == -2) {
                 [self showToast:@"数据错误"];
             }else{
-                [self showToast:@"网络异常"];
+                [self showToast:@"网络异常,请稍后重试"];
             }
         }else if (item.body.reply != nil){
             if ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3) {
