@@ -80,6 +80,8 @@
     [self.tableView registerClass:[ActitvityCommentFooterView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentFooterView"];
     [self.view addSubview:self.tableView];
     self.emptyView = [[YXEmptyView alloc] init];
+    self.emptyView.imageName = @"暂无评论";
+    self.emptyView.title = @"暂无评论";
     self.emptyView.hidden = YES;
     [self.view addSubview:self.emptyView];
     WEAK_SELF

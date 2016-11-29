@@ -13,6 +13,7 @@
 #import "ShareResourcesTableViewCell.h"
 #import "ShareResourcesFetcher.h"
 #import "YXDatumCellModel.h"
+#import "CommentPageListViewController.h"
 @interface ShareResourcesViewController ()
 @property (nonatomic, strong) UIView *bottomView;
 @end
@@ -117,6 +118,9 @@
 }
 - (void)goToViewComments:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
     DDLogDebug(@"查看评论");
+    CommentPageListViewController *commentVc = [[CommentPageListViewController alloc]init];
+    commentVc.tool = tool;
+    [self.navigationController pushViewController:commentVc animated:YES];
 }
 - (void)changeViewCommentsButtonAction:(UIButton *)sender {
     sender.backgroundColor = [UIColor colorWithHexString:@"0070c9"];

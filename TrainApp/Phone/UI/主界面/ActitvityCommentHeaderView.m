@@ -90,7 +90,7 @@
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.headerImageView.mas_right).offset(11.0f);
         make.top.equalTo(self.headerImageView.mas_top);
-        make.right.equalTo(self.favorLabel.mas_left);
+        make.right.mas_lessThanOrEqualTo(self.favorLabel.mas_left);
     }];
     [self.favorButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-25.0f + 8.0f);

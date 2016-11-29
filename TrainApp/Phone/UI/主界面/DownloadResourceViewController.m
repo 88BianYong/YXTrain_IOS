@@ -10,6 +10,7 @@
 #import "ActivityListRequest.h"
 #import "ResourceMessageView.h"
 #import "DownloadResourceRequest.h"
+#import "CommentPageListViewController.h"
 @interface DownloadResourceViewController ()
 @property (nonatomic, strong) DownloadResourceRequestItem *requestItem;
 @property (nonatomic, strong) DownloadResourceRequest *request;
@@ -152,6 +153,9 @@
 }
 - (void)goToViewComments:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
     DDLogDebug(@"查看评论");
+    CommentPageListViewController *commentVc = [[CommentPageListViewController alloc]init];
+    commentVc.tool = tool;
+    [self.navigationController pushViewController:commentVc animated:YES];
 }
 - (void)changeViewCommentsButtonAction:(UIButton *)sender {
     sender.backgroundColor = [UIColor colorWithHexString:@"0070c9"];
