@@ -168,24 +168,25 @@ static  NSString *const trackPageName = @"我的资源页面";
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     YXDatumCellModel *model = self.dataArray[indexPath.row];
-    if ([model.uid isEqualToString:[YXUserManager sharedManager].userModel.uid]) {  // 我的上传
-        if (self.delSourceRequest) {
-            [self.delSourceRequest stopRequest];
-        }
-        self.delSourceRequest = [[YXDatumDelSourseRequest alloc] init];
-        self.delSourceRequest.resid = model.aid;
-        @weakify(self);
-        [self startLoading];
-        [self.delSourceRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-            @strongify(self);
-            [self stopLoading];
-            if (error) {
-                [self showToast:error.localizedDescription];
-                return;
-            }
-            [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:retItem];
-        }];
-    }else{  // 我的收藏
+//    if ([model.uid isEqualToString:[YXUserManager sharedManager].userModel.uid]) {  // 我的上传
+//        if (self.delSourceRequest) {//11,29产品要求,现在项目没有上传的功能~
+//            [self.delSourceRequest stopRequest];
+//        }
+//        self.delSourceRequest = [[YXDatumDelSourseRequest alloc] init];
+//        self.delSourceRequest.resid = model.aid;
+//        @weakify(self);
+//        [self startLoading];
+//        [self.delSourceRequest startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+//            @strongify(self);
+//            [self stopLoading];
+//            if (error) {
+//                [self showToast:error.localizedDescription];
+//                return;
+//            }
+//            [self tableView:tableView handleDeleteDatumforIndexPath:indexPath withResponseItem:retItem];
+//        }];
+//    }else
+    {  // 我的收藏
         if (self.collectionRequest) {
             [self.collectionRequest stopRequest];
         }

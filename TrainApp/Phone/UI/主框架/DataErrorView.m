@@ -53,7 +53,7 @@
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
-        make.bottom.mas_equalTo(self.mas_centerY).mas_offset(-27.5);
+        make.bottom.mas_equalTo(self.mas_centerY).mas_offset(9.5);
         make.size.mas_equalTo(CGSizeMake(202, 202));
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
