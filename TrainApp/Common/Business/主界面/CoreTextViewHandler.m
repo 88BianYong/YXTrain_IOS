@@ -28,11 +28,12 @@ UIActionSheetDelegate
 + (NSDictionary *)defaultCoreTextOptions{
     CGSize maxImageSize = CGSizeMake(kScreenWidth - 50.0f, kScreenHeight - 100.0f);
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithFloat:1.25], NSTextSizeMultiplierDocumentOption,
+                             [NSNumber numberWithFloat:1.0], NSTextSizeMultiplierDocumentOption,
                              [UIColor colorWithHexString:@"#334466"], DTDefaultTextColor,
                              [NSNumber numberWithFloat:1.5], DTDefaultLineHeightMultiplier,
                              [NSValue valueWithCGSize:maxImageSize], DTMaxImageSize,
                              [UIColor colorWithHexString:@"#0067be"], DTDefaultLinkColor,
+                             [NSNumber numberWithFloat:13.0],DTDefaultFontSize,
                              [NSNumber numberWithFloat:1.0], DTAttachmentParagraphSpacingAttribute,
                              nil];
     return options;
@@ -59,6 +60,15 @@ UIActionSheetDelegate
         imageView.delegate = self;
         imageView.image = [(DTImageTextAttachment *)attachment image];
         imageView.url = attachment.contentURL;
+        imageView.backgroundColor = [UIColor colorWithHexString:@"e7e8ec"];
+        UIImageView *placeholderImageView = [[UIImageView alloc] init];
+        placeholderImageView.image = [UIImage imageNamed:@"图片占位图"];
+        [imageView addSubview:placeholderImageView];
+        [placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(180.0f, 180.0f));
+            make.center.equalTo(imageView);
+        }];
+        placeholderImageView.tag = 10086;
         return imageView;
     }
     return nil;
@@ -103,6 +113,8 @@ UIActionSheetDelegate
 
 #pragma mark - DTLazyImageViewDelegate
 - (void)lazyImageView:(DTLazyImageView *)lazyImageView didChangeImageSize:(CGSize)size {
+    UIImageView *imageView = [lazyImageView viewWithTag:10086];
+    [imageView removeFromSuperview];
     NSURL *url = lazyImageView.url;
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
     CGFloat maxWidth = self.maxWidth;

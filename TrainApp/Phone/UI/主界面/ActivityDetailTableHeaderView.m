@@ -297,6 +297,11 @@
 //                                                      error:NULL];
     NSData *data = [_activity.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions] documentAttributes:nil];
+    [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, string.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
+        if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
+            attachment.originalSize = CGSizeMake(kScreenWidth - 50.0f, 200.0f);
+        }
+    }];
     self.htmlView.attributedString = string;
 }
 
