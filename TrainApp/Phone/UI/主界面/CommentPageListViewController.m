@@ -75,6 +75,10 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 5)];
+    headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.tableHeaderView = headerView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ActitvityCommentCell class] forCellReuseIdentifier:@"ActitvityCommentCell"];
     [self.tableView registerClass:[ActitvityCommentHeaderView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentHeaderView"];
@@ -112,6 +116,10 @@
     
     self.footerView = [MJRefreshFooterView footer];
     self.footerView.scrollView = self.tableView;
+    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 365.0f)];
+    bottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.footerView addSubview:bottomView];
+    [self.footerView sendSubviewToBack:bottomView];
     self.footerView.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
         [self morePageFetch];
@@ -120,6 +128,10 @@
     
     self.headerView = [MJRefreshHeaderView header];
     self.headerView.scrollView = self.tableView;
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, self.view.bounds.size.width, 365.0f)];
+    topView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.headerView addSubview:topView];
+    [self.headerView sendSubviewToBack:topView];
     self.headerView.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
         [self firstPageFetch:NO];
@@ -166,7 +178,7 @@
     [YXPromtController startLoadingInView:self.tableView];
 }
 - (void)stopLoading {
-     [YXPromtController stopLoadingInView:self.tableView];
+    [YXPromtController stopLoadingInView:self.tableView];
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -368,7 +380,7 @@
             self.emptyView.hidden = YES;
             [self.inputTextView inputTextViewClear];
         }else {
-           [self showToast:@"数据错误"]; 
+            [self showToast:@"数据错误"];
         }
     }];
     self.replyRequest = request;
@@ -529,11 +541,6 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     if (replie.childNum.integerValue <= 2 || [YXTrainManager sharedInstance].currentProject.w.integerValue <= 3) {
-        if (section + 1 == self.dataMutableArray.count && replie.childNum.integerValue <= 2) {
-            UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 20)];
-            footerView.backgroundColor = [UIColor whiteColor];
-            return footerView;
-        }
         return nil;
     }else {
         ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
@@ -554,9 +561,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     if (replie.childNum.integerValue <= 2 || [YXTrainManager sharedInstance].currentProject.w.integerValue <= 3) {
-        if (section + 1 == self.dataMutableArray.count && replie.childNum.integerValue <= 2) {
-            return 20.0f;
-        }
         return 0.0001f;
     }else {
         return 29.0f;
