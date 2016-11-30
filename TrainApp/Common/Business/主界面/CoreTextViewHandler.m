@@ -58,7 +58,6 @@ UIActionSheetDelegate
     if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
         DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
         imageView.delegate = self;
-        imageView.image = [(DTImageTextAttachment *)attachment image];
         imageView.url = attachment.contentURL;
         imageView.backgroundColor = [UIColor colorWithHexString:@"e7e8ec"];
         UIImageView *placeholderImageView = [[UIImageView alloc] init];
