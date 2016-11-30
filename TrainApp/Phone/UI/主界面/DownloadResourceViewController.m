@@ -77,12 +77,13 @@
     viewCommentsButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [viewCommentsButton setTitle:@"查看评论" forState:UIControlStateNormal];
     [viewCommentsButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+    [viewCommentsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [viewCommentsButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
     viewCommentsButton.layer.cornerRadius = 2.0f;
     viewCommentsButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
     viewCommentsButton.layer.borderWidth = 1;
     viewCommentsButton.layer.masksToBounds = YES;
     [viewCommentsButton addTarget:self action:@selector(viewCommentsButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [viewCommentsButton addTarget:self action:@selector(changeViewCommentsButtonAction:) forControlEvents:UIControlEventTouchDown];
     [self.bottomView addSubview:viewCommentsButton];
     
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,20 +147,11 @@
 }
 #pragma mark - CommentsButtonAction
 - (void)viewCommentsButtonAction:(UIButton *)sender {
-    sender.backgroundColor = [UIColor clearColor];
-    [sender setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
-    [self goToViewComments:self.tool];
-    
-}
-- (void)goToViewComments:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
     DDLogDebug(@"查看评论");
     CommentPageListViewController *commentVc = [[CommentPageListViewController alloc]init];
-    commentVc.tool = tool;
+    commentVc.tool = self.tool;
     [self.navigationController pushViewController:commentVc animated:YES];
-}
-- (void)changeViewCommentsButtonAction:(UIButton *)sender {
-    sender.backgroundColor = [UIColor colorWithHexString:@"0070c9"];
-    [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
 }
 #pragma mark - tapGesture
 -(void)tapGesture:(UITapGestureRecognizer *)sender {
