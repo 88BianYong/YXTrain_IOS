@@ -150,6 +150,7 @@
     DDLogDebug(@"查看评论");
     CommentPageListViewController *commentVc = [[CommentPageListViewController alloc]init];
     commentVc.tool = self.tool;
+    commentVc.status = self.status;
     [self.navigationController pushViewController:commentVc animated:YES];
     
 }

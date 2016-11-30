@@ -143,10 +143,12 @@
         [self.navigationController pushViewController:VC animated:YES];
     } else if ([tool.toolType isEqualToString:@"resdisc"]) {//资源下载
         DownloadResourceViewController *downloadVc = [[DownloadResourceViewController alloc]init];
+        downloadVc.status = self.status;
         downloadVc.tool = tool;
         [self.navigationController pushViewController:downloadVc animated:YES];
     } else if ([tool.toolType isEqualToString:@"resources"]) {//资源分享
         ShareResourcesViewController *shareResourceVC = [[ShareResourcesViewController alloc]init];
+        shareResourceVC.status = self.status;
         shareResourceVC.tool = tool;
         [self.navigationController pushViewController:shareResourceVC animated:YES];
     } else {
