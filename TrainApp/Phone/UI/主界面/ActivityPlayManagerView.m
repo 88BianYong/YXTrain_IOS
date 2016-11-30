@@ -62,7 +62,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.player = [[LePlayer alloc] init];
     self.playerView = (LePlayerView *)[self.player playerViewWithFrame:CGRectZero];
     [self addSubview:self.playerView];
-    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizer)];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecognizer:)];
     recognizer.numberOfTapsRequired = 1;
     [self.playerView addGestureRecognizer:recognizer];
 
@@ -279,7 +279,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 #pragma mark - top / bottom hide
-- (void)tapGestureRecognizer {
+- (void)tapGestureRecognizer:(UITapGestureRecognizer *)tap {
+    tap.enabled = NO;
     if (self.isTopBottomHidden) {
         [self showTopView];
         [self showBottomView];
@@ -289,6 +290,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     self.isTopBottomHidden = !self.isTopBottomHidden;
     [self resetTopBottomHideTimer];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        tap.enabled = YES;
+    });
 }
 
 - (void)resetTopBottomHideTimer {
@@ -478,6 +482,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)viewWillAppear {
     if (!self.isManualPause) {
         [self.player play];
+    }
+    if ([self.content.res_type isEqualToString:@"unknown"]) {
+        self.thumbImageView.hidden = NO;
     }
 }
 

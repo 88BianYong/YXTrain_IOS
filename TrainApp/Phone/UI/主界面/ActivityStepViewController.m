@@ -55,7 +55,7 @@
         STRONG_SELF
         if (isStatus) {
             [UIView animateWithDuration:0.3 animations:^{
-                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f + self.headerView.changeHeight);
+                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 160.0f + self.headerView.changeHeight);
                 self.tableView.tableHeaderView = self.headerView;
                 [self.headerView relayoutHtmlText];
             }];
