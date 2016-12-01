@@ -85,7 +85,7 @@
         make.height.mas_equalTo(0.5);
     }];
     [self.uploadInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.dateLabel.mas_bottom).offset(5);
+        make.top.equalTo(self.dateLabel.mas_bottom).offset(7);
         make.centerX.equalTo(self);
     }];
 }

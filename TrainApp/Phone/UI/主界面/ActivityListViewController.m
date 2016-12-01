@@ -81,7 +81,6 @@
     }];
 }
 - (void)setupWithCurrentFilters {
-    if (self.stageID) {
         ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
         __block NSInteger stageIndex = -1;
         [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -94,11 +93,6 @@
         if (stageIndex >= 0) {
             [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
         }
-    }else {
-        ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;//11.29因为server端无法做到"全部"时返回全部的活动,暂时解决方案:从任务跳转时默认选中"第一阶段"
-        NSInteger stageIndex = 0;
-         [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
-    }
 }
 - (void)setupUI {
     self.title = @"活动列表";
@@ -138,6 +132,15 @@
         ActivityFilterRequestItem *item = (ActivityFilterRequestItem *)retItem;
         self.filterModel = [item filterModel];
         self.isWaitingForFilter = NO;
+        if (self.stageID) {//因为server端无法做到"全部"时返回全部的活动,暂时解决方案:从任务跳转时默认选中"第一阶段"
+            ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
+            fetcher.stageid = self.stageID;
+        } else {
+            ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;            ActivityFilter *filter = stageGroup.filterArray.firstObject;
+            self.stageID = filter.filterID;
+            ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
+            fetcher.stageid = self.stageID;
+        }
         [self firstPageFetch:YES];
     }];
 }
@@ -191,7 +194,7 @@
     ActivityFilterGroup *group0 = self.filterModel.groupArray[0];
     ActivityFilter *segmentItem = [[ActivityFilter alloc]init];
     if (group0.filterArray.count > 0) {
-       segmentItem = group0.filterArray[num0.integerValue];
+        segmentItem = group0.filterArray[num0.integerValue];
     }
     // 学科
     NSNumber *num1 = filterArray[1];

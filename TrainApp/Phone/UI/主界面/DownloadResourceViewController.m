@@ -61,6 +61,9 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     tapGesture.numberOfTapsRequired = 1;
     [self.resourceMessageView addGestureRecognizer:tapGesture];
+    if (isEmpty(self.dataModel)) {
+        self.resourceMessageView.hidden = YES;
+    }
     [self setupBottomView];
 }
 - (void)setupBottomView {
@@ -126,7 +129,9 @@
             }
             return;
         }
-        if (!retItem) {
+        DownloadResourceRequestItem *item = retItem;
+        if (isEmpty(item.body.resource)) {
+            self.resourceMessageView.hidden = YES;
             [self.view addSubview:self.emptyView];
             [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.bottom.equalTo(self.bottomView.mas_top);
@@ -134,10 +139,10 @@
             }];
             return;
         }
+        self.resourceMessageView.hidden = NO;
         [self.errorView removeFromSuperview];
         [self.emptyView removeFromSuperview];
         [self.dataErrorView removeFromSuperview];
-        DownloadResourceRequestItem *item = retItem;
         self.requestItem = item;
         [self saveToCache];
         YXDatumCellModel *model = [YXDatumCellModel modelFromDownloadResourceRequestItemBodyResource:item.body.resource];
