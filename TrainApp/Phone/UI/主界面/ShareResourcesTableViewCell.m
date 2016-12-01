@@ -77,12 +77,12 @@
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.typeImageView.mas_right).offset(11);
-        make.top.mas_equalTo(18);
+        make.top.mas_equalTo(16);
         make.right.mas_equalTo(-20);
     }];
     [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(10);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(5);
     }];
     [self.sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.dateLabel.mas_right).mas_offset(13);
@@ -91,8 +91,8 @@
     }];
     [self.uploadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.dateLabel);
-        make.top.equalTo(self.dateLabel.mas_bottom).offset(10);
-        make.bottom.equalTo(self.contentView).offset(-18);
+        make.top.equalTo(self.dateLabel.mas_bottom).offset(5);
+        make.bottom.equalTo(self.contentView).offset(-16);
     }];
     [self.cellSeperatorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(60);

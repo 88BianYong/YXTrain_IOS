@@ -45,6 +45,9 @@ static  NSString *const trackPageName = @"我的资源页面";
         @strongify(self);
         if (!self) return;
         [self firstPageFetch:NO];
+//        YXDatumCellModel *model = x.object;
+//        [self.dataArray insertObject:model atIndex:0];
+//        [self.tableView reloadData];
     }];
     
     self.tableView.tableHeaderView = tableViewHeaderView;

@@ -82,12 +82,12 @@
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.activityImageView.mas_right).mas_offset(15);
-        make.top.mas_equalTo(16);
+        make.top.equalTo(self.contentView).offset(16.0f);
         make.right.mas_equalTo(-20);
     }];
     [self.startTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(9);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(9.0f);
         make.right.equalTo(self.contentView);
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
