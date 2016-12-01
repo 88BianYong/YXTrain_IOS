@@ -33,7 +33,7 @@
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.font = [UIFont systemFontOfSize:17.0f];
-    self.titleLabel.text = @"社会最以爱按罚款服";
+//    self.titleLabel.text = @"社会最以爱按罚款服";
     [self addSubview:self.titleLabel];
     
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -56,5 +56,8 @@
     }];
 
 }
-
+- (void)setTitleString:(NSString *)titleString {
+    _titleString = titleString;
+    self.titleLabel.text = titleString;
+}
 @end

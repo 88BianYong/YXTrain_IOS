@@ -218,6 +218,9 @@
             ActivityToolVideoRequestItem *item = (ActivityToolVideoRequestItem *)retItem;
             self.toolVideoItem = item;
             self.playMangerView.content = [item.body formatToolVideo];
+            if (isEmpty([item.body formatToolVideo])) {
+                self.playMangerView.playStatus = ActivityPlayManagerStatus_Empty;
+            }
             [self showEnclosureButton:[item.body formatToolEnclosure]];
         }
     }];

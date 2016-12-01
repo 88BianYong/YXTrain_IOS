@@ -435,6 +435,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)setContent:(ActivityToolVideoRequestItem_Body_Content *)content {
     _content = content;
     self.videoUrl = [NSURL URLWithString:_content.previewurl];
+    self.topView.titleString = content.resname;
     WEAK_SELF
     [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:content.res_thumb] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         STRONG_SELF
@@ -442,7 +443,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             self.placeholderImageView.hidden = YES;
         }
     }];
-    if (!self.isFirstBool) {
+    if (!self.isFirstBool && self.videoUrl) {
         self.player.videoUrl = self.videoUrl;
     }
 }
@@ -451,6 +452,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     _playStatus = playStatus;
     self.exceptionView.hidden = NO;
     switch (_playStatus) {
+        case  ActivityPlayManagerStatus_Empty:
+        {
+            self.exceptionView.exceptionLabel.text = @"未找到该视频";
+            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
+        }
+            break;
         case  ActivityPlayManagerStatus_NotWifi:
         {
             self.exceptionView.exceptionLabel.text = @"当前为非wifi网络,继续播放会产生流量费用";

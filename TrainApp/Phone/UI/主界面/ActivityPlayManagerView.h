@@ -10,7 +10,7 @@
 #import "ActivityToolVideoRequest.h"
 typedef NS_ENUM(NSInteger, ActivityPlayManagerStatus) {
     ActivityPlayManagerStatus_Unknown,//外部链接
-    
+    ActivityPlayManagerStatus_Empty,//视频为空
     ActivityPlayManagerStatus_NotWifi,//非wifi
     ActivityPlayManagerStatus_PlayError,//播放出错
     ActivityPlayManagerStatus_NetworkError,//网络出错
