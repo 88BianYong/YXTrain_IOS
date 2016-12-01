@@ -23,7 +23,7 @@
 
 #pragma mark - setupUI
 - (void)setupUI {
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(56.0f, 0.0f, kScreenWidth - 56.0f - 10.0f, 29.0f)];
+    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(62.0f, 0.0f, kScreenWidth - 62.0f - 10.0f, 29.0f)];
     self.bgView.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
     [self.contentView addSubview:self.bgView];
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bgView.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(YXTrainCornerRadii, YXTrainCornerRadii)];
@@ -34,7 +34,7 @@
     [self.replyButton setTitle:@"查看全部回复" forState:UIControlStateNormal];
     [self.replyButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
     self.replyButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.replyButton.frame = CGRectMake(71.0f, 0.0f, 90.0f, 14.0f);
+    self.replyButton.frame = CGRectMake(71.0f + 6.0f, 0.0f, 90.0f, 14.0f);
     self.replyButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.replyButton addTarget:self action:@selector(replyButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.replyButton];

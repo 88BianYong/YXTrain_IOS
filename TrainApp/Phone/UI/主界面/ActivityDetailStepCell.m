@@ -38,7 +38,7 @@
     [super setHighlighted:highlighted animated:animated];
     if (highlighted) {
         self.stepLabel.textColor = [UIColor whiteColor];
-        self.pointView.backgroundColor = [UIColor colorWithHexString:@"334466"];
+        self.pointView.backgroundColor = [UIColor whiteColor];
         self.nextImageView.image = [UIImage imageNamed:@"活动步骤箭头点击态"];
     }
     else{

@@ -15,9 +15,9 @@
 @property (nonatomic, strong) UIImageView *statusImageView;
 @property (nonatomic, strong) UILabel *publisherTitleLabel;
 @property (nonatomic, strong) UILabel *publisherContentLabel;
-@property (nonatomic, strong) UILabel *studyTitleLabel;//学段
+@property (nonatomic, strong) UILabel *studyTitleLabel;//学科
 @property (nonatomic, strong) UILabel *studyContentLabel;
-@property (nonatomic, strong) UILabel *segmentTitleLabel;//学科
+@property (nonatomic, strong) UILabel *segmentTitleLabel;//学段
 @property (nonatomic, strong) UILabel *segmentContentLabel;
 @property (nonatomic, strong) UILabel *participantsTitleLabel;
 @property (nonatomic, strong) UILabel *participantsContentLabel;
@@ -31,6 +31,7 @@
 @property (nonatomic, copy) ActivityHtmlOpenAndCloseBlock openCloseBlock;
 @property (nonatomic, copy) ActivityHtmlHeightChangeBlock heightChangeBlock;
 @property (nonatomic, assign) BOOL isFirstRefresh;
+@property (nonatomic, assign) BOOL isOpen;
 
 @end
 @implementation ActivityDetailTableHeaderView
@@ -47,6 +48,7 @@
 
 #pragma mark - setupUI
 - (void)setupUI {
+    self.isOpen = NO;
     self.backgroundColor = [UIColor whiteColor];
     self.clipsToBounds = YES;
     UIView *topView = [[UIView alloc] init];
@@ -260,15 +262,15 @@
 }
 #pragma mark - Actions
 - (void)openCloseButtonAction:(UIButton *)sender {
-    sender.selected = !sender.selected;
-    if (sender.selected) {
+    self.isOpen = !self.isOpen;
+    if (self.isOpen) {
         self.gradientView.hidden = YES;
         [sender setTitle:@"收起" forState:UIControlStateNormal];
     }else {
         self.gradientView.hidden = NO;
         [sender setTitle:@"查看全文" forState:UIControlStateNormal];
     }
-    BLOCK_EXEC(self.openCloseBlock,sender.selected);
+    BLOCK_EXEC(self.openCloseBlock,self.isOpen);
 }
 #pragma mark - set
 - (void)setActivityHtmlOpenAndCloseBlock:(ActivityHtmlOpenAndCloseBlock)block {
@@ -281,8 +283,8 @@
     _activity = activity;
     self.titleLabel.attributedText = [self attributedStringForTitle:_activity.title?:@""];
     self.publisherContentLabel.text = activity.createUsername;
-    self.studyContentLabel.text = activity.studyName;
-    self.segmentContentLabel.text = activity.segmentName;
+    self.studyContentLabel.text = activity.segmentName;
+    self.segmentContentLabel.text = activity.studyName;
     self.participantsContentLabel.text = activity.joinUserCount;
     if (activity.status.integerValue == 0) {
         self.statusImageView.image = [UIImage imageNamed:@"未开始标签"];

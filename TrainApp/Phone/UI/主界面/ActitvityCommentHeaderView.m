@@ -79,12 +79,12 @@
     }];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.timeLabel.mas_left);
-        make.top.equalTo(self.timeLabel.mas_bottom).offset(15.0f);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(9.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
     }];
     [self.favorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.favorButton.mas_top);
+        make.top.equalTo(self.favorButton.mas_top).offset(5.0f);
         make.right.equalTo(self.favorButton.mas_left).offset(2.0f);
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,7 +97,6 @@
         make.top.equalTo(self.headerImageView.mas_top).offset(0.0f);
         make.size.mas_offset(CGSizeMake(32.0f, 16.0f + 3.0f + 3.0f));
     }];
-    
 }
 
 #pragma mark - button Action
@@ -161,7 +160,7 @@
     paragraphStyle.lineSpacing = 7.0f;
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [tempString length])];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"a1a7ae"] range:NSMakeRange(0, [nameString length] + 3)];
+    [attributedString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"]} range:NSMakeRange(0, [nameString length] + 3)];
     return attributedString;
 }
 

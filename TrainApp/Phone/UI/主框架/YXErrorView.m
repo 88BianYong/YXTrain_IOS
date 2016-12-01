@@ -63,6 +63,7 @@
     self.retryButton = [[UIButton alloc]init];
     self.retryButton.backgroundColor = [UIColor colorWithHexString:@"2585d6"];
     [self.retryButton setTitle:@"刷新" forState:UIControlStateNormal];
+    self.retryButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.retryButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.retryButton addTarget:self action:@selector(btnAction) forControlEvents:UIControlEventTouchUpInside];
     self.retryButton.layer.cornerRadius = YXTrainCornerRadii;
@@ -77,5 +78,23 @@
 
 - (void)btnAction{
     BLOCK_EXEC(self.retryBlock);
+}
+- (void)setIsActivityVideo:(BOOL)isActivityVideo {
+    _isActivityVideo = isActivityVideo;
+    if (_isActivityVideo) {
+        self.backgroundColor = [UIColor whiteColor];
+        self.imageView.hidden = YES;
+        self.subTitleLabel.hidden = YES;
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(10);
+            make.right.mas_equalTo(-10);
+            make.bottom.mas_equalTo(self.mas_centerY).mas_offset(-27.5);
+        }];
+        [self.retryButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(0);
+            make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(18.5);
+            make.size.mas_equalTo(CGSizeMake(115, 33));
+        }];
+    }
 }
 @end

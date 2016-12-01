@@ -69,7 +69,7 @@
         headerView.replie = replie;
         headerView.isFontBold = NO;
     }
-    headerView.distanceTop = kDistanceTopShort;
+    headerView.distanceTop = kDistanceTopMiddle;
     WEAK_SELF
     [headerView setActitvityCommentFavorBlock:^{
         STRONG_SELF
@@ -91,7 +91,7 @@
             header.isFontBold = NO;
             header.replie = replie;
         }
-        header.distanceTop = kDistanceTopShort;
+        header.distanceTop = kDistanceTopMiddle;
     }];
 }
 

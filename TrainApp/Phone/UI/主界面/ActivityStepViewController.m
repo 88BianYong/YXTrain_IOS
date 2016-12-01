@@ -48,29 +48,35 @@
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[ActivityDetailTableSectionView class] forHeaderFooterViewReuseIdentifier:@"ActivityDetailTableSectionView"];
     [self.tableView registerClass:[ActivityStepTableCell class] forCellReuseIdentifier:@"ActivityStepTableCell"];
-    self.headerView = [[ActivityStepHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 125 + 300.0)];
+    self.headerView = [[ActivityStepHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 335 + kTableViewHeaderFixedHeight)];
     self.headerView.activityStep = self.activityStep;
     WEAK_SELF
     [self.headerView setActivityHtmlOpenAndCloseBlock:^(BOOL isStatus) {
         STRONG_SELF
         if (isStatus) {
             [UIView animateWithDuration:0.3 animations:^{
-                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 160.0f + self.headerView.changeHeight);
+                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + self.headerView.changeHeight);
                 self.tableView.tableHeaderView = self.headerView;
                 [self.headerView relayoutHtmlText];
             }];
         }else {
             [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
-            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f + 300.0f);
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + kTableViewHeaderHtmlPlaceholdeHeight);
             self.tableView.tableHeaderView = self.headerView;
             [self.headerView relayoutHtmlText];
         }
     }];
-    [self.headerView setActivityHtmlHeightChangeBlock:^(CGFloat height) {
+    [self.headerView setActivityHtmlHeightChangeBlock:^(CGFloat htmlHeight, CGFloat labelHeight) {
         STRONG_SELF
-        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f + height);
-        self.tableView.tableHeaderView = self.headerView;
-        [self.headerView relayoutHtmlText];
+        if (htmlHeight < kTableViewHeaderHtmlPlaceholdeHeight) {
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight - kTableViewHeaderOpenAndCloseHeight + htmlHeight + labelHeight);
+        }else {
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + kTableViewHeaderHtmlPlaceholdeHeight + labelHeight);
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.tableView.tableHeaderView = self.headerView;
+            [self.headerView relayoutHtmlText];
+        });
     }];
     self.tableView.tableHeaderView = self.headerView;
 }

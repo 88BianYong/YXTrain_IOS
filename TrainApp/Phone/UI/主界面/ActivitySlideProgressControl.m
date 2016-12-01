@@ -48,7 +48,7 @@
         make.left.mas_equalTo(self.thumbNormalView.bounds.size.width * 0.5).priorityHigh();
         make.centerY.mas_equalTo(@0);
         make.height.mas_equalTo(@3.0f);
-        make.right.equalTo(self.timeLabel.mas_left).offset(-10.0f).priorityHigh();
+        make.right.equalTo(self.timeLabel.mas_left).offset(-6.0f).priorityHigh();
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {

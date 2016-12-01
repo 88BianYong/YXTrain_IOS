@@ -45,7 +45,7 @@
     [self.contentView addSubview:self.bottomView];
     
     self.nameLabel = [[UILabel alloc] init];
-    self.nameLabel.font = [UIFont systemFontOfSize:15.0f];
+    self.nameLabel.font = [UIFont systemFontOfSize:13.0f];
     self.nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.nameLabel];
     
@@ -60,7 +60,7 @@
     [self.contentView addSubview:self.favorLabel];
     
     self.contentLabel = [[UILabel alloc] init];
-    self.contentLabel.font = [UIFont systemFontOfSize:16.0f];
+    self.contentLabel.font = [UIFont systemFontOfSize:14.0f];
     self.contentLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.contentLabel.numberOfLines = 0;
     [self.contentView addSubview:self.contentLabel];
@@ -77,7 +77,7 @@
 }
 - (void)setupLayout {
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(56.0f);
+        make.left.equalTo(self.contentView.mas_left).offset(62.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-10.0f);
         make.top.equalTo(self.contentView.mas_top);
         make.bottom.equalTo(self.middleView.mas_top).offset(2.0f);
@@ -96,27 +96,30 @@
         make.bottom.equalTo(self.contentView.mas_bottom);
         make.height.mas_offset(17.0f);
     }];
+    
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.topView.mas_left).offset(15.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(13.0f);
+        make.right.mas_lessThanOrEqualTo(self.favorLabel.mas_left);
+    }];
+    
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel.mas_left);
-        make.top.equalTo(self.nameLabel.mas_bottom).offset(8.0f);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(7.0f);
     }];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.timeLabel.mas_left);
-        make.top.equalTo(self.timeLabel.mas_bottom).offset(15.0f);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(9.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-25.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
     }];
     
     [self.favorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.favorButton.mas_top);
+        make.top.equalTo(self.favorButton.mas_top).offset(5.0f);
         make.right.equalTo(self.favorButton.mas_left).offset(2.0f);
     }];
-    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.topView.mas_left).offset(15.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(15.0f);
-        make.right.mas_lessThanOrEqualTo(self.favorLabel.mas_left);
-    }];
+
     [self.favorButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-13.0f - 10.0f + 6.0f);
         make.top.equalTo(self.contentView.mas_top).offset(12.0f);
@@ -148,8 +151,10 @@
     }
     if ([_reply.isRanked isEqualToString:@"true"]) {
         self.favorButton.enabled = NO;
+        self.favorLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
     }else {
         self.favorButton.enabled = YES;
+        self.favorLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:reply.content?:@""];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

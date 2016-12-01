@@ -44,11 +44,14 @@
     self.textView.layer.cornerRadius = YXTrainCornerRadii;
     self.textView.layer.borderWidth = 1.0f / [UIScreen mainScreen].scale;
     self.textView.layer.borderColor = [UIColor colorWithHexString:@"d0d2d5"].CGColor;
+    self.textView.textColor = [UIColor colorWithHexString:@"334466"];
+    self.textView.font = [UIFont systemFontOfSize:14.0f];
     [self addSubview:self.textView];
     
     self.sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.sendButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f4f7"]] forState:UIControlStateDisabled];
-    [self.sendButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
+    [self.sendButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0067be"]] forState:UIControlStateNormal];
+    [self.sendButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0067be"]] forState:UIControlStateHighlighted];
     [self.sendButton setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateDisabled];
     [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.sendButton setTitle:@"发送" forState:UIControlStateNormal];
@@ -62,13 +65,13 @@
     [self addSubview:self.sendButton];
     
     self.inputNumberLabel = [[UILabel alloc] init];
-    self.inputNumberLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.inputNumberLabel.font = [UIFont systemFontOfSize:12.0f];
     self.inputNumberLabel.text = @"0";
     self.inputNumberLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self addSubview:self.inputNumberLabel];
     
     self.totalNumberLabel = [[UILabel alloc] init];
-    self.totalNumberLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.totalNumberLabel.font = [UIFont systemFontOfSize:12.0f];
     self.totalNumberLabel.text = @" / 200";
     self.totalNumberLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self addSubview:self.totalNumberLabel];

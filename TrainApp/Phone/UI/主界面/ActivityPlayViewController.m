@@ -32,7 +32,7 @@
     self.dataFetcher.w = [YXTrainManager sharedInstance].currentProject.w;
     self.dataFetcher.pageIndex = 1;
     self.dataFetcher.pageSize = 10;
-    self.commentErrorView = [[VideoCommentErrorView alloc] init];
+//    self.commentErrorView = [[VideoCommentErrorView alloc] init];
     [super viewDidLoad];
     self.title = @"视频";
     self.view.backgroundColor = [UIColor blackColor];
@@ -86,13 +86,14 @@
     commentLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     commentLabel.font = [UIFont systemFontOfSize:12.0f];
     [headerView addSubview:commentLabel];
-    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 30.0f - 1.0f / [UIScreen mainScreen].scale, kScreenWidth, 1.0f / [UIScreen mainScreen].scale)];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15.0f, 30.0f - 1.0f / [UIScreen mainScreen].scale, kScreenWidth - 30.0f, 1.0f / [UIScreen mainScreen].scale)];
     lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [headerView addSubview:lineView];
     self.tableView.tableHeaderView = headerView;
     self.tableView.tableHeaderView.hidden = YES;
     self.dataErrorView.isActivityVideo = YES;
     self.emptyView.isActivityVideo = YES;
+    self.errorView.isActivityVideo = YES;
 }
 - (void)setupLayout {
     [super setupLayout];
@@ -103,7 +104,7 @@
         make.top.equalTo(self.playMangerView.mas_bottom).offset(30.0f);
     }];
     
-    [self.commentErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom).priorityLow();

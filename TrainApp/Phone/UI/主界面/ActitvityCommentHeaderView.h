@@ -11,7 +11,8 @@
 static NSString *kContentSeparator = @"<br />";
 static NSString *kNameSeparator = @"：";
 static CGFloat kDistanceTopLong = 30.0f;
-static CGFloat kDistanceTopShort = 15.0f;
+static CGFloat kDistanceTopMiddle = 15.0f;
+static CGFloat kDistanceTopShort = 10.0f;
 
 typedef void(^ActitvityCommentReplyBlock) (ActivityFirstCommentRequestItem_Body_Replies * replie);
 typedef void(^ActitvityCommentFavorBlock) ();

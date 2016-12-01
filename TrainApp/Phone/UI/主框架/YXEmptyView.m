@@ -93,6 +93,7 @@
 - (void)setIsActivityVideo:(BOOL)isActivityVideo {
     _isActivityVideo = isActivityVideo;
     if (_isActivityVideo) {
+        self.backgroundColor = [UIColor whiteColor];
         self.imageView.hidden = YES;
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.containerView);

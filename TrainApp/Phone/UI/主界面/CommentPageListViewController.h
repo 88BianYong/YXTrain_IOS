@@ -12,7 +12,6 @@
 @class CommentPagedListFetcher;
 @interface CommentPageListViewController : YXBaseViewController
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) UIView *commentErrorView;
 
 @property (nonatomic, copy) NSString *status;
 @property (nonatomic, strong) CommentPagedListFetcher *dataFetcher;
@@ -20,7 +19,6 @@
 @property (nonatomic, assign) BOOL isHiddenInputView;
 @property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps_Tools *tool;
 @property (nonatomic, assign) NSInteger totalNum;
-
 
 - (void)setupUI;
 - (void)setupLayout;

@@ -18,7 +18,6 @@
 #import "CommentLaudRequest.h"
 #import "YXUserProfile.h"
 #import "UITableView+TemplateLayoutHeaderView.h"
-#import "VideoCommentErrorView.h"
 #import "SecondCommentViewController.h"
 @interface CommentPageListViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) int totalPage;
@@ -90,21 +89,13 @@
     self.emptyView.hidden = YES;
     [self.view addSubview:self.emptyView];
     WEAK_SELF
-    if (self.commentErrorView == nil) {
-        self.commentErrorView = [[YXErrorView alloc]init];
-        self.commentErrorView.hidden = YES;
-        [(YXErrorView *)self.commentErrorView setRetryBlock:^{
-            STRONG_SELF
-            [self firstPageFetch:YES];
-        }];
-    }else {
-        self.commentErrorView.hidden = YES;
-        [(VideoCommentErrorView *)self.commentErrorView setRetryBlock:^{
-            STRONG_SELF
-            [self firstPageFetch:YES];
-        }];
-    }
-    [self.view addSubview:self.commentErrorView];
+    self.errorView = [[YXErrorView alloc]init];
+    self.errorView.hidden = YES;
+    [self.errorView setRetryBlock:^{
+        STRONG_SELF
+        [self firstPageFetch:YES];
+    }];
+    [self.view addSubview:self.errorView];
     
     self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
     [self.view addSubview:self.dataErrorView];
@@ -192,14 +183,14 @@
         make.top.equalTo(self.view.mas_top);
     }];
     
-    [self.commentErrorView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(@0);
     }];
     [self.dataErrorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.commentErrorView.mas_left);
-        make.right.equalTo(self.commentErrorView.mas_right);
-        make.bottom.equalTo(self.commentErrorView.mas_bottom);
-        make.top.equalTo(self.commentErrorView.mas_top);
+        make.left.equalTo(self.errorView.mas_left);
+        make.right.equalTo(self.errorView.mas_right);
+        make.bottom.equalTo(self.errorView.mas_bottom);
+        make.top.equalTo(self.errorView.mas_top);
     }];
     
     [self.translucentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -261,7 +252,7 @@
                 }
             }else {
                 self.totalNum = totalNum;
-                self.commentErrorView.hidden = YES;
+                self.errorView.hidden = YES;
                 self.dataErrorView.hidden = YES;
                 [self.headerView setLastUpdateTime:[NSDate date]];
                 self.totalPage = totalPage;
@@ -313,8 +304,8 @@
     self.footerView.alpha = hidden ? 0:1;
 }
 - (void)showErroView {
-    self.commentErrorView.hidden = NO;
-    [self.view bringSubviewToFront:self.commentErrorView];
+    self.errorView.hidden = NO;
+    [self.view bringSubviewToFront:self.errorView];
 }
 
 - (void)showDataErrorView {
@@ -500,10 +491,15 @@
     ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
     headerView.replie = replie;
     headerView.isFontBold = YES;
-    if (section == 0) {
-        headerView.distanceTop = kDistanceTopShort;
+    if (section == 0 && self.dataErrorView.isActivityVideo) {//只有视频的第一个评论显示高度不同
+        headerView.distanceTop = kDistanceTopMiddle;
     }else {
-        headerView.distanceTop = kDistanceTopLong;
+        ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section - 1];
+        if (replie.replies.count == 0) {
+            headerView.distanceTop = kDistanceTopShort;
+        }else {
+            headerView.distanceTop = kDistanceTopLong;
+        }
     }
     WEAK_SELF
     [headerView setActitvityCommentReplyBlock:^(ActivityFirstCommentRequestItem_Body_Replies *replie) {
@@ -530,10 +526,15 @@
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
         header.replie = replie;
         header.isFontBold = YES;
-        if (section == 0) {
-            header.distanceTop = kDistanceTopShort;
+        if (section == 0 && self.dataErrorView.isActivityVideo){
+            header.distanceTop = kDistanceTopMiddle;
         }else {
-            header.distanceTop = kDistanceTopLong;
+            ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section - 1];
+            if (replie.replies.count == 0) {
+               header.distanceTop = kDistanceTopShort;
+            }else {
+               header.distanceTop = kDistanceTopLong;
+            }
         }
     }];
 }
