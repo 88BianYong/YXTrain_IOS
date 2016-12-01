@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ActivityDetailTableSectionView : UITableViewHeaderFooterView
+@property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, copy) NSString *titleString;
 @end

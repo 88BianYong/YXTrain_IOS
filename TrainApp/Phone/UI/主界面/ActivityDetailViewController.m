@@ -97,7 +97,7 @@
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 73.0f;
+        return 73.0 + 8.0f;
     }else {
         return 15.0f;
     }

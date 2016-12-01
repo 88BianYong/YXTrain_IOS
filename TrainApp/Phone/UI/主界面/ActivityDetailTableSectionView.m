@@ -22,6 +22,7 @@
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = [UIColor colorWithHexString:@"b1b6bc"];
     [self.contentView addSubview:lineView];
+    self.lineView = lineView;
     
     UILabel *stepLabel = [[UILabel alloc] init];
     stepLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];

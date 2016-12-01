@@ -119,13 +119,13 @@
     }];
     
     [self.descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(40.0f);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(40.0f - 3.0f);
         make.centerX.equalTo(self.mas_centerX);
         make.width.mas_offset(100.0f);
     }];
     
     [self.htmlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.descriptionLabel.mas_bottom).offset(22.0f);
+        make.top.equalTo(self.descriptionLabel.mas_bottom).offset(22.0f - 6.0f);
         make.left.equalTo(self.mas_left).offset(25.0f);
         make.right.equalTo(self.mas_right).offset(-25.0f);
         make.bottom.equalTo(self.mas_bottom).offset (-41.0f);
@@ -138,7 +138,7 @@
     }];
     
     [self.openCloseButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_offset(CGSizeMake(80.0f, 24.0f));
+        make.size.mas_offset(CGSizeMake(80.0f + 15.0f, 24.0f));
         make.centerX.equalTo(self.mas_centerX);
         make.bottom.equalTo(self.mas_bottom);
     }];

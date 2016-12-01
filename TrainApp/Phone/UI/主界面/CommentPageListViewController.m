@@ -494,11 +494,15 @@
     if (section == 0 && self.dataErrorView.isActivityVideo) {//只有视频的第一个评论显示高度不同
         headerView.distanceTop = kDistanceTopMiddle;
     }else {
+        if (section == 0) {
+            headerView.distanceTop = kDistanceTopLong;
+        }else {//没有二级评论间距缩小
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section - 1];
         if (replie.replies.count == 0) {
             headerView.distanceTop = kDistanceTopShort;
         }else {
             headerView.distanceTop = kDistanceTopLong;
+        }
         }
     }
     WEAK_SELF
@@ -529,11 +533,15 @@
         if (section == 0 && self.dataErrorView.isActivityVideo){
             header.distanceTop = kDistanceTopMiddle;
         }else {
-            ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section - 1];
-            if (replie.replies.count == 0) {
-               header.distanceTop = kDistanceTopShort;
+            if (section == 0) {
+                header.distanceTop = kDistanceTopLong;
             }else {
-               header.distanceTop = kDistanceTopLong;
+                ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section - 1];
+                if (replie.replies.count == 0) {
+                    header.distanceTop = kDistanceTopShort;
+                }else {
+                    header.distanceTop = kDistanceTopLong;
+                }
             }
         }
     }];
