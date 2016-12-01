@@ -126,8 +126,10 @@
     }
     if ([_replie.isRanked isEqualToString:@"true"]) {
         self.favorButton.enabled = NO;
+        self.favorLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
     }else {
         self.favorButton.enabled = YES;
+        self.favorLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     }
     if (![self isFormatContent:replie.content?:@""]) {
         NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:replie.content?:@""];
@@ -145,9 +147,9 @@
     NSRange contentRange = [contentString rangeOfString:kContentSeparator];
     NSRange nameRange = [contentString rangeOfString:kNameSeparator];
     return (contentRange.location != NSNotFound) &&
-           (nameRange.location != NSNotFound) &&
-           (contentRange.location > nameRange.location) &&
-           ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3);
+    (nameRange.location != NSNotFound) &&
+    (contentRange.location > nameRange.location) &&
+    ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3);
 }
 - (NSMutableAttributedString *)formatSenondCommentContnet:(NSString *)content {
     NSRange contentRange = [content rangeOfString:kContentSeparator];
