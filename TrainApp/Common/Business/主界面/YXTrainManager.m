@@ -85,7 +85,7 @@
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
-- (BOOL)isIsBeijingProject {
+- (BOOL)isBeijingProject {
     return [self.currentProject.pid isEqualToString:YXTrainBeijingProjectId];
 }
 @end

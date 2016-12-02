@@ -46,6 +46,7 @@
 @property (nonatomic, strong) NSString<Optional> *record;
 @property (nonatomic, strong) NSString<Optional> *is_selected;
 @property (nonatomic, strong) NSString<Optional> *module_id;
+@property (nonatomic, strong) NSString<Optional> *credit;//北京项目专用
 @end
 
 @protocol YXCourseListRequestItem_body_module <NSObject>
@@ -74,6 +75,7 @@
 
 - (NSArray *)allCourses; // element is YXCourseListRequestItem_body_module_course type
 - (YXCourseListFilterModel *)filterModel;
+- (YXCourseListFilterModel *)beijingFilterModel;
 @end
 
 @interface YXCourseListRequest : YXGetRequest
@@ -84,6 +86,7 @@
 @property (nonatomic, strong) NSString *segid;
 @property (nonatomic, strong) NSString *pagesize;
 @property (nonatomic, strong) NSString *pageindex;
+@property (nonatomic, strong) NSString *w;
 @end
 
 

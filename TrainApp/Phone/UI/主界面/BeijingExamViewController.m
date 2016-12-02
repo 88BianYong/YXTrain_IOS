@@ -11,7 +11,7 @@
 #import "MJRefresh.h"
 #import "YXScoreViewController.h"
 #import "YXExamMarkView.h"
-#import "YXCourseViewController.h"
+#import "BeijingCourseViewController.h"
 #import "ActivityListViewController.h"
 #import "BeijingExamGenreCell.h"
 #import "BeijingExamGenreDefaultHeaderView.h"
@@ -19,6 +19,7 @@
 #import "BeijingExamTableHeaderView.h"
 #import "BeijingExamExplainView.h"
 #import "YXExamBlankHeaderFooterView.h"
+#import "BeijingActivityListViewController.h"
 
 static  NSString *const trackPageName = @"考核页面";
 static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
@@ -84,6 +85,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     [self.view addSubview:self.tableView];
     
     self.headerView = [[BeijingExamTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeightScale(160.0f))];
+    self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
     [self.tableView registerClass:[BeijingExamGenreCell class] forCellReuseIdentifier:@"BeijingExamGenreCell"];
     [self.tableView registerClass:[BeijingExamGenreDefaultHeaderView class] forHeaderFooterViewReuseIdentifier:@"BeijingExamGenreDefaultHeaderView"];
@@ -138,6 +140,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 - (void)dealWithRetItem:(BeijingExamineRequestItem *)retItem{
     self.examineItem = retItem;
     self.headerView.item = retItem;
+    self.headerView.hidden = NO;
     [self.tableView reloadData];
 }
 
@@ -198,6 +201,15 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         BeijingExamineRequestItem_ExamineVoList *list = self.examineItem.examineVoList[section];
         BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamine = list.toolExamineVoList[0];
         header.toolExamineVo = toolExamine;
+        WEAK_SELF
+        [header setBeijingExamGenreExplainNextBlock:^(NSString *tooid) {
+            STRONG_SELF
+            if (tooid.integerValue == 202) {
+                BeijingActivityListViewController *VC = [[BeijingActivityListViewController alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+            }
+
+        }];
         return header;
     }
 }
@@ -220,46 +232,13 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    return;
-//    if (indexPath.section == 100) {
-//        YXScoreViewController *vc = [[YXScoreViewController alloc]init];
-//        vc.data = self.examineItem.body;
-//        vc.waveView = self.waveView;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else if (indexPath.section <= self.examineItem.body.leadingVoList.count){
-//        YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[indexPath.section-1];
-//        if (indexPath.row>0 && indexPath.row<=vo.toolExamineVoList.count) {
-//            YXExamineRequestItem_body_toolExamineVo *data = vo.toolExamineVoList[indexPath.row-1];
-//            if ([data.toolid isEqualToString:@"201"]) { // 课程
-//                YXCourseViewController *vc = [[YXCourseViewController alloc]init];
-//                vc.stageID = vo.voID;
-//                vc.status = YXCourseFromStatus_Stage;
-//                [self.navigationController pushViewController:vc animated:YES];
-//                [YXDataStatisticsManger trackEvent:@"课程列表" label:trackLabelOfJumpFromExeam parameters:nil];
-//            }else if ([data.toolid isEqualToString:@"203"] || [data.toolid isEqualToString:@"303"]){//作业
-//                NSString *string = @"YXHomeworkListViewController";
-//                UIViewController *VC = [[NSClassFromString(string) alloc] init];
-//                [self.navigationController pushViewController:VC animated:YES];
-//                [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
-//            }else if ([data.toolid isEqualToString:@"205"] || [data.toolid isEqualToString:@"305"]){//研修总结
-//                NSString *string = @"YXHomeworkListViewController";
-//                UIViewController *VC = [[NSClassFromString(string) alloc] init];
-//                [self.navigationController pushViewController:VC animated:YES];
-//                [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
-//            }else if ([data.toolid isEqualToString:@"216"] || [data.toolid isEqualToString:@"316"]){//小组作业
-//                NSString *string = @"YXHomeworkListViewController";
-//                UIViewController *VC = [[NSClassFromString(string) alloc] init];
-//                [self.navigationController pushViewController:VC animated:YES];
-//                [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromExeam parameters:nil];
-//            }else if ([data.toolid isEqualToString:@"202"] || [data.toolid isEqualToString:@"302"]){//活动
-//                ActivityListViewController *VC = [[ActivityListViewController alloc] init];
-//                [self.navigationController pushViewController:VC animated:YES];
-//                VC.stageID = vo.voID;
-//            }else{
-//                [self showToast:@"相关功能暂未开放"];
-//            }
-//        }
-//    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    BeijingCourseViewController *vc = [[BeijingCourseViewController alloc]init];
+    BeijingExamineRequestItem_ExamineVoList *list = self.examineItem.examineVoList[indexPath.section];
+    BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamine = list.toolExamineVoList[indexPath.row];
+    vc.stageID = toolExamine.toolid;
+    [self.navigationController pushViewController:vc animated:YES];
+    [YXDataStatisticsManger trackEvent:@"课程列表" label:trackLabelOfJumpFromExeam parameters:nil];
 }
 - (void)report:(BOOL)status{
     if (status) {

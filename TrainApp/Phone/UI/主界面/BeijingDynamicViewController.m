@@ -17,7 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.tableView registerClass:[BeijingDynamicCell class] forCellReuseIdentifier:@"BeijingDynamicCell"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,5 +30,11 @@
     YXDynamicRequestItem_Data *data = self.dataArray[indexPath.row];
     cell.data = data;
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    YXDynamicRequestItem_Data *data = self.dataArray[indexPath.row];
+    return [tableView fd_heightForCellWithIdentifier:@"BeijingDynamicCell" configuration:^(BeijingDynamicCell *cell) {
+        cell.data = data;
+    }];
 }
 @end

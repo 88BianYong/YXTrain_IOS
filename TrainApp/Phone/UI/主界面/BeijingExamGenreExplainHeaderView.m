@@ -11,6 +11,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, copy) BeijingExamGenreExplainNextBlock nextBlock;
 @end
 @implementation BeijingExamGenreExplainHeaderView
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
@@ -42,6 +43,12 @@
     self.contentLabel.textColor = [UIColor colorWithHexString:@"0067be"];
     self.contentLabel.text = @"已参加0ge";
     [self.contentView addSubview:self.contentLabel];
+    UIButton *bgButton = [[UIButton alloc]init];
+    [bgButton addTarget:self action:@selector(bgButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:bgButton];
+    [bgButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
 }
 
 - (void)setupLayout {
@@ -78,6 +85,12 @@
         self.detailLabel.textColor = [UIColor colorWithHexString:@"bbc2c9"];
 
     }
+}
+- (void)bgButtonAction:(UIButton *)sender {
+    BLOCK_EXEC(self.nextBlock,self.toolExamineVo.toolid);
     
+}
+- (void)setBeijingExamGenreExplainNextBlock:(BeijingExamGenreExplainNextBlock)block {
+    self.nextBlock = block;
 }
 @end

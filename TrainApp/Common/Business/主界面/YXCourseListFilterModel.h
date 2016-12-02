@@ -24,5 +24,6 @@
 @property (nonatomic, strong) NSArray *groupArray;
 
 + (YXCourseListFilterModel *)modelFromRawData:(YXCourseListRequestItem *)item;
++ (YXCourseListFilterModel *)beijingModelFromRawData:(YXCourseListRequestItem *)item;
 
 @end
