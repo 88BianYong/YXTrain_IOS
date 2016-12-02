@@ -55,6 +55,9 @@
 - (YXCourseListFilterModel *)filterModel{
     return [YXCourseListFilterModel modelFromRawData:self];
 }
+- (YXCourseListFilterModel *)beijingFilterModel {
+    return [YXCourseListFilterModel beijingModelFromRawData:self];
+}
 @end
 
 @implementation YXCourseListRequest

@@ -271,6 +271,9 @@
 		924AB2661DE43EC9003EC952 /* ActivityEnclosureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924AB2651DE43EC9003EC952 /* ActivityEnclosureViewController.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		926354401DEFFAD000FAD1DE /* BeijingExamineRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263543F1DEFFAD000FAD1DE /* BeijingExamineRequest.m */; };
+		926354431DF10C4100FAD1DE /* BeijingCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354421DF10C4100FAD1DE /* BeijingCourseViewController.m */; };
+		926354461DF1178400FAD1DE /* BeijingCourseListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */; };
+		926354491DF1361C00FAD1DE /* BeijingActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */; };
 		92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F5F1DD9666700548424 /* ActivitySlideProgressControl.m */; };
 		92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F621DD96E3E00548424 /* ActivityPlayTopView.m */; };
 		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
@@ -977,6 +980,12 @@
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		9263543E1DEFFAD000FAD1DE /* BeijingExamineRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamineRequest.h; sourceTree = "<group>"; };
 		9263543F1DEFFAD000FAD1DE /* BeijingExamineRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamineRequest.m; sourceTree = "<group>"; };
+		926354411DF10C4100FAD1DE /* BeijingCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseViewController.h; sourceTree = "<group>"; };
+		926354421DF10C4100FAD1DE /* BeijingCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseViewController.m; sourceTree = "<group>"; };
+		926354441DF1178400FAD1DE /* BeijingCourseListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseListFetcher.h; sourceTree = "<group>"; };
+		926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseListFetcher.m; sourceTree = "<group>"; };
+		926354471DF1361C00FAD1DE /* BeijingActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListViewController.h; sourceTree = "<group>"; };
+		926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityListViewController.m; sourceTree = "<group>"; };
 		92780F5E1DD9666700548424 /* ActivitySlideProgressControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySlideProgressControl.h; sourceTree = "<group>"; };
 		92780F5F1DD9666700548424 /* ActivitySlideProgressControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySlideProgressControl.m; sourceTree = "<group>"; };
 		92780F611DD96E3E00548424 /* ActivityPlayTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayTopView.h; sourceTree = "<group>"; };
@@ -1383,6 +1392,8 @@
 				7C2C3B541D23B34300A03635 /* YXCourseListRequest.m */,
 				7C2C3B581D23BEE100A03635 /* YXCourseListFetcher.h */,
 				7C2C3B591D23BEE100A03635 /* YXCourseListFetcher.m */,
+				926354441DF1178400FAD1DE /* BeijingCourseListFetcher.h */,
+				926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */,
 				7C2C3B5E1D23D68500A03635 /* YXCourseListFilterModel.h */,
 				7C2C3B5F1D23D68500A03635 /* YXCourseListFilterModel.m */,
 				7C2C3B561D23B87B00A03635 /* courselist_mock.json */,
@@ -2422,6 +2433,10 @@
 				922901661DED2107001474CE /* BeijingExamViewController.m */,
 				922901691DED2C99001474CE /* BeijingDynamicViewController.h */,
 				9229016A1DED2C99001474CE /* BeijingDynamicViewController.m */,
+				926354411DF10C4100FAD1DE /* BeijingCourseViewController.h */,
+				926354421DF10C4100FAD1DE /* BeijingCourseViewController.m */,
+				926354471DF1361C00FAD1DE /* BeijingActivityListViewController.h */,
+				926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */,
 			);
 			name = "北京项目";
 			sourceTree = "<group>";
@@ -3547,6 +3562,7 @@
 				7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */,
 				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
+				926354431DF10C4100FAD1DE /* BeijingCourseViewController.m in Sources */,
 				7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
@@ -3570,6 +3586,7 @@
 				9229016B1DED2C99001474CE /* BeijingDynamicViewController.m in Sources */,
 				920F1D301D518C1600636A51 /* YXHomeworkListRequest.m in Sources */,
 				7C2C3B911D26406400A03635 /* YXTrainManager.m in Sources */,
+				926354491DF1361C00FAD1DE /* BeijingActivityListViewController.m in Sources */,
 				920F1D651D58346500636A51 /* YXVideoRecordTopView.m in Sources */,
 				CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
@@ -3731,6 +3748,7 @@
 				920F1D4B1D51F0D700636A51 /* YXHomeworkListCell.m in Sources */,
 				E9BBA6141DD2DEFB000CA413 /* ActivityFilterRequest.m in Sources */,
 				92EDC7C51D5DDD0E005B91DD /* YXWriteHomeworkInfoMenuView.m in Sources */,
+				926354461DF1178400FAD1DE /* BeijingCourseListFetcher.m in Sources */,
 				92EDC7D11D632357005B91DD /* YXHomeworkUploadCompleteView.m in Sources */,
 				CB748EEC1D24F3CD004BCFBF /* YXPagedListEmptyView.m in Sources */,
 				92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */,

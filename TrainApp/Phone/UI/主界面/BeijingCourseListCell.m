@@ -121,7 +121,6 @@
 - (void)setCourse:(YXCourseListRequestItem_body_module_course *)course{
     _course = course;
     [self.courseImageView sd_setImageWithURL:[NSURL URLWithString:course.course_img]];
-//    course.course_title = @"沙发开发及法律案例库房家里空间福利看来法兰克福爱咖啡咖啡卡打开发空间的分类看大家理发卡空间的饭卡的反馈拉拉队交罚款了第三方来看家";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:course.course_title];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:0];//调整行间距
@@ -129,7 +128,7 @@
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
-    
+    self.hoursLabel.text = [NSString stringWithFormat:@"学时 %@", _course.credit];
     int second = course.record.intValue;
     if (second == 0) {
         self.recordLabel.text = @"未观看";

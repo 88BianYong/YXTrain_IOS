@@ -10,5 +10,5 @@
 #import "ActivityListRequest.h"
 @interface BeijingActivityListCell : UITableViewCell
 @property (nonatomic, strong) ActivityListRequestItem_body_activity *activity;
-
+@property (nonatomic, assign) BOOL isShowWorkshop;
 @end

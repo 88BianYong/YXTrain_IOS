@@ -20,6 +20,7 @@
 #import "YXInitRequest.h"
 #import "YXPopUpContainerView.h"
 #import "AppDelegate+CMSView.h"
+#import "BeijingDynamicViewController.h"
 #import "BeijingExamViewController.h"
 @interface YXProjectMainViewController ()
 {
@@ -101,12 +102,11 @@
         STRONG_SELF
         [self getProjectList];
     };
-    
-    
-//    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [rightButton setImage:[UIImage imageNamed:@"消息动态icon-正常态A"] forState:UIControlStateNormal];
     [self setupRightWithImageNamed:@"消息动态icon-正常态A" highlightImageNamed:@"消息动态icon点击态-正常态-拷贝"];
-    
+}
+- (void)naviRightAction {
+    BeijingDynamicViewController *VC = [[BeijingDynamicViewController alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 - (void)getProjectList{
     [self startLoading];
@@ -179,7 +179,7 @@
             [self ->_selectedViewController report:YES];
         };
         UIViewController<YXTrackPageDataProtocol> *examVC = nil;
-        if ([YXTrainManager sharedInstance].isBeijingProject || YES) {
+        if ([YXTrainManager sharedInstance].isBeijingProject) {
             examVC = [[BeijingExamViewController alloc]init];
         }else {
             examVC = [[YXExamViewController alloc]init];

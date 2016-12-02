@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UILabel *startTimeLabel;
 @property (nonatomic, strong) UILabel *isJoinLabel;
 @property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) UIImageView *workshopImageView;
 @end
 @implementation BeijingActivityListCell
 
@@ -45,16 +46,18 @@
     self.activityImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.activityImageView.clipsToBounds = YES;
     self.activityImageView.layer.cornerRadius = YXTrainCornerRadii;
-    
+    [self.contentView addSubview:self.activityImageView];
     
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.titleLabel.numberOfLines = 0;
-    
+    [self.contentView addSubview:self.titleLabel];
+
     self.startTimeLabel = [[UILabel alloc]init];
     self.startTimeLabel.font = [UIFont systemFontOfSize:11];
     self.startTimeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    [self.contentView addSubview:self.startTimeLabel];
     
     self.isJoinLabel = [[UILabel alloc]init];
     self.isJoinLabel.font = [UIFont systemFontOfSize:10];
@@ -68,12 +71,13 @@
     UIView *line = [[UIView alloc]init];
     line.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     self.lineView = line;
+    [self.contentView addSubview:self.lineView];
+
+    self.workshopImageView = [[UIImageView alloc] init];
+    self.workshopImageView.image = [UIImage imageNamed:@"工作坊iconA"];
+    [self.contentView addSubview:self.workshopImageView];
 }
 - (void)setupLayout {
-    [self.contentView addSubview:self.activityImageView];
-    [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.startTimeLabel];
-    [self.contentView addSubview:self.lineView];
     
     [self.activityImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(15);
@@ -88,14 +92,23 @@
     [self.startTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(13);
-        make.right.equalTo(self.contentView);
     }];
+    
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.activityImageView.mas_left);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
+    
+    [self.workshopImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(36.0f, 26.0f));
+        make.centerY.equalTo(self.startTimeLabel.mas_centerY);
+        make.left.lessThanOrEqualTo(self.startTimeLabel.mas_right).offset(15.0f);
+        make.right.lessThanOrEqualTo(self.contentView.mas_right).offset(-25.0f);
+    }];
+    
+    
 }
 - (void)setActivity:(ActivityListRequestItem_body_activity *)activity {
     _activity = activity;
@@ -124,5 +137,10 @@
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [titleLabelAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.titleLabel.text length])];
     self.titleLabel.attributedText = titleLabelAttributedString;
+}
+
+- (void)setIsShowWorkshop:(BOOL)isShowWorkshop {
+    _isShowWorkshop = isShowWorkshop;
+    self.workshopImageView.hidden = !_isShowWorkshop;
 }
 @end

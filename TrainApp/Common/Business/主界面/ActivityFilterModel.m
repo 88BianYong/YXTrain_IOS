@@ -47,7 +47,7 @@
         [stageArray addObject:item];
     }
     ActivityFilterGroup *stageGroup = [[ActivityFilterGroup alloc]init];
-    stageGroup.name = @"阶段";
+    stageGroup.name = [YXTrainManager sharedInstance].isBeijingProject ? @"类别" : @"阶段";
     stageGroup.filterArray = stageArray;
     
     ActivityFilterModel *model = [[ActivityFilterModel alloc]init];
