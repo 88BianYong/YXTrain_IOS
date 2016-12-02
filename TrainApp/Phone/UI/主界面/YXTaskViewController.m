@@ -11,6 +11,10 @@
 #import "YXTaskCell.h"
 #import "YXTaskListRequest.h"
 #import "ActivityListViewController.h"
+#import "YXHomeworkInfoRequest.h"
+#import "YXHomeworkInfoViewController.h"
+#import "BeijingActivityListViewController.h"
+#import "BeijingCourseViewController.h"
 static  NSString *const trackPageName = @"任务列表页面";
 static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 @interface YXTaskViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -165,23 +169,45 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXTaskListRequestItem_body_task *task = self.tasklistItem.body.tasks[indexPath.row];
     if (task.toolid.integerValue == 201) {
-        YXCourseViewController *vc = [[YXCourseViewController alloc]init];
-        vc.status = YXCourseFromStatus_Course;
-        [self.navigationController pushViewController:vc animated:YES];
+        if ([YXTrainManager sharedInstance].isBeijingProject) {
+            BeijingCourseViewController *vc = [[BeijingCourseViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];           
+        }else {
+            YXCourseViewController *vc = [[YXCourseViewController alloc]init];
+            vc.status = YXCourseFromStatus_Course;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
         [YXDataStatisticsManger trackEvent:@"课程列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else if ([task.toolid isEqualToString:@"203"] || [task.toolid isEqualToString:@"303"]){//作业
-        NSString *string = @"YXHomeworkListViewController";
-        UIViewController *VC = [[NSClassFromString(string) alloc] init];
-        [self.navigationController pushViewController:VC animated:YES];
-        [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
+        if ([YXTrainManager sharedInstance].isBeijingProject) {
+            YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
+            YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
+            itemBody.type = @"4";
+            itemBody.requireId = [YXTrainManager sharedInstance].requireId;
+            itemBody.homeworkid = @"";
+            itemBody.pid = [YXTrainManager sharedInstance].currentProject.pid;
+            VC.itemBody = itemBody;
+            [self.navigationController pushViewController:VC animated:YES];
+        }else {
+            NSString *string = @"YXHomeworkListViewController";
+            UIViewController *VC = [[NSClassFromString(string) alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+            [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
+        }
     }else if ([task.toolid isEqualToString:@"205"] || [task.toolid isEqualToString:@"305"]){//研修总结
         NSString *string = @"YXHomeworkListViewController";
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
         [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else if ([task.toolid isEqualToString:@"202"] || [task.toolid isEqualToString:@"302"]){//活动
-        ActivityListViewController *VC = [[ActivityListViewController alloc] init];
-        [self.navigationController pushViewController:VC animated:YES];
+        if ([YXTrainManager sharedInstance].isBeijingProject) {
+            BeijingActivityListViewController *VC = [[BeijingActivityListViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+        else{
+            ActivityListViewController *VC = [[ActivityListViewController alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }
 //        [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else{
         [self showToast:@"相关功能暂未开放"];

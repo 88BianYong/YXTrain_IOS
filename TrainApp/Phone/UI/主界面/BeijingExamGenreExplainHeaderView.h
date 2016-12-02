@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BeijingExamineRequest.h"
-typedef void (^BeijingExamGenreExplainNextBlock) (NSString *tooid);
+typedef void (^BeijingExamGenreExplainNextBlock) (BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *tool);
 @interface BeijingExamGenreExplainHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamineVo;
 - (void)setBeijingExamGenreExplainNextBlock:(BeijingExamGenreExplainNextBlock)block;

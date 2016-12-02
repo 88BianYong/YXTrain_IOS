@@ -97,9 +97,9 @@
     _item = item;
     if (_item.applystatus.integerValue == 0) {
         self.graduationImageView.image = [UIImage imageNamed:@"未申请"];
-    }else if (_item.applystatus.integerValue == 1) {
+    }else if (_item.applystatus.integerValue == 1 || _item.applystatus.integerValue == 3) {
         self.graduationImageView.image = [UIImage imageNamed:@"已申请"];
-    }else {
+    }else if (_item.applystatus.integerValue == -1){
         self.graduationImageView.image = [UIImage imageNamed:@"已退回"];
     }
     
@@ -113,6 +113,7 @@
         }
     }else {
         self.statusContentLabel.text = @"已结业";
+        self.graduationImageView.image = [UIImage imageNamed:@"已结业"];
     }
 }
 

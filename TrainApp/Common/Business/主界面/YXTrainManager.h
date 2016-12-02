@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSIndexPath *currentProjectIndexPath;
 @property (nonatomic, strong) YXTrainListRequestItem *trainlistItem;
 @property (nonatomic, assign) BOOL isBeijingProject;
+@property (nonatomic, copy) NSString *requireId;//北京项目专用
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock;
 
 - (void)clear;

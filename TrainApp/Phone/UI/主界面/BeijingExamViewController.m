@@ -20,6 +20,8 @@
 #import "BeijingExamExplainView.h"
 #import "YXExamBlankHeaderFooterView.h"
 #import "BeijingActivityListViewController.h"
+#import "YXHomeworkInfoRequest.h"
+#import "YXHomeworkInfoViewController.h"
 
 static  NSString *const trackPageName = @"考核页面";
 static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
@@ -118,7 +120,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     self.request = [[BeijingExamineRequest alloc]init];
     self.request.projectid = [YXTrainManager sharedInstance].currentProject.pid;
     self.request.w = [YXTrainManager sharedInstance].currentProject.w;
-    [self startLoading];
     if (isShow) {
         [self startLoading];
     }
@@ -140,6 +141,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 - (void)dealWithRetItem:(BeijingExamineRequestItem *)retItem{
     self.examineItem = retItem;
     self.headerView.item = retItem;
+    [YXTrainManager sharedInstance].requireId = @"845";
     self.headerView.hidden = NO;
     [self.tableView reloadData];
 }
@@ -180,7 +182,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         }else if (toolExamine.toolid.integerValue == 2180) {
             [self showMarkWithOriginRect:rect explain:@"要求至少学习3学时"];
         }
-        
     }];
     return cell;
 }
@@ -202,10 +203,19 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamine = list.toolExamineVoList[0];
         header.toolExamineVo = toolExamine;
         WEAK_SELF
-        [header setBeijingExamGenreExplainNextBlock:^(NSString *tooid) {
+        [header setBeijingExamGenreExplainNextBlock:^(BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *tool) {
             STRONG_SELF
-            if (tooid.integerValue == 202) {
+            if (tool.toolid.integerValue == 202) {
                 BeijingActivityListViewController *VC = [[BeijingActivityListViewController alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if (tool.toolid.integerValue == 205) {
+                YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
+                itemBody.type = @"4";
+                itemBody.requireId = @"845";
+                itemBody.homeworkid = @"";
+                itemBody.pid = [YXTrainManager sharedInstance].currentProject.pid;
+                YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
+                VC.itemBody = itemBody;
                 [self.navigationController pushViewController:VC animated:YES];
             }
 

@@ -96,7 +96,7 @@
 }
 
 - (void)startRootVC {
-    if ([[YXUserManager sharedManager] isLogin]) {
+    if ([[YXUserManager sharedManager] isLogin]) {        
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
     } else {
@@ -116,7 +116,6 @@
     drawerVC.drawerWidth = [UIScreen mainScreen].bounds.size.width * YXTrainLeftDrawerWidth/750.0f;
     return drawerVC;
 }
-
 - (void)requestCommonData
 {
 	//@weakify(self);
