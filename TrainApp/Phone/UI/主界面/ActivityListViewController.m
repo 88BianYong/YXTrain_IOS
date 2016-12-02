@@ -181,6 +181,8 @@
     ActivityListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.activity.source isEqualToString:@"zgjiaoyan"]) {//目前暂不支持教研网的活动
         [self showToast:@"暂不支持教研网活动"];
+    }else if ([cell.activity.status isEqualToString:@"-1"]) {//活动关闭
+          [self showToast:@"该活动已关闭"];
     }else {
         ActivityDetailViewController *detailVC = [[ActivityDetailViewController alloc] init];
         detailVC.activity = self.dataArray[indexPath.row];
