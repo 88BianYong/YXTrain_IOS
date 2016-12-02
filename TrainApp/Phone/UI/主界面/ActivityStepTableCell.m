@@ -33,8 +33,9 @@
         make.height.equalTo(self.iconButton.mas_width);
     }];
     [self.iconLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self);
+        make.left.right.equalTo(self);
         make.top.equalTo(self.iconButton.mas_bottom).offset(7.0f);
+        make.bottom.equalTo(self).offset(-1);
     }];
 }
 

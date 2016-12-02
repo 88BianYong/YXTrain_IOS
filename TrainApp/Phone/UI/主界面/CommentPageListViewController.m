@@ -351,7 +351,6 @@
             }else {
                 if (self.replyInteger >= 0) {
                     ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[self.replyInteger];
-                    reply.childNum = [NSString stringWithFormat:@"%d",(int)(reply.childNum.integerValue + 1)];
                     if (reply.replies) {
                         [reply.replies addObject:item.body.reply];
                     }else {

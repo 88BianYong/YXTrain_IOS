@@ -115,7 +115,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(25.0f);
         make.right.equalTo(self.mas_right).offset(-25.0f);
-        make.top.equalTo(self.mas_top).offset(37.0f + 5.0f);
+        make.top.equalTo(self.mas_top).offset(37.0f - 3.0f);
     }];
     
     [self.descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {

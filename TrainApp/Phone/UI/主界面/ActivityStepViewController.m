@@ -98,7 +98,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     ActivityDetailTableSectionView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActivityDetailTableSectionView"];
     view.titleString = @"步骤工具";
-    view.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    view.lineView.backgroundColor = [UIColor colorWithHexString:@"b1b6bc"];
     view.contentView.backgroundColor = [UIColor whiteColor];
     return view;
 }

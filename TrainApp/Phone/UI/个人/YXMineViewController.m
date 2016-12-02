@@ -162,7 +162,7 @@ static  NSString *const trackPageName = @"个人信息页面";
             NSString *content = self.profile.stage;
             if ([self.profile.subject yx_isValidString]) {
                 if ([content yx_isValidString]) {
-                    content = [NSString stringWithFormat:@"%@ / %@", content, self.profile.subject];
+                    content = [NSString stringWithFormat:@"%@ / %@", self.profile.subject, content];
                 } else {
                     content = self.profile.subject;
                 }
