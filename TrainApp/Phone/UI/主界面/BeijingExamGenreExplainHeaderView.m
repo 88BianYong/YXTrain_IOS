@@ -71,7 +71,7 @@
     _toolExamineVo = toolExamineVo;
     self.titleLabel.text = _toolExamineVo.name;
     if (_toolExamineVo.toolid.integerValue == 202) {
-        self.detailLabel.text = [NSString stringWithFormat:@"至少需要参加%@个活动包",_toolExamineVo.totalnum];
+        self.detailLabel.text = [NSString stringWithFormat:@"至少需要参加%@个活动",_toolExamineVo.totalnum];
         self.contentLabel.text = [NSString stringWithFormat:@"已参加了%@个",_toolExamineVo.finishnum];
         self.detailLabel.textColor = [UIColor colorWithHexString:@"505f84"];
     }else if (_toolExamineVo.toolid.integerValue == 205) {
@@ -87,7 +87,7 @@
     }
 }
 - (void)bgButtonAction:(UIButton *)sender {
-    BLOCK_EXEC(self.nextBlock,self.toolExamineVo.toolid);
+    BLOCK_EXEC(self.nextBlock,self.toolExamineVo);
     
 }
 - (void)setBeijingExamGenreExplainNextBlock:(BeijingExamGenreExplainNextBlock)block {

@@ -274,6 +274,13 @@
 		926354431DF10C4100FAD1DE /* BeijingCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354421DF10C4100FAD1DE /* BeijingCourseViewController.m */; };
 		926354461DF1178400FAD1DE /* BeijingCourseListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */; };
 		926354491DF1361C00FAD1DE /* BeijingActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */; };
+		9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */; };
+		926354501DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544F1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m */; };
+		926354531DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354521DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m */; };
+		926354561DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354551DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m */; };
+		926354591DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354581DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m */; };
+		9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */; };
+		9268C5F21DF3D59400AA109B /* BeijingModifyPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5F11DF3D59400AA109B /* BeijingModifyPasswordRequest.m */; };
 		92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F5F1DD9666700548424 /* ActivitySlideProgressControl.m */; };
 		92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F621DD96E3E00548424 /* ActivityPlayTopView.m */; };
 		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
@@ -978,14 +985,28 @@
 		924AB2651DE43EC9003EC952 /* ActivityEnclosureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityEnclosureViewController.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
-		9263543E1DEFFAD000FAD1DE /* BeijingExamineRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamineRequest.h; sourceTree = "<group>"; };
-		9263543F1DEFFAD000FAD1DE /* BeijingExamineRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamineRequest.m; sourceTree = "<group>"; };
+		9263543E1DEFFAD000FAD1DE /* BeijingExamineRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeijingExamineRequest.h; path = "主界面/BeijingExamineRequest.h"; sourceTree = "<group>"; };
+		9263543F1DEFFAD000FAD1DE /* BeijingExamineRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeijingExamineRequest.m; path = "主界面/BeijingExamineRequest.m"; sourceTree = "<group>"; };
 		926354411DF10C4100FAD1DE /* BeijingCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseViewController.h; sourceTree = "<group>"; };
 		926354421DF10C4100FAD1DE /* BeijingCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseViewController.m; sourceTree = "<group>"; };
-		926354441DF1178400FAD1DE /* BeijingCourseListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseListFetcher.h; sourceTree = "<group>"; };
-		926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseListFetcher.m; sourceTree = "<group>"; };
+		926354441DF1178400FAD1DE /* BeijingCourseListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeijingCourseListFetcher.h; path = "主界面/BeijingCourseListFetcher.h"; sourceTree = "<group>"; };
+		926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeijingCourseListFetcher.m; path = "主界面/BeijingCourseListFetcher.m"; sourceTree = "<group>"; };
 		926354471DF1361C00FAD1DE /* BeijingActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListViewController.h; sourceTree = "<group>"; };
 		926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityListViewController.m; sourceTree = "<group>"; };
+		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
+		9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserRequest.m; sourceTree = "<group>"; };
+		9263544E1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserViewController.h; sourceTree = "<group>"; };
+		9263544F1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserViewController.m; sourceTree = "<group>"; };
+		926354511DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserHeaderView.h; sourceTree = "<group>"; };
+		926354521DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserHeaderView.m; sourceTree = "<group>"; };
+		926354541DF1648600FAD1DE /* BeijingCheckedMobileUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserCell.h; sourceTree = "<group>"; };
+		926354551DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserCell.m; sourceTree = "<group>"; };
+		926354571DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileMessageCell.h; sourceTree = "<group>"; };
+		926354581DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileMessageCell.m; sourceTree = "<group>"; };
+		9268C5ED1DF3CDCD00AA109B /* BeijingSendSmsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingSendSmsRequest.h; sourceTree = "<group>"; };
+		9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingSendSmsRequest.m; sourceTree = "<group>"; };
+		9268C5F01DF3D59400AA109B /* BeijingModifyPasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingModifyPasswordRequest.h; sourceTree = "<group>"; };
+		9268C5F11DF3D59400AA109B /* BeijingModifyPasswordRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingModifyPasswordRequest.m; sourceTree = "<group>"; };
 		92780F5E1DD9666700548424 /* ActivitySlideProgressControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySlideProgressControl.h; sourceTree = "<group>"; };
 		92780F5F1DD9666700548424 /* ActivitySlideProgressControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySlideProgressControl.m; sourceTree = "<group>"; };
 		92780F611DD96E3E00548424 /* ActivityPlayTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayTopView.h; sourceTree = "<group>"; };
@@ -1378,8 +1399,6 @@
 				7CF888891D1D09B100E7C04D /* YXExamineRequest.h */,
 				7CF8888A1D1D09B100E7C04D /* YXExamineRequest.m */,
 				7CF8888C1D1D147600E7C04D /* examine_mock.json */,
-				9263543E1DEFFAD000FAD1DE /* BeijingExamineRequest.h */,
-				9263543F1DEFFAD000FAD1DE /* BeijingExamineRequest.m */,
 			);
 			name = "考核";
 			sourceTree = "<group>";
@@ -1392,8 +1411,6 @@
 				7C2C3B541D23B34300A03635 /* YXCourseListRequest.m */,
 				7C2C3B581D23BEE100A03635 /* YXCourseListFetcher.h */,
 				7C2C3B591D23BEE100A03635 /* YXCourseListFetcher.m */,
-				926354441DF1178400FAD1DE /* BeijingCourseListFetcher.h */,
-				926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */,
 				7C2C3B5E1D23D68500A03635 /* YXCourseListFilterModel.h */,
 				7C2C3B5F1D23D68500A03635 /* YXCourseListFilterModel.m */,
 				7C2C3B561D23B87B00A03635 /* courselist_mock.json */,
@@ -1540,6 +1557,7 @@
 		7C3177641D0E688D004AAC90 /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				9263544A1DF1528000FAD1DE /* 北京项目 */,
 				92CE514A1D87D3290071DE79 /* 热点 */,
 				92CE51491D87D3020071DE79 /* 动态 */,
 				923237841D864A1600FDACFE /* 红点 */,
@@ -2437,6 +2455,8 @@
 				926354421DF10C4100FAD1DE /* BeijingCourseViewController.m */,
 				926354471DF1361C00FAD1DE /* BeijingActivityListViewController.h */,
 				926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */,
+				9263544E1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.h */,
+				9263544F1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m */,
 			);
 			name = "北京项目";
 			sourceTree = "<group>";
@@ -2460,6 +2480,12 @@
 				92CD8C391DEECB0C00A2EB46 /* BeijingActivityListCell.m */,
 				92CD8C3B1DEECE1300A2EB46 /* BeijingDynamicCell.h */,
 				92CD8C3C1DEECE1300A2EB46 /* BeijingDynamicCell.m */,
+				926354511DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.h */,
+				926354521DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m */,
+				926354541DF1648600FAD1DE /* BeijingCheckedMobileUserCell.h */,
+				926354551DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m */,
+				926354571DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.h */,
+				926354581DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2692,6 +2718,23 @@
 				9223C8221D2E0060000F74DF /* YXAboutViewController.m */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		9263544A1DF1528000FAD1DE /* 北京项目 */ = {
+			isa = PBXGroup;
+			children = (
+				9263543E1DEFFAD000FAD1DE /* BeijingExamineRequest.h */,
+				9263543F1DEFFAD000FAD1DE /* BeijingExamineRequest.m */,
+				926354441DF1178400FAD1DE /* BeijingCourseListFetcher.h */,
+				926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */,
+				9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */,
+				9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */,
+				9268C5ED1DF3CDCD00AA109B /* BeijingSendSmsRequest.h */,
+				9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */,
+				9268C5F01DF3D59400AA109B /* BeijingModifyPasswordRequest.h */,
+				9268C5F11DF3D59400AA109B /* BeijingModifyPasswordRequest.m */,
+			);
+			name = "北京项目";
 			sourceTree = "<group>";
 		};
 		92CE51491D87D3020071DE79 /* 动态 */ = {
@@ -3449,6 +3492,7 @@
 				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
 				7CF8888B1D1D09B100E7C04D /* YXExamineRequest.m in Sources */,
 				7CF8886D1D1BC5C300E7C04D /* YXGradientView.m in Sources */,
+				9268C5F21DF3D59400AA109B /* BeijingModifyPasswordRequest.m in Sources */,
 				92FED8981DD2BE8D00457228 /* ActivityDetailTableHeaderView.m in Sources */,
 				CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */,
 				92FED88C1DD1C38E00457228 /* ActitvityCommentHeaderView.m in Sources */,
@@ -3471,9 +3515,11 @@
 				CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */,
 				CBB62E131D2CCB0F00DAA6DE /* YXBroseWebView.m in Sources */,
 				92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */,
+				926354591DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m in Sources */,
 				7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
 				F7E8F8DB1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m in Sources */,
+				926354501DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m in Sources */,
 				920F1D6E1D59759D00636A51 /* YXSaveVideoProgressView.m in Sources */,
 				923237161D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m in Sources */,
 				CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */,
@@ -3519,6 +3565,7 @@
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
 				922901641DED0C15001474CE /* PreventHangingCourseView.m in Sources */,
 				92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */,
+				926354531DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m in Sources */,
 				920F1D711D5983E500636A51 /* YXVideoRecordManager.m in Sources */,
 				CBB62E0D1D2CBDB000DAA6DE /* YXBriefListRequest.m in Sources */,
 				923237681D81512300FDACFE /* YXHotspotPictureCell.m in Sources */,
@@ -3553,6 +3600,7 @@
 				7C31779A1D0EA6A8004AAC90 /* PostRequest.m in Sources */,
 				7CF8887F1D1BD25C00E7C04D /* YXExamEndDateCell.m in Sources */,
 				9223C82F1D2E36F0000F74DF /* YXAboutCell.m in Sources */,
+				926354561DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m in Sources */,
 				CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */,
 				7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */,
 				92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */,
@@ -3624,6 +3672,7 @@
 				CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */,
 				9232376E1D81668000FDACFE /* YXCheckRequest.m in Sources */,
 				92CE51481D87D2FF0071DE79 /* YXGuideModel.m in Sources */,
+				9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */,
 				7C2C3B551D23B34300A03635 /* YXCourseListRequest.m in Sources */,
 				E9BBA6171DD2EDB2000CA413 /* ActivityFilterModel.m in Sources */,
 				CBB62E191D2CCE3D00DAA6DE /* YXShowWebMenuTableViewCell.m in Sources */,
@@ -3727,6 +3776,7 @@
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
 				9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */,
 				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,
+				9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */,
 				92EDC7CB1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m in Sources */,
 				920F1D1F1D506DE500636A51 /* UIViewController+YXAddtion.m in Sources */,
 				CB3510B71D18E9830081EA3B /* YXDatumOrderViewCell.m in Sources */,

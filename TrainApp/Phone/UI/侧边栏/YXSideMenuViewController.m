@@ -251,7 +251,7 @@
             *stop = YES;
         }
     }];
-    if (isShow){
+    if (isShow && ![YXTrainManager sharedInstance].isBeijingProject){
         _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
                         @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
                         @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
