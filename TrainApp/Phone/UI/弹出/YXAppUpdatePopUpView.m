@@ -120,7 +120,6 @@ static const CGFloat YXScrollMargin = 30.f;
     CGFloat h = [self heightForContent];
     
     if (h <= [self maxContentNonScrollHeight]) {
-        NSLog(@"足够");
         [self.contentScrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(14);
             make.left.mas_equalTo(YXScrollMargin);
@@ -128,7 +127,6 @@ static const CGFloat YXScrollMargin = 30.f;
             make.height.mas_equalTo(h);
         }];
     } else {
-        NSLog(@"滚动");
         [self.contentScrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(14);
             make.left.mas_equalTo(YXScrollMargin);

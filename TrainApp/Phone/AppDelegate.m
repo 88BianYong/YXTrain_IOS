@@ -99,16 +99,13 @@
     if ([[YXUserManager sharedManager] isLogin]) {
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
-        [self showCMSView];
     } else {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainShowUpdate object:nil];
         self.loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
     }
 }
 
 - (YXDrawerViewController *)rootDrawerViewController {
-    
     YXSideMenuViewController *menuVC = [[YXSideMenuViewController alloc]init];
     YXProjectMainViewController *projectVC = [[YXProjectMainViewController alloc]init];
     YXNavigationController *projectNavi = [[YXNavigationController alloc]initWithRootViewController:projectVC];
