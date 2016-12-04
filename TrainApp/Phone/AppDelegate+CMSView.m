@@ -9,8 +9,7 @@
 #import "AppDelegate+CMSView.h"
 #import "YXWebViewController.h"
 @implementation AppDelegate (CMSView)
-- (void)showCMSView
-{
+- (void)showCMSView {
     if ([[Reachability reachabilityForInternetConnection] isReachable]) {
         self.cmsView = [[YXCMSCustomView alloc] init];
         [self.window addSubview:self.cmsView];

@@ -109,6 +109,12 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 {
     [self.request stopRequest];
 }
+- (instancetype)init {
+    if (self = [super init]) {
+        self.isShowUpgrade = YES;
+    }
+    return self;
+}
 
 + (instancetype)sharedHelper
 {
@@ -203,7 +209,6 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         [self showForceUploadTitle:body.title andContent:body.content];
     }
     else{
-        self.isShowUpgrade = YES;
         BLOCK_EXEC(self.upgradeHandler,isInit);
     }
 
@@ -221,7 +226,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     if (![body.fileURL yx_isHttpLink]) { //http链接
         return;
     }
-    if ([body.upgradetype isEqualToString:@"2"]) {
+    if ([body.upgradetype isEqualToString:@"2"] && self.isShowUpgrade) {
         [self showUploadTitle:body.title andContent:body.content];
     }
 }
@@ -248,7 +253,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
  *  这里需要接入真正逻辑
  */
 - (void)showUploadTitle:(NSString *)titleString andContent:(NSString *)contentString {
-    self.isShowUpgrade = YES;
+    self.isShowUpgrade = NO;
     YXPopUpContainerView *v = [[YXPopUpContainerView alloc] init];
     YXAppUpdateData *data = [[YXAppUpdateData alloc] init];
     data.title = titleString;

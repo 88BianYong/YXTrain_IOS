@@ -91,7 +91,7 @@
     if (isFinished) {
         [self.contentView addSubview:self.statusImageView];
         [self.statusImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(15);
+            make.top.mas_equalTo(5);
             make.size.mas_equalTo(CGSizeMake(46, 38));
             make.right.mas_equalTo(self.enterImageView.mas_left).mas_offset(-10);
         }];
