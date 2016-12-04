@@ -112,9 +112,6 @@
     g2.filterArray = segmentArray;
     // 阶段
     NSMutableArray *stageArray = [NSMutableArray array];
-    YXCourseFilter *stageWholeItem = [[YXCourseFilter alloc]init];
-    stageWholeItem.name = @"全部";
-    [stageArray addObject:stageWholeItem];
     for (YXCourseListRequestItem_body_stage *stage in item.body.stages) {
         YXCourseFilter *item = [[YXCourseFilter alloc]init];
         item.filterID = stage.stageID;

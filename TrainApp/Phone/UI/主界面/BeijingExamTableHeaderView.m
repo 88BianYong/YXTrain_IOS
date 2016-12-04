@@ -106,11 +106,7 @@
     if (_item.userGetScore.doubleValue < 85.0f) {
         self.statusContentLabel.text = @"未提交";
     }else if (_item.userGetScore.doubleValue >= 85.0f && _item.userGetScore.doubleValue < 100.0f){
-        if (_item.applystatus.integerValue == 1) {
-            self.statusContentLabel.text = @"已提交";
-        }else {
-            self.statusContentLabel.text = @"已申请";
-        }
+        self.statusContentLabel.text = @"已提交";
     }else {
         self.statusContentLabel.text = @"已结业";
         self.graduationImageView.image = [UIImage imageNamed:@"已结业"];

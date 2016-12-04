@@ -149,14 +149,13 @@
             [self.emptyView removeFromSuperview];
             [self.dataErrorView removeFromSuperview];
             BeijingCheckedMobileUserRequestItem *item = retItem;
-            if (item.isUpdatePwd.integerValue == 0) {
+            if (item.isUpdatePwd.integerValue == 0) {// 0 为 没有修改过密码 ，需要老师修改；1为不需要修改。
                 BeijingCheckedMobileUserViewController *VC = [[BeijingCheckedMobileUserViewController alloc] init];
                 self.headView.hidden = YES;
                 VC.passportString = item.passport;
                 [self.navigationController pushViewController:VC animated:NO];
             }
-            
-            if (item.isTest.integerValue != 0) {
+            if (item.isTest.integerValue == 0) {// 0为需要老师做前测问卷，1为不需要做。
                 self.emptyView.frame = self.view.bounds;
                 self.emptyView.imageName = @"无培训项目";
                 self.emptyView.title = @"您还未完成测评";
@@ -164,8 +163,9 @@
                 [self.view addSubview:self.emptyView];
             }else {
                 [self setupRightWithImageNamed:@"消息动态icon-正常态A" highlightImageNamed:@"消息动态icon点击态-正常态-拷贝"];
-                [self dealWithProjectGroups:self.dataMutableArrray];
+                [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
             }
+            [self dealWithProjectGroups:self.dataMutableArrray];
         }
     }];
     self.checkedMobileUserRequest = request;
@@ -203,7 +203,6 @@
                 [self requestCheckedMobileUser];
             }else {
                 [self dealWithProjectGroups:self.dataMutableArrray];
-                [self setupRightWithImageNamed:@"消息动态icon-正常态A" highlightImageNamed:@"消息动态icon点击态-正常态-拷贝"];
             }
         }
     }];
@@ -220,6 +219,8 @@
 - (void)showoUpdateInterface:(NSNotification *)aNotification{
     [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
 }
+
+
 - (void)dealWithProjectGroups:(NSArray *)groups{
     YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
     selectionView.currentIndexPath = [YXTrainManager sharedInstance].currentProjectIndexPath;
@@ -232,8 +233,6 @@
     };
     self.projectSelectionView = selectionView;
     [self showProjectSelectionView];
-    
-    [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
 }
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
     for (UIView *v in self.view.subviews) {

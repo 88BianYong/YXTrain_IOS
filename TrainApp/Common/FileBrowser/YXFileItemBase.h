@@ -27,5 +27,5 @@ typedef NS_ENUM(NSUInteger, YXSourceType) {
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, assign) BOOL isDeleteVideo;// 需要删除按键YES  default is NO
-@property (nonatomic, assign) YXSourceType sourceType;//仅上报数据使用  区分来源
+@property (nonatomic, assign) YXSourceType sourceType;//仅上报数据使用  区分来源 + 区分是否显示防挂科
 @end

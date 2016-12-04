@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"重要提醒";
     [self.tableView registerClass:[BeijingDynamicCell class] forCellReuseIdentifier:@"BeijingDynamicCell"];
     
 }
