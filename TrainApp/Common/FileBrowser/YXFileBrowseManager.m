@@ -234,6 +234,7 @@
     vc.delegate = self;
     vc.exitDelegate = self;
     vc.isPreRecord = videoItem.isDeleteVideo;
+    vc.sourceType = self.fileItem.sourceType;
     [self managerPresentViewController:vc animated:YES completion:nil];
 }
 

@@ -34,4 +34,7 @@
 @property (nonatomic, copy) void(^deleteHandle)(UIButton *item);
 
 @property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
+
+@property (nonatomic, assign) YXSourceType sourceType;
+
 @end

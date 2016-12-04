@@ -34,6 +34,7 @@ UITableViewDataSource
 
 @implementation BeijingCheckedMobileUserViewController
 - (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
 - (void)viewDidLoad {
@@ -41,6 +42,7 @@ UITableViewDataSource
     [self setupUI];
     [self setupLayout];
     [self addNotification];
+    
 //    self.navigationItem.leftBarButtonItems = nil;
 //    self.navigationItem.hidesBackButton = YES;
 }
@@ -174,6 +176,15 @@ UITableViewDataSource
             self.messageCell.sendButton.enabled = [phoneNumber boolValue];
         }
      }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeConfirmButtonStatus:) name:kYXTrainDeleteInfo object:nil];//手动删除内容 UITextFieldTextDidChangeNotification 不响应
+}
+- (void)changeConfirmButtonStatus:(NSNotification *)aNotification {
+    BOOL tempBool = ((NSNumber *)aNotification.object).boolValue;
+    if (tempBool) {
+        self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"a1aabc"].CGColor;
+        self.confirmButton.enabled = NO;
+    }
 }
 
 #pragma mark - check
@@ -280,7 +291,19 @@ UITableViewDataSource
         if (error) {
             [self.messageCell resetMobileMessage];
         }else {
-            [self showToast:@"发送成功"];
+            BeijingSendSmsRequestItem *item = retItem;
+            [self showToast:item.desc];
+            if (item.ret.integerValue == 0) {
+                //[self showToast:@"发送成功"];
+            }else if (item.ret.integerValue == 2) {
+                //[self showToast:@"发送成功"];
+
+                
+            }else if (item.ret.integerValue == 3) {
+                
+            }else if (item.ret.integerValue == 5) {
+                
+            }
         }
         
     }];

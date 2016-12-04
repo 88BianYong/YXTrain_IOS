@@ -110,6 +110,7 @@
 - (void)textDidChange:(NSNotification *)aNotification {
     if (self.textField.text.length == 0) {
         self.cancleButton.hidden = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainDeleteInfo object:@(YES)];
     }else {
         self.cancleButton.hidden = NO;
     }
@@ -119,6 +120,8 @@
 }
 - (void)cancleButtonAction:(UIButton *)sender {
     self.textField.text = nil;
+    self.cancleButton.hidden = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainDeleteInfo object:@(YES)];
 }
 - (void)sendMessageButtonAction:(UIButton *)sender {
     if (!self.isCountdown) {

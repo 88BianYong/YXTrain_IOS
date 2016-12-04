@@ -184,7 +184,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.edges.equalTo(self.view);
     }];
     
-    [self startPreventHangingCourseTime];
+    if (self.sourceType == YXSourceTypeCourse && [YXTrainManager sharedInstance].isBeijingProject) {
+       [self startPreventHangingCourseTime];
+    }
 }
 - (void)applicationDidBecomeActive:(NSNotification *)notification{
     if (self.player.state == PlayerView_State_Playing) {
