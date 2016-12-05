@@ -50,7 +50,7 @@
     [self.contentView addSubview:self.nameLabel];
     
     self.timeLabel = [[UILabel alloc] init];
-    self.timeLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.timeLabel.font = [UIFont systemFontOfSize:11.0f];
     self.timeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:self.timeLabel];
     
@@ -105,14 +105,14 @@
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel.mas_left);
-        make.top.equalTo(self.nameLabel.mas_bottom).offset(7.0f);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(7.0f - 4.0f);
     }];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.timeLabel.mas_left);
-        make.top.equalTo(self.timeLabel.mas_bottom).offset(9.0f);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(9.0f - 4.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-25.0f);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f + 10);
     }];
     
     [self.favorLabel mas_makeConstraints:^(MASConstraintMaker *make) {

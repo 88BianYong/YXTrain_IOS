@@ -143,6 +143,7 @@
     self.openCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.openCloseButton.layer.cornerRadius = YXTrainCornerRadii;
     self.openCloseButton.layer.borderWidth = 1.0f;
+    self.openCloseButton.clipsToBounds = YES;
     self.openCloseButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
     self.openCloseButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
     [self.openCloseButton setTitle:@"查看全文" forState:UIControlStateNormal];
@@ -198,7 +199,7 @@
     [self.participantsTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.publisherTitleLabel.mas_right);
         make.top.equalTo(self.segmentTitleLabel.mas_bottom).offset(12.0f);
-
+        
     }];
     [self.participantsContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.publisherContentLabel.mas_left);
@@ -210,7 +211,7 @@
         make.centerX.equalTo(self.mas_centerX);
         make.width.mas_offset(100.0f);
     }];
-
+    
     [self.htmlView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.descriptionLabel.mas_bottom).offset(16.0f);
         make.left.equalTo(self.mas_left).offset(25.0f);
@@ -293,10 +294,10 @@
     }else {
         self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];//3
     }
-//    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
-//    _activity.desc = [NSString stringWithContentsOfFile:readmePath
-//                                                   encoding:NSUTF8StringEncoding
-//                                                      error:NULL];
+    //    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
+    //    _activity.desc = [NSString stringWithContentsOfFile:readmePath
+    //                                                   encoding:NSUTF8StringEncoding
+    //                                                      error:NULL];
     NSData *data = [_activity.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions] documentAttributes:nil];
     [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, string.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {

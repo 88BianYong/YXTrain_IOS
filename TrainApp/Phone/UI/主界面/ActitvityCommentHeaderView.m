@@ -75,7 +75,7 @@
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel.mas_left);
-        make.top.equalTo(self.nameLabel.mas_bottom).offset(6.0f);
+        make.top.equalTo(self.nameLabel.mas_bottom).offset(6.0f- 1.0f);
     }];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.timeLabel.mas_left);

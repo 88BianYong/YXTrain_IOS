@@ -100,6 +100,7 @@
     self.openCloseButton.layer.cornerRadius = YXTrainCornerRadii;
     self.openCloseButton.layer.borderWidth = 1.0f;
     self.openCloseButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
+    self.openCloseButton.clipsToBounds = YES;
     self.openCloseButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
     [self.openCloseButton setTitle:@"查看全文" forState:UIControlStateNormal];
     [self.openCloseButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];

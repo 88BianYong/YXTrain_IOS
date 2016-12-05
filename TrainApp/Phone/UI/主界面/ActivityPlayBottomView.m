@@ -43,7 +43,7 @@
     [self.rotateButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
         make.centerY.equalTo(self.mas_centerY);
-        make.right.equalTo(self.mas_right).offset(-15.0f);
+        make.right.equalTo(self.mas_right).offset(-15.0f + 7.0f);
     }];
     
     [self.slideProgressControl mas_remakeConstraints:^(MASConstraintMaker *make) {
