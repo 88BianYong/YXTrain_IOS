@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityListRequest.h"
-static CGFloat kTableViewHeaderFixedHeight = 37.0f + 44.0f + 14.0f +22.0f + 24.0f + 17.0f ;
-static CGFloat kTableViewHeaderOpenAndCloseHeight = 12.0f + 17.0f;
+static CGFloat kTableViewHeaderFixedHeight = 34.0f + 37.0f + 14.0f +18.0f + 24.0f + 17.0f ;
+static CGFloat kTableViewHeaderOpenAndCloseHeight = 24.0f + 17.0f;
 static CGFloat kTableViewHeaderHtmlPlaceholdeHeight = 300.0f;
 typedef void(^ActivityHtmlOpenAndCloseBlock)(BOOL isStatus);
 typedef void(^ActivityHtmlHeightChangeBlock) (CGFloat htmlHeight, CGFloat labelHeight);
