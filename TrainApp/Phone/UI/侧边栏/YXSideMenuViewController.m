@@ -251,7 +251,7 @@
             *stop = YES;
         }
     }];
-    if (isShow && ![YXTrainManager sharedInstance].isBeijingProject){
+    if (isShow && ![YXTrainManager sharedInstance].isBeijingProject){//北京项目 13,14项目没有消息动态
         _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
                         @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
                         @{@"title":@"我的工作坊",@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
@@ -287,7 +287,7 @@
     NSInteger integer = [aNotification.object integerValue];
     if (integer == 2) {
         [self mutableArrayValueForKey:@"_redPointMutableArray"][0] = @"1";
-    }else if (integer == 3){
+    }else if (integer == 3 && ![YXTrainManager sharedInstance].isBeijingProject){
         [self mutableArrayValueForKey:@"_redPointMutableArray"][3] = @"1";
     }
     [self.tableView reloadData];
@@ -420,7 +420,7 @@
         }
         if (!isShowRed) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainWebSocketReceiveMessage object:@"0"];
-                    }
+        }
     }
 }
 

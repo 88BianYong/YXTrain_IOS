@@ -24,6 +24,7 @@
 #import "BeijingExamViewController.h"
 #import "BeijingCheckedMobileUserRequest.h"
 #import "BeijingCheckedMobileUserViewController.h"
+#import "YXWebSocketManger.h"
 @interface YXProjectMainViewController ()
 {
     UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
@@ -35,6 +36,9 @@
 @property (nonatomic, strong) BeijingCheckedMobileUserRequest *checkedMobileUserRequest;
 @property (nonatomic, strong) UIView *headView;
 @property (nonatomic, assign) BOOL isCheckedMobile;//是否应该进行测评接口请求;
+
+@property (nonatomic, strong) UIView *rightView;
+@property (nonatomic, strong) UIView *rightRedView;
 @end
 
 @implementation YXProjectMainViewController
@@ -119,7 +123,24 @@
         }
     };
 }
+- (void)setupRightView {
+    self.rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 37.0f, 32.0f)];
+    UIButton *b = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 32, 32)];
+    [b setImage:[UIImage imageNamed:@"消息动态icon-正常态A"] forState:UIControlStateNormal];
+    [b setImage:[UIImage imageNamed:@"消息动态icon点击态-正常态-拷贝"] forState:UIControlStateHighlighted];
+    [b addTarget:self action:@selector(naviRightAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.headView addSubview:b];
+    
+    self.rightRedView = [[UIView alloc] initWithFrame:CGRectMake(32.0f, 0.0f, 5.0f, 5.0f)];
+    self.rightRedView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
+    self.rightRedView.layer.cornerRadius = 2.5f;
+    [self.headView addSubview:self.rightRedView];
+    [self setupRightWithCustomView:self.headView];
+}
+
 - (void)naviRightAction {
+    [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
+    self.rightRedView.hidden = YES;
     BeijingDynamicViewController *VC = [[BeijingDynamicViewController alloc] init];
     [self.navigationController pushViewController:VC animated:YES];
 }
@@ -214,6 +235,9 @@
         self.redPointView.hidden = YES;
     }else{
         self.redPointView.hidden = NO;
+    }
+    if (integer == 3) {
+        self.rightRedView.hidden = NO;
     }
 }
 - (void)showoUpdateInterface:(NSNotification *)aNotification{
