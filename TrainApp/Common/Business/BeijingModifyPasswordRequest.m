@@ -7,6 +7,8 @@
 //
 
 #import "BeijingModifyPasswordRequest.h"
+@implementation BeijingModifyPasswordRequestItem
+@end
 
 @implementation BeijingModifyPasswordRequest
 - (instancetype)init

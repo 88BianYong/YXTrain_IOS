@@ -21,13 +21,26 @@
 
 - (void)setupUI {
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.backgroundColor = [UIColor redColor];
+    imageView.image = [UIImage imageNamed:@"睡了？"];
     [self addSubview:imageView];
     
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
-        make.size.mas_offset(CGSizeMake(150.0f, 150.0f));
+        make.centerX.equalTo(self.mas_centerX);
+        make.size.mas_offset(CGSizeMake(106.0f, 106));
+        make.centerY.equalTo(self.mas_centerY).offset(-9.0f);
     }];
+    
+    UILabel *totalLabel = [[UILabel alloc] init];
+    totalLabel.text = @"点击屏幕继续计时";
+    totalLabel.textColor = [UIColor whiteColor];
+    totalLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self addSubview:totalLabel];
+    [totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(imageView.mas_bottom).offset(4.0f);
+    }];
+    
+    
 }
 
 - (void)setPreventHangingCourseBlock:(PreventHangingCourseBlock)block {

@@ -180,7 +180,7 @@
                 self.emptyView.frame = self.view.bounds;
                 self.emptyView.imageName = @"无培训项目";
                 self.emptyView.title = @"您还未完成测评";
-                self.emptyView.subTitle = @"请先登录研修网完成测评";
+                self.emptyView.subTitle = @"请在电脑端登录研修网完成测评";
                 [self.view addSubview:self.emptyView];
             }else {
                 [self setupRightWithImageNamed:@"消息动态icon-正常态A" highlightImageNamed:@"消息动态icon点击态-正常态-拷贝"];
@@ -224,6 +224,7 @@
                 [self requestCheckedMobileUser];
             }else {
                 [self dealWithProjectGroups:self.dataMutableArrray];
+                [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
             }
         }
     }];

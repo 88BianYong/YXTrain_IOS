@@ -7,8 +7,14 @@
 //
 
 #import "YXGetRequest.h"
+@interface BeijingModifyPasswordRequestItem : HttpBaseRequestItem
+@property (nonatomic, copy) NSString<Optional> *msg;
+@property (nonatomic, copy) NSString<Optional> *status;
+@end
+
 @interface BeijingModifyPasswordRequest : YXGetRequest
-@property (nonatomic, strong) NSString *truename;
-@property (nonatomic, strong) NSString *password;
-@property (nonatomic, strong) NSString *mobile;
+@property (nonatomic, copy) NSString *truename;
+@property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSString *mobile;
+@property (nonatomic, copy) NSString *verifycode;
 @end

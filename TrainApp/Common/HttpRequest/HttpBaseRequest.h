@@ -18,7 +18,7 @@ static NSString *const YXTokenInValidNotification = @"kYXTokenInValidNotificatio
 
 @interface HttpBaseRequestItem : JSONModel
 
-@property (nonatomic, copy) HttpBaseRequestItem_Status<Optional> *status;
+//@property (nonatomic, copy) HttpBaseRequestItem_Status<Optional> *status;
 @property (nonatomic, copy) NSString<Optional> *debugDesc;
 //老良师通接口通用格式
 @property (nonatomic, copy) NSString<Optional> *code;

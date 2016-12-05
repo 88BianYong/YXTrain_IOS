@@ -9,7 +9,8 @@
 #import "YXGetRequest.h"
 @interface BeijingSendSmsRequestItem : HttpBaseRequestItem
 @property (nonatomic, copy) NSString<Optional> *ret;
+@property (nonatomic, copy) NSString<Optional> *msg;
 @end
 @interface BeijingSendSmsRequest : YXGetRequest
-@property (nonatomic, copy) NSString *mobileString;
+@property (nonatomic, copy) NSString *mobile;
 @end
