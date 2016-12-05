@@ -38,9 +38,13 @@
             YXDatumCellModel *model = [YXDatumCellModel modelFromShareResourceRequestItemBodyResource:resource];
             [array addObject:model];
         }
-        aCompleteBlock(datumItem.count.intValue, array, nil);
+         BOOL isLastPage = [self.request.page isEqualToString:datumItem.totalPage];
+         if (isLastPage) {
+         BLOCK_EXEC(aCompleteBlock,0,array,nil);
+         }else {
+         BLOCK_EXEC(aCompleteBlock,(int)NSIntegerMax,array,nil);
+         }
     }];
-    
 }
 - (void)saveToCache {
     NSString *cachedJson = [self.page0RetItem toJSONString];
