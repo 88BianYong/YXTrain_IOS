@@ -13,6 +13,7 @@
 #import "BeijingCheckedMobileMessageCell.h"
 #import "BeijingSendSmsRequest.h"
 #import "BeijingModifyPasswordRequest.h"
+#import "YXWebSocketManger.h"
 @interface BeijingCheckedMobileUserViewController ()<
 UITableViewDelegate,
 UITableViewDataSource
@@ -42,9 +43,7 @@ UITableViewDataSource
     [self setupUI];
     [self setupLayout];
     [self addNotification];
-    
-//    self.navigationItem.leftBarButtonItems = nil;
-//    self.navigationItem.hidesBackButton = YES;
+    self.title = @"确认信息/修改密码";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,6 +58,11 @@ UITableViewDataSource
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
+}
+- (void)naviLeftAction {
+    [[YXWebSocketManger sharedInstance] close];
+    [[YXUserManager sharedManager] logout];
+    [YXDataStatisticsManger trackEvent:@"退出登录" label:@"成功登出" parameters:nil];
 }
 
 #pragma mark - setupUI
@@ -284,28 +288,19 @@ UITableViewDataSource
         [self.smsRequest stopRequest];
     }
     BeijingSendSmsRequest *request = [[BeijingSendSmsRequest alloc] init];
-    request.mobileString = self.phoneNumberCell.textField.text;
+    request.mobile = self.phoneNumberCell.textField.text;
     WEAK_SELF
     [request startRequestWithRetClass:[BeijingSendSmsRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF;
+        BeijingSendSmsRequestItem *item = retItem;
         if (error) {
-            [self.messageCell resetMobileMessage];
+            [self showToast:error.description];
         }else {
-            BeijingSendSmsRequestItem *item = retItem;
-            [self showToast:item.desc];
-            if (item.ret.integerValue == 0) {
-                //[self showToast:@"发送成功"];
-            }else if (item.ret.integerValue == 2) {
-                //[self showToast:@"发送成功"];
-
-                
-            }else if (item.ret.integerValue == 3) {
-                
-            }else if (item.ret.integerValue == 5) {
-                
+            if (item.ret.integerValue != 0) {
+                [self.messageCell resetMobileMessage];
             }
+            [self showToast:item.msg];
         }
-        
     }];
     self.smsRequest = request;
 }
@@ -316,17 +311,23 @@ UITableViewDataSource
             [self.passwordRequest stopRequest];
         }
         WEAK_SELF
+        [self startLoading];
         BeijingModifyPasswordRequest *request = [[BeijingModifyPasswordRequest alloc] init];
         request.truename = self.userNameCell.textField.text;
         request.password = self.passwordCell.textField.text;
         request.mobile = self.phoneNumberCell.textField.text;
-        [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        request.verifycode = self.messageCell.textField.text;
+        [request startRequestWithRetClass:[BeijingModifyPasswordRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
+            [self stopLoading];
             if (error) {
-                
+                [self showToast:error.description];
             }else {
-                HttpBaseRequestItem *item = retItem;
-                [self showToast:item.desc];
+                BeijingModifyPasswordRequestItem *item = retItem;
+                [self showToast:item.msg];
+                if (item.status.integerValue == 0) {
+                    [self.navigationController popViewControllerAnimated:NO];
+                }
             }
         }];
         self.passwordRequest = request;

@@ -8,6 +8,7 @@
 
 #import "BeijingSendSmsRequest.h"
 @implementation BeijingSendSmsRequestItem
+
 @end
 @implementation BeijingSendSmsRequest
 - (instancetype)init
