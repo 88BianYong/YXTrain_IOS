@@ -38,7 +38,6 @@
     [super viewDidLoad];
     [self setupUI];
     [self setObserver];
-    [self showoUpdateInterface];
     // Do any additional setup after loading the view.
 }
 
@@ -205,9 +204,6 @@
         }
         self.touristLoginButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
     }];
-}
-- (void)showoUpdateInterface{
-    [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
 }
 
 - (void)startTouristRequet {

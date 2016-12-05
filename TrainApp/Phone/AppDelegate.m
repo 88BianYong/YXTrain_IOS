@@ -176,6 +176,7 @@
 {
     self.window.rootViewController = [self rootDrawerViewController];
     [self requestCommonData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainShowUpdate object:nil];
 }
 
 - (void)logoutSuccess {
