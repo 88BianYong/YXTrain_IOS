@@ -153,7 +153,7 @@
     }else {
         self.inputNumberLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
         self.sendButton.enabled = YES;
-        self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
+        self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"0067be"].CGColor;
 
     }
     if (tempTextView.text.length > 200) {

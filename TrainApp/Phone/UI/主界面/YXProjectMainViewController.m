@@ -19,7 +19,6 @@
 #import "YXUploadHeadImgRequest.h"
 #import "YXInitRequest.h"
 #import "YXPopUpContainerView.h"
-#import "AppDelegate+CMSView.h"
 @interface YXProjectMainViewController ()
 {
     UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
@@ -40,8 +39,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showoUpdateInterface:) name:kYXTrainShowUpdate object:nil];
     [self setupUI];
     [self getProjectList];
-    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [delegate showCMSView];//4S下生成viewController会有反应时间 升级接口回来但是controller为创建
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

@@ -62,12 +62,12 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
     if (section == 0) {
-        headerView.replie = self.replie;
         headerView.isFontBold = YES;
+        headerView.replie = self.replie;
     }else {
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-        headerView.replie = replie;
         headerView.isFontBold = NO;
+        headerView.replie = replie;
     }
     headerView.distanceTop = kDistanceTopMiddle;
     WEAK_SELF

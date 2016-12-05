@@ -488,8 +488,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
-    headerView.replie = replie;
     headerView.isFontBold = YES;
+    headerView.replie = replie;
     if (section == 0 && self.dataErrorView.isActivityVideo) {//只有视频的第一个评论显示高度不同
         headerView.distanceTop = kDistanceTopMiddle;
     }else {
@@ -527,8 +527,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return [tableView yx_heightForCellWithIdentifier:@"ActitvityCommentHeaderView" configuration:^(ActitvityCommentHeaderView *header) {
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-        header.replie = replie;
         header.isFontBold = YES;
+        header.replie = replie;
         if (section == 0 && self.dataErrorView.isActivityVideo){
             header.distanceTop = kDistanceTopMiddle;
         }else {

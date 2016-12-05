@@ -99,6 +99,9 @@
     if ([[YXUserManager sharedManager] isLogin]) {
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self showCMSView];//  4S下生成viewController会有反应时间 升级接口回来但是controller为创建
+        });
     } else {
         self.loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];

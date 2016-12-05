@@ -11,9 +11,6 @@
 @implementation AppDelegate (CMSView)
 - (void)showCMSView {
     if ([[Reachability reachabilityForInternetConnection] isReachable]) {
-        if (self.cmsView) {//防止再次登录弹出
-            return;
-        }
         self.cmsView = [[YXCMSCustomView alloc] init];
         [self.window addSubview:self.cmsView];
         [self.cmsView mas_makeConstraints:^(MASConstraintMaker *make) {
