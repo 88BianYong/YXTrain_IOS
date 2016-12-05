@@ -23,7 +23,8 @@
 - (ActivityToolVideoRequestItem_Body_Content * __nullable)formatToolEnclosure{
     __block ActivityToolVideoRequestItem_Body_Content *content = nil;
     [self.content enumerateObjectsUsingBlock:^(ActivityToolVideoRequestItem_Body_Content * obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([obj.filetype isEqualToString:@"word"] ) {
+        YXFileType fileType= [YXAttachmentTypeHelper fileTypeWithTypeName:obj.filetype];
+        if (fileType == YXFileTypeDoc) {
             content = obj;
             *stop = YES;
         }
