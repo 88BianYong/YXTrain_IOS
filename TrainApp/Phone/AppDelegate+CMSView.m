@@ -12,6 +12,7 @@
 - (void)showCMSView {
     if ([[Reachability reachabilityForInternetConnection] isReachable]) {
         self.cmsView = [[YXCMSCustomView alloc] init];
+        self.cmsView.hidden = YES;
         [self.window addSubview:self.cmsView];
         [self.cmsView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);

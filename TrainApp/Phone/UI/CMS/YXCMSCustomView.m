@@ -75,6 +75,7 @@
     if (image) {
         _timerView.hidden = NO;
         self.imageView.image = image;
+        self.hidden = NO;
         [self.timerView startWithSeconds:self.model.seconds.integerValue];
     } else if (URL) {
         [self removeCMSView:NO];
