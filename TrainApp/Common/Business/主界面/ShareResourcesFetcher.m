@@ -38,7 +38,7 @@
             YXDatumCellModel *model = [YXDatumCellModel modelFromShareResourceRequestItemBodyResource:resource];
             [array addObject:model];
         }
-         BOOL isLastPage = [self.request.page isEqualToString:datumItem.totalPage];
+         BOOL isLastPage = [self.request.page isEqualToString:datumItem.body.totalPage];
          if (isLastPage) {
          BLOCK_EXEC(aCompleteBlock,0,array,nil);
          }else {

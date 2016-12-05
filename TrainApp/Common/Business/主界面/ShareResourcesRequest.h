@@ -29,14 +29,14 @@
 @protocol ShareResourcesRequestItem_body <NSObject>
 @end
 @interface ShareResourcesRequestItem_body : JSONModel
+@property (nonatomic, copy) NSString<Optional> *count;
+@property (nonatomic, copy) NSString<Optional> *page;
+@property (nonatomic, copy) NSString<Optional> *toolId;
+@property (nonatomic, copy) NSString<Optional> *totalPage;
 @property (nonatomic, strong) NSArray<ShareResourcesRequestItem_body_resource,Optional> *resources;
 @end
 
 @interface ShareResourcesRequestItem : HttpBaseRequestItem
-@property (nonatomic, copy) NSString<Optional> *count;
-@property (nonatomic, copy) NSString<Optional> *toolId;
-@property (nonatomic, copy) NSString<Optional> *page;
-@property (nonatomic, copy) NSString<Optional> *totalPage;
 @property (nonatomic, strong) ShareResourcesRequestItem_body<Optional> *body;
 @end
 
