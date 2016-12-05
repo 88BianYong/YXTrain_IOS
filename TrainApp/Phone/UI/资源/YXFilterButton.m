@@ -82,7 +82,11 @@
         self.btnImageView.image = [UIImage imageNamed:@"筛选排序学科i展开con"];
     }
 }
-
+- (void)changeButtonImageSelected:(BOOL)isSelected {
+    if (isSelected) {
+         self.btnImageView.image = [UIImage imageNamed:@"筛选项目，选择后箭头"];
+    }
+}
 
 @end
 

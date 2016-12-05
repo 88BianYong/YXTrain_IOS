@@ -76,6 +76,7 @@
     btn.btnLabel.textColor = [UIColor colorWithHexString:@"0067be"];
     [btn setButtonTitle:title withMaxWidth:[UIScreen mainScreen].bounds.size.width/self.nameArray.count];
     [btn changeButtonImageExpand:NO];
+    [btn changeButtonImageSelected:YES];
 }
 
 - (void)tapViewWithIndex:(NSInteger)index {

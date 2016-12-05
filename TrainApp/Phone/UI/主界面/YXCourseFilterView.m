@@ -150,6 +150,7 @@ static const NSUInteger kTagBase = 876;
 - (void)changeButton:(UIButton *)b selectedStatus:(BOOL)isSelected{
     if (isSelected) {
         [b setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+        [b setImage:[UIImage imageNamed:@"筛选项目，选择后箭头"] forState:UIControlStateNormal];
     }else{
         [b setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
     }
@@ -234,10 +235,10 @@ static const NSUInteger kTagBase = 876;
     UIButton *b = [self.typeContainerView viewWithTag:kTagBase+index];
     [b setTitle:self.currentFilterItem.filterArray[indexPath.row] forState:UIControlStateNormal];
     [self changeButton:b foldStatus:YES];
-    [self changeButton:b selectedStatus:YES];
-    [self exchangeTitleImagePositionForButton:b];
     
     [self hideFilterSelectionView];
+    [self changeButton:b selectedStatus:YES];
+    [self exchangeTitleImagePositionForButton:b];
 }
 
 @end
