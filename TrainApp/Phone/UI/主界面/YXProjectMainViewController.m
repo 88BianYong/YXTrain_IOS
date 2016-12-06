@@ -19,6 +19,7 @@
 #import "YXUploadHeadImgRequest.h"
 #import "YXInitRequest.h"
 #import "YXPopUpContainerView.h"
+#import "AppDelegate+CMSView.h"
 @interface YXProjectMainViewController ()
 {
     UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
@@ -39,6 +40,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showoUpdateInterface:) name:kYXTrainShowUpdate object:nil];
     [self setupUI];
     [self getProjectList];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate showCMSView];
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
