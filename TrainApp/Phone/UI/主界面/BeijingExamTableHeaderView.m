@@ -43,7 +43,7 @@
     [self.leftView addSubview:lineView];
     
     UILabel *statusSignLabel = [[UILabel alloc] init];
-    statusSignLabel.text = @"状态";
+    statusSignLabel.text = @"学习状态";
     statusSignLabel.textColor = [UIColor colorWithHexString:@"bec8d8"];
     statusSignLabel.font = [UIFont systemFontOfSize:12.0f];
     statusSignLabel.textAlignment = NSTextAlignmentCenter;

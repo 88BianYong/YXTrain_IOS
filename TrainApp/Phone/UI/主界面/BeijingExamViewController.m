@@ -22,7 +22,7 @@
 #import "BeijingActivityListViewController.h"
 #import "YXHomeworkInfoRequest.h"
 #import "YXHomeworkInfoViewController.h"
-
+#import "BeijingExamTipCell.h"
 static  NSString *const trackPageName = @"考核页面";
 static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @interface BeijingExamViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -90,6 +90,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
     [self.tableView registerClass:[BeijingExamGenreCell class] forCellReuseIdentifier:@"BeijingExamGenreCell"];
+    [self.tableView registerClass:[BeijingExamTipCell class] forCellReuseIdentifier:@"BeijingExamTipCell"];
     [self.tableView registerClass:[BeijingExamGenreDefaultHeaderView class] forHeaderFooterViewReuseIdentifier:@"BeijingExamGenreDefaultHeaderView"];
     [self.tableView registerClass:[BeijingExamGenreExplainHeaderView class] forHeaderFooterViewReuseIdentifier:@"BeijingExamGenreExplainHeaderView"];
     [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
@@ -168,22 +169,35 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BeijingExamGenreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BeijingExamGenreCell" forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     BeijingExamineRequestItem_ExamineVoList *list = self.examineItem.examineVoList[indexPath.section];
     BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamine = list.toolExamineVoList[indexPath.row];
-    cell.toolExamineVo = toolExamine;
-    WEAK_SELF
-    [cell setBeijingExamGenreButtonBlock:^(UIButton *sender) {
-        STRONG_SELF
-        CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-        if (toolExamine.toolid.integerValue == 2176) {
-            [self showMarkWithOriginRect:rect explain:@"本类课程最多获得6学时的成绩,超出部分不计入学时"];
-        }else if (toolExamine.toolid.integerValue == 2180) {
-            [self showMarkWithOriginRect:rect explain:@"要求至少学习3学时"];
+    if (toolExamine.toolid.integerValue == 2176 || toolExamine.toolid.integerValue == 2180) {
+        BeijingExamTipCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BeijingExamTipCell" forIndexPath:indexPath];
+           cell.selectionStyle = UITableViewCellSelectionStyleNone;
+         cell.toolExamineVo = toolExamine;
+        if (toolExamine.toolid.integerValue == 2176) {//技术素养类
+            cell.tipLabelContent = @"课程(17课时)";
         }
-    }];
-    return cell;
+        if (toolExamine.toolid.integerValue == 2180) {//案例
+            cell.tipLabelContent = @"案例(3课时)";
+        }
+        WEAK_SELF
+        [cell setBeijingExamTipButtonBlock:^(UIButton *sender) {
+            STRONG_SELF
+            CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
+            if (toolExamine.toolid.integerValue == 2176) {
+                [self showMarkWithOriginRect:rect explain:@"本类课程最多获得6学时的成绩,超出部分不计入学时"];
+            }else if (toolExamine.toolid.integerValue == 2180) {
+                [self showMarkWithOriginRect:rect explain:@"要求至少学习3学时"];
+            }
+        }];
+        return cell;
+    }else {
+        BeijingExamGenreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BeijingExamGenreCell" forIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.toolExamineVo = toolExamine;
+        return cell;
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -203,6 +217,15 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamine = list.toolExamineVoList[0];
         header.toolExamineVo = toolExamine;
         WEAK_SELF
+        [header setBeijingExamGenreExplainButtonBlock:^(UIButton *sender) {
+             STRONG_SELF
+            CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
+            if (toolExamine.toolid.integerValue == 205 ) {
+                [self showMarkWithOriginRect:rect explain:@"作业质量由区级辅导教师评定，作业成绩显示合格视为通过"];
+            }else if (toolExamine.toolid.integerValue == 206) {
+                [self showMarkWithOriginRect:rect explain:@"校本实践需线下完成,成绩由校级管理员综合评定"];
+            }
+        }];
         [header setBeijingExamGenreExplainNextBlock:^(BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *tool) {
             STRONG_SELF
             if (tool.toolid.integerValue == 202) {
@@ -230,6 +253,9 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0 || indexPath.row == 4) {
+        return 125.0f;
+    }
     return 70.0f;
 }
 

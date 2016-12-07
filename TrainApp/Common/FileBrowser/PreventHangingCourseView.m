@@ -31,7 +31,7 @@
     }];
     
     UILabel *totalLabel = [[UILabel alloc] init];
-    totalLabel.text = @"点击屏幕继续计时";
+    totalLabel.text = @"点击屏幕继续看课";
     totalLabel.textColor = [UIColor whiteColor];
     totalLabel.font = [UIFont systemFontOfSize:14.0f];
     [self addSubview:totalLabel];

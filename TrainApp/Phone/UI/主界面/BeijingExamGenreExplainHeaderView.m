@@ -11,7 +11,10 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
 @property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) UIButton *explainButton;
+@property (nonatomic, strong) UIButton *backgroundButton;
 @property (nonatomic, copy) BeijingExamGenreExplainNextBlock nextBlock;
+@property (nonatomic, strong) BeijingExamGenreExplainButtonBlock buttonBlock;
 @end
 @implementation BeijingExamGenreExplainHeaderView
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
@@ -46,12 +49,21 @@
     UIButton *bgButton = [[UIButton alloc]init];
     [bgButton addTarget:self action:@selector(bgButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:bgButton];
-    [bgButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.backgroundButton = bgButton;
+    
+    self.explainButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.explainButton setImage:[UIImage imageNamed:@"解释说明图标正常态"]
+                        forState:UIControlStateNormal];
+    [self.explainButton setImage:[UIImage imageNamed:@"解释说明图标点击态"]
+                        forState:UIControlStateHighlighted];
+    [self.explainButton addTarget:self action:@selector(explainButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:self.explainButton];
+}
+- (void)setupLayout {
+    [self.backgroundButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-}
-
-- (void)setupLayout {
+    
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
         make.bottom.equalTo(self.detailLabel.mas_top).offset(-5.0f);
@@ -66,6 +78,11 @@
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
+    [self.explainButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel.mas_right).offset(7.0f);
+        make.centerY.equalTo(self.titleLabel.mas_centerY);
+        make.size.mas_offset(CGSizeMake(19.0f, 19.0f));
+    }];
 }
 - (void)setToolExamineVo:(BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *)toolExamineVo {
     _toolExamineVo = toolExamineVo;
@@ -78,19 +95,29 @@
         self.detailLabel.text = [NSString stringWithFormat:@"需要提交%@份教学资源包",_toolExamineVo.totalnum];
         self.contentLabel.text = [NSString stringWithFormat:@"已提交了%@个",_toolExamineVo.finishnum];
         self.detailLabel.textColor = [UIColor colorWithHexString:@"505f84"];
-
+        
     }else if (_toolExamineVo.toolid.integerValue == 206) {
         self.detailLabel.text = @"(需要线下完成)";
         self.contentLabel.text = _toolExamineVo.userscore.integerValue > 0 ? @"合格" : @"不合格";
         self.detailLabel.textColor = [UIColor colorWithHexString:@"bbc2c9"];
-
+        
     }
+    self.explainButton.hidden = !(_toolExamineVo.toolid.integerValue == 205 || _toolExamineVo.toolid.integerValue == 206);
 }
+#pragma mark - BGbuttonAction
 - (void)bgButtonAction:(UIButton *)sender {
     BLOCK_EXEC(self.nextBlock,self.toolExamineVo);
     
 }
 - (void)setBeijingExamGenreExplainNextBlock:(BeijingExamGenreExplainNextBlock)block {
     self.nextBlock = block;
+}
+
+#pragma mark - buttonAction
+- (void)explainButtonAction:(UIButton *)sender {
+    BLOCK_EXEC(self.buttonBlock,sender);
+}
+-(void)setBeijingExamGenreExplainButtonBlock:(BeijingExamGenreExplainButtonBlock)block {
+    self.buttonBlock = block;
 }
 @end

@@ -427,6 +427,7 @@
 		E90C60AC1D9CFEE5001652CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AB1D9CFEE5001652CF /* SystemConfiguration.framework */; };
 		E90C60AE1D9CFEEF001652CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AD1D9CFEEF001652CF /* libz.tbd */; };
 		E90C60B21D9D0012001652CF /* YXDataStatisticsManger.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */; };
+		E935D7B21DF7FD84005CC8BD /* BeijingExamTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D7B11DF7FD84005CC8BD /* BeijingExamTipCell.m */; };
 		E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C06181DCB1F9400666265 /* DataErrorView.m */; };
 		E9A7B5D61DDADD0A00136335 /* ActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */; };
 		E9A7B5EB1DDC3EAA00136335 /* ShareResourcesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5E81DDC3EAA00136335 /* ShareResourcesTableViewCell.m */; };
@@ -1287,6 +1288,8 @@
 		E90C60B01D9D0012001652CF /* YXDataStatisticsManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDataStatisticsManger.h; sourceTree = "<group>"; };
 		E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDataStatisticsManger.m; sourceTree = "<group>"; };
 		E927702C1DADD24000B2991C /* YXTrackPageDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrackPageDataProtocol.h; sourceTree = "<group>"; };
+		E935D7B01DF7FD84005CC8BD /* BeijingExamTipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamTipCell.h; sourceTree = "<group>"; };
+		E935D7B11DF7FD84005CC8BD /* BeijingExamTipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamTipCell.m; sourceTree = "<group>"; };
 		E93C06171DCB1F9400666265 /* DataErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataErrorView.h; sourceTree = "<group>"; };
 		E93C06181DCB1F9400666265 /* DataErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataErrorView.m; sourceTree = "<group>"; };
 		E9A7B5D41DDADD0A00136335 /* ActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListCell.h; sourceTree = "<group>"; };
@@ -2468,6 +2471,8 @@
 				9229016E1DED6C74001474CE /* BeijingExamTableHeaderView.m */,
 				922901761DED771E001474CE /* BeijingExamGenreCell.h */,
 				922901771DED771E001474CE /* BeijingExamGenreCell.m */,
+				E935D7B01DF7FD84005CC8BD /* BeijingExamTipCell.h */,
+				E935D7B11DF7FD84005CC8BD /* BeijingExamTipCell.m */,
 				9229017C1DED7F50001474CE /* BeijingExamGenreDefaultHeaderView.h */,
 				9229017D1DED7F50001474CE /* BeijingExamGenreDefaultHeaderView.m */,
 				9229017F1DED7F67001474CE /* BeijingExamGenreExplainHeaderView.h */,
@@ -3534,6 +3539,7 @@
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
 				92FED8931DD2BDA000457228 /* ActivityDetailViewController.m in Sources */,
 				922901671DED2107001474CE /* BeijingExamViewController.m in Sources */,
+				E935D7B21DF7FD84005CC8BD /* BeijingExamTipCell.m in Sources */,
 				92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */,
 				922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,

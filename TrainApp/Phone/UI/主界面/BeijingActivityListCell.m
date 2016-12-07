@@ -13,7 +13,6 @@
 @property (nonatomic, strong) UILabel *startTimeLabel;
 @property (nonatomic, strong) UILabel *isJoinLabel;
 @property (nonatomic, strong) UIView *lineView;
-@property (nonatomic, strong) UIImageView *workshopImageView;
 @end
 @implementation BeijingActivityListCell
 
@@ -73,9 +72,6 @@
     self.lineView = line;
     [self.contentView addSubview:self.lineView];
 
-    self.workshopImageView = [[UIImageView alloc] init];
-    self.workshopImageView.image = [UIImage imageNamed:@"工作坊iconA"];
-    [self.contentView addSubview:self.workshopImageView];
 }
 - (void)setupLayout {
     
@@ -100,15 +96,6 @@
         make.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
-    
-    [self.workshopImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(36.0f, 26.0f));
-        make.centerY.equalTo(self.startTimeLabel.mas_centerY);
-        make.left.lessThanOrEqualTo(self.startTimeLabel.mas_right).offset(15.0f);
-        make.right.lessThanOrEqualTo(self.contentView.mas_right).offset(-25.0f);
-    }];
-    
-    
 }
 - (void)setActivity:(ActivityListRequestItem_body_activity *)activity {
     _activity = activity;
@@ -139,8 +126,4 @@
     self.titleLabel.attributedText = titleLabelAttributedString;
 }
 
-- (void)setIsShowWorkshop:(BOOL)isShowWorkshop {
-    _isShowWorkshop = isShowWorkshop;
-    self.workshopImageView.hidden = !_isShowWorkshop;
-}
 @end
