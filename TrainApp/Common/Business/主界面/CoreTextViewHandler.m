@@ -59,7 +59,7 @@ UIActionSheetDelegate
         DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
         imageView.delegate = self;
         imageView.url = attachment.contentURL;
-//        imageView.backgroundColor = [UIColor colorWithHexString:@"e7e8ec"];
+        imageView.backgroundColor = [UIColor colorWithHexString:@"e7e8ec"];
         UIImageView *placeholderImageView = [[UIImageView alloc] init];
         placeholderImageView.image = [UIImage imageNamed:@"图片占位图"];
         [imageView addSubview:placeholderImageView];
@@ -114,6 +114,7 @@ UIActionSheetDelegate
 - (void)lazyImageView:(DTLazyImageView *)lazyImageView didChangeImageSize:(CGSize)size {
     UIImageView *imageView = [lazyImageView viewWithTag:10086];
     [imageView removeFromSuperview];
+    lazyImageView.backgroundColor = [UIColor clearColor];
     NSURL *url = lazyImageView.url;
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"contentURL == %@", url];
     CGFloat maxWidth = self.maxWidth;
