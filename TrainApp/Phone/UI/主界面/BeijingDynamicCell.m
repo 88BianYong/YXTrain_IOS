@@ -59,7 +59,7 @@
     }];
     [self.contentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconImageView.mas_right).offset(15.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(8.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(17.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-25.0f);
     }];
     

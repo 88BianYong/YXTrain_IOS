@@ -89,11 +89,11 @@
     self.titleLabel.text = _toolExamineVo.name;
     if (_toolExamineVo.toolid.integerValue == 202) {
         self.detailLabel.text = [NSString stringWithFormat:@"至少需要参加%@个活动",_toolExamineVo.totalnum];
-        self.contentLabel.text = [NSString stringWithFormat:@"已参加了%@个",_toolExamineVo.finishnum];
+        self.contentLabel.text = [NSString stringWithFormat:@"已参加%@个",_toolExamineVo.finishnum];
         self.detailLabel.textColor = [UIColor colorWithHexString:@"505f84"];
     }else if (_toolExamineVo.toolid.integerValue == 205) {
         self.detailLabel.text = [NSString stringWithFormat:@"需要提交%@份教学资源包",_toolExamineVo.totalnum];
-        self.contentLabel.text = [NSString stringWithFormat:@"已提交了%@个",_toolExamineVo.finishnum];
+        self.contentLabel.text = [NSString stringWithFormat:@"已提交%@份",_toolExamineVo.finishnum];
         self.detailLabel.textColor = [UIColor colorWithHexString:@"505f84"];
         
     }else if (_toolExamineVo.toolid.integerValue == 206) {
