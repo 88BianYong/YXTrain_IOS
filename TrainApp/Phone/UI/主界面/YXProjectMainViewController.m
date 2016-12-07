@@ -178,7 +178,7 @@
             }
             if (item.isTest.integerValue == 0) {// 0为需要老师做前测问卷，1为不需要做。
                 self.emptyView.frame = self.view.bounds;
-                self.emptyView.imageName = @"无培训项目";
+                self.emptyView.imageName = @"没选课";
                 self.emptyView.title = @"您还未完成测评";
                 self.emptyView.subTitle = @"请在电脑端登录研修网完成测评";
                 [self.view addSubview:self.emptyView];

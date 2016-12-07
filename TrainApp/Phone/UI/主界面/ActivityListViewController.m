@@ -191,6 +191,7 @@
 }
 #pragma mark - YXCourseFilterViewDelegate
 - (void)filterChanged:(NSArray *)filterArray {
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     // 学段
     NSNumber *num0 = filterArray[0];
     ActivityFilterGroup *group0 = self.filterModel.groupArray[0];

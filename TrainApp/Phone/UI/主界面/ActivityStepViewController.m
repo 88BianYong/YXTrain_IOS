@@ -30,7 +30,6 @@
     [self setupUI];
     [self setupLayout];
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
@@ -94,7 +93,6 @@
         return 15.0f;
     }
 }
-
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     ActivityDetailTableSectionView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActivityDetailTableSectionView"];
     view.titleString = @"步骤工具";
@@ -107,21 +105,20 @@
     view.backgroundColor = [UIColor whiteColor];
     return view;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 30.0f;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return ceilf((float)self.activityStep.tools.count/4.0f);
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivityStepTableCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityStepTableCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -133,10 +130,11 @@
     [cell setActivityStepTableCellBlock:^(ActivityListRequestItem_Body_Activity_Steps_Tools *tool) {
         STRONG_SELF
         [self goToNextActivityStepToolContent:tool];
-        
     }];
     return cell;
 }
+
+#pragma mark - format data
 - (void)goToNextActivityStepToolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
     if ([tool.toolType isEqualToString:@"video"]) {//视频
         ActivityPlayViewController *VC = [[ActivityPlayViewController alloc] init];
@@ -162,7 +160,6 @@
         [self showToast:@"暂不支持该类型的工具"];
     }
 }
-#pragma mark - format data
 - (ActivityListRequestItem_Body_Activity_Steps_Tools *)obtainActivityTool:(NSInteger)integer {
     if (self.activityStep.tools.count > integer) {
         return self.activityStep.tools[integer];

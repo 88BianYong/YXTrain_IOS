@@ -11,6 +11,12 @@
 @end
 
 @implementation ActivityStepListRequestItem
+- (ActivityStepListRequestItem *)activityDetailFormatItem:(ActivityListRequestItem_body_activity *)activity {
+    self.body.active.joinUserCount = activity.joinUserCount;
+    self.body.active.studyName = activity.studyName;
+    self.body.active.segmentName = activity.segmentName;
+    return self;
+}
 @end
 
 @implementation ActivityStepListRequest

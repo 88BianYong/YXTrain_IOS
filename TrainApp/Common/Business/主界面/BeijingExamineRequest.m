@@ -20,7 +20,7 @@
     return (NSArray<BeijingExamineRequestItem_ExamineVoList,Optional> *)
     [_examineVoList sortedArrayUsingComparator:
      ^(BeijingExamineRequestItem_ExamineVoList *obj1, BeijingExamineRequestItem_ExamineVoList *obj2){
-         if(obj1.examineVoID < obj2.examineVoID) {
+         if(obj1.examineVoID.integerValue < obj2.examineVoID.integerValue) {
              return(NSComparisonResult)NSOrderedAscending;
          }else {
              return(NSComparisonResult)NSOrderedDescending;

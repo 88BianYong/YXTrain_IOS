@@ -125,10 +125,8 @@
         STRONG_SELF
         self ->_changeHeight = height + self.titleLabel.bounds.size.height;
         if (self.isFirstRefresh) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self updateHtmlViewWithHeight:height];
-                BLOCK_EXEC(self.heightChangeBlock,height,self.titleLabel.bounds.size.height);
-            });
+            [self updateHtmlViewWithHeight:height];
+            BLOCK_EXEC(self.heightChangeBlock,height,self.titleLabel.bounds.size.height);
         }
         self.isFirstRefresh = NO;
     }];
@@ -156,7 +154,6 @@
     self.gradientView = [[YXGradientView alloc] initWithColor:[UIColor whiteColor] orientation:YXGradientBottomToTop];
     [self addSubview:self.gradientView];
 }
-
 - (void)setupLayout {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(25.0f);
@@ -253,7 +250,6 @@
     label.font = [UIFont systemFontOfSize:12.0f];
     return label;
 }
-
 - (UILabel *)formatContentLabel {
     UILabel *label = [[UILabel alloc] init];
     label.textAlignment = NSTextAlignmentLeft;
@@ -261,6 +257,7 @@
     label.font = [UIFont systemFontOfSize:12.0f];
     return label;
 }
+
 #pragma mark - Actions
 - (void)openCloseButtonAction:(UIButton *)sender {
     self.isOpen = !self.isOpen;
@@ -273,6 +270,7 @@
     }
     BLOCK_EXEC(self.openCloseBlock,self.isOpen);
 }
+
 #pragma mark - set
 - (void)setActivityHtmlOpenAndCloseBlock:(ActivityHtmlOpenAndCloseBlock)block {
     self.openCloseBlock = block;
@@ -318,11 +316,10 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [titleString length])];
     return attributedString;
 }
-- (void)relayoutHtmlText{
+- (void)relayoutHtmlText {
     [self.htmlView relayoutText];
 }
-- (UIViewController *)viewController
-{
+- (UIViewController *)viewController {
     for (UIView* next = [self superview]; next; next = next.superview) {
         UIResponder *nextResponder = [next nextResponder];
         if ([nextResponder isKindOfClass:[UIViewController class]]) {

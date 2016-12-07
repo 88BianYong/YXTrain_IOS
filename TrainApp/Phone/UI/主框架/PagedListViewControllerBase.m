@@ -174,8 +174,8 @@
                 [self checkHasMore];
                 [self.dataFetcher saveToCache];
             }
-            [self.tableView reloadData];
             self.tableView.contentOffset = CGPointZero;
+            [self.tableView reloadData];
         });
     }];
 }

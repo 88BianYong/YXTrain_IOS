@@ -55,21 +55,19 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.iconDictionary = @{ //key          imageName       title
-                                @"resdisc" : @[@"资源下载",@"资源下载"],
-                                @"resources" : @[@"资源分享",@"资源分享"],
+                                @"resdisc" : @[@"资源下载",@"资源下载"],//支持
+                                @"resources" : @[@"资源分享",@"资源分享"],//支持
                                 @"homework" : @[@"作业A",@"作业"],
                                 @"collab" : @[@"协作文档",@"协作文档"],
                                 @"wenjuan" : @[@"问卷",@"问卷"],
                                 @"topics" : @[@"问答",@"问答"],
-                                @"discuss" : @[@"讨论",@"讨论"],
-                                @"video" : @[@"视频A",@"视频"],
+                                @"discuss" : @[@"讨论",@"讨论"],//支持
+                                @"video" : @[@"视频A",@"视频"],//支持
                                 @"comments" : @[@"评价",@"评价"],
                                 @"course" : @[@"课件",@"课件"],
                                 @"debate" : @[@"辩论",@"辩论"],
                                 @"vote" : @[@"投票工具",@"投票"],
                                 };
-        
-        
         [self setupUI];
         [self setupLayout];
     }
@@ -111,7 +109,6 @@
         make.height.equalTo(self.firstStepView.mas_height);
         make.width.equalTo(self.firstStepView.mas_width);
         make.bottom.equalTo(self.contentView.mas_bottom);
-
     }];
     [self.thirdStepView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.secondStepView.mas_right).offset(kScreenWidth*27.0f/375.0f);
@@ -119,7 +116,6 @@
         make.height.equalTo(self.firstStepView.mas_height);
         make.width.equalTo(self.firstStepView.mas_width);
         make.bottom.equalTo(self.contentView.mas_bottom);
-
     }];
     [self.fourthStepView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.thirdStepView.mas_right).offset(kScreenWidth*27.0f/375.0f);
@@ -128,7 +124,6 @@
         make.height.equalTo(self.firstStepView.mas_height);
         make.width.equalTo(self.firstStepView.mas_width);
         make.bottom.equalTo(self.contentView.mas_bottom);
-
     }];
 }
 
@@ -137,7 +132,7 @@
     _firstTool = firstTool;
     if (_firstTool) {
         self.firstStepView.hidden = NO;
-        [self formatIconView:self.firstStepView ToolContent:_firstTool];
+        [self formatIconView:self.firstStepView toolContent:_firstTool];
     }else {
         self.firstStepView.hidden =  YES;
     }
@@ -146,7 +141,7 @@
     _secondTool = secondTool;
     if (_secondTool) {
         self.secondStepView.hidden = NO;
-        [self formatIconView:self.secondStepView ToolContent:_secondTool];
+        [self formatIconView:self.secondStepView toolContent:_secondTool];
     }else {
         self.secondStepView.hidden = YES;
     }
@@ -155,7 +150,7 @@
     _thirdTool = thirdTool;
     if (_thirdTool) {
         self.thirdStepView.hidden = NO;
-        [self formatIconView:self.thirdStepView ToolContent:_thirdTool];
+        [self formatIconView:self.thirdStepView toolContent:_thirdTool];
     }else {
         self.thirdStepView.hidden = YES;
     }
@@ -164,13 +159,13 @@
     _fourthTool = fourthTool;
     if (_fourthTool) {
         self.fourthStepView.hidden = NO;
-        [self formatIconView:self.fourthStepView ToolContent:_fourthTool];
+        [self formatIconView:self.fourthStepView toolContent:_fourthTool];
     }else {
         self.fourthStepView.hidden = YES;
     }
 }
 - (void)formatIconView:(ActivityStepIconView *)iconView
-              ToolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
+              toolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
     if ([tool.toolType isEqualToString:@"discuss"] || [tool.toolType isEqualToString:@"resdisc"] ||
         [tool.toolType isEqualToString:@"resources"] ||[tool.toolType isEqualToString:@"video"]) {
         iconView.iconLabel.textColor = [UIColor colorWithHexString:@"334466"];
@@ -180,9 +175,7 @@
     iconView.iconLabel.text = self.iconDictionary[tool.toolType][1];
     [iconView.iconButton setImage:[UIImage imageNamed:self.iconDictionary[tool.toolType][0]] forState:UIControlStateNormal];
     [iconView.iconButton setImage:[UIImage imageNamed:self.iconDictionary[tool.toolType][0]] forState:UIControlStateHighlighted];
-    
 }
-
 - (void)setActivityStepTableCellBlock:(ActivityStepTableCellBlock)block {
     self.toolBlock = block;
 }

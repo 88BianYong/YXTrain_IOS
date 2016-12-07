@@ -29,13 +29,13 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.text = @"活动";
+    self.titleLabel.text = @"";
     self.titleLabel.font = [UIFont boldSystemFontOfSize:13.0f];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.titleLabel];
     
     self.detailLabel = [[UILabel alloc] init];
-    self.detailLabel.text = @"至少需要敌对作业";
+    self.detailLabel.text = @"";
     self.detailLabel.textColor = [UIColor colorWithHexString:@"505f84"];
     self.detailLabel.font = [UIFont systemFontOfSize:11.0f];
     [self.contentView addSubview:self.detailLabel];
@@ -44,7 +44,7 @@
     self.contentLabel.font = [UIFont systemFontOfSize:11.0f];
     self.contentLabel.textAlignment = NSTextAlignmentRight;
     self.contentLabel.textColor = [UIColor colorWithHexString:@"0067be"];
-    self.contentLabel.text = @"已参加0ge";
+    self.contentLabel.text = @"";
     [self.contentView addSubview:self.contentLabel];
     UIButton *bgButton = [[UIButton alloc]init];
     [bgButton addTarget:self action:@selector(bgButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -100,7 +100,6 @@
         self.detailLabel.text = @"(需要线下完成)";
         self.contentLabel.text = _toolExamineVo.userscore.integerValue > 0 ? @"合格" : @"不合格";
         self.detailLabel.textColor = [UIColor colorWithHexString:@"bbc2c9"];
-        
     }
     self.explainButton.hidden = !(_toolExamineVo.toolid.integerValue == 205 || _toolExamineVo.toolid.integerValue == 206);
 }

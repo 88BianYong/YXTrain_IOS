@@ -52,7 +52,7 @@ UITableViewDataSource
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[IQKeyboardManager sharedManager] setEnable:YES];
-    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 60;
+    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 160;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -199,7 +199,7 @@ UITableViewDataSource
 - (BOOL)isPasswordCheck{
     return (self.passwordCell.textField.text.length > 0 &&
            self.confirmPasswordCell.textField.text.length > 0 &&
-    (self.passwordCell.textField.text == self.confirmPasswordCell.textField.text));
+    ([self.passwordCell.textField.text isEqualToString:self.confirmPasswordCell.textField.text]));
 }
 - (BOOL)isCheckInformation {
     if (isEmpty(self.userNameCell.textField.text)) {
@@ -294,7 +294,8 @@ UITableViewDataSource
         STRONG_SELF;
         BeijingSendSmsRequestItem *item = retItem;
         if (error) {
-            [self showToast:error.description];
+            [self showToast:error.localizedDescription];
+            [self.messageCell resetMobileMessage];
         }else {
             if (item.ret.integerValue != 0) {
                 [self.messageCell resetMobileMessage];
@@ -321,7 +322,7 @@ UITableViewDataSource
             STRONG_SELF
             [self stopLoading];
             if (error) {
-                [self showToast:error.description];
+                [self showToast:error.localizedDescription];
             }else {
                 BeijingModifyPasswordRequestItem *item = retItem;
                 [self showToast:item.msg];

@@ -142,6 +142,7 @@
     [self.baseViewController.view.window addSubview:progressView];
     progressView.closeBlock = ^() {
         STRONG_SELF
+        [self clear];
         [self.downloader stop];
     };
     

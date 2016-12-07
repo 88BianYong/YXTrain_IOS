@@ -98,7 +98,7 @@
         make.left.mas_equalTo(60);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
+        make.height.mas_equalTo(1.0f/[UIScreen mainScreen].scale);
     }];
 }
 - (void)setCellModel:(YXDatumCellModel *)cellModel{

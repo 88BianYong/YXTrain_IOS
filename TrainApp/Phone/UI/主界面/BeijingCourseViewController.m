@@ -234,6 +234,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 #pragma mark - YXCourseFilterViewDelegate
 - (void)filterChanged:(NSArray *)filterArray{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     // 学段
     NSNumber *num0 = filterArray[0];
     YXCourseFilterGroup *group0 = self.filterModel.groupArray[0];
@@ -256,7 +257,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentSize.height >= kScreenHeight -  44 + 10.0f){
         CGPoint point = scrollView.contentOffset;
-        if (point.y >= 5 && !self.isNavBarHidden) {
+        if (point.y >= 21 && !self.isNavBarHidden) {
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
             [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {

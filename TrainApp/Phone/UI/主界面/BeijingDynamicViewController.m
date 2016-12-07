@@ -30,6 +30,7 @@
     BeijingDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BeijingDynamicCell" forIndexPath:indexPath];
     YXDynamicRequestItem_Data *data = self.dataArray[indexPath.row];
     cell.data = data;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -37,5 +38,8 @@
     return [tableView fd_heightForCellWithIdentifier:@"BeijingDynamicCell" configuration:^(BeijingDynamicCell *cell) {
         cell.data = data;
     }];
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 }
 @end

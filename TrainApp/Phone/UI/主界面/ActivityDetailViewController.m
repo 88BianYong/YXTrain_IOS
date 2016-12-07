@@ -71,10 +71,8 @@
         }else {
             self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + kTableViewHeaderHtmlPlaceholdeHeight + labelHeight);
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.tableView.tableHeaderView = self.headerView;
-            [self.headerView relayoutHtmlText];
-        });
+        self.tableView.tableHeaderView = self.headerView;
+        [self.headerView relayoutHtmlText];
     }];
     
     self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
@@ -165,10 +163,7 @@
         }else {
             [self.dataErrorView removeFromSuperview];
             [self.errorView removeFromSuperview];
-            self.listItem = (ActivityStepListRequestItem *)retItem;
-            self.listItem.body.active.joinUserCount = self.activity.joinUserCount;
-            self.listItem.body.active.studyName = self.activity.studyName;
-            self.listItem.body.active.segmentName = self.activity.segmentName;
+            self.listItem = [(ActivityStepListRequestItem *)retItem activityDetailFormatItem:self.activity];
             self.headerView.activity = self.listItem.body.active;
             self.tableView.tableHeaderView = self.headerView;
             [self.tableView reloadData];

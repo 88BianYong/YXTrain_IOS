@@ -32,7 +32,6 @@
     self.dataFetcher.w = [YXTrainManager sharedInstance].currentProject.w;
     self.dataFetcher.pageIndex = 1;
     self.dataFetcher.pageSize = 10;
-//    self.commentErrorView = [[VideoCommentErrorView alloc] init];
     [super viewDidLoad];
     self.title = @"视频";
     self.view.backgroundColor = [UIColor blackColor];

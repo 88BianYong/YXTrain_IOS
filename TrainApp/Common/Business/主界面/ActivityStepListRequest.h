@@ -13,6 +13,7 @@
 @end
 @interface ActivityStepListRequestItem : HttpBaseRequestItem
 @property (nonatomic, strong) ActivityStepListRequestItem_Body<Optional> *body;
+- (ActivityStepListRequestItem *)activityDetailFormatItem:(ActivityListRequestItem_body_activity *)activity;
 @end
 
 @interface ActivityStepListRequest : YXGetRequest

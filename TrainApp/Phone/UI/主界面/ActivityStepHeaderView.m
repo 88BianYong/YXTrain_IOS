@@ -180,7 +180,7 @@
 - (void)setActivityHtmlHeightChangeBlock:(ActivityHtmlHeightChangeBlock)block {
     self.heightChangeBlock = block;
 }
-- (void)setActivityStep:(ActivityListRequestItem_Body_Activity_Steps *)activityStep{
+- (void)setActivityStep:(ActivityListRequestItem_Body_Activity_Steps *)activityStep {
     _activityStep = activityStep;
     self.titleLabel.text = _activityStep.title;
     NSData *data = [_activityStep.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
@@ -192,8 +192,7 @@
     }];
     self.htmlView.attributedString = string;
 }
-- (UIViewController *)viewController
-{
+- (UIViewController *)viewController {
     for (UIView* next = [self superview]; next; next = next.superview) {
         UIResponder *nextResponder = [next nextResponder];
         if ([nextResponder isKindOfClass:[UIViewController class]]) {

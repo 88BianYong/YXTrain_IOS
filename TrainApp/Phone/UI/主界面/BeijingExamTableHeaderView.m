@@ -80,7 +80,7 @@
     }];
     [self.rightView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(10.0f);
-        make.left.equalTo(self.leftView.mas_right).offset(9.0f);
+        make.left.equalTo(self.leftView.mas_right).offset(9.0f).priorityHigh();
         make.right.bottom.mas_equalTo(-10.0f);
     }];
     
