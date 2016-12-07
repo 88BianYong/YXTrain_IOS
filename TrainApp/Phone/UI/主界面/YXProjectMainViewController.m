@@ -8,7 +8,7 @@
 
 #import "YXProjectMainViewController.h"
 #import "YXDrawerController.h"
-#import "YXExamViewController.h"
+
 #import "YXTaskViewController.h"
 #import "YXNoticeViewController.h"
 #import "YXProjectContainerView.h"
@@ -21,7 +21,7 @@
 #import "YXPopUpContainerView.h"
 #import "AppDelegate+CMSView.h"
 #import "BeijingDynamicViewController.h"
-#import "BeijingExamViewController.h"
+
 #import "BeijingCheckedMobileUserRequest.h"
 #import "BeijingCheckedMobileUserViewController.h"
 #import "YXWebSocketManger.h"
@@ -273,12 +273,7 @@
             self ->_selectedViewController = vc;
             [self ->_selectedViewController report:YES];
         };
-        UIViewController<YXTrackPageDataProtocol> *examVC = nil;
-        if ([YXTrainManager sharedInstance].isBeijingProject) {
-            examVC = [[BeijingExamViewController alloc]init];
-        }else {
-            examVC = [[YXExamViewController alloc]init];
-        }
+        UIViewController<YXTrackPageDataProtocol> *examVC = [[YXTrainManager sharedInstance] showExamProject];
         YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
         YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
         notiVC.flag = YXFlag_Notice;
