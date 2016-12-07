@@ -14,6 +14,10 @@
 		<string>http://u.yanxiu.com/test/</string>
 		<key>releaseLoginServer</key>
 		<string>http://u.yanxiu.com/</string>
+		<key>testWebsocket</key>
+		<string>ws://mobile.yanxiu.com/test/api/websocket</string>
+		<key>websocket</key>
+		<string>ws://mobile.yanxiu.com/websocket</string>
 	</dict>
 	<key>uploadServer</key>
 	<string>http://upload.yanxiu.com/resource/index.jsp</string>
@@ -22,12 +26,12 @@
 	<key>server</key>
 	<string>http://mobile.yanxiu.com/test/api/</string>
 	<key>websocket</key>
-	<string>ws://mobile.yanxiu.com/websocket</string>
+	<string>ws://mobile.yanxiu.com/test/api/websocket</string>
 	<key>mockFrameworkOn</key>
 	<false/>
 	<key>testFrameworkOn</key>
 	<false/>
 	<key>talkingDataReport</key>
-	<true/>
+	<false/>
 </dict>
 </plist>

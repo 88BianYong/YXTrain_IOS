@@ -8,7 +8,6 @@
 
 #import "YXHomeworkInfoViewController.h"
 #import "YXHomeworkInfoHeaderView.h"
-#import "YXHomeworkInfoRequest.h"
 #import "YXVideoRecordViewController.h"
 #import "YXVideoRecordManager.h"
 #import "YXHomeworkInfoNoRecordCell.h"
