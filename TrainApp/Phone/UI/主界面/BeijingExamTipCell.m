@@ -147,7 +147,7 @@
 }
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event  {
     if (CGRectContainsPoint(self.bottomView.frame, point)) {
-        return self;
+        return [super hitTest:point withEvent:event];
     }
     return nil;
 }
