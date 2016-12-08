@@ -66,13 +66,13 @@
 + (NSString *)picNameWithID:(NSString *)typeID {
     NSInteger value = typeID.integerValue;
     if (value == 0) {
-        return @"视频";
+        return @"mp4／m3u8";
     }else if (value == 1){
         return @"pdf";
     }else if (value == 2){
-        return @"网页";
+        return @"html";
     }else if (value == 3){
-        return @"MP3";
+        return @"mp3";
     }else{
         return @"未知";
     }
