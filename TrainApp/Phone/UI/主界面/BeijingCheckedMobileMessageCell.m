@@ -79,8 +79,8 @@
     [self.contentView addSubview:self.cancleButton];
 
     [self.cancleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_offset(CGSizeMake(20.0f, 20.0f));
-        make.right.equalTo(lineView.mas_right).offset(-14.0f);
+        make.size.mas_offset(CGSizeMake(20.0f + 20.0f, 20.0f + 20.0f));
+        make.right.equalTo(lineView.mas_right).offset(-14.0f + 10.f);
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     

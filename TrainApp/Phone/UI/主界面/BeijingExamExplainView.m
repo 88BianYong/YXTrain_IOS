@@ -19,7 +19,6 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
         [self setupUI];
-        [self setupLayout];
     }
     return self;
 }
@@ -40,14 +39,18 @@
     [self addGestureRecognizer:tap];
 }
 
-- (void)setupLayout {
-    [self.explainLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+- (void)setupLayoutSingle:(BOOL)single {
+    [self.explainLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.bgView.mas_left).offset(15.0f);
         make.right.equalTo(self.bgView.mas_right).offset(-15.0f);
         make.top.equalTo(self.bgView.mas_top).offset(15.0f);
-        make.bottom.equalTo(self.bgView.mas_bottom).offset(-15.0);
+        if (single) {//富文本一行也有行高
+            make.bottom.equalTo(self.bgView.mas_bottom).offset(-10.0);
+        }else {
+            make.bottom.equalTo(self.bgView.mas_bottom).offset(-15.0);
+        }
     }];
-    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.bgView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15.0f);
         make.right.equalTo(self.mas_right).offset(-15.0f);
     }];
@@ -65,7 +68,19 @@
 
 - (void)showInView:(UIView *)view examExplain:(NSString *)string {
     self.frame = view.bounds;
-    self.explainLabel.text = string;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 7.0f;
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [string length])];
+    self.explainLabel.attributedText = attributedString;
     [view addSubview:self];
+    [self.explainLabel sizeToFit];
+    CGRect frame = self.explainLabel.frame;
+    if (frame.size.width > kScreenWidth - 40.0f){
+        [self setupLayoutSingle:NO];
+    }else{
+        [self setupLayoutSingle:YES];
+    }
 }
 @end

@@ -74,20 +74,22 @@
 
 }
 - (void)setupLayout {
-    
     [self.activityImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(15);
-        make.centerY.mas_equalTo(0);
+        make.top.equalTo(self.contentView.mas_top).offset(10.0f);
         make.size.mas_equalTo(CGSizeMake(112, 84));
+        make.bottom.lessThanOrEqualTo(self.contentView.mas_bottom).offset(-10.0f);
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.activityImageView.mas_right).mas_offset(15);
-        make.top.mas_equalTo(22);
+        make.top.mas_equalTo(10.0f).priorityHigh();
         make.right.mas_equalTo(-20);
     }];
     [self.startTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(13);
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(8.0f).priorityHigh();
+        make.right.mas_equalTo(-20.0f);
+        make.bottom.lessThanOrEqualTo(self.contentView.mas_bottom).offset(-15.0f).priorityLow();
     }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -100,9 +102,9 @@
 - (void)setActivity:(ActivityListRequestItem_body_activity *)activity {
     _activity = activity;
     [self.activityImageView sd_setImageWithURL:[NSURL URLWithString:activity.pic] placeholderImage:[UIImage imageNamed:@"默认图片"]];
-    self.titleLabel.text = activity.title;
+    self.titleLabel.text = _activity.title;
     
-    self.startTimeLabel.text = [NSString stringWithFormat:@"开始时间  %@",activity.startTime];
+    self.startTimeLabel.text = [NSString stringWithFormat:@"开始时间  %@",_activity.startTime];
     if ([activity.isJoin isEqualToString:@"1"]) {
         [self.contentView addSubview:self.isJoinLabel];
         [self.isJoinLabel mas_makeConstraints:^(MASConstraintMaker *make) {

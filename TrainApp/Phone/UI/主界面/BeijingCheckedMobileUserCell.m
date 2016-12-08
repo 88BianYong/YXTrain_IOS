@@ -63,8 +63,8 @@
     self.cancleButton.hidden = YES;
     [self.contentView addSubview:self.cancleButton];
     [self.cancleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_offset(CGSizeMake(20.0f, 20.0f));
-        make.right.equalTo(self.contentView.mas_right).offset(-24.0f);
+        make.size.mas_offset(CGSizeMake(20.0f + 20.0f, 20.0f + 20.0f));
+        make.right.equalTo(self.contentView.mas_right).offset(-24.0f + 10.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     

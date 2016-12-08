@@ -149,7 +149,8 @@
     return (contentRange.location != NSNotFound) &&
     (nameRange.location != NSNotFound) &&
     (contentRange.location > nameRange.location) &&
-    ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3);
+    ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3 &&
+     ![YXTrainManager sharedInstance].isBeijingProject);
 }
 - (NSMutableAttributedString *)formatSenondCommentContnet:(NSString *)content {
     NSRange contentRange = [content rangeOfString:kContentSeparator];

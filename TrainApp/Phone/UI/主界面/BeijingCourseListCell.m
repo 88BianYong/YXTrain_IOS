@@ -108,8 +108,8 @@
         make.left.mas_equalTo(self.courseImageView.mas_right).mas_offset(12.0f);
         make.centerY.equalTo(self.recordLabel.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(20.0f, 20.0f));
-        
     }];
+    
     [self.recordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.historyImageView.mas_right).mas_offset(3.0f);
         make.top.mas_equalTo(self.hoursLabel.mas_bottom).mas_offset(8.0f).priorityHigh();

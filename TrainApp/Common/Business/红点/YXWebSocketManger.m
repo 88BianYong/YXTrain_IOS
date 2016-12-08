@@ -117,8 +117,6 @@
         if ([dic[@"type"] integerValue] == 2 || [dic[@"type"] integerValue] == 3) {//有热点动态发送通知
             [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainWebSocketReceiveMessage object:dic[@"type"]];
         }else{
-            
-
         }
     }
 }

@@ -57,9 +57,9 @@
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     [self.explainButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.titleLabel.mas_right).offset(7.0f);
+        make.left.equalTo(self.titleLabel.mas_right).offset(7.0f - 10.0f);
         make.centerY.equalTo(self.titleLabel.mas_centerY);
-        make.size.mas_offset(CGSizeMake(19.0f, 19.0f));
+        make.size.mas_offset(CGSizeMake(19.0f + 20.0f, 19.0f + 20.0f));
     }];
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);

@@ -129,13 +129,14 @@
     [b setImage:[UIImage imageNamed:@"消息动态icon-正常态A"] forState:UIControlStateNormal];
     [b setImage:[UIImage imageNamed:@"消息动态icon点击态-正常态-拷贝"] forState:UIControlStateHighlighted];
     [b addTarget:self action:@selector(naviRightAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.headView addSubview:b];
+    [self.rightView addSubview:b];
     
-    self.rightRedView = [[UIView alloc] initWithFrame:CGRectMake(32.0f, 0.0f, 5.0f, 5.0f)];
+    self.rightRedView = [[UIView alloc] initWithFrame:CGRectMake(27.0f, 5.0f, 5.0f, 5.0f)];
     self.rightRedView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
     self.rightRedView.layer.cornerRadius = 2.5f;
-    [self.headView addSubview:self.rightRedView];
-    [self setupRightWithCustomView:self.headView];
+    self.rightRedView.hidden = YES;
+    [self.rightView addSubview:self.rightRedView];
+    [self setupRightWithCustomView:self.rightView];
 }
 
 - (void)naviRightAction {
@@ -183,7 +184,7 @@
                 self.emptyView.subTitle = @"请在电脑端登录研修网完成测评";
                 [self.view addSubview:self.emptyView];
             }else {
-                [self setupRightWithImageNamed:@"消息动态icon-正常态A" highlightImageNamed:@"消息动态icon点击态-正常态-拷贝"];
+                [self setupRightView];
                 [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
             }
             [self dealWithProjectGroups:self.dataMutableArrray];
@@ -232,14 +233,24 @@
 
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
     NSInteger integer = [aNotification.object integerValue];
-    if (integer == 0) {
-        self.redPointView.hidden = YES;
+    if ([YXTrainManager sharedInstance].isBeijingProject) {
+        if (integer == 3) {
+            self.rightRedView.hidden = NO;
+        }
+        if (integer == 2) {
+            self.redPointView.hidden = NO;
+        }
+        if (integer == 0) {
+            self.redPointView.hidden = YES;
+        }
     }else{
-        self.redPointView.hidden = NO;
+        if (integer == 0) {
+            self.redPointView.hidden = YES;
+        }else{
+            self.redPointView.hidden = NO;
+        }
     }
-    if (integer == 3) {
-        self.rightRedView.hidden = NO;
-    }
+
 }
 - (void)showoUpdateInterface:(NSNotification *)aNotification{
     [[YXInitHelper sharedHelper] showNoRestraintUpgrade];

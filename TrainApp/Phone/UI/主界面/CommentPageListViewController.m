@@ -324,7 +324,7 @@
         ActivityFirstCommentRequestItem_Body_Replies *temp = self.dataMutableArray[self.replyInteger];
         request.parentid = temp.replyID;
         request.topicid = temp.topicid;
-        if ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3) {
+        if (![self commentMultistageStyle]) {
             inputString = [NSString stringWithFormat:@"回复%@%@%@%@",kNameSeparator,temp.userName,kContentSeparator,inputString];
         }
     }
@@ -345,7 +345,7 @@
                 [self showToast:@"网络异常,请稍后重试"];
             }
         }else if (item.body.reply != nil){
-            if ([YXTrainManager sharedInstance].currentProject.w.integerValue == 3) {
+            if (![self commentMultistageStyle]) {
                 [self.dataMutableArray insertObject:item.body.reply atIndex:0];
                 [self.tableView reloadData];
             }else {
@@ -548,7 +548,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 2 || [YXTrainManager sharedInstance].currentProject.w.integerValue <= 3) {
+    if (replie.childNum.integerValue <= 2 || ![self commentMultistageStyle]) {
         return nil;
     }else {
         ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
@@ -568,7 +568,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 2 || [YXTrainManager sharedInstance].currentProject.w.integerValue <= 3) {
+    if (replie.childNum.integerValue <= 2 || ![self commentMultistageStyle]) {
         return 0.0001f;
     }else {
         return 29.0f;
@@ -611,4 +611,8 @@
     
 }
 
+- (BOOL)commentMultistageStyle{//北京项目活动中的所有讨论都要用16样式  因为这个项目特殊  w值是15但活动的工具是16的所以不能用w值来判断讨论的样式  直接写死成16样式
+    return ([YXTrainManager sharedInstance].currentProject.w.integerValue > 3 ||
+            [YXTrainManager sharedInstance].isBeijingProject);
+}
 @end

@@ -31,4 +31,9 @@
     cell.activity = self.dataArray[indexPath.row];
     return cell;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView fd_heightForCellWithIdentifier:@"BeijingActivityListCell" configuration:^(BeijingActivityListCell *cell) {
+        cell.activity = self.dataArray[indexPath.row];
+    }];
+}
 @end
