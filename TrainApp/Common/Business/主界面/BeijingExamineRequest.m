@@ -10,7 +10,7 @@
 @implementation BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList
 @end
 @implementation BeijingExamineRequestItem_ExamineVoList
-- (NSMutableArray<BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList,Optional> *)toolExamineVoList {//TD: 12-08 产品要求写死,出引起崩溃外不负责
+- (NSMutableArray<BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList,Optional> *)toolExamineVoList {//TD: 12-08 产品要求写死,按产品设计 技术素养->专题->综合->专业发展->案例 排序 诡异这需求居然前端做
     _toolExamineVoList = (NSMutableArray<BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList,Optional> *)[NSMutableArray arrayWithArray:[_toolExamineVoList sortedArrayUsingComparator:
                            ^(BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *obj1, BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *obj2){
                                if(obj1.toolid.integerValue < obj2.toolid.integerValue) {
@@ -25,12 +25,15 @@
             tool.name = @"专业发展类";
         }
     }
+    if (_toolExamineVoList.count >= 5){
+        [_toolExamineVoList exchangeObjectAtIndex:1 withObjectAtIndex:2];
+    }
 //
 //    if ([self formatToolExamineVoList]) {
 //        [_toolExamineVoList exchangeObjectAtIndex:1 withObjectAtIndex:2];
 //
 //    }
-//    
+//
 //    
     return _toolExamineVoList;
 }
@@ -45,13 +48,12 @@
     return NO;
 }
 
-+ (JSONKeyMapper *)keyMapper
-{
++ (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"examineVoID"}];
 }
 @end
 @implementation BeijingExamineRequestItem
-- (NSArray<BeijingExamineRequestItem_ExamineVoList,Optional> *)examineVoList {
+- (NSArray<BeijingExamineRequestItem_ExamineVoList,Optional> *)examineVoList {//TD: 12-08 产品要求写死,按产品设计 课程->活动->作业->校本实践   因产品确定ID不会改变所以按工具ID小->大排序
     return (NSArray<BeijingExamineRequestItem_ExamineVoList,Optional> *)
     [_examineVoList sortedArrayUsingComparator:
      ^(BeijingExamineRequestItem_ExamineVoList *obj1, BeijingExamineRequestItem_ExamineVoList *obj2){
@@ -64,8 +66,7 @@
 }
 @end
 @implementation BeijingExamineRequest
-- (instancetype)init
-{
+- (instancetype)init {
     if (self = [super init]) {
         self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"peixun/bj/examine"];
     }

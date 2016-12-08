@@ -159,7 +159,11 @@
 }
 - (void)resetMobileMessage {
     dispatch_source_cancel(self.sourceTimer);
-    [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    self.sendButton.enabled = YES;
     self.isCountdown = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [self.sendButton setTitle:@"获取验证码" forState:UIControlStateDisabled];
+    });
 }
 @end

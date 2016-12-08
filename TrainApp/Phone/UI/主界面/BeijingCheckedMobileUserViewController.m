@@ -263,6 +263,11 @@ UITableViewDataSource
         {
             self.phoneNumberCell.textField.placeholder = @"输入手机号";
             self.phoneNumberCell.textField.keyboardType = UIKeyboardTypeNumberPad;
+            WEAK_SELF
+            [self.phoneNumberCell setBeijingCheckedMobileUserBlock:^{
+                STRONG_SELF
+                self.messageCell.sendButton.enabled = NO;
+            }];
             return self.phoneNumberCell;
         }
             break;
@@ -273,7 +278,7 @@ UITableViewDataSource
                 STRONG_SELF
                 if (![self.phoneNumberCell.textField.text yx_isPhoneNum]) {
                     [self showToast:@"手机号码格式不正确"];
-                    return;
+                    [self.messageCell resetMobileMessage];
                 }else {
                      [self requestForSendSms];
                 }
