@@ -75,8 +75,8 @@
 }
 
 - (NSAttributedString *)formatContent:(NSString *)selectedTime Study:(NSString *)studyTime {
-    selectedTime = [NSString stringWithFormat:@"已选%@学时 /",selectedTime];
-    studyTime = [NSString stringWithFormat:@"已学习%@学时",studyTime];
+    selectedTime = [NSString stringWithFormat:@"已选%0.1f学时 /",selectedTime.doubleValue];
+    studyTime = [NSString stringWithFormat:@"已学习%0.1f学时",studyTime.doubleValue];
     NSString *completeStr = [NSString stringWithFormat:@"%@%@",selectedTime,studyTime];
     NSMutableAttributedString *mStr = [[NSMutableAttributedString alloc]initWithString:completeStr];
     NSRange range = [completeStr rangeOfString:selectedTime];

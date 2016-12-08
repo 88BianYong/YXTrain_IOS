@@ -307,7 +307,7 @@
         }else{
             Reachability *r = [Reachability reachabilityForInternetConnection];
             if (![r isReachable]) {
-                [self showToast:@"网络异常，请稍候重试"];
+                [self showToast:@"网络异常,请稍候重试"];
                 return;
             }
             if ([r isReachableViaWWAN] && ![r isReachableViaWiFi]) {

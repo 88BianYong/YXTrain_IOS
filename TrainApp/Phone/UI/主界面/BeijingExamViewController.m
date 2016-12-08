@@ -208,7 +208,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         [header setBeijingExamGenreDefaultButtonBlock:^(UIButton *sender) {
             STRONG_SELF
             CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-            [self showMarkWithOriginRect:rect explain:@"课程17学时,案例3学时"];
+            [self showMarkWithOriginRect:rect explain:@"课程:17学时,案例:3学时"];
         }];
         return header;
     }else {
@@ -221,7 +221,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
              STRONG_SELF
             CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
             if (toolExamine.toolid.integerValue == 205 ) {
-                [self showMarkWithOriginRect:rect explain:@"作业质量由区级辅导教师评定，作业成绩显示合格视为通过"];
+                [self showMarkWithOriginRect:rect explain:@"作业质量由区级辅导教师评定,作业成绩显示合格视为通过"];
             }else if (toolExamine.toolid.integerValue == 206) {
                 [self showMarkWithOriginRect:rect explain:@"校本实践需线下完成,成绩由校级管理员综合评定"];
             }
@@ -241,7 +241,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 VC.itemBody = itemBody;
                 [self.navigationController pushViewController:VC animated:YES];
             }
-
         }];
         return header;
     }

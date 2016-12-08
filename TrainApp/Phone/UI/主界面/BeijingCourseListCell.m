@@ -128,7 +128,7 @@
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
-    self.hoursLabel.text = [NSString stringWithFormat:@"学时 %@", _course.credit];
+    self.hoursLabel.text = [NSString stringWithFormat:@"学时 %0.1f", _course.credit.doubleValue];
     int second = course.record.intValue;
     if (second == 0) {
         self.recordLabel.text = @"未观看";

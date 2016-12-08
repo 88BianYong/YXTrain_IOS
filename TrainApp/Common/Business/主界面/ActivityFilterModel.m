@@ -44,6 +44,9 @@
         ActivityFilter *item = [[ActivityFilter alloc]init];
         item.filterID = stage.stageID;
         item.name = stage.name;
+        if (stage.stageID.integerValue == 2179) {//TD: 12-08 产品要求写死
+            item.name = @"专业发展类";
+        }
         [stageArray addObject:item];
     }
     ActivityFilterGroup *stageGroup = [[ActivityFilterGroup alloc]init];

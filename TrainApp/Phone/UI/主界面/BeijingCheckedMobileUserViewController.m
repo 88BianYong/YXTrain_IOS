@@ -271,7 +271,12 @@ UITableViewDataSource
             WEAK_SELF
             [self.messageCell setBeijingCheckedMobileMessageBlock:^{
                 STRONG_SELF
-                [self requestForSendSms];
+                if (![self.phoneNumberCell.textField.text yx_isPhoneNum]) {
+                    [self showToast:@"手机号码格式不正确"];
+                    return;
+                }else {
+                     [self requestForSendSms];
+                }
             }];
             return self.messageCell;
         }

@@ -37,7 +37,7 @@
     UIView *footerView = [[UIView alloc] init];
     footerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     UILabel *footerLabel = [[UILabel alloc] init];
-    footerLabel.text = @"邮箱账户用户，请前往 pp.yanxiu.com 重置密码";
+    footerLabel.text = @"邮箱账户用户,请前往 pp.yanxiu.com 重置密码";
     footerLabel.font = [UIFont systemFontOfSize:13];
     footerLabel.textColor = [UIColor colorWithHexString:@"a1a3a6"];
     [footerView addSubview:footerLabel];
@@ -154,7 +154,7 @@
         if ([item isPhoneExist]) {
             [self getVerifyCodeRequest];
         } else {
-            [self showToast:@"该手机号帐号不存在，请重新输入"];
+            [self showToast:@"该手机号帐号不存在,请重新输入"];
         }
     }];
 }

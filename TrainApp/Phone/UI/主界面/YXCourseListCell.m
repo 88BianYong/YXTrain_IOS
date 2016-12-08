@@ -89,8 +89,7 @@
 
 - (void)setCourse:(YXCourseListRequestItem_body_module_course *)course{
     _course = course;
-    [self.courseImageView sd_setImageWithURL:[NSURL URLWithString:course.course_img]];
-    
+    [self.courseImageView sd_setImageWithURL:[NSURL URLWithString:course.course_img] placeholderImage:[UIImage imageNamed:@"默认图片"]];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:course.course_title];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:0];//调整行间距

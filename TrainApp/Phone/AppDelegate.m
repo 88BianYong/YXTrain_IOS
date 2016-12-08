@@ -187,7 +187,7 @@
 
 - (void)tokenInvalid {
     [[YXUserManager sharedManager] resetUserData];
-    [YXPromtController showToast:@"帐号授权已失效，请重新登录" inView:self.window];
+    [YXPromtController showToast:@"帐号授权已失效,请重新登录" inView:self.window];
     if (![self.window.rootViewController isKindOfClass:[YXLoginViewController class]]) {
         self.loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];

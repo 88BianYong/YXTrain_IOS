@@ -31,7 +31,7 @@
 @property (nonatomic, copy) NSString<Optional> *isfinish;
 @property (nonatomic, copy) NSString<Optional> *userscore;
 @property (nonatomic, copy) NSString<Optional> *totalscore;
-@property (nonatomic, strong) NSArray<BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList,Optional> *toolExamineVoList;
+@property (nonatomic, strong) NSMutableArray<BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList,Optional> *toolExamineVoList;
 @end
 
 @interface BeijingExamineRequestItem_BounsVo : JSONModel

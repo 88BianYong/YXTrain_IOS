@@ -103,12 +103,10 @@
         self.graduationImageView.image = [UIImage imageNamed:@"已退回"];
     }
     
-    if (_item.userGetScore.doubleValue < 85.0f) {
-        self.statusContentLabel.text = @"未提交";
-    }else if (_item.userGetScore.doubleValue >= 85.0f && _item.userGetScore.doubleValue < 100.0f){
-        self.statusContentLabel.text = @"已提交";
+    if (_item.userGetScore.doubleValue < 100.0f) {
+        self.statusContentLabel.text = @"不合格";
     }else {
-        self.statusContentLabel.text = @"已结业";
+        self.statusContentLabel.text = @"合格";
         self.graduationImageView.image = [UIImage imageNamed:@"已结业"];
     }
 }

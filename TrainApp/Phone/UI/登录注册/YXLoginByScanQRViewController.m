@@ -221,7 +221,7 @@
 }
 
 - (void)scanLoginFail{
-    YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"非常抱歉，格式不正确或token已过期，请重新扫描"];
+    YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"非常抱歉,格式不正确或token已过期,请重新扫描"];
     [alertView addButtonWithTitle:@"返回" action:^{
         [_scanBackgroundView.scanTimer invalidate];
         [self dismissViewControllerAnimated:YES completion:^{

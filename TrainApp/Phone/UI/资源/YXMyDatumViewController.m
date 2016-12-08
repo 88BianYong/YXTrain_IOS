@@ -245,7 +245,7 @@ static  NSString *const trackPageName = @"我的资源页面";
             // 先检查网络
             Reachability *r = [Reachability reachabilityForInternetConnection];
             if (![r isReachable]) {
-                [self showToast:@"网络异常，请稍候尝试"];
+                [self showToast:@"网络异常,请稍候尝试"];
                 return;
             }
             self.downloader = [[PersistentUrlDownloader alloc]init];

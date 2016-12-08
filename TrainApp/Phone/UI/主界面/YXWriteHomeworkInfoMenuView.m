@@ -80,7 +80,7 @@
     
     
     _errorLabel = [[UILabel alloc] init];
-    _errorLabel.text = @"目录信息获取失败，请点击重试";
+    _errorLabel.text = @"目录信息获取失败,请点击重试";
     _errorLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     _errorLabel.font = [UIFont systemFontOfSize:14.0f];
     _errorLabel.textAlignment = NSTextAlignmentCenter;

@@ -213,7 +213,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)checkNetwork {
     Reachability *r = [Reachability reachabilityForInternetConnection];
     if (![r isReachable]) {
-        [self showToast:@"网络不可用，请检查网络"];
+        [self showToast:@"网络不可用,请检查网络"];
         return;
     }
     if ([r isReachableViaWWAN] && ![r isReachableViaWiFi]) {
@@ -254,7 +254,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 - (void)backAction {
-    dispatch_source_cancel(self.preventHangingCourseTime);
+    if (self.preventHangingCourseTime) {
+        dispatch_source_cancel(self.preventHangingCourseTime);
+    }
     [UIApplication sharedApplication].idleTimerDisabled = NO;
     
     if ((self.delegate) && [self.delegate respondsToSelector:@selector(playerProgress:totalDuration:stayTime:)]) {
