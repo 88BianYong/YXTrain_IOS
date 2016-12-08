@@ -142,7 +142,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 - (void)dealWithRetItem:(BeijingExamineRequestItem *)retItem{
     self.examineItem = retItem;
     self.headerView.item = retItem;
-    [YXTrainManager sharedInstance].requireId = @"845";
     self.headerView.hidden = NO;
     [self.tableView reloadData];
 }
@@ -234,8 +233,8 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
             }else if (tool.toolid.integerValue == 205) {
                 YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
                 itemBody.type = @"4";
-                itemBody.requireId = @"845";
-                itemBody.homeworkid = @"";
+                itemBody.requireId = tool.requireid;
+                itemBody.homeworkid = tool.homeworkid;
                 itemBody.pid = [YXTrainManager sharedInstance].currentProject.pid;
                 YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
                 VC.itemBody = itemBody;

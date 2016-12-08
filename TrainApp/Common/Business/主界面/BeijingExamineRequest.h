@@ -15,7 +15,6 @@
 
 @interface BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList : JSONModel
 @property (nonatomic, copy) NSString<Optional> *toolid;
-@property (nonatomic, copy) NSString<Optional> *requireid;
 @property (nonatomic, copy) NSString<Optional> *name;
 @property (nonatomic, copy) NSString<Optional> *finishnum;
 @property (nonatomic, copy) NSString<Optional> *totalnum;
@@ -23,6 +22,8 @@
 @property (nonatomic, copy) NSString<Optional> *totalscore;
 @property (nonatomic, copy) NSString<Optional> *totalCredit;//已选学时
 @property (nonatomic, copy) NSString<Optional> *totalHasCredit;//已学学时
+@property (nonatomic, copy) NSString<Optional> *requireid;
+@property (nonatomic, copy) NSString<Optional> *homeworkid;//已学学时
 @end
 
 @interface BeijingExamineRequestItem_ExamineVoList : JSONModel

@@ -95,7 +95,8 @@
         self.detailLabel.text = [NSString stringWithFormat:@"需要提交%@份教学资源包",_toolExamineVo.totalnum];
         self.contentLabel.text = [NSString stringWithFormat:@"已提交%@份",_toolExamineVo.finishnum];
         self.detailLabel.textColor = [UIColor colorWithHexString:@"505f84"];
-        
+        [YXTrainManager sharedInstance].requireId = _toolExamineVo.requireid;
+        [YXTrainManager sharedInstance].homeworkid = _toolExamineVo.homeworkid;
     }else if (_toolExamineVo.toolid.integerValue == 206) {
         self.detailLabel.text = @"(需要线下完成)";
         self.contentLabel.text = _toolExamineVo.userscore.integerValue > 0 ? @"合格" : @"不合格";

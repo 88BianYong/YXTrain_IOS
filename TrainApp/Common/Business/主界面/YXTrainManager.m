@@ -122,7 +122,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
         itemBody.type = @"4";
         itemBody.requireId = [YXTrainManager sharedInstance].requireId;
-        itemBody.homeworkid = @"";
+        itemBody.homeworkid = [YXTrainManager sharedInstance].homeworkid;
         itemBody.pid = [YXTrainManager sharedInstance].currentProject.pid;
         VC.itemBody = itemBody;
         [viewController.navigationController pushViewController:VC animated:YES];
