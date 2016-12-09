@@ -333,6 +333,9 @@
     request.tooltype = self.tool.toolType;
     request.toolid = self.tool.toolid;
     request.w = [YXTrainManager sharedInstance].currentProject.w;
+    if ([YXTrainManager sharedInstance].isBeijingProject) {
+        request.w = @"4";
+    }
     WEAK_SELF
     [request startRequestWithRetClass:[CommentReplyRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
@@ -384,6 +387,9 @@
     request.aid = self.tool.aid;
     request.toolid = self.tool.toolid;
     request.w = [YXTrainManager sharedInstance].currentProject.w;
+    if ([YXTrainManager sharedInstance].isBeijingProject) {
+        request.w = @"4";
+    }
     NSIndexPath *indexPath = nil;
     NSInteger integer = -1;
     if ([comment isKindOfClass:[NSIndexPath class]]) {
@@ -548,30 +554,37 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 2 || ![self commentMultistageStyle]) {
+    if (replie.childNum.integerValue <= 2) {
         return nil;
     }else {
-        ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
-        footerView.tag = section + 1000;
-        WEAK_SELF
-        [footerView setActitvitySeeAllCommentReplyBlock:^(NSInteger tagInteger) {
-            STRONG_SELF
-            SecondCommentViewController *VC = [[SecondCommentViewController alloc] init];
-            VC.tool = self.tool;
-            VC.parentID = replie.replyID;
-            VC.replie = replie;
-            [self.navigationController pushViewController:VC animated:YES];
-        }];
-        return footerView;
+        if ([self commentMultistageStyle]) {
+            ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
+            footerView.tag = section + 1000;
+            WEAK_SELF
+            [footerView setActitvitySeeAllCommentReplyBlock:^(NSInteger tagInteger) {
+                STRONG_SELF
+                SecondCommentViewController *VC = [[SecondCommentViewController alloc] init];
+                VC.tool = self.tool;
+                VC.parentID = replie.replyID;
+                VC.replie = replie;
+                [self.navigationController pushViewController:VC animated:YES];
+            }];
+            return footerView;
+        }else {
+            return nil;
+        }
     }
-    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 2 || ![self commentMultistageStyle]) {
+    if (replie.childNum.integerValue <= 2) {
         return 0.0001f;
     }else {
-        return 29.0f;
+        if ([self commentMultistageStyle]) {
+            return 29.0f;
+        }else {
+           return 0.0001f;
+        }
     }
 }
 

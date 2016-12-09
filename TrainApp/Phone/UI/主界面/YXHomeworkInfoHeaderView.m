@@ -184,7 +184,24 @@
         [attr appendAttributedString:attrString];
         _pointLabel.attributedText = attr;
     }else{
+        if ([YXTrainManager sharedInstance].isBeijingProject) {
+            NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
+            if (_body.score.integerValue < 60.0f) {
+                _textAttachment.image = [UIImage imageNamed:@"未合格"];
+            }else {
+                _textAttachment.image = [UIImage imageNamed:@"已合格"];
+            }
+            _textAttachment.bounds = CGRectMake(0, -3.0f, 105.0f, 28.0f);
+            NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
+            [attr appendAttributedString:attrStringWithImage];
+            NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@" "];
+            [attr appendAttributedString:attrString];
+            _pointLabel.attributedText = attr;
+        }else {
+            _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
+        }
         _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
+
     }
     
     _endDateLabel.text = [NSString stringWithFormat:@"截止日期  %@",_body.endDate?:@"无"];

@@ -214,6 +214,9 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         BeijingExamGenreExplainHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"BeijingExamGenreExplainHeaderView"];
         BeijingExamineRequestItem_ExamineVoList *list = self.examineItem.examineVoList[section];
         BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamine = list.toolExamineVoList[0];
+        if (toolExamine.toolid.integerValue == 205) {
+            toolExamine.name = @"作业";
+        }
         header.toolExamineVo = toolExamine;
         WEAK_SELF
         [header setBeijingExamGenreExplainButtonBlock:^(UIButton *sender) {

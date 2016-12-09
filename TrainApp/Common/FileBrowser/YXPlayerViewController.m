@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "JKAlertDialog.h"
 #import "PreventHangingCourseView.h"
-static NSInteger kPreventHangingCourseDefaultTime = 10;
+static NSInteger kPreventHangingCourseDefaultTime = 600;
 @implementation YXPlayerDefinition
 
 - (BOOL)isEqual:(id)object {

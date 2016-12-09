@@ -117,6 +117,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     self.request.pageno = @"1";
     self.request.pagesize = @"10";
+    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
     [self startLoading];
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXCourseListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
