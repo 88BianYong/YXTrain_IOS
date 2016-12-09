@@ -176,6 +176,7 @@
     _body = body;
     if(!_body.score.boolValue){
         NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
+        _textAttachment = [[NSTextAttachment alloc]init];
         _textAttachment.image = [UIImage imageNamed:@"未批改"];
         _textAttachment.bounds = CGRectMake(0, -3.0f, 105.0f, 28.0f);
         NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
@@ -185,11 +186,12 @@
         _pointLabel.attributedText = attr;
     }else{
         if ([YXTrainManager sharedInstance].isBeijingProject) {
+            _textAttachment = [[NSTextAttachment alloc]init];
             NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
             if (_body.score.integerValue < 60.0f) {
                 _textAttachment.image = [UIImage imageNamed:@"未合格"];
             }else {
-                _textAttachment.image = [UIImage imageNamed:@"已合格"];
+                _textAttachment.image = [UIImage imageNamed:@"已合格-"];
             }
             _textAttachment.bounds = CGRectMake(0, -3.0f, 105.0f, 28.0f);
             NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
@@ -200,10 +202,7 @@
         }else {
             _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
         }
-        _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
-
     }
-    
     _endDateLabel.text = [NSString stringWithFormat:@"截止日期  %@",_body.endDate?:@"无"];
     _finishedLabel.text = [NSString stringWithFormat:@"作业状态  %@",[_body.isFinished boolValue]?@"已完成":@"未完成"];
     _finishedImageView.hidden = ![_body.isFinished boolValue];
