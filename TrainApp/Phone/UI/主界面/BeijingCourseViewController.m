@@ -16,7 +16,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 @interface BeijingCourseViewController ()<YXCourseFilterViewDelegate>
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXCourseListFilterModel *filterModel;
-@property (nonatomic, strong) YXCourseListRequest *request;
+@property (nonatomic, strong) BeijingCourseListRequest *request;
 @property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, assign) BOOL isNavBarHidden;
@@ -29,7 +29,6 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (void)viewDidLoad {
     BeijingCourseListFetcher *fetcher = [[BeijingCourseListFetcher alloc]init];
     fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    fetcher.urlHead =  [[YXConfigManager sharedInstance].server stringByAppendingString:@"peixun/bj/courselist"];
     fetcher.w = [YXTrainManager sharedInstance].currentProject.w;
     fetcher.stageid = self.stageID;
     WEAK_SELF
@@ -114,9 +113,9 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 - (void)getFilters{
     [self.request stopRequest];
-    self.request = [[YXCourseListRequest alloc] init];
+    self.request = [[BeijingCourseListRequest alloc] init];
     self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    self.request.pageindex = @"1";
+    self.request.pageno = @"1";
     self.request.pagesize = @"10";
     [self startLoading];
     WEAK_SELF

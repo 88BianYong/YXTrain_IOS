@@ -7,7 +7,7 @@
 //
 
 #import "PagedListFetcherBase.h"
-#import "YXCourseListRequest.h"
+#import "BeijingCourseListRequest.h"
 @interface BeijingCourseListFetcher : PagedListFetcherBase
 @property (nonatomic, strong) NSString *studyid; //学科id
 @property (nonatomic, strong) NSString *segid;   //学段id

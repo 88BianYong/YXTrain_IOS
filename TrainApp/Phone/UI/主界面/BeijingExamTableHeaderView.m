@@ -95,21 +95,24 @@
 }
 - (void)setItem:(BeijingExamineRequestItem *)item {
     _item = item;
-    if (_item.applystatus.integerValue == 0) {
-        self.graduationImageView.image = [UIImage imageNamed:@"未申请"];
-    }else if (_item.applystatus.integerValue == 1 || _item.applystatus.integerValue == 3) {
-        self.graduationImageView.image = [UIImage imageNamed:@"已申请"];
-    }else if (_item.applystatus.integerValue == -1){
-        self.graduationImageView.image = [UIImage imageNamed:@"已退回"];
-    }
-    
+     if (_item.userGetScore.doubleValue < 85.0f) {
+        self.graduationImageView.image = [UIImage imageNamed:@"未结束"];
+     }else if(_item.userGetScore.doubleValue >= 85.0f && _item.userGetScore.doubleValue < 90.0f){
+         if (_item.applystatus.integerValue == 0 || _item.applystatus.integerValue == -1) {
+             self.graduationImageView.image = [UIImage imageNamed:@"未结束"];
+         } else if (_item.applystatus.integerValue == 1 || _item.applystatus.integerValue == 3) {
+             self.graduationImageView.image = [UIImage imageNamed:@"待审批"];
+         }else if (_item.applystatus.integerValue == 4) {
+             self.graduationImageView.image = [UIImage imageNamed:@"未通过"];
+         }
+     }else if(_item.userGetScore.doubleValue >= 90.0f){
+         self.graduationImageView.image = [UIImage imageNamed:@"已通过"];
+     }
+
     if (_item.userGetScore.doubleValue < 100.0f) {
-        self.statusContentLabel.text = @"不合格";
+        self.statusContentLabel.text = @"未合格";
     }else {
-        self.statusContentLabel.text = @"合格";
-        self.graduationImageView.image = [UIImage imageNamed:@"已结业"];
+        self.statusContentLabel.text = @"已合格";
     }
 }
-
-// 0 表示：未申请 ；1，已申请，-1是已退回  3、再次申请结业
 @end

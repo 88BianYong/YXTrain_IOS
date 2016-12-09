@@ -7,21 +7,20 @@
 //
 #import "BeijingCourseListFetcher.h"
 @interface BeijingCourseListFetcher ()
-@property (nonatomic, strong) YXCourseListRequest *request;
+@property (nonatomic, strong) BeijingCourseListRequest *request;
 @end
 @implementation BeijingCourseListFetcher
 - (void)startWithBlock:(void (^)(int, NSArray *, NSError *))aCompleteBlock
 {
     [self.request stopRequest];
-    self.request = [[YXCourseListRequest alloc] init];
+    self.request = [[BeijingCourseListRequest alloc] init];
     self.request.pid = self.pid;
-    self.request.pageindex = [NSString stringWithFormat:@"%d", self.pageindex + 1];
+    self.request.pageno = [NSString stringWithFormat:@"%d", self.pageindex + 1];
     self.request.pagesize = [NSString stringWithFormat:@"%d", self.pagesize];
     self.request.studyid = self.studyid;
     self.request.segid = self.segid;
     self.request.stageid = self.stageid;
     self.request.w = self.w;
-    self.request.urlHead = self.urlHead;
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXCourseListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
@@ -31,7 +30,7 @@
         }
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         BLOCK_EXEC(self.filterBlock,[item beijingFilterModel]);
-        BLOCK_EXEC(aCompleteBlock,item.body.total.intValue,[item allCourses],nil);
+        BLOCK_EXEC(aCompleteBlock,item.body.coursecount.intValue,[item allCourses],nil);
     }];
 }
 
