@@ -40,12 +40,13 @@
 
 #pragma mark - setupUI
 - (void)setupUI{
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(YXTrainCornerRadii, YXTrainCornerRadii)];
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = self.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.layer.mask = maskLayer;    
-    
+    if (![YXTrainManager sharedInstance].isBeijingProject) {
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(YXTrainCornerRadii, YXTrainCornerRadii)];
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.frame = self.bounds;
+        maskLayer.path = maskPath.CGPath;
+        self.layer.mask = maskLayer;
+    }    
     _scoreLabel = [[UILabel alloc] init];
     _scoreLabel.textColor = [UIColor colorWithHexString:@"334466"];
     _scoreLabel.font = [UIFont boldSystemFontOfSize:12.0f];
@@ -161,7 +162,7 @@
             make.top.equalTo(label.mas_bottom).offset(18.0f);
             make.left.equalTo(self.mas_left).offset(10.0f);
             make.right.equalTo(self.mas_right).offset(-10.0f);
-            make.bottom.equalTo(self.mas_bottom).offset(-30.0f);
+            make.bottom.equalTo(self.mas_bottom).offset(-10.0f);
         }];
     }else {
         [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -226,7 +227,6 @@
     _descriptionLabel.attributedText = [self descriptionStringWithDesc:_body.depiction ?: @" "];
     [self layoutInterface:[_body.recommend boolValue] withIsmyrec:[_body.ismyrec boolValue]];
     _scrollView.contentSize = [self scrollViewContentSizeWithDescription:_body.depiction ?: @" "];
-    [self layoutInterface];
 }
 
 - (CGSize)scrollViewContentSizeWithDescription:(NSString*)desc{

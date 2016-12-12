@@ -81,9 +81,7 @@ UITableViewDataSource
     }else{
         self.itemBody.lessonStatus = YXVideoLessonStatus_NoRecord;
     }
-    if (![YXTrainManager sharedInstance].isBeijingProject) {
-        [self findVideoHomeworkInformation:self.itemBody];
-    }
+    [self findVideoHomeworkInformation:self.itemBody];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     
@@ -273,9 +271,8 @@ UITableViewDataSource
     }];
     self.itemBody = item;
     if ([YXTrainManager sharedInstance].isBeijingProject) {
-        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, [self scrollViewContentSizeWithDescription:self.itemBody.depiction ?: @" "].height + 247 + 22 + 30 + 10);
+        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, [self scrollViewContentSizeWithDescription:self.itemBody.depiction ?: @" "].height + 247 + 22);
     }
-    _tableView.tableHeaderView = nil;
     _tableView.tableHeaderView = self.headerView;
     self.headerView.body = self.itemBody;
     self.title = self.itemBody.title;
