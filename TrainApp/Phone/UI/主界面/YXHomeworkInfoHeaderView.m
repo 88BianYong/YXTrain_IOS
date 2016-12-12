@@ -227,7 +227,6 @@
     _descriptionLabel.attributedText = [self descriptionStringWithDesc:_body.depiction ?: @" "];
     [self layoutInterface:[_body.recommend boolValue] withIsmyrec:[_body.ismyrec boolValue]];
     _scrollView.contentSize = [self scrollViewContentSizeWithDescription:_body.depiction ?: @" "];
-    [self layoutInterface];
 }
 
 - (CGSize)scrollViewContentSizeWithDescription:(NSString*)desc{
