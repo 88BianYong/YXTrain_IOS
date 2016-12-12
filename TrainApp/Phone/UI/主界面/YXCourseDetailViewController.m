@@ -18,6 +18,7 @@
 @property (nonatomic, strong) YXModuleDetailRequest *moduleDetailRequest;
 @property (nonatomic, strong) YXCourseDetailRequest *courseDetailRequest;
 @property (nonatomic, strong) YXCourseDetailItem *courseItem;
+@property (nonatomic, strong) YXFileItemBase *fileItem;
 @end
 
 @implementation YXCourseDetailViewController
@@ -217,37 +218,17 @@
     
     NSMutableString *fixUrl = [NSMutableString stringWithString:fragment.url];
     [fixUrl replaceOccurrencesOfString:@"\\" withString:@"/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [fixUrl length])];
-    YXFileItemBase *item = nil;
-    if (type == YXFileTypeVideo) {
-        YXFileVideoItem *videoItem = [[YXFileVideoItem alloc]init];
-        videoItem.url = fixUrl;
-        videoItem.name = fragment.fragment_name;
-        videoItem.lurl = fragment.lurl;
-        videoItem.murl = fragment.murl;
-        videoItem.surl = fragment.surl;
-        item = videoItem;
-    }else if (type == YXFileTypeAudio){
-        YXFileAudioItem *audioItem = [[YXFileAudioItem alloc]init];
-        audioItem.url = fixUrl;
-        audioItem.name = fragment.fragment_name;
-        item = audioItem;
-    }else if (type == YXFileTypeDoc){
-        YXFileDocItem *docItem = [[YXFileDocItem alloc]init];
-        docItem.url = fixUrl;
-        docItem.name = fragment.fragment_name;
-        item = docItem;
-    }else if (type == YXFileTypeHtml){
-        YXFileHtmlItem *htmlItem = [[YXFileHtmlItem alloc]init];
-        htmlItem.url = fixUrl;
-        htmlItem.name = fragment.fragment_name;
-        item = htmlItem;
-    }
-    item.sourceType = YXSourceTypeCourse;
-    if (item) {
-        [YXFileBrowseManager sharedManager].fileItem = item;
-        [YXFileBrowseManager sharedManager].baseViewController = self;
-        [[YXFileBrowseManager sharedManager] browseFile];
-    }
+    
+    YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
+    fileItem.name = fragment.fragment_name;
+    fileItem.url = fixUrl;
+    fileItem.lurl = fragment.lurl;
+    fileItem.murl = fragment.murl;
+    fileItem.surl = fragment.surl;
+    fileItem.baseViewController = self;
+    fileItem.sourceType = YXSourceTypeCourse;
+    [fileItem browseFile];
+    self.fileItem = fileItem;
 }
 
 @end

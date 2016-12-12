@@ -7,14 +7,17 @@
 //
 
 #import "YXFileHtmlItem.h"
+#import "YXBroseWebView.h"
 
 @implementation YXFileHtmlItem
 
-- (instancetype)init{
-    if (self = [super init]) {
-        self.type = YXFileTypeHtml;
-    }
-    return self;
+- (void)openFile {
+    YXBroseWebView *webView = [[YXBroseWebView alloc] init];
+    webView.urlString = self.url;
+    webView.titleString = self.name;
+    webView.exitDelegate = self;
+    webView.browseTimeDelegate = self;
+    [self.baseViewController.navigationController pushViewController:webView animated:YES];
 }
 
 @end

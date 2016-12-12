@@ -7,14 +7,23 @@
 //
 
 #import "YXFileAudioItem.h"
+#import "YXAudioPlayerViewController.h"
 
 @implementation YXFileAudioItem
 
-- (instancetype)init{
-    if (self = [super init]) {
-        self.type = YXFileTypeAudio;
+- (void)openFile {
+    YXAudioPlayerViewController *vc = [[YXAudioPlayerViewController alloc] init];
+    id favorData = [self valueForKey:@"favorData"];
+    if (favorData) {
+        YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:favorData baseVC:vc];
+        wrapper.delegate = self;
+        vc.favorWrapper = wrapper;
     }
-    return self;
+    vc.videoUrl = self.url;
+    vc.title = self.name;
+    vc.delegate = self;
+    vc.exitDelegate = self;
+    [[self.baseViewController visibleViewController] presentViewController:vc animated:YES completion:nil];
 }
 
 @end

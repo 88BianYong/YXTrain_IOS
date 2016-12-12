@@ -25,6 +25,7 @@ static  NSString *const trackPageName = @"全部资源页面";
 @property (nonatomic, strong) YXResourceCollectionRequest *collectionRequest;
 
 @property (nonatomic, copy) NSString *currentConditon;//错误刷新用到
+@property (nonatomic, strong) YXFileItemBase *fileItem;
 
 @end
 
@@ -144,24 +145,24 @@ static  NSString *const trackPageName = @"全部资源页面";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXDatumCellModel *data = self.dataArray[indexPath.row];
-    YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
-    item.name = data.title;
-    item.url = data.url;
-    item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
-    if(item.type == YXFileTypeUnknown) {
+    YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    if(type == YXFileTypeUnknown) {
         [self showToast:@"暂不支持该格式文件预览"];
         return;
     }
+    YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
+    fileItem.name = data.title;
+    fileItem.url = data.url;
+    fileItem.baseViewController = self;
     if (!data.isFavor) {
-        [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
+        [fileItem addFavorWithData:data completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:YXFavorSuccessNotification object:data userInfo:nil];
             [YXDataStatisticsManger trackEvent:@"资源" label:@"收藏资源" parameters:nil];
             [self.tableView reloadData];
         }];
     }
-    [YXFileBrowseManager sharedManager].fileItem = item;
-    [YXFileBrowseManager sharedManager].baseViewController = self;
-    [[YXFileBrowseManager sharedManager] browseFile];
+    [fileItem browseFile];
+    self.fileItem = fileItem;
     [YXDataStatisticsManger trackEvent:@"资源" label:@"预览资源" parameters:nil];
 }
 - (void)didReceiveMemoryWarning {

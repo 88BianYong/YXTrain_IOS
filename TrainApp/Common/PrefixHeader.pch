@@ -56,7 +56,6 @@ extern int ddLogLevel;
 #import "YXDefinitions.h"
 #import "YXConfigManager.h"
 #import "GlobalUtils.h"
-#import "YXFileBrowseManager.h"
 #import "YXFileDocItem.h"
 #import "YXFileHtmlItem.h"
 #import "YXFileAudioItem.h"
@@ -74,4 +73,5 @@ extern int ddLogLevel;
 #import "YXTrainConst.h"
 #import "YXDataStatisticsManger.h"
 #import "YXTrackPageDataProtocol.h"
+#import "FileBrowserFactory.h"
 #endif /* PrefixHeader_pch */

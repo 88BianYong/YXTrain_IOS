@@ -16,6 +16,7 @@
 #import "CommentPageListViewController.h"
 @interface ShareResourcesViewController ()
 @property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong) YXFileItemBase *fileItem;
 @end
 
 @implementation ShareResourcesViewController
@@ -139,23 +140,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXDatumCellModel *data = self.dataArray[indexPath.row];
-    YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
-    item.name = data.title;
-    item.url = data.previewUrl;
-    item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
-    if(item.type == YXFileTypeUnknown) {
+    YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    if(type == YXFileTypeUnknown) {
         [self showToast:@"暂不支持该格式文件预览"];
         return;
     }
+    YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
+    fileItem.name = data.title;
+    fileItem.url = data.previewUrl;
+    fileItem.baseViewController = self;
     if (!data.isFavor) {
-        [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
+        [fileItem addFavorWithData:data completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:YXFavorSuccessNotification object:data userInfo:nil];
             [self.tableView reloadData];
         }];
     }
-    [YXFileBrowseManager sharedManager].fileItem = item;
-    [YXFileBrowseManager sharedManager].baseViewController = self;
-    [[YXFileBrowseManager sharedManager] browseFile];
+    [fileItem browseFile];
+    self.fileItem = fileItem;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

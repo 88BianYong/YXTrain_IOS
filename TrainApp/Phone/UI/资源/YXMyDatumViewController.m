@@ -21,7 +21,7 @@ static  NSString *const trackPageName = @"我的资源页面";
 @property (nonatomic, strong) YXResourceCollectionRequest *collectionRequest;
 @property (nonatomic, strong) YXDatumCellModel *currentDownloadingModel;
 @property (nonatomic, strong) YXDatumDelSourseRequest *delSourceRequest;
-
+@property (nonatomic, strong) YXFileItemBase *fileItem;
 @end
 
 @implementation YXMyDatumViewController
@@ -139,21 +139,21 @@ static  NSString *const trackPageName = @"我的资源页面";
     if (data.downloadState == DownloadStatusDownloading) {
         return;
     }
-    YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
-    item.name = data.title;
-    item.url = data.url;
-    item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
-    if(item.type == YXFileTypeUnknown) {
+    YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    if(type == YXFileTypeUnknown) {
         [self showToast:@"暂不支持该格式文件预览"];
         return;
     }
+    YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
+    fileItem.name = data.title;
+    fileItem.url = data.url;
+    fileItem.baseViewController = self;
     if (data.downloadState == DownloadStatusFinished) { // 没下载的在线预览
-        item.isLocal = YES;
-        item.url = [PersistentUrlDownloader localPathForUrl:data.url];
+        fileItem.isLocal = YES;
+        fileItem.url = [PersistentUrlDownloader localPathForUrl:data.url];
     }
-    [YXFileBrowseManager sharedManager].fileItem = item;
-    [YXFileBrowseManager sharedManager].baseViewController = self;
-    [[YXFileBrowseManager sharedManager] browseFile];
+    [fileItem browseFile];
+    self.fileItem = fileItem;
     [YXDataStatisticsManger trackEvent:@"资源" label:@"预览资源" parameters:nil];
     
 }

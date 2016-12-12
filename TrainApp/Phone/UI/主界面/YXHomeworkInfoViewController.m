@@ -30,7 +30,7 @@ UITableViewDataSource
 }
 @property (nonatomic ,strong)YXHomeworkInfoHeaderView *headerView;
 @property (nonatomic ,strong)YXHomeworkUploadCompleteView *footerView;
-
+@property (nonatomic, strong) YXFileVideoItem *videoItem;
 @end
 
 @implementation YXHomeworkInfoViewController
@@ -350,7 +350,6 @@ UITableViewDataSource
         case YXRecordVideoInterfaceStatus_Play:
         {
             YXFileVideoItem *videoItem = [[YXFileVideoItem alloc] init];
-            videoItem.type = YXFileTypeVideo;
             videoItem.isLocal = YES;
             videoItem.name = self.itemBody.title;
             videoItem.url = [NSURL fileURLWithPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName]].absoluteString;
@@ -361,9 +360,9 @@ UITableViewDataSource
             else{
                 videoItem.isDeleteVideo = NO;
             }
-            [YXFileBrowseManager sharedManager].fileItem = videoItem;
-            [YXFileBrowseManager sharedManager].baseViewController = self;
-            [[YXFileBrowseManager sharedManager] browseFile];
+            videoItem.baseViewController = self;
+            [videoItem browseFile];
+            self.videoItem = videoItem;
         }
             break;
         case YXRecordVideoInterfaceStatus_Write:

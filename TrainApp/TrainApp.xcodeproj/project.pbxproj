@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C2991B01DFE4C4D00AE921C /* FileBrowserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2991AF1DFE4C4D00AE921C /* FileBrowserFactory.m */; };
+		7C2991B31DFE6F7000AE921C /* FileDownloadHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2991B21DFE6F7000AE921C /* FileDownloadHelper.m */; };
 		7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B2A1D20FF5700A03635 /* YXScoreViewController.m */; };
 		7C2C3B2E1D21007D00A03635 /* YXScoreTotalScoreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B2D1D21007D00A03635 /* YXScoreTotalScoreHeaderView.m */; };
 		7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B301D21043A00A03635 /* YXScoreNoScoreView.m */; };
@@ -84,7 +86,6 @@
 		7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177E21D114941004AAC90 /* YXFileAudioItem.m */; };
 		7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177E51D11495D004AAC90 /* YXFilePhotoItem.m */; };
 		7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177E81D1149B5004AAC90 /* YXFileDocItem.m */; };
-		7C3177ED1D114DC1004AAC90 /* YXFileBrowseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177EC1D114DC1004AAC90 /* YXFileBrowseManager.m */; };
 		7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177EF1D11750D004AAC90 /* YXFileHtmlItem.m */; };
 		7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177F31D1177F9004AAC90 /* BaseDownloader.m */; };
 		7C3177FC1D1177F9004AAC90 /* DownloaderEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177F51D1177F9004AAC90 /* DownloaderEntity.m */; };
@@ -479,6 +480,10 @@
 /* Begin PBXFileReference section */
 		22524766F0C73BA9FCA8F5C7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A44E0C17A8C88A304B21CA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7C2991AE1DFE4C4D00AE921C /* FileBrowserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileBrowserFactory.h; sourceTree = "<group>"; };
+		7C2991AF1DFE4C4D00AE921C /* FileBrowserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileBrowserFactory.m; sourceTree = "<group>"; };
+		7C2991B11DFE6F7000AE921C /* FileDownloadHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloadHelper.h; sourceTree = "<group>"; };
+		7C2991B21DFE6F7000AE921C /* FileDownloadHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDownloadHelper.m; sourceTree = "<group>"; };
 		7C2C3B291D20FF5700A03635 /* YXScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreViewController.h; sourceTree = "<group>"; };
 		7C2C3B2A1D20FF5700A03635 /* YXScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreViewController.m; sourceTree = "<group>"; };
 		7C2C3B2C1D21007D00A03635 /* YXScoreTotalScoreHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXScoreTotalScoreHeaderView.h; sourceTree = "<group>"; };
@@ -627,8 +632,6 @@
 		7C3177E51D11495D004AAC90 /* YXFilePhotoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFilePhotoItem.m; sourceTree = "<group>"; };
 		7C3177E71D1149B5004AAC90 /* YXFileDocItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFileDocItem.h; sourceTree = "<group>"; };
 		7C3177E81D1149B5004AAC90 /* YXFileDocItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFileDocItem.m; sourceTree = "<group>"; };
-		7C3177EB1D114DC1004AAC90 /* YXFileBrowseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFileBrowseManager.h; sourceTree = "<group>"; };
-		7C3177EC1D114DC1004AAC90 /* YXFileBrowseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFileBrowseManager.m; sourceTree = "<group>"; };
 		7C3177EE1D11750D004AAC90 /* YXFileHtmlItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXFileHtmlItem.h; sourceTree = "<group>"; };
 		7C3177EF1D11750D004AAC90 /* YXFileHtmlItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXFileHtmlItem.m; sourceTree = "<group>"; };
 		7C3177F21D1177F9004AAC90 /* BaseDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDownloader.h; sourceTree = "<group>"; };
@@ -1811,12 +1814,14 @@
 				7CF844621D2B61E500B1CE55 /* Record */,
 				7C3178031D123899004AAC90 /* Browsers */,
 				7C3177EA1D114BCE004AAC90 /* Type */,
-				7C3177EB1D114DC1004AAC90 /* YXFileBrowseManager.h */,
-				7C3177EC1D114DC1004AAC90 /* YXFileBrowseManager.m */,
 				7C3178001D11814B004AAC90 /* YXFileDownloadProgressView.h */,
 				7C3178011D11814B004AAC90 /* YXFileDownloadProgressView.m */,
+				7C2991B11DFE6F7000AE921C /* FileDownloadHelper.h */,
+				7C2991B21DFE6F7000AE921C /* FileDownloadHelper.m */,
 				7C3178091D12830A004AAC90 /* YXFileFavorWrapper.h */,
 				7C31780A1D12830A004AAC90 /* YXFileFavorWrapper.m */,
+				7C2991AE1DFE4C4D00AE921C /* FileBrowserFactory.h */,
+				7C2991AF1DFE4C4D00AE921C /* FileBrowserFactory.m */,
 			);
 			path = FileBrowser;
 			sourceTree = "<group>";
@@ -3444,6 +3449,7 @@
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				926354401DEFFAD000FAD1DE /* BeijingExamineRequest.m in Sources */,
 				CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */,
+				7C2991B31DFE6F7000AE921C /* FileDownloadHelper.m in Sources */,
 				92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
 				922901811DED7F67001474CE /* BeijingExamGenreExplainHeaderView.m in Sources */,
@@ -3681,6 +3687,7 @@
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
 				9223C8151D2CFF89000F74DF /* YXWorkshopDatumViewController.m in Sources */,
 				7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */,
+				7C2991B01DFE4C4D00AE921C /* FileBrowserFactory.m in Sources */,
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
@@ -3804,7 +3811,6 @@
 				CB3510B61D18E9830081EA3B /* YXDatumOrderView.m in Sources */,
 				923237351D79623E00FDACFE /* YXScoreLeadingGroupCell.m in Sources */,
 				7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */,
-				7C3177ED1D114DC1004AAC90 /* YXFileBrowseManager.m in Sources */,
 				7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
 				924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */,
@@ -3986,6 +3992,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b7749d42-a4ec-4c1b-80d6-79f2671606d0";
+				PROVISIONING_PROFILE_SPECIFIER = DevAll;
 			};
 			name = Debug;
 		};
@@ -4008,6 +4015,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b7749d42-a4ec-4c1b-80d6-79f2671606d0";
+				PROVISIONING_PROFILE_SPECIFIER = DevAll;
 			};
 			name = Release;
 		};

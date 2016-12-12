@@ -16,6 +16,7 @@ static  NSString *const trackPageName = @"工作坊资源列表页面";
 {
     YXWorkshopDatumFetch *_datumFetch;
 }
+@property (nonatomic, strong) YXFileItemBase *fileItem;
 @end
 
 @implementation YXWorkshopDatumViewController
@@ -91,24 +92,24 @@ static  NSString *const trackPageName = @"工作坊资源列表页面";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXDatumCellModel *data = self.dataArray[indexPath.row];
-    YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
-    item.name = data.title;
-    item.url = data.url;
-    item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
-    if(item.type == YXFileTypeUnknown) {
+    YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    if(type == YXFileTypeUnknown) {
         [self showToast:@"暂不支持该格式文件预览"];
         return;
     }
+    YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
+    fileItem.name = data.title;
+    fileItem.url = data.url;
+    fileItem.baseViewController = self;
     if (!data.isFavor) {
-        [[YXFileBrowseManager sharedManager]addFavorWithData:data completion:^{
+        [fileItem addFavorWithData:data completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:YXFavorSuccessNotification object:data userInfo:nil];
             [YXDataStatisticsManger trackEvent:@"工作坊资源" label:@"收藏工作坊资源" parameters:nil];
             [self.tableView reloadData];
         }];
     }
-    [YXFileBrowseManager sharedManager].fileItem = item;
-    [YXFileBrowseManager sharedManager].baseViewController = self;
-    [[YXFileBrowseManager sharedManager] browseFile];
+    [fileItem browseFile];
+    self.fileItem = fileItem;
     [YXDataStatisticsManger trackEvent:@"工作坊资源" label:@"预览工作坊资源" parameters:nil];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

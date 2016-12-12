@@ -11,6 +11,7 @@
 @interface ActivityEnclosureViewController ()
 @property (nonatomic, strong) ResourceMessageView *resourceMessageView;
 @property (nonatomic, strong) YXDatumCellModel *dataModel;
+@property (nonatomic, strong) YXFileItemBase *fileItem;
 @end
 
 @implementation ActivityEnclosureViewController
@@ -51,24 +52,25 @@
 
 -(void)tapGesture:(UITapGestureRecognizer *)sender {
     YXDatumCellModel *data = self.dataModel;
-    YXFileVideoItem *item = [[YXFileVideoItem alloc]init];
-    item.name = data.title;
-    item.url = data.previewUrl;
-    item.type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
-    if(item.type == YXFileTypeUnknown) {
+    YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:data.type];
+    if(type == YXFileTypeUnknown) {
         [self showToast:@"暂不支持该格式文件预览"];
         return;
     }
+    YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
+    fileItem.name = data.title;
+    fileItem.url = data.previewUrl;
+    fileItem.baseViewController = self;
     if (!self.dataModel.isFavor) {
-        [[YXFileBrowseManager sharedManager]addFavorWithData:self.dataModel completion:^{
+        [fileItem addFavorWithData:self.dataModel completion:^{
             [[NSNotificationCenter defaultCenter] postNotificationName:YXFavorSuccessNotification object:self.dataModel userInfo:nil];
             [self reloadData];
         }];
     }
-    [YXFileBrowseManager sharedManager].fileItem = item;
-    [YXFileBrowseManager sharedManager].baseViewController = self;
-    [[YXFileBrowseManager sharedManager] browseFile];
+    [fileItem browseFile];
+    self.fileItem = fileItem;
 }
+
 - (void)reloadData {
     self.resourceMessageView.data = self.dataModel;
 }
