@@ -36,7 +36,7 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.textView = [[SAMTextView alloc] init];
-    if ([self commentMultistageStyle] ) {//只有15评论不支持表情
+    if (![self commentMultistageStyle] ) {//只有15评论不支持表情
         self.textView.delegate = self;
     }
     self.textView.placeholder = @"评论 :";
@@ -199,9 +199,9 @@
                                     }
                                     // Not surrogate pair (U+2100-27BF)
                                 } else {
-                                    if (0x2100 <= high && high <= 0x27BF){
-                                        returnValue = YES;
-                                    }
+//                                    if (0x2100 <= high && high <= 0x27BF){
+//                                        returnValue = YES;
+//                                    }
                                 }
                             }];
     

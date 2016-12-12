@@ -81,7 +81,9 @@ UITableViewDataSource
     }else{
         self.itemBody.lessonStatus = YXVideoLessonStatus_NoRecord;
     }
-    [self findVideoHomeworkInformation:self.itemBody];
+    if (![YXTrainManager sharedInstance].isBeijingProject) {
+        [self findVideoHomeworkInformation:self.itemBody];
+    }
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     
