@@ -285,6 +285,13 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     [popView setupConstrainsInContainerView:v];
     [popView updateWithData:data actions:@[downloadUpdateAlertAct,cancelAlertAct]];
     [v showInView:nil];
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    NSArray *array = window.subviews;
+    for (UIView *view in array) {
+        if ([view isKindOfClass:[YXCMSCustomView class]]) {
+            [window bringSubviewToFront:view];
+        }
+    }    
 }
 
 - (void)showForceUploadTitle:(NSString *)titleString andContent:(NSString *)contentString {

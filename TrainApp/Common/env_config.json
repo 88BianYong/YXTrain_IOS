@@ -3,5 +3,12 @@
 	"loginServer":"http://u.yanxiu.com/test/",
 	"uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
 	"websocketServer":"ws://mobile.yanxiu.com/test/api/websocket",
-	"mode":"test"
+	"mode":"test",
+    "serverList" :{
+        "server":"http://mobile.yanxiu.com/v20/api/",
+        "loginServer":"http://u.yanxiu.com/",
+        "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
+        "websocketServer":"ws://mobile.yanxiu.com/websocket",
+        "mode":"test"
+    }
 }

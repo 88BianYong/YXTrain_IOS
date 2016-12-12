@@ -9,33 +9,15 @@
 #import <MSDynamicsDrawerViewController.h>
 #import "AppDelegate.h"
 #import "YXAppStartupManager.h"
-#import "YXTestViewController.h"
-#import "YXProjectMainViewController.h"
-#import "YXSideMenuViewController.h"
-#import "YXNavigationController.h"
-#import "YXDrawerViewController.h"
-#import "YXLoginViewController.h"
 #import "YXStartViewController.h"
-
-#import "YXUserProfileRequest.h"
-#import "YXLoginViewController.h"
-#import "YXUserManager.h"
-#import "YXDatumGlobalSingleton.h"
-#import "YXPromtController.h"
 #import "YXInitRequest.h"
-#import "YXGuideViewController.h"
-#import "YXGuideModel.h"
+
 #import "YXWebSocketManger.h"
 
 #import "AppDelegate+GetInfoList.h"
-#import "AppDelegate+CMSView.h"
+#import "AppDelegateHelper.h"
 @interface AppDelegate ()<YXLoginDelegate>
-
-@property (strong, nonatomic) YXDrawerViewController *drawerVC;
-@property (strong, nonatomic) YXLoginViewController *loginVC;
-
-
-
+@property (nonatomic, strong) AppDelegateHelper *appDelegatehelper;
 @end
 
 @implementation AppDelegate
@@ -44,14 +26,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [[YXAppStartupManager sharedInstance] setupForAppdelegate:self withLauchOptions:launchOptions];
-    //键盘自动控制
-    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
-    manager.enable = NO;
-    manager.shouldResignOnTouchOutside = YES;
-    manager.shouldToolbarUsesTextFieldTintColor = YES;
-    manager.enableAutoToolbar = NO;
-    
     [YXNavigationBarController setup];
+    [self setupKeyboardManager];
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     YXStartViewController *VC = [[YXStartViewController alloc] init];
@@ -61,7 +37,8 @@
     [[YXInitHelper sharedHelper] requestCompeletion:^(BOOL upgrade) {
         STRONG_SELF
         if (upgrade) {
-            [self setupUI];
+            self.appDelegatehelper = [[AppDelegateHelper alloc] initWithWindow:self.window];
+            [self.appDelegatehelper setupRootViewController];
         }
     }];
     [GlobalUtils setDefaultExceptionHandler];
@@ -69,60 +46,12 @@
     return YES;
 }
 
-- (void)setupUI {
-    if ([YXConfigManager sharedInstance].testFrameworkOn.boolValue) {
-        YXTestViewController *vc = [[YXTestViewController alloc] init];
-        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
-    }else{
-        NSString *versionKey = (__bridge NSString *)kCFBundleVersionKey;
-        NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:versionKey];
-        NSString *currentVersion = [[NSBundle mainBundle].infoDictionary objectForKey:versionKey];
-        if ([currentVersion compare:lastVersion] != NSOrderedSame) {
-            YXGuideViewController *vc = [[YXGuideViewController alloc] init];
-            vc.guideDataArray = [self configGuideArray];
-            vc.startMainVCBlock = ^{
-                [self startRootVC];
-            };
-            self.window.rootViewController = vc;
-            [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            if (![YXTrainManager sharedInstance].trainlistItem.body.training &&![YXTrainManager sharedInstance].trainlistItem.body.trained) {
-                [[YXTrainManager sharedInstance] clear];
-            }
-        }else {
-            [self startRootVC];
-        }
-    }
-}
-
-- (void)startRootVC {
-    if ([[YXUserManager sharedManager] isLogin]) {        
-        self.window.rootViewController = [self rootDrawerViewController];
-        [self requestCommonData];
-    } else {
-        self.loginVC = [[YXLoginViewController alloc] init];
-        self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
-    }
-}
-
-- (YXDrawerViewController *)rootDrawerViewController {
-    YXSideMenuViewController *menuVC = [[YXSideMenuViewController alloc]init];
-    YXProjectMainViewController *projectVC = [[YXProjectMainViewController alloc]init];
-    YXNavigationController *projectNavi = [[YXNavigationController alloc]initWithRootViewController:projectVC];
-    
-    YXDrawerViewController *drawerVC = [[YXDrawerViewController alloc]init];
-    drawerVC.drawerViewController = menuVC;
-    drawerVC.paneViewController = projectNavi;
-    drawerVC.drawerWidth = [UIScreen mainScreen].bounds.size.width * YXTrainLeftDrawerWidth/750.0f;
-    return drawerVC;
-}
-- (void)requestCommonData
-{
-	//@weakify(self);
-	[[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
-		//@strongify(self);
-		[[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
-	}];
+- (void)setupKeyboardManager {
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = NO;
+    manager.shouldResignOnTouchOutside = YES;
+    manager.shouldToolbarUsesTextFieldTintColor = YES;
+    manager.enableAutoToolbar = NO;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -167,47 +96,5 @@
 // 9.0
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
 	return NO;
-}
-
-#pragma mark - YXLoginDelegate
-
-- (void)loginSuccess
-{
-    self.window.rootViewController = [self rootDrawerViewController];
-    [self requestCommonData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainShowUpdate object:nil];
-}
-
-- (void)logoutSuccess {
-    if (![self.window.rootViewController isKindOfClass:[YXLoginViewController class]]) {
-        self.loginVC = [[YXLoginViewController alloc] init];
-        self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
-    }
-}
-
-- (void)tokenInvalid {
-    [[YXUserManager sharedManager] resetUserData];
-    [YXPromtController showToast:@"帐号授权已失效,请重新登录" inView:self.window];
-    if (![self.window.rootViewController isKindOfClass:[YXLoginViewController class]]) {
-        self.loginVC = [[YXLoginViewController alloc] init];
-        self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:self.loginVC];
-    }
-}
-
-- (NSArray *)configGuideArray {
-    YXGuideModel *model_0 = [self guideModelWithImageName:@"高效" title:@"高效" detail:@"培训进度清晰直观\n有的放矢提高效率" isShowButton:NO];
-    YXGuideModel *model_1 = [self guideModelWithImageName:@"便捷" title:@"便捷" detail:@"随时随地参与培训\n轻松便捷在线学习" isShowButton:NO];;
-    YXGuideModel *model_2 = [self guideModelWithImageName:@"全新" title:@"全新" detail:@"通知动态随时查看\n海量资源尽情下载" isShowButton:YES];;
-    NSArray *guideArry = @[model_0,model_1,model_2];
-    return guideArry;
-}
-
-- (YXGuideModel *)guideModelWithImageName:(NSString *)name title:(NSString *)titile detail:(NSString *)detail isShowButton:(BOOL)isShowButton {
-    YXGuideModel *model =[[YXGuideModel alloc] init];
-    model.guideTitle = titile;
-    model.guideImageString = name;
-    model.guideDetail = detail;
-    model.isShowButton = isShowButton;
-    return model;
 }
 @end

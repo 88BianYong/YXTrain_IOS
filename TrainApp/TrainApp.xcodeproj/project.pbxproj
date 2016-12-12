@@ -45,7 +45,6 @@
 		7C2C3B911D26406400A03635 /* YXTrainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C2C3B901D26406400A03635 /* YXTrainManager.m */; };
 		7C3177381D0E4D6C004AAC90 /* TrainAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177371D0E4D6C004AAC90 /* TrainAppTests.m */; };
 		7C3177431D0E4D6C004AAC90 /* TrainAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177421D0E4D6C004AAC90 /* TrainAppUITests.m */; };
-		7C3177581D0E5E04004AAC90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
 		7C31775A1D0E5E04004AAC90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177551D0E5E04004AAC90 /* main.m */; };
 		7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C3177611D0E61C4004AAC90 /* Empty.xib */; };
 		7C31776E1D0E6E92004AAC90 /* YXConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C31776D1D0E6E92004AAC90 /* YXConfig.plist */; };
@@ -288,6 +287,7 @@
 		92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F621DD96E3E00548424 /* ActivityPlayTopView.m */; };
 		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
 		927B6C661DFA99AE00CBBBBF /* BeijingCourseListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C651DFA99AE00CBBBBF /* BeijingCourseListRequest.m */; };
+		928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
 		929468071DDE8F220070C3B7 /* ActivitySlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */; };
 		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
 		92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */; };
@@ -295,6 +295,7 @@
 		92B2C0A61DD42D62003E27F9 /* icon_smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A51DD42D62003E27F9 /* icon_smile.gif */; };
 		92B2C0A91DD43B6F003E27F9 /* ActivityDetailTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B2C0A81DD43B6F003E27F9 /* ActivityDetailTableSectionView.m */; };
 		92B2C0AC1DD45450003E27F9 /* ActivityDetailStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B2C0AB1DD45450003E27F9 /* ActivityDetailStepCell.m */; };
+		92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */; };
 		92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */; };
 		92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55E21DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m */; };
 		92CA55E61DFE761400AA2C50 /* LSTTrainHelper_Default.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55E51DFE761400AA2C50 /* LSTTrainHelper_Default.m */; };
@@ -306,7 +307,6 @@
 		92CE51501D87D46A0071DE79 /* YXDynamicDatumFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE514F1D87D46A0071DE79 /* YXDynamicDatumFetch.m */; };
 		92CE51531D87D4AE0071DE79 /* YXHotspotRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51521D87D4AE0071DE79 /* YXHotspotRequest.m */; };
 		92CE51561D87D4C70071DE79 /* YXDynamicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51551D87D4C70071DE79 /* YXDynamicRequest.m */; };
-		92CE51591D87E6C00071DE79 /* AppDelegate+CMSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51581D87E6C00071DE79 /* AppDelegate+CMSView.m */; };
 		92CE515E1D87EF3D0071DE79 /* YXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE515D1D87EF3D0071DE79 /* YXWebViewController.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92DE3BB41DDAFDEE0011CFB7 /* ActivityStepTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BB31DDAFDEE0011CFB7 /* ActivityStepTableCell.m */; };
@@ -1046,6 +1046,8 @@
 		92B2C0A81DD43B6F003E27F9 /* ActivityDetailTableSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailTableSectionView.m; sourceTree = "<group>"; };
 		92B2C0AA1DD45450003E27F9 /* ActivityDetailStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailStepCell.h; sourceTree = "<group>"; };
 		92B2C0AB1DD45450003E27F9 /* ActivityDetailStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailStepCell.m; sourceTree = "<group>"; };
+		92CA55DB1DFE574D00AA2C50 /* AppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateHelper.h; sourceTree = "<group>"; };
+		92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateHelper.m; sourceTree = "<group>"; };
 		92CA55DE1DFE75DD00AA2C50 /* LSTTrainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTTrainHelper.h; sourceTree = "<group>"; };
 		92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTTrainHelper.m; sourceTree = "<group>"; };
 		92CA55E11DFE75F200AA2C50 /* LSTTrainHelper_Beijing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTTrainHelper_Beijing.h; sourceTree = "<group>"; };
@@ -1068,8 +1070,6 @@
 		92CE51521D87D4AE0071DE79 /* YXHotspotRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHotspotRequest.m; sourceTree = "<group>"; };
 		92CE51541D87D4C70071DE79 /* YXDynamicRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDynamicRequest.h; sourceTree = "<group>"; };
 		92CE51551D87D4C70071DE79 /* YXDynamicRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDynamicRequest.m; sourceTree = "<group>"; };
-		92CE51571D87E6C00071DE79 /* AppDelegate+CMSView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+CMSView.h"; sourceTree = "<group>"; };
-		92CE51581D87E6C00071DE79 /* AppDelegate+CMSView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CMSView.m"; sourceTree = "<group>"; };
 		92CE515C1D87EF3D0071DE79 /* YXWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWebViewController.h; sourceTree = "<group>"; };
 		92CE515D1D87EF3D0071DE79 /* YXWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWebViewController.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
@@ -1544,8 +1544,8 @@
 				7CF888801D1BD4A900E7C04D /* 字体 */,
 				7C3177521D0E5E04004AAC90 /* AppDelegate.h */,
 				7C3177531D0E5E04004AAC90 /* AppDelegate.m */,
-				92CE51571D87E6C00071DE79 /* AppDelegate+CMSView.h */,
-				92CE51581D87E6C00071DE79 /* AppDelegate+CMSView.m */,
+				92CA55DB1DFE574D00AA2C50 /* AppDelegateHelper.h */,
+				92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */,
 				9232374F1D81021A00FDACFE /* AppDelegate+GetInfoList.h */,
 				923237501D81021A00FDACFE /* AppDelegate+GetInfoList.m */,
 				7C3177551D0E5E04004AAC90 /* main.m */,
@@ -3487,6 +3487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */,
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */,
@@ -3808,10 +3809,8 @@
 				923237731D825C6500FDACFE /* YXHelpViewController.m in Sources */,
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
-				92CE51591D87E6C00071DE79 /* AppDelegate+CMSView.m in Sources */,
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
 				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,
-				7C3177581D0E5E04004AAC90 /* AppDelegate.m in Sources */,
 				7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */,
 				7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */,
 				7C2C3B7A1D24CBB700A03635 /* YXCourseDetailHeaderView.m in Sources */,
@@ -3867,6 +3866,7 @@
 				E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
 				9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */,
+				92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */,
 				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,
 				9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */,
 				92EDC7CB1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m in Sources */,

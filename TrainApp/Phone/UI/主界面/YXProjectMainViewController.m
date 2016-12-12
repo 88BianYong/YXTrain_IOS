@@ -19,7 +19,6 @@
 #import "YXUploadHeadImgRequest.h"
 #import "YXInitRequest.h"
 #import "YXPopUpContainerView.h"
-#import "AppDelegate+CMSView.h"
 #import "BeijingDynamicViewController.h"
 
 #import "BeijingCheckedMobileUserRequest.h"
@@ -50,13 +49,8 @@
     [super viewDidLoad];
     self.dataMutableArrray = [[NSMutableArray alloc] initWithCapacity:6];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:kYXTrainWebSocketReceiveMessage object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showoUpdateInterface:) name:kYXTrainShowUpdate object:nil];
     [self setupUI];
     [self getProjectList];
-    
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate showCMSView];
-    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -235,10 +229,6 @@
     }
     
 }
-- (void)showoUpdateInterface:(NSNotification *)aNotification{
-    [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
-}
-
 
 - (void)dealWithProjectGroups:(NSArray *)groups{
     YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
