@@ -169,16 +169,16 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXTaskListRequestItem_body_task *task = self.tasklistItem.body.tasks[indexPath.row];
     if (task.toolid.integerValue == 201) {
-        [[YXTrainManager sharedInstance] courseInterfaceSkip:self];
+        [[YXTrainManager sharedInstance].trainHelper courseInterfaceSkip:self];
     }else if ([task.toolid isEqualToString:@"203"] || [task.toolid isEqualToString:@"303"]){//作业
-        [[YXTrainManager sharedInstance] workshopInterfaceSkip:self];
+        [[YXTrainManager sharedInstance].trainHelper workshopInterfaceSkip:self];
     }else if ([task.toolid isEqualToString:@"205"] || [task.toolid isEqualToString:@"305"]){//研修总结
         NSString *string = @"YXHomeworkListViewController";
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
         [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else if ([task.toolid isEqualToString:@"202"] || [task.toolid isEqualToString:@"302"]){//活动
-        [[YXTrainManager sharedInstance] activityInterfaceSkip:self];
+        [[YXTrainManager sharedInstance].trainHelper activityInterfaceSkip:self];
     }else{
         [self showToast:@"相关功能暂未开放"];
     }

@@ -292,6 +292,9 @@
 		92B2C0A61DD42D62003E27F9 /* icon_smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A51DD42D62003E27F9 /* icon_smile.gif */; };
 		92B2C0A91DD43B6F003E27F9 /* ActivityDetailTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B2C0A81DD43B6F003E27F9 /* ActivityDetailTableSectionView.m */; };
 		92B2C0AC1DD45450003E27F9 /* ActivityDetailStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B2C0AB1DD45450003E27F9 /* ActivityDetailStepCell.m */; };
+		92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */; };
+		92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55E21DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m */; };
+		92CA55E61DFE761400AA2C50 /* LSTTrainHelper_Default.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55E51DFE761400AA2C50 /* LSTTrainHelper_Default.m */; };
 		92CD8C3A1DEECB0C00A2EB46 /* BeijingActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CD8C391DEECB0C00A2EB46 /* BeijingActivityListCell.m */; };
 		92CD8C3D1DEECE1300A2EB46 /* BeijingDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CD8C3C1DEECE1300A2EB46 /* BeijingDynamicCell.m */; };
 		92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51441D87D2C00071DE79 /* YXWebSocketManger.m */; };
@@ -1030,6 +1033,12 @@
 		92B2C0A81DD43B6F003E27F9 /* ActivityDetailTableSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailTableSectionView.m; sourceTree = "<group>"; };
 		92B2C0AA1DD45450003E27F9 /* ActivityDetailStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailStepCell.h; sourceTree = "<group>"; };
 		92B2C0AB1DD45450003E27F9 /* ActivityDetailStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailStepCell.m; sourceTree = "<group>"; };
+		92CA55DE1DFE75DD00AA2C50 /* LSTTrainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTTrainHelper.h; sourceTree = "<group>"; };
+		92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTTrainHelper.m; sourceTree = "<group>"; };
+		92CA55E11DFE75F200AA2C50 /* LSTTrainHelper_Beijing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTTrainHelper_Beijing.h; sourceTree = "<group>"; };
+		92CA55E21DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTTrainHelper_Beijing.m; sourceTree = "<group>"; };
+		92CA55E41DFE761400AA2C50 /* LSTTrainHelper_Default.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTTrainHelper_Default.h; sourceTree = "<group>"; };
+		92CA55E51DFE761400AA2C50 /* LSTTrainHelper_Default.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTTrainHelper_Default.m; sourceTree = "<group>"; };
 		92CD8C381DEECB0C00A2EB46 /* BeijingActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListCell.h; sourceTree = "<group>"; };
 		92CD8C391DEECB0C00A2EB46 /* BeijingActivityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityListCell.m; sourceTree = "<group>"; };
 		92CD8C3B1DEECE1300A2EB46 /* BeijingDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingDynamicCell.h; sourceTree = "<group>"; };
@@ -2011,6 +2020,12 @@
 				7C2C3B901D26406400A03635 /* YXTrainManager.m */,
 				E9A7B5F51DDD91DC00136335 /* TrainListProjectGroup.h */,
 				E9A7B5F61DDD91DC00136335 /* TrainListProjectGroup.m */,
+				92CA55DE1DFE75DD00AA2C50 /* LSTTrainHelper.h */,
+				92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */,
+				92CA55E11DFE75F200AA2C50 /* LSTTrainHelper_Beijing.h */,
+				92CA55E21DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m */,
+				92CA55E41DFE761400AA2C50 /* LSTTrainHelper_Default.h */,
+				92CA55E51DFE761400AA2C50 /* LSTTrainHelper_Default.m */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -3617,11 +3632,13 @@
 				7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */,
 				92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */,
 				920F1D261D50986E00636A51 /* YXQiNiuVideoUpload.m in Sources */,
+				92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */,
 				92CE51531D87D4AE0071DE79 /* YXHotspotRequest.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
 				7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */,
 				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
+				92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */,
 				926354431DF10C4100FAD1DE /* BeijingCourseViewController.m in Sources */,
 				7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
@@ -3759,6 +3776,7 @@
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
 				E9BD43E31DAC9507007BE8F6 /* YXDetailHotspotViewController.m in Sources */,
 				92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */,
+				92CA55E61DFE761400AA2C50 /* LSTTrainHelper_Default.m in Sources */,
 				CBF66E371D2E647100F4E408 /* YXUserTextFieldTableViewCell.m in Sources */,
 				CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */,
 				CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */,

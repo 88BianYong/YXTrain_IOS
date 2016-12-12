@@ -27,7 +27,7 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的工作坊";
+    self.title = [YXTrainManager sharedInstance].trainHelper.workshopListTitle;
     _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [self setupUI];
     [self layoutInterface];

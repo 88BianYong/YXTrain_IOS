@@ -26,6 +26,15 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     });
     return manager;
 }
+- (LSTTrainHelper *)trainHelper {
+    if (_trainHelper == nil) {
+        return [LSTTrainHelper alloc];
+    }else {
+        return _trainHelper;
+    }
+}
+
+
 
 - (YXTrainListRequestItem_body_train *)currentProject {
     NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body];
@@ -85,65 +94,11 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     self.trainlistItem = nil;
     [[NSUserDefaults standardUserDefaults]setValue:nil forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
+    self.trainHelper = nil;
 }
+
 
 - (BOOL)isBeijingProject {
     return [self.currentProject.pid isEqualToString:YXTrainBeijingProjectId];
-}
-
-
-#pragma mark - show project
-- (UIViewController<YXTrackPageDataProtocol> *)showExamProject {
-    UIViewController<YXTrackPageDataProtocol> *examVC = nil;
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        NSString *string = @"BeijingExamViewController";
-        examVC = [[NSClassFromString(string) alloc] init];
-    }else {
-        NSString *string = @"YXExamViewController";
-        examVC = [[NSClassFromString(string) alloc] init];
-    }
-    return examVC;
-}
-- (void)courseInterfaceSkip:(UIViewController *)viewController {
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        NSString *string = @"BeijingCourseViewController";
-        UIViewController *VC = [[NSClassFromString(string) alloc] init];
-        [viewController.navigationController pushViewController:VC animated:YES];
-    }else {
-        YXCourseViewController *vc = [[YXCourseViewController alloc]init];
-        vc.status = YXCourseFromStatus_Course;
-        [viewController.navigationController pushViewController:vc animated:YES];
-    }
-    [YXDataStatisticsManger trackEvent:@"课程列表" label:trackLabelOfJumpFromTaskList parameters:nil];
-}
-- (void)workshopInterfaceSkip:(UIViewController *)viewController {
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
-        YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
-        itemBody.type = @"4";
-        itemBody.requireId = [YXTrainManager sharedInstance].requireId;
-        itemBody.homeworkid = [YXTrainManager sharedInstance].homeworkid;
-        itemBody.pid = [YXTrainManager sharedInstance].currentProject.pid;
-        VC.itemBody = itemBody;
-        [viewController.navigationController pushViewController:VC animated:YES];
-    }else {
-        NSString *string = @"YXHomeworkListViewController";
-        UIViewController *VC = [[NSClassFromString(string) alloc] init];
-        [viewController.navigationController pushViewController:VC animated:YES];
-        [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
-    }
-}
-- (void)activityInterfaceSkip:(UIViewController *)viewController {
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        NSString *string = @"BeijingActivityListViewController";
-        UIViewController *VC = [[NSClassFromString(string) alloc] init];
-        [viewController.navigationController pushViewController:VC animated:YES];
-    }
-    else{
-        NSString *string = @"ActivityListViewController";
-        UIViewController *VC = [[NSClassFromString(string) alloc] init];
-        [viewController.navigationController pushViewController:VC animated:YES];
-    }
-    [YXDataStatisticsManger trackEvent:@"活动列表" label:trackLabelOfJumpFromTaskList parameters:nil];
 }
 @end

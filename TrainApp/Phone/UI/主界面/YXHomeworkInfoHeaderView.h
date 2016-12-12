@@ -10,4 +10,5 @@
 @class YXHomeworkInfoRequestItem_Body;
 @interface YXHomeworkInfoHeaderView : UIView
 @property (nonatomic ,strong) YXHomeworkInfoRequestItem_Body *body;
+
 @end

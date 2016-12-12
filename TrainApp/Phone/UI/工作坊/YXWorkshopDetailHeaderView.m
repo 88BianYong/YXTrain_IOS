@@ -47,7 +47,7 @@
     
     _masterLabel = [[UILabel alloc] init];
     _masterLabel.font = [UIFont systemFontOfSize:12.0f];
-    _masterLabel.text = @"坊主  暂无";
+    _masterLabel.text = [NSString stringWithFormat:@"%@  暂无",[YXTrainManager sharedInstance].trainHelper.workshopDetailName];
     _masterLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self addSubview:_masterLabel];
 }
@@ -80,6 +80,6 @@
 - (void)reloadWithName:(NSString *)nameString
                 master:(NSString *)masterString{
     _nameLable.text = nameString;
-    _masterLabel.text = [NSString stringWithFormat:@"坊主  %@",masterString];
+    _masterLabel.text = [NSString stringWithFormat:@"%@  %@",[YXTrainManager sharedInstance].trainHelper.workshopDetailName,masterString];
 }
 @end

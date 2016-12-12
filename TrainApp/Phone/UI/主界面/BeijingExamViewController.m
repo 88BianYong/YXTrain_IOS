@@ -175,10 +175,10 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
            cell.selectionStyle = UITableViewCellSelectionStyleNone;
          cell.toolExamineVo = toolExamine;
         if (toolExamine.toolid.integerValue == 2176) {//技术素养类
-            cell.tipLabelContent = @"课程(17课时)";
+            cell.tipLabelContent = @"课程(17学时)";
         }
         if (toolExamine.toolid.integerValue == 2180) {//案例
-            cell.tipLabelContent = @"案例(3课时)";
+            cell.tipLabelContent = @"案例(3学时)";
         }
         WEAK_SELF
         [cell setBeijingExamTipButtonBlock:^(UIButton *sender) {
@@ -261,6 +261,12 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    BeijingExamineRequestItem_ExamineVoList *list = self.examineItem.examineVoList[section];
+    BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamine = list.toolExamineVoList[0];
+    if (toolExamine.toolid.integerValue == 205 ) {
+        [YXTrainManager sharedInstance].requireId = toolExamine.requireid;
+        [YXTrainManager sharedInstance].homeworkid = toolExamine.homeworkid;
+    }
     return 45.0f;
 }
 

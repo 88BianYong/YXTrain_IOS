@@ -284,7 +284,7 @@
             self ->_selectedViewController = vc;
             [self ->_selectedViewController report:YES];
         };
-        UIViewController<YXTrackPageDataProtocol> *examVC = [[YXTrainManager sharedInstance] showExamProject];
+        UIViewController<YXTrackPageDataProtocol> *examVC = [[YXTrainManager sharedInstance].trainHelper showExamProject];
         YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
         YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
         notiVC.flag = YXFlag_Notice;

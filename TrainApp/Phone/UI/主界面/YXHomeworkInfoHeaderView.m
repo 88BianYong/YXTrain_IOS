@@ -174,32 +174,40 @@
 #pragma mark - data
 - (void)setBody:(YXHomeworkInfoRequestItem_Body *)body{
     _body = body;
-    if(!_body.score.boolValue){
-        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
-        _textAttachment = [[NSTextAttachment alloc]init];
-        _textAttachment.image = [UIImage imageNamed:@"未批改"];
-        _textAttachment.bounds = CGRectMake(0, -3.0f, 105.0f, 28.0f);
-        NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
-        [attr appendAttributedString:attrStringWithImage];
-        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@" "];
-        [attr appendAttributedString:attrString];
-        _pointLabel.attributedText = attr;
-    }else{
-        if ([YXTrainManager sharedInstance].isBeijingProject) {
-            _textAttachment = [[NSTextAttachment alloc]init];
+    if ([YXTrainManager sharedInstance].isBeijingProject) {
+        _pointLabel.font = [UIFont systemFontOfSize:24.0f];
+        if (_body.score.integerValue <= 0) {
+            _pointLabel.text = @"未批改";
+            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+            
+        }else if(_body.score.integerValue >= 0 && _body.score.integerValue <= 59){
+            _pointLabel.text = @"未合格";
+            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+            
+        }else if(_body.score.integerValue >= 60 && _body.score.integerValue <= 75){
+            _pointLabel.text = @"合格";
+            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+            
+        }else if(_body.score.integerValue >= 76 && _body.score.integerValue <= 85) {
+            _pointLabel.text = @"良好";
+            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+            
+        }else if(_body.score.integerValue >= 86 && _body.score.integerValue <= 100) {
+            _pointLabel.text = @"优秀";
+            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+        }
+    }else {
+        if(!_body.score.boolValue){
             NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
-            if (_body.score.integerValue < 60.0f) {
-                _textAttachment.image = [UIImage imageNamed:@"未合格"];
-            }else {
-                _textAttachment.image = [UIImage imageNamed:@"已合格-"];
-            }
+            _textAttachment = [[NSTextAttachment alloc]init];
+            _textAttachment.image = [UIImage imageNamed:@"未批改"];
             _textAttachment.bounds = CGRectMake(0, -3.0f, 105.0f, 28.0f);
             NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
             [attr appendAttributedString:attrStringWithImage];
             NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@" "];
             [attr appendAttributedString:attrString];
             _pointLabel.attributedText = attr;
-        }else {
+        }else{
             _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
         }
     }

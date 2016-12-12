@@ -36,7 +36,7 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.textView = [[SAMTextView alloc] init];
-    if ([self commentMultistageStyle]) {//只有15评论不支持表情
+    if (![self commentMultistageStyle] ) {//只有15评论不支持表情
         self.textView.delegate = self;
     }
     self.textView.placeholder = @"评论 :";
@@ -102,7 +102,7 @@
     }];
     
 }
-#pragma mark - button Action 
+#pragma mark - button Action
 - (void)sendButtonAction:(UIButton *)sender {
     if ([[self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0) {
         BLOCK_EXEC(self.inputTextBlock,self.textView.text);
@@ -154,10 +154,10 @@
         self.inputNumberLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
         self.sendButton.enabled = YES;
         self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"0067be"].CGColor;
-
+        
     }
     if (tempTextView.text.length > 200) {
-         tempTextView.text = [tempTextView.text substringToIndex:200];
+        tempTextView.text = [tempTextView.text substringToIndex:200];
     }
     self.inputNumberLabel.text = [NSString stringWithFormat:@"%d",(int)tempTextView.text.length];
 }
@@ -177,7 +177,7 @@
 }
 
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {    
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([[[textView textInputMode] primaryLanguage] isEqualToString:@"emoji"] || ![[textView textInputMode] primaryLanguage] || [self stringContainsEmoji:text]) {
         return NO;
     }
@@ -199,9 +199,9 @@
                                     }
                                     // Not surrogate pair (U+2100-27BF)
                                 } else {
-                                    if (0x2100 <= high && high <= 0x27BF){
-                                        returnValue = YES;
-                                    }
+                                    //                                    if (0x2100 <= high && high <= 0x27BF){
+                                    //                                        returnValue = YES;
+                                    //                                    }
                                 }
                             }];
     

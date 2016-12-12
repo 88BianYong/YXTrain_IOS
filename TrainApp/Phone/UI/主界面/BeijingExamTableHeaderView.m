@@ -8,12 +8,10 @@
 
 #import "BeijingExamTableHeaderView.h"
 @interface BeijingExamTableHeaderView ()
-@property (nonatomic, strong) UILabel *statusContentLabel;
-@property (nonatomic, strong) UIImageView *graduationImageView;
+@property (nonatomic, strong) UILabel *leftLabel;
 @property (nonatomic, strong) UIView *leftView;
 @property (nonatomic, strong) UIView *rightView;
-
-
+@property (nonatomic, strong) UILabel *rightLabel;
 @end
 
 @implementation BeijingExamTableHeaderView
@@ -32,28 +30,28 @@
     self.leftView.layer.cornerRadius = YXTrainCornerRadii;
     [self addSubview:self.leftView];
     
-    self.statusContentLabel = [[UILabel alloc] init];
-    self.statusContentLabel.text = @"未提交";
-    self.statusContentLabel.font = [UIFont systemFontOfSize:19.0f];
-    self.statusContentLabel.textColor = [UIColor colorWithHexString:@"334466"];
-    [self.leftView addSubview:self.statusContentLabel];
+    self.leftLabel = [[UILabel alloc] init];
+    self.leftLabel.text = @"";
+    self.leftLabel.font = [UIFont systemFontOfSize:19.0f];
+    self.leftLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    [self.leftView addSubview:self.leftLabel];
     
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.leftView addSubview:lineView];
     
     UILabel *statusSignLabel = [[UILabel alloc] init];
-    statusSignLabel.text = @"学习状态";
+    statusSignLabel.text = @"培训状态";
     statusSignLabel.textColor = [UIColor colorWithHexString:@"bec8d8"];
-    statusSignLabel.font = [UIFont systemFontOfSize:12.0f];
+    statusSignLabel.font = [UIFont systemFontOfSize:11.0f];
     statusSignLabel.textAlignment = NSTextAlignmentCenter;
     statusSignLabel.backgroundColor = [UIColor whiteColor];
     [self.leftView addSubview:statusSignLabel];
     
     [statusSignLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.statusContentLabel.mas_centerX);
-        make.bottom.equalTo(self.statusContentLabel.mas_top).offset(-15.0f);
-        make.width.mas_offset(50.0f);
+        make.centerX.equalTo(self.leftLabel.mas_centerX);
+        make.bottom.equalTo(self.leftLabel.mas_top).offset(-15.0f);
+        make.width.mas_offset(60.0f);
     }];
     
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -68,8 +66,39 @@
     self.rightView.layer.cornerRadius = YXTrainCornerRadii;
     [self addSubview:self.rightView];
     
-    self.graduationImageView = [[UIImageView alloc] init];
-    [self.rightView addSubview:self.graduationImageView];
+    
+    self.rightLabel = [[UILabel alloc] init];
+    self.rightLabel.text = @"";
+    self.rightLabel.font = [UIFont systemFontOfSize:19.0f];
+    self.rightLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    [self.rightView addSubview:self.rightLabel];
+    
+    UIView *lineView1 = [[UIView alloc] init];
+    lineView1.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.rightView addSubview:lineView1];
+    
+    UILabel *statusSignLabel1 = [[UILabel alloc] init];
+    statusSignLabel1.text = @"在线学习状态";
+    statusSignLabel1.textColor = [UIColor colorWithHexString:@"bec8d8"];
+    statusSignLabel1.font = [UIFont systemFontOfSize:11.0f];
+    statusSignLabel1.textAlignment = NSTextAlignmentCenter;
+    statusSignLabel1.backgroundColor = [UIColor whiteColor];
+    [self.rightView addSubview:statusSignLabel1];
+    
+    [statusSignLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.rightLabel.mas_centerX);
+        make.bottom.equalTo(self.rightLabel.mas_top).offset(-15.0f);
+        make.width.mas_offset(80.0f);
+    }];
+    
+    [lineView1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
+        make.centerY.equalTo(statusSignLabel1.mas_centerY);
+        make.centerX.equalTo(statusSignLabel1.mas_centerX);
+        make.width.mas_offset(50.0f + 31.0f +31.0f);
+    }];
+    
+    
 
 }
 - (void)setupLayout {
@@ -84,35 +113,34 @@
         make.right.bottom.mas_equalTo(-10.0f);
     }];
     
-    [self.statusContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.leftView);
     }];
     
-    [self.graduationImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.rightView);
-        make.size.mas_offset(CGSizeMake(90.0f, 90.0f));
     }];
 }
 - (void)setItem:(BeijingExamineRequestItem *)item {
     _item = item;
      if (_item.userGetScore.doubleValue < 85.0f) {
-        self.graduationImageView.image = [UIImage imageNamed:@"未结束"];
+        self.rightLabel.text = @"未结束";
      }else if(_item.userGetScore.doubleValue >= 85.0f && _item.userGetScore.doubleValue < 90.0f){
          if (_item.applystatus.integerValue == 0 || _item.applystatus.integerValue == -1) {
-             self.graduationImageView.image = [UIImage imageNamed:@"未结束"];
+             self.rightLabel.text = @"未结束";
          } else if (_item.applystatus.integerValue == 1 || _item.applystatus.integerValue == 3) {
-             self.graduationImageView.image = [UIImage imageNamed:@"待审批"];
+             self.rightLabel.text = @"待审批";
          }else if (_item.applystatus.integerValue == 4) {
-             self.graduationImageView.image = [UIImage imageNamed:@"未通过"];
+             self.rightLabel.text = @"未通过";
          }
      }else if(_item.userGetScore.doubleValue >= 90.0f){
-         self.graduationImageView.image = [UIImage imageNamed:@"已通过"];
+         self.rightLabel.text = @"已通过";
      }
 
     if (_item.userGetScore.doubleValue < 100.0f) {
-        self.statusContentLabel.text = @"未合格";
+        self.leftLabel.text = @"未合格";
     }else {
-        self.statusContentLabel.text = @"已合格";
+        self.leftLabel.text = @"已合格";
     }
 }
 @end
