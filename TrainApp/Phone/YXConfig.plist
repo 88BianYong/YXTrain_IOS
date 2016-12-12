@@ -22,16 +22,16 @@
 	<key>uploadServer</key>
 	<string>http://upload.yanxiu.com/resource/index.jsp</string>
 	<key>loginServer</key>
-	<string>http://u.yanxiu.com/test/</string>
+	<string>http://u.yanxiu.com/</string>
 	<key>server</key>
-	<string>http://mobile.yanxiu.com/test/api/</string>
+	<string>http://mobile.yanxiu.com/v20/api/</string>
 	<key>websocket</key>
-	<string>ws://mobile.yanxiu.com/test/api/websocket</string>
+	<string>ws://mobile.yanxiu.com/websocket</string>
 	<key>mockFrameworkOn</key>
 	<false/>
 	<key>testFrameworkOn</key>
 	<false/>
 	<key>talkingDataReport</key>
-	<false/>
+	<true/>
 </dict>
 </plist>
