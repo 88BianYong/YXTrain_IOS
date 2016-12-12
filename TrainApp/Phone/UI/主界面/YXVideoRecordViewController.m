@@ -195,39 +195,33 @@
                 break;
             case YXVideoRecordStatus_Delete:
             {
-                YXAlertAction *waiverAlertAct = [[YXAlertAction alloc] init];
-                waiverAlertAct.title = @"放弃";
-                waiverAlertAct.style = YXAlertActionStyleCancel;
-                waiverAlertAct.block = ^{
+                LSTAlertView *alertView = [[LSTAlertView alloc]init];
+                alertView.title = @"确定放弃已录制的视频?";
+                alertView.imageName = @"胶卷";
+                [alertView addButtonWithTitle:@"放弃" style:LSTAlertActionStyle_Cancel action:^{
                     STRONG_SELF
                     self ->_bottomView.videoRecordStatus = YXVideoRecordStatus_Ready;
                     [self stopCaptureWithSaveFlag:NO];
                     self ->_topView.recordTime = 0.0f;
                     [YXDataStatisticsManger trackEvent:@"视频录制" label:@"放弃已录制的视频" parameters:nil];
-                };
-                YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
-                cancelAlertAct.title = @"取消";
-                cancelAlertAct.style = YXAlertActionStyleDefault;
-                WEAK_SELF
-                cancelAlertAct.block = ^ {
+                }];
+                [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Default action:^{
                     STRONG_SELF
-                };
-                YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"确定放弃已录制的视频?" image:@"胶卷" actions:@[waiverAlertAct,cancelAlertAct]];
-                [alertView showAlertView:self.view];
+                }];
+                [alertView showInView:self.view];
             }
                 break;
             case YXVideoRecordStatus_StopMax:
             {
                 [self stopTimer];
                 self -> _bottomView.videoRecordStatus = YXVideoRecordStatus_Pause;
-                YXAlertAction *knowAction = [[YXAlertAction alloc] init];
-                knowAction.title = @"我知道了";
-                knowAction.style = YXAlertActionStyleAlone;
-                knowAction.block = ^ {
+                LSTAlertView *alertView = [[LSTAlertView alloc]init];
+                alertView.title = @"视频时长已达到上限";
+                alertView.imageName = @"失败icon";
+                [alertView addButtonWithTitle:@"我知道了" style:LSTAlertActionStyle_Alone action:^{
                     STRONG_SELF
-                };
-                YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频时长已达到上限" image:@"失败icon" actions:@[knowAction]];
-                [alertView showAlertView:nil];
+                }];
+                [alertView show];
             }
                 break;
             case YXVideoRecordStatus_Save:
@@ -350,23 +344,18 @@
     }];
 }
 - (void)saveVideoFail{
+    LSTAlertView *alertView = [[LSTAlertView alloc]init];
+    alertView.title = @"视频保存失败";
+    alertView.imageName = @"失败icon";
     WEAK_SELF
-    YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
-    cancelAlertAct.title = @"取消";
-    cancelAlertAct.style = YXAlertActionStyleCancel;
-    cancelAlertAct.block = ^{
-    };
-    
-    YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
-    retryAlertAct.title = @"重试";
-    retryAlertAct.style = YXAlertActionStyleDefault;
-    retryAlertAct.block = ^{
+    [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Cancel action:^{
+        STRONG_SELF
+    }];
+    [alertView addButtonWithTitle:@"重试" style:LSTAlertActionStyle_Default action:^{
         STRONG_SELF
         [self saveRecordVideo];
-    };
-    
-    YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频保存失败" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
-    [alertView showAlertView:self.view];
+    }];
+    [alertView showInView:self.view];
 }
 //保存成功视频之后
 - (void)saveSuccessWithVideoPath:(NSString *)videoPath
@@ -467,14 +456,13 @@
     if ([[YXVideoRecordManager freeSpace] longLongValue] < 180 * 1024 *1024) {
         _bottomView.videoRecordStatus = YXVideoRecordStatus_Pause;
         WEAK_SELF
-        YXAlertAction *knowAction = [[YXAlertAction alloc] init];
-        knowAction.title = @"我知道了";
-        knowAction.style = YXAlertActionStyleAlone;
-        knowAction.block = ^ {
+        LSTAlertView *alertView = [[LSTAlertView alloc]init];
+        alertView.title = @"系统空间不足";
+        alertView.imageName = @"失败icon";
+        [alertView addButtonWithTitle:@"我知道了" style:LSTAlertActionStyle_Alone action:^{
             STRONG_SELF
-        };
-        YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"系统空间不足" image:@"失败icon" actions:@[knowAction]];
-        [alertView showAlertView:nil];
+        }];
+        [alertView show];
         [self stopTimer];
     }
 }

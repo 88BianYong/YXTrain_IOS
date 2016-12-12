@@ -435,6 +435,11 @@
 		E90C60AE1D9CFEEF001652CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AD1D9CFEEF001652CF /* libz.tbd */; };
 		E90C60B21D9D0012001652CF /* YXDataStatisticsManger.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */; };
 		E935D7B21DF7FD84005CC8BD /* BeijingExamTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D7B11DF7FD84005CC8BD /* BeijingExamTipCell.m */; };
+		E935D84F1DFE3FA3005CC8BD /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D84D1DFE3FA3005CC8BD /* AlertView.m */; };
+		E935D8521DFE403E005CC8BD /* LSTAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D8511DFE403E005CC8BD /* LSTAlertView.m */; };
+		E935D8621DFE40FF005CC8BD /* AlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D8551DFE40FF005CC8BD /* AlertViewController.m */; };
+		E935D86F1DFE4838005CC8BD /* LSTAlertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D86E1DFE4838005CC8BD /* LSTAlertButton.m */; };
+		E935D8751DFE4E85005CC8BD /* LSTAlertTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D8741DFE4E85005CC8BD /* LSTAlertTitleLabel.m */; };
 		E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C06181DCB1F9400666265 /* DataErrorView.m */; };
 		E9A7B5D61DDADD0A00136335 /* ActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */; };
 		E9A7B5EB1DDC3EAA00136335 /* ShareResourcesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5E81DDC3EAA00136335 /* ShareResourcesTableViewCell.m */; };
@@ -1310,6 +1315,16 @@
 		E927702C1DADD24000B2991C /* YXTrackPageDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrackPageDataProtocol.h; sourceTree = "<group>"; };
 		E935D7B01DF7FD84005CC8BD /* BeijingExamTipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamTipCell.h; sourceTree = "<group>"; };
 		E935D7B11DF7FD84005CC8BD /* BeijingExamTipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamTipCell.m; sourceTree = "<group>"; };
+		E935D84C1DFE3FA3005CC8BD /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		E935D84D1DFE3FA3005CC8BD /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		E935D8501DFE403E005CC8BD /* LSTAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTAlertView.h; sourceTree = "<group>"; };
+		E935D8511DFE403E005CC8BD /* LSTAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTAlertView.m; sourceTree = "<group>"; };
+		E935D8541DFE40FF005CC8BD /* AlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewController.h; sourceTree = "<group>"; };
+		E935D8551DFE40FF005CC8BD /* AlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewController.m; sourceTree = "<group>"; };
+		E935D86D1DFE4838005CC8BD /* LSTAlertButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTAlertButton.h; sourceTree = "<group>"; };
+		E935D86E1DFE4838005CC8BD /* LSTAlertButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTAlertButton.m; sourceTree = "<group>"; };
+		E935D8731DFE4E85005CC8BD /* LSTAlertTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTAlertTitleLabel.h; sourceTree = "<group>"; };
+		E935D8741DFE4E85005CC8BD /* LSTAlertTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTAlertTitleLabel.m; sourceTree = "<group>"; };
 		E93C06171DCB1F9400666265 /* DataErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataErrorView.h; sourceTree = "<group>"; };
 		E93C06181DCB1F9400666265 /* DataErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataErrorView.m; sourceTree = "<group>"; };
 		E9A7B5D41DDADD0A00136335 /* ActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListCell.h; sourceTree = "<group>"; };
@@ -2184,6 +2199,9 @@
 				920F1D791D5ADDEE00636A51 /* YXAlertCustomView.m */,
 				9232372A1D69A5DD00FDACFE /* YXLoadView.h */,
 				9232372B1D69A5DD00FDACFE /* YXLoadView.m */,
+				E935D8531DFE4047005CC8BD /* 提示相关 */,
+				E935D8541DFE40FF005CC8BD /* AlertViewController.h */,
+				E935D8551DFE40FF005CC8BD /* AlertViewController.m */,
 			);
 			name = "样式";
 			sourceTree = "<group>";
@@ -3110,6 +3128,29 @@
 			name = DataStatisticsManger;
 			sourceTree = "<group>";
 		};
+		E935D8531DFE4047005CC8BD /* 提示相关 */ = {
+			isa = PBXGroup;
+			children = (
+				E935D84C1DFE3FA3005CC8BD /* AlertView.h */,
+				E935D84D1DFE3FA3005CC8BD /* AlertView.m */,
+				E935D8501DFE403E005CC8BD /* LSTAlertView.h */,
+				E935D8511DFE403E005CC8BD /* LSTAlertView.m */,
+				E935D86C1DFE47E8005CC8BD /* LSTAlertViewWidget */,
+			);
+			name = "提示相关";
+			sourceTree = "<group>";
+		};
+		E935D86C1DFE47E8005CC8BD /* LSTAlertViewWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E935D86D1DFE4838005CC8BD /* LSTAlertButton.h */,
+				E935D86E1DFE4838005CC8BD /* LSTAlertButton.m */,
+				E935D8731DFE4E85005CC8BD /* LSTAlertTitleLabel.h */,
+				E935D8741DFE4E85005CC8BD /* LSTAlertTitleLabel.m */,
+			);
+			name = LSTAlertViewWidget;
+			sourceTree = "<group>";
+		};
 		E9A7B5E61DDC3E4600136335 /* 资源分享 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3563,6 +3604,7 @@
 				920F1D6E1D59759D00636A51 /* YXSaveVideoProgressView.m in Sources */,
 				923237161D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m in Sources */,
 				CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */,
+				E935D86F1DFE4838005CC8BD /* LSTAlertButton.m in Sources */,
 				CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */,
 				922901591DE57971001474CE /* CommentLaudRequest.m in Sources */,
 				7C2C3B3D1D212D6700A03635 /* YXScoreLeadScoreCell.m in Sources */,
@@ -3582,6 +3624,7 @@
 				7CF8887C1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m in Sources */,
 				92DE3BBB1DDC329A0011CFB7 /* SecondCommentViewController.m in Sources */,
 				9232371A1D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m in Sources */,
+				E935D84F1DFE3FA3005CC8BD /* AlertView.m in Sources */,
 				923237381D7975F300FDACFE /* YXScoreExpGroupCell.m in Sources */,
 				CB7462641D1D44F10065113A /* YXScanQRBackgroundView.m in Sources */,
 				9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */,
@@ -3686,6 +3729,7 @@
 				920F1D681D58347600636A51 /* YXVideoRecordBottomView.m in Sources */,
 				CB52FCF11D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m in Sources */,
 				9229015F1DE6C241001474CE /* VideoCommentErrorView.m in Sources */,
+				E935D8751DFE4E85005CC8BD /* LSTAlertTitleLabel.m in Sources */,
 				7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */,
 				9229015C1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m in Sources */,
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
@@ -3792,6 +3836,7 @@
 				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
 				E9BD43E31DAC9507007BE8F6 /* YXDetailHotspotViewController.m in Sources */,
+				E935D8521DFE403E005CC8BD /* LSTAlertView.m in Sources */,
 				92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */,
 				92CA55E61DFE761400AA2C50 /* LSTTrainHelper_Default.m in Sources */,
 				CBF66E371D2E647100F4E408 /* YXUserTextFieldTableViewCell.m in Sources */,
@@ -3820,6 +3865,7 @@
 				924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */,
 				E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
+				E935D8621DFE40FF005CC8BD /* AlertViewController.m in Sources */,
 				9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */,
 				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,
 				9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */,

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "YXPopUpViewSetDataAndActionProtocol.h"
-#import "YXAlertCustomView.h"
+
 
 @interface YXAppUpdateData : NSObject
 @property (nonatomic, strong) NSString *imageName;

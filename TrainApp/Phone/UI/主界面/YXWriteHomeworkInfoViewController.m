@@ -311,23 +311,19 @@
                 return;
             }
             if ([r isReachableViaWWAN] && ![r isReachableViaWiFi]) {
+                LSTAlertView *alertView = [[LSTAlertView alloc]init];
+                alertView.title = @"当前处于非Wi-Fi环境\n仍要继续吗";
+                alertView.imageName = @"失败icon";
                 WEAK_SELF
-                YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
-                cancelAlertAct.title = @"上传";
-                cancelAlertAct.style = YXAlertActionStyleCancel;
-                cancelAlertAct.block = ^{
+                [alertView addButtonWithTitle:@"上传" style:LSTAlertActionStyle_Cancel action:^{
                     STRONG_SELF
                     [self setNetObserver];
                     [self uploadVideoForQiNiu];
-                };
-                YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
-                retryAlertAct.title = @"取消";
-                retryAlertAct.style = YXAlertActionStyleDefault;
-                retryAlertAct.block = ^{
+                }];
+                [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Default action:^{
                     STRONG_SELF
-                };
-                YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"当前处于非Wi-Fi环境\n仍要继续吗" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
-                [alertView showAlertView:nil];
+                }];
+                [alertView show];
                 return;
             }
             [self setNetObserver];

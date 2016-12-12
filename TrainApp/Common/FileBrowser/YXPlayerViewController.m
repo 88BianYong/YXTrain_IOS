@@ -726,10 +726,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 {
     WEAK_SELF
     [self.player pause];
-    YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
-    cancelAlertAct.title = @"删除";
-    cancelAlertAct.style = YXAlertActionStyleCancel;
-    cancelAlertAct.block = ^{
+    LSTAlertView *alertView = [[LSTAlertView alloc]init];
+    alertView.title = @"删除后视频将无法恢复\n确定删除?";
+    alertView.imageName = @"失败icon";
+    [alertView addButtonWithTitle:@"删除" style:LSTAlertActionStyle_Cancel action:^{
         STRONG_SELF
         NSError *error = nil;
         if ([[NSFileManager defaultManager] removeItemAtURL:[NSURL URLWithString:self.videoUrl] error:&error]){
@@ -740,17 +740,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         else{
             DDLogError(@"DDLogFileInfo: Error deleting archive (%@): %@", self.self.videoUrl, error);
         }
-    };
-    
-    YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
-    retryAlertAct.title = @"取消";
-    retryAlertAct.style = YXAlertActionStyleDefault;
-    retryAlertAct.block = ^{
+    }];
+    [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Default action:^{
         STRONG_SELF
         [self.player play];
-    };
-    YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"删除后视频将无法恢复\n确定删除?" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
-    [alertView showAlertView:self.view];
+    }];
+    [alertView showInView:self.view];
 }
 
 #pragma mark - 默认清晰度的保存与读取

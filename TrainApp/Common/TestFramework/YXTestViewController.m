@@ -7,7 +7,7 @@
 //
 
 #import "YXTestViewController.h"
-
+#import "AlertViewController.h"
 @interface YXTestViewController ()
 {
     UIView *headerView;
@@ -17,7 +17,7 @@
 
 @implementation YXTestViewController
 - (void)viewDidLoad {
-    self.devTestActions = @[@"122",@"23",@"34",@"45"];
+    self.devTestActions = @[@"122",@"23",@"34",@"45",@"alertView"];
     [super viewDidLoad];
     headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
     headerView.backgroundColor = [UIColor redColor];
@@ -40,6 +40,11 @@
     [UIView animateWithDuration:0.3 animations:^{
 
     }];
+    
+}
+- (void)alertView {
+    AlertViewController *vc = [[AlertViewController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

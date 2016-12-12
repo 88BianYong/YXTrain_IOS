@@ -319,16 +319,15 @@ UITableViewDataSource
                     [self againRecordVideo];
                 }
                 else{
+                    LSTAlertView *alertView = [[LSTAlertView alloc]init];
+                    alertView.title = @"视频录制时长需要大于10分钟~";
+                    alertView.imageName = @"提醒icon";
                     WEAK_SELF
-                    YXAlertAction *knowAction = [[YXAlertAction alloc] init];
-                    knowAction.title = @"我知道了";
-                    knowAction.style = YXAlertActionStyleAlone;
-                    knowAction.block = ^ {
+                    [alertView addButtonWithTitle:@"我知道了" style:LSTAlertActionStyle_Alone action:^{
                         STRONG_SELF
                         [self gotoVideoRecordVC:NO];
-                    };
-                    YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"视频录制时长需要大于10分钟~" image:@"提醒icon" actions:@[knowAction]];
-                    [alertView showAlertView:nil];
+                    }];
+                    [alertView show];
                 }
             }
             else{
@@ -395,22 +394,18 @@ UITableViewDataSource
 }
 
 - (void)againRecordVideo{
+    LSTAlertView *alertView = [[LSTAlertView alloc]init];
+    alertView.title = @"重新录制将覆盖当前视频\n确定重新录制?";
+    alertView.imageName = @"失败icon";
     WEAK_SELF
-    YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
-    cancelAlertAct.title = @"录制";
-    cancelAlertAct.style = YXAlertActionStyleCancel;
-    cancelAlertAct.block = ^{
+    [alertView addButtonWithTitle:@"录制" style:LSTAlertActionStyle_Cancel action:^{
         STRONG_SELF
         [self gotoVideoRecordVC:YES];
-    };
-    YXAlertAction *retryAlertAct = [[YXAlertAction alloc] init];
-    retryAlertAct.title = @"取消";
-    retryAlertAct.style = YXAlertActionStyleDefault;
-    retryAlertAct.block = ^{
+    }];
+    [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Default action:^{
         STRONG_SELF
-    };
-    YXAlertCustomView *alertView = [YXAlertCustomView alertViewWithTitle:@"重新录制将覆盖当前视频\n确定重新录制?" image:@"失败icon" actions:@[cancelAlertAct,retryAlertAct]];
-    [alertView showAlertView:nil];
+    }];
+    [alertView show];
 }
 - (void)gotoVideoRecordVC:(BOOL)isReRecording{
     YXVideoRecordViewController *VC = [[YXVideoRecordViewController alloc] init];
