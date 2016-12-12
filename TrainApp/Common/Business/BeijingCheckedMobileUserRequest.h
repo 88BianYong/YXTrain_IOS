@@ -14,5 +14,5 @@
 @end
 
 @interface BeijingCheckedMobileUserRequest : YXGetRequest
-
+@property (nonatomic, copy) NSString *pid;
 @end

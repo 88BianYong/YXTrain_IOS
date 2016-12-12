@@ -154,6 +154,7 @@
     WEAK_SELF
     [self startLoading];
     BeijingCheckedMobileUserRequest *request = [[BeijingCheckedMobileUserRequest alloc] init];
+    request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     [request startRequestWithRetClass:[BeijingCheckedMobileUserRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
