@@ -81,7 +81,9 @@ UITableViewDataSource
     }else{
         self.itemBody.lessonStatus = YXVideoLessonStatus_NoRecord;
     }
-    [self findVideoHomeworkInformation:self.itemBody];
+    if (![YXTrainManager sharedInstance].isBeijingProject) {
+        [self findVideoHomeworkInformation:self.itemBody];
+    }
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
     
@@ -270,10 +272,15 @@ UITableViewDataSource
         }
     }];
     self.itemBody = item;
+    if ([YXTrainManager sharedInstance].isBeijingProject) {
+        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, [self scrollViewContentSizeWithDescription:self.itemBody.depiction ?: @" "].height + 247 + 22 + 30 + 10);
+    }
+    _tableView.tableHeaderView = nil;
     _tableView.tableHeaderView = self.headerView;
     self.headerView.body = self.itemBody;
     self.title = self.itemBody.title;
     if (self.itemBody.detail && (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_Finish )) {
+
         _tableView.tableFooterView = self.footerView;
         self.footerView.detail = self.itemBody.detail;
     }
@@ -281,6 +288,12 @@ UITableViewDataSource
         _tableView.tableFooterView = nil;
     }
     [_tableView reloadData];
+}
+- (CGSize)scrollViewContentSizeWithDescription:(NSString*)desc{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:5];
+    CGRect rect = [desc boundingRectWithSize:CGSizeMake(kScreenWidth - 50.0f, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"],NSParagraphStyleAttributeName:paragraphStyle} context:NULL];
+    return rect.size;
 }
 #pragma mark - present ViewController
 - (void)gotoNextViewController:(YXRecordVideoInterfaceStatus)type{

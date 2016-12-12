@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 @class YXHomeworkInfoRequestItem_Body;
 @interface YXHomeworkInfoHeaderView : UIView
-@property (nonatomic ,strong) YXHomeworkInfoRequestItem_Body *body;
-
+@property (nonatomic, strong) YXHomeworkInfoRequestItem_Body *body;
+//@property (nonatomic, copy) void (^YXHomeworkInfoHeaderChangeHeightBlock)(CGFloat height);
 @end

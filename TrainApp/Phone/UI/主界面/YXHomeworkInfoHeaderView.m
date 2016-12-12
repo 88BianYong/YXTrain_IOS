@@ -117,22 +117,22 @@
 }
 
 - (void)layoutInterface{
-    [_scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_scoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(24.5f);
         make.centerX.equalTo(self.mas_centerX);
     }];
     
-    [_pointLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_pointLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_scoreLabel.mas_bottom).offset(6.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
 
-    [_endDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_endDateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_pointLabel.mas_bottom).offset(16.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
 
-    [_finishedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_finishedLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_endDateLabel.mas_bottom).offset(6.0f);
         make.left.equalTo(_endDateLabel.mas_left);
     }];
@@ -149,21 +149,30 @@
         make.width.height.mas_offset(20.0f);
     }];
     
-    [_finishedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_finishedImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_finishedLabel.mas_left).offset(80.0f);
         make.top.equalTo(_firstImageView.mas_bottom).offset(36.0f);//动态调整 10 标注不同
         make.width.height.mas_offset(45.0f);
     }];
     
     UILabel *label = [self viewWithTag:1001];
-    [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label.mas_bottom).offset(18.0f);
-        make.left.equalTo(self.mas_left).offset(10.0f);
-        make.right.equalTo(self.mas_right).offset(-10.0f);
-        make.height.mas_offset(80.0f);
-    }];
+    if ([YXTrainManager sharedInstance].isBeijingProject) {
+        [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(label.mas_bottom).offset(18.0f);
+            make.left.equalTo(self.mas_left).offset(10.0f);
+            make.right.equalTo(self.mas_right).offset(-10.0f);
+            make.bottom.equalTo(self.mas_bottom).offset(-30.0f);
+        }];
+    }else {
+        [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(label.mas_bottom).offset(18.0f);
+            make.left.equalTo(self.mas_left).offset(10.0f);
+            make.right.equalTo(self.mas_right).offset(-10.0f);
+            make.height.mas_offset(80.0f);
+        }];
+    }
     
-    [_descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_descriptionLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_scrollView.mas_top);
         make.left.equalTo(self.mas_left).offset(25.0f);
         make.right.equalTo(self.mas_right).offset(-25.0f);
@@ -217,6 +226,7 @@
     _descriptionLabel.attributedText = [self descriptionStringWithDesc:_body.depiction ?: @" "];
     [self layoutInterface:[_body.recommend boolValue] withIsmyrec:[_body.ismyrec boolValue]];
     _scrollView.contentSize = [self scrollViewContentSizeWithDescription:_body.depiction ?: @" "];
+    [self layoutInterface];
 }
 
 - (CGSize)scrollViewContentSizeWithDescription:(NSString*)desc{

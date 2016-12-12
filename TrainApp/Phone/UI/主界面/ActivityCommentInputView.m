@@ -199,9 +199,9 @@
                                     }
                                     // Not surrogate pair (U+2100-27BF)
                                 } else {
-                                    //                                    if (0x2100 <= high && high <= 0x27BF){
-                                    //                                        returnValue = YES;
-                                    //                                    }
+//                                    if (0x2100 <= high && high <= 0x27BF){
+//                                        returnValue = YES;
+//                                    }
                                 }
                             }];
     
