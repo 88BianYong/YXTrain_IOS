@@ -26,15 +26,9 @@
 - (NSString *)workshopDetailName {
     return @"辅导教师";
 }
-#pragma mark - set
-//- (void)setRequireId:(NSString *)requireId {
-//    _requireId = requireId;
-//}
-//
-//- (void)setHomeworkid:(NSString *)homeworkid {
-//    _homeworkid = homeworkid;
-//}
-
+- (NSString *)activityStageName {
+    return  @"类别";
+}
 #pragma mark - show project
 - (UIViewController<YXTrackPageDataProtocol> *)showExamProject {
     return [[NSClassFromString(@"BeijingExamViewController") alloc] init];
@@ -50,8 +44,8 @@
     YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
     YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
     itemBody.type = @"4";
-    itemBody.requireId = [YXTrainManager sharedInstance].requireId;
-    itemBody.homeworkid = [YXTrainManager sharedInstance].homeworkid;
+    itemBody.requireId = self.requireId;
+    itemBody.homeworkid = self.homeworkid;
     itemBody.pid = [YXTrainManager sharedInstance].currentProject.pid;
     VC.itemBody = itemBody;
     [viewController.navigationController pushViewController:VC animated:YES];

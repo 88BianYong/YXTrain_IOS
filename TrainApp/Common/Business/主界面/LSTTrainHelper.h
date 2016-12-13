@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 @interface LSTTrainHelper : NSObject
-//@property (nonatomic, copy) NSString *requireId;//北京项目专用
-//@property (nonatomic, copy) NSString *homeworkid;//北京项目专用
+@property (nonatomic, copy) NSString *requireId;//北京项目专用
+@property (nonatomic, copy) NSString *homeworkid;//北京项目专用
 
 
 @property (nonatomic, copy, readonly) NSString *workshopListTitle;
 @property (nonatomic, copy, readonly) NSString *workshopDetailTitle;
 @property (nonatomic, copy, readonly) NSString *workshopDetailName;
+@property (nonatomic, copy, readonly) NSString *activityStageName;
 
 
 #pragma mark - show project

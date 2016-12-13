@@ -16,9 +16,11 @@
 - (NSString *)workshopDetailTitle {
     return @"工作坊详情";
 }
-
 - (NSString *)workshopDetailName {
     return @"坊主";
+}
+- (NSString *)activityStageName {
+    return @"阶段";
 }
 
 

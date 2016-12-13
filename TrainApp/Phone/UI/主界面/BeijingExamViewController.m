@@ -264,8 +264,8 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     BeijingExamineRequestItem_ExamineVoList *list = self.examineItem.examineVoList[section];
     BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamine = list.toolExamineVoList[0];
     if (toolExamine.toolid.integerValue == 205 ) {
-        [YXTrainManager sharedInstance].requireId = toolExamine.requireid;
-        [YXTrainManager sharedInstance].homeworkid = toolExamine.homeworkid;
+        [YXTrainManager sharedInstance].trainHelper.requireId = toolExamine.requireid;
+        [YXTrainManager sharedInstance].trainHelper.homeworkid = toolExamine.homeworkid;
     }
     return 45.0f;
 }

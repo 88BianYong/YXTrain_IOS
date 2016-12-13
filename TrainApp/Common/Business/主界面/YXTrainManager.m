@@ -28,10 +28,9 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 }
 - (LSTTrainHelper *)trainHelper {
     if (_trainHelper == nil) {
-        return [LSTTrainHelper alloc];
-    }else {
-        return _trainHelper;
+        _trainHelper = [LSTTrainHelper alloc];
     }
+    return _trainHelper;
 }
 
 
@@ -46,6 +45,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     return items[self.currentProjectIndexPath.row];
 }
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock {
+    self.trainHelper = nil;
     if (self.trainlistItem) {
         BLOCK_EXEC(completeBlock,[TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body],nil);
         return;
@@ -70,6 +70,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     }];
 }
 - (void)setCurrentProjectIndexPath:(NSIndexPath *)currentProjectIndexPath {
+    self.trainHelper = nil;
     self.trainlistItem.body.indexPathSection = [NSString stringWithFormat:@"%@",@(currentProjectIndexPath.section)];
     self.trainlistItem.body.indexPathRow = [NSString stringWithFormat:@"%@",@(currentProjectIndexPath.row)];
     [self saveToCache];
