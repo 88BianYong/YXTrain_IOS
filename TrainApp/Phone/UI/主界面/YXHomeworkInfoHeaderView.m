@@ -192,19 +192,19 @@
             
         }else if(_body.score.integerValue >= 0 && _body.score.integerValue <= 59){
             _pointLabel.text = @"未合格";
-            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+            _pointLabel.textColor = [UIColor colorWithHexString:@"eba180"];
             
         }else if(_body.score.integerValue >= 60 && _body.score.integerValue <= 75){
             _pointLabel.text = @"合格";
-            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+            _pointLabel.textColor = [UIColor colorWithHexString:@"eac77b"];
             
         }else if(_body.score.integerValue >= 76 && _body.score.integerValue <= 85) {
             _pointLabel.text = @"良好";
-            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+            _pointLabel.textColor = [UIColor colorWithHexString:@"7ab1e9"];
             
         }else if(_body.score.integerValue >= 86 && _body.score.integerValue <= 100) {
             _pointLabel.text = @"优秀";
-            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+            _pointLabel.textColor = [UIColor colorWithHexString:@"7ab1e9"];
         }
     }else {
         if(!_body.score.boolValue){
