@@ -121,6 +121,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     self.request = [[BeijingExamineRequest alloc]init];
     self.request.projectid = [YXTrainManager sharedInstance].currentProject.pid;
     self.request.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.request.role = @"9";
     if (isShow) {
         [self startLoading];
     }
@@ -225,7 +226,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
             if (toolExamine.toolid.integerValue == 205 ) {
                 [self showMarkWithOriginRect:rect explain:@"作业质量由区级辅导教师评定,作业成绩显示合格视为通过"];
             }else if (toolExamine.toolid.integerValue == 206) {
-                [self showMarkWithOriginRect:rect explain:@"校本实践需线下完成,成绩由校级管理员综合评定"];
+                [self showMarkWithOriginRect:rect explain:@"您的校本实践成绩由校级管理员综合评定"];
             }
         }];
         [header setBeijingExamGenreExplainNextBlock:^(BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *tool) {

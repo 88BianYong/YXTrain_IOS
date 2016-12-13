@@ -68,6 +68,10 @@ typedef NS_ENUM (NSInteger ,YXWriteHomeworkListStatus) {
  */
 extern NSString *const kYXTrainFirstGoInHomeworkList;
 /**
+ *  北京项目是否当前账户初次登录
+ */
+extern NSString *const kYXTrainFirstGoInHomeworkInfo;
+/**
  *  websocket发送消息
  */
 extern NSString *const kYXTrainWebSocketReceiveMessage;
@@ -95,9 +99,6 @@ extern NSString *const kYXTrainShowUpdate;
  *  北京项目校验信息删除填写信息
  */
 extern NSString *const kYXTrainDeleteInfo;
-
-
-
 
 
 /**

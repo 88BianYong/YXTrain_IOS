@@ -16,6 +16,7 @@
 @property (nonatomic, copy, readonly) NSString *workshopDetailTitle;
 @property (nonatomic, copy, readonly) NSString *workshopDetailName;
 @property (nonatomic, copy, readonly) NSString *activityStageName;
+@property (nonatomic, copy, readonly) NSString *firstHomeworkImageName;
 
 
 #pragma mark - show project

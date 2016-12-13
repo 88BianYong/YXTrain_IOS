@@ -58,4 +58,5 @@
 @interface BeijingExamineRequest : YXGetRequest
 @property (nonatomic, strong) NSString *projectid;
 @property (nonatomic, strong) NSString *w;
+@property (nonatomic, strong) NSString *role;
 @end

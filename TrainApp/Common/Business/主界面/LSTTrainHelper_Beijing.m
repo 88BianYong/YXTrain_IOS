@@ -29,6 +29,9 @@
 - (NSString *)activityStageName {
     return  @"类别";
 }
+- (NSString *)firstHomeworkImageName {
+    return @"APP仅支持查看作业信息，请用-电脑登录研修网完成作业～";
+}
 #pragma mark - show project
 - (UIViewController<YXTrackPageDataProtocol> *)showExamProject {
     return [[NSClassFromString(@"BeijingExamViewController") alloc] init];

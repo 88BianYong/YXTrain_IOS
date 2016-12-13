@@ -22,6 +22,9 @@
 - (NSString *)activityStageName {
     return @"阶段";
 }
+- (NSString *)firstHomeworkImageName {
+    return @"APP仅支持视频课例，其他作业-请到研修网完成～";
+}
 
 
 #pragma mark - show project

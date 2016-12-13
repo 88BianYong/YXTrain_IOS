@@ -200,7 +200,7 @@ static  NSString *const trackPageName = @"全部资源页面";
             make.left.mas_equalTo(0);
             make.right.mas_equalTo(0);
             make.height.mas_equalTo(45);
-            make.top.equalTo(self.view.mas_top).offset(20.0f);
+            make.top.equalTo(self.view.mas_top);
         }];
     }
 }

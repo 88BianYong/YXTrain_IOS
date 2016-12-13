@@ -21,7 +21,8 @@
 
 - (void)setupUIAndLayoutInterface{
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.image = [UIImage imageNamed:@"APP仅支持视频课例，其他作业-请到研修网完成～"];[self addSubview:imageView];
+    imageView.image = [UIImage imageNamed:[YXTrainManager sharedInstance].trainHelper.firstHomeworkImageName];
+    [self addSubview:imageView];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"我知道了-按钮"] forState:UIControlStateNormal];

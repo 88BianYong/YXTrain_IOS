@@ -84,9 +84,6 @@
 + (YXCourseListFilterModel *)beijingModelFromRawData:(YXCourseListRequestItem *)item {
     // 学科
     NSMutableArray *studyArray = [NSMutableArray array];
-    YXCourseFilter *studyWholeItem = [[YXCourseFilter alloc]init];
-    studyWholeItem.name = @"全部";
-    [studyArray addObject:studyWholeItem];
     for (YXCourseListRequestItem_body_study *study in item.body.studys) {
         YXCourseFilter *item = [[YXCourseFilter alloc]init];
         item.filterID = study.studyID;
@@ -98,9 +95,6 @@
     g1.filterArray = studyArray;
     // 学段
     NSMutableArray *segmentArray = [NSMutableArray array];
-    YXCourseFilter *segmentWholeItem = [[YXCourseFilter alloc]init];
-    segmentWholeItem.name = @"全部";
-    [segmentArray addObject:segmentWholeItem];
     for (YXCourseListRequestItem_body_segment *segment in item.body.segments) {
         YXCourseFilter *item = [[YXCourseFilter alloc]init];
         item.filterID = segment.segmentID;

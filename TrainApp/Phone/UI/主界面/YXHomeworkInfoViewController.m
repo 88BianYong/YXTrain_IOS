@@ -84,7 +84,6 @@ UITableViewDataSource
     [self findVideoHomeworkInformation:self.itemBody];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -113,6 +112,17 @@ UITableViewDataSource
     [_tableView registerClass:[YXHomeworkInfoFinishHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXHomeworkInfoFinishHeaderView"];
     [self.view addSubview:_tableView];
     [_tableView registerClass:[YXHomeworkPlayVideoCell class] forCellReuseIdentifier:@"YXHomeworkPlayVideoCell"];
+    
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstGoInHomeworkInfo] && [YXTrainManager sharedInstance].isBeijingProject) {
+        static NSString * staticString = @"YXHomeworkPromptView";
+        UIView *promptView = [[NSClassFromString(staticString) alloc] init];
+        [self.view addSubview:promptView];
+        [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkInfo];
+    }
+    
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     self.errorView.retryBlock = ^{
