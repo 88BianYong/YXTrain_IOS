@@ -38,7 +38,7 @@
     self.contentLabel = [[UILabel alloc] init];
     self.contentLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.contentLabel.font = [UIFont boldSystemFontOfSize:15.0f];
-    self.contentLabel.numberOfLines = 2;
+    self.contentLabel.numberOfLines = 0;
     [self.contentView addSubview:self.contentLabel];
     
     self.timeLabel = [[UILabel alloc] init];
