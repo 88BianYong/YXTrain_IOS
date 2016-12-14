@@ -14,8 +14,6 @@
     
     MJRefreshFooterView *_footer;
     MJRefreshHeaderView *_header;
-    NSString *_emptyImageString;
-    NSString *_emptyTitleString;
 }
 
 @end
@@ -43,6 +41,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.contentView = [[UIView alloc]init];
+    [self.view addSubview:self.contentView];
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
     // Do any additional setup after loading the view.
     if (self.bIsGroupedTableViewStyle) {
         self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
@@ -51,17 +54,12 @@
     }
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.view addSubview:self.tableView];
+    [self.contentView addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0);
     }];
     
-    self.emptyView.hidden = YES;
-    [self.view addSubview:self.emptyView];
-    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(@0);
-    }];
-    
+    self.emptyView = [[YXEmptyView alloc]init];
     self.errorView = [[YXErrorView alloc]init];
     @weakify(self);
     [self.errorView setRetryBlock:^{
@@ -69,15 +67,7 @@
         [self startLoading];
         [self firstPageFetch:YES];
     }];
-    [self.view addSubview:self.errorView];
-    [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(@0);
-    }];
-    [self hideErrorView];
-    
-    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
-    [self.view addSubview:self.dataErrorView];
-    self.dataErrorView.hidden = YES;
+    self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self firstPageFetch:YES];
@@ -105,10 +95,8 @@
     self.dataArray = [NSMutableArray array];
     [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
     _total = (int)[self.dataArray count];
-
+    
     [self firstPageFetch:YES];
-    _emptyImageString = self.emptyView.imageName;
-    _emptyTitleString = self.emptyView.title;
 }
 
 - (void)firstPageFetch:(BOOL)isShow {
@@ -119,9 +107,9 @@
     [self.dataFetcher stop];
     
     // 1, load cache
-//    [self.dataArray removeAllObjects];
-//    [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
-//    _total = (int)[self.dataArray count];
+    //    [self.dataArray removeAllObjects];
+    //    [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
+    //    _total = (int)[self.dataArray count];
     
     // 2, fetch
     self.dataFetcher.pageindex = 0;
@@ -134,49 +122,27 @@
     @weakify(self);
     [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         @strongify(self); if (!self) return;
-        @weakify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            @strongify(self); if (!self) return;
-            [self tableViewWillRefresh];
-            [self stopLoading];
-            [self stopAnimation];
-            if (error) {
-                if (isEmpty(self.dataArray)) {  // no cache 强提示, 加载失败界面
-                    self->_total = 0;
-                    if (error.code == -2) {
-                        self.dataErrorView.hidden = NO;
-                        [self.view bringSubviewToFront:self.dataErrorView];
-                    }else{
-                        [self showErroView];
-                    }
-                } else {
-                    self->_total = 0;
-                    [self showToast:error.localizedDescription];
-                }
-                [self checkHasMore];
-                return;
-            }
-            
-            // 隐藏失败界面
-            [self hideErrorView];
-            self.dataErrorView.hidden = YES;
-            [self->_header setLastUpdateTime:[NSDate date]];
-            self->_total = total;
-            [self.dataArray removeAllObjects];
-            
-            if (isEmpty(retItemArray)) {
-                self.emptyView.imageName = self ->_emptyImageString;
-                self.emptyView.title = self ->_emptyTitleString;
-                self.emptyView.hidden = NO;
-            } else {
-                self.emptyView.hidden = YES;
-                [self.dataArray addObjectsFromArray:retItemArray];
-                [self checkHasMore];
-                [self.dataFetcher saveToCache];
-            }
-            self.tableView.contentOffset = CGPointZero;
-            [self.tableView reloadData];
-        });
+        
+        [self tableViewWillRefresh];
+        [self stopLoading];
+        [self stopAnimation];
+        
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = retItemArray.count != 0;
+        data.localDataExist = self.dataArray.count != 0;
+        data.error = error;
+        if ([self handleRequestData:data inView:self.contentView]) {
+            return;
+        }
+        [self->_header setLastUpdateTime:[NSDate date]];
+        self->_total = total;
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:retItemArray];
+        [self checkHasMore];
+        [self.dataFetcher saveToCache];
+        
+        self.tableView.contentOffset = CGPointZero;
+        [self.tableView reloadData];
     }];
 }
 
@@ -206,36 +172,18 @@
     @weakify(self);
     [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         @strongify(self); if (!self) return;
-        @weakify(self);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            @strongify(self); if (!self) return;
-            [self->_footer endRefreshing];
-            if (error) {
-                self.dataFetcher.pageindex--;
-                [self showToast:error.localizedDescription];
-                return;
-            }
-            
-            [self.dataArray addObjectsFromArray:retItemArray];
-            self->_total = total;
-            [self.tableView reloadData];
-            [self checkHasMore];
-        });
+        [self->_footer endRefreshing];
+        if (error) {
+            self.dataFetcher.pageindex--;
+            [self showToast:error.localizedDescription];
+            return;
+        }
+        
+        [self.dataArray addObjectsFromArray:retItemArray];
+        self->_total = total;
+        [self.tableView reloadData];
+        [self checkHasMore];
     }];
-}
-
-- (void)showErroView {
-//    [self.view addSubview:self.errorView];
-//    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.edges.mas_equalTo(@0);
-//    }];
-    self.errorView.hidden = NO;
-    [self.view bringSubviewToFront:self.errorView];
-}
-
-- (void)hideErrorView {
-//    [self.errorView removeFromSuperview];
-    self.errorView.hidden = YES;
 }
 
 - (void)checkHasMore {

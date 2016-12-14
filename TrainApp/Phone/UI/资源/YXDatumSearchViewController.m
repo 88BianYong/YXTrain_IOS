@@ -25,12 +25,9 @@ static  NSString *const trackPageName = @"搜索结果页面";
 
 - (void)viewDidLoad {
     //self.bNeedHeader = FALSE;
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    emptyView.backgroundColor = [UIColor whiteColor];
-    emptyView.imageName = @"没有合适的资源";
-    emptyView.title = @"没有符合条件的资源";
-    self.emptyView = emptyView;
     [super viewDidLoad];
+    self.emptyView.imageName = @"没有合适的资源";
+    self.emptyView.title = @"没有符合条件的资源";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setupDataFetcher];
     // Do any additional setup after loading the view.
@@ -76,7 +73,7 @@ static  NSString *const trackPageName = @"搜索结果页面";
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerClass:[YXAllDatumTableViewCell class] forCellReuseIdentifier:@"YXAllDatumTableViewCell"];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(UIEdgeInsetsZero);
     }];
     UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];

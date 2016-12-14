@@ -25,8 +25,6 @@ static  NSString *const trackPageName = @"热点列表页面";
     YXHotspotDatumFetch *fetcher = [[YXHotspotDatumFetch alloc] init];
     fetcher.pagesize = 10;
     self.dataFetcher = fetcher;
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    self.emptyView = emptyView;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.contentPoint = CGPointMake(0, 0);
@@ -76,7 +74,7 @@ static  NSString *const trackPageName = @"热点列表页面";
 }
 
 - (void)layoutInterface{
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
 }

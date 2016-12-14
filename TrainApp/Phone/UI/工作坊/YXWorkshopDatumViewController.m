@@ -26,10 +26,6 @@ static  NSString *const trackPageName = @"工作坊资源列表页面";
     fetcher.barid = self.baridString;
     fetcher.pagesize = 10; // 保证至少够一UI页的数据
     self.dataFetcher = fetcher;
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    emptyView.title = @"暂无资源";
-    emptyView.imageName = @"暂无资源";
-    self.emptyView = emptyView;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.title = @"资源";
@@ -53,6 +49,8 @@ static  NSString *const trackPageName = @"工作坊资源列表页面";
 
 #pragma mark - UI Setting
 - (void)setupUI{
+    self.emptyView.title = @"暂无资源";
+    self.emptyView.imageName = @"暂无资源";
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.estimatedRowHeight = 800;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -60,7 +58,7 @@ static  NSString *const trackPageName = @"工作坊资源列表页面";
 }
 
 - (void)layoutInterface{
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
         make.top.mas_equalTo(0);

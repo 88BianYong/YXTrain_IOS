@@ -50,15 +50,13 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    emptyView.title = @"没有符合条件的课程";
-    emptyView.imageName = @"没有符合条件的课程";
-    self.emptyView = emptyView;
-    
-    self.isWaitingForFilter = YES;
-
+    if (self.stageID) {
+        self.isWaitingForFilter = YES;
+    }
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.emptyView.title = @"没有符合条件的课程";
+    self.emptyView.imageName = @"没有符合条件的课程";
     self.title = @"课程列表";
     [self setupRightWithTitle:@"看课记录"];
     [self setupObservers];
@@ -67,11 +65,6 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 104.0f;
     [self.tableView registerClass:[BeijingCourseListCell class] forCellReuseIdentifier:@"BeijingCourseListCell"];
-    
-    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(44);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
     
     if (self.isWaitingForFilter) {
         self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
@@ -107,17 +100,6 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)tableViewWillRefresh{
-    CGFloat top = 0.f;
-    if (self.filterView) {
-        top = 44.f;
-    }
-    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(top);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
 }
 
 - (void)getFilters{
@@ -180,7 +162,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     [self setupWithCurrentFilters];
     filterView.delegate = self;
     [self.view addSubview:filterView];
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(44);
     }];
@@ -310,7 +292,7 @@ static  NSString *const trackPageName = @"课程列表页面";
         if (point.y >= 21 && !self.isNavBarHidden) {
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
-            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(64);
             }];
@@ -319,7 +301,7 @@ static  NSString *const trackPageName = @"课程列表页面";
         }else if (point.y < 5 && self.isNavBarHidden) {
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
-            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(44);
             }];
@@ -329,7 +311,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     }else{
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
-        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.mas_equalTo(0);
             make.top.mas_equalTo(44);
         }];

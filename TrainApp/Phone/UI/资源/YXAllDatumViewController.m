@@ -34,11 +34,6 @@ static  NSString *const trackPageName = @"全部资源页面";
 - (void)viewDidLoad {
     //self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    emptyView.imageName = @"暂无资源";
-    emptyView.title = @"没有符合条件的资源";
-    self.emptyView = emptyView;
-
     [super viewDidLoad];
     [self configUI];
     // Do any additional setup after loading the view.
@@ -55,23 +50,12 @@ static  NSString *const trackPageName = @"全部资源页面";
     self.tableView.showsVerticalScrollIndicator = NO;
 }
 - (void)configUI {
-    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(44);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
-    self.emptyView.hidden = YES;
-    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(44);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
-    @weakify(self);
-    self.errorView.retryBlock = ^(){
-        @strongify(self);
-        [self startLoading];
-        [self firstPageFetch:YES];
-    };
+    self.emptyView.imageName = @"暂无资源";
+    self.emptyView.title = @"没有符合条件的资源";
+
     self.view.backgroundColor = [UIColor whiteColor];
     self.menuView = [[YXDatumOrderFilterMenuView alloc]initWithFrame:CGRectZero];
+     @weakify(self);
     self.menuView.refreshFilterBlock = ^(NSString *condition) {
         @strongify(self);
         self.currentConditon = condition;
@@ -91,7 +75,7 @@ static  NSString *const trackPageName = @"全部资源页面";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXAllDatumTableViewCell class] forCellReuseIdentifier:@"YXAllDatumTableViewCell"];
     
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
@@ -184,6 +168,10 @@ static  NSString *const trackPageName = @"全部资源页面";
                 make.height.mas_equalTo(45);
                 make.top.equalTo(self.view.mas_top).offset(20.0f);
             }];
+            [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.top.mas_equalTo(self.menuView.mas_bottom);
+            }];
         }else{
             self.menuView.isNavBarHidden = NO;
             [self.navigationController setNavigationBarHidden:NO animated:YES];
@@ -192,6 +180,10 @@ static  NSString *const trackPageName = @"全部资源页面";
                 make.right.mas_equalTo(0);
                 make.height.mas_equalTo(45);
                 make.top.equalTo(self.view.mas_top).offset(0.0f);
+            }];
+            [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.top.mas_equalTo(self.menuView.mas_bottom);
             }];
         }
     }else{
@@ -202,6 +194,10 @@ static  NSString *const trackPageName = @"全部资源页面";
             make.right.mas_equalTo(0);
             make.height.mas_equalTo(45);
             make.top.equalTo(self.view.mas_top);
+        }];
+        [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(self.menuView.mas_bottom);
         }];
     }
 }

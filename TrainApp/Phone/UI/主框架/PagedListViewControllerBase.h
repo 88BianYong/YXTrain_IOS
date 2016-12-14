@@ -10,6 +10,7 @@
 #import "PagedListFetcherBase.h"
 
 @interface PagedListViewControllerBase : YXBaseViewController
+@property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) BOOL bIsGroupedTableViewStyle;    // currently trick
 @property (nonatomic, strong) NSMutableArray *dataArray;        // the model

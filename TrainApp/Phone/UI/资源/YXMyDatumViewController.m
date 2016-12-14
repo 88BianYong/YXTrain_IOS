@@ -29,11 +29,9 @@ static  NSString *const trackPageName = @"我的资源页面";
 - (void)viewDidLoad {
     self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    emptyView.imageName = @"没有收藏资源";
-    emptyView.title = @"您还没有收藏的资源";
-    self.emptyView = emptyView;
     [super viewDidLoad];
+    self.emptyView.imageName = @"没有收藏资源";
+    self.emptyView.title = @"您还没有收藏的资源";
     self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -224,9 +222,11 @@ static  NSString *const trackPageName = @"我的资源页面";
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         [tableView endUpdates];
         if ([self.dataArray count] == 0) {
-            self.emptyView.hidden = NO;
+            [self.contentView addSubview:self.emptyView];
+            self.emptyView.frame = self.contentView.bounds;
         }
     } else {
+        [self.emptyView removeFromSuperview];
         [tableView beginUpdates];
         [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         [tableView endUpdates];

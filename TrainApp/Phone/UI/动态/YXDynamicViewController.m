@@ -24,8 +24,6 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     YXDynamicDatumFetch *fetcher = [[YXDynamicDatumFetch alloc] init];
     fetcher.pagesize = 10;
     self.dataFetcher = fetcher;
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    self.emptyView = emptyView;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
@@ -60,9 +58,10 @@ static  NSString *const trackPageName = @"消息动态列表页面";
 }
 
 - (void)layoutInterface{
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

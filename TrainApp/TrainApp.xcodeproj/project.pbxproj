@@ -439,6 +439,7 @@
 		E935D8521DFE403E005CC8BD /* LSTAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D8511DFE403E005CC8BD /* LSTAlertView.m */; };
 		E935D86F1DFE4838005CC8BD /* LSTAlertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D86E1DFE4838005CC8BD /* LSTAlertButton.m */; };
 		E935D8751DFE4E85005CC8BD /* LSTAlertTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D8741DFE4E85005CC8BD /* LSTAlertTitleLabel.m */; };
+		E935D87C1E00E0A6005CC8BD /* UnhandledRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D87B1E00E0A6005CC8BD /* UnhandledRequestData.m */; };
 		E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E93C06181DCB1F9400666265 /* DataErrorView.m */; };
 		E9A7B5D61DDADD0A00136335 /* ActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5D51DDADD0A00136335 /* ActivityListCell.m */; };
 		E9A7B5EB1DDC3EAA00136335 /* ShareResourcesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A7B5E81DDC3EAA00136335 /* ShareResourcesTableViewCell.m */; };
@@ -1322,6 +1323,8 @@
 		E935D86E1DFE4838005CC8BD /* LSTAlertButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTAlertButton.m; sourceTree = "<group>"; };
 		E935D8731DFE4E85005CC8BD /* LSTAlertTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTAlertTitleLabel.h; sourceTree = "<group>"; };
 		E935D8741DFE4E85005CC8BD /* LSTAlertTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTAlertTitleLabel.m; sourceTree = "<group>"; };
+		E935D87A1E00E0A6005CC8BD /* UnhandledRequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnhandledRequestData.h; sourceTree = "<group>"; };
+		E935D87B1E00E0A6005CC8BD /* UnhandledRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnhandledRequestData.m; sourceTree = "<group>"; };
 		E93C06171DCB1F9400666265 /* DataErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataErrorView.h; sourceTree = "<group>"; };
 		E93C06181DCB1F9400666265 /* DataErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataErrorView.m; sourceTree = "<group>"; };
 		E9A7B5D41DDADD0A00136335 /* ActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListCell.h; sourceTree = "<group>"; };
@@ -1784,6 +1787,8 @@
 				7CF887F91D17D45A00E7C04D /* 分页框架 */,
 				7C3177C61D10F46B004AAC90 /* YXBaseViewController.h */,
 				7C3177C71D10F46B004AAC90 /* YXBaseViewController.m */,
+				E935D87A1E00E0A6005CC8BD /* UnhandledRequestData.h */,
+				E935D87B1E00E0A6005CC8BD /* UnhandledRequestData.m */,
 				7C3177C91D10F496004AAC90 /* YXNavigationController.h */,
 				7C3177CA1D10F496004AAC90 /* YXNavigationController.m */,
 				CB7462711D1F64970065113A /* YXAlertView.h */,
@@ -3592,6 +3597,7 @@
 				CBB62E131D2CCB0F00DAA6DE /* YXBroseWebView.m in Sources */,
 				92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */,
 				926354591DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m in Sources */,
+				E935D87C1E00E0A6005CC8BD /* UnhandledRequestData.m in Sources */,
 				7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
 				F7E8F8DB1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m in Sources */,

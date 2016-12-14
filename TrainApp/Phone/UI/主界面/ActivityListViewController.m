@@ -25,10 +25,6 @@
 @implementation ActivityListViewController
 - (void)viewDidLoad {
     [self setupFetcher];
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    emptyView.title = @"没有符合条件的活动";
-    emptyView.imageName = @"没有符合条件的课程";
-    self.emptyView = emptyView;
     self.isWaitingForFilter = YES;
     [super viewDidLoad];
     [self setupUI];
@@ -75,7 +71,7 @@
     [self setupWithCurrentFilters];
     filterView.delegate = self;
     [self.view addSubview:filterView];
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(44);
     }];
@@ -95,14 +91,13 @@
         }
 }
 - (void)setupUI {
+    self.emptyView.title = @"没有符合条件的活动";
+    self.emptyView.imageName = @"没有符合条件的课程";
     self.title = @"活动列表";
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ActivityListCell class] forCellReuseIdentifier:@"ActivityListCell"];
-    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(44);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
+   
     if (self.isWaitingForFilter) {
         self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
         WEAK_SELF
@@ -144,16 +139,7 @@
         [self firstPageFetch:YES];
     }];
 }
-- (void)tableViewWillRefresh {
-    CGFloat top = 0.f;
-    if (self.filterView) {
-        top = 44.f;
-    }
-    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(top);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
-}
+
 - (void)firstPageFetch:(BOOL)isShow {
     if (self.isWaitingForFilter) {
         return;
@@ -227,7 +213,7 @@
         if (point.y >= 5 && !self.isNavBarHidden) {
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
-            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(64);
             }];
@@ -236,7 +222,7 @@
         }else if (point.y < 5 && self.isNavBarHidden) {
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
-            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(44);
             }];
@@ -246,7 +232,7 @@
     }else {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
-        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.mas_equalTo(0);
             make.top.mas_equalTo(44);
         }];

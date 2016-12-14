@@ -21,17 +21,15 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
 
 - (void)viewDidLoad {
     self.bIsGroupedTableViewStyle = YES;
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
+    [super viewDidLoad];
     if (self.flag == YXFlag_Notice) {
-        emptyView.imageName = @"暂无通知";
-        emptyView.title = @"暂无通知";
+        self.emptyView.imageName = @"暂无通知";
+        self.emptyView.title = @"暂无通知";
     }
     if (self.flag == YXFlag_Bulletin) {
-        emptyView.imageName = @"暂无简报";
-        emptyView.title = @"暂无简报";
+        self.emptyView.imageName = @"暂无简报";
+        self.emptyView.title = @"暂无简报";
     }
-    self.emptyView = emptyView;
-    [super viewDidLoad];
     if (self.flag == YXFlag_Notice) {
         self.title = @"通知";
         YXNoticeListFetch *fetcher = [[YXNoticeListFetch alloc] init];

@@ -22,10 +22,6 @@
 @implementation ShareResourcesViewController
 - (void)viewDidLoad {
     [self setupDataFetcher];
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    emptyView.imageName = @"暂无资源";
-    emptyView.title = @"没有符合条件的资源";
-    self.emptyView = emptyView;
     [super viewDidLoad];
     self.title = @"资源分享";
     [self setupUI];
@@ -48,13 +44,16 @@
     self.dataFetcher = fetcher;
 }
 - (void)setupUI {
+    self.emptyView.imageName = @"暂无资源";
+    self.emptyView.title = @"没有符合条件的资源";
     self.view.backgroundColor = [UIColor whiteColor];
     [self setupBottomView];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.estimatedRowHeight = 800;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ShareResourcesTableViewCell class] forCellReuseIdentifier:@"ShareResourcesTableViewCell"];
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.right.mas_equalTo(0);
         make.bottom.equalTo(self.bottomView.mas_top);
@@ -64,18 +63,6 @@
     UIView *tableViewHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
     tableViewHeaderView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.tableHeaderView = tableViewHeaderView;
-    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.bottomView.mas_top);
-        make.left.right.top.mas_equalTo(0);
-    }];
-    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.bottomView.mas_top);
-        make.left.right.top.mas_equalTo(0);
-    }];
-    [self.dataErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.bottomView.mas_top);
-        make.left.right.top.mas_equalTo(0);
-    }];
 }
 - (void)setupBottomView {
     UIView *bottomView = [[UIView alloc]init];
