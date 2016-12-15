@@ -145,6 +145,9 @@
             [self refreshDealWithFilterModel:self.filterModel];
         }else {
             [self dealWithFilterModel:self.filterModel];
+            ActivityFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
+            ActivityFilter *filter = stageGroup.filterArray.firstObject;
+            self.segmentId = filter.filterID;
         }
     }];
 }
@@ -204,7 +207,7 @@
     ActivityFilter *segmentItem = [[ActivityFilter alloc]init];
     if (group0.filterArray.count > 0) {
         segmentItem = group0.filterArray[num0.integerValue];
-        if (![self.segmentId isEqualToString:segmentItem.filterID] && self.segmentId != nil) {
+        if (![self.segmentId isEqualToString:segmentItem.filterID]) {
             self.studyId = nil;
             self.segmentId = segmentItem.filterID;
             [self allFiltersForIsRefresh:YES];
