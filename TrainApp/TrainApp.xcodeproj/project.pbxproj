@@ -265,6 +265,7 @@
 		9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9237FF761DD489390057FFDE /* ActivityStepListRequest.m */; };
 		9237FF791DD48F800057FFDE /* activityStep_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 9237FF781DD48F800057FFDE /* activityStep_mock.json */; };
 		9237FF7C1DD572400057FFDE /* ActivityFirstCommentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */; };
+		924797E11E022C1F0033BFDC /* BeijingActivityFilterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 924797E01E022C1F0033BFDC /* BeijingActivityFilterRequest.m */; };
 		924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924AB24B1DE2A75E003EC952 /* ActivityPlayExceptionView.m */; };
 		924AB2561DE41C47003EC952 /* firstComment_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 924AB2541DE41C47003EC952 /* firstComment_mock.json */; };
 		924AB2571DE41C47003EC952 /* SecondComment_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 924AB2551DE41C47003EC952 /* SecondComment_mock.json */; };
@@ -982,6 +983,8 @@
 		9237FF781DD48F800057FFDE /* activityStep_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activityStep_mock.json; sourceTree = "<group>"; };
 		9237FF7A1DD572400057FFDE /* ActivityFirstCommentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFirstCommentRequest.h; sourceTree = "<group>"; };
 		9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFirstCommentRequest.m; sourceTree = "<group>"; };
+		924797DF1E022C1E0033BFDC /* BeijingActivityFilterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityFilterRequest.h; sourceTree = "<group>"; };
+		924797E01E022C1F0033BFDC /* BeijingActivityFilterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityFilterRequest.m; sourceTree = "<group>"; };
 		924AB24A1DE2A75E003EC952 /* ActivityPlayExceptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayExceptionView.h; sourceTree = "<group>"; };
 		924AB24B1DE2A75E003EC952 /* ActivityPlayExceptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlayExceptionView.m; sourceTree = "<group>"; };
 		924AB2541DE41C47003EC952 /* firstComment_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = firstComment_mock.json; sourceTree = "<group>"; };
@@ -2758,6 +2761,8 @@
 				9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */,
 				9268C5F01DF3D59400AA109B /* BeijingModifyPasswordRequest.h */,
 				9268C5F11DF3D59400AA109B /* BeijingModifyPasswordRequest.m */,
+				924797DF1E022C1E0033BFDC /* BeijingActivityFilterRequest.h */,
+				924797E01E022C1F0033BFDC /* BeijingActivityFilterRequest.m */,
 			);
 			name = "北京项目";
 			sourceTree = "<group>";
@@ -3588,6 +3593,7 @@
 				92CE51561D87D4C70071DE79 /* YXDynamicRequest.m in Sources */,
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
 				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
+				924797E11E022C1F0033BFDC /* BeijingActivityFilterRequest.m in Sources */,
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
 				922901641DED0C15001474CE /* PreventHangingCourseView.m in Sources */,
 				92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */,
