@@ -20,6 +20,8 @@ static  NSString *const trackPageName = @"课程列表页面";
 @property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, assign) BOOL isNavBarHidden;
+@property (nonatomic, assign) BOOL isRefreshStudys;
+@property (nonatomic, assign) NSInteger lastChooseStudys;
 @end
 
 @implementation BeijingCourseViewController
@@ -34,13 +36,15 @@ static  NSString *const trackPageName = @"课程列表页面";
     WEAK_SELF
     fetcher.filterBlock = ^(YXCourseListFilterModel *model){
         STRONG_SELF
-        if (self.filterView) {
-            return;
+        self.filterModel = model;
+        if (self.isRefreshStudys) {
+            [self refreshDealWithFilterModel:self.filterModel];
+        }else {
+            if (self.filterView) {
+                return;
+            }
+            [self dealWithFilterModel:self.filterModel];
         }
-        if (!self.filterModel) {
-            self.filterModel = model;
-        }
-        [self dealWithFilterModel:self.filterModel];
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
@@ -161,6 +165,19 @@ static  NSString *const trackPageName = @"课程列表页面";
         make.top.mas_equalTo(44);
     }];
 }
+- (void)refreshDealWithFilterModel:(YXCourseListFilterModel *)model {
+    for (YXCourseFilterGroup *group in model.groupArray) {
+        if ([group.name isEqualToString:@"学科"]) {
+            NSMutableArray *array = [NSMutableArray array];
+            for (YXCourseFilter *filter in group.filterArray) {
+                [array addObject:filter.name];
+            }
+            [self.filterView refreshStudysFilters:array forKey:group.name];
+        }
+    }
+}
+
+
 
 - (void)setupWithCurrentFilters{
     if (self.stageID) {
@@ -239,6 +256,13 @@ static  NSString *const trackPageName = @"课程列表页面";
     NSNumber *num0 = filterArray[0];
     YXCourseFilterGroup *group0 = self.filterModel.groupArray[0];
     YXCourseFilter *segmentItem = group0.filterArray[num0.integerValue];
+    if (self.lastChooseStudys != num0.integerValue) {
+        self.isRefreshStudys = YES;
+    }else {
+        self.isRefreshStudys = NO;
+    }
+    self.lastChooseStudys = num0.integerValue;
+    
     // 学科
     NSNumber *num1 = filterArray[1];
     YXCourseFilterGroup *group1 = self.filterModel.groupArray[1];

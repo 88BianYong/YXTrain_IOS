@@ -23,4 +23,7 @@
 
 - (void)setCurrentIndex:(NSInteger)index forKey:(NSString *)key;
 
+- (void)refreshStudysFilters:(NSArray *)filters forKey:(NSString *)key;
+- (void)refreshStagesFilters:(NSArray *)filters forKey:(NSString *)key;
+
 @end

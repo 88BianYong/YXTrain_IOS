@@ -75,6 +75,30 @@ static const NSUInteger kTagBase = 876;
     item.currentIndex = -1;
     [self.filterItemArray addObject:item];
 }
+- (void)refreshStudysFilters:(NSArray *)filters forKey:(NSString *)key {
+    YXCourseFilterItem *item = [[YXCourseFilterItem alloc]init];
+    item.typeName = key;
+    item.filterArray = filters;
+    item.currentIndex = -1;
+    [self.filterItemArray replaceObjectAtIndex:1 withObject:item];
+    UIButton *b = [self.typeContainerView viewWithTag:kTagBase+1];
+    [b setTitle:key forState:UIControlStateNormal];
+    [self changeButton:b foldStatus:YES];
+    [self changeButton:b selectedStatus:NO];
+    [self exchangeTitleImagePositionForButton:b];
+}
+- (void)refreshStagesFilters:(NSArray *)filters forKey:(NSString *)key {
+    YXCourseFilterItem *item = [[YXCourseFilterItem alloc]init];
+    item.typeName = key;
+    item.filterArray = filters;
+    item.currentIndex = -1;
+    [self.filterItemArray replaceObjectAtIndex:2 withObject:item];
+    UIButton *b = [self.typeContainerView viewWithTag:kTagBase+2];
+    [b setTitle:key forState:UIControlStateNormal];
+    [self changeButton:b foldStatus:NO];
+    [self changeButton:b selectedStatus:NO];
+    [self exchangeTitleImagePositionForButton:b];
+}
 
 - (void)setCurrentIndex:(NSInteger)index forKey:(NSString *)key{
     YXCourseFilterItem *item = nil;

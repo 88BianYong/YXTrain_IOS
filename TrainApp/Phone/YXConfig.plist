@@ -22,9 +22,9 @@
 	<key>uploadServer</key>
 	<string>http://upload.yanxiu.com/resource/index.jsp</string>
 	<key>loginServer</key>
-	<string>http://u.yanxiu.com/</string>
+	<string>http://u.yanxiu.com/test/</string>
 	<key>server</key>
-	<string>http://mobile.yanxiu.com/v20/api/</string>
+	<string>http://mobile.yanxiu.com/test/api/</string>
 	<key>websocket</key>
 	<string>ws://mobile.yanxiu.com/websocket</string>
 	<key>mockFrameworkOn</key>
