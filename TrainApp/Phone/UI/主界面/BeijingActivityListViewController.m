@@ -128,29 +128,33 @@
             [self stopLoading];
             self.filterErrorView.frame = self.view.bounds;
             [self.view addSubview:self.filterErrorView];
+            [self.dataArray removeAllObjects];
+            [self.tableView reloadData];
             return;
         }
         [self.filterErrorView removeFromSuperview];
         ActivityFilterRequestItem *item = (ActivityFilterRequestItem *)retItem;
         self.filterModel = [item filterModel];
         self.isWaitingForFilter = NO;
-        ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
-        ActivityFilter *filter = stageGroup.filterArray.firstObject;
-        ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
-        fetcher.studyid = self.studyId?:@"0";
-        fetcher.segid = self.segmentId?:@"0";
-        fetcher.stageid = self.stageId?:filter.filterID;
-        [self firstPageFetch:YES];
+
         if (isRefresh || self.filterView) {
             [self refreshDealWithFilterModel:self.filterModel];
         }else {
             [self dealWithFilterModel:self.filterModel];
-            ActivityFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
-            ActivityFilter *filter = stageGroup.filterArray.firstObject;
-            self.segmentId = filter.filterID;
+            self.segmentId = [self firstRequestParameter:self.filterModel.groupArray.firstObject];
         }
+        ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
+        fetcher.studyid = self.studyId?:@"0";
+        fetcher.segid = self.segmentId?:@"0";
+        fetcher.stageid = self.stageId?:[self firstRequestParameter:self.filterModel.groupArray.lastObject];
+        [self firstPageFetch:YES];
     }];
 }
+- (NSString *)firstRequestParameter:(ActivityFilterGroup *)stageGroup {
+    ActivityFilter *filter = stageGroup.filterArray.firstObject;
+    return filter.filterID;
+}
+
 - (void)tableViewWillRefresh {
     CGFloat top = 0.f;
     if (self.filterView) {

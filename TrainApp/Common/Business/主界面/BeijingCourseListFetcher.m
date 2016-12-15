@@ -20,6 +20,8 @@
     self.request.studyid = self.studyid;
     self.request.segid = self.segid;
     self.request.stageid = self.stageid;
+    self.request.type = @"102";
+
     self.request.w = self.w;
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXCourseListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

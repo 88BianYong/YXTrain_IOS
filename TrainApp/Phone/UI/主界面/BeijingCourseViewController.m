@@ -54,9 +54,8 @@ static  NSString *const trackPageName = @"课程列表页面";
     emptyView.imageName = @"没有符合条件的课程";
     self.emptyView = emptyView;
     
-    if (self.stageID) {
-        self.isWaitingForFilter = YES;
-    }
+    self.isWaitingForFilter = YES;
+
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"课程列表";
@@ -121,6 +120,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     self.request.pageno = @"1";
     self.request.pagesize = @"10";
+    self.request.type = @"102";
     self.request.w = [YXTrainManager sharedInstance].currentProject.w;
     [self startLoading];
     WEAK_SELF
@@ -137,6 +137,10 @@ static  NSString *const trackPageName = @"课程列表页面";
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         self.filterModel = [item beijingFilterModel];
         self.isWaitingForFilter = NO;
+        YXCourseFilterGroup *group0 = self.filterModel.groupArray.firstObject;
+        YXCourseFilter *segmentItem = group0.filterArray.firstObject;
+        BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
+        fetcher.studyid = segmentItem.filterID;        
         [self firstPageFetch:YES];
     }];
 }
@@ -273,6 +277,9 @@ static  NSString *const trackPageName = @"课程列表页面";
     YXCourseFilter *stageItem = group2.filterArray[num2.integerValue];
     BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
     fetcher.studyid = studyItem.filterID;
+    if (self.isRefreshStudys) {
+       fetcher.studyid = @"0";
+    }
     fetcher.segid = segmentItem.filterID;
     fetcher.stageid = stageItem.filterID;
     [self firstPageFetch:YES];
