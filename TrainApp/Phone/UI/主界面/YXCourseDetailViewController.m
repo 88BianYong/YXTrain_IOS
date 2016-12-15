@@ -65,13 +65,14 @@
     [self.tableView registerClass:[YXCourseDetailCell class] forCellReuseIdentifier:@"YXCourseDetailCell"];
     [self.tableView registerClass:[YXCourseDetailHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXCourseDetailHeaderView"];
     WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView = [[YXErrorView alloc]init];
+    self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self getData];
     };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.emptyView = [[YXEmptyView alloc]init];
+    self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self getData];
@@ -90,29 +91,14 @@
         [self.courseDetailRequest startRequestWithRetClass:[YXCourseDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
             [self stopLoading];
-            if (error) {
-                if (error.code == -2) {
-                    self.dataErrorView.frame = self.view.bounds;
-                    [self.view addSubview:self.dataErrorView];
-                }
-                else if ([error.domain isEqualToString:@"network"]) { // 业务逻辑错误
-                    self.emptyView.frame = self.view.bounds;
-                    [self.view addSubview:self.emptyView];
-                }else{
-                    self.errorView.frame = self.view.bounds;
-                    [self.view addSubview:self.errorView];
-                }
-                return;
-            }
             YXCourseDetailRequestItem *item = (YXCourseDetailRequestItem *)retItem;
-            if (item.body.chapters.count == 0) {
-                self.emptyView.frame = self.view.bounds;
-                [self.view addSubview:self.emptyView];
+            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+            data.requestDataExist = item.body.chapters.count != 0;
+            data.localDataExist = NO;
+            data.error = error;
+            if ([self handleRequestData:data]) {
                 return;
             }
-            [self.errorView removeFromSuperview];
-            [self.emptyView removeFromSuperview];
-            [self.dataErrorView removeFromSuperview];
             [self dealWithCourseItem:item.body];
         }];
     }else{
@@ -126,28 +112,14 @@
         [self.moduleDetailRequest startRequestWithRetClass:[YXModuleDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
             [self stopLoading];
-            if (error) {
-                if (error.code == -2) {
-                    self.dataErrorView.frame = self.view.bounds;
-                    [self.view addSubview:self.dataErrorView];
-                }else if ([error.domain isEqualToString:@"network"]) { // 业务逻辑错误
-                    self.emptyView.frame = self.view.bounds;
-                    [self.view addSubview:self.emptyView];
-                }else{
-                    self.errorView.frame = self.view.bounds;
-                    [self.view addSubview:self.errorView];
-                }
-                return;
-            }
             YXModuleDetailRequestItem *item = (YXModuleDetailRequestItem *)retItem;
-            if (item.body.chapters.count == 0) {
-                self.emptyView.frame = self.view.bounds;
-                [self.view addSubview:self.emptyView];
+            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+            data.requestDataExist = item.body.chapters.count != 0;
+            data.localDataExist = NO;
+            data.error = error;
+            if ([self handleRequestData:data]) {
                 return;
             }
-            [self.errorView removeFromSuperview];
-            [self.emptyView removeFromSuperview];
-            [self.dataErrorView removeFromSuperview];
             [self dealWithCourseItem:item.body];
         }];
     }

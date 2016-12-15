@@ -151,17 +151,11 @@
                                                             object:nil];
         return;
     }
-    // 业务逻辑错误 code为1或2数据错误 登录时特殊处理
-    if (item.code.integerValue == 1 || item.code.integerValue == 2) {//code转为-2 因为code为1 网络错误占据  ASIConnectionFailureErrorType = 1,ASIRequestTimedOutErrorType = 2
-        error = [NSError errorWithDomain:@"数据错误" code:-2 userInfo:@{NSLocalizedDescriptionKey:item.desc.length==0? @"数据错误":item.desc}];
-        _completeBlock(item, error, self->_isMock);
-        return;
-    }
     
     
     // 业务逻辑错误
     if (item.code.integerValue != 0) {
-        error = [NSError errorWithDomain:@"network" code:item.code.integerValue userInfo:@{NSLocalizedDescriptionKey: item.desc.length==0? @"请求失败":item.desc}];
+        error = [NSError errorWithDomain:@"数据错误" code:-2 userInfo:@{NSLocalizedDescriptionKey:item.desc.length==0? @"数据错误":item.desc}];
         _completeBlock(item, error, self->_isMock);
         return;
     }

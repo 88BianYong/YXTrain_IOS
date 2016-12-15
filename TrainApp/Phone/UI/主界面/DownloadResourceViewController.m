@@ -16,6 +16,7 @@
 @property (nonatomic, strong) DownloadResourceRequest *request;
 @property (nonatomic, strong) YXDatumCellModel *dataModel;
 @property (nonatomic, strong) ResourceMessageView *resourceMessageView;
+@property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 @end
@@ -23,21 +24,19 @@
 @implementation DownloadResourceViewController
 
 - (void)viewDidLoad {
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    emptyView.imageName = @"暂无资源";
-    emptyView.title = @"没有符合条件的资源";
-    self.emptyView = emptyView;
-    
     [super viewDidLoad];
     self.title = @"资源下载";
-    [self setupUI];
     self.dataModel = [self cachedItem];
+    [self setupUI];
     if (self.dataModel) {
         self.resourceMessageView.data = self.dataModel;
     }
     [self requestResource];
 }
 - (void)setupUI {
+    self.emptyView = [[YXEmptyView alloc]init];
+    self.emptyView.imageName = @"暂无资源";
+    self.emptyView.title = @"没有符合条件的资源";
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
@@ -50,8 +49,21 @@
         [self requestResource];
     };
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self setupBottomView];
+    [self setupTopView];
+    if (isEmpty(self.dataModel)) {
+        self.resourceMessageView.hidden = YES;
+    }
+}
+- (void)setupTopView {
+    self.topView = [[UIView alloc]init];
+    [self.view addSubview:self.topView];
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.bottomView.mas_top);
+    }];
     self.resourceMessageView = [[ResourceMessageView alloc]initWithFrame:CGRectZero];
-    [self.view addSubview:self.resourceMessageView];
+    [self.topView addSubview:self.resourceMessageView];
     [self.resourceMessageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.view).offset(-22);
         make.centerX.equalTo(self.view);
@@ -61,10 +73,6 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture:)];
     tapGesture.numberOfTapsRequired = 1;
     [self.resourceMessageView addGestureRecognizer:tapGesture];
-    if (isEmpty(self.dataModel)) {
-        self.resourceMessageView.hidden = YES;
-    }
-    [self setupBottomView];
 }
 - (void)setupBottomView {
     UIView *bottomView = [[UIView alloc]init];
@@ -113,36 +121,16 @@
     [self.request startRequestWithRetClass:[DownloadResourceRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        if (error) {
-            if (error.code == -2) {
-                [self.view addSubview:self.dataErrorView];
-                [self.dataErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.bottom.equalTo(self.bottomView.mas_top);
-                    make.left.right.top.mas_equalTo(0);
-                }];
-            }else {
-                [self.view addSubview:self.errorView];
-                [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.bottom.equalTo(self.bottomView.mas_top);
-                    make.left.right.top.mas_equalTo(0);
-                }];
-            }
-            return;
-        }
+        
         DownloadResourceRequestItem *item = retItem;
-        if (isEmpty(item.body.resource)) {
-            self.resourceMessageView.hidden = YES;
-            [self.view addSubview:self.emptyView];
-            [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(self.bottomView.mas_top);
-                make.left.right.top.mas_equalTo(0);
-            }];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = !isEmpty(item.body.resource);
+        data.localDataExist = !isEmpty(self.dataModel);
+        data.error = error;
+        if ([self handleRequestData:data inView:self.topView]) {
             return;
         }
         self.resourceMessageView.hidden = NO;
-        [self.errorView removeFromSuperview];
-        [self.emptyView removeFromSuperview];
-        [self.dataErrorView removeFromSuperview];
         self.requestItem = item;
         [self saveToCache];
         YXDatumCellModel *model = [YXDatumCellModel modelFromDownloadResourceRequestItemBodyResource:item.body.resource];

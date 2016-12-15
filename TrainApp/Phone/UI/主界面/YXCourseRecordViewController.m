@@ -85,12 +85,12 @@ static  NSString *const trackPageName = @"看课记录页面";
         [self getDataShowLoading:NO];
     };
     
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self getDataShowLoading:YES];
     };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    self.emptyView = [[YXEmptyView alloc]init];
     if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
         self.emptyView.title = @"您还没有开始看课";
         self.emptyView.imageName = @"没开始看课";
@@ -99,7 +99,7 @@ static  NSString *const trackPageName = @"看课记录页面";
         self.emptyView.subTitle = @"请您先在电脑登录研修网选课";
         self.emptyView.imageName = @"没选课";
     }
-    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self getDataShowLoading:YES];
@@ -120,26 +120,16 @@ static  NSString *const trackPageName = @"看课记录页面";
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopLoading];
             [self.header endRefreshing];
-            if (error) {
-                if (error.code == -2) {
-                    self.dataErrorView.frame = self.view.bounds;
-                    [self.view addSubview:self.dataErrorView];
-                }
-                else{
-                    self.errorView.frame = self.view.bounds;
-                    [self.view addSubview:self.errorView];
-                }
-                return;
-            }
+            
             YXCourseRecordRequestItem *item = (YXCourseRecordRequestItem *)retItem;
-            if (item.body.modules.count == 0) {
-                self.emptyView.frame = self.view.bounds;
-                [self.view addSubview:self.emptyView];
+            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+            data.requestDataExist = item.body.modules.count != 0;
+            data.localDataExist = NO;
+            data.error = error;
+            
+            if ([self handleRequestData:data]) {
                 return;
             }
-            [self.errorView removeFromSuperview];
-            [self.emptyView removeFromSuperview];
-            [self.dataErrorView removeFromSuperview];
             [self dealWithRecordItem:retItem];
         });
         

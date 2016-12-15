@@ -102,7 +102,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         STRONG_SELF
         [self getDataShowLoading:NO];
     };
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self getDataShowLoading:YES];
@@ -130,12 +130,13 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         STRONG_SELF
         [self stopLoading];
         [self.header endRefreshing];
-        if (error) {
-            self.errorView.frame = self.view.bounds;
-            [self.view addSubview:self.errorView];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = retItem != nil;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
             return;
         }
-        [self.errorView removeFromSuperview];
         [self dealWithRetItem:retItem];
     }];
 }

@@ -103,7 +103,7 @@
     [self setupLeftWithCustomView:self.headView];
     
     WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         if (self.isCheckedMobile) {
@@ -112,8 +112,8 @@
             [self getProjectList];
         }
     };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.emptyView = [[YXEmptyView alloc]init];
+    self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         if (self.isCheckedMobile) {
@@ -158,38 +158,33 @@
     [request startRequestWithRetClass:[BeijingCheckedMobileUserRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        if (error) {
-            if (error.code == -2) {
-                self.dataErrorView.frame = self.view.bounds;
-                [self.view addSubview:self.dataErrorView];
-            }
-            else{
-                self.errorView.frame = self.view.bounds;
-                [self.view addSubview:self.errorView];
-            }
-        }else {
-            [self.errorView removeFromSuperview];
-            [self.emptyView removeFromSuperview];
-            [self.dataErrorView removeFromSuperview];
-            BeijingCheckedMobileUserRequestItem *item = retItem;
-            if (item.isUpdatePwd.integerValue == 0) {// 0 为 没有修改过密码 ，需要老师修改；1为不需要修改。
-                BeijingCheckedMobileUserViewController *VC = [[BeijingCheckedMobileUserViewController alloc] init];
-                self.headView.hidden = YES;
-                VC.passportString = item.passport;
-                [self.navigationController pushViewController:VC animated:NO];
-            }
-            if (item.isTest.integerValue == 0) {// 0为需要老师做前测问卷，1为不需要做。
-                self.emptyView.frame = self.view.bounds;
-                self.emptyView.imageName = @"没选课";
-                self.emptyView.title = @"您还未完成测评";
-                self.emptyView.subTitle = @"请在电脑端登录研修网完成测评";
-                [self.view addSubview:self.emptyView];
-            }else {
-                [self setupRightView];
-                [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
-            }
-            [self dealWithProjectGroups:self.dataMutableArrray];
+        
+        BeijingCheckedMobileUserRequestItem *item = retItem;
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = item != nil;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
         }
+        if (item.isUpdatePwd.integerValue == 0) {// 0 为 没有修改过密码 ，需要老师修改；1为不需要修改。
+            BeijingCheckedMobileUserViewController *VC = [[BeijingCheckedMobileUserViewController alloc] init];
+            self.headView.hidden = YES;
+            VC.passportString = item.passport;
+            [self.navigationController pushViewController:VC animated:NO];
+        }
+        if (item.isTest.integerValue == 0) {// 0为需要老师做前测问卷，1为不需要做。
+            self.emptyView.frame = self.view.bounds;
+            self.emptyView.imageName = @"没选课";
+            self.emptyView.title = @"您还未完成测评";
+            self.emptyView.subTitle = @"请在电脑端登录研修网完成测评";
+            [self.view addSubview:self.emptyView];
+        }else {
+            [self.emptyView removeFromSuperview];
+            [self setupRightView];
+            [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
+        }
+        [self dealWithProjectGroups:self.dataMutableArrray];
     }];
     self.checkedMobileUserRequest = request;
 }
@@ -199,35 +194,22 @@
     WEAK_SELF
     [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(NSArray *groups, NSError *error) {
         STRONG_SELF
-        if (error) {
-            [self stopLoading];
-            if (error.code == -2) {
-                self.dataErrorView.frame = self.view.bounds;
-                [self.view addSubview:self.dataErrorView];
-            }
-            else{
-                self.errorView.frame = self.view.bounds;
-                [self.view addSubview:self.errorView];
-            }
+        [self stopLoading];
+        self.emptyView.imageName = @"无培训项目";
+        self.emptyView.title = @"您没有已参加的培训项目";
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = groups.count != 0;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
             return;
         }
-        if (groups.count == 0) {
-            [self stopLoading];
-            self.emptyView.frame = self.view.bounds;
-            self.emptyView.imageName = @"无培训项目";
-            self.emptyView.title = @"您没有已参加的培训项目";
-            [self.view addSubview:self.emptyView];
+        [self.dataMutableArrray addObjectsFromArray:groups];
+        if ([YXTrainManager sharedInstance].isBeijingProject) {
+            [self requestCheckedMobileUser];
         }else {
-            [self.errorView removeFromSuperview];
-            [self.emptyView removeFromSuperview];
-            [self.dataErrorView removeFromSuperview];
-            [self.dataMutableArrray addObjectsFromArray:groups];
-            if ([YXTrainManager sharedInstance].isBeijingProject) {
-                [self requestCheckedMobileUser];
-            }else {
-                [self dealWithProjectGroups:self.dataMutableArrray];
-                [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
-            }
+            [self dealWithProjectGroups:self.dataMutableArrray];
+            [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
         }
     }];
 }
@@ -251,7 +233,7 @@
             self.redPointView.hidden = NO;
         }
     }
-
+    
 }
 - (void)showoUpdateInterface:(NSNotification *)aNotification{
     [[YXInitHelper sharedHelper] showNoRestraintUpgrade];

@@ -124,12 +124,12 @@ UITableViewDataSource
     }
     
     WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestForHomeworkInfo];
     };
-    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self requestForHomeworkInfo];
@@ -235,31 +235,25 @@ UITableViewDataSource
     [request startRequestWithRetClass:[YXHomeworkInfoRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        if (error) {
-            if (error.code == -2) {
-                self.dataErrorView.frame = self.view.bounds;
-                [self.view addSubview:self.dataErrorView];
-            }else{
-                self.errorView.frame = self.view.bounds;
-                [self.view addSubview:self.errorView];
-            }
-        }else{
-            [self.errorView removeFromSuperview];
-            [self.dataErrorView removeFromSuperview];
-            YXHomeworkInfoRequestItem *item = retItem;
-            if (item) {
-                item.body.uid = [YXUserManager sharedManager].userModel.uid;
-                item.body.pid = self.itemBody.pid;
-                if (item.body.detail) {
-                    item.body.lessonStatus = YXVideoLessonStatus_Finish;
-                }else{
-                    item.body.lessonStatus = YXVideoLessonStatus_NoRecord;
-                }
-                self.itemBody = item.body;
-                [self findVideoHomeworkInformation:self.itemBody];
-                self ->_tableView.hidden = NO;
-            }
+        
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = retItem != nil;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
         }
+        YXHomeworkInfoRequestItem *item = retItem;
+        item.body.uid = [YXUserManager sharedManager].userModel.uid;
+        item.body.pid = self.itemBody.pid;
+        if (item.body.detail) {
+            item.body.lessonStatus = YXVideoLessonStatus_Finish;
+        }else{
+            item.body.lessonStatus = YXVideoLessonStatus_NoRecord;
+        }
+        self.itemBody = item.body;
+        [self findVideoHomeworkInformation:self.itemBody];
+        self ->_tableView.hidden = NO;
     }];
     
     _infoRequest = request;
@@ -287,7 +281,7 @@ UITableViewDataSource
     self.headerView.body = self.itemBody;
     self.title = self.itemBody.title;
     if (self.itemBody.detail && (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_Finish )) {
-
+        
         _tableView.tableFooterView = self.footerView;
         self.footerView.detail = self.itemBody.detail;
     }

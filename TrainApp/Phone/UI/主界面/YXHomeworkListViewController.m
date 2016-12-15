@@ -20,7 +20,6 @@ UITableViewDataSource
 >
 {
     UITableView * _tableView;
-    YXErrorView *_errorView;
     MJRefreshHeaderView *_header;
     
     YXHomeworkListRequestItem *_listItem;
@@ -87,8 +86,8 @@ UITableViewDataSource
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkList];
     }
     WEAK_SELF
-    _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-    _errorView.retryBlock = ^{
+    self.errorView = [[YXErrorView alloc]init];
+    self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestForHomeworkList:YES];
     };
@@ -184,15 +183,17 @@ UITableViewDataSource
         STRONG_SELF
         [self stopLoading];
         [self->_header endRefreshing];
-        if (error) {
-            self ->_errorView.frame = self.view.bounds;
-            [self.view addSubview:self ->_errorView];
-        }else{
-            [self -> _errorView removeFromSuperview];
-            YXHomeworkListRequestItem *item = retItem;
-            self -> _listItem = item;
-            [self ->_tableView reloadData];
+        
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = retItem != nil;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
         }
+        YXHomeworkListRequestItem *item = retItem;
+        self -> _listItem = item;
+        [self ->_tableView reloadData];
     }];
     _listRequest = request;
 }

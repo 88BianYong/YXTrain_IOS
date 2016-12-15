@@ -75,13 +75,11 @@
         [self.headerView relayoutHtmlText];
     }];
     self.errorView = [[YXErrorView alloc]init];
-//    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestForActivityStepList];
     };
     self.dataErrorView = [[DataErrorView alloc]init];
-//    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self requestForActivityStepList];
@@ -164,22 +162,6 @@
         self.headerView.activity = self.listItem.body.active;
         self.tableView.tableHeaderView = self.headerView;
         [self.tableView reloadData];
-//        if (error) {
-//            if (error.code == -2) {
-//                self.dataErrorView.frame = self.view.bounds;
-//                [self.view addSubview:self.dataErrorView];
-//            }else{
-//                self.errorView.frame = self.view.bounds;
-//                [self.view addSubview:self.errorView];
-//            }
-//        }else {
-//            [self.dataErrorView removeFromSuperview];
-//            [self.errorView removeFromSuperview];
-//            self.listItem = [(ActivityStepListRequestItem *)retItem activityDetailFormatItem:self.activity];
-//            self.headerView.activity = self.listItem.body.active;
-//            self.tableView.tableHeaderView = self.headerView;
-//            [self.tableView reloadData];
-//        }
     }];
     self.stepListRequest = request;
 }

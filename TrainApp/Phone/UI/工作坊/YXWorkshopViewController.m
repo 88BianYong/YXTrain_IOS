@@ -16,7 +16,7 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
     UITableView *_tableView;
     NSMutableArray *_dataMutableArray;
     YXWorkshopListRequest *_listRequest;
-
+    
 }
 @end
 
@@ -59,15 +59,15 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
     [self.view addSubview:_tableView];
     
     WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestForWorkshopList];
     };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
+    self.emptyView = [[YXEmptyView alloc]init];
     self.emptyView.title = @"暂无内容";
     self.emptyView.imageName = @"无内容";
-    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self requestForWorkshopList];
@@ -129,30 +129,17 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
     [request startRequestWithRetClass:[YXWorkshopListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        if (error) {
-            if (error.code == -2) {
-                self.dataErrorView.frame = self.view.bounds;
-                [self.view addSubview:self.dataErrorView];
-            }
-            else{
-                self.errorView.frame = self.view.bounds;
-                [self.view addSubview:self.errorView];
-            }
+        
+        YXWorkshopListRequestItem *item = (YXWorkshopListRequestItem *)retItem;
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = item.group.count != 0;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
         }
-        else{
-            YXWorkshopListRequestItem *item = (YXWorkshopListRequestItem *)retItem;
-            if (item.group.count > 0) {
-                [self -> _dataMutableArray addObjectsFromArray:item.group];
-                [self -> _tableView reloadData];
-                [self.emptyView removeFromSuperview];
-                [self.errorView removeFromSuperview];
-                [self.dataErrorView removeFromSuperview];
-            }
-            else{
-                self.emptyView.frame = self.view.bounds;
-                [self.view addSubview:self.emptyView];
-            }
-        }
+        [self -> _dataMutableArray addObjectsFromArray:item.group];
+        [self -> _tableView reloadData];
     }];
     _listRequest = request;
 }

@@ -27,7 +27,6 @@ UITableViewDataSource
 {
     UITableView *_tableView;
     YXWorkshopDetailHeaderView *_headerView;
-    YXErrorView *_errorView;
     
     NSMutableArray *_dataMutableArray;
     YXWorkshopDetailRequestItem *_detailItem;
@@ -92,8 +91,8 @@ UITableViewDataSource
     _tableView.tableHeaderView = _headerView;
     
     WEAK_SELF
-    _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-    _errorView.retryBlock = ^{
+    self.errorView = [[YXErrorView alloc]init];
+    self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestForWorkshopDetail];
     };
@@ -188,18 +187,18 @@ UITableViewDataSource
         STRONG_SELF
         [self stopLoading];
         YXWorkshopDetailRequestItem *item = (YXWorkshopDetailRequestItem *)retItem;
-        if (error) {
-            self ->_errorView.frame = self.view.bounds;
-            [self.view addSubview:self ->_errorView];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = item != nil;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
         }
-        else{
-            self ->_detailItem = item;
-            [self ->_headerView reloadWithName:_detailItem.gname
-                                        master:[_detailItem.master yx_isValidString]?_detailItem.master:@"暂无"];
-            [self workshopDetailDataFormat:item];
-            [self requestForWorkshopMember];
-            [self ->_errorView removeFromSuperview];
-        }
+        self ->_detailItem = item;
+        [self ->_headerView reloadWithName:_detailItem.gname
+                                    master:[_detailItem.master yx_isValidString]?_detailItem.master:@"暂无"];
+        [self workshopDetailDataFormat:item];
+        [self requestForWorkshopMember];
     }];
     _detailRequest = request;
 }

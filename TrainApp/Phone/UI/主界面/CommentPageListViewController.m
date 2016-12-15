@@ -86,20 +86,14 @@
     self.emptyView = [[YXEmptyView alloc] init];
     self.emptyView.imageName = @"暂无评论";
     self.emptyView.title = @"暂无评论";
-    self.emptyView.hidden = YES;
-    [self.view addSubview:self.emptyView];
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
-    self.errorView.hidden = YES;
     [self.errorView setRetryBlock:^{
         STRONG_SELF
         [self firstPageFetch:YES];
     }];
-    [self.view addSubview:self.errorView];
     
-    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
-    [self.view addSubview:self.dataErrorView];
-    self.dataErrorView.hidden = YES;
+    self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self firstPageFetch:YES];
@@ -176,23 +170,6 @@
         make.edges.equalTo(@0);
     }];
     
-    [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left);
-        make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-41.0f);
-        make.top.equalTo(self.view.mas_top);
-    }];
-    
-    [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(@0);
-    }];
-    [self.dataErrorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.errorView.mas_left);
-        make.right.equalTo(self.errorView.mas_right);
-        make.bottom.equalTo(self.errorView.mas_bottom);
-        make.top.equalTo(self.errorView.mas_top);
-    }];
-    
     [self.translucentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.navigationController.view);
     }];
@@ -238,36 +215,29 @@
             [self stopLoading];
             [self stopAnimation];
             self.tableView.tableHeaderView.hidden = NO;
-            if (error) {
-                if (isEmpty(self.dataMutableArray)) {
-                    self.totalPage = 0;
-                    if (error.code == -2) {
-                        [self showDataErrorView];
-                    }else{
-                        [self showErroView];
+            
+            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+            data.requestDataExist = retItemArray.count != 0;
+            data.localDataExist = self.dataMutableArray.count != 0;
+            data.error = error;
+            if ([self handleRequestData:data]) {
+                self.totalPage = 0;
+                for (UIView *view in self.view.subviews) {
+                    if ([view isKindOfClass:[YXEmptyView class]]) {
+                        self.emptyView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 41.0f);
                     }
-                } else {
-                    self.totalPage = 0;
-                    [self showToast:error.localizedDescription];
                 }
-            }else {
-                self.totalNum = totalNum;
-                self.errorView.hidden = YES;
-                self.dataErrorView.hidden = YES;
-                [self.headerView setLastUpdateTime:[NSDate date]];
-                self.totalPage = totalPage;
-                [self.dataMutableArray removeAllObjects];
-                if (isEmpty(retItemArray)) {
-                    self.emptyView.hidden = NO;
-                } else {
-                    self.emptyView.hidden = YES;
-                    [self.dataMutableArray addObjectsFromArray:retItemArray];
-                    [self formatCommentContent];
-                    [self pullupViewHidden:!(totalPage > currentPage)];
-                }
-                [self.tableView reloadData];
-                self.tableView.contentOffset = CGPointZero;
+                return;
             }
+            self.totalNum = totalNum;
+            [self.headerView setLastUpdateTime:[NSDate date]];
+            self.totalPage = totalPage;
+            [self.dataMutableArray removeAllObjects];
+            [self.dataMutableArray addObjectsFromArray:retItemArray];
+            [self formatCommentContent];
+            [self pullupViewHidden:!(totalPage > currentPage)];
+            [self.tableView reloadData];
+            self.tableView.contentOffset = CGPointZero;
         });
     }];
 }
@@ -302,15 +272,6 @@
 {
     self.isManual = hidden;
     self.footerView.alpha = hidden ? 0:1;
-}
-- (void)showErroView {
-    self.errorView.hidden = NO;
-    [self.view bringSubviewToFront:self.errorView];
-}
-
-- (void)showDataErrorView {
-    self.dataErrorView.hidden = NO;
-    [self.view bringSubviewToFront:self.dataErrorView];
 }
 
 

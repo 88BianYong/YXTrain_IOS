@@ -83,13 +83,13 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     [self.tableView registerClass:[YXTaskCell class] forCellReuseIdentifier:@"YXTaskCell"];
     
     WEAK_SELF
-    self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self getData];
     };
-    self.emptyView = [[YXEmptyView alloc]initWithFrame:self.view.bounds];
-    self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.emptyView = [[YXEmptyView alloc]init];
+    self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self getData];
@@ -106,27 +106,14 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     [self.request startRequestWithRetClass:[YXTaskListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        if (error) {
-            if (error.code == -2) {
-                self.dataErrorView.frame = self.view.bounds;
-                [self.view addSubview:self.dataErrorView];
-            }else if (self.tasklistItem.body.tasks.count == 0) {
-                self.errorView.frame = self.view.bounds;
-                [self.view addSubview:self.errorView];
-            }else{
-                [self showToast:error.localizedDescription];
-            }
-            return;
-        }
         YXTaskListRequestItem *item = (YXTaskListRequestItem *)retItem;
-        if (item.body.tasks.count == 0) {
-            self.emptyView.frame = self.view.bounds;
-            [self.view addSubview:self.emptyView];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = item.body.tasks.count != 0;
+        data.localDataExist = self.tasklistItem.body.tasks.count != 0;
+        data.error = error;
+        if ([self handleRequestData:data]) {
             return;
         }
-        [self.errorView removeFromSuperview];
-        [self.emptyView removeFromSuperview];
-        [self.dataErrorView removeFromSuperview];
         
         self.tasklistItem = retItem;
         [self.tableView reloadData];
