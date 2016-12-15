@@ -204,8 +204,7 @@
     ActivityFilter *segmentItem = [[ActivityFilter alloc]init];
     if (group0.filterArray.count > 0) {
         segmentItem = group0.filterArray[num0.integerValue];
-        if (![self.segmentId isEqualToString:segmentItem.filterID]) {
-            self.stageId = nil;
+        if (![self.segmentId isEqualToString:segmentItem.filterID] && self.segmentId != nil) {
             self.studyId = nil;
             self.segmentId = segmentItem.filterID;
             [self allFiltersForIsRefresh:YES];
@@ -219,6 +218,7 @@
     ActivityFilter *studyItem = [[ActivityFilter alloc]init];
     if (group0.filterArray.count > 0) {
         studyItem = group1.filterArray[num1.integerValue];
+        self.studyId = studyItem.filterID;
     }
     // 阶段
     NSNumber *num2 = filterArray[2];
@@ -226,6 +226,7 @@
     ActivityFilter *stageItem = [[ActivityFilter alloc]init];
     if (group2.filterArray.count > 0) {
         stageItem = group2.filterArray[num2.integerValue];
+        self.stageId = stageItem.filterID;
     }
     DDLogDebug(@"Changed: 学段:%@，学科:%@，阶段:%@",segmentItem.name,studyItem.name,stageItem.name);
     ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
