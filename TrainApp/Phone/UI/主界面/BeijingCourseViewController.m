@@ -188,19 +188,22 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 
 - (void)setupWithCurrentFilters{
-    if (self.stageID) {
-        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
-        __block NSInteger stageIndex = -1;
-        [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            YXCourseFilter *filter = (YXCourseFilter *)obj;
-            if ([self.stageID isEqualToString:filter.filterID]) {
-                stageIndex = idx;
-                *stop = YES;
-            }
-        }];
-        if (stageIndex >= 0) {
-            [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
+    BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
+    [self resetFilterConditions:self.filterModel.groupArray.lastObject withFilterId:fetcher.stageid];
+    [self resetFilterConditions:self.filterModel.groupArray.firstObject withFilterId:fetcher.segid];
+    
+}
+- (void)resetFilterConditions:(YXCourseFilterGroup *)group withFilterId:(NSString *)filterId{
+    __block NSInteger stageIndex = -1;
+    [group.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        YXCourseFilter *filter = (YXCourseFilter *)obj;
+        if ([filterId isEqualToString:filter.filterID]) {
+            stageIndex = idx;
+            *stop = YES;
         }
+    }];
+    if (stageIndex >= 0) {
+        [self.filterView setCurrentIndex:stageIndex forKey:group.name];
     }
 }
 

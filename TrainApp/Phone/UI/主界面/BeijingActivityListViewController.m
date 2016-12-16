@@ -76,6 +76,7 @@
         }
         [filterView addFilters:array forKey:group.name];
     }
+    [self setupWithCurrentFilters];
     filterView.delegate = self;
     [self.view addSubview:filterView];
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -83,6 +84,25 @@
         make.top.mas_equalTo(44);
     }];
 }
+- (void)setupWithCurrentFilters{
+    ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
+    [self resetFilterConditions:self.filterModel.groupArray.lastObject withFilterId:fetcher.stageid];
+    [self resetFilterConditions:self.filterModel.groupArray.firstObject withFilterId:fetcher.segid];
+}
+- (void)resetFilterConditions:(ActivityFilterGroup *)group withFilterId:(NSString *)filterId{
+    __block NSInteger stageIndex = -1;
+    [group.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        ActivityFilter *filter = (ActivityFilter *)obj;
+        if ([filterId isEqualToString:filter.filterID]) {
+            stageIndex = idx;
+            *stop = YES;
+        }
+    }];
+    if (stageIndex >= 0) {
+        [self.filterView setCurrentIndex:stageIndex forKey:group.name];
+    }
+}
+
 - (void)refreshDealWithFilterModel:(ActivityFilterModel *)model {
     for (ActivityFilterGroup *group in model.groupArray) {
         if ([group.name isEqualToString:@"学科"]) {
@@ -139,14 +159,19 @@
 
         if (isRefresh || self.filterView) {
             [self refreshDealWithFilterModel:self.filterModel];
+            ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
+            fetcher.studyid = self.studyId;
+            fetcher.segid = self.segmentId;
+            fetcher.stageid = self.stageId;
         }else {
-            [self dealWithFilterModel:self.filterModel];
+            ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
             self.segmentId = [self firstRequestParameter:self.filterModel.groupArray.firstObject];
+            self.stageId = [self firstRequestParameter:self.filterModel.groupArray.lastObject];
+            fetcher.studyid = @"0";
+            fetcher.segid = self.segmentId;
+            fetcher.stageid = self.stageId;
+            [self dealWithFilterModel:self.filterModel];
         }
-        ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
-        fetcher.studyid = self.studyId?:@"0";
-        fetcher.segid = self.segmentId?:@"0";
-        fetcher.stageid = self.stageId?:[self firstRequestParameter:self.filterModel.groupArray.lastObject];
         [self firstPageFetch:YES];
     }];
 }
