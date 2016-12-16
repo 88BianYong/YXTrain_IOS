@@ -139,7 +139,7 @@ static  NSString *const trackPageName = @"课程列表页面";
         self.isWaitingForFilter = NO;
         BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
         fetcher.segid = [self firstRequestParameter:self.filterModel.groupArray.firstObject];
-        fetcher.stageid = [self firstRequestParameter:self.filterModel.groupArray.lastObject];
+        fetcher.stageid = self.stageID ?:[self firstRequestParameter:self.filterModel.groupArray.lastObject];
         fetcher.studyid = @"0";
         [self firstPageFetch:YES];
     }];
