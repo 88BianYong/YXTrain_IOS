@@ -137,12 +137,16 @@ static  NSString *const trackPageName = @"课程列表页面";
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         self.filterModel = [item beijingFilterModel];
         self.isWaitingForFilter = NO;
-        YXCourseFilterGroup *group0 = self.filterModel.groupArray.firstObject;
-        YXCourseFilter *segmentItem = group0.filterArray.firstObject;
         BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
-        fetcher.studyid = segmentItem.filterID;        
+        fetcher.segid = [self firstRequestParameter:self.filterModel.groupArray.firstObject];
+        fetcher.stageid = [self firstRequestParameter:self.filterModel.groupArray.lastObject];
+        fetcher.studyid = @"0";
         [self firstPageFetch:YES];
     }];
+}
+- (NSString *)firstRequestParameter:(YXCourseFilterGroup *)stageGroup {
+    YXCourseFilter *filter = stageGroup.filterArray.firstObject;
+    return filter.filterID;
 }
 - (void)firstPageFetch:(BOOL)isShow{
     if (self.isWaitingForFilter) {
