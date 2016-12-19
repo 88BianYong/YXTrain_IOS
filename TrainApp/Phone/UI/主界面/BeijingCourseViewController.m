@@ -19,6 +19,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 @property (nonatomic, strong) BeijingCourseListRequest *request;
 @property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
+@property (nonatomic, strong) DataErrorView *filterDataErrorView;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 @property (nonatomic, assign) BOOL isRefreshStudys;
 @property (nonatomic, assign) NSInteger lastChooseStudys;
@@ -80,6 +81,11 @@ static  NSString *const trackPageName = @"课程列表页面";
             [self getFilters];
         };
         [self getFilters];
+        self.filterDataErrorView = [[DataErrorView alloc] initWithFrame:self.view.bounds];
+        self.filterDataErrorView.refreshBlock = ^ {
+            STRONG_SELF
+            [self getFilters];
+        };
     }
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -128,11 +134,17 @@ static  NSString *const trackPageName = @"课程列表页面";
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            self.filterErrorView.frame = self.view.bounds;
-            [self.view addSubview:self.filterErrorView];
+            if (error.code == -2) {
+                self.filterDataErrorView.frame = self.view.bounds;
+                [self.view addSubview:self.filterDataErrorView];
+            }else {
+                self.filterErrorView.frame = self.view.bounds;
+                [self.view addSubview:self.filterErrorView];
+            }
             return;
         }
         [self.filterErrorView removeFromSuperview];
+        [self.filterDataErrorView removeFromSuperview];
         
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         self.filterModel = [item beijingFilterModel];

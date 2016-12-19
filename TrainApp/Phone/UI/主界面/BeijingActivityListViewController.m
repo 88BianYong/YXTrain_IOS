@@ -20,6 +20,7 @@
 @property (nonatomic, strong) ActivityFilterModel *filterModel;
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
+@property (nonatomic, strong) DataErrorView *filterDataErrorView;
 @property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 @property (nonatomic, strong) NSString *segmentId;
@@ -132,6 +133,12 @@
             [self allFiltersForIsRefresh:NO];
         };
         [self allFiltersForIsRefresh:NO];
+        
+        self.filterDataErrorView = [[DataErrorView alloc] initWithFrame:self.view.bounds];
+        self.filterDataErrorView.refreshBlock = ^ {
+            STRONG_SELF
+            [self allFiltersForIsRefresh:NO];
+        };
     }
 }
 - (void)allFiltersForIsRefresh:(BOOL)isRefresh {
@@ -146,13 +153,19 @@
         STRONG_SELF
         if (error) {
             [self stopLoading];
-            self.filterErrorView.frame = self.view.bounds;
-            [self.view addSubview:self.filterErrorView];
+            if (error.code == 2) {
+                self.filterDataErrorView.frame = self.view.bounds;
+                [self.view addSubview:self.filterDataErrorView];
+            }else {
+                self.filterErrorView.frame = self.view.bounds;
+                [self.view addSubview:self.filterErrorView];
+            }
             [self.dataArray removeAllObjects];
             [self.tableView reloadData];
             return;
         }
         [self.filterErrorView removeFromSuperview];
+        [self.filterDataErrorView removeFromSuperview];
         ActivityFilterRequestItem *item = (ActivityFilterRequestItem *)retItem;
         self.filterModel = [item filterModel];
         self.isWaitingForFilter = NO;
