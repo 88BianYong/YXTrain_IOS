@@ -70,7 +70,7 @@
 - (void)setupData{
     _webSocket.delegate = nil;
     [_webSocket close];
-    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[YXConfigManager sharedInstance].websocket]]];
+    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[YXConfigManager sharedInstance].websocketServer]]];
     _webSocket.delegate = self;
     [_webSocket open];
 }

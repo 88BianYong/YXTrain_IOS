@@ -18,6 +18,7 @@
     static YXConfigManager *sharedInstance;
     dispatch_once(&once, ^{
         sharedInstance = [[self alloc] initWithConfigFile:@"YXConfig"];
+        [sharedInstance setupServerEnv];
     });
     
     return sharedInstance;
@@ -33,6 +34,18 @@
         self = [super init];
     }
     return self;
+}
+
+- (void)setupServerEnv {
+    NSString *envPath = [[NSBundle mainBundle]pathForResource:@"env_config" ofType:@"json"];
+    NSData *envData = [NSData dataWithContentsOfFile:envPath];
+    NSDictionary *envDic = [NSJSONSerialization JSONObjectWithData:envData options:kNilOptions error:nil];
+    self.server = [envDic valueForKey:@"server"];
+    self.loginServer = [envDic valueForKey:@"loginServer"];
+    self.uploadServer = [envDic valueForKey:@"uploadServer"];
+    self.websocketServer = [envDic valueForKey:@"websocketServer"];
+    self.mode = [envDic valueForKey:@"mode"];
+    DDLogDebug(@"server env : %@",envDic);
 }
 
 #pragma mark - properties

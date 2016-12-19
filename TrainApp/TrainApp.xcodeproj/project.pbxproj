@@ -116,6 +116,7 @@
 		7C3F258D1D20C6C100F0A17A /* trainlist_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F258C1D20C6C100F0A17A /* trainlist_mock.json */; };
 		7C3F25901D20CB5F00F0A17A /* YXTaskListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3F258F1D20CB5F00F0A17A /* YXTaskListRequest.m */; };
 		7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C3F25911D20D11800F0A17A /* tasklist_mock.json */; };
+		7C7BF7C61E0788FD007B017C /* env_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C7BF7C51E0788FD007B017C /* env_config.json */; };
 		7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7CF844551D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld */; };
 		7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8445A1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m */; };
 		7CF8445E1D2A5E4800B1CE55 /* FileRecordEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8445C1D2A5E4800B1CE55 /* FileRecordEntity.m */; };
@@ -690,6 +691,7 @@
 		7C3F258E1D20CB5F00F0A17A /* YXTaskListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTaskListRequest.h; sourceTree = "<group>"; };
 		7C3F258F1D20CB5F00F0A17A /* YXTaskListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTaskListRequest.m; sourceTree = "<group>"; };
 		7C3F25911D20D11800F0A17A /* tasklist_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tasklist_mock.json; sourceTree = "<group>"; };
+		7C7BF7C51E0788FD007B017C /* env_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = env_config.json; sourceTree = "<group>"; };
 		7CF844561D2A5AFD00B1CE55 /* TrainModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TrainModel.xcdatamodel; sourceTree = "<group>"; };
 		7CF844591D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FileRecordEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
 		7CF8445A1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FileRecordEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
@@ -1543,6 +1545,7 @@
 		7C31775C1D0E5E0F004AAC90 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				7C7BF7C51E0788FD007B017C /* env_config.json */,
 				9232376F1D816DAD00FDACFE /* stageAndSubject.json */,
 				7CF888571D194B8300E7C04D /* PrefixHeader.pch */,
 				923237581D81122700FDACFE /* provinceData.json */,
@@ -3368,6 +3371,7 @@
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
 				9223C81D1D2D0EB6000F74DF /* temp.txt in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
+				7C7BF7C61E0788FD007B017C /* env_config.json in Resources */,
 				920F1D3B1D51A40D00636A51 /* homeworklist_mock.json in Resources */,
 				923237701D816DAD00FDACFE /* stageAndSubject.json in Resources */,
 			);

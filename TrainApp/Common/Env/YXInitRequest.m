@@ -68,11 +68,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         _phone = @"";
         _remoteIp = @"";
         _token = [YXUserManager sharedManager].userModel.token;
-#ifndef DEBUG
-        _mode = @"release";
-#else
-        _mode = @"test";
-#endif
+        _mode = [YXConfigManager sharedInstance].mode;
         self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"initialize"];
     }
     return self;
