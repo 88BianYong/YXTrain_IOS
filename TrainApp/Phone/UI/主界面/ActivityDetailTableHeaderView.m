@@ -278,25 +278,25 @@
 - (void)setActivityHtmlHeightChangeBlock:(ActivityHtmlHeightChangeBlock)block {
     self.heightChangeBlock = block;
 }
-- (void)setActivity:(ActivityListRequestItem_body_activity *)activity{
-    _activity = activity;
-    self.titleLabel.attributedText = [self attributedStringForTitle:_activity.title?:@""];
-    self.publisherContentLabel.text = activity.createUsername;
-    self.studyContentLabel.text = activity.segmentName;
-    self.segmentContentLabel.text = activity.studyName;
-    self.participantsContentLabel.text = activity.joinUserCount;
-    if (activity.status.integerValue == 0) {
+- (void)setModel:(ActivityListDetailModel *)model{
+    _model = model;
+    self.titleLabel.attributedText = [self attributedStringForTitle:_model.title?:@""];
+    self.publisherContentLabel.text = _model.createUsername;
+    self.studyContentLabel.text = _model.segmentName;
+    self.segmentContentLabel.text = _model.studyName;
+    self.participantsContentLabel.text = _model.joinUserCount;
+    if (_model.status.integerValue == 0) {
         self.statusImageView.image = [UIImage imageNamed:@"未开始标签"];
-    }else if (activity.status.integerValue == 2 || activity.status.integerValue == 1) {
+    }else if (_model.status.integerValue == 2 || _model.status.integerValue == 1) {
         self.statusImageView.image = [UIImage imageNamed:@"进行中标签"];
     }else {
         self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];//3
     }
     //    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
-    //    _activity.desc = [NSString stringWithContentsOfFile:readmePath
+    //    _model.desc = [NSString stringWithContentsOfFile:readmePath
     //                                                   encoding:NSUTF8StringEncoding
     //                                                      error:NULL];
-    NSData *data = [_activity.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [_model.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions] documentAttributes:nil];
     [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, string.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
         if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {

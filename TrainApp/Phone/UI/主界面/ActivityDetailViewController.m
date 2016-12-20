@@ -10,14 +10,14 @@
 #import "ActivityDetailTableHeaderView.h"
 #import "ActivityDetailTableSectionView.h"
 #import "ActivityDetailStepCell.h"
-#import "ActivityStepListRequest.h"
+#import "ActivityDetailManger.h"
 #import "ActivityStepViewController.h"
 @interface ActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ActivityDetailTableHeaderView *headerView;
 
-@property (nonatomic, strong) ActivityStepListRequest *stepListRequest;
-@property (nonatomic, strong) ActivityStepListRequestItem *listItem;
+@property (nonatomic, strong) ActivityDetailManger *detailManger;
+@property (nonatomic, strong) ActivityListDetailModel *detailModel;
 @end
 
 @implementation ActivityDetailViewController
@@ -112,11 +112,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (self.listItem.body.active.status.integerValue > 0) {
-        ActivityListRequestItem_Body_Activity_Steps *step = self.listItem.body.active.steps[indexPath.section];
+    if (self.detailModel.status.integerValue > 0) {
         ActivityStepViewController *VC = [[ActivityStepViewController alloc] init];
-        VC.activityStep = step;
-        VC.status = self.listItem.body.active.status;
+        VC.activityStep = self.detailModel.steps[indexPath.section];
+        VC.status = self.detailModel.status;
         [self.navigationController pushViewController:VC animated:YES];
     }else {
         [self showToast:@"活动尚未开始"];
@@ -125,7 +124,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.listItem.body.active.steps.count;
+    return self.detailModel.steps.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -134,21 +133,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ActivityDetailStepCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityDetailStepCell" forIndexPath:indexPath];
-    cell.steps = self.listItem.body.active.steps[indexPath.section];
+    cell.steps = self.detailModel.steps[indexPath.section];
     return cell;
 }
 
 #pragma mark - request
 - (void)requestForActivityStepList{
-    if (self.stepListRequest) {
-        [self.stepListRequest stopRequest];
-    }
-    ActivityStepListRequest *request = [[ActivityStepListRequest alloc] init];
-    request.aid = self.activity.aid;
-    request.source = self.activity.source;
+    ActivityDetailManger *request = [[ActivityDetailManger alloc] init];
     [self startLoading];
     WEAK_SELF
-    [request startRequestWithRetClass:[ActivityStepListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+    [request startRequestActivityListItem:self.activity WithBlock:^(ActivityListDetailModel * model, NSError *error){
         STRONG_SELF;
         [self stopLoading];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
@@ -158,11 +152,12 @@
         if ([self handleRequestData:data]) {
             return;
         }
-        self.listItem = [(ActivityStepListRequestItem *)retItem activityDetailFormatItem:self.activity];
-        self.headerView.activity = self.listItem.body.active;
+        self.detailModel = model;
+        self.headerView.model = self.detailModel;
         self.tableView.tableHeaderView = self.headerView;
         [self.tableView reloadData];
+        
     }];
-    self.stepListRequest = request;
+    self.detailManger = request;
 }
 @end

@@ -128,7 +128,7 @@
 }
 
 #pragma mark - set
-- (void)setFirstTool:(ActivityListRequestItem_Body_Activity_Steps_Tools *)firstTool {
+- (void)setFirstTool:(ActivityStepListRequestItem_Body_Active_Steps_Tools *)firstTool {
     _firstTool = firstTool;
     if (_firstTool) {
         self.firstStepView.hidden = NO;
@@ -137,7 +137,7 @@
         self.firstStepView.hidden =  YES;
     }
 }
-- (void)setSecondTool:(ActivityListRequestItem_Body_Activity_Steps_Tools *)secondTool {
+- (void)setSecondTool:(ActivityStepListRequestItem_Body_Active_Steps_Tools *)secondTool {
     _secondTool = secondTool;
     if (_secondTool) {
         self.secondStepView.hidden = NO;
@@ -146,7 +146,7 @@
         self.secondStepView.hidden = YES;
     }
 }
-- (void)setThirdTool:(ActivityListRequestItem_Body_Activity_Steps_Tools *)thirdTool {
+- (void)setThirdTool:(ActivityStepListRequestItem_Body_Active_Steps_Tools *)thirdTool {
     _thirdTool = thirdTool;
     if (_thirdTool) {
         self.thirdStepView.hidden = NO;
@@ -155,7 +155,7 @@
         self.thirdStepView.hidden = YES;
     }
 }
-- (void)setFourthTool:(ActivityListRequestItem_Body_Activity_Steps_Tools *)fourthTool {
+- (void)setFourthTool:(ActivityStepListRequestItem_Body_Active_Steps_Tools *)fourthTool {
     _fourthTool = fourthTool;
     if (_fourthTool) {
         self.fourthStepView.hidden = NO;
@@ -165,7 +165,7 @@
     }
 }
 - (void)formatIconView:(ActivityStepIconView *)iconView
-              toolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
+              toolContent:(ActivityStepListRequestItem_Body_Active_Steps_Tools *)tool {
     if ([tool.toolType isEqualToString:@"discuss"] || [tool.toolType isEqualToString:@"resdisc"] ||
         [tool.toolType isEqualToString:@"resources"] ||[tool.toolType isEqualToString:@"video"]) {
         iconView.iconLabel.textColor = [UIColor colorWithHexString:@"334466"];
@@ -179,7 +179,6 @@
 - (void)setActivityStepTableCellBlock:(ActivityStepTableCellBlock)block {
     self.toolBlock = block;
 }
-
 
 #pragma mark - button Action
 - (void)stepToolButonAction:(UIButton *)sender {

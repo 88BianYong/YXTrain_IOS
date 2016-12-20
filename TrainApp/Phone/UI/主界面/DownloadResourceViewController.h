@@ -7,8 +7,8 @@
 //
 
 #import "YXBaseViewController.h"
-@class ActivityListRequestItem_Body_Activity_Steps_Tools;
+@class ActivityStepListRequestItem_Body_Active_Steps_Tools;
 @interface DownloadResourceViewController : YXBaseViewController
 @property (nonatomic, copy) NSString *status;
-@property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps_Tools *tool;
+@property (nonatomic, strong) ActivityStepListRequestItem_Body_Active_Steps_Tools *tool;
 @end

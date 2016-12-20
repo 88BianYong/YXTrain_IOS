@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ActivityListRequest.h"
+#import "ActivityStepListRequest.h"
 static CGFloat kTableViewHeaderFixedHeight = 39.0f + 39.0f + 14.0f +18.0f + 24.0f + 17.0f ;
 static CGFloat kTableViewHeaderOpenAndCloseHeight = 24.0f + 17.0f;
 static CGFloat kTableViewHeaderHtmlPlaceholdeHeight = 300.0f;
 typedef void(^ActivityHtmlOpenAndCloseBlock)(BOOL isStatus);
 typedef void(^ActivityHtmlHeightChangeBlock) (CGFloat htmlHeight, CGFloat labelHeight);
 @interface ActivityStepHeaderView : UIView
-@property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps *activityStep;
+@property (nonatomic, strong) ActivityStepListRequestItem_Body_Active_Steps *activityStep;
 @property (nonatomic, assign, readonly) CGFloat changeHeight;
 
 - (void)setActivityHtmlOpenAndCloseBlock:(ActivityHtmlOpenAndCloseBlock)block;

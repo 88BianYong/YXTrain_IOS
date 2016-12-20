@@ -127,7 +127,7 @@
     cell.thirdTool = [self obtainActivityTool:indexPath.row * 4 + 2];
     cell.fourthTool = [self obtainActivityTool:indexPath.row * 4 + 3];
     WEAK_SELF
-    [cell setActivityStepTableCellBlock:^(ActivityListRequestItem_Body_Activity_Steps_Tools *tool) {
+    [cell setActivityStepTableCellBlock:^(ActivityStepListRequestItem_Body_Active_Steps_Tools *tool) {
         STRONG_SELF
         [self goToNextActivityStepToolContent:tool];
     }];
@@ -135,7 +135,7 @@
 }
 
 #pragma mark - format data
-- (void)goToNextActivityStepToolContent:(ActivityListRequestItem_Body_Activity_Steps_Tools *)tool {
+- (void)goToNextActivityStepToolContent:(ActivityStepListRequestItem_Body_Active_Steps_Tools *)tool {
     if ([tool.toolType isEqualToString:@"video"]) {//视频
         ActivityPlayViewController *VC = [[ActivityPlayViewController alloc] init];
         VC.tool = tool;
@@ -160,7 +160,7 @@
         [self showToast:@"暂不支持该类型的工具"];
     }
 }
-- (ActivityListRequestItem_Body_Activity_Steps_Tools *)obtainActivityTool:(NSInteger)integer {
+- (ActivityStepListRequestItem_Body_Active_Steps_Tools *)obtainActivityTool:(NSInteger)integer {
     if (self.activityStep.tools.count > integer) {
         return self.activityStep.tools[integer];
     }else {

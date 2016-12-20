@@ -328,6 +328,8 @@
 		92EDC7D11D632357005B91DD /* YXHomeworkUploadCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D01D632357005B91DD /* YXHomeworkUploadCompleteView.m */; };
 		92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */; };
 		92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */; };
+		92F6877F1E08E7A000A48420 /* ActivityListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F6877E1E08E7A000A48420 /* ActivityListDetailModel.m */; };
+		92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F687811E0908F400A48420 /* ActivityDetailManger.m */; };
 		92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */; };
 		92FAE4A41DDAA845000C3C00 /* CoreTextViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A31DDAA845000C3C00 /* CoreTextViewHandler.m */; };
 		92FAE4A71DDAC9ED000C3C00 /* ActivityStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A61DDAC9ED000C3C00 /* ActivityStepViewController.m */; };
@@ -1112,6 +1114,10 @@
 		92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkPlayVideoCell.m; sourceTree = "<group>"; };
 		92F370B41D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXWriteHomeworkInfoViewController+Request.h"; sourceTree = "<group>"; };
 		92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXWriteHomeworkInfoViewController+Request.m"; sourceTree = "<group>"; };
+		92F6877D1E08E7A000A48420 /* ActivityListDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListDetailModel.h; sourceTree = "<group>"; };
+		92F6877E1E08E7A000A48420 /* ActivityListDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListDetailModel.m; sourceTree = "<group>"; };
+		92F687801E0908F400A48420 /* ActivityDetailManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailManger.h; sourceTree = "<group>"; };
+		92F687811E0908F400A48420 /* ActivityDetailManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailManger.m; sourceTree = "<group>"; };
 		92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPagedListFetcher.m; sourceTree = "<group>"; };
 		92FAE4A21DDAA845000C3C00 /* CoreTextViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextViewHandler.h; sourceTree = "<group>"; };
 		92FAE4A31DDAA845000C3C00 /* CoreTextViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextViewHandler.m; sourceTree = "<group>"; };
@@ -2828,6 +2834,46 @@
 			name = "网页";
 			sourceTree = "<group>";
 		};
+		92F687761E08E5B600A48420 /* 活动列表 */ = {
+			isa = PBXGroup;
+			children = (
+				E9BBA6041DD09530000CA413 /* ActivityListRequest.h */,
+				E9BBA6051DD09530000CA413 /* ActivityListRequest.m */,
+				E9BBA6121DD2DEFB000CA413 /* ActivityFilterRequest.h */,
+				E9BBA6131DD2DEFB000CA413 /* ActivityFilterRequest.m */,
+				E9BBA6151DD2EDB2000CA413 /* ActivityFilterModel.h */,
+				E9BBA6161DD2EDB2000CA413 /* ActivityFilterModel.m */,
+				E9BBA5F71DD06932000CA413 /* ActivityListFetcher.h */,
+				E9BBA5F81DD06932000CA413 /* ActivityListFetcher.m */,
+				E9BBA61E1DD310EA000CA413 /* activityFilter_mock.json */,
+				E9BBA61F1DD310EA000CA413 /* activityList_mock.json */,
+			);
+			name = "活动列表";
+			sourceTree = "<group>";
+		};
+		92F687781E08E64B00A48420 /* 活动详情 */ = {
+			isa = PBXGroup;
+			children = (
+				9237FF751DD489390057FFDE /* ActivityStepListRequest.h */,
+				9237FF761DD489390057FFDE /* ActivityStepListRequest.m */,
+				92F6877D1E08E7A000A48420 /* ActivityListDetailModel.h */,
+				92F6877E1E08E7A000A48420 /* ActivityListDetailModel.m */,
+				92F687801E0908F400A48420 /* ActivityDetailManger.h */,
+				92F687811E0908F400A48420 /* ActivityDetailManger.m */,
+				9237FF781DD48F800057FFDE /* activityStep_mock.json */,
+			);
+			name = "活动详情";
+			sourceTree = "<group>";
+		};
+		92F687791E08E66E00A48420 /* 步骤详情 */ = {
+			isa = PBXGroup;
+			children = (
+				92DE3BC51DDD82350011CFB7 /* ActivityToolVideoRequest.h */,
+				92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */,
+			);
+			name = "步骤详情";
+			sourceTree = "<group>";
+		};
 		92FAE4A81DDADE96000C3C00 /* 步骤详情 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3217,26 +3263,14 @@
 		E9BBA5FD1DD069F6000CA413 /* 活动 */ = {
 			isa = PBXGroup;
 			children = (
+				92F687761E08E5B600A48420 /* 活动列表 */,
+				92F687781E08E64B00A48420 /* 活动详情 */,
+				92F687791E08E66E00A48420 /* 步骤详情 */,
 				924AB2531DE41BDF003EC952 /* 评论 */,
 				E9A7B6011DDEE60C00136335 /* 资源下载 */,
 				E9A7B5E61DDC3E4600136335 /* 资源分享 */,
-				E9BBA6041DD09530000CA413 /* ActivityListRequest.h */,
-				E9BBA6051DD09530000CA413 /* ActivityListRequest.m */,
-				E9BBA6121DD2DEFB000CA413 /* ActivityFilterRequest.h */,
-				E9BBA6131DD2DEFB000CA413 /* ActivityFilterRequest.m */,
-				E9BBA6151DD2EDB2000CA413 /* ActivityFilterModel.h */,
-				E9BBA6161DD2EDB2000CA413 /* ActivityFilterModel.m */,
-				E9BBA5F71DD06932000CA413 /* ActivityListFetcher.h */,
-				E9BBA5F81DD06932000CA413 /* ActivityListFetcher.m */,
-				9237FF751DD489390057FFDE /* ActivityStepListRequest.h */,
-				9237FF761DD489390057FFDE /* ActivityStepListRequest.m */,
-				E9BBA61E1DD310EA000CA413 /* activityFilter_mock.json */,
-				E9BBA61F1DD310EA000CA413 /* activityList_mock.json */,
-				9237FF781DD48F800057FFDE /* activityStep_mock.json */,
 				92FAE4A21DDAA845000C3C00 /* CoreTextViewHandler.h */,
 				92FAE4A31DDAA845000C3C00 /* CoreTextViewHandler.m */,
-				92DE3BC51DDD82350011CFB7 /* ActivityToolVideoRequest.h */,
-				92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */,
 			);
 			name = "活动";
 			sourceTree = "<group>";
@@ -3710,6 +3744,7 @@
 				CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
+				92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
 				923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */,
 				7CF844751D2E2EA000B1CE55 /* YXTriangleView.m in Sources */,
@@ -3748,6 +3783,7 @@
 				CB748EE31D228B51004BCFBF /* YXFilterButton.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
 				CB227EA51D34C3A800D5327B /* YXGuideCustomView.m in Sources */,
+				92F6877F1E08E7A000A48420 /* ActivityListDetailModel.m in Sources */,
 				9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
 				E9A7B5EB1DDC3EAA00136335 /* ShareResourcesTableViewCell.m in Sources */,

@@ -180,7 +180,7 @@
 - (void)setActivityHtmlHeightChangeBlock:(ActivityHtmlHeightChangeBlock)block {
     self.heightChangeBlock = block;
 }
-- (void)setActivityStep:(ActivityListRequestItem_Body_Activity_Steps *)activityStep {
+- (void)setActivityStep:(ActivityStepListRequestItem_Body_Active_Steps *)activityStep {
     _activityStep = activityStep;
     self.titleLabel.text = _activityStep.title;
     NSData *data = [_activityStep.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];

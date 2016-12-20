@@ -7,11 +7,6 @@
 //
 
 #import "ActivityListRequest.h"
-@implementation ActivityListRequestItem_Body_Activity_Steps_Tools
-
-@end
-@implementation ActivityListRequestItem_Body_Activity_Steps
-@end
 
 @implementation ActivityListRequestItem_body_activity
 @end

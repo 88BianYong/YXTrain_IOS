@@ -7,16 +7,19 @@
 //
 
 #import "ActivityStepListRequest.h"
+@implementation ActivityStepListRequestItem_Body_Active_Steps_Tools
+
+@end
+@implementation ActivityStepListRequestItem_Body_Active_Steps
+@end
+
+@implementation ActivityStepListRequestItem_body_Active
+@end
+
 @implementation ActivityStepListRequestItem_Body
 @end
 
 @implementation ActivityStepListRequestItem
-- (ActivityStepListRequestItem *)activityDetailFormatItem:(ActivityListRequestItem_body_activity *)activity {
-    self.body.active.joinUserCount = activity.joinUserCount;
-    self.body.active.studyName = activity.studyName;
-    self.body.active.segmentName = activity.segmentName;
-    return self;
-}
 @end
 
 @implementation ActivityStepListRequest

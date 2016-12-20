@@ -8,7 +8,7 @@
 
 #import "YXBaseViewController.h"
 #import "ActivityFirstCommentRequest.h"
-#import "ActivityListRequest.h"
+#import "ActivityStepListRequest.h"
 @class CommentPagedListFetcher;
 @interface CommentPageListViewController : YXBaseViewController
 @property (nonatomic, strong) UITableView *tableView;
@@ -17,7 +17,7 @@
 @property (nonatomic, strong) CommentPagedListFetcher *dataFetcher;
 @property (nonatomic, strong) NSMutableArray *dataMutableArray;
 @property (nonatomic, assign) BOOL isHiddenInputView;
-@property (nonatomic, strong) ActivityListRequestItem_Body_Activity_Steps_Tools *tool;
+@property (nonatomic, strong) ActivityStepListRequestItem_Body_Active_Steps_Tools *tool;
 @property (nonatomic, assign) NSInteger totalNum;
 
 - (void)setupUI;
