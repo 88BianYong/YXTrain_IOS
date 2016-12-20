@@ -65,12 +65,13 @@
     [self.errorView setRetryBlock:^{
         @strongify(self); if (!self) return;
         [self startLoading];
-        [self firstPageFetch:YES];
+        [self firstPageFetch];
     }];
     self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
-        [self firstPageFetch:YES];
+        [self startLoading];
+        [self firstPageFetch];
     };
     
     if (self.bNeedFooter) {
@@ -88,18 +89,17 @@
         _header.scrollView = self.tableView;
         _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
             @strongify(self); if (!self) return;
-            [self firstPageFetch:NO];
+            [self firstPageFetch];
         };
     }
     
     self.dataArray = [NSMutableArray array];
     [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
     _total = (int)[self.dataArray count];
-    
-    [self firstPageFetch:YES];
+    [self startLoading];
+    [self firstPageFetch];
 }
-
-- (void)firstPageFetch:(BOOL)isShow {
+- (void)firstPageFetch {
     if (!self.dataFetcher) {
         return;
     }
@@ -115,9 +115,6 @@
     self.dataFetcher.pageindex = 0;
     if (!self.dataFetcher.pagesize) {
         self.dataFetcher.pagesize = 20;
-    }
-    if (isShow) {
-        [self startLoading];
     }
     @weakify(self);
     [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {

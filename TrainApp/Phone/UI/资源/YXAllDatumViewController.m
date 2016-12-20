@@ -52,10 +52,10 @@ static  NSString *const trackPageName = @"全部资源页面";
 - (void)configUI {
     self.emptyView.imageName = @"暂无资源";
     self.emptyView.title = @"没有符合条件的资源";
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.menuView = [[YXDatumOrderFilterMenuView alloc]initWithFrame:CGRectZero];
-     @weakify(self);
+    @weakify(self);
     self.menuView.refreshFilterBlock = ^(NSString *condition) {
         @strongify(self);
         self.currentConditon = condition;
@@ -90,7 +90,8 @@ static  NSString *const trackPageName = @"全部资源页面";
 
 - (void)firstPageFetch {
     self.wholeDatumFetcher.condition = self.currentConditon;
-    [super firstPageFetch:YES];
+    [self startLoading];
+    [super firstPageFetch];
 }
 
 - (void)setupDataFetcher{

@@ -32,7 +32,8 @@ static  NSString *const trackPageName = @"搜索结果页面";
     [self setupDataFetcher];
     // Do any additional setup after loading the view.
     [self setupUI];
-    [self firstPageFetch:YES];
+    [self startLoading];
+    [self firstPageFetch];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -138,7 +139,8 @@ static  NSString *const trackPageName = @"搜索结果页面";
         }
         YXDatumSearchFetcher *fetcher = (YXDatumSearchFetcher *)self.dataFetcher;
         fetcher.keyWord = text;
-        [self firstPageFetch:YES];
+        [self startLoading];
+        [self firstPageFetch];
     };
     seachView.cancelButtonClickedBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];

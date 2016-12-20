@@ -135,18 +135,19 @@ static  NSString *const trackPageName = @"课程列表页面";
         fetcher.segid = [self firstRequestParameter:self.filterModel.groupArray.firstObject];
         fetcher.stageid = self.stageID ?:[self firstRequestParameter:self.filterModel.groupArray.lastObject];
         fetcher.studyid = @"0";
-        [self firstPageFetch:YES];
+        [self startLoading];
+        [self firstPageFetch];
     }];
 }
 - (NSString *)firstRequestParameter:(YXCourseFilterGroup *)stageGroup {
     YXCourseFilter *filter = stageGroup.filterArray.firstObject;
     return filter.filterID;
 }
-- (void)firstPageFetch:(BOOL)isShow{
+- (void)firstPageFetch {
     if (self.isWaitingForFilter) {
         return;
     }
-    [super firstPageFetch:isShow];
+    [super firstPageFetch];
 }
 
 - (void)dealWithFilterModel:(YXCourseListFilterModel *)model{
@@ -279,11 +280,12 @@ static  NSString *const trackPageName = @"课程列表页面";
     BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
     fetcher.studyid = studyItem.filterID;
     if (self.isRefreshStudys) {
-       fetcher.studyid = @"0";
+        fetcher.studyid = @"0";
     }
     fetcher.segid = segmentItem.filterID;
     fetcher.stageid = stageItem.filterID;
-    [self firstPageFetch:YES];
+    [self startLoading];
+    [self firstPageFetch];
 }
 #pragma mark scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

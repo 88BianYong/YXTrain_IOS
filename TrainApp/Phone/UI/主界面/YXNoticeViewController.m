@@ -47,7 +47,8 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 5)];
     headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.tableHeaderView = headerView;
-    [self firstPageFetch:YES];
+    [self startLoading];
+    [self firstPageFetch];
     // Do any additional setup after loading the view.
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -84,7 +85,7 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXNoticeAndBulletinTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXNoticeAndBulletinTableViewCell" forIndexPath:indexPath];
     [cell configUIwithItem:self.dataArray[indexPath.section] isLastOne:indexPath.section == self.dataArray.count -1 ?YES :NO];
-
+    
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -118,11 +119,11 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
     if (section == 0) {
         UIView *headerView = [[UIView alloc] init];
         headerView.backgroundColor = [UIColor whiteColor];
-
+        
         UIView *lineView = [[UIView alloc] init];
         lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
         [headerView addSubview:lineView];
-
+        
         [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.mas_equalTo(0);
             make.width.mas_equalTo(2);

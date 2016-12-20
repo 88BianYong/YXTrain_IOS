@@ -18,8 +18,7 @@
 @property (nonatomic, assign) BOOL bNeedFooter;
 
 @property (nonatomic, strong) PagedListFetcherBase *dataFetcher;
-
-- (void)firstPageFetch:(BOOL)isShow;
+- (void)firstPageFetch;
 - (void)stopAnimation;
 - (void)setPulldownViewHidden:(BOOL)hidden;
 - (void)setPullupViewHidden:(BOOL)hidden;

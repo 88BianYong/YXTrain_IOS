@@ -62,7 +62,7 @@
     WEAK_SELF
     fetcher.listCompleteBlock = ^(){
         STRONG_SELF
-
+        
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
@@ -169,7 +169,7 @@
         ActivityFilterRequestItem *item = (ActivityFilterRequestItem *)retItem;
         self.filterModel = [item filterModel];
         self.isWaitingForFilter = NO;
-
+        
         if (isRefresh || self.filterView) {
             [self refreshDealWithFilterModel:self.filterModel];
             ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
@@ -185,7 +185,8 @@
             fetcher.stageid = self.stageId;
             [self dealWithFilterModel:self.filterModel];
         }
-        [self firstPageFetch:YES];
+        [self startLoading];
+        [self firstPageFetch];
     }];
 }
 - (NSString *)firstRequestParameter:(ActivityFilterGroup *)stageGroup {
@@ -203,11 +204,11 @@
         make.left.right.bottom.mas_equalTo(0);
     }];
 }
-- (void)firstPageFetch:(BOOL)isShow {
+- (void)firstPageFetch {
     if (self.isWaitingForFilter) {
         return;
     }
-    [super firstPageFetch:isShow];
+    [super firstPageFetch];
 }
 #pragma mark - UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -278,7 +279,8 @@
     fetcher.studyid = studyItem.filterID?:@"0";//服务端数据返回空的处理:"0"-全部,即不做筛选
     fetcher.segid = segmentItem.filterID?:@"0";
     fetcher.stageid = stageItem.filterID?:@"0";
-    [self firstPageFetch:YES];
+    [self startLoading];
+    [self firstPageFetch];
 }
 #pragma mark scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

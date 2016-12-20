@@ -80,7 +80,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     [super viewWillDisappear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -111,10 +111,11 @@ static  NSString *const trackPageName = @"课程列表页面";
         self.filterModel = [item filterModel];
         
         if (self.status == YXCourseFromStatus_Local || self.status == YXCourseFromStatus_Market) {
-          [self setupStageForCourseMarket];
+            [self setupStageForCourseMarket];
         }
         self.isWaitingForFilter = NO;
-        [self firstPageFetch:YES];
+        [self startLoading];
+        [self firstPageFetch];
     }];
 }
 
@@ -137,15 +138,14 @@ static  NSString *const trackPageName = @"课程列表页面";
                 *stop = YES;
             }
         }
-
+        
     }];
 }
-
-- (void)firstPageFetch:(BOOL)isShow{
+- (void)firstPageFetch {
     if (self.isWaitingForFilter) {
         return;
     }
-    [super firstPageFetch:isShow];
+    [super firstPageFetch];
 }
 
 - (void)dealWithFilterModel:(YXCourseListFilterModel *)model{
@@ -292,7 +292,8 @@ static  NSString *const trackPageName = @"课程列表页面";
     fetcher.segid = segmentItem.filterID;
     fetcher.type = typeItem.filterID;
     fetcher.stageid = stageItem.filterID;
-    [self firstPageFetch:YES];
+    [self startLoading];
+    [self firstPageFetch];
 }
 #pragma mark scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

@@ -62,7 +62,8 @@
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [self setupUI];
     [self setupLayout];
-    [self firstPageFetch:YES];
+        [self startLoading];
+        [self firstPageFetch];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -90,13 +91,15 @@
     self.errorView = [[YXErrorView alloc]init];
     [self.errorView setRetryBlock:^{
         STRONG_SELF
-        [self firstPageFetch:YES];
+            [self startLoading];
+            [self firstPageFetch];
     }];
     
     self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
-        [self firstPageFetch:YES];
+            [self startLoading];
+            [self firstPageFetch];
     };
     
     self.footerView = [MJRefreshFooterView footer];
@@ -119,7 +122,7 @@
     [self.headerView sendSubviewToBack:topView];
     self.headerView.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
-        [self firstPageFetch:NO];
+            [self firstPageFetch];
     };
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     self.totalPage = (int)[self.dataMutableArray count];
@@ -194,7 +197,7 @@
 }
 
 #pragma mark - request
-- (void)firstPageFetch:(BOOL)isShow {
+- (void)firstPageFetch {
     if (!self.dataFetcher) {
         return;
     }
@@ -202,9 +205,6 @@
     self.dataFetcher.pageIndex = 1;
     if (!self.dataFetcher.pageSize) {
         self.dataFetcher.pageSize = 20;
-    }
-    if (isShow) {
-        [self startLoading];
     }
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {

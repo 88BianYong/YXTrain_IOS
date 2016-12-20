@@ -77,18 +77,18 @@
     }];
 }
 - (void)setupWithCurrentFilters {
-        ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
-        __block NSInteger stageIndex = -1;
-        [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            ActivityFilter *filter = (ActivityFilter *)obj;
-            if ([self.stageID isEqualToString:filter.filterID]) {
-                stageIndex = idx;
-                *stop = YES;
-            }
-        }];
-        if (stageIndex >= 0) {
-            [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
+    ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+    __block NSInteger stageIndex = -1;
+    [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        ActivityFilter *filter = (ActivityFilter *)obj;
+        if ([self.stageID isEqualToString:filter.filterID]) {
+            stageIndex = idx;
+            *stop = YES;
         }
+    }];
+    if (stageIndex >= 0) {
+        [self.filterView setCurrentIndex:stageIndex forKey:stageGroup.name];
+    }
 }
 - (void)setupUI {
     self.emptyView.title = @"没有符合条件的活动";
@@ -97,7 +97,7 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ActivityListCell class] forCellReuseIdentifier:@"ActivityListCell"];
-   
+    
     if (self.isWaitingForFilter) {
         self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
         WEAK_SELF
@@ -136,15 +136,15 @@
             ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
             fetcher.stageid = self.stageID;
         }
-        [self firstPageFetch:YES];
+        [self startLoading];
+        [self firstPageFetch];
     }];
 }
-
-- (void)firstPageFetch:(BOOL)isShow {
+- (void)firstPageFetch {
     if (self.isWaitingForFilter) {
         return;
     }
-    [super firstPageFetch:isShow];
+    [super firstPageFetch];
 }
 #pragma mark - UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -168,7 +168,7 @@
     if ([cell.activity.source isEqualToString:@"zgjiaoyan"]) {//目前暂不支持教研网的活动
         [self showToast:@"暂不支持教研网活动"];
     }else if ([cell.activity.status isEqualToString:@"-1"]) {//活动关闭
-          [self showToast:@"该活动已关闭"];
+        [self showToast:@"该活动已关闭"];
     }else {
         ActivityDetailViewController *detailVC = [[ActivityDetailViewController alloc] init];
         detailVC.activity = self.dataArray[indexPath.row];
@@ -204,7 +204,8 @@
     fetcher.studyid = studyItem.filterID?:@"0";//服务端数据返回空的处理:"0"-全部,即不做筛选
     fetcher.segid = segmentItem.filterID?:@"0";
     fetcher.stageid = stageItem.filterID?:@"0";
-    [self firstPageFetch:YES];
+    [self startLoading];
+    [self firstPageFetch];
 }
 #pragma mark scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
