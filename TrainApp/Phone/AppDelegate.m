@@ -17,15 +17,17 @@
 #import "AppDelegate+GetInfoList.h"
 #import "AppDelegateHelper.h"
 @interface AppDelegate ()<YXLoginDelegate>
+@property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
+@property (nonatomic, strong) NSTimer *backgroundTimer;
 @property (nonatomic, strong) AppDelegateHelper *appDelegatehelper;
+
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    [[YXAppStartupManager sharedInstance] setupForAppdelegate:self withLauchOptions:launchOptions];
+    [GlobalUtils setupCore];
     [YXNavigationBarController setup];
     [self setupKeyboardManager];
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -58,11 +60,6 @@
     [[YXWebSocketManger  sharedInstance] close];
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-}
-
 - (void)applicationWillEnterForeground:(UIApplication *)application {
 	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
@@ -70,11 +67,55 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     //[self getInfoListUpdateDate];
 }
+- (void)applicationDidEnterBackground:(UIApplication *)application{
+    if ([YXRecordManager sharedManager].isActive) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:kRecordNeedUpdateNotification object:nil];
+        [[YXRecordManager sharedManager] report];
+        WEAK_SELF
+        self.backgroundTaskIdentifier =[application beginBackgroundTaskWithExpirationHandler:^(void) {
+            STRONG_SELF
+            [self.backgroundTimer invalidate];
+            self.backgroundTimer = nil;
+            [self endBackgroundTask];
+        }];
+        self.backgroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(finishRecordTimer) name:kRecordReportCompleteNotification object:nil];
+    }
+}
+- (void)endBackgroundTask{
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    @weakify(self);
+    dispatch_async(mainQueue, ^(void) {
+        @strongify(self);
+        if (self != nil){
+            [[UIApplication sharedApplication] endBackgroundTask:self.backgroundTaskIdentifier];
+            // 销毁后台任务标识符
+            self.backgroundTaskIdentifier = UIBackgroundTaskInvalid;
+        }
+    });
+}
+- (void)finishRecordTimer {
+    [self.backgroundTimer invalidate];
+    self.backgroundTimer = nil;
+    if (self.backgroundTaskIdentifier) {
+        [self endBackgroundTask];
+    }
+}
+
+- (void)timerMethod:(NSTimer *)paramSender{
+    // backgroundTimeRemaining 属性包含了程序留给的我们的时间
+    NSTimeInterval backgroundTimeRemaining =[[UIApplication sharedApplication] backgroundTimeRemaining];
+    if (backgroundTimeRemaining == DBL_MAX){
+        DDLogDebug(@"Background Time Remaining = Undetermined");
+    } else {
+        DDLogDebug(@"Background Time Remaining = %.02f Seconds", backgroundTimeRemaining);
+    }
+}
 
 #pragma mark - ApiStubForTransfer
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    
+    [GlobalUtils clearCore];
 }
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
