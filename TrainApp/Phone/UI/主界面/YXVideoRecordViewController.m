@@ -343,7 +343,7 @@
         DDLogDebug(@"Completed compression in %fs", CACurrentMediaTime() - time);
     }];
 }
-- (void)saveVideoFail{
+- (void)saveVideoFail {
     LSTAlertView *alertView = [[LSTAlertView alloc]init];
     alertView.title = @"视频保存失败";
     alertView.imageName = @"失败icon";
@@ -358,8 +358,7 @@
     [alertView showInView:self.view];
 }
 //保存成功视频之后
-- (void)saveSuccessWithVideoPath:(NSString *)videoPath
-{
+- (void)saveSuccessWithVideoPath:(NSString *)videoPath {
     if (![[NSFileManager defaultManager] fileExistsAtPath:PATH_OF_VIDEO]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:PATH_OF_VIDEO withIntermediateDirectories:YES attributes:nil error:nil];
     }
@@ -439,7 +438,6 @@
     }
     self.recorder.videoOrientation = (AVCaptureVideoOrientation)[UIDevice currentDevice].orientation;
     [self.recorder startRunning];
-
 }
 
 
@@ -470,9 +468,7 @@
     unsigned long long fileSize = 0;
     NSError *error = nil;
     NSString *filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:self.videoModel.fileName];
-    AVURLAsset *mp4Asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:filePath] options:nil];
-    CMTime itmeTime = mp4Asset.duration;
-    CGFloat durationTime = CMTimeGetSeconds(itmeTime);
+    CGFloat durationTime = [YXVideoRecordManager videoTimeLenghtForFilePath:filePath];
     NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
     fileSize = [[fileAttributes objectForKey:@"NSFileSize"] longLongValue];
     NSString *fileSizeString = [NSString stringWithFormat:@"%@",[NSString sizeStringWithFileSize:fileSize]];

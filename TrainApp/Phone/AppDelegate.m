@@ -8,7 +8,6 @@
 
 #import <MSDynamicsDrawerViewController.h>
 #import "AppDelegate.h"
-#import "YXAppStartupManager.h"
 #import "YXStartViewController.h"
 #import "YXInitRequest.h"
 
@@ -16,7 +15,7 @@
 
 #import "AppDelegate+GetInfoList.h"
 #import "AppDelegateHelper.h"
-@interface AppDelegate ()<YXLoginDelegate>
+@interface AppDelegate ()
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 @property (nonatomic, strong) NSTimer *backgroundTimer;
 @property (nonatomic, strong) AppDelegateHelper *appDelegatehelper;

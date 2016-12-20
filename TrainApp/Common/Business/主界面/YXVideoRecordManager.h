@@ -11,8 +11,6 @@
 
 @interface YXVideoRecordManager : NSObject
 
-+ (instancetype)sharedInstance;
-
 + (BOOL)isEnoughDeviceSpace;
 
 + (BOOL)isSupportRecordVideoShowView:(UIView *)view;
@@ -41,5 +39,16 @@
 
 /* 设备总容量 */
 + (NSNumber *)totalSpace;
+
+/**
+  获取本地视频时间
+
+ @param filePath 视频本地地址
+ @return 视频时间
+ */
++ (CGFloat)videoTimeLenghtForFilePath:(NSString *)filePath;
+
+
+
 
 @end

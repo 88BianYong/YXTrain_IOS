@@ -14,24 +14,6 @@
 #include <sys/sysctl.h>
 #include <arpa/inet.h>
 @implementation YXVideoRecordManager
-+ (instancetype)sharedInstance {
-    static YXVideoRecordManager *_sharedInstance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedInstance = [[[self class] alloc] init];
-    });
-    
-    return _sharedInstance;
-}
-
-- (instancetype)init {
-    if ((self = [super init])) {
-        
-    }
-    
-    return self;
-}
-
 + (BOOL)isEnoughDeviceSpace
 {
     if ([[self freeSpace] longLongValue] < 200 * 1024 *1024) {
@@ -211,4 +193,13 @@
     }
     return @(totalspace);
 }
+
+
++ (CGFloat)videoTimeLenghtForFilePath:(NSString *)filePath {
+    AVURLAsset *mp4Asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:filePath] options:nil];
+    CMTime itmeTime = mp4Asset.duration;
+    CGFloat durationTime = CMTimeGetSeconds(itmeTime);
+    return durationTime;
+}
+
 @end

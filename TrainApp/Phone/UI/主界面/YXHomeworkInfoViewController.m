@@ -308,30 +308,23 @@ UITableViewDataSource
                 [self showToast:@"系统空间不足200M,至少需要200M存储空间"];
                 return;
             }
-            if(self.itemBody.type.integerValue == 3){//判断是否是限制时间的视频
-                if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
-                    [self againRecordVideo];
-                }
-                else{
-                    LSTAlertView *alertView = [[LSTAlertView alloc]init];
-                    alertView.title = @"视频录制时长需要大于10分钟~";
-                    alertView.imageName = @"提醒icon";
-                    WEAK_SELF
-                    [alertView addButtonWithTitle:@"我知道了" style:LSTAlertActionStyle_Alone action:^{
-                        STRONG_SELF
-                        [self gotoVideoRecordVC:NO];
-                    }];
-                    [alertView show];
-                }
+            if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
+                [self againRecordVideo];
+                return;
             }
-            else{
-                if (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_AlreadyRecord) {
-                    [self againRecordVideo];
-                }else{
+            if (self.itemBody.type.integerValue == 3){//判断是否是限制时间的视频
+                LSTAlertView *alertView = [[LSTAlertView alloc]init];
+                alertView.title = @"视频录制时长需要大于10分钟~";
+                alertView.imageName = @"提醒icon";
+                WEAK_SELF
+                [alertView addButtonWithTitle:@"我知道了" style:LSTAlertActionStyle_Alone action:^{
+                    STRONG_SELF
                     [self gotoVideoRecordVC:NO];
-                }
+                }];
+                [alertView show];
+                return;
             }
-            break;
+            [self gotoVideoRecordVC:NO];
         }
             break;
         case YXRecordVideoInterfaceStatus_Depiction:
@@ -360,10 +353,7 @@ UITableViewDataSource
             break;
         case YXRecordVideoInterfaceStatus_Write:
         {
-            NSString *filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName];
-            AVURLAsset *mp4Asset = [AVURLAsset URLAssetWithURL:[NSURL fileURLWithPath:filePath] options:nil];
-            CMTime itmeTime = mp4Asset.duration;
-            CGFloat durationTime = CMTimeGetSeconds(itmeTime);
+            CGFloat durationTime = [YXVideoRecordManager videoTimeLenghtForFilePath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName]];
             if (self.itemBody.type.integerValue == 3 && durationTime < 600.0f) {
                 [self showToast:@"视频时长需大于10分钟"];
                 return;

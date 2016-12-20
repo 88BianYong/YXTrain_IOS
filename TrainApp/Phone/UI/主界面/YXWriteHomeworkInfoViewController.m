@@ -300,38 +300,38 @@
 
 #pragma mark - button Action
 - (void)buttonActionForSave:(UIButton *)sender{
-    if (!sender.selected) {
-        [self yx_hideKeyboard];
-        if (self.isChangeHomeworkInfo) {
-            [self requestForUpdVideoHomework];
-        }else{
-            Reachability *r = [Reachability reachabilityForInternetConnection];
-            if (![r isReachable]) {
-                [self showToast:@"网络异常,请稍候重试"];
-                return;
-            }
-            if ([r isReachableViaWWAN] && ![r isReachableViaWiFi]) {
-                LSTAlertView *alertView = [[LSTAlertView alloc]init];
-                alertView.title = @"当前处于非Wi-Fi环境\n仍要继续吗";
-                alertView.imageName = @"失败icon";
-                WEAK_SELF
-                [alertView addButtonWithTitle:@"上传" style:LSTAlertActionStyle_Cancel action:^{
-                    STRONG_SELF
-                    [self setNetObserver];
-                    [self uploadVideoForQiNiu];
-                }];
-                [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Default action:^{
-                    STRONG_SELF
-                }];
-                [alertView show];
-                return;
-            }
+    if (sender.selected) {//信息填写不完全
+        [self saveInfoHomeWorkShowToast:YES];
+        return;
+    }
+    [self yx_hideKeyboard];
+    if (self.isChangeHomeworkInfo) {//更改作业信息
+        [self requestForUpdVideoHomework];
+        return;
+    }
+    Reachability *r = [Reachability reachabilityForInternetConnection];
+    if (![r isReachable]) {
+        [self showToast:@"网络异常,请稍候重试"];
+        return;
+    }
+    if ([r isReachableViaWWAN] && ![r isReachableViaWiFi]) {
+        LSTAlertView *alertView = [[LSTAlertView alloc]init];
+        alertView.title = @"当前处于非Wi-Fi环境\n仍要继续吗";
+        alertView.imageName = @"失败icon";
+        WEAK_SELF
+        [alertView addButtonWithTitle:@"上传" style:LSTAlertActionStyle_Cancel action:^{
+            STRONG_SELF
             [self setNetObserver];
             [self uploadVideoForQiNiu];
-        }
-    }else{
-        [self saveInfoHomeWorkShowToast:YES];
+        }];
+        [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Default action:^{
+            STRONG_SELF
+        }];
+        [alertView show];
+        return;
     }
+    [self setNetObserver];
+    [self uploadVideoForQiNiu];
 }
 
 @end

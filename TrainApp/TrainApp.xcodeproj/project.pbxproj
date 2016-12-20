@@ -54,7 +54,6 @@
 		7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31777A1D0E8A1D004AAC90 /* FileLogger.m */; };
 		7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31777C1D0E8A1D004AAC90 /* LogFormatter.m */; };
 		7C3177811D0E8A1D004AAC90 /* GlobalUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31777E1D0E8A1D004AAC90 /* GlobalUtils.m */; };
-		7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177841D0E8D6B004AAC90 /* YXAppStartupManager.m */; };
 		7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7C3177871D0EA598004AAC90 /* MockConfig.plist */; };
 		7C31778D1D0EA598004AAC90 /* YXMockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177891D0EA598004AAC90 /* YXMockManager.m */; };
 		7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C31778B1D0EA598004AAC90 /* YXMockParser.m */; };
@@ -581,8 +580,6 @@
 		7C31777C1D0E8A1D004AAC90 /* LogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogFormatter.m; sourceTree = "<group>"; };
 		7C31777D1D0E8A1D004AAC90 /* GlobalUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalUtils.h; sourceTree = "<group>"; };
 		7C31777E1D0E8A1D004AAC90 /* GlobalUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalUtils.m; sourceTree = "<group>"; };
-		7C3177831D0E8D6B004AAC90 /* YXAppStartupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAppStartupManager.h; sourceTree = "<group>"; };
-		7C3177841D0E8D6B004AAC90 /* YXAppStartupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAppStartupManager.m; sourceTree = "<group>"; };
 		7C3177871D0EA598004AAC90 /* MockConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MockConfig.plist; sourceTree = "<group>"; };
 		7C3177881D0EA598004AAC90 /* YXMockManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMockManager.h; sourceTree = "<group>"; };
 		7C3177891D0EA598004AAC90 /* YXMockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMockManager.m; sourceTree = "<group>"; };
@@ -1666,8 +1663,6 @@
 			isa = PBXGroup;
 			children = (
 				7C3177861D0E8FEF004AAC90 /* Log */,
-				7C3177831D0E8D6B004AAC90 /* YXAppStartupManager.h */,
-				7C3177841D0E8D6B004AAC90 /* YXAppStartupManager.m */,
 				7C31777D1D0E8A1D004AAC90 /* GlobalUtils.h */,
 				7C31777E1D0E8A1D004AAC90 /* GlobalUtils.m */,
 				7C31776F1D0E7EB0004AAC90 /* YXConfigManager.h */,
@@ -3585,7 +3580,6 @@
 				E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */,
 				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
-				7C3177851D0E8D6B004AAC90 /* YXAppStartupManager.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */,
 				CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */,
