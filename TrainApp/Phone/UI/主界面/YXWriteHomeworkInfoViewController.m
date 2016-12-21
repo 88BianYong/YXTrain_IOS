@@ -50,7 +50,7 @@
     
     [self setupUI];
     [self layoutInterface];
-    [self requestForCategoryId];
+    [self requestForHomework];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -135,7 +135,7 @@
     self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     self.errorView.retryBlock = ^{
         STRONG_SELF
-        [self requestForCategoryId];
+        [self requestForHomework];
     };
     _progressView = [[YXSaveVideoProgressView alloc] initWithFrame:CGRectMake(0, 0, 150.0f , 150.0f)];
     _progressView.titleString = @"视频上传中...";
@@ -278,8 +278,6 @@
     _getQiNiuTokenRequest = request;
     
 }
-
-
 
 #pragma mark -qiniu delegate
 - (void)uploadProgress:(float)progress{

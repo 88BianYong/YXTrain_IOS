@@ -9,13 +9,11 @@
 #import "YXWriteHomeworkInfoViewController.h"
 
 @interface YXWriteHomeworkInfoViewController (Request)
-- (void)requestForCategoryId;
+- (void)requestForHomework;
 
 - (void)requestForChapterList;
 
 - (void)requestSaveHomework:(NSString *)hashStr;
-
-- (void)requestForHomeworkInfo;
 
 - (void)requestForUpdVideoHomework;
 

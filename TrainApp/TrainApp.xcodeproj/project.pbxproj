@@ -289,6 +289,7 @@
 		928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
 		929468071DDE8F220070C3B7 /* ActivitySlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */; };
 		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
+		92AD8EE41E0A5B5800A3E91C /* WriteHomeworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */; };
 		92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */; };
 		92B2C0A41DD41EFA003E27F9 /* Image.html in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A31DD41EFA003E27F9 /* Image.html */; };
 		92B2C0A61DD42D62003E27F9 /* icon_smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A51DD42D62003E27F9 /* icon_smile.gif */; };
@@ -1037,6 +1038,7 @@
 		929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySlideProgressView.m; sourceTree = "<group>"; };
 		92A770071DD18A5800C578F2 /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
 		92A770081DD18A5800C578F2 /* InputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextView.m; sourceTree = "<group>"; };
+		92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteHomeworkManager.m; sourceTree = "<group>"; };
 		92AFFAFB1D9B7ADA00E1526C /* YXEmptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEmptCell.h; sourceTree = "<group>"; };
 		92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEmptCell.m; sourceTree = "<group>"; };
 		92B2C0A31DD41EFA003E27F9 /* Image.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Image.html; sourceTree = "<group>"; };
@@ -1115,6 +1117,7 @@
 		92F6877E1E08E7A000A48420 /* ActivityListDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListDetailModel.m; sourceTree = "<group>"; };
 		92F687801E0908F400A48420 /* ActivityDetailManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailManger.h; sourceTree = "<group>"; };
 		92F687811E0908F400A48420 /* ActivityDetailManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailManger.m; sourceTree = "<group>"; };
+		92F687831E092A3800A48420 /* WriteHomeworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteHomeworkManager.h; sourceTree = "<group>"; };
 		92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPagedListFetcher.m; sourceTree = "<group>"; };
 		92FAE4A21DDAA845000C3C00 /* CoreTextViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextViewHandler.h; sourceTree = "<group>"; };
 		92FAE4A31DDAA845000C3C00 /* CoreTextViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextViewHandler.m; sourceTree = "<group>"; };
@@ -2421,6 +2424,8 @@
 				920F1D251D50986E00636A51 /* YXQiNiuVideoUpload.m */,
 				920F1D3A1D51A40D00636A51 /* homeworklist_mock.json */,
 				920F1D3D1D51A42A00636A51 /* homeworkInfo_mock.json */,
+				92F687831E092A3800A48420 /* WriteHomeworkManager.h */,
+				92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */,
 			);
 			name = "作业";
 			sourceTree = "<group>";
@@ -3590,6 +3595,7 @@
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
 				922901781DED771E001474CE /* BeijingExamGenreCell.m in Sources */,
 				7CF8445E1D2A5E4800B1CE55 /* FileRecordEntity.m in Sources */,
+				92AD8EE41E0A5B5800A3E91C /* WriteHomeworkManager.m in Sources */,
 				9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */,
 				922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */,
 				CB52FCFB1D2BC1720096D8DC /* YXNoticeListFetch.m in Sources */,

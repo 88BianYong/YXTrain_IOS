@@ -11,17 +11,12 @@
 #import "YXWriteHomeworkInfoBottomView.h"
 #import "YXHomeworkInfoRequest.h"
 #import "YXChapterListRequest.h"
-#import "YXWriteHomeworkInfoMenuView.h"
 #import "YXWriteHomeworkRequest.h"
-#import "YXUpdVideoHomeworkRequest.h"
 #import "YXCategoryListRequest.h"
+#import "YXWriteHomeworkInfoMenuView.h"
+#import "YXUpdVideoHomeworkRequest.h"
 #import "YXSaveHomeWorkRequest.h"
-typedef NS_ENUM(NSUInteger, YXHomeworkRequestStatus){
-    YXHomeworkRequestStatus_Category = 1,
-    YXHomeworkRequestStatus_Info = 2,
-    YXHomeworkRequestStatus_ChapterList = 3
-};
-
+#import "WriteHomeworkmanager.h"
 @interface YXWriteHomeworkInfoViewController : YXBaseViewController
 @property (nonatomic, strong)YXHomeworkInfoRequestItem_Body  *videoModel;
 @property (nonatomic, strong)YXChapterListRequestItem *chapterList;
@@ -38,17 +33,13 @@ typedef NS_ENUM(NSUInteger, YXHomeworkRequestStatus){
 @property (nonatomic, weak)YXWriteHomeworkInfoCell *versionCell;
 @property (nonatomic, weak)YXWriteHomeworkInfoCell *gradeCell;
 @property (nonatomic, weak)YXWriteHomeworkInfoMenuView *menuView;
-//@property (nonatomic, strong)YXErrorView *errorView;
 @property (nonatomic, strong)UITableView *tableView;
 
 
 
-@property (nonatomic, strong)YXCategoryListRequest *listRequest;
 @property (nonatomic, strong)YXChapterListRequest *chapterRequest;
 @property (nonatomic, strong)YXSaveHomeWorkRequest *saveRequest;
-@property (nonatomic, strong)YXWriteHomeworkRequest *homeworkRequest;
 @property (nonatomic, strong)YXUpdVideoHomeworkRequest *uploadInfoRequest;
-@property (nonatomic, copy) void(^homeworkCompleteBlock)(NSError *error, YXHomeworkRequestStatus status);
-
+@property (nonatomic, strong) WriteHomeworkManager *homeworkmanagerRequest;
 
 @end

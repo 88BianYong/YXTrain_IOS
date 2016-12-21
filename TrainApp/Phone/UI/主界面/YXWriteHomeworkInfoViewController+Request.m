@@ -12,46 +12,46 @@
 #import "FileHash.h" 
 static  NSString *const trackEventName = @"上传作业";
 @implementation YXWriteHomeworkInfoViewController (Request)
-//- (void)requestForHomeworkCompleteBlock:(void(^)(NSError *error, YXHomeworkRequestStatus status))completeBlock{
-//    self.homeworkCompleteBlock = completeBlock;
-//    [self requestForCategoryId];
-//}
-
-
-
-- (void)requestForCategoryId{
-    if (self.listRequest) {
-        [self.listRequest stopRequest];
-    }
-    YXCategoryListRequest *request  = [[YXCategoryListRequest alloc] init];
-    request.flag = @"0";
-    request.code = @"version_grade";
+- (void)requestForHomework {
+    WriteHomeworkManager *request = [[WriteHomeworkManager alloc] init];
     [self startLoading];
     WEAK_SELF
-    [request startRequestWithRetClass:[YXCategoryListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+    [request requestHomework:self.videoModel CompleteBlock:^(WriteHomeworkModel *model, NSError *error) {
         STRONG_SELF
-        if (error) {
-            [self stopLoading];
-            self.errorView.frame = self.view.bounds;
-            [self.view addSubview:self.errorView];
-
-//            self.homeworkCompleteBlock(error,YXHomeworkRequestStatus_Category);
-        }else{
-            self.listItem = retItem;
-            [self schoolSectionWithData];
-            [self.errorView removeFromSuperview];
-            [self.tableView reloadData];
-            if (self.videoModel.homeworkid.integerValue != 0) {
-                [self requestForHomeworkInfo];
-            }else{
-                [self stopLoading];
+        [self stopLoading];
+        if (model.managerStatus >= WriteHomeworkmanagerStatus_Category) {
+            if (error) {
+                self.errorView.frame = self.view.bounds;
+                [self.view addSubview:self.errorView];
+            }else {
+                self.listItem = model.listItem;
+                [self schoolSectionWithData];
+                [self.errorView removeFromSuperview];
+                [self.tableView reloadData];
             }
-            
+        }
+        if (model.managerStatus >= WriteHomeworkmanagerStatus_Info) {
+            if (error) {
+                [self showToast:@"作业信息获取失败"];
+            }else {
+                self.homeworkItem = model.homeworkItem;
+                [self saveWorkhomeInfo:self.homeworkItem.body];
+                [self.tableView reloadData];
+            }
+        }
+        if (model.managerStatus >= WriteHomeworkmanagerStatus_ChapterList){
+            if (error) {
+                self.menuView.isError = YES;
+            }else{
+                self.menuView.isError = NO;
+                self.chapterList = model.chapterList;
+                [self saveChapterList];
+                [self.tableView reloadData];
+            }
         }
     }];
-    self.listRequest = request;
+    self.homeworkmanagerRequest = request;
 }
-
 - (void)requestForChapterList{
     if (self.chapterRequest) {
         [self.chapterRequest stopRequest];
@@ -139,36 +139,6 @@ static  NSString *const trackEventName = @"上传作业";
     }];
     self.saveRequest = request;
 }
-
-- (void)requestForHomeworkInfo{
-    if (self.homeworkRequest) {
-        [self.homeworkRequest stopRequest];
-    }
-    WEAK_SELF
-    YXWriteHomeworkRequest *request = [[YXWriteHomeworkRequest alloc] init];
-    request.projectid = self.videoModel.pid;
-    request.hwid = self.videoModel.homeworkid;
-    [self startLoading];
-    [request startRequestWithRetClass:[YXWriteHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        if (error) {
-            [self stopLoading];
-            [self showToast:@"作业信息获取失败"];
-        }else{
-            YXWriteHomeworkRequestItem *item = retItem;
-            self.homeworkItem = item;
-            [self saveWorkhomeInfo:item.body];
-            [self.tableView reloadData];
-            if (!isEmpty(self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][1])) {
-                [self requestForChapterList];
-            }else{
-                [self stopLoading];
-            }
-        }
-    }];
-    self.homeworkRequest = request;
-}
-
 - (void)requestForUpdVideoHomework{
     if (self.uploadInfoRequest) {
         [self.uploadInfoRequest stopRequest];

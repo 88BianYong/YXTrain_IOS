@@ -34,11 +34,11 @@
     YXStartViewController *VC = [[YXStartViewController alloc] init];
     self.window.rootViewController = VC;
     [self.window makeKeyAndVisible];
+    self.appDelegatehelper = [[AppDelegateHelper alloc] initWithWindow:self.window];
     WEAK_SELF
     [[YXInitHelper sharedHelper] requestCompeletion:^(BOOL upgrade) {
         STRONG_SELF
         if (upgrade) {
-            self.appDelegatehelper = [[AppDelegateHelper alloc] initWithWindow:self.window];
             [self.appDelegatehelper setupRootViewController];
         }
     }];
