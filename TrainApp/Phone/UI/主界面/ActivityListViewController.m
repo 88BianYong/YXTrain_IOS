@@ -20,6 +20,9 @@
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, assign) BOOL isNavBarHidden;
+
+@property (nonatomic, assign) CGFloat oldOffsetY;
+@property (nonatomic, assign) BOOL isAllowChange;
 @end
 
 @implementation ActivityListViewController
@@ -27,6 +30,7 @@
     [self setupFetcher];
     self.isWaitingForFilter = YES;
     [super viewDidLoad];
+    self.isAllowChange = YES;
     [self setupUI];
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -208,29 +212,29 @@
     [self firstPageFetch];
 }
 #pragma mark scrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentSize.height >= kScreenHeight -  44 + 10.0f){
-        CGPoint point = scrollView.contentOffset;
-        if (point.y >= 5 && !self.isNavBarHidden) {
+        if (scrollView.contentOffset.y > self.oldOffsetY && self.isAllowChange) {
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(64);
             }];
-            DDLogDebug(@"隐藏");
             self.isNavBarHidden = YES;
-        }else if (point.y < 5 && self.isNavBarHidden) {
+            self.isAllowChange = NO;
+        }
+        if (scrollView.contentOffset.y < self.oldOffsetY && self.isAllowChange) {
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(44);
             }];
-            DDLogDebug(@"显示");
             self.isNavBarHidden = NO;
+            self.isAllowChange = NO;
         }
-    }else {
+    }else{
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
         [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -240,4 +244,9 @@
         self.isNavBarHidden = NO;
     }
 }
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    self.oldOffsetY = MAX(scrollView.contentOffset.y, 0.0f);
+    self.isAllowChange = YES;
+}
+
 @end

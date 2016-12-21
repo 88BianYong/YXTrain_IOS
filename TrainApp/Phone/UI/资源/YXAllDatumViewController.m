@@ -27,6 +27,9 @@ static  NSString *const trackPageName = @"全部资源页面";
 @property (nonatomic, copy) NSString *currentConditon;//错误刷新用到
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 
+@property (nonatomic, assign) CGFloat oldOffsetY;
+@property (nonatomic, assign) BOOL isAllowChange;
+
 @end
 
 @implementation YXAllDatumViewController
@@ -35,6 +38,7 @@ static  NSString *const trackPageName = @"全部资源页面";
     //self.bIsGroupedTableViewStyle = YES;
     [self setupDataFetcher];
     [super viewDidLoad];
+    self.isAllowChange = YES;
     [self configUI];
     // Do any additional setup after loading the view.
 }
@@ -159,8 +163,7 @@ static  NSString *const trackPageName = @"全部资源页面";
 #pragma mark scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentSize.height >= kScreenHeight -  45 + 10.0f){
-        CGPoint point = scrollView.contentOffset;
-        if (point.y >= 5) {
+        if (scrollView.contentOffset.y > self.oldOffsetY && self.isAllowChange) {
             self.menuView.isNavBarHidden = YES;
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             [self.menuView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -173,7 +176,9 @@ static  NSString *const trackPageName = @"全部资源页面";
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(self.menuView.mas_bottom);
             }];
-        }else{
+            self.isAllowChange = NO;
+        }
+        if (scrollView.contentOffset.y < self.oldOffsetY && self.isAllowChange) {
             self.menuView.isNavBarHidden = NO;
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             [self.menuView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -186,6 +191,7 @@ static  NSString *const trackPageName = @"全部资源页面";
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(self.menuView.mas_bottom);
             }];
+            self.isAllowChange = NO;
         }
     }else{
         self.menuView.isNavBarHidden = NO;
@@ -202,5 +208,10 @@ static  NSString *const trackPageName = @"全部资源页面";
         }];
     }
 }
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    self.oldOffsetY = MAX(scrollView.contentOffset.y, 0.0f);
+    self.isAllowChange = YES;
+}
+
 
 @end
