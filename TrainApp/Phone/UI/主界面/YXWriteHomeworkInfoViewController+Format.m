@@ -260,15 +260,6 @@
     }
     self.bottomView.saveButton.selected = ![self saveInfoHomeWorkShowToast:NO];
 }
-- (NSString *)getCategoryIds{
-    NSString *cId = [NSString stringWithFormat:@"%@,%@,%@,%@",
-                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][0]?:@"",
-                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][0]?:@"",
-                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][0]?:@"",
-                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][0]?:@""];
-    return cId;
-}
-
 - (void)saveWorkhomeInfo:(YXWriteHomeworkRequestItem_Body *)body{
     //学段
     NSArray *schoolSection = self.listMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)];
@@ -356,5 +347,28 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:mutableArray options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonString =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     return jsonString;
+}
+- (YXSaveHomeWorkRequestModel *)modelForSaveHomeWork {
+    YXSaveHomeWorkRequestModel *model = [[YXSaveHomeWorkRequestModel alloc] init];
+    model.categoryIds = [self categoryIds];
+    model.title = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Title)][1];
+    model.chapter = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Menu)][0];
+    model.des = self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Topic)][1];
+    model.projectid = self.videoModel.pid;
+    model.requireid = self.videoModel.requireId;
+    model.typeId = @"1004";
+    model.hwid = self.videoModel.homeworkid;
+    model.shareType = @"0";
+    model.status = @"-1";
+    return model;
+}
+
+- (NSString *)categoryIds{
+    NSString *cId = [NSString stringWithFormat:@"%@,%@,%@,%@",
+                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_SchoolSection)][0]?:@"",
+                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Subject)][0]?:@"",
+                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Version)][0]?:@"",
+                     self.selectedMutableDictionary[@(YXWriteHomeworkListStatus_Grade)][0]?:@""];
+    return cId;
 }
 @end

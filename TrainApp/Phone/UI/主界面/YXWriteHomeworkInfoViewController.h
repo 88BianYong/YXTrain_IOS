@@ -38,8 +38,6 @@
 
 
 @property (nonatomic, strong)YXChapterListRequest *chapterRequest;
-@property (nonatomic, strong)YXSaveHomeWorkRequest *saveRequest;
-@property (nonatomic, strong)YXUpdVideoHomeworkRequest *uploadInfoRequest;
-@property (nonatomic, strong) WriteHomeworkManager *homeworkmanagerRequest;
+@property (nonatomic, strong) WriteHomeworkManager *managerRequest;
 
 @end

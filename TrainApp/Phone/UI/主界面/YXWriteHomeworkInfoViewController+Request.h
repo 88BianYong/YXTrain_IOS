@@ -9,12 +9,10 @@
 #import "YXWriteHomeworkInfoViewController.h"
 
 @interface YXWriteHomeworkInfoViewController (Request)
+
 - (void)requestForHomework;
-
 - (void)requestForChapterList;
-
-- (void)requestSaveHomework:(NSString *)hashStr;
-
+- (void)requestSaveHomework;
 - (void)requestForUpdVideoHomework;
 
 @end

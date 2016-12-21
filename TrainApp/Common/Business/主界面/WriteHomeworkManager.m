@@ -7,7 +7,8 @@
 //
 
 #import "WriteHomeworkManager.h"
-
+#import "FileHash.h"
+#import "YXUpdVideoHomeworkRequest.h"
 @implementation WriteHomeworkModel
 @end
 
@@ -15,11 +16,12 @@
 @interface WriteHomeworkManager ()
 @property (nonatomic, copy) WriteHomeworkmanagerBlock managerBlock;
 @property (nonatomic, strong) WriteHomeworkModel *managerModel;
-
 @property (nonatomic, strong)YXCategoryListRequest *listRequest;
 @property (nonatomic, strong)YXChapterListRequest *chapterRequest;
 @property (nonatomic, strong)YXWriteHomeworkRequest *homeworkRequest;
-@property (nonatomic, strong)YXHomeworkInfoRequestItem_Body *itemBody;
+
+@property (nonatomic, strong)YXSaveHomeWorkRequest *saveRequest;
+@property (nonatomic, strong)YXUpdVideoHomeworkRequest *uploadInfoRequest;
 
 
 @end
@@ -27,14 +29,13 @@
 @implementation WriteHomeworkManager
 -(instancetype)init {
     if (self = [super init]) {
-        self.managerModel = [[WriteHomeworkModel alloc] init];
-        self.managerModel.managerStatus = WriteHomeworkmanagerStatus_Category;
     }
     return self;
 }
 
-- (void)requestHomework:(YXHomeworkInfoRequestItem_Body *)body CompleteBlock:(WriteHomeworkmanagerBlock)aCompleteBlock {
-    self.itemBody = body;
+- (void)requestHomeworkCompleteBlock:(WriteHomeworkmanagerBlock)aCompleteBlock {
+    self.managerModel = [[WriteHomeworkModel alloc] init];
+    self.managerModel.managerStatus = WriteHomeworkmanagerStatus_Category;
     self.managerBlock = aCompleteBlock;
     [self requestForCategoryId];
 }
@@ -109,6 +110,87 @@
         }
     }];
     self.chapterRequest = request;
+}
+
+#pragma mark - save Request
+- (void)requestSaveHomework:(YXSaveHomeWorkRequestModel *)model selectedDictionary:(NSMutableDictionary *)dictionary completeBlock:(SaveWriteHomeworkmanagerBlock)aCompleteBlock;{
+    if(self.saveRequest){
+        [self.saveRequest stopRequest];
+    }
+    NSError *error = nil;
+    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName] error:&error];
+    NSString * fileSizeString = [fileAttributes objectForKey:@"NSFileSize"];
+    unsigned long long fileSize = [fileSizeString longLongValue];
+    YXSaveHomeWorkRequest *request = [[YXSaveHomeWorkRequest alloc] init];
+    request.rid = [FileHash md5HashOfFileAtPath:[PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName]];
+    request.ext = @"mp4";
+    request.action = @"qiniuc";
+    request.filename = self.itemBody.fileName;
+    request.filesize = [NSString stringWithFormat:@"%llu",fileSize];
+    request.reserve = model.toJSONString;
+    WEAK_SELF
+    [request startRequestWithRetClass:[YXSaveHomeWorkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error) {
+            BLOCK_EXEC(aCompleteBlock,nil,error);
+            return;
+        }
+        YXSaveHomeWorkRequestItem *item = retItem;
+        self.itemBody.homeworkid = item.resid;
+        self.itemBody.uploadPercent = 0.0;
+        self.itemBody.isUploadSuccess = NO;
+        NSString *filePath = [PATH_OF_VIDEO stringByAppendingPathComponent:self.itemBody.fileName];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            self.itemBody.lessonStatus = YXVideoLessonStatus_UploadComplete;
+        }
+        else{
+            self.itemBody.lessonStatus = YXVideoLessonStatus_Finish;
+        }
+        YXHomeworkInfoRequestItem_Body_Detail *detail = [[YXHomeworkInfoRequestItem_Body_Detail alloc] init];
+        detail.title = dictionary[@(YXWriteHomeworkListStatus_Title)][1];
+        detail.segmentName = dictionary[@(YXWriteHomeworkListStatus_SchoolSection)][1];
+        detail.gradeName = dictionary[@(YXWriteHomeworkListStatus_Grade)][1];
+        detail.studyName = dictionary[@(YXWriteHomeworkListStatus_Subject)][1];
+        detail.chapterName = dictionary[@(YXWriteHomeworkListStatus_Menu)][1];
+        detail.versionName = dictionary[@(YXWriteHomeworkListStatus_Version)][1];
+        detail.keyword =  dictionary[@(YXWriteHomeworkListStatus_Topic)][1];
+        self.itemBody.detail = detail;
+        BLOCK_EXEC(aCompleteBlock,self.itemBody,nil);
+    }];
+    self.saveRequest = request;
+    
+}
+
+- (void)requestUpdVideoHomework:(NSString *)contentString selectedDictionary:(NSMutableDictionary *)dictionary completeBlock:(SaveWriteHomeworkmanagerBlock)aCompleteBlock {
+    YXUpdVideoHomeworkRequest *request = [[YXUpdVideoHomeworkRequest alloc] init];
+    request.title = dictionary[@(YXWriteHomeworkListStatus_Title)][1];
+    request.pid = self.itemBody.pid;
+    request.requireid = self.itemBody.requireId;
+    request.hwid = self.itemBody.homeworkid;
+    request.content = contentString;
+    WEAK_SELF
+    [request startRequestWithRetClass:[YXUpdVideoHomeworkRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error) {
+            BLOCK_EXEC(aCompleteBlock,nil,error);
+            return;
+        }
+        YXUpdVideoHomeworkRequestItem *item = retItem;
+        self.itemBody.homeworkid = item.data.hwid;
+        self.itemBody.uploadPercent = 0.0;
+        self.itemBody.isUploadSuccess = NO;
+        YXHomeworkInfoRequestItem_Body_Detail *detail = [[YXHomeworkInfoRequestItem_Body_Detail alloc] init];
+        detail.title = dictionary[@(YXWriteHomeworkListStatus_Title)][1];
+        detail.segmentName = dictionary[@(YXWriteHomeworkListStatus_SchoolSection)][1];
+        detail.gradeName = dictionary[@(YXWriteHomeworkListStatus_Grade)][1];
+        detail.studyName = dictionary[@(YXWriteHomeworkListStatus_Subject)][1];
+        detail.chapterName = dictionary[@(YXWriteHomeworkListStatus_Menu)][1];
+        detail.versionName = dictionary[@(YXWriteHomeworkListStatus_Version)][1];
+        detail.keyword =  dictionary[@(YXWriteHomeworkListStatus_Topic)][1];
+        self.itemBody.detail = detail;
+        BLOCK_EXEC(aCompleteBlock,self.itemBody,error);
+    }];
+    self.uploadInfoRequest = request;
 }
 
 @end

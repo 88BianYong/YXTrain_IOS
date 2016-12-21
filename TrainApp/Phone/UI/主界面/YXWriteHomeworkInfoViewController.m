@@ -292,7 +292,7 @@
         self.videoModel.isUploadSuccess = YES;
         self.videoModel.uploadPercent = 1;
         [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
-        [self requestSaveHomework:hashStr];
+        [self requestSaveHomework];
     });
 }
 

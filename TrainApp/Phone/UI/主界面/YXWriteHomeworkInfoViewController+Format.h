@@ -12,8 +12,8 @@
 - (void)schoolSectionWithData;
 - (void)showWorkhomeInfo:(YXWriteHomeworkListStatus)status withChangeObj:(id)changeObj;
 - (BOOL)saveInfoHomeWorkShowToast:(BOOL)isShow;
-- (NSString *)getCategoryIds;
 - (void)saveWorkhomeInfo:(YXWriteHomeworkRequestItem_Body *)body;
 - (void)saveChapterList;
 - (NSString *)formatUploadVideoHomeworkContent;
+- (YXSaveHomeWorkRequestModel *)modelForSaveHomeWork;
 @end
