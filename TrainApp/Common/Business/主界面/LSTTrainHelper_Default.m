@@ -25,6 +25,15 @@
 - (NSString *)firstHomeworkImageName {
     return @"APP仅支持视频课例，其他作业-请到研修网完成～";
 }
+- (NSString *)w {
+    return [YXTrainManager sharedInstance].currentProject.w;
+}
+- (NSArray *)sideMenuArray {
+    return  @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
+              @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
+              @{@"title":self.workshopListTitle,@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
+              @{@"title":@"消息动态",@"normalIcon":@"消息动态icon-正常态",@"hightIcon":@"消息动态icon-点击态"}];
+}
 
 
 #pragma mark - show project

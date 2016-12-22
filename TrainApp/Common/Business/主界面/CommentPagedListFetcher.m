@@ -24,9 +24,6 @@
     request.toolid = self.toolid;
     request.parentid = self.parentid;
     request.w = self.w;
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        request.w = @"4";
-    }
     WEAK_SELF
     [request startRequestWithRetClass:[ActivityFirstCommentRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

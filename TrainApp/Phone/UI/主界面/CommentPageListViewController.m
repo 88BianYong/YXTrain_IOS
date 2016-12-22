@@ -53,7 +53,7 @@
         self.dataFetcher = [[CommentPagedListFetcher alloc] init];
         self.dataFetcher.aid = self.tool.aid;
         self.dataFetcher.toolid = self.tool.toolid;
-        self.dataFetcher.w = [YXTrainManager sharedInstance].currentProject.w;
+        self.dataFetcher.w = [YXTrainManager sharedInstance].trainHelper.w;
         self.dataFetcher.pageIndex = 1;
         self.dataFetcher.pageSize = 20;
     }
@@ -285,7 +285,7 @@
         ActivityFirstCommentRequestItem_Body_Replies *temp = self.dataMutableArray[self.replyInteger];
         request.parentid = temp.replyID;
         request.topicid = temp.topicid;
-        if (![self commentMultistageStyle]) {
+        if ([YXTrainManager sharedInstance].trainHelper.w.integerValue <= 3) {
             inputString = [NSString stringWithFormat:@"回复%@%@%@%@",kNameSeparator,temp.userName,kContentSeparator,inputString];
         }
     }
@@ -293,10 +293,7 @@
     request.aid = self.tool.aid;
     request.tooltype = self.tool.toolType;
     request.toolid = self.tool.toolid;
-    request.w = [YXTrainManager sharedInstance].currentProject.w;
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        request.w = @"4";
-    }
+    request.w = [YXTrainManager sharedInstance].trainHelper.w;
     WEAK_SELF
     [request startRequestWithRetClass:[CommentReplyRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
@@ -309,7 +306,7 @@
                 [self showToast:@"网络异常,请稍后重试"];
             }
         }else if (item.body.reply != nil){
-            if (![self commentMultistageStyle]) {
+            if ([YXTrainManager sharedInstance].trainHelper.w.integerValue <= 3) {
                 [self.dataMutableArray insertObject:item.body.reply atIndex:0];
                 [self.tableView reloadData];
             }else {
@@ -347,10 +344,7 @@
     CommentLaudRequest *request = [[CommentLaudRequest alloc] init];
     request.aid = self.tool.aid;
     request.toolid = self.tool.toolid;
-    request.w = [YXTrainManager sharedInstance].currentProject.w;
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        request.w = @"4";
-    }
+    request.w = [YXTrainManager sharedInstance].trainHelper.w;
     NSIndexPath *indexPath = nil;
     NSInteger integer = -1;
     if ([comment isKindOfClass:[NSIndexPath class]]) {
@@ -518,7 +512,7 @@
     if (replie.childNum.integerValue <= 2) {
         return nil;
     }else {
-        if ([self commentMultistageStyle]) {
+        if ([YXTrainManager sharedInstance].trainHelper.w.integerValue > 3) {
             ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
             footerView.tag = section + 1000;
             WEAK_SELF
@@ -541,7 +535,7 @@
     if (replie.childNum.integerValue <= 2) {
         return 0.0001f;
     }else {
-        if ([self commentMultistageStyle]) {
+        if ([YXTrainManager sharedInstance].trainHelper.w.integerValue > 3) {
             return 29.0f;
         }else {
            return 0.0001f;
@@ -583,10 +577,5 @@
 }
 - (void)formatCommentContent{
     
-}
-
-- (BOOL)commentMultistageStyle{//北京项目活动中的所有讨论都要用16样式  因为这个项目特殊  w值是15但活动的工具是16的所以不能用w值来判断讨论的样式  直接写死成16样式
-    return ([YXTrainManager sharedInstance].currentProject.w.integerValue > 3 ||
-            [YXTrainManager sharedInstance].isBeijingProject);
 }
 @end

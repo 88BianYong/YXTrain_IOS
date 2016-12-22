@@ -21,7 +21,7 @@
 #import "YXExamBlankHeaderFooterView.h"
 #import "BeijingActivityListViewController.h"
 #import "YXHomeworkInfoRequest.h"
-#import "YXHomeworkInfoViewController.h"
+#import "BeijingHomeworkInfoViewController.h"
 #import "BeijingExamTipCell.h"
 static  NSString *const trackPageName = @"考核页面";
 static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
@@ -241,7 +241,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 itemBody.requireId = tool.requireid;
                 itemBody.homeworkid = tool.homeworkid;
                 itemBody.pid = [YXTrainManager sharedInstance].currentProject.pid;
-                YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
+                BeijingHomeworkInfoViewController *VC = [[BeijingHomeworkInfoViewController alloc] init];
                 VC.itemBody = itemBody;
                 [self.navigationController pushViewController:VC animated:YES];
             }

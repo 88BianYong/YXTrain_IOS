@@ -112,17 +112,6 @@ UITableViewDataSource
     [_tableView registerClass:[YXHomeworkInfoFinishHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXHomeworkInfoFinishHeaderView"];
     [self.view addSubview:_tableView];
     [_tableView registerClass:[YXHomeworkPlayVideoCell class] forCellReuseIdentifier:@"YXHomeworkPlayVideoCell"];
-    
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstGoInHomeworkInfo] && [YXTrainManager sharedInstance].isBeijingProject) {
-        static NSString * staticString = @"YXHomeworkPromptView";
-        UIView *promptView = [[NSClassFromString(staticString) alloc] init];
-        [self.view addSubview:promptView];
-        [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkInfo];
-    }
-    
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
@@ -274,9 +263,6 @@ UITableViewDataSource
         }
     }];
     self.itemBody = item;
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, [self scrollViewContentSizeWithDescription:self.itemBody.depiction ?: @" "].height + 247 + 22);
-    }
     _tableView.tableHeaderView = self.headerView;
     self.headerView.body = self.itemBody;
     self.title = self.itemBody.title;

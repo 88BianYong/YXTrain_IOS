@@ -20,10 +20,7 @@
     self.request.toolId = self.toolId;
     self.request.page = [NSString stringWithFormat:@"%d", self.pageindex + 1];
     self.request.pageSize = [NSString stringWithFormat:@"%d", self.pagesize];
-    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        self.request.w = @"4";
-    }
+    self.request.w = [YXTrainManager sharedInstance].trainHelper.w;
     WEAK_SELF
     [self.request startRequestWithRetClass:[ShareResourcesRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

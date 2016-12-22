@@ -290,6 +290,8 @@
 		929468071DDE8F220070C3B7 /* ActivitySlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */; };
 		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
 		92AD8EE41E0A5B5800A3E91C /* WriteHomeworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */; };
+		92AD8EE71E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */; };
+		92AD8EED1E0B87E900A3E91C /* BeijingHomeworkInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */; };
 		92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */; };
 		92B2C0A41DD41EFA003E27F9 /* Image.html in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A31DD41EFA003E27F9 /* Image.html */; };
 		92B2C0A61DD42D62003E27F9 /* icon_smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A51DD42D62003E27F9 /* icon_smile.gif */; };
@@ -1039,6 +1041,10 @@
 		92A770071DD18A5800C578F2 /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
 		92A770081DD18A5800C578F2 /* InputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextView.m; sourceTree = "<group>"; };
 		92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteHomeworkManager.m; sourceTree = "<group>"; };
+		92AD8EE51E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingHomeworkInfoViewController.h; sourceTree = "<group>"; };
+		92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingHomeworkInfoViewController.m; sourceTree = "<group>"; };
+		92AD8EEB1E0B87E900A3E91C /* BeijingHomeworkInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingHomeworkInfoView.h; sourceTree = "<group>"; };
+		92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingHomeworkInfoView.m; sourceTree = "<group>"; };
 		92AFFAFB1D9B7ADA00E1526C /* YXEmptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEmptCell.h; sourceTree = "<group>"; };
 		92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEmptCell.m; sourceTree = "<group>"; };
 		92B2C0A31DD41EFA003E27F9 /* Image.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Image.html; sourceTree = "<group>"; };
@@ -2513,6 +2519,8 @@
 				926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */,
 				9263544E1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.h */,
 				9263544F1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m */,
+				92AD8EE51E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.h */,
+				92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */,
 			);
 			name = "北京项目";
 			sourceTree = "<group>";
@@ -2544,6 +2552,8 @@
 				926354551DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m */,
 				926354571DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.h */,
 				926354581DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m */,
+				92AD8EEB1E0B87E900A3E91C /* BeijingHomeworkInfoView.h */,
+				92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3744,6 +3754,7 @@
 				CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
+				92AD8EED1E0B87E900A3E91C /* BeijingHomeworkInfoView.m in Sources */,
 				92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
 				923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */,
@@ -3932,6 +3943,7 @@
 				92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */,
 				9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */,
 				E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */,
+				92AD8EE71E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m in Sources */,
 				7C3178241D129C01004AAC90 /* ReaderContentTile.m in Sources */,
 				7C3177811D0E8A1D004AAC90 /* GlobalUtils.m in Sources */,
 			);

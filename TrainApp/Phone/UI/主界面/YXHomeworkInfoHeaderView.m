@@ -40,13 +40,11 @@
 
 #pragma mark - setupUI
 - (void)setupUI{
-    if (![YXTrainManager sharedInstance].isBeijingProject) {
-        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(YXTrainCornerRadii, YXTrainCornerRadii)];
-        CAShapeLayer *maskLayer = [CAShapeLayer layer];
-        maskLayer.frame = self.bounds;
-        maskLayer.path = maskPath.CGPath;
-        self.layer.mask = maskLayer;
-    }    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(YXTrainCornerRadii, YXTrainCornerRadii)];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.layer.mask = maskLayer;
     _scoreLabel = [[UILabel alloc] init];
     _scoreLabel.textColor = [UIColor colorWithHexString:@"334466"];
     _scoreLabel.font = [UIFont boldSystemFontOfSize:12.0f];
@@ -157,22 +155,12 @@
     }];
     
     UILabel *label = [self viewWithTag:1001];
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(label.mas_bottom).offset(18.0f);
-            make.left.equalTo(self.mas_left).offset(10.0f);
-            make.right.equalTo(self.mas_right).offset(-10.0f);
-            make.bottom.equalTo(self.mas_bottom).offset(-10.0f);
-        }];
-    }else {
-        [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(label.mas_bottom).offset(18.0f);
-            make.left.equalTo(self.mas_left).offset(10.0f);
-            make.right.equalTo(self.mas_right).offset(-10.0f);
-            make.height.mas_offset(80.0f);
-        }];
-    }
-    
+    [_scrollView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(label.mas_bottom).offset(18.0f);
+        make.left.equalTo(self.mas_left).offset(10.0f);
+        make.right.equalTo(self.mas_right).offset(-10.0f);
+        make.height.mas_offset(80.0f);
+    }];
     [_descriptionLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_scrollView.mas_top);
         make.left.equalTo(self.mas_left).offset(25.0f);
@@ -184,42 +172,18 @@
 #pragma mark - data
 - (void)setBody:(YXHomeworkInfoRequestItem_Body *)body{
     _body = body;
-    if ([YXTrainManager sharedInstance].isBeijingProject) {
-        _pointLabel.font = [UIFont systemFontOfSize:24.0f];
-        if (_body.score.integerValue <= 0) {
-            _pointLabel.text = @"未批改";
-            _pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-            
-        }else if(_body.score.integerValue >= 0 && _body.score.integerValue <= 59){
-            _pointLabel.text = @"未合格";
-            _pointLabel.textColor = [UIColor colorWithHexString:@"eba180"];
-            
-        }else if(_body.score.integerValue >= 60 && _body.score.integerValue <= 75){
-            _pointLabel.text = @"合格";
-            _pointLabel.textColor = [UIColor colorWithHexString:@"eac77b"];
-            
-        }else if(_body.score.integerValue >= 76 && _body.score.integerValue <= 85) {
-            _pointLabel.text = @"良好";
-            _pointLabel.textColor = [UIColor colorWithHexString:@"7ab1e9"];
-            
-        }else if(_body.score.integerValue >= 86 && _body.score.integerValue <= 100) {
-            _pointLabel.text = @"优秀";
-            _pointLabel.textColor = [UIColor colorWithHexString:@"7ab1e9"];
-        }
-    }else {
-        if(!_body.score.boolValue){
-            NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
-            _textAttachment = [[NSTextAttachment alloc]init];
-            _textAttachment.image = [UIImage imageNamed:@"未批改"];
-            _textAttachment.bounds = CGRectMake(0, -3.0f, 105.0f, 28.0f);
-            NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
-            [attr appendAttributedString:attrStringWithImage];
-            NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@" "];
-            [attr appendAttributedString:attrString];
-            _pointLabel.attributedText = attr;
-        }else{
-            _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
-        }
+    if(!_body.score.boolValue){
+        NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
+        _textAttachment = [[NSTextAttachment alloc]init];
+        _textAttachment.image = [UIImage imageNamed:@"未批改"];
+        _textAttachment.bounds = CGRectMake(0, -3.0f, 105.0f, 28.0f);
+        NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:_textAttachment];
+        [attr appendAttributedString:attrStringWithImage];
+        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:@" "];
+        [attr appendAttributedString:attrString];
+        _pointLabel.attributedText = attr;
+    }else{
+        _pointLabel.attributedText = [self totalScoreStringWithScore:_body.score];
     }
     _endDateLabel.text = [NSString stringWithFormat:@"截止日期  %@",_body.endDate?:@"无"];
     _finishedLabel.text = [NSString stringWithFormat:@"作业状态  %@",[_body.isFinished boolValue]?@"已完成":@"未完成"];

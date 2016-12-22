@@ -251,11 +251,8 @@
             *stop = YES;
         }
     }];
-    if (isShow && ![YXTrainManager sharedInstance].isBeijingProject){//北京项目 13,14项目没有消息动态
-        _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
-                        @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
-                        @{@"title":[YXTrainManager sharedInstance].trainHelper.workshopListTitle,@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"},
-                        @{@"title":@"消息动态",@"normalIcon":@"消息动态icon-正常态",@"hightIcon":@"消息动态icon-点击态"}];
+    if (isShow){//北京项目 13,14项目没有消息动态
+        _titleArray = [NSArray arrayWithArray:[YXTrainManager sharedInstance].trainHelper.sideMenuArray];
     }else{
         _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
                         @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},

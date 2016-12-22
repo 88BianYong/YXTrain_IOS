@@ -36,7 +36,7 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.textView = [[SAMTextView alloc] init];
-    if (![self commentMultistageStyle] ) {//只有15评论不支持表情
+    if ([YXTrainManager sharedInstance].trainHelper.w.integerValue <= 3) {//只有15评论不支持表情
         self.textView.delegate = self;
     }
     self.textView.placeholder = @"评论 :";
@@ -207,9 +207,5 @@
                             }];
     
     return returnValue;
-}
-- (BOOL)commentMultistageStyle{
-    return ([YXTrainManager sharedInstance].currentProject.w.integerValue > 3 ||
-            [YXTrainManager sharedInstance].isBeijingProject);
 }
 @end

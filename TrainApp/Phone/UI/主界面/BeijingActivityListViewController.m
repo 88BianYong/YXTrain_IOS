@@ -37,10 +37,6 @@
 }
 - (void)viewDidLoad {
     [self setupFetcher];
-    YXEmptyView *emptyView = [[YXEmptyView alloc]init];
-    emptyView.title = @"没有符合条件的活动";
-    emptyView.imageName = @"没有符合条件的课程";
-    self.emptyView = emptyView;
     self.isWaitingForFilter = YES;
     [super viewDidLoad];
     self.isAllowChange = YES;
@@ -84,6 +80,10 @@
     [self setupWithCurrentFilters];
     filterView.delegate = self;
     [self.view addSubview:filterView];
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(44);
+    }];
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(44);
@@ -125,10 +125,6 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[BeijingActivityListCell class] forCellReuseIdentifier:@"BeijingActivityListCell"];
-    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(44);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
     if (self.isWaitingForFilter) {
         self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
         WEAK_SELF
@@ -144,6 +140,8 @@
             [self allFiltersForIsRefresh:NO];
         };
     }
+    self.emptyView.title = @"没有符合条件的活动";
+    self.emptyView.imageName = @"没有符合条件的课程";
 }
 - (void)allFiltersForIsRefresh:(BOOL)isRefresh {
     [self.filterRequest stopRequest];
@@ -196,17 +194,6 @@
 - (NSString *)firstRequestParameter:(ActivityFilterGroup *)stageGroup {
     ActivityFilter *filter = stageGroup.filterArray.firstObject;
     return filter.filterID;
-}
-
-- (void)tableViewWillRefresh {
-    CGFloat top = 0.f;
-    if (self.filterView) {
-        top = 44.f;
-    }
-    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(top);
-        make.left.right.bottom.mas_equalTo(0);
-    }];
 }
 - (void)firstPageFetch {
     if (self.isWaitingForFilter) {

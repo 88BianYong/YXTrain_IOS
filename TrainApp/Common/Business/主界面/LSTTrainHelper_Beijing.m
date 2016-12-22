@@ -8,7 +8,7 @@
 
 #import "LSTTrainHelper_Beijing.h"
 #import "YXTrackPageDataProtocol.h"
-#import "YXHomeworkInfoViewController.h"
+#import "BeijingHomeworkInfoViewController.h"
 @interface LSTTrainHelper_Beijing ()
 {
     NSString *_requireId;
@@ -32,6 +32,15 @@
 - (NSString *)firstHomeworkImageName {
     return @"APP仅支持查看作业信息，请用-电脑登录研修网完成作业～";
 }
+- (NSString *)w {
+    return @"4";
+}
+
+- (NSArray *)sideMenuArray {
+    return  @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
+              @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
+              @{@"title":self.workshopListTitle,@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"}];
+}
 #pragma mark - show project
 - (UIViewController<YXTrackPageDataProtocol> *)showExamProject {
     return [[NSClassFromString(@"BeijingExamViewController") alloc] init];
@@ -44,7 +53,7 @@
 
 }
 - (void)workshopInterfaceSkip:(UIViewController *)viewController {
-    YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
+    BeijingHomeworkInfoViewController *VC = [[BeijingHomeworkInfoViewController alloc] init];
     YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
     itemBody.type = @"4";
     itemBody.requireId = self.requireId;
