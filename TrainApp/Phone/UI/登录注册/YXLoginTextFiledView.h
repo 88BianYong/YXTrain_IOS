@@ -18,5 +18,6 @@
 - (void)setTextColor:(UIColor *)color placeHolderColor:(UIColor *)placeHolderColor;
 - (void)resetTextFieldText;
 - (void)setRightButtonWhiteColor;
+- (void)setText:(NSString *)text;
 
 @end

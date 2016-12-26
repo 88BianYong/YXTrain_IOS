@@ -124,4 +124,9 @@
     [self.rightButton setBackgroundImage:[UIImage imageNamed:@"白色框删除当前输入内容"] forState:UIControlStateNormal];
 }
 
+- (void)setText:(NSString *)text {
+    self.textField.text = text;
+    BLOCK_EXEC(self.textChangedBlock,text);
+}
+
 @end

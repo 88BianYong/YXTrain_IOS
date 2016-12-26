@@ -20,15 +20,19 @@
 #import "YXInitRequest.h"
 #import "YXAlertView.h"
 #import "YXInitRequest.h"
+#import "AccountListView.h"
 
 @interface YXLoginViewController ()
 
 @property (nonatomic,copy) NSString *password;
 @property (nonatomic,copy) NSString *registerNumber;
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) AccountListView *accountListView;
 
 @property (nonatomic, strong) YXLoginRequest *request;
 @property (nonatomic, strong) YXClickedUnderLineButton *touristLoginButton;
+@property (nonatomic, strong) YXLoginTextFiledView *registerView;
+@property (nonatomic, strong) YXLoginTextFiledView *passwordView;
 
 @end
 
@@ -38,6 +42,9 @@
     [super viewDidLoad];
     [self setupUI];
     [self setObserver];
+#ifdef DEBUG
+    [self setupAccountList];
+#endif
     // Do any additional setup after loading the view.
 }
 
@@ -125,6 +132,7 @@
     [containerView addSubview:loginButton];
     
     YXLoginTextFiledView *passwordView = [[YXLoginTextFiledView alloc] init];
+    self.passwordView = passwordView;
     [passwordView setTextFiledViewBackgroundColor:[UIColor colorWithHexString:@"dae2eb"]];
     [passwordView setTextFiledEditedBackgroundColor:[UIColor colorWithHexString:@"bbc2c9"]];
     [passwordView setPlaceHolderWithString:@"请输入密码" keyType:UIKeyboardTypeDefault isSecure:YES];
@@ -138,6 +146,7 @@
     [containerView addSubview:passwordView];
     
     YXLoginTextFiledView *registerView = [[YXLoginTextFiledView alloc] init];
+    self.registerView = registerView;
     [registerView setTextFiledViewBackgroundColor:[UIColor colorWithHexString:@"dae2eb"]];
     [registerView setTextFiledEditedBackgroundColor:[UIColor colorWithHexString:@"bbc2c9"]];
     [registerView setPlaceHolderWithString:@"手机号／身份证／邮箱" keyType:UIKeyboardTypeDefault isSecure:NO];
@@ -204,6 +213,42 @@
         }
         self.touristLoginButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
     }];
+}
+
+- (void)setupAccountList {
+    UIButton *b = [[UIButton alloc]init];
+    [b setTitle:@"展开账户" forState:UIControlStateNormal];
+    [b setTitle:@"收起账户" forState:UIControlStateSelected];
+    [b setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    b.layer.borderColor = [UIColor redColor].CGColor;
+    b.layer.borderWidth = 1;
+    [b addTarget:self action:@selector(accountListAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:b];
+    [b mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(40);
+        make.centerX.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(100, 40));
+    }];
+    
+    self.accountListView = [[AccountListView alloc]init];
+    WEAK_SELF
+    [self.accountListView setAccountSelectBlock:^(NSString *name, NSString *password) {
+        STRONG_SELF
+        [self.registerView setText:name];
+        [self.passwordView setText:password];
+    }];
+    [self.view addSubview:self.accountListView];
+    [self.accountListView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(b.mas_bottom);
+        make.centerX.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(240, 200));
+    }];
+    self.accountListView.hidden = YES;
+}
+
+- (void)accountListAction:(UIButton *)button {
+    button.selected = !button.selected;
+    self.accountListView.hidden = !button.selected;
 }
 
 - (void)startTouristRequet {
