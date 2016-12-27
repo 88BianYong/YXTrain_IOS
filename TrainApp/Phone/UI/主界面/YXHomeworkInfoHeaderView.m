@@ -172,7 +172,7 @@
 #pragma mark - data
 - (void)setBody:(YXHomeworkInfoRequestItem_Body *)body{
     _body = body;
-    if(!_body.score.boolValue){
+    if([_body.isMarked isEqualToString:@"0"]){
         NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:@" "];
         _textAttachment = [[NSTextAttachment alloc]init];
         _textAttachment.image = [UIImage imageNamed:@"未批改"];

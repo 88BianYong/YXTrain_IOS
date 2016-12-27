@@ -34,6 +34,7 @@
 @property (nonatomic ,copy) NSString<Optional> *score;//分数
 @property (nonatomic ,copy) NSString<Optional> *endDate;//结束时间
 @property (nonatomic, copy) NSString<Optional> *isFinished;//0--未完成，1 已完成
+@property (nonatomic, copy) NSString<Optional> *isMarked;//0--未批阅，1 已批阅
 @property (nonatomic, copy) NSString<Optional> *group;
 @property (nonatomic ,strong) YXHomeworkInfoRequestItem_Body_Detail<Optional> *detail;//视频作业详细信息，只有视频作业是已完成，才显示该部分内容
 

@@ -15,5 +15,15 @@
         "score": 90,
         "endDate": "2016-08-07",
         "isFinished": 1
+        "isMarked":0,
+        "detail":{
+            "title":"hello啊啊啊",
+            "segmentName":"学段",
+            "gradeName":"书册",
+            "studyName":"学科",
+            "chapterName":"目录",
+            "versionName":"版本名称",
+            "keyword":"知识点"
+        }
     }
 }

@@ -143,10 +143,9 @@
 #pragma mark - data
 - (void)setBody:(YXHomeworkInfoRequestItem_Body *)body{
     _body = body;
-    if (_body.score.integerValue <= 0) {
+    if ([_body.isMarked isEqualToString:@"0"]) {
         self.pointLabel.text = @"未批改";
         self.pointLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-        
     }else if(_body.score.integerValue >= 0 && _body.score.integerValue <= 59){
         self.pointLabel.text = @"未合格";
         self.pointLabel.textColor = [UIColor colorWithHexString:@"eba180"];
