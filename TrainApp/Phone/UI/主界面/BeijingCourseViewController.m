@@ -10,13 +10,14 @@
 #import "BeijingCourseListCell.h"
 #import "YXCourseDetailViewController.h"
 #import "YXCourseRecordViewController.h"
-static  NSString *const trackPageName = @"课程列表页面";
+#import "BeijingCourseFilterManager.h"
 #import "BeijingCourseViewController.h"
+static  NSString *const trackPageName = @"课程列表页面";
 
 @interface BeijingCourseViewController ()<YXCourseFilterViewDelegate>
 @property (nonatomic, strong) YXCourseFilterView *filterView;
-@property (nonatomic, strong) YXCourseListFilterModel *filterModel;
-@property (nonatomic, strong) BeijingCourseListRequest *request;
+@property (nonatomic, strong) BeijingCourseFilterModel *filterModel;
+@property (nonatomic, strong) BeijingCourseFilterManager *filterRequest;
 @property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, strong) DataErrorView *filterDataErrorView;
@@ -37,27 +38,11 @@ static  NSString *const trackPageName = @"课程列表页面";
     fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
     fetcher.w = [YXTrainManager sharedInstance].currentProject.w;
     fetcher.stageid = self.stageID;
-    WEAK_SELF
-    fetcher.filterBlock = ^(YXCourseListFilterModel *model){
-        STRONG_SELF
-        self.filterModel = model;
-        if (self.isRefreshStudys) {
-            [self refreshDealWithFilterModel:self.filterModel];
-        }else {
-            if (self.filterView) {
-                return;
-            }
-            [self dealWithFilterModel:self.filterModel];
-        }
-    };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
-    
-    if (self.stageID) {
-        self.isWaitingForFilter = YES;
-    }
     [super viewDidLoad];
     self.isAllowChange = YES;
+    self.isWaitingForFilter = YES;
     // Do any additional setup after loading the view.
     self.emptyView.title = @"没有符合条件的课程";
     self.emptyView.imageName = @"没有符合条件的课程";
@@ -69,21 +54,18 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 104.0f;
     [self.tableView registerClass:[BeijingCourseListCell class] forCellReuseIdentifier:@"BeijingCourseListCell"];
-    
-    if (self.isWaitingForFilter) {
-        self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
-        WEAK_SELF
-        self.filterErrorView.retryBlock = ^{
-            STRONG_SELF
-            [self getFilters];
-        };
+    self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
+    WEAK_SELF
+    self.filterErrorView.retryBlock = ^{
+        STRONG_SELF
         [self getFilters];
-        self.filterDataErrorView = [[DataErrorView alloc] initWithFrame:self.view.bounds];
-        self.filterDataErrorView.refreshBlock = ^ {
-            STRONG_SELF
-            [self getFilters];
-        };
-    }
+    };
+    self.filterDataErrorView = [[DataErrorView alloc] initWithFrame:self.view.bounds];
+    self.filterDataErrorView.refreshBlock = ^ {
+        STRONG_SELF
+        [self getFilters];
+    };
+    [self getFilters];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -107,105 +89,85 @@ static  NSString *const trackPageName = @"课程列表页面";
 }
 
 - (void)getFilters{
-    [self.request stopRequest];
-    self.request = [[BeijingCourseListRequest alloc] init];
-    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    self.request.pageno = @"1";
-    self.request.pagesize = @"10";
-    self.request.type = @"102";
-    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.filterRequest = [[BeijingCourseFilterManager alloc] init];
     [self startLoading];
     WEAK_SELF
-    [self.request startRequestWithRetClass:[YXCourseListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+    [self.filterRequest startRequestCourseFilterItemWithBlock:^(BeijingCourseFilterModel *model, NSError *error) {
         STRONG_SELF
-        [self stopLoading];
         if (error) {
-            if (error.code == -2) {
+            [self stopLoading];
+            if (error.code == 2) {
                 self.filterDataErrorView.frame = self.view.bounds;
                 [self.view addSubview:self.filterDataErrorView];
             }else {
                 self.filterErrorView.frame = self.view.bounds;
                 [self.view addSubview:self.filterErrorView];
             }
+            [self.dataArray removeAllObjects];
+            [self.tableView reloadData];
             return;
         }
         [self.filterErrorView removeFromSuperview];
         [self.filterDataErrorView removeFromSuperview];
-        
-        YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
-        self.filterModel = [item beijingFilterModel];
+        self.filterModel = model;
+       [self dealWithFilterModel:self.filterModel];
         self.isWaitingForFilter = NO;
         BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
-        fetcher.segid = [self firstRequestParameter:self.filterModel.groupArray.firstObject];
-        fetcher.stageid = self.stageID ?:[self firstRequestParameter:self.filterModel.groupArray.lastObject];
-        fetcher.studyid = @"0";
-        [self startLoading];
+        fetcher.segid = self.filterModel.segment[0].filterID;
+        fetcher.studyid = self.filterModel.study[0].filterID;
+        fetcher.stageid = self.filterModel.stage[0].filterID;
+        [self resetFilterConditionsStage:self.stageID];
         [self firstPageFetch];
     }];
 }
-- (NSString *)firstRequestParameter:(YXCourseFilterGroup *)stageGroup {
-    YXCourseFilter *filter = stageGroup.filterArray.firstObject;
-    return filter.filterID;
-}
-- (void)firstPageFetch {
-    if (self.isWaitingForFilter) {
+- (void)resetFilterConditionsStage:(NSString *)filterId{
+    if (filterId == nil) {
         return;
     }
-    [super firstPageFetch];
+    __block NSInteger stageIndex = -1;
+    [self.filterModel.stage enumerateObjectsUsingBlock:^(BeijingCourseFilter * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([filterId isEqualToString:obj.filterID]) {
+            stageIndex = idx;
+            *stop = YES;
+        }
+    }];
+    if (stageIndex >= 0) {
+        [self.filterView setCurrentIndex:stageIndex forKey:self.filterModel.stageName];
+    }
 }
-
-- (void)dealWithFilterModel:(YXCourseListFilterModel *)model{
+- (void)dealWithFilterModel:(BeijingCourseFilterModel *)body {
     YXCourseFilterView *filterView = [[YXCourseFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     self.filterView = filterView;
-    for (YXCourseFilterGroup *group in model.groupArray) {
-        NSMutableArray *array = [NSMutableArray array];
-        for (YXCourseFilter *filter in group.filterArray) {
-            [array addObject:filter.name];
-        }
-        [filterView addFilters:array forKey:group.name];
-    }
-    [self setupWithCurrentFilters];
+    [self addFilters:body.segment forKey:body.segmentName];
+    [self addFilters:body.study forKey:body.studyName];
+    [self addFilters:body.stage forKey:body.stageName];
     filterView.delegate = self;
     [self.view addSubview:filterView];
     [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(44);
     }];
-}
-- (void)refreshDealWithFilterModel:(YXCourseListFilterModel *)model {
-    for (YXCourseFilterGroup *group in model.groupArray) {
-        if ([group.name isEqualToString:@"学科"]) {
-            NSMutableArray *array = [NSMutableArray array];
-            for (YXCourseFilter *filter in group.filterArray) {
-                [array addObject:filter.name];
-            }
-            [self.filterView refreshStudysFilters:array forKey:group.name];
-        }
-    }
-}
-
-
-
-- (void)setupWithCurrentFilters{
-    BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
-    [self resetFilterConditions:self.filterModel.groupArray.lastObject withFilterId:fetcher.stageid];
-    [self resetFilterConditions:self.filterModel.groupArray.firstObject withFilterId:fetcher.segid];
-    
-}
-- (void)resetFilterConditions:(YXCourseFilterGroup *)group withFilterId:(NSString *)filterId{
-    __block NSInteger stageIndex = -1;
-    [group.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        YXCourseFilter *filter = (YXCourseFilter *)obj;
-        if ([filterId isEqualToString:filter.filterID]) {
-            stageIndex = idx;
-            *stop = YES;
-        }
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.top.mas_equalTo(0);
     }];
-    if (stageIndex >= 0) {
-        [self.filterView setCurrentIndex:stageIndex forKey:group.name];
+}
+- (void)addFilters:(NSArray *)filters forKey:(NSString *)key {
+    NSMutableArray *array = [NSMutableArray array];
+    for (BeijingCourseFilter *filter in filters) {
+        [array addObject:filter.name];
+    }
+    [self.filterView addFilters:array forKey:key];
+    if (![array[0] isEqualToString:@"全部"]) {
+        [self.filterView setCurrentIndex:0 forKey:key];
     }
 }
-
+- (void)refreshDealWithFilterModel{
+    NSMutableArray *array = [NSMutableArray array];
+    for (BeijingCourseFilter *filter in self.filterModel.study) {
+        [array addObject:filter.name];
+    }
+    [self.filterView refreshStudysFilters:array forKey:self.filterModel.studyName];
+}
 - (void)setupObservers{
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kRecordReportSuccessNotification object:nil]subscribeNext:^(id x) {
@@ -264,30 +226,19 @@ static  NSString *const trackPageName = @"课程列表页面";
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     // 学段
     NSNumber *num0 = filterArray[0];
-    YXCourseFilterGroup *group0 = self.filterModel.groupArray[0];
-    YXCourseFilter *segmentItem = group0.filterArray[num0.integerValue];
-    if (self.lastChooseStudys != num0.integerValue) {
-        self.isRefreshStudys = YES;
-    }else {
-        self.isRefreshStudys = NO;
+    if (num0.integerValue != self.filterModel.chooseInteger) {
+        self.filterModel.chooseInteger = num0.integerValue;
+        [self refreshDealWithFilterModel];
     }
-    self.lastChooseStudys = num0.integerValue;
-    
     // 学科
     NSNumber *num1 = filterArray[1];
-    YXCourseFilterGroup *group1 = self.filterModel.groupArray[1];
-    YXCourseFilter *studyItem = group1.filterArray[num1.integerValue];
-    // 阶段
+    //类型
     NSNumber *num2 = filterArray[2];
-    YXCourseFilterGroup *group2 = self.filterModel.groupArray[2];
-    YXCourseFilter *stageItem = group2.filterArray[num2.integerValue];
     BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
-    fetcher.studyid = studyItem.filterID;
-    if (self.isRefreshStudys) {
-        fetcher.studyid = @"0";
-    }
-    fetcher.segid = segmentItem.filterID;
-    fetcher.stageid = stageItem.filterID;
+    //服务端数据返回空的处理:"0"-全部,即不做筛选
+    fetcher.segid = self.filterModel.segment[num0.integerValue].filterID?:@"0";
+    fetcher.studyid = self.filterModel.study[num1.integerValue].filterID?:@"0";
+    fetcher.stageid = self.filterModel.stage[num2.integerValue].filterID?:@"0";
     [self startLoading];
     [self firstPageFetch];
 }

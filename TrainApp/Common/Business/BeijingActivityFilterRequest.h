@@ -32,6 +32,5 @@
 @end
 
 @interface BeijingActivityFilterRequest : ActivityFilterRequest
-@property (nonatomic, copy) NSString<Optional> *segmentId;
 @property (nonatomic, copy) NSString<Optional> *pid;
 @end
