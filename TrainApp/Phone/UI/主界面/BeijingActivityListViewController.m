@@ -10,14 +10,12 @@
 #import "BeijingActivityListCell.h"
 #import "ActivityListFetcher.h"
 #import "ActivityListCell.h"
-#import "BeijingActivityFilterRequest.h"
-#import "ActivityFilterModel.h"
 #import "ActivityDetailViewController.h"
 #import "YXCourseFilterView.h"
+#import "BeijingActivityFilterManager.h"
 @interface BeijingActivityListViewController ()
 <YXCourseFilterViewDelegate>
-@property (nonatomic, strong) BeijingActivityFilterRequest *filterRequest;
-@property (nonatomic, strong) ActivityFilterModel *filterModel;
+@property (nonatomic, strong) BeijingActivityFilterManager *filterManager;
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, strong) DataErrorView *filterDataErrorView;
@@ -27,6 +25,8 @@
 @property (nonatomic, strong) NSString *studyId;
 @property (nonatomic, strong) NSString *stageId;
 
+@property (nonatomic, strong) BeijingActivityFilterModel *filterModel;
+@property (nonatomic, assign) NSInteger chooseSegment;
 @property (nonatomic, assign) CGFloat oldOffsetY;
 @property (nonatomic, assign) BOOL isAllowChange;
 @end
@@ -67,58 +67,7 @@
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
 }
-- (void)dealWithFilterModel:(ActivityFilterModel *)model {
-    YXCourseFilterView *filterView = [[YXCourseFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
-    self.filterView = filterView;
-    for (ActivityFilterGroup *group in model.groupArray) {
-        NSMutableArray *array = [NSMutableArray array];
-        for (ActivityFilter *filter in group.filterArray) {
-            [array addObject:filter.name];
-        }
-        [filterView addFilters:array forKey:group.name];
-    }
-    [self setupWithCurrentFilters];
-    filterView.delegate = self;
-    [self.view addSubview:filterView];
-    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(44);
-    }];
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.top.mas_equalTo(44);
-    }];
-}
-- (void)setupWithCurrentFilters{
-    ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
-    [self resetFilterConditions:self.filterModel.groupArray.lastObject withFilterId:fetcher.stageid];
-    [self resetFilterConditions:self.filterModel.groupArray.firstObject withFilterId:fetcher.segid];
-}
-- (void)resetFilterConditions:(ActivityFilterGroup *)group withFilterId:(NSString *)filterId{
-    __block NSInteger stageIndex = -1;
-    [group.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        ActivityFilter *filter = (ActivityFilter *)obj;
-        if ([filterId isEqualToString:filter.filterID]) {
-            stageIndex = idx;
-            *stop = YES;
-        }
-    }];
-    if (stageIndex >= 0) {
-        [self.filterView setCurrentIndex:stageIndex forKey:group.name];
-    }
-}
 
-- (void)refreshDealWithFilterModel:(ActivityFilterModel *)model {
-    for (ActivityFilterGroup *group in model.groupArray) {
-        if ([group.name isEqualToString:@"学科"]) {
-            NSMutableArray *array = [NSMutableArray array];
-            for (ActivityFilter *filter in group.filterArray) {
-                [array addObject:filter.name];
-            }
-            [self.filterView refreshStudysFilters:array forKey:group.name];
-        }
-    }
-}
 
 - (void)setupUI {
     self.title = @"活动列表";
@@ -144,14 +93,10 @@
     self.emptyView.imageName = @"没有符合条件的课程";
 }
 - (void)allFiltersForIsRefresh:(BOOL)isRefresh {
-    [self.filterRequest stopRequest];
-    self.filterRequest = [[BeijingActivityFilterRequest alloc]init];
-    self.filterRequest.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    self.filterRequest.w = [YXTrainManager sharedInstance].currentProject.w;
-    self.filterRequest.segmentId = self.segmentId;
+    self.filterManager = [[BeijingActivityFilterManager alloc] init];
     [self startLoading];
     WEAK_SELF
-    [self.filterRequest startRequestWithRetClass:[ActivityFilterRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+    [self.filterManager startRequestActivityFilterItemWithBlock:^(BeijingActivityFilterModel *model, NSError *error) {
         STRONG_SELF
         if (error) {
             [self stopLoading];
@@ -168,33 +113,51 @@
         }
         [self.filterErrorView removeFromSuperview];
         [self.filterDataErrorView removeFromSuperview];
-        ActivityFilterRequestItem *item = (ActivityFilterRequestItem *)retItem;
-        self.filterModel = [item filterModel];
+        self.filterModel = model;
+        [self dealWithFilterModel:self.filterModel];
         self.isWaitingForFilter = NO;
-        
-        if (isRefresh || self.filterView) {
-            [self refreshDealWithFilterModel:self.filterModel];
-            ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
-            fetcher.studyid = self.studyId;
-            fetcher.segid = self.segmentId;
-            fetcher.stageid = self.stageId;
-        }else {
-            ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
-            self.segmentId = [self firstRequestParameter:self.filterModel.groupArray.firstObject];
-            self.stageId = [self firstRequestParameter:self.filterModel.groupArray.lastObject];
-            fetcher.studyid = @"0";
-            fetcher.segid = self.segmentId;
-            fetcher.stageid = self.stageId;
-            [self dealWithFilterModel:self.filterModel];
-        }
-        [self startLoading];
+        ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
+        fetcher.segid = self.filterModel.segment[0].filterID;
+        fetcher.studyid = self.filterModel.study[0].filterID;
+        fetcher.stageid = self.filterModel.stage[0].filterID;
         [self firstPageFetch];
     }];
 }
-- (NSString *)firstRequestParameter:(ActivityFilterGroup *)stageGroup {
-    ActivityFilter *filter = stageGroup.filterArray.firstObject;
-    return filter.filterID;
+- (void)dealWithFilterModel:(BeijingActivityFilterModel *)body {
+    YXCourseFilterView *filterView = [[YXCourseFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    self.filterView = filterView;
+    [self addFilters:body.segment forKey:body.segmentName];
+    [self addFilters:body.study forKey:body.studyName];
+    [self addFilters:body.stage forKey:body.stageName];
+    filterView.delegate = self;
+    [self.view addSubview:filterView];
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(44);
+    }];
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.top.mas_equalTo(0);
+    }];
 }
+
+- (void)addFilters:(NSArray *)filters forKey:(NSString *)key {
+    NSMutableArray *array = [NSMutableArray array];
+    for (BeijingActivityFilter *filter in filters) {
+        [array addObject:filter.name];
+    }
+    [self.filterView addFilters:array forKey:key];
+    if (![array[0] isEqualToString:@"全部"]) {
+        [self.filterView setCurrentIndex:0 forKey:key];
+    }
+}
+- (void)refreshDealWithFilterModel{
+    NSMutableArray *array = [NSMutableArray array];
+    for (BeijingActivityFilter *filter in self.filterModel.study) {
+        [array addObject:filter.name];
+    }
+    [self.filterView refreshStudysFilters:array forKey:self.filterModel.studyName];
+}
+
 - (void)firstPageFetch {
     if (self.isWaitingForFilter) {
         return;
@@ -237,39 +200,19 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     // 学段
     NSNumber *num0 = filterArray[0];
-    ActivityFilterGroup *group0 = self.filterModel.groupArray[0];
-    ActivityFilter *segmentItem = [[ActivityFilter alloc]init];
-    if (group0.filterArray.count > 0) {
-        segmentItem = group0.filterArray[num0.integerValue];
-        if (![self.segmentId isEqualToString:segmentItem.filterID]) {
-            self.studyId = nil;
-            self.segmentId = segmentItem.filterID;
-            [self allFiltersForIsRefresh:YES];
-            return;
-        }
-        self.segmentId = segmentItem.filterID;
+    if (num0.integerValue != self.filterModel.chooseInteger) {
+        self.filterModel.chooseInteger = num0.integerValue;
+        [self refreshDealWithFilterModel];
     }
     // 学科
     NSNumber *num1 = filterArray[1];
-    ActivityFilterGroup *group1 = self.filterModel.groupArray[1];
-    ActivityFilter *studyItem = [[ActivityFilter alloc]init];
-    if (group0.filterArray.count > 0) {
-        studyItem = group1.filterArray[num1.integerValue];
-        self.studyId = studyItem.filterID;
-    }
-    // 阶段
+    //类型
     NSNumber *num2 = filterArray[2];
-    ActivityFilterGroup *group2 = self.filterModel.groupArray[2];
-    ActivityFilter *stageItem = [[ActivityFilter alloc]init];
-    if (group2.filterArray.count > 0) {
-        stageItem = group2.filterArray[num2.integerValue];
-        self.stageId = stageItem.filterID;
-    }
-    DDLogDebug(@"Changed: 学段:%@，学科:%@，阶段:%@",segmentItem.name,studyItem.name,stageItem.name);
     ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
-    fetcher.studyid = studyItem.filterID?:@"0";//服务端数据返回空的处理:"0"-全部,即不做筛选
-    fetcher.segid = segmentItem.filterID?:@"0";
-    fetcher.stageid = stageItem.filterID?:@"0";
+    //服务端数据返回空的处理:"0"-全部,即不做筛选
+    fetcher.segid = self.filterModel.segment[num0.integerValue].filterID?:@"0";
+    fetcher.studyid = self.filterModel.study[num1.integerValue].filterID?:@"0";
+    fetcher.stageid = self.filterModel.stage[num2.integerValue].filterID?:@"0";
     [self startLoading];
     [self firstPageFetch];
 }

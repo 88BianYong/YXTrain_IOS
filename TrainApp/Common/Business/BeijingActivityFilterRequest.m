@@ -7,11 +7,27 @@
 //
 
 #import "BeijingActivityFilterRequest.h"
+@implementation BeijingActivityFilterRequestItem_Filter
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"filterID"}];
+}
+@end
+@implementation BeijingActivityFilterRequestItem_Body_Segment
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"segmentID"}];
+}
+@end
+@implementation BeijingActivityFilterRequestItem_Body
+@end
+@implementation BeijingActivityFilterRequestItem
+@end
 
 @implementation BeijingActivityFilterRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"peixun/bj/active/condition"];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"peixun/bj/condition/v2"];
     }
     return self;
 }

@@ -293,6 +293,8 @@
 		92AD8EE41E0A5B5800A3E91C /* WriteHomeworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */; };
 		92AD8EE71E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */; };
 		92AD8EED1E0B87E900A3E91C /* BeijingHomeworkInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */; };
+		92AD8EF11E10F0C300A3E91C /* beijingActivityFilter_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92AD8EF01E10F0C300A3E91C /* beijingActivityFilter_mock.json */; };
+		92AD8EF41E11124A00A3E91C /* BeijingActivityFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EF31E11124A00A3E91C /* BeijingActivityFilterManager.m */; };
 		92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */; };
 		92B2C0A41DD41EFA003E27F9 /* Image.html in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A31DD41EFA003E27F9 /* Image.html */; };
 		92B2C0A61DD42D62003E27F9 /* icon_smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A51DD42D62003E27F9 /* icon_smile.gif */; };
@@ -1048,6 +1050,9 @@
 		92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingHomeworkInfoViewController.m; sourceTree = "<group>"; };
 		92AD8EEB1E0B87E900A3E91C /* BeijingHomeworkInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingHomeworkInfoView.h; sourceTree = "<group>"; };
 		92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingHomeworkInfoView.m; sourceTree = "<group>"; };
+		92AD8EF01E10F0C300A3E91C /* beijingActivityFilter_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = beijingActivityFilter_mock.json; sourceTree = "<group>"; };
+		92AD8EF21E11124A00A3E91C /* BeijingActivityFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityFilterManager.h; sourceTree = "<group>"; };
+		92AD8EF31E11124A00A3E91C /* BeijingActivityFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityFilterManager.m; sourceTree = "<group>"; };
 		92AFFAFB1D9B7ADA00E1526C /* YXEmptCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXEmptCell.h; sourceTree = "<group>"; };
 		92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXEmptCell.m; sourceTree = "<group>"; };
 		92B2C0A31DD41EFA003E27F9 /* Image.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Image.html; sourceTree = "<group>"; };
@@ -2794,6 +2799,7 @@
 		9263544A1DF1528000FAD1DE /* 北京项目 */ = {
 			isa = PBXGroup;
 			children = (
+				92AD8EF01E10F0C300A3E91C /* beijingActivityFilter_mock.json */,
 				9263543E1DEFFAD000FAD1DE /* BeijingExamineRequest.h */,
 				9263543F1DEFFAD000FAD1DE /* BeijingExamineRequest.m */,
 				926354441DF1178400FAD1DE /* BeijingCourseListFetcher.h */,
@@ -2808,6 +2814,8 @@
 				9268C5F11DF3D59400AA109B /* BeijingModifyPasswordRequest.m */,
 				924797DF1E022C1E0033BFDC /* BeijingActivityFilterRequest.h */,
 				924797E01E022C1F0033BFDC /* BeijingActivityFilterRequest.m */,
+				92AD8EF21E11124A00A3E91C /* BeijingActivityFilterManager.h */,
+				92AD8EF31E11124A00A3E91C /* BeijingActivityFilterManager.m */,
 			);
 			name = "北京项目";
 			sourceTree = "<group>";
@@ -3451,6 +3459,7 @@
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
 				7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */,
 				92B2C0A41DD41EFA003E27F9 /* Image.html in Resources */,
+				92AD8EF11E10F0C300A3E91C /* beijingActivityFilter_mock.json in Resources */,
 				7C2C3B571D23B87B00A03635 /* courselist_mock.json in Resources */,
 				9237FF791DD48F800057FFDE /* activityStep_mock.json in Resources */,
 				E9A7B5F41DDC63EF00136335 /* shareResources_mock.json in Resources */,
@@ -3844,6 +3853,7 @@
 				9232373D1D7E630700FDACFE /* YXRotateListRequest.m in Sources */,
 				7C2C3B731D24C98D00A03635 /* YXCourseDetailViewController.m in Sources */,
 				92B2C0AC1DD45450003E27F9 /* ActivityDetailStepCell.m in Sources */,
+				92AD8EF41E11124A00A3E91C /* BeijingActivityFilterManager.m in Sources */,
 				CBF66E291D2E36EE00F4E408 /* YXUserProfileRequest.m in Sources */,
 				7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */,
 				9223C8381D2F78E3000F74DF /* YXSchoolSearchRequest.m in Sources */,

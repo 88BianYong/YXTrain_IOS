@@ -219,12 +219,26 @@
 		<key>ActivityFirstCommentRequest</key>
 		<dict>
 			<key>mockEnable</key>
-			<true/>
+			<false/>
 			<key>mockFile</key>
 			<array>
 				<dict>
 					<key>fileName</key>
 					<string>firstComment_mock.json</string>
+					<key>percent</key>
+					<integer>100</integer>
+				</dict>
+			</array>
+		</dict>
+		<key>BeijingActivityFilterRequest</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
+				<dict>
+					<key>fileName</key>
+					<string>beijingActivityFilter_mock.json</string>
 					<key>percent</key>
 					<integer>100</integer>
 				</dict>
