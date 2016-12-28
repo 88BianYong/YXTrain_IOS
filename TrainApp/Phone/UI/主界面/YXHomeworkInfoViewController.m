@@ -35,17 +35,12 @@ UITableViewDataSource
 
 @implementation YXHomeworkInfoViewController
 - (void)dealloc{
+    self.headerView = nil;
+    _tableView = nil;
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
 
 #pragma mark - propetry
-- (YXHomeworkInfoHeaderView *)headerView{
-    if (!_headerView) {
-        _headerView = [[YXHomeworkInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 310.0f)];
-    }
-    return _headerView;
-}
-
 - (YXHomeworkUploadCompleteView *)footerView{
     if (!_footerView) {
         WEAK_SELF
@@ -69,8 +64,8 @@ UITableViewDataSource
         [self requestForHomeworkInfo];
     }
     else{
-        _tableView.hidden = NO;
         [self findVideoHomeworkInformation:self.itemBody];
+        [self setupTableViewHeaderView];
     }
 }
 
@@ -105,13 +100,14 @@ UITableViewDataSource
     _tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.showsVerticalScrollIndicator = NO;
     _tableView.hidden = YES;
+    _tableView.showsVerticalScrollIndicator = NO;
     [_tableView registerClass:[YXHomeworkInfoNoRecordCell class] forCellReuseIdentifier:@"YXHomeworkInfoNoRecordCell"];
     [_tableView registerClass:[YXHomeworkAlreadyRecordCell class] forCellReuseIdentifier:@"YXHomeworkAlreadyRecordCell"];
     [_tableView registerClass:[YXHomeworkInfoFinishHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXHomeworkInfoFinishHeaderView"];
-    [self.view addSubview:_tableView];
     [_tableView registerClass:[YXHomeworkPlayVideoCell class] forCellReuseIdentifier:@"YXHomeworkPlayVideoCell"];
+    [self.view addSubview:_tableView];
+
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
@@ -123,12 +119,47 @@ UITableViewDataSource
         STRONG_SELF
         [self requestForHomeworkInfo];
     };
+    self.headerView = [[YXHomeworkInfoHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 3100.0f)];
+    [self.headerView setHomeworkHtmlOpenAndCloseBlock:^(BOOL isStatus) {
+        STRONG_SELF
+        if (isStatus) {
+            [UIView animateWithDuration:0.3 animations:^{
+                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + self.headerView.changeHeight);
+                self ->_tableView.tableHeaderView = self.headerView;
+                [self.headerView relayoutHtmlText];
+            }];
+        }else {
+            [self ->_tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + kTableViewHeaderHtmlPlaceholdeHeight);
+            self ->_tableView.tableHeaderView = self.headerView;
+            [self.headerView relayoutHtmlText];
+        }
+    }];
+    [self.headerView setHomeworkHtmlHeightChangeBlock:^(void) {
+        STRONG_SELF
+        if (self.itemBody.type.integerValue == 1) {
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + self.headerView.changeHeight);
+            self ->_tableView.tableHeaderView = self.headerView;
+            return;
+        }
+        if (self.headerView.changeHeight < kTableViewHeaderHtmlPlaceholdeHeight) {
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight - kTableViewHeaderOpenAndCloseHeight + self.headerView.changeHeight);
+        }else {
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + kTableViewHeaderHtmlPlaceholdeHeight);
+        }
+        self ->_tableView.tableHeaderView = self.headerView;
+    }];
 }
 
 - (void)layoutInterface{
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+}
+- (void)setupTableViewHeaderView {
+    self.headerView.body = self.itemBody;
+    _tableView.tableHeaderView = self.headerView;
+    _tableView.hidden = NO;
 }
 
 #pragma mark - UITableViewDelegate
@@ -243,8 +274,8 @@ UITableViewDataSource
         self.itemBody = item.body;
         [self findVideoHomeworkInformation:self.itemBody];
         self ->_tableView.hidden = NO;
+        [self setupTableViewHeaderView];
     }];
-    
     _infoRequest = request;
 }
 #pragma mark - format Data
@@ -263,11 +294,8 @@ UITableViewDataSource
         }
     }];
     self.itemBody = item;
-    _tableView.tableHeaderView = self.headerView;
-    self.headerView.body = self.itemBody;
     self.title = self.itemBody.title;
     if (self.itemBody.detail && (self.itemBody.lessonStatus == YXVideoLessonStatus_UploadComplete || self.itemBody.lessonStatus == YXVideoLessonStatus_Finish )) {
-        
         _tableView.tableFooterView = self.footerView;
         self.footerView.detail = self.itemBody.detail;
     }
@@ -362,7 +390,6 @@ UITableViewDataSource
             break;
     }
 }
-
 - (void)againRecordVideo{
     LSTAlertView *alertView = [[LSTAlertView alloc]init];
     alertView.title = @"重新录制将覆盖当前视频\n确定重新录制?";
