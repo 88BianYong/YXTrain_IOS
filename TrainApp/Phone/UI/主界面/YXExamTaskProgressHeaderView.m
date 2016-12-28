@@ -29,7 +29,7 @@ static const CGFloat kTotalDuration = 1.f;
 }
 
 - (void)setupUI{
-    self.contentView.backgroundColor = [UIColor colorWithHexString:@"f6f6f6"];
+    self.contentView.backgroundColor = [UIColor whiteColor];
     UIButton *bgButton = [[UIButton alloc]init];
     [bgButton addTarget:self action:@selector(bgButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:bgButton];
@@ -37,7 +37,7 @@ static const CGFloat kTotalDuration = 1.f;
         make.edges.mas_equalTo(0);
     }];
     
-    self.progressView = [[YXGradientView alloc]initWithStartColor:[UIColor whiteColor] endColor:[UIColor whiteColor] orientation:YXGradientLeftToRight];
+    self.progressView = [[YXGradientView alloc]initWithStartColor:[UIColor colorWithHexString:@"f0feff"] endColor:[UIColor colorWithHexString:@"f0f6ff"] orientation:YXGradientLeftToRight];
     self.progressView.userInteractionEnabled = NO;
     [self.contentView addSubview:self.progressView];
     
