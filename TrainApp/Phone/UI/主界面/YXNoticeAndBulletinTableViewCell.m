@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) UIView *middleSircleView;
-@property (nonatomic, strong) UILabel *middleSircleLabel;
 @property (nonatomic, strong) UIView *bottomView;
 
 @property (nonatomic, strong) UILabel *contentLabel;
@@ -55,13 +54,8 @@
     self.middleSircleView = [[UIView alloc] init];
     self.middleSircleView.backgroundColor = [UIColor whiteColor];
     self.middleSircleView.layer.borderColor = [[UIColor colorWithHexString:@"eceef2"] CGColor];
-    self.middleSircleView.layer.borderWidth = 2;
+     self.middleSircleView.layer.borderWidth = 3.0f;
     [self.contentView addSubview:self.middleSircleView];
-    
-    self.middleSircleLabel = [[UILabel alloc] init];
-    self.middleSircleLabel.text = @"16";
-    self.middleSircleLabel.font = [UIFont boldSystemFontOfSize:15];
-    [self.middleSircleView addSubview:self.middleSircleLabel];
     
     self.bottomView = [[UIView alloc] init];
     self.bottomView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
@@ -89,32 +83,27 @@
         make.top.mas_equalTo(0);
         make.centerX.mas_equalTo(self.middleSircleView.mas_centerX);
         make.bottom.mas_equalTo(self.middleSircleView.mas_top);
-        make.size.mas_equalTo(CGSizeMake(2, 15));
+        make.size.mas_equalTo(CGSizeMake(2, 25.5));
     }];
     
     [self.middleSircleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
+        make.left.mas_equalTo(21);
         make.centerY.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(34, 34));
+        make.size.mas_equalTo(CGSizeMake(13, 13));
     }];
-    self.middleSircleView.layer.cornerRadius = 17;
+    self.middleSircleView.layer.cornerRadius = 6.5;
     self.middleSircleView.layer.masksToBounds = YES;
-    
-    [self.middleSircleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(0);
-        make.centerY.mas_equalTo(0);
-    }];
     
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.middleSircleView.mas_bottom);
         make.centerX.mas_equalTo(self.middleSircleView.mas_centerX);
         make.bottom.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(2, 15));
+        make.size.mas_equalTo(CGSizeMake(2, 25.5));
     }];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
-        make.left.mas_equalTo(self.middleSircleView.mas_right).offset(10);
+        make.left.mas_equalTo(self.middleSircleView.mas_right).offset(14);
         make.right.mas_lessThanOrEqualTo(-15);
     }];
     
@@ -129,34 +118,21 @@
         make.right.mas_lessThanOrEqualTo(-15);
     }];
 }
-
-- (void)configUIwithItem:(YXNoticeAndBulletinItem *)item isLastOne:(BOOL)isLastOne {
+- (void)configUIwithItem:(YXNoticeAndBulletinItem *)item isFirstOne:(BOOL)isFirstOne isLastOne:(BOOL)isLastOne{
+    if (isFirstOne) {
+        self.topView.hidden = YES;
+    } else {
+        self.topView.hidden = NO;
+    }
     if (isLastOne) {
         self.bottomView.hidden = YES;
     } else {
         self.bottomView.hidden = NO;
-    }
-    if ([[self dateFromString:item.createDate] isToday]) {
-        self.middleSircleLabel.text = @"今";
-        self.middleSircleLabel.textColor = [UIColor colorWithHexString:@"334466"];
-    } else {
-        self.middleSircleLabel.text = [self dayStringFromStrng:item.createDate];
-        self.middleSircleLabel.textColor = [UIColor colorWithHexString:@"d5d9e0"];
     }
     self.contentLabel.text = item.title;
     self.dateLabel.text = item.createDate;
     self.publisherLabel.text = [NSString stringWithFormat:@"by %@",item.userName];
 }
 
-- (NSDate *)dateFromString:(NSString *)dateString{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat: @"yyyy-MM-dd"];
-    NSDate *destDate= [dateFormatter dateFromString:dateString];
-    return destDate;
-}
 
-- (NSString *)dayStringFromStrng:(NSString *)dateString{
-    NSArray *dateArray = [dateString componentsSeparatedByString:@"-"];
-    return dateArray.lastObject;
-}
 @end

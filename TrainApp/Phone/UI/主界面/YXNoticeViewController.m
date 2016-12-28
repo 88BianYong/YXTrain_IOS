@@ -84,7 +84,9 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXNoticeAndBulletinTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXNoticeAndBulletinTableViewCell" forIndexPath:indexPath];
-    [cell configUIwithItem:self.dataArray[indexPath.section] isLastOne:indexPath.section == self.dataArray.count -1 ?YES :NO];
+    BOOL isFirstOne = indexPath.section == 0 ?YES :NO;
+    BOOL isLastOne = indexPath.section == self.dataArray.count -1 ?YES :NO;
+    [cell configUIwithItem:self.dataArray[indexPath.section] isFirstOne:isFirstOne isLastOne:isLastOne];
     
     return cell;
 }
@@ -119,16 +121,6 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
     if (section == 0) {
         UIView *headerView = [[UIView alloc] init];
         headerView.backgroundColor = [UIColor whiteColor];
-        
-        UIView *lineView = [[UIView alloc] init];
-        lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
-        [headerView addSubview:lineView];
-        
-        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.mas_equalTo(0);
-            make.width.mas_equalTo(2);
-            make.left.mas_equalTo(31);
-        }];
         return headerView;
     } else {
         return [UIView new];

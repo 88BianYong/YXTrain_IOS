@@ -10,6 +10,6 @@
 #import "YXNoticeListRequest.h"
 @interface YXNoticeAndBulletinTableViewCell : UITableViewCell
 
-- (void)configUIwithItem:(YXNoticeAndBulletinItem *)item isLastOne:(BOOL)isLastOne;
+- (void)configUIwithItem:(YXNoticeAndBulletinItem *)item isFirstOne:(BOOL)isFirstOne isLastOne:(BOOL)isLastOne;
 
 @end
