@@ -292,10 +292,10 @@
     }else {
         self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];//3
     }
-        NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
-        _model.desc = [NSString stringWithContentsOfFile:readmePath
-                                                       encoding:NSUTF8StringEncoding
-                                                        error:NULL];
+//        NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
+//        _model.desc = [NSString stringWithContentsOfFile:readmePath
+//                                                       encoding:NSUTF8StringEncoding
+//                                                        error:NULL];
     NSData *data = [_model.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions] documentAttributes:nil];
     [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, string.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {

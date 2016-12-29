@@ -165,6 +165,7 @@ static  NSString *const trackPageName = @"全部资源页面";
     if (scrollView.contentSize.height >= kScreenHeight -  45 + 10.0f){
         if (scrollView.contentOffset.y > self.oldOffsetY && self.isAllowChange) {
             self.menuView.isNavBarHidden = YES;
+            self.isAllowChange = NO;
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             [self.menuView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(0);
@@ -176,10 +177,10 @@ static  NSString *const trackPageName = @"全部资源页面";
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(self.menuView.mas_bottom);
             }];
-            self.isAllowChange = NO;
         }
         if (scrollView.contentOffset.y < self.oldOffsetY && self.isAllowChange) {
             self.menuView.isNavBarHidden = NO;
+            self.isAllowChange = NO;
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             [self.menuView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.mas_equalTo(0);
@@ -191,7 +192,6 @@ static  NSString *const trackPageName = @"全部资源页面";
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(self.menuView.mas_bottom);
             }];
-            self.isAllowChange = NO;
         }
     }else{
         self.menuView.isNavBarHidden = NO;
