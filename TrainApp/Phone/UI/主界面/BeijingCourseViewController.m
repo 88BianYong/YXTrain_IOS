@@ -236,9 +236,15 @@ static  NSString *const trackPageName = @"课程列表页面";
     NSNumber *num2 = filterArray[2];
     BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
     //服务端数据返回空的处理:"0"-全部,即不做筛选
-    fetcher.segid = self.filterModel.segment[num0.integerValue].filterID?:@"0";
-    fetcher.studyid = self.filterModel.study[num1.integerValue].filterID?:@"0";
-    fetcher.stageid = self.filterModel.stage[num2.integerValue].filterID?:@"0";
+    if (self.filterModel.segment.count >0){
+        fetcher.segid = self.filterModel.segment[num0.integerValue].filterID?:@"0";
+    }
+    if (self.filterModel.study.count > 0) {
+        fetcher.studyid = self.filterModel.study[num1.integerValue].filterID?:@"0";
+    }
+    if (self.filterModel.stage.count) {
+        fetcher.stageid = self.filterModel.stage[num2.integerValue].filterID?:@"0";
+    }
     [self startLoading];
     [self firstPageFetch];
 }

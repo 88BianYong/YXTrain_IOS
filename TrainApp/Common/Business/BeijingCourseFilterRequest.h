@@ -16,14 +16,14 @@
 @protocol BeijingCourseFilterRequestItem_Body_Segment <NSObject>
 @end
 @interface BeijingCourseFilterRequestItem_Body_Segment : JSONModel
-@property (nonatomic, strong) NSArray<BeijingCourseFilterRequestItem_Filter, Optional> *study;
+@property (nonatomic, strong) NSArray<BeijingCourseFilterRequestItem_Filter, Optional> *studys;
 @property (nonatomic, copy) NSString<Optional> *segmentID;
 @property (nonatomic, copy) NSString<Optional> *name;
 @end
 
 @interface BeijingCourseFilterRequestItem_Body : JSONModel
-@property (nonatomic, strong) NSArray <BeijingCourseFilterRequestItem_Body_Segment, Optional> *segment;
-@property (nonatomic, strong) NSArray <BeijingCourseFilterRequestItem_Filter, Optional> *stage;
+@property (nonatomic, strong) NSArray <BeijingCourseFilterRequestItem_Body_Segment, Optional> *segments;
+@property (nonatomic, strong) NSArray <BeijingCourseFilterRequestItem_Filter, Optional> *stages;
 @end
 
 
@@ -32,4 +32,6 @@
 @end
 @interface BeijingCourseFilterRequest : YXGetRequest
 @property (nonatomic, strong) NSString *pid;
+@property (nonatomic, strong) NSString *w;
+
 @end

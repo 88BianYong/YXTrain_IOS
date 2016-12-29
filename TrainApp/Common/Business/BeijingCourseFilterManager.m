@@ -23,7 +23,7 @@
     //类别
     model.stageName = @"类别";
     NSMutableArray *stageMutableArray = [[NSMutableArray alloc] init];
-    for (BeijingCourseFilterRequestItem_Filter *filter in item.body.stage) {
+    for (BeijingCourseFilterRequestItem_Filter *filter in item.body.stages) {
         BeijingCourseFilter *item = [[BeijingCourseFilter alloc]init];
         item.filterID = filter.filterID;
         item.name = filter.name;
@@ -35,12 +35,12 @@
     model.stage = stageMutableArray;
     //学段
     NSMutableArray *segmentArray = [[NSMutableArray alloc] init];
-    for (BeijingCourseFilterRequestItem_Body_Segment *segment in item.body.segment) {
+    for (BeijingCourseFilterRequestItem_Body_Segment *segment in item.body.segments) {
         BeijingCourseFilter *segmentFilter = [[BeijingCourseFilter alloc]init];
         segmentFilter.filterID = segment.segmentID;
         segmentFilter.name = segment.name;
         NSMutableArray *studyArray = [[NSMutableArray alloc] init];
-        for (BeijingCourseFilterRequestItem_Filter *filter in segment.study) {
+        for (BeijingCourseFilterRequestItem_Filter *filter in segment.studys) {
             BeijingCourseFilter *item = [[BeijingCourseFilter alloc]init];
             item.filterID = filter.filterID;
             item.name = filter.name;
@@ -64,6 +64,7 @@
     }
     BeijingCourseFilterRequest *request = [[BeijingCourseFilterRequest alloc]init];
     request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    request.w = [YXTrainManager sharedInstance].currentProject.w;
     WEAK_SELF
     [request startRequestWithRetClass:[BeijingCourseFilterRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
