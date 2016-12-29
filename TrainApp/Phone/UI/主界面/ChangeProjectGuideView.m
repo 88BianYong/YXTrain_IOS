@@ -20,15 +20,15 @@
 }
 
 - (void)setupUIAndLayoutInterface{
-    UIImageView *arrowImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"箭头"]];
+    UIImageView *arrowImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"切换项目箭头"]];
     [self addSubview:arrowImageView];
     
     UIImageView *descriptionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"点击可以切换当前显示的项目"]];
     [self addSubview:descriptionImageView];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"我知道了-按钮"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"我知道了-按钮点击态"] forState:UIControlStateHighlighted];
+    [button setImage:[UIImage imageNamed:@"项目切换-我知道了-按钮"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"项目切换-我知道了-按钮点击态"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(removeSelfButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
     

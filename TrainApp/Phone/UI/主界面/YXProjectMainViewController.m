@@ -39,6 +39,7 @@
 
 @property (nonatomic, strong) UIView *rightView;
 @property (nonatomic, strong) UIView *rightRedView;
+@property (nonatomic, assign) BOOL moreThanOneProject;//只有一个项目的时候不显示切换项目引导页
 @end
 
 @implementation YXProjectMainViewController
@@ -274,8 +275,8 @@
         [self addChildViewController:notiVC];
         [self addChildViewController:bulletinVC];
         
-        BOOL isSingleProject = [YXTrainManager sharedInstance].trainlistItem.body.training.count == 1 ? YES :NO;
-        if (![YXInitHelper sharedHelper].showUpgradeFlag && !isSingleProject) {
+        self.moreThanOneProject = [YXTrainManager sharedInstance].trainlistItem.body.trains.count > 1 ? YES :NO;
+        if (![YXInitHelper sharedHelper].showUpgradeFlag) {
             [self showChangeProjectGuideView];
         }
     }else{
@@ -291,14 +292,16 @@
 }
 
 - (void)showChangeProjectGuideView {
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstLaunch]) {
-        static NSString *staticString = @"ChangeProjectGuideView";
-        UIView *guideView = [[NSClassFromString(staticString) alloc] init];
-        [self.navigationController.view addSubview:guideView];
-        [guideView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
-        }];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
+    if (self.moreThanOneProject) {
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstLaunch]) {
+            static NSString *staticString = @"ChangeProjectGuideView";
+            UIView *guideView = [[NSClassFromString(staticString) alloc] init];
+            [self.navigationController.view addSubview:guideView];
+            [guideView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
+        }
     }
 }
 #pragma mark - peojects hide & show
