@@ -24,6 +24,7 @@
 #import "BeijingCheckedMobileUserRequest.h"
 #import "BeijingCheckedMobileUserViewController.h"
 #import "YXWebSocketManger.h"
+#import "ChangeProjectGuideView.h"
 @interface YXProjectMainViewController ()
 {
     UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
@@ -49,6 +50,7 @@
     [super viewDidLoad];
     self.dataMutableArrray = [[NSMutableArray alloc] initWithCapacity:6];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:kYXTrainWebSocketReceiveMessage object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showChangeProjectGuideView) name:@"cancelToUpdate" object:nil];
     [self setupUI];
     [self getProjectList];
 }
@@ -271,6 +273,11 @@
         [self addChildViewController:taskVC];
         [self addChildViewController:notiVC];
         [self addChildViewController:bulletinVC];
+        
+        BOOL isSingleProject = [YXTrainManager sharedInstance].trainlistItem.body.training.count == 1 ? YES :NO;
+        if (![YXInitHelper sharedHelper].showUpgradeFlag && !isSingleProject) {
+            [self showChangeProjectGuideView];
+        }
     }else{
         YXCourseRecordViewController *recordVc = [[YXCourseRecordViewController alloc]init];
         self.recordVC = recordVc;
@@ -283,6 +290,17 @@
     [YXDrawerController showDrawer];
 }
 
+- (void)showChangeProjectGuideView {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstLaunch]) {
+        static NSString *staticString = @"ChangeProjectGuideView";
+        UIView *guideView = [[NSClassFromString(staticString) alloc] init];
+        [self.navigationController.view addSubview:guideView];
+        [guideView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
+    }
+}
 #pragma mark - peojects hide & show
 - (void)showProjectSelectionView{
     if (self.navigationController.topViewController == self) {

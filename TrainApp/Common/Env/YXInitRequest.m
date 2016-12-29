@@ -205,6 +205,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         [self showForceUploadTitle:body.title andContent:body.content];
     }
     else{
+        self.showUpgradeFlag = YES;
         BLOCK_EXEC(self.upgradeHandler,isInit);
     }
 
@@ -259,6 +260,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     cancelAlertAct.block = ^{
         STRONG_SELF
         [v hide];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelToUpdate" object:nil];
     };
     
     YXAlertAction *downloadUpdateAlertAct = [[YXAlertAction alloc] init];

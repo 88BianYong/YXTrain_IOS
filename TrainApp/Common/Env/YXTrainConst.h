@@ -62,7 +62,10 @@ typedef NS_ENUM (NSInteger ,YXWriteHomeworkListStatus) {
 };
 
 //定义key值
-
+/**
+ *  是否第一次进入APP
+ */
+extern NSString *const kYXTrainFirstLaunch;
 /**
  *  是否第一次进入作业界面
  */

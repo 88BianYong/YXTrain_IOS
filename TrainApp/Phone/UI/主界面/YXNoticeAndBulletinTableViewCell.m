@@ -102,7 +102,7 @@
     }];
     
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
+        make.centerY.mas_equalTo(self.middleSircleView.mas_centerY);
         make.left.mas_equalTo(self.middleSircleView.mas_right).offset(14);
         make.right.mas_lessThanOrEqualTo(-15);
     }];
