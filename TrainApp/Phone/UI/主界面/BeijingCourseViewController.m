@@ -229,6 +229,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     if (num0.integerValue != self.filterModel.chooseInteger) {
         self.filterModel.chooseInteger = num0.integerValue;
         [self refreshDealWithFilterModel];
+        return;
     }
     // 学科
     NSNumber *num1 = filterArray[1];

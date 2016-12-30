@@ -86,6 +86,7 @@ static const NSUInteger kTagBase = 876;
     [self changeButton:b foldStatus:YES];
     [self changeButton:b selectedStatus:NO];
     [self exchangeTitleImagePositionForButton:b];
+    [self filterItemArrayChanged];
 }
 - (void)refreshStagesFilters:(NSArray *)filters forKey:(NSString *)key {
     YXCourseFilterItem *item = [[YXCourseFilterItem alloc]init];
@@ -98,6 +99,7 @@ static const NSUInteger kTagBase = 876;
     [self changeButton:b foldStatus:NO];
     [self changeButton:b selectedStatus:NO];
     [self exchangeTitleImagePositionForButton:b];
+    [self filterItemArrayChanged];
 }
 
 - (void)setCurrentIndex:(NSInteger)index forKey:(NSString *)key{
@@ -211,9 +213,7 @@ static const NSUInteger kTagBase = 876;
         tableHeight = 44;
     }else {
         tableHeight = MIN(self.currentFilterItem.filterArray.count*self.selectionTableView.rowHeight , 242);
-    }
-//    CGFloat tableHeight = MIN(self.currentFilterItem.filterArray.count*self.selectionTableView.rowHeight + 14, 242 + 14);
-    
+    }    
     YXCourseFilterBgView *bgView = [[YXCourseFilterBgView alloc]initWithFrame:CGRectMake(6, rect.origin.y+rect.size.height-5, rect.size.width-6-6, tableHeight+8) triangleX:self.bounds.size.width/(self.filterItemArray.count * 2)*(1+2*index)-6];
     self.selectionTableView.frame = CGRectMake(0, 8, bgView.bounds.size.width, tableHeight);
     [bgView addSubview:self.selectionTableView];
@@ -248,14 +248,7 @@ static const NSUInteger kTagBase = 876;
         return;
     }
     self.currentFilterItem.currentIndex = indexPath.row;
-    NSMutableArray *array = [NSMutableArray array];
-    [self.filterItemArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        YXCourseFilterItem *item = (YXCourseFilterItem *)obj;
-        NSInteger index = MAX(item.currentIndex, 0);
-        [array addObject:@(index)];
-    }];
-    SAFE_CALL_OneParam(self.delegate, filterChanged, array);
-    
+    [self filterItemArrayChanged];
     NSInteger index = [self.filterItemArray indexOfObject:self.currentFilterItem];
     UIButton *b = [self.typeContainerView viewWithTag:kTagBase+index];
     [b setTitle:self.currentFilterItem.filterArray[indexPath.row] forState:UIControlStateNormal];
@@ -265,5 +258,13 @@ static const NSUInteger kTagBase = 876;
     [self changeButton:b selectedStatus:YES];
     [self exchangeTitleImagePositionForButton:b];
 }
-
+- (void)filterItemArrayChanged {
+    NSMutableArray *array = [NSMutableArray array];
+    [self.filterItemArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        YXCourseFilterItem *item = (YXCourseFilterItem *)obj;
+        NSInteger index = MAX(item.currentIndex, 0);
+        [array addObject:@(index)];
+    }];
+    SAFE_CALL_OneParam(self.delegate, filterChanged, array);
+}
 @end
