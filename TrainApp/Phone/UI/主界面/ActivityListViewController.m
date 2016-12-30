@@ -65,7 +65,6 @@
 - (void)dealWithFilterModel:(ActivityFilterModel *)model {
     YXCourseFilterView *filterView = [[YXCourseFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     self.filterView = filterView;
-    self.filterView.backgroundColor = [UIColor redColor];
     for (ActivityFilterGroup *group in model.groupArray) {
         NSMutableArray *array = [NSMutableArray array];
         for (ActivityFilter *filter in group.filterArray) {
@@ -183,6 +182,12 @@
 #pragma mark - YXCourseFilterViewDelegate
 - (void)filterChanged:(NSArray *)filterArray {
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+    //解决 当隐藏导航栏 并切换项目时  筛选框上方有一条空白
+    self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(44);
+    }];
     // 学段
     NSNumber *num0 = filterArray[0];
     ActivityFilterGroup *group0 = self.filterModel.groupArray[0];
@@ -204,7 +209,7 @@
     if (group2.filterArray.count > 0) {
         stageItem = group2.filterArray[num2.integerValue];
     }
-    NSLog(@"Changed: 学段:%@，学科:%@，阶段:%@",segmentItem.name,studyItem.name,stageItem.name);
+    DDLogDebug(@"Changed: 学段:%@，学科:%@，阶段:%@",segmentItem.name,studyItem.name,stageItem.name);
     ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
     fetcher.studyid = studyItem.filterID?:@"0";//服务端数据返回空的处理:"0"-全部,即不做筛选
     fetcher.segid = segmentItem.filterID?:@"0";
@@ -216,10 +221,10 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentSize.height >= kScreenHeight -  44 + 10.0f){
         if ((scrollView.contentOffset.y > self.oldOffsetY) && self.isAllowChange) {
-            NSLog(@"隐藏nav1---20,self.isAllowChange = %@",@(self.isAllowChange));
+//            NSLog(@"隐藏nav1---20,self.isAllowChange = %@",@(self.isAllowChange));
             self.isNavBarHidden = YES;
             self.isAllowChange = NO;
-            NSLog(@"隐藏nav2---20,self.isAllowChange = %@",@(self.isAllowChange));
+//            NSLog(@"隐藏nav2---20,self.isAllowChange = %@",@(self.isAllowChange));
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -228,10 +233,10 @@
             }];
         }
         if ((scrollView.contentOffset.y < self.oldOffsetY) && self.isAllowChange) {
-            NSLog(@"显示nav1---0,self.isAllowChange = %@",@(self.isAllowChange));
+//            NSLog(@"显示nav1---0,self.isAllowChange = %@",@(self.isAllowChange));
             self.isNavBarHidden = NO;
             self.isAllowChange = NO;
-            NSLog(@"显示nav2---0,self.isAllowChange = %@",@(self.isAllowChange));
+//            NSLog(@"显示nav2---0,self.isAllowChange = %@",@(self.isAllowChange));
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -252,7 +257,7 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     self.oldOffsetY = MAX(scrollView.contentOffset.y, 0.0f);
     self.isAllowChange = YES;
-    NSLog(@"减速,self.isAllowChange = %@",@(self.isAllowChange));
+//    NSLog(@"减速,self.isAllowChange = %@",@(self.isAllowChange));
 }
 
 @end

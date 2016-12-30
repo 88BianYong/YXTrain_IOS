@@ -272,6 +272,12 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 #pragma mark - YXCourseFilterViewDelegate
 - (void)filterChanged:(NSArray *)filterArray{
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.mas_equalTo(44);
+    }];
     // 学段
     NSNumber *num0 = filterArray[0];
     YXCourseFilterGroup *group0 = self.filterModel.groupArray[0];
