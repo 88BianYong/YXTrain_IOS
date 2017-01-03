@@ -226,13 +226,14 @@ static  NSString *const trackPageName = @"课程列表页面";
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     // 学段
     NSNumber *num0 = filterArray[0];
+    NSNumber *num1 = [NSNumber numberWithInteger:0];
     if (num0.integerValue != self.filterModel.chooseInteger) {
         self.filterModel.chooseInteger = num0.integerValue;
         [self refreshDealWithFilterModel];
-        return;
+    }else {
+        // 学科
+        num1 = filterArray[1];
     }
-    // 学科
-    NSNumber *num1 = filterArray[1];
     //类型
     NSNumber *num2 = filterArray[2];
     BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
@@ -252,40 +253,50 @@ static  NSString *const trackPageName = @"课程列表页面";
 #pragma mark scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentSize.height >= kScreenHeight -  44 + 10.0f){
-        if (scrollView.contentOffset.y > self.oldOffsetY && self.isAllowChange) {
+        if (scrollView.contentSize.height - self.tableView.bounds.size.height < self.oldOffsetY && self.isAllowChange) {//滚动底部一直隐藏状态栏
+            self.isNavBarHidden = YES;
+            self.isAllowChange = NO;
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(64);
             }];
+            return;
+        }
+        if (scrollView.contentOffset.y > self.oldOffsetY && self.isAllowChange) {
             self.isNavBarHidden = YES;
             self.isAllowChange = NO;
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
+            [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.top.mas_equalTo(64);
+            }];
         }
         if (scrollView.contentOffset.y < self.oldOffsetY && self.isAllowChange) {
+            self.isNavBarHidden = NO;
+            self.isAllowChange = NO;
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
                 make.top.mas_equalTo(44);
             }];
-            self.isNavBarHidden = NO;
-            self.isAllowChange = NO;
         }
+        
     }else{
+        self.isNavBarHidden = NO;
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
         [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.mas_equalTo(0);
             make.top.mas_equalTo(44);
         }];
-        self.isNavBarHidden = NO;
     }
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     self.oldOffsetY = MAX(scrollView.contentOffset.y, 0.0f);
     self.isAllowChange = YES;
 }
-
-
 @end

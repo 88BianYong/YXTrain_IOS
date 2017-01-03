@@ -123,11 +123,9 @@ UITableViewDataSource
     [self.headerView setHomeworkHtmlOpenAndCloseBlock:^(BOOL isStatus) {
         STRONG_SELF
         if (isStatus) {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + self.headerView.changeHeight);
-                self ->_tableView.tableHeaderView = self.headerView;
-                [self.headerView relayoutHtmlText];
-            }];
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + self.headerView.changeHeight);
+            self ->_tableView.tableHeaderView = self.headerView;
+            [self.headerView relayoutHtmlText];
         }else {
             [self ->_tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
             self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + kTableViewHeaderHtmlPlaceholdeHeight);
