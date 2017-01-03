@@ -282,9 +282,12 @@
 
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
     NSInteger integer = [aNotification.object integerValue];
+    if (integer == 3 && [YXTrainManager sharedInstance].trainHelper.isBeijingProject) {//北京项目消息动态不在侧边栏
+        return;
+    }
     if (integer == 2) {
         [self mutableArrayValueForKey:@"_redPointMutableArray"][0] = @"1";
-    }else if (integer == 3 && ![YXTrainManager sharedInstance].isBeijingProject){
+    }else if (integer == 3){
         [self mutableArrayValueForKey:@"_redPointMutableArray"][3] = @"1";
     }
     [self.tableView reloadData];

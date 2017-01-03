@@ -13,7 +13,7 @@
 @implementation LSTTrainHelper
 + (instancetype)alloc{
     if ([self class] == [LSTTrainHelper class]) {
-        if ([YXTrainManager sharedInstance].isBeijingProject) {
+        if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:YXTrainBeijingProjectId]) {
             return [LSTTrainHelper_Beijing alloc];
         }
         return [LSTTrainHelper_Default alloc];

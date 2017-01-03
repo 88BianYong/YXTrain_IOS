@@ -78,8 +78,7 @@
     
 }
 
-- (void)updateLayoutInterfaceSingle
-:(BOOL)boolSingle{//TD 解决单行Lable 出现行间距问题
+- (void)updateLayoutInterfaceSingle:(BOOL)boolSingle{//TD 解决单行Lable 出现行间距问题
     if (boolSingle){
         [self.timeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentLabel.mas_bottom).offset(10.0f);

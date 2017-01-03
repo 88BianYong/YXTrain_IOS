@@ -10,6 +10,9 @@
 #import "YXCourseViewController.h"
 @implementation LSTTrainHelper_Default
 #pragma mark - get
+- (BOOL)isBeijingProject {
+    return NO;
+}
 - (NSString *)workshopListTitle {
     return @"我的工作坊";
 }

@@ -15,7 +15,6 @@
 @property (nonatomic, strong) YXTrainListRequestItem_body_train *currentProject;
 @property (nonatomic, strong) NSIndexPath *currentProjectIndexPath;
 @property (nonatomic, strong) YXTrainListRequestItem *trainlistItem;
-@property (nonatomic, assign) BOOL isBeijingProject;
 @property (nonatomic, strong) LSTTrainHelper *trainHelper;
 
 + (instancetype)sharedInstance;

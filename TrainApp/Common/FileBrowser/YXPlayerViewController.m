@@ -184,7 +184,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.edges.equalTo(self.view);
     }];
     
-    if (self.sourceType == YXSourceTypeCourse && [YXTrainManager sharedInstance].isBeijingProject) {
+    if (self.sourceType == YXSourceTypeCourse && [YXTrainManager sharedInstance].trainHelper.isBeijingProject) {//北京项目课程显示防挂课功能
        [self startPreventHangingCourseTime];
     }
 }

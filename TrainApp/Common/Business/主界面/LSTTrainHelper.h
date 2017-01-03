@@ -11,7 +11,7 @@
 @property (nonatomic, copy) NSString *requireId;//北京项目专用
 @property (nonatomic, copy) NSString *homeworkid;//北京项目专用
 
-
+@property (nonatomic, assign, readonly) BOOL isBeijingProject;
 @property (nonatomic, copy, readonly) NSString *workshopListTitle;
 @property (nonatomic, copy, readonly) NSString *workshopDetailTitle;
 @property (nonatomic, copy, readonly) NSString *workshopDetailName;

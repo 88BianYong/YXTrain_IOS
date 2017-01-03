@@ -292,6 +292,9 @@
 		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
 		92AA47721E12437400C88DDC /* BeijingCourseFilterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47711E12437400C88DDC /* BeijingCourseFilterRequest.m */; };
 		92AA47751E12440B00C88DDC /* BeijingCourseFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47741E12440B00C88DDC /* BeijingCourseFilterManager.m */; };
+		92AA47781E1B925300C88DDC /* WebsocketRedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47771E1B925300C88DDC /* WebsocketRedView.m */; };
+		92AA477B1E1B983800C88DDC /* WebsocketRedRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA477A1E1B983800C88DDC /* WebsocketRedRightView.m */; };
+		92AA477E1E1B9BD900C88DDC /* WebsocketRedLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA477D1E1B9BD900C88DDC /* WebsocketRedLeftView.m */; };
 		92AD8EE41E0A5B5800A3E91C /* WriteHomeworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */; };
 		92AD8EE71E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */; };
 		92AD8EED1E0B87E900A3E91C /* BeijingHomeworkInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */; };
@@ -1052,6 +1055,12 @@
 		92AA47711E12437400C88DDC /* BeijingCourseFilterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseFilterRequest.m; sourceTree = "<group>"; };
 		92AA47731E12440B00C88DDC /* BeijingCourseFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseFilterManager.h; sourceTree = "<group>"; };
 		92AA47741E12440B00C88DDC /* BeijingCourseFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseFilterManager.m; sourceTree = "<group>"; };
+		92AA47761E1B925300C88DDC /* WebsocketRedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsocketRedView.h; sourceTree = "<group>"; };
+		92AA47771E1B925300C88DDC /* WebsocketRedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsocketRedView.m; sourceTree = "<group>"; };
+		92AA47791E1B983800C88DDC /* WebsocketRedRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsocketRedRightView.h; sourceTree = "<group>"; };
+		92AA477A1E1B983800C88DDC /* WebsocketRedRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsocketRedRightView.m; sourceTree = "<group>"; };
+		92AA477C1E1B9BD900C88DDC /* WebsocketRedLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsocketRedLeftView.h; sourceTree = "<group>"; };
+		92AA477D1E1B9BD900C88DDC /* WebsocketRedLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsocketRedLeftView.m; sourceTree = "<group>"; };
 		92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteHomeworkManager.m; sourceTree = "<group>"; };
 		92AD8EE51E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingHomeworkInfoViewController.h; sourceTree = "<group>"; };
 		92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingHomeworkInfoViewController.m; sourceTree = "<group>"; };
@@ -1853,6 +1862,10 @@
 				E927702C1DADD24000B2991C /* YXTrackPageDataProtocol.h */,
 				E9DE2BC31E13BB880033434F /* ChangeProjectGuideView.h */,
 				E9DE2BC41E13BB880033434F /* ChangeProjectGuideView.m */,
+				92AA47761E1B925300C88DDC /* WebsocketRedView.h */,
+				92AA47771E1B925300C88DDC /* WebsocketRedView.m */,
+				92AA477C1E1B9BD900C88DDC /* WebsocketRedLeftView.h */,
+				92AA477D1E1B9BD900C88DDC /* WebsocketRedLeftView.m */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -2573,6 +2586,8 @@
 				926354581DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m */,
 				92AD8EEB1E0B87E900A3E91C /* BeijingHomeworkInfoView.h */,
 				92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */,
+				92AA47791E1B983800C88DDC /* WebsocketRedRightView.h */,
+				92AA477A1E1B983800C88DDC /* WebsocketRedRightView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3601,6 +3616,7 @@
 				92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m in Sources */,
 				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
 				92006C8C1DCC79E500F80488 /* ActivityPlayViewController.m in Sources */,
+				92AA477E1E1B9BD900C88DDC /* WebsocketRedLeftView.m in Sources */,
 				92FAE4A41DDAA845000C3C00 /* CoreTextViewHandler.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
 				7C3177B51D0EB7F1004AAC90 /* UIViewController+Keyboard.m in Sources */,
@@ -3667,6 +3683,7 @@
 				92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */,
 				9223C8201D2DF93A000F74DF /* YXFeedBackViewController.m in Sources */,
 				F7E8F8DE1D65CE3700CDAAF4 /* YXPopUpContainerView.m in Sources */,
+				92AA47781E1B925300C88DDC /* WebsocketRedView.m in Sources */,
 				923237461D7EA9FE00FDACFE /* YXCMSTimerView.m in Sources */,
 				9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */,
 				CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */,
@@ -3716,6 +3733,7 @@
 				923237621D814FF200FDACFE /* YXHotspotBaseCell.m in Sources */,
 				92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */,
 				7C2C3B851D24F6F700A03635 /* YXCourseRecordCell.m in Sources */,
+				92AA477B1E1B983800C88DDC /* WebsocketRedRightView.m in Sources */,
 				7C3177FD1D1177F9004AAC90 /* DownloadManager.m in Sources */,
 				CBBE95041D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m in Sources */,
 				7CFBA6C51D3633E7005D08B1 /* YXModuleListRequest.m in Sources */,

@@ -97,9 +97,4 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     [[NSUserDefaults standardUserDefaults]synchronize];
     self.trainHelper = nil;
 }
-
-
-- (BOOL)isBeijingProject {
-    return [self.currentProject.pid isEqualToString:YXTrainBeijingProjectId];
-}
 @end
