@@ -35,15 +35,20 @@
     self.dataFetcher = [[CommentPagedListFetcher alloc] init];
     self.dataFetcher.aid = self.tool.aid;
     self.dataFetcher.toolid = self.tool.toolid;
-    self.dataFetcher.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.dataFetcher.w = [YXTrainManager sharedInstance].trainHelper.w;
     self.dataFetcher.pageIndex = 1;
     self.dataFetcher.pageSize = 20;
     self.dataFetcher.parentid = self.parentID;
-    self.isHiddenInputView = YES;
     [super setupUI];
+    self.isFullReply = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[SecondCommentFooterView class] forHeaderFooterViewReuseIdentifier:@"SecondCommentFooterView"];
+}
+- (void)naviLeftAction {
+    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[0];
+    BLOCK_EXEC(self.refreshBlock,self.chooseInteger,replie.isRanked,self.totalNum);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -74,7 +79,7 @@
     [headerView setActitvityCommentFavorBlock:^{
         STRONG_SELF
         if ([self isCheckActivityStatus]) {
-            [self requestForCommentLaud:[NSString stringWithFormat:@"%ld",(long)section]];
+            [self requestForCommentLaud:section];
         }
     }];
     return headerView;
@@ -112,6 +117,6 @@
     }
 }
 - (void)formatCommentContent{
-    [self.dataMutableArray insertObject:self.replie atIndex:0];
+    [self.dataMutableArray addObject:self.replie];
 }
 @end

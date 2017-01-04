@@ -30,7 +30,7 @@
 @property (nonatomic, strong) CommentReplyRequest *replyRequest;
 @property (nonatomic, strong) CommentLaudRequest *laudRequest;
 @property (nonatomic, assign) NSInteger replyInteger;
-@property (nonatomic, assign) BOOL isManual;
+
 
 @end
 
@@ -58,7 +58,6 @@
         self.dataFetcher.pageSize = 20;
     }
     self.replyInteger = -1;
-    self.isManual = YES;
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [self setupUI];
     [self setupLayout];
@@ -132,41 +131,38 @@
     };
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     self.totalPage = (int)[self.dataMutableArray count];
-    if (!self.isHiddenInputView) {
-        self.sendView = [[SendCommentView alloc] init];
-        [self.view addSubview:self.sendView];
-        UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userPublishComment)];
-        [self.sendView addGestureRecognizer:recognizer];
-        self.translucentView = [[UIView alloc] init];
-        self.translucentView.alpha = 0.0f;
-        self.translucentView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
-        [self.navigationController.view addSubview:self.translucentView];
-        UITapGestureRecognizer *showRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenCommentInputView)];
-        [self.translucentView addGestureRecognizer:showRecognizer];
-        
-        self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
-        WEAK_SELF
-        [self.inputTextView setActivityCommentShowInputViewBlock:^(BOOL isShow) {
-            STRONG_SELF
-            if (isShow) {
-                [UIView animateWithDuration:0.25 animations:^{
-                    self.translucentView.alpha = 1.0f;
-                }];
-            }else {
-                [UIView animateWithDuration:0.25 animations:^{
-                    self.translucentView.alpha = 0.0f;
-                }];
-            }
-        }];
-        [self.inputTextView setActivityCommentInputTextBlock:^(NSString *inputText) {
-            STRONG_SELF
-            [self requestForCommentReply:inputText];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self hiddenCommentInputView];
-            });
-        }];
-        [self.navigationController.view addSubview:self.inputTextView];
-    }
+    self.sendView = [[SendCommentView alloc] init];
+    [self.view addSubview:self.sendView];
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userPublishComment)];
+    [self.sendView addGestureRecognizer:recognizer];
+    self.translucentView = [[UIView alloc] init];
+    self.translucentView.alpha = 0.0f;
+    self.translucentView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
+    [self.navigationController.view addSubview:self.translucentView];
+    UITapGestureRecognizer *showRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenCommentInputView)];
+    [self.translucentView addGestureRecognizer:showRecognizer];
+    
+    self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
+    [self.inputTextView setActivityCommentShowInputViewBlock:^(BOOL isShow) {
+        STRONG_SELF
+        if (isShow) {
+            [UIView animateWithDuration:0.25 animations:^{
+                self.translucentView.alpha = 1.0f;
+            }];
+        }else {
+            [UIView animateWithDuration:0.25 animations:^{
+                self.translucentView.alpha = 0.0f;
+            }];
+        }
+    }];
+    [self.inputTextView setActivityCommentInputTextBlock:^(NSString *inputText) {
+        STRONG_SELF
+        [self requestForCommentReply:inputText];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self hiddenCommentInputView];
+        });
+    }];
+    [self.navigationController.view addSubview:self.inputTextView];
 }
 - (void)startLoading {
     [YXPromtController startLoadingInView:self.tableView];
@@ -175,9 +171,6 @@
     [YXPromtController stopLoadingInView:self.tableView];
 }
 - (void)setupLayout {
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(@0);
-    }];
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
@@ -198,24 +191,23 @@
     [self.translucentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.navigationController.view);
     }];
-    if (!self.isHiddenInputView) {
-        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view.mas_left);
-            make.right.equalTo(self.view.mas_right);
-            make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
-            make.top.equalTo(self.view.mas_top);
-        }];
-        [self.inputTextView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.navigationController.view.mas_left);
-            make.right.equalTo(self.navigationController.view.mas_right);
-            make.bottom.equalTo(self.navigationController.view.mas_bottom).offset(140.0f);
-            make.height.mas_offset(140.0f);
-        }];
-        [self.sendView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.equalTo(self.view);
-            make.height.mas_offset(44.0f);
-        }];
-    }
+    
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+        make.top.equalTo(self.view.mas_top);
+    }];
+    [self.inputTextView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.navigationController.view.mas_left);
+        make.right.equalTo(self.navigationController.view.mas_right);
+        make.bottom.equalTo(self.navigationController.view.mas_bottom).offset(140.0f);
+        make.height.mas_offset(140.0f);
+    }];
+    [self.sendView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.height.mas_offset(44.0f);
+    }];
 }
 
 - (void)updateLyout {
@@ -234,44 +226,40 @@
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {
         STRONG_SELF
-        WEAK_SELF
-        dispatch_async(dispatch_get_main_queue(), ^{
-            STRONG_SELF
-            [self stopLoading];
-            [self stopAnimation];
-            self.tableView.tableHeaderView.hidden = NO;
-            
-            if (error) {
-                if (isEmpty(self.dataMutableArray)) {
-                    self.totalPage = 0;
-                    if (error.code == -2) {
-                        [self showDataErrorView];
-                    }else{
-                        [self showErroView];
-                    }
-                } else {
-                    self.totalPage = 0;
-                    [self showToast:error.localizedDescription];
+        [self stopLoading];
+        [self stopAnimation];
+        self.tableView.tableHeaderView.hidden = NO;
+        if (error) {
+            if (isEmpty(self.dataMutableArray)) {
+                self.totalPage = 0;
+                if (error.code == -2) {
+                    [self showDataErrorView];
+                }else{
+                    [self showErroView];
                 }
-            }else {
-                self.totalNum = totalNum;
-                self.errorView.hidden = YES;
-                self.dataErrorView.hidden = YES;
-                [self.headerView setLastUpdateTime:[NSDate date]];
-                self.totalPage = totalPage;
-                [self.dataMutableArray removeAllObjects];
-                if (isEmpty(retItemArray)) {
-                    self.emptyView.hidden = NO;
-                } else {
-                    self.emptyView.hidden = YES;
-                    [self.dataMutableArray addObjectsFromArray:retItemArray];
-                    [self formatCommentContent];
-                    [self pullupViewHidden:!(totalPage > currentPage)];
-                }
-                [self.tableView reloadData];
-                self.tableView.contentOffset = CGPointZero;
+            } else {
+                self.totalPage = 0;
+                [self showToast:error.localizedDescription];
             }
-        });
+        }else {
+            [self.dataMutableArray removeAllObjects];
+            [self formatCommentContent];
+            self.totalNum = totalNum;
+            self.errorView.hidden = YES;
+            self.dataErrorView.hidden = YES;
+            [self.headerView setLastUpdateTime:[NSDate date]];
+            self.totalPage = totalPage;
+            [self.dataMutableArray addObjectsFromArray:retItemArray];
+            if (isEmpty(self.dataMutableArray)) {
+                self.emptyView.hidden = NO;
+            } else {
+                self.emptyView.hidden = YES;
+                [self pullupViewHidden:!(totalPage > currentPage)];
+            }
+            [self.tableView reloadData];
+            self.tableView.contentOffset = CGPointZero;
+        }
+
     }];
 }
 - (void)morePageFetch {
@@ -303,7 +291,6 @@
 }
 - (void)pullupViewHidden:(BOOL)hidden
 {
-    self.isManual = hidden;
     self.footerView.alpha = hidden ? 0:1;
 }
 - (void)showErroView {
@@ -347,28 +334,13 @@
                 [self showToast:@"网络异常,请稍后重试"];
             }
         }else if (item.body.reply != nil){
-            if ([YXTrainManager sharedInstance].trainHelper.w.integerValue <= 3) {
-                [self.dataMutableArray insertObject:item.body.reply atIndex:0];
-                [self.tableView reloadData];
+            if (self.isFullReply) {
+                [self.dataMutableArray insertObject:item.body.reply atIndex:1];
+                self.totalNum ++;
             }else {
-                if (self.replyInteger >= 0) {
-                    ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[self.replyInteger];
-                    if (reply.replies) {
-                        [reply.replies addObject:item.body.reply];
-                    }else {
-                        reply.replies = [@[item.body.reply] mutableCopy];
-                    }
-                    reply.childNum = [NSString stringWithFormat:@"%d",(int)(reply.childNum.integerValue + 1)];
-                    [self.tableView beginUpdates];
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:self.replyInteger] withRowAnimation:UITableViewRowAnimationNone];
-                    [self.tableView endUpdates];
-                }else {
-                    if (self.isManual) {
-                        [self.dataMutableArray addObject:item.body.reply];
-                        [self.tableView reloadData];
-                    }
-                }
+                [self.dataMutableArray insertObject:item.body.reply atIndex:0];
             }
+            [self.tableView reloadData];
             self.emptyView.hidden = YES;
             [self.inputTextView inputTextViewClear];
         }else {
@@ -378,7 +350,7 @@
     self.replyRequest = request;
 }
 
-- (void)requestForCommentLaud:(id)comment {
+- (void)requestForCommentLaud:(NSInteger)integer {
     if (self.laudRequest) {
         [self.laudRequest stopRequest];
     }
@@ -386,20 +358,9 @@
     request.aid = self.tool.aid;
     request.toolid = self.tool.toolid;
     request.w = [YXTrainManager sharedInstance].trainHelper.w;
-    NSIndexPath *indexPath = nil;
-    NSInteger integer = -1;
-    if ([comment isKindOfClass:[NSIndexPath class]]) {
-        indexPath = comment;
-        ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[indexPath.section];
-        ActivityFirstCommentRequestItem_Body_Replies *reply = replie.replies[indexPath.row];
-        request.replyid = reply.replyID;
-        request.topicid = reply.topicid;
-    }else {
-        integer = ((NSString *)comment).integerValue;
-        ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
-        request.replyid = reply.replyID;
-        request.topicid = reply.topicid;
-    }
+    ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
+    request.replyid = reply.replyID;
+    request.topicid = reply.topicid;
     [self startLoading];
     WEAK_SELF
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -412,19 +373,10 @@
                 [self showToast:@"网络异常,请稍后重试"];
             }
         }else {
-            if (indexPath != nil) {
-                ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[indexPath.section];
-                ActivityFirstCommentRequestItem_Body_Replies *reply = replie.replies[indexPath.row];
-                reply.isRanked = @"true";
-                reply.up = [NSString stringWithFormat:@"%d",(int)(reply.up.integerValue + 1)];
-                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
-            if (integer >= 0) {
-                ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
-                reply.isRanked = @"true";
-                reply.up = [NSString stringWithFormat:@"%d",(int)(reply.up.integerValue + 1)];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
-            }
+            ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
+            reply.isRanked = @"true";
+            reply.up = [NSString stringWithFormat:@"%d",(int)(reply.up.integerValue + 1)];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }];
     self.laudRequest = request;
@@ -437,8 +389,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    return (replie.replies.count > 2) ? 2 : replie.replies.count;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -461,7 +412,7 @@
     [cell setActitvityCommentCellFavorBlock:^{
         STRONG_SELF
         if ([self isCheckActivityStatus]){
-            [self requestForCommentLaud:indexPath];
+            //[self requestForCommentLaud:indexPath];
         }
     }];
     return cell;
@@ -498,50 +449,61 @@
         if (section == 0) {
             headerView.distanceTop = kDistanceTopLong;
         }else {//没有二级评论间距缩小
-            ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section - 1];
-            if (replie.replies.count == 0) {
-                headerView.distanceTop = kDistanceTopShort;
-            }else {
-                headerView.distanceTop = kDistanceTopLong;
-            }
+            headerView.distanceTop = kDistanceTopShort;
         }
     }
     WEAK_SELF
     [headerView setActitvityCommentReplyBlock:^(ActivityFirstCommentRequestItem_Body_Replies *replie) {
         STRONG_SELF
-        if ([self isCheckActivityStatus]) {
-            if (self.replyInteger != section) {
-                [self.inputTextView inputTextViewClear];
+        if ([YXTrainManager sharedInstance].trainHelper.w.integerValue <= 3) {
+            if ([self isCheckActivityStatus]) {
+                if (self.replyInteger != section) {
+                    [self.inputTextView inputTextViewClear];
+                }
+                self.replyInteger = section;
+                [self inputActitvityCommentReply:replie];
             }
-            self.replyInteger = section;
-            [self inputActitvityCommentReply:replie];
+        }else {
+            SecondCommentViewController *VC = [[SecondCommentViewController alloc] init];
+            VC.tool = self.tool;
+            VC.parentID = replie.replyID;
+            VC.replie = replie;
+            VC.chooseInteger = section;
+            WEAK_SELF
+            [VC setRefreshBlock:^(NSInteger integer, NSString *isRanked, NSInteger totalInteger) {
+                STRONG_SELF
+                replie.isRanked = isRanked;
+                replie.childNum = [NSString stringWithFormat:@"%ld",(long)totalInteger];
+                [self.tableView beginUpdates];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView endUpdates];
+            }];
+            [self.navigationController pushViewController:VC animated:YES];
         }
-        
     }];
     [headerView setActitvityCommentFavorBlock:^{
         STRONG_SELF
         if ([self isCheckActivityStatus]) {
-            [self requestForCommentLaud:[NSString stringWithFormat:@"%ld",(long)section]];
+            [self requestForCommentLaud:section];
         }
     }];
     return headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [tableView yx_heightForCellWithIdentifier:@"ActitvityCommentHeaderView" configuration:^(ActitvityCommentHeaderView *header) {
+    return [tableView yx_heightForCellWithIdentifier:@"ActitvityCommentHeaderView" configuration:^(ActitvityCommentHeaderView *headerView) {
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-        header.isFontBold = YES;
-        header.replie = replie;
+        headerView.isFontBold = YES;
+        headerView.replie = replie;
         if (section == 0 && self.dataErrorView.isActivityVideo){
-            header.distanceTop = kDistanceTopMiddle;
+            headerView.distanceTop = kDistanceTopMiddle;
         }else {
             if (section == 0) {
-                header.distanceTop = kDistanceTopLong;
+                headerView.distanceTop = kDistanceTopLong;
             }else {
-                ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section - 1];
-                if (replie.replies.count == 0) {
-                    header.distanceTop = kDistanceTopShort;
-                }else {
-                    header.distanceTop = kDistanceTopLong;
+                if (section == 0) {
+                    headerView.distanceTop = kDistanceTopLong;
+                }else {//没有二级评论间距缩小
+                    headerView.distanceTop = kDistanceTopShort;
                 }
             }
         }
@@ -550,21 +512,13 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 2) {
+    if (replie.childNum.integerValue <= 0) {
         return nil;
     }else {
         if ([YXTrainManager sharedInstance].trainHelper.w.integerValue > 3) {
             ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
             footerView.tag = section + 1000;
-            WEAK_SELF
-            [footerView setActitvitySeeAllCommentReplyBlock:^(NSInteger tagInteger) {
-                STRONG_SELF
-                SecondCommentViewController *VC = [[SecondCommentViewController alloc] init];
-                VC.tool = self.tool;
-                VC.parentID = replie.replyID;
-                VC.replie = replie;
-                [self.navigationController pushViewController:VC animated:YES];
-            }];
+            footerView.childNum = replie.childNum;
             return footerView;
         }else {
             return nil;
@@ -573,7 +527,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 2) {
+    if (replie.childNum.integerValue <= 0) {
         return 0.0001f;
     }else {
         if ([YXTrainManager sharedInstance].trainHelper.w.integerValue > 3) {
@@ -587,12 +541,14 @@
 #pragma mark - inputView
 - (void)userPublishComment{
     if ([self isCheckActivityStatus]) {
-        if (self.replyInteger != -1) {
-            [self.inputTextView inputTextViewClear];
+        self.replyInteger = self.isFullReply ? 0 : -1;
+        if (self.replyInteger >= 0) {
+            ActivityFirstCommentRequestItem_Body_Replies *temp = self.dataMutableArray[self.replyInteger];
+            [self inputActitvityCommentReply:temp];
+        }else {
+            self.inputTextView.textView.placeholder = @"评论 :";
+            [self showCommentInputView];
         }
-        self.replyInteger = -1;
-        self.inputTextView.textView.placeholder = @"评论 :";
-        [self showCommentInputView];
     }
 }
 

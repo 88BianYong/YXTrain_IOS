@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 typedef void(^ActitvitySeeAllCommentReplyBlock) (NSInteger tagInteger);
 @interface ActitvityCommentFooterView : UITableViewHeaderFooterView
+@property (nonatomic, copy) NSString *childNum;
 
 - (void)setActitvitySeeAllCommentReplyBlock:(ActitvitySeeAllCommentReplyBlock)block;
 @end

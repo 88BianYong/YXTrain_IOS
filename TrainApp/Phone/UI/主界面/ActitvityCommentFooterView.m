@@ -50,4 +50,7 @@
 - (void)setActitvitySeeAllCommentReplyBlock:(ActitvitySeeAllCommentReplyBlock)block {
     self.replyBlock = block;
 }
+- (void)setChildNum:(NSString *)childNum {
+    [self.replyButton setTitle:[NSString stringWithFormat:@"%@条回复",childNum] forState:UIControlStateNormal];
+}
 @end

@@ -9,6 +9,7 @@
 //NSFoundationVersionNumber_iOS_7_0
 #import "ActivityCommentInputView.h"
 #import "YXPromtController.h"
+static NSInteger kMaxCommentNumberWords = 550;
 @interface ActivityCommentInputView ()<UITextViewDelegate>
 @property (nonatomic, strong) UILabel *inputNumberLabel;
 @property (nonatomic, strong) UILabel *totalNumberLabel;
@@ -72,7 +73,7 @@
     
     self.totalNumberLabel = [[UILabel alloc] init];
     self.totalNumberLabel.font = [UIFont systemFontOfSize:12.0f];
-    self.totalNumberLabel.text = @" / 200";
+    self.totalNumberLabel.text = [NSString stringWithFormat:@" / %ld",(long)kMaxCommentNumberWords];
     self.totalNumberLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self addSubview:self.totalNumberLabel];
 }
@@ -156,8 +157,8 @@
         self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"0067be"].CGColor;
         
     }
-    if (tempTextView.text.length > 200) {
-        tempTextView.text = [tempTextView.text substringToIndex:200];
+    if (tempTextView.text.length > kMaxCommentNumberWords) {
+        tempTextView.text = [tempTextView.text substringToIndex:kMaxCommentNumberWords];
     }
     self.inputNumberLabel.text = [NSString stringWithFormat:@"%d",(int)tempTextView.text.length];
 }

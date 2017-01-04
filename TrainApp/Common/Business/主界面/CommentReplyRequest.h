@@ -16,7 +16,7 @@
 @property (nonatomic, strong) CommentLaudRequestItem_Body<Optional> *body;
 @end
 
-@interface CommentReplyRequest : YXPostRequest
+@interface CommentReplyRequest : YXGetRequest
 @property (nonatomic, copy) NSString *parentid;
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *toolid;
