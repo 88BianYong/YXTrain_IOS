@@ -128,7 +128,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXCourseFilter *filter = (YXCourseFilter *)obj;
         if (self.status == YXCourseFromStatus_Market) {
-            if ([filter.name isEqualToString:@"课程超市"]) {
+            if ([filter.name isEqualToString:@"选修课程"]) {
                 self.stageID = filter.filterID;
                 YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
                 fetcher.stageid = filter.filterID;
@@ -192,7 +192,7 @@ static  NSString *const trackPageName = @"课程列表页面";
         __block NSInteger stageIndex = -1;
         [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YXCourseFilter *filter = (YXCourseFilter *)obj;
-            if ([filter.name isEqualToString:@"课程超市"]) {
+            if ([filter.name isEqualToString:@"选修课程"]) {
                 stageIndex = idx;
                 *stop = YES;
             }
@@ -286,21 +286,16 @@ static  NSString *const trackPageName = @"课程列表页面";
     NSNumber *num1 = filterArray[1];
     YXCourseFilterGroup *group1 = self.filterModel.groupArray[1];
     YXCourseFilter *studyItem = group1.filterArray[num1.integerValue];
-    // 类型
+    // 阶段
     NSNumber *num2 = filterArray[2];
     YXCourseFilterGroup *group2 = self.filterModel.groupArray[2];
-    YXCourseFilter *typeItem = group2.filterArray[num2.integerValue];
-    // 阶段
-    NSNumber *num3 = filterArray[3];
-    YXCourseFilterGroup *group3 = self.filterModel.groupArray[3];
-    YXCourseFilter *stageItem = group3.filterArray[num3.integerValue];
+    YXCourseFilter *stageItem = group2.filterArray[num2.integerValue];
     
-    DDLogDebug(@"Changed: 学段:%@，学科:%@，类型:%@，阶段:%@",segmentItem.name,studyItem.name,typeItem.name,stageItem.name);
+    DDLogDebug(@"Changed: 学段:%@，学科:%@，阶段:%@",segmentItem.name,studyItem.name,stageItem.name);
     
     YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
     fetcher.studyid = studyItem.filterID;
     fetcher.segid = segmentItem.filterID;
-    fetcher.type = typeItem.filterID;
     fetcher.stageid = stageItem.filterID;
     [self startLoading];
     [self firstPageFetch];

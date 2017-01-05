@@ -47,20 +47,6 @@
     YXCourseFilterGroup *g2 = [[YXCourseFilterGroup alloc]init];
     g2.name = @"学段";
     g2.filterArray = segmentArray;
-    // 类型
-    NSMutableArray *typeArray = [NSMutableArray array];
-    YXCourseFilter *typeWholeItem = [[YXCourseFilter alloc]init];
-    typeWholeItem.name = @"全部";
-    [typeArray addObject:typeWholeItem];
-    for (YXCourseListRequestItem_body_type *type in item.body.types) {
-        YXCourseFilter *item = [[YXCourseFilter alloc]init];
-        item.filterID = type.typeID;
-        item.name = type.name;
-        [typeArray addObject:item];
-    }
-    YXCourseFilterGroup *g3 = [[YXCourseFilterGroup alloc]init];
-    g3.name = @"类型";
-    g3.filterArray = typeArray;
     // 阶段
     NSMutableArray *stageArray = [NSMutableArray array];
     YXCourseFilter *stageWholeItem = [[YXCourseFilter alloc]init];
@@ -72,12 +58,12 @@
         item.name = stage.name;
         [stageArray addObject:item];
     }
-    YXCourseFilterGroup *g4 = [[YXCourseFilterGroup alloc]init];
-    g4.name = @"阶段";
-    g4.filterArray = stageArray;
+    YXCourseFilterGroup *g3 = [[YXCourseFilterGroup alloc]init];
+    g3.name = @"阶段";
+    g3.filterArray = stageArray;
     
     YXCourseListFilterModel *model = [[YXCourseListFilterModel alloc]init];
-    model.groupArray = @[g2,g1,g3,g4];
+    model.groupArray = @[g2,g1,g3];
     return model;
 }
 

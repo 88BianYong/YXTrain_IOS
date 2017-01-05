@@ -13,6 +13,7 @@
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *startTime;
+@property (nonatomic, copy) NSString *endTime;
 @property (nonatomic, copy) NSString *isJoin;//是否参与  0：未参与  1：已参与
 @property (nonatomic, copy) NSString *createUsername;
 @property (nonatomic, copy) NSString *studyName;

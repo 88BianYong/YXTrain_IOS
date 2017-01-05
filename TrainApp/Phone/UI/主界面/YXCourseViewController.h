@@ -11,7 +11,7 @@
 typedef NS_ENUM(NSUInteger, YXCourseFromStatus){
     YXCourseFromStatus_Course = 0,//课程
     YXCourseFromStatus_Stage = 1,//阶段
-    YXCourseFromStatus_Market = 2,//课程超市
+    YXCourseFromStatus_Market = 2,//选修课程
     YXCourseFromStatus_Local  = 3,//本地课程
 };
 

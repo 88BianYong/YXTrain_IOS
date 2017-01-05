@@ -19,6 +19,8 @@
     model.status = item.status;
     model.steps = [[NSMutableArray alloc] initWithArray:item.steps];
     model.stageId = item.stageId;
+    model.startTime = item.startTime;
+    model.endTime = item.endTime;
     return model;
 }
 

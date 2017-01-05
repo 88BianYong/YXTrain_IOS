@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString<Optional> *pic;
 @property (nonatomic, copy) NSString<Optional> *title;
 @property (nonatomic, copy) NSString<Optional> *startTime;
+@property (nonatomic, copy) NSString<Optional> *endTime;
 @property (nonatomic, copy) NSString<Optional> *isJoin;//是否参与  0：未参与  1：已参与
 @property (nonatomic, copy) NSString<Optional> *createUsername;
 @property (nonatomic, copy) NSString<Optional> *studyName;
