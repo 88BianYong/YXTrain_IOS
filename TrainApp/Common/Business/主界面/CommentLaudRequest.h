@@ -13,5 +13,5 @@
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, copy) NSString *toolid;
 @property (nonatomic, copy) NSString *topicid;
-@property (nonatomic, copy) NSString *w;
+@property (nonatomic, copy) NSString *stageId;
 @end

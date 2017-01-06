@@ -12,7 +12,7 @@ typedef void(^PagedListFetcherCompleteBlock)(int totalPage, int currentPage, int
 @property (nonatomic, strong) NSString *aid;
 @property (nonatomic, strong) NSString *toolid;
 @property (nonatomic, strong) NSString *parentid;
-@property (nonatomic, strong) NSString *w;
+@property (nonatomic, strong) NSString *stageId;
 @property (nonatomic, assign) int  pageIndex;
 @property (nonatomic, assign) int  pageSize;
 

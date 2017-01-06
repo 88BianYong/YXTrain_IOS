@@ -121,8 +121,8 @@
     WEAK_SELF
     [self.filterRequest startRequestWithRetClass:[ActivityFilterRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
         if (error) {
+            [self stopLoading];
             self.filterErrorView.frame = self.view.bounds;
             [self.view addSubview:self.filterErrorView];
             return;

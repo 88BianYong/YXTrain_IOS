@@ -145,6 +145,7 @@
         CommentPageListViewController *VC = [[CommentPageListViewController alloc] init];
         VC.tool = tool;
         VC.status = self.status;
+        VC.stageId = self.stageId;
         [self.navigationController pushViewController:VC animated:YES];
     } else if ([tool.toolType isEqualToString:@"resdisc"]) {//资源下载
         DownloadResourceViewController *downloadVc = [[DownloadResourceViewController alloc]init];

@@ -12,6 +12,8 @@ typedef void(^SecondCommentViewControllerRefreshBlock) (NSInteger integer, NSStr
 @property (nonatomic, strong) NSString *parentID;
 @property (nonatomic, strong) ActivityFirstCommentRequestItem_Body_Replies *replie;
 @property (nonatomic, assign) NSInteger chooseInteger;
+@property (nonatomic, assign) BOOL isShowInputView;
+
 @property (nonatomic, copy) void(^refreshBlock) (NSInteger integer, NSString *isRanked , NSInteger totalInteger);
 
 @end

@@ -9,7 +9,7 @@
 //NSFoundationVersionNumber_iOS_7_0
 #import "ActivityCommentInputView.h"
 #import "YXPromtController.h"
-static NSInteger kMaxCommentNumberWords = 550;
+static NSInteger kMaxCommentNumberWords = 500;
 @interface ActivityCommentInputView ()<UITextViewDelegate>
 @property (nonatomic, strong) UILabel *inputNumberLabel;
 @property (nonatomic, strong) UILabel *totalNumberLabel;
@@ -37,7 +37,7 @@ static NSInteger kMaxCommentNumberWords = 550;
 #pragma mark - setupUI
 - (void)setupUI {
     self.textView = [[SAMTextView alloc] init];
-    if ([YXTrainManager sharedInstance].trainHelper.w.integerValue <= 3) {//只有15评论不支持表情
+    if (self.stageId.integerValue <= 0) {//只有15评论不支持表情
         self.textView.delegate = self;
     }
     self.textView.placeholder = @"评论 :";

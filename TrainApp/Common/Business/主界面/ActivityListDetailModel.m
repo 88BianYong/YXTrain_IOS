@@ -18,6 +18,7 @@
     model.desc = item.desc;
     model.status = item.status;
     model.steps = [[NSMutableArray alloc] initWithArray:item.steps];
+    model.stageId = item.stageId;
     return model;
 }
 

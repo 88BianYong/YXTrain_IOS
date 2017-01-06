@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, copy) NSString *status;
+@property (nonatomic, copy) NSString *stageId;
 @property (nonatomic, strong) CommentPagedListFetcher *dataFetcher;
 @property (nonatomic, strong) NSMutableArray *dataMutableArray;
 @property (nonatomic, strong) ActivityStepListRequestItem_Body_Active_Steps_Tools *tool;
@@ -24,6 +25,5 @@
 - (void)setupUI;
 - (void)setupLayout;
 - (void)formatCommentContent;
-- (void)requestForCommentLaud:(NSInteger)integer;
-- (BOOL)isCheckActivityStatus;
+- (void)showCommentInputView;
 @end

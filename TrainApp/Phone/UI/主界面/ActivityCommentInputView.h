@@ -11,6 +11,7 @@ typedef void(^ActivityCommentShowInputViewBlock) (BOOL isShow);
 typedef void(^ActivityCommentInputTextBlock) (NSString *inputText);
 @interface ActivityCommentInputView : UIView
 @property (nonatomic, strong) SAMTextView *textView;
+@property (nonatomic, copy) NSString *stageId;
 
 - (void)setActivityCommentShowInputViewBlock:(ActivityCommentShowInputViewBlock)block;
 - (void)setActivityCommentInputTextBlock:(ActivityCommentInputTextBlock)block;

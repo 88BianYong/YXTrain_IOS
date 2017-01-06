@@ -266,6 +266,8 @@
 		9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9237FF761DD489390057FFDE /* ActivityStepListRequest.m */; };
 		9237FF791DD48F800057FFDE /* activityStep_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 9237FF781DD48F800057FFDE /* activityStep_mock.json */; };
 		9237FF7C1DD572400057FFDE /* ActivityFirstCommentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */; };
+		9241FFD91E1E1BE60015B587 /* ActivityCommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9241FFD81E1E1BE60015B587 /* ActivityCommentHeaderView.m */; };
+		9241FFDC1E1F39E30015B587 /* ActivityDelReplyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9241FFDB1E1F39E30015B587 /* ActivityDelReplyRequest.m */; };
 		924797E11E022C1F0033BFDC /* BeijingActivityFilterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 924797E01E022C1F0033BFDC /* BeijingActivityFilterRequest.m */; };
 		924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924AB24B1DE2A75E003EC952 /* ActivityPlayExceptionView.m */; };
 		924AB2561DE41C47003EC952 /* firstComment_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 924AB2541DE41C47003EC952 /* firstComment_mock.json */; };
@@ -1006,6 +1008,10 @@
 		9237FF781DD48F800057FFDE /* activityStep_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activityStep_mock.json; sourceTree = "<group>"; };
 		9237FF7A1DD572400057FFDE /* ActivityFirstCommentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFirstCommentRequest.h; sourceTree = "<group>"; };
 		9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFirstCommentRequest.m; sourceTree = "<group>"; };
+		9241FFD71E1E1BE60015B587 /* ActivityCommentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCommentHeaderView.h; sourceTree = "<group>"; };
+		9241FFD81E1E1BE60015B587 /* ActivityCommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCommentHeaderView.m; sourceTree = "<group>"; };
+		9241FFDA1E1F39E30015B587 /* ActivityDelReplyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDelReplyRequest.h; sourceTree = "<group>"; };
+		9241FFDB1E1F39E30015B587 /* ActivityDelReplyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDelReplyRequest.m; sourceTree = "<group>"; };
 		924797DF1E022C1E0033BFDC /* BeijingActivityFilterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityFilterRequest.h; sourceTree = "<group>"; };
 		924797E01E022C1F0033BFDC /* BeijingActivityFilterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityFilterRequest.m; sourceTree = "<group>"; };
 		924AB24A1DE2A75E003EC952 /* ActivityPlayExceptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayExceptionView.h; sourceTree = "<group>"; };
@@ -2794,6 +2800,8 @@
 				922901551DE576F5001474CE /* CommentReplyRequest.m */,
 				922901571DE57971001474CE /* CommentLaudRequest.h */,
 				922901581DE57971001474CE /* CommentLaudRequest.m */,
+				9241FFDA1E1F39E30015B587 /* ActivityDelReplyRequest.h */,
+				9241FFDB1E1F39E30015B587 /* ActivityDelReplyRequest.m */,
 			);
 			name = "评论";
 			sourceTree = "<group>";
@@ -2959,6 +2967,8 @@
 				9229015B1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m */,
 				9229015D1DE6C241001474CE /* VideoCommentErrorView.h */,
 				9229015E1DE6C241001474CE /* VideoCommentErrorView.m */,
+				9241FFD71E1E1BE60015B587 /* ActivityCommentHeaderView.h */,
+				9241FFD81E1E1BE60015B587 /* ActivityCommentHeaderView.m */,
 			);
 			name = "评论";
 			sourceTree = "<group>";
@@ -3905,6 +3915,7 @@
 				CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */,
 				CB3510DA1D1924110081EA3B /* YXAllDatumTableViewCell.m in Sources */,
 				CB1606071D2FC8490071BA01 /* UIImage+YXImage.m in Sources */,
+				9241FFD91E1E1BE60015B587 /* ActivityCommentHeaderView.m in Sources */,
 				923237731D825C6500FDACFE /* YXHelpViewController.m in Sources */,
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
@@ -3960,6 +3971,7 @@
 				923237351D79623E00FDACFE /* YXScoreLeadingGroupCell.m in Sources */,
 				7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */,
 				7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */,
+				9241FFDC1E1F39E30015B587 /* ActivityDelReplyRequest.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
 				924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */,
 				E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */,

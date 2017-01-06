@@ -29,7 +29,7 @@
     self.dataFetcher = [[CommentPagedListFetcher alloc] init];
     self.dataFetcher.aid = self.tool.aid;
     self.dataFetcher.toolid = self.tool.toolid;
-    self.dataFetcher.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.dataFetcher.stageId = self.stageId;
     self.dataFetcher.pageIndex = 1;
     self.dataFetcher.pageSize = 10;
     [super viewDidLoad];

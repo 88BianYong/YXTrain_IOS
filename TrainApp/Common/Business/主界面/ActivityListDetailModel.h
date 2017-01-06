@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString *status;//0=未开始;2=进行中;3=已完成;-1=关闭;-2=草稿;-5=删除
 @property (nonatomic, copy) NSString *source;//活动来源 club或train->研修网;zgjiaoyan->教研网
 @property (nonatomic, copy) NSString *joinUserCount;
+@property (nonatomic, copy) NSString *stageId;
 @property (nonatomic, strong) NSMutableArray<__kindof ActivityStepListRequestItem_Body_Active_Steps *> *steps;
 //活动详情model转换
 + (ActivityListDetailModel *)modelFromActivityDetailData:(ActivityStepListRequestItem_body_Active *)item ;

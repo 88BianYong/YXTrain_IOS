@@ -11,4 +11,5 @@
 @interface ActivityStepViewController : YXBaseViewController
 @property (nonatomic, strong) ActivityStepListRequestItem_Body_Active_Steps *activityStep;
 @property (nonatomic, copy) NSString *status;
+@property (nonatomic, copy) NSString *stageId;
 @end

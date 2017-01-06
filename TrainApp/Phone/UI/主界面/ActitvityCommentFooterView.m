@@ -11,6 +11,8 @@
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIButton *replyButton;
 @property (nonatomic, copy) ActitvitySeeAllCommentReplyBlock replyBlock;
+@property (nonatomic, strong) UIView *lineView;
+
 @end
 @implementation ActitvityCommentFooterView
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
@@ -23,27 +25,30 @@
 
 #pragma mark - setupUI
 - (void)setupUI {
-    self.bgView = [[UIView alloc] initWithFrame:CGRectMake(62.0f, 0.0f, kScreenWidth - 62.0f - 10.0f, 29.0f)];
-    self.bgView.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
-    [self.contentView addSubview:self.bgView];
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bgView.bounds byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:CGSizeMake(YXTrainCornerRadii, YXTrainCornerRadii)];
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.path = maskPath.CGPath;
-    self.bgView.layer.mask = maskLayer;
     self.replyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.replyButton setTitle:@"查看全部回复" forState:UIControlStateNormal];
     [self.replyButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
     self.replyButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.replyButton.frame = CGRectMake(71.0f + 6.0f, 0.0f, 90.0f, 14.0f);
+    self.replyButton.frame = CGRectMake(62.0f, 0.0f, 90.0f, 14.0f);
     self.replyButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.replyButton addTarget:self action:@selector(replyButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.replyButton];
+    
+    self.lineView = [[UIView alloc] init];
+    self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.contentView addSubview:self.lineView];
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(62.0f);
+        make.right.equalTo(self.contentView.mas_right);
+        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
+    }];
 }
 
 
 #pragma mark - button Action
 - (void)replyButtonAction:(UIButton *)sender {
-    BLOCK_EXEC(self.replyBlock,self.tag - 1000);
+    BLOCK_EXEC(self.replyBlock);
 }
 
 #pragma mark - set
@@ -51,6 +56,6 @@
     self.replyBlock = block;
 }
 - (void)setChildNum:(NSString *)childNum {
-    [self.replyButton setTitle:[NSString stringWithFormat:@"%@条回复",childNum] forState:UIControlStateNormal];
+    [self.replyButton setTitle:[NSString stringWithFormat:@"- %@条回复",childNum] forState:UIControlStateNormal];
 }
 @end

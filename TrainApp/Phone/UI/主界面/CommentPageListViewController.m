@@ -19,6 +19,8 @@
 #import "YXUserProfile.h"
 #import "UITableView+TemplateLayoutHeaderView.h"
 #import "SecondCommentViewController.h"
+#import "ActivityCommentHeaderView.h"
+#import "ActivityDelReplyRequest.h"
 @interface CommentPageListViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) int totalPage;
 @property (nonatomic, strong) MJRefreshFooterView *footerView;
@@ -29,6 +31,7 @@
 
 @property (nonatomic, strong) CommentReplyRequest *replyRequest;
 @property (nonatomic, strong) CommentLaudRequest *laudRequest;
+@property (nonatomic, strong) ActivityDelReplyRequest *deleteRequest;
 @property (nonatomic, assign) NSInteger replyInteger;
 
 
@@ -53,7 +56,7 @@
         self.dataFetcher = [[CommentPagedListFetcher alloc] init];
         self.dataFetcher.aid = self.tool.aid;
         self.dataFetcher.toolid = self.tool.toolid;
-        self.dataFetcher.w = [YXTrainManager sharedInstance].trainHelper.w;
+        self.dataFetcher.stageId = self.stageId;
         self.dataFetcher.pageIndex = 1;
         self.dataFetcher.pageSize = 20;
     }
@@ -75,8 +78,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor whiteColor];
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 5)];
-    headerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    
+    ActivityCommentHeaderView *headerView = [[ActivityCommentHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 20.0f)];
     self.tableView.tableHeaderView = headerView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ActitvityCommentCell class] forCellReuseIdentifier:@"ActitvityCommentCell"];
@@ -143,6 +146,7 @@
     [self.translucentView addGestureRecognizer:showRecognizer];
     
     self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
+    self.inputTextView.stageId = self.stageId;
     [self.inputTextView setActivityCommentShowInputViewBlock:^(BOOL isShow) {
         STRONG_SELF
         if (isShow) {
@@ -313,7 +317,7 @@
         ActivityFirstCommentRequestItem_Body_Replies *temp = self.dataMutableArray[self.replyInteger];
         request.parentid = temp.replyID;
         request.topicid = temp.topicid;
-        if ([YXTrainManager sharedInstance].trainHelper.w.integerValue <= 3) {
+        if (self.stageId.integerValue <= 0) {
             inputString = [NSString stringWithFormat:@"回复%@%@%@%@",kNameSeparator,temp.userName,kContentSeparator,inputString];
         }
     }
@@ -321,18 +325,14 @@
     request.aid = self.tool.aid;
     request.tooltype = self.tool.toolType;
     request.toolid = self.tool.toolid;
-    request.w = [YXTrainManager sharedInstance].trainHelper.w;
+    request.stageId = self.stageId;
     WEAK_SELF
     [request startRequestWithRetClass:[CommentReplyRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
         CommentReplyRequestItem *item = retItem;
         if (error) {
-            if (error.code == -2) {
-                [self showToast:@"数据错误"];
-            }else{
-                [self showToast:@"网络异常,请稍后重试"];
-            }
+            [self showErrorTotal:error];
         }else if (item.body.reply != nil){
             if (self.isFullReply) {
                 [self.dataMutableArray insertObject:item.body.reply atIndex:1];
@@ -357,7 +357,7 @@
     CommentLaudRequest *request = [[CommentLaudRequest alloc] init];
     request.aid = self.tool.aid;
     request.toolid = self.tool.toolid;
-    request.w = [YXTrainManager sharedInstance].trainHelper.w;
+    request.stageId = self.stageId;
     ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
     request.replyid = reply.replyID;
     request.topicid = reply.topicid;
@@ -367,11 +367,7 @@
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            if (error.code == -2) {
-                [self showToast:@"数据异常"];
-            }else{
-                [self showToast:@"网络异常,请稍后重试"];
-            }
+            [self showErrorTotal:error];
         }else {
             ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
             reply.isRanked = @"true";
@@ -380,6 +376,35 @@
         }
     }];
     self.laudRequest = request;
+}
+- (void)requestForcommentDelete:(NSInteger)integer {
+    if (self.deleteRequest) {
+        [self.deleteRequest stopRequest];
+    }
+    ActivityDelReplyRequest *request = [[ActivityDelReplyRequest alloc] init];
+    request.toolid = self.tool.toolid;
+    ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
+    request.replyid = reply.replyID;
+    request.topicid = reply.topicid;
+    [self startLoading];
+    WEAK_SELF
+    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
+        if (error) {
+            [self showErrorTotal:error];
+        }else {
+            self.totalNum --;
+            [self.dataMutableArray removeObjectAtIndex:integer];
+            [self.tableView beginUpdates];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView endUpdates];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TD:解决删除评论后section不对应问题
+                [self.tableView reloadData];
+            });
+        }
+    }];
+    self.deleteRequest = request;
 }
 
 
@@ -393,47 +418,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[indexPath.section];
-    ActivityFirstCommentRequestItem_Body_Replies *reply = replie.replies[indexPath.row];
     ActitvityCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActitvityCommentCell" forIndexPath:indexPath];
-    cell.reply = reply;
-    if (replie.childNum.integerValue <= 1) {
-        cell.cellStatus = ActitvityCommentCellStatus_Top | ActitvityCommentCellStatus_Bottom;
-    }else {
-        if (indexPath.row == 0) {
-            cell.cellStatus = ActitvityCommentCellStatus_Top;
-        } else if ((replie.childNum.integerValue == replie.replies.count) && (indexPath.row == replie.replies.count - 1)) {
-            cell.cellStatus = ActitvityCommentCellStatus_Bottom;
-        } else {
-            cell.cellStatus = ActitvityCommentCellStatus_Middle;
-        }
-    }
-    WEAK_SELF
-    [cell setActitvityCommentCellFavorBlock:^{
-        STRONG_SELF
-        if ([self isCheckActivityStatus]){
-            //[self requestForCommentLaud:indexPath];
-        }
-    }];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [tableView fd_heightForCellWithIdentifier:@"ActitvityCommentCell" configuration:^(ActitvityCommentCell *cell) {
-        ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[indexPath.section];
-        ActivityFirstCommentRequestItem_Body_Replies *reply = replie.replies[indexPath.row];
-        cell.reply = reply;
-        if (replie.childNum.integerValue <= 1) {
-            cell.cellStatus = ActitvityCommentCellStatus_Top | ActitvityCommentCellStatus_Bottom;
-        }else {
-            if (indexPath.row == 0) {
-                cell.cellStatus = ActitvityCommentCellStatus_Top;
-            } else if ((replie.childNum.integerValue == replie.replies.count) && (indexPath.row == replie.replies.count - 1)) {
-                cell.cellStatus = ActitvityCommentCellStatus_Bottom;
-            } else {
-                cell.cellStatus = ActitvityCommentCellStatus_Middle;
-            }
-        }
-    }];
+    return 0.0001f;
 }
 
 #pragma mark - UITableViewDataSource
@@ -441,21 +430,28 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
-    headerView.isFontBold = YES;
-    headerView.replie = replie;
-    if (section == 0 && self.dataErrorView.isActivityVideo) {//只有视频的第一个评论显示高度不同
-        headerView.distanceTop = kDistanceTopMiddle;
+    headerView.stageId = self.stageId;
+    headerView.isShowDelete = [replie.userId isEqualToString:[YXUserManager sharedManager].userModel.uid];
+    if (!self.isFullReply || section == 0) {
+        headerView.isFontBold = YES;
+        headerView.replie = replie;
     }else {
-        if (section == 0) {
-            headerView.distanceTop = kDistanceTopLong;
-        }else {//没有二级评论间距缩小
-            headerView.distanceTop = kDistanceTopShort;
-        }
+        headerView.isFontBold = NO;
+        headerView.replie = replie;
     }
+    headerView.isShowLine = replie.childNum.integerValue <= 0;
+    if (self.isFullReply && section == 0) {
+        headerView.isShowDelete = NO;
+        headerView.isShowLine = NO;
+    }
+    headerView.distanceTop = kDistanceTopShort;
     WEAK_SELF
     [headerView setActitvityCommentReplyBlock:^(ActivityFirstCommentRequestItem_Body_Replies *replie) {
         STRONG_SELF
-        if ([YXTrainManager sharedInstance].trainHelper.w.integerValue <= 3) {
+        if (self.isFullReply) {
+            return;
+        }
+        if (self.stageId.integerValue <= 0) {
             if ([self isCheckActivityStatus]) {
                 if (self.replyInteger != section) {
                     [self.inputTextView inputTextViewClear];
@@ -464,21 +460,7 @@
                 [self inputActitvityCommentReply:replie];
             }
         }else {
-            SecondCommentViewController *VC = [[SecondCommentViewController alloc] init];
-            VC.tool = self.tool;
-            VC.parentID = replie.replyID;
-            VC.replie = replie;
-            VC.chooseInteger = section;
-            WEAK_SELF
-            [VC setRefreshBlock:^(NSInteger integer, NSString *isRanked, NSInteger totalInteger) {
-                STRONG_SELF
-                replie.isRanked = isRanked;
-                replie.childNum = [NSString stringWithFormat:@"%ld",(long)totalInteger];
-                [self.tableView beginUpdates];
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
-                [self.tableView endUpdates];
-            }];
-            [self.navigationController pushViewController:VC animated:YES];
+            [self showFullReply:section withShow:YES];
         }
     }];
     [headerView setActitvityCommentFavorBlock:^{
@@ -487,54 +469,58 @@
             [self requestForCommentLaud:section];
         }
     }];
+    [headerView setActitvityCommentDeleteBlock:^(UIButton *sender) {
+        STRONG_SELF
+        LSTAlertView *alertView = [[LSTAlertView alloc]init];
+        alertView.title = @"确定删除我的评论?";
+        alertView.imageName = @"失败icon";
+        [alertView addButtonWithTitle:@"删除" style:LSTAlertActionStyle_Cancel action:^{
+            STRONG_SELF
+            [self requestForcommentDelete:section];
+        }];
+        [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Default action:^{
+            STRONG_SELF
+        }];
+        [alertView show];        
+    }];
     return headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return [tableView yx_heightForCellWithIdentifier:@"ActitvityCommentHeaderView" configuration:^(ActitvityCommentHeaderView *headerView) {
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-        headerView.isFontBold = YES;
-        headerView.replie = replie;
-        if (section == 0 && self.dataErrorView.isActivityVideo){
-            headerView.distanceTop = kDistanceTopMiddle;
+        headerView.stageId = self.stageId;
+        if (!self.isFullReply || section == 0) {
+            headerView.isFontBold = YES;
+            headerView.replie = replie;
         }else {
-            if (section == 0) {
-                headerView.distanceTop = kDistanceTopLong;
-            }else {
-                if (section == 0) {
-                    headerView.distanceTop = kDistanceTopLong;
-                }else {//没有二级评论间距缩小
-                    headerView.distanceTop = kDistanceTopShort;
-                }
-            }
+            headerView.isFontBold = NO;
+            headerView.replie = replie;
         }
+        headerView.distanceTop = kDistanceTopShort;
     }];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 0) {
+    if (replie.childNum.integerValue <= 0 || self.stageId.integerValue <= 0) {
         return nil;
     }else {
-        if ([YXTrainManager sharedInstance].trainHelper.w.integerValue > 3) {
-            ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
-            footerView.tag = section + 1000;
-            footerView.childNum = replie.childNum;
-            return footerView;
-        }else {
-            return nil;
-        }
+        ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
+        footerView.childNum = replie.childNum;
+        WEAK_SELF
+        [footerView setActitvitySeeAllCommentReplyBlock:^() {
+            STRONG_SELF
+            [self showFullReply:section withShow:NO];
+        }];
+        return footerView;
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 0) {
+    if (replie.childNum.integerValue <= 0 || self.stageId.integerValue <= 0) {
         return 0.0001f;
     }else {
-        if ([YXTrainManager sharedInstance].trainHelper.w.integerValue > 3) {
-            return 29.0f;
-        }else {
-            return 0.0001f;
-        }
+        return 29.0f;
     }
 }
 
@@ -558,6 +544,33 @@
 - (void)hiddenCommentInputView {
     [self.inputTextView.textView resignFirstResponder];
 }
+- (void)showErrorTotal:(NSError *)error {
+    if (error.code == -2) {
+        [self showToast:@"数据异常"];
+    }else{
+        [self showToast:@"网络异常,请稍后重试"];
+    }
+}
+- (void)showFullReply:(NSInteger)section withShow:(BOOL)isShow {
+    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
+    SecondCommentViewController *VC = [[SecondCommentViewController alloc] init];
+    VC.tool = self.tool;
+    VC.parentID = replie.replyID;
+    VC.replie = replie;
+    VC.chooseInteger = section;
+    VC.stageId = self.stageId;
+    VC.isShowInputView = isShow;
+    WEAK_SELF
+    [VC setRefreshBlock:^(NSInteger integer, NSString *isRanked, NSInteger totalInteger) {
+        STRONG_SELF
+        replie.isRanked = isRanked;
+        replie.childNum = [NSString stringWithFormat:@"%ld",(long)totalInteger];
+        [self.tableView beginUpdates];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView endUpdates];
+    }];
+    [self.navigationController pushViewController:VC animated:YES];
+}
 
 - (void)inputActitvityCommentReply:(ActivityFirstCommentRequestItem_Body_Replies *)replies {
     self.inputTextView.textView.placeholder = [NSString stringWithFormat:@"回复 %@:",replies.userName];
@@ -568,11 +581,15 @@
     if (self.status.integerValue == 3) {
         [self showToast:@"活动已结束"];
         return NO;
-    }else {
-        return YES;
+    }else if (self.status.integerValue == 4){
+        [self showToast:@"活动所在阶段已关闭"];
+        return NO;
     }
+    return YES;
+
 }
 - (void)formatCommentContent{
     
 }
+
 @end

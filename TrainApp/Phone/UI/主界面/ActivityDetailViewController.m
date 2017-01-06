@@ -116,6 +116,7 @@
         ActivityStepViewController *VC = [[ActivityStepViewController alloc] init];
         VC.activityStep = self.detailModel.steps[indexPath.section];
         VC.status = self.detailModel.status;
+        VC.stageId = self.detailModel.stageId;
         [self.navigationController pushViewController:VC animated:YES];
     }else {
         [self showToast:@"活动尚未开始"];

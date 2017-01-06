@@ -23,7 +23,7 @@
     request.pageSize = [NSString stringWithFormat:@"%d", self.pageSize];
     request.toolid = self.toolid;
     request.parentid = self.parentid;
-    request.w = self.w;
+    request.stageId = self.stageId;
     WEAK_SELF
     [request startRequestWithRetClass:[ActivityFirstCommentRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
