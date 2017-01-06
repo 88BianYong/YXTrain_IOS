@@ -76,15 +76,6 @@ UITableViewDataSource
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 10.0f)];
     _tableView.tableHeaderView = headerView;
     [self.view addSubview:_tableView];
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstGoInHomeworkList]) {
-        static NSString * staticString = @"YXHomeworkPromptView";
-        UIView *promptView = [[NSClassFromString(staticString) alloc] init];
-        [self.view addSubview:promptView];
-        [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkList];
-    }
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
@@ -194,6 +185,15 @@ UITableViewDataSource
         YXHomeworkListRequestItem *item = retItem;
         self -> _listItem = item;
         [self ->_tableView reloadData];
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstGoInHomeworkList]) {
+            static NSString * staticString = @"YXHomeworkPromptView";
+            UIView *promptView = [[NSClassFromString(staticString) alloc] init];
+            [self.view addSubview:promptView];
+            [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkList];
+        }
     }];
     _listRequest = request;
 }

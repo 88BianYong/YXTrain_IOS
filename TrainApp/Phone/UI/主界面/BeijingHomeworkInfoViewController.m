@@ -40,16 +40,6 @@ static  NSString *const trackPageName = @"作业详情页面";
     self.infoView = [[BeijingHomeworkInfoView alloc] init];
     self.infoView.hidden = YES;
     [self.scrollView addSubview:self.infoView];
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstGoInHomeworkInfo]) {
-        static NSString * staticString = @"YXHomeworkPromptView";
-        UIView *promptView = [[NSClassFromString(staticString) alloc] init];
-        [self.view addSubview:promptView];
-        [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkInfo];
-    }
-    
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
@@ -105,6 +95,15 @@ static  NSString *const trackPageName = @"作业详情页面";
         self.title = item.body.title;
         self.infoView.hidden = NO;
         self.infoView.body = item.body;
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstGoInHomeworkInfo]) {
+            static NSString * staticString = @"YXHomeworkPromptView";
+            UIView *promptView = [[NSClassFromString(staticString) alloc] init];
+            [self.view addSubview:promptView];
+            [promptView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkInfo];
+        }
     }];
     self.infoRequest = request;
 }
