@@ -13,6 +13,7 @@
 @interface ActivityDetailTableHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *statusImageView;
+@property (nonatomic, strong) UILabel *timeLabel;//活动起止时间
 @property (nonatomic, strong) UILabel *publisherTitleLabel;
 @property (nonatomic, strong) UILabel *publisherContentLabel;
 @property (nonatomic, strong) UILabel *studyTitleLabel;//学科
@@ -70,6 +71,11 @@
     
     self.statusImageView = [[UIImageView alloc] init];
     [self addSubview:self.statusImageView];
+    
+    self.timeLabel = [[UILabel alloc]init];
+    self.timeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    self.timeLabel.font = [UIFont systemFontOfSize:11.0f];
+    [self addSubview:self.timeLabel];
     
     self.publisherTitleLabel = [self formatTitleLabel];
     self.publisherTitleLabel.text = @"发布人";
@@ -166,9 +172,13 @@
         make.centerX.equalTo(self.mas_centerX);
     }];
     
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self);
+        make.top.equalTo(self.statusImageView.mas_bottom).offset(9.0f);
+    }];
     [self.publisherTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_centerX).offset(-9.0f);
-        make.top.equalTo(self.statusImageView.mas_bottom).offset(14.0f);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(14.0f);
     }];
     [self.publisherContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_centerX).offset(9.0f);
@@ -281,17 +291,12 @@
 - (void)setModel:(ActivityListDetailModel *)model{
     _model = model;
     self.titleLabel.attributedText = [self attributedStringForTitle:_model.title?:@""];
+    self.timeLabel.text = [self formatTimeWithStartTime:_model.startTime endTime:_model.endTime];
     self.publisherContentLabel.text = _model.createUsername;
     self.studyContentLabel.text = _model.segmentName;
     self.segmentContentLabel.text = _model.studyName;
     self.participantsContentLabel.text = _model.joinUserCount;
-    if (_model.status.integerValue == 0) {
-        self.statusImageView.image = [UIImage imageNamed:@"未开始标签"];
-    }else if (_model.status.integerValue == 2 || _model.status.integerValue == 1) {
-        self.statusImageView.image = [UIImage imageNamed:@"进行中标签"];
-    }else {
-        self.statusImageView.image = [UIImage imageNamed:@"已结束标签"];//3
-    }
+    self.statusImageView.image = [self formatStatusImageWithStatus:_model.status];
 //        NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
 //        _model.desc = [NSString stringWithContentsOfFile:readmePath
 //                                                       encoding:NSUTF8StringEncoding
@@ -305,7 +310,39 @@
     }];
     self.htmlView.attributedString = string;
 }
-
+- (NSString *)formatTimeWithStartTime:(NSString *)startTime endTime:(NSString *)endTime {
+    if (isEmpty(startTime) && isEmpty(endTime)) {
+        return @"";
+    }
+    if (!isEmpty(startTime) && isEmpty(endTime)) {
+        return [NSString stringWithFormat:@"%@ 开始",startTime];
+    }
+    if (isEmpty(startTime) && !isEmpty(endTime)) {
+        return [NSString stringWithFormat:@"%@ 结束",endTime];
+    }
+    NSString *time = [NSString stringWithFormat:@"%@ 至 %@",startTime,endTime];
+    return time;
+}
+- (UIImage *)formatStatusImageWithStatus:(NSString *)status {
+    NSString *imageName;
+    switch (status.integerValue) {
+        case 0:
+            imageName = @"未开始标签";
+            break;
+        case 2:
+            imageName = @"进行中标签";
+            break;
+        case 3:
+            imageName = @"已结束标签";
+            break;
+        case 4:
+            imageName = @"阶段关闭标签";
+            break;
+        default:
+            break;
+    }
+    return [UIImage imageNamed:imageName];
+}
 #pragma mark - format data
 - (NSMutableAttributedString *)attributedStringForTitle:(NSString *)titleString {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:titleString];

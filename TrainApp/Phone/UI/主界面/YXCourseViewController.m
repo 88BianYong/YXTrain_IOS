@@ -297,6 +297,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     fetcher.studyid = studyItem.filterID;
     fetcher.segid = segmentItem.filterID;
     fetcher.stageid = stageItem.filterID;
+    fetcher.type = @"0";//类型不进行筛选 默认全部
     [self startLoading];
     [self firstPageFetch];
 }

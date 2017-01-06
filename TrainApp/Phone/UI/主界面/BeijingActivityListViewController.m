@@ -184,7 +184,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ActivityListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    BeijingActivityListCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if ([cell.activity.source isEqualToString:@"zgjiaoyan"]) {//目前暂不支持教研网的活动
         [self showToast:@"暂不支持教研网活动"];
     }else if ([cell.activity.status isEqualToString:@"-1"]) {//活动关闭

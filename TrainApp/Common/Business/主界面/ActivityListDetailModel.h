@@ -19,7 +19,7 @@
 @property (nonatomic, copy) NSString *studyName;
 @property (nonatomic, copy) NSString *segmentName;
 @property (nonatomic, copy) NSString *desc;
-@property (nonatomic, copy) NSString *status;//0=未开始;2=进行中;3=已完成;-1=关闭;-2=草稿;-5=删除
+@property (nonatomic, copy) NSString *status;//0=未开始;2=进行中;3=已完成;4=阶段关闭;-1=关闭;-2=草稿;-5=删除
 @property (nonatomic, copy) NSString *source;//活动来源 club或train->研修网;zgjiaoyan->教研网
 @property (nonatomic, copy) NSString *joinUserCount;
 @property (nonatomic, copy) NSString *stageId;

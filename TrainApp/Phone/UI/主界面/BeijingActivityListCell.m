@@ -10,9 +10,10 @@
 @interface BeijingActivityListCell ()
 @property (nonatomic, strong) UIImageView *activityImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *startTimeLabel;
 @property (nonatomic, strong) UILabel *isJoinLabel;
 @property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) UILabel *statusLabel;
+@property (nonatomic, strong) UILabel *joinUserCountLabel;
 @end
 @implementation BeijingActivityListCell
 
@@ -53,10 +54,17 @@
     self.titleLabel.numberOfLines = 0;
     [self.contentView addSubview:self.titleLabel];
 
-    self.startTimeLabel = [[UILabel alloc]init];
-    self.startTimeLabel.font = [UIFont systemFontOfSize:11];
-    self.startTimeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    [self.contentView addSubview:self.startTimeLabel];
+    self.statusLabel = [[UILabel alloc]init];
+    self.statusLabel.font = [UIFont systemFontOfSize:11];
+    self.statusLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    self.statusLabel.text = @"进行中";
+    [self.contentView addSubview:self.statusLabel];
+    
+    self.joinUserCountLabel = [[UILabel alloc]init];
+    self.joinUserCountLabel.font = [UIFont systemFontOfSize:11];
+    self.joinUserCountLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    self.joinUserCountLabel.text = @"20人参与";
+    [self.contentView addSubview:self.joinUserCountLabel];
     
     self.isJoinLabel = [[UILabel alloc]init];
     self.isJoinLabel.font = [UIFont systemFontOfSize:10];
@@ -85,13 +93,15 @@
         make.top.mas_equalTo(10.0f).priorityHigh();
         make.right.mas_equalTo(-20);
     }];
-    [self.startTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLabel);
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(8.0f).priorityHigh();
-        make.right.mas_equalTo(-20.0f);
-        make.bottom.lessThanOrEqualTo(self.contentView.mas_bottom).offset(-15.0f).priorityLow();
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(9.0f);
     }];
-    
+    [self.joinUserCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.statusLabel.mas_right).offset(15.0f);
+        make.centerY.equalTo(self.statusLabel);
+        make.right.equalTo(self.contentView);
+    }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.activityImageView.mas_left);
         make.right.mas_equalTo(0);
@@ -103,8 +113,8 @@
     _activity = activity;
     [self.activityImageView sd_setImageWithURL:[NSURL URLWithString:activity.pic] placeholderImage:[UIImage imageNamed:@"默认图片"]];
     self.titleLabel.text = _activity.title;
-    
-    self.startTimeLabel.text = [NSString stringWithFormat:@"开始时间  %@",_activity.startTime];
+    self.statusLabel.text = [self showStatusContentWithStatus:activity.status];
+    self.joinUserCountLabel.text = [NSString stringWithFormat:@"%@人参与",activity.joinUserCount];
     if ([activity.isJoin isEqualToString:@"1"]) {
         [self.contentView addSubview:self.isJoinLabel];
         [self.isJoinLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -127,5 +137,28 @@
     [titleLabelAttributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [self.titleLabel.text length])];
     self.titleLabel.attributedText = titleLabelAttributedString;
 }
-
+- (NSString *)showStatusContentWithStatus:(NSString *)status {
+    //0=未开始;2=进行中;3=已完成;4=阶段关闭-1=关闭;-2=草稿;-5=删除
+    NSString *statusContent;
+    switch (status.integerValue) {
+        case -1:
+            statusContent = @"已关闭";
+            break;
+        case 0:
+            statusContent = @"未开始";
+            break;
+        case 2:
+            statusContent = @"进行中";
+            break;
+        case 3:
+            statusContent = @"已结束";
+            break;
+        case 4:
+            statusContent = @"阶段关闭";
+            break;
+        default:
+            break;
+    }
+    return statusContent;
+}
 @end
