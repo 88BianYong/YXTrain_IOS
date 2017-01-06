@@ -48,7 +48,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     if (self.isShowInputView) {
-        [self showCommentInputView];
+        [self userPublishComment];
     }
 }
 - (void)naviLeftAction {

@@ -25,5 +25,5 @@
 - (void)setupUI;
 - (void)setupLayout;
 - (void)formatCommentContent;
-- (void)showCommentInputView;
+- (void)userPublishComment;
 @end

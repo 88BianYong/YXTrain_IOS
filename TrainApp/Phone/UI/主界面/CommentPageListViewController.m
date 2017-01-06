@@ -67,11 +67,17 @@
     [self startLoading];
     [self firstPageFetch];
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.translucentView.hidden = NO;
+}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.inputTextView inputTextViewClear];
+    self.translucentView.hidden = YES;
 }
+
 #pragma mark - setupUI
 - (void)setupUI {
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
