@@ -477,6 +477,9 @@
     }];
     [headerView setActitvityCommentDeleteBlock:^(UIButton *sender) {
         STRONG_SELF
+        if (![self isCheckActivityStatus]) {
+            return;
+        }
         LSTAlertView *alertView = [[LSTAlertView alloc]init];
         alertView.title = @"确定删除我的评论?";
         alertView.imageName = @"失败icon";
@@ -558,9 +561,6 @@
     }
 }
 - (void)showFullReply:(NSInteger)section withShow:(BOOL)isShow {
-    if (![self isCheckActivityStatus]){
-        return;
-    }
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     SecondCommentViewController *VC = [[SecondCommentViewController alloc] init];
     VC.tool = self.tool;
@@ -569,6 +569,7 @@
     VC.chooseInteger = section;
     VC.stageId = self.stageId;
     VC.isShowInputView = isShow;
+    VC.status = self.status;
     WEAK_SELF
     [VC setRefreshBlock:^(NSInteger integer, NSString *isRanked, NSInteger totalInteger) {
         STRONG_SELF
