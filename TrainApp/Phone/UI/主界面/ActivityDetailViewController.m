@@ -15,7 +15,7 @@
 @interface ActivityDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ActivityDetailTableHeaderView *headerView;
-
+@property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) ActivityDetailManger *detailManger;
 @property (nonatomic, strong) ActivityListDetailModel *detailModel;
 @end
@@ -74,6 +74,7 @@
         self.tableView.tableHeaderView = self.headerView;
         [self.headerView relayoutHtmlText];
     }];
+    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 20)];
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
