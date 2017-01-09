@@ -204,7 +204,7 @@
     if (num0.integerValue != self.filterModel.chooseInteger) {
         self.filterModel.chooseInteger = num0.integerValue;
         [self refreshDealWithFilterModel];
-    }{
+    }else {
         // 学科
         num1 = filterArray[1];
     }
