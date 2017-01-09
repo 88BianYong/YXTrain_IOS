@@ -34,6 +34,8 @@
 @property (nonatomic, strong) ActivityDelReplyRequest *deleteRequest;
 @property (nonatomic, assign) NSInteger replyInteger;
 
+@property (nonatomic, assign) BOOL isFirstShowInput;
+
 
 @end
 
@@ -52,6 +54,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"讨论";
+    self.isFirstShowInput = YES;
     if (self.dataFetcher == nil) {
         self.dataFetcher = [[CommentPagedListFetcher alloc] init];
         self.dataFetcher.aid = self.tool.aid;
@@ -80,6 +83,10 @@
 
 #pragma mark - setupUI
 - (void)setupUI {
+    self.contentView = [[UIView alloc] init];
+    [self.view addSubview:self.contentView];
+    
+    
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -91,12 +98,12 @@
     [self.tableView registerClass:[ActitvityCommentCell class] forCellReuseIdentifier:@"ActitvityCommentCell"];
     [self.tableView registerClass:[ActitvityCommentHeaderView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentHeaderView"];
     [self.tableView registerClass:[ActitvityCommentFooterView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentFooterView"];
-    [self.view addSubview:self.tableView];
+    [self.contentView addSubview:self.tableView];
     self.emptyView = [[YXEmptyView alloc] init];
     self.emptyView.imageName = @"暂无评论";
     self.emptyView.title = @"暂无评论";
     self.emptyView.hidden = YES;
-    [self.view addSubview:self.emptyView];
+    [self.contentView addSubview:self.emptyView];
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.hidden = YES;
@@ -105,10 +112,10 @@
         [self startLoading];
         [self firstPageFetch];
     }];
-    [self.view addSubview:self.errorView];
+    [self.contentView addSubview:self.errorView];
     
     self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
-    [self.view addSubview:self.dataErrorView];
+    [self.contentView addSubview:self.dataErrorView];
     self.dataErrorView.hidden = YES;
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
@@ -141,7 +148,7 @@
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     self.totalPage = (int)[self.dataMutableArray count];
     self.sendView = [[SendCommentView alloc] init];
-    [self.view addSubview:self.sendView];
+    [self.contentView addSubview:self.sendView];
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userPublishComment)];
     [self.sendView addGestureRecognizer:recognizer];
     self.translucentView = [[UIView alloc] init];
@@ -174,13 +181,11 @@
     }];
     [self.navigationController.view addSubview:self.inputTextView];
 }
-- (void)startLoading {
-    [YXPromtController startLoadingInView:self.tableView];
-}
-- (void)stopLoading {
-    [YXPromtController stopLoadingInView:self.tableView];
-}
 - (void)setupLayout {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
     [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
@@ -251,6 +256,7 @@
                 self.totalPage = 0;
                 [self showToast:error.localizedDescription];
             }
+            self.isFirstShowInput = NO;
         }else {
             [self.dataMutableArray removeAllObjects];
             [self formatCommentContent];
@@ -268,6 +274,10 @@
             }
             [self.tableView reloadData];
             self.tableView.contentOffset = CGPointZero;
+            if (self.isFirstShowInput) {
+                [self firstShowInputView];
+                self.isFirstShowInput = NO;
+            }
         }
 
     }];
@@ -305,12 +315,12 @@
 }
 - (void)showErroView {
     self.errorView.hidden = NO;
-    [self.view bringSubviewToFront:self.errorView];
+    [self.contentView bringSubviewToFront:self.errorView];
 }
 
 - (void)showDataErrorView {
     self.dataErrorView.hidden = NO;
-    [self.view bringSubviewToFront:self.dataErrorView];
+    [self.contentView bringSubviewToFront:self.dataErrorView];
 }
 
 - (void)requestForCommentReply:(NSString *)inputString {
@@ -599,6 +609,9 @@
 
 }
 - (void)formatCommentContent{
+    
+}
+- (void)firstShowInputView {
     
 }
 

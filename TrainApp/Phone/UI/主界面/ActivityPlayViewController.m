@@ -18,13 +18,13 @@
 @property (nonatomic, strong) ActivityPlayManagerView *playMangerView;
 @property (nonatomic, strong) ActivityToolVideoRequest *videoRequest;
 @property (nonatomic, strong) ActivityToolVideoRequestItem *toolVideoItem;
-
 @end
 
 @implementation ActivityPlayViewController
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
+
 - (void)viewDidLoad {
     self.dataFetcher = [[CommentPagedListFetcher alloc] init];
     self.dataFetcher.aid = self.tool.aid;
@@ -96,6 +96,12 @@
 }
 - (void)setupLayout {
     [super setupLayout];
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.top.equalTo(self.playMangerView.mas_bottom);
+    }];
     [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
@@ -146,6 +152,21 @@
         make.height.equalTo(self.playMangerView.mas_width).multipliedBy(9.0 / 16.0).priority(999);
     }];
     [self.view layoutIfNeeded];
+}
+- (void)startLoading {
+    [YXPromtController startLoadingInView:self.contentView];
+}
+- (void)stopLoading {
+    [YXPromtController stopLoadingInView:self.contentView];
+    dispatch_async(dispatch_get_main_queue(), ^{//fix bug 367
+        NSArray *subviews = [self.contentView subviews];
+        for (UIView *view in subviews) {
+            if ([view isKindOfClass:[MBProgressHUD class]]) {
+                [self.contentView bringSubviewToFront:view];
+                break;
+            }
+        }
+    });
 }
 
 - (void)showEnclosureButton:(ActivityToolVideoRequestItem_Body_Content *)content {

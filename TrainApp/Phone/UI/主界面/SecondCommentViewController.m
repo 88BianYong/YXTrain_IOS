@@ -45,12 +45,6 @@
     self.tableView.dataSource = self;
     [self.tableView registerClass:[SecondCommentFooterView class] forHeaderFooterViewReuseIdentifier:@"SecondCommentFooterView"];
 }
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (self.isShowInputView) {
-        [self userPublishComment];
-    }
-}
 - (void)naviLeftAction {
     if (self.dataMutableArray.count > 0) {
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[0];
@@ -90,5 +84,12 @@
 }
 - (void)formatCommentContent{
     [self.dataMutableArray addObject:self.replie];
+}
+- (void)firstShowInputView {
+    if(self.isShowInputView && self.status.integerValue != 3 &self.status.integerValue != 4) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//动画执行需要延时
+            [self userPublishComment];
+        });
+    }
 }
 @end
