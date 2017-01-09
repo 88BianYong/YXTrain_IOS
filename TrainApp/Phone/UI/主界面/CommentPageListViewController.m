@@ -558,6 +558,9 @@
     }
 }
 - (void)showFullReply:(NSInteger)section withShow:(BOOL)isShow {
+    if ([self isCheckActivityStatus]){
+        return;
+    }
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     SecondCommentViewController *VC = [[SecondCommentViewController alloc] init];
     VC.tool = self.tool;

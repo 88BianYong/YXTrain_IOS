@@ -30,7 +30,7 @@
     }];
     
     UILabel *label = [[UILabel alloc] init];
-    label.text = @"发布评论 (200字以内) ...";
+    label.text = @"发布评论 (500字以内) ...";
     label.backgroundColor = [UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor colorWithHexString:@"a1a7ae"];
