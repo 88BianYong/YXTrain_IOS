@@ -10,5 +10,6 @@
 @class ActivityStepListRequestItem_Body_Active_Steps_Tools;
 @interface DownloadResourceViewController : YXBaseViewController
 @property (nonatomic, copy) NSString *status;
+@property (nonatomic, copy) NSString *stageId;
 @property (nonatomic, strong) ActivityStepListRequestItem_Body_Active_Steps_Tools *tool;
 @end

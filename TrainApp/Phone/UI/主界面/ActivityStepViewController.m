@@ -140,6 +140,7 @@
         ActivityPlayViewController *VC = [[ActivityPlayViewController alloc] init];
         VC.tool = tool;
         VC.status = self.status;
+        VC.stageId = self.stageId;
         [self.navigationController pushViewController:VC animated:YES];
     }else if ([tool.toolType isEqualToString:@"discuss"]){//讨论
         CommentPageListViewController *VC = [[CommentPageListViewController alloc] init];
@@ -151,11 +152,13 @@
         DownloadResourceViewController *downloadVc = [[DownloadResourceViewController alloc]init];
         downloadVc.status = self.status;
         downloadVc.tool = tool;
+        downloadVc.stageId = self.stageId;
         [self.navigationController pushViewController:downloadVc animated:YES];
     } else if ([tool.toolType isEqualToString:@"resources"]) {//资源分享
         ShareResourcesViewController *shareResourceVC = [[ShareResourcesViewController alloc]init];
         shareResourceVC.status = self.status;
         shareResourceVC.tool = tool;
+        shareResourceVC.stageId = self.stageId;
         [self.navigationController pushViewController:shareResourceVC animated:YES];
     } else {
         [self showToast:@"暂不支持该类型的工具"];

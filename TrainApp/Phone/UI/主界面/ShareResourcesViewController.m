@@ -105,6 +105,7 @@
     CommentPageListViewController *commentVc = [[CommentPageListViewController alloc]init];
     commentVc.tool = self.tool;
     commentVc.status = self.status;
+    commentVc.stageId = self.stageId;
     [self.navigationController pushViewController:commentVc animated:YES];
 }
 #pragma mark - UITableViewDataSource

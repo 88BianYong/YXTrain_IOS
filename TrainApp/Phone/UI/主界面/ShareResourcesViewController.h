@@ -10,5 +10,6 @@
 @class ActivityStepListRequestItem_Body_Active_Steps_Tools;
 @interface ShareResourcesViewController : PagedListViewControllerBase
 @property (nonatomic, copy) NSString *status;
+@property (nonatomic, copy) NSString *stageId;
 @property (nonatomic, strong) ActivityStepListRequestItem_Body_Active_Steps_Tools *tool;
 @end
