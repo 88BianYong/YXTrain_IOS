@@ -291,7 +291,7 @@
 - (void)setModel:(ActivityListDetailModel *)model{
     _model = model;
     self.titleLabel.attributedText = [self attributedStringForTitle:_model.title?:@""];
-    self.timeLabel.text = [self formatTimeWithStartTime:_model.startTime endTime:_model.endTime];
+    self.timeLabel.text = _model.restrictTime.integerValue == 1 ? [self formatTimeWithStartTime:_model.startTime endTime:_model.endTime] : @"";
     self.publisherContentLabel.text = _model.createUsername;
     self.studyContentLabel.text = _model.segmentName;
     self.segmentContentLabel.text = _model.studyName;

@@ -28,6 +28,7 @@
     self.joinUserCount = item.joinUserCount;
     self.studyName = item.studyName;
     self.segmentName = item.segmentName;
+    self.restrictTime = item.restrictTime;
     return self;
 }
 @end

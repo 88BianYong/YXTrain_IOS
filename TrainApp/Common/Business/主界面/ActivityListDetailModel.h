@@ -23,6 +23,7 @@
 @property (nonatomic, copy) NSString *source;//活动来源 club或train->研修网;zgjiaoyan->教研网
 @property (nonatomic, copy) NSString *joinUserCount;
 @property (nonatomic, copy) NSString *stageId;
+@property (nonatomic, copy) NSString<Optional> *restrictTime;//是否限制时间，1为限制，0为不限制
 @property (nonatomic, strong) NSMutableArray<__kindof ActivityStepListRequestItem_Body_Active_Steps *> *steps;
 //活动详情model转换
 + (ActivityListDetailModel *)modelFromActivityDetailData:(ActivityStepListRequestItem_body_Active *)item ;
