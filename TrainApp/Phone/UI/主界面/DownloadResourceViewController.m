@@ -116,7 +116,6 @@
     self.request = [[DownloadResourceRequest alloc] init];
     self.request.aid = self.tool.aid;
     self.request.toolId = self.tool.toolid;
-    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
     self.request.stageId = self.stageId;
     WEAK_SELF
     [self.request startRequestWithRetClass:[DownloadResourceRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

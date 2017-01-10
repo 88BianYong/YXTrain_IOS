@@ -2924,13 +2924,13 @@
 			name = "活动详情";
 			sourceTree = "<group>";
 		};
-		92F687791E08E66E00A48420 /* 步骤详情 */ = {
+		92F687791E08E66E00A48420 /* 视频 */ = {
 			isa = PBXGroup;
 			children = (
 				92DE3BC51DDD82350011CFB7 /* ActivityToolVideoRequest.h */,
 				92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */,
 			);
-			name = "步骤详情";
+			name = "视频";
 			sourceTree = "<group>";
 		};
 		92FAE4A81DDADE96000C3C00 /* 步骤详情 */ = {
@@ -3328,7 +3328,7 @@
 			children = (
 				92F687761E08E5B600A48420 /* 活动列表 */,
 				92F687781E08E64B00A48420 /* 活动详情 */,
-				92F687791E08E66E00A48420 /* 步骤详情 */,
+				92F687791E08E66E00A48420 /* 视频 */,
 				924AB2531DE41BDF003EC952 /* 评论 */,
 				E9A7B6011DDEE60C00136335 /* 资源下载 */,
 				E9A7B5E61DDC3E4600136335 /* 资源分享 */,

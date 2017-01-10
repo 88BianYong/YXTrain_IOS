@@ -11,7 +11,6 @@
 @interface ShareResourcesFetcher : PagedListFetcherBase
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, copy) NSString *toolId;
-@property (nonatomic, copy) NSString *w;
 @property (nonatomic, copy) NSString *stageId;
 @property (nonatomic, strong) ShareResourcesRequestItem *page0RetItem;
 

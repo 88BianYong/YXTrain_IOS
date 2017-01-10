@@ -223,7 +223,6 @@
     ActivityToolVideoRequest *request = [[ActivityToolVideoRequest alloc] init];
     request.aid = self.tool.aid;
     request.toolId = self.tool.toolid;
-    request.w = [YXTrainManager sharedInstance].currentProject.w;
     request.stageId = self.stageId;
     WEAK_SELF
     [request startRequestWithRetClass:[ActivityToolVideoRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
