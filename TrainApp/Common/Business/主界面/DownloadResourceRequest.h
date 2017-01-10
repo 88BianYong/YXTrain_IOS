@@ -39,5 +39,6 @@
 @interface DownloadResourceRequest : YXGetRequest
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, copy) NSString *toolId;
+@property (nonatomic, copy) NSString *stageId;
 @property (nonatomic, copy) NSString *w;//区分哪个平台项目，目前3（15项目），4（16项目）
 @end

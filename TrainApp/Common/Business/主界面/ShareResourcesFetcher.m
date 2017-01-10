@@ -21,6 +21,7 @@
     self.request.page = [NSString stringWithFormat:@"%d", self.pageindex + 1];
     self.request.pageSize = [NSString stringWithFormat:@"%d", self.pagesize];
     self.request.w = [YXTrainManager sharedInstance].trainHelper.w;
+    self.request.stageId = self.stageId;
     WEAK_SELF
     [self.request startRequestWithRetClass:[ShareResourcesRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

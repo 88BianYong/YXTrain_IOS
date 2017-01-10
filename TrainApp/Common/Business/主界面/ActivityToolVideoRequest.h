@@ -47,4 +47,5 @@
 @property (nonatomic, copy) NSString *aid;
 @property (nonatomic, copy) NSString *toolId;
 @property (nonatomic, copy) NSString *w;
+@property (nonatomic, copy) NSString *stageId;
 @end

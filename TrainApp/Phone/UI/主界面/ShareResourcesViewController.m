@@ -41,6 +41,7 @@
     fetcher.toolId = self.tool.toolid;
     fetcher.pageindex = 0;
     fetcher.pagesize = 20;
+    fetcher.stageId = self.stageId;
     self.dataFetcher = fetcher;
 }
 - (void)setupUI {
