@@ -26,7 +26,7 @@
 
 
 @interface YXUpdVideoHomeworkRequestItem : HttpBaseRequestItem
-@property (nonatomic, strong) YXUpdVideoHomeworkRequestItem_Data<Optional> *data;
+@property (nonatomic, strong) YXUpdVideoHomeworkRequestItem_Data<Optional> *body;
 @end
 
 @interface YXUpdVideoHomeworkRequest : YXGetRequest

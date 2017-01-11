@@ -176,7 +176,7 @@
             return;
         }
         YXUpdVideoHomeworkRequestItem *item = retItem;
-        self.itemBody.homeworkid = item.data.hwid;
+        self.itemBody.homeworkid = item.body.hwid;
         self.itemBody.uploadPercent = 0.0;
         self.itemBody.isUploadSuccess = NO;
         YXHomeworkInfoRequestItem_Body_Detail *detail = [[YXHomeworkInfoRequestItem_Body_Detail alloc] init];
