@@ -418,6 +418,9 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TD:解决删除评论后section不对应问题
                 [self.tableView reloadData];
             });
+            if (isEmpty(self.dataMutableArray)) {
+                self.emptyView.hidden = NO;
+            }
         }
     }];
     self.deleteRequest = request;
