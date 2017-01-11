@@ -37,7 +37,7 @@ static NSInteger kMaxCommentNumberWords = 500;
 #pragma mark - setupUI
 - (void)setupUI {
     self.textView = [[SAMTextView alloc] init];
-    if (self.stageId.integerValue <= 0) {//只有15评论不支持表情
+    if (self.stageId.integerValue == 0) {//只有15评论不支持表情
         self.textView.delegate = self;
     }
     self.textView.placeholder = @"评论 :";

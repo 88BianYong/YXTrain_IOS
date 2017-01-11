@@ -333,7 +333,7 @@
         ActivityFirstCommentRequestItem_Body_Replies *temp = self.dataMutableArray[self.replyInteger];
         request.parentid = temp.replyID;
         request.topicid = temp.topicid;
-        if (self.stageId.integerValue <= 0) {
+        if (self.stageId.integerValue == 0) {
             inputString = [NSString stringWithFormat:@"回复%@%@%@%@",kNameSeparator,temp.userName,kContentSeparator,inputString];
         }
     }
@@ -467,7 +467,7 @@
         if (self.isFullReply) {
             return;
         }
-        if (self.stageId.integerValue <= 0) {
+        if (self.stageId.integerValue == 0) {
             if ([self isCheckActivityStatus]) {
                 if (self.replyInteger != section) {
                     [self.inputTextView inputTextViewClear];
@@ -521,7 +521,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 0 || self.stageId.integerValue <= 0) {
+    if (replie.childNum.integerValue <= 0 || self.stageId.integerValue == 0) {
         return nil;
     }else {
         ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
@@ -536,7 +536,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 0 || self.stageId.integerValue <= 0) {
+    if (replie.childNum.integerValue <= 0 || self.stageId.integerValue == 0) {
         return 0.0001f;
     }else {
         return 29.0f;

@@ -192,7 +192,7 @@
     return (contentRange.location != NSNotFound) &&
     (nameRange.location != NSNotFound) &&
     (contentRange.location > nameRange.location) &&
-    (self.stageId.integerValue <= 0);
+    (self.stageId.integerValue == 0);
 }
 - (NSMutableAttributedString *)formatSenondCommentContnet:(NSString *)content {
     NSRange contentRange = [content rangeOfString:kContentSeparator];
