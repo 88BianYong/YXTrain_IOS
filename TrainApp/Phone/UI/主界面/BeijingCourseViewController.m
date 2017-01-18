@@ -128,10 +128,13 @@ static  NSString *const trackPageName = @"课程列表页面";
     [self.filterModel.stage enumerateObjectsUsingBlock:^(BeijingCourseFilter * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([filterId isEqualToString:obj.filterID]) {
             stageIndex = idx;
+            BeijingCourseListFetcher *fetcher = (BeijingCourseListFetcher *)self.dataFetcher;
+            fetcher.stageid = filterId;
             *stop = YES;
         }
     }];
     if (stageIndex >= 0) {
+        
         [self.filterView setCurrentIndex:stageIndex forKey:self.filterModel.stageName];
     }
 }
