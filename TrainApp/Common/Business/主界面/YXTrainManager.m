@@ -70,7 +70,6 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     }];
 }
 - (void)setCurrentProjectIndexPath:(NSIndexPath *)currentProjectIndexPath {
-    self.trainHelper = nil;
     self.trainlistItem.body.indexPathSection = [NSString stringWithFormat:@"%@",@(currentProjectIndexPath.section)];
     self.trainlistItem.body.indexPathRow = [NSString stringWithFormat:@"%@",@(currentProjectIndexPath.row)];
     [self saveToCache];
@@ -80,6 +79,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     return indexPath;
 }
 - (void)saveToCache {
+    self.trainHelper = nil;
     [[NSUserDefaults standardUserDefaults]setValue:[self.trainlistItem toJSONString] forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainListDynamic object:nil];
