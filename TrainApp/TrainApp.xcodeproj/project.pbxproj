@@ -4154,7 +4154,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b7749d42-a4ec-4c1b-80d6-79f2671606d0";
-				PROVISIONING_PROFILE_SPECIFIER = DevAll;
+				PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE;
 			};
 			name = Debug;
 		};
@@ -4178,7 +4178,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b70b569c-4e0b-4d25-900a-3a55e15705a8";
-				PROVISIONING_PROFILE_SPECIFIER = liangShiTong_Rel;
+				PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE;
 			};
 			name = Release;
 		};
