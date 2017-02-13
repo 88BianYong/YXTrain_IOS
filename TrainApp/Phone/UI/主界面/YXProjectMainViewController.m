@@ -39,7 +39,6 @@
 @property (nonatomic, assign) BOOL isCheckedMobile;//是否应该进行测评接口请求;
 
 @property (nonatomic, strong) WebsocketRedRightView *rightView;
-@property (nonatomic, assign) BOOL moreThanOneProject;//只有一个项目的时候不显示切换项目引导页
 @end
 
 @implementation YXProjectMainViewController
@@ -196,6 +195,9 @@
     [self showProjectSelectionView];
 }
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
+    for (UIViewController *vc in self.childViewControllers) {
+        [vc removeFromParentViewController];
+    }
     for (UIView *v in self.view.subviews) {
         [v removeFromSuperview];
     }
@@ -223,11 +225,7 @@
         [self addChildViewController:taskVC];
         [self addChildViewController:notiVC];
         [self addChildViewController:bulletinVC];
-        
-        self.moreThanOneProject = [YXTrainManager sharedInstance].trainlistItem.body.trains.count > 1 ? YES :NO;
-        if (![YXInitHelper sharedHelper].showUpgradeFlag) {
-            [self showChangeProjectGuideView];
-        }
+        [self showChangeProjectGuideView];
     }else{
         YXCourseRecordViewController *recordVc = [[YXCourseRecordViewController alloc]init];
         self.recordVC = recordVc;
@@ -237,17 +235,20 @@
     }
 }
 - (void)showChangeProjectGuideView {
-    if (self.moreThanOneProject) {
-        if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstLaunch]) {
-            static NSString *staticString = @"ChangeProjectGuideView";
-            UIView *guideView = [[NSClassFromString(staticString) alloc] init];
-            [self.navigationController.view addSubview:guideView];
-            [guideView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(0);
-            }];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
-        }
+    if ([self isShowMoreThanOneProject]) {
+        static NSString *staticString = @"ChangeProjectGuideView";
+        UIView *guideView = [[NSClassFromString(staticString) alloc] init];
+        [self.navigationController.view addSubview:guideView];
+        [guideView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
     }
+}
+- (BOOL)isShowMoreThanOneProject {
+    return ([YXTrainManager sharedInstance].trainlistItem.body.trains.count > 1) &&
+    ![YXInitHelper sharedHelper].showUpgradeFlag &&
+    ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstLaunch];
 }
 #pragma mark - peojects hide & show
 - (void)showProjectSelectionView{
