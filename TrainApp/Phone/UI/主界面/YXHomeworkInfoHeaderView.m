@@ -159,35 +159,35 @@
     }];
     
     [_pointLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_scoreLabel.mas_bottom).offset(6.0f);
+        make.top.equalTo(self->_scoreLabel.mas_bottom).offset(6.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
 
     [_endDateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_pointLabel.mas_bottom).offset(16.0f);
+        make.top.equalTo(self->_pointLabel.mas_bottom).offset(16.0f);
         make.centerX.equalTo(self.mas_centerX);
     }];
 
     [_finishedLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_endDateLabel.mas_bottom).offset(6.0f);
-        make.left.equalTo(_endDateLabel.mas_left);
+        make.top.equalTo(self->_endDateLabel.mas_bottom).offset(6.0f);
+        make.left.equalTo(self->_endDateLabel.mas_left);
     }];
 
     [_firstImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_pointLabel.mas_right).offset(6.0f);
-        make.centerY.equalTo(_pointLabel.mas_centerY);
+        make.left.equalTo(self->_pointLabel.mas_right).offset(6.0f);
+        make.centerY.equalTo(self->_pointLabel.mas_centerY);
         make.width.height.mas_offset(20.0f);
     }];
 
     [_secondImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_pointLabel.mas_right).offset(6.0f + 6.0f + 20.0f);
-        make.centerY.equalTo(_pointLabel.mas_centerY);
+        make.left.equalTo(self->_pointLabel.mas_right).offset(6.0f + 6.0f + 20.0f);
+        make.centerY.equalTo(self->_pointLabel.mas_centerY);
         make.width.height.mas_offset(20.0f);
     }];
     
     [_finishedImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_finishedLabel.mas_left).offset(80.0f);
-        make.top.equalTo(_firstImageView.mas_bottom).offset(36.0f);//动态调整 10 标注不同
+        make.left.equalTo(self->_finishedLabel.mas_left).offset(80.0f);
+        make.top.equalTo(self->_firstImageView.mas_bottom).offset(36.0f);//动态调整 10 标注不同
         make.width.height.mas_offset(45.0f);
     }];
     

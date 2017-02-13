@@ -250,7 +250,7 @@ static const CGFloat kVolumnStep = 0.0625;
                 [self.player play];
                 
                 if (self.progress) {
-                    [self.playerItem seekToTime:CMTimeMake(self.duration * self.progress, 1) toleranceBefore:_tolerance toleranceAfter:_tolerance completionHandler:^(BOOL finished) {
+                    [self.playerItem seekToTime:CMTimeMake(self.duration * self.progress, 1) toleranceBefore:self->_tolerance toleranceAfter:self->_tolerance completionHandler:^(BOOL finished) {
                         @strongify(self); if (!self) return;
                         if (!finished) {
                             return;

@@ -66,13 +66,13 @@
     }];
     
     [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_masterLabel.mas_top);
+        make.top.equalTo(self->_masterLabel.mas_top);
         make.width.height.offset(14.0f);
-        make.right.equalTo(_masterLabel.mas_left).offset(-2.0f);
+        make.right.equalTo(self->_masterLabel.mas_left).offset(-2.0f);
     }];
     
     [_masterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_nameLable.mas_bottom).offset(12.0f);
+        make.top.equalTo(self->_nameLable.mas_bottom).offset(12.0f);
         make.centerX.equalTo(self.mas_centerX).offset(8.0f);
         make.width.lessThanOrEqualTo(self.mas_width).offset(-50.0f);
     }];

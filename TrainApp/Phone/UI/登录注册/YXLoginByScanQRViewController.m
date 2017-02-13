@@ -49,10 +49,10 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (granted) {
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        if (!_session) {
+                        if (!self->_session) {
                             [self setupCamera];
                         } else{
-                            [_session startRunning];
+                            [self->_session startRunning];
                         }
                     });
                 } else {
@@ -64,10 +64,10 @@
         }];
     }else if(authStatus == AVAuthorizationStatusAuthorized){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            if (!_session) {
+            if (!self->_session) {
                 [self setupCamera];
             } else{
-                [_session startRunning];
+                [self->_session startRunning];
             }
         });
         
@@ -139,8 +139,8 @@
                     double delayInSeconds = 1.f;
                     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
                     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        [_session startRunning];
-                        [_scanBackgroundView.scanTimer setFireDate:[NSDate date]];
+                        [self->_session startRunning];
+                        [self->_scanBackgroundView.scanTimer setFireDate:[NSDate date]];
                     });
                     [self showToast:error.localizedDescription];
                     return;
@@ -201,8 +201,8 @@
     _preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
     // Preview
     dispatch_async(dispatch_get_main_queue(), ^{
-        _preview.frame =CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height);
-        [self.view.layer insertSublayer:_preview atIndex:0];
+        self->_preview.frame =CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width,[UIScreen mainScreen].bounds.size.height);
+        [self.view.layer insertSublayer:self->_preview atIndex:0];
     });
     [_session startRunning];
 }
@@ -223,14 +223,14 @@
 - (void)scanLoginFail{
     YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"非常抱歉,格式不正确或token已过期,请重新扫描"];
     [alertView addButtonWithTitle:@"返回" action:^{
-        [_scanBackgroundView.scanTimer invalidate];
+        [self->_scanBackgroundView.scanTimer invalidate];
         [self dismissViewControllerAnimated:YES completion:^{
             //
         }];
     }];
     [alertView addButtonWithTitle:@"继续扫码" action:^{
-        [_scanBackgroundView.scanTimer setFireDate:[NSDate date]];
-        [_session startRunning];
+        [self->_scanBackgroundView.scanTimer setFireDate:[NSDate date]];
+        [self->_session startRunning];
     }];
     [alertView show];
     [self removeNotifications];

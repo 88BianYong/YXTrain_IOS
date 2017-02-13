@@ -82,12 +82,12 @@
     
     [_recordView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(58.0f, 58.0f));
-        make.center.equalTo(_recordButton);
+        make.center.equalTo(self->_recordButton);
     }];
     
     [_stopView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(26.0f, 26.0f));
-        make.center.equalTo(_recordButton);
+        make.center.equalTo(self->_recordButton);
     }];
     
     [self distributeSpacingHorizontallyWith:@[_deleteButton,_recordButton,_saveButton]];
@@ -138,8 +138,8 @@
 }
 - (void)showDeleteSaveButton:(BOOL)isShow{
     [UIView animateWithDuration:1.5 animations:^{
-        _saveButton.alpha = isShow ? 1.0f : 0.0f;
-        _deleteButton.alpha = isShow ? 1.0f : 0.0f;
+        self->_saveButton.alpha = isShow ? 1.0f : 0.0f;
+        self->_deleteButton.alpha = isShow ? 1.0f : 0.0f;
     }];
 }
 

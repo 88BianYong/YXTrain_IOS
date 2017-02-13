@@ -129,8 +129,8 @@
     if(_isRuning)
     {
         [UIView animateWithDuration:0.1f delay:0.0f options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionBeginFromCurrentState animations:^{
-            _minuteHand.transform = CGAffineTransformRotate(_minuteHand.transform, M_PI/3.0f);
-            _hourHand.transform = CGAffineTransformRotate(_hourHand.transform, M_PI / 36.0f);
+            self->_minuteHand.transform = CGAffineTransformRotate(self->_minuteHand.transform, M_PI/3.0f);
+            self->_hourHand.transform = CGAffineTransformRotate(self->_hourHand.transform, M_PI / 36.0f);
         }completion:^(BOOL finished) {
             if(finished){
                 [self rorateAnimatetion];

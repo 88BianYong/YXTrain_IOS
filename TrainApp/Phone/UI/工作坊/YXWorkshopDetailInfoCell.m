@@ -56,7 +56,7 @@
     
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
-        make.left.equalTo(_titleLabel.mas_right).offset(19.0f);
+        make.left.equalTo(self->_titleLabel.mas_right).offset(19.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
 //    [_contentLabel setContentHuggingPriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal ];

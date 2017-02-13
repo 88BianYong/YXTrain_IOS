@@ -61,8 +61,8 @@
     lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [_backgroundView addSubview:lineView];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(_backgroundView);
-        make.bottom.equalTo(_backgroundView.mas_bottom).offset(-60.0f);
+        make.left.right.equalTo(self->_backgroundView);
+        make.bottom.equalTo(self->_backgroundView.mas_bottom).offset(-60.0f);
         make.height.mas_offset(1/[UIScreen mainScreen].scale);
     }];
     
@@ -74,8 +74,8 @@
             button.tag = 0;
             [_backgroundView addSubview:button];
             [button mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.bottom.equalTo(_backgroundView.mas_bottom);
-                make.left.right.equalTo(_backgroundView);
+                make.bottom.equalTo(self->_backgroundView.mas_bottom);
+                make.left.right.equalTo(self->_backgroundView);
                 make.height.mas_offset(60.0f);
             }];
         }else{
@@ -83,19 +83,19 @@
             buttonOne.tag = 0;
             [_backgroundView addSubview:buttonOne];
             [buttonOne mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(_backgroundView.mas_left).offset(30.0f);
+                make.left.equalTo(self->_backgroundView.mas_left).offset(30.0f);
                 make.height.mas_offset(29.0f);
                 make.width.mas_offset(75.0f);
-                make.bottom.equalTo(_backgroundView.mas_bottom).offset(-15.5f);
+                make.bottom.equalTo(self->_backgroundView.mas_bottom).offset(-15.5f);
             }];
             UIButton *buttonTwo = [self customButtonAction:actions[1]];
             buttonTwo.tag = 1;
             [_backgroundView addSubview:buttonTwo];
             [buttonTwo mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(_backgroundView.mas_right).offset(-30.0f);
+                make.right.equalTo(self->_backgroundView.mas_right).offset(-30.0f);
                 make.height.mas_offset(29.0f);
                 make.width.mas_offset(75.0f);
-                make.bottom.equalTo(_backgroundView.mas_bottom).offset(-15.5f);
+                make.bottom.equalTo(self->_backgroundView.mas_bottom).offset(-15.5f);
             }];
         }
     }
@@ -118,14 +118,14 @@
     
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(90.0f, 90.0f));
-        make.bottom.equalTo(_backgroundView.mas_top).offset(37.0f);
-        make.centerX.equalTo(_backgroundView.mas_centerX);
+        make.bottom.equalTo(self->_backgroundView.mas_top).offset(37.0f);
+        make.centerX.equalTo(self->_backgroundView.mas_centerX);
     }];
 
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_imageView.mas_bottom).offset(3.0f);
-        make.centerX.equalTo(_imageView.mas_centerX);
-        make.width.equalTo(_backgroundView.mas_width).offset(-30.0f);
+        make.top.equalTo(self->_imageView.mas_bottom).offset(3.0f);
+        make.centerX.equalTo(self->_imageView.mas_centerX);
+        make.width.equalTo(self->_backgroundView.mas_width).offset(-30.0f);
     }];
 }
 

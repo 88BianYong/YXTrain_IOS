@@ -340,6 +340,9 @@
 		92EDC7D11D632357005B91DD /* YXHomeworkUploadCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D01D632357005B91DD /* YXHomeworkUploadCompleteView.m */; };
 		92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */; };
 		92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */; };
+		92F57B7E1E515ED90061CAA2 /* StudentsLearnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F57B7D1E515ED90061CAA2 /* StudentsLearnController.m */; };
+		92F57B821E515F310061CAA2 /* SwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F57B811E515F310061CAA2 /* SwipeTableViewCell.m */; };
+		92F57B851E5169440061CAA2 /* StudentsLearnSwipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F57B841E5169440061CAA2 /* StudentsLearnSwipeCell.m */; };
 		92F6877F1E08E7A000A48420 /* ActivityListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F6877E1E08E7A000A48420 /* ActivityListDetailModel.m */; };
 		92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F687811E0908F400A48420 /* ActivityDetailManger.m */; };
 		92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */; };
@@ -1149,6 +1152,12 @@
 		92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkPlayVideoCell.m; sourceTree = "<group>"; };
 		92F370B41D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXWriteHomeworkInfoViewController+Request.h"; sourceTree = "<group>"; };
 		92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXWriteHomeworkInfoViewController+Request.m"; sourceTree = "<group>"; };
+		92F57B7C1E515ED90061CAA2 /* StudentsLearnController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnController.h; sourceTree = "<group>"; };
+		92F57B7D1E515ED90061CAA2 /* StudentsLearnController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnController.m; sourceTree = "<group>"; };
+		92F57B801E515F310061CAA2 /* SwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeTableViewCell.h; sourceTree = "<group>"; };
+		92F57B811E515F310061CAA2 /* SwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeTableViewCell.m; sourceTree = "<group>"; };
+		92F57B831E5169440061CAA2 /* StudentsLearnSwipeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnSwipeCell.h; sourceTree = "<group>"; };
+		92F57B841E5169440061CAA2 /* StudentsLearnSwipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnSwipeCell.m; sourceTree = "<group>"; };
 		92F6877D1E08E7A000A48420 /* ActivityListDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListDetailModel.h; sourceTree = "<group>"; };
 		92F6877E1E08E7A000A48420 /* ActivityListDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListDetailModel.m; sourceTree = "<group>"; };
 		92F687801E0908F400A48420 /* ActivityDetailManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailManger.h; sourceTree = "<group>"; };
@@ -1799,6 +1808,7 @@
 		7C3177BF1D0EC0FC004AAC90 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				92F57B791E515DE80061CAA2 /* 管理 */,
 				9232375A1D814F5400FDACFE /* 热点 */,
 				9232372E1D6E9EE800FDACFE /* 启动 */,
 				F7E8F8D61D65CBB400CDAAF4 /* 弹出 */,
@@ -2893,6 +2903,35 @@
 			name = "网页";
 			sourceTree = "<group>";
 		};
+		92F57B791E515DE80061CAA2 /* 管理 */ = {
+			isa = PBXGroup;
+			children = (
+				92F57B7A1E515E150061CAA2 /* view */,
+				92F57B7B1E515E250061CAA2 /* controller */,
+			);
+			path = "管理";
+			sourceTree = "<group>";
+		};
+		92F57B7A1E515E150061CAA2 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92F57B801E515F310061CAA2 /* SwipeTableViewCell.h */,
+				92F57B811E515F310061CAA2 /* SwipeTableViewCell.m */,
+				92F57B831E5169440061CAA2 /* StudentsLearnSwipeCell.h */,
+				92F57B841E5169440061CAA2 /* StudentsLearnSwipeCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		92F57B7B1E515E250061CAA2 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				92F57B7C1E515ED90061CAA2 /* StudentsLearnController.h */,
+				92F57B7D1E515ED90061CAA2 /* StudentsLearnController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
 		92F687761E08E5B600A48420 /* 活动列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3586,6 +3625,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */,
+				92F57B821E515F310061CAA2 /* SwipeTableViewCell.m in Sources */,
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */,
@@ -3629,6 +3669,7 @@
 				92AA477E1E1B9BD900C88DDC /* WebsocketRedLeftView.m in Sources */,
 				92FAE4A41DDAA845000C3C00 /* CoreTextViewHandler.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
+				92F57B7E1E515ED90061CAA2 /* StudentsLearnController.m in Sources */,
 				7C3177B51D0EB7F1004AAC90 /* UIViewController+Keyboard.m in Sources */,
 				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
 				7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */,
@@ -3930,6 +3971,7 @@
 				CB3510CB1D18F9C30081EA3B /* YXDatumCellModel.m in Sources */,
 				7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */,
 				7C3178271D129C01004AAC90 /* ReaderDocumentOutline.m in Sources */,
+				92F57B851E5169440061CAA2 /* StudentsLearnSwipeCell.m in Sources */,
 				CB3510AB1D18E9730081EA3B /* YXMyDatumViewController.m in Sources */,
 				7C3F258B1D20C42D00F0A17A /* YXTrainListRequest.m in Sources */,
 				CB52FCF41D2BB5280096D8DC /* YXNoticeTopTableViewCell.m in Sources */,
@@ -4141,6 +4183,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: xingfu liu (J63VXZH2U7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xingfu liu (J63VXZH2U7)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/PrefixHeader.pch";
@@ -4164,6 +4207,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Shang Rui Tong Technology Co.,Ltd. (P8ZS8UUN27)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Shang Rui Tong Technology Co.,Ltd. (P8ZS8UUN27)";
 				DEVELOPMENT_TEAM = P8ZS8UUN27;

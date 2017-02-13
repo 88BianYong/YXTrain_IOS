@@ -44,7 +44,7 @@
         
         [_skipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.mas_centerY);
-            make.right.equalTo(_imageView.mas_left).offset(-3.0f);
+            make.right.equalTo(self->_imageView.mas_left).offset(-3.0f);
         }];
         
         [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {

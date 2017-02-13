@@ -105,7 +105,7 @@ UITableViewDataSource
 //        make.top.equalTo(_headerView.mas_bottom);
     }];
     [_headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.width.equalTo(_tableView);
+        make.left.top.width.equalTo(self->_tableView);
         make.height.mas_offset(165.0f);
     }];
 }
@@ -195,8 +195,8 @@ UITableViewDataSource
             return;
         }
         self ->_detailItem = item;
-        [self ->_headerView reloadWithName:_detailItem.gname
-                                    master:[_detailItem.master yx_isValidString]?_detailItem.master:@"暂无"];
+        [self ->_headerView reloadWithName:self->_detailItem.gname
+                                    master:[self->_detailItem.master yx_isValidString]?self->_detailItem.master:@"暂无"];
         [self workshopDetailDataFormat:item];
         [self requestForWorkshopMember];
     }];
@@ -217,7 +217,7 @@ UITableViewDataSource
     [_memberFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
         if (!error && retItemArray) {
-            NSMutableDictionary *mutableDictionary = _dataMutableArray[1][0];
+            NSMutableDictionary *mutableDictionary = self->_dataMutableArray[1][0];
             [mutableDictionary setValue:[NSMutableArray arrayWithArray:retItemArray] forKey:@"member"];
             [self ->_tableView reloadData];
             self -> _hiddenPullupBool = retItemArray.count >= total ? YES : NO;

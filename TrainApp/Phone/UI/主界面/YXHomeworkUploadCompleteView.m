@@ -106,33 +106,33 @@
     }];
     
     [_versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_segmentLabel.mas_left);
-        make.width.equalTo(_segmentLabel.mas_width);
-        make.top.equalTo(_segmentLabel.mas_bottom).offset(10.0f);
+        make.left.equalTo(self->_segmentLabel.mas_left);
+        make.width.equalTo(self->_segmentLabel.mas_width);
+        make.top.equalTo(self->_segmentLabel.mas_bottom).offset(10.0f);
     }];
     
     [_chapterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_segmentLabel.mas_left);
+        make.left.equalTo(self->_segmentLabel.mas_left);
         make.right.equalTo(self.mas_right).offset(-24.0f);
-        make.top.equalTo(_versionLabel.mas_bottom).offset(10.0f);
+        make.top.equalTo(self->_versionLabel.mas_bottom).offset(10.0f);
     }];
     
     [_studyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_centerX);
         make.right.equalTo(self.mas_right).offset(-24.0f);
-        make.top.equalTo(_segmentLabel.mas_top);
+        make.top.equalTo(self->_segmentLabel.mas_top);
     }];
     
     [_gradeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_studyLabel.mas_left);
+        make.left.equalTo(self->_studyLabel.mas_left);
         make.right.equalTo(self.mas_right).offset(-24.0f);
-        make.top.equalTo(_versionLabel.mas_top);
+        make.top.equalTo(self->_versionLabel.mas_top);
     }];
     
     [_keywordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_segmentLabel.mas_left);
-        make.top.equalTo(_chapterLabel.mas_bottom).offset(10.0f);
-        make.right.equalTo(_studyLabel.mas_right);
+        make.left.equalTo(self->_segmentLabel.mas_left);
+        make.top.equalTo(self->_chapterLabel.mas_bottom).offset(10.0f);
+        make.right.equalTo(self->_studyLabel.mas_right);
     }];
     
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -146,17 +146,17 @@
         make.centerX.equalTo(self.mas_centerX).offset(-6.0f);
         make.width.mas_offset(200.0f);
         make.height.mas_offset(45.0f);
-        make.top.equalTo(_lineView.mas_bottom);
+        make.top.equalTo(self->_lineView.mas_bottom);
     }];
     
     [_againLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_writeButton.mas_bottom).offset(29.0f);
+        make.top.equalTo(self->_writeButton.mas_bottom).offset(29.0f);
         make.right.equalTo(self.mas_centerX);
     }];
     
     [_againButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_centerX).offset(9.0f);
-        make.centerY.equalTo(_againLabel.mas_centerY);
+        make.centerY.equalTo(self->_againLabel.mas_centerY);
         make.height.mas_offset(30.0f);
         make.width.mas_offset(50.0f);
     }];

@@ -84,14 +84,14 @@
     
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(55.0f);
-        make.top.equalTo(_titleLabel.mas_bottom);
+        make.top.equalTo(self->_titleLabel.mas_bottom);
         make.right.equalTo(self.mas_right).offset(-15.0f);
-        make.height.equalTo(_textView.mas_width).multipliedBy(180.0f/610.0f);
+        make.height.equalTo(self->_textView.mas_width).multipliedBy(180.0f/610.0f);
     }];
     
     [_saveButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(_textView.mas_bottom).offset(30.0f);
+        make.top.equalTo(self->_textView.mas_bottom).offset(30.0f);
         make.height.mas_offset(44.0f);
         make.width.mas_offset(225.0f);
     }];

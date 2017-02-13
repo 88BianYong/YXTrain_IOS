@@ -127,7 +127,7 @@ static  NSString *const trackPageName = @"关于我们页面";
         YXActionSheet * sheet = [YXActionSheet actionSheetWithTitle:nil];
         NSString * title = [NSString stringWithFormat:@"呼叫:  %@",_phoneString];
         [sheet addDestructiveButtonWithTitle:title action:^{
-            NSString *telUrl = [NSString stringWithFormat:@"tel://%@",_phoneString];
+            NSString *telUrl = [NSString stringWithFormat:@"tel://%@",self->_phoneString];
             if (![[UIApplication sharedApplication] openURL:[NSURL URLWithString:telUrl]]) {
                 [YXAlertView showAlertViewWithMessage:@"此设备不支持通话！"];
             }

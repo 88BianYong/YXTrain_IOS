@@ -29,7 +29,7 @@
         [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.mas_left).offset(15.0f);
             make.centerY.equalTo(self.mas_centerY);
-            make.right.equalTo(_stateImageView.mas_left).offset(21.0f);
+            make.right.equalTo(self->_stateImageView.mas_left).offset(21.0f);
         }];
         
         [_stateImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -88,7 +88,7 @@
     }];
     
     [_writeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_titleLabel.mas_right);
+        make.left.equalTo(self->_titleLabel.mas_right);
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
         make.top.equalTo(self.contentView.mas_top).offset(10.0f);
         make.bottom.equalTo(self.contentView.mas_bottom);

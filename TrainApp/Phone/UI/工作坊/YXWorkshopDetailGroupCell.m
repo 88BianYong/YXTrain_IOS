@@ -111,15 +111,15 @@ UICollectionViewDelegate
     }];
     
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_titleLabel.mas_right).offset(20.0f);
+        make.left.equalTo(self->_titleLabel.mas_right).offset(20.0f);
         make.height.offset(34.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
-        make.right.equalTo(_contentLabel.mas_left).offset(-15.0f);
+        make.right.equalTo(self->_contentLabel.mas_left).offset(-15.0f);
     }];
     
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
-        make.right.equalTo(_imageView.mas_left).offset(-10.0f);
+        make.right.equalTo(self->_imageView.mas_left).offset(-10.0f);
     }];
 
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {

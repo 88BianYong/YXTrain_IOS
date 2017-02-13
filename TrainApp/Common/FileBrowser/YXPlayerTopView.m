@@ -154,7 +154,7 @@
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(@0);
             make.top.bottom.mas_equalTo (@0);
-            make.left.mas_equalTo(_sep0.mas_right).mas_offset(15);
+            make.left.mas_equalTo(self->_sep0.mas_right).mas_offset(15);
             make.right.lessThanOrEqualTo(previewFavorButton.mas_left).offset(-15);
         }];
     }

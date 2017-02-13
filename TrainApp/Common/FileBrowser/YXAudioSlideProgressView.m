@@ -59,7 +59,7 @@
 
 - (void)updateUI {
     [self.thumbNormalView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(_iconImage.size.width, _iconImage.size.height));
+        make.size.mas_equalTo(CGSizeMake(self->_iconImage.size.width, self->_iconImage.size.height));
         make.centerX.mas_equalTo(self.wholeProgressView.mas_left).mas_offset(self.wholeProgressView.bounds.size.width * self.playProgress);
         make.centerY.mas_equalTo(self.wholeProgressView.mas_centerY);
     }];

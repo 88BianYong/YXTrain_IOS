@@ -34,7 +34,7 @@
     backgroundView.backgroundColor = [UIColor whiteColor];
     [_scrollView addSubview:backgroundView];
     [backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_scrollView.mas_top);
+        make.top.equalTo(self->_scrollView.mas_top);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.bottom.equalTo(self.view.mas_bottom);
@@ -45,7 +45,7 @@
     view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [_scrollView addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_scrollView.mas_top);
+        make.top.equalTo(self->_scrollView.mas_top);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.height.offset(5.0f);
@@ -65,7 +65,7 @@
     [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0f] range:NSMakeRange(0, [dLabelString length])];
     _contentLabel.attributedText = attributedString;
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_scrollView.mas_top).offset(25.0f);
+        make.top.equalTo(self->_scrollView.mas_top).offset(25.0f);
         make.left.equalTo(self.view.mas_left).offset(25.0f);
         make.right.equalTo(self.view.mas_right).offset(-25.0f);
     }];

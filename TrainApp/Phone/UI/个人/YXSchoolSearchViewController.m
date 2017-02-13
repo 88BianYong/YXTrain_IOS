@@ -124,13 +124,13 @@
     
     [_rangeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(15.0f);
-        make.top.equalTo(_searchBar.mas_bottom);
+        make.top.equalTo(self->_searchBar.mas_bottom);
         make.height.offset(45.0f);
     }];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0.0f);
-        make.top.equalTo(_rangeLabel.mas_bottom);
+        make.top.equalTo(self->_rangeLabel.mas_bottom);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
 }

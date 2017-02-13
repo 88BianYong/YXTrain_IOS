@@ -46,7 +46,7 @@
     
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.mas_centerY);
-        make.right.equalTo(_toalsLabel.mas_left).offset(-5.0f);
+        make.right.equalTo(self->_toalsLabel.mas_left).offset(-5.0f);
         make.width.height.mas_offset(20.0f);
     }];
 }

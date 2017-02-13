@@ -48,10 +48,10 @@ static const CGFloat kTotalDuration = 1.f;
     }];
     [self layoutIfNeeded];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:kTotalDuration*_progress animations:^{
+        [UIView animateWithDuration:kTotalDuration*self->_progress animations:^{
             [self.gradientView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.top.bottom.mas_equalTo(0);
-                make.width.mas_equalTo(self.mas_width).multipliedBy(_progress);
+                make.width.mas_equalTo(self.mas_width).multipliedBy(self->_progress);
             }];
             [self layoutIfNeeded];
         }];

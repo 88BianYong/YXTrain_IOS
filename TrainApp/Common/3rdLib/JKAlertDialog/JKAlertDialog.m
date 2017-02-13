@@ -169,7 +169,7 @@
                     action:@selector(buttonTouched:)
           forControlEvents:UIControlEventTouchUpInside];
 
-        [_buttonScrollView addSubview:button];
+        [self->_buttonScrollView addSubview:button];
     }];
     [_alertView addSubview:_buttonScrollView];
     
@@ -189,7 +189,7 @@
 }
 - (void)show {
     [UIView animateWithDuration:0.5 animations:^{
-        _coverView.alpha = 1;
+        self->_coverView.alpha = 1;
 
     } completion:^(BOOL finished) {
         
@@ -222,8 +222,8 @@
 
 - (void)hideAnimation{
     [UIView animateWithDuration:0.4 animations:^{
-        _coverView.alpha = 0.0;
-        _alertView.alpha = 0.0;
+        self->_coverView.alpha = 0.0;
+        self->_alertView.alpha = 0.0;
         
     } completion:^(BOOL finished) {
          [self removeFromSuperview];

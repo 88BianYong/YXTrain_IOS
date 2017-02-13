@@ -68,8 +68,8 @@
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_iconImageView.mas_right).offset(11.0f);
-        make.right.equalTo(_nextImageView.mas_left).offset(10.0f);
+        make.left.equalTo(self->_iconImageView.mas_right).offset(11.0f);
+        make.right.equalTo(self->_nextImageView.mas_left).offset(10.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     [_nextImageView mas_makeConstraints:^(MASConstraintMaker *make) {

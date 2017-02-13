@@ -60,7 +60,7 @@
     }];
     
     [_pointView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_recordTimeLabel.mas_left).offset(-8.0f);
+        make.right.equalTo(self->_recordTimeLabel.mas_left).offset(-8.0f);
         make.width.height.mas_offset(6.0f);
         make.centerY.equalTo(self.mas_centerY);
     }];
@@ -81,7 +81,7 @@
     _canleButton.hidden = YES;
     if (!_isAnimate) {
         [UIView animateWithDuration:0.5f delay:0.0f options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat animations:^{
-            _pointView.alpha = 1.0f;
+            self->_pointView.alpha = 1.0f;
         }completion:^(BOOL finished) {
             
         }];

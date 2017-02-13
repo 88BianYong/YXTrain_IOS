@@ -101,8 +101,8 @@
     }];
     
     [_endDataLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_nameLabel.mas_bottom).offset(6.0f);
-        make.left.equalTo(_nameLabel.mas_left);
+        make.top.equalTo(self->_nameLabel.mas_bottom).offset(6.0f);
+        make.left.equalTo(self->_nameLabel.mas_left);
         make.bottom.equalTo(bottomView.mas_top);
     }];
     
@@ -114,7 +114,7 @@
     
     [_typeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(14.0f);
-        make.centerY.equalTo(_nameLabel.mas_centerY);
+        make.centerY.equalTo(self->_nameLabel.mas_centerY);
         make.width.height.mas_offset(10.0f);
     }];
     
@@ -173,13 +173,13 @@
         [self.contentView addSubview:_recommendImageView];
         [self.contentView addSubview:_ismyrecImageView];
         [_recommendImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_nameLabel.mas_right).offset(6.0f);
-            make.centerY.equalTo(_nameLabel.mas_centerY);
+            make.left.equalTo(self->_nameLabel.mas_right).offset(6.0f);
+            make.centerY.equalTo(self->_nameLabel.mas_centerY);
             make.width.height.mas_offset(20.0f);
         }];
         [_ismyrecImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_nameLabel.mas_right).offset(6.0f + 6.0f + 20.0f);
-            make.centerY.equalTo(_nameLabel.mas_centerY);
+            make.left.equalTo(self->_nameLabel.mas_right).offset(6.0f + 6.0f + 20.0f);
+            make.centerY.equalTo(self->_nameLabel.mas_centerY);
             make.width.height.mas_offset(20.0f);
         }];
     }
@@ -187,16 +187,16 @@
         if (recommendBool){//只有优
             [self.contentView addSubview:_recommendImageView];
             [_recommendImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(_nameLabel.mas_right).offset(6.0f);
-                make.centerY.equalTo(_nameLabel.mas_centerY);
+                make.left.equalTo(self->_nameLabel.mas_right).offset(6.0f);
+                make.centerY.equalTo(self->_nameLabel.mas_centerY);
                 make.width.height.mas_offset(20.0f);
             }];
         }
         if (ismyrecBool) {//只有荐
             [self.contentView addSubview:_ismyrecImageView];
             [_ismyrecImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(_nameLabel.mas_right).offset(6.0f);
-                make.centerY.equalTo(_nameLabel.mas_centerY);
+                make.left.equalTo(self->_nameLabel.mas_right).offset(6.0f);
+                make.centerY.equalTo(self->_nameLabel.mas_centerY);
                 make.width.height.mas_offset(20.0f);
             }];
             

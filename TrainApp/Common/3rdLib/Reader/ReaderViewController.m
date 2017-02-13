@@ -101,7 +101,7 @@
 
 			viewRect.origin.x = (viewRect.size.width * (page - 1)); // Update X
 
-			contentView.frame = CGRectInset(viewRect, scrollViewOutset, 0.0f);
+			contentView.frame = CGRectInset(viewRect, self->scrollViewOutset, 0.0f);
 		}
 	];
 

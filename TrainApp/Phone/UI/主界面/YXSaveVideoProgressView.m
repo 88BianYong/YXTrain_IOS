@@ -93,24 +93,24 @@
     
     [_radialView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(59.0f, 59.0f));
-        make.top.equalTo(_backgroundView.mas_top).offset(23.0f);
-        make.centerX.equalTo(_backgroundView.mas_centerX);
+        make.top.equalTo(self->_backgroundView.mas_top).offset(23.0f);
+        make.centerX.equalTo(self->_backgroundView.mas_centerX);
     }];
     
     [_innerCircleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(50.0f, 50.0f));
-        make.center.equalTo(_radialView);
+        make.center.equalTo(self->_radialView);
     }];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_radialView.mas_bottom).offset(14.0f);
-        make.centerX.equalTo(_backgroundView.mas_centerX);
-        make.bottom.equalTo(_backgroundView.mas_bottom).offset(-23.0f);
+        make.top.equalTo(self->_radialView.mas_bottom).offset(14.0f);
+        make.centerX.equalTo(self->_backgroundView.mas_centerX);
+        make.bottom.equalTo(self->_backgroundView.mas_bottom).offset(-23.0f);
     }];
     
     [_closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_backgroundView.mas_top).offset(-20.0f);
-        make.left.equalTo(_backgroundView.mas_right);
+        make.top.equalTo(self->_backgroundView.mas_top).offset(-20.0f);
+        make.left.equalTo(self->_backgroundView.mas_right);
         make.size.mas_equalTo(CGSizeMake(20.0f, 20.0f));
     }];
 }

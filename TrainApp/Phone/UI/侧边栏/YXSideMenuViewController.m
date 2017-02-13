@@ -20,7 +20,7 @@
 #import "YXDynamicViewController.h"
 #import "YXWebSocketManger.h"
 
-
+#import "StudentsLearnController.h"
 @interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSArray *_titleArray;
 }
@@ -333,7 +333,9 @@
             break;
         case 2:
         {
-            YXWorkshopViewController *workshopVc = [[YXWorkshopViewController alloc] init];
+//            YXWorkshopViewController *workshopVc = [[YXWorkshopViewController alloc] init];
+//            [self.navigationController pushViewController:workshopVc animated:YES];
+            StudentsLearnController *workshopVc = [[StudentsLearnController alloc] init];
             [self.navigationController pushViewController:workshopVc animated:YES];
         }
             break;

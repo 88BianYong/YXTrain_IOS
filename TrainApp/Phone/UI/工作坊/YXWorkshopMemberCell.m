@@ -45,7 +45,7 @@
     [_headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.width.mas_equalTo(60.0f);
         make.centerX.equalTo(self.contentView.mas_centerX);
-        make.bottom.equalTo(_nameLabel.mas_top).offset(-10.0f);
+        make.bottom.equalTo(self->_nameLabel.mas_top).offset(-10.0f);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {

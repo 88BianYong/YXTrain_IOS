@@ -264,7 +264,7 @@
     [request  startRequestWithRetClass:[YXGetQiNiuTokenRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         if (error) {
-            _progressView.hidden = YES;
+            self->_progressView.hidden = YES;
             [self showToast:@"网络异常,请稍后重试"];
         }else{
             YXGetQiNiuTokenRequestItem *item = retItem;

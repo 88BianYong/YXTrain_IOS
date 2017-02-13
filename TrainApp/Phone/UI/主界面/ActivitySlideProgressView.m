@@ -66,7 +66,7 @@
         make.left.mas_equalTo(self.wholeProgressView.mas_left);
         make.top.mas_equalTo(self.wholeProgressView.mas_top);
         make.bottom.mas_equalTo(self.wholeProgressView.mas_bottom);
-        make.width.mas_equalTo(self.wholeProgressView.mas_width).multipliedBy(_playProgress).priorityHigh();
+        make.width.mas_equalTo(self.wholeProgressView.mas_width).multipliedBy(self->_playProgress).priorityHigh();
     }];
 }
 
@@ -76,7 +76,7 @@
         make.left.mas_equalTo(self.wholeProgressView.mas_left);
         make.top.mas_equalTo(self.wholeProgressView.mas_top);
         make.bottom.mas_equalTo(self.wholeProgressView.mas_bottom);
-        make.width.mas_equalTo(self.wholeProgressView.mas_width).multipliedBy(_bufferProgress).priorityHigh();
+        make.width.mas_equalTo(self.wholeProgressView.mas_width).multipliedBy(self->_bufferProgress).priorityHigh();
     }];
 
 }

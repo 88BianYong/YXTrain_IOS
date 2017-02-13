@@ -132,38 +132,38 @@
 
     
     [_feedBackView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_contentView.mas_top).offset(5.0f);
+        make.top.equalTo(self->_contentView.mas_top).offset(5.0f);
         make.height.mas_offset(165.0f);
-        make.left.equalTo(_contentView.mas_left);
-        make.right.equalTo(_contentView.mas_right);
+        make.left.equalTo(self->_contentView.mas_left);
+        make.right.equalTo(self->_contentView.mas_right);
     }];
     [_feedBackTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_feedBackView).offset(5.0f);
-        make.left.equalTo(_feedBackView).offset(15.0f);
-        make.right.equalTo(_feedBackView.mas_right).offset(-15.0f);
-        make.bottom.equalTo(_feedBackView.mas_bottom);
+        make.top.equalTo(self->_feedBackView).offset(5.0f);
+        make.left.equalTo(self->_feedBackView).offset(15.0f);
+        make.right.equalTo(self->_feedBackView.mas_right).offset(-15.0f);
+        make.bottom.equalTo(self->_feedBackView.mas_bottom);
     }];
     
     [_contactView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_feedBackView.mas_bottom).offset(10.0f);
-        make.left.right.equalTo(_contentView);
+        make.top.equalTo(self->_feedBackView.mas_bottom).offset(10.0f);
+        make.left.right.equalTo(self->_contentView);
         make.height.mas_offset(45.0f);
     }];
     [_contactLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_contactView.mas_left).offset(15.0f);
-        make.centerY.equalTo(_contactView.mas_centerY);
+        make.left.equalTo(self->_contactView.mas_left).offset(15.0f);
+        make.centerY.equalTo(self->_contactView.mas_centerY);
     }];
     [_contactTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_contactView.mas_right).offset(-15.0f);
-        make.left.equalTo(_contactLabel.mas_right).offset(16.0f);
-        make.centerY.equalTo(_contactView.mas_centerY);
+        make.right.equalTo(self->_contactView.mas_right).offset(-15.0f);
+        make.left.equalTo(self->_contactLabel.mas_right).offset(16.0f);
+        make.centerY.equalTo(self->_contactView.mas_centerY);
         make.height.mas_offset(30.0f);
     }];
     
     [_submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_contentView.mas_left).offset(15.0f);
-        make.right.equalTo(_contentView.mas_right).offset(-15.0f);
-        make.top.equalTo(_contactView.mas_bottom).offset(34.0f);
+        make.left.equalTo(self->_contentView.mas_left).offset(15.0f);
+        make.right.equalTo(self->_contentView.mas_right).offset(-15.0f);
+        make.top.equalTo(self->_contactView.mas_bottom).offset(34.0f);
         make.height.mas_offset(44.0f);
     }];
 }

@@ -141,47 +141,47 @@
    }];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_posterImageView.mas_right).offset(14.0f);
+        make.left.equalTo(self->_posterImageView.mas_right).offset(14.0f);
         make.top.equalTo(self.contentView.mas_top).offset(27.0f);
     }];
     
     [_recordTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_titleLabel.mas_bottom).offset(5.5f);
-        make.left.equalTo(_titleLabel.mas_left);
+        make.top.equalTo(self->_titleLabel.mas_bottom).offset(5.5f);
+        make.left.equalTo(self->_titleLabel.mas_left);
     }];
     
     [_durationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(_recordSizeLabel.mas_top).offset(-4.5f);
-        make.left.equalTo(_titleLabel.mas_left);
+        make.bottom.equalTo(self->_recordSizeLabel.mas_top).offset(-4.5f);
+        make.left.equalTo(self->_titleLabel.mas_left);
     }];
     
     [_recordSizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(_posterImageView.mas_bottom).offset(-2.5f);
-        make.left.equalTo(_titleLabel.mas_left);
+        make.bottom.equalTo(self->_posterImageView.mas_bottom).offset(-2.5f);
+        make.left.equalTo(self->_titleLabel.mas_left);
     }];
     
     [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
-        make.top.equalTo(_posterImageView.mas_bottom).offset(10.0f);
+        make.top.equalTo(self->_posterImageView.mas_bottom).offset(10.0f);
         make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
     }];
     
     [_uploadButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_lineView.mas_bottom).offset(32.0f);
+        make.top.equalTo(self->_lineView.mas_bottom).offset(32.0f);
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.height.mas_offset(44.0f);
         make.width.mas_offset(225.0f);
     }];
     
     [_againLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_uploadButton.mas_bottom).offset(18.0f);
+        make.top.equalTo(self->_uploadButton.mas_bottom).offset(18.0f);
         make.right.equalTo(self.contentView.mas_centerX);
     }];
     
     [_againButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_centerX).offset(9.0f);
-        make.centerY.equalTo(_againLabel.mas_centerY);
+        make.centerY.equalTo(self->_againLabel.mas_centerY);
         make.height.mas_offset(30.0f);
         make.width.mas_offset(50.0f);
     }];
@@ -191,11 +191,11 @@
 //        make.centerY.equalTo(_posterImageView.mas_centerY);
 //        make.width.height.mas_offset(30.0f);
         make.top.left.right.equalTo(self.contentView);
-        make.bottom.equalTo(_lineView.mas_bottom);
+        make.bottom.equalTo(self->_lineView.mas_bottom);
     }];
     [_playView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.contentView);
-        make.bottom.equalTo(_lineView.mas_bottom);
+        make.bottom.equalTo(self->_lineView.mas_bottom);
     }];
 }
 

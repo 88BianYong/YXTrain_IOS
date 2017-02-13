@@ -109,12 +109,12 @@
     }];
     [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@0);
-        make.height.equalTo(_cancelButton.mas_height);
+        make.height.equalTo(self->_cancelButton.mas_height);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-40);
     }];
     
     [bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(_cancelButton.mas_bottom);
+        make.bottom.mas_equalTo(self->_cancelButton.mas_bottom);
         make.right.mas_equalTo(0);
         make.left.mas_equalTo(0);
         make.height.mas_equalTo(1.0f/[UIScreen mainScreen].scale);
@@ -122,7 +122,7 @@
     
     [_pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.equalTo(@0);
-        make.top.equalTo(_cancelButton.mas_bottom);
+        make.top.equalTo(self->_cancelButton.mas_bottom);
     }];
     [self clearSeparatorWithView:_pickerView];
 }

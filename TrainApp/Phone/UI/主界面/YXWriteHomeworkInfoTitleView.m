@@ -60,10 +60,10 @@
     }];
     
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_titleLabel.mas_right);
+        make.left.equalTo(self->_titleLabel.mas_right);
         make.top.equalTo(self.contentView.mas_top).offset(10.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
-        make.height.equalTo(_textView.mas_width).multipliedBy(180.0f/610.0f);
+        make.height.equalTo(self->_textView.mas_width).multipliedBy(180.0f/610.0f);
     }];
 }
 
