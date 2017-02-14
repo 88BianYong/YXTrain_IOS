@@ -1,0 +1,142 @@
+{
+    "code": "0",
+    "debugDesc": "[debug_token: http-nio-45901-exec-4-1466492260388-12_7_45901 ] backen code[0]+ Focus fetching code[0],desc[返回数据成功]",
+    "desc": "success",
+    "body": {
+        "egscore": "0",
+        "totalscore": "100",
+        "viewType": "1",
+        "ifexam": "1",
+        "total": "10.0",
+        "types": [
+                  {
+                  "power": 1,
+                  "score": "10",
+                  "details": [
+                              {
+                              "descripe": "优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分",
+                              "typecode": "CXL",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 5,
+                              "recommend": 0,
+                              "userscore": 4.2,
+                              "isFinished": 1
+                              },
+                              {
+                              "descripe": "优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分",
+                              "typecode": "HGL",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 10,
+                              "recommend": 1,
+                              "userscore": 1.2,
+                              "isFinished": 0
+                              },
+                              {
+                              "descripe": "",
+                              "typecode": "XY_PER_SCORE",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 10,
+                              "recommend": 1,
+                              "userscore": 1.2,
+                              "isFinished": 0
+                              },
+                              {
+                              "descripe": "",
+                              "typecode": "PUBLISH_BRIEF",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 8,
+                              "recommend": 1,
+                              "userscore": 1.2,
+                              "isFinished": 0
+                              }
+                              ]
+                  },
+                  {
+                  "power": 1,
+                  "score": "12",
+                  "details": [
+                              {
+                              "descripe": "优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分",
+                              "typecode": "PUBLISH_ACTIVE",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 18,
+                              "recommend": 0,
+                              "userscore": 0.3,
+                              "isFinished": 0
+                              },
+                              {
+                              "descripe": "",
+                              "typecode": "RECOMMEND_HOMEWORK",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 10,
+                              "recommend": 1,
+                              "userscore": 1.2,
+                              "isFinished": 0
+                              },
+                              {
+                              "descripe": "优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分",
+                              "typecode": "ASSESS_HOMEWORK",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 10,
+                              "recommend": 1,
+                              "userscore": 1.2,
+                              "isFinished": 0
+                              }
+                              ]
+                  },
+                  {
+                  "power": 1,
+                  "score": "14",
+                  "details": [
+                              {
+                              "descripe": "",
+                              "typecode": "TIME_COURSE",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 188,
+                              "recommend": 1,
+                              "userscore": 1.4,
+                              "isFinished": 0
+                              },
+                              {
+                              "descripe": "测试作业4",
+                              "typecode": "UPLOAD_RES",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 12,
+                              "recommend": 1,
+                              "userscore": 0.7,
+                              "isFinished": 1
+                              },
+                              {
+                              "descripe": "优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分",
+                              "typecode": "ASSESS_HOMEWORK",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 10,
+                              "recommend": 1,
+                              "userscore": 1.2,
+                              "isFinished": 0
+                              },
+                              {
+                              "descripe": "优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分,优秀作品集，计10分",
+                              "typecode": "ADMIN_SCORE",
+                              "type": "2",
+                              "amount": "100",
+                              "score": 10,
+                              "recommend": 1,
+                              "userscore": 1.2,
+                              "isFinished": 0
+                              }
+                              ]
+                  }
+                  ]
+    }
+}

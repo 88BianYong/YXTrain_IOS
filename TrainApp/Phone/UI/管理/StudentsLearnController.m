@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"管理";
     [self setupUI];
     [self setupLayout];
     [self setupRightWithTitle:@"编辑"];

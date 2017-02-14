@@ -27,6 +27,10 @@
 #import "ChangeProjectGuideView.h"
 #import "WebsocketRedRightView.h"
 #import "WebsocketRedLeftView.h"
+#import "MasterProjectContainerView.h"
+
+
+#import "MasterHappeningViewController.h"
 @interface YXProjectMainViewController ()
 {
     UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
@@ -202,36 +206,58 @@
         [v removeFromSuperview];
     }
     [YXTrainManager sharedInstance].currentProjectIndexPath = indexPath;
-    if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
-        YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
-        WEAK_SELF
-        containerView.selectedViewContrller = ^(UIViewController<YXTrackPageDataProtocol> *vc){
-            STRONG_SELF
-            [self ->_selectedViewController report:NO];
-            self ->_selectedViewController = vc;
-            [self ->_selectedViewController report:YES];
-        };
-        UIViewController<YXTrackPageDataProtocol> *examVC = [[YXTrainManager sharedInstance].trainHelper showExamProject];
-        YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
-        YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
-        notiVC.flag = YXFlag_Notice;
+    if (1) {
+        MasterProjectContainerView *containerView = [[MasterProjectContainerView alloc]initWithFrame:self.view.bounds];
+        UIViewController *happeningVC = [[NSClassFromString(@"MasterHappeningViewController") alloc] init];
+        UIViewController *studentsVC = [[NSClassFromString(@"StudentsLearnController") alloc] init];
         YXNoticeViewController *bulletinVC = [[YXNoticeViewController alloc]init];
         bulletinVC.flag = YXFlag_Bulletin;
-        containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
-        _selectedViewController = examVC;
+        containerView.viewControllers = @[happeningVC,studentsVC,bulletinVC];
         containerView.tag = 10001;
         [self.view addSubview:containerView];
-        [self addChildViewController:examVC];
-        [self addChildViewController:taskVC];
-        [self addChildViewController:notiVC];
+        [self addChildViewController:happeningVC];
+        [self addChildViewController:studentsVC];
         [self addChildViewController:bulletinVC];
-        [self showChangeProjectGuideView];
-    }else{
-        YXCourseRecordViewController *recordVc = [[YXCourseRecordViewController alloc]init];
-        self.recordVC = recordVc;
-        self.recordVC.view.frame = self.view.bounds;
-        [self.view addSubview:self.recordVC.view];
-        [self addChildViewController:recordVc];
+        
+        static NSString *staticString = @"ChangeProjectRoleView";
+        UIView *roleView = [[NSClassFromString(staticString) alloc] init];
+        [self.navigationController.view addSubview:roleView];
+        [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+
+    }else {
+        if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
+            YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
+            WEAK_SELF
+            containerView.selectedViewContrller = ^(UIViewController<YXTrackPageDataProtocol> *vc){
+                STRONG_SELF
+                [self ->_selectedViewController report:NO];
+                self ->_selectedViewController = vc;
+                [self ->_selectedViewController report:YES];
+            };
+            UIViewController<YXTrackPageDataProtocol> *examVC = [[YXTrainManager sharedInstance].trainHelper showExamProject];
+            YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
+            YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
+            notiVC.flag = YXFlag_Notice;
+            YXNoticeViewController *bulletinVC = [[YXNoticeViewController alloc]init];
+            bulletinVC.flag = YXFlag_Bulletin;
+            containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
+            _selectedViewController = examVC;
+            containerView.tag = 10001;
+            [self.view addSubview:containerView];
+            [self addChildViewController:examVC];
+            [self addChildViewController:taskVC];
+            [self addChildViewController:notiVC];
+            [self addChildViewController:bulletinVC];
+            [self showChangeProjectGuideView];
+        }else{
+            YXCourseRecordViewController *recordVc = [[YXCourseRecordViewController alloc]init];
+            self.recordVC = recordVc;
+            self.recordVC.view.frame = self.view.bounds;
+            [self.view addSubview:self.recordVC.view];
+            [self addChildViewController:recordVc];
+        }
     }
 }
 - (void)showChangeProjectGuideView {

@@ -41,7 +41,7 @@
 
 #pragma mark - show project
 - (UIViewController<YXTrackPageDataProtocol> *)showExamProject {
-    return [[NSClassFromString(@"YXExamViewController") alloc] init];;
+    return [[NSClassFromString(@"YXExamViewController") alloc] init];
 }
 - (void)courseInterfaceSkip:(UIViewController *)viewController {
     YXCourseViewController *vc = [[YXCourseViewController alloc]init];

@@ -8,11 +8,6 @@
 
 #import "YXProjectContainerView.h"
 
-@interface YXProjectTabItem : NSObject
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) UIImage *selectedImage;
-@property (nonatomic, strong) UIImage *defaultImage;
-@end
 @implementation YXProjectTabItem
 @end
 
@@ -22,8 +17,6 @@ static const NSUInteger kTagBase = 3333;
 @property (nonatomic, strong) UIView *topView;
 @property (nonatomic, strong) UIView *sliderView;
 @property (nonatomic, strong) UIScrollView *bottomScrollView;
-
-@property (nonatomic, strong) NSArray *tabItemArray;
 @end
 
 @implementation YXProjectContainerView
@@ -101,7 +94,7 @@ static const NSUInteger kTagBase = 3333;
             b.selected = YES;
         }
     }];
-    self.sliderView.center = CGPointMake(self.topView.frame.size.width/4/2, self.topView.frame.size.height-1);
+    self.sliderView.center = CGPointMake(self.topView.frame.size.width/self.tabItemArray.count/2, self.topView.frame.size.height-1);
     [self addSubview:self.sliderView];
 }
 
@@ -135,7 +128,7 @@ static const NSUInteger kTagBase = 3333;
     sender.selected = YES;
     NSInteger index = sender.tag - kTagBase;
     [UIView animateWithDuration:0.3 animations:^{
-        self.sliderView.center = CGPointMake(self.topView.frame.size.width/4/2*(1+index*2), self.sliderView.center.y);
+        self.sliderView.center = CGPointMake(self.topView.frame.size.width/self.tabItemArray.count/2*(1+index*2), self.sliderView.center.y);
     }];
     self.bottomScrollView.contentOffset = CGPointMake(self.bottomScrollView.frame.size.width*index, 0);
     if (self.selectedViewContrller && self.viewControllers.count > index) {
@@ -147,7 +140,7 @@ static const NSUInteger kTagBase = 3333;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat offsetX = scrollView.contentOffset.x;
     CGFloat sliderX = offsetX/scrollView.contentSize.width*self.topView.frame.size.width;
-    self.sliderView.center = CGPointMake(self.topView.frame.size.width/4/2+sliderX, self.sliderView.center.y);
+    self.sliderView.center = CGPointMake(self.topView.frame.size.width/self.tabItemArray.count/2+sliderX, self.sliderView.center.y);
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
