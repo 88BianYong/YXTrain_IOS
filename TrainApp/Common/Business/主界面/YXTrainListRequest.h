@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSString<Optional> *w;
 @property (nonatomic, strong) NSString<Optional> *pic;
 @property (nonatomic, strong) NSString<Optional> *status;//1-training;0-trained
+@property (nonatomic, strong) NSString<Optional> *roles;//1-training;0-trained
+@property (nonatomic, strong) NSString<Optional> *containsTeacher;//1-training;0-trained
 @end
 
 @interface YXTrainListRequestItem_body : JSONModel

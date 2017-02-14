@@ -347,6 +347,8 @@
 		92F1A5A11E52B3DD00015766 /* MasterHappeningHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5A01E52B3DD00015766 /* MasterHappeningHeaderView.m */; };
 		92F1A5A41E52EF4700015766 /* MasterProjectContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5A31E52EF4700015766 /* MasterProjectContainerView.m */; };
 		92F1A5A71E52F16100015766 /* ChangeProjectRoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5A61E52F16100015766 /* ChangeProjectRoleView.m */; };
+		92F1A5AD1E53083A00015766 /* YXProjectMainViewController+Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5AC1E53083A00015766 /* YXProjectMainViewController+Master.m */; };
+		92F1A5B01E53084A00015766 /* YXProjectMainViewController+Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5AF1E53084A00015766 /* YXProjectMainViewController+Student.m */; };
 		92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */; };
 		92F57B7E1E515ED90061CAA2 /* StudentsLearnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F57B7D1E515ED90061CAA2 /* StudentsLearnController.m */; };
 		92F57B821E515F310061CAA2 /* SwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F57B811E515F310061CAA2 /* SwipeTableViewCell.m */; };
@@ -1173,6 +1175,10 @@
 		92F1A5A31E52EF4700015766 /* MasterProjectContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterProjectContainerView.m; sourceTree = "<group>"; };
 		92F1A5A51E52F16100015766 /* ChangeProjectRoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeProjectRoleView.h; sourceTree = "<group>"; };
 		92F1A5A61E52F16100015766 /* ChangeProjectRoleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeProjectRoleView.m; sourceTree = "<group>"; };
+		92F1A5AB1E53083A00015766 /* YXProjectMainViewController+Master.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXProjectMainViewController+Master.h"; sourceTree = "<group>"; };
+		92F1A5AC1E53083A00015766 /* YXProjectMainViewController+Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXProjectMainViewController+Master.m"; sourceTree = "<group>"; };
+		92F1A5AE1E53084A00015766 /* YXProjectMainViewController+Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXProjectMainViewController+Student.h"; sourceTree = "<group>"; };
+		92F1A5AF1E53084A00015766 /* YXProjectMainViewController+Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXProjectMainViewController+Student.m"; sourceTree = "<group>"; };
 		92F370B41D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXWriteHomeworkInfoViewController+Request.h"; sourceTree = "<group>"; };
 		92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXWriteHomeworkInfoViewController+Request.m"; sourceTree = "<group>"; };
 		92F57B7C1E515ED90061CAA2 /* StudentsLearnController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnController.h; sourceTree = "<group>"; };
@@ -1896,6 +1902,10 @@
 				7C31784B1D1398EB004AAC90 /* 通知简报 */,
 				7C3177D11D10FC36004AAC90 /* YXProjectMainViewController.h */,
 				7C3177D21D10FC36004AAC90 /* YXProjectMainViewController.m */,
+				92F1A5AB1E53083A00015766 /* YXProjectMainViewController+Master.h */,
+				92F1A5AC1E53083A00015766 /* YXProjectMainViewController+Master.m */,
+				92F1A5AE1E53084A00015766 /* YXProjectMainViewController+Student.h */,
+				92F1A5AF1E53084A00015766 /* YXProjectMainViewController+Student.m */,
 				E927702C1DADD24000B2991C /* YXTrackPageDataProtocol.h */,
 			);
 			path = "主界面";
@@ -3754,6 +3764,7 @@
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				926354401DEFFAD000FAD1DE /* BeijingExamineRequest.m in Sources */,
 				CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */,
+				92F1A5B01E53084A00015766 /* YXProjectMainViewController+Student.m in Sources */,
 				7C2991B31DFE6F7000AE921C /* FileDownloadHelper.m in Sources */,
 				92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
@@ -3918,6 +3929,7 @@
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
 				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
 				924797E11E022C1F0033BFDC /* BeijingActivityFilterRequest.m in Sources */,
+				92F1A5AD1E53083A00015766 /* YXProjectMainViewController+Master.m in Sources */,
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
 				922901641DED0C15001474CE /* PreventHangingCourseView.m in Sources */,
 				92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */,

@@ -8,13 +8,9 @@
 
 #import "YXProjectMainViewController.h"
 #import "YXDrawerController.h"
-
-#import "YXTaskViewController.h"
-#import "YXNoticeViewController.h"
 #import "YXProjectContainerView.h"
 #import "YXTrainListRequest.h"
 #import "YXProjectSelectionView.h"
-#import "YXCourseRecordViewController.h"
 #import "YXUserProfileRequest.h"
 #import "YXUploadHeadImgRequest.h"
 #import "YXInitRequest.h"
@@ -27,16 +23,10 @@
 #import "ChangeProjectGuideView.h"
 #import "WebsocketRedRightView.h"
 #import "WebsocketRedLeftView.h"
-#import "MasterProjectContainerView.h"
-
-
-#import "MasterHappeningViewController.h"
+#import "YXProjectMainViewController+Master.h"
+#import "YXProjectMainViewController+Student.h"
 @interface YXProjectMainViewController ()
-{
-    UIViewController<YXTrackPageDataProtocol> *_selectedViewController;
-}
 @property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
-@property (nonatomic, strong) YXCourseRecordViewController *recordVC;
 @property (nonatomic, strong) NSMutableArray *dataMutableArrray;
 @property (nonatomic, strong) BeijingCheckedMobileUserRequest *checkedMobileUserRequest;
 @property (nonatomic, strong) WebsocketRedLeftView *leftView;
@@ -206,58 +196,10 @@
         [v removeFromSuperview];
     }
     [YXTrainManager sharedInstance].currentProjectIndexPath = indexPath;
-    if (1) {
-        MasterProjectContainerView *containerView = [[MasterProjectContainerView alloc]initWithFrame:self.view.bounds];
-        UIViewController *happeningVC = [[NSClassFromString(@"MasterHappeningViewController") alloc] init];
-        UIViewController *studentsVC = [[NSClassFromString(@"StudentsLearnController") alloc] init];
-        YXNoticeViewController *bulletinVC = [[YXNoticeViewController alloc]init];
-        bulletinVC.flag = YXFlag_Bulletin;
-        containerView.viewControllers = @[happeningVC,studentsVC,bulletinVC];
-        containerView.tag = 10001;
-        [self.view addSubview:containerView];
-        [self addChildViewController:happeningVC];
-        [self addChildViewController:studentsVC];
-        [self addChildViewController:bulletinVC];
-        
-        static NSString *staticString = @"ChangeProjectRoleView";
-        UIView *roleView = [[NSClassFromString(staticString) alloc] init];
-        [self.navigationController.view addSubview:roleView];
-        [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
-        }];
-
+    if ([YXTrainManager sharedInstance].currentProject.roles) {
+        [self showStudentInterface];
     }else {
-        if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
-            YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
-            WEAK_SELF
-            containerView.selectedViewContrller = ^(UIViewController<YXTrackPageDataProtocol> *vc){
-                STRONG_SELF
-                [self ->_selectedViewController report:NO];
-                self ->_selectedViewController = vc;
-                [self ->_selectedViewController report:YES];
-            };
-            UIViewController<YXTrackPageDataProtocol> *examVC = [[YXTrainManager sharedInstance].trainHelper showExamProject];
-            YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
-            YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
-            notiVC.flag = YXFlag_Notice;
-            YXNoticeViewController *bulletinVC = [[YXNoticeViewController alloc]init];
-            bulletinVC.flag = YXFlag_Bulletin;
-            containerView.viewControllers = @[examVC,taskVC,notiVC,bulletinVC];
-            _selectedViewController = examVC;
-            containerView.tag = 10001;
-            [self.view addSubview:containerView];
-            [self addChildViewController:examVC];
-            [self addChildViewController:taskVC];
-            [self addChildViewController:notiVC];
-            [self addChildViewController:bulletinVC];
-            [self showChangeProjectGuideView];
-        }else{
-            YXCourseRecordViewController *recordVc = [[YXCourseRecordViewController alloc]init];
-            self.recordVC = recordVc;
-            self.recordVC.view.frame = self.view.bounds;
-            [self.view addSubview:self.recordVC.view];
-            [self addChildViewController:recordVc];
-        }
+        [self showMasterInterface];
     }
 }
 - (void)showChangeProjectGuideView {

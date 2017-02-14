@@ -9,5 +9,6 @@
 #import "YXBaseViewController.h"
 
 @interface YXProjectMainViewController : YXBaseViewController
-
+@property (nonatomic,strong ) UIViewController<YXTrackPageDataProtocol> *selectedViewController;
+- (void)showChangeProjectGuideView;
 @end
