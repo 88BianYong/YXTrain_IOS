@@ -14,7 +14,7 @@
 - (void)showMasterInterface {
     MasterProjectContainerView *containerView = [[MasterProjectContainerView alloc]initWithFrame:self.view.bounds];
     UIViewController *happeningVC = [[NSClassFromString(@"MasterHappeningViewController") alloc] init];
-    UIViewController *studentsVC = [[NSClassFromString(@"StudentsLearnController") alloc] init];
+    UIViewController *studentsVC = [[NSClassFromString(@"MasterManageViewController") alloc] init];
     YXNoticeViewController *bulletinVC = [[YXNoticeViewController alloc]init];
     bulletinVC.flag = YXFlag_Bulletin;
     containerView.viewControllers = @[happeningVC,studentsVC,bulletinVC];

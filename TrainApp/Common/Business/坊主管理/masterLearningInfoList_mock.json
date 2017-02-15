@@ -1,0 +1,142 @@
+{
+    "code": "0",
+    "debugDesc": "[debug_token: http-nio-45901-exec-4-1466492260388-12_7_45901 ] backen code[0]+ Focus fetching code[0],desc[返回数据成功]",
+    "desc": "success",
+    "body": {
+        "fangType": 0,
+        "cxl":"11.47",
+        "count":"401",
+        "xxl":"32.60",
+        "hgl":"1.22",
+        "thgl":"0",
+        "totalPage":"4",
+        "learningInfoList": [
+                             {
+                             "userid": 11358011,
+                             "realname": "测试学员1",
+                             "unit": "柳大厦法定是学校",
+                             "studyname": "云纹",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "测试学员2",
+                             "unit": "柳大师傅按时络学校",
+                             "studyname": "数学",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "阿斯蒂芬学员3",
+                             "unit": "发斯蒂芬啊网络学校",
+                             "studyname": "英语",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "阿发学员4",
+                             "unit": "按时啊络学校",
+                             "studyname": "美术",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "发斯蒂芬试学员5",
+                             "unit": "阿萨德啊络学校",
+                             "studyname": "地理",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "大家学员6",
+                             "unit": "阿萨德发啊网络学校",
+                             "studyname": "化学",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "你好学员7",
+                             "unit": "阿萨德网络学校",
+                             "studyname": "正直",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "测小名学员8",
+                             "unit": "在线充值网络学校",
+                             "studyname": "垃圾",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "测试放沙发学员9",
+                             "unit": "柳州市网络学校",
+                             "studyname": "好玩",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "测试员10",
+                             "unit": "柳州市网络学校",
+                             "studyname": "阿萨德",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "测试学员8",
+                             "unit": "柳州市网络学校",
+                             "studyname": "琪琪",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "测试学员8",
+                             "unit": "柳州市网络学校",
+                             "studyname": "其它",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "测试学员8",
+                             "unit": "柳州市网络学校",
+                             "studyname": "其它",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             },
+                             {
+                             "userid": 11358011,
+                             "realname": "测试学员8",
+                             "unit": "柳州市网络学校",
+                             "studyname": "其它",
+                             "totalscore": "5.0",
+                             "leadscore": "4.0",
+                             "expandscore": "20.3"
+                             }
+                             ]
+    }
+}

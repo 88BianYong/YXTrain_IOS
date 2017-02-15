@@ -39,13 +39,12 @@
         make.center.equalTo(containerView);
     }];
     
-    UIImageView *descriptionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
-    descriptionImageView.backgroundColor =[UIColor redColor];
+    UIImageView *descriptionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"内容模块"]];
     [self addSubview:descriptionImageView];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"项目切换-我知道了-按钮"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"项目切换-我知道了-按钮点击态"] forState:UIControlStateHighlighted];
+    [button setImage:[UIImage imageNamed:@"朕知道了"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"朕知道了"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(removeSelfButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
 

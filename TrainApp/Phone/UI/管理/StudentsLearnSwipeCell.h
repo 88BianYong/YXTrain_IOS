@@ -7,7 +7,7 @@
 //
 
 #import "SwipeTableViewCell.h"
-
+#import "MasterLearningInfoListRequest.h"
 @interface StudentsLearnSwipeCell : SwipeTableViewCell
-
+@property (nonatomic, strong) MasterLearningInfoListRequestItem_Body_LearningInfoList *learningInfo;
 @end

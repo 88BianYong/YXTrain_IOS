@@ -8,6 +8,7 @@
 
 #import "SwipeTableViewCell.h"
 @interface SwipeTableViewCell ()
+@property (nonatomic, strong) UIView *choooseView;
 @property (nonatomic, strong) UIImageView *statusImageView;
 @end
 @implementation SwipeTableViewCell
@@ -22,12 +23,18 @@
 
 #pragma mark - setupUI
 - (void)setupSwipeUI {
-    self.statusImageView = [[UIImageView alloc] init];
-    self.statusImageView.backgroundColor = [UIColor grayColor];
-    [self.contentView addSubview:self.statusImageView];
+    self.choooseView = [[UIView alloc] init];
+    self.choooseView.layer.cornerRadius = 10.0f;
+    self.choooseView.layer.borderWidth = 1.0f;
+    self.choooseView.layer.borderColor = [UIColor colorWithHexString:@"dfe2e6"].CGColor;
+    self.choooseView.backgroundColor = [UIColor whiteColor];
+    [self.contentView addSubview:self.choooseView];
+    
+    self.statusImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"批量操作选择的对号"]];
+    [self.choooseView addSubview:self.statusImageView];
     
     self.containerView = [[UIView alloc] init];
-    self.containerView.backgroundColor = [UIColor redColor];
+    self.containerView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.containerView];
 }
 
@@ -39,12 +46,16 @@
         make.width.equalTo(self.contentView.mas_width);
     }];
     
-    [self.statusImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.choooseView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_offset(CGSizeMake(20.0f, 20.0f));
         make.centerY.equalTo(self.mas_centerY);
-        make.left.equalTo(self.mas_left).offset(20.0f);
+        make.left.equalTo(self.mas_left).offset(10.0f);
     }];
     
+    [self.statusImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
+        make.center.equalTo(self.choooseView);
+    }];
 }
 
 - (void)awakeFromNib {
@@ -60,16 +71,20 @@
 - (void)setIsChooseBool:(BOOL)isChooseBool {
     _isChooseBool = isChooseBool;
     if (_isChooseBool) {
-        self.statusImageView.backgroundColor = [UIColor blueColor];
+        self.choooseView.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
+        self.choooseView.backgroundColor = [UIColor colorWithHexString:@"0070c9"];
+        self.statusImageView.hidden = NO;
     }else{
-        self.statusImageView.backgroundColor = [UIColor grayColor];
+        self.statusImageView.hidden = YES;
+        self.choooseView.layer.borderColor = [UIColor colorWithHexString:@"dfe2e6"].CGColor;
+        self.choooseView.backgroundColor = [UIColor whiteColor];
     }
 }
 - (void)setupModeEditable:(BOOL)edit
 {
     if (edit) {
         [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.contentView.mas_left).offset(50.0f);
+            make.left.equalTo(self.contentView.mas_left).offset(30.0f);
         }];
     }else{
         [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -84,10 +99,11 @@
 -(void)modifiDeleteBtn{
     for (UIView *subView in self.subviews) {
         if ([subView isKindOfClass:NSClassFromString(@"UITableViewCellDeleteConfirmationView")]) {
-            subView.backgroundColor= [UIColor blueColor];
+            subView.backgroundColor= [UIColor colorWithHexString:@"0070c9"];
             for (UIButton *btn in subView.subviews) {
                 if ([btn isKindOfClass:[UIButton class]]) {
-                    btn.backgroundColor=[UIColor blueColor];
+                    btn.backgroundColor=[UIColor colorWithHexString:@"0070c9"];
+                    btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
                 }
             }
         }

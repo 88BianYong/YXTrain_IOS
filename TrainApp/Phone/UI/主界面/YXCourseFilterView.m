@@ -184,18 +184,12 @@ static const NSUInteger kTagBase = 876;
 }
 
 - (void)btnAction:(UIButton *)sender{
-    if (self.isAnimating) {
-        return;
-    }
     NSInteger curIndex = sender.tag - kTagBase;
     [self showFilterSelectionViewWithIndex:curIndex];
     [self changeButton:sender foldStatus:NO];
 }
 
 - (void)tapAction{
-    if (self.isAnimating) {
-        return;
-    }
     [self hideFilterSelectionView];
 }
 
@@ -244,9 +238,6 @@ static const NSUInteger kTagBase = 876;
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (self.isAnimating) {
-        return;
-    }
     self.currentFilterItem.currentIndex = indexPath.row;
     [self filterItemArrayChanged];
     NSInteger index = [self.filterItemArray indexOfObject:self.currentFilterItem];

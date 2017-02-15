@@ -71,10 +71,7 @@
     self.waveView.userInteractionEnabled = NO;
     self.waveView.backgroundColor = [UIColor whiteColor];
     [self.containerView addSubview:self.waveView];
-    [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.containerView);
-    }];
-    
+
     self.totalNameLabel = [[UILabel alloc] init];
     self.totalNameLabel.text = @"我的成绩";
     self.totalNameLabel.font = [UIFont boldSystemFontOfSize:12.0f];
@@ -88,8 +85,7 @@
     self.totalLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
     [self.containerView addSubview:self.totalLabel];
     
-    self.explainImageView = [[UIImageView alloc] init];
-    self.explainImageView.backgroundColor = [UIColor redColor];
+    self.explainImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"我的成绩解释说明标签"]];
     [self.containerView addSubview:self.explainImageView];
     
     self.topExplainLabel = [[MasterTableHeaderLabel alloc] initWithExplain:@"成绩考核为百分制,60分为合格"];
@@ -102,6 +98,11 @@
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f));
     }];
+    
+    [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.containerView);
+    }];
+    
     
     [self.totalNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.containerView.mas_top).offset(30.0f);

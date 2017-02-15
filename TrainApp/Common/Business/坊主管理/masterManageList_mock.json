@@ -1,0 +1,33 @@
+{
+    "code": "0",
+    "debugDesc": "[debug_token: http-nio-45901-exec-4-1466492260388-12_7_45901 ] backen code[0]+ Focus fetching code[0],desc[返回数据成功]",
+    "desc": "success",
+    "body": {
+        "groups": [
+                  {
+                  "name": "肥东县献血语文测试房",
+                  "barid": 2008761
+                  },
+                  {
+                  "barid": 2008761,
+                  "name": "河北省石家庄市小学测试房"
+                  },
+                  {
+                  "barid": 2008761,
+                  "name": "北京市产阳区重点小学重点本测试那个使劲努力坊"
+                  },
+                  {
+                  "barid": 2008761,
+                  "name": "安徽阜阳测试语文坊"
+                  },
+                  {
+                  "barid": 2008761,
+                  "name": "陕西大同高年级搞事情防"
+                  },
+                  {
+                  "barid": 2008761,
+                  "name": "我就是来凑数的"
+                  }
+                  ]
+    }
+}

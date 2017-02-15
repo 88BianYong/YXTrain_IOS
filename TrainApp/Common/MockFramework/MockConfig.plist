@@ -258,7 +258,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>BeijingActivityFilterRequest - 3</key>
+		<key>MasterManageListRequest</key>
 		<dict>
 			<key>mockEnable</key>
 			<true/>
@@ -266,7 +266,21 @@
 			<array>
 				<dict>
 					<key>fileName</key>
-					<string>beijingActivityFilter_mock.json</string>
+					<string>masterManageList_mock.json</string>
+					<key>percent</key>
+					<integer>100</integer>
+				</dict>
+			</array>
+		</dict>
+		<key>MasterLearningInfoListRequest</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
+				<dict>
+					<key>fileName</key>
+					<string>masterLearningInfoList_mock.json</string>
 					<key>percent</key>
 					<integer>100</integer>
 				</dict>
