@@ -97,7 +97,14 @@
     self.lineView = [[UIView alloc] init];
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.bottomView addSubview:self.lineView];
-    
+}
+- (void)setIsChooseBool:(BOOL)isChooseBool {
+    [super setIsChooseBool:isChooseBool];
+    if (isChooseBool) {
+        self.learningInfo.isChoose = @"1";
+    }else {
+        self.learningInfo.isChoose = @"0";
+    }
 }
 - (void)setupLayout {
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -170,5 +177,6 @@
     self.totalLabel.text = _learningInfo.totalscore;
     self.leadLabel.text = _learningInfo.leadscore;
     self.expandLabel.text = _learningInfo.expandscore;
+    self.isChooseBool = _learningInfo.isChoose.boolValue;
 }
 @end

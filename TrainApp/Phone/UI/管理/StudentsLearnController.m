@@ -12,14 +12,21 @@
 #import "StudentsLearnFilterView.h"
 #import "MasterManageListRequest.h"
 #import "LearningInfoListFetcher.h"
+#import "StudentExamViewController.h"
+#import "MasterRemindStudyRequest.h"
 @interface StudentsLearnController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) StudentsLearnTableHeaderView *headerView;
 @property (nonatomic, strong) StudentsLearnFilterView *filterView;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, strong) DataErrorView *filterDataErrorView;
 @property (nonatomic, strong) MasterManageListRequest *listRequest;
+@property (nonatomic, strong) MasterRemindStudyRequest *studyRequest;
 @property (nonatomic, strong) UIButton *batchButton;
+@property (nonatomic, strong) NSMutableSet *userIdSet;
+
 @property (nonatomic, assign) BOOL isWaitingForFilter;
+@property (nonatomic, assign) BOOL isBatchBool;
+@property (nonatomic, assign) UIButton *remindButton;
 @end
 
 @implementation StudentsLearnController
@@ -31,6 +38,8 @@
     [self setupFetcher];
     self.isWaitingForFilter = YES;
     [super viewDidLoad];
+    self.userIdSet = [[NSMutableSet alloc] init];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.title = @"管理";
     [self setupUI];
     [self setupLayout];
@@ -55,6 +64,8 @@
 #pragma mark - setup UI
 - (void)setupUI {
     self.filterView = [[StudentsLearnFilterView alloc] init];
+    self.filterView.backgroundColor =[UIColor whiteColor];
+    self.filterView.hidden = YES;
     WEAK_SELF
     [self.filterView setStudentsLearnFilterSchoolBlock:^(NSString *baridString) {
         STRONG_SELF
@@ -77,7 +88,19 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.tableView registerClass:[StudentsLearnSwipeCell class] forCellReuseIdentifier:@"StudentsLearnSwipeCell"];
     self.headerView = [[StudentsLearnTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 150.0f)];
+    self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
+    self.remindButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.remindButton.backgroundColor = [UIColor colorWithHexString:@"0070c9"];
+    [self.remindButton setTitle:@"提醒学习" forState:UIControlStateNormal];
+    self.remindButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.remindButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.remindButton.hidden = YES;
+    [[self.remindButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        STRONG_SELF
+        [self requestForRemindStudy];
+    }];
+    [self.view addSubview:self.remindButton];
     self.batchButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.batchButton setImage:[UIImage imageNamed:@"批量操作icon"] forState:UIControlStateNormal];
     [self.batchButton setImage:[UIImage imageNamed:@"批量操作icon"] forState:UIControlStateHighlighted];
@@ -104,7 +127,7 @@
         make.top.equalTo(self.view.mas_top);
         make.height.mas_offset(44.0f);
     }];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.top.equalTo(self.view.mas_top).offset(44.0f);
@@ -115,27 +138,47 @@
         make.bottom.equalTo(self.view.mas_bottom).offset(-25.0f);
         make.size.mas_offset(CGSizeMake(90.0f, 50.0f));
     }];
-    [self stopLoading];
+    
+    [self.remindButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.mas_offset(44.0f);
+    }];
 }
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    [super setEditing:editing animated:animated];
-    if (editing) {
-        [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view.mas_top);
-        }];
-        self.tableView.tableHeaderView = nil;
+- (void)tableViewWillRefresh {
+    self.headerView.hidden = NO;
+}
+- (void)setIsBatchBool:(BOOL)isBatchBool {
+    _isBatchBool = isBatchBool;
+    if (_isBatchBool) {
+        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
         self.batchButton.hidden = YES;
         self.filterView.hidden = YES;
+        self.remindButton.hidden = NO;
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_left);
+            make.right.equalTo(self.view.mas_right);
+            make.top.equalTo(self.view.mas_top);
+            make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+        }];
     }else {
-        [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
+        [self setupLeftBack];
+        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view.mas_top).offset(44.0f);
+            make.left.equalTo(self.view.mas_left);
+            make.right.equalTo(self.view.mas_right);
+            make.bottom.equalTo(self.view.mas_bottom);
         }];
         self.tableView.tableHeaderView = self.headerView;
         self.batchButton.hidden = NO;
         self.filterView.hidden = NO;
+        self.remindButton.hidden = YES;
+        self.tableView.tableFooterView = nil;
     }
-    [self.tableView reloadData];
-    
+    for (StudentsLearnSwipeCell *cell in [self.tableView visibleCells]) {
+        [cell setupModeEditable:self.isBatchBool];
+    }
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -147,18 +190,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     StudentsLearnSwipeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"StudentsLearnSwipeCell" forIndexPath:indexPath];
     cell.learningInfo = self.dataArray[indexPath.row];
-    [cell setupModeEditable:self.editing];
+    [cell setupModeEditable:self.isBatchBool];
     return cell;
 }
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 86.0f;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 0.001f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.0001f;
+}
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return  @"提醒学习";
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.editing = YES;
+    MasterLearningInfoListRequestItem_Body_LearningInfoList *info = self.dataArray[indexPath.row];
+    [self.userIdSet addObject:info.userid];
+    [self requestForRemindStudy];
 }
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.editing) {
@@ -168,12 +219,25 @@
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    StudentsLearnSwipeCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.isChooseBool = !cell.isChooseBool;
+    MasterLearningInfoListRequestItem_Body_LearningInfoList *info = self.dataArray[indexPath.row];
+    if (self.isBatchBool) {
+        StudentsLearnSwipeCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.isChooseBool = !cell.isChooseBool;
+        if (cell.isChooseBool) {
+            [self.userIdSet addObject:info.userid];
+        }else {
+            [self.userIdSet removeObject:info.userid];
+        }
+    }else  {
+        StudentExamViewController *VC = [[StudentExamViewController alloc] init];
+        VC.userId = info.userid;
+        VC.title = info.realname;
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 #pragma mark - button Action
 - (void)buttonBatchAction:(UIButton *)sender {
-    self.editing = YES;
+    self.isBatchBool = YES;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"取消" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateNormal];
@@ -182,8 +246,7 @@
     WEAK_SELF
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
-        self.editing = NO;
-        [self setupLeftBack];
+        self.isBatchBool = NO;
     }];
     [self setupLeftWithCustomView:button];
 
@@ -208,6 +271,7 @@
             [self.tableView reloadData];
             return;
         }
+        self.filterView.hidden = NO;
         [self.filterErrorView removeFromSuperview];
         [self.filterDataErrorView removeFromSuperview];
         MasterManageListRequestItem *item = retItem;
@@ -221,5 +285,35 @@
         fetcher.barId = grop.barid;
         [self firstPageFetch];
     }];
+}
+- (void)requestForRemindStudy {
+    MasterRemindStudyRequest *request = [[MasterRemindStudyRequest alloc] init];
+    request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    request.userIds = [[self.userIdSet allObjects] componentsJoinedByString:@","];
+    [self startLoading];
+    WEAK_SELF
+    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = YES;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
+        }
+        for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
+            info.isChoose = @"0";
+        }
+        [self.userIdSet removeAllObjects];
+        [self showToast:@"批量提醒成功"];
+    }];
+    self.studyRequest = request;
+}
+- (void)firstPageFetch {
+    if (self.isWaitingForFilter) {
+        return;
+    }
+    [super firstPageFetch];
 }
 @end

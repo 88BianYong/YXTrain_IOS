@@ -330,6 +330,10 @@
 		92CE55ED1E557D8F002C1F11 /* LearningInfoListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55EC1E557D8F002C1F11 /* LearningInfoListFetcher.m */; };
 		92CE55EF1E558249002C1F11 /* masterLearningInfoList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92CE55EE1E558249002C1F11 /* masterLearningInfoList_mock.json */; };
 		92CE55F11E55825C002C1F11 /* masterManageList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92CE55F01E55825C002C1F11 /* masterManageList_mock.json */; };
+		92CE55F41E5598FD002C1F11 /* StudentExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55F31E5598FD002C1F11 /* StudentExamViewController.m */; };
+		92CE55F71E559926002C1F11 /* StudentExamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55F61E559926002C1F11 /* StudentExamHeaderView.m */; };
+		92CE55FA1E559CD8002C1F11 /* StudentExamPhaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55F91E559CD8002C1F11 /* StudentExamPhaseHeaderView.m */; };
+		92CE55FD1E55ACF8002C1F11 /* MasterRemindStudyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55FC1E55ACF8002C1F11 /* MasterRemindStudyRequest.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92DE3BB41DDAFDEE0011CFB7 /* ActivityStepTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BB31DDAFDEE0011CFB7 /* ActivityStepTableCell.m */; };
 		92DE3BBB1DDC329A0011CFB7 /* SecondCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BBA1DDC329A0011CFB7 /* SecondCommentViewController.m */; };
@@ -1150,6 +1154,14 @@
 		92CE55EC1E557D8F002C1F11 /* LearningInfoListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoListFetcher.m; sourceTree = "<group>"; };
 		92CE55EE1E558249002C1F11 /* masterLearningInfoList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterLearningInfoList_mock.json; sourceTree = "<group>"; };
 		92CE55F01E55825C002C1F11 /* masterManageList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterManageList_mock.json; sourceTree = "<group>"; };
+		92CE55F21E5598FD002C1F11 /* StudentExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamViewController.h; sourceTree = "<group>"; };
+		92CE55F31E5598FD002C1F11 /* StudentExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamViewController.m; sourceTree = "<group>"; };
+		92CE55F51E559926002C1F11 /* StudentExamHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamHeaderView.h; sourceTree = "<group>"; };
+		92CE55F61E559926002C1F11 /* StudentExamHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamHeaderView.m; sourceTree = "<group>"; };
+		92CE55F81E559CD8002C1F11 /* StudentExamPhaseHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamPhaseHeaderView.h; sourceTree = "<group>"; };
+		92CE55F91E559CD8002C1F11 /* StudentExamPhaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamPhaseHeaderView.m; sourceTree = "<group>"; };
+		92CE55FB1E55ACF8002C1F11 /* MasterRemindStudyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterRemindStudyRequest.h; sourceTree = "<group>"; };
+		92CE55FC1E55ACF8002C1F11 /* MasterRemindStudyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterRemindStudyRequest.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
 		92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUploadDepictionViewController.m; sourceTree = "<group>"; };
 		92DE3BB21DDAFDEE0011CFB7 /* ActivityStepTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStepTableCell.h; sourceTree = "<group>"; };
@@ -2801,6 +2813,8 @@
 				92CE55E91E557B37002C1F11 /* MasterLearningInfoListRequest.m */,
 				92CE55EB1E557D8F002C1F11 /* LearningInfoListFetcher.h */,
 				92CE55EC1E557D8F002C1F11 /* LearningInfoListFetcher.m */,
+				92CE55FB1E55ACF8002C1F11 /* MasterRemindStudyRequest.h */,
+				92CE55FC1E55ACF8002C1F11 /* MasterRemindStudyRequest.m */,
 			);
 			path = "坊主管理";
 			sourceTree = "<group>";
@@ -3102,6 +3116,10 @@
 				92835A941E54797E00B71DF7 /* MasterConditionTableView.m */,
 				928DBE7A1E547A5C0016D66C /* MasterConditionCell.h */,
 				928DBE7B1E547A5C0016D66C /* MasterConditionCell.m */,
+				92CE55F51E559926002C1F11 /* StudentExamHeaderView.h */,
+				92CE55F61E559926002C1F11 /* StudentExamHeaderView.m */,
+				92CE55F81E559CD8002C1F11 /* StudentExamPhaseHeaderView.h */,
+				92CE55F91E559CD8002C1F11 /* StudentExamPhaseHeaderView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3113,6 +3131,8 @@
 				92F1A5B51E53FF9F00015766 /* MasterManageViewController.m */,
 				92F57B7C1E515ED90061CAA2 /* StudentsLearnController.h */,
 				92F57B7D1E515ED90061CAA2 /* StudentsLearnController.m */,
+				92CE55F21E5598FD002C1F11 /* StudentExamViewController.h */,
+				92CE55F31E5598FD002C1F11 /* StudentExamViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -3851,6 +3871,7 @@
 				92A770091DD18A5800C578F2 /* InputTextView.m in Sources */,
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
 				E9CD95791DE3E36500AE6704 /* ShareResourcesViewController.m in Sources */,
+				92CE55F71E559926002C1F11 /* StudentExamHeaderView.m in Sources */,
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
 				920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */,
 				9232374B1D80F40700FDACFE /* YXProvincesRequest.m in Sources */,
@@ -3915,6 +3936,7 @@
 				92FED88C1DD1C38E00457228 /* ActitvityCommentHeaderView.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
+				92CE55F41E5598FD002C1F11 /* StudentExamViewController.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
 				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
 				E9CD95821DE3E7E300AE6704 /* DownloadResourceRequest.m in Sources */,
@@ -4040,12 +4062,14 @@
 				92310E411E529B7E00CB5F1F /* MasterStatRequest.m in Sources */,
 				92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */,
 				92CE51531D87D4AE0071DE79 /* YXHotspotRequest.m in Sources */,
+				92CE55FA1E559CD8002C1F11 /* StudentExamPhaseHeaderView.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
 				7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */,
 				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
 				92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */,
 				926354431DF10C4100FAD1DE /* BeijingCourseViewController.m in Sources */,
+				92CE55FD1E55ACF8002C1F11 /* MasterRemindStudyRequest.m in Sources */,
 				7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */,
 				92F1A5B31E530D2700015766 /* MasterManageListRequest.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,

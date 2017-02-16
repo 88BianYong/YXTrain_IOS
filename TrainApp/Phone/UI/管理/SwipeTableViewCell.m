@@ -80,8 +80,7 @@
         self.choooseView.backgroundColor = [UIColor whiteColor];
     }
 }
-- (void)setupModeEditable:(BOOL)edit
-{
+- (void)setupModeEditable:(BOOL)edit {
     if (edit) {
         [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView.mas_left).offset(30.0f);

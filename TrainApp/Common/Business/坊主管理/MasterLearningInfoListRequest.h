@@ -17,8 +17,7 @@
 @property (nonatomic, copy) NSString<Optional> *totalscore;
 @property (nonatomic, copy) NSString<Optional> *leadscore;
 @property (nonatomic, copy) NSString<Optional> *expandscore;
-
-
+@property (nonatomic, copy) NSString<Optional> *isChoose;
 @end
 
 @interface MasterLearningInfoListRequestItem_Body : JSONModel

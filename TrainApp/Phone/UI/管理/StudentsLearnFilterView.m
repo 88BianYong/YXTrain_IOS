@@ -60,6 +60,7 @@
     [self.schoolTableView setMasterSchoolTableViewBlock:^(NSString *baridString) {
         STRONG_SELF
         [self.masterButton setTitle:self.groups[self.schoolTableView.chooseInteger].name forState:UIControlStateNormal];
+        [self exchangeTitleImagePositionForButton:self.masterButton];
         [self.masterButton setImage:[UIImage imageNamed:@"筛选箭头选择下"] forState:UIControlStateNormal];
         BLOCK_EXEC(self.StudentsLearnFilterSchoolBlock,baridString);
         [self hideFilterSelectionView];
@@ -141,6 +142,8 @@
 - (void)setGroups:(NSMutableArray<__kindof MasterManageListRequestItem_Body_Group *> *)groups {
     _groups = groups;
     self.schoolTableView.groups = _groups;
+    [self.masterButton setTitle:self.groups[self.schoolTableView.chooseInteger].name forState:UIControlStateNormal];
+    [self exchangeTitleImagePositionForButton:self.masterButton];
 }
 
 @end

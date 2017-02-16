@@ -102,6 +102,7 @@
 @interface YXExamineRequest : YXGetRequest
 @property (nonatomic, strong) NSString *pid;
 @property (nonatomic, strong) NSString *w;
+@property (nonatomic, strong) NSString *userId;
 @end
 
 
