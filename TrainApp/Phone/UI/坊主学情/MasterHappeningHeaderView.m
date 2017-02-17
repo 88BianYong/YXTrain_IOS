@@ -25,7 +25,6 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.typeImageView = [[UIImageView  alloc] init];
-    self.typeImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.typeImageView];
     
     self.typeLabel = [[UILabel alloc] init];
@@ -62,19 +61,19 @@
     switch (_powerInteger) {
         case 1:
         {
-            self.typeImageView.image = [UIImage imageNamed:@""];
+            self.typeImageView.image = [UIImage imageNamed:@"组织力icon"];
             self.typeLabel.text = @"研修组织力";
         }
             break;
         case 2:
         {
-            self.typeImageView.image = [UIImage imageNamed:@""];
+            self.typeImageView.image = [UIImage imageNamed:@"研修指导力icon"];
             self.typeLabel.text = @"研修指导力";
         }
             break;
         case 3:
         {
-            self.typeImageView.image = [UIImage imageNamed:@""];
+            self.typeImageView.image = [UIImage imageNamed:@"学习力icon"];
             self.typeLabel.text = @"学习力";
         }
             break;

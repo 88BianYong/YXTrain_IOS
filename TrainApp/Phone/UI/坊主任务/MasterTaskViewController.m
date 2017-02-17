@@ -45,7 +45,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MasterManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterManageCell"];
-    [cell reloadWithText:@"课程" imageName:@""];
+    [cell reloadWithText:@"课程" imageName:@"课程的icon"];
     return cell;
 }
 

@@ -45,7 +45,6 @@
     selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
     self.selectedBackgroundView = selectedBgView;
     self.typeImageView = [[UIImageView alloc]init];
-    self.typeImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.typeImageView];
     [self.typeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(12);

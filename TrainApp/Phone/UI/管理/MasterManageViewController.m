@@ -44,7 +44,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MasterManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterManageCell"];
-    [cell reloadWithText:@"学员学情" imageName:@""];
+    [cell reloadWithText:@"学员学情" imageName:@"学员学情icon"];
     return cell;
 }
 

@@ -10,9 +10,9 @@
 
 @implementation MasterProjectContainerView
 - (void)setupTabItems{
-    YXProjectTabItem *tab1 = [self tabItemWithName:@"学情" selectedImage:[UIImage imageNamed:@"考核当前态"] defaultImage:[UIImage imageNamed:@"考核默认态"]];
-    YXProjectTabItem *tab2 = [self tabItemWithName:@"管理" selectedImage:[UIImage imageNamed:@"任务当前态"] defaultImage:[UIImage imageNamed:@"任务默认态"]];
-    YXProjectTabItem *tab3 = [self tabItemWithName:@"任务" selectedImage:[UIImage imageNamed:@"简报当前态"] defaultImage:[UIImage imageNamed:@"简报默认态"]];
+    YXProjectTabItem *tab1 = [self tabItemWithName:@"学情" selectedImage:[UIImage imageNamed:@"学情-选择"] defaultImage:[UIImage imageNamed:@"学情-默认"]];
+    YXProjectTabItem *tab2 = [self tabItemWithName:@"管理" selectedImage:[UIImage imageNamed:@"管理-选择"] defaultImage:[UIImage imageNamed:@"管理-默认"]];
+    YXProjectTabItem *tab3 = [self tabItemWithName:@"任务" selectedImage:[UIImage imageNamed:@"任务-选择"] defaultImage:[UIImage imageNamed:@"任务--默认"]];
     self.tabItemArray = @[tab1,tab2,tab3];
 }
 - (YXProjectTabItem *)tabItemWithName:(NSString *)name selectedImage:(UIImage *)selectedImage defaultImage:(UIImage *)defaultImage{
