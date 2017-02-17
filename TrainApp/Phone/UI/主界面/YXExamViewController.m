@@ -20,6 +20,7 @@
 #import "YXExamMarkView.h"
 #import "YXCourseViewController.h"
 #import "ActivityListViewController.h"
+#import "StudentExamTipsView.h"
 static  NSString *const trackPageName = @"考核页面";
 static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @interface YXExamViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -28,6 +29,8 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @property (nonatomic, strong) YXExamineRequestItem *examineItem;
 @property (nonatomic, strong) NSMutableDictionary *foldStatusDic;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
+
+@property (nonatomic, strong) StudentExamTipsView *tipsView;
 
 @property (nonatomic,strong) UIView *waveView;
 @property (nonatomic,assign) BOOL  isSelected;
@@ -104,6 +107,34 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         STRONG_SELF
         [self getDataShowLoading:NO];
     };
+    if ([YXTrainManager sharedInstance].currentProject.containsTeacher.boolValue) {
+        self.tipsView = [[StudentExamTipsView alloc] init];
+        [self.tipsView setStudentExamTipsOpenCloseBlock:^(UIButton *sender) {
+            STRONG_SELF
+            if (sender.selected) {
+                [UIView animateWithDuration:0.3f animations:^{
+                    [self.tipsView mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.left.equalTo(self.view.mas_left).offset(15.0f);
+                    }];
+                    [self.view layoutIfNeeded];
+                    
+                }];
+            }else {
+                [UIView animateWithDuration:0.3f animations:^{
+                    [self.tipsView mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.left.equalTo(self.view.mas_left).offset(-kScreenWidth + 30.0f + 38.0f);
+                    }];
+                    [self.view layoutIfNeeded];
+                }];
+            }
+        }];
+    }
+    [self.view addSubview:self.tipsView];
+    [self.tipsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left).offset(15.0f);
+        make.width.mas_offset(kScreenWidth - 30.0f);
+        make.top.equalTo(self.view.mas_top).offset(18.0f);
+    }];
 }
 
 - (void)getDataShowLoading:(BOOL)isShow{

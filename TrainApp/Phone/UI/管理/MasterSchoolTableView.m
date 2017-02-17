@@ -43,6 +43,10 @@
     self.chooseInteger = indexPath.row;
     BLOCK_EXEC(self.MasterSchoolTableViewBlock,self.groups[indexPath.row].barid);
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGRect rect = [self.groups[indexPath.row].name boundingRectWithSize:CGSizeMake(kScreenWidth - 35.0f - 12.0f, 80.0f) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
+    return 44.0f + rect.size.height - 15.513671875;//单行高度15.513671875;
+}
 - (void)setGroups:(NSMutableArray<__kindof MasterManageListRequestItem_Body_Group *> *)groups {
     _groups = groups;
     [self reloadData];

@@ -15,21 +15,12 @@
     MasterProjectContainerView *containerView = [[MasterProjectContainerView alloc]initWithFrame:self.view.bounds];
     UIViewController *happeningVC = [[NSClassFromString(@"MasterHappeningViewController") alloc] init];
     UIViewController *studentsVC = [[NSClassFromString(@"MasterManageViewController") alloc] init];
-    YXNoticeViewController *bulletinVC = [[YXNoticeViewController alloc]init];
-    bulletinVC.flag = YXFlag_Bulletin;
-    containerView.viewControllers = @[happeningVC,studentsVC,bulletinVC];
+    UIViewController *taskVC = [[NSClassFromString(@"MasterTaskViewController") alloc] init];
+    containerView.viewControllers = @[happeningVC,studentsVC,taskVC];
     containerView.tag = 10001;
     [self.view addSubview:containerView];
     [self addChildViewController:happeningVC];
     [self addChildViewController:studentsVC];
-    [self addChildViewController:bulletinVC];
-    
-    static NSString *staticString = @"ChangeProjectRoleView";
-    UIView *roleView = [[NSClassFromString(staticString) alloc] init];
-    [self.navigationController.view addSubview:roleView];
-    [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
- 
+    [self addChildViewController:taskVC];
 }
 @end

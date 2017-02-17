@@ -7,13 +7,14 @@
 //
 
 #import "YXUserImageTableViewCell.h"
-
+#import "UserStatusView.h"
 @interface YXUserImageTableViewCell ()
 
 @property (nonatomic, strong) UIImageView *userImageView;
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *desLabel;
 @property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong) UserStatusView *statusView;
 
 @end
 
@@ -83,6 +84,16 @@
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-20);
     }];
+    if ([YXTrainManager sharedInstance].currentProject.doubel.intValue == 2) {
+        self.statusView = [[UserStatusView alloc]init];
+        self.statusView.isMasterBool = [YXTrainManager sharedInstance].currentProject.role.intValue == 99;
+        [self.contentView addSubview:self.statusView];
+        [self.statusView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(169.0f, 26.0f));
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
+            make.centerX.equalTo(self.contentView.mas_centerX);
+        }];
+    }
 }
 
 - (void)tapUserImageGesture:(UIGestureRecognizer *)gesture{

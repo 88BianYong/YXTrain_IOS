@@ -54,8 +54,7 @@
     }];
     self.typeLabel = [[UILabel alloc]init];
     self.typeLabel.font = [UIFont boldSystemFontOfSize:14];
-    self.typeLabel.text = @"学员学情";
-    self.typeLabel.textColor = [UIColor colorWithHexString:@"334466"];
+        self.typeLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.typeLabel];
     [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.typeImageView.mas_right).mas_offset(8);
@@ -77,5 +76,10 @@
         make.height.mas_equalTo(1);
     }];
 }
-
+- (void)reloadWithText:(NSString *)text
+              imageName:(NSString *)imageName {
+    self.typeLabel.text = text;
+    self.typeImageView.image = [UIImage imageNamed:imageName];
+    
+}
 @end

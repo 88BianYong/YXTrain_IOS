@@ -102,6 +102,11 @@ extern NSString *const kYXTrainShowUpdate;
  *  北京项目校验信息删除填写信息
  */
 extern NSString *const kYXTrainDeleteInfo;
+/**
+ *  用户身份切换
+ */
+extern NSString *const kYXTrainUserIdentityChange;
+
 
 
 /**

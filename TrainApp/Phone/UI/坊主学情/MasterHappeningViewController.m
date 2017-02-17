@@ -116,7 +116,7 @@
         STRONG_SELF
         [self stopLoading];
         MasterStatRequestItem *item = retItem;
-        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc] init];
         data.requestDataExist = YES;
         data.localDataExist = NO;
         data.error = error;

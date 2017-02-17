@@ -73,7 +73,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
-#pragma mark - button Action 
+#pragma mark - button Action
 - (void)resetButtonAction:(UIButton *)sender {
     self.ifxcCell.leftRoundView.isChooseBool = NO;
     self.ifxcCell.rightRoundView.isChooseBool = NO;
@@ -88,5 +88,10 @@
     mutableDictionary[@"ifhg"] = [NSString stringWithFormat:@"%ld",self.ifhgCell.chooseInteger];
     mutableDictionary[@"ifxx"] = [NSString stringWithFormat:@"%ld",self.ifxxCell.chooseInteger];
     BLOCK_EXEC(self.MasterConditionChooseBlock,mutableDictionary);
+}
+- (BOOL)isChooseBool {
+    return self.ifxcCell.chooseInteger != 0 ||
+           self.ifhgCell.chooseInteger != 0 ||
+           self.ifxxCell.chooseInteger != 0;
 }
 @end

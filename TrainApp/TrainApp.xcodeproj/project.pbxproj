@@ -334,6 +334,9 @@
 		92CE55F71E559926002C1F11 /* StudentExamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55F61E559926002C1F11 /* StudentExamHeaderView.m */; };
 		92CE55FA1E559CD8002C1F11 /* StudentExamPhaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55F91E559CD8002C1F11 /* StudentExamPhaseHeaderView.m */; };
 		92CE55FD1E55ACF8002C1F11 /* MasterRemindStudyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55FC1E55ACF8002C1F11 /* MasterRemindStudyRequest.m */; };
+		92CE56001E55C8AB002C1F11 /* UserStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55FF1E55C8AB002C1F11 /* UserStatusView.m */; };
+		92CE56031E56822E002C1F11 /* MasterTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE56021E56822E002C1F11 /* MasterTaskViewController.m */; };
+		92CE56061E5686F7002C1F11 /* StudentExamTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE56051E5686F7002C1F11 /* StudentExamTipsView.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92DE3BB41DDAFDEE0011CFB7 /* ActivityStepTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BB31DDAFDEE0011CFB7 /* ActivityStepTableCell.m */; };
 		92DE3BBB1DDC329A0011CFB7 /* SecondCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BBA1DDC329A0011CFB7 /* SecondCommentViewController.m */; };
@@ -1162,6 +1165,12 @@
 		92CE55F91E559CD8002C1F11 /* StudentExamPhaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamPhaseHeaderView.m; sourceTree = "<group>"; };
 		92CE55FB1E55ACF8002C1F11 /* MasterRemindStudyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterRemindStudyRequest.h; sourceTree = "<group>"; };
 		92CE55FC1E55ACF8002C1F11 /* MasterRemindStudyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterRemindStudyRequest.m; sourceTree = "<group>"; };
+		92CE55FE1E55C8AB002C1F11 /* UserStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusView.h; sourceTree = "<group>"; };
+		92CE55FF1E55C8AB002C1F11 /* UserStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusView.m; sourceTree = "<group>"; };
+		92CE56011E56822E002C1F11 /* MasterTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterTaskViewController.h; sourceTree = "<group>"; };
+		92CE56021E56822E002C1F11 /* MasterTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterTaskViewController.m; sourceTree = "<group>"; };
+		92CE56041E5686F7002C1F11 /* StudentExamTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamTipsView.h; sourceTree = "<group>"; };
+		92CE56051E5686F7002C1F11 /* StudentExamTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamTipsView.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
 		92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUploadDepictionViewController.m; sourceTree = "<group>"; };
 		92DE3BB21DDAFDEE0011CFB7 /* ActivityStepTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStepTableCell.h; sourceTree = "<group>"; };
@@ -2756,6 +2765,8 @@
 				92F1A59D1E52B3BA00015766 /* MasterHappeningCell.m */,
 				92F1A59F1E52B3DD00015766 /* MasterHappeningHeaderView.h */,
 				92F1A5A01E52B3DD00015766 /* MasterHappeningHeaderView.m */,
+				92CE56041E5686F7002C1F11 /* StudentExamTipsView.h */,
+				92CE56051E5686F7002C1F11 /* StudentExamTipsView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -2781,6 +2792,8 @@
 		92310E391E5299FB00CB5F1F /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				92CE56011E56822E002C1F11 /* MasterTaskViewController.h */,
+				92CE56021E56822E002C1F11 /* MasterTaskViewController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -3439,6 +3452,8 @@
 				CB8524631D334BFB009FA14B /* HJCActionSheet.m */,
 				CB1606081D2FCA9F0071BA01 /* YXActionSheet.h */,
 				CB1606091D2FCA9F0071BA01 /* YXActionSheet.m */,
+				92CE55FE1E55C8AB002C1F11 /* UserStatusView.h */,
+				92CE55FF1E55C8AB002C1F11 /* UserStatusView.m */,
 				CBF66E2F1D2E3A8D00F4E408 /* YXUserImageTableViewCell.h */,
 				CBF66E301D2E3A8D00F4E408 /* YXUserImageTableViewCell.m */,
 				CBF66E321D2E435E00F4E408 /* YXUserInfoTableViewCell.h */,
@@ -4113,6 +4128,7 @@
 				92F1A59E1E52B3BA00015766 /* MasterHappeningCell.m in Sources */,
 				7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */,
 				7C2991B01DFE4C4D00AE921C /* FileBrowserFactory.m in Sources */,
+				92CE56061E5686F7002C1F11 /* StudentExamTipsView.m in Sources */,
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
@@ -4136,6 +4152,7 @@
 				CB8524641D334BFB009FA14B /* HJCActionSheet.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
 				920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */,
+				92CE56031E56822E002C1F11 /* MasterTaskViewController.m in Sources */,
 				9237FF7C1DD572400057FFDE /* ActivityFirstCommentRequest.m in Sources */,
 				CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */,
 				9232376E1D81668000FDACFE /* YXCheckRequest.m in Sources */,
@@ -4189,6 +4206,7 @@
 				923237731D825C6500FDACFE /* YXHelpViewController.m in Sources */,
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
+				92CE56001E55C8AB002C1F11 /* UserStatusView.m in Sources */,
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
 				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,
 				7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */,

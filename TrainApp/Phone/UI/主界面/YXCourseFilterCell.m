@@ -40,11 +40,12 @@
     self.selectedBackgroundView = selectedBgView;
     self.filterLabel = [[UILabel alloc]init];
     self.filterLabel.font = [UIFont systemFontOfSize:13];
+    self.filterLabel.numberOfLines = 0;
     [self.contentView addSubview:self.filterLabel];
     [self.filterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.mas_equalTo(0);
         make.left.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
+        make.right.mas_equalTo(-20);
     }];
     UIView *line = [[UIView alloc]init];
     line.backgroundColor = [UIColor colorWithHexString:@"eceef2"];

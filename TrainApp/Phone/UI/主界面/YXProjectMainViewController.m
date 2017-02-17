@@ -44,6 +44,7 @@
     [super viewDidLoad];
     self.dataMutableArrray = [[NSMutableArray alloc] initWithCapacity:6];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showChangeProjectGuideView) name:@"cancelToUpdate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserRoleInterface) name:kYXTrainUserIdentityChange object:nil];
     [self setupUI];
     [self getProjectList];
 }
@@ -189,14 +190,17 @@
     [self showProjectSelectionView];
 }
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
+    [YXTrainManager sharedInstance].currentProjectIndexPath = indexPath;
+    [self refreshUserRoleInterface];
+}
+- (void)refreshUserRoleInterface {
     for (UIViewController *vc in self.childViewControllers) {
         [vc removeFromParentViewController];
     }
     for (UIView *v in self.view.subviews) {
         [v removeFromSuperview];
     }
-    [YXTrainManager sharedInstance].currentProjectIndexPath = indexPath;
-    if ([YXTrainManager sharedInstance].currentProject.roles) {
+    if ([YXTrainManager sharedInstance].currentProject.role.intValue == 9 || [YXTrainManager sharedInstance].currentProject.w.integerValue < 3) {
         [self showStudentInterface];
     }else {
         [self showMasterInterface];
@@ -211,6 +215,15 @@
             make.edges.mas_equalTo(0);
         }];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
+    }
+    if (!self.isTestBool) {
+        static NSString *staticString = @"ChangeProjectRoleView";
+        UIView *roleView = [[NSClassFromString(staticString) alloc] init];
+        [self.navigationController.view addSubview:roleView];
+        [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+        self.isTestBool = YES;
     }
 }
 - (BOOL)isShowMoreThanOneProject {

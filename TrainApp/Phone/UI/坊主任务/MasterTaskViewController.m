@@ -1,19 +1,20 @@
 //
-//  MasterManageViewController.m
+//  MasterTaskViewController.m
 //  TrainApp
 //
-//  Created by 郑小龙 on 17/2/15.
+//  Created by 郑小龙 on 17/2/17.
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "MasterManageViewController.h"
+#import "MasterTaskViewController.h"
 #import "MasterManageCell.h"
-@interface MasterManageViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface MasterTaskViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation MasterManageViewController
+@implementation MasterTaskViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,7 +36,7 @@
         make.edges.mas_equalTo(0);
     }];
     [self.tableView registerClass:[MasterManageCell class] forCellReuseIdentifier:@"MasterManageCell"];
-
+    
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -44,7 +45,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MasterManageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterManageCell"];
-    [cell reloadWithText:@"学员学情" imageName:@""];
+    [cell reloadWithText:@"课程" imageName:@""];
     return cell;
 }
 
@@ -55,8 +56,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSString *string = @"StudentsLearnController";
+    NSString *string = @"YXCourseViewController";
     UIViewController *VC = [[NSClassFromString(string) alloc] init];
     [self.navigationController pushViewController:VC animated:YES];
 }
+
 @end

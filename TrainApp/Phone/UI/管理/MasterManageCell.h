@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterManageCell : UITableViewCell
-
+- (void)reloadWithText:(NSString *)text
+             imageName:(NSString *)imageName;
 @end

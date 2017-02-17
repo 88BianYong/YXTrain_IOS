@@ -91,10 +91,14 @@
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
     self.remindButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.remindButton.backgroundColor = [UIColor colorWithHexString:@"0070c9"];
+    [self.remindButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
+    [self.remindButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateDisabled];
     [self.remindButton setTitle:@"提醒学习" forState:UIControlStateNormal];
     self.remindButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [self.remindButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.remindButton setTitleColor:[UIColor colorWithHexString:@"a1a7ae"]
+                            forState:UIControlStateDisabled];
+    self.remindButton.enabled = NO;
     self.remindButton.hidden = YES;
     [[self.remindButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
@@ -116,7 +120,7 @@
         STRONG_SELF
         [self requestForLearningInfo];
     };
-    self.emptyView.title = @"没有符合条件的活动";
+    self.emptyView.title = @"没有符合条件的内容";
     self.emptyView.imageName = @"没有符合条件的课程";
     
 }
@@ -228,6 +232,7 @@
         }else {
             [self.userIdSet removeObject:info.userid];
         }
+        self.remindButton.enabled = self.userIdSet.count > 0;
     }else  {
         StudentExamViewController *VC = [[StudentExamViewController alloc] init];
         VC.userId = info.userid;
@@ -295,18 +300,20 @@
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = YES;
-        data.localDataExist = YES;
-        data.error = error;
-        if ([self handleRequestData:data]) {
-            return;
-        }
-        for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
-            info.isChoose = @"0";
-        }
+//        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+//        data.requestDataExist = YES;
+//        data.localDataExist = YES;
+//        data.error = error;
+//        if ([self handleRequestData:data]) {
+//            return;
+//        }
+//        for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
+//            info.isChoose = @"0";
+//        }
         [self.userIdSet removeAllObjects];
-        [self showToast:@"批量提醒成功"];
+        self.isBatchBool = NO;
+        [self.tableView reloadData];
+        [self showToast:@"发送成功"];
     }];
     self.studyRequest = request;
 }

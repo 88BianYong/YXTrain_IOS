@@ -32,7 +32,7 @@
     self.masterButton.frame = CGRectMake(15.0f, 0.0f, kScreenWidth - 125.0f - 30.0f, 44.0f);
     [self.masterButton setTitle:@"16年陕西学前交易的小奔放很骄傲和第三方哈酒咖啡" forState:UIControlStateNormal];
     [self.masterButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
-    [self.masterButton setImage:[UIImage imageNamed:@"筛选箭头默认上"] forState:UIControlStateNormal];
+    [self.masterButton setImage:[UIImage imageNamed:@"筛选箭头选择下"] forState:UIControlStateNormal];
     [self.masterButton addTarget:self action:@selector(chooseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.masterButton.tag = 1001;
     self.masterButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
@@ -68,7 +68,17 @@
     self.conditionTableView = [[MasterConditionTableView alloc] init];
     [self.conditionTableView setMasterConditionChooseBlock:^(NSDictionary *dictionary) {
         STRONG_SELF
-        [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头默认上"] forState:UIControlStateNormal];
+        if (self.conditionTableView.isChooseBool) {
+            [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头选择下"]
+                               forState:UIControlStateNormal];
+            [self.filterButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+
+        }else {
+            [self.masterButton setImage:[UIImage imageNamed:@"筛选箭头默认下"]
+                               forState:UIControlStateNormal];
+            [self.filterButton setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
+            
+        }
         BLOCK_EXEC(self.StudentsLearnFilterConditionBlock,dictionary);
         [self hideFilterSelectionView];
     }];
@@ -90,10 +100,10 @@
 #pragma mark - button Action
 - (void)chooseButtonAction:(UIButton *)sender {
     if (sender.tag == 1001) {
-       [self.masterButton setImage:[UIImage imageNamed:@"筛选箭头选择下"] forState:UIControlStateNormal];
+       [self.masterButton setImage:[UIImage imageNamed:@"筛选箭头选择上"] forState:UIControlStateNormal];
        [self showFilterSelectionViewWithIndex:self.schoolTableView.chooseInteger];
     }else {
-        [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头选择下"] forState:UIControlStateNormal];
+        [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头选择上"] forState:UIControlStateNormal];
         [self showMasterConditionTableView];
     }
 }

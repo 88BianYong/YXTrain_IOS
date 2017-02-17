@@ -60,6 +60,7 @@ static  NSString *const trackPageName = @"个人信息页面";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(naviLeftAction) name:kYXTrainUserIdentityChange object:nil];
     [self setupUI];
     [self reloadUserProfileData];
     // Do any additional setup after loading the view.
@@ -211,6 +212,9 @@ static  NSString *const trackPageName = @"个人信息页面";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        if ([YXTrainManager sharedInstance].currentProject.doubel.intValue == 2) {
+            return 223;
+        }
         return 190;
     } else {
         return 43;
