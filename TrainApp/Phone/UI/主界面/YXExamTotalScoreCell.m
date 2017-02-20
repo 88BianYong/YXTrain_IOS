@@ -53,6 +53,7 @@
 }
 
 - (void)setupUI{
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.waveView = [[YXWaveView alloc]init];
     self.waveView.userInteractionEnabled = NO;

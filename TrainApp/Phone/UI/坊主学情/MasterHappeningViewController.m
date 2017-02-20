@@ -13,19 +13,25 @@
 #import "MasterHappeningHeaderView.h"
 #import "MasterHappeningCell.h"
 #import "BeijingExamExplainView.h"
+#import "MJRefresh.h"
 @interface MasterHappeningViewController ()<UITableViewDelegate, UITableViewDataSource>;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) MasterHappeningTableHeaderView *headerView;
 @property (nonatomic, strong) MasterStatRequestItem_Body *masterBody;
+@property (nonatomic, strong) MJRefreshHeaderView *header;
+@property (nonatomic, strong) MasterStatRequest *masterStatrequest;
 @end
 
 @implementation MasterHappeningViewController
-
+- (void)dealloc{
+    [self.header free];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"学情";
     [self setupUI];
     [self setupLayout];
+    [self startLoading];
     [self requestForMasterStat];
 }
 
@@ -49,6 +55,13 @@
     [self.tableView registerClass:[MasterHappeningCell class] forCellReuseIdentifier:@"MasterHappeningCell"];
     [self.tableView registerClass:[MasterHappeningHeaderView class] forHeaderFooterViewReuseIdentifier:@"MasterHappeningHeaderView"];
     [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
+    self.header = [MJRefreshHeaderView header];
+    self.header.scrollView = self.tableView;
+    WEAK_SELF
+    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        STRONG_SELF
+        [self requestForMasterStat];
+    };
     
 }
 - (void)setupLayout {
@@ -109,12 +122,12 @@
 - (void)requestForMasterStat {
     MasterStatRequest *request = [[MasterStatRequest alloc] init];
     request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
-    request.roleId = @"9";
-    [self startLoading];
+    request.roleId =[YXTrainManager sharedInstance].currentProject.role;
     WEAK_SELF
     [request startRequestWithRetClass:[MasterStatRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
+        [self.header endRefreshing];
         MasterStatRequestItem *item = retItem;
         UnhandledRequestData *data = [[UnhandledRequestData alloc] init];
         data.requestDataExist = YES;
@@ -125,8 +138,10 @@
         }
         self.masterBody = item.body;
         self.headerView.hidden = NO;
+        self.headerView.totalString = item.body.total;
         [self.tableView reloadData];
     }];
+    self.masterStatrequest = request;
 }
 
 @end

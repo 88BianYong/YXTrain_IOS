@@ -128,7 +128,7 @@
     }];
     [self.middleLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.topView.mas_left).offset(15.0f);
-        make.right.equalTo(self.topView.mas_right).offset(-15.0f);
+        make.right.equalTo(self.topView.mas_right);
         make.top.equalTo(self.topView.mas_bottom);
         make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
     }];

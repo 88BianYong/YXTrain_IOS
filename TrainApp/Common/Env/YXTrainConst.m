@@ -34,3 +34,5 @@ NSString *const kYXTrainShowUpdate = @"show optional update interface";
 NSString *const kYXTrainDeleteInfo = @"bei jing project delete all information";
 
 NSString *const kYXTrainUserIdentityChange = @"user change identity master or student";
+
+NSString *const kYXTrainFirstRoleChange = @"the first show role view";

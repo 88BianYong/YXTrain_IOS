@@ -50,6 +50,7 @@
 @property (nonatomic, strong) UIImageView *explainImageView;
 @property (nonatomic, strong) MasterTableHeaderLabel *topExplainLabel;
 @property (nonatomic, strong) MasterTableHeaderLabel *bottomExplainLabel;
+@property (nonatomic ,strong) NSTextAttachment *textAttachment;
 @property (nonatomic, strong) YXWaveView *waveView;
 @end
 @implementation MasterHappeningTableHeaderView
@@ -57,6 +58,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+        self.textAttachment = [[NSTextAttachment alloc] init];
         [self setupUI];
         [self setupLayout];
     }
@@ -73,7 +75,7 @@
     [self.containerView addSubview:self.waveView];
 
     self.totalNameLabel = [[UILabel alloc] init];
-    self.totalNameLabel.text = @"我的成绩";
+    self.totalNameLabel.text = @"我的成绩:";
     self.totalNameLabel.font = [UIFont boldSystemFontOfSize:12.0f];
     self.totalNameLabel.textColor = [UIColor colorWithHexString:@"33446"];
     self.totalNameLabel.textAlignment = NSTextAlignmentRight;
@@ -121,12 +123,22 @@
     }];
     
     [self.topExplainLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.explainImageView.mas_bottom).offset(8.0f);
+        make.top.equalTo(self.explainImageView.mas_bottom).offset(7.0f);
         make.centerX.equalTo(self.containerView.mas_centerX);
     }];
     [self.bottomExplainLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.topExplainLabel.mas_bottom).offset(8.0f);
+        make.top.equalTo(self.topExplainLabel.mas_bottom).offset(5.0f);
         make.centerX.equalTo(self.containerView.mas_centerX);
     }];
 }
+#pragma mark - set
+- (void)setTotalString:(NSString *)totalString {
+    self.textAttachment.image = [UIImage imageNamed:@"考核页面的的分"];
+    self.textAttachment.bounds = CGRectMake(0, -2.5f, 21.0f, 21.0f);
+    NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:self.textAttachment];
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:totalString?:@""];
+    [attr appendAttributedString:attrStringWithImage];
+    self.totalLabel.attributedText = attr;
+}
+
 @end

@@ -115,7 +115,7 @@
     NSString *completeStr = [NSString stringWithFormat:@"满分%@",score];
     NSRange range = [completeStr rangeOfString:score];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
-    [attr addAttributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontMetro_Medium size:13],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"e5581a"]} range:range];
+    [attr addAttributes:@{NSFontAttributeName:[UIFont fontWithName:YXFontMetro_Medium size:13],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"]} range:range];
     return attr;
 }
 

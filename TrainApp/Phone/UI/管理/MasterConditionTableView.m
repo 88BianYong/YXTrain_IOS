@@ -9,7 +9,7 @@
 #import "MasterConditionTableView.h"
 #import "MasterConditionCell.h"
 @interface MasterConditionTableView()<UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) MasterConditionCell *ifxcCell;
+@property (nonatomic, strong) MasterConditionCell *ifcxCell;
 @property (nonatomic, strong) MasterConditionCell *ifhgCell;
 @property (nonatomic, strong) MasterConditionCell *ifxxCell;
 @end
@@ -30,7 +30,7 @@
     self.layer.cornerRadius = YXTrainCornerRadii;
     self.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.rowHeight = 75.0f;
-    self.ifxcCell = [[MasterConditionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ifxcCell"];
+    self.ifcxCell = [[MasterConditionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ifcxCell"];
     self.ifhgCell = [[MasterConditionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ifhgCell"];
     self.ifxxCell = [[MasterConditionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ifxxCell"];
     
@@ -62,10 +62,16 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return self.ifxcCell;
+        self.ifcxCell.leftRoundView.nameLabel.text = @"未参训";
+        self.ifcxCell.rightRoundView.nameLabel.text = @"已参训";
+        return self.ifcxCell;
     }else if (indexPath.row == 1) {
+        self.ifhgCell.leftRoundView.nameLabel.text = @"未通过";
+        self.ifhgCell.rightRoundView.nameLabel.text = @"已通过";
         return self.ifhgCell;
     }else {
+        self.ifxxCell.leftRoundView.nameLabel.text = @"未学习";
+        self.ifxxCell.rightRoundView.nameLabel.text = @"已学习";
         return self.ifxxCell;
     }
 }
@@ -75,22 +81,19 @@
 }
 #pragma mark - button Action
 - (void)resetButtonAction:(UIButton *)sender {
-    self.ifxcCell.leftRoundView.isChooseBool = NO;
-    self.ifxcCell.rightRoundView.isChooseBool = NO;
-    self.ifhgCell.leftRoundView.isChooseBool = NO;
-    self.ifhgCell.rightRoundView.isChooseBool = NO;
-    self.ifxxCell.leftRoundView.isChooseBool = NO;
-    self.ifxxCell.rightRoundView.isChooseBool = NO;
+    self.ifcxCell.chooseInteger = 0;
+    self.ifhgCell.chooseInteger = 0;
+    self.ifxxCell.chooseInteger = 0;
 }
 - (void)confirmButtonAction:(UIButton *)sender {
     NSMutableDictionary *mutableDictionary = [@{@"ifcx":@"0",@"ifhg":@"0",@"ifxx":@"0"} mutableCopy];
-    mutableDictionary[@"ifcx"] = [NSString stringWithFormat:@"%ld",self.ifxcCell.chooseInteger];
+    mutableDictionary[@"ifcx"] = [NSString stringWithFormat:@"%ld",self.ifcxCell.chooseInteger];
     mutableDictionary[@"ifhg"] = [NSString stringWithFormat:@"%ld",self.ifhgCell.chooseInteger];
     mutableDictionary[@"ifxx"] = [NSString stringWithFormat:@"%ld",self.ifxxCell.chooseInteger];
     BLOCK_EXEC(self.MasterConditionChooseBlock,mutableDictionary);
 }
 - (BOOL)isChooseBool {
-    return self.ifxcCell.chooseInteger != 0 ||
+    return self.ifcxCell.chooseInteger != 0 ||
            self.ifhgCell.chooseInteger != 0 ||
            self.ifxxCell.chooseInteger != 0;
 }

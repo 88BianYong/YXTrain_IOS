@@ -85,7 +85,7 @@ static const CGFloat kImageWidth = 30;
     CGFloat titleWidth = MIN(ceilf(size.width), self.bounds.size.width-kImageWidth);
     self.titleLabel.frame = CGRectMake((self.bounds.size.width-titleWidth-kImageWidth)/2, 0, titleWidth, self.bounds.size.height);
     self.titleLabel.text = projectName;
-    if (self.projectGroup.firstObject.items.count >1 || self.projectGroup.lastObject.items.count > 1) {
+    if (self.projectGroup.firstObject.items.count >1 || self.projectGroup.lastObject.items.count > 1 || self.projectGroup.count > 1 ) {
         self.rightImageView.hidden = NO;
         self.rightImageView.frame = CGRectMake(self.titleLabel.frame.origin.x+self.titleLabel.frame.size.width, (self.bounds.size.height-kImageWidth)/2, kImageWidth, kImageWidth);
         self.bgButton.userInteractionEnabled = YES;

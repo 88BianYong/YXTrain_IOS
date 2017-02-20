@@ -35,13 +35,14 @@
 
 - (void)setupUI{
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    UIColor *color = [UIColor colorWithHexString:@"f1f1f1"];
-    self.gradientView = [[YXGradientView alloc]initWithStartColor:color endColor:[color colorWithAlphaComponent:0] orientation:YXGradientTopToBottom];
-    self.gradientView.hidden = YES;
-    [self.contentView addSubview:self.gradientView];
-    [self.gradientView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
+    self.contentView.backgroundColor = [UIColor colorWithHexString:@"e7e8ec"];
+//    UIColor *color = [UIColor colorWithHexString:@"f1f1f1"];
+//    self.gradientView = [[YXGradientView alloc]initWithStartColor:color endColor:[color colorWithAlphaComponent:0] orientation:YXGradientTopToBottom];
+//    self.gradientView.hidden = YES;
+//    [self.contentView addSubview:self.gradientView];
+//    [self.gradientView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.edges.mas_equalTo(0);
+//    }];
 }
 
 @end

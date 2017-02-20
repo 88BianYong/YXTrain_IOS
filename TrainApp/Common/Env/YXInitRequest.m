@@ -260,6 +260,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     cancelAlertAct.block = ^{
         STRONG_SELF
         [v hide];
+        self.showUpgradeFlag = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelToUpdate" object:nil];
     };
     

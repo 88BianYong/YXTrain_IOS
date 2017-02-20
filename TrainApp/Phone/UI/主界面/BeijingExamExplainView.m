@@ -31,7 +31,7 @@
     
     self.explainLabel = [[UILabel alloc] init];
     self.explainLabel.textColor = [UIColor colorWithHexString:@"334466"];
-    self.explainLabel.font = [UIFont systemFontOfSize:13.0f];
+    self.explainLabel.font = [UIFont systemFontOfSize:12.0f];
     self.explainLabel.text = @"课程: 17学时  案例: 3学时";
     self.explainLabel.numberOfLines = 0;
     [self.bgView addSubview:self.explainLabel];

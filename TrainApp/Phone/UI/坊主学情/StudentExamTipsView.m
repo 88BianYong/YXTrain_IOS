@@ -9,7 +9,6 @@
 #import "StudentExamTipsView.h"
 @interface StudentExamTipsView ()
 @property (nonatomic, strong) UILabel *promptLabel;
-@property (nonatomic, strong) UIButton *openCloseButton;
 @end
 @implementation StudentExamTipsView
 - (instancetype)initWithFrame:(CGRect)frame {

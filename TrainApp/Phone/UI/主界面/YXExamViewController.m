@@ -408,4 +408,13 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     }
     [YXDataStatisticsManger trackPage:trackPageName withStatus:status];
 }
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    self.tipsView.openCloseButton.selected = NO;
+    [UIView animateWithDuration:0.3f animations:^{
+        [self.tipsView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.view.mas_left).offset(-kScreenWidth + 30.0f + 38.0f);
+        }];
+        [self.view layoutIfNeeded];
+    }];
+}
 @end

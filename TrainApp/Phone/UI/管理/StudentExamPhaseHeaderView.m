@@ -12,6 +12,8 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *statusImageView;
 @property (nonatomic, strong) YXGradientView *gradientView;
+@property (nonatomic, strong) UIView *lineView;
+
 @end
 @implementation StudentExamPhaseHeaderView
 
@@ -43,6 +45,15 @@
         make.top.equalTo(self.contentView.mas_top).offset(45.0f);
         make.left.right.equalTo(self.contentView);
         make.height.mas_offset(25.0f);
+    }];
+    self.lineView = [[UIView alloc] init];
+    self.lineView.backgroundColor = [UIColor colorWithHexString:@"e7e8ec"];
+    [self.contentView addSubview:self.lineView];
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left);
+        make.right.equalTo(self.contentView.mas_right);
+        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.height.mas_offset(1.0f);
     }];
 }
 

@@ -36,7 +36,7 @@
         [self addChildViewController:taskVC];
         [self addChildViewController:notiVC];
         [self addChildViewController:bulletinVC];
-        [self showChangeProjectGuideView];
+        [self showSwitchGuideView];
     }else{
         YXCourseRecordViewController *recordVc = [[YXCourseRecordViewController alloc]init];
         recordVc.view.frame = self.view.bounds;

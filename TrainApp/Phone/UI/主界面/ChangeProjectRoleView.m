@@ -26,7 +26,7 @@
     [containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_offset(CGSizeMake(54.0f, 54.0f));
         make.left.equalTo(self.mas_left).offset(5.0f);
-        make.top.equalTo(self.mas_top).offset(15.0f);
+        make.top.equalTo(self.mas_top).offset(20.0f);
     }];
 
     UIImageView *userHeaderView = [[UIImageView alloc] init];
@@ -49,7 +49,7 @@
     [self addSubview:button];
 
     [descriptionImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).offset(72.0f);
+        make.top.mas_equalTo(self.mas_top).offset(70.0f);
         make.left.mas_equalTo(self.mas_left).offset(31.0f);
         make.size.mas_equalTo(CGSizeMake(250.0f, 120.0f));
     }];

@@ -10,9 +10,5 @@
 
 @interface YXProjectMainViewController : YXBaseViewController
 @property (nonatomic,strong ) UIViewController<YXTrackPageDataProtocol> *selectedViewController;
-- (void)showChangeProjectGuideView;
-
-
-#warning 测试删除
-@property (nonatomic, assign) BOOL isTestBool;
+- (void)showSwitchGuideView;
 @end

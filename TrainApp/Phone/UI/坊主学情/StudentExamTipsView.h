@@ -10,4 +10,5 @@
 
 @interface StudentExamTipsView : UIView
 @property (nonatomic, copy) void(^studentExamTipsOpenCloseBlock)(UIButton *sender);
+@property (nonatomic, strong) UIButton *openCloseButton;
 @end

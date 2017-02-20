@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterHappeningTableHeaderView : UIView
-
+@property (nonatomic, strong) NSString *totalString;
 @end

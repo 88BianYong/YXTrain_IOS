@@ -7,7 +7,6 @@
 //
 
 #import "StudentExamViewController.h"
-#import "YXExamEndDateCell.h"
 #import "YXExamProgressCell.h"
 #import "YXExamTotalScoreCell.h"
 #import "YXExamPhaseShadowCell.h"
@@ -56,13 +55,13 @@
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self startLoading];
-        [self getDataShowLoading];
+        [self requestForExamine];
     };
     
     self.foldStatusDic = [NSMutableDictionary dictionary];
     [self setupUI];
     [self startLoading];
-    [self getDataShowLoading];
+    [self requestForExamine];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,7 +79,6 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-    [self.tableView registerClass:[YXExamEndDateCell class] forCellReuseIdentifier:@"YXExamEndDateCell"];
     [self.tableView registerClass:[YXExamProgressCell class] forCellReuseIdentifier:@"YXExamProgressCell"];
     [self.tableView registerClass:[YXExamTotalScoreCell class] forCellReuseIdentifier:@"YXExamTotalScoreCell"];
     [self.tableView registerClass:[YXExamPhaseShadowCell class] forCellReuseIdentifier:@"YXExamPhaseShadowCell"];
@@ -93,12 +91,11 @@
     WEAK_SELF
     self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
-        [self getDataShowLoading];
+        [self requestForExamine];
     };
 }
 
-- (void)getDataShowLoading{
-    [self.request stopRequest];
+- (void)requestForExamine{
     self.request = [[YXExamineRequest alloc]init];
     self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     self.request.w = [YXTrainManager sharedInstance].currentProject.w;
@@ -141,11 +138,7 @@
         return 1;
     }else if (section <= self.examineItem.body.leadingVoList.count){
         YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[section-1];
-        NSNumber *status = [self.foldStatusDic valueForKey:vo.voID];
-        if (status.boolValue) {
-            return 0;
-        }
-        return vo.toolExamineVoList.count+2;
+        return vo.toolExamineVoList.count;
     }else{
         return 0;
     }
@@ -159,18 +152,9 @@
         return cell;
     }else if (indexPath.section <= self.examineItem.body.leadingVoList.count){
         YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[indexPath.section-1];
-        if (indexPath.row == 0) {
-            YXExamPhaseShadowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXExamPhaseShadowCell"];
-            return cell;
-        }else if (indexPath.row == vo.toolExamineVoList.count+1) {
-            YXExamEndDateCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXExamEndDateCell"];
-            cell.date = vo.enddate;
-            return cell;
-        }else{
-            YXExamProgressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXExamProgressCell"];
-            cell.item = vo.toolExamineVoList[indexPath.row-1];
-            return cell;
-        }
+        YXExamProgressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXExamProgressCell"];
+        cell.item = vo.toolExamineVoList[indexPath.row];
+        return cell;
     }else{
         return nil;
     }
@@ -209,12 +193,6 @@
         }
         return h;
     }else{
-        YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[indexPath.section-1];
-        if (indexPath.row == vo.toolExamineVoList.count+1){
-            return 44;
-        }else if (indexPath.row == 0){
-            return 0.1f;
-        }
         return 76;
     }
 }
@@ -222,16 +200,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return 10;
-    }
-    if (section <= self.examineItem.body.leadingVoList.count){
-        YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[section-1];
-        NSNumber *status = [self.foldStatusDic valueForKey:vo.voID];
-        if (status.boolValue) {
-            return 45;
-        }
-        else{
-            return 45 + 25.0f;
-        }
     }
     return 45;
 }

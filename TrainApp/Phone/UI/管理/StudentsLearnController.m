@@ -48,10 +48,12 @@
 - (void)setupFetcher {
     LearningInfoListFetcher *fetcher = [[LearningInfoListFetcher alloc]init];
     fetcher.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    fetcher.pageindex = 1;
     WEAK_SELF
     [fetcher setLearningInfoListFetcherBlock:^(MasterLearningInfoListRequestItem_Body *body) {
         STRONG_SELF
         self.headerView.body = body;
+        self.headerView.hidden = NO;
     }];
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
@@ -140,7 +142,7 @@
     [self.batchButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view.mas_right).offset(-5.0f);
         make.bottom.equalTo(self.view.mas_bottom).offset(-25.0f);
-        make.size.mas_offset(CGSizeMake(90.0f, 50.0f));
+        make.size.mas_offset(CGSizeMake(95.0f, 50.0f));
     }];
     
     [self.remindButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -208,7 +210,7 @@
     return 0.0001f;
 }
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return  @"提醒学习";
+    return  @"提醒学";
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     MasterLearningInfoListRequestItem_Body_LearningInfoList *info = self.dataArray[indexPath.row];
@@ -259,6 +261,7 @@
 #pragma mark - request
 - (void)requestForLearningInfo {
     self.listRequest = [[MasterManageListRequest alloc] init];
+    self.listRequest.projectId = [YXTrainManager sharedInstance].currentProject.pid;
     [self startLoading];
     WEAK_SELF
     [self.listRequest startRequestWithRetClass:[MasterManageListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -300,16 +303,16 @@
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-//        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-//        data.requestDataExist = YES;
-//        data.localDataExist = YES;
-//        data.error = error;
-//        if ([self handleRequestData:data]) {
-//            return;
-//        }
-//        for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
-//            info.isChoose = @"0";
-//        }
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = YES;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
+        }
+        for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
+            info.isChoose = @"0";
+        }
         [self.userIdSet removeAllObjects];
         self.isBatchBool = NO;
         [self.tableView reloadData];

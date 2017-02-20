@@ -130,11 +130,13 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-	return NO;
+    DDLogDebug(@"%@>>%@<<%@",sourceApplication,url,annotation);
+	return YES;
 }
 
 // 9.0
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-	return NO;
+    DDLogDebug(@"%@<<%@",url,options);
+	return YES;
 }
 @end

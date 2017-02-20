@@ -30,13 +30,13 @@
             return;
         }
         MasterLearningInfoListRequestItem *item = retItem;
-        BLOCK_EXEC(self.learningInfoListFetcherBlock,item.body);
         BOOL isLastPage = [self.listRequest.page isEqualToString:item.body.totalPage];
         if (isLastPage) {
             BLOCK_EXEC(aCompleteBlock,0,item.body.learningInfoList,nil);
         }else {
             BLOCK_EXEC(aCompleteBlock,(int)NSIntegerMax,item.body.learningInfoList,nil);
         }
+        BLOCK_EXEC(self.learningInfoListFetcherBlock,item.body);
     }];
 }
 @end

@@ -30,6 +30,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.dataSource = self;
+    self.tableView.rowHeight = 52.0f;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

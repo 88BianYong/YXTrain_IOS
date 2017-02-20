@@ -9,23 +9,6 @@
 #import "YXTrainListRequest.h"
 
 @implementation YXTrainListRequestItem_body_train
-- (NSString<Optional> *)roles {
-    if (self.pid.intValue == 1848) {
-      return @"9,99";
-    }
-        
-    if (self.pid.intValue == 1847) {
-       return @"99";
-    }
-    return @"9";
-}
-- (NSString<Optional> *)containsTeacher {
-    if (self.pid.intValue == 1848 ) {
-        return @"1";
-    }
-    return @"0";
-}
-
 - (NSString<Optional> *)role {
     if (_role) {
         return _role;

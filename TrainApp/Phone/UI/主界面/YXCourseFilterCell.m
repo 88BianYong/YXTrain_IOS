@@ -52,7 +52,7 @@
     [self.contentView addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
+        make.right.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];

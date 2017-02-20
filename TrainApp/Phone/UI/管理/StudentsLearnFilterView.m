@@ -49,7 +49,7 @@
     self.filterButton.tag = 1002;
     [self.filterButton setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
     [self.filterButton setTitle:@"筛选" forState:UIControlStateNormal];
-    [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头默认上"] forState:UIControlStateNormal];
+    [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头默认下"] forState:UIControlStateNormal];
     self.filterButton.titleLabel.font = [UIFont systemFontOfSize:13.0f];
     [self.filterButton addTarget:self action:@selector(chooseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self exchangeTitleImagePositionForButton:self.filterButton];
@@ -68,17 +68,6 @@
     self.conditionTableView = [[MasterConditionTableView alloc] init];
     [self.conditionTableView setMasterConditionChooseBlock:^(NSDictionary *dictionary) {
         STRONG_SELF
-        if (self.conditionTableView.isChooseBool) {
-            [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头选择下"]
-                               forState:UIControlStateNormal];
-            [self.filterButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
-
-        }else {
-            [self.masterButton setImage:[UIImage imageNamed:@"筛选箭头默认下"]
-                               forState:UIControlStateNormal];
-            [self.filterButton setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
-            
-        }
         BLOCK_EXEC(self.StudentsLearnFilterConditionBlock,dictionary);
         [self hideFilterSelectionView];
     }];
@@ -103,7 +92,15 @@
        [self.masterButton setImage:[UIImage imageNamed:@"筛选箭头选择上"] forState:UIControlStateNormal];
        [self showFilterSelectionViewWithIndex:self.schoolTableView.chooseInteger];
     }else {
-        [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头选择上"] forState:UIControlStateNormal];
+        if (self.conditionTableView.isChooseBool) {
+            [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头选择上"]
+                               forState:UIControlStateNormal];
+            [self.filterButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+        }else {
+            [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头默认上"]
+                               forState:UIControlStateNormal];
+            [self.filterButton setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
+        }
         [self showMasterConditionTableView];
     }
 }
@@ -115,6 +112,16 @@
     [self.schoolTableView.superview removeFromSuperview];
     [self.conditionTableView.superview removeFromSuperview];
     [self.maskView removeFromSuperview];
+    if (self.conditionTableView.isChooseBool) {
+        [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头选择下"]
+                           forState:UIControlStateNormal];
+        [self.filterButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+        
+    }else {
+        [self.filterButton setImage:[UIImage imageNamed:@"筛选箭头默认下"]
+                           forState:UIControlStateNormal];
+        [self.filterButton setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - Show & Hide
@@ -150,6 +157,9 @@
     [superview addSubview:bgView];
 }
 - (void)setGroups:(NSMutableArray<__kindof MasterManageListRequestItem_Body_Group *> *)groups {
+    if (groups.count < 1){
+        return;
+    }
     _groups = groups;
     self.schoolTableView.groups = _groups;
     [self.masterButton setTitle:self.groups[self.schoolTableView.chooseInteger].name forState:UIControlStateNormal];

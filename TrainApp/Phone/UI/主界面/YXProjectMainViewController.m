@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataMutableArrray = [[NSMutableArray alloc] initWithCapacity:6];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showChangeProjectGuideView) name:@"cancelToUpdate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSwitchGuideView) name:@"cancelToUpdate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserRoleInterface) name:kYXTrainUserIdentityChange object:nil];
     [self setupUI];
     [self getProjectList];
@@ -190,6 +190,7 @@
     [self showProjectSelectionView];
 }
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
+    [YXTrainManager sharedInstance].currentProject.role = nil;
     [YXTrainManager sharedInstance].currentProjectIndexPath = indexPath;
     [self refreshUserRoleInterface];
 }
@@ -206,7 +207,7 @@
         [self showMasterInterface];
     }
 }
-- (void)showChangeProjectGuideView {
+- (void)showSwitchGuideView {
     if ([self isShowMoreThanOneProject]) {
         static NSString *staticString = @"ChangeProjectGuideView";
         UIView *guideView = [[NSClassFromString(staticString) alloc] init];
@@ -215,21 +216,25 @@
             make.edges.mas_equalTo(0);
         }];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
-    }
-    if (!self.isTestBool) {
-        static NSString *staticString = @"ChangeProjectRoleView";
-        UIView *roleView = [[NSClassFromString(staticString) alloc] init];
-        [self.navigationController.view addSubview:roleView];
-        [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
-        }];
-        self.isTestBool = YES;
-    }
+    }else if ([self isShowRoleChange]){
+            static NSString *staticString = @"ChangeProjectRoleView";
+            UIView *roleView = [[NSClassFromString(staticString) alloc] init];
+            [self.navigationController.view addSubview:roleView];
+            [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
+            }];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstRoleChange];
+        }
 }
 - (BOOL)isShowMoreThanOneProject {
     return ([YXTrainManager sharedInstance].trainlistItem.body.trains.count > 1) &&
     ![YXInitHelper sharedHelper].showUpgradeFlag &&
     ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstLaunch];
+}
+- (BOOL)isShowRoleChange {
+    return ([YXTrainManager sharedInstance].currentProject.doubel.integerValue == 2) &&
+    ![YXInitHelper sharedHelper].showUpgradeFlag &&
+    ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstRoleChange];
 }
 #pragma mark - peojects hide & show
 - (void)showProjectSelectionView{

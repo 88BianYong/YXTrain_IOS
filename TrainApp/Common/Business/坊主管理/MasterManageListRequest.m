@@ -18,7 +18,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"master/getStudioList"];
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"peixun/master/getStudioList"];
     }
     return self;
 }

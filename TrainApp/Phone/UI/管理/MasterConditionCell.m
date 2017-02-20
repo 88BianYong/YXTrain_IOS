@@ -92,6 +92,15 @@
     UITapGestureRecognizer *rightTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction:)];
     
     [self.rightRoundView addGestureRecognizer:rightTap];
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.contentView addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(70.0f);
+        make.right.equalTo(self.contentView.mas_right).offset(-70.0f);
+        make.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(1.0f/[UIScreen mainScreen].scale);
+    }];
 }
 - (void)setupLayout {
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {

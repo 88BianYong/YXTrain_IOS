@@ -53,8 +53,8 @@
 
 - (void)setupData {
     Account *a1 = [Account accountWithName:@"test2016@yanxiu.com" password:@"123456"];
-    Account *a2 = [Account accountWithName:@"XY00273791@yanxiu.com " password:@"123456"];
-    Account *a3 = [Account accountWithName:@"XY00273792@yanxiu.com " password:@"123456"];
+    Account *a2 = [Account accountWithName:@"JYY24294@yanxiu.com" password:@"123456"];
+    Account *a3 = [Account accountWithName:@"JYY24260@yanxiu.com" password:@"123456"];
     AccountGroup *g1 = [AccountGroup accountGroupWithName:@"(非北京)测试环境帐号" accounts:@[a1,a2,a3]];
     
     Account *a4 = [Account accountWithName:@"XY02735506@yanxiu.com" password:@"123456"];

@@ -106,6 +106,10 @@ extern NSString *const kYXTrainDeleteInfo;
  *  用户身份切换
  */
 extern NSString *const kYXTrainUserIdentityChange;
+/**
+ *  是否显示角色切换界面
+ */
+extern NSString *const kYXTrainFirstRoleChange;
 
 
 

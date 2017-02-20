@@ -43,7 +43,7 @@
         make.centerX.equalTo(self.containerView.mas_centerX);
     }];
     [self.rateNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.rateNumberLabel.mas_bottom).offset(8.0f);
+        make.top.equalTo(self.rateNumberLabel.mas_bottom).offset(5.0f);
         make.centerX.equalTo(self.containerView.mas_centerX);
         make.bottom.equalTo(self.containerView.mas_bottom);
     }];
@@ -86,13 +86,13 @@
     self.memberLabel.text = @"成员";
     self.memberLabel.textAlignment = NSTextAlignmentCenter;
     self.memberLabel.backgroundColor = [UIColor whiteColor];
-    self.memberLabel.font = [UIFont systemFontOfSize:13.0f];
+    self.memberLabel.font = [UIFont systemFontOfSize:12.0f];
     self.memberLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.containerView addSubview:self.memberLabel];
     [shortLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.memberLabel);
         make.height.mas_offset(1.0f);
-        make.width.mas_offset(60.0f);
+        make.width.mas_offset(55.0f);
     }];
     
     self.typeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"成员人数icon"]];
@@ -100,7 +100,7 @@
     self.numberLabel = [[UILabel alloc] init];
     self.numberLabel.text = @"1219人";
     self.numberLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
-    self.numberLabel.font = [UIFont systemFontOfSize:16.0f];
+    self.numberLabel.font = [UIFont boldSystemFontOfSize:16.0f];
     [self.containerView addSubview:self.numberLabel];
     
     self.lineView = [[UIView alloc] init];
@@ -150,7 +150,7 @@
     }];
     
     [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.memberLabel.mas_bottom).offset(11.0f);
+        make.top.equalTo(self.memberLabel.mas_bottom).offset(6.0f);
         make.centerX.equalTo(self.containerView.mas_centerX);
     }];
     

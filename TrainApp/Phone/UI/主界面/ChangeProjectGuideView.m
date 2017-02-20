@@ -51,6 +51,7 @@
 }
 
 - (void)removeSelfButtonAction:(UIButton *)sender{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelToUpdate" object:nil];
     [self removeFromSuperview];
 }
 

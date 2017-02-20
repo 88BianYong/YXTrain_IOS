@@ -103,6 +103,7 @@
                 if ([btn isKindOfClass:[UIButton class]]) {
                     btn.backgroundColor=[UIColor colorWithHexString:@"0070c9"];
                     btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+                    [btn setTitle:@"提醒学习" forState:UIControlStateNormal];
                 }
             }
         }

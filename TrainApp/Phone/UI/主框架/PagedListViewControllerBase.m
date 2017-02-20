@@ -112,7 +112,9 @@
     //    _total = (int)[self.dataArray count];
     
     // 2, fetch
-    self.dataFetcher.pageindex = 0;
+    if (!self.dataFetcher.pageindex) {
+      self.dataFetcher.pageindex = 0;
+    }
     if (!self.dataFetcher.pagesize) {
         self.dataFetcher.pagesize = 20;
     }

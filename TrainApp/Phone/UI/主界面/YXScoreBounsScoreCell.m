@@ -115,7 +115,7 @@
     NSRange range = [completeStr rangeOfString:score];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
     [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_DemiBold size:13] range:range];
-    [attr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"e5581a"] range:range];
+    [attr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"a1a7ae"] range:range];
     return attr;
 }
 
