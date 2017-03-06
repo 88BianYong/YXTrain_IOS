@@ -190,6 +190,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     YXInitRequestItem_Body *body = self.item.body[0];
     if ([body isTest]) { //测试环境
 #ifndef DEBUG
+        BLOCK_EXEC(self.upgradeHandler,isInit);
         return;
 #endif
     }
