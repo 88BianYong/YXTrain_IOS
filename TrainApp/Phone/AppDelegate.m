@@ -130,13 +130,14 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    DDLogDebug(@"%@>>%@<<%@",sourceApplication,url,annotation);
 	return YES;
 }
 
 // 9.0
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    DDLogDebug(@"%@<<%@",url,options);
+    [[YXWebSocketManger sharedInstance] close];
+    [[YXUserManager sharedManager] logout];
+    [self.appDelegatehelper scanCodeEntry:url];
 	return YES;
 }
 @end

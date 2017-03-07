@@ -125,7 +125,7 @@
         stringValue = metadataObject.stringValue;
     }
     NSURL *resultURL = [NSURL URLWithString:stringValue];
-    if ([[resultURL scheme] isEqualToString:@"srtAction"]) {
+    if ([[resultURL scheme] isEqualToString:@"http"]) {
         NSString *query = [resultURL query];
         NSDictionary *paraDic = [self urlInfo:query];
         [self registerNotifications];

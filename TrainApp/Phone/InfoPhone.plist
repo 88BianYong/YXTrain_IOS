@@ -27,7 +27,7 @@
 			<string>com.yanxiu.www</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>yanxiu</string>
+				<string>com.yanxiu.lst</string>
 			</array>
 		</dict>
 	</array>

@@ -14,4 +14,7 @@
 
 // 启动的根视图控制器
 - (void)setupRootViewController;
+
+- (void)scanCodeEntry:(NSURL *)url;
+
 @end

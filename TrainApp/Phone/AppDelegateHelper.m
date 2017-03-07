@@ -185,4 +185,42 @@
     }
     
 }
+
+- (void)scanCodeEntry:(NSURL *)url {
+    if ([[url scheme] isEqualToString:@"com.yanxiu.lst"]) {
+        NSString *query = [url query];
+        NSDictionary *paraDic = [self urlInfo:query];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainScanCodeEntry object:paraDic[@"token"]];
+    }
+}
+#pragma mark- 链接内容
+- (NSDictionary *)urlInfo:(NSString *)query{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    // 检测字符串中是否包含 ‘&’
+    if([query rangeOfString:@"&"].location != NSNotFound){
+        // 以 & 来分割字符，并放入数组中
+        NSArray *pairs = [query componentsSeparatedByString:@"&"];
+        // 遍历字符数组
+        for (NSString *pair in pairs) {
+            // 以等号来分割字符
+            NSArray *elements = [pair componentsSeparatedByString:@"="];
+            NSString *key = [elements objectAtIndex:0];
+            NSString *val = [elements objectAtIndex:1];
+            DDLogDebug(@"%@  %@",key, val);
+            // 添加到字典中
+            [dict setObject:val forKey:key];
+        }
+    }
+    else if([query rangeOfString:@"="].location != NSNotFound){
+        // 以等号来分割字符
+        NSArray *elements = [query componentsSeparatedByString:@"="];
+        NSString *key = [elements objectAtIndex:0];
+        NSString *val = [elements objectAtIndex:1];
+        DDLogDebug(@"%@  %@",key, val);
+        // 添加到字典中
+        [dict setObject:val forKey:key];
+    }
+    return dict;
+}
+
 @end

@@ -14,7 +14,7 @@
 #import "YXLoginByScanQRViewController.h"
 #import "YXLoginModifyPasswordViewController.h"
 #import "YXNavigationController.h"
-
+#import "YXUserProfileRequest.h"
 #import "YXUserManager.h"
 #import "YXLoginRequest.h"
 #import "YXInitRequest.h"
@@ -45,7 +45,21 @@
 #ifdef DEBUG
     [self setupAccountList];
 #endif
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scanCodeEntry:) name:kYXTrainScanCodeEntry object:nil];
+}
+- (void)scanCodeEntry:(NSNotification *)aNotification {
+    [YXUserManager sharedManager].userModel.token = aNotification.object;
+    [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
+        if (error) {
+            [self showToast:error.localizedDescription];
+            return;
+        }
+        YXUserModel *userModel = [YXUserManager sharedManager].userModel;
+        userModel.uid = userModel.profile.uid;
+        userModel.uname = userModel.profile.name;
+        userModel.head = userModel.profile.head;
+        [[YXUserManager sharedManager] login];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

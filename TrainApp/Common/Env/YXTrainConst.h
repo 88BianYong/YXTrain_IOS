@@ -110,6 +110,10 @@ extern NSString *const kYXTrainUserIdentityChange;
  *  是否显示角色切换界面
  */
 extern NSString *const kYXTrainFirstRoleChange;
+/**
+ *  扫码登录
+ */
+extern NSString *const kYXTrainScanCodeEntry;
 
 
 
