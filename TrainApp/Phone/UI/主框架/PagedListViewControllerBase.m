@@ -7,13 +7,10 @@
 //
 
 #import "PagedListViewControllerBase.h"
-#import "MJRefresh.h"
 
 @interface PagedListViewControllerBase () <UITableViewDataSource, UITableViewDelegate> {
     int _total;
     
-    MJRefreshFooterView *_footer;
-    MJRefreshHeaderView *_header;
 }
 
 @end
@@ -33,8 +30,8 @@
 - (void)dealloc
 {
     DDLogWarn(@"PagedListViewController Dealloc");
-    [_header free];
-    [_footer free];
+    [self.header free];
+    [self.footer free];
     [self.dataFetcher stop];
 }
 
@@ -75,19 +72,19 @@
     };
     
     if (self.bNeedFooter) {
-        _footer = [MJRefreshFooterView footer];
-        _footer.scrollView = self.tableView;
-        _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        self.footer = [MJRefreshFooterView footer];
+        self.footer.scrollView = self.tableView;
+        self.footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
             @strongify(self); if (!self) return;
             [self morePageFetch];
         };
-        _footer.alpha = 0;
+        self.footer.alpha = 0;
     }
     
     if (self.bNeedHeader) {
-        _header = [MJRefreshHeaderView header];
-        _header.scrollView = self.tableView;
-        _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        self.header = [MJRefreshHeaderView header];
+        self.header.scrollView = self.tableView;
+        self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
             @strongify(self); if (!self) return;
             [self firstPageFetch];
         };
@@ -105,16 +102,7 @@
     }
     
     [self.dataFetcher stop];
-    
-    // 1, load cache
-    //    [self.dataArray removeAllObjects];
-    //    [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
-    //    _total = (int)[self.dataArray count];
-    
-    // 2, fetch
-    if (!self.dataFetcher.pageindex) {
-      self.dataFetcher.pageindex = 0;
-    }
+    self.dataFetcher.pageindex = 0;
     if (!self.dataFetcher.pagesize) {
         self.dataFetcher.pagesize = 20;
     }
@@ -133,7 +121,7 @@
         if ([self handleRequestData:data inView:self.contentView]) {
             return;
         }
-        [self->_header setLastUpdateTime:[NSDate date]];
+        [self.header setLastUpdateTime:[NSDate date]];
         self->_total = total;
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:retItemArray];
@@ -152,17 +140,17 @@
 
 - (void)stopAnimation
 {
-    [self->_header endRefreshing];
+    [self.header endRefreshing];
 }
 
 - (void)setPulldownViewHidden:(BOOL)hidden
 {
-    _header.alpha = hidden ? 0:1;
+    self.header.alpha = hidden ? 0:1;
 }
 
 - (void)setPullupViewHidden:(BOOL)hidden
 {
-    _footer.alpha = hidden ? 0:1;
+    self.footer.alpha = hidden ? 0:1;
 }
 
 - (void)morePageFetch {
@@ -171,7 +159,7 @@
     @weakify(self);
     [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
         @strongify(self); if (!self) return;
-        [self->_footer endRefreshing];
+        [self.footer endRefreshing];
         if (error) {
             self.dataFetcher.pageindex--;
             [self showToast:error.localizedDescription];

@@ -66,7 +66,6 @@ static  NSString *const trackPageName = @"成绩详情页面";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"成绩详情";
     [self setupUI];
 }
 - (void)viewWillAppear:(BOOL)animated{

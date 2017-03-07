@@ -50,14 +50,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.isSelected = YES;
-    WEAK_SELF
-    self.errorView = [[YXErrorView alloc]init];
-    self.errorView.retryBlock = ^{
-        STRONG_SELF
-        [self startLoading];
-        [self requestForExamine];
-    };
-    
     self.foldStatusDic = [NSMutableDictionary dictionary];
     [self setupUI];
     [self startLoading];
@@ -93,7 +85,20 @@
         STRONG_SELF
         [self requestForExamine];
     };
+    self.errorView = [[YXErrorView alloc]init];
+    [self.errorView setRetryBlock:^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForExamine];
+    }];
+    self.dataErrorView = [[DataErrorView alloc]init];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForExamine];
+    };
 }
+
 
 - (void)requestForExamine{
     self.request = [[YXExamineRequest alloc]init];
@@ -216,6 +221,7 @@
         self.waveView =  [cell.waveView snapshotViewAfterScreenUpdates:NO];
         YXScoreViewController *vc = [[YXScoreViewController alloc]init];
         vc.data = self.examineItem.body;
+        vc.title = self.title;
         vc.waveView = self.waveView;
         [self.navigationController pushViewController:vc animated:YES];
     }

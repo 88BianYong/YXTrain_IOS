@@ -107,7 +107,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         STRONG_SELF
         [self getDataShowLoading:NO];
     };
-    if ([YXTrainManager sharedInstance].currentProject.containsTeacher.boolValue) {
+    if ([YXTrainManager sharedInstance].currentProject.isContainsTeacher.boolValue) {
         self.tipsView = [[StudentExamTipsView alloc] init];
         [self.tipsView setStudentExamTipsOpenCloseBlock:^(UIButton *sender) {
             STRONG_SELF
@@ -357,6 +357,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         self.waveView =  [cell.waveView snapshotViewAfterScreenUpdates:NO];
         YXScoreViewController *vc = [[YXScoreViewController alloc]init];
         vc.data = self.examineItem.body;
+        vc.title = @"成绩详情";
         vc.waveView = self.waveView;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (indexPath.section <= self.examineItem.body.leadingVoList.count){

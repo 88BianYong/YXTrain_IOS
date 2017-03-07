@@ -22,5 +22,6 @@
     [self addChildViewController:happeningVC];
     [self addChildViewController:studentsVC];
     [self addChildViewController:taskVC];
+    [self showSwitchGuideView];
 }
 @end

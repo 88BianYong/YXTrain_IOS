@@ -124,17 +124,19 @@
     if (_chooseInteger == 0) {
         self.leftRoundView.isChooseBool = NO;
         self.rightRoundView.isChooseBool = NO;
+    }else if (_chooseInteger == 1) {
+        self.leftRoundView.isChooseBool = YES;
+        self.rightRoundView.isChooseBool = NO;
+    }else if (_chooseInteger == 2) {
+        self.leftRoundView.isChooseBool = NO;
+        self.rightRoundView.isChooseBool = YES;
     }
 }
 #pragma mark - tap Action
 - (void)tapAction:(UITapGestureRecognizer *)sender {
     if (sender.view.tag == 1001) {
-        self.leftRoundView.isChooseBool = YES;
-        self.rightRoundView.isChooseBool = NO;
         self.chooseInteger = 1;
     }else {
-        self.leftRoundView.isChooseBool = NO;
-        self.rightRoundView.isChooseBool = YES;
         self.chooseInteger = 2;
     }
 }

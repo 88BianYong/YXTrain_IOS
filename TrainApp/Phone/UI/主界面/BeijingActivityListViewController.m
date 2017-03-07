@@ -100,7 +100,7 @@
         STRONG_SELF
         if (error) {
             [self stopLoading];
-            if (error.code == 2) {
+            if (error.code == -2) {
                 self.filterDataErrorView.frame = self.view.bounds;
                 [self.view addSubview:self.filterDataErrorView];
             }else {

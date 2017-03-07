@@ -234,7 +234,8 @@
 - (BOOL)isShowRoleChange {
     return ([YXTrainManager sharedInstance].currentProject.doubel.integerValue == 2) &&
     ![YXInitHelper sharedHelper].showUpgradeFlag &&
-    ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstRoleChange];
+    ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstRoleChange] &&
+    ([YXTrainManager sharedInstance].currentProject.role.integerValue == 99);
 }
 #pragma mark - peojects hide & show
 - (void)showProjectSelectionView{

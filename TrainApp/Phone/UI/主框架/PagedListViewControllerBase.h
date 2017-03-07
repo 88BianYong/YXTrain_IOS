@@ -8,7 +8,7 @@
 
 #import "YXBaseViewController.h"
 #import "PagedListFetcherBase.h"
-
+#import "MJRefresh.h"
 @interface PagedListViewControllerBase : YXBaseViewController
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UITableView *tableView;
@@ -16,6 +16,9 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;        // the model
 @property (nonatomic, assign) BOOL bNeedHeader;
 @property (nonatomic, assign) BOOL bNeedFooter;
+@property (nonatomic, strong) MJRefreshFooterView *footer;
+@property (nonatomic, strong) MJRefreshHeaderView *header;
+
 
 @property (nonatomic, strong) PagedListFetcherBase *dataFetcher;
 - (void)firstPageFetch;

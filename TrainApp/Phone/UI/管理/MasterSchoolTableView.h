@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MasterManageListRequest.h"
+static CGFloat kSingleLineTextHeight = 15.513671875;
 @interface MasterSchoolTableView : UITableView
 @property (nonatomic, strong) NSMutableArray<__kindof MasterManageListRequestItem_Body_Group *> *groups;
 @property (nonatomic, assign) NSInteger chooseInteger;

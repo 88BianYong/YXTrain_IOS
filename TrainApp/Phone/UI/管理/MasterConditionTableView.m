@@ -17,6 +17,7 @@
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     if (self = [super initWithFrame:frame style:style]) {
         [self setupUI];
+        self.mutableDictionary = [@{@"ifcx":@"0",@"ifhg":@"0",@"ifxx":@"0"} mutableCopy];
         self.scrollEnabled = NO;
     }
     return self;
@@ -64,15 +65,18 @@
     if (indexPath.row == 0) {
         self.ifcxCell.leftRoundView.nameLabel.text = @"未参训";
         self.ifcxCell.rightRoundView.nameLabel.text = @"已参训";
+        self.ifcxCell.chooseInteger = [self.mutableDictionary[@"ifcx"] integerValue];
         return self.ifcxCell;
     }else if (indexPath.row == 1) {
-        self.ifhgCell.leftRoundView.nameLabel.text = @"未通过";
-        self.ifhgCell.rightRoundView.nameLabel.text = @"已通过";
-        return self.ifhgCell;
-    }else {
         self.ifxxCell.leftRoundView.nameLabel.text = @"未学习";
         self.ifxxCell.rightRoundView.nameLabel.text = @"已学习";
+        self.ifxxCell.chooseInteger = [self.mutableDictionary[@"ifxx"] integerValue];
         return self.ifxxCell;
+    }else {
+        self.ifhgCell.leftRoundView.nameLabel.text = @"未通过";
+        self.ifhgCell.rightRoundView.nameLabel.text = @"已通过";
+        self.ifhgCell.chooseInteger = [self.mutableDictionary[@"ifhg"] integerValue];
+        return self.ifhgCell;
     }
 }
 #pragma mark - UITableViewDelegate
@@ -86,11 +90,10 @@
     self.ifxxCell.chooseInteger = 0;
 }
 - (void)confirmButtonAction:(UIButton *)sender {
-    NSMutableDictionary *mutableDictionary = [@{@"ifcx":@"0",@"ifhg":@"0",@"ifxx":@"0"} mutableCopy];
-    mutableDictionary[@"ifcx"] = [NSString stringWithFormat:@"%ld",self.ifcxCell.chooseInteger];
-    mutableDictionary[@"ifhg"] = [NSString stringWithFormat:@"%ld",self.ifhgCell.chooseInteger];
-    mutableDictionary[@"ifxx"] = [NSString stringWithFormat:@"%ld",self.ifxxCell.chooseInteger];
-    BLOCK_EXEC(self.MasterConditionChooseBlock,mutableDictionary);
+    self.mutableDictionary[@"ifcx"] = [NSString stringWithFormat:@"%ld",self.ifcxCell.chooseInteger];
+    self.mutableDictionary[@"ifhg"] = [NSString stringWithFormat:@"%ld",self.ifhgCell.chooseInteger];
+    self.mutableDictionary[@"ifxx"] = [NSString stringWithFormat:@"%ld",self.ifxxCell.chooseInteger];
+    BLOCK_EXEC(self.MasterConditionChooseBlock,self.mutableDictionary);
 }
 - (BOOL)isChooseBool {
     return self.ifcxCell.chooseInteger != 0 ||

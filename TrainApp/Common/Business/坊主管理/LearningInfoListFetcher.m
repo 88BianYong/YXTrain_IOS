@@ -20,8 +20,8 @@
     self.listRequest.ifxx = self.ifxx;
     self.listRequest.projectId = self.projectId;
     self.listRequest.barId = self.barId;
-    self.listRequest.page = [NSString stringWithFormat:@"%d",self.pageindex];
-    self.listRequest.pageSize = [NSString stringWithFormat:@"%d",self.pagesize];;
+    self.listRequest.page = [NSString stringWithFormat:@"%d",self.pageindex + 1];//从1开始
+    self.listRequest.pageSize = [NSString stringWithFormat:@"%d",self.pagesize];
     WEAK_SELF
     [self.listRequest startRequestWithRetClass:[MasterLearningInfoListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

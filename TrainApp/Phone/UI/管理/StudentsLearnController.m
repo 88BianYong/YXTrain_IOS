@@ -40,7 +40,7 @@
     [super viewDidLoad];
     self.userIdSet = [[NSMutableSet alloc] init];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.title = @"管理";
+    self.title = @"学员学情";
     [self setupUI];
     [self setupLayout];
     [self requestForLearningInfo];
@@ -168,6 +168,7 @@
             make.top.equalTo(self.view.mas_top);
             make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
         }];
+        self.header.hidden = YES;
     }else {
         [self setupLeftBack];
         [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -181,6 +182,7 @@
         self.filterView.hidden = NO;
         self.remindButton.hidden = YES;
         self.tableView.tableFooterView = nil;
+        self.header.hidden = NO;
     }
     for (StudentsLearnSwipeCell *cell in [self.tableView visibleCells]) {
         [cell setupModeEditable:self.isBatchBool];
@@ -218,7 +220,7 @@
     [self requestForRemindStudy];
 }
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (!self.editing) {
+    if (!self.isBatchBool) {
         return UITableViewCellEditingStyleDelete;
     }else {
         return UITableViewCellEditingStyleNone;
@@ -268,7 +270,7 @@
         STRONG_SELF
         if (error) {
             [self stopLoading];
-            if (error.code == 2) {
+            if (error.code == -2) {
                 self.filterDataErrorView.frame = self.view.bounds;
                 [self.view addSubview:self.filterDataErrorView];
             }else {
@@ -314,6 +316,7 @@
             info.isChoose = @"0";
         }
         [self.userIdSet removeAllObjects];
+        self.remindButton.enabled = self.userIdSet.count > 0;
         self.isBatchBool = NO;
         [self.tableView reloadData];
         [self showToast:@"发送成功"];

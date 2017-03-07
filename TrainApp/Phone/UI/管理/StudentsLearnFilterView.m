@@ -132,11 +132,15 @@
     [superview addSubview:self.maskView];
     
     CGRect rect = [self convertRect:self.bounds toView:superview];
-    CGFloat tableHeight;
+    CGFloat tableHeight = 0.0;
     if (self.groups.count == 0) {//服务端数据返回为空时 显示
         tableHeight = 44;
     }else {
-        tableHeight = MIN(self.groups.count*self.schoolTableView.rowHeight , 242);
+        for (MasterManageListRequestItem_Body_Group *object in self.groups) {
+            CGRect rect = [object.name boundingRectWithSize:CGSizeMake(kScreenWidth - 35.0f - 12.0f, 80.0f) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13]} context:nil];
+            tableHeight = tableHeight + (44.0f + rect.size.height - kSingleLineTextHeight);
+        }
+        tableHeight = MIN(tableHeight , 242);
     }
     YXCourseFilterBgView *bgView = [[YXCourseFilterBgView alloc]initWithFrame:CGRectMake(6, rect.origin.y+rect.size.height-5, rect.size.width-6-6, tableHeight+8) triangleX:(kScreenWidth - 125.0f) /2.0f];
     self.schoolTableView.frame = CGRectMake(0, 8, bgView.bounds.size.width, tableHeight);
@@ -155,6 +159,7 @@
     self.conditionTableView.frame = CGRectMake(0, 8, bgView.bounds.size.width, tableHeight);
     [bgView addSubview:self.conditionTableView];
     [superview addSubview:bgView];
+    [self.conditionTableView reloadData];
 }
 - (void)setGroups:(NSMutableArray<__kindof MasterManageListRequestItem_Body_Group *> *)groups {
     if (groups.count < 1){

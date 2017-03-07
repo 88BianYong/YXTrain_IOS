@@ -10,5 +10,6 @@
 
 @interface MasterConditionTableView : UITableView
 @property (nonatomic, copy) void(^MasterConditionChooseBlock)(NSDictionary *dictionary);
+@property (nonatomic, strong) NSMutableDictionary *mutableDictionary;
 @property (nonatomic, assign) BOOL isChooseBool;
 @end
