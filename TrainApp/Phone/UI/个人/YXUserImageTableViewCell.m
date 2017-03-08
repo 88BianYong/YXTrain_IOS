@@ -84,7 +84,7 @@
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-20);
     }];
-    if ([YXTrainManager sharedInstance].currentProject.doubel.intValue == 2) {
+    if ([YXTrainManager sharedInstance].currentProject.isDoubel.boolValue) {
         self.statusView = [[UserStatusView alloc]init];
         self.statusView.isMasterBool = [YXTrainManager sharedInstance].currentProject.role.intValue == 99;
         [self.contentView addSubview:self.statusView];

@@ -16,8 +16,10 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;        // the model
 @property (nonatomic, assign) BOOL bNeedHeader;
 @property (nonatomic, assign) BOOL bNeedFooter;
+@property (nonatomic, assign) int total;
 @property (nonatomic, strong) MJRefreshFooterView *footer;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
+
 
 
 @property (nonatomic, strong) PagedListFetcherBase *dataFetcher;

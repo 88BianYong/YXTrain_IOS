@@ -232,7 +232,7 @@
     ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstLaunch];
 }
 - (BOOL)isShowRoleChange {
-    return ([YXTrainManager sharedInstance].currentProject.doubel.integerValue == 2) &&
+    return [YXTrainManager sharedInstance].currentProject.isDoubel.boolValue &&
     ![YXInitHelper sharedHelper].showUpgradeFlag &&
     ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstRoleChange] &&
     ([YXTrainManager sharedInstance].currentProject.role.integerValue == 99);

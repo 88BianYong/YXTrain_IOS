@@ -21,7 +21,7 @@
 @property (nonatomic, strong) NSString<Optional> *roles;
 @property (nonatomic, strong) NSString<Optional> *isContainsTeacher;
 @property (nonatomic, strong) NSString<Optional> *role;
-@property (nonatomic, strong) NSString<Optional> *doubel;
+@property (nonatomic, strong) NSString<Optional> *isDoubel;
 @end
 
 @interface YXTrainListRequestItem_body : JSONModel

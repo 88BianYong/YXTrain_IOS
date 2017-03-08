@@ -22,7 +22,7 @@
         return @"9";
     }
 }
-- (NSString<Optional> *)doubel {
+- (NSString<Optional> *)isDoubel {
     BOOL isMaster = NO;
     BOOL isStudent = NO;
     NSArray *array = [self.roles componentsSeparatedByString:@","];
@@ -35,9 +35,9 @@
         }
     }
     if (isStudent && isMaster) {
-        return @"2";
-    }else {
         return @"1";
+    }else {
+        return @"0";
     }
 }
 @end

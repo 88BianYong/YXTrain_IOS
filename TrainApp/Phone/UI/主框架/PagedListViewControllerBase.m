@@ -9,7 +9,7 @@
 #import "PagedListViewControllerBase.h"
 
 @interface PagedListViewControllerBase () <UITableViewDataSource, UITableViewDelegate> {
-    int _total;
+    
     
 }
 
@@ -92,7 +92,7 @@
     
     self.dataArray = [NSMutableArray array];
     [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
-    _total = (int)[self.dataArray count];
+    self.total = (int)[self.dataArray count];
     [self startLoading];
     [self firstPageFetch];
 }
@@ -106,14 +106,12 @@
     if (!self.dataFetcher.pagesize) {
         self.dataFetcher.pagesize = 20;
     }
-    @weakify(self);
+    WEAK_SELF
     [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
-        @strongify(self); if (!self) return;
-        
+        STRONG_SELF
         [self tableViewWillRefresh];
         [self stopLoading];
         [self stopAnimation];
-        
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = retItemArray.count != 0;
         data.localDataExist = self.dataArray.count != 0;
@@ -122,7 +120,7 @@
             return;
         }
         [self.header setLastUpdateTime:[NSDate date]];
-        self->_total = total;
+        self.total = total;
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:retItemArray];
         [self checkHasMore];
@@ -167,7 +165,7 @@
         }
         
         [self.dataArray addObjectsFromArray:retItemArray];
-        self->_total = total;
+        self.total = total;
         [self.tableView reloadData];
         [self checkHasMore];
     }];
@@ -175,7 +173,7 @@
 
 - (void)checkHasMore {
     // there is a bug is MJRefresh, so we use alpha instead of hidden
-    [self setPullupViewHidden:[self.dataArray count] >= _total];
+    [self setPullupViewHidden:[self.dataArray count] >= self.total];
 }
 #pragma mark - tableview
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)sectionIndex

@@ -85,9 +85,7 @@
         [self startLoading];
         [self firstPageFetch];
     }];
-    [self.contentView addSubview:self.filterView];
-    [self.tableView removeFromSuperview];
-    [self.contentView addSubview:self.tableView];
+    [self.view addSubview:self.filterView];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.tableView registerClass:[StudentsLearnSwipeCell class] forCellReuseIdentifier:@"StudentsLearnSwipeCell"];
@@ -155,10 +153,6 @@
         make.height.mas_offset(44.0f);
     }];
 }
-- (void)tableViewWillRefresh {
-    self.headerView.hidden = NO;
-    self.batchButton.hidden = NO;
-}
 - (void)setIsBatchBool:(BOOL)isBatchBool {
     _isBatchBool = isBatchBool;
     if (_isBatchBool) {
@@ -171,6 +165,12 @@
                 make.right.equalTo(self.view.mas_right);
                 make.top.equalTo(self.view.mas_top).offset(-150.0f);
                 make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+            }];
+            [self.filterView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view.mas_left);
+                make.right.equalTo(self.view.mas_right);
+                make.top.equalTo(self.view.mas_top).offset(-44.0f);
+                make.height.mas_offset(44.0f);
             }];
             [self.view layoutIfNeeded];
             self.header.hidden = YES;
@@ -194,6 +194,12 @@
                 make.right.equalTo(self.view.mas_right);
                 make.bottom.equalTo(self.view.mas_bottom);
             }];
+            [self.filterView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view.mas_left);
+                make.right.equalTo(self.view.mas_right);
+                make.top.equalTo(self.view.mas_top);
+                make.height.mas_offset(44.0f);
+            }];
             self.batchButton.hidden = NO;
             self.remindButton.hidden = YES;
             self.tableView.tableFooterView = nil;
@@ -201,9 +207,6 @@
             [self.view layoutIfNeeded];
         }];
     }
-//    for (StudentsLearnSwipeCell *cell in [self.tableView visibleCells]) {
-//        [cell setupModeEditable:self.isBatchBool];
-//    }
     [self.tableView reloadData];
 }
 #pragma mark - UITableViewDataSource
@@ -342,9 +345,38 @@
     self.studyRequest = request;
 }
 - (void)firstPageFetch {
-    if (self.isWaitingForFilter) {
+    if (self.isWaitingForFilter || !self.dataFetcher) {
         return;
     }
-    [super firstPageFetch];
+    [self.dataFetcher stop];
+    self.dataFetcher.pageindex = 0;
+    if (!self.dataFetcher.pagesize) {
+        self.dataFetcher.pagesize = 20;
+    }
+    WEAK_SELF
+    [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
+        STRONG_SELF
+        self.headerView.hidden = NO;
+        [self stopLoading];
+        [self stopAnimation];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = retItemArray.count != 0;
+        data.localDataExist = self.dataArray.count != 0;
+        data.error = error;
+        if ([self handleRequestData:data inView:self.contentView]) {
+            if (!error) {
+                self.batchButton.hidden = retItemArray.count == 0;
+            }
+            return;
+        }
+        [self.header setLastUpdateTime:[NSDate date]];
+        self.total = total;
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:retItemArray];
+        self.batchButton.hidden = self.dataArray.count == 0;
+        self.footer.alpha = ([self.dataArray count] >= self.total) ? 0:1;
+        self.tableView.contentOffset = CGPointZero;
+        [self.tableView reloadData];
+    }];
 }
 @end

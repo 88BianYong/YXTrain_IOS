@@ -108,7 +108,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         [self getDataShowLoading:NO];
     };
     if (![YXTrainManager sharedInstance].currentProject.isContainsTeacher.boolValue &&
-        [YXTrainManager sharedInstance].currentProject.doubel.integerValue == 2) {
+        [YXTrainManager sharedInstance].currentProject.isDoubel.boolValue) {
         self.tipsView = [[StudentExamTipsView alloc] init];
         [self.tipsView setStudentExamTipsOpenCloseBlock:^(UIButton *sender) {
             STRONG_SELF
@@ -118,7 +118,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                         make.left.equalTo(self.view.mas_left).offset(15.0f);
                     }];
                     [self.view layoutIfNeeded];
-                    
                 }];
             }else {
                 [self hiddenTipsView];

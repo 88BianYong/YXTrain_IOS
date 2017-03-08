@@ -212,7 +212,7 @@ static  NSString *const trackPageName = @"个人信息页面";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        if ([YXTrainManager sharedInstance].currentProject.doubel.intValue == 2) {
+        if ([YXTrainManager sharedInstance].currentProject.isDoubel.boolValue) {
             return 223;
         }
         return 190;

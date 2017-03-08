@@ -154,6 +154,12 @@ static  NSString *const trackPageName = @"消息动态列表页面";
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
             break;
+        case 6:
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:data.projectId];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+            break;
             
         default:
             break;
