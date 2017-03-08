@@ -16,6 +16,7 @@
 #import "MasterRemindStudyRequest.h"
 @interface StudentsLearnController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) StudentsLearnTableHeaderView *headerView;
+@property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) StudentsLearnFilterView *filterView;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, strong) DataErrorView *filterDataErrorView;
@@ -92,6 +93,8 @@
     self.headerView = [[StudentsLearnTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 150.0f)];
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
+    self.footerView  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 86.0f)];
+    self.footerView.backgroundColor = [UIColor whiteColor];
     self.remindButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.remindButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
     [self.remindButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateDisabled];
@@ -104,7 +107,7 @@
     self.remindButton.hidden = YES;
     [[self.remindButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
-        [self requestForRemindStudy];
+        [self requestForRemindStudyIsBatch:YES];
     }];
     [self.view addSubview:self.remindButton];
     self.batchButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -188,7 +191,7 @@
         [self setupLeftBack];
         self.filterView.alpha = 1.0;
         if (self.footer.alpha == 0.0f){
-            self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 86.0f)];
+            self.tableView.tableFooterView = self.footerView;
         }
         [UIView animateWithDuration:0.1 animations:^{
             self.tableView.tableHeaderView = self.headerView;
@@ -241,7 +244,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     MasterLearningInfoListRequestItem_Body_LearningInfoList *info = self.dataArray[indexPath.row];
     [self.userIdSet addObject:info.userid];
-    [self requestForRemindStudy];
+    [self requestForRemindStudyIsBatch:NO];
 }
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (!self.isBatchBool) {
@@ -279,6 +282,11 @@
     WEAK_SELF
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
+        for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
+            info.isChoose = @"0";
+        }
+        [self.userIdSet removeAllObjects];
+        self.remindButton.enabled = self.userIdSet.count > 0;
         self.isBatchBool = NO;
     }];
     [self setupLeftWithCustomView:button];
@@ -320,7 +328,7 @@
         [self firstPageFetch];
     }];
 }
-- (void)requestForRemindStudy {
+- (void)requestForRemindStudyIsBatch:(BOOL)isBatch {
     MasterRemindStudyRequest *request = [[MasterRemindStudyRequest alloc] init];
     request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
     request.userIds = [[self.userIdSet allObjects] componentsJoinedByString:@","];
@@ -329,6 +337,13 @@
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
+        if (!isBatch) {
+            for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
+                info.isChoose = @"0";
+            }
+            [self.userIdSet removeAllObjects];
+            [self.tableView reloadData];
+        }
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
         data.localDataExist = YES;
@@ -336,13 +351,15 @@
         if ([self handleRequestData:data]) {
             return;
         }
-        for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
-            info.isChoose = @"0";
+        if (isBatch) {
+            for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
+                info.isChoose = @"0";
+            }
+            [self.userIdSet removeAllObjects];
+            self.remindButton.enabled = self.userIdSet.count > 0;
+            [self.tableView reloadData];
         }
-        [self.userIdSet removeAllObjects];
-        self.remindButton.enabled = self.userIdSet.count > 0;
         self.isBatchBool = NO;
-        [self.tableView reloadData];
         [self showToast:@"发送成功"];
     }];
     self.studyRequest = request;
@@ -386,7 +403,7 @@
     [super setPullupViewHidden:hidden];
     if(!self.isBatchBool) {
         if (hidden) {
-            self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 86.0f)];
+            self.tableView.tableFooterView = self.footerView;
         }else {
             self.tableView.tableFooterView = nil;
         }
