@@ -85,7 +85,9 @@
         [self startLoading];
         [self firstPageFetch];
     }];
-    [self.view addSubview:self.filterView];
+    [self.contentView addSubview:self.filterView];
+    [self.tableView removeFromSuperview];
+    [self.contentView addSubview:self.tableView];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.tableView registerClass:[StudentsLearnSwipeCell class] forCellReuseIdentifier:@"StudentsLearnSwipeCell"];
@@ -111,6 +113,7 @@
     [self.batchButton setImage:[UIImage imageNamed:@"批量操作icon"] forState:UIControlStateNormal];
     [self.batchButton setImage:[UIImage imageNamed:@"批量操作icon"] forState:UIControlStateHighlighted];
     [self.batchButton addTarget:self action:@selector(buttonBatchAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.batchButton.hidden = YES;
     [self.view addSubview:self.batchButton];
     self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     self.filterErrorView.retryBlock = ^{
@@ -154,39 +157,54 @@
 }
 - (void)tableViewWillRefresh {
     self.headerView.hidden = NO;
+    self.batchButton.hidden = NO;
 }
 - (void)setIsBatchBool:(BOOL)isBatchBool {
     _isBatchBool = isBatchBool;
     if (_isBatchBool) {
-        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-        self.batchButton.hidden = YES;
-        self.filterView.hidden = YES;
-        self.remindButton.hidden = NO;
-        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.view.mas_left);
-            make.right.equalTo(self.view.mas_right);
-            make.top.equalTo(self.view.mas_top);
-            make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+        [UIView animateWithDuration:0.3 animations:^{
+            self.filterView.alpha = 0.0;
+            self.batchButton.hidden = YES;
+            self.remindButton.hidden = NO;
+            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view.mas_left);
+                make.right.equalTo(self.view.mas_right);
+                make.top.equalTo(self.view.mas_top).offset(-150.0f);
+                make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+            }];
+            [self.view layoutIfNeeded];
+            self.header.hidden = YES;
+        } completion:^(BOOL finished) {
+            self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view.mas_left);
+                make.right.equalTo(self.view.mas_right);
+                make.top.equalTo(self.view.mas_top);
+                make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+            }];
         }];
-        self.header.hidden = YES;
     }else {
         [self setupLeftBack];
-        [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view.mas_top).offset(44.0f);
-            make.left.equalTo(self.view.mas_left);
-            make.right.equalTo(self.view.mas_right);
-            make.bottom.equalTo(self.view.mas_bottom);
+        self.filterView.alpha = 1.0;
+        [UIView animateWithDuration:0.1 animations:^{
+            self.tableView.tableHeaderView = self.headerView;
+            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(self.view.mas_top).offset(44.0f);
+                make.left.equalTo(self.view.mas_left);
+                make.right.equalTo(self.view.mas_right);
+                make.bottom.equalTo(self.view.mas_bottom);
+            }];
+            self.batchButton.hidden = NO;
+            self.remindButton.hidden = YES;
+            self.tableView.tableFooterView = nil;
+            self.header.hidden = NO;
+            [self.view layoutIfNeeded];
         }];
-        self.tableView.tableHeaderView = self.headerView;
-        self.batchButton.hidden = NO;
-        self.filterView.hidden = NO;
-        self.remindButton.hidden = YES;
-        self.tableView.tableFooterView = nil;
-        self.header.hidden = NO;
     }
-    for (StudentsLearnSwipeCell *cell in [self.tableView visibleCells]) {
-        [cell setupModeEditable:self.isBatchBool];
-    }
+//    for (StudentsLearnSwipeCell *cell in [self.tableView visibleCells]) {
+//        [cell setupModeEditable:self.isBatchBool];
+//    }
+    [self.tableView reloadData];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

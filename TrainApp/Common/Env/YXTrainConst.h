@@ -114,7 +114,10 @@ extern NSString *const kYXTrainFirstRoleChange;
  *  扫码登录
  */
 extern NSString *const kYXTrainScanCodeEntry;
-
+/**
+ *  显示学员不参与考核提示
+ */
+extern NSString *const kYXTrainContainsTeacher;
 
 
 /**

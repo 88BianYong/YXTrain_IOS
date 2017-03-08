@@ -96,8 +96,8 @@
     BLOCK_EXEC(self.MasterConditionChooseBlock,self.mutableDictionary);
 }
 - (BOOL)isChooseBool {
-    return self.ifcxCell.chooseInteger != 0 ||
-           self.ifhgCell.chooseInteger != 0 ||
-           self.ifxxCell.chooseInteger != 0;
+    return [self.mutableDictionary[@"ifcx"] integerValue] != 0 ||
+           [self.mutableDictionary[@"ifhg"] integerValue] != 0 ||
+           [self.mutableDictionary[@"ifxx"] integerValue] != 0;
 }
 @end

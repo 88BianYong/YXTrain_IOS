@@ -38,3 +38,5 @@ NSString *const kYXTrainUserIdentityChange = @"user change identity master or st
 NSString *const kYXTrainFirstRoleChange = @"the first show role view";
 
 NSString *const kYXTrainScanCodeEntry = @"Scan code entry";
+
+NSString *const kYXTrainContainsTeacher = @"contains teacher not involved in the assessment";

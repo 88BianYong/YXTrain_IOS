@@ -59,6 +59,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     if (self.isSelected) {
         [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     }
+    [self hiddenTipsView];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,7 +82,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 - (void)setupUI{
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -107,7 +107,8 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         STRONG_SELF
         [self getDataShowLoading:NO];
     };
-    if ([YXTrainManager sharedInstance].currentProject.isContainsTeacher.boolValue) {
+    if (![YXTrainManager sharedInstance].currentProject.isContainsTeacher.boolValue &&
+        [YXTrainManager sharedInstance].currentProject.doubel.integerValue == 2) {
         self.tipsView = [[StudentExamTipsView alloc] init];
         [self.tipsView setStudentExamTipsOpenCloseBlock:^(UIButton *sender) {
             STRONG_SELF
@@ -120,21 +121,26 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                     
                 }];
             }else {
-                [UIView animateWithDuration:0.3f animations:^{
-                    [self.tipsView mas_updateConstraints:^(MASConstraintMaker *make) {
-                        make.left.equalTo(self.view.mas_left).offset(-kScreenWidth + 30.0f + 38.0f);
-                    }];
-                    [self.view layoutIfNeeded];
-                }];
+                [self hiddenTipsView];
             }
         }];
+        [self.view addSubview:self.tipsView];
+        if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainContainsTeacher]) {
+            self.tipsView.openCloseButton.selected = YES;
+            [self.tipsView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view.mas_left).offset(15.0f);
+                make.width.mas_offset(kScreenWidth - 30.0f);
+                make.top.equalTo(self.view.mas_top).offset(18.0f);
+            }];
+        }else {
+            self.tipsView.openCloseButton.selected = NO;
+            [self.tipsView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.view.mas_left).offset(-kScreenWidth + 30.0f + 38.0f);
+                make.width.mas_offset(kScreenWidth - 30.0f);
+                make.top.equalTo(self.view.mas_top).offset(18.0f);
+            }];
+        }
     }
-    [self.view addSubview:self.tipsView];
-    [self.tipsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left).offset(15.0f);
-        make.width.mas_offset(kScreenWidth - 30.0f);
-        make.top.equalTo(self.view.mas_top).offset(18.0f);
-    }];
 }
 
 - (void)getDataShowLoading:(BOOL)isShow{
@@ -406,10 +412,14 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         self.isSelected = YES;
     }else{
         self.isSelected = NO;
+        [self hiddenTipsView];//借用上报规则
     }
     [YXDataStatisticsManger trackPage:trackPageName withStatus:status];
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self hiddenTipsView];
+}
+- (void)hiddenTipsView {
     self.tipsView.openCloseButton.selected = NO;
     [UIView animateWithDuration:0.3f animations:^{
         [self.tipsView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -417,5 +427,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         }];
         [self.view layoutIfNeeded];
     }];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainContainsTeacher];
+
 }
 @end
