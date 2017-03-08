@@ -333,9 +333,7 @@
             break;
         case 2:
         {
-//            YXWorkshopViewController *workshopVc = [[YXWorkshopViewController alloc] init];
-//            [self.navigationController pushViewController:workshopVc animated:YES];
-            StudentsLearnController *workshopVc = [[StudentsLearnController alloc] init];
+            YXWorkshopViewController *workshopVc = [[YXWorkshopViewController alloc] init];
             [self.navigationController pushViewController:workshopVc animated:YES];
         }
             break;

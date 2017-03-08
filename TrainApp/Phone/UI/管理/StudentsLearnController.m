@@ -156,6 +156,7 @@
 - (void)setIsBatchBool:(BOOL)isBatchBool {
     _isBatchBool = isBatchBool;
     if (_isBatchBool) {
+        self.tableView.tableFooterView = nil;
         [UIView animateWithDuration:0.3 animations:^{
             self.filterView.alpha = 0.0;
             self.batchButton.hidden = YES;
@@ -186,6 +187,9 @@
     }else {
         [self setupLeftBack];
         self.filterView.alpha = 1.0;
+        if (self.footer.alpha == 0.0f){
+            self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 86.0f)];
+        }
         [UIView animateWithDuration:0.1 animations:^{
             self.tableView.tableHeaderView = self.headerView;
             [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -202,7 +206,6 @@
             }];
             self.batchButton.hidden = NO;
             self.remindButton.hidden = YES;
-            self.tableView.tableFooterView = nil;
             self.header.hidden = NO;
             [self.view layoutIfNeeded];
         }];
@@ -378,5 +381,15 @@
         self.tableView.contentOffset = CGPointZero;
         [self.tableView reloadData];
     }];
+}
+- (void)setPullupViewHidden:(BOOL)hidden {
+    [super setPullupViewHidden:hidden];
+    if(!self.isBatchBool) {
+        if (hidden) {
+            self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 86.0f)];
+        }else {
+            self.tableView.tableFooterView = nil;
+        }
+    }
 }
 @end
