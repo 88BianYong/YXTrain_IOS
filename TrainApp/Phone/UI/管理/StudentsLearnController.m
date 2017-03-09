@@ -23,11 +23,11 @@
 @property (nonatomic, strong) MasterManageListRequest *listRequest;
 @property (nonatomic, strong) MasterRemindStudyRequest *studyRequest;
 @property (nonatomic, strong) UIButton *batchButton;
+@property (nonatomic, strong) UIButton *remindButton;
 @property (nonatomic, strong) NSMutableSet *userIdSet;
 
 @property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, assign) BOOL isBatchBool;
-@property (nonatomic, assign) UIButton *remindButton;
 @end
 
 @implementation StudentsLearnController

@@ -15,6 +15,7 @@
 
 #import "AppDelegate+GetInfoList.h"
 #import "AppDelegateHelper.h"
+#import "TalkingData.h"
 @interface AppDelegate ()
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 @property (nonatomic, strong) NSTimer *backgroundTimer;
@@ -43,6 +44,7 @@
         }
     }];
     [GlobalUtils setDefaultExceptionHandler];
+    [TalkingData setExceptionReportEnabled:YES];
     [YXDataStatisticsManger sessionStarted:@"2D51075BBBC948E36A11E656DABC1775" withChannelId:@"AppStore"];
     return YES;
 }
