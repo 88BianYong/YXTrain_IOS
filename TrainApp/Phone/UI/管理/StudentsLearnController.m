@@ -161,59 +161,47 @@
     if (_isBatchBool) {
         self.tableView.tableFooterView = nil;
         [UIView animateWithDuration:0.3 animations:^{
-            self.filterView.alpha = 0.0;
-            self.batchButton.hidden = YES;
-            self.remindButton.hidden = NO;
-            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.view.mas_left);
-                make.right.equalTo(self.view.mas_right);
+            [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.view.mas_top).offset(-150.0f);
                 make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
             }];
-            [self.filterView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.view.mas_left);
-                make.right.equalTo(self.view.mas_right);
+            [self.filterView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.view.mas_top).offset(-44.0f);
                 make.height.mas_offset(44.0f);
             }];
             [self.view layoutIfNeeded];
-            self.header.hidden = YES;
         } completion:^(BOOL finished) {
             self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.view.mas_left);
-                make.right.equalTo(self.view.mas_right);
+            [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.view.mas_top);
                 make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
             }];
         }];
     }else {
         [self setupLeftBack];
-        self.filterView.alpha = 1.0;
         if (self.footer.alpha == 0.0f){
             self.tableView.tableFooterView = self.footerView;
         }
         [UIView animateWithDuration:0.1 animations:^{
             self.tableView.tableHeaderView = self.headerView;
-            [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            [self.tableView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.view.mas_top).offset(44.0f);
-                make.left.equalTo(self.view.mas_left);
-                make.right.equalTo(self.view.mas_right);
                 make.bottom.equalTo(self.view.mas_bottom);
             }];
-            [self.filterView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.view.mas_left);
-                make.right.equalTo(self.view.mas_right);
+            [self.filterView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(self.view.mas_top);
                 make.height.mas_offset(44.0f);
             }];
-            self.batchButton.hidden = NO;
-            self.remindButton.hidden = YES;
-            self.header.hidden = NO;
             [self.view layoutIfNeeded];
         }];
     }
+    [self changeBatchInterface:_isBatchBool];
     [self.tableView reloadData];
+}
+- (void)changeBatchInterface:(BOOL)isBatch {
+    self.batchButton.hidden = isBatch;
+    self.remindButton.hidden = !isBatch;
+    self.header.hidden = isBatch;
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -282,11 +270,7 @@
     WEAK_SELF
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
-        for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
-            info.isChoose = @"0";
-        }
-        [self.userIdSet removeAllObjects];
-        self.remindButton.enabled = self.userIdSet.count > 0;
+        [self clearSelectedRemindData];
         self.isBatchBool = NO;
     }];
     [self setupLeftWithCustomView:button];
@@ -323,9 +307,11 @@
         fetcher.ifhg = @"0";
         fetcher.ifcx = @"0";
         fetcher.ifxx = @"0";
-        MasterManageListRequestItem_Body_Group *grop = item.body.groups[0];
-        fetcher.barId = grop.barid;
-        [self firstPageFetch];
+        if (item.body.groups.count > 0) {
+            MasterManageListRequestItem_Body_Group *grop = item.body.groups[0];
+            fetcher.barId = grop.barid;
+            [self firstPageFetch];
+        }
     }];
 }
 - (void)requestForRemindStudyIsBatch:(BOOL)isBatch {
@@ -337,32 +323,27 @@
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        if (!isBatch) {
-            for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
-                info.isChoose = @"0";
-            }
-            [self.userIdSet removeAllObjects];
-            [self.tableView reloadData];
-        }
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
         data.localDataExist = YES;
         data.error = error;
-        if ([self handleRequestData:data]) {
+        if ([self handleRequestData:data] && !isBatch) {
+            [self clearSelectedRemindData];//单个提醒请求错误也需要清空数据
             return;
         }
-        if (isBatch) {
-            for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
-                info.isChoose = @"0";
-            }
-            [self.userIdSet removeAllObjects];
-            self.remindButton.enabled = self.userIdSet.count > 0;
-            [self.tableView reloadData];
-        }
+        [self clearSelectedRemindData];
         self.isBatchBool = NO;
         [self showToast:@"发送成功"];
     }];
     self.studyRequest = request;
+}
+- (void)clearSelectedRemindData {
+    for (MasterLearningInfoListRequestItem_Body_LearningInfoList *info in self.dataArray) {
+        info.isChoose = @"0";
+    }
+    [self.userIdSet removeAllObjects];
+    self.remindButton.enabled = self.userIdSet.count > 0;
+    [self.tableView reloadData];
 }
 - (void)firstPageFetch {
     if (self.isWaitingForFilter || !self.dataFetcher) {
