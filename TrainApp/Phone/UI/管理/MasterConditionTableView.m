@@ -90,9 +90,9 @@
     self.ifxxCell.chooseInteger = 0;
 }
 - (void)confirmButtonAction:(UIButton *)sender {
-    self.mutableDictionary[@"ifcx"] = [NSString stringWithFormat:@"%ld",self.ifcxCell.chooseInteger];
-    self.mutableDictionary[@"ifhg"] = [NSString stringWithFormat:@"%ld",self.ifhgCell.chooseInteger];
-    self.mutableDictionary[@"ifxx"] = [NSString stringWithFormat:@"%ld",self.ifxxCell.chooseInteger];
+    self.mutableDictionary[@"ifcx"] = [NSString stringWithFormat:@"%ld",(long)self.ifcxCell.chooseInteger];
+    self.mutableDictionary[@"ifhg"] = [NSString stringWithFormat:@"%ld",(long)self.ifhgCell.chooseInteger];
+    self.mutableDictionary[@"ifxx"] = [NSString stringWithFormat:@"%ld",(long)self.ifxxCell.chooseInteger];
     BLOCK_EXEC(self.MasterConditionChooseBlock,self.mutableDictionary);
 }
 - (BOOL)isChooseBool {

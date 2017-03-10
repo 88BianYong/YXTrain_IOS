@@ -62,6 +62,18 @@
         STRONG_SELF
         [self requestForMasterStat];
     };
+    self.errorView = [[YXErrorView alloc]init];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForMasterStat];
+    };
+    self.dataErrorView = [[DataErrorView alloc]init];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForMasterStat];
+    };
     
 }
 - (void)setupLayout {

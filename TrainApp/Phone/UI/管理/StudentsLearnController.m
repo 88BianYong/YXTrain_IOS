@@ -375,7 +375,7 @@
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:retItemArray];
         self.batchButton.hidden = self.dataArray.count == 0;
-        self.footer.alpha = ([self.dataArray count] >= self.total) ? 0:1;
+        [self setPullupViewHidden:[self.dataArray count] >= self.total];
         self.tableView.contentOffset = CGPointZero;
         [self.tableView reloadData];
     }];
