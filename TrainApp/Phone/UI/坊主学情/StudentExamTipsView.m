@@ -29,7 +29,7 @@
     self.promptLabel = [[UILabel alloc] init];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 7.0f;
-    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:@"作为本次培训中的管理者,您不需要进行学员内容的学习,此部分展示仅为方便您了解学员学习内容,进仅需要进行该项目指导即可" attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:@"作为本次培训中的管理者,您不需要进行学员内容的学习,此部分展示仅为方便您了解学员学习内容,您仅需要进行该项目指导即可" attributes:@{NSParagraphStyleAttributeName : paragraphStyle}];
     self.promptLabel.attributedText = attString;
     self.promptLabel.font = [UIFont systemFontOfSize:12.0f];
     self.promptLabel.textColor = [UIColor whiteColor];

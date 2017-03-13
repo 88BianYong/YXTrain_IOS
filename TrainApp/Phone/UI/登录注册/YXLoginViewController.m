@@ -21,6 +21,7 @@
 #import "YXAlertView.h"
 #import "YXInitRequest.h"
 #import "AccountListView.h"
+#import "AppDelegate.h"
 
 @interface YXLoginViewController ()
 
@@ -48,6 +49,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(scanCodeEntry:) name:kYXTrainScanCodeEntry object:nil];
 }
 - (void)scanCodeEntry:(NSNotification *)aNotification {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.appDelegateHelper.scanCodeUrl = nil;
     [YXUserManager sharedManager].userModel.token = aNotification.object;
     [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
         if (error) {

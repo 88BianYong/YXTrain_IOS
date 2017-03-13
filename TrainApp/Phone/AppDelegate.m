@@ -14,18 +14,19 @@
 #import "YXWebSocketManger.h"
 
 #import "AppDelegate+GetInfoList.h"
-#import "AppDelegateHelper.h"
 #import "TalkingData.h"
 @interface AppDelegate ()
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 @property (nonatomic, strong) NSTimer *backgroundTimer;
-@property (nonatomic, strong) AppDelegateHelper *appDelegatehelper;
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+//    if([launchOptions objectForKey:UIApplicationLaunchOptionsURLKey] && [[YXUserManager sharedManager] isLogin]){
+//        [[YXUserManager sharedManager] logout];
+//    }
     [GlobalUtils setupCore];
     [YXNavigationBarController setup];
     [self setupKeyboardManager];
@@ -34,12 +35,12 @@
     YXStartViewController *VC = [[YXStartViewController alloc] init];
     self.window.rootViewController = VC;
     [self.window makeKeyAndVisible];
-    self.appDelegatehelper = [[AppDelegateHelper alloc] initWithWindow:self.window];
+    self.appDelegateHelper = [[AppDelegateHelper alloc] initWithWindow:self.window];
     WEAK_SELF
     [[YXInitHelper sharedHelper] requestCompeletion:^(BOOL upgrade) {
         STRONG_SELF
         if (upgrade) {
-            [self.appDelegatehelper setupRootViewController];
+            [self.appDelegateHelper setupRootViewController];
         }
     }];
     [GlobalUtils setDefaultExceptionHandler];
@@ -136,10 +137,12 @@
 
 // 9.0
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    [[YXWebSocketManger sharedInstance] close];
-    [[YXUserManager sharedManager] logout];
-    self.appDelegatehelper.scanCodeUrl = url;
-    [self.appDelegatehelper scanCodeEntry:url];
+    if([[YXUserManager sharedManager] isLogin]){
+        [[YXWebSocketManger sharedInstance] close];
+        [[YXUserManager sharedManager] logout];
+    }
+    self.appDelegateHelper.scanCodeUrl = url;
+    [self.appDelegateHelper scanCodeEntry:url];
 	return YES;
 }
 @end
