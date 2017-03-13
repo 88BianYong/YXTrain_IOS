@@ -393,6 +393,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Error:
             {
                 DDLogError(@"Error");
+                NSDictionary *dict = @{
+                                       @"token": [YXUserManager sharedManager].userModel.token?:@"",
+                                       @"uid": [YXUserManager sharedManager].userModel.uid?:@"",
+                                       @"url": self.videoUrl?:@""
+                                       };
+                [YXDataStatisticsManger trackEvent:@"播放出错" label:@"出错信息" parameters:dict];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.bufferingView stop];
                     self.bufferingView.hidden = YES;

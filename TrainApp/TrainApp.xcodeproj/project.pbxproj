@@ -3699,6 +3699,7 @@
 					7C3177191D0E4D6C004AAC90 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = P8ZS8UUN27;
+						ProvisioningStyle = Manual;
 					};
 					7C3177321D0E4D6C004AAC90 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -4434,7 +4435,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: xingfu liu (J63VXZH2U7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xingfu liu (J63VXZH2U7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = P8ZS8UUN27;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Phone/InfoPhone.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -4445,7 +4447,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = $APP_PROFILE;
+				PROVISIONING_PROFILE = "e69c8fed-6adb-484d-b50c-f2a1fab1307e";
 				PROVISIONING_PROFILE_SPECIFIER = DevAll;
 			};
 			name = Debug;
