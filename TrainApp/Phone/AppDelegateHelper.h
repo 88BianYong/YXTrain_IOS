@@ -11,6 +11,8 @@
 @interface AppDelegateHelper : NSObject
 - (instancetype)initWithWindow:(UIWindow *)window;
 @property (nonatomic, strong, readonly) UIWindow *window;
+@property (nonatomic, strong) NSURL *scanCodeUrl;
+
 
 // 启动的根视图控制器
 - (void)setupRootViewController;

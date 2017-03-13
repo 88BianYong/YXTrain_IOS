@@ -67,6 +67,9 @@
     } else {
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
+        if (self.scanCodeUrl) {
+            [self scanCodeEntry:self.scanCodeUrl];
+        }
     }
 }
 - (void)requestCommonData {

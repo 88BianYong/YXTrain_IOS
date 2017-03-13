@@ -20,7 +20,6 @@
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 @property (nonatomic, strong) NSTimer *backgroundTimer;
 @property (nonatomic, strong) AppDelegateHelper *appDelegatehelper;
-
 @end
 
 @implementation AppDelegate
@@ -139,6 +138,7 @@
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
     [[YXWebSocketManger sharedInstance] close];
     [[YXUserManager sharedManager] logout];
+    self.appDelegatehelper.scanCodeUrl = url;
     [self.appDelegatehelper scanCodeEntry:url];
 	return YES;
 }

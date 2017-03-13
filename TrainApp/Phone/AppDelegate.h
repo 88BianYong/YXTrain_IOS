@@ -16,5 +16,6 @@
 @property (nonatomic, strong) YXProvincesRequest *provincesRequest;
 @property (nonatomic, strong) YXStageAndSubjectRequest *stageAndSubjectRequest;
 @property (nonatomic ,strong) YXCheckRequest *checkRequest;
+
 @end
 

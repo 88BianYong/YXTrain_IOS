@@ -145,7 +145,7 @@ static  NSString *const trackPageName = @"成绩详情页面";
         
     }else{
         YXScoreExpGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXScoreExpGroupCell"];
-        cell.data = self.expItemArray[indexPath.section];
+        cell.data = self.expItemArray[indexPath.row];        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
