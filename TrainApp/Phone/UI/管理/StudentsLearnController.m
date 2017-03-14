@@ -274,7 +274,7 @@
         self.isBatchBool = NO;
     }];
     [self setupLeftWithCustomView:button];
-
+    
 }
 #pragma mark - request
 - (void)requestForLearningInfo {
@@ -318,6 +318,9 @@
     MasterRemindStudyRequest *request = [[MasterRemindStudyRequest alloc] init];
     request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
     request.userIds = [[self.userIdSet allObjects] componentsJoinedByString:@","];
+    if (!isBatch) {
+        [self clearSelectedRemindData];//单个提醒请求错误也需要清空数据
+    }
     [self startLoading];
     WEAK_SELF
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -327,8 +330,7 @@
         data.requestDataExist = YES;
         data.localDataExist = YES;
         data.error = error;
-        if ([self handleRequestData:data] && !isBatch) {
-            [self clearSelectedRemindData];//单个提醒请求错误也需要清空数据
+        if ([self handleRequestData:data]) {
             return;
         }
         [self clearSelectedRemindData];

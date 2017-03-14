@@ -54,9 +54,6 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.emptyView.title = @"没有符合条件的课程";
     self.emptyView.imageName = @"没有符合条件的课程";
     self.title = @"课程列表";
-    if ([YXTrainManager sharedInstance].currentProject.role.intValue != 99) {
-        [self setupRightWithTitle:@"看课记录"];
-    }
     [self setupObservers];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
