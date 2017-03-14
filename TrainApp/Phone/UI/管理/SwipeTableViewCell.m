@@ -10,6 +10,8 @@
 @interface SwipeTableViewCell ()
 @property (nonatomic, strong) UIView *choooseView;
 @property (nonatomic, strong) UIImageView *statusImageView;
+
+@property (nonatomic, strong) UILabel *remindLabel;
 @end
 @implementation SwipeTableViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -29,6 +31,15 @@
     self.choooseView.layer.borderColor = [UIColor colorWithHexString:@"dfe2e6"].CGColor;
     self.choooseView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.choooseView];
+    
+    self.remindLabel = [[UILabel alloc] init];
+    self.remindLabel.textColor = [UIColor whiteColor];
+    self.remindLabel.backgroundColor = [UIColor colorWithHexString:@"0070c9"];
+    self.remindLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.remindLabel.text = @"提醒学习";
+    self.remindLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:self.remindLabel];
+    
     
     self.statusImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"批量操作选择的对号"]];
     [self.choooseView addSubview:self.statusImageView];
@@ -55,6 +66,12 @@
     [self.statusImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
         make.center.equalTo(self.choooseView);
+    }];
+    
+    [self.remindLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_offset(CGSizeMake(86.0f,86.0f));
+        make.top.equalTo(self.contentView.mas_top);
+        make.right.equalTo(self.contentView.mas_right);
     }];
 }
 
@@ -107,6 +124,24 @@
                 }
             }
         }
+    }
+}
+- (void)setEditing:(BOOL)editing {
+    [super setEditing:editing];
+    if (editing) {
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.contentView.mas_left).offset(-86.0f);
+            }];
+            [self layoutIfNeeded];
+        }];
+    }else {
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.contentView.mas_left);
+            }];
+            [self layoutIfNeeded];
+        }];
     }
 }
 

@@ -14,6 +14,7 @@
 #import "LearningInfoListFetcher.h"
 #import "StudentExamViewController.h"
 #import "MasterRemindStudyRequest.h"
+#import "RemindLeftSlipView.h"
 @interface StudentsLearnController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) StudentsLearnTableHeaderView *headerView;
 @property (nonatomic, strong) UIView *footerView;
@@ -128,7 +129,21 @@
     };
     self.emptyView.title = @"没有符合条件的内容";
     self.emptyView.imageName = @"没有符合条件的课程";
-    
+}
+- (void)showRemindLeftSlipView {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainRemindLeftSlip]) {
+        StudentsLearnSwipeCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+        [cell setEditing:YES];
+        RemindLeftSlipView *remindView = [[RemindLeftSlipView alloc] init];
+        [remindView setRemindLeftSlipButtonBlock:^{
+            [cell setEditing:NO];
+        }];
+        [self.navigationController.view addSubview:remindView];
+        [remindView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainRemindLeftSlip];
+    }
 }
 - (void)setupLayout {
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -229,6 +244,11 @@
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return  @"提醒学";
 }
+- (BOOL)tableView: (UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     MasterLearningInfoListRequestItem_Body_LearningInfoList *info = self.dataArray[indexPath.row];
     [self.userIdSet addObject:info.userid];
@@ -380,6 +400,7 @@
         [self setPullupViewHidden:[self.dataArray count] >= self.total];
         self.tableView.contentOffset = CGPointZero;
         [self.tableView reloadData];
+        [self showRemindLeftSlipView];
     }];
 }
 - (void)setPullupViewHidden:(BOOL)hidden {

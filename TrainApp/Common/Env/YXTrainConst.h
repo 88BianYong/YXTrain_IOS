@@ -119,6 +119,11 @@ extern NSString *const kYXTrainScanCodeEntry;
  */
 extern NSString *const kYXTrainContainsTeacher;
 
+/**
+ *  显示左滑提醒学习
+ */
+extern NSString *const kYXTrainRemindLeftSlip;
+
 
 /**
  *  左划宽度 按屏幕750
