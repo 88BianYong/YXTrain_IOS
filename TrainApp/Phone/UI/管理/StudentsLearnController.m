@@ -290,6 +290,8 @@
     WEAK_SELF
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
+        [self.studyRequest stopRequest];
+        [self stopLoading];
         [self clearSelectedRemindData];
         self.isBatchBool = NO;
     }];
@@ -335,6 +337,9 @@
     }];
 }
 - (void)requestForRemindStudyIsBatch:(BOOL)isBatch {
+    if (self.studyRequest) {
+        [self.studyRequest stopRequest];
+    }
     MasterRemindStudyRequest *request = [[MasterRemindStudyRequest alloc] init];
     request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
     request.userIds = [[self.userIdSet allObjects] componentsJoinedByString:@","];
