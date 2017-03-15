@@ -50,7 +50,7 @@
 - (void)setupFetcher {
     LearningInfoListFetcher *fetcher = [[LearningInfoListFetcher alloc]init];
     fetcher.projectId = [YXTrainManager sharedInstance].currentProject.pid;
-    fetcher.pageindex = 1;
+    fetcher.pageindex = 0;
     WEAK_SELF
     [fetcher setLearningInfoListFetcherBlock:^(MasterLearningInfoListRequestItem_Body *body) {
         STRONG_SELF

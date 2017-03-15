@@ -6,7 +6,7 @@
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "YXGetRequest.h"
+#import "YXPostRequest.h"
 @protocol MasterLearningInfoListRequestItem_Body_LearningInfoList
 @end
 @interface MasterLearningInfoListRequestItem_Body_LearningInfoList: JSONModel
@@ -34,7 +34,7 @@
 @property (nonatomic, strong) MasterLearningInfoListRequestItem_Body<Optional> *body;
 @end
 
-@interface MasterLearningInfoListRequest : YXGetRequest
+@interface MasterLearningInfoListRequest : YXPostRequest
 @property (nonatomic, copy) NSString *ifhg;
 @property (nonatomic, copy) NSString *ifcx;
 @property (nonatomic, copy) NSString *ifxx;
