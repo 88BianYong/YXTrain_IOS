@@ -52,7 +52,11 @@
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     appDelegate.appDelegateHelper.scanCodeUrl = nil;
     [YXUserManager sharedManager].userModel.token = aNotification.object;
+    [self startLoading];
+    WEAK_SELF
     [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
+        STRONG_SELF
+        [self stopLoading];
         if (error) {
             [self showToast:error.localizedDescription];
             return;

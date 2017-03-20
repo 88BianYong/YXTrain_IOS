@@ -68,7 +68,9 @@
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
         if (self.scanCodeUrl) {
-            [self scanCodeEntry:self.scanCodeUrl];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TD:延迟1秒确保发送通知前已注册
+                [self scanCodeEntry:self.scanCodeUrl];
+            });
         }
     }
 }
@@ -142,11 +144,11 @@
 }
 - (void)handleTokenInvalid {
     [[YXUserManager sharedManager] resetUserData];
-    [YXPromtController showToast:@"帐号授权已失效,请重新登录" inView:self.window];
     if (![self.window.rootViewController isKindOfClass:[YXLoginViewController class]]) {
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
     }
+    [YXPromtController showToast:@"帐号授权已失效,请重新登录" inView:self.window];
 }
 
 - (void)showCMSView {

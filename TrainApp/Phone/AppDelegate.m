@@ -24,9 +24,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-//    if([launchOptions objectForKey:UIApplicationLaunchOptionsURLKey] && [[YXUserManager sharedManager] isLogin]){
-//        [[YXUserManager sharedManager] logout];
-//    }
+    if([launchOptions objectForKey:UIApplicationLaunchOptionsURLKey] && [[YXUserManager sharedManager] isLogin]){
+        [[YXUserManager sharedManager] logout];
+    }
     [GlobalUtils setupCore];
     [YXNavigationBarController setup];
     [self setupKeyboardManager];
