@@ -142,7 +142,9 @@
         [[YXUserManager sharedManager] logout];
     }
     self.appDelegateHelper.scanCodeUrl = url;
-    [self.appDelegateHelper scanCodeEntry:url];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TD:延迟0.1秒确保发送通知前已注册
+        [self.appDelegateHelper scanCodeEntry:url];
+    });
 	return YES;
 }
 @end
