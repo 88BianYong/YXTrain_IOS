@@ -14,7 +14,7 @@
 }
 @end
 @implementation YXWorkshopMemberFetcher
-- (void)startWithBlock:(void (^)(int, NSArray *, NSError *))aCompleteBlock{
+- (void)startWithBlock:(void (^)(NSInteger, NSArray *, NSError *))aCompleteBlock{
     _memberRequest = [[YXWorkshopMemberRequest alloc] init];
     _memberRequest.barid = self.barid;
     

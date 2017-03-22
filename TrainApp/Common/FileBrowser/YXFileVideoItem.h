@@ -9,5 +9,5 @@
 #import "YXFileItemBase.h"
 
 @interface YXFileVideoItem : YXFileItemBase
-
+@property (nonatomic, strong) NSMutableArray *quizzesMutableArray;
 @end

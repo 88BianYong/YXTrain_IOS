@@ -12,7 +12,7 @@
 @end
 
 @implementation YXHotspotDatumFetch
-- (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock{
+- (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock{
     YXHotspotRequest *request = [[YXHotspotRequest alloc] init];
     request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
     request.pageNo = [NSString stringWithFormat:@"%d", self.pageindex + 1];

@@ -10,7 +10,7 @@
 @property (nonatomic, strong) BeijingCourseListRequest *request;
 @end
 @implementation BeijingCourseListFetcher
-- (void)startWithBlock:(void (^)(int, NSArray *, NSError *))aCompleteBlock
+- (void)startWithBlock:(void (^)(NSInteger, NSArray *, NSError *))aCompleteBlock
 {
     [self.request stopRequest];
     self.request = [[BeijingCourseListRequest alloc] init];

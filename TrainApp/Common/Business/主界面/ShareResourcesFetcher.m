@@ -13,7 +13,7 @@
 @property (nonatomic, strong) ShareResourcesRequest *request;
 @end
 @implementation ShareResourcesFetcher
-- (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock {
+- (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock {
     [self.request stopRequest];
     self.request = [[ShareResourcesRequest alloc] init];
     self.request.aid = self.aid;

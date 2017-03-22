@@ -11,7 +11,7 @@
 @property (nonatomic, strong) MasterLearningInfoListRequest *listRequest;
 @end
 @implementation LearningInfoListFetcher
-- (void)startWithBlock:(void (^)(int, NSArray *, NSError *))aCompleteBlock
+- (void)startWithBlock:(void (^)(NSInteger, NSArray *, NSError *))aCompleteBlock
 {
     [self.listRequest stopRequest];
     self.listRequest = [[MasterLearningInfoListRequest alloc] init];

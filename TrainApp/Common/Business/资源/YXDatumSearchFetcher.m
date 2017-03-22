@@ -16,7 +16,7 @@
 
 @implementation YXDatumSearchFetcher
 
-- (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock {
+- (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock {
     [self stop];
     self.request = [[YXDatumSearchRequest alloc] init];
     self.request.condition = self.condition;

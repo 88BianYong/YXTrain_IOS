@@ -8,19 +8,25 @@
 
 #import "YXWebViewController.h"
 #import "YXShowWebMenuView.h"
+#import "MJRefresh.h"
+
 @interface YXWebViewController ()<UIWebViewDelegate>
 @property (nonatomic, strong) UIWebView *webView;
 //@property (nonatomic, strong) YXErrorView *errorView;
 @property (nonatomic, assign) BOOL isShowLoding;
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) MJRefreshHeaderView *header;
+
+
 @end
 @implementation YXWebViewController
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [self.timer invalidate];
+    [self.header free];
+
     self.timer = nil;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.isShowLoding = YES;
@@ -30,6 +36,8 @@
     self.webView = [UIWebView new];
     self.webView.delegate = self;
     self.webView.scalesPageToFit = YES;
+    self.webView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+
     [self.view addSubview:self.webView];
     [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -43,6 +51,13 @@
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
     [self.webView loadRequest:request];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
+    self.header = [MJRefreshHeaderView header];
+    WEAK_SELF
+    self.header.scrollView = self.webView.scrollView;
+    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        STRONG_SELF
+        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
+    };
 
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -88,6 +103,7 @@
     if (webView.isLoading){
         return;
     }
+    [self.header endRefreshing];
     [self stopLoading];
     if (self.isUpdatTitle){
         self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];

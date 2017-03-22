@@ -17,7 +17,7 @@
 
 @implementation YXBriefListFetch
 
-- (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock {
+- (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock {
     [self stop];
     self.request = [[YXBriefListRequest alloc] init];
     self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;

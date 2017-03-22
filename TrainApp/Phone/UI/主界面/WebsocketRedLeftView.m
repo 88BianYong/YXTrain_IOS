@@ -35,7 +35,8 @@
 }
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
     NSInteger integer = [aNotification.object integerValue];
-    if ([YXTrainManager sharedInstance].trainHelper.isBeijingProject && integer == 3) {
+    if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing
+        && integer == 3) {
         return;
     }
     if (integer == 0) {

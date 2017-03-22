@@ -17,7 +17,7 @@
 
 @implementation YXNoticeListFetch
 
-- (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock {
+- (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock {
     [self stop];
     self.request = [[YXNoticeListRequest alloc] init];
     self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;

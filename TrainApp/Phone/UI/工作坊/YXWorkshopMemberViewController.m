@@ -173,7 +173,7 @@ UICollectionViewDelegate
         [self startLoading];
     }
     WEAK_SELF
-    [_memberFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
+    [_memberFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
         dispatch_async(dispatch_get_main_queue(), ^{
             [self->_footer endRefreshing];

@@ -214,7 +214,7 @@ UITableViewDataSource
     _memberFetcher.pagesize = 40;
     _memberFetcher.pageindex = 0;
     WEAK_SELF
-    [_memberFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
+    [_memberFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
         if (!error && retItemArray) {
             NSMutableDictionary *mutableDictionary = self->_dataMutableArray[1][0];

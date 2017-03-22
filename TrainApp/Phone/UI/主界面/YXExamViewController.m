@@ -25,7 +25,7 @@ static  NSString *const trackPageName = @"考核页面";
 static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @interface YXExamViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) YXExamineRequest *request;
+@property (nonatomic, strong) YXExamineRequest *examineRequest;
 @property (nonatomic, strong) YXExamineRequestItem *examineItem;
 @property (nonatomic, strong) NSMutableDictionary *foldStatusDic;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
@@ -70,12 +70,14 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
-        [self getDataShowLoading:YES];
+        [self startLoading];
+        [self requestForExamineContent];
     };
     
     self.foldStatusDic = [NSMutableDictionary dictionary];
     [self setupUI];
-    [self getDataShowLoading:YES];
+    [self startLoading];
+    [self requestForExamineContent];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,8 +94,10 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
-    [self.tableView registerClass:[YXExamEndDateCell class] forCellReuseIdentifier:@"YXExamEndDateCell"];
-    [self.tableView registerClass:[YXExamProgressCell class] forCellReuseIdentifier:@"YXExamProgressCell"];
+    [self.tableView registerClass:[YXExamEndDateCell class]
+           forCellReuseIdentifier:@"YXExamEndDateCell"];
+    [self.tableView registerClass:[YXExamProgressCell class]
+           forCellReuseIdentifier:@"YXExamProgressCell"];
     [self.tableView registerClass:[YXExamTotalScoreCell class] forCellReuseIdentifier:@"YXExamTotalScoreCell"];
     [self.tableView registerClass:[YXExamPhaseShadowCell class] forCellReuseIdentifier:@"YXExamPhaseShadowCell"];
     [self.tableView registerClass:[YXExamPhaseHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXExamPhaseHeaderView"];
@@ -105,7 +109,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     WEAK_SELF
     self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
-        [self getDataShowLoading:NO];
+        [self requestForExamineContent];
     };
     if (![YXTrainManager sharedInstance].currentProject.isContainsTeacher.boolValue &&
         [YXTrainManager sharedInstance].currentProject.isDoubel.boolValue) {
@@ -124,34 +128,25 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
             }
         }];
         [self.view addSubview:self.tipsView];
-        if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainContainsTeacher]) {
-            self.tipsView.openCloseButton.selected = YES;
-            [self.tipsView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.view.mas_left).offset(15.0f);
-                make.width.mas_offset(kScreenWidth - 30.0f);
-                make.top.equalTo(self.view.mas_top).offset(18.0f);
-            }];
-        }else {
-            self.tipsView.openCloseButton.selected = NO;
-            [self.tipsView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(self.view.mas_left).offset(-kScreenWidth + 30.0f + 38.0f);
-                make.width.mas_offset(kScreenWidth - 30.0f);
-                make.top.equalTo(self.view.mas_top).offset(18.0f);
-            }];
-        }
+        BOOL containsBool = [[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainContainsTeacher];
+        self.tipsView.openCloseButton.selected = !containsBool;
+        [self.tipsView mas_makeConstraints:^(MASConstraintMaker *make) {//只有初次提醒为显示状态
+            make.left.equalTo(self.view.mas_left).offset(containsBool ? (-kScreenWidth + 30.0f + 38.0f) :15.0f);
+            make.width.mas_offset(kScreenWidth - 30.0f);
+            make.top.equalTo(self.view.mas_top).offset(18.0f);
+        }];
     }
 }
 
-- (void)getDataShowLoading:(BOOL)isShow{
-    [self.request stopRequest];
-    self.request = [[YXExamineRequest alloc]init];
-    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
-    if (isShow) {
-        [self startLoading];
+- (void)requestForExamineContent {
+    if (self.examineRequest) {
+        [self.examineRequest stopRequest];
     }
+    YXExamineRequest *request = [[YXExamineRequest alloc]init];
+    request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    request.w = [YXTrainManager sharedInstance].currentProject.w;
     WEAK_SELF
-    [self.request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+    [request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
         [self.header endRefreshing];
@@ -164,8 +159,9 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         }
         [self dealWithRetItem:retItem];
     }];
+    self.examineRequest = request;
+    
 }
-
 - (void)dealWithRetItem:(YXExamineRequestItem *)retItem{
     self.examineItem = retItem;
     for (YXExamineRequestItem_body_leadingVo *vo in retItem.body.leadingVoList) {

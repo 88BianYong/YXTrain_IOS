@@ -262,8 +262,7 @@
 }
 
 
-- (void)registerNotifications
-{
+- (void)registerNotifications {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self
                selector:@selector(reloadUserProfileView)
@@ -273,16 +272,16 @@
     [center addObserver:self selector:@selector(reloadMenuTableView) name:kYXTrainListDynamic  object:nil];
 }
 
-- (void)setWebSocket{
+- (void)setWebSocket {
     self.redPointMutableArray = [@[@"0",@"0",@"0",@"0"] mutableCopy];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:kYXTrainWebSocketReceiveMessage object:nil];
     [self addObserver:self forKeyPath:@"_redPointMutableArray"options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [[YXWebSocketManger sharedInstance] open];
 }
 
-- (void)webSocketReceiveMessage:(NSNotification *)aNotification{
+- (void)webSocketReceiveMessage:(NSNotification *)aNotification {
     NSInteger integer = [aNotification.object integerValue];
-    if (integer == 3 && [YXTrainManager sharedInstance].trainHelper.isBeijingProject) {//北京项目消息动态不在侧边栏
+    if (integer == 3 && [YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目消息动态不在侧边栏
         return;
     }
     if (integer == 2) {

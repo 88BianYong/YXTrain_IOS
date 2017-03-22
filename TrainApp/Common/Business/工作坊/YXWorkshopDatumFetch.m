@@ -16,7 +16,7 @@
 }
 @end
 @implementation YXWorkshopDatumFetch
-- (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock{
+- (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock{
     _datumRequest = [[YXWorkshopDatumRequest alloc] init];
     _datumRequest.barid = self.barid;
     

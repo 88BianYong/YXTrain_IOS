@@ -13,7 +13,7 @@
 @end
 
 @implementation YXCourseListFetcher
-- (void)startWithBlock:(void (^)(int, NSArray *, NSError *))aCompleteBlock
+- (void)startWithBlock:(void (^)(NSInteger, NSArray *, NSError *))aCompleteBlock
 {
     [self.request stopRequest];
     self.request = [[YXCourseListRequest alloc] init];

@@ -160,6 +160,7 @@
         [self stopLoading];
         self.emptyView.imageName = @"无培训项目";
         self.emptyView.title = @"您没有已参加的培训项目";
+        self.emptyView.subTitle = @"";
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = groups.count != 0;
         data.localDataExist = NO;
@@ -168,7 +169,7 @@
             return;
         }
         [self.dataMutableArrray addObjectsFromArray:groups];
-        if ([YXTrainManager sharedInstance].trainHelper.isBeijingProject) {//北京项目需要校验信息
+        if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目需要校验信息
             [self requestCheckedMobileUser];
         }else {
             [self dealWithProjectGroups:self.dataMutableArrray];
@@ -201,24 +202,23 @@
     for (UIView *v in self.view.subviews) {
         [v removeFromSuperview];
     }
-    if ([YXTrainManager sharedInstance].currentProject.role.intValue == 9 || [YXTrainManager sharedInstance].currentProject.w.integerValue < 3) {
+    if ([YXTrainManager sharedInstance].currentProject.role.intValue == 9 ||
+        [YXTrainManager sharedInstance].currentProject.w.integerValue < 3) {
         [self showStudentInterface];
     }else {
         [self showMasterInterface];
     }
 }
 - (void)showSwitchGuideView {
-    if ([self isShowMoreThanOneProject]) {
-        static NSString *staticString = @"ChangeProjectGuideView";
-        UIView *guideView = [[NSClassFromString(staticString) alloc] init];
+    if ([self isShowMoreThanOneProject]) {//显示项目切换提示
+        UIView *guideView = [[NSClassFromString(@"ChangeProjectGuideView") alloc] init];
         [self.navigationController.view addSubview:guideView];
         [guideView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_equalTo(0);
         }];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
-    }else if ([self isShowRoleChange]){
-            static NSString *staticString = @"ChangeProjectRoleView";
-            UIView *roleView = [[NSClassFromString(staticString) alloc] init];
+    }else if ([self isShowRoleChange]){//显示角色切换提示
+            UIView *roleView = [[NSClassFromString(@"ChangeProjectRoleView") alloc] init];
             [self.navigationController.view addSubview:roleView];
             [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(0);
@@ -238,13 +238,13 @@
     ([YXTrainManager sharedInstance].currentProject.role.integerValue == 99);
 }
 #pragma mark - peojects hide & show
-- (void)showProjectSelectionView{
+- (void)showProjectSelectionView {
     if (self.navigationController.topViewController == self) {
         [self.navigationController.navigationBar addSubview:self.projectSelectionView];
     }
 }
 
-- (void)hideProjectSelectionView{
+- (void)hideProjectSelectionView {
     [self.projectSelectionView removeFromSuperview];
 }
 @end

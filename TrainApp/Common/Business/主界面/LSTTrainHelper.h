@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef NS_ENUM (NSInteger, LSTTrainPresentProject) {
+    LSTTrainPresentProject_Default = 1,
+    LSTTrainPresentProject_Beijing = 2,
+};//录制视频状态
 @interface LSTTrainHelper : NSObject
 @property (nonatomic, copy) NSString *requireId;//北京项目专用
 @property (nonatomic, copy) NSString *homeworkid;//北京项目专用
 
-@property (nonatomic, assign, readonly) BOOL isBeijingProject;
+@property (nonatomic, assign, readonly) LSTTrainPresentProject presentProject;
 @property (nonatomic, copy, readonly) NSString *workshopListTitle;
 @property (nonatomic, copy, readonly) NSString *workshopDetailTitle;
 @property (nonatomic, copy, readonly) NSString *workshopDetailName;

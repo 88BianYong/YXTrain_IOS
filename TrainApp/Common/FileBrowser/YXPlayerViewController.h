@@ -37,4 +37,5 @@
 
 @property (nonatomic, assign) YXSourceType sourceType;
 
+@property (nonatomic, strong) NSMutableArray *quizzesMutableArray;
 @end

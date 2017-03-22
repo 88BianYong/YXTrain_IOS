@@ -12,24 +12,24 @@
 @interface PagedListViewControllerBase : YXBaseViewController
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, assign) BOOL bIsGroupedTableViewStyle;    // currently trick
-@property (nonatomic, strong) NSMutableArray *dataArray;        // the model
-@property (nonatomic, assign) BOOL bNeedHeader;
-@property (nonatomic, assign) BOOL bNeedFooter;
-@property (nonatomic, assign) int total;
 @property (nonatomic, strong) MJRefreshFooterView *footer;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 
 
-
 @property (nonatomic, strong) PagedListFetcherBase *dataFetcher;
+@property (nonatomic, assign) BOOL bIsGroupedTableViewStyle;    // currently trick
+@property (nonatomic, strong) NSMutableArray *dataArray;        // the model
+@property (nonatomic, assign) BOOL bNeedHeader;
+@property (nonatomic, assign) BOOL bNeedFooter;
+@property (nonatomic, assign) NSInteger total;
+
+@property (nonatomic, assign) int emptyViewTopInset;
+
+
 - (void)firstPageFetch;
 - (void)stopAnimation;
 - (void)setPulldownViewHidden:(BOOL)hidden;
 - (void)setPullupViewHidden:(BOOL)hidden;
-
-@property (nonatomic, assign) int emptyViewTopInset;
-
 - (void)tableViewWillRefresh;
 
 @end

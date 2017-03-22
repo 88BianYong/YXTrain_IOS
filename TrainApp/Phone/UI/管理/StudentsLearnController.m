@@ -382,7 +382,7 @@
         self.dataFetcher.pagesize = 20;
     }
     WEAK_SELF
-    [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
+    [self.dataFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
         self.headerView.hidden = NO;
         [self stopLoading];

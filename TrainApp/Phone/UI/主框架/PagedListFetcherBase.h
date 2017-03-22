@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface PagedListFetcherBase : NSObject {
-    void(^_completeBlock)(int total, NSArray *retItemArray, NSError *error);
+    void(^_completeBlock)(NSInteger total, NSArray *retItemArray, NSError *error);
 }
 
 @property (nonatomic, assign) int pageindex;
 @property (nonatomic, assign) int pagesize;
 @property (nonatomic, assign) BOOL isDataArrayMerged;
 
-- (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock;
+- (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock;
 - (void)stop;
 - (NSArray *)cachedItemArray;
 - (void)saveToCache;

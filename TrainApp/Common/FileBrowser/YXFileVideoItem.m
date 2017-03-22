@@ -40,6 +40,13 @@
     vc.exitDelegate = self;
     vc.isPreRecord = self.isDeleteVideo;
     vc.sourceType = self.sourceType;
+    
+#warning test
+    self.quizzesMutableArray = [@[[@{@"time":@"300",@"answer":@"1"} mutableCopy],
+                                  [@{@"time":@"600",@"answer":@"1"} mutableCopy],
+                                  [@{@"time":@"900",@"answer":@"1"} mutableCopy],]
+                                  mutableCopy];
+    vc.quizzesMutableArray = self.quizzesMutableArray;
     [[self.baseViewController visibleViewController] presentViewController:vc animated:YES completion:nil];
 }
 

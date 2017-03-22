@@ -17,8 +17,8 @@
 @end
 @implementation LSTTrainHelper_Beijing
 #pragma mark - get
-- (BOOL)isBeijingProject {
-    return YES;
+- (LSTTrainPresentProject)presentProject {
+    return LSTTrainPresentProject_Beijing;
 }
 - (NSString *)workshopListTitle {
     return @"我的班级";

@@ -294,6 +294,7 @@
 		927B6C661DFA99AE00CBBBBF /* BeijingCourseListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C651DFA99AE00CBBBBF /* BeijingCourseListRequest.m */; };
 		92835A8F1E5461CA00B71DF7 /* MasterSchoolTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92835A8E1E5461CA00B71DF7 /* MasterSchoolTableView.m */; };
 		92835A951E54797E00B71DF7 /* MasterConditionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92835A941E54797E00B71DF7 /* MasterConditionTableView.m */; };
+		928BAF221E82682E0091D1C7 /* TestVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928BAF211E82682E0091D1C7 /* TestVideoViewController.m */; };
 		928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
 		928DBE7C1E547A5C0016D66C /* MasterConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928DBE7B1E547A5C0016D66C /* MasterConditionCell.m */; };
 		929468071DDE8F220070C3B7 /* ActivitySlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */; };
@@ -1094,6 +1095,8 @@
 		92835A8E1E5461CA00B71DF7 /* MasterSchoolTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterSchoolTableView.m; sourceTree = "<group>"; };
 		92835A931E54797E00B71DF7 /* MasterConditionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionTableView.h; sourceTree = "<group>"; };
 		92835A941E54797E00B71DF7 /* MasterConditionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConditionTableView.m; sourceTree = "<group>"; };
+		928BAF201E82682E0091D1C7 /* TestVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVideoViewController.h; sourceTree = "<group>"; };
+		928BAF211E82682E0091D1C7 /* TestVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVideoViewController.m; sourceTree = "<group>"; };
 		928DBE7A1E547A5C0016D66C /* MasterConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionCell.h; sourceTree = "<group>"; };
 		928DBE7B1E547A5C0016D66C /* MasterConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConditionCell.m; sourceTree = "<group>"; };
 		929468051DDE8F220070C3B7 /* ActivitySlideProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySlideProgressView.h; sourceTree = "<group>"; };
@@ -2362,6 +2365,8 @@
 				7CF888281D17E6C600E7C04D /* YXSlideProgressView.m */,
 				922901621DED0C15001474CE /* PreventHangingCourseView.h */,
 				922901631DED0C15001474CE /* PreventHangingCourseView.m */,
+				928BAF201E82682E0091D1C7 /* TestVideoViewController.h */,
+				928BAF211E82682E0091D1C7 /* TestVideoViewController.m */,
 			);
 			name = Video;
 			sourceTree = "<group>";
@@ -3887,6 +3892,7 @@
 				923237311D6E9F3000FDACFE /* YXStartViewController.m in Sources */,
 				7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */,
 				92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.m in Sources */,
+				928BAF221E82682E0091D1C7 /* TestVideoViewController.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
 				92F1A5A41E52EF4700015766 /* MasterProjectContainerView.m in Sources */,

@@ -44,11 +44,7 @@
         make.edges.mas_equalTo(0);
     }];
     // Do any additional setup after loading the view.
-    if (self.bIsGroupedTableViewStyle) {
-        self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    } else {
-        self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    }
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.bIsGroupedTableViewStyle];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.contentView addSubview:self.tableView];
@@ -58,24 +54,24 @@
     
     self.emptyView = [[YXEmptyView alloc]init];
     self.errorView = [[YXErrorView alloc]init];
-    @weakify(self);
+    WEAK_SELF
     [self.errorView setRetryBlock:^{
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         [self startLoading];
         [self firstPageFetch];
     }];
     self.dataErrorView = [[DataErrorView alloc]init];
-    self.dataErrorView.refreshBlock = ^{
+    [self.dataErrorView setRefreshBlock:^{
         STRONG_SELF
         [self startLoading];
         [self firstPageFetch];
-    };
+    }];
     
     if (self.bNeedFooter) {
         self.footer = [MJRefreshFooterView footer];
         self.footer.scrollView = self.tableView;
         self.footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-            @strongify(self); if (!self) return;
+            STRONG_SELF
             [self morePageFetch];
         };
         self.footer.alpha = 0;
@@ -85,14 +81,14 @@
         self.header = [MJRefreshHeaderView header];
         self.header.scrollView = self.tableView;
         self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-            @strongify(self); if (!self) return;
+            STRONG_SELF
             [self firstPageFetch];
         };
     }
     
     self.dataArray = [NSMutableArray array];
     [self.dataArray addObjectsFromArray:[self.dataFetcher cachedItemArray]];
-    self.total = (int)[self.dataArray count];
+    self.total = [self.dataArray count];
     [self startLoading];
     [self firstPageFetch];
 }
@@ -107,7 +103,7 @@
         self.dataFetcher.pagesize = 20;
     }
     WEAK_SELF
-    [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
+    [self.dataFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
         [self tableViewWillRefresh];
         [self stopLoading];
@@ -125,45 +121,39 @@
         [self.dataArray addObjectsFromArray:retItemArray];
         [self checkHasMore];
         [self.dataFetcher saveToCache];
-        
         self.tableView.contentOffset = CGPointZero;
         [self.tableView reloadData];
     }];
 }
 
-- (void)tableViewWillRefresh
-{
+- (void)tableViewWillRefresh {
     
 }
 
-- (void)stopAnimation
-{
+- (void)stopAnimation {
     [self.header endRefreshing];
 }
 
-- (void)setPulldownViewHidden:(BOOL)hidden
-{
+- (void)setPulldownViewHidden:(BOOL)hidden {
     self.header.alpha = hidden ? 0:1;
 }
 
-- (void)setPullupViewHidden:(BOOL)hidden
-{
+- (void)setPullupViewHidden:(BOOL)hidden {
     self.footer.alpha = hidden ? 0:1;
 }
 
 - (void)morePageFetch {
     [self.dataFetcher stop];
     self.dataFetcher.pageindex++;
-    @weakify(self);
-    [self.dataFetcher startWithBlock:^(int total, NSArray *retItemArray, NSError *error) {
-        @strongify(self); if (!self) return;
+    WEAK_SELF
+    [self.dataFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
+        STRONG_SELF
         [self.footer endRefreshing];
         if (error) {
             self.dataFetcher.pageindex--;
             [self showToast:error.localizedDescription];
             return;
         }
-        
         [self.dataArray addObjectsFromArray:retItemArray];
         self.total = total;
         [self.tableView reloadData];

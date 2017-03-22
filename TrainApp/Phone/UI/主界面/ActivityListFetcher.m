@@ -13,7 +13,7 @@
 @property (nonatomic, strong) ActivityListRequest *request;
 @end
 @implementation ActivityListFetcher
-- (void)startWithBlock:(void (^)(int, NSArray *, NSError *))aCompleteBlock
+- (void)startWithBlock:(void (^)(NSInteger, NSArray *, NSError *))aCompleteBlock
 {
     [self.request stopRequest];
     self.request = [[ActivityListRequest alloc] init];

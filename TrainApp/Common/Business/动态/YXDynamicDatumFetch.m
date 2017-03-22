@@ -13,7 +13,7 @@
 
 
 @implementation YXDynamicDatumFetch
-- (void)startWithBlock:(void(^)(int total, NSArray *retItemArray, NSError *error))aCompleteBlock{
+- (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock{
     YXDynamicRequest *request = [[YXDynamicRequest alloc] init];
     request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
     request.pageNo = [NSString stringWithFormat:@"%d", self.pageindex + 1];
