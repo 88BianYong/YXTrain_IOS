@@ -4478,8 +4478,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = $APP_PROFILE;
-				PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE;
+				PROVISIONING_PROFILE = "e69c8fed-6adb-484d-b50c-f2a1fab1307e";
+				PROVISIONING_PROFILE_SPECIFIER = DevAll;
 			};
 			name = Release;
 		};
