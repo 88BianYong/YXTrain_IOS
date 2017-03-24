@@ -10,9 +10,8 @@
 #import "AppDelegate.h"
 #import "YXStartViewController.h"
 #import "YXInitRequest.h"
-
+#import "YXNavigationController.h"
 #import "YXWebSocketManger.h"
-
 #import "AppDelegate+GetInfoList.h"
 #import "TalkingData.h"
 @interface AppDelegate ()
@@ -25,6 +24,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if([launchOptions objectForKey:UIApplicationLaunchOptionsURLKey] && [[YXUserManager sharedManager] isLogin]){
+         self.appDelegateHelper.scanCodeUrl = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
         [[YXUserManager sharedManager] logout];
     }
     [GlobalUtils setupCore];
@@ -137,14 +137,9 @@
 
 // 9.0
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
-    if([[YXUserManager sharedManager] isLogin]){
-        [[YXWebSocketManger sharedInstance] close];
-        [[YXUserManager sharedManager] logout];
-    }
     self.appDelegateHelper.scanCodeUrl = url;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TD:延迟0.1秒确保发送通知前已注册
-        [self.appDelegateHelper scanCodeEntry:url];
-    });
+    [[YXWebSocketManger sharedInstance] close];
+    [[YXUserManager sharedManager] logout];
 	return YES;
 }
 @end
