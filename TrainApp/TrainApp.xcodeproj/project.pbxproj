@@ -224,14 +224,6 @@
 		9229015C1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229015B1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m */; };
 		9229015F1DE6C241001474CE /* VideoCommentErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229015E1DE6C241001474CE /* VideoCommentErrorView.m */; };
 		922901641DED0C15001474CE /* PreventHangingCourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901631DED0C15001474CE /* PreventHangingCourseView.m */; };
-		922901671DED2107001474CE /* BeijingExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901661DED2107001474CE /* BeijingExamViewController.m */; };
-		9229016B1DED2C99001474CE /* BeijingDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229016A1DED2C99001474CE /* BeijingDynamicViewController.m */; };
-		9229016F1DED6C74001474CE /* BeijingExamTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229016E1DED6C74001474CE /* BeijingExamTableHeaderView.m */; };
-		922901781DED771E001474CE /* BeijingExamGenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901771DED771E001474CE /* BeijingExamGenreCell.m */; };
-		9229017E1DED7F50001474CE /* BeijingExamGenreDefaultHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229017D1DED7F50001474CE /* BeijingExamGenreDefaultHeaderView.m */; };
-		922901811DED7F67001474CE /* BeijingExamGenreExplainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901801DED7F67001474CE /* BeijingExamGenreExplainHeaderView.m */; };
-		922901841DEE61F3001474CE /* BeijingExamExplainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901831DEE61F3001474CE /* BeijingExamExplainView.m */; };
-		922901871DEE89FF001474CE /* BeijingCourseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901861DEE89FF001474CE /* BeijingCourseListCell.m */; };
 		922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */; };
 		922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACA1D2A65EA00CBF7C3 /* YXWorkshopCell.m */; };
 		922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3ACD1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m */; };
@@ -278,14 +270,8 @@
 		924AB2661DE43EC9003EC952 /* ActivityEnclosureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924AB2651DE43EC9003EC952 /* ActivityEnclosureViewController.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		926354401DEFFAD000FAD1DE /* BeijingExamineRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263543F1DEFFAD000FAD1DE /* BeijingExamineRequest.m */; };
-		926354431DF10C4100FAD1DE /* BeijingCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354421DF10C4100FAD1DE /* BeijingCourseViewController.m */; };
 		926354461DF1178400FAD1DE /* BeijingCourseListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */; };
-		926354491DF1361C00FAD1DE /* BeijingActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */; };
 		9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */; };
-		926354501DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544F1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m */; };
-		926354531DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354521DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m */; };
-		926354561DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354551DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m */; };
-		926354591DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 926354581DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m */; };
 		9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */; };
 		9268C5F21DF3D59400AA109B /* BeijingModifyPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5F11DF3D59400AA109B /* BeijingModifyPasswordRequest.m */; };
 		92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F5F1DD9666700548424 /* ActivitySlideProgressControl.m */; };
@@ -294,6 +280,26 @@
 		927B6C661DFA99AE00CBBBBF /* BeijingCourseListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C651DFA99AE00CBBBBF /* BeijingCourseListRequest.m */; };
 		92835A8F1E5461CA00B71DF7 /* MasterSchoolTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92835A8E1E5461CA00B71DF7 /* MasterSchoolTableView.m */; };
 		92835A951E54797E00B71DF7 /* MasterConditionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92835A941E54797E00B71DF7 /* MasterConditionTableView.m */; };
+		928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A121E88B2180067218A /* BeijingActivityListCell.m */; };
+		928B7A3A1E88B2180067218A /* BeijingActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A141E88B2180067218A /* BeijingActivityListViewController.m */; };
+		928B7A3B1E88B2180067218A /* BeijingCheckedMobileMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A161E88B2180067218A /* BeijingCheckedMobileMessageCell.m */; };
+		928B7A3C1E88B2180067218A /* BeijingCheckedMobileUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A181E88B2180067218A /* BeijingCheckedMobileUserCell.m */; };
+		928B7A3D1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A1A1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m */; };
+		928B7A3E1E88B2180067218A /* BeijingCheckedMobileUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A1C1E88B2180067218A /* BeijingCheckedMobileUserViewController.m */; };
+		928B7A3F1E88B2180067218A /* BeijingCourseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A1E1E88B2180067218A /* BeijingCourseListCell.m */; };
+		928B7A401E88B2180067218A /* BeijingCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A201E88B2180067218A /* BeijingCourseViewController.m */; };
+		928B7A411E88B2180067218A /* BeijingDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A221E88B2180067218A /* BeijingDynamicCell.m */; };
+		928B7A421E88B2180067218A /* BeijingDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A241E88B2180067218A /* BeijingDynamicViewController.m */; };
+		928B7A431E88B2180067218A /* BeijingExamExplainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A261E88B2180067218A /* BeijingExamExplainView.m */; };
+		928B7A441E88B2180067218A /* BeijingExamGenreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A281E88B2180067218A /* BeijingExamGenreCell.m */; };
+		928B7A451E88B2180067218A /* BeijingExamGenreDefaultHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A2A1E88B2180067218A /* BeijingExamGenreDefaultHeaderView.m */; };
+		928B7A461E88B2180067218A /* BeijingExamGenreExplainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A2C1E88B2180067218A /* BeijingExamGenreExplainHeaderView.m */; };
+		928B7A471E88B2180067218A /* BeijingExamTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A2E1E88B2180067218A /* BeijingExamTableHeaderView.m */; };
+		928B7A481E88B2180067218A /* BeijingExamTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A301E88B2180067218A /* BeijingExamTipCell.m */; };
+		928B7A491E88B2180067218A /* BeijingExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A321E88B2180067218A /* BeijingExamViewController.m */; };
+		928B7A4A1E88B2180067218A /* BeijingHomeworkInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A341E88B2180067218A /* BeijingHomeworkInfoView.m */; };
+		928B7A4B1E88B2180067218A /* BeijingHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A361E88B2180067218A /* BeijingHomeworkInfoViewController.m */; };
+		928B7A4C1E88B2180067218A /* WebsocketRedRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A381E88B2180067218A /* WebsocketRedRightView.m */; };
 		928BAF221E82682E0091D1C7 /* TestVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928BAF211E82682E0091D1C7 /* TestVideoViewController.m */; };
 		928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
 		928DBE7C1E547A5C0016D66C /* MasterConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928DBE7B1E547A5C0016D66C /* MasterConditionCell.m */; };
@@ -302,11 +308,8 @@
 		92AA47721E12437400C88DDC /* BeijingCourseFilterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47711E12437400C88DDC /* BeijingCourseFilterRequest.m */; };
 		92AA47751E12440B00C88DDC /* BeijingCourseFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47741E12440B00C88DDC /* BeijingCourseFilterManager.m */; };
 		92AA47781E1B925300C88DDC /* WebsocketRedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47771E1B925300C88DDC /* WebsocketRedView.m */; };
-		92AA477B1E1B983800C88DDC /* WebsocketRedRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA477A1E1B983800C88DDC /* WebsocketRedRightView.m */; };
 		92AA477E1E1B9BD900C88DDC /* WebsocketRedLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA477D1E1B9BD900C88DDC /* WebsocketRedLeftView.m */; };
 		92AD8EE41E0A5B5800A3E91C /* WriteHomeworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */; };
-		92AD8EE71E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */; };
-		92AD8EED1E0B87E900A3E91C /* BeijingHomeworkInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */; };
 		92AD8EF11E10F0C300A3E91C /* beijingActivityFilter_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92AD8EF01E10F0C300A3E91C /* beijingActivityFilter_mock.json */; };
 		92AD8EF41E11124A00A3E91C /* BeijingActivityFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD8EF31E11124A00A3E91C /* BeijingActivityFilterManager.m */; };
 		92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */; };
@@ -318,8 +321,6 @@
 		92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */; };
 		92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55E21DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m */; };
 		92CA55E61DFE761400AA2C50 /* LSTTrainHelper_Default.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55E51DFE761400AA2C50 /* LSTTrainHelper_Default.m */; };
-		92CD8C3A1DEECB0C00A2EB46 /* BeijingActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CD8C391DEECB0C00A2EB46 /* BeijingActivityListCell.m */; };
-		92CD8C3D1DEECE1300A2EB46 /* BeijingDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CD8C3C1DEECE1300A2EB46 /* BeijingDynamicCell.m */; };
 		92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51441D87D2C00071DE79 /* YXWebSocketManger.m */; };
 		92CE51481D87D2FF0071DE79 /* YXGuideModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51471D87D2FF0071DE79 /* YXGuideModel.m */; };
 		92CE514D1D87D4180071DE79 /* YXHotspotDatumFetch.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE514C1D87D4180071DE79 /* YXHotspotDatumFetch.m */; };
@@ -482,7 +483,6 @@
 		E90C60AC1D9CFEE5001652CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AB1D9CFEE5001652CF /* SystemConfiguration.framework */; };
 		E90C60AE1D9CFEEF001652CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E90C60AD1D9CFEEF001652CF /* libz.tbd */; };
 		E90C60B21D9D0012001652CF /* YXDataStatisticsManger.m in Sources */ = {isa = PBXBuildFile; fileRef = E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */; };
-		E935D7B21DF7FD84005CC8BD /* BeijingExamTipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D7B11DF7FD84005CC8BD /* BeijingExamTipCell.m */; };
 		E935D84F1DFE3FA3005CC8BD /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D84D1DFE3FA3005CC8BD /* AlertView.m */; };
 		E935D8521DFE403E005CC8BD /* LSTAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D8511DFE403E005CC8BD /* LSTAlertView.m */; };
 		E935D86F1DFE4838005CC8BD /* LSTAlertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E935D86E1DFE4838005CC8BD /* LSTAlertButton.m */; };
@@ -962,22 +962,6 @@
 		9229015E1DE6C241001474CE /* VideoCommentErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCommentErrorView.m; sourceTree = "<group>"; };
 		922901621DED0C15001474CE /* PreventHangingCourseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreventHangingCourseView.h; sourceTree = "<group>"; };
 		922901631DED0C15001474CE /* PreventHangingCourseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreventHangingCourseView.m; sourceTree = "<group>"; };
-		922901651DED2107001474CE /* BeijingExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamViewController.h; sourceTree = "<group>"; };
-		922901661DED2107001474CE /* BeijingExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamViewController.m; sourceTree = "<group>"; };
-		922901691DED2C99001474CE /* BeijingDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingDynamicViewController.h; sourceTree = "<group>"; };
-		9229016A1DED2C99001474CE /* BeijingDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingDynamicViewController.m; sourceTree = "<group>"; };
-		9229016D1DED6C74001474CE /* BeijingExamTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamTableHeaderView.h; sourceTree = "<group>"; };
-		9229016E1DED6C74001474CE /* BeijingExamTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamTableHeaderView.m; sourceTree = "<group>"; };
-		922901761DED771E001474CE /* BeijingExamGenreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamGenreCell.h; sourceTree = "<group>"; };
-		922901771DED771E001474CE /* BeijingExamGenreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamGenreCell.m; sourceTree = "<group>"; };
-		9229017C1DED7F50001474CE /* BeijingExamGenreDefaultHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamGenreDefaultHeaderView.h; sourceTree = "<group>"; };
-		9229017D1DED7F50001474CE /* BeijingExamGenreDefaultHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamGenreDefaultHeaderView.m; sourceTree = "<group>"; };
-		9229017F1DED7F67001474CE /* BeijingExamGenreExplainHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamGenreExplainHeaderView.h; sourceTree = "<group>"; };
-		922901801DED7F67001474CE /* BeijingExamGenreExplainHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamGenreExplainHeaderView.m; sourceTree = "<group>"; };
-		922901821DEE61F3001474CE /* BeijingExamExplainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamExplainView.h; sourceTree = "<group>"; };
-		922901831DEE61F3001474CE /* BeijingExamExplainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamExplainView.m; sourceTree = "<group>"; };
-		922901851DEE89FF001474CE /* BeijingCourseListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseListCell.h; sourceTree = "<group>"; };
-		922901861DEE89FF001474CE /* BeijingCourseListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseListCell.m; sourceTree = "<group>"; };
 		922F3AC61D2A61DE00CBF7C3 /* YXWorkshopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopViewController.h; sourceTree = "<group>"; };
 		922F3AC71D2A61DE00CBF7C3 /* YXWorkshopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopViewController.m; sourceTree = "<group>"; };
 		922F3AC91D2A65EA00CBF7C3 /* YXWorkshopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopCell.h; sourceTree = "<group>"; };
@@ -1063,22 +1047,10 @@
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		9263543E1DEFFAD000FAD1DE /* BeijingExamineRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeijingExamineRequest.h; path = "主界面/BeijingExamineRequest.h"; sourceTree = "<group>"; };
 		9263543F1DEFFAD000FAD1DE /* BeijingExamineRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeijingExamineRequest.m; path = "主界面/BeijingExamineRequest.m"; sourceTree = "<group>"; };
-		926354411DF10C4100FAD1DE /* BeijingCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseViewController.h; sourceTree = "<group>"; };
-		926354421DF10C4100FAD1DE /* BeijingCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseViewController.m; sourceTree = "<group>"; };
 		926354441DF1178400FAD1DE /* BeijingCourseListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeijingCourseListFetcher.h; path = "主界面/BeijingCourseListFetcher.h"; sourceTree = "<group>"; };
 		926354451DF1178400FAD1DE /* BeijingCourseListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeijingCourseListFetcher.m; path = "主界面/BeijingCourseListFetcher.m"; sourceTree = "<group>"; };
-		926354471DF1361C00FAD1DE /* BeijingActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListViewController.h; sourceTree = "<group>"; };
-		926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityListViewController.m; sourceTree = "<group>"; };
 		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
 		9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserRequest.m; sourceTree = "<group>"; };
-		9263544E1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserViewController.h; sourceTree = "<group>"; };
-		9263544F1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserViewController.m; sourceTree = "<group>"; };
-		926354511DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserHeaderView.h; sourceTree = "<group>"; };
-		926354521DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserHeaderView.m; sourceTree = "<group>"; };
-		926354541DF1648600FAD1DE /* BeijingCheckedMobileUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserCell.h; sourceTree = "<group>"; };
-		926354551DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserCell.m; sourceTree = "<group>"; };
-		926354571DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileMessageCell.h; sourceTree = "<group>"; };
-		926354581DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileMessageCell.m; sourceTree = "<group>"; };
 		9268C5ED1DF3CDCD00AA109B /* BeijingSendSmsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingSendSmsRequest.h; sourceTree = "<group>"; };
 		9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingSendSmsRequest.m; sourceTree = "<group>"; };
 		9268C5F01DF3D59400AA109B /* BeijingModifyPasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingModifyPasswordRequest.h; sourceTree = "<group>"; };
@@ -1095,6 +1067,46 @@
 		92835A8E1E5461CA00B71DF7 /* MasterSchoolTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterSchoolTableView.m; sourceTree = "<group>"; };
 		92835A931E54797E00B71DF7 /* MasterConditionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionTableView.h; sourceTree = "<group>"; };
 		92835A941E54797E00B71DF7 /* MasterConditionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConditionTableView.m; sourceTree = "<group>"; };
+		928B7A111E88B2180067218A /* BeijingActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListCell.h; sourceTree = "<group>"; };
+		928B7A121E88B2180067218A /* BeijingActivityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityListCell.m; sourceTree = "<group>"; };
+		928B7A131E88B2180067218A /* BeijingActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListViewController.h; sourceTree = "<group>"; };
+		928B7A141E88B2180067218A /* BeijingActivityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityListViewController.m; sourceTree = "<group>"; };
+		928B7A151E88B2180067218A /* BeijingCheckedMobileMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileMessageCell.h; sourceTree = "<group>"; };
+		928B7A161E88B2180067218A /* BeijingCheckedMobileMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileMessageCell.m; sourceTree = "<group>"; };
+		928B7A171E88B2180067218A /* BeijingCheckedMobileUserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserCell.h; sourceTree = "<group>"; };
+		928B7A181E88B2180067218A /* BeijingCheckedMobileUserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserCell.m; sourceTree = "<group>"; };
+		928B7A191E88B2180067218A /* BeijingCheckedMobileUserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserHeaderView.h; sourceTree = "<group>"; };
+		928B7A1A1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserHeaderView.m; sourceTree = "<group>"; };
+		928B7A1B1E88B2180067218A /* BeijingCheckedMobileUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserViewController.h; sourceTree = "<group>"; };
+		928B7A1C1E88B2180067218A /* BeijingCheckedMobileUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserViewController.m; sourceTree = "<group>"; };
+		928B7A1D1E88B2180067218A /* BeijingCourseListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseListCell.h; sourceTree = "<group>"; };
+		928B7A1E1E88B2180067218A /* BeijingCourseListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseListCell.m; sourceTree = "<group>"; };
+		928B7A1F1E88B2180067218A /* BeijingCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseViewController.h; sourceTree = "<group>"; };
+		928B7A201E88B2180067218A /* BeijingCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseViewController.m; sourceTree = "<group>"; };
+		928B7A211E88B2180067218A /* BeijingDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingDynamicCell.h; sourceTree = "<group>"; };
+		928B7A221E88B2180067218A /* BeijingDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingDynamicCell.m; sourceTree = "<group>"; };
+		928B7A231E88B2180067218A /* BeijingDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingDynamicViewController.h; sourceTree = "<group>"; };
+		928B7A241E88B2180067218A /* BeijingDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingDynamicViewController.m; sourceTree = "<group>"; };
+		928B7A251E88B2180067218A /* BeijingExamExplainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamExplainView.h; sourceTree = "<group>"; };
+		928B7A261E88B2180067218A /* BeijingExamExplainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamExplainView.m; sourceTree = "<group>"; };
+		928B7A271E88B2180067218A /* BeijingExamGenreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamGenreCell.h; sourceTree = "<group>"; };
+		928B7A281E88B2180067218A /* BeijingExamGenreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamGenreCell.m; sourceTree = "<group>"; };
+		928B7A291E88B2180067218A /* BeijingExamGenreDefaultHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamGenreDefaultHeaderView.h; sourceTree = "<group>"; };
+		928B7A2A1E88B2180067218A /* BeijingExamGenreDefaultHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamGenreDefaultHeaderView.m; sourceTree = "<group>"; };
+		928B7A2B1E88B2180067218A /* BeijingExamGenreExplainHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamGenreExplainHeaderView.h; sourceTree = "<group>"; };
+		928B7A2C1E88B2180067218A /* BeijingExamGenreExplainHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamGenreExplainHeaderView.m; sourceTree = "<group>"; };
+		928B7A2D1E88B2180067218A /* BeijingExamTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamTableHeaderView.h; sourceTree = "<group>"; };
+		928B7A2E1E88B2180067218A /* BeijingExamTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamTableHeaderView.m; sourceTree = "<group>"; };
+		928B7A2F1E88B2180067218A /* BeijingExamTipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamTipCell.h; sourceTree = "<group>"; };
+		928B7A301E88B2180067218A /* BeijingExamTipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamTipCell.m; sourceTree = "<group>"; };
+		928B7A311E88B2180067218A /* BeijingExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamViewController.h; sourceTree = "<group>"; };
+		928B7A321E88B2180067218A /* BeijingExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamViewController.m; sourceTree = "<group>"; };
+		928B7A331E88B2180067218A /* BeijingHomeworkInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingHomeworkInfoView.h; sourceTree = "<group>"; };
+		928B7A341E88B2180067218A /* BeijingHomeworkInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingHomeworkInfoView.m; sourceTree = "<group>"; };
+		928B7A351E88B2180067218A /* BeijingHomeworkInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingHomeworkInfoViewController.h; sourceTree = "<group>"; };
+		928B7A361E88B2180067218A /* BeijingHomeworkInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingHomeworkInfoViewController.m; sourceTree = "<group>"; };
+		928B7A371E88B2180067218A /* WebsocketRedRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsocketRedRightView.h; sourceTree = "<group>"; };
+		928B7A381E88B2180067218A /* WebsocketRedRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsocketRedRightView.m; sourceTree = "<group>"; };
 		928BAF201E82682E0091D1C7 /* TestVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVideoViewController.h; sourceTree = "<group>"; };
 		928BAF211E82682E0091D1C7 /* TestVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVideoViewController.m; sourceTree = "<group>"; };
 		928DBE7A1E547A5C0016D66C /* MasterConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionCell.h; sourceTree = "<group>"; };
@@ -1109,15 +1121,9 @@
 		92AA47741E12440B00C88DDC /* BeijingCourseFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseFilterManager.m; sourceTree = "<group>"; };
 		92AA47761E1B925300C88DDC /* WebsocketRedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsocketRedView.h; sourceTree = "<group>"; };
 		92AA47771E1B925300C88DDC /* WebsocketRedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsocketRedView.m; sourceTree = "<group>"; };
-		92AA47791E1B983800C88DDC /* WebsocketRedRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsocketRedRightView.h; sourceTree = "<group>"; };
-		92AA477A1E1B983800C88DDC /* WebsocketRedRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsocketRedRightView.m; sourceTree = "<group>"; };
 		92AA477C1E1B9BD900C88DDC /* WebsocketRedLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsocketRedLeftView.h; sourceTree = "<group>"; };
 		92AA477D1E1B9BD900C88DDC /* WebsocketRedLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsocketRedLeftView.m; sourceTree = "<group>"; };
 		92AD8EE31E0A5B5800A3E91C /* WriteHomeworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WriteHomeworkManager.m; sourceTree = "<group>"; };
-		92AD8EE51E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingHomeworkInfoViewController.h; sourceTree = "<group>"; };
-		92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingHomeworkInfoViewController.m; sourceTree = "<group>"; };
-		92AD8EEB1E0B87E900A3E91C /* BeijingHomeworkInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingHomeworkInfoView.h; sourceTree = "<group>"; };
-		92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingHomeworkInfoView.m; sourceTree = "<group>"; };
 		92AD8EF01E10F0C300A3E91C /* beijingActivityFilter_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = beijingActivityFilter_mock.json; sourceTree = "<group>"; };
 		92AD8EF21E11124A00A3E91C /* BeijingActivityFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityFilterManager.h; sourceTree = "<group>"; };
 		92AD8EF31E11124A00A3E91C /* BeijingActivityFilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityFilterManager.m; sourceTree = "<group>"; };
@@ -1137,10 +1143,6 @@
 		92CA55E21DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTTrainHelper_Beijing.m; sourceTree = "<group>"; };
 		92CA55E41DFE761400AA2C50 /* LSTTrainHelper_Default.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTTrainHelper_Default.h; sourceTree = "<group>"; };
 		92CA55E51DFE761400AA2C50 /* LSTTrainHelper_Default.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTTrainHelper_Default.m; sourceTree = "<group>"; };
-		92CD8C381DEECB0C00A2EB46 /* BeijingActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListCell.h; sourceTree = "<group>"; };
-		92CD8C391DEECB0C00A2EB46 /* BeijingActivityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityListCell.m; sourceTree = "<group>"; };
-		92CD8C3B1DEECE1300A2EB46 /* BeijingDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingDynamicCell.h; sourceTree = "<group>"; };
-		92CD8C3C1DEECE1300A2EB46 /* BeijingDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingDynamicCell.m; sourceTree = "<group>"; };
 		92CE51431D87D2C00071DE79 /* YXWebSocketManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWebSocketManger.h; sourceTree = "<group>"; };
 		92CE51441D87D2C00071DE79 /* YXWebSocketManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWebSocketManger.m; sourceTree = "<group>"; };
 		92CE51461D87D2FF0071DE79 /* YXGuideModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXGuideModel.h; sourceTree = "<group>"; };
@@ -1454,8 +1456,6 @@
 		E90C60B01D9D0012001652CF /* YXDataStatisticsManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDataStatisticsManger.h; sourceTree = "<group>"; };
 		E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDataStatisticsManger.m; sourceTree = "<group>"; };
 		E927702C1DADD24000B2991C /* YXTrackPageDataProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTrackPageDataProtocol.h; sourceTree = "<group>"; };
-		E935D7B01DF7FD84005CC8BD /* BeijingExamTipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamTipCell.h; sourceTree = "<group>"; };
-		E935D7B11DF7FD84005CC8BD /* BeijingExamTipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamTipCell.m; sourceTree = "<group>"; };
 		E935D84C1DFE3FA3005CC8BD /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
 		E935D84D1DFE3FA3005CC8BD /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		E935D8501DFE403E005CC8BD /* LSTAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTAlertView.h; sourceTree = "<group>"; };
@@ -1901,6 +1901,8 @@
 		7C3177BF1D0EC0FC004AAC90 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				928B7A0E1E88B06A0067218A /* 德阳项目 */,
+				928B7A0F1E88B1920067218A /* 北京项目 */,
 				92310E381E5299F100CB5F1F /* 坊主任务 */,
 				92310E321E52993C00CB5F1F /* 坊主学情 */,
 				92F57B791E515DE80061CAA2 /* 坊主管理 */,
@@ -1957,7 +1959,6 @@
 			isa = PBXGroup;
 			children = (
 				92310E301E5298CD00CB5F1F /* view */,
-				922901681DED2C37001474CE /* 北京项目 */,
 				7C3178491D1398C6004AAC90 /* 考核 */,
 				7C31784A1D1398E2004AAC90 /* 任务 */,
 				7C31784B1D1398EB004AAC90 /* 通知简报 */,
@@ -2641,61 +2642,6 @@
 			name = view;
 			sourceTree = "<group>";
 		};
-		922901681DED2C37001474CE /* 北京项目 */ = {
-			isa = PBXGroup;
-			children = (
-				9229016C1DED6B3A001474CE /* view */,
-				922901651DED2107001474CE /* BeijingExamViewController.h */,
-				922901661DED2107001474CE /* BeijingExamViewController.m */,
-				922901691DED2C99001474CE /* BeijingDynamicViewController.h */,
-				9229016A1DED2C99001474CE /* BeijingDynamicViewController.m */,
-				926354411DF10C4100FAD1DE /* BeijingCourseViewController.h */,
-				926354421DF10C4100FAD1DE /* BeijingCourseViewController.m */,
-				926354471DF1361C00FAD1DE /* BeijingActivityListViewController.h */,
-				926354481DF1361C00FAD1DE /* BeijingActivityListViewController.m */,
-				9263544E1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.h */,
-				9263544F1DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m */,
-				92AD8EE51E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.h */,
-				92AD8EE61E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m */,
-			);
-			name = "北京项目";
-			sourceTree = "<group>";
-		};
-		9229016C1DED6B3A001474CE /* view */ = {
-			isa = PBXGroup;
-			children = (
-				9229016D1DED6C74001474CE /* BeijingExamTableHeaderView.h */,
-				9229016E1DED6C74001474CE /* BeijingExamTableHeaderView.m */,
-				922901761DED771E001474CE /* BeijingExamGenreCell.h */,
-				922901771DED771E001474CE /* BeijingExamGenreCell.m */,
-				E935D7B01DF7FD84005CC8BD /* BeijingExamTipCell.h */,
-				E935D7B11DF7FD84005CC8BD /* BeijingExamTipCell.m */,
-				9229017C1DED7F50001474CE /* BeijingExamGenreDefaultHeaderView.h */,
-				9229017D1DED7F50001474CE /* BeijingExamGenreDefaultHeaderView.m */,
-				9229017F1DED7F67001474CE /* BeijingExamGenreExplainHeaderView.h */,
-				922901801DED7F67001474CE /* BeijingExamGenreExplainHeaderView.m */,
-				922901821DEE61F3001474CE /* BeijingExamExplainView.h */,
-				922901831DEE61F3001474CE /* BeijingExamExplainView.m */,
-				922901851DEE89FF001474CE /* BeijingCourseListCell.h */,
-				922901861DEE89FF001474CE /* BeijingCourseListCell.m */,
-				92CD8C381DEECB0C00A2EB46 /* BeijingActivityListCell.h */,
-				92CD8C391DEECB0C00A2EB46 /* BeijingActivityListCell.m */,
-				92CD8C3B1DEECE1300A2EB46 /* BeijingDynamicCell.h */,
-				92CD8C3C1DEECE1300A2EB46 /* BeijingDynamicCell.m */,
-				926354511DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.h */,
-				926354521DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m */,
-				926354541DF1648600FAD1DE /* BeijingCheckedMobileUserCell.h */,
-				926354551DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m */,
-				926354571DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.h */,
-				926354581DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m */,
-				92AD8EEB1E0B87E900A3E91C /* BeijingHomeworkInfoView.h */,
-				92AD8EEC1E0B87E900A3E91C /* BeijingHomeworkInfoView.m */,
-				92AA47791E1B983800C88DDC /* WebsocketRedRightView.h */,
-				92AA477A1E1B983800C88DDC /* WebsocketRedRightView.m */,
-			);
-			name = view;
-			sourceTree = "<group>";
-		};
 		922F3AC41D2A61A900CBF7C3 /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -3071,6 +3017,68 @@
 				92AA47741E12440B00C88DDC /* BeijingCourseFilterManager.m */,
 			);
 			name = "北京项目";
+			sourceTree = "<group>";
+		};
+		928B7A0E1E88B06A0067218A /* 德阳项目 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "德阳项目";
+			sourceTree = "<group>";
+		};
+		928B7A0F1E88B1920067218A /* 北京项目 */ = {
+			isa = PBXGroup;
+			children = (
+				928B7A101E88B1C20067218A /* view */,
+				928B7A131E88B2180067218A /* BeijingActivityListViewController.h */,
+				928B7A141E88B2180067218A /* BeijingActivityListViewController.m */,
+				928B7A191E88B2180067218A /* BeijingCheckedMobileUserHeaderView.h */,
+				928B7A1A1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m */,
+				928B7A1B1E88B2180067218A /* BeijingCheckedMobileUserViewController.h */,
+				928B7A1C1E88B2180067218A /* BeijingCheckedMobileUserViewController.m */,
+				928B7A1F1E88B2180067218A /* BeijingCourseViewController.h */,
+				928B7A201E88B2180067218A /* BeijingCourseViewController.m */,
+				928B7A231E88B2180067218A /* BeijingDynamicViewController.h */,
+				928B7A241E88B2180067218A /* BeijingDynamicViewController.m */,
+				928B7A311E88B2180067218A /* BeijingExamViewController.h */,
+				928B7A321E88B2180067218A /* BeijingExamViewController.m */,
+				928B7A351E88B2180067218A /* BeijingHomeworkInfoViewController.h */,
+				928B7A361E88B2180067218A /* BeijingHomeworkInfoViewController.m */,
+			);
+			path = "北京项目";
+			sourceTree = "<group>";
+		};
+		928B7A101E88B1C20067218A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				928B7A111E88B2180067218A /* BeijingActivityListCell.h */,
+				928B7A121E88B2180067218A /* BeijingActivityListCell.m */,
+				928B7A151E88B2180067218A /* BeijingCheckedMobileMessageCell.h */,
+				928B7A161E88B2180067218A /* BeijingCheckedMobileMessageCell.m */,
+				928B7A171E88B2180067218A /* BeijingCheckedMobileUserCell.h */,
+				928B7A181E88B2180067218A /* BeijingCheckedMobileUserCell.m */,
+				928B7A1D1E88B2180067218A /* BeijingCourseListCell.h */,
+				928B7A1E1E88B2180067218A /* BeijingCourseListCell.m */,
+				928B7A211E88B2180067218A /* BeijingDynamicCell.h */,
+				928B7A221E88B2180067218A /* BeijingDynamicCell.m */,
+				928B7A251E88B2180067218A /* BeijingExamExplainView.h */,
+				928B7A261E88B2180067218A /* BeijingExamExplainView.m */,
+				928B7A271E88B2180067218A /* BeijingExamGenreCell.h */,
+				928B7A281E88B2180067218A /* BeijingExamGenreCell.m */,
+				928B7A291E88B2180067218A /* BeijingExamGenreDefaultHeaderView.h */,
+				928B7A2A1E88B2180067218A /* BeijingExamGenreDefaultHeaderView.m */,
+				928B7A2B1E88B2180067218A /* BeijingExamGenreExplainHeaderView.h */,
+				928B7A2C1E88B2180067218A /* BeijingExamGenreExplainHeaderView.m */,
+				928B7A2D1E88B2180067218A /* BeijingExamTableHeaderView.h */,
+				928B7A2E1E88B2180067218A /* BeijingExamTableHeaderView.m */,
+				928B7A2F1E88B2180067218A /* BeijingExamTipCell.h */,
+				928B7A301E88B2180067218A /* BeijingExamTipCell.m */,
+				928B7A331E88B2180067218A /* BeijingHomeworkInfoView.h */,
+				928B7A341E88B2180067218A /* BeijingHomeworkInfoView.m */,
+				928B7A371E88B2180067218A /* WebsocketRedRightView.h */,
+				928B7A381E88B2180067218A /* WebsocketRedRightView.m */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		92CE51491D87D3020071DE79 /* 动态 */ = {
@@ -3865,15 +3873,17 @@
 				92D94F071E77CDD7003AB58A /* RemindLeftSlipView.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */,
+				928B7A4A1E88B2180067218A /* BeijingHomeworkInfoView.m in Sources */,
 				92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */,
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				926354401DEFFAD000FAD1DE /* BeijingExamineRequest.m in Sources */,
+				928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */,
 				CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */,
+				928B7A3D1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m in Sources */,
 				92F1A5B01E53084A00015766 /* YXProjectMainViewController+Student.m in Sources */,
 				7C2991B31DFE6F7000AE921C /* FileDownloadHelper.m in Sources */,
 				92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
-				922901811DED7F67001474CE /* BeijingExamGenreExplainHeaderView.m in Sources */,
 				7C2C3B7D1D24F23600A03635 /* YXCourseRecordRequest.m in Sources */,
 				7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */,
 				7C2C3B691D24C53000A03635 /* YXCourseDetailItem.m in Sources */,
@@ -3924,6 +3934,7 @@
 				92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */,
 				7C2C3B341D2114DC00A03635 /* YXScoreTypeHeaderView.m in Sources */,
 				CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */,
+				928B7A3F1E88B2180067218A /* BeijingCourseListCell.m in Sources */,
 				E9DE2BC51E13BB890033434F /* ChangeProjectGuideView.m in Sources */,
 				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
 				CB16060D1D2FCB390071BA01 /* YXUploadHeadImgRequest.m in Sources */,
@@ -3943,16 +3954,17 @@
 				92FED8891DD1C37200457228 /* ActitvityCommentCell.m in Sources */,
 				7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,
-				922901781DED771E001474CE /* BeijingExamGenreCell.m in Sources */,
 				7CF8445E1D2A5E4800B1CE55 /* FileRecordEntity.m in Sources */,
 				92AD8EE41E0A5B5800A3E91C /* WriteHomeworkManager.m in Sources */,
 				9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */,
 				922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */,
 				CB52FCFB1D2BC1720096D8DC /* YXNoticeListFetch.m in Sources */,
+				928B7A4C1E88B2180067218A /* WebsocketRedRightView.m in Sources */,
 				920F1D5C1D53456700636A51 /* YXSaveHomeWorkRequest.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				920F1D541D53332600636A51 /* YXCategoryListRequest.m in Sources */,
 				E9BBA5F91DD06932000CA413 /* ActivityListFetcher.m in Sources */,
+				928B7A401E88B2180067218A /* BeijingCourseViewController.m in Sources */,
 				CB227EA21D34AB4C00D5327B /* YXGuideViewController.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
 				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
@@ -3962,6 +3974,7 @@
 				92FED8981DD2BE8D00457228 /* ActivityDetailTableHeaderView.m in Sources */,
 				CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */,
 				92FED88C1DD1C38E00457228 /* ActitvityCommentHeaderView.m in Sources */,
+				928B7A3C1E88B2180067218A /* BeijingCheckedMobileUserCell.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
 				92CE55F41E5598FD002C1F11 /* StudentExamViewController.m in Sources */,
@@ -3974,23 +3987,21 @@
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
 				CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
-				9229016F1DED6C74001474CE /* BeijingExamTableHeaderView.m in Sources */,
 				92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */,
 				9223C8201D2DF93A000F74DF /* YXFeedBackViewController.m in Sources */,
 				F7E8F8DE1D65CE3700CDAAF4 /* YXPopUpContainerView.m in Sources */,
 				92AA47781E1B925300C88DDC /* WebsocketRedView.m in Sources */,
 				923237461D7EA9FE00FDACFE /* YXCMSTimerView.m in Sources */,
+				928B7A491E88B2180067218A /* BeijingExamViewController.m in Sources */,
 				9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */,
 				CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */,
 				CBB62E131D2CCB0F00DAA6DE /* YXBroseWebView.m in Sources */,
 				92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */,
-				926354591DF194BA00FAD1DE /* BeijingCheckedMobileMessageCell.m in Sources */,
 				E935D87C1E00E0A6005CC8BD /* UnhandledRequestData.m in Sources */,
 				7C1A5E921E10E9E800832DED /* AccountListView.m in Sources */,
 				7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
 				F7E8F8DB1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m in Sources */,
-				926354501DF1584C00FAD1DE /* BeijingCheckedMobileUserViewController.m in Sources */,
 				920F1D6E1D59759D00636A51 /* YXSaveVideoProgressView.m in Sources */,
 				923237161D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m in Sources */,
 				CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */,
@@ -3998,16 +4009,14 @@
 				CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */,
 				922901591DE57971001474CE /* CommentLaudRequest.m in Sources */,
 				7C2C3B3D1D212D6700A03635 /* YXScoreLeadScoreCell.m in Sources */,
+				928B7A3A1E88B2180067218A /* BeijingActivityListViewController.m in Sources */,
 				7C2C3B5A1D23BEE100A03635 /* YXCourseListFetcher.m in Sources */,
-				9229017E1DED7F50001474CE /* BeijingExamGenreDefaultHeaderView.m in Sources */,
 				7C3F25901D20CB5F00F0A17A /* YXTaskListRequest.m in Sources */,
 				CB3510AA1D18E9730081EA3B /* YXDatumViewController.m in Sources */,
 				920F1D411D51EFB100636A51 /* YXHomeworkListViewController.m in Sources */,
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
 				92FED8931DD2BDA000457228 /* ActivityDetailViewController.m in Sources */,
-				922901671DED2107001474CE /* BeijingExamViewController.m in Sources */,
 				92CE55ED1E557D8F002C1F11 /* LearningInfoListFetcher.m in Sources */,
-				E935D7B21DF7FD84005CC8BD /* BeijingExamTipCell.m in Sources */,
 				92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */,
 				922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
@@ -4029,7 +4038,6 @@
 				923237621D814FF200FDACFE /* YXHotspotBaseCell.m in Sources */,
 				92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */,
 				7C2C3B851D24F6F700A03635 /* YXCourseRecordCell.m in Sources */,
-				92AA477B1E1B983800C88DDC /* WebsocketRedRightView.m in Sources */,
 				7C3177FD1D1177F9004AAC90 /* DownloadManager.m in Sources */,
 				CBBE95041D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m in Sources */,
 				7CFBA6C51D3633E7005D08B1 /* YXModuleListRequest.m in Sources */,
@@ -4044,7 +4052,6 @@
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
 				922901641DED0C15001474CE /* PreventHangingCourseView.m in Sources */,
 				92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */,
-				926354531DF15D0E00FAD1DE /* BeijingCheckedMobileUserHeaderView.m in Sources */,
 				920F1D711D5983E500636A51 /* YXVideoRecordManager.m in Sources */,
 				CBB62E0D1D2CBDB000DAA6DE /* YXBriefListRequest.m in Sources */,
 				923237681D81512300FDACFE /* YXHotspotPictureCell.m in Sources */,
@@ -4081,11 +4088,11 @@
 				7C31779A1D0EA6A8004AAC90 /* PostRequest.m in Sources */,
 				7CF8887F1D1BD25C00E7C04D /* YXExamEndDateCell.m in Sources */,
 				9223C82F1D2E36F0000F74DF /* YXAboutCell.m in Sources */,
-				926354561DF1648600FAD1DE /* BeijingCheckedMobileUserCell.m in Sources */,
 				CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */,
 				7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */,
 				92F1A5B61E53FF9F00015766 /* MasterManageViewController.m in Sources */,
 				92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */,
+				928B7A461E88B2180067218A /* BeijingExamGenreExplainHeaderView.m in Sources */,
 				920F1D261D50986E00636A51 /* YXQiNiuVideoUpload.m in Sources */,
 				92310E411E529B7E00CB5F1F /* MasterStatRequest.m in Sources */,
 				92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */,
@@ -4096,10 +4103,10 @@
 				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
 				92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */,
-				926354431DF10C4100FAD1DE /* BeijingCourseViewController.m in Sources */,
 				92CE55FD1E55ACF8002C1F11 /* MasterRemindStudyRequest.m in Sources */,
 				7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */,
 				92F1A5B31E530D2700015766 /* MasterManageListRequest.m in Sources */,
+				928B7A3E1E88B2180067218A /* BeijingCheckedMobileUserViewController.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
 				920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */,
@@ -4108,12 +4115,12 @@
 				CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
-				92AD8EED1E0B87E900A3E91C /* BeijingHomeworkInfoView.m in Sources */,
 				92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
 				923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */,
 				7CF844751D2E2EA000B1CE55 /* YXTriangleView.m in Sources */,
 				7C3177711D0E7EB0004AAC90 /* YXConfigManager.m in Sources */,
+				928B7A451E88B2180067218A /* BeijingExamGenreDefaultHeaderView.m in Sources */,
 				7C3177D61D10FF0A004AAC90 /* YXTestPushViewController.m in Sources */,
 				9223C8401D2F93D7000F74DF /* YXUpdateProfileRequest.m in Sources */,
 				922850C71DD05E3000A64AB7 /* ActivityPlayBottomView.m in Sources */,
@@ -4121,10 +4128,8 @@
 				7C2C3B4F1D2364E300A03635 /* YXTaskCell.m in Sources */,
 				9232376B1D8151B900FDACFE /* YXHotspotViewController.m in Sources */,
 				7CF844691D2C9E5700B1CE55 /* YXRecordContent.m in Sources */,
-				9229016B1DED2C99001474CE /* BeijingDynamicViewController.m in Sources */,
 				920F1D301D518C1600636A51 /* YXHomeworkListRequest.m in Sources */,
 				7C2C3B911D26406400A03635 /* YXTrainManager.m in Sources */,
-				926354491DF1361C00FAD1DE /* BeijingActivityListViewController.m in Sources */,
 				920F1D651D58346500636A51 /* YXVideoRecordTopView.m in Sources */,
 				CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
@@ -4139,8 +4144,10 @@
 				CB3510B41D18E9830081EA3B /* YXDatumFilterView.m in Sources */,
 				9223C8151D2CFF89000F74DF /* YXWorkshopDatumViewController.m in Sources */,
 				92F1A59E1E52B3BA00015766 /* MasterHappeningCell.m in Sources */,
+				928B7A481E88B2180067218A /* BeijingExamTipCell.m in Sources */,
 				7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */,
 				7C2991B01DFE4C4D00AE921C /* FileBrowserFactory.m in Sources */,
+				928B7A3B1E88B2180067218A /* BeijingCheckedMobileMessageCell.m in Sources */,
 				92CE56061E5686F7002C1F11 /* StudentExamTipsView.m in Sources */,
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
@@ -4182,12 +4189,10 @@
 				CBB62E161D2CCD4300DAA6DE /* YXShowWebMenuView.m in Sources */,
 				7C31778D1D0EA598004AAC90 /* YXMockManager.m in Sources */,
 				7CFBA6BF1D33374B005D08B1 /* YXErrorView.m in Sources */,
-				92CD8C3D1DEECE1300A2EB46 /* BeijingDynamicCell.m in Sources */,
 				7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */,
 				CB748EE91D23E118004BCFBF /* YXDatumSearchView.m in Sources */,
 				922901561DE576F5001474CE /* CommentReplyRequest.m in Sources */,
 				7C2C3B431D21351F00A03635 /* YXScoreExpHeaderView.m in Sources */,
-				922901841DEE61F3001474CE /* BeijingExamExplainView.m in Sources */,
 				9223C82B1D2E30A5000F74DF /* YXAboutHeaderView.m in Sources */,
 				9223C80F1D2CADD6000F74DF /* YXWorkshopMemberRequest.m in Sources */,
 				9223C8231D2E0060000F74DF /* YXAboutViewController.m in Sources */,
@@ -4201,6 +4206,7 @@
 				92B2C0AC1DD45450003E27F9 /* ActivityDetailStepCell.m in Sources */,
 				92AD8EF41E11124A00A3E91C /* BeijingActivityFilterManager.m in Sources */,
 				CBF66E291D2E36EE00F4E408 /* YXUserProfileRequest.m in Sources */,
+				928B7A431E88B2180067218A /* BeijingExamExplainView.m in Sources */,
 				7CF888701D1BCDF600E7C04D /* YXExamTotalScoreCell.m in Sources */,
 				9223C8381D2F78E3000F74DF /* YXSchoolSearchRequest.m in Sources */,
 				92EDC7BA1D5C7323005B91DD /* YXWriteHomeworkInfoCell.m in Sources */,
@@ -4223,6 +4229,7 @@
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
 				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,
 				7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */,
+				928B7A441E88B2180067218A /* BeijingExamGenreCell.m in Sources */,
 				7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */,
 				7C2C3B7A1D24CBB700A03635 /* YXCourseDetailHeaderView.m in Sources */,
 				9223C8271D2E0E44000F74DF /* YXFeedBackRequest.m in Sources */,
@@ -4241,7 +4248,6 @@
 				923237511D81021A00FDACFE /* AppDelegate+GetInfoList.m in Sources */,
 				7CF888671D1BC49200E7C04D /* YXWaveView.m in Sources */,
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,
-				92CD8C3A1DEECB0C00A2EB46 /* BeijingActivityListCell.m in Sources */,
 				7CF844611D2A609500B1CE55 /* YXFileRecordManager.m in Sources */,
 				CB7462701D1E89EE0065113A /* YXInitRequest.m in Sources */,
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
@@ -4249,6 +4255,8 @@
 				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
 				E9BD43E31DAC9507007BE8F6 /* YXDetailHotspotViewController.m in Sources */,
+				928B7A421E88B2180067218A /* BeijingDynamicViewController.m in Sources */,
+				928B7A471E88B2180067218A /* BeijingExamTableHeaderView.m in Sources */,
 				E935D8521DFE403E005CC8BD /* LSTAlertView.m in Sources */,
 				92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */,
 				92CA55E61DFE761400AA2C50 /* LSTTrainHelper_Default.m in Sources */,
@@ -4261,7 +4269,6 @@
 				9223C8321D2E3F72000F74DF /* YXWorkshopDetailDatumCell.m in Sources */,
 				7C3177B01D0EB738004AAC90 /* UIImage+Color.m in Sources */,
 				7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */,
-				922901871DEE89FF001474CE /* BeijingCourseListCell.m in Sources */,
 				9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,
 				7C3177B81D0EB9EE004AAC90 /* UIView+ViewController.m in Sources */,
@@ -4281,6 +4288,7 @@
 				E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
 				9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */,
+				928B7A411E88B2180067218A /* BeijingDynamicCell.m in Sources */,
 				92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */,
 				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,
 				9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */,
@@ -4289,6 +4297,7 @@
 				CB3510B71D18E9830081EA3B /* YXDatumOrderViewCell.m in Sources */,
 				CBBE95071D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m in Sources */,
 				7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */,
+				928B7A4B1E88B2180067218A /* BeijingHomeworkInfoViewController.m in Sources */,
 				7C3178231D129C01004AAC90 /* ReaderContentPage.m in Sources */,
 				7C3177A31D0EA723004AAC90 /* YXUploadRequest.m in Sources */,
 				F7E8F8D51D65AEE000CDAAF4 /* YXEmptyAndErrorView.m in Sources */,
@@ -4311,7 +4320,6 @@
 				92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */,
 				9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */,
 				E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */,
-				92AD8EE71E0B86DA00A3E91C /* BeijingHomeworkInfoViewController.m in Sources */,
 				7C3178241D129C01004AAC90 /* ReaderContentTile.m in Sources */,
 				7C3177811D0E8A1D004AAC90 /* GlobalUtils.m in Sources */,
 			);
