@@ -37,6 +37,11 @@
 @property (nonatomic, strong) NSString<Optional> *name;
 @end
 
+@interface YXCourseListRequestItem_body_module_course_quiz : JSONModel
+@property (nonatomic, copy) NSString<Optional> *finish;
+@property (nonatomic, copy) NSString<Optional> *total;
+@end
+
 @protocol YXCourseListRequestItem_body_module_course <NSObject>
 @end
 @interface YXCourseListRequestItem_body_module_course : JSONModel
@@ -47,6 +52,7 @@
 @property (nonatomic, strong) NSString<Optional> *is_selected;
 @property (nonatomic, strong) NSString<Optional> *module_id;
 @property (nonatomic, strong) NSString<Optional> *credit;//北京项目专用
+@property (nonatomic, strong) YXCourseListRequestItem_body_module_course_quiz<Optional> *quiz;//德阳项目专用
 @end
 
 @protocol YXCourseListRequestItem_body_module <NSObject>

@@ -30,6 +30,6 @@
 
 @property (nonatomic, strong) NSNumber<Optional> *mockFrameworkOn;
 @property (nonatomic, strong) NSNumber<Optional> *testFrameworkOn;
-@property (nonatomic, strong) NSNumber<Optional> *talkingDataReport;
+@property (nonatomic, strong) NSNumber<Optional> *talkingDataReportOn;
 
 @end

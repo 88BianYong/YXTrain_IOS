@@ -32,6 +32,9 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"segmentID"}];
 }
 @end
+@implementation YXCourseListRequestItem_body_module_course_quiz
+
+@end
 @implementation YXCourseListRequestItem_body_module_course
 
 @end

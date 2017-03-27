@@ -1,0 +1,94 @@
+{
+    "code": 0,
+    "desc": "成功",
+    "result": {
+        "questions": [
+                      {
+                      "quesAnswerCount": 1,
+                      "question": {
+                      "answerJson": [
+                                     {
+                                     "content": "是 ",
+                                     "isChoice": 0,
+                                     "no": 1
+                                     },
+                                     {
+                                     "content": "否 ",
+                                     "isChoice": 0,
+                                     "no": 2
+                                     }
+                                     ],
+                      "correctAnswer": "1",
+                      "id": 7944,
+                      "qId": 0,
+                      "title": "当今社会不可忽视祖辈家长的家教指导活动是发放;骄傲离开房间啊;路口见对方;阿兰卡;反馈;阿发;浪费;啊京东方;家;打飞机啊;地方;大大的经适房;卡戴珊;发",
+                      "types": 4
+                      }
+                      },
+                      {
+                      "quesAnswerCount": 1,
+                      "question": {
+                      "answerJson": [
+                                     {
+                                     "content": "我爱北京天啊发哈回复还少肯定",
+                                     "isChoice": 0,
+                                     "no": 1
+                                     },
+                                     {
+                                     "content": "安静了法律框架发链接法拉第法轮大法的合法",
+                                     "isChoice": 0,
+                                     "no": 2
+                                     },
+                                     {
+                                     "content": "爱迪生发哈坎话费卡后方可啊",
+                                     "isChoice": 0,
+                                     "no": 3
+                                     }
+                                     ],
+                      "correctAnswer": "1",
+                      "id": 7944,
+                      "qId": 1,
+                      "title": "当今社会不可忽视祖辈家长的家教指导活动。（   ）",
+                      "types": 1
+                      }
+                      },
+                      {
+                      "quesAnswerCount": 1,
+                      "question": {
+                      "answerJson": [
+                                     {
+                                     "content": "阿萨德还发了发暗号发",
+                                     "isChoice": 0,
+                                     "no": 1
+                                     },
+                                     {
+                                     "content": "阿发附件阿发家拉风拉风垃圾",
+                                     "isChoice": 0,
+                                     "no": 2
+                                     },
+                                     {
+                                     "content": "爱的发的发发发垃圾发空间啊;罚款;的;法警队;发",
+                                     "isChoice": 0,
+                                     "no": 2
+                                     },
+                                     {
+                                     "content": "按实际付款拉法;来打卡发空间发;阿发;阿发",
+                                     "isChoice": 0,
+                                     "no": 2
+                                     },
+                                     {
+                                     "content": "按键的发酵;对伐啦;开发;阿发;家居服;安居房;家;打飞机",
+                                     "isChoice": 0,
+                                     "no": 2
+                                     }
+                                     ],
+                      "correctAnswer": "1",
+                      "id": 7944,
+                      "qId": 2,
+                      "title": "当今社会不可忽视祖辈家长的家教指导活动。（   ）发挥法律交话费垃圾货福利就案例积分垃圾筐法律框架哈伦裤减肥垃圾发了空间啊鲁大师看风景埃里克对伐啦卡机的是付了款",
+                      "types": 2
+                      }
+                      }
+                      ]
+    }
+}

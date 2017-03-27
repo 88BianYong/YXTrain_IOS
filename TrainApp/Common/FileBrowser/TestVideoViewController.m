@@ -21,7 +21,7 @@
     [button setTitle:@"正确" forState:UIControlStateNormal];
     button.backgroundColor = [UIColor redColor];
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        self.mutableDictionary[@"answer"] = @"0";
+        self.item.isTrue = YES;
         [self dismissViewControllerAnimated:YES completion:^{
             BLOCK_EXEC(self.testVideoViewControllerBlock, YES);
         }];
@@ -33,7 +33,7 @@
     button1.backgroundColor = [UIColor blueColor];
     [button1 setTitle:@"错误" forState:UIControlStateNormal];
     [[button1 rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        self.mutableDictionary[@"answer"] = @"1";
+        self.item.isTrue = NO;
         [self dismissViewControllerAnimated:YES completion:^{
             BLOCK_EXEC(self.testVideoViewControllerBlock, NO);
         }];

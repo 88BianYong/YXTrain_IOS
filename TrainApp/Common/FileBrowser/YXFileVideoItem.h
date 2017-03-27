@@ -7,7 +7,10 @@
 //
 
 #import "YXFileItemBase.h"
-
+@interface YXFileVideoClassworkItem : NSObject
+@property (nonatomic, copy) NSString *quizzesID;//随堂练ID
+@property (nonatomic, copy) NSString *timeString;//显示时间
+@property (nonatomic, assign) BOOL isTrue;//是否正确
+@end
 @interface YXFileVideoItem : YXFileItemBase
-@property (nonatomic, strong) NSMutableArray *quizzesMutableArray;
 @end

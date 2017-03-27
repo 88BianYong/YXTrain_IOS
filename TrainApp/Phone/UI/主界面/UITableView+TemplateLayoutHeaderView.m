@@ -29,7 +29,7 @@
     return templateHeader;
 }
 
-- (CGFloat)yx_heightForCellWithIdentifier:(NSString *)identifier configuration:(void (^)(id header))configuration {
+- (CGFloat)yx_heightForHeaderWithIdentifier:(NSString *)identifier configuration:(void (^)(id header))configuration {
     if (!identifier) {
         return 0;
     }

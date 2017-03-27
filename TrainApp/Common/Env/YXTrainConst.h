@@ -145,6 +145,10 @@ extern NSString *const YXTrainUploadDepictionString;
  *  北京项目ID
  */
 extern NSString *const YXTrainBeijingProjectId;
+/**
+ *  德阳项目ID
+ */
+extern NSString *const YXTrainDeYangProjectId;
 
 
 

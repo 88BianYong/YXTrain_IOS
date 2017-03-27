@@ -9,12 +9,16 @@
 #import "LSTTrainHelper.h"
 #import "LSTTrainHelper_Beijing.h"
 #import "LSTTrainHelper_Default.h"
+#import "LSTTrainHelper_DeYang.h"
 
 @implementation LSTTrainHelper
 + (instancetype)alloc{
     if ([self class] == [LSTTrainHelper class]) {
         if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:YXTrainBeijingProjectId]) {
             return [LSTTrainHelper_Beijing alloc];
+        }
+        if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:YXTrainDeYangProjectId]) {
+            return [LSTTrainHelper_DeYang alloc];
         }
         return [LSTTrainHelper_Default alloc];
     }

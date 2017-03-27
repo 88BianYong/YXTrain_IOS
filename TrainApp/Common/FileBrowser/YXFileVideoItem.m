@@ -8,7 +8,8 @@
 
 #import "YXFileVideoItem.h"
 #import "YXPlayerViewController.h"
-
+@implementation YXFileVideoClassworkItem
+@end
 @implementation YXFileVideoItem
 
 - (void)openFile {
@@ -42,12 +43,26 @@
     vc.sourceType = self.sourceType;
     
 #warning test
-    self.quizzesMutableArray = [@[[@{@"time":@"300",@"answer":@"1"} mutableCopy],
-                                  [@{@"time":@"600",@"answer":@"1"} mutableCopy],
-                                  [@{@"time":@"900",@"answer":@"1"} mutableCopy],]
-                                  mutableCopy];
-    vc.quizzesMutableArray = self.quizzesMutableArray;
+    self.sgqz = @"0_300,1_600,2_900";
+    vc.classworkMutableArray = [self quizeesExercisesFormatSgqz];
+    vc.forcequizcorrect = self.forcequizcorrect.boolValue;
+    vc.cid = self.cid;
     [[self.baseViewController visibleViewController] presentViewController:vc animated:YES completion:nil];
 }
-
+-(NSMutableArray<YXFileVideoClassworkItem *> *)quizeesExercisesFormatSgqz {
+    
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    NSArray *quizees = [self.sgqz componentsSeparatedByString:@","];
+    [quizees enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *temp = [obj componentsSeparatedByString:@"_"];
+        if (temp.count == 2) {
+            YXFileVideoClassworkItem *item = [[YXFileVideoClassworkItem alloc] init];
+            item.quizzesID = temp[0];
+            item.timeString = temp[1];
+            item.isTrue = NO;
+            [mutableArray addObject:item];
+        }
+    }];
+    return mutableArray;
+}
 @end

@@ -19,6 +19,7 @@
 @property (nonatomic, copy) NSString<Optional> *type;
 @property (nonatomic, copy) NSString<Optional> *record;
 @property (nonatomic, copy) NSString<Optional> *duration;
+@property (nonatomic, copy) NSString<Optional> *sgqz;
 @end
 
 @protocol YXCourseDetailItem_chapter <NSObject>
@@ -32,6 +33,8 @@
 @property (nonatomic, copy) NSString<Optional> *module_name;
 @property (nonatomic, copy) NSString<Optional> *course_title;
 @property (nonatomic, copy) NSString<Optional> *course_id;
+@property (nonatomic, copy) NSString<Optional> *forcequizcorrect;
+@property (nonatomic, copy) NSString<Optional> *source;
 
 @property (nonatomic, copy) NSString<Optional> *ac;
 @property (nonatomic, copy) NSString<Optional> *tc;

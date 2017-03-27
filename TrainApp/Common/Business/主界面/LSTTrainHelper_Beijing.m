@@ -52,8 +52,6 @@
     UIViewController *VC = [[NSClassFromString(@"BeijingCourseViewController") alloc] init];
     [viewController.navigationController pushViewController:VC animated:YES];
     [super courseInterfaceSkip:viewController];
-    [YXDataStatisticsManger trackEvent:@"课程列表" label:@"任务跳转" parameters:nil];
-
 }
 - (void)workshopInterfaceSkip:(UIViewController *)viewController {
     BeijingHomeworkInfoViewController *VC = [[BeijingHomeworkInfoViewController alloc] init];

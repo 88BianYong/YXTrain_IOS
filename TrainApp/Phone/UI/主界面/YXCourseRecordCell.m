@@ -102,28 +102,5 @@
     minute = minute % 60;
     second = second % 60;
     self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
-//    if (second == 0) {
-//        self.recordLabel.text = @"未观看";
-//    }
 }
-
-//- (void)setIsFirst:(BOOL)isFirst{
-//    _isFirst = isFirst;
-//    if (isFirst) {
-//        [self.courseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(0);
-//            make.left.mas_equalTo(15);
-//            make.right.mas_equalTo(-6);
-//            make.height.mas_equalTo(125);
-//        }];
-//    }else{
-//        [self.courseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(0);
-//            make.left.mas_equalTo(6);
-//            make.right.mas_equalTo(-15);
-//            make.height.mas_equalTo(125);
-//        }];
-//    }
-//}
-
 @end

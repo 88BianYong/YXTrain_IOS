@@ -16,6 +16,7 @@
 #import "JKAlertDialog.h"
 #import "PreventHangingCourseView.h"
 #import "TestVideoViewController.h"
+#import "VideoClassworkManager.h"
 static NSInteger kPreventHangingCourseDefaultTime = 600;
 @implementation YXPlayerDefinition
 
@@ -60,9 +61,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, strong) dispatch_source_t preventHangingCourseTime;
 @property (nonatomic, strong) PreventHangingCourseView *preventView;
 
+@property (nonatomic ,strong) VideoClassworkManager *clossworkManager;
 
-@property (nonatomic, assign) NSInteger quizzesInteger;
-@property (nonatomic, assign) NSInteger lastInteger;
+
+
+
 @end
 
 @implementation YXPlayerViewController
@@ -138,8 +141,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.topView.backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView.slideProgressView addTarget:self action:@selector(progressAction) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.bottomView.slideProgressView addTarget:self action:@selector(eventTouchDragProgressAction) forControlEvents:UIControlEventTouchDragInside | UIControlEventTouchDragOutside];
-    
     [self.bottomView.playPauseButton addTarget:self action:@selector(playPauseAction) forControlEvents:UIControlEventTouchUpInside];
     [self.topView.forwardButton addTarget:self action:@selector(forwardAction) forControlEvents:UIControlEventTouchUpInside];
     
@@ -195,6 +196,24 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     if (self.sourceType == YXSourceTypeCourse && [YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目课程显示防挂课功能
        [self startPreventHangingCourseTime];
     }
+    
+    self.clossworkManager = [[VideoClassworkManager alloc] initClassworkRootViewController:self];
+    self.clossworkManager.classworMutableArray = self.classworkMutableArray;
+    self.clossworkManager.cid = self.cid;
+    self.clossworkManager.source = self.source;
+    self.clossworkManager.forcequizcorrect = self.forcequizcorrect;
+    [self.clossworkManager setVideoClassworkManagerBlock:^(BOOL isPlay, NSInteger playTime) {
+        STRONG_SELF
+        if (isPlay) {
+            if (playTime >= 0) {
+                [self.player seekTo:playTime];
+            }
+            [self.player play];
+        }else {
+            self.bottomView.slideProgressView.bSliding = NO;
+            [self.player pause];
+        }
+    }];
 }
 - (void)applicationDidBecomeActive:(NSNotification *)notification{
     if (self.player.state == PlayerView_State_Playing) {
@@ -310,6 +329,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)progressAction {
     [self resetTopBottomHideTimer];
     [self.player seekTo:self.player.duration * self.bottomView.slideProgressView.playProgress];
+    [self.clossworkManager showVideoClassworkView:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
 }
 
 - (void)playPauseAction {
@@ -472,7 +492,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 [self.bottomView.slideProgressView updateUI];
             }
         }
-        [self showQuizzesView:(int)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
+        [self.clossworkManager showVideoClassworkView:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
         //DDLogDebug(@">>>>>>%f",self.player.duration * self.bottomView.slideProgressView.playProgress);
     }];
     
@@ -801,38 +821,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     _preventHangingCourseInteger = preventHangingCourseInteger;
 }
-- (void)eventTouchDragProgressAction {
-    [self showQuizzesView:(int)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
-}
 
-- (void)showQuizzesView:(int)playProgress {
-    if (playProgress >= self.quizzesInteger) {
-        [self.quizzesMutableArray enumerateObjectsUsingBlock:^(NSMutableDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (![obj[@"answer"] boolValue]) {
-                self.lastInteger = [obj[@"time"] integerValue];
-            }
-            if ([self comparisonTime:playProgress originalTime:[obj[@"time"] integerValue]] && [obj[@"answer"] boolValue]) {
-                self.bottomView.slideProgressView.bSliding = NO;
-                [self progressAction];
-                self.quizzesInteger = [obj[@"time"] integerValue];
-                [self.player pause];
-                TestVideoViewController *VC = [[TestVideoViewController alloc] init];
-                VC.mutableDictionary = obj;
-                [VC setTestVideoViewControllerBlock:^(BOOL test) {
-                    if (!test) {
-                       [self.player seekTo:self.lastInteger];
-                    }
-                    [self.player play];
-                }];
-                [self presentViewController:VC animated:YES completion:^{
-                    
-                }];
-                return ;
-            }
-        }];
-    }
-}
-- (BOOL)comparisonTime:(NSInteger)playTime originalTime:(NSInteger)contrastTime {
-    return (playTime >= (contrastTime - 5)) &&  (playTime <= (contrastTime + 5));
-}
+
+
 @end

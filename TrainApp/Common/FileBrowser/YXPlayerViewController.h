@@ -37,5 +37,9 @@
 
 @property (nonatomic, assign) YXSourceType sourceType;
 
-@property (nonatomic, strong) NSMutableArray *quizzesMutableArray;
+@property (nonatomic, strong) NSMutableArray<__kindof YXFileVideoClassworkItem *> *classworkMutableArray;
+@property (nonatomic, assign) BOOL forcequizcorrect;
+@property (nonatomic, copy) NSString *cid;
+@property (nonatomic, copy) NSString *source;
+
 @end

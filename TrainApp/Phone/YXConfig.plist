@@ -20,10 +20,10 @@
 		<string>ws://mobile.yanxiu.com/websocket</string>
 	</dict>
 	<key>mockFrameworkOn</key>
-	<false/>
+	<true/>
 	<key>testFrameworkOn</key>
 	<false/>
-	<key>talkingDataReport</key>
+	<key>talkingDataReportOn</key>
 	<false/>
 </dict>
 </plist>

@@ -7,7 +7,10 @@
 //
 
 #import "YXGetRequest.h"
-
+@interface YXCourseRecordRequestItem_body_module_course_quiz : JSONModel
+@property (nonatomic, copy) NSString<Optional> *finish;
+@property (nonatomic, copy) NSString<Optional> *total;
+@end
 @protocol YXCourseRecordRequestItem_body_module_course <NSObject>
 @end
 @interface YXCourseRecordRequestItem_body_module_course : JSONModel
@@ -16,6 +19,7 @@
 @property (nonatomic, copy) NSString<Optional> *course_img;
 @property (nonatomic, copy) NSString<Optional> *record;
 @property (nonatomic, copy) NSString<Optional> *is_selected; //1走以前老的详情接口，0走新的详情接口
+@property (nonatomic, strong) YXCourseRecordRequestItem_body_module_course_quiz<Optional> *quiz;
 
 @property (nonatomic, strong) NSString<Optional> *module_id; //用于传参stageid
 @end

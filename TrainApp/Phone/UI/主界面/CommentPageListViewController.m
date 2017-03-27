@@ -508,7 +508,7 @@
     return headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return [tableView yx_heightForCellWithIdentifier:@"ActitvityCommentHeaderView" configuration:^(ActitvityCommentHeaderView *headerView) {
+    return [tableView yx_heightForHeaderWithIdentifier:@"ActitvityCommentHeaderView" configuration:^(ActitvityCommentHeaderView *headerView) {
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
         headerView.stageId = self.stageId;
         if (!self.isFullReply || section == 0) {

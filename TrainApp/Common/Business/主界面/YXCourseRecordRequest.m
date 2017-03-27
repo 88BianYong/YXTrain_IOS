@@ -7,6 +7,8 @@
 //
 
 #import "YXCourseRecordRequest.h"
+@implementation YXCourseRecordRequestItem_body_module_course_quiz
+@end
 
 @implementation YXCourseRecordRequestItem_body_module_course
 

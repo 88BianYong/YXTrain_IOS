@@ -197,6 +197,10 @@
     fileItem.lurl = fragment.lurl;
     fileItem.murl = fragment.murl;
     fileItem.surl = fragment.surl;
+    fileItem.cid = self.courseItem.c;
+    fileItem.forcequizcorrect = self.courseItem.forcequizcorrect;
+    fileItem.sgqz = fragment.sgqz;
+    fileItem.source = self.courseItem.source;
     fileItem.baseViewController = self;
     fileItem.sourceType = YXSourceTypeCourse;
     [fileItem browseFile];

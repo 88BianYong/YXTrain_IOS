@@ -7,8 +7,8 @@
 //
 
 #import "YXBaseViewController.h"
-
+#import "YXFileVideoItem.h"
 @interface TestVideoViewController : YXBaseViewController
-@property (nonatomic ,strong) NSMutableDictionary *mutableDictionary;
+/*@property (nonatomic ,strong) YXFileVideoQuizzesItem *item;*/
 @property (nonatomic, copy) void(^testVideoViewControllerBlock)(BOOL test);
 @end
