@@ -15,7 +15,6 @@
 #import "AppDelegate.h"
 #import "JKAlertDialog.h"
 #import "PreventHangingCourseView.h"
-#import "TestVideoViewController.h"
 #import "VideoClassworkManager.h"
 static NSInteger kPreventHangingCourseDefaultTime = 600;
 @implementation YXPlayerDefinition
@@ -97,10 +96,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     
     [super viewDidLoad];
-
     self.view.backgroundColor = [UIColor whiteColor];
-    
-//    self.navigationController.navigationBarHidden = YES;
     self.tabBarController.tabBar.hidden = YES;
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeRight] forKey:@"orientation"];
     [UIApplication sharedApplication].statusBarHidden = YES;
@@ -139,19 +135,16 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }];
 
     [self.topView.backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.bottomView.slideProgressView addTarget:self action:@selector(progressAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.bottomView.playPauseButton addTarget:self action:@selector(playPauseAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.topView.backButton addTarget:self action:@selector(invalidateTopBottomHiddenTimer) forControlEvents:UIControlEventTouchDown];
     [self.topView.forwardButton addTarget:self action:@selector(forwardAction) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.topView.backButton addTarget:self action:@selector(invalidateTopBottomHiddenTimer) forControlEvents:UIControlEventTouchDown];
     [self.bottomView.slideProgressView addTarget:self action:@selector(invalidateTopBottomHiddenTimer) forControlEvents:UIControlEventTouchDown];
     [self.bottomView.playPauseButton addTarget:self action:@selector(invalidateTopBottomHiddenTimer) forControlEvents:UIControlEventTouchDown];
+    [self.bottomView.slideProgressView addTarget:self action:@selector(progressAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView.playPauseButton addTarget:self action:@selector(playPauseAction) forControlEvents:UIControlEventTouchUpInside];
+
     
     [self setupObserver];
-    // 开始播放
-    //[self checkNetwork];
-    // 开始播放
     if (self.bIsLocalFile) {
         self.player.videoUrl = [NSURL fileURLWithPath:self.videoUrl];
     } else {
@@ -171,32 +164,29 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     
     self.topView.titleLabel.text = self.title;
     [self setupGesture];
-    @weakify(self);
+    WEAK_SELF
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kRecordNeedUpdateNotification object:nil] subscribeNext:^(id x) {
-        @strongify(self);
-        if (!self) return;
+        STRONG_SELF
         [self recordPlayerDuration];
     }];
-    //[self _setupDefinitions];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];// TD: fix bug 192
     
-    
-    self.preventView = [[PreventHangingCourseView alloc] init];
-    [self.preventView setPreventHangingCourseBlock:^{
-        STRONG_SELF
-        [self.player play];
-    }];
-    [self.view addSubview:self.preventView];
-    self.preventView.hidden = YES;
-    [self.preventView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
-    
-    if (self.sourceType == YXSourceTypeCourse && [YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目课程显示防挂课功能
+    //北京项目课程显示防挂课功能
+    if (self.sourceType == YXSourceTypeCourse && [YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {
+        self.preventView = [[PreventHangingCourseView alloc] init];
+        [self.preventView setPreventHangingCourseBlock:^{
+            STRONG_SELF
+            [self.player play];
+        }];
+        [self.view addSubview:self.preventView];
+        self.preventView.hidden = YES;
+        [self.preventView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
        [self startPreventHangingCourseTime];
     }
     
+    //随堂练
     self.clossworkManager = [[VideoClassworkManager alloc] initClassworkRootViewController:self];
     self.clossworkManager.classworMutableArray = self.classworkMutableArray;
     self.clossworkManager.cid = self.cid;
@@ -223,58 +213,17 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
     [self backAction];
 }
 
 - (void)changeVideoUrlAndPlay:(NSString *)url {
     self.player.progress = self.bottomView.slideProgressView.playProgress;
-    
     if (self.bIsLocalFile) {
         self.player.videoUrl = [NSURL fileURLWithPath:url];
     } else {
         self.player.videoUrl = [NSURL URLWithString:url];
     }
 }
-
-- (void)checkNetwork {
-    Reachability *r = [Reachability reachabilityForInternetConnection];
-    if (![r isReachable]) {
-        [self showToast:@"网络不可用,请检查网络"];
-        return;
-    }
-    if ([r isReachableViaWWAN] && ![r isReachableViaWiFi]) {
-        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"网络连接提示" message:@"当前处于非Wi-Fi环境，仍要继续吗？" preferredStyle:UIAlertControllerStyleAlert];
-        WEAK_SELF
-        UIAlertAction *backAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            STRONG_SELF
-            [self backAction];
-            return;
-        }];
-        UIAlertAction *goAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            STRONG_SELF
-            if (self.bIsLocalFile) {
-                self.player.videoUrl = [NSURL fileURLWithPath:self.videoUrl];
-            } else {
-                self.player.videoUrl = [NSURL URLWithString:self.videoUrl];
-            }
-        }];
-        [alertVC addAction:backAction];
-        [alertVC addAction:goAction];
-        [self presentViewController:alertVC animated:YES completion:nil];
-        return;
-    }
-    
-    if ([r isReachableViaWiFi]) {
-        // 开始播放
-        if (self.bIsLocalFile) {
-            self.player.videoUrl = [NSURL fileURLWithPath:self.videoUrl];
-        } else {
-            self.player.videoUrl = [NSURL URLWithString:self.videoUrl];
-        }
-    }
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.bufferingView start];
@@ -294,7 +243,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             [self.delegate playerProgress:self.bottomView.slideProgressView.playProgress totalDuration:self.player.duration stayTime:self->_playTime];
         }
     }
-
     
     [self invalidateTopBottomHiddenTimer];
     for (RACDisposable *d in self.disposableArray) {
@@ -302,13 +250,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     
     [self.player pause];
-    
     self.player = nil;
-//    self.navigationController.navigationBarHidden = NO;
     [UIApplication sharedApplication].statusBarHidden = NO;
     [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     [self dismissViewControllerAnimated:YES completion:nil];
-    
     SAFE_CALL(self.exitDelegate, browserExit);
 }
 
@@ -367,14 +312,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     Reachability *r = [Reachability reachabilityForInternetConnection];
     // 播放中，网络切换为2G
     @weakify(r);
-    @weakify(self);
+    WEAK_SELF
     [r setReachableBlock:^void (Reachability * reachability) {
         @strongify(r);
-        @strongify(self); if (!self) return;;
+        STRONG_SELF
         if([r isReachableViaWiFi]) {
             return;
         }
-        
         if([r isReachableViaWWAN]) {
             [self do3GCheck];
         }
@@ -392,16 +336,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 self->_startTime = nil;
             }
         }
-//        dispatch_async(dispatch_get_main_queue(), ^{
-            if ([x unsignedIntegerValue] == PlayerView_State_Buffering) {
-                self.bufferingView.hidden = NO;
-                [self.bufferingView start];
-            } else {
-                self.bufferingView.hidden = YES;
-                [self.bufferingView stop];
-            }
-//        });
-        
+        if ([x unsignedIntegerValue] == PlayerView_State_Buffering) {
+            self.bufferingView.hidden = NO;
+            [self.bufferingView start];
+        } else {
+            self.bufferingView.hidden = YES;
+            [self.bufferingView stop];
+        }
         switch ([x unsignedIntegerValue]) {
             case PlayerView_State_Buffering:
                 DDLogInfo(@"buffering");
@@ -456,11 +397,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                                                   }];
     
     RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
-        @strongify(self); if (!self) return;
-//        if (isEmpty(self->_startTime)) {
-//            self->_startTime = [NSDate date];
-//        }
-        
+        STRONG_SELF
         self.bottomView.slideProgressView.duration = [x doubleValue];
         if (self.bottomView.slideProgressView.bufferProgress > 0) { // walkthrough 换url时slide跳动
             [self.bottomView.slideProgressView updateUI];
@@ -468,7 +405,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }];
     
     RACDisposable *r3 = [RACObserve(self.player, timeBuffered) subscribeNext:^(id x) {
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if (self.bottomView.slideProgressView.bSliding) {
             return;
         }
@@ -482,7 +419,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }];
 
     RACDisposable *r4 = [RACObserve(self.player, timePlayed) subscribeNext:^(id x) {
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if (self.bottomView.slideProgressView.bSliding) {
             return;
         }
@@ -493,7 +430,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             }
         }
         [self.clossworkManager showVideoClassworkView:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
-        //DDLogDebug(@">>>>>>%f",self.player.duration * self.bottomView.slideProgressView.playProgress);
     }];
     
 //    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
@@ -590,13 +526,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     if ([_internalDefinitionArray count] == 1) {
         return;
     }
-    
     if (_bDefinitionShown) {
         [self hideDefinition];
     } else {
         [self showDefinition];
     }
-    //_bDefinitionShown = !_bDefinitionShown;
 }
 
 - (void)tapAction {
@@ -701,9 +635,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
 - (void)showDefinition {
     _bDefinitionShown = YES;
-    //self.gestureView.userInteractionEnabled = NO;
     [self invalidateTopBottomHiddenTimer];
-    
     for (UIButton *btn in _defButtonArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(60, 34));
@@ -730,7 +662,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 
 - (void)hideDefinition {
     _bDefinitionShown = NO;
-    //self.gestureView.userInteractionEnabled = YES;
     [self resetTopBottomHideTimer];
     
     for (UIButton *btn in _defButtonArray) {
@@ -754,7 +685,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self hideDefinition];
     
     [self saveDefaultDefinition:def.identifier];
-//    [YXGPGlobalSingleton sharedInstance].defaultDefinition = def.identifier;
 }
 
 - (void)deleteButton:(UIButton *)btn
@@ -789,13 +719,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 //    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
+
 - (NSString *)loadDefaultDefinition{
     return @"标清";
-//    NSString *definitionID = [[NSUserDefaults standardUserDefaults]valueForKey:@"kPlayerDefaultDefinition"];
-//    if (!definitionID) {
-//        return @"标清";
-//    }
-//    return definitionID;
 }
 
 - (void)startPreventHangingCourseTime {
