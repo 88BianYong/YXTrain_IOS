@@ -109,8 +109,7 @@
     minute = minute % 60;
     second = second % 60;
     self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
-#warning test
-    self.quizzesLabel.text = [NSString stringWithFormat:@"[随堂练] 已答对%@个 / 共%@个",_course.quiz.finish?:@"2",_course.quiz.total?:@"5"];
+    self.quizzesLabel.text = [NSString stringWithFormat:@"[随堂练] 已答对%@个 / 共%@个",_course.quiz.finish,_course.quiz.total];
 }
 
 @end

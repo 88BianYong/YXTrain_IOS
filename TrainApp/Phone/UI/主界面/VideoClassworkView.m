@@ -16,9 +16,8 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIButton *confirmButton;
-@property (nonatomic, assign) VideoClassworkButtonStatus buttonStatus;
+@property (nonatomic, assign) VideoClassworkAnswerStatus answerStatus;
 @property (nonatomic, assign) VideoClassworkCellStatus classworkStatus;
-@property (nonatomic, assign) BOOL isAnswerTrue;
 @property (nonatomic, strong) NSMutableArray *answerMutableArray;
 @end
 @implementation VideoClassworkView
@@ -79,15 +78,15 @@
     WEAK_SELF
     [[self.confirmButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
-        if (self.buttonStatus == VideoClassworkButtonStatus_Confirm) {
+        if (self.answerStatus == VideoClassworkAnswerStatus_Normal) {
             [self.question.answerJson enumerateObjectsUsingBlock:^(YXVideoQuestionsRequestItem_Result_Questions_Question_AnswerJson *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (obj.isChoose.boolValue) {
                     [self.answerMutableArray addObject:obj.no];
                 }
             }];
-            BLOCK_EXEC(self.videoClassworkButtonActionBlock,self.buttonStatus,self.answerMutableArray);
+            BLOCK_EXEC(self.videoClassworkButtonActionBlock,self.answerStatus,self.answerMutableArray);
         }else {
-            BLOCK_EXEC(self.videoClassworkButtonActionBlock,self.buttonStatus,nil);
+            BLOCK_EXEC(self.videoClassworkButtonActionBlock,self.answerStatus,nil);
         }
     }];
     [footerView addSubview:self.confirmButton];
@@ -129,21 +128,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VideoClassworkCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VideoClassworkCell" forIndexPath:indexPath];
     cell.answer = self.question.answerJson[indexPath.row];
-    if (self.buttonStatus != VideoClassworkButtonStatus_Confirm && self.answerMutableArray.count > 0) {
-        if ([self.answerMutableArray[0] integerValue] == cell.answer.no.integerValue) {
-                   cell.classworkStatus = self.isAnswerTrue ? VideoClassworkCellStatus_Right :VideoClassworkCellStatus_Error ;
-        }else {
-            cell.classworkStatus = VideoClassworkCellStatus_Normal;
-        }
+    if ([self isFirstChooseAnswer:cell.answer.no.integerValue]) {
+        cell.classworkStatus = self.answerStatus == VideoClassworkAnswerStatus_Right ? VideoClassworkCellStatus_Right : VideoClassworkCellStatus_Error;
     }else {
        cell.classworkStatus = VideoClassworkCellStatus_Normal;
     }
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.buttonStatus == VideoClassworkButtonStatus_Confirm) {
+    if (self.answerStatus == VideoClassworkAnswerStatus_Normal) {
         [self classworkChooseLogic:indexPath.row];
     }
+}
+- (BOOL)isFirstChooseAnswer:(NSInteger)integer {
+    if (self.answerMutableArray.count == 0 || self.answerStatus == VideoClassworkAnswerStatus_Normal) {
+        return NO;
+    }
+    if ([self.answerMutableArray[0] integerValue] == integer) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - UITableViewDataSource
@@ -186,20 +190,52 @@
     DDLogDebug(@"1");
 }
 #pragma mark - set
-- (void)setButtonStatus:(VideoClassworkButtonStatus)buttonStatus {
-    _buttonStatus = buttonStatus;
-    if (_buttonStatus == VideoClassworkButtonStatus_Confirm) {
-        [self.confirmButton setTitle:@"确认" forState:UIControlStateNormal];
-    }else if (_buttonStatus == VideoClassworkButtonStatus_Continue) {
-        [self.confirmButton setTitle:@"继续学习" forState:UIControlStateNormal];
-    }else {
-        [self.confirmButton setTitle:@"返回当前章节" forState:UIControlStateNormal];
+- (void)setQuestion:(YXVideoQuestionsRequestItem_Result_Questions_Question *)question {
+    _question = question;
+    if (_question.types.integerValue == 4) {
+        [_question.answerJson enumerateObjectsUsingBlock:^(YXVideoQuestionsRequestItem_Result_Questions_Question_AnswerJson *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.no.integerValue == 2) {
+                obj.no = @"0";
+            }
+        }];
     }
 }
+- (void)setAnswerStatus:(VideoClassworkAnswerStatus)answerStatus {
+    _answerStatus = answerStatus;
+    switch (_answerStatus) {
+        case VideoClassworkAnswerStatus_Normal:
+        {
+            [self.confirmButton setTitle:@"确认" forState:UIControlStateNormal];
+        }
+            break;
+        case VideoClassworkAnswerStatus_Right:
+        {
+            [self.confirmButton setTitle:@"继续学习" forState:UIControlStateNormal];
+
+        }
+            break;
+        case VideoClassworkAnswerStatus_Error:
+        {
+            [self.confirmButton setTitle:@"继续学习" forState:UIControlStateNormal];
+
+        }
+            break;
+        case VideoClassworkAnswerStatus_ForceError:
+        {
+            [self.confirmButton setTitle:@"返回当前章节" forState:UIControlStateNormal];
+
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 - (void)setHidden:(BOOL)hidden {
     [super setHidden:hidden];
     if (hidden) {
-        self.buttonStatus = VideoClassworkButtonStatus_Confirm;
+        self.answerStatus = VideoClassworkAnswerStatus_Normal;
         self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"f3f7fa"].CGColor;
         self.confirmButton.enabled = NO;
         [self.answerMutableArray removeAllObjects];
@@ -209,18 +245,16 @@
 
 }
 - (void)refreshClassworkViewAnsewr:(BOOL)isTrue quizCorrect:(BOOL)isForce {
-    self.isAnswerTrue = isTrue;
     if (isTrue) {
-        self.buttonStatus = VideoClassworkButtonStatus_Continue;
+        self.answerStatus = VideoClassworkAnswerStatus_Right;
     }else {
         if (isForce) {
-            self.buttonStatus = VideoClassworkButtonStatus_Back;
+            self.answerStatus = VideoClassworkAnswerStatus_ForceError;
         }else {
-            self.buttonStatus = VideoClassworkButtonStatus_Continue;
+            self.answerStatus = VideoClassworkAnswerStatus_Error;
         }
     }
     [self.tableView reloadData];
-    DDLogDebug(@"3");
 }
 
 @end

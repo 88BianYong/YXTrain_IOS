@@ -21,7 +21,7 @@ static  NSString *const trackPageName = @"看课记录页面";
 @property (nonatomic, strong) YXCourseRecordRequestItem *recordItem;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) YXModuleListRequest *moduleListRequest;
-
+@property (nonatomic, strong) NSIndexPath *courseIndexPatch;
 @end
 
 @implementation DeYangCourseRecordViewController
@@ -37,6 +37,18 @@ static  NSString *const trackPageName = @"看课记录页面";
     [self setupUI];
     [self getDataShowLoading:YES];
     [self setupObservers];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCourseView) name:kYXTrainSubmitQuestionAnswer object:nil];
+}
+- (void)refreshCourseView {
+    if (self.courseIndexPatch != nil) {
+        DeYangCourseRecordCell *cell = (DeYangCourseRecordCell *)[self.collectionView cellForItemAtIndexPath:self.courseIndexPatch];
+        YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[self.courseIndexPatch.section];
+        YXCourseRecordRequestItem_body_module_course *course = module.courses[self.courseIndexPatch.row];
+        NSInteger finish = MIN(course.quiz.finish.integerValue + 1, course.quiz.total.integerValue);
+        course.quiz.finish = [NSString stringWithFormat:@"%ld",(long)finish];
+        cell.course = course;
+        self.courseIndexPatch = nil;
+    }
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -246,6 +258,7 @@ static  NSString *const trackPageName = @"看课记录页面";
     return CGSizeMake((self.view.bounds.size.width)/2, 210.0f);
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    self.courseIndexPatch = indexPath;
     YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[indexPath.section];
     YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];
     vc.course = module.courses[indexPath.row];

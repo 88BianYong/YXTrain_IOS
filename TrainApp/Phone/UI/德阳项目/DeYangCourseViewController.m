@@ -23,6 +23,8 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 @property (nonatomic, assign) CGFloat oldOffsetY;
 @property (nonatomic, assign) BOOL isAllowChange;
+@property (nonatomic, assign) NSInteger chooseCourseInteger;
+
 
 @end
 
@@ -46,6 +48,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
+    self.chooseCourseInteger = -1;
     self.isAllowChange = YES;
     // Do any additional setup after loading the view.
     self.emptyView.title = @"没有符合条件的课程";
@@ -65,6 +68,17 @@ static  NSString *const trackPageName = @"课程列表页面";
             [self getFilters];
         };
         [self getFilters];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCourseView) name:kYXTrainSubmitQuestionAnswer object:nil];
+}
+- (void)refreshCourseView {
+    if (self.chooseCourseInteger >= 0) {
+        YXCourseListRequestItem_body_module_course *course = self.dataArray[self.chooseCourseInteger];
+        NSInteger finish = MIN(course.quiz.finish.integerValue + 1, course.quiz.total.integerValue);
+        course.quiz.finish = [NSString stringWithFormat:@"%ld",(long)finish];
+        DeYangCourseListCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.chooseCourseInteger inSection:0]];
+        cell.course = course;
+        self.chooseCourseInteger = -1;
     }
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -177,6 +191,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.chooseCourseInteger = indexPath.row;
     YXCourseListRequestItem_body_module_course *course = self.dataArray[indexPath.row];
     YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];
     vc.course = course;

@@ -19,6 +19,7 @@
 @property (nonatomic, strong) YXCourseDetailRequest *courseDetailRequest;
 @property (nonatomic, strong) YXCourseDetailItem *courseItem;
 @property (nonatomic, strong) YXFileItemBase *fileItem;
+
 @end
 
 @implementation YXCourseDetailViewController
@@ -30,7 +31,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = self.course.course_title;
-    
     [self setupUI];
     [self getData];
 }

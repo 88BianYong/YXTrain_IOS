@@ -124,6 +124,12 @@ extern NSString *const kYXTrainContainsTeacher;
  */
 extern NSString *const kYXTrainRemindLeftSlip;
 
+/**
+ *  提交随堂练答案
+ */
+extern NSString *const kYXTrainSubmitQuestionAnswer;
+
+
 
 /**
  *  左划宽度 按屏幕750

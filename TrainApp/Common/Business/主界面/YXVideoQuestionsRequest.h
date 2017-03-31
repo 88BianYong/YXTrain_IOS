@@ -20,7 +20,6 @@
 
 @interface YXVideoQuestionsRequestItem_Result_Questions_Question : JSONModel
 @property (nonatomic, strong) NSArray<YXVideoQuestionsRequestItem_Result_Questions_Question_AnswerJson, Optional> *answerJson;
-@property (nonatomic, copy) NSString<Optional> *correctAnswer;
 @property (nonatomic, copy) NSString<Optional> *title;
 @property (nonatomic, copy) NSString<Optional> *qId;
 @property (nonatomic, copy) NSString<Optional> *types;

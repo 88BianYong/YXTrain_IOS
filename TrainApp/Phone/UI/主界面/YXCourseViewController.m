@@ -26,7 +26,9 @@ static  NSString *const trackPageName = @"课程列表页面";
 @end
 
 @implementation YXCourseViewController
-
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     YXCourseListFetcher *fetcher = [[YXCourseListFetcher alloc]init];
     fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;

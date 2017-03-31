@@ -17,7 +17,15 @@
         if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:YXTrainBeijingProjectId]) {
             return [LSTTrainHelper_Beijing alloc];
         }
-        if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:YXTrainDeYangProjectId]) {
+        NSArray *array = [YXTrainDeYangProjectId componentsSeparatedByString:@","];
+        __block BOOL isDeYang = NO;
+        [array enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isEqualToString:[YXTrainManager sharedInstance].currentProject.pid]) {
+                isDeYang = YES;
+                *stop = YES;
+            }
+        }];
+        if (isDeYang) {
             return [LSTTrainHelper_DeYang alloc];
         }
         return [LSTTrainHelper_Default alloc];

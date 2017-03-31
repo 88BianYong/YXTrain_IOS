@@ -289,7 +289,7 @@
 		<key>YXVideoQuestionsRequest</key>
 		<dict>
 			<key>mockEnable</key>
-			<true/>
+			<false/>
 			<key>mockFile</key>
 			<array>
 				<dict>
@@ -303,7 +303,7 @@
 		<key>YXSubmitAnswerRequest</key>
 		<dict>
 			<key>mockEnable</key>
-			<true/>
+			<false/>
 			<key>mockFile</key>
 			<array>
 				<dict>

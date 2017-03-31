@@ -272,9 +272,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 - (void)progressAction {
+    self.clossworkManager.quizzesInteger -= VideoClassworkQuizzesTime;
     [self resetTopBottomHideTimer];
     [self.player seekTo:self.player.duration * self.bottomView.slideProgressView.playProgress];
-    [self.clossworkManager showVideoClassworkView:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
+    [self.clossworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
 }
 
 - (void)playPauseAction {
@@ -350,6 +351,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Playing:
                 DDLogInfo(@"Playing");
                 [self.bottomView setPlaying];
+                if (self.clossworkManager.clossworkView.hidden == NO){
+                    [self.player pause];
+                }
                 break;
             case PlayerView_State_Paused:
                 DDLogInfo(@"Paused");
@@ -429,7 +433,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 [self.bottomView.slideProgressView updateUI];
             }
         }
-        [self.clossworkManager showVideoClassworkView:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
+        [self.clossworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
     }];
     
 //    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
@@ -747,7 +751,5 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     _preventHangingCourseInteger = preventHangingCourseInteger;
 }
-
-
 
 @end

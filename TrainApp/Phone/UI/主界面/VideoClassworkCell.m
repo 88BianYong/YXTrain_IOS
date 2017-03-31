@@ -63,7 +63,7 @@ static NSString *kClassworkAnswerError = @"   [ 错误 ]";
         color = [UIColor colorWithHexString:@"2bad28"];
     }else if (_classworkStatus == VideoClassworkCellStatus_Error){
         contentString = [NSString stringWithFormat:@"%@%@",self.answer.content,kClassworkAnswerError];
-        color = [UIColor colorWithHexString:@"2bad28"];
+        color = [UIColor colorWithHexString:@"eb502c"];
     }else {
         contentString = self.answer.content;
     }

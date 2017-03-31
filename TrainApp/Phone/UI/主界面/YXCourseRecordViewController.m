@@ -21,7 +21,6 @@ static  NSString *const trackPageName = @"看课记录页面";
 @property (nonatomic, strong) YXCourseRecordRequestItem *recordItem;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) YXModuleListRequest *moduleListRequest;
-
 @end
 
 @implementation YXCourseRecordViewController
@@ -33,11 +32,11 @@ static  NSString *const trackPageName = @"看课记录页面";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"看课记录";
-    
     [self setupUI];
     [self getDataShowLoading:YES];
     [self setupObservers];
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];

@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "YXVideoQuestionsRequest.h"
-typedef NS_ENUM(NSUInteger,VideoClassworkButtonStatus) {
-    VideoClassworkButtonStatus_Back = 0, //返回当前章节
-    VideoClassworkButtonStatus_Continue = 1,//继续学习
-    VideoClassworkButtonStatus_Confirm = 2,//确认 提交答案
+typedef NS_ENUM(NSUInteger,VideoClassworkAnswerStatus) {
+    VideoClassworkAnswerStatus_Normal = 0, //未提交答案
+    VideoClassworkAnswerStatus_Right = 1,//回答正确
+    VideoClassworkAnswerStatus_Error = 2,//非强制错误
+    VideoClassworkAnswerStatus_ForceError//强制错误
 };
 @interface VideoClassworkView : UIView
-@property (nonatomic, copy) void(^videoClassworkButtonActionBlock)(VideoClassworkButtonStatus status ,NSArray *answer);
+@property (nonatomic, copy) void(^videoClassworkButtonActionBlock)(VideoClassworkAnswerStatus status ,NSArray *answer);
 @property (nonatomic, strong) YXVideoQuestionsRequestItem_Result_Questions_Question *question;
 - (void)refreshClassworkViewAnsewr:(BOOL)isTrue quizCorrect:(BOOL)isForce;
 @end
