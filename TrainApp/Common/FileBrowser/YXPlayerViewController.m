@@ -433,7 +433,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 [self.bottomView.slideProgressView updateUI];
             }
         }
-        [self.clossworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
+        if (self.clossworkManager.clossworkView.hidden != NO){
+            [self.clossworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
+        }
+
     }];
     
 //    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {

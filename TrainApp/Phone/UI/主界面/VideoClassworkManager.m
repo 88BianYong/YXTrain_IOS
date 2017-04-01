@@ -72,8 +72,6 @@
                 BLOCK_EXEC(self.videoClassworkManagerBlock,YES,self.lastInteger);
             }
                 break;
-            default:
-                break;
         }
     }];
     [self.rootViewController.view addSubview:self.clossworkView];
@@ -155,10 +153,10 @@
         STRONG_SELF
         [self.rootViewController stopLoading];
         if (error) {
-            if (error.code == -2){
-                [self.rootViewController showToast:@"提交失败"];
-            }else {
+            if (error.code == 1){
                 [self.rootViewController showToast:error.localizedDescription];
+            }else {
+                [self.rootViewController showToast:@"提交失败"];
             }
             return ;
         }

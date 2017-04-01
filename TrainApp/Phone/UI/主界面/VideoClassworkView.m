@@ -79,6 +79,7 @@
     [[self.confirmButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         if (self.answerStatus == VideoClassworkAnswerStatus_Normal) {
+            [self.answerMutableArray removeAllObjects];
             [self.question.answerJson enumerateObjectsUsingBlock:^(YXVideoQuestionsRequestItem_Result_Questions_Question_AnswerJson *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (obj.isChoose.boolValue) {
                     [self.answerMutableArray addObject:obj.no];
@@ -238,8 +239,8 @@
         self.answerStatus = VideoClassworkAnswerStatus_Normal;
         self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"f3f7fa"].CGColor;
         self.confirmButton.enabled = NO;
-        [self.answerMutableArray removeAllObjects];
     }else {
+        [self.answerMutableArray removeAllObjects];
         [self.tableView reloadData];
     }
 

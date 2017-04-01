@@ -36,6 +36,11 @@
 
 @end
 @implementation YXCourseListRequestItem_body_module_course
+- (void)setQuiz:(YXCourseListRequestItem_body_module_course_quiz<Optional> *)quiz {
+    NSString *string = [NSString stringWithFormat:@"完成==>%@,总共===>%@",quiz.finish,quiz.total];
+    NSAssert(quiz.finish.integerValue <= quiz.total.integerValue, string);
+    _quiz = quiz;
+}
 
 @end
 @implementation YXCourseListRequestItem_body_module
