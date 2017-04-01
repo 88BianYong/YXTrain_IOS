@@ -102,18 +102,18 @@ static const int kTimeout = 600;
 }
 
 - (void)play {
-    if (!self.bIsPlayable) {
-        return;
-    }
+//    if (!self.bIsPlayable) {
+//        return;
+//    }
     [self.player play];
     self.state = PlayerView_State_Playing;
     _playPauseState = PlayerView_State_Playing;
 }
 
 - (void)pause {
-    if (!self.bIsPlayable) {
-        return;
-    }
+//    if (!self.bIsPlayable) {
+//        return;
+//    }
     [self.player pause];
     self.state = PlayerView_State_Paused;
     _playPauseState = PlayerView_State_Paused;
@@ -247,8 +247,9 @@ static const CGFloat kVolumnStep = 0.0625;
                 AVPlayerLayer *playerLayer = (AVPlayerLayer *)self.view.layer;
                 playerLayer.player = self.player;
                 [self _setupObservers];
-                [self.player play];
-                
+                if (self.playPauseState == PlayerView_State_Playing) {
+                    [self.player play];
+                }
                 if (self.progress) {
                     [self.playerItem seekToTime:CMTimeMake(self.duration * self.progress, 1) toleranceBefore:self->_tolerance toleranceAfter:self->_tolerance completionHandler:^(BOOL finished) {
                         @strongify(self); if (!self) return;

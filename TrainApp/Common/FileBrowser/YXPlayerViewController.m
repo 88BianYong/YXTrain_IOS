@@ -150,6 +150,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     } else {
         self.player.videoUrl = [NSURL URLWithString:self.videoUrl];
     }
+    //[self.player pause];
     
     self.bufferingView = [[YXPlayerBufferingView alloc] init];
     self.bufferingView.frame = CGRectMake(20, 20, 100, 100);
@@ -351,9 +352,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Playing:
                 DDLogInfo(@"Playing");
                 [self.bottomView setPlaying];
-                if (self.clossworkManager.clossworkView.hidden == NO){
-                    [self.player pause];
-                }
                 break;
             case PlayerView_State_Paused:
                 DDLogInfo(@"Paused");
