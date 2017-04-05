@@ -14,6 +14,9 @@
 @implementation VideoClassworkHeaderView
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+        [self layoutIfNeeded];
         [self setupUI];
         [self setupLayout];
     }
@@ -21,6 +24,9 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.edges.equalTo(self);
+    }];
     self.typeLabel = [[UILabel alloc] init];
     self.typeLabel.layer.cornerRadius = YXTrainCornerRadii;
     self.typeLabel.clipsToBounds = YES;

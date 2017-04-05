@@ -197,6 +197,7 @@
 		920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D731D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m */; };
 		920F1D771D59D1B500636A51 /* YXNotAutorotateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D761D59D1B500636A51 /* YXNotAutorotateView.m */; };
 		920F1D7A1D5ADDEE00636A51 /* YXAlertCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D791D5ADDEE00636A51 /* YXAlertCustomView.m */; };
+		92131F671E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92131F661E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m */; };
 		92134E3B1E8BADEE00A5B9B7 /* videoQuestions_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92134E3A1E8BADEE00A5B9B7 /* videoQuestions_mock.json */; };
 		92134E3D1E8BAE2900A5B9B7 /* submitAnswer_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92134E3C1E8BAE2900A5B9B7 /* submitAnswer_mock.json */; };
 		9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */; };
@@ -923,6 +924,8 @@
 		920F1D761D59D1B500636A51 /* YXNotAutorotateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNotAutorotateView.m; sourceTree = "<group>"; };
 		920F1D781D5ADDEE00636A51 /* YXAlertCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAlertCustomView.h; sourceTree = "<group>"; };
 		920F1D791D5ADDEE00636A51 /* YXAlertCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXAlertCustomView.m; sourceTree = "<group>"; };
+		92131F651E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNoFloatingHeaderFooterTableView.h; sourceTree = "<group>"; };
+		92131F661E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNoFloatingHeaderFooterTableView.m; sourceTree = "<group>"; };
 		92134E3A1E8BADEE00A5B9B7 /* videoQuestions_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = videoQuestions_mock.json; sourceTree = "<group>"; };
 		92134E3C1E8BAE2900A5B9B7 /* submitAnswer_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = submitAnswer_mock.json; sourceTree = "<group>"; };
 		9223C8001D2B9DD5000F74DF /* YXWorkshopListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopListRequest.h; sourceTree = "<group>"; };
@@ -1846,6 +1849,8 @@
 		7C3177671D0E688D004AAC90 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				92131F651E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.h */,
+				92131F661E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m */,
 				7CF8886B1D1BC5C300E7C04D /* YXGradientView.h */,
 				7CF8886C1D1BC5C300E7C04D /* YXGradientView.m */,
 				7CF844731D2E2EA000B1CE55 /* YXTriangleView.h */,
@@ -3952,6 +3957,7 @@
 				92310E4E1E52B0A500CB5F1F /* MasterHappeningViewController.m in Sources */,
 				928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */,
 				92F57B821E515F310061CAA2 /* SwipeTableViewCell.m in Sources */,
+				92131F671E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m in Sources */,
 				922661C11E8A0F19006DE8A4 /* VideoClassworkManager.m in Sources */,
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
 				92D94F071E77CDD7003AB58A /* RemindLeftSlipView.m in Sources */,

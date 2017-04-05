@@ -37,9 +37,12 @@ static  NSString *const trackPageName = @"看课记录页面";
     [self setupUI];
     [self getDataShowLoading:YES];
     [self setupObservers];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCourseView) name:kYXTrainSubmitQuestionAnswer object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCourseView:) name:kYXTrainSubmitQuestionAnswer object:nil];
 }
-- (void)refreshCourseView {
+- (void)refreshCourseView:(NSNotification *)aNotification {
+    if (aNotification.object != nil) {
+        return;
+    }
     if (self.courseIndexPatch != nil) {
         DeYangCourseRecordCell *cell = (DeYangCourseRecordCell *)[self.collectionView cellForItemAtIndexPath:self.courseIndexPatch];
         YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[self.courseIndexPatch.section];
@@ -48,6 +51,7 @@ static  NSString *const trackPageName = @"看课记录页面";
         course.quiz.finish = [NSString stringWithFormat:@"%ld",(long)finish];
         cell.course = course;
         self.courseIndexPatch = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainSubmitQuestionAnswer object:course.courses_id];
     }
 }
 - (void)viewWillAppear:(BOOL)animated{

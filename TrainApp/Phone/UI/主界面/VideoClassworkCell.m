@@ -18,6 +18,9 @@ static NSString *kClassworkAnswerError = @"   [ 错误 ]";
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]){
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        self.frame = [UIScreen mainScreen].bounds;
+        [self layoutIfNeeded];
         [self setupUI];
         [self setupLayout];
     }
@@ -25,6 +28,9 @@ static NSString *kClassworkAnswerError = @"   [ 错误 ]";
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.edges.equalTo(self);
+    }];
     self.chooseImageView = [[UIImageView alloc] init];
     self.chooseImageView.image = [UIImage imageNamed:@"未选择"];
     [self.contentView addSubview:self.chooseImageView];

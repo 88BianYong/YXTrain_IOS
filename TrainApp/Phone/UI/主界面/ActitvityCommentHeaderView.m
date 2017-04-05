@@ -31,6 +31,8 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        self.frame = [UIScreen mainScreen].bounds;
+        [self layoutIfNeeded];
         [self setupUI];
         [self setupLayout];
     }
@@ -39,6 +41,9 @@
 
 #pragma mark - setupUI
 - (void)setupUI {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.edges.equalTo(self);
+    }];
     self.headerImageView = [[UIImageView alloc] init];
     self.headerImageView.layer.cornerRadius = 18.0f;
     self.headerImageView.clipsToBounds = YES;

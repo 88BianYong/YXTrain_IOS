@@ -10,11 +10,12 @@
 #import "UITableView+TemplateLayoutHeaderView.h"
 #import "VideoClassworkCell.h"
 #import "VideoClassworkHeaderView.h"
+#import "YXNoFloatingHeaderFooterTableView.h"
 
 @interface VideoClassworkView ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) UIButton *confirmButton;
 @property (nonatomic, assign) VideoClassworkAnswerStatus answerStatus;
 @property (nonatomic, assign) VideoClassworkCellStatus classworkStatus;
@@ -43,15 +44,15 @@
     [self.containerView addSubview:self.titleLabel];
     
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+    self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.estimatedRowHeight = 44.0f;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedSectionHeaderHeight = 44.0f;
-    self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedRowHeight = 44.0f;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedSectionHeaderHeight = 44.0f;
+//    self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
     [self.containerView addSubview:self.tableView];
     [self.tableView registerClass:[VideoClassworkCell class] forCellReuseIdentifier:@"VideoClassworkCell"];
     [self.tableView registerClass:[VideoClassworkHeaderView class] forHeaderFooterViewReuseIdentifier:@"VideoClassworkHeaderView"];
@@ -156,6 +157,21 @@
     VideoClassworkHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"VideoClassworkHeaderView"];
     headerView.question = self.question;
     return headerView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return [tableView yx_heightForHeaderWithIdentifier:@"VideoClassworkHeaderView" configuration:^(VideoClassworkHeaderView *headerView) {
+        headerView.question = self.question;
+    }];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [tableView fd_heightForCellWithIdentifier:@"VideoClassworkCell" configuration:^(VideoClassworkCell *cell) {
+        cell.answer = self.question.answerJson[indexPath.row];
+        if ([self isFirstChooseAnswer:cell.answer.no.integerValue]) {
+            cell.classworkStatus = self.answerStatus == VideoClassworkAnswerStatus_Right ? VideoClassworkCellStatus_Right : VideoClassworkCellStatus_Error;
+        }else {
+            cell.classworkStatus = VideoClassworkCellStatus_Normal;
+        }
+    }];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.0001f;

@@ -69,9 +69,21 @@ static  NSString *const trackPageName = @"课程列表页面";
         };
         [self getFilters];
     }
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCourseView) name:kYXTrainSubmitQuestionAnswer object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCourseView:) name:kYXTrainSubmitQuestionAnswer object:nil];
 }
-- (void)refreshCourseView {
+- (void)refreshCourseView:(NSNotification *)aNotification {
+    if (aNotification.object != nil) {
+        [self.dataArray enumerateObjectsUsingBlock:^(YXCourseListRequestItem_body_module_course *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj.courses_id isEqualToString:aNotification.object]) {
+                NSInteger finish = MIN(obj.quiz.finish.integerValue + 1, obj.quiz.total.integerValue);
+                obj.quiz.finish = [NSString stringWithFormat:@"%ld",(long)finish];
+                *stop = YES;
+            }
+        }];
+        [self.tableView reloadData];
+    }else {
+        
+    }
     if (self.chooseCourseInteger >= 0) {
         YXCourseListRequestItem_body_module_course *course = self.dataArray[self.chooseCourseInteger];
         NSInteger finish = MIN(course.quiz.finish.integerValue + 1, course.quiz.total.integerValue);
