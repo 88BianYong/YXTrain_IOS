@@ -12,7 +12,11 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
+        self.frame = [UIScreen mainScreen].bounds;
+        [self layoutIfNeeded];
+        [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
+            make.edges.equalTo(self);
+        }];
     }
     return self;
 }

@@ -31,6 +31,11 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.frame = [UIScreen mainScreen].bounds;
+        [self layoutIfNeeded];
+        [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
+            make.edges.equalTo(self);
+        }];
         [self setupUI];
         [self setupLayout];
     }
