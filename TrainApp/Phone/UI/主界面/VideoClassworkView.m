@@ -18,7 +18,6 @@
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) UIButton *confirmButton;
 @property (nonatomic, assign) VideoClassworkAnswerStatus answerStatus;
-@property (nonatomic, assign) VideoClassworkCellStatus classworkStatus;
 @property (nonatomic, strong) NSMutableArray *answerMutableArray;
 @end
 @implementation VideoClassworkView
@@ -49,15 +48,10 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-//    self.tableView.estimatedRowHeight = 44.0f;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
-//    self.tableView.estimatedSectionHeaderHeight = 44.0f;
-//    self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
     [self.containerView addSubview:self.tableView];
-    [self.tableView registerClass:[VideoClassworkCell class] forCellReuseIdentifier:@"VideoClassworkCell"];
+    [self.tableView registerClass:[VideoClassworkCell class]
+           forCellReuseIdentifier:@"VideoClassworkCell"];
     [self.tableView registerClass:[VideoClassworkHeaderView class] forHeaderFooterViewReuseIdentifier:@"VideoClassworkHeaderView"];
-    
-    
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth * 0.9f, 65.0f)];
     self.tableView.tableFooterView = footerView;
     
@@ -97,7 +91,6 @@
         make.centerX.equalTo(footerView.mas_centerX);
         make.size.mas_offset(CGSizeMake(160.0f, 39.0f));
     }];
-    self.classworkStatus = VideoClassworkCellStatus_Normal;
 }
 
 - (void)setupLayout {
@@ -242,9 +235,6 @@
             [self.confirmButton setTitle:@"返回当前章节" forState:UIControlStateNormal];
 
         }
-            break;
-            
-        default:
             break;
     }
 }

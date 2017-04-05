@@ -60,7 +60,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, strong) dispatch_source_t preventHangingCourseTime;
 @property (nonatomic, strong) PreventHangingCourseView *preventView;
 
-@property (nonatomic ,strong) VideoClassworkManager *clossworkManager;
+@property (nonatomic ,strong) VideoClassworkManager *classworkManager;
 @property (nonatomic, assign) BOOL isShowClossworkViewBool;//是否正在显示随堂练界面
 
 
@@ -77,7 +77,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (BOOL)isShowClossworkViewBool {
-    return !self.clossworkManager.clossworkView.hidden;
+    return !self.classworkManager.hidden;
 }
 
 - (void)viewDidLoad {
@@ -192,12 +192,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     
     //随堂练
-    self.clossworkManager = [[VideoClassworkManager alloc] initClassworkRootViewController:self];
-    self.clossworkManager.classworMutableArray = self.classworkMutableArray;
-    self.clossworkManager.cid = self.cid;
-    self.clossworkManager.source = self.source;
-    self.clossworkManager.forcequizcorrect = self.forcequizcorrect;
-    [self.clossworkManager setVideoClassworkManagerBlock:^(BOOL isPlay, NSInteger playTime) {
+    self.classworkManager = [[VideoClassworkManager alloc] initClassworkRootViewController:self];
+    self.classworkManager.classworMutableArray = self.classworkMutableArray;
+    self.classworkManager.cid = self.cid;
+    self.classworkManager.source = self.source;
+    self.classworkManager.forcequizcorrect = self.forcequizcorrect;
+    [self.classworkManager setVideoClassworkManagerBlock:^(BOOL isPlay, NSInteger playTime) {
         STRONG_SELF
         if (isPlay) {
             if (playTime >= 0) {
@@ -209,6 +209,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             [self.player pause];
         }
     }];
+    [self.classworkManager startBatchRequestForVideoQuestions];
 }
 - (void)checkNetworkDoPlay {
     Reachability *r = [Reachability reachabilityForInternetConnection];
@@ -305,10 +306,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 - (void)progressAction {
-    self.clossworkManager.quizzesInteger -= VideoClassworkQuizzesTime;
+    self.classworkManager.quizzesInteger -= VideoClassworkQuizzesTime;
     [self resetTopBottomHideTimer];
     [self.player seekTo:self.player.duration * self.bottomView.slideProgressView.playProgress];
-    [self.clossworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
+    [self.classworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
 }
 
 - (void)playPauseAction {
@@ -415,8 +416,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 });
                 break;
             }
-            default:
-                break;
         }
     }];
     
@@ -470,24 +469,15 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             }
         }
         if (!self.isShowClossworkViewBool){
-            [self.clossworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
+            [self.classworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
         }
 
     }];
-    
-//    RACDisposable *r5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] subscribeNext:^(id x) {
-//        @strongify(self); if (!self) return;
-//        if (self->_startTime) {
-//            self->_startTime = [NSDate date];
-//        }
-//    }];
-
     [self.disposableArray addObject:r0];
     [self.disposableArray addObject:r1];
     [self.disposableArray addObject:r2];
     [self.disposableArray addObject:r3];
     [self.disposableArray addObject:r4];
-//    [self.disposableArray addObject:r5];
 }
 
 #pragma mark - top / bottom hide

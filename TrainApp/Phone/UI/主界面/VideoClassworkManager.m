@@ -8,23 +8,32 @@
 
 #import "VideoClassworkManager.h"
 #import "YXSubmitAnswerRequest.h"
+#import "VideoClassworkView.h"
 @interface VideoClassworkManager ()
 @property (nonatomic, weak) YXBaseViewController *rootViewController;
 @property (nonatomic, assign) NSInteger lastInteger;
+@property (nonatomic, strong) VideoClassworkView *clossworkView;
+
 @property (nonatomic, strong) YXVideoQuestionsRequest *questionsRequest;
 @property (nonatomic, strong) YXSubmitAnswerRequest *answerRequest;
 @property (nonatomic, strong) YXFileVideoClassworkItem *classworkItem;
 @property (nonatomic, strong) NSMutableDictionary *questionsMutableDictionary;
 @property (nonatomic, assign) BOOL isRequestFinish;
 @property (nonatomic, assign) BOOL isAnswerTrue;
+
+@property (nonatomic, strong) NSMutableArray<__kindof YXVideoQuestionsRequest *> *requestMutableArray;
 @end
 @implementation VideoClassworkManager
+- (void)dealloc {
+    [self.requestMutableArray removeAllObjects];
+}
 - (instancetype)initClassworkRootViewController:(YXBaseViewController *)controller {
     if (self = [super initWithFrame:CGRectZero]) {
         if (controller == nil) {
             return self;
         }
         self.questionsMutableDictionary = [[NSMutableDictionary alloc] init];
+        self.requestMutableArray = [[NSMutableArray alloc] init];
         self.rootViewController = controller;
         self.isRequestFinish = YES;
         self.quizzesInteger = 0;
@@ -93,7 +102,7 @@
                 if (self.questionsMutableDictionary[obj.quizzesID]) {
                     [self showVideoClassworkView:self.questionsMutableDictionary[obj.quizzesID]];
                 }else {
-                    [self requestForVideoQuestions:obj.quizzesID];
+                    [self requestForVideoQuestion:obj.quizzesID];
                 }
                 return ;
             }
@@ -113,7 +122,7 @@
     BLOCK_EXEC(self.videoClassworkManagerBlock,NO,0);
 }
 #pragma mark - request
-- (void)requestForVideoQuestions:(NSString *)quizzesID {
+- (void)requestForVideoQuestion:(NSString *)quizzesID {
     self.isRequestFinish = NO;
     YXVideoQuestionsRequest *request = [[YXVideoQuestionsRequest alloc] init];
     request.qID = quizzesID;
@@ -168,5 +177,29 @@
         [self.clossworkView refreshClassworkViewAnsewr:item.isCorrect.boolValue quizCorrect:self.forcequizcorrect];
     }];
     self.answerRequest = request;
+}
+
+- (void)startBatchRequestForVideoQuestions{
+    [self.classworMutableArray enumerateObjectsUsingBlock:^(__kindof YXFileVideoClassworkItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        YXVideoQuestionsRequest *request = [[YXVideoQuestionsRequest alloc] init];
+        request.qID = obj.quizzesID;
+        request.cID = self.cid;
+        request.pID = [YXTrainManager sharedInstance].currentProject.pid;
+        WEAK_SELF
+        [request startRequestWithRetClass:[YXVideoQuestionsRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+            STRONG_SELF
+            YXVideoQuestionsRequestItem *item = retItem;
+            if (item.code.integerValue == 11) {
+                obj.isTrue = YES;
+            }else if (!error && item.result.questions.count > 0) {
+                self.questionsMutableDictionary[obj.quizzesID] = item;
+            }
+        }];
+        [self.requestMutableArray addObject:request];
+    }];
+}
+
+- (BOOL)isHidden {
+    return self.clossworkView.hidden;
 }
 @end
