@@ -91,6 +91,10 @@ static  NSString *const trackPageName = @"课程列表页面";
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.chooseCourseInteger = -1;
+}
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];

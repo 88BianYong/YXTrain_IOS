@@ -210,7 +210,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         }
     }];
 }
-
 - (void)checkNetworkDoPlay {
     Reachability *r = [Reachability reachabilityForInternetConnection];
     if (![r isReachable]) {
