@@ -245,6 +245,7 @@
         self.answerStatus = VideoClassworkAnswerStatus_Normal;
         self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"f3f7fa"].CGColor;
         self.confirmButton.enabled = NO;
+        [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f)];
     }else {
         [self.answerMutableArray removeAllObjects];
         [self.tableView reloadData];
