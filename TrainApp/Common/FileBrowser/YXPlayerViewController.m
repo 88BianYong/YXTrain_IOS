@@ -61,6 +61,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, strong) PreventHangingCourseView *preventView;
 
 @property (nonatomic ,strong) VideoClassworkManager *clossworkManager;
+@property (nonatomic, assign) BOOL isShowClossworkViewBool;//是否正在显示随堂练界面
 
 
 
@@ -74,6 +75,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 //}
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (BOOL)isShowClossworkViewBool {
+    return !self.clossworkManager.clossworkView.hidden;
 }
 
 - (void)viewDidLoad {
@@ -199,13 +203,42 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             if (playTime >= 0) {
                 [self.player seekTo:playTime];
             }
-            [self.player play];
+            [self checkNetworkDoPlay];
         }else {
             self.bottomView.slideProgressView.bSliding = NO;
             [self.player pause];
         }
     }];
 }
+
+- (void)checkNetworkDoPlay {
+    Reachability *r = [Reachability reachabilityForInternetConnection];
+    if (![r isReachable]) {
+        [self showToast:@"网络不可用,请检查网络"];
+        return;
+    }
+    if ([r isReachableViaWiFi]) {
+        [self.player play];
+        return;
+    }
+    if ([r isReachableViaWiFi]) {
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"网络连接提示" message:@"当前处于非Wi-Fi环境，仍要继续吗？" preferredStyle:UIAlertControllerStyleAlert];
+        WEAK_SELF
+        UIAlertAction *backAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            STRONG_SELF
+            [self backAction];
+            return;
+        }];
+        UIAlertAction *goAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            STRONG_SELF
+            [self.player play];
+        }];
+        [alertVC addAction:backAction];
+        [alertVC addAction:goAction];
+        [self presentViewController:alertVC animated:YES completion:nil];
+    }
+}
+
 - (void)applicationDidBecomeActive:(NSNotification *)notification{
     if (self.player.state == PlayerView_State_Playing) {
         [self.player play];
@@ -302,7 +335,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }];
     UIAlertAction *goAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         STRONG_SELF
-        [self.player play];
+        if (self.isShowClossworkViewBool){
+            [self.player play];
+        }
     }];
     [alertVC addAction:backAction];
     [alertVC addAction:goAction];
@@ -322,7 +357,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             return;
         }
         if([r isReachableViaWWAN]) {
-            [self do3GCheck];
+            if (self.isShowClossworkViewBool) {
+                [self.player pause];
+            }else {
+                [self do3GCheck];
+            }
         }
     }];
     [r startNotifier];
@@ -431,7 +470,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 [self.bottomView.slideProgressView updateUI];
             }
         }
-        if (self.clossworkManager.clossworkView.hidden != NO){
+        if (!self.isShowClossworkViewBool){
             [self.clossworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
         }
 
