@@ -306,7 +306,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 - (void)progressAction {
-    self.classworkManager.quizzesInteger -= VideoClassworkQuizzesTime;
+    self.classworkManager.quizzesInteger = 0;
     [self resetTopBottomHideTimer];
     [self.player seekTo:self.player.duration * self.bottomView.slideProgressView.playProgress];
     [self.classworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressView.playProgress)];
