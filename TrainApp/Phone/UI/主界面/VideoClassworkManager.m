@@ -78,6 +78,7 @@
             case VideoClassworkAnswerStatus_ForceError:
             {
                 self.clossworkView.hidden = YES;
+                self.quizzesInteger = self.lastInteger;
                 BLOCK_EXEC(self.videoClassworkManagerBlock,YES,self.lastInteger);
             }
                 break;
