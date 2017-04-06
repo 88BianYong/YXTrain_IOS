@@ -41,6 +41,7 @@
     vc.exitDelegate = self;
     vc.isPreRecord = self.isDeleteVideo;
     vc.sourceType = self.sourceType;
+    vc.source = self.source;
     vc.classworkMutableArray = [self quizeesExercisesFormatSgqz];
     vc.forcequizcorrect = self.forcequizcorrect.boolValue;
     vc.cid = self.cid;

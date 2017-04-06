@@ -49,7 +49,7 @@ static  NSString *const trackPageName = @"考核页面";
     [super viewDidLoad];
     self.isSelected = YES;
     self.isShowLoding = YES;
-    self.urlString = @"http:www.baidu.com";
+    self.urlString = [NSString stringWithFormat:@"http://i.yanxiu.com/uft/train/mobile/projectstat.vm?projectid=%@&token=%@",[YXTrainManager sharedInstance].currentProject.pid,[YXUserManager sharedManager].userModel.token];
     [self setupLeftBack];
     [self setupRightWithImageNamed:@"更多icon" highlightImageNamed:@"更多icon-点击态"];
     self.webView = [UIWebView new];
@@ -82,7 +82,6 @@ static  NSString *const trackPageName = @"考核页面";
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     if (self.isShowLoding) {

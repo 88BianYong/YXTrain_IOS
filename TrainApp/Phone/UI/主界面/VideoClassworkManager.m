@@ -11,7 +11,7 @@
 #import "VideoClassworkView.h"
 @interface VideoClassworkManager ()
 @property (nonatomic, weak) YXBaseViewController *rootViewController;
-@property (nonatomic, assign) NSInteger lastInteger;
+@property (nonatomic, assign) NSInteger lastInteger;//返回上一章节的时间
 @property (nonatomic, strong) VideoClassworkView *clossworkView;
 
 @property (nonatomic, strong) YXVideoQuestionsRequest *questionsRequest;
@@ -135,6 +135,7 @@
     YXVideoQuestionsRequest *request = [[YXVideoQuestionsRequest alloc] init];
     request.qID = quizzesID;
     request.cID = self.cid;
+    request.src = self.source;
     request.pID = [YXTrainManager sharedInstance].currentProject.pid;
     WEAK_SELF
     [request startRequestWithRetClass:[YXVideoQuestionsRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -192,6 +193,7 @@
         YXVideoQuestionsRequest *request = [[YXVideoQuestionsRequest alloc] init];
         request.qID = obj.quizzesID;
         request.cID = self.cid;
+        request.src = self.source;
         request.pID = [YXTrainManager sharedInstance].currentProject.pid;
         WEAK_SELF
         [request startRequestWithRetClass:[YXVideoQuestionsRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
