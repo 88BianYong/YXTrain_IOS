@@ -92,10 +92,17 @@
   }];
 }
 - (void)compareClassworkPlayTime:(NSInteger)playProgress {
+    __block BOOL isLastBool = YES;
     if ((playProgress >= self.quizzesInteger) && self.isRequestFinish) {
         [self.classworMutableArray enumerateObjectsUsingBlock:^(__kindof YXFileVideoClassworkItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (obj.isTrue) {
-                self.lastInteger = [obj.timeString integerValue];
+            if (!obj.isTrue && isLastBool) {
+                if (idx > 0) {
+                    YXFileVideoClassworkItem *item = self.classworMutableArray[idx - 1];
+                    self.lastInteger = [item.timeString integerValue];
+                    isLastBool = NO;
+                }else {
+                    self.lastInteger = 0;
+                }
             }
             if ([self comparisonTime:playProgress originalTime:[obj.timeString integerValue]] && !obj.isTrue) {
                 self.quizzesInteger = [obj.timeString integerValue] - 5;
