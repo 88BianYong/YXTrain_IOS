@@ -390,6 +390,12 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 ActivityListViewController *VC = [[ActivityListViewController alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
                 VC.stageID = vo.voID;
+            }else if ([data.toolid isEqualToString:@"221"] || [data.toolid isEqualToString:@"321"]){//随堂练
+                YXCourseViewController *vc = [[YXCourseViewController alloc]init];
+                vc.stageID = vo.voID;
+                vc.status = YXCourseFromStatus_Stage;
+                [self.navigationController pushViewController:vc animated:YES];
+                [YXDataStatisticsManger trackEvent:@"课程列表" label:trackLabelOfJumpFromExeam parameters:nil];
             }else{
                 [self showToast:@"相关功能暂未开放"];
             }

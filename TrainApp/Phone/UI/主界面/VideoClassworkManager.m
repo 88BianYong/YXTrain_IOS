@@ -99,10 +99,10 @@
                 if (idx > 0) {
                     YXFileVideoClassworkItem *item = self.classworMutableArray[idx - 1];
                     self.lastInteger = [item.timeString integerValue];
-                    isLastBool = NO;
                 }else {
                     self.lastInteger = 0;
                 }
+                isLastBool = NO;
             }
             if ([self comparisonTime:playProgress originalTime:[obj.timeString integerValue]] && !obj.isTrue) {
                 self.quizzesInteger = [obj.timeString integerValue] - 5;
