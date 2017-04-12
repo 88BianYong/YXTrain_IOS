@@ -14,8 +14,6 @@ static  NSString *const trackPageName = @"考核页面";
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, assign) BOOL isShowLoding;
 @property (nonatomic,assign) BOOL  isSelected;
-
-@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 @end
 
@@ -23,10 +21,7 @@ static  NSString *const trackPageName = @"考核页面";
 
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
-    [self.timer invalidate];
     [self.header free];
-    
-    self.timer = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -69,24 +64,21 @@ static  NSString *const trackPageName = @"考核页面";
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
     [self.webView loadRequest:request];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
     self.header = [MJRefreshHeaderView header];
     WEAK_SELF
     self.header.scrollView = self.webView.scrollView;
     self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
-        self.isShowLoding = NO;
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
     };
+    [self startLoading];
     
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-    if (self.isShowLoding) {
-        [self startLoading];
-    }
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
@@ -108,15 +100,12 @@ static  NSString *const trackPageName = @"考核页面";
             self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
             self.errorView.retryBlock = ^{
                 STRONG_SELF
+               [self startLoading];
                 [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
             };
             [self.view addSubview:self.errorView];
         }
     }
-}
-- (void)timerAction{
-    [self stopLoading];
-    self.isShowLoding = NO;
 }
 - (void)report:(BOOL)status{
     if (status) {

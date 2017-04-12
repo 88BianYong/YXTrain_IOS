@@ -108,6 +108,7 @@
             self.errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
             self.errorView.retryBlock = ^{
                 STRONG_SELF
+                [self startLoading];
                 [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
             };
             [self.view addSubview:self.errorView];
