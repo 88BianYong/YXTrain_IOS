@@ -63,7 +63,8 @@ static const CGFloat kImageWidth = 30;
     self.selectionTableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     self.selectionTableView.backgroundColor = [UIColor clearColor];
     self.selectionTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.selectionTableView.rowHeight = 45;
+    self.selectionTableView.rowHeight = UITableViewAutomaticDimension;
+    self.selectionTableView.estimatedRowHeight = 44.0f;
     self.selectionTableView.dataSource = self;
     self.selectionTableView.delegate = self;
     self.selectionTableView.sectionFooterHeight = 0.1;
@@ -104,9 +105,9 @@ static const CGFloat kImageWidth = 30;
     [superview addSubview:self.maskView];
     CGFloat tableHeight;
     if (self.projectGroup.count == 2) {
-        tableHeight = MIN((self.projectGroup.firstObject.items.count + self.projectGroup.lastObject.items.count)*self.selectionTableView.rowHeight + 45 * 2, 45 * 6 + 20);
+        tableHeight = MIN((self.projectGroup.firstObject.items.count + self.projectGroup.lastObject.items.count)*45.0f + 45 * 2, 45 * 6 + 20);
     }else {
-        tableHeight = MIN(([self.projectGroup.firstObject.items count])*self.selectionTableView.rowHeight + 45, 45 * 5 + 20);
+        tableHeight = MIN(([self.projectGroup.firstObject.items count])*45.0f + 45, 45 * 5 + 20);
     }
     CGRect rect = self.selectionBgView.frame;
     rect.size.height = tableHeight+8;
@@ -173,15 +174,15 @@ static const CGFloat kImageWidth = 30;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self currentProjectIndexPath:indexPath];
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 45;
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.1;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     TrainListProjectGroup *group = self.projectGroup[section];
     return [self sectionHeaderViewWithTitle:group.name];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 44.0f;
 }
 - (UIView *)sectionHeaderViewWithTitle:(NSString *)title {
     NSString *imageName = [NSString stringWithFormat:@"%@icon",title];

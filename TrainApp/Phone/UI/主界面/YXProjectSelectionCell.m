@@ -39,10 +39,12 @@
     self.selectedBackgroundView = selectedBgView;
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.titleLabel.numberOfLines = 0;
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.mas_equalTo(0);
+        make.top.equalTo(self.contentView.mas_top).offset(13.0f);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-13.0f);
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-20);
     }];
@@ -60,7 +62,7 @@
 
 - (void)setName:(NSString *)name{
     _name = name;
-    self.titleLabel.text = name;
+    self.titleLabel.text = _name;
 }
 
 - (void)setIsCurrent:(BOOL)isCurrent{
