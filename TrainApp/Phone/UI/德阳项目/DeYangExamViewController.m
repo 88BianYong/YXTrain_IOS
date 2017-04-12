@@ -100,6 +100,7 @@ static  NSString *const trackPageName = @"考核页面";
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [self stopLoading];
+    [self.header endRefreshing];
     if (error.code == -1009) {
         self.errorView.frame = self.view.bounds;
         if (!self.errorView) {
