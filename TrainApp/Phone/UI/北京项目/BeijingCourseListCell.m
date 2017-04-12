@@ -133,18 +133,32 @@
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
-    self.hoursLabel.text = [NSString stringWithFormat:@"学时 %0.1f", _course.credit.doubleValue];
     int second = course.record.intValue;
-    if (second == 0) {
-        self.recordLabel.text = @"未观看";
-        self.historyImageView.image = [UIImage imageNamed:@"未观看时间icon"];
+    if ((arc4random()%5) == 2) {
+        self.hoursImageView.image = [UIImage imageNamed:@"不支持"];
+        self.hoursLabel.text = @"暂不支持该类型课程";
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
+        self.hoursLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
+        self.historyImageView.hidden = YES;
+        self.recordLabel.hidden = YES;
     }else{
-        int minute = second / 60;
-        int hour = minute / 60;
-        minute = minute % 60;
-        second = second % 60;
-        self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
-        self.historyImageView.image = [UIImage imageNamed:@"已观看时间icon"];
+        self.historyImageView.hidden = NO;
+        self.recordLabel.hidden = NO;
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
+        self.hoursLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+        self.hoursLabel.text = [NSString stringWithFormat:@"学时 %0.1f", _course.credit.doubleValue];
+        self.hoursImageView.image = [UIImage imageNamed:@"学时icon"];
+        if (second == 0) {
+            self.recordLabel.text = @"未观看";
+            self.historyImageView.image = [UIImage imageNamed:@"未观看时间icon"];
+        }else{
+            int minute = second / 60;
+            int hour = minute / 60;
+            minute = minute % 60;
+            second = second % 60;
+            self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
+            self.historyImageView.image = [UIImage imageNamed:@"已观看时间icon"];
+        }
     }
 }
 @end

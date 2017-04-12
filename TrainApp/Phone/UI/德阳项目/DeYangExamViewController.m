@@ -107,6 +107,10 @@ static  NSString *const trackPageName = @"考核页面";
         }
     }
 }
+- (void)timerAction{
+    [self stopLoading];
+    self.isShowLoding = NO;
+}
 - (void)report:(BOOL)status{
     if (status) {
         self.isSelected = YES;

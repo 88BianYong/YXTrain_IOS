@@ -6,8 +6,8 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "PagedListViewControllerBase.h"
+#import "YXCourseBaseViewController.h"
 
-@interface BeijingCourseViewController : PagedListViewControllerBase
+@interface BeijingCourseViewController : YXCourseBaseViewController
 @property (nonatomic, strong) NSString *stageID; // 从考核的阶段课程进入需要传阶段的id
 @end

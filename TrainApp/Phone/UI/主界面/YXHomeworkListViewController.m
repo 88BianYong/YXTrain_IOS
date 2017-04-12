@@ -38,10 +38,11 @@ UITableViewDataSource
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.title = @"作业列表";
-    [self setupUI];
-    [self layoutInterface];
-    [self requestForHomeworkList:YES];
-    
+    if ([self isJudgmentChooseCourse]) {
+        [self setupUI];
+        [self layoutInterface];
+        [self requestForHomeworkList:YES];
+    }
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -61,6 +62,20 @@ UITableViewDataSource
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - setupUI
+- (BOOL)isJudgmentChooseCourse{
+    if ([YXTrainManager sharedInstance].currentProject.isOpenTheme.boolValue) {
+        self.emptyView = [[YXEmptyView alloc]init];
+        self.emptyView.title = @"您还没有选课";
+        self.emptyView.imageName = @"没选课";
+        [self.view addSubview:self.emptyView];
+        [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+        return NO;
+    }else {
+        return YES;
+    }
+}
 
 - (void)setupUI{
     _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];

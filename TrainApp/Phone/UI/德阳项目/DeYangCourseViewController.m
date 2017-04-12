@@ -17,7 +17,6 @@ static  NSString *const trackPageName = @"课程列表页面";
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXCourseListFilterModel *filterModel;
 @property (nonatomic, strong) YXCourseListRequest *request;
-@property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 
@@ -29,8 +28,9 @@ static  NSString *const trackPageName = @"课程列表页面";
 @end
 
 @implementation DeYangCourseViewController
-
-
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     YXCourseListFetcher *fetcher = [[YXCourseListFetcher alloc]init];
     fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
@@ -48,6 +48,9 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
+    
+}
+- (void)setupUI {
     self.chooseCourseInteger = -1;
     self.isAllowChange = YES;
     // Do any additional setup after loading the view.

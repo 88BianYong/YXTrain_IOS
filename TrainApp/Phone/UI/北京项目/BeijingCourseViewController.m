@@ -18,7 +18,6 @@ static  NSString *const trackPageName = @"课程列表页面";
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) BeijingCourseFilterModel *filterModel;
 @property (nonatomic, strong) BeijingCourseFilterManager *filterRequest;
-@property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, strong) DataErrorView *filterDataErrorView;
 @property (nonatomic, assign) BOOL isNavBarHidden;
@@ -30,8 +29,8 @@ static  NSString *const trackPageName = @"课程列表页面";
 @end
 
 @implementation BeijingCourseViewController
-- (void)dealloc{
-    DDLogError(@"release====>%@",NSStringFromClass([self class]));
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewDidLoad {
     BeijingCourseListFetcher *fetcher = [[BeijingCourseListFetcher alloc]init];
@@ -41,6 +40,10 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
+}
+
+
+- (void)setupUI {
     self.isAllowChange = YES;
     self.isWaitingForFilter = YES;
     // Do any additional setup after loading the view.
@@ -117,8 +120,15 @@ static  NSString *const trackPageName = @"课程列表页面";
         fetcher.studyid = self.filterModel.study[0].filterID;
         fetcher.stageid = self.filterModel.stage[0].filterID;
         [self resetFilterConditionsStage:self.stageID];
+        self.isWaitingForFilter = NO;
         [self firstPageFetch];
     }];
+}
+- (void)firstPageFetch {
+    if (self.isWaitingForFilter) {
+        return;
+    }
+    [super firstPageFetch];
 }
 - (void)resetFilterConditionsStage:(NSString *)filterId{
     if (filterId == nil) {

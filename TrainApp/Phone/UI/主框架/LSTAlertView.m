@@ -73,7 +73,8 @@ CGFloat const kDefaultContentViewHeight = 155.0f;
     LayoutBlock block = ^(AlertView *view) {
         [view.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
-            make.size.mas_equalTo(CGSizeMake(kDefaultContentViewWith, kDefaultContentViewHeight));
+            make.width.mas_offset(kDefaultContentViewWith);
+            //make.size.mas_equalTo(CGSizeMake(kDefaultContentViewWith, kDefaultContentViewHeight));
         }];
         if (animated) {
             self.alpha = 0.3;
@@ -99,10 +100,17 @@ CGFloat const kDefaultContentViewHeight = 155.0f;
     imageView.image = [UIImage imageNamed:self.imageName];
     
     LSTAlertTitleLabel *titleLabel = [[LSTAlertTitleLabel alloc]init];
-    titleLabel.text = self.title;
-    
+    if (self.attributedString) {
+        titleLabel.attributedText = self.attributedString;
+    }else {
+        titleLabel.text = self.title;
+    }
     UIView *lineView = [[UIView alloc] init];
     lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    
+    [defaultView addSubview:imageView];
+    [defaultView addSubview:titleLabel];
+    [defaultView addSubview:lineView];
     
     if (self.alertButtonItems.count > 2.0 || self.alertButtonItems.count == 0) {
         NSAssert(self.alertButtonItems.count, @"按键数目不能超过2个,也不能为空");
@@ -114,6 +122,7 @@ CGFloat const kDefaultContentViewHeight = 155.0f;
                 make.bottom.equalTo(defaultView.mas_bottom);
                 make.left.right.equalTo(defaultView);
                 make.height.mas_offset(60.0f);
+                make.top.equalTo(imageView.mas_bottom).offset(-15.5f);
             }];
         }else{
             UIButton *buttonOne = self.alertButtonItems.firstObject.button;
@@ -124,6 +133,7 @@ CGFloat const kDefaultContentViewHeight = 155.0f;
                 make.height.mas_offset(29.0f);
                 make.width.mas_offset(75.0f);
                 make.bottom.equalTo(defaultView.mas_bottom).offset(-15.5f);
+                make.top.equalTo(lineView.mas_bottom).offset(15.5f);
             }];
             UIButton *buttonTwo = self.alertButtonItems.lastObject.button;
             buttonTwo.tag = 1;
@@ -133,13 +143,12 @@ CGFloat const kDefaultContentViewHeight = 155.0f;
                 make.height.mas_offset(29.0f);
                 make.width.mas_offset(75.0f);
                 make.bottom.equalTo(defaultView.mas_bottom).offset(-15.5f);
+                make.top.equalTo(lineView.mas_bottom).offset(15.5f);
             }];
         }
     }
     
-    [defaultView addSubview:imageView];
-    [defaultView addSubview:titleLabel];
-    [defaultView addSubview:lineView];
+
     
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(90.0f, 90.0f));
@@ -150,10 +159,11 @@ CGFloat const kDefaultContentViewHeight = 155.0f;
         make.top.equalTo(imageView.mas_bottom).offset(3.0f);
         make.centerX.equalTo(imageView.mas_centerX);
         make.width.equalTo(defaultView.mas_width).offset(-30.0f);
+        make.height.mas_greaterThanOrEqualTo(50.0f);
     }];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(defaultView);
-        make.bottom.equalTo(defaultView.mas_bottom).offset(-60.0f);
+        make.bottom.equalTo(titleLabel.mas_bottom).offset(15.0f);
         make.height.mas_offset(1/[UIScreen mainScreen].scale);
     }];
     

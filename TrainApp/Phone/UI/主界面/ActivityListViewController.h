@@ -6,7 +6,7 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "PagedListViewControllerBase.h"
-@interface ActivityListViewController : PagedListViewControllerBase
+#import "YXActivityListBaseViewController.h"
+@interface ActivityListViewController : YXActivityListBaseViewController
 @property (nonatomic, strong) NSString *stageID;//阶段的id
 @end

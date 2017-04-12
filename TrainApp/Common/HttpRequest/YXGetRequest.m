@@ -10,8 +10,7 @@
 
 @implementation YXGetRequest
 
-- (instancetype)init
-{
+- (instancetype)init {
     if (self = [super init]) {
         self.token = [YXUserManager sharedManager].userModel.token;
         self.os = @"ios";
@@ -19,6 +18,4 @@
     }
     return self;
 }
-
-
 @end

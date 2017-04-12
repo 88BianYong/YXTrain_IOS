@@ -92,12 +92,15 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    YXNoticeAndBulletinItem *item = self.dataArray[indexPath.section];
-    YXBroseWebView *webView = [[YXBroseWebView alloc] init];
-    webView.urlString = item.url;
-    webView.titleString = item.title;
-    webView.sourceControllerTitile = self.title;
-    [self.navigationController pushViewController:webView animated:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        YXNoticeAndBulletinItem *item = self.dataArray[indexPath.section];
+        YXBroseWebView *webView = [[YXBroseWebView alloc] init];
+        webView.urlString = item.url;
+        webView.titleString = item.title;
+        webView.sourceControllerTitile = self.title;
+        [self.navigationController pushViewController:webView animated:YES];
+    });
+
 }
 
 #pragma mark - UITableViewDelegate

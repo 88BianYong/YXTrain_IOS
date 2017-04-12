@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UILabel *recordLabel;
 
 @property (nonatomic, strong) UILabel *quizzesLabel;
+@property (nonatomic, strong) UIImageView *historyImageView;
 
 @end
 @implementation DeYangCourseListCell
@@ -70,6 +71,16 @@
         make.right.mas_equalTo(-20);
     }];
     
+    self.historyImageView = [[UIImageView alloc]init];
+    self.historyImageView.image = [UIImage imageNamed:@"不支持"];
+    self.historyImageView.hidden = YES;
+    [self.contentView addSubview:self.historyImageView];
+    [self.historyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.courseImageView.mas_right).mas_offset(15);
+        make.centerY.mas_equalTo(self.recordLabel.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(20, 20));
+    }];
+    
     self.quizzesLabel = [[UILabel alloc]init];
     self.quizzesLabel.text = @"[随堂练] 已答对0个 / 共2个";
     self.quizzesLabel.font = [UIFont systemFontOfSize:11];
@@ -90,6 +101,7 @@
         make.bottom.mas_equalTo(0);
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
+
 }
 
 - (void)setCourse:(YXCourseListRequestItem_body_module_course *)course {
@@ -102,18 +114,34 @@
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
-    
-    int second = course.record.intValue;
-    if (second == 0) {
-        self.recordLabel.text = @"未观看";
-    }else{
-        int minute = second / 60;
-        int hour = minute / 60;
-        minute = minute % 60;
-        second = second % 60;
-        self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
+    if ((arc4random()%5) == 2) {
+        [self.recordLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.titleLabel.mas_left).mas_offset(23);
+        }];
+        self.historyImageView.hidden = NO;
+        self.recordLabel.text = @"暂不支持该类型课程";
+        self.recordLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
+        self.quizzesLabel.text = @"";
+    }else {
+        self.historyImageView.hidden = YES;
+        [self.recordLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.titleLabel.mas_left);
+        }];
+        self.recordLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
+        int second = course.record.intValue;
+        if (second == 0) {
+            self.recordLabel.text = @"未观看";
+        }else{
+            int minute = second / 60;
+            int hour = minute / 60;
+            minute = minute % 60;
+            second = second % 60;
+            self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
+        }
+        self.quizzesLabel.text = [NSString stringWithFormat:@"[随堂练] 已答对%@个 / 共%@个",_course.quiz.finish,_course.quiz.total];
     }
-    self.quizzesLabel.text = [NSString stringWithFormat:@"[随堂练] 已答对%@个 / 共%@个",_course.quiz.finish,_course.quiz.total];
 }
 
 @end

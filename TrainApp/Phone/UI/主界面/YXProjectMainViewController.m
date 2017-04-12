@@ -23,16 +23,32 @@
 #import "ChangeProjectGuideView.h"
 #import "WebsocketRedRightView.h"
 #import "WebsocketRedLeftView.h"
+#import "ProjectChooseLayerView.h"
 #import "YXProjectMainViewController+Master.h"
 #import "YXProjectMainViewController+Student.h"
-@interface YXProjectMainViewController ()
-@property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
-@property (nonatomic, strong) NSMutableArray *dataMutableArrray;
-@property (nonatomic, strong) BeijingCheckedMobileUserRequest *checkedMobileUserRequest;
-@property (nonatomic, strong) WebsocketRedLeftView *leftView;
-@property (nonatomic, assign) BOOL isCheckedMobile;//是否应该进行测评接口请求;
 
+#import "TrainLayerListRequest.h"
+#import "TrainSelectLayerRequest.h"
+typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
+    TrainProjectRequestStatus_ProjectList,//请求项目列表
+    TrainProjectRequestStatus_Beijing,//请求北京校验
+    TrainProjectRequestStatus_LayerList,//请求分层
+    
+};
+
+@interface YXProjectMainViewController ()
+@property (nonatomic, strong) BeijingCheckedMobileUserRequest *checkedMobileUserRequest;
+@property (nonatomic, strong) TrainLayerListRequest *layerListRequest;
+@property (nonatomic, strong) TrainSelectLayerRequest *selectLayerRequest;
+
+@property (nonatomic, strong) NSMutableArray *dataMutableArrray;
+@property (nonatomic, assign) TrainProjectRequestStatus requestStatus;
+
+@property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
+@property (nonatomic, strong) WebsocketRedLeftView *leftView;
 @property (nonatomic, strong) WebsocketRedRightView *rightView;
+@property (nonatomic, strong) ProjectChooseLayerView *chooseLayerView;
+
 @end
 
 @implementation YXProjectMainViewController
@@ -40,13 +56,28 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+- (ProjectChooseLayerView *)chooseLayerView {
+    if (_chooseLayerView == nil) {
+        _chooseLayerView = [[ProjectChooseLayerView alloc] init];
+        [self.view addSubview:self.chooseLayerView];
+        [_chooseLayerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+        WEAK_SELF
+        [_chooseLayerView setProjectChooseLayerCompleteBlock:^(NSString *layerId){
+            STRONG_SELF;
+            [self requestForSelectLayer:layerId];
+        }];
+    }
+    return _chooseLayerView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataMutableArrray = [[NSMutableArray alloc] initWithCapacity:6];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSwitchGuideView) name:@"cancelToUpdate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserRoleInterface) name:kYXTrainUserIdentityChange object:nil];
     [self setupUI];
-    [self getProjectList];
+    [self requestForProjectList];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -79,20 +110,24 @@
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
-        if (self.isCheckedMobile) {
+        if (self.requestStatus == TrainProjectRequestStatus_ProjectList) {
+            [self requestForProjectList];
+        }else if (self.requestStatus == TrainProjectRequestStatus_Beijing){
             [self requestCheckedMobileUser];
         }else {
-            [self getProjectList];
+            [self requestForLayerList];
         }
     };
     self.emptyView = [[YXEmptyView alloc]init];
     self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
-        if (self.isCheckedMobile) {
+        if (self.requestStatus == TrainProjectRequestStatus_ProjectList) {
+            [self requestForProjectList];
+        }else if (self.requestStatus == TrainProjectRequestStatus_Beijing){
             [self requestCheckedMobileUser];
         }else {
-            [self getProjectList];
+            [self requestForLayerList];
         }
     };
 }
@@ -108,9 +143,37 @@
     }];
     [self setupRightWithCustomView:self.rightView];
 }
+
 #pragma mark - request
+- (void)requestForProjectList{
+    self.requestStatus = TrainProjectRequestStatus_ProjectList;
+    [self startLoading];
+    WEAK_SELF
+    [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(NSArray *groups, NSError *error) {
+        STRONG_SELF
+        self.emptyView.imageName = @"无培训项目";
+        self.emptyView.title = @"您没有已参加的培训项目";
+        self.emptyView.subTitle = @"";
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = groups.count != 0;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            [self stopLoading];
+            return;
+        }
+        [self.dataMutableArrray addObjectsFromArray:groups];
+        if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目需要校验信息
+            [self requestCheckedMobileUser];
+        }else {
+            [self dealWithProjectGroups:self.dataMutableArrray];
+            [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
+        }
+    }];
+}
+
 - (void)requestCheckedMobileUser {
-    self.isCheckedMobile = YES;
+    self.requestStatus = TrainProjectRequestStatus_Beijing;
     if (self.checkedMobileUserRequest) {
         [self.checkedMobileUserRequest stopRequest];
     }
@@ -120,23 +183,24 @@
     request.pid = [YXTrainManager sharedInstance].currentProject.pid;
     [request startRequestWithRetClass:[BeijingCheckedMobileUserRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
-        
         BeijingCheckedMobileUserRequestItem *item = retItem;
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = item != nil;
         data.localDataExist = NO;
         data.error = error;
         if ([self handleRequestData:data]) {
+            [self stopLoading];
             return;
         }
         if (item.isUpdatePwd.integerValue == 0) {// 0 为 没有修改过密码 ，需要老师修改；1为不需要修改。
+            [self stopLoading];
             BeijingCheckedMobileUserViewController *VC = [[BeijingCheckedMobileUserViewController alloc] init];
             self.leftView.hidden = YES;
             VC.passportString = item.passport;
             [self.navigationController pushViewController:VC animated:NO];
         }
         if (item.isTest.integerValue == 0) {// 0为需要老师做前测问卷，1为不需要做。
+            [self stopLoading];
             self.emptyView.frame = self.view.bounds;
             self.emptyView.imageName = @"没选课";
             self.emptyView.title = @"您还未完成测评";
@@ -152,49 +216,61 @@
     self.checkedMobileUserRequest = request;
 }
 
-- (void)getProjectList{
-    [self startLoading];
+- (void)requestForLayerList {
+    self.requestStatus = TrainProjectRequestStatus_LayerList;
+    TrainLayerListRequest *request = [[TrainLayerListRequest alloc] init];
+    request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
     WEAK_SELF
-    [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(NSArray *groups, NSError *error) {
+    [self startLoading];
+    [request startRequestWithRetClass:[TrainLayerListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        self.emptyView.imageName = @"无培训项目";
-        self.emptyView.title = @"您没有已参加的培训项目";
-        self.emptyView.subTitle = @"";
+        TrainLayerListRequestItem *item = retItem;
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = groups.count != 0;
+        data.requestDataExist = YES;
         data.localDataExist = NO;
         data.error = error;
         if ([self handleRequestData:data]) {
             return;
         }
-        [self.dataMutableArrray addObjectsFromArray:groups];
-        if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目需要校验信息
-            [self requestCheckedMobileUser];
-        }else {
-            [self dealWithProjectGroups:self.dataMutableArrray];
-            [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
-        }
+        [self showTrainLayerView:item];
     }];
+    self.layerListRequest = request;
 }
-- (void)dealWithProjectGroups:(NSArray *)groups{
-    YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
-    selectionView.currentIndexPath = [YXTrainManager sharedInstance].currentProjectIndexPath;
-    selectionView.projectGroup = groups;
+- (void)requestForSelectLayer:(NSString *)layerId {
+    [self startLoading];
+    TrainSelectLayerRequest *request = [[TrainSelectLayerRequest alloc] init];
+    request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    request.layerId = layerId;
     WEAK_SELF
-    selectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
+    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        DDLogDebug(@"project change indexPath: %@",indexPath);
-        [self showProjectWithIndexPath:indexPath];
-    };
-    self.projectSelectionView = selectionView;
-    [self showProjectSelectionView];
+        [self stopLoading];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = YES;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
+        }
+        self.chooseLayerView.hidden = YES;
+
+    }];
+    self.selectLayerRequest = request;
 }
+
+#pragma mark - showView
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
     [YXTrainManager sharedInstance].currentProject.role = nil;
     [YXTrainManager sharedInstance].currentProjectIndexPath = indexPath;
-    [self refreshUserRoleInterface];
+    if ([YXTrainManager sharedInstance].currentProject.isOpenLayer.boolValue) {
+        [self requestForLayerList];
+    }else {
+        [self stopLoading];
+        [self refreshUserRoleInterface];
+    }
 }
+
 - (void)refreshUserRoleInterface {
     for (UIViewController *vc in self.childViewControllers) {
         [vc removeFromParentViewController];
@@ -209,6 +285,10 @@
         [self showMasterInterface];
     }
 }
+- (void)showTrainLayerView:(TrainLayerListRequestItem *)item {
+    self.chooseLayerView.dataMutableArray = item.body;
+}
+
 - (void)showSwitchGuideView {
     if ([self isShowMoreThanOneProject]) {//显示项目切换提示
         UIView *guideView = [[NSClassFromString(@"ChangeProjectGuideView") alloc] init];
@@ -218,14 +298,16 @@
         }];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
     }else if ([self isShowRoleChange]){//显示角色切换提示
-            UIView *roleView = [[NSClassFromString(@"ChangeProjectRoleView") alloc] init];
-            [self.navigationController.view addSubview:roleView];
-            [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.edges.mas_equalTo(0);
-            }];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstRoleChange];
-        }
+        UIView *roleView = [[NSClassFromString(@"ChangeProjectRoleView") alloc] init];
+        [self.navigationController.view addSubview:roleView];
+        [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.mas_equalTo(0);
+        }];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstRoleChange];
+    }
 }
+
+#pragma mark - judge
 - (BOOL)isShowMoreThanOneProject {
     return ([YXTrainManager sharedInstance].trainlistItem.body.trains.count > 1) &&
     ![YXInitHelper sharedHelper].showUpgradeFlag &&
@@ -238,12 +320,23 @@
     ([YXTrainManager sharedInstance].currentProject.role.integerValue == 99);
 }
 #pragma mark - peojects hide & show
+- (void)dealWithProjectGroups:(NSArray *)groups{
+    YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
+    selectionView.currentIndexPath = [YXTrainManager sharedInstance].currentProjectIndexPath;
+    selectionView.projectGroup = groups;
+    WEAK_SELF
+    selectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
+        STRONG_SELF
+        [self showProjectWithIndexPath:indexPath];
+    };
+    self.projectSelectionView = selectionView;
+    [self showProjectSelectionView];
+}
 - (void)showProjectSelectionView {
     if (self.navigationController.topViewController == self) {
         [self.navigationController.navigationBar addSubview:self.projectSelectionView];
     }
 }
-
 - (void)hideProjectSelectionView {
     [self.projectSelectionView removeFromSuperview];
 }

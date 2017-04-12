@@ -20,10 +20,28 @@ static  NSString *const trackPageName = @"作业详情页面";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupRightWithTitle:@"       "];
-    [self setupUI];
-    [self requestForHomeworkInfo];
+    if ([self isJudgmentChooseCourse]) {
+        [self setupRightWithTitle:@"       "];
+        [self setupUI];
+        [self requestForHomeworkInfo];
+    }
 }
+- (BOOL)isJudgmentChooseCourse{
+    if ([YXTrainManager sharedInstance].currentProject.isOpenTheme.boolValue) {
+        self.emptyView = [[YXEmptyView alloc]init];
+        self.emptyView.title = @"您还没有选课";
+        self.emptyView.imageName = @"没选课";
+        [self.view addSubview:self.emptyView];
+        [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+        self.title = @"作业详情";
+        return NO;
+    }else {
+        return YES;
+    }
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

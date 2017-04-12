@@ -60,7 +60,6 @@
         make.right.mas_equalTo(-20);
     }];
     self.historyImageView = [[UIImageView alloc]init];
-//    self.historyImageView.backgroundColor = [UIColor redColor];
     [self.contentView addSubview:self.historyImageView];
     [self.historyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.courseImageView.mas_right).mas_offset(15);
@@ -97,19 +96,30 @@
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
-    
-    int second = course.record.intValue;
-    if (second == 0) {
-        self.recordLabel.text = @"未观看";
-        self.historyImageView.image = [UIImage imageNamed:@"未观看时间icon"];
-    }else{
-        int minute = second / 60;
-        int hour = minute / 60;
-        minute = minute % 60;
-        second = second % 60;
-        self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
-        self.historyImageView.image = [UIImage imageNamed:@"已观看时间icon"];
+    if ((arc4random()%5) == 2) {
+        self.historyImageView.image = [UIImage imageNamed:@"不支持"];
+        self.recordLabel.text = @"暂不支持该类型课程";
+        self.recordLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
+    }else {
+        self.recordLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
+        int second = _course.record.intValue;
+        if (second == 0) {
+            self.recordLabel.text = @"未观看";
+            self.historyImageView.image = [UIImage imageNamed:@"未观看时间icon"];
+        }else{
+            int minute = second / 60;
+            int hour = minute / 60;
+            minute = minute % 60;
+            second = second % 60;
+            self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
+            self.historyImageView.image = [UIImage imageNamed:@"已观看时间icon"];
+        }
     }
+    
+    
+
 }
 
 @end

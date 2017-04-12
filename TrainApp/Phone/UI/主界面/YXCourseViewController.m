@@ -17,7 +17,6 @@ static  NSString *const trackPageName = @"课程列表页面";
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXCourseListFilterModel *filterModel;
 @property (nonatomic, strong) YXCourseListRequest *request;
-@property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 
@@ -50,12 +49,12 @@ static  NSString *const trackPageName = @"课程列表页面";
     if (self.status != YXCourseFromStatus_Course) {
         self.isWaitingForFilter = YES;
     }
-    [super viewDidLoad];
+    [super viewDidLoad];    
+}
+- (void)setupUI {
     self.isAllowChange = YES;
-    // Do any additional setup after loading the view.
     self.emptyView.title = @"没有符合条件的课程";
     self.emptyView.imageName = @"没有符合条件的课程";
-    self.title = @"课程列表";
     [self setupRightWithTitle:@"看课记录"];
     [self setupObservers];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
@@ -105,8 +104,8 @@ static  NSString *const trackPageName = @"课程列表页面";
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXCourseListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
         if (error) {
+            [self stopLoading];
             self.filterErrorView.frame = self.view.bounds;
             [self.view addSubview:self.filterErrorView];
             return;

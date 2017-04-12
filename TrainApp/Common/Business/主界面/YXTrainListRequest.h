@@ -20,6 +20,12 @@
 @property (nonatomic, strong) NSString<Optional> *status;//1-training;0-trained
 @property (nonatomic, strong) NSString<Optional> *roles;
 @property (nonatomic, strong) NSString<Optional> *isContainsTeacher;
+//2.4.2
+@property (nonatomic, strong) NSString<Optional> *isOpenLayer;//是否开启分层
+@property (nonatomic, strong) NSString<Optional> *layerId;//分层id
+@property (nonatomic, strong) NSString<Optional> *isOpenTheme;//是否开启主题
+@property (nonatomic, strong) NSString<Optional> *themeId;//主题id
+
 @property (nonatomic, strong) NSString<Optional> *role;
 @property (nonatomic, strong) NSString<Optional> *isDoubel;
 @end

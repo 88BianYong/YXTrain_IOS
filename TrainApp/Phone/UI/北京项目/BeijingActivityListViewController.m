@@ -19,7 +19,6 @@
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, strong) DataErrorView *filterDataErrorView;
-@property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 @property (nonatomic, strong) NSString *segmentId;
 @property (nonatomic, strong) NSString *studyId;
@@ -40,7 +39,6 @@
     self.isWaitingForFilter = YES;
     [super viewDidLoad];
     self.isAllowChange = YES;
-    [self setupUI];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

@@ -18,7 +18,6 @@
 @property (nonatomic, strong) ActivityFilterModel *filterModel;
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
-@property (nonatomic, assign) BOOL isWaitingForFilter;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 
 @property (nonatomic, assign) CGFloat oldOffsetY;
@@ -28,11 +27,10 @@
 @implementation ActivityListViewController
 - (void)viewDidLoad {
     [self setupFetcher];
-    self.isWaitingForFilter = YES;
     [super viewDidLoad];
     self.isAllowChange = YES;
-    [self setupUI];
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (self.isNavBarHidden) {
@@ -97,7 +95,6 @@
 - (void)setupUI {
     self.emptyView.title = @"没有符合条件的活动";
     self.emptyView.imageName = @"没有符合条件的课程";
-    self.title = @"活动列表";
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ActivityListCell class] forCellReuseIdentifier:@"ActivityListCell"];

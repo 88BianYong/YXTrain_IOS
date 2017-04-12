@@ -6,8 +6,8 @@
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "PagedListViewControllerBase.h"
+#import "YXCourseBaseViewController.h"
 
-@interface DeYangCourseViewController : PagedListViewControllerBase
+@interface DeYangCourseViewController : YXCourseBaseViewController
 
 @end

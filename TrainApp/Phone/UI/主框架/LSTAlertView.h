@@ -15,6 +15,7 @@ typedef void(^ButtonActionBlock)(void);
 
 @interface LSTAlertView : AlertView
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSMutableAttributedString *attributedString;//注意一旦设置此属性 title失效
 @property (nonatomic, copy) NSString *imageName;
 
 - (void)addButtonWithTitle:(NSString *)title style:(LSTAlertActionStyle)style action:(ButtonActionBlock)buttonActionBlock;

@@ -55,7 +55,7 @@ static const CGFloat kImageWidth = 30;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
     [self.maskView addGestureRecognizer:tap];
     
-    CGFloat w = 230;
+    CGFloat w = 240;
     CGFloat x = ([UIScreen mainScreen].bounds.size.width-w)/2;
     CGFloat y = 57;
     self.selectionBgView = [[YXProjectSelectionBgView alloc]initWithFrame:CGRectMake(x, y, w, 0) triangleX:w/2];

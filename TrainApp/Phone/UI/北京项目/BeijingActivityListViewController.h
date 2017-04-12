@@ -6,8 +6,8 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import "PagedListViewControllerBase.h"
+#import "YXActivityListBaseViewController.h"
 
-@interface BeijingActivityListViewController : PagedListViewControllerBase
+@interface BeijingActivityListViewController : YXActivityListBaseViewController
 
 @end

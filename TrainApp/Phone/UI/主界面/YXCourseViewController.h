@@ -7,7 +7,7 @@
 //
 
 #import "YXBaseViewController.h"
-#import "PagedListViewControllerBase.h"
+#import "YXCourseBaseViewController.h"
 typedef NS_ENUM(NSUInteger, YXCourseFromStatus){
     YXCourseFromStatus_Course = 0,//课程
     YXCourseFromStatus_Stage = 1,//阶段
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, YXCourseFromStatus){
 };
 
 
-@interface YXCourseViewController : PagedListViewControllerBase
+@interface YXCourseViewController : YXCourseBaseViewController
 @property (nonatomic, strong) NSString *stageID; // 从考核的阶段课程进入需要传阶段的id
 @property (nonatomic, assign) YXCourseFromStatus status; // 哪个入口进入
 @end
