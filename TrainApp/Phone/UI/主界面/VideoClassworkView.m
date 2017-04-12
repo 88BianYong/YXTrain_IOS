@@ -185,7 +185,7 @@
             self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
             self.confirmButton.enabled = YES;
         }else {
-            self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"334466"].CGColor;
+            self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"f3f7fa"].CGColor;
             self.confirmButton.enabled = NO;
         }
     }else {
