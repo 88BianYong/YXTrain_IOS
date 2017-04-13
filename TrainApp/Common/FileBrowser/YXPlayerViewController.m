@@ -200,6 +200,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.classworkManager.forcequizcorrect = self.forcequizcorrect;
     [self.classworkManager setVideoClassworkManagerBlock:^(BOOL isPlay, NSInteger playTime) {
         STRONG_SELF
+        self.topView.alpha = isPlay ? 1.0f : 0.0f;
+        self.bottomView.alpha = isPlay ? 1.0f : 0.0f;
         if (isPlay) {
             if (playTime >= 0) {
                 [self.player seekTo:playTime];
