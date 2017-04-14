@@ -46,7 +46,7 @@
 - (void)setupLayout {
     [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(18.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(20.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(17.0f);
         make.size.mas_offset(CGSizeMake(55.0f, 18.0f));
     }];
     
