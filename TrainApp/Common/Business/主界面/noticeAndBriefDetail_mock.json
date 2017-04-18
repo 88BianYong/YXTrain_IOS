@@ -1,0 +1,51 @@
+{
+    "code": "0",
+    "debugDesc": "[debug_token: 1466492260388-12_7_45901 ][返回数据成功]",
+    "desc": "success",
+    "body": {
+        "affix": [
+                  {
+                  "convertstatus": 3,
+                  "downloadurl": "http://upload.ugc.yanxiu.com/doc/1b71a782872409f2af6b9f37f7b59267.pdf?from=108&rid=28810643&filename=2.1.xxmb.pdf&attachment=true",
+                  "previewurl": "http://upload.ugc.yanxiu.com/img/781180e4edc4f28e085ebc943ab0294f.png?from=101&rid=25028895",
+                  "res_type": "image",
+                  "resid": 28810643,
+                  "resSize": "16896",
+                  "resSizeFormat": "16.5KB",
+                  "resname": "2.1.xxmb.pdf"
+                  },
+                  {
+                  "convertstatus": 3,
+                  "downloadurl": "http://upload.ugc.yanxiu.com/doc/1b71a782872409f2af6b9f37f7b59267.pdf?from=108&rid=28810643&filename=2.1.xxmb.pdf&attachment=true",
+                  "previewurl": "http://upload.ugc.yanxiu.com/img/8be31331c18e4f0b28d5fcb951b88f4c.bmp?from=101&rid=25030374",
+                  "res_type": "image",
+                  "resid": 28810643,
+                  "resSize": "16896",
+                  "resSizeFormat": "16.5KB",
+                  "resname": "2.1.xxmb.pdf"
+                  },
+                  {
+                  "convertstatus": 3,
+                  "downloadurl": "http://upload.ugc.yanxiu.com/doc/1b71a782872409f2af6b9f37f7b59267.pdf?from=108&rid=28810643&filename=2.1.xxmb.pdf&attachment=true",
+                  "previewurl": "http://upload.ugc.yanxiu.com/img/83e640e410ba06af5fc08f641ab5d5cb.jpg?from=101&rid=25029227",
+                  "res_type": "image",
+                  "resid": 28810643,
+                  "resSize": "16896",
+                  "resSizeFormat": "16.5KB",
+                  "resname": "2.1.xxmb.pdf"
+                  }
+                  ],
+        "barid": 0,
+        "content": "<p>cc</p>",
+        "groupids": "",
+        "id": 336874021,
+        "isEdit": 1,
+        "isRecommend": 0,
+        "projectid": 0,
+        "readNum": 0,
+        "time": "2017-04-11 17:39:05",
+        "title": "我爱北京天安门天安门上太阳升",
+        "userName": "测试坊主125",
+        "userid": 11431728
+    }
+}

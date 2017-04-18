@@ -7,7 +7,25 @@
 //
 
 #import "NoticeAndBriefDetailRequest.h"
+@implementation NoticeAndBriefDetailRequestItem_Body_Affix
+@end
+@implementation NoticeAndBriefDetailRequestItem_Body
++(JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"barid":@"barID",
+                                                       @"id":@"nbID",
+                                                       @"userid":@"userID"
+                                                       }];
+}
+@end
+@implementation NoticeAndBriefDetailRequestItem
 
+@end
 @implementation NoticeAndBriefDetailRequest
-
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"peixun/nbs/nbdetail"];
+    }
+    return self;
+}
 @end

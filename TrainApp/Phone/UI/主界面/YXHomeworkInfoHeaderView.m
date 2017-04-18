@@ -275,6 +275,7 @@
     [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, string.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
         if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
             attachment.originalSize = CGSizeMake(kScreenWidth - 50.0f, 200.0f);
+            attachment.displaySize = CGSizeMake(kScreenWidth - 50.0f, 200.0f);
         }
     }];
     self.htmlView.attributedString = string;

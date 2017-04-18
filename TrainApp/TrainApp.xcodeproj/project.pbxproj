@@ -284,6 +284,7 @@
 		9268C5F21DF3D59400AA109B /* BeijingModifyPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5F11DF3D59400AA109B /* BeijingModifyPasswordRequest.m */; };
 		926F11FA1EA456CE0041D66F /* selectLayer_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 926F11F91EA456CE0041D66F /* selectLayer_mock.json */; };
 		926F11FE1EA45C380041D66F /* NoticeAndBriefDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 926F11FD1EA45C380041D66F /* NoticeAndBriefDetailRequest.m */; };
+		926F12011EA4798A0041D66F /* NoticeAndBriefDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926F12001EA4798A0041D66F /* NoticeAndBriefDetailViewController.m */; };
 		92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F5F1DD9666700548424 /* ActivitySlideProgressControl.m */; };
 		92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F621DD96E3E00548424 /* ActivityPlayTopView.m */; };
 		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
@@ -322,8 +323,8 @@
 		928B7A8A1E88EE750067218A /* BeijingExamineRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A881E88EE750067218A /* BeijingExamineRequest.m */; };
 		928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
 		928DBE7C1E547A5C0016D66C /* MasterConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928DBE7B1E547A5C0016D66C /* MasterConditionCell.m */; };
-		9292DC501E9E08E8008C6A14 /* NoticeDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC4F1E9E08E8008C6A14 /* NoticeDetailCell.m */; };
-		9292DC531E9E090D008C6A14 /* NoticeDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC521E9E090D008C6A14 /* NoticeDetailTableHeaderView.m */; };
+		9292DC501E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC4F1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m */; };
+		9292DC531E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC521E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m */; };
 		9292DC561E9E2C2F008C6A14 /* YXCourseBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC551E9E2C2F008C6A14 /* YXCourseBaseViewController.m */; };
 		9292DC591E9E3131008C6A14 /* YXActivityListBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC581E9E3130008C6A14 /* YXActivityListBaseViewController.m */; };
 		929468071DDE8F220070C3B7 /* ActivitySlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */; };
@@ -332,6 +333,8 @@
 		92AA47751E12440B00C88DDC /* BeijingCourseFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47741E12440B00C88DDC /* BeijingCourseFilterManager.m */; };
 		92AA47781E1B925300C88DDC /* WebsocketRedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47771E1B925300C88DDC /* WebsocketRedView.m */; };
 		92AA477E1E1B9BD900C88DDC /* WebsocketRedLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA477D1E1B9BD900C88DDC /* WebsocketRedLeftView.m */; };
+		92AC98451EA498960026B640 /* noticeAndBriefDetail_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92AC98441EA498960026B640 /* noticeAndBriefDetail_mock.json */; };
+		92AC98481EA4AA4C0026B640 /* NoticeAndBriefDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AC98471EA4AA4C0026B640 /* NoticeAndBriefDetailHeaderView.m */; };
 		92AD33551EA060B2001F2718 /* ProjectChooseLayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD33541EA060B2001F2718 /* ProjectChooseLayerView.m */; };
 		92AD33581EA0AB58001F2718 /* ProjectChooseLayerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD33571EA0AB58001F2718 /* ProjectChooseLayerHeaderView.m */; };
 		92AD335B1EA0AB77001F2718 /* ProjectChooseLayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AD335A1EA0AB77001F2718 /* ProjectChooseLayerCell.m */; };
@@ -374,7 +377,6 @@
 		92DE3BC71DDD82350011CFB7 /* ActivityToolVideoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */; };
 		92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */; };
 		92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */; };
-		92E9BC471E9DE36A0008B86B /* NoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9BC461E9DE36A0008B86B /* NoticeDetailViewController.m */; };
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
 		92EDC7B71D5C6C61005B91DD /* YXWriteHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */; };
 		92EDC7BA1D5C7323005B91DD /* YXWriteHomeworkInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B91D5C7323005B91DD /* YXWriteHomeworkInfoCell.m */; };
@@ -1099,6 +1101,8 @@
 		926F11F91EA456CE0041D66F /* selectLayer_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = selectLayer_mock.json; sourceTree = "<group>"; };
 		926F11FC1EA45C380041D66F /* NoticeAndBriefDetailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeAndBriefDetailRequest.h; sourceTree = "<group>"; };
 		926F11FD1EA45C380041D66F /* NoticeAndBriefDetailRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeAndBriefDetailRequest.m; sourceTree = "<group>"; };
+		926F11FF1EA4798A0041D66F /* NoticeAndBriefDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeAndBriefDetailViewController.h; sourceTree = "<group>"; };
+		926F12001EA4798A0041D66F /* NoticeAndBriefDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeAndBriefDetailViewController.m; sourceTree = "<group>"; };
 		92780F5E1DD9666700548424 /* ActivitySlideProgressControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySlideProgressControl.h; sourceTree = "<group>"; };
 		92780F5F1DD9666700548424 /* ActivitySlideProgressControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySlideProgressControl.m; sourceTree = "<group>"; };
 		92780F611DD96E3E00548424 /* ActivityPlayTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayTopView.h; sourceTree = "<group>"; };
@@ -1174,10 +1178,10 @@
 		928BAF211E82682E0091D1C7 /* TestVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVideoViewController.m; sourceTree = "<group>"; };
 		928DBE7A1E547A5C0016D66C /* MasterConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionCell.h; sourceTree = "<group>"; };
 		928DBE7B1E547A5C0016D66C /* MasterConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConditionCell.m; sourceTree = "<group>"; };
-		9292DC4E1E9E08E8008C6A14 /* NoticeDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailCell.h; sourceTree = "<group>"; };
-		9292DC4F1E9E08E8008C6A14 /* NoticeDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailCell.m; sourceTree = "<group>"; };
-		9292DC511E9E090D008C6A14 /* NoticeDetailTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailTableHeaderView.h; sourceTree = "<group>"; };
-		9292DC521E9E090D008C6A14 /* NoticeDetailTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailTableHeaderView.m; sourceTree = "<group>"; };
+		9292DC4E1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeAndBriefDetailCell.h; sourceTree = "<group>"; };
+		9292DC4F1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeAndBriefDetailCell.m; sourceTree = "<group>"; };
+		9292DC511E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeAndBriefDetailTableHeaderView.h; sourceTree = "<group>"; };
+		9292DC521E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeAndBriefDetailTableHeaderView.m; sourceTree = "<group>"; };
 		9292DC541E9E2C2F008C6A14 /* YXCourseBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCourseBaseViewController.h; sourceTree = "<group>"; };
 		9292DC551E9E2C2F008C6A14 /* YXCourseBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCourseBaseViewController.m; sourceTree = "<group>"; };
 		9292DC571E9E3130008C6A14 /* YXActivityListBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXActivityListBaseViewController.h; sourceTree = "<group>"; };
@@ -1194,6 +1198,9 @@
 		92AA47771E1B925300C88DDC /* WebsocketRedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsocketRedView.m; sourceTree = "<group>"; };
 		92AA477C1E1B9BD900C88DDC /* WebsocketRedLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsocketRedLeftView.h; sourceTree = "<group>"; };
 		92AA477D1E1B9BD900C88DDC /* WebsocketRedLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsocketRedLeftView.m; sourceTree = "<group>"; };
+		92AC98441EA498960026B640 /* noticeAndBriefDetail_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = noticeAndBriefDetail_mock.json; sourceTree = "<group>"; };
+		92AC98461EA4AA4C0026B640 /* NoticeAndBriefDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeAndBriefDetailHeaderView.h; sourceTree = "<group>"; };
+		92AC98471EA4AA4C0026B640 /* NoticeAndBriefDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeAndBriefDetailHeaderView.m; sourceTree = "<group>"; };
 		92AD33531EA060B2001F2718 /* ProjectChooseLayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectChooseLayerView.h; sourceTree = "<group>"; };
 		92AD33541EA060B2001F2718 /* ProjectChooseLayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectChooseLayerView.m; sourceTree = "<group>"; };
 		92AD33561EA0AB58001F2718 /* ProjectChooseLayerHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectChooseLayerHeaderView.h; sourceTree = "<group>"; };
@@ -1272,8 +1279,6 @@
 		92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHotReadedRequest.m; sourceTree = "<group>"; };
 		92E8FD6A1D8E1FE600004700 /* YXMsgReadedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMsgReadedRequest.h; sourceTree = "<group>"; };
 		92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMsgReadedRequest.m; sourceTree = "<group>"; };
-		92E9BC451E9DE36A0008B86B /* NoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeDetailViewController.h; sourceTree = "<group>"; };
-		92E9BC461E9DE36A0008B86B /* NoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeDetailViewController.m; sourceTree = "<group>"; };
 		92EDC7B01D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkAlreadyRecordCell.h; sourceTree = "<group>"; };
 		92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkAlreadyRecordCell.m; sourceTree = "<group>"; };
 		92EDC7B51D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoViewController.h; sourceTree = "<group>"; };
@@ -2338,8 +2343,8 @@
 				92E9BC441E9DE1E10008B86B /* view */,
 				7CF8885D1D1A427700E7C04D /* YXNoticeViewController.h */,
 				7CF8885E1D1A427700E7C04D /* YXNoticeViewController.m */,
-				92E9BC451E9DE36A0008B86B /* NoticeDetailViewController.h */,
-				92E9BC461E9DE36A0008B86B /* NoticeDetailViewController.m */,
+				926F11FF1EA4798A0041D66F /* NoticeAndBriefDetailViewController.h */,
+				926F12001EA4798A0041D66F /* NoticeAndBriefDetailViewController.m */,
 			);
 			name = "通知简报";
 			sourceTree = "<group>";
@@ -3138,6 +3143,7 @@
 				CB52FCF51D2BB7730096D8DC /* 通知 */,
 				926F11FC1EA45C380041D66F /* NoticeAndBriefDetailRequest.h */,
 				926F11FD1EA45C380041D66F /* NoticeAndBriefDetailRequest.m */,
+				92AC98441EA498960026B640 /* noticeAndBriefDetail_mock.json */,
 			);
 			name = "通知简报";
 			sourceTree = "<group>";
@@ -3277,10 +3283,12 @@
 				CBB62E151D2CCD4300DAA6DE /* YXShowWebMenuView.m */,
 				CBB62E171D2CCE3D00DAA6DE /* YXShowWebMenuTableViewCell.h */,
 				CBB62E181D2CCE3D00DAA6DE /* YXShowWebMenuTableViewCell.m */,
-				9292DC4E1E9E08E8008C6A14 /* NoticeDetailCell.h */,
-				9292DC4F1E9E08E8008C6A14 /* NoticeDetailCell.m */,
-				9292DC511E9E090D008C6A14 /* NoticeDetailTableHeaderView.h */,
-				9292DC521E9E090D008C6A14 /* NoticeDetailTableHeaderView.m */,
+				9292DC4E1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.h */,
+				9292DC4F1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m */,
+				9292DC511E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.h */,
+				9292DC521E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m */,
+				92AC98461EA4AA4C0026B640 /* NoticeAndBriefDetailHeaderView.h */,
+				92AC98471EA4AA4C0026B640 /* NoticeAndBriefDetailHeaderView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3968,6 +3976,7 @@
 				92CE55F11E55825C002C1F11 /* masterManageList_mock.json in Resources */,
 				7C7BF7C61E0788FD007B017C /* env_config.json in Resources */,
 				920F1D3B1D51A40D00636A51 /* homeworklist_mock.json in Resources */,
+				92AC98451EA498960026B640 /* noticeAndBriefDetail_mock.json in Resources */,
 				923237701D816DAD00FDACFE /* stageAndSubject.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4283,7 +4292,7 @@
 				92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */,
 				92CE51531D87D4AE0071DE79 /* YXHotspotRequest.m in Sources */,
 				92CE55FA1E559CD8002C1F11 /* StudentExamPhaseHeaderView.m in Sources */,
-				9292DC531E9E090D008C6A14 /* NoticeDetailTableHeaderView.m in Sources */,
+				9292DC531E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
 				7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */,
 				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
@@ -4423,9 +4432,9 @@
 				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,
 				7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */,
 				928B7A441E88B2180067218A /* BeijingExamGenreCell.m in Sources */,
+				92AC98481EA4AA4C0026B640 /* NoticeAndBriefDetailHeaderView.m in Sources */,
 				7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */,
 				7C2C3B7A1D24CBB700A03635 /* YXCourseDetailHeaderView.m in Sources */,
-				92E9BC471E9DE36A0008B86B /* NoticeDetailViewController.m in Sources */,
 				9223C8271D2E0E44000F74DF /* YXFeedBackRequest.m in Sources */,
 				92DE3BC71DDD82350011CFB7 /* ActivityToolVideoRequest.m in Sources */,
 				7CF844781D2E367900B1CE55 /* YXProjectSelectionView.m in Sources */,
@@ -4447,7 +4456,7 @@
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
 				9223C8351D2F4BD2000F74DF /* YXSchoolSearchViewController.m in Sources */,
 				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
-				9292DC501E9E08E8008C6A14 /* NoticeDetailCell.m in Sources */,
+				9292DC501E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m in Sources */,
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
 				E9BD43E31DAC9507007BE8F6 /* YXDetailHotspotViewController.m in Sources */,
 				928B7A421E88B2180067218A /* BeijingDynamicViewController.m in Sources */,
@@ -4471,6 +4480,7 @@
 				9223C8521D40D0A1000F74DF /* YXPageControl.m in Sources */,
 				CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */,
 				CB3510B51D18E9830081EA3B /* YXDatumOrderFilterMenuView.m in Sources */,
+				926F12011EA4798A0041D66F /* NoticeAndBriefDetailViewController.m in Sources */,
 				CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */,
 				920F1D591D533E8B00636A51 /* YXWriteHomeworkRequest.m in Sources */,
 				CB748EDD1D223E2B004BCFBF /* YXFilterCustomButton.m in Sources */,
@@ -4655,6 +4665,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: xingfu liu (J63VXZH2U7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = P8ZS8UUN27;
+				ENABLE_BITCODE = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Phone/InfoPhone.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -4680,6 +4691,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = P8ZS8UUN27;
+				ENABLE_BITCODE = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Phone/InfoPhone.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

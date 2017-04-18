@@ -1,29 +1,31 @@
 //
-//  ActivityStepHeaderView.m
+//  NoticeDetailTableHeaderView.m
 //  TrainApp
 //
-//  Created by 郑小龙 on 16/11/15.
-//  Copyright © 2016年 niuzhaowang. All rights reserved.
+//  Created by 郑小龙 on 2017/4/12.
+//  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "ActivityStepHeaderView.h"
+#import "NoticeAndBriefDetailTableHeaderView.h"
 #import "CoreTextViewHandler.h"
 #import "YXGradientView.h"
 #import "YXWebViewController.h"
-@interface ActivityStepHeaderView ()
+@interface NoticeAndBriefDetailTableHeaderView ()
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *descriptionLabel;
+@property (nonatomic, strong) UILabel *userNameTimeLabel;
 @property (nonatomic, strong) DTAttributedTextContentView *htmlView;
 @property (nonatomic, strong) UIButton *openCloseButton;
 @property (nonatomic, strong) CoreTextViewHandler *coreTextHandler;
 @property (nonatomic, strong) YXGradientView *gradientView;
 
-@property (nonatomic, copy) ActivityHtmlOpenAndCloseBlock openCloseBlock;
-@property (nonatomic, copy) ActivityHtmlHeightChangeBlock heightChangeBlock;
+@property (nonatomic, copy) NoticeAndBriefDetailHtmlOpenAndCloseBlock openCloseBlock;
+@property (nonatomic, copy) NoticeAndBriefDetailHtmlHeightChangeBlock heightChangeBlock;
 @property (nonatomic, assign) BOOL isFirstRefresh;
 @property (nonatomic, assign) BOOL isOpen;
+
 @end
-@implementation ActivityStepHeaderView
+
+@implementation NoticeAndBriefDetailTableHeaderView
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.isOpen = NO;
@@ -54,23 +56,13 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
     [self addSubview:self.titleLabel];
-    
-    UIView *lineView = [[UIView alloc] init];
-    lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
-    [self addSubview:lineView];
-    self.descriptionLabel = [[UILabel alloc] init];
-    self.descriptionLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    self.descriptionLabel.font = [UIFont boldSystemFontOfSize:14.0f];
-    self.descriptionLabel.text = @"步骤描述";
-    self.descriptionLabel.textAlignment = NSTextAlignmentCenter;
-    self.descriptionLabel.backgroundColor = [UIColor whiteColor];
-    [self addSubview:self.descriptionLabel];
-    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-        make.height.mas_offset(1.0f / [UIScreen mainScreen].scale);
-        make.centerY.equalTo(self.descriptionLabel.mas_centerY);
-    }];
+
+    self.userNameTimeLabel = [[UILabel alloc] init];
+    self.userNameTimeLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    self.userNameTimeLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.userNameTimeLabel.textAlignment = NSTextAlignmentCenter;
+    self.userNameTimeLabel.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.userNameTimeLabel];
     
     self.htmlView = [[DTAttributedTextContentView alloc] init];
     self.htmlView.clipsToBounds = YES;
@@ -116,17 +108,16 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(25.0f);
         make.right.equalTo(self.mas_right).offset(-25.0f);
-        make.top.equalTo(self.mas_top).offset(34.0f + 5.0f);
+        make.top.equalTo(self.mas_top).offset(39.0f);
     }];
     
-    [self.descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(37.0f + 2.0f);
+    [self.userNameTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(18.0f);
         make.centerX.equalTo(self.mas_centerX);
-        make.width.mas_offset(100.0f);
     }];
     
     [self.htmlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.descriptionLabel.mas_bottom).offset(16.0f);
+        make.top.equalTo(self.userNameTimeLabel.mas_bottom).offset(25.0f);
         make.left.equalTo(self.mas_left).offset(25.0f);
         make.right.equalTo(self.mas_right).offset(-25.0f);
         make.bottom.equalTo(self.mas_bottom).offset (-41.0f);
@@ -147,7 +138,7 @@
 - (void)updateHtmlViewWithHeight:(CGFloat)height {
     if (height < 300.0f) {
         [self.htmlView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.descriptionLabel.mas_bottom).offset(16.0f);
+            make.top.equalTo(self.userNameTimeLabel.mas_bottom).offset(25.0f);
             make.left.equalTo(self.mas_left).offset(25.0f);
             make.right.equalTo(self.mas_right).offset(-25.0f);
             make.bottom.equalTo(self.mas_bottom);
@@ -174,25 +165,32 @@
 }
 
 #pragma mark - set
-- (void)setActivityHtmlOpenAndCloseBlock:(ActivityHtmlOpenAndCloseBlock)block {
+- (void)setNoticeAndBriefDetailHtmlOpenAndCloseBlock:(NoticeAndBriefDetailHtmlOpenAndCloseBlock)block {
     self.openCloseBlock = block;
 }
-- (void)setActivityHtmlHeightChangeBlock:(ActivityHtmlHeightChangeBlock)block {
+- (void)setNoticeAndBriefDetailHtmlHeightChangeBlock:(NoticeAndBriefDetailHtmlHeightChangeBlock)block {
     self.heightChangeBlock = block;
 }
-- (void)setActivityStep:(ActivityStepListRequestItem_Body_Active_Steps *)activityStep {
-    _activityStep = activityStep;
-    self.titleLabel.text = _activityStep.title;
-    NSData *data = [_activityStep.desc?:@"" dataUsingEncoding:NSUTF8StringEncoding];
+- (void)setBody:(NoticeAndBriefDetailRequestItem_Body *)body {
+    _body = body;
+    self.titleLabel.text = _body.title;
+    self.userNameTimeLabel.text = [NSString stringWithFormat:@"%@  %@",_body.userName,_body.time];
+    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
+    _body.content = [NSString stringWithContentsOfFile:readmePath
+                                                        encoding:NSUTF8StringEncoding
+                                                        error:NULL];
+    NSData *data = [_body.content?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions]documentAttributes:nil];
     [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, string.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
         if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
             attachment.originalSize = CGSizeMake(kScreenWidth - 50.0f, 200.0f);
             attachment.displaySize = CGSizeMake(kScreenWidth - 50.0f, 200.0f);
+
         }
     }];
     self.htmlView.attributedString = string;
 }
+
 - (UIViewController *)viewController {
     for (UIView* next = [self superview]; next; next = next.superview) {
         UIResponder *nextResponder = [next nextResponder];

@@ -11,6 +11,7 @@
 #import "YXNoticeListFetch.h"
 #import "YXBriefListFetch.h"
 #import "YXBroseWebView.h"
+#import "NoticeAndBriefDetailViewController.h"
 static  NSString *const trackNoticePageName = @"通知列表页面";
 static  NSString *const trackBulletinPageName = @"简报列表页面";
 @interface YXNoticeViewController ()
@@ -92,15 +93,18 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    dispatch_async(dispatch_get_main_queue(), ^{
+      YXNoticeAndBulletinItem *item = self.dataArray[indexPath.section];
+    if (item.isExtendUrl.boolValue) {
         YXNoticeAndBulletinItem *item = self.dataArray[indexPath.section];
         YXBroseWebView *webView = [[YXBroseWebView alloc] init];
         webView.urlString = item.url;
         webView.titleString = item.title;
         webView.sourceControllerTitile = self.title;
         [self.navigationController pushViewController:webView animated:YES];
-    });
-
+    }else {
+        NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 
 #pragma mark - UITableViewDelegate

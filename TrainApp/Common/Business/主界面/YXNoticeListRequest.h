@@ -14,12 +14,13 @@
 
 @interface YXNoticeAndBulletinItem : JSONModel
 
-@property (nonatomic, copy) NSString *itemId;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *userId;
-@property (nonatomic, copy) NSString *userName;
-@property (nonatomic, copy) NSString *createDate;
-@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString<Optional> *itemId;
+@property (nonatomic, copy) NSString<Optional> *title;
+@property (nonatomic, copy) NSString<Optional> *userId;
+@property (nonatomic, copy) NSString<Optional> *userName;
+@property (nonatomic, copy) NSString<Optional> *createDate;
+@property (nonatomic, copy) NSString<Optional> *url;
+@property (nonatomic, copy) NSString<Optional> *isExtendUrl;
 
 @end
 
