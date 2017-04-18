@@ -1,4 +1,5 @@
 platform :ios, '8.0'
+target 'TrainApp' do
 pod 'CocoaLumberjack', '~> 2.0'
 pod 'ReactiveCocoa', '~> 2.0'
 pod 'MagicalRecord', '~> 2.0'
@@ -28,8 +29,6 @@ pod 'IBActionSheet', '0.0.2'
 pod 'DTCoreText', '1.6.16'
 pod 'MWPhotoBrowser','2.1.1'
 pod 'TOWebViewController', '2.0.14'
-pod 'Reveal-iOS-SDK', :configurations => ['Debug']
-
 pod 'Base64'
 pod 'CommonCrypto'
 pod 'FCUUID'
@@ -40,3 +39,4 @@ pod 'SCRecorder', '~> 2.6.1'
 pod 'Qiniu', '~> 7.0'
 #pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 inhibit_all_warnings!
+end
