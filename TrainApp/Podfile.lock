@@ -54,6 +54,7 @@ PODS:
   - FCUUID (1.2.0):
     - UICKeyChainStore (~> 2.1.0)
   - FileMD5Hash (2.0.0)
+  - GTSDK (1.6.2.0-noidfa)
   - HappyDNS (0.3.10)
   - IBActionSheet (0.0.2)
   - IQKeyboardManager (4.0.3)
@@ -109,6 +110,7 @@ DEPENDENCIES:
   - DTCoreText (= 1.6.16)
   - FCUUID
   - FileMD5Hash (= 2.0.0)
+  - GTSDK (= 1.6.2.0-noidfa)
   - IBActionSheet (= 0.0.2)
   - IQKeyboardManager
   - JSONModel (~> 1.0)
@@ -148,6 +150,7 @@ SPEC CHECKSUMS:
   DTFoundation: 3b6b1b817d2a7fb02e7eaf2596c922a68145bd43
   FCUUID: 9bfe031d35b7c221a7c66156a0af45d4eb49c3b6
   FileMD5Hash: 3ed69cc19a21ff4d30ae8833fc104275ad2c7de0
+  GTSDK: 994039cd51dd7d65125b18ca42136968ef96a236
   HappyDNS: 06a9fed2796663fd87626dbf02552933265bf059
   IBActionSheet: 4028206b0561772c3674a339fb4a7265d55a6f8b
   IQKeyboardManager: be9695ffc5a52077deb4847608f338771022d6d1
@@ -178,6 +181,6 @@ SPEC CHECKSUMS:
   UIDevice+HardwareName: 6b98c1855f304ec8fc7a1ad72fddaed8523b75ad
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 
-PODFILE CHECKSUM: 21f582eca0c7e6f4b56cad074b25fe84597da0bc
+PODFILE CHECKSUM: 81faf119c132dbbe98ddf31fee53f199fe625a5f
 
 COCOAPODS: 1.2.1.rc.1

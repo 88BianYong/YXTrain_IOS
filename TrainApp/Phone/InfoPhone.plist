@@ -58,6 +58,11 @@
 		<string>METRO-DEMIBOLD PLAYTYPE.OTF</string>
 		<string>fzlbjw.TTF</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UIFileSharingEnabled</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
