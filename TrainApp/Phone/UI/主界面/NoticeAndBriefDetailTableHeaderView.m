@@ -23,11 +23,13 @@
 @property (nonatomic, assign) BOOL isFirstRefresh;
 @property (nonatomic, assign) BOOL isOpen;
 
+
 @end
 
 @implementation NoticeAndBriefDetailTableHeaderView
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.htmlViewDefaultHeight = 300.0f;
         self.isOpen = NO;
         self.isFirstRefresh = YES;
         [self setupUI];
@@ -79,8 +81,11 @@
     }];
     [self.coreTextHandler setCoreTextViewHeightChangeBlock:^(CGFloat height) {
         STRONG_SELF
+        if (self.changeHeight == height + self.titleLabel.bounds.size.height) {
+            return;
+        }
         self ->_changeHeight = height + self.titleLabel.bounds.size.height;
-        if (self.isFirstRefresh) {
+        if (self.isFirstRefresh || 1) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self updateHtmlViewWithHeight:height];
                 BLOCK_EXEC(self.heightChangeBlock,height,self.titleLabel.bounds.size.height);
@@ -136,7 +141,7 @@
     }];
 }
 - (void)updateHtmlViewWithHeight:(CGFloat)height {
-    if (height < 300.0f) {
+    if (height < self.htmlViewDefaultHeight) {
         [self.htmlView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.userNameTimeLabel.mas_bottom).offset(25.0f);
             make.left.equalTo(self.mas_left).offset(25.0f);
@@ -174,6 +179,11 @@
 - (void)setBody:(NoticeAndBriefDetailRequestItem_Body *)body {
     _body = body;
     self.titleLabel.text = _body.title;
+    if (_body.affix.count > 0) {
+        self.htmlViewDefaultHeight = 300.0f;
+    }else {
+        self.htmlViewDefaultHeight = CGFLOAT_MAX;
+    }
     self.userNameTimeLabel.text = [NSString stringWithFormat:@"%@  %@",_body.userName,_body.time];
     NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
     _body.content = [NSString stringWithContentsOfFile:readmePath

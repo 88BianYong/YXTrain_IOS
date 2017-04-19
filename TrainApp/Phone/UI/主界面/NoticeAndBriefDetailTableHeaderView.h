@@ -16,6 +16,7 @@ typedef void(^NoticeAndBriefDetailHtmlHeightChangeBlock) (CGFloat htmlHeight, CG
 @interface NoticeAndBriefDetailTableHeaderView : UIView
 @property (nonatomic, strong) NoticeAndBriefDetailRequestItem_Body *body;
 @property (nonatomic, assign, readonly) CGFloat changeHeight;
+@property (nonatomic, assign) CGFloat htmlViewDefaultHeight;
 
 - (void)setNoticeAndBriefDetailHtmlOpenAndCloseBlock:(NoticeAndBriefDetailHtmlOpenAndCloseBlock)block;
 - (void)setNoticeAndBriefDetailHtmlHeightChangeBlock:(NoticeAndBriefDetailHtmlHeightChangeBlock)block;

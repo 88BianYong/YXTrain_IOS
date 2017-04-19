@@ -68,7 +68,7 @@
     }];
     [self.headerView setNoticeAndBriefDetailHtmlHeightChangeBlock:^(CGFloat htmlHeight, CGFloat labelHeight) {
         STRONG_SELF
-        if (htmlHeight < kTableViewHeaderHtmlPlaceholdeHeight) {
+        if (htmlHeight < self.headerView.htmlViewDefaultHeight) {
             self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight - kTableViewHeaderOpenAndCloseHeight + htmlHeight + labelHeight);
         }else {
             self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + kTableViewHeaderHtmlPlaceholdeHeight + labelHeight);
@@ -130,7 +130,7 @@
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
+    return self.itemBody.affix.count > 0 ? 1 : 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.itemBody.affix.count;
