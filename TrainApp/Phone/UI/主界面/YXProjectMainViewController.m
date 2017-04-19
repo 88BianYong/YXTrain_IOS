@@ -59,10 +59,6 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 - (ProjectChooseLayerView *)chooseLayerView {
     if (_chooseLayerView == nil) {
         _chooseLayerView = [[ProjectChooseLayerView alloc] init];
-        [self.view addSubview:self.chooseLayerView];
-        [_chooseLayerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
-        }];
         WEAK_SELF
         [_chooseLayerView setProjectChooseLayerCompleteBlock:^(NSString *layerId){
             STRONG_SELF;
@@ -253,8 +249,6 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         if ([self handleRequestData:data]) {
             return;
         }
-        self.chooseLayerView.hidden = YES;
-
     }];
     self.selectLayerRequest = request;
 }
@@ -286,6 +280,10 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     }
 }
 - (void)showTrainLayerView:(TrainLayerListRequestItem *)item {
+    [self.view addSubview:self.chooseLayerView];
+    [self.chooseLayerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     self.chooseLayerView.dataMutableArray = item.body;
 }
 

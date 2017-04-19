@@ -128,7 +128,6 @@
     return 110.5;
 };
 - (void)setDataMutableArray:(NSMutableArray<__kindof TrainLayerListRequestItem_Body *> *)dataMutableArray {
-    self.hidden = NO;
     _dataMutableArray = dataMutableArray;
     [self.tableView reloadData];
 }

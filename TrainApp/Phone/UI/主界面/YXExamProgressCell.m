@@ -117,6 +117,8 @@
         self.typeImageView.image = [UIImage imageNamed:@"课程"];
     }else if (item.toolid.integerValue == 202 || item.toolid.integerValue == 302){
         self.typeImageView.image = [UIImage imageNamed:@"活动"];
+    }else if (item.toolid.integerValue == 204 || item.toolid.integerValue == 304){
+        self.typeImageView.image = [UIImage imageNamed:@"考试"];
     }else if (item.toolid.integerValue == 203 || item.toolid.integerValue == 303){
         self.typeImageView.image = [UIImage imageNamed:@"作业"];
     }else if (item.toolid.integerValue == 216 || item.toolid.integerValue == 316){

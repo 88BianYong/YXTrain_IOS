@@ -42,8 +42,7 @@
 }
 
 - (NSString<Optional> *)isOpenLayer {
-    return  @"0";
-    if (_isOpenLayer.boolValue && self.layerId.integerValue <= 0) {
+    if (_isOpenLayer.boolValue && self.layerId.integerValue <= 0 || self.pid.integerValue == 1798) {
         return @"1";
     }else {
         return @"0";
