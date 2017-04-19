@@ -278,6 +278,7 @@
 		924AB2561DE41C47003EC952 /* firstComment_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 924AB2541DE41C47003EC952 /* firstComment_mock.json */; };
 		924AB2571DE41C47003EC952 /* SecondComment_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 924AB2551DE41C47003EC952 /* SecondComment_mock.json */; };
 		924AB2661DE43EC9003EC952 /* ActivityEnclosureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924AB2651DE43EC9003EC952 /* ActivityEnclosureViewController.m */; };
+		924C9A0D1EA735A20017B31B /* TrainGeTuiManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */; };
 		9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */; };
@@ -1091,6 +1092,8 @@
 		924AB2641DE43EC9003EC952 /* ActivityEnclosureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityEnclosureViewController.h; sourceTree = "<group>"; };
 		924AB2651DE43EC9003EC952 /* ActivityEnclosureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityEnclosureViewController.m; sourceTree = "<group>"; };
 		924C9A091EA60DA20017B31B /* TrainApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrainApp.entitlements; sourceTree = "<group>"; };
+		924C9A0B1EA735A20017B31B /* TrainGeTuiManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainGeTuiManger.h; sourceTree = "<group>"; };
+		924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainGeTuiManger.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
@@ -1806,6 +1809,7 @@
 				7CF888571D194B8300E7C04D /* PrefixHeader.pch */,
 				923237581D81122700FDACFE /* provinceData.json */,
 				7CF888581D194B8300E7C04D /* YXDefinitions.h */,
+				924C9A0A1EA735500017B31B /* Push */,
 				E90C60AF1D9CFFDF001652CF /* DataStatisticsManger */,
 				7CF888171D17E51200E7C04D /* Player */,
 				7C3177F11D1177E0004AAC90 /* Download */,
@@ -3077,6 +3081,15 @@
 			name = "评论";
 			sourceTree = "<group>";
 		};
+		924C9A0A1EA735500017B31B /* Push */ = {
+			isa = PBXGroup;
+			children = (
+				924C9A0B1EA735A20017B31B /* TrainGeTuiManger.h */,
+				924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */,
+			);
+			path = Push;
+			sourceTree = "<group>";
+		};
 		92529A721D2A337C007E26D8 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4196,6 +4209,7 @@
 				928B7A5F1E88C7220067218A /* DeYangCourseRecordCell.m in Sources */,
 				928B7A491E88B2180067218A /* BeijingExamViewController.m in Sources */,
 				9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */,
+				924C9A0D1EA735A20017B31B /* TrainGeTuiManger.m in Sources */,
 				CB3510A91D18E9730081EA3B /* YXAllDatumViewController.m in Sources */,
 				CBB62E131D2CCB0F00DAA6DE /* YXBroseWebView.m in Sources */,
 				92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */,
@@ -4702,7 +4716,7 @@
 				CODE_SIGN_ENTITLEMENTS = TrainApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = P8ZS8UUN27;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Phone/InfoPhone.plist";
@@ -4714,8 +4728,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = $APP_PROFILE;
-				PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

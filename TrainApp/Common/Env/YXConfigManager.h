@@ -32,4 +32,9 @@
 @property (nonatomic, strong) NSNumber<Optional> *testFrameworkOn;
 @property (nonatomic, strong) NSNumber<Optional> *talkingDataReportOn;
 
+
+//推送
+@property (nonatomic, strong) NSString<Ignore> *geTuiAppId;
+@property (nonatomic, strong) NSString<Ignore> *geTuiAppKey;
+@property (nonatomic, strong) NSString<Ignore> *geTuiAppServer;
 @end

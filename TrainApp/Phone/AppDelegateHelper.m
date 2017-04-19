@@ -22,6 +22,7 @@
 
 #import "YXCMSCustomView.h"
 #import "YXWebViewController.h"
+#import "TrainGeTuiManger.h"
 
 @interface AppDelegateHelper ()
 @property (nonatomic, strong) UIWindow *window;
@@ -91,21 +92,32 @@
 - (void)registeNotifications
 {
     [self removeLoginNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleLoginSuccess)
-                                                 name:YXUserLoginSuccessNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleLogoutSuccess)
-                                                 name:YXUserLogoutSuccessNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleTokenInvalid)
-                                                 name:YXTokenInValidNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(showoUpdateInterface)
-                                                 name:kYXTrainShowUpdate object:nil];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLoginSuccessNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        self.window.rootViewController = [self rootDrawerViewController];
+        [self requestCommonData];
+        [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
+        [[TrainGeTuiManger sharedInstance] loginSuccess];
+    }];
+    
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLogoutSuccessNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
+        self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
+        [[TrainGeTuiManger sharedInstance] logoutSuccess];
+    }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXTokenInValidNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        [[YXUserManager sharedManager] resetUserData];
+        YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
+        self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
+        [YXPromtController showToast:@"帐号授权已失效,请重新登录" inView:self.window];
+    }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainShowUpdate object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
+    }];
 }
 
 - (void)removeLoginNotifications
@@ -120,26 +132,9 @@
     [center removeObserver:self
                       name:YXTokenInValidNotification
                     object:nil];
-
-}
-
-- (void)handleLoginSuccess {
-    self.window.rootViewController = [self rootDrawerViewController];
-    [self requestCommonData];
-    [self showoUpdateInterface];
-}
-- (void)handleLogoutSuccess {
-    YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
-    self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
-}
-- (void)showoUpdateInterface {
-    [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
-}
-- (void)handleTokenInvalid {
-    [[YXUserManager sharedManager] resetUserData];
-    YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
-    self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
-    [YXPromtController showToast:@"帐号授权已失效,请重新登录" inView:self.window];
+    [center removeObserver:self
+                      name:kYXTrainShowUpdate
+                    object:nil];
 }
 
 - (void)showCMSView {
@@ -157,7 +152,7 @@
             STRONG_SELF
             if (error || rotates.count <= 0) {
                 [self.cmsView removeFromSuperview];
-                [self showoUpdateInterface];
+                [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
             }
             else{
                 YXRotateListRequestItem_Rotates *rotate = rotates[0];
@@ -170,14 +165,14 @@
                     webView.titleString = model.name;
                     [webView setBackBlock:^{
                         STRONG_SELF
-                        [self showoUpdateInterface];
+                        [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
                     }];
                     [self.window.rootViewController.navigationController pushViewController:webView animated:YES];
                 };
             }
         }];
     }else{
-        [self showoUpdateInterface];
+        [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
     }
     
 }

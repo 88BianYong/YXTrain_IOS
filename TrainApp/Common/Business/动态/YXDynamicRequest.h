@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString<Optional> *timer;
 @property (nonatomic, copy) NSString<Optional> *status;
 @property (nonatomic, copy) NSString<Optional> *objectId;
+@property (nonatomic, copy) NSString<Optional> *isExtendUrl;
 @end
 
 @interface YXDynamicRequestItem: HttpBaseRequestItem

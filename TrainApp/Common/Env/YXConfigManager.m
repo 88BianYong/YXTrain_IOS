@@ -45,6 +45,9 @@
     self.uploadServer = [envDic valueForKey:@"uploadServer"];
     self.websocketServer = [envDic valueForKey:@"websocketServer"];
     self.mode = [envDic valueForKey:@"mode"];
+    self.geTuiAppId = [envDic valueForKey:@"geTuiAppId"];
+    self.geTuiAppKey = [envDic valueForKey:@"geTuiAppKey"];
+    self.geTuiAppServer = [envDic valueForKey:@"geTuiAppServer"];
     DDLogDebug(@"server env : %@",envDic);
 }
 

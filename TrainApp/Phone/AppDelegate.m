@@ -14,6 +14,7 @@
 #import "YXWebSocketManger.h"
 #import "AppDelegate+GetInfoList.h"
 #import "TalkingData.h"
+#import "TrainGeTuiManger.h"
 @interface AppDelegate ()
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 @property (nonatomic, strong) NSTimer *backgroundTimer;
@@ -46,6 +47,7 @@
     [GlobalUtils setDefaultExceptionHandler];
     [TalkingData setExceptionReportEnabled:YES];
     [YXDataStatisticsManger sessionStarted:@"2D51075BBBC948E36A11E656DABC1775" withChannelId:@"AppStore"];
+    [[TrainGeTuiManger sharedInstance] registerGeTui];
     return YES;
 }
 
@@ -118,17 +120,30 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     [GlobalUtils clearCore];
 }
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [[TrainGeTuiManger sharedInstance] resume]; // 后台恢复SDK 运行
+    completionHandler(UIBackgroundFetchResultNewData);
+}
 
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
+    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [[TrainGeTuiManger sharedInstance] registerDeviceToken:deviceToken];
 }
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
+    [[TrainGeTuiManger sharedInstance] handleApnsContent:userInfo];
+    application.applicationIconBadgeNumber -= 1;
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
 
 - (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
 }
 
 - (void)application:(UIApplication*)application didReceiveRemoteNotification:(NSDictionary*)userInfo {
+    DDLogDebug(@"%@",userInfo);
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

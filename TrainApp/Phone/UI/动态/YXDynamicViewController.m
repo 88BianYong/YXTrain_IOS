@@ -13,6 +13,7 @@
 #import "YXBroseWebView.h"
 #import "YXHomeworkInfoViewController.h"
 #import "YXHomeworkInfoRequest.h"
+#import "NoticeAndBriefDetailViewController.h"
 static  NSString *const trackPageName = @"消息动态列表页面";
 @interface YXDynamicViewController ()
 @property (nonatomic, strong) YXMsgReadedRequest *readedRequest;
@@ -106,20 +107,12 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     switch (data.type.integerValue) {//1-通知  2-简报  3-打分  4-推优  5-任务到期提醒
         case 1:
         {
-            YXBroseWebView *webView = [[YXBroseWebView alloc] init];
-            webView.urlString = data.linkUrl;
-            webView.titleString = data.projectName;
-            webView.sourceControllerTitile = @"通知";
-            [self.navigationController pushViewController:webView animated:NO];
+            [self pushNextViewController:data];
         }
             break;
         case 2:
         {
-            YXBroseWebView *webView = [[YXBroseWebView alloc] init];
-            webView.urlString = data.linkUrl;
-            webView.titleString = data.projectName;
-            webView.sourceControllerTitile = @"简报";
-            [self.navigationController pushViewController:webView animated:NO];
+            [self pushNextViewController:data];
         }
             break;
         case 3:
@@ -163,6 +156,20 @@ static  NSString *const trackPageName = @"消息动态列表页面";
             
         default:
             break;
+    }
+    
+}
+- (void)pushNextViewController:(YXDynamicRequestItem_Data *)data{
+    if (data.isExtendUrl.boolValue) {
+        YXBroseWebView *webView = [[YXBroseWebView alloc] init];
+        webView.urlString = data.linkUrl;
+        webView.titleString = data.projectName;
+        webView.sourceControllerTitile = data.type.integerValue == 1 ? @"通知" : @"简报";
+        [self.navigationController pushViewController:webView animated:YES];
+    }else {
+        NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
+        
+        [self.navigationController pushViewController:VC animated:YES];
     }
     
 }
