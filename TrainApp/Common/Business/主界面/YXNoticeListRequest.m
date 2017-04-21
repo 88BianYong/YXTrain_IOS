@@ -9,7 +9,10 @@
 #import "YXNoticeListRequest.h"
 
 @implementation YXNoticeAndBulletinItem
-
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"nbID"}];
+}
 @end
 
 @implementation YXNoticeListRequestItem_body

@@ -14,6 +14,7 @@
 #import "YXHomeworkInfoViewController.h"
 #import "YXHomeworkInfoRequest.h"
 #import "NoticeAndBriefDetailViewController.h"
+#import "TrainRedPointManger.h"
 static  NSString *const trackPageName = @"消息动态列表页面";
 @interface YXDynamicViewController ()
 @property (nonatomic, strong) YXMsgReadedRequest *readedRequest;
@@ -42,7 +43,11 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
-
+- (void)naviLeftAction {
+    [TrainRedPointManger sharedInstance].dynamicInteger = -1;
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
@@ -143,14 +148,14 @@ static  NSString *const trackPageName = @"消息动态列表页面";
             break;
         case 5:
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:data.projectId];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:data.projectId];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
         }
             break;
         case 6:
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:data.projectId];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:data.projectId];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
         }
             break;
             
@@ -168,7 +173,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
         [self.navigationController pushViewController:webView animated:YES];
     }else {
         NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
-        
+        VC.nbIdString = data.msgId;
         [self.navigationController pushViewController:VC animated:YES];
     }
     

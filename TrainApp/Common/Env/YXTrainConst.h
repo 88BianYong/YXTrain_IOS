@@ -75,9 +75,9 @@ extern NSString *const kYXTrainFirstGoInHomeworkList;
  */
 extern NSString *const kYXTrainFirstGoInHomeworkInfo;
 /**
- *  websocket发送消息
+ *   push or websocket发送消息
  */
-extern NSString *const kYXTrainWebSocketReceiveMessage;
+extern NSString *const kYXTrainPushWebSocketReceiveMessage;
 /**
  *  视频作业保存
  */
@@ -128,6 +128,10 @@ extern NSString *const kYXTrainRemindLeftSlip;
  *  提交随堂练答案
  */
 extern NSString *const kYXTrainSubmitQuestionAnswer;
+/**
+ *  接收到推送通知dismiss界面
+ */
+extern NSString *const kYXTrainPushNotification;
 
 
 

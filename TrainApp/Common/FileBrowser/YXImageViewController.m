@@ -39,6 +39,11 @@
         make.top.mas_equalTo(@0);
         make.bottom.left.right.mas_equalTo(@0);
     }];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPushNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self naviLeftAction];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated

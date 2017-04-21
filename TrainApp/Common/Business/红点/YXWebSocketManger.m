@@ -8,6 +8,7 @@
 
 #import "YXWebSocketManger.h"
 #import "SRWebSocket.h"
+#import "TrainRedPointManger.h"
 @interface YXWebSocketManger()<SRWebSocketDelegate>
 {
     SRWebSocket *_webSocket;
@@ -114,8 +115,8 @@
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
                                                             options:NSJSONReadingMutableContainers
                                                               error:&err];
-        if ([dic[@"type"] integerValue] == 2 || [dic[@"type"] integerValue] == 3) {//有热点动态发送通知
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainWebSocketReceiveMessage object:dic[@"type"]];
+        if ([dic[@"type"] integerValue] == 2) {//有热点动态发送通知
+            [TrainRedPointManger sharedInstance].hotspotInteger = 1;
         }
     }
 }

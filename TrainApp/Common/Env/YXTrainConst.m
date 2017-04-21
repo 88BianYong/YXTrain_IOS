@@ -20,7 +20,7 @@ NSString *const kYXTrainFirstGoInHomeworkList = @"the first to enter the work li
 
 NSString *const kYXTrainFirstGoInHomeworkInfo = @"the first to enter the homework info interface";
 
-NSString *const kYXTrainWebSocketReceiveMessage = @"the websocket receive message for hotspot and dynamic";
+NSString *const kYXTrainPushWebSocketReceiveMessage = @"the push or websocket receive message for hotspot and dynamic";
 
 NSString *const kYXTrainVideoUserDefaultsKey = @"kVideoUserDefaultsKey";
 
@@ -45,3 +45,5 @@ NSString *const kYXTrainContainsTeacher = @"contains teacher not involved in the
 NSString *const kYXTrainRemindLeftSlip = @"Show left sliding reminder learning";
 
 NSString *const kYXTrainSubmitQuestionAnswer = @"submit video question answer";
+
+ NSString *const kYXTrainPushNotification = @"push Notification dismiss view controller";

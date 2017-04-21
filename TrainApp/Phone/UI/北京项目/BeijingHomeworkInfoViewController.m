@@ -29,7 +29,7 @@ static  NSString *const trackPageName = @"作业详情页面";
 - (BOOL)isJudgmentChooseCourse{
     if ([YXTrainManager sharedInstance].currentProject.isOpenTheme.boolValue) {
         self.emptyView = [[YXEmptyView alloc]init];
-        self.emptyView.title = @"您还没有选课";
+        self.emptyView.title = @"请先等待主题选学";
         self.emptyView.imageName = @"没选课";
         [self.view addSubview:self.emptyView];
         [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {

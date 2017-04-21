@@ -52,6 +52,7 @@
 @property (nonatomic, strong) NSString<Optional> *is_selected;
 @property (nonatomic, strong) NSString<Optional> *module_id;
 @property (nonatomic, strong) NSString<Optional> *credit;//北京项目专用
+@property (nonatomic, strong) NSString<Optional> *isSupportApp;
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course_quiz<Optional> *quiz;//德阳项目专用
 @end
 

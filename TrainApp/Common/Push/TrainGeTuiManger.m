@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "GeTuiSdk.h"
 #import <UserNotifications/UserNotifications.h>
+#import "TrainRedPointManger.h"
 @interface TrainGeTuiManger ()<GeTuiSdkDelegate , UNUserNotificationCenterDelegate>
 @property (nonatomic, strong) NSString *currentUid;
 @end
@@ -28,6 +29,8 @@
         [GeTuiSdk startSdkWithAppId:[YXConfigManager sharedInstance].geTuiAppId appKey:[YXConfigManager sharedInstance].geTuiAppKey appSecret:[YXConfigManager sharedInstance].geTuiAppServer delegate:self];
         [self registerUserNotification];
     }
+   [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+
 }
 
 - (void)registerUserNotification {
@@ -107,7 +110,6 @@
     if ([[YXUserManager sharedManager] isLogin]) {
         [self handleGeTuiContent:payloadMsg withOffLine:offLine];
     }
-    [self setBadge:0];
 }
 
 // SDK启动成功 则返回cid
@@ -183,7 +185,10 @@
 #pragma mark - Handle Notification
 // 处理个推推送，App运行中
 - (void)handleGeTuiContent:(NSString *)content  withOffLine:(BOOL)offLine{
-    if (offLine) {
+    NSLog(@">>>>>>>>>%ld",(long)[UIApplication sharedApplication].applicationIconBadgeNumber);
+    if (!offLine) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber ++;
+        [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
 //        NSError *error = nil;
 //        YXApnsContentModel *apns = nil;
 //        apns = [[YXApnsContentModel alloc] initWithString:content error:&error];
@@ -191,7 +196,8 @@
 //        
 //        [self showNotificationView:apns];
     }else {
-        //跳转;
+        [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
     }
     
 }

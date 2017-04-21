@@ -213,6 +213,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         }
     }];
     [self.classworkManager startBatchRequestForVideoQuestions];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPushNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self backAction];
+    }];
 }
 - (void)checkNetworkDoPlay {
     Reachability *r = [Reachability reachabilityForInternetConnection];

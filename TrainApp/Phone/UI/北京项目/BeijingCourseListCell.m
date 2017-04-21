@@ -134,7 +134,7 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
     int second = course.record.intValue;
-    if ((arc4random()%5) == 2) {
+    if (!_course.isSupportApp.boolValue) {
         self.hoursImageView.image = [UIImage imageNamed:@"不支持"];
         self.hoursLabel.text = @"暂不支持该类型课程";
         self.titleLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];

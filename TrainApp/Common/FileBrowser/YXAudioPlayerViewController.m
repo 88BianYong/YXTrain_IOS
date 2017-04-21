@@ -78,6 +78,10 @@
         if (!self) return;
         [self recordPlayerDuration];
     }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPushNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self backAction];
+    }];
 }
 - (void)recordPlayerDuration {
     [UIApplication sharedApplication].idleTimerDisabled = NO;

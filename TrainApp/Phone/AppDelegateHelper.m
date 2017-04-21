@@ -23,6 +23,7 @@
 #import "YXCMSCustomView.h"
 #import "YXWebViewController.h"
 #import "TrainGeTuiManger.h"
+#import "TrainGeTuiManger.h"
 
 @interface AppDelegateHelper ()
 @property (nonatomic, strong) UIWindow *window;
@@ -33,8 +34,22 @@
     if (self = [super init]) {
         self.window = window;
         [self registeNotifications];
+        [self showNotificationViewController];
     }
     return self;
+}
+- (void)showNotificationViewController{
+    [[TrainGeTuiManger sharedInstance] setTrainGeTuiMangerCompleteBlock:^{
+        if (self.window.rootViewController.presentedViewController) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+        }
+        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
+        YXDrawerViewController *drawerVC  = (YXDrawerViewController *)self.window.rootViewController;
+        YXNavigationController *projectNavi = (YXNavigationController *)drawerVC.paneViewController;
+        [projectNavi popToRootViewControllerAnimated:NO];
+        [projectNavi pushViewController:VC animated:YES];
+    }];
+    
 }
 - (void)setupRootViewController{
     if ([YXConfigManager sharedInstance].testFrameworkOn.boolValue) {

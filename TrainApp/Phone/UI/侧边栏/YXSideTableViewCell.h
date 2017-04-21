@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef NS_ENUM(NSUInteger, YXSideTableViewCellStatus) {
+    YXSideTableViewCellStatus_Hotspot,//热点
+    YXSideTableViewCellStatus_Datum,
+    YXSideTableViewCellStatus_Workshop,
+    YXSideTableViewCellStatus_Dynamic
+    
+};
 
 @interface YXSideTableViewCell : UITableViewCell
 @property (nonatomic ,strong) NSDictionary *nameDictionary;
-@property (nonatomic ,assign) BOOL isShowRedPoint;
+@property (nonatomic, assign) YXSideTableViewCellStatus cellStatus;
 @end

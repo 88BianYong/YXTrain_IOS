@@ -13,7 +13,7 @@
 @end
 
 @interface YXNoticeAndBulletinItem : JSONModel
-
+@property (nonatomic, copy) NSString<Optional> *nbID;
 @property (nonatomic, copy) NSString<Optional> *itemId;
 @property (nonatomic, copy) NSString<Optional> *title;
 @property (nonatomic, copy) NSString<Optional> *userId;

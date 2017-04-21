@@ -10,6 +10,7 @@
 #import "YXUploadHeadImgRequest.h"
 #import "YXUserProfile.h"
 #import "YXUserProfileRequest.h"
+#import "TrainRedPointManger.h"
 @implementation WebsocketRedLeftView
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -31,18 +32,12 @@
     self.button.backgroundColor = [UIColor redColor];
     self.button.layer.cornerRadius = 16;
     self.button.clipsToBounds = YES;
-    self.pointView.frame = CGRectMake(32.0f, 0.0f, 5.0f, 5.0f);
 }
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
-    NSInteger integer = [aNotification.object integerValue];
-    if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing
-        && integer == 3) {
-        return;
-    }
-    if (integer == 0) {
-        self.pointView.hidden = YES;
-    }else{
-        self.pointView.hidden = NO;
+    if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {
+        self.redPointNumber = [TrainRedPointManger sharedInstance].hotspotInteger > 0 ? 0 : -1;
+    }else {
+        self.redPointNumber = [TrainRedPointManger sharedInstance].showRedPointInteger;
     }
 }
 @end

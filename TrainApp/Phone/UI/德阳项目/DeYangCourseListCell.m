@@ -114,7 +114,7 @@
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
-    if ((arc4random()%5) == 2) {
+    if (!_course.isSupportApp.boolValue) {
         [self.recordLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.titleLabel.mas_left).mas_offset(23);
         }];

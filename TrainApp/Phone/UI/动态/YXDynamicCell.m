@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic ,strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UIView *redPointView;
+@property (nonatomic, strong) UIImageView *nextImageView;
 
 @end
 @implementation YXDynamicCell
@@ -74,7 +75,12 @@
     self.redPointView = [[UIView alloc] init];
     self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
     self.redPointView.layer.cornerRadius = 2.5f;
+    self.redPointView.hidden = YES;
     [self.contentView addSubview:self.redPointView];
+    
+    self.nextImageView = [[UIImageView alloc] init];
+    self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
+    [self.contentView addSubview:self.nextImageView];
 }
 - (void)layoutInterface{
     [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -106,7 +112,12 @@
         make.top.equalTo(self.contentLabel.mas_bottom).offset(14.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
     }];
-
+    
+    [self.nextImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView.mas_right).offset(-12.0f);
+        make.height.width.mas_equalTo(16.0f);
+        make.centerY.equalTo(self.contentView.mas_centerY);
+    }];
 }
 
 - (void)updateLayoutInterfaceSingle:(BOOL)boolSingle{//TD 解决单行Lable 出现行间距问题
@@ -126,13 +137,22 @@
     [super awakeFromNib];
     // Initialization code
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+    if (!selected) {
+        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
+    }
 }
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
-    [super setHighlighted:highlighted animated:YES];
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头点击态"];
+    }
+    else{
+        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
+    }
     self.redPointView.backgroundColor = [UIColor colorWithHexString:@"ed5836"];
+
 }
 
 - (void)setData:(YXDynamicRequestItem_Data *)data{
@@ -140,7 +160,14 @@
     self.contentLabel.attributedText = [self contentStringWithDesc:data.title];
     self.contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.timeLabel.text = data.timer;
-    self.redPointView.hidden = data.status.boolValue ? YES : NO;
+    if (data.type.integerValue > 3) {
+        self.nextImageView.hidden = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }else {
+        self.nextImageView.hidden = NO;
+        self.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }
+//    self.redPointView.hidden = data.status.boolValue ? YES : NO;
     [self.titleLabel sizeToFit];
     CGRect frame = self.titleLabel.frame;
     if (frame.size.width > kScreenWidth - 30.0f){

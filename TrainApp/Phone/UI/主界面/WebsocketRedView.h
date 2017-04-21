@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 @interface WebsocketRedView : UIView
 @property (nonatomic, strong, readonly) UIButton *button;
-@property (nonatomic, strong, readonly) UIView *pointView;
+@property (nonatomic, assign) NSInteger redPointNumber;//-1隐藏,0小红点,>0大红点显示数,>99显示99+
 @property (nonatomic, copy) void (^WebsocketRedButtonActionBlock)(void);
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification;
 @end

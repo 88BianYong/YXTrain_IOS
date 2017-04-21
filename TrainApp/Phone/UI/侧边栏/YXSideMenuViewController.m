@@ -19,7 +19,7 @@
 #import "YXHotspotViewController.h"
 #import "YXDynamicViewController.h"
 #import "YXWebSocketManger.h"
-
+#import "TrainRedPointManger.h"
 #import "StudentsLearnController.h"
 @interface YXSideMenuViewController ()<UITableViewDelegate, UITableViewDataSource>{
     NSArray *_titleArray;
@@ -29,8 +29,6 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) YXUserProfile *profile;
-@property (nonatomic, strong) NSMutableArray *redPointMutableArray;
-
 @property (nonatomic, strong) UIView *shadowView;
 
 @end
@@ -44,7 +42,6 @@
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self removeObserver:self forKeyPath:@"_redPointMutableArray"];
 }
 
 - (void)viewDidLoad {
@@ -273,23 +270,7 @@
 }
 
 - (void)setWebSocket {
-    self.redPointMutableArray = [@[@"0",@"0",@"0",@"0"] mutableCopy];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(webSocketReceiveMessage:) name:kYXTrainWebSocketReceiveMessage object:nil];
-    [self addObserver:self forKeyPath:@"_redPointMutableArray"options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [[YXWebSocketManger sharedInstance] open];
-}
-
-- (void)webSocketReceiveMessage:(NSNotification *)aNotification {
-    NSInteger integer = [aNotification.object integerValue];
-    if (integer == 3 && [YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目消息动态不在侧边栏
-        return;
-    }
-    if (integer == 2) {
-        [self mutableArrayValueForKey:@"_redPointMutableArray"][0] = @"1";
-    }else if (integer == 3){
-        [self mutableArrayValueForKey:@"_redPointMutableArray"][3] = @"1";
-    }
-    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
@@ -304,21 +285,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     YXSideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXSideTableViewCell" forIndexPath:indexPath];
     cell.nameDictionary = _titleArray[indexPath.section];
-    if ([self.redPointMutableArray[indexPath.section] integerValue] == 1) {
-        cell.isShowRedPoint = YES;
-    }else{
-        cell.isShowRedPoint = NO;
-    }
+    cell.cellStatus = indexPath.section;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self mutableArrayValueForKey:@"_redPointMutableArray"][indexPath.section] = @"0";
     switch (indexPath.section) {
         case 0:
         {
+            [TrainRedPointManger sharedInstance].hotspotInteger = -1;
             [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Hotspot];
             YXHotspotViewController *hotspot = [[YXHotspotViewController alloc] init];
             [self.navigationController pushViewController:hotspot animated:YES];
@@ -338,6 +315,7 @@
             break;
         case 3:
         {
+            [TrainRedPointManger sharedInstance].dynamicInteger = -1;
             [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
             YXDynamicViewController *dynamicVc = [[YXDynamicViewController alloc] init];
             [self.navigationController pushViewController:dynamicVc animated:YES];
@@ -403,26 +381,6 @@
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-#pragma mark - observer
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSString *,id> *)change
-                       context:(void *)context {
-    if ([keyPath isEqualToString:@"_redPointMutableArray"]) {
-        BOOL isShowRed = NO;
-        for (NSString *string in self.redPointMutableArray) {
-            if (string.integerValue == 1) {
-                isShowRed = YES;
-                break;
-            }
-        }
-        if (!isShowRed) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainWebSocketReceiveMessage object:@"0"];
-        }
-    }
-}
-
 - (BOOL)shouldAutorotate {
     return YES;
 }

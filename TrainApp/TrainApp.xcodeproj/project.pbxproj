@@ -279,6 +279,7 @@
 		924AB2571DE41C47003EC952 /* SecondComment_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 924AB2551DE41C47003EC952 /* SecondComment_mock.json */; };
 		924AB2661DE43EC9003EC952 /* ActivityEnclosureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924AB2651DE43EC9003EC952 /* ActivityEnclosureViewController.m */; };
 		924C9A0D1EA735A20017B31B /* TrainGeTuiManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */; };
+		924C9A111EA9DC740017B31B /* TrainRedPointManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 924C9A101EA9DC740017B31B /* TrainRedPointManger.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */; };
 		9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */; };
@@ -1094,6 +1095,8 @@
 		924C9A091EA60DA20017B31B /* TrainApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrainApp.entitlements; sourceTree = "<group>"; };
 		924C9A0B1EA735A20017B31B /* TrainGeTuiManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainGeTuiManger.h; sourceTree = "<group>"; };
 		924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainGeTuiManger.m; sourceTree = "<group>"; };
+		924C9A0F1EA9DC740017B31B /* TrainRedPointManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainRedPointManger.h; sourceTree = "<group>"; };
+		924C9A101EA9DC740017B31B /* TrainRedPointManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainRedPointManger.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
@@ -3058,6 +3061,8 @@
 			children = (
 				92CE51431D87D2C00071DE79 /* YXWebSocketManger.h */,
 				92CE51441D87D2C00071DE79 /* YXWebSocketManger.m */,
+				924C9A0F1EA9DC740017B31B /* TrainRedPointManger.h */,
+				924C9A101EA9DC740017B31B /* TrainRedPointManger.m */,
 			);
 			path = "红点";
 			sourceTree = "<group>";
@@ -4330,6 +4335,7 @@
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
 				920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */,
 				924AB2661DE43EC9003EC952 /* ActivityEnclosureViewController.m in Sources */,
+				924C9A111EA9DC740017B31B /* TrainRedPointManger.m in Sources */,
 				E9A7B5D61DDADD0A00136335 /* ActivityListCell.m in Sources */,
 				CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,

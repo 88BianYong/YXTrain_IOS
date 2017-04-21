@@ -26,7 +26,7 @@
 #import "ProjectChooseLayerView.h"
 #import "YXProjectMainViewController+Master.h"
 #import "YXProjectMainViewController+Student.h"
-
+#import "TrainRedPointManger.h"
 #import "TrainLayerListRequest.h"
 #import "TrainSelectLayerRequest.h"
 typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
@@ -100,8 +100,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     [self.leftView setWebsocketRedButtonActionBlock:^{
         [YXDrawerController showDrawer];
     }];
-    [self setupLeftWithCustomView:self.leftView];
-    
+    [self setupLeftWithCustomView:self.leftView];    
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
@@ -132,7 +131,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     WEAK_SELF
     [self.rightView setWebsocketRedButtonActionBlock:^{
         STRONG_SELF
-        self.rightView.pointView.hidden = YES;
+        [TrainRedPointManger sharedInstance].dynamicInteger = -1;
         [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
         BeijingDynamicViewController *VC = [[BeijingDynamicViewController alloc] init];
         [self.navigationController pushViewController:VC animated:YES];

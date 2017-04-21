@@ -7,7 +7,7 @@
 //
 
 #import "WebsocketRedRightView.h"
-
+#import "TrainRedPointManger.h"
 @implementation WebsocketRedRightView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -21,12 +21,8 @@
     [self.button setImage:[UIImage imageNamed:@"消息动态icon-正常态A"] forState:UIControlStateNormal];
     [self.button setImage:[UIImage imageNamed:@"消息动态icon点击态-正常态-拷贝"] forState:UIControlStateHighlighted];
     self.button.frame = CGRectMake(0, 0, 32.0f, 32.0f);
-    self.pointView.frame = CGRectMake(27.0f, 5.0f, 5.0f, 5.0f);
 }
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
-    NSInteger integer = [aNotification.object integerValue];
-    if (integer == 3) {
-      self.pointView.hidden = NO;
-    }
+    self.redPointNumber = [TrainRedPointManger sharedInstance].dynamicInteger;
 }
 @end

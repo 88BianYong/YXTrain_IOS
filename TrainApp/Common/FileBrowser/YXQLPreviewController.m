@@ -74,6 +74,10 @@
         STRONG_SELF
         SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
     }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPushNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self doneButtonTapped:nil];
+    }];
 }
 
 - (BOOL)shouldAutorotate

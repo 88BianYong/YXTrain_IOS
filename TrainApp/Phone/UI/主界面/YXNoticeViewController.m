@@ -103,6 +103,7 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
         [self.navigationController pushViewController:webView animated:YES];
     }else {
         NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
+        VC.nbIdString = item.nbID;
         [self.navigationController pushViewController:VC animated:YES];
     }
 }
