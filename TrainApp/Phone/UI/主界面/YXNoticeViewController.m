@@ -104,6 +104,7 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
     }else {
         NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
         VC.nbIdString = item.nbID;
+        VC.title = item.title;
         [self.navigationController pushViewController:VC animated:YES];
     }
 }

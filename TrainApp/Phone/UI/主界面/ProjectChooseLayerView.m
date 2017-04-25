@@ -10,6 +10,7 @@
 #import "YXNoFloatingHeaderFooterTableView.h"
 #import "ProjectChooseLayerHeaderView.h"
 #import "ProjectChooseLayerCell.h"
+#import "UITableView+TemplateLayoutHeaderView.h"
 @interface ProjectChooseLayerView ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) UIButton *confirmButton;
@@ -18,7 +19,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]){
-        self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
         [self setupUI];
         [self setupLayout];
     }
@@ -27,17 +27,19 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedSectionHeaderHeight = 44.0f;
+//    self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+//    self.tableView.estimatedSectionHeaderHeight = 44.0f;
     [self.tableView registerClass:[ProjectChooseLayerHeaderView class] forHeaderFooterViewReuseIdentifier:@"ProjectChooseLayerHeaderView"];
     [self.tableView registerClass:[ProjectChooseLayerCell class] forCellReuseIdentifier:@"ProjectChooseLayerCell"];
     [self addSubview:self.tableView];
     
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 79.0f)];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100.0f)];
+    footerView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = footerView;
     
     self.confirmButton = [[UIButton alloc] init];
@@ -120,6 +122,11 @@
     return cell;
 }
 #pragma mark - UITableViewDataSource
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return [tableView yx_heightForHeaderWithIdentifier:@"ProjectChooseLayerHeaderView" configuration:^(ProjectChooseLayerHeaderView *headerView) {
+    }];
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     ProjectChooseLayerHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ProjectChooseLayerHeaderView"];
     return headerView;

@@ -60,6 +60,7 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.frame = [UIScreen mainScreen].bounds;
+        self.contentView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
         [self setupUI];
         [self setupLayout];
     }

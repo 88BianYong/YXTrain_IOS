@@ -212,10 +212,12 @@ static  NSString *const trackPageName = @"课程列表页面";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.chooseCourseInteger = indexPath.row;
     YXCourseListRequestItem_body_module_course *course = self.dataArray[indexPath.row];
-    YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];
-    vc.course = course;
-    vc.isFromRecord = NO;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (course.isSupportApp.boolValue) {
+        YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];
+        vc.course = course;
+        vc.isFromRecord = NO;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - YXCourseFilterViewDelegate

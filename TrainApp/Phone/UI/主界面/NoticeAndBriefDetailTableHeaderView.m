@@ -146,7 +146,7 @@
             make.top.equalTo(self.userNameTimeLabel.mas_bottom).offset(25.0f);
             make.left.equalTo(self.mas_left).offset(25.0f);
             make.right.equalTo(self.mas_right).offset(-25.0f);
-            make.bottom.equalTo(self.mas_bottom);
+            make.bottom.equalTo(self.mas_bottom).offset(-20.0f);
         }];
         self.openCloseButton.hidden = YES;
         self.gradientView.hidden = YES;
@@ -185,17 +185,16 @@
         self.htmlViewDefaultHeight = CGFLOAT_MAX;
     }
     self.userNameTimeLabel.text = [NSString stringWithFormat:@"%@  %@",_body.userName,_body.time];
-    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
-    _body.content = [NSString stringWithContentsOfFile:readmePath
-                                                        encoding:NSUTF8StringEncoding
-                                                        error:NULL];
+//    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
+//    _body.content = [NSString stringWithContentsOfFile:readmePath
+//                                                        encoding:NSUTF8StringEncoding
+//                                                        error:NULL];
     NSData *data = [_body.content?:@"" dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions]documentAttributes:nil];
     [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, string.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
         if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
             attachment.originalSize = CGSizeMake(kScreenWidth - 50.0f, 200.0f);
             attachment.displaySize = CGSizeMake(kScreenWidth - 50.0f, 200.0f);
-
         }
     }];
     self.htmlView.attributedString = string;

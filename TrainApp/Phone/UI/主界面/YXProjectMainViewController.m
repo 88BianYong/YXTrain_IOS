@@ -42,6 +42,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 @property (nonatomic, strong) TrainSelectLayerRequest *selectLayerRequest;
 
 @property (nonatomic, strong) NSMutableArray *dataMutableArrray;
+@property (nonatomic, strong) NSMutableDictionary *layerMutableDictionary;
 @property (nonatomic, assign) TrainProjectRequestStatus requestStatus;
 
 @property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
@@ -70,6 +71,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataMutableArrray = [[NSMutableArray alloc] initWithCapacity:6];
+    self.layerMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:3];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showSwitchGuideView) name:@"cancelToUpdate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserRoleInterface) name:kYXTrainUserIdentityChange object:nil];
     [self setupUI];
@@ -212,25 +214,32 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 
 - (void)requestForLayerList {
-    self.requestStatus = TrainProjectRequestStatus_LayerList;
-    TrainLayerListRequest *request = [[TrainLayerListRequest alloc] init];
-    request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
-    WEAK_SELF
-    [self startLoading];
-    [request startRequestWithRetClass:[TrainLayerListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        TrainLayerListRequestItem *item = retItem;
-        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = YES;
-        data.localDataExist = NO;
-        data.error = error;
-        if ([self handleRequestData:data]) {
-            return;
-        }
-        [self showTrainLayerView:item];
-    }];
-    self.layerListRequest = request;
+    if (self.layerMutableDictionary[[YXTrainManager sharedInstance].currentProject.pid]) {
+       [self showTrainLayerView:self.layerMutableDictionary[[YXTrainManager sharedInstance].currentProject.pid]];
+    }else {
+        self.requestStatus = TrainProjectRequestStatus_LayerList;
+        TrainLayerListRequest *request = [[TrainLayerListRequest alloc] init];
+        request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+        WEAK_SELF
+        [self startLoading];
+        [request startRequestWithRetClass:[TrainLayerListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+            STRONG_SELF
+            [self stopLoading];
+            TrainLayerListRequestItem *item = retItem;
+            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+            data.requestDataExist = YES;
+            data.localDataExist = NO;
+            data.error = error;
+            if ([self handleRequestData:data]) {
+                return;
+            }
+            if (item) {
+                self.layerMutableDictionary[[YXTrainManager sharedInstance].currentProject.pid] = item;
+                [self showTrainLayerView:item];
+            }
+        }];
+        self.layerListRequest = request;
+    }
 }
 - (void)requestForSelectLayer:(NSString *)layerId {
     [self startLoading];
@@ -248,6 +257,10 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         if ([self handleRequestData:data]) {
             return;
         }
+        [YXTrainManager sharedInstance].currentProject.isOpenLayer = @"0";
+        [YXTrainManager sharedInstance].currentProject.layerId = layerId;
+        [self.chooseLayerView removeFromSuperview];
+        [self refreshUserRoleInterface];
     }];
     self.selectLayerRequest = request;
 }
@@ -256,12 +269,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
     [YXTrainManager sharedInstance].currentProject.role = nil;
     [YXTrainManager sharedInstance].currentProjectIndexPath = indexPath;
-    if ([YXTrainManager sharedInstance].currentProject.isOpenLayer.boolValue) {
-        [self requestForLayerList];
-    }else {
-        [self stopLoading];
-        [self refreshUserRoleInterface];
-    }
+    [self refreshUserRoleInterface];
 }
 
 - (void)refreshUserRoleInterface {
@@ -271,11 +279,19 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     for (UIView *v in self.view.subviews) {
         [v removeFromSuperview];
     }
-    if ([YXTrainManager sharedInstance].currentProject.role.intValue == 9 ||
-        [YXTrainManager sharedInstance].currentProject.w.integerValue < 3) {
-        [self showStudentInterface];
+    if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
+        [self showSwitchGuideView];
+    }
+    if ([YXTrainManager sharedInstance].currentProject.isOpenLayer.boolValue) {
+        [self requestForLayerList];
     }else {
-        [self showMasterInterface];
+        [self stopLoading];
+        if ([YXTrainManager sharedInstance].currentProject.role.intValue == 9 ||
+            [YXTrainManager sharedInstance].currentProject.w.integerValue < 3) {
+            [self showStudentInterface];
+        }else {
+            [self showMasterInterface];
+        }
     }
 }
 - (void)showTrainLayerView:(TrainLayerListRequestItem *)item {

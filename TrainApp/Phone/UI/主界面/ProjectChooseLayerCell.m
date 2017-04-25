@@ -16,7 +16,6 @@
 @implementation ProjectChooseLayerCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupUI];
         [self setupLayout];
     }
@@ -24,6 +23,9 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.titleLable = [[UILabel alloc] init];
     self.titleLable.font = [UIFont boldSystemFontOfSize:16.0f];
     self.titleLable.textColor = [UIColor colorWithHexString:@"334466"];

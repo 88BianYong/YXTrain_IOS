@@ -18,6 +18,9 @@
     }else if (toolid.integerValue == 202 || toolid.integerValue == 302){
         lStr = [NSString stringWithFormat:@"已参加%@个",finishNum];
         rStr = [NSString stringWithFormat:@"／%@个",totalNum];
+    }else if (toolid.integerValue == 204 || toolid.integerValue == 304){
+        lStr = [NSString stringWithFormat:@"已通过%@个",finishNum];
+        rStr = [NSString stringWithFormat:@"／%@个",totalNum];
     }else if (toolid.integerValue == 206 || toolid.integerValue == 306){
         lStr = [NSString stringWithFormat:@"已获得%@分",finishNum];
         rStr = [NSString stringWithFormat:@"／%@分",totalNum];
@@ -30,6 +33,9 @@
     }else if (toolid.integerValue == 220 || toolid.integerValue == 320){
         lStr = [NSString stringWithFormat:@"已被点评%@篇",finishNum];
         rStr = [NSString stringWithFormat:@"／%@篇",totalNum];
+    }else if (toolid.integerValue == 221 || toolid.integerValue == 321){
+        lStr = [NSString stringWithFormat:@"已答对%@个",finishNum];
+        rStr = [NSString stringWithFormat:@"／%@个",totalNum];
     }else{
         lStr = [NSString stringWithFormat:@"已完成%@个",finishNum];
         rStr = [NSString stringWithFormat:@"／%@个",totalNum];

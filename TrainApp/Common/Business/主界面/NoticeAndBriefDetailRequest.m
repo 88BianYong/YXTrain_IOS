@@ -28,4 +28,8 @@
     }
     return self;
 }
++(JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"nbID",
+                                                       }];
+}
 @end

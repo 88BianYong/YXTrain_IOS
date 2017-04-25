@@ -42,14 +42,13 @@
 }
 
 - (NSString<Optional> *)isOpenLayer {
-    if (_isOpenLayer.boolValue && self.layerId.integerValue <= 0 || self.pid.integerValue == 1798) {
+    if (_isOpenLayer.boolValue && self.layerId.integerValue <= 0) {
         return @"1";
     }else {
         return @"0";
     }
 }
 - (NSString<Optional> *)isOpenTheme {
-    return  @"0";
     if (_isOpenTheme.boolValue && self.themeId.integerValue <= 0) {
         return @"1";
     }else {

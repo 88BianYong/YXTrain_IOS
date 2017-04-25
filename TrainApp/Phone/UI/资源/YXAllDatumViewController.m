@@ -40,6 +40,7 @@ static  NSString *const trackPageName = @"全部资源页面";
     [super viewDidLoad];
     self.isAllowChange = YES;
     [self configUI];
+    [self startLoading];
     // Do any additional setup after loading the view.
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -94,7 +95,6 @@ static  NSString *const trackPageName = @"全部资源页面";
 
 - (void)firstPageFetch {
     self.wholeDatumFetcher.condition = self.currentConditon;
-    [self startLoading];
     [super firstPageFetch];
 }
 
