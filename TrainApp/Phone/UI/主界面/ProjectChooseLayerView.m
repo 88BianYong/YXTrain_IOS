@@ -136,6 +136,15 @@
 };
 - (void)setDataMutableArray:(NSMutableArray<__kindof TrainLayerListRequestItem_Body *> *)dataMutableArray {
     _dataMutableArray = dataMutableArray;
+    self.confirmButton.enabled = NO;
+    self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"f3f7fa"].CGColor;
+    [_dataMutableArray enumerateObjectsUsingBlock:^(__kindof TrainLayerListRequestItem_Body * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.isChoose.integerValue == 1) {
+            self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"0070c9"].CGColor;
+            self.confirmButton.enabled = YES;
+            *stop = YES;
+        }
+    }];
     [self.tableView reloadData];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

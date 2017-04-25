@@ -28,6 +28,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.titleString;
     [self setupUI];
     [self setupLayout];
     [self requestForNoticeAndBriefDetail];
@@ -97,7 +98,9 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60.0f;
+    return [tableView fd_heightForCellWithIdentifier:@"NoticeAndBriefDetailCell" configuration:^(NoticeAndBriefDetailCell *cell) {
+        cell.affix = self.itemBody.affix[indexPath.row];
+    }];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 95.0f;
@@ -133,7 +136,7 @@
     return self.itemBody.affix.count > 0 ? 1 : 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.itemBody.affix.count;
+    return MIN(self.itemBody.affix.count,3);
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NoticeAndBriefDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoticeAndBriefDetailCell" forIndexPath:indexPath];

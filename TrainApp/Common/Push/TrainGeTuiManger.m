@@ -189,12 +189,6 @@
     if (!offLine) {
         [UIApplication sharedApplication].applicationIconBadgeNumber ++;
         [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-//        NSError *error = nil;
-//        YXApnsContentModel *apns = nil;
-//        apns = [[YXApnsContentModel alloc] initWithString:content error:&error];
-//        NSLog(@"[Receive GeTui]:%@\n\n", content);
-//        
-//        [self showNotificationView:apns];
     }else {
         [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);

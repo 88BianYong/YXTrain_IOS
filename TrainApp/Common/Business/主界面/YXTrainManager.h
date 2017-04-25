@@ -19,6 +19,7 @@
 
 + (instancetype)sharedInstance;
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock;
+- (void)saveToCache;
 - (void)clear;
 
 @end

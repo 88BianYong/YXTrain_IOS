@@ -10,4 +10,5 @@
 
 @interface NoticeAndBriefDetailViewController : YXBaseViewController
 @property (nonatomic, copy) NSString *nbIdString;
+@property (nonatomic, copy) NSString *titleString;
 @end

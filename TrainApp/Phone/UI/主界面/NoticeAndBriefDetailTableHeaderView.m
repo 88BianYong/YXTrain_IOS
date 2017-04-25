@@ -30,6 +30,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.htmlViewDefaultHeight = 300.0f;
+        _changeHeight = -1;
         self.isOpen = NO;
         self.isFirstRefresh = YES;
         [self setupUI];
@@ -85,13 +86,8 @@
             return;
         }
         self ->_changeHeight = height + self.titleLabel.bounds.size.height;
-        if (self.isFirstRefresh || 1) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self updateHtmlViewWithHeight:height];
-                BLOCK_EXEC(self.heightChangeBlock,height,self.titleLabel.bounds.size.height);
-            });
-        }
-        self.isFirstRefresh = NO;
+        [self updateHtmlViewWithHeight:height];
+        BLOCK_EXEC(self.heightChangeBlock,height,self.titleLabel.bounds.size.height);
     }];
     self.openCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.openCloseButton.layer.cornerRadius = YXTrainCornerRadii;
@@ -146,7 +142,7 @@
             make.top.equalTo(self.userNameTimeLabel.mas_bottom).offset(25.0f);
             make.left.equalTo(self.mas_left).offset(25.0f);
             make.right.equalTo(self.mas_right).offset(-25.0f);
-            make.bottom.equalTo(self.mas_bottom).offset(-20.0f);
+            make.bottom.equalTo(self.mas_bottom).offset(-5.0f);
         }];
         self.openCloseButton.hidden = YES;
         self.gradientView.hidden = YES;
@@ -189,7 +185,7 @@
 //    _body.content = [NSString stringWithContentsOfFile:readmePath
 //                                                        encoding:NSUTF8StringEncoding
 //                                                        error:NULL];
-    NSData *data = [_body.content?:@"" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [_body.content?:@" " dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions]documentAttributes:nil];
     [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, string.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
         if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {

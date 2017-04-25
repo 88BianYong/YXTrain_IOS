@@ -173,7 +173,8 @@ static  NSString *const trackPageName = @"消息动态列表页面";
         [self.navigationController pushViewController:webView animated:YES];
     }else {
         NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
-        VC.nbIdString = data.msgId;
+        VC.nbIdString = data.objectId;
+        VC.titleString = data.title;
         [self.navigationController pushViewController:VC animated:YES];
     }
     

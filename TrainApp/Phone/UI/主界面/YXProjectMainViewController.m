@@ -259,6 +259,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         }
         [YXTrainManager sharedInstance].currentProject.isOpenLayer = @"0";
         [YXTrainManager sharedInstance].currentProject.layerId = layerId;
+        [[YXTrainManager sharedInstance] saveToCache];
         [self.chooseLayerView removeFromSuperview];
         [self refreshUserRoleInterface];
     }];
