@@ -125,7 +125,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 }
 
 - (void)setupStageForCourseMarket{
-    YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+    YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
     [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXCourseFilter *filter = (YXCourseFilter *)obj;
         if (self.status == YXCourseFromStatus_Market) {

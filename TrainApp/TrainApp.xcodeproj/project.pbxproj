@@ -390,6 +390,8 @@
 		92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7CD1D62C33A005B91DD /* YXChapterListRequest.m */; };
 		92EDC7D11D632357005B91DD /* YXHomeworkUploadCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D01D632357005B91DD /* YXHomeworkUploadCompleteView.m */; };
 		92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */; };
+		92EEA9211EB08348005A3B7C /* DeYangCourseListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EEA9201EB08348005A3B7C /* DeYangCourseListFetcher.m */; };
+		92EEA9241EB08563005A3B7C /* DeYangCourseTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EEA9231EB08563005A3B7C /* DeYangCourseTableHeaderView.m */; };
 		92F1A59B1E52B17E00015766 /* MasterHappeningTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A59A1E52B17E00015766 /* MasterHappeningTableHeaderView.m */; };
 		92F1A59E1E52B3BA00015766 /* MasterHappeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A59D1E52B3BA00015766 /* MasterHappeningCell.m */; };
 		92F1A5A11E52B3DD00015766 /* MasterHappeningHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5A01E52B3DD00015766 /* MasterHappeningHeaderView.m */; };
@@ -1308,6 +1310,10 @@
 		92EDC7D01D632357005B91DD /* YXHomeworkUploadCompleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkUploadCompleteView.m; sourceTree = "<group>"; };
 		92EDC7D21D6323AD005B91DD /* YXHomeworkPlayVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkPlayVideoCell.h; sourceTree = "<group>"; };
 		92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkPlayVideoCell.m; sourceTree = "<group>"; };
+		92EEA91F1EB08348005A3B7C /* DeYangCourseListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeYangCourseListFetcher.h; sourceTree = "<group>"; };
+		92EEA9201EB08348005A3B7C /* DeYangCourseListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangCourseListFetcher.m; sourceTree = "<group>"; };
+		92EEA9221EB08563005A3B7C /* DeYangCourseTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeYangCourseTableHeaderView.h; sourceTree = "<group>"; };
+		92EEA9231EB08563005A3B7C /* DeYangCourseTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangCourseTableHeaderView.m; sourceTree = "<group>"; };
 		92F1A5991E52B17E00015766 /* MasterHappeningTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningTableHeaderView.h; sourceTree = "<group>"; };
 		92F1A59A1E52B17E00015766 /* MasterHappeningTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningTableHeaderView.m; sourceTree = "<group>"; };
 		92F1A59C1E52B3BA00015766 /* MasterHappeningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningCell.h; sourceTree = "<group>"; };
@@ -3235,6 +3241,8 @@
 				928B7A581E88C0510067218A /* DeYangCourseListCell.m */,
 				928B7A5D1E88C7220067218A /* DeYangCourseRecordCell.h */,
 				928B7A5E1E88C7220067218A /* DeYangCourseRecordCell.m */,
+				92EEA9221EB08563005A3B7C /* DeYangCourseTableHeaderView.h */,
+				92EEA9231EB08563005A3B7C /* DeYangCourseTableHeaderView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3242,6 +3250,8 @@
 		928B7A8B1E88EEAD0067218A /* 德阳项目 */ = {
 			isa = PBXGroup;
 			children = (
+				92EEA91F1EB08348005A3B7C /* DeYangCourseListFetcher.h */,
+				92EEA9201EB08348005A3B7C /* DeYangCourseListFetcher.m */,
 			);
 			path = "德阳项目";
 			sourceTree = "<group>";
@@ -4141,6 +4151,7 @@
 				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
 				92F1A5BC1E5402D400015766 /* StudentsLearnFilterView.m in Sources */,
 				7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */,
+				92EEA9211EB08348005A3B7C /* DeYangCourseListFetcher.m in Sources */,
 				92F1A59B1E52B17E00015766 /* MasterHappeningTableHeaderView.m in Sources */,
 				7CF8885C1D194BE800E7C04D /* JKAlertDialog.m in Sources */,
 				CB7462851D1FF00D0065113A /* YXResetPasswordRequest.m in Sources */,
@@ -4198,6 +4209,7 @@
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
 				92CE55F41E5598FD002C1F11 /* StudentExamViewController.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
+				92EEA9241EB08563005A3B7C /* DeYangCourseTableHeaderView.m in Sources */,
 				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
 				E9CD95821DE3E7E300AE6704 /* DownloadResourceRequest.m in Sources */,
 				92FAE4A71DDAC9ED000C3C00 /* ActivityStepViewController.m in Sources */,

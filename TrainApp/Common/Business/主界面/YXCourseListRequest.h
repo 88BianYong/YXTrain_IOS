@@ -11,9 +11,16 @@
 
 @protocol YXCourseListRequestItem_body_stage <NSObject>
 @end
+
+@interface YXCourseListRequestItem_body_module_course_quiz : JSONModel
+@property (nonatomic, copy) NSString<Optional> *finish;
+@property (nonatomic, copy) NSString<Optional> *total;
+@end
+
 @interface YXCourseListRequestItem_body_stage : JSONModel
 @property (nonatomic, strong) NSString<Optional> *stageID;
 @property (nonatomic, strong) NSString<Optional> *name;
+@property (nonatomic, strong) YXCourseListRequestItem_body_module_course_quiz<Optional> *quiz;//德阳项目专用
 @end
 
 @protocol YXCourseListRequestItem_body_study <NSObject>
@@ -30,16 +37,13 @@
 @property (nonatomic, strong) NSString<Optional> *name;
 @end
 
+
+
 @protocol YXCourseListRequestItem_body_segment <NSObject>
 @end
 @interface YXCourseListRequestItem_body_segment : JSONModel
 @property (nonatomic, strong) NSString<Optional> *segmentID;
 @property (nonatomic, strong) NSString<Optional> *name;
-@end
-
-@interface YXCourseListRequestItem_body_module_course_quiz : JSONModel
-@property (nonatomic, copy) NSString<Optional> *finish;
-@property (nonatomic, copy) NSString<Optional> *total;
 @end
 
 @protocol YXCourseListRequestItem_body_module_course <NSObject>
@@ -53,6 +57,7 @@
 @property (nonatomic, strong) NSString<Optional> *module_id;
 @property (nonatomic, strong) NSString<Optional> *credit;//北京项目专用
 @property (nonatomic, strong) NSString<Optional> *isSupportApp;
+@property (nonatomic, strong) NSString<Optional> *type;
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course_quiz<Optional> *quiz;//德阳项目专用
 @end
 
@@ -83,6 +88,8 @@
 - (NSArray *)allCourses; // element is YXCourseListRequestItem_body_module_course type
 - (YXCourseListFilterModel *)filterModel;
 - (YXCourseListFilterModel *)beijingFilterModel;
+- (YXCourseListFilterModel *)deyangFilterModel ;
+- (NSArray<__kindof YXCourseListRequestItem_body_module_course_quiz *> *)deyangFilterStagesQuiz;
 @end
 
 @interface YXCourseListRequest : YXGetRequest

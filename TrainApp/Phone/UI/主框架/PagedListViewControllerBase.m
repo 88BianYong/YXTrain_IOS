@@ -47,6 +47,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.bIsGroupedTableViewStyle];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.hidden = YES;
     [self.contentView addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0);
@@ -105,6 +106,7 @@
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
+        self.tableView.hidden = NO;
         [self tableViewWillRefresh];
         [self stopLoading];
         [self stopAnimation];

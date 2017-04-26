@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UILabel *quizzesLabel;
 @property (nonatomic, strong) UIImageView *historyImageView;
 
+@property (nonatomic, strong) UILabel *statsLabel;
+
 @end
 @implementation DeYangCourseListCell
 
@@ -102,6 +104,18 @@
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];
 
+    self.statsLabel = [[UILabel alloc] init];
+    self.statsLabel.font = [UIFont systemFontOfSize:10.0f];
+    self.statsLabel.textColor = [UIColor whiteColor];
+    self.statsLabel.clipsToBounds = YES;
+    self.statsLabel.layer.cornerRadius = 3.0f;
+    self.statsLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:self.statsLabel];
+    [self.statsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.courseImageView.mas_right).offset(5.0f);
+        make.bottom.equalTo(self.courseImageView.mas_bottom).offset(-5.0f);
+        make.size.mas_offset(CGSizeMake(29.0f, 15.0f));
+    }];
 }
 
 - (void)setCourse:(YXCourseListRequestItem_body_module_course *)course {
@@ -142,6 +156,16 @@
         }
         self.quizzesLabel.text = [NSString stringWithFormat:@"[随堂练] 已答对%@个 / 共%@个",_course.quiz.finish,_course.quiz.total];
     }
+    
+    if (_course.type.integerValue == 101) {
+        self.statsLabel.text = @"选修";
+        self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
+    }else {
+        self.statsLabel.text = @"必修";
+        self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"65aee7"];
+    }
 }
+
+
 
 @end

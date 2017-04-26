@@ -8,16 +8,20 @@
 
 #import "DeYangCourseViewController.h"
 #import "YXCourseFilterView.h"
-#import "YXCourseListFetcher.h"
+#import "DeYangCourseListFetcher.h"
 #import "DeYangCourseListCell.h"
 #import "YXCourseDetailViewController.h"
 #import "DeYangCourseRecordViewController.h"
+#import "DeYangCourseTableHeaderView.h"
 static  NSString *const trackPageName = @"课程列表页面";
 @interface DeYangCourseViewController ()<YXCourseFilterViewDelegate>
 @property (nonatomic, strong) YXCourseFilterView *filterView;
 @property (nonatomic, strong) YXCourseListFilterModel *filterModel;
 @property (nonatomic, strong) YXCourseListRequest *request;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
+@property (nonatomic, strong) DeYangCourseTableHeaderView *headerView;
+
+@property (nonatomic, strong) NSArray<__kindof YXCourseListRequestItem_body_module_course_quiz *> *stageQuiz;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 
 @property (nonatomic, assign) CGFloat oldOffsetY;
@@ -32,7 +36,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewDidLoad {
-    YXCourseListFetcher *fetcher = [[YXCourseListFetcher alloc]init];
+    DeYangCourseListFetcher *fetcher = [[DeYangCourseListFetcher alloc]init];
     fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
     WEAK_SELF
     fetcher.filterBlock = ^(YXCourseListFilterModel *model){
@@ -62,7 +66,9 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[DeYangCourseListCell class] forCellReuseIdentifier:@"DeYangCourseListCell"];
-    
+    self.headerView = [[DeYangCourseTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50.0f)];
+    self.headerView.hidden = YES;
+    self.tableView.tableHeaderView = self.headerView;
     if (self.isWaitingForFilter) {
         self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
         WEAK_SELF
@@ -139,14 +145,27 @@ static  NSString *const trackPageName = @"课程列表页面";
             [self.view addSubview:self.filterErrorView];
             return;
         }
+        self.headerView.hidden = NO;
         [self.filterErrorView removeFromSuperview];
         
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
-        self.filterModel = [item filterModel];
+        self.filterModel = [item deyangFilterModel];
+        self.stageQuiz = [item deyangFilterStagesQuiz];
         self.isWaitingForFilter = NO;
+        [self setupStageForFirst];
         [self startLoading];
         [self firstPageFetch];
     }];
+}
+- (void)setupStageForFirst{
+    if (self.filterModel.groupArray.count > 0) {
+        YXCourseFilterGroup *group = self.filterModel.groupArray[0];
+        if (group.filterArray.count > 0) {
+            YXCourseFilter *stageItem = group.filterArray[0];
+            DeYangCourseListFetcher *fetcher = (DeYangCourseListFetcher *)self.dataFetcher;
+            fetcher.stageid = stageItem.filterID;
+        }
+    }
 }
 - (void)dealWithFilterModel:(YXCourseListFilterModel *)model{
     YXCourseFilterView *filterView = [[YXCourseFilterView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
@@ -158,12 +177,20 @@ static  NSString *const trackPageName = @"课程列表页面";
         }
         [filterView addFilters:array forKey:group.name];
     }
+    [self setupWithCurrentFilters];
     filterView.delegate = self;
     [self.view addSubview:filterView];
     [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(44);
     }];
+}
+
+- (void)setupWithCurrentFilters{
+    YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
+    if (stageGroup.filterArray.count > 0) {
+        [self.filterView setCurrentIndex:0 forKey:stageGroup.name];
+    }
 }
 - (void)setupObservers{
     WEAK_SELF
@@ -201,11 +228,11 @@ static  NSString *const trackPageName = @"课程列表页面";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 5;
+    return 0.0001f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.1;
+    return 0.0001f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -228,22 +255,23 @@ static  NSString *const trackPageName = @"课程列表页面";
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(44);
     }];
-    // 学段
+    // 阶段
     NSNumber *num0 = filterArray[0];
     YXCourseFilterGroup *group0 = self.filterModel.groupArray[0];
-    YXCourseFilter *segmentItem = group0.filterArray[num0.integerValue];
-    // 学科
+    YXCourseFilter *stageItem = group0.filterArray[num0.integerValue];
+    if (self.stageQuiz.count > num0.integerValue) {
+        self.headerView.quiz = self.stageQuiz[num0.integerValue];
+    }
+    // 学段
     NSNumber *num1 = filterArray[1];
     YXCourseFilterGroup *group1 = self.filterModel.groupArray[1];
-    YXCourseFilter *studyItem = group1.filterArray[num1.integerValue];
-    // 阶段
+    YXCourseFilter *segmentItem = group1.filterArray[num1.integerValue];
+    //学科
     NSNumber *num2 = filterArray[2];
     YXCourseFilterGroup *group2 = self.filterModel.groupArray[2];
-    YXCourseFilter *stageItem = group2.filterArray[num2.integerValue];
-    
+    YXCourseFilter *studyItem = group2.filterArray[num2.integerValue];
     DDLogDebug(@"Changed: 学段:%@，学科:%@，阶段:%@",segmentItem.name,studyItem.name,stageItem.name);
-    
-    YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
+    DeYangCourseListFetcher *fetcher = (DeYangCourseListFetcher *)self.dataFetcher;
     fetcher.studyid = studyItem.filterID;
     fetcher.segid = segmentItem.filterID;
     fetcher.stageid = stageItem.filterID;

@@ -60,6 +60,12 @@
 - (YXCourseListFilterModel *)beijingFilterModel {
     return [YXCourseListFilterModel beijingModelFromRawData:self];
 }
+- (YXCourseListFilterModel *)deyangFilterModel {
+    return [YXCourseListFilterModel deyangModelFromRawData:self];
+}
+- (NSArray<__kindof YXCourseListRequestItem_body_module_course_quiz *> *)deyangFilterStagesQuiz {
+    return [YXCourseListFilterModel deyangFilterStagesQuiz:self];
+}
 @end
 
 @implementation YXCourseListRequest

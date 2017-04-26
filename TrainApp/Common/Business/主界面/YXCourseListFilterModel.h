@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
 @class YXCourseListRequestItem;
+@class YXCourseListRequestItem_body_module_course_quiz;
 
 @interface YXCourseFilter : NSObject
 @property (nonatomic, strong) NSString *filterID;
@@ -25,5 +25,6 @@
 
 + (YXCourseListFilterModel *)modelFromRawData:(YXCourseListRequestItem *)item;
 + (YXCourseListFilterModel *)beijingModelFromRawData:(YXCourseListRequestItem *)item;
-
++ (YXCourseListFilterModel *)deyangModelFromRawData:(YXCourseListRequestItem *)item;
++ (NSArray<__kindof YXCourseListRequestItem_body_module_course_quiz *> *)deyangFilterStagesQuiz:(YXCourseListRequestItem *)item;
 @end
