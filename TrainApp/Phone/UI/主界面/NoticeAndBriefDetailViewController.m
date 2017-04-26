@@ -70,7 +70,7 @@
     [self.headerView setNoticeAndBriefDetailHtmlHeightChangeBlock:^(CGFloat htmlHeight, CGFloat labelHeight) {
         STRONG_SELF
         if (htmlHeight < self.headerView.htmlViewDefaultHeight) {
-            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight - kTableViewHeaderOpenAndCloseHeight + htmlHeight + labelHeight + 20.0f);
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight - kTableViewHeaderOpenAndCloseHeight + htmlHeight + labelHeight);
         }else {
             self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + kTableViewHeaderHtmlPlaceholdeHeight + labelHeight);
         }

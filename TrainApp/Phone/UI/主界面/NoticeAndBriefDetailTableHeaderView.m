@@ -86,8 +86,11 @@
             return;
         }
         self ->_changeHeight = height + self.titleLabel.bounds.size.height;
-        [self updateHtmlViewWithHeight:height];
-        BLOCK_EXEC(self.heightChangeBlock,height,self.titleLabel.bounds.size.height);
+        DDLogDebug(@"%f",height);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateHtmlViewWithHeight:height];
+            BLOCK_EXEC(self.heightChangeBlock,height,self.titleLabel.bounds.size.height);
+        });        
     }];
     self.openCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.openCloseButton.layer.cornerRadius = YXTrainCornerRadii;

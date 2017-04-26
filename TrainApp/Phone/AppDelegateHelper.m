@@ -43,13 +43,15 @@
         if (self.window.rootViewController.presentedViewController) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
         }
-        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
         YXDrawerViewController *drawerVC  = (YXDrawerViewController *)self.window.rootViewController;
         YXNavigationController *projectNavi = (YXNavigationController *)drawerVC.paneViewController;
+        if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+            return ;
+        }
+        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
         [projectNavi popToRootViewControllerAnimated:NO];
         [projectNavi pushViewController:VC animated:YES];
     }];
-    
 }
 - (void)setupRootViewController{
     if ([YXConfigManager sharedInstance].testFrameworkOn.boolValue) {
