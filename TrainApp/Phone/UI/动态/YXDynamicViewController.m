@@ -32,6 +32,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     self.title = @"消息动态";
     [self setupUI];
     [self layoutInterface];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

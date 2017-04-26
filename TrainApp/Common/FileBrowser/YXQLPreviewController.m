@@ -36,7 +36,7 @@
 
 - (void)dealloc
 {
-
+    [self.qlNavigationBar removeObserver:self forKeyPath:@"hidden" context:nil];
 }
 
 - (instancetype)init{
@@ -74,20 +74,19 @@
         STRONG_SELF
         SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
     }];
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPushNotification object:nil] subscribeNext:^(id x) {
-        STRONG_SELF
-        [self doneButtonTapped:nil];
-    }];
 }
 
 - (BOOL)shouldAutorotate
 {
-    return NO; 
+    return NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    if (self.qlNavigationBar){
+        return;
+    }
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     self.qlNavigationBar = [self getNavigationBarFromView:self.view];
     self.overlayNavigationBar = [[UINavigationBar alloc] initWithFrame:[self navigationBarFrameForOrientation:[[UIApplication sharedApplication] statusBarOrientation]]];
@@ -97,7 +96,7 @@
     //self.navigationController.navigationBar = self.overlayNavigationBar;
     NSAssert(self.qlNavigationBar, @"could not find navigation bar");
     if (self.qlNavigationBar) {
-           [self.qlNavigationBar addObserver:self forKeyPath:@"hidden" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
+        [self.qlNavigationBar addObserver:self forKeyPath:@"hidden" options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld) context:nil];
     }
     // Now initialize your custom navigation bar with whatever items you like...
     self.overlayNavigationItem = [[UINavigationItem alloc] initWithTitle:self.qlTitle];
@@ -112,13 +111,9 @@
     self.overlayNavigationItem.rightBarButtonItems = [YXNavigationBarController barButtonItemsForView:rightButton];
     
     [self.overlayNavigationBar pushNavigationItem:self.overlayNavigationItem animated:NO];
+    //     [self.overlayNavigationBar setBackgroundImage:[UIImage yx_imageWithColor:[UIColor blueColor]] forBarMetrics:UIBarMetricsDefault];
 }
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    if (self.qlNavigationBar) {
-        [self.qlNavigationBar removeObserver:self forKeyPath:@"hidden" context:nil];
-    }
-}
+
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     self.overlayNavigationBar.frame = [self navigationBarFrameForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];

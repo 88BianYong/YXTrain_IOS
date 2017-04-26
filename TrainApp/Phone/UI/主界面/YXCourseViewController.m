@@ -281,21 +281,19 @@ static  NSString *const trackPageName = @"课程列表页面";
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(44);
     }];
-    // 学段
+    // 阶段
     NSNumber *num0 = filterArray[0];
     YXCourseFilterGroup *group0 = self.filterModel.groupArray[0];
-    YXCourseFilter *segmentItem = group0.filterArray[num0.integerValue];
-    // 学科
+    YXCourseFilter *stageItem = group0.filterArray[num0.integerValue];
+    // 学段
     NSNumber *num1 = filterArray[1];
     YXCourseFilterGroup *group1 = self.filterModel.groupArray[1];
-    YXCourseFilter *studyItem = group1.filterArray[num1.integerValue];
-    // 阶段
+    YXCourseFilter *segmentItem = group1.filterArray[num1.integerValue];
+    //学科
     NSNumber *num2 = filterArray[2];
     YXCourseFilterGroup *group2 = self.filterModel.groupArray[2];
-    YXCourseFilter *stageItem = group2.filterArray[num2.integerValue];
-    
+    YXCourseFilter *studyItem = group2.filterArray[num2.integerValue];
     DDLogDebug(@"Changed: 学段:%@，学科:%@，阶段:%@",segmentItem.name,studyItem.name,stageItem.name);
-    
     YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
     fetcher.studyid = studyItem.filterID;
     fetcher.segid = segmentItem.filterID;

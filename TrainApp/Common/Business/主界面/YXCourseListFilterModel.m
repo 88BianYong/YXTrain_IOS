@@ -63,7 +63,7 @@
     g3.filterArray = stageArray;
     
     YXCourseListFilterModel *model = [[YXCourseListFilterModel alloc]init];
-    model.groupArray = @[g2,g1,g3];
+    model.groupArray = @[g3,g2,g1];
     return model;
 }
 
