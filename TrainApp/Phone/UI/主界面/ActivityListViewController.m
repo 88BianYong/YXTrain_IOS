@@ -79,7 +79,7 @@
     }];
 }
 - (void)setupWithCurrentFilters {
-    ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+    ActivityFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
     __block NSInteger stageIndex = -1;
     [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         ActivityFilter *filter = (ActivityFilter *)obj;
@@ -132,7 +132,8 @@
             ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
             fetcher.stageid = self.stageID;
         } else {
-            ActivityFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;            ActivityFilter *filter = stageGroup.filterArray.firstObject;
+            ActivityFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
+            ActivityFilter *filter = stageGroup.filterArray.firstObject;
             self.stageID = filter.filterID;
             ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
             fetcher.stageid = self.stageID;
@@ -186,22 +187,22 @@
         make.top.mas_equalTo(44);
     }];
     // 学段
-    NSNumber *num0 = filterArray[0];
-    ActivityFilterGroup *group0 = self.filterModel.groupArray[0];
+    NSNumber *num0 = filterArray[1];
+    ActivityFilterGroup *group0 = self.filterModel.groupArray[1];
     ActivityFilter *segmentItem = [[ActivityFilter alloc]init];
     if (group0.filterArray.count > 0) {
         segmentItem = group0.filterArray[num0.integerValue];
     }
     // 学科
-    NSNumber *num1 = filterArray[1];
-    ActivityFilterGroup *group1 = self.filterModel.groupArray[1];
+    NSNumber *num1 = filterArray[2];
+    ActivityFilterGroup *group1 = self.filterModel.groupArray[2];
     ActivityFilter *studyItem = [[ActivityFilter alloc]init];
     if (group0.filterArray.count > 0) {
         studyItem = group1.filterArray[num1.integerValue];
     }
     // 阶段
-    NSNumber *num2 = filterArray[2];
-    ActivityFilterGroup *group2 = self.filterModel.groupArray[2];
+    NSNumber *num2 = filterArray[0];
+    ActivityFilterGroup *group2 = self.filterModel.groupArray[0];
     ActivityFilter *stageItem = [[ActivityFilter alloc]init];
     if (group2.filterArray.count > 0) {
         stageItem = group2.filterArray[num2.integerValue];

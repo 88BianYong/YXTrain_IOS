@@ -54,7 +54,7 @@
     stageGroup.filterArray = stageArray;
     
     ActivityFilterModel *model = [[ActivityFilterModel alloc]init];
-    model.groupArray = @[segmentGroup,studyGroup,stageGroup];
+    model.groupArray = @[stageGroup,segmentGroup,studyGroup];
     return model;
 }
 @end
