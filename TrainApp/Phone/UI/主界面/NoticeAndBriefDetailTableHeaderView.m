@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NoticeAndBriefDetailHtmlHeightChangeBlock heightChangeBlock;
 @property (nonatomic, assign) BOOL isFirstRefresh;
 @property (nonatomic, assign) BOOL isOpen;
+@property (nonatomic, assign) CGFloat htmlHeight;
 
 
 @end
@@ -30,7 +31,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.htmlViewDefaultHeight = 300.0f;
-        _changeHeight = -1;
+        self.htmlHeight = -0.1f;
         self.isOpen = NO;
         self.isFirstRefresh = YES;
         [self setupUI];
@@ -82,9 +83,10 @@
     }];
     [self.coreTextHandler setCoreTextViewHeightChangeBlock:^(CGFloat height) {
         STRONG_SELF
-        if (self.changeHeight == height + self.titleLabel.bounds.size.height) {
+        if (self.htmlHeight == height) {//TBD:展开收起功能需要手动刷新relayoutText 手动刷新会多次改变高度
             return;
         }
+        self.htmlHeight = height;
         self ->_changeHeight = height + self.titleLabel.bounds.size.height;
         DDLogDebug(@"%f",height);
         dispatch_async(dispatch_get_main_queue(), ^{

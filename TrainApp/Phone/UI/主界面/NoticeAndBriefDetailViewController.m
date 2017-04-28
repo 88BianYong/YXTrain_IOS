@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NoticeAndBriefDetailTableHeaderView *headerView;
+@property (nonatomic, strong) YXFileItemBase *fileItem;
+
 
 @end
 
@@ -70,7 +72,7 @@
     [self.headerView setNoticeAndBriefDetailHtmlHeightChangeBlock:^(CGFloat htmlHeight, CGFloat labelHeight) {
         STRONG_SELF
         if (htmlHeight < self.headerView.htmlViewDefaultHeight) {
-            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight - kTableViewHeaderOpenAndCloseHeight + htmlHeight + labelHeight);
+            self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight - kTableViewHeaderOpenAndCloseHeight + htmlHeight + labelHeight + 10);
         }else {
             self.headerView.frame = CGRectMake(0, 0, kScreenWidth, kTableViewHeaderFixedHeight + kTableViewHeaderHtmlPlaceholdeHeight + labelHeight);
         }
@@ -130,6 +132,7 @@
     fileItem.url = affix.previewurl;
     fileItem.baseViewController = self;
     [fileItem browseFile];
+    self.fileItem = fileItem;
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
