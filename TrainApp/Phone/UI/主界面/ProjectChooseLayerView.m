@@ -32,8 +32,6 @@
     self.tableView.dataSource = self;
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
-//    self.tableView.estimatedSectionHeaderHeight = 44.0f;
     [self.tableView registerClass:[ProjectChooseLayerHeaderView class] forHeaderFooterViewReuseIdentifier:@"ProjectChooseLayerHeaderView"];
     [self.tableView registerClass:[ProjectChooseLayerCell class] forCellReuseIdentifier:@"ProjectChooseLayerCell"];
     [self addSubview:self.tableView];
@@ -132,7 +130,9 @@
     return headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 110.5;
+    return [tableView fd_heightForCellWithIdentifier:@"ProjectChooseLayerCell" configuration:^(ProjectChooseLayerCell *cell) {
+        cell.item = self.dataMutableArray[indexPath.row];
+    }];
 };
 - (void)setDataMutableArray:(NSMutableArray<__kindof TrainLayerListRequestItem_Body *> *)dataMutableArray {
     _dataMutableArray = dataMutableArray;

@@ -17,10 +17,17 @@
 @property (nonatomic, copy) NSString<Optional> *total;
 @end
 
+
+@interface YXCourseListRequestItem_body_stage_quiz : JSONModel
+@property (nonatomic, copy) NSString<Optional> *finish;
+@property (nonatomic, copy) NSString<Optional> *total;
+@property (nonatomic, copy) NSString<Ignore> *stageID;
+@property (nonatomic, copy) NSString<Ignore> *isSelected;
+@end
 @interface YXCourseListRequestItem_body_stage : JSONModel
 @property (nonatomic, strong) NSString<Optional> *stageID;
 @property (nonatomic, strong) NSString<Optional> *name;
-@property (nonatomic, strong) YXCourseListRequestItem_body_module_course_quiz<Optional> *quiz;//德阳项目专用
+@property (nonatomic, strong) YXCourseListRequestItem_body_stage_quiz<Optional> *quiz;//德阳项目专用
 @end
 
 @protocol YXCourseListRequestItem_body_study <NSObject>
@@ -89,7 +96,7 @@
 - (YXCourseListFilterModel *)filterModel;
 - (YXCourseListFilterModel *)beijingFilterModel;
 - (YXCourseListFilterModel *)deyangFilterModel ;
-- (NSArray<__kindof YXCourseListRequestItem_body_module_course_quiz *> *)deyangFilterStagesQuiz;
+- (NSArray<__kindof YXCourseListRequestItem_body_stage_quiz *> *)deyangFilterStagesQuiz;
 @end
 
 @interface YXCourseListRequest : YXGetRequest

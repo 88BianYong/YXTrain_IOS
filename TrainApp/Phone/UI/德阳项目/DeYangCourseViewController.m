@@ -21,7 +21,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, strong) DeYangCourseTableHeaderView *headerView;
 
-@property (nonatomic, strong) NSArray<__kindof YXCourseListRequestItem_body_module_course_quiz *> *stageQuiz;
+@property (nonatomic, strong) NSArray<__kindof YXCourseListRequestItem_body_stage_quiz *> *stageQuiz;
 @property (nonatomic, assign) BOOL isNavBarHidden;
 
 @property (nonatomic, assign) CGFloat oldOffsetY;
@@ -89,8 +89,6 @@ static  NSString *const trackPageName = @"课程列表页面";
             }
         }];
         [self.tableView reloadData];
-    }else {
-        
     }
     if (self.chooseCourseInteger >= 0) {
         YXCourseListRequestItem_body_module_course *course = self.dataArray[self.chooseCourseInteger];
@@ -106,7 +104,6 @@ static  NSString *const trackPageName = @"课程列表页面";
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
     if (self.isNavBarHidden) {
         [self.navigationController setNavigationBarHidden:YES animated:YES];
-        
     }else{
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
@@ -150,6 +147,9 @@ static  NSString *const trackPageName = @"课程列表页面";
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         self.filterModel = [item deyangFilterModel];
         self.stageQuiz = [item deyangFilterStagesQuiz];
+        YXCourseListRequestItem_body_stage_quiz *quize = self.stageQuiz[0];
+        quize.isSelected = @"1";
+        self.headerView.quiz = quize;
         self.isWaitingForFilter = NO;
         [self setupStageForFirst];
         [self startLoading];
@@ -189,9 +189,6 @@ static  NSString *const trackPageName = @"课程列表页面";
     YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
     if (stageGroup.filterArray.count > 0) {
         [self.filterView setCurrentIndex:0 forKey:stageGroup.name];
-        if(self.stageQuiz.count > 0){
-          self.headerView.quiz = self.stageQuiz[0];
-        }
     }
 }
 - (void)setupObservers{
@@ -261,9 +258,14 @@ static  NSString *const trackPageName = @"课程列表页面";
     NSNumber *num0 = filterArray[0];
     YXCourseFilterGroup *group0 = self.filterModel.groupArray[0];
     YXCourseFilter *stageItem = group0.filterArray[num0.integerValue];
-    if (self.stageQuiz.count > num0.integerValue) {
-        self.headerView.quiz = self.stageQuiz[num0.integerValue];
-    }
+    [self.stageQuiz enumerateObjectsUsingBlock:^(__kindof YXCourseListRequestItem_body_stage_quiz * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([stageItem.filterID isEqualToString:obj.stageID]) {
+            obj.isSelected = @"1";
+            self.headerView.quiz = obj;
+        }else {
+            obj.isSelected = @"0";
+        }
+    }];
     // 学段
     NSNumber *num1 = filterArray[1];
     YXCourseFilterGroup *group1 = self.filterModel.groupArray[1];

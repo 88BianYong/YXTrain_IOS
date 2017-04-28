@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "YXCourseListRequest.h"
 @interface DeYangCourseTableHeaderView : UIView
-@property (nonatomic, strong) YXCourseListRequestItem_body_module_course_quiz<Optional> *quiz;
+@property (nonatomic, strong) YXCourseListRequestItem_body_stage_quiz<Optional> *quiz;
 @end

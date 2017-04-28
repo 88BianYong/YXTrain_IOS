@@ -154,13 +154,20 @@
     model.groupArray = @[g2,g1,g3];
     return model;
 }
-+ (NSArray<__kindof YXCourseListRequestItem_body_module_course_quiz *> *)deyangFilterStagesQuiz:(YXCourseListRequestItem *)item {
-     NSMutableArray<YXCourseListRequestItem_body_module_course_quiz*> *stagesQuiz = [[NSMutableArray<YXCourseListRequestItem_body_module_course_quiz*> alloc] init];
++ (NSArray<__kindof YXCourseListRequestItem_body_stage_quiz *> *)deyangFilterStagesQuiz:(YXCourseListRequestItem *)item {
+     NSMutableArray<YXCourseListRequestItem_body_stage_quiz*> *stagesQuiz = [[NSMutableArray<YXCourseListRequestItem_body_stage_quiz*> alloc] init];
     for (YXCourseListRequestItem_body_stage *stage in item.body.stages) {
-        YXCourseListRequestItem_body_module_course_quiz *quiz = stage.quiz;
+        YXCourseListRequestItem_body_stage_quiz *quiz = stage.quiz;
         if (quiz) {
-            [stagesQuiz addObject:stage.quiz];
+            quiz.stageID = stage.stageID;
+        }else {
+            quiz = [[YXCourseListRequestItem_body_stage_quiz alloc] init];
+            quiz.stageID = stage.stageID;
+            quiz.finish = @"0";
+            quiz.total = @"10";
         }
+        quiz.isSelected = @"0";
+        [stagesQuiz addObject:quiz];
     }
     return stagesQuiz;
 }

@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString<Optional> *course_title;
 @property (nonatomic, copy) NSString<Optional> *course_img;
 @property (nonatomic, copy) NSString<Optional> *record;
+@property (nonatomic, copy) NSString<Optional> *type;
 @property (nonatomic, copy) NSString<Optional> *is_selected; //1走以前老的详情接口，0走新的详情接口
 @property (nonatomic, strong) YXCourseRecordRequestItem_body_module_course_quiz<Optional> *quiz;
 

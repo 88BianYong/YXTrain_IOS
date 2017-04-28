@@ -133,37 +133,66 @@
                    {
                    "BaseBeanCreateTime": 1467106797781,
                    "id": "725",
-                   "name": "能力测评"
+                   "name": "能力测评",
+                   "quiz":{
+                   "finish": "20",
+                   "total": "30"
+                   }
                    },
+                   
                    {
                    "BaseBeanCreateTime": 1467106797781,
                    "id": "726",
-                   "name": "第一阶段"
+                   "name": "第一阶段",
+                   "quiz":{
+                   "finish": "20",
+                   "total": "30"
+                   }
                    },
                    {
                    "BaseBeanCreateTime": 1467106797781,
                    "id": "1449",
-                   "name": "第二阶段"
+                   "name": "第二阶段",
+                   "quiz":{
+                   "finish": "20",
+                   "total": "30"
+                   }
                    },
                    {
                    "BaseBeanCreateTime": 1467106797781,
                    "id": "1450",
-                   "name": "第三阶段"
+                   "name": "第三阶段",
+                   "quiz":{
+                   "finish": "20",
+                   "total": "30"
+                   }
                    },
                    {
                    "BaseBeanCreateTime": 1467106797781,
                    "id": "1599",
-                   "name": "第四阶段"
+                   "name": "第四阶段",
+                   "quiz":{
+                   "finish": "20",
+                   "total": "30"
+                   }
                    },
                    {
                    "BaseBeanCreateTime": 1467106797781,
                    "id": "1600",
-                   "name": "第五阶段"
+                   "name": "第五阶段",
+                   "quiz":{
+                   "finish": "20",
+                   "total": "30"
+                   }
                    },
                    {
                    "BaseBeanCreateTime": 1467106797781,
                    "id": "2063",
-                   "name": "第一阶段"
+                   "name": "第一阶段",
+                   "quiz":{
+                   "finish": "20",
+                   "total": "30"
+                   }
                    }
                    ],
         "studys": [

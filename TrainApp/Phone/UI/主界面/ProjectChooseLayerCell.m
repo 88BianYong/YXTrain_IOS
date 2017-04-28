@@ -16,6 +16,7 @@
 @implementation ProjectChooseLayerCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.frame = [UIScreen mainScreen].bounds;
         [self setupUI];
         [self setupLayout];
     }
@@ -23,6 +24,9 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.edges.equalTo(self);
+    }];
     UIView *selectedBgView = [[UIView alloc]init];
     selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
     self.selectedBackgroundView = selectedBgView;

@@ -31,6 +31,16 @@
     
     // Configure the view for the selected state
 }
+- (void) setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    if (_course.type.integerValue == 101) {
+        self.statsLabel.text = @"选修";
+        self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
+    }else {
+        self.statsLabel.text = @"必修";
+        self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"65aee7"];
+    }
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

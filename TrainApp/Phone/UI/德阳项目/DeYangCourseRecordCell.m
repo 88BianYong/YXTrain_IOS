@@ -13,6 +13,8 @@
 @property (nonatomic, strong) UILabel *recordLabel;
 @property (nonatomic, strong) UILabel *quizzesLabel;
 
+@property (nonatomic, strong) UILabel *statsLabel;
+
 @end
 @implementation DeYangCourseRecordCell
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -21,7 +23,6 @@
     }
     return self;
 }
-
 - (void)setupUI{
     self.contentView.backgroundColor = [UIColor whiteColor];
     UIView *selectedBgView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 150)];
@@ -90,7 +91,20 @@
         make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(8.0f);
         make.right.mas_equalTo(-10);
     }];
-
+    
+    
+    self.statsLabel = [[UILabel alloc] init];
+    self.statsLabel.font = [UIFont systemFontOfSize:10.0f];
+    self.statsLabel.textColor = [UIColor whiteColor];
+    self.statsLabel.clipsToBounds = YES;
+    self.statsLabel.layer.cornerRadius = 3.0f;
+    self.statsLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:self.statsLabel];
+    [self.statsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.courseImageView.mas_right).offset(5.0f);
+        make.bottom.equalTo(self.courseImageView.mas_bottom).offset(-5.0f);
+        make.size.mas_offset(CGSizeMake(29.0f, 15.0f));
+    }];
 }
 
 - (void)setCourse:(YXCourseRecordRequestItem_body_module_course *)course{
@@ -110,6 +124,14 @@
     second = second % 60;
     self.recordLabel.text = [NSString stringWithFormat:@"已观看 %02d:%02d:%02d", hour, minute, second];
     self.quizzesLabel.text = [NSString stringWithFormat:@"[随堂练] 已答对%@个 / 共%@个",_course.quiz.finish,_course.quiz.total];
+    
+    if (_course.type.integerValue == 101) {
+        self.statsLabel.text = @"选修";
+        self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
+    }else {
+        self.statsLabel.text = @"必修";
+        self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"65aee7"];
+    }
 }
 
 @end

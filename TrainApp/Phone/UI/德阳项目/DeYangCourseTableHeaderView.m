@@ -77,7 +77,7 @@
         make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
     }];
 }
-- (void)setQuiz:(YXCourseListRequestItem_body_module_course_quiz<Optional> *)quiz {
+- (void)setQuiz:(YXCourseListRequestItem_body_stage_quiz<Optional> *)quiz {
     _quiz = quiz;
     self.contentLabel.text = [NSString stringWithFormat:@"当前阶段答对%@个,共作答%@个",_quiz.finish,_quiz.total];
 }

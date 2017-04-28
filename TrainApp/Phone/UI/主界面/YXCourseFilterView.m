@@ -159,7 +159,7 @@ static const NSUInteger kTagBase = 876;
 - (void)exchangeTitleImagePositionForButton:(UIButton *)button{
     NSString *title = [button titleForState:UIControlStateNormal];
     CGFloat titleWidth = ceilf([title sizeWithAttributes:@{NSFontAttributeName:button.titleLabel.font}].width+2);
-    titleWidth = MIN(titleWidth, button.frame.size.width - 28.0f);//防止文字过多
+    titleWidth = MIN(titleWidth, button.frame.size.width - 24.0f);//防止文字过多
     UIImage *image = [button imageForState:UIControlStateNormal];
     CGFloat imageWidth = image.size.width+2;
     button.titleEdgeInsets = UIEdgeInsetsMake(0, -imageWidth, 0, imageWidth);

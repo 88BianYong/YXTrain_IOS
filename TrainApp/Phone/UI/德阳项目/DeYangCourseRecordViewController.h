@@ -7,7 +7,5 @@
 //
 
 #import "YXBaseViewController.h"
-
 @interface DeYangCourseRecordViewController : YXBaseViewController
-
 @end

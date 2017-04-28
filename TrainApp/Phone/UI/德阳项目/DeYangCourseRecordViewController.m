@@ -14,6 +14,7 @@
 #import "MJRefresh.h"
 #import "YXCourseDetailViewController.h"
 #import "YXModuleListRequest.h"
+#import "YXCourseListRequest.h"
 static  NSString *const trackPageName = @"看课记录页面";
 @interface DeYangCourseRecordViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;

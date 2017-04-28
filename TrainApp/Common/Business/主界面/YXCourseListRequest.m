@@ -8,6 +8,10 @@
 
 #import "YXCourseListRequest.h"
 
+@implementation YXCourseListRequestItem_body_stage_quiz
+
+@end
+
 @implementation YXCourseListRequestItem_body_stage
 + (JSONKeyMapper *)keyMapper
 {
@@ -63,7 +67,7 @@
 - (YXCourseListFilterModel *)deyangFilterModel {
     return [YXCourseListFilterModel deyangModelFromRawData:self];
 }
-- (NSArray<__kindof YXCourseListRequestItem_body_module_course_quiz *> *)deyangFilterStagesQuiz {
+- (NSArray<__kindof YXCourseListRequestItem_body_stage_quiz *> *)deyangFilterStagesQuiz {
     return [YXCourseListFilterModel deyangFilterStagesQuiz:self];
 }
 @end
