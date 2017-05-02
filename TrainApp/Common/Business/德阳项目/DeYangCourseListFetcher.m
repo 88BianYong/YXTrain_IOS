@@ -31,6 +31,7 @@
         }
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         BLOCK_EXEC(self.filterBlock,[item deyangFilterModel]);
+        BLOCK_EXEC(self.filterQuizBlock,[item deyangFilterStagesQuiz]);
         BLOCK_EXEC(aCompleteBlock,item.body.total.intValue,[item allCourses],nil);
     }];
 }

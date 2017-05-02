@@ -17,5 +17,6 @@
 @property (nonatomic, strong) NSString *pid;
 
 @property (nonatomic, strong) void(^filterBlock)(YXCourseListFilterModel *model);
+@property (nonatomic, strong) void(^filterQuizBlock)(NSArray<__kindof YXCourseListRequestItem_body_stage_quiz *> *model);
 
 @end

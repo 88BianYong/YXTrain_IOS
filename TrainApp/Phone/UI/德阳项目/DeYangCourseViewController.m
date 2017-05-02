@@ -49,6 +49,23 @@ static  NSString *const trackPageName = @"课程列表页面";
         }
         [self dealWithFilterModel:self.filterModel];
     };
+    [fetcher setFilterQuizBlock:^(NSArray<__kindof YXCourseListRequestItem_body_stage_quiz *> *model){
+        STRONG_SELF
+        self.stageQuiz = model;
+        __block BOOL isSelectedBool = NO;
+        [self.stageQuiz enumerateObjectsUsingBlock:^(__kindof YXCourseListRequestItem_body_stage_quiz * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.isSelected.integerValue == 1) {
+                self.headerView.quiz = obj;
+                isSelectedBool = YES;
+                *stop = YES;
+            }
+        }];
+        if (!isSelectedBool && self.stageQuiz.count > 0) {
+            YXCourseListRequestItem_body_stage_quiz *quize = self.stageQuiz[0];
+            quize.isSelected = @"1";
+            self.headerView.quiz = quize;
+        }
+    }];
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
@@ -146,10 +163,6 @@ static  NSString *const trackPageName = @"课程列表页面";
         
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;
         self.filterModel = [item deyangFilterModel];
-        self.stageQuiz = [item deyangFilterStagesQuiz];
-        YXCourseListRequestItem_body_stage_quiz *quize = self.stageQuiz[0];
-        quize.isSelected = @"1";
-        self.headerView.quiz = quize;
         self.isWaitingForFilter = NO;
         [self setupStageForFirst];
         [self startLoading];
