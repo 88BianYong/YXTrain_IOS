@@ -9,11 +9,10 @@
 #import "YXGetRequest.h"
 #import "YXCourseListRequest.h"
 @interface DeYangGetQuizStatisticsItem : HttpBaseRequestItem
-
+@property (nonatomic, copy) YXCourseListRequestItem_body_stage_quiz *body;
 @end
 
 @interface DeYangGetQuizStatistics : YXGetRequest
-@property (nonatomic, strong) NSString *projectid;
-@property (nonatomic, strong) NSString *w;
-@property (nonatomic, strong) NSString *role;
+@property (nonatomic, strong) NSString *pid;
+@property (nonatomic, strong) NSString *stageid;
 @end

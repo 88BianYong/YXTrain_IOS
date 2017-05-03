@@ -13,6 +13,7 @@
 #import "YXCourseDetailViewController.h"
 #import "DeYangCourseRecordViewController.h"
 #import "DeYangCourseTableHeaderView.h"
+#import "DeYangGetQuizStatistics.h"
 static  NSString *const trackPageName = @"课程列表页面";
 @interface DeYangCourseViewController ()<YXCourseFilterViewDelegate>
 @property (nonatomic, strong) YXCourseFilterView *filterView;
@@ -20,6 +21,8 @@ static  NSString *const trackPageName = @"课程列表页面";
 @property (nonatomic, strong) YXCourseListRequest *request;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
 @property (nonatomic, strong) DeYangCourseTableHeaderView *headerView;
+
+@property (nonatomic, strong) DeYangGetQuizStatistics *statisticsRequest;
 
 @property (nonatomic, strong) NSArray<__kindof YXCourseListRequestItem_body_stage_quiz *> *stageQuiz;
 @property (nonatomic, assign) BOOL isNavBarHidden;
@@ -129,6 +132,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.chooseCourseInteger = -1;
+    [self requestForStatistics];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -140,7 +144,27 @@ static  NSString *const trackPageName = @"课程列表页面";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)requestForStatistics{
+    WEAK_SELF
+    [self.stageQuiz enumerateObjectsUsingBlock:^(__kindof YXCourseListRequestItem_body_stage_quiz * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.isSelected.integerValue == 1) {
+            DeYangGetQuizStatistics *request = [[DeYangGetQuizStatistics alloc] init];
+            request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+            request.stageid = obj.stageID;
+            [request startRequestWithRetClass:[DeYangGetQuizStatisticsItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+                STRONG_SELF
+                DeYangGetQuizStatisticsItem *item = retItem;
+                if (!error) {
+                    obj.total = item.body.total;
+                    obj.finish = item.body.finish;
+                    self.headerView.quiz = obj;
+                }
+            }];
+            self.statisticsRequest = request;
+            *stop = YES;
+        }
+    }];
+}
 
 
 - (void)getFilters{

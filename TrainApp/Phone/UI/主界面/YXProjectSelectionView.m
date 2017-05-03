@@ -216,4 +216,8 @@ static const CGFloat kImageWidth = 30;
     }];
     return sectionHeaderView;
 }
+- (void)removeFromSuperview {
+    [self hideSelectionView];
+    [super removeFromSuperview];
+}
 @end

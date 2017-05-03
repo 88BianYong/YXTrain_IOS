@@ -30,7 +30,6 @@
         [self registerUserNotification];
     }
    [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-
 }
 
 - (void)registerUserNotification {
@@ -85,6 +84,9 @@
 
 - (void)logoutSuccess {
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    [TrainRedPointManger sharedInstance].dynamicInteger = -1;
+    [TrainRedPointManger sharedInstance].hotspotInteger = -1;
     [self unbindAlias:self.currentUid];
 }
 - (void)resume {

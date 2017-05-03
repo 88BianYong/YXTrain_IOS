@@ -7,7 +7,14 @@
 //
 
 #import "DeYangGetQuizStatistics.h"
-
+@implementation DeYangGetQuizStatisticsItem
+@end
 @implementation DeYangGetQuizStatistics
+- (instancetype)init {
+    if (self = [super init]) {
+        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"quiz/getQuizStatistics"];
+    }
+    return self;
+}
 
 @end
