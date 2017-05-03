@@ -12,6 +12,7 @@
 - (instancetype)initWithWindow:(UIWindow *)window;
 @property (nonatomic, strong, readonly) UIWindow *window;
 @property (nonatomic, strong) NSURL *scanCodeUrl;
+@property (nonatomic, assign) BOOL isRemoteNotification;
 
 
 // 启动的根视图控制器

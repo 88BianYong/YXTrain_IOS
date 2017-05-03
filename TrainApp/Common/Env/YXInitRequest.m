@@ -211,22 +211,24 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     }
 
 }
-- (void)showNoRestraintUpgrade{
+- (BOOL)showNoRestraintUpgrade{
     if (!self.item || self.item.body.count <= 0) {
-        return;
+        return NO;
     }
     YXInitRequestItem_Body *body = self.item.body[0];
     if ([body isTest]) { //测试环境
 #ifndef DEBUG
-        return;
+        return NO;
 #endif
     }
     if (![body.fileURL yx_isHttpLink]) { //http链接
-        return;
+        return NO;
     }
     if ([body.upgradetype isEqualToString:@"2"] && self.isShowUpgrade) {
         [self showUploadTitle:body.title andContent:body.content];
+        return YES;
     }
+    return NO;
 }
 
 - (BOOL)isAppleChecking

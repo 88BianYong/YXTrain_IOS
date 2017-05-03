@@ -40,18 +40,25 @@
 }
 - (void)showNotificationViewController{
     [[TrainGeTuiManger sharedInstance] setTrainGeTuiMangerCompleteBlock:^{
-        if (self.window.rootViewController.presentedViewController) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
-        }
-        YXDrawerViewController *drawerVC  = (YXDrawerViewController *)self.window.rootViewController;
-        YXNavigationController *projectNavi = (YXNavigationController *)drawerVC.paneViewController;
-        if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+        if (self.isRemoteNotification || ![[YXUserManager sharedManager] isLogin]) {
             return ;
         }
-        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
-        [projectNavi popToRootViewControllerAnimated:NO];
-        [projectNavi pushViewController:VC animated:YES];
+        [self showDrawerViewController];
     }];
+}
+- (void)showDrawerViewController {
+    self.isRemoteNotification = NO;
+    if (self.window.rootViewController.presentedViewController) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+    }
+    YXDrawerViewController *drawerVC  = (YXDrawerViewController *)self.window.rootViewController;
+    YXNavigationController *projectNavi = (YXNavigationController *)drawerVC.paneViewController;
+    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+        return ;
+    }
+    UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
+    [projectNavi popToRootViewControllerAnimated:NO];
+    [projectNavi pushViewController:VC animated:YES];
 }
 - (void)setupRootViewController{
     if ([YXConfigManager sharedInstance].testFrameworkOn.boolValue) {
@@ -133,6 +140,9 @@
     }];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainShowUpdate object:nil] subscribeNext:^(id x) {
         STRONG_SELF
+        if (![[YXInitHelper sharedHelper] showNoRestraintUpgrade] && self.isRemoteNotification) {//通过通知启动且不显示升级时跳转动态界面
+            [self showDrawerViewController];
+        }
         [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
     }];
 }
@@ -169,7 +179,9 @@
             STRONG_SELF
             if (error || rotates.count <= 0) {
                 [self.cmsView removeFromSuperview];
-                [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
+                if (![[YXInitHelper sharedHelper] showNoRestraintUpgrade] && self.isRemoteNotification) {//通过通知启动且不显示升级时跳转动态界面
+                    [self showDrawerViewController];
+                }
             }
             else{
                 YXRotateListRequestItem_Rotates *rotate = rotates[0];
@@ -189,8 +201,9 @@
             }
         }];
     }else{
-        [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
+        if (![[YXInitHelper sharedHelper] showNoRestraintUpgrade] && self.isRemoteNotification) {//通过通知启动且不显示升级时跳转动态界面
+            [self showDrawerViewController];
+        }
     }
-    
 }
 @end

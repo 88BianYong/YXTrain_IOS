@@ -315,8 +315,6 @@
             break;
         case 3:
         {
-            [TrainRedPointManger sharedInstance].dynamicInteger = -1;
-            [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
             YXDynamicViewController *dynamicVc = [[YXDynamicViewController alloc] init];
             [self.navigationController pushViewController:dynamicVc animated:YES];
             

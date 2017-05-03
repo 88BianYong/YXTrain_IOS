@@ -47,7 +47,6 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.bIsGroupedTableViewStyle];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    self.tableView.hidden = YES;
     [self.contentView addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(@0);
@@ -106,8 +105,8 @@
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
+        self.tableView.tableHeaderView.hidden = NO;
         self.tableView.hidden = NO;
-        [self tableViewWillRefresh];
         [self stopLoading];
         [self stopAnimation];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
@@ -117,6 +116,7 @@
         if ([self handleRequestData:data inView:self.contentView]) {
             return;
         }
+        [self tableViewWillRefresh];
         [self.header setLastUpdateTime:[NSDate date]];
         self.total = total;
         [self.dataArray removeAllObjects];

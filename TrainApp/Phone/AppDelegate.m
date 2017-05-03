@@ -37,6 +37,9 @@
     self.window.rootViewController = VC;
     [self.window makeKeyAndVisible];
     self.appDelegateHelper = [[AppDelegateHelper alloc] initWithWindow:self.window];
+    if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
+        self.appDelegateHelper.isRemoteNotification = YES;//标记推送启动
+    }
     WEAK_SELF
     [[YXInitHelper sharedHelper] requestCompeletion:^(BOOL upgrade) {
         STRONG_SELF
@@ -133,8 +136,7 @@
     [[TrainGeTuiManger sharedInstance] registerDeviceToken:deviceToken];
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
-    [[TrainGeTuiManger sharedInstance] handleApnsContent:userInfo];
-    application.applicationIconBadgeNumber -= 1;
+    [[TrainGeTuiManger sharedInstance] handleApnsContent:userInfo isPush:NO];
     completionHandler(UIBackgroundFetchResultNewData);
 }
 

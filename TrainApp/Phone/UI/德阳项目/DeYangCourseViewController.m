@@ -84,6 +84,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[DeYangCourseListCell class] forCellReuseIdentifier:@"DeYangCourseListCell"];
     self.headerView = [[DeYangCourseTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50.0f)];
+    self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
     if (self.isWaitingForFilter) {
         self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
@@ -158,7 +159,6 @@ static  NSString *const trackPageName = @"课程列表页面";
             [self.view addSubview:self.filterErrorView];
             return;
         }
-        self.headerView.hidden = NO;
         [self.filterErrorView removeFromSuperview];
         
         YXCourseListRequestItem *item = (YXCourseListRequestItem *)retItem;

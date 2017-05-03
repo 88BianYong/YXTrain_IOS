@@ -75,6 +75,6 @@ extern NSString *const YXInitSuccessNotification;
 - (void)requestCompeletion:(void(^)(BOOL))completion;
 - (void)requestLoginCompeletion:(void (^)(YXInitRequestItem *, NSError *))completion;
 - (BOOL)isAppleChecking;
-- (void)showNoRestraintUpgrade;
+- (BOOL)showNoRestraintUpgrade;
 
 @end

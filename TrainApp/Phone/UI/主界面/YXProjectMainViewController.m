@@ -304,6 +304,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 
 - (void)showSwitchGuideView {
+    
     if ([self isShowMoreThanOneProject]) {//显示项目切换提示
         UIView *guideView = [[NSClassFromString(@"ChangeProjectGuideView") alloc] init];
         [self.navigationController.view addSubview:guideView];

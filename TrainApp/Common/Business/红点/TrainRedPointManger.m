@@ -19,8 +19,8 @@
 }
 - (instancetype)init {
     if (self = [super init]) {
-        self.dynamicInteger = -1;
-        self.hotspotInteger = -1;
+        _dynamicInteger = -1;
+        _hotspotInteger = -1;
     }
     return self;
 }

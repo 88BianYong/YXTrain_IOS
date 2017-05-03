@@ -15,6 +15,7 @@
 #import "YXHomeworkInfoRequest.h"
 #import "NoticeAndBriefDetailViewController.h"
 #import "TrainRedPointManger.h"
+#import "YXWebSocketManger.h"
 static  NSString *const trackPageName = @"消息动态列表页面";
 @interface YXDynamicViewController ()
 @property (nonatomic, strong) YXMsgReadedRequest *readedRequest;
@@ -32,7 +33,11 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     self.title = @"消息动态";
     [self setupUI];
     [self layoutInterface];
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidBecomeActiveNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self.header beginRefreshing];
+    }];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -45,8 +50,6 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 - (void)naviLeftAction {
-    [TrainRedPointManger sharedInstance].dynamicInteger = -1;
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
@@ -56,8 +59,6 @@ static  NSString *const trackPageName = @"消息动态列表页面";
 #pragma mark - setupUI
 - (void)setupUI{
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-//    self.tableView.estimatedRowHeight = 30.0f;
-//    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXDynamicCell class] forCellReuseIdentifier:@"YXDynamicCell"];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 5.0f)];
@@ -178,7 +179,11 @@ static  NSString *const trackPageName = @"消息动态列表页面";
         VC.titleString = data.title;
         [self.navigationController pushViewController:VC animated:YES];
     }
-    
+}
+- (void)tableViewWillRefresh {
+    [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
+    [TrainRedPointManger sharedInstance].dynamicInteger = -1;
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 #pragma mark - request

@@ -293,6 +293,7 @@
 		927B6C661DFA99AE00CBBBBF /* BeijingCourseListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C651DFA99AE00CBBBBF /* BeijingCourseListRequest.m */; };
 		92835A8F1E5461CA00B71DF7 /* MasterSchoolTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92835A8E1E5461CA00B71DF7 /* MasterSchoolTableView.m */; };
 		92835A951E54797E00B71DF7 /* MasterConditionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92835A941E54797E00B71DF7 /* MasterConditionTableView.m */; };
+		92852BEA1EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */; };
 		928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A121E88B2180067218A /* BeijingActivityListCell.m */; };
 		928B7A3A1E88B2180067218A /* BeijingActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A141E88B2180067218A /* BeijingActivityListViewController.m */; };
 		928B7A3B1E88B2180067218A /* BeijingCheckedMobileMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A161E88B2180067218A /* BeijingCheckedMobileMessageCell.m */; };
@@ -1124,6 +1125,8 @@
 		92835A8E1E5461CA00B71DF7 /* MasterSchoolTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterSchoolTableView.m; sourceTree = "<group>"; };
 		92835A931E54797E00B71DF7 /* MasterConditionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionTableView.h; sourceTree = "<group>"; };
 		92835A941E54797E00B71DF7 /* MasterConditionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConditionTableView.m; sourceTree = "<group>"; };
+		92852BE81EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeYangGetQuizStatistics.h; sourceTree = "<group>"; };
+		92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangGetQuizStatistics.m; sourceTree = "<group>"; };
 		928B7A111E88B2180067218A /* BeijingActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListCell.h; sourceTree = "<group>"; };
 		928B7A121E88B2180067218A /* BeijingActivityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingActivityListCell.m; sourceTree = "<group>"; };
 		928B7A131E88B2180067218A /* BeijingActivityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListViewController.h; sourceTree = "<group>"; };
@@ -3252,6 +3255,8 @@
 			children = (
 				92EEA91F1EB08348005A3B7C /* DeYangCourseListFetcher.h */,
 				92EEA9201EB08348005A3B7C /* DeYangCourseListFetcher.m */,
+				92852BE81EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.h */,
+				92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */,
 			);
 			path = "德阳项目";
 			sourceTree = "<group>";
@@ -4133,6 +4138,7 @@
 				92F1A5A41E52EF4700015766 /* MasterProjectContainerView.m in Sources */,
 				92A770091DD18A5800C578F2 /* InputTextView.m in Sources */,
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
+				92852BEA1EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m in Sources */,
 				92AD33581EA0AB58001F2718 /* ProjectChooseLayerHeaderView.m in Sources */,
 				E9CD95791DE3E36500AE6704 /* ShareResourcesViewController.m in Sources */,
 				92CE55F71E559926002C1F11 /* StudentExamHeaderView.m in Sources */,
@@ -4631,6 +4637,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -4679,6 +4686,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -4708,7 +4716,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: xingfu liu (J63VXZH2U7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = P8ZS8UUN27;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Phone/InfoPhone.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -4719,8 +4727,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74089994-5220-4231-85e2-27787fa2dcb4";
-				PROVISIONING_PROFILE_SPECIFIER = LiangShiTongAppPush;
+				PROVISIONING_PROFILE = "fe7effbf-7c8a-4131-9f44-a6ba88ef4011";
+				PROVISIONING_PROFILE_SPECIFIER = liangShiTong_Dev;
 			};
 			name = Debug;
 		};
@@ -4735,7 +4743,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Phone/InfoPhone.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

@@ -61,7 +61,7 @@
 }
 #pragma mark - iOS10 Notification Delegate
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
-    [self handleApnsContent:response.notification.request.content.userInfo];
+    [self handleApnsContent:response.notification.request.content.userInfo isPush:YES];
     completionHandler(UIBackgroundFetchResultNewData);
 }
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
@@ -191,13 +191,15 @@
         [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
     }else {
         [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
     }
     
 }
 // 处理来自苹果的推送 App后台或者杀死
--(void)handleApnsContent:(NSDictionary *)dict {
+- (void)handleApnsContent:(NSDictionary *)dict isPush:(BOOL)isPush {
     [GeTuiSdk handleRemoteNotification:dict];
+    if (isPush) {
+        BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+    }
 }
 
 

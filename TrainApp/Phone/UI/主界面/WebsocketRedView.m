@@ -35,6 +35,7 @@
     self.pointLabel.textAlignment = NSTextAlignmentCenter;
     self.pointLabel.textColor = [UIColor whiteColor];
     self.pointLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.pointLabel.adjustsFontSizeToFitWidth = YES;
     self.pointLabel.clipsToBounds = YES;
     [self addSubview:self.pointLabel];
 }
@@ -55,7 +56,7 @@
     }else if (_redPointNumber > 0 && _redPointNumber < 100) {
         self.pointLabel.frame = CGRectMake(32.0f, 0.0f, 15.0f, 15.0f);
         self.pointLabel.layer.cornerRadius = 7.5f;
-        self.pointLabel.text = [NSString stringWithFormat:@"%ld",_redPointNumber];
+        self.pointLabel.text = [NSString stringWithFormat:@"%ld",(long)_redPointNumber];
         self.pointLabel.hidden = NO;
     }else {
         self.pointLabel.frame = CGRectMake(32.0f, 0.0f, 25.0f, 15.0f);

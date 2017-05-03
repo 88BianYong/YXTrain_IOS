@@ -73,6 +73,7 @@
     self.redPointLabel.textAlignment = NSTextAlignmentCenter;
     self.redPointLabel.textColor = [UIColor whiteColor];
     self.redPointLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.redPointLabel.adjustsFontSizeToFitWidth = YES;
     self.redPointLabel.clipsToBounds = YES;
     [self.contentView addSubview:self.redPointLabel];
     
@@ -142,7 +143,7 @@
         }];
         self.redPointLabel.layer.cornerRadius = 7.5f;
         self.redPointLabel.hidden = NO;
-        self.redPointLabel.text = [NSString stringWithFormat:@"%ld",_redPointNumber];
+        self.redPointLabel.text = [NSString stringWithFormat:@"%ld",(long)_redPointNumber];
     }else {
         [self.redPointLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(25.0f, 15.0f));

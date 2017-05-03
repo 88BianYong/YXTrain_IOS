@@ -15,6 +15,6 @@
 - (void)registerGeTui;
 - (void)loginSuccess;
 - (void)logoutSuccess;
-- (void)handleApnsContent:(NSDictionary *)dict;
+- (void)handleApnsContent:(NSDictionary *)dict isPush:(BOOL)isPush;
 - (void)registerDeviceToken:(NSData *)deviceToken;
 @end
