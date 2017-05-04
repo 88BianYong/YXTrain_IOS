@@ -270,6 +270,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
     YXAlertAction *downloadUpdateAlertAct = [[YXAlertAction alloc] init];
     downloadUpdateAlertAct.block = ^{
         STRONG_SELF
+        self.showUpgradeFlag = NO;
         YXInitRequestItem_Body *body = self.item.body[0];
         Reachability *r = [Reachability reachabilityForInternetConnection];
         NetworkStatus status = [r currentReachabilityStatus];

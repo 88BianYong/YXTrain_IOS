@@ -41,7 +41,7 @@
 - (void)showNotificationViewController{
     [[TrainGeTuiManger sharedInstance] setTrainGeTuiMangerCompleteBlock:^{
         if (self.isRemoteNotification || ![[YXUserManager sharedManager] isLogin] ||
-            [[YXInitHelper sharedHelper] showNoRestraintUpgrade]) {
+            ![YXInitHelper sharedHelper].showUpgradeFlag) {
             return ;//1.通过通知启动需要等待升级接口返回才进行跳转2.未登录不进行跳转3.弹出升级界面不进行跳转
         }
         [self showDrawerViewController];
@@ -124,6 +124,7 @@
         [self requestCommonData];
         [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
         [[TrainGeTuiManger sharedInstance] loginSuccess];
+        self.isRemoteNotification = NO;
     }];
     
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLogoutSuccessNotification object:nil] subscribeNext:^(id x) {
