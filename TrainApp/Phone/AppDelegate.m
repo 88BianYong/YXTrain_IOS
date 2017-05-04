@@ -136,7 +136,7 @@
     [[TrainGeTuiManger sharedInstance] registerDeviceToken:deviceToken];
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
-    [[TrainGeTuiManger sharedInstance] handleApnsContent:userInfo isPush:NO];
+    [[TrainGeTuiManger sharedInstance] handleApnsContent:userInfo isPush:YES];
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
