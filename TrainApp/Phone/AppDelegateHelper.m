@@ -182,6 +182,7 @@
                 if (![[YXInitHelper sharedHelper] showNoRestraintUpgrade] && self.isRemoteNotification) {//通过通知启动且不显示升级时跳转动态界面
                     [self showDrawerViewController];
                 }
+                self.isRemoteNotification = NO;
             }
             else{
                 YXRotateListRequestItem_Rotates *rotate = rotates[0];
@@ -195,6 +196,7 @@
                     [webView setBackBlock:^{
                         STRONG_SELF
                         [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
+                        self.isRemoteNotification = NO;
                     }];
                     [self.window.rootViewController.navigationController pushViewController:webView animated:YES];
                 };
@@ -204,6 +206,7 @@
         if (![[YXInitHelper sharedHelper] showNoRestraintUpgrade] && self.isRemoteNotification) {//通过通知启动且不显示升级时跳转动态界面
             [self showDrawerViewController];
         }
+        self.isRemoteNotification = NO;
     }
 }
 @end
