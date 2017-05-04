@@ -143,7 +143,7 @@
         if (![[YXInitHelper sharedHelper] showNoRestraintUpgrade] && self.isRemoteNotification) {//通过通知启动且不显示升级时跳转动态界面
             [self showDrawerViewController];
         }
-        [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
+        self.isRemoteNotification = NO;
     }];
 }
 
