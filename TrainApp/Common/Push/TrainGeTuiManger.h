@@ -12,6 +12,7 @@
 @property (nonatomic, copy) void (^trainGeTuiMangerCompleteBlock)(void);
 + (TrainGeTuiManger *)sharedInstance;
 - (void)resume;
+- (void)resetBadge;
 - (void)registerGeTui;
 - (void)loginSuccess;
 - (void)logoutSuccess;

@@ -81,12 +81,12 @@
         [self bindAlias:self.currentUid];
     });
 }
+- (void)badgeNumber {
+}
 
 - (void)logoutSuccess {
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    [TrainRedPointManger sharedInstance].dynamicInteger = -1;
-    [TrainRedPointManger sharedInstance].hotspotInteger = -1;
+    [self resetBadge];
     [self unbindAlias:self.currentUid];
 }
 - (void)resume {
@@ -181,7 +181,9 @@
 
 - (void)resetBadge {
     [GeTuiSdk resetBadge];
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    [TrainRedPointManger sharedInstance].dynamicInteger = -1;
+    [TrainRedPointManger sharedInstance].hotspotInteger = -1;
 }
 
 #pragma mark - Handle Notification

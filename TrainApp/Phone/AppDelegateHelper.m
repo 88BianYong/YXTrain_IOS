@@ -70,6 +70,7 @@
         NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:versionKey];
         NSString *currentVersion = [[NSBundle mainBundle].infoDictionary objectForKey:versionKey];
         if ([currentVersion compare:lastVersion] != NSOrderedSame) {
+            [[TrainGeTuiManger sharedInstance] resetBadge];
             YXGuideViewController *vc = [[YXGuideViewController alloc] init];
             vc.startMainVCBlock = ^{
                 [self startRootVC];
