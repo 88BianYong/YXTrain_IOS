@@ -36,7 +36,8 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidBecomeActiveNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
-        [self.header beginRefreshing];
+        [self startLoading];
+        [self firstPageFetch];
     }];
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -170,7 +171,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     if (data.isExtendUrl.boolValue) {
         YXBroseWebView *webView = [[YXBroseWebView alloc] init];
         webView.urlString = data.linkUrl;
-        webView.titleString = data.projectName;
+        webView.titleString = data.title;
         webView.sourceControllerTitile = data.type.integerValue == 1 ? @"通知" : @"简报";
         [self.navigationController pushViewController:webView animated:YES];
     }else {
