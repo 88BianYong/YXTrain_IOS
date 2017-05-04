@@ -81,6 +81,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     [super viewWillAppear:animated];
     self.leftView.hidden = NO;
     [self showProjectSelectionView];
+    [self showAlertView];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -88,6 +89,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self hideProjectSelectionView];
+    [self hideAlertView];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -354,5 +356,21 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 - (void)hideProjectSelectionView {
     [self.projectSelectionView removeFromSuperview];
+}
+- (void)showAlertView {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[LSTAlertView class]]) {
+            obj.hidden = NO;
+        }
+    }];
+}
+- (void)hideAlertView {
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    [window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[LSTAlertView class]]) {
+            obj.hidden = YES;
+        }
+    }];
 }
 @end
