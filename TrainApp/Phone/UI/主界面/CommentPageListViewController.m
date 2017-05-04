@@ -388,7 +388,8 @@
             ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
             reply.isRanked = @"true";
             reply.up = [NSString stringWithFormat:@"%d",(int)(reply.up.integerValue + 1)];
-            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadData];
         }
     }];
     self.laudRequest = request;
@@ -507,7 +508,7 @@
     }];
     return headerView;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {;
     return [tableView yx_heightForHeaderWithIdentifier:@"ActitvityCommentHeaderView" configuration:^(ActitvityCommentHeaderView *headerView) {
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
         headerView.stageId = self.stageId;
@@ -588,9 +589,11 @@
         STRONG_SELF
         replie.isRanked = isRanked;
         replie.childNum = [NSString stringWithFormat:@"%ld",(long)totalInteger];
-        [self.tableView beginUpdates];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [self.tableView endUpdates];
+//        [self.tableView beginUpdates];
+//        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        [self.tableView endUpdates];
+        [self.tableView reloadData];
+
     }];
     [self.navigationController pushViewController:VC animated:YES];
 }

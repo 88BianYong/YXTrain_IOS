@@ -189,7 +189,6 @@
 #pragma mark - Handle Notification
 // 处理个推推送，App运行中
 - (void)handleGeTuiContent:(NSString *)content  withOffLine:(BOOL)offLine{
-    NSLog(@">>>>>>>>>%ld",(long)[UIApplication sharedApplication].applicationIconBadgeNumber);
     if (!offLine) {
         [UIApplication sharedApplication].applicationIconBadgeNumber ++;
         [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;

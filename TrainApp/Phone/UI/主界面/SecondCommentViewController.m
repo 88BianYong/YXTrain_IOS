@@ -50,7 +50,7 @@
         ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[0];
         BLOCK_EXEC(self.refreshBlock,self.chooseInteger,replie.isRanked,self.totalNum);
     }
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
