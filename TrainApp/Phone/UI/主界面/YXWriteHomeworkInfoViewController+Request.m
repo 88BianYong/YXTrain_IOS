@@ -87,6 +87,12 @@ static  NSString *const trackEventName = @"上传作业";
         STRONG_SELF
         [self stopLoading];
         if (error) {
+            NSString *aError = [NSString stringWithFormat:@"error=%@",error];
+            NSDictionary *dict = @{
+                                   @"token": [YXUserManager sharedManager].userModel.token?:@"",
+                                   @"uid": [YXUserManager sharedManager].userModel.uid?:@"",
+                                   @"error": aError?:@""};
+            [YXDataStatisticsManger trackEvent:@"上传作业视频" label:@"出错信息" parameters:dict];
             [self showToast:@"视频作业上传失败"];
             return;
         }

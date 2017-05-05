@@ -63,6 +63,13 @@
             if ([self.delegate respondsToSelector:@selector(uploadCompleteWithHash:)]) {
                 [self.delegate uploadCompleteWithHash:nil];
             }
+        }else {
+            NSString *error = [NSString stringWithFormat:@"error=%@,reqid=%@,xlog=%@,host=%@,id=%@",i.error,i.reqId,i.xlog,i.host,i.id];
+            NSDictionary *dict = @{
+                                   @"token": [YXUserManager sharedManager].userModel.token?:@"",
+                                   @"uid": [YXUserManager sharedManager].userModel.uid?:@"",
+                                   @"error": error?:@""};
+            [YXDataStatisticsManger trackEvent:@"上传视频七牛" label:@"出错信息" parameters:dict];
         }
     } option:self.opt];
 }
