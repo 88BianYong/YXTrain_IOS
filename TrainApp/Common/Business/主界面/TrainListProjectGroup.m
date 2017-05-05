@@ -9,7 +9,7 @@
 #import "TrainListProjectGroup.h"
 
 @implementation TrainListProjectGroup
-+ (NSArray *)projectGroupsWithRawData:(YXTrainListRequestItem_body *)data {
++ (NSArray<TrainListProjectGroup *> *)projectGroupsWithRawData:(YXTrainListRequestItem_body *)data {
     NSMutableArray *trainGroupArray = [NSMutableArray array];
     
     TrainListProjectGroup *trainingGroup = [[TrainListProjectGroup alloc]init];

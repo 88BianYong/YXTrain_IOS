@@ -11,5 +11,5 @@
 @interface TrainListProjectGroup : NSObject
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train *> *items;
-+ (NSArray *)projectGroupsWithRawData:(YXTrainListRequestItem_body *)data;
++ (NSArray<TrainListProjectGroup *> *)projectGroupsWithRawData:(YXTrainListRequestItem_body *)data;
 @end

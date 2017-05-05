@@ -46,41 +46,55 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 }
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock {
     self.trainHelper = nil;
-    if (self.trainlistItem) {
-        BLOCK_EXEC(completeBlock,[TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body],nil);
-        return;
-    }
     [self.request stopRequest];
     self.request = [[YXTrainListRequest alloc]init];
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXTrainListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         if (error) {
-            BLOCK_EXEC(completeBlock,nil,error);
+            if (self.trainlistItem) {
+                self.currentProjectIndexPath = [self chooseProjectWithChoosePid:self.trainlistItem.body.choosePid];
+                BLOCK_EXEC(completeBlock,[TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body],nil);
+            }else {
+                BLOCK_EXEC(completeBlock,nil,error);
+            }
             return;
         }
         YXTrainListRequestItem *item = (YXTrainListRequestItem *)retItem;
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        item.body.indexPathSection = [NSString stringWithFormat:@"%@",@(indexPath.section)];
-        item.body.indexPathRow = [NSString stringWithFormat:@"%@",@(indexPath.row)];
+        self.currentProjectIndexPath = [self chooseProjectWithChoosePid:self.trainlistItem.body.choosePid];
+        item.body.choosePid = self.trainlistItem.body.choosePid;
         self.trainlistItem = item;
-        [self saveToCache];
         NSArray *projectGroupArray = [TrainListProjectGroup projectGroupsWithRawData:item.body];
         BLOCK_EXEC(completeBlock,projectGroupArray,nil);
+        [self saveToCache];
     }];
 }
+- (NSIndexPath *)chooseProjectWithChoosePid:(NSString *)pid {
+    NSArray<TrainListProjectGroup *> *groups = [TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body];
+    __block NSInteger sectionInteger = 0;
+    __block NSInteger indexInteger = 0;
+    [groups enumerateObjectsUsingBlock:^(TrainListProjectGroup * _Nonnull obj, NSUInteger section, BOOL * _Nonnull stop) {
+        [obj.items enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * _Nonnull train, NSUInteger index, BOOL * _Nonnull stop) {
+            if ([pid isEqualToString:train.pid]) {
+                sectionInteger = section;
+                indexInteger = index;
+            }
+        }];
+    }];
+    return [NSIndexPath indexPathForRow:indexInteger inSection:sectionInteger];
+}
 - (void)setCurrentProjectIndexPath:(NSIndexPath *)currentProjectIndexPath {
-    self.trainlistItem.body.indexPathSection = [NSString stringWithFormat:@"%@",@(currentProjectIndexPath.section)];
-    self.trainlistItem.body.indexPathRow = [NSString stringWithFormat:@"%@",@(currentProjectIndexPath.row)];
+    _currentProjectIndexPath = currentProjectIndexPath;
+    self.trainlistItem.body.choosePid = self.currentProject.pid;
     [self saveToCache];
 }
 - (NSIndexPath *)currentProjectIndexPath {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.trainlistItem.body.indexPathRow.integerValue inSection:self.trainlistItem.body.indexPathSection.integerValue];
-    return indexPath;
+    return _currentProjectIndexPath;
 }
 - (void)saveToCache {
     self.trainHelper = nil;
-    [[NSUserDefaults standardUserDefaults]setValue:[self.trainlistItem toJSONString] forKey:@"kTrainListItem"];
+    NSString *json = [self.trainlistItem toJSONString] ;
+    [[NSUserDefaults standardUserDefaults]setValue:json forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainListDynamic object:nil];
 }

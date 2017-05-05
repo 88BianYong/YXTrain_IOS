@@ -31,9 +31,10 @@
 @end
 
 @interface YXTrainListRequestItem_body : JSONModel
+//@property (nonatomic, strong) NSString<Ignore> *indexPathSection;
+//@property (nonatomic, strong) NSString<Ignore> *indexPathRow;
+@property (nonatomic, strong) NSString<Optional> *choosePid;
 @property (nonatomic, strong) NSString<Optional> *total;
-@property (nonatomic, strong) NSString<Optional> *indexPathSection;
-@property (nonatomic, strong) NSString<Optional> *indexPathRow;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trains;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *training;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trained;
