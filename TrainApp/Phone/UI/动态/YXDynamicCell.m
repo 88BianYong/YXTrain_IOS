@@ -160,7 +160,7 @@
     self.contentLabel.attributedText = [self contentStringWithDesc:data.title];
     self.contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.timeLabel.text = data.timer;
-    if (data.type.integerValue > 3) {
+    if (data.type.integerValue >= 5) {
         self.nextImageView.hidden = YES;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }else {

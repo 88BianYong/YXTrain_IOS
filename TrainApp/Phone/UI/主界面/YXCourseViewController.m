@@ -129,21 +129,20 @@ static  NSString *const trackPageName = @"课程列表页面";
     [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXCourseFilter *filter = (YXCourseFilter *)obj;
         if (self.status == YXCourseFromStatus_Market) {
-            if ([filter.name isEqualToString:@"选修课程"]) {
+            if ([filter.name isEqualToString:@"选修课程阶段"]) {
                 self.stageID = filter.filterID;
                 YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
                 fetcher.stageid = filter.filterID;
                 *stop = YES;
             }
         }else{
-            if ([filter.name isEqualToString:@"本地课程"]) {
+            if ([filter.name isEqualToString:@"本地课程阶段"]) {
                 self.stageID = filter.filterID;
                 YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
                 fetcher.stageid = filter.filterID;
                 *stop = YES;
             }
         }
-        
     }];
 }
 - (void)firstPageFetch {

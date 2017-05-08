@@ -117,6 +117,8 @@
                                                               error:&err];
         if ([dic[@"type"] integerValue] == 2) {//有热点动态发送通知
             [TrainRedPointManger sharedInstance].hotspotInteger = 1;
+        }else if ([dic[@"type"] integerValue] == 3) {
+            [TrainRedPointManger sharedInstance].dynamicInteger = [dic[@"num"] integerValue];
         }
     }
 }
