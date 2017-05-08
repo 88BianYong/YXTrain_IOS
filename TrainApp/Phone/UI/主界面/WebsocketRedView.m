@@ -52,6 +52,7 @@
     }else if (_redPointNumber == 0) {
         self.pointLabel.frame = CGRectMake(32.0f, 0.0f, 5.0f, 5.0f);
         self.pointLabel.layer.cornerRadius = 2.5f;
+        self.pointLabel.text = @"";
         self.pointLabel.hidden = NO;
     }else if (_redPointNumber > 0 && _redPointNumber < 100) {
         self.pointLabel.frame = CGRectMake(32.0f, 0.0f, 15.0f, 15.0f);

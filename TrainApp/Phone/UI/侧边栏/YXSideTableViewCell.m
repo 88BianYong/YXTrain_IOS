@@ -136,6 +136,7 @@
             make.size.mas_equalTo(CGSizeMake(5.0f, 5.0f));
         }];
         self.redPointLabel.layer.cornerRadius = 2.5f;
+        self.redPointLabel.text = @"";
         self.redPointLabel.hidden = NO;
     }else if (_redPointNumber > 0 && _redPointNumber < 100) {
         [self.redPointLabel mas_updateConstraints:^(MASConstraintMaker *make) {
