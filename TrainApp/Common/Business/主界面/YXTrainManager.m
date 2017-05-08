@@ -83,6 +83,11 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     }];
     return [NSIndexPath indexPathForRow:indexInteger inSection:sectionInteger];
 }
+- (void)setTrainlistItem:(YXTrainListRequestItem *)trainlistItem {
+    self.trainHelper = nil;
+    _trainlistItem = trainlistItem;
+    
+}
 - (void)setCurrentProjectIndexPath:(NSIndexPath *)currentProjectIndexPath {
     _currentProjectIndexPath = currentProjectIndexPath;
     self.trainlistItem.body.choosePid = self.currentProject.pid;
@@ -109,6 +114,5 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     self.trainlistItem = nil;
     [[NSUserDefaults standardUserDefaults]setValue:nil forKey:@"kTrainListItem"];
     [[NSUserDefaults standardUserDefaults]synchronize];
-    self.trainHelper = nil;
 }
 @end
