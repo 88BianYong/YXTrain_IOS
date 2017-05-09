@@ -12,9 +12,9 @@
         "loginServer":"http://u.yanxiu.com/",
         "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
         "websocketServer":"ws://mobile.yanxiu.com/websocket",
-        "geTuiAppId" : "gRI05lqFG46hR8ChAOKmY",
-        "geTuiAppKey" : "EPYwuoNr9V7Z6bpGaTDfv9",
-        "geTuiAppServer" : "WrnB1Dzq7c8j4GD8qVqKi6",
+        "geTuiAppId" : "LdLqS464X99FznE4G3mms8",
+        "geTuiAppKey" : "NHNIntWycO85vkc8U6Ctt4",
+        "geTuiAppServer" : "uglF0oXvO1AmyAS0Uql9P5",
         "mode":"test"
     }
 }
