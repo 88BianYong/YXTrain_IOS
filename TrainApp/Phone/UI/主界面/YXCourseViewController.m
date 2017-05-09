@@ -172,7 +172,6 @@ static  NSString *const trackPageName = @"课程列表页面";
 }
 
 - (void)setupWithCurrentFilters{
-    
     if (self.stageID) {
         YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
         __block NSInteger stageIndex = -1;
