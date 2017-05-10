@@ -21,6 +21,7 @@ static  NSString *const trackBulletinPageName = @"简报列表页面";
 @implementation YXNoticeViewController
 
 - (void)viewDidLoad {
+    
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     if (self.flag == YXFlag_Notice) {
