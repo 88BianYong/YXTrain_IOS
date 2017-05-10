@@ -191,7 +191,7 @@ static  NSString *const trackPageName = @"课程列表页面";
         __block NSInteger stageIndex = -1;
         [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YXCourseFilter *filter = (YXCourseFilter *)obj;
-            if ([filter.name isEqualToString:@"选修课程"]) {
+            if ([filter.name isEqualToString:@"选修课程阶段"]) {
                 stageIndex = idx;
                 *stop = YES;
             }
@@ -206,7 +206,7 @@ static  NSString *const trackPageName = @"课程列表页面";
         __block NSInteger stageIndex = -1;
         [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YXCourseFilter *filter = (YXCourseFilter *)obj;
-            if ([filter.name isEqualToString:@"本地课程"]) {
+            if ([filter.name isEqualToString:@"本地课程阶段"]) {
                 stageIndex = idx;
                 *stop = YES;
             }

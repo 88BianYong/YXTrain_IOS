@@ -26,6 +26,11 @@
 }
 - (void)setDynamicInteger:(NSInteger)dynamicInteger {
     _dynamicInteger = dynamicInteger;
+    if (_dynamicInteger > 0) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber  = _dynamicInteger;
+    }else {
+        [UIApplication sharedApplication].applicationIconBadgeNumber  = 0;
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushWebSocketReceiveMessage object:nil];
 }
 
