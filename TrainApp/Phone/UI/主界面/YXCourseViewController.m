@@ -173,7 +173,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 - (void)setupWithCurrentFilters{
     if (self.stageID) {
-        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
         __block NSInteger stageIndex = -1;
         [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YXCourseFilter *filter = (YXCourseFilter *)obj;
@@ -187,7 +187,7 @@ static  NSString *const trackPageName = @"课程列表页面";
         }
     }
     if (self.status == YXCourseFromStatus_Market) {
-        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
         __block NSInteger stageIndex = -1;
         [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YXCourseFilter *filter = (YXCourseFilter *)obj;
@@ -202,7 +202,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     }
     
     if (self.status == YXCourseFromStatus_Local) {
-        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.lastObject;
+        YXCourseFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
         __block NSInteger stageIndex = -1;
         [stageGroup.filterArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             YXCourseFilter *filter = (YXCourseFilter *)obj;
