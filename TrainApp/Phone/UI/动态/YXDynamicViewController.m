@@ -19,6 +19,7 @@
 static  NSString *const trackPageName = @"消息动态列表页面";
 @interface YXDynamicViewController ()
 @property (nonatomic, strong) YXMsgReadedRequest *readedRequest;
+@property (nonatomic, assign) BOOL isSuccess;
 @end
 
 @implementation YXDynamicViewController
@@ -51,6 +52,11 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 - (void)naviLeftAction {
+    if (self.isSuccess) {
+        [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
+        [TrainRedPointManger sharedInstance].dynamicInteger = -1;
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
@@ -182,9 +188,12 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     }
 }
 - (void)tableViewWillRefresh {
-    [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
-    [TrainRedPointManger sharedInstance].dynamicInteger = -1;
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    self.isSuccess = YES;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
+        [TrainRedPointManger sharedInstance].dynamicInteger = -1;
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    });
 }
 
 #pragma mark - request
