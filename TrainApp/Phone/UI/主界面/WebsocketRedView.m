@@ -55,12 +55,12 @@
         self.pointLabel.text = @"";
         self.pointLabel.hidden = NO;
     }else if (_redPointNumber > 0 && _redPointNumber < 100) {
-        self.pointLabel.frame = CGRectMake(32.0f, 0.0f, 15.0f, 15.0f);
+        self.pointLabel.frame = CGRectMake(28.0f, 0.0f, 15.0f, 15.0f);
         self.pointLabel.layer.cornerRadius = 7.5f;
         self.pointLabel.text = [NSString stringWithFormat:@"%ld",(long)_redPointNumber];
         self.pointLabel.hidden = NO;
     }else {
-        self.pointLabel.frame = CGRectMake(32.0f, 0.0f, 25.0f, 15.0f);
+        self.pointLabel.frame = CGRectMake(28.0f, 0.0f, 25.0f, 15.0f);
         self.pointLabel.layer.cornerRadius = 7.5f;
         self.pointLabel.text = @"99+";
         self.pointLabel.hidden = NO;
