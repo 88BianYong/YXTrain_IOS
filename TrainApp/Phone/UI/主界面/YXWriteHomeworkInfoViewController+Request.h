@@ -12,7 +12,7 @@
 
 - (void)requestForHomework;
 - (void)requestForChapterList;
-- (void)requestSaveHomework;
+- (void)requestSaveHomeworkWithHash:(NSString *)hashStr andVideoKey:(NSString *)keyString;
 - (void)requestForUpdVideoHomework;
 
 @end

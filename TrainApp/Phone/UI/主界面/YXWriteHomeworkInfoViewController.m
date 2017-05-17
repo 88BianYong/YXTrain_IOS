@@ -285,14 +285,14 @@
         self ->_progressView.progress = progress;
     });    
 }
-- (void)uploadCompleteWithHash:(NSString *)hashStr {
+- (void)uploadCompleteWithHash:(NSString *)hashStr andVideoKey:(NSString *)keyString {
     dispatch_async(dispatch_get_main_queue(), ^{
         self ->_progressView.hidden = YES;
         [UIApplication sharedApplication].idleTimerDisabled = NO;
         self.videoModel.isUploadSuccess = YES;
         self.videoModel.uploadPercent = 1;
         [YXVideoRecordManager saveVideoArrayWithModel:self.videoModel];
-        [self requestSaveHomework];
+        [self requestSaveHomeworkWithHash:hashStr andVideoKey:keyString];
     });
 }
 

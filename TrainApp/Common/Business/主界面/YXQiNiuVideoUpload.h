@@ -19,6 +19,6 @@
 
 - (void)uploadProgress:(float)progress;
 
-- (void)uploadCompleteWithHash:(NSString *)hashStr;
+- (void)uploadCompleteWithHash:(NSString *)hashStr andVideoKey:(NSString *)keyString;
 
 @end

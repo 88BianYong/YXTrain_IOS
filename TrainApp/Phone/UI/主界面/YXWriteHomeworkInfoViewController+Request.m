@@ -78,7 +78,7 @@ static  NSString *const trackEventName = @"上传作业";
     }];
     self.chapterRequest = request;
 }
-- (void)requestSaveHomework{
+- (void)requestSaveHomeworkWithHash:(NSString *)hashStr andVideoKey:(NSString *)keyString {
     WriteHomeworkManager *request = [[WriteHomeworkManager alloc] init];
     request.itemBody = self.videoModel;
     [self startLoading];
@@ -87,7 +87,7 @@ static  NSString *const trackEventName = @"上传作业";
         STRONG_SELF
         [self stopLoading];
         if (error) {
-            NSString *aError = [NSString stringWithFormat:@"error=%@",error];
+            NSString *aError = [NSString stringWithFormat:@"error=%@,hash=%@,key=%@",error,hashStr,keyString];
             NSDictionary *dict = @{
                                    @"token": [YXUserManager sharedManager].userModel.token?:@"",
                                    @"uid": [YXUserManager sharedManager].userModel.uid?:@"",

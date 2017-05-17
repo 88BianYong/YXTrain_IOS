@@ -56,15 +56,15 @@
         key = k;
         info = i;
         if (i.statusCode == 200) {
-            if ([self.delegate respondsToSelector:@selector(uploadCompleteWithHash:)]) {
-                [self.delegate uploadCompleteWithHash:[resp objectForKey:@"hash"]];
+            if ([self.delegate respondsToSelector:@selector(uploadCompleteWithHash:andVideoKey:)]) {
+                [self.delegate uploadCompleteWithHash:resp[@"hash"] andVideoKey:resp[@"key"]];
             }
         } else if (i.statusCode == 614) {
-            if ([self.delegate respondsToSelector:@selector(uploadCompleteWithHash:)]) {
-                [self.delegate uploadCompleteWithHash:nil];
+            if ([self.delegate respondsToSelector:@selector(uploadCompleteWithHash:andVideoKey:)]) {
+                [self.delegate uploadCompleteWithHash:resp[@"hash"] andVideoKey:resp[@"key"]];
             }
         }else {
-            NSString *error = [NSString stringWithFormat:@"error=%@,reqid=%@,xlog=%@,host=%@,id=%@",i.error,i.reqId,i.xlog,i.host,i.id];
+            NSString *error = [NSString stringWithFormat:@"error=%@,reqid=%@,xlog=%@,host=%@,id=%@,hash=%@,key=%@",i.error,i.reqId,i.xlog,i.host,i.id,resp[@"hash"],resp[@"key"]];
             NSDictionary *dict = @{
                                    @"token": [YXUserManager sharedManager].userModel.token?:@"",
                                    @"uid": [YXUserManager sharedManager].userModel.uid?:@"",
