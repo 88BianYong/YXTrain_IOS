@@ -262,6 +262,14 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIViewController *vc = [[NSClassFromString(@"VideoCourseDetailViewController") alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    return;
+
+    
+    
+    
     YXCourseListRequestItem_body_module_course *course = self.dataArray[indexPath.row];
     if (course.isSupportApp.boolValue) {
         YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];

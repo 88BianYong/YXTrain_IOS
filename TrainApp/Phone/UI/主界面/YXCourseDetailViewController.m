@@ -130,6 +130,15 @@
     self.courseItem = courseItem;
     [self.tableView reloadData];
     [[YXRecordManager sharedManager]setupWithCourseDetailItem:courseItem];
+    [self currentPlay];
+}
+- (void)currentPlay {
+    if ([self.courseItem willPlayVideo] != nil) {
+        DDLogDebug(@"当前播放视频>>>>%@",self.courseItem.playIndexPath);
+        [self currentPlay];
+    }else {
+        DDLogDebug(@"当前播放视频>>>>%@",self.courseItem.playIndexPath);
+    }
 }
 
 #pragma mark - UITableViewDataSource
