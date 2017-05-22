@@ -10,5 +10,4 @@
 
 @interface YXProjectMainViewController : YXBaseViewController
 @property (nonatomic,strong ) UIViewController<YXTrackPageDataProtocol> *selectedViewController;
-- (void)showSwitchGuideView;
 @end

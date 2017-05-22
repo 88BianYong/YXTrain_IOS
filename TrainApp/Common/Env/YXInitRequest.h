@@ -67,14 +67,10 @@ extern NSString *const YXInitSuccessNotification;
 
 @interface YXInitHelper : NSObject
 @property (nonatomic, strong) YXInitRequestItem *item;
-@property (nonatomic, assign) BOOL isShowUpgrade;//
-@property (nonatomic, assign) BOOL showUpgradeFlag;//显示项目切换引导页时用来判断
+@property (nonatomic, assign) BOOL isShowUpgrade;
 
 + (instancetype)sharedHelper;
-
 - (void)requestCompeletion:(void(^)(BOOL))completion;
 - (void)requestLoginCompeletion:(void (^)(YXInitRequestItem *, NSError *))completion;
 - (BOOL)isAppleChecking;
-- (BOOL)showNoRestraintUpgrade;
-
 @end

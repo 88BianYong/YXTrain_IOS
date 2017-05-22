@@ -203,6 +203,7 @@
 		92131F671E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92131F661E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m */; };
 		92134E3B1E8BADEE00A5B9B7 /* videoQuestions_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92134E3A1E8BADEE00A5B9B7 /* videoQuestions_mock.json */; };
 		92134E3D1E8BAE2900A5B9B7 /* submitAnswer_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92134E3C1E8BAE2900A5B9B7 /* submitAnswer_mock.json */; };
+		921AC82C1ECED17B001579A9 /* PopUpFloatingViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 921AC82B1ECED17B001579A9 /* PopUpFloatingViewManager.m */; };
 		9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */; };
 		9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8041D2BAA2C000F74DF /* YXWorkshopDetailRequest.m */; };
 		9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */; };
@@ -953,6 +954,8 @@
 		92131F661E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNoFloatingHeaderFooterTableView.m; sourceTree = "<group>"; };
 		92134E3A1E8BADEE00A5B9B7 /* videoQuestions_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = videoQuestions_mock.json; sourceTree = "<group>"; };
 		92134E3C1E8BAE2900A5B9B7 /* submitAnswer_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = submitAnswer_mock.json; sourceTree = "<group>"; };
+		921AC82A1ECED17B001579A9 /* PopUpFloatingViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpFloatingViewManager.h; sourceTree = "<group>"; };
+		921AC82B1ECED17B001579A9 /* PopUpFloatingViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopUpFloatingViewManager.m; sourceTree = "<group>"; };
 		9223C8001D2B9DD5000F74DF /* YXWorkshopListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopListRequest.h; sourceTree = "<group>"; };
 		9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopListRequest.m; sourceTree = "<group>"; };
 		9223C8031D2BAA2C000F74DF /* YXWorkshopDetailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailRequest.h; sourceTree = "<group>"; };
@@ -3856,6 +3859,8 @@
 				F7E8F8DA1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m */,
 				F7E8F8DC1D65CE3700CDAAF4 /* YXPopUpContainerView.h */,
 				F7E8F8DD1D65CE3700CDAAF4 /* YXPopUpContainerView.m */,
+				921AC82A1ECED17B001579A9 /* PopUpFloatingViewManager.h */,
+				921AC82B1ECED17B001579A9 /* PopUpFloatingViewManager.m */,
 			);
 			path = "弹出";
 			sourceTree = "<group>";
@@ -4166,6 +4171,7 @@
 				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
 				92DE3BBE1DDC45DE0011CFB7 /* SecondCommentFooterView.m in Sources */,
 				92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */,
+				921AC82C1ECED17B001579A9 /* PopUpFloatingViewManager.m in Sources */,
 				7C2C3B341D2114DC00A03635 /* YXScoreTypeHeaderView.m in Sources */,
 				CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */,
 				928B7A3F1E88B2180067218A /* BeijingCourseListCell.m in Sources */,

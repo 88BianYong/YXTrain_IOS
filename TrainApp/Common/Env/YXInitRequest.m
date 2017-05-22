@@ -186,7 +186,6 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         BLOCK_EXEC(self.upgradeHandler,isInit);
         return;
     }
-    
     YXInitRequestItem_Body *body = self.item.body[0];
     if ([body isTest]) { //测试环境
 #ifndef DEBUG
@@ -206,31 +205,13 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         [self showForceUploadTitle:body.title andContent:body.content];
     }
     else{
-        self.showUpgradeFlag = YES;
+        if (!isInit) {
+            self.isShowUpgrade = YES;
+        }
         BLOCK_EXEC(self.upgradeHandler,isInit);
     }
 
 }
-- (BOOL)showNoRestraintUpgrade{
-    if (!self.item || self.item.body.count <= 0) {
-        return NO;
-    }
-    YXInitRequestItem_Body *body = self.item.body[0];
-    if ([body isTest]) { //测试环境
-#ifndef DEBUG
-        return NO;
-#endif
-    }
-    if (![body.fileURL yx_isHttpLink]) { //http链接
-        return NO;
-    }
-    if ([body.upgradetype isEqualToString:@"2"] && self.isShowUpgrade) {
-        [self showUploadTitle:body.title andContent:body.content];
-        return YES;
-    }
-    return NO;
-}
-
 - (BOOL)isAppleChecking
 {
     id isChecking = [[NSUserDefaults standardUserDefaults] objectForKey:@"isAppleChecking"];
@@ -248,57 +229,6 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         [[NSUserDefaults standardUserDefaults] setObject:isAppleChecking forKey:@"isAppleChecking"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-}
-/**
- *  这里需要接入真正逻辑
- */
-- (void)showUploadTitle:(NSString *)titleString andContent:(NSString *)contentString {
-    self.isShowUpgrade = NO;
-    YXPopUpContainerView *v = [[YXPopUpContainerView alloc] init];
-    YXAppUpdateData *data = [[YXAppUpdateData alloc] init];
-    data.title = titleString;
-    data.content = contentString;
-    WEAK_SELF
-    YXAlertAction *cancelAlertAct = [[YXAlertAction alloc] init];
-    cancelAlertAct.block = ^{
-        STRONG_SELF
-        [v hide];
-        self.showUpgradeFlag = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelToUpdate" object:nil];
-    };
-    
-    YXAlertAction *downloadUpdateAlertAct = [[YXAlertAction alloc] init];
-    downloadUpdateAlertAct.block = ^{
-        STRONG_SELF
-        self.showUpgradeFlag = NO;
-        YXInitRequestItem_Body *body = self.item.body[0];
-        Reachability *r = [Reachability reachabilityForInternetConnection];
-        NetworkStatus status = [r currentReachabilityStatus];
-        if (status == ReachableViaWiFi) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
-        } else if(status == ReachableViaWWAN){
-            YXAlertView *showAlertView = [YXAlertView alertViewWithTitle:@"当前网络非WIFi环境,是否继续更新"];
-            if (![body isForce]) {
-                [showAlertView addButtonWithTitle:@"否"];
-            }
-            [showAlertView addButtonWithTitle:@"继续" action:^{
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:body.fileURL]];
-            }];
-            [showAlertView show];
-        }
-        [v hide];
-    };
-    YXAppUpdatePopUpView *popView = [[YXAppUpdatePopUpView alloc] init];
-    [popView setupConstrainsInContainerView:v];
-    [popView updateWithData:data actions:@[downloadUpdateAlertAct,cancelAlertAct]];
-    [v showInView:nil];
-    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    NSArray *array = window.subviews;
-    for (UIView *view in array) {
-        if ([view isKindOfClass:[YXCMSCustomView class]]) {
-            [window bringSubviewToFront:view];
-        }
-    }    
 }
 
 - (void)showForceUploadTitle:(NSString *)titleString andContent:(NSString *)contentString {

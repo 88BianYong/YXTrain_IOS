@@ -24,7 +24,7 @@
 #import "YXWebViewController.h"
 #import "TrainGeTuiManger.h"
 #import "TrainGeTuiManger.h"
-
+#import "PopUpFloatingViewManager.h"
 @interface AppDelegateHelper ()
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
@@ -41,7 +41,7 @@
 - (void)showNotificationViewController{
     [[TrainGeTuiManger sharedInstance] setTrainGeTuiMangerCompleteBlock:^{
         if (self.isRemoteNotification || ![[YXUserManager sharedManager] isLogin] ||
-            [YXInitHelper sharedHelper].showUpgradeFlag) {
+            [YXInitHelper sharedHelper].isShowUpgrade) {
             return ;//1.通过通知启动需要等待升级接口返回才进行跳转2.未登录不进行跳转3.弹出升级界面不进行跳转
         }
         [self showDrawerViewController];
@@ -90,7 +90,15 @@
     if ([[YXUserManager sharedManager] isLogin]) {
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
-        [self showCMSView];
+        WEAK_SELF
+        [[PopUpFloatingViewManager sharedInstance] setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
+            STRONG_SELF
+            if (isShow && self.isRemoteNotification) {
+                [self showDrawerViewController];
+            }
+            self.isRemoteNotification = NO;
+        }];
+        [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
     } else {
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
@@ -123,7 +131,7 @@
         STRONG_SELF
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
-        [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
+        [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
         [[TrainGeTuiManger sharedInstance] loginSuccess];
         self.isRemoteNotification = NO;
     }];
@@ -141,10 +149,6 @@
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
         [YXPromtController showToast:@"帐号授权已失效,请重新登录" inView:self.window];
     }];
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainShowUpdate object:nil] subscribeNext:^(id x) {
-        STRONG_SELF
-        [self showNoRestraintUpgradeView];
-    }];
 }
 
 - (void)removeLoginNotifications
@@ -159,55 +163,6 @@
     [center removeObserver:self
                       name:YXTokenInValidNotification
                     object:nil];
-    [center removeObserver:self
-                      name:kYXTrainShowUpdate
-                    object:nil];
-}
-
-- (void)showCMSView {
-    if (self.cmsView) {//显示过启动页则不再显示
-        return;
-    }
-    if ([[Reachability reachabilityForInternetConnection] isReachable]) {
-        self.cmsView = [[YXCMSCustomView alloc] init];
-        [self.window addSubview:self.cmsView];
-        [self.cmsView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
-        }];
-        WEAK_SELF
-        [[YXCMSManager sharedManager] requestWithType:@"1" completion:^(NSArray *rotates, NSError *error) {
-            STRONG_SELF
-            if (error || rotates.count <= 0) {
-                [self.cmsView removeFromSuperview];
-                [self showNoRestraintUpgradeView];
-            }
-            else{
-                YXRotateListRequestItem_Rotates *rotate = rotates[0];
-                [self.cmsView reloadWithModel:rotate];
-                WEAK_SELF
-                self.cmsView.clickedBlock = ^(YXRotateListRequestItem_Rotates *model) {
-                    STRONG_SELF
-                    YXWebViewController *webView = [[YXWebViewController alloc] init];
-                    webView.urlString = model.typelink;
-                    webView.titleString = model.name;
-                    [webView setBackBlock:^{
-                        STRONG_SELF
-                        [[YXInitHelper sharedHelper] showNoRestraintUpgrade];
-                        self.isRemoteNotification = NO;
-                    }];
-                    [self.window.rootViewController.navigationController pushViewController:webView animated:YES];
-                };
-            }
-        }];
-    }else{
-        [self showNoRestraintUpgradeView];
-    }
-}
-- (void)showNoRestraintUpgradeView {
-    if (![[YXInitHelper sharedHelper] showNoRestraintUpgrade] && self.isRemoteNotification) {//通过通知启动且不显示升级时跳转动态界面
-        [self showDrawerViewController];
-    }
-    self.isRemoteNotification = NO;
 
 }
 @end
