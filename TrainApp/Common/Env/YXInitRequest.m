@@ -107,7 +107,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 }
 - (instancetype)init {
     if (self = [super init]) {
-        self.isShowUpgrade = YES;
+        self.isShowUpgrade = NO;
     }
     return self;
 }
@@ -205,7 +205,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         [self showForceUploadTitle:body.title andContent:body.content];
     }
     else{
-        if (!isInit) {
+        if (isInit) {
             self.isShowUpgrade = YES;
         }
         BLOCK_EXEC(self.upgradeHandler,isInit);

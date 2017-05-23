@@ -131,6 +131,7 @@
         STRONG_SELF
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
+        [PopUpFloatingViewManager sharedInstance].isLoginFirst = YES;
         [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
         [[TrainGeTuiManger sharedInstance] loginSuccess];
         self.isRemoteNotification = NO;

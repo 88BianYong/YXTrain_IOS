@@ -52,7 +52,7 @@
   * @brief 浮层显示顺序 1.广告页 2.升级界面 3.项目切换 4.角色切换
  */
 - (void)showPopUpFloatingView {
-    if (self.isShowCMS) {
+    if (self.isShowCMS && !self.isLoginFirst) {
         [self showCMSView];
     }else if ([YXInitHelper sharedHelper].isShowUpgrade) {
         if(self.upgradeView == nil) {

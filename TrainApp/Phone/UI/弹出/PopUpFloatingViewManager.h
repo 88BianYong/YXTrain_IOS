@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface PopUpFloatingViewManager : NSObject
-@property (nonatomic, copy) void(^popUpFloatingViewManagerCompleteBlock)(BOOL isShow);
+@property (nonatomic, assign) BOOL isLoginFirst;//区分登录进入
+@property (nonatomic, copy) void(^popUpFloatingViewManagerCompleteBlock)(BOOL isShow);//区分是否可以进入动态
 + (instancetype)sharedInstance;
 /**
  * @brief 浮层显示顺序 1.广告页 2.升级界面 3.项目切换 4.角色切换  其中任何一个需要显示时调用该方法内部自动判断
