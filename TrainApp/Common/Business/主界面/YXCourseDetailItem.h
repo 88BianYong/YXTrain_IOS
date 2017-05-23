@@ -29,6 +29,14 @@
 @property (nonatomic, copy) NSArray<YXCourseDetailItem_chapter_fragment, Optional> *fragments;
 @end
 
+@interface YXCourseDetailItem_score : JSONModel
+
+@end
+
+@interface YXCourseDetailItem_mti : JSONModel
+
+@end
+
 @interface YXCourseDetailItem : JSONModel
 @property (nonatomic, copy) NSString<Optional> *module_name;
 @property (nonatomic, copy) NSString<Optional> *course_title;

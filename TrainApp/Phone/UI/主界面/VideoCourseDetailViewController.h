@@ -7,7 +7,8 @@
 //
 
 #import "YXBaseViewController.h"
-
+#import "YXCourseListRequest.h"
 @interface VideoCourseDetailViewController : YXBaseViewController
-
+@property (nonatomic, strong) YXCourseListRequestItem_body_module_course *course;
+@property (nonatomic, assign) BOOL isFromRecord;
 @end

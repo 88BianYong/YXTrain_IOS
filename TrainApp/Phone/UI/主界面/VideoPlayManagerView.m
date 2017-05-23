@@ -15,6 +15,7 @@
 #import "ActivitySlideProgressView.h"
 #import "ActivityPlayExceptionView.h"
 #import "UIImage+YXImage.h"
+#import "YXCourseDetailItem.h"
 static const NSTimeInterval kTopBottomHiddenTime = 5;
 @interface VideoPlayManagerView ()
 @property (nonatomic, strong) LePlayer *player;
@@ -31,6 +32,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, copy) VideoPlayManagerViewBackActionBlock backBlock;
 @property (nonatomic, copy) VideoPlayManagerViewRotateScreenBlock rotateBlock;
 @property (nonatomic, copy) VideoPlayManagerViewPlayVideoBlock playBlock;
+@property (nonatomic, copy) VideoPlayManagerViewFinishBlock finishBlock;
 @property (nonatomic, strong) NSMutableArray *disposableMutableArray;
 @property (nonatomic, strong) NSTimer *topBottomHideTimer;
 @property (nonatomic, assign) BOOL isTopBottomHidden;
@@ -361,7 +363,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.slideProgressView.bufferProgress = 0.0f;
     [self.bottomView.slideProgressControl updateUI];
     [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
-    BLOCK_EXEC(self.backBlock);
+    BLOCK_EXEC(self.finishBlock);
 }
 
 #pragma mark - button Action
@@ -421,6 +423,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)setVideoPlayManagerViewPlayVideoBlock:(VideoPlayManagerViewPlayVideoBlock)block {
     self.playBlock = block;
 }
+- (void)setVideoPlayManagerViewFinishBlock:(VideoPlayManagerViewFinishBlock)block {
+    self.finishBlock = block;
+}
 
 - (void)setIsFullscreen:(BOOL)isFullscreen {
     _isFullscreen = isFullscreen;
@@ -432,11 +437,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         self.topView.hidden = YES;
     }
 }
-- (void)setTest:(NSString *)test {
-    self.videoUrl = [NSURL URLWithString:test];
-    self.player.videoUrl = self.videoUrl;
 
+- (void)setFileItem:(YXFileItemBase *)fileItem {
+    _fileItem = fileItem;
+    self.topView.titleString = _fileItem.name;
+    self.videoUrl = [NSURL URLWithString:_fileItem.url];
+    self.player.videoUrl = self.videoUrl;
 }
+
 
 //- (void)setContent:(ActivityToolVideoRequestItem_Body_Content *)content {
 //    _content = content;
@@ -458,6 +466,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     _playStatus = playStatus;
     self.exceptionView.hidden = NO;
     switch (_playStatus) {
+        case  VideoPlayManagerStatus_Empty:
+        {
+            self.exceptionView.exceptionLabel.text = @"未找到该视频";
+            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
+        }
+            break;
         case  VideoPlayManagerStatus_NotWifi:
         {
             self.exceptionView.exceptionLabel.text = @"当前为非wifi网络,继续播放会产生流量费用";

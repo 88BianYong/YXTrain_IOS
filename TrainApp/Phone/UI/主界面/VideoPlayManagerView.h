@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 typedef NS_ENUM(NSInteger, VideoPlayManagerStatus) {
+    VideoPlayManagerStatus_Empty,//视频为空
     VideoPlayManagerStatus_NotWifi,//非wifi
     VideoPlayManagerStatus_PlayError,//播放出错
     VideoPlayManagerStatus_NetworkError,//网络出错
@@ -16,16 +17,21 @@ typedef NS_ENUM(NSInteger, VideoPlayManagerStatus) {
 typedef void (^VideoPlayManagerViewBackActionBlock)(void);
 typedef void (^VideoPlayManagerViewRotateScreenBlock)(BOOL isVertical);
 typedef void (^VideoPlayManagerViewPlayVideoBlock)(VideoPlayManagerStatus status);
+typedef void (^VideoPlayManagerViewFinishBlock)();
+
+
 @interface VideoPlayManagerView : UIView
 @property (nonatomic, assign) VideoPlayManagerStatus playStatus;
 @property (nonatomic, assign) BOOL isFullscreen;
-@property (nonatomic, strong) NSString *test;
+
+@property (nonatomic, strong) YXFileItemBase *fileItem;
 
 
 
 - (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block;
 - (void)setVideoPlayManagerViewRotateScreenBlock:(VideoPlayManagerViewRotateScreenBlock)block;
 - (void)setVideoPlayManagerViewPlayVideoBlock:(VideoPlayManagerViewPlayVideoBlock)block;
+- (void)setVideoPlayManagerViewFinishBlock:(VideoPlayManagerViewFinishBlock)block;
 - (void)viewWillAppear;
 - (void)viewWillDisappear;
 - (void)playVideoClear;

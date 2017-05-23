@@ -8,9 +8,11 @@
 
 #import "VideoCourseDetailViewController.h"
 #import "VideoPlayManagerView.h"
+#import "CourseDetailContainerView.h"
+#import "VideoCourseChapterViewController.h"
 @interface VideoCourseDetailViewController ()
 @property (nonatomic, strong) VideoPlayManagerView *playMangerView;
-
+@property (nonatomic, strong) CourseDetailContainerView *containerView;
 @end
 
 @implementation VideoCourseDetailViewController
@@ -20,16 +22,10 @@
 }
 
 - (void)viewDidLoad {
-//    self.dataFetcher = [[CommentPagedListFetcher alloc] init];
-//    self.dataFetcher.aid = self.tool.aid;
-//    self.dataFetcher.toolid = self.tool.toolid;
-//    self.dataFetcher.stageId = self.stageId;
-//    self.dataFetcher.pageIndex = 1;
-//    self.dataFetcher.pageSize = 10;
     [super viewDidLoad];
-    self.title = @"视频";
     self.view.backgroundColor = [UIColor blackColor];
-    //[self requestForActivityToolVideo];
+    self.title = self.course.course_title;
+
     [self setupUI];
     [self setupLayout];
 }
@@ -72,57 +68,43 @@
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     }];
     [self.view addSubview:self.playMangerView];
-    self.playMangerView.test = @"http://yuncdn.teacherclub.com.cn/course/cf/2010bzr_sd/jz02_wx/video/110_l/110_l.m3u8";
-//    
-//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
-//    headerView.backgroundColor = [UIColor whiteColor];
-//    UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(13.0f, 12.0f, 200, 12.0f)];
-//    commentLabel.text = @"评论";
-//    commentLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-//    commentLabel.font = [UIFont systemFontOfSize:12.0f];
-//    [headerView addSubview:commentLabel];
-//    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(15.0f, 30.0f - 1.0f / [UIScreen mainScreen].scale, kScreenWidth - 30.0f, 1.0f / [UIScreen mainScreen].scale)];
-//    lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
-//    [headerView addSubview:lineView];
-//    self.tableView.tableHeaderView = headerView;
-//    self.tableView.tableHeaderView.hidden = YES;
-//    self.dataErrorView.isActivityVideo = YES;
-//    self.emptyView.isActivityVideo = YES;
-//    self.errorView.isActivityVideo = YES;
+    self.containerView = [[CourseDetailContainerView alloc] init];
+    [self.view addSubview:self.containerView];
+    VideoCourseChapterViewController *chapterVC = [[VideoCourseChapterViewController alloc]init];
+    chapterVC.course = self.course;
+    chapterVC.isFromRecord = NO;
+    [chapterVC setVideoCourseChapterFragmentCompleteBlock:^(YXFileItemBase *fileItem, BOOL isHaveVideo) {
+        STRONG_SELF
+        if (fileItem) {
+            self.playMangerView.fileItem = fileItem;
+        }else {
+            if (isHaveVideo) {
+                
+            }else {
+                
+            }
+        }
+    }];
+    UIViewController *studentsVC = [[NSClassFromString(@"YXTaskViewController") alloc] init];
+    studentsVC.view.backgroundColor = [UIColor grayColor];
+    UIViewController *taskVC = [[NSClassFromString(@"YXTaskViewController") alloc] init];
+    [self addChildViewController:chapterVC];
+    [self addChildViewController:studentsVC];
+    [self addChildViewController:taskVC];
+    self.containerView.viewControllers = @[chapterVC,studentsVC,taskVC];
+    self.containerView.tag = 10001;
+    [self.playMangerView setVideoPlayManagerViewFinishBlock:^{
+        STRONG_SELF
+        [chapterVC readyNextWillplayVideo];
+    }];
 }
 - (void)setupLayout {
-//    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view.mas_left);
-//        make.right.equalTo(self.view.mas_right);
-//        make.bottom.equalTo(self.view.mas_bottom);
-//        make.top.equalTo(self.playMangerView.mas_bottom);
-//    }];
-//    [self.emptyView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view.mas_left);
-//        make.right.equalTo(self.view.mas_right);
-//        make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
-//        make.top.equalTo(self.playMangerView.mas_bottom).offset(30.0f);
-//    }];
-//    
-//    [self.errorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view.mas_left);
-//        make.right.equalTo(self.view.mas_right);
-//        make.bottom.equalTo(self.view.mas_bottom).priorityLow();
-//        make.top.equalTo(self.playMangerView.mas_bottom).offset(30.0f);
-//    }];
-//    [self.dataErrorView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view.mas_left);
-//        make.right.equalTo(self.view.mas_right);
-//        make.bottom.equalTo(self.view.mas_bottom);
-//        make.top.equalTo(self.playMangerView.mas_bottom).offset(30.0f);
-//    }];
-//    
-//    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.view.mas_left);
-//        make.right.equalTo(self.view.mas_right);
-//        make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
-//        make.top.equalTo(self.playMangerView.mas_bottom);
-//    }];
+    [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.top.equalTo(self.playMangerView.mas_bottom);
+    }];
     [self remakeForHalfSize];
 }
 
