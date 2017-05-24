@@ -10,9 +10,12 @@
 #import "VideoPlayManagerView.h"
 #import "CourseDetailContainerView.h"
 #import "VideoCourseChapterViewController.h"
+#import "VideoClassworkManager.h"
 @interface VideoCourseDetailViewController ()
 @property (nonatomic, strong) VideoPlayManagerView *playMangerView;
 @property (nonatomic, strong) CourseDetailContainerView *containerView;
+@property (nonatomic ,strong) VideoClassworkManager *classworkManager;
+@property (nonatomic, assign) BOOL isShowClossworkViewBool;//是否正在显示随堂练界面
 @end
 
 @implementation VideoCourseDetailViewController
@@ -20,7 +23,9 @@
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
 }
-
+- (BOOL)isShowClossworkViewBool {
+    return !self.classworkManager.hidden;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
@@ -32,16 +37,17 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.playMangerView viewWillAppear];
+    self.classworkManager.clossworkView.alpha = 1.0f;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.playMangerView viewWillDisappear];
+    self.classworkManager.clossworkView.alpha = 0.0f;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - setupUI
@@ -80,6 +86,7 @@
             self.playMangerView.delegate = fileItem;
             self.playMangerView.exitDelegate = fileItem;
             self.playMangerView.fileItem = fileItem;
+            [self setupClassworkManager:fileItem];
         }else {
             if (isHaveVideo) {
                 
@@ -100,6 +107,75 @@
         STRONG_SELF
         [chapterVC readyNextWillplayVideo];
     }];
+}
+- (void)setupClassworkManager:(YXFileItemBase *)fileItem {
+    //随堂练
+    [self.classworkManager clear];
+    self.classworkManager = nil;
+    self.classworkManager = [[VideoClassworkManager alloc] initClassworkRootViewController:self.navigationController];
+    self.classworkManager.classworMutableArray = [self quizeesExercisesFormatSgqz:fileItem.sgqz];
+    self.classworkManager.cid = fileItem.cid;
+    self.classworkManager.source = fileItem.source;
+    self.classworkManager.forcequizcorrect = fileItem.forcequizcorrect;
+    [self.classworkManager startBatchRequestForVideoQuestions];
+    WEAK_SELF
+    [self.classworkManager setVideoClassworkManagerBlock:^(BOOL isPlay, NSInteger playTime) {
+        STRONG_SELF
+        self.playMangerView.topView.alpha = isPlay ? 1.0f : 0.0f;
+        self.playMangerView.bottomView.alpha = isPlay ? 1.0f : 0.0f;
+        if (isPlay) {
+            if (playTime >= 0) {
+                [self.playMangerView.player seekTo:playTime];
+            }
+            [self checkNetworkDoPlay];
+        }else {
+            self.playMangerView.bottomView.slideProgressControl.bSliding = NO;
+            [self.playMangerView.player pause];
+        }
+    }];
+    self.playMangerView.classworkManager = self.classworkManager;
+}
+- (void)checkNetworkDoPlay {
+    Reachability *r = [Reachability reachabilityForInternetConnection];
+    if (![r isReachable]) {
+        [self showToast:@"网络不可用,请检查网络"];
+        return;
+    }
+    if ([r isReachableViaWiFi]) {
+        [self.playMangerView.player play];
+        return;
+    }
+    if ([r isReachableViaWiFi]) {
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"网络连接提示" message:@"当前处于非Wi-Fi环境，仍要继续吗？" preferredStyle:UIAlertControllerStyleAlert];
+        WEAK_SELF
+        UIAlertAction *backAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            STRONG_SELF
+            [self naviLeftAction];
+            return;
+        }];
+        UIAlertAction *goAction = [UIAlertAction actionWithTitle:@"继续" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            STRONG_SELF
+            [self.playMangerView.player play];
+        }];
+        [alertVC addAction:backAction];
+        [alertVC addAction:goAction];
+        [self presentViewController:alertVC animated:YES completion:nil];
+    }
+}
+-(NSMutableArray<YXFileVideoClassworkItem *> *)quizeesExercisesFormatSgqz:(NSString *)sgqz {
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    NSArray *quizees = [sgqz componentsSeparatedByString:@","];
+    [quizees enumerateObjectsUsingBlock:^(NSString * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *temp = [obj componentsSeparatedByString:@"_"];
+        if (temp.count == 2) {
+            YXFileVideoClassworkItem *item = [[YXFileVideoClassworkItem alloc] init];
+            item.quizzesID = temp[0];
+            item.timeString = temp[1];
+            item.isTrue = NO;
+            [mutableArray addObject:item];
+        }
+    }];
+    return mutableArray;
 }
 - (void)setupLayout {
     [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -133,33 +209,6 @@
     }];
     [self.view layoutIfNeeded];
 }
-//- (void)startLoading {
-//    [YXPromtController startLoadingInView:self.contentView];
-//}
-//- (void)stopLoading {
-//    [YXPromtController stopLoadingInView:self.contentView];
-//    dispatch_async(dispatch_get_main_queue(), ^{//fix bug 367
-//        NSArray *subviews = [self.contentView subviews];
-//        for (UIView *view in subviews) {
-//            if ([view isKindOfClass:[MBProgressHUD class]]) {
-//                [self.contentView bringSubviewToFront:view];
-//                break;
-//            }
-//        }
-//    });
-//}
-
-//- (void)showEnclosureButton:(ActivityToolVideoRequestItem_Body_Content *)content {
-//    if (content) {
-//        [self setupRightWithTitle:@"附件"];
-//    }
-//}
-//- (void)naviRightAction {
-//    ActivityEnclosureViewController *VC = [[ActivityEnclosureViewController alloc] init];
-//    VC.content = [self.toolVideoItem.body formatToolEnclosure];
-//    [self.navigationController pushViewController:VC animated:YES];
-//}
-
 #pragma mark - action
 - (void)rotateScreenAction {
     UIInterfaceOrientation screenDirection = [UIApplication sharedApplication].statusBarOrientation;

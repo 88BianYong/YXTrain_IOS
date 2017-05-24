@@ -8,11 +8,9 @@
 
 #import "VideoClassworkManager.h"
 #import "YXSubmitAnswerRequest.h"
-#import "VideoClassworkView.h"
 @interface VideoClassworkManager ()
-@property (nonatomic, weak) YXBaseViewController *rootViewController;
+@property (nonatomic, weak) UIViewController *rootViewController;
 @property (nonatomic, assign) NSInteger lastInteger;//返回上一章节的时间
-@property (nonatomic, strong) VideoClassworkView *clossworkView;
 
 @property (nonatomic, strong) YXVideoQuestionsRequest *questionsRequest;
 @property (nonatomic, strong) YXSubmitAnswerRequest *answerRequest;
@@ -27,7 +25,7 @@
 - (void)dealloc {
     [self.requestMutableArray removeAllObjects];
 }
-- (instancetype)initClassworkRootViewController:(YXBaseViewController *)controller {
+- (instancetype)initClassworkRootViewController:(UIViewController *)controller {
     if (self = [super initWithFrame:CGRectZero]) {
         if (controller == nil) {
             return self;
@@ -165,16 +163,16 @@
     request.aj = jsonString;
     request.cID = self.cid;
     request.pID = [YXTrainManager sharedInstance].currentProject.pid;
-    [self.rootViewController startLoading];
+    [YXPromtController startLoadingInView:self.rootViewController.view];
     WEAK_SELF
     [request startRequestWithRetClass:[YXSubmitAnswerRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self.rootViewController stopLoading];
+        [YXPromtController stopLoadingInView:self.rootViewController.view];
         if (error) {
             if (error.code == 1){
-                [self.rootViewController showToast:error.localizedDescription];
+                [YXPromtController showToast:error.localizedDescription inView:self.rootViewController.view];
             }else {
-                [self.rootViewController showToast:@"提交失败"];
+                [YXPromtController showToast:@"提交失败" inView:self.rootViewController.view];
             }
             return ;
         }
@@ -211,5 +209,8 @@
 
 - (BOOL)isHidden {
     return self.clossworkView.hidden;
+}
+- (void)clear {
+    [self.clossworkView removeFromSuperview];
 }
 @end

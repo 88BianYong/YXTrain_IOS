@@ -7,11 +7,7 @@
 //
 
 #import "VideoPlayManagerView.h"
-#import "ActivityPlayBottomView.h"
-#import "LePlayer.h"
-#import "LePlayerView.h"
 #import "YXPlayerBufferingView.h"
-#import "ActivityPlayTopView.h"
 #import "ActivitySlideProgressView.h"
 #import "ActivityPlayExceptionView.h"
 #import "UIImage+YXImage.h"
@@ -25,12 +21,8 @@
 
 static const NSTimeInterval kTopBottomHiddenTime = 5;
 @interface VideoPlayManagerView ()
-@property (nonatomic, strong) LePlayer *player;
-@property (nonatomic, strong) LePlayerView *playerView;
 @property (nonatomic, strong) YXPlayerBufferingView *bufferingView;
-@property (nonatomic, strong) ActivityPlayBottomView *bottomView;
 @property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
-@property (nonatomic, strong) ActivityPlayTopView *topView;
 @property (nonatomic, strong) ActivityPlayExceptionView *exceptionView;
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UIImageView *thumbImageView;
@@ -122,7 +114,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                      forState:UIControlStateHighlighted];
     [self.playButton addTarget:self action:@selector(playButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.thumbImageView addSubview:_playButton];
-    
 }
 - (void)setupLayout {
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -181,7 +172,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             return;
         }
         if([r isReachableViaWWAN]) {
-            [self do3GCheck];
+            if (!self.classworkManager.hidden) {
+                [self.player pause];
+            }else {
+                [self do3GCheck];
+            }
         }
     }];
     [r startNotifier];
@@ -291,6 +286,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 [self.bottomView.slideProgressControl updateUI];
             }
         }
+        if (self.classworkManager.hidden){
+            [self.classworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressControl.playProgress)];
+        }
     }];
     
     [self.disposableMutableArray addObject:r0];
@@ -380,8 +378,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 #pragma mark - playStatus
 - (void)progressAction {
+    self.classworkManager.quizzesInteger = 0;
     [self resetTopBottomHideTimer];
     [self.player seekTo:self.player.duration * self.bottomView.slideProgressControl.playProgress];
+    [self.classworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressControl.playProgress)];
 }
 - (void)playVideoFinished {
     self.bottomView.slideProgressControl.playProgress = 0.0f;

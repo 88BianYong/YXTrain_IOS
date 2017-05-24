@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoClassworkManager.h"
+#import "ActivityPlayTopView.h"
+#import "LePlayer.h"
+#import "LePlayerView.h"
+#import "ActivityPlayBottomView.h"
 typedef NS_ENUM(NSInteger, VideoPlayManagerStatus) {
     VideoPlayManagerStatus_Empty,//视频为空
     VideoPlayManagerStatus_NotWifi,//非wifi
@@ -20,11 +25,18 @@ typedef void (^VideoPlayManagerViewPlayVideoBlock)(VideoPlayManagerStatus status
 typedef void (^VideoPlayManagerViewFinishBlock)();
 
 @interface VideoPlayManagerView : UIView
+@property (nonatomic, strong) LePlayer *player;
+@property (nonatomic, strong) LePlayerView *playerView;
+@property (nonatomic, strong) ActivityPlayBottomView *bottomView;
+@property (nonatomic, strong) ActivityPlayTopView *topView;
+
 @property (nonatomic, assign) VideoPlayManagerStatus playStatus;
 @property (nonatomic, assign) BOOL isFullscreen;
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 @property (nonatomic, weak) id<YXPlayProgressDelegate> delegate;
 @property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
+@property (nonatomic ,weak) VideoClassworkManager *classworkManager;
+
 
 
 - (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block;

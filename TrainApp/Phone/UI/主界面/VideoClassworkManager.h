@@ -7,17 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoClassworkView.h"
 static const NSInteger VideoClassworkQuizzesTime = 16;
 static const NSInteger VideoClassworkTriggerTime = 5;
 @interface VideoClassworkManager : UIControl
 @property (nonatomic, assign) BOOL forcequizcorrect;
 @property (nonatomic, assign) NSInteger quizzesInteger;//控制请求时机避免重复请求
+@property (nonatomic, strong) VideoClassworkView *clossworkView;
 
 @property (nonatomic, strong) NSString *cid;
 @property (nonatomic, strong) NSString *source;
 @property (nonatomic, strong) NSMutableArray<__kindof YXFileVideoClassworkItem *> *classworMutableArray;
 @property (nonatomic, copy) void(^videoClassworkManagerBlock)(BOOL isPlay, NSInteger playTime);
-- (instancetype)initClassworkRootViewController:(YXBaseViewController *)controller NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initClassworkRootViewController:(UIViewController *)controller NS_DESIGNATED_INITIALIZER;
 - (void)compareClassworkPlayTime:(NSInteger)playProgress;
 - (void)startBatchRequestForVideoQuestions;
+- (void)clear;
 @end
