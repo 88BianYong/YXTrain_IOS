@@ -156,11 +156,11 @@
     YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];
     YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
     cell.data = fragment;
-    if ([[YXFileRecordManager sharedInstance]hasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
-        cell.watched = YES;
-    }else{
-        cell.watched = NO;
-    }
+//    if ([[YXFileRecordManager sharedInstance]hasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
+//        cell.watched = YES;
+//    }else{
+//        cell.watched = NO;
+//    }
     return cell;
 }
 

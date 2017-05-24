@@ -60,7 +60,8 @@
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(0.0f);
     }];
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 6.0f)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 15.0f)];
+    headerView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableHeaderView = headerView;
     
     [self.tableView registerClass:[YXCourseDetailCell class] forCellReuseIdentifier:@"YXCourseDetailCell"];
@@ -171,9 +172,12 @@
     YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
     cell.data = fragment;
     if ([[YXFileRecordManager sharedInstance]hasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
-        cell.watched = YES;
+        cell.cellStatus = YXCourseDetailCellStatus_Watched;
     }else{
-        cell.watched = NO;
+        cell.cellStatus = YXCourseDetailCellStatus_Default;
+    }
+    if ([self.courseItem.playIndexPath isEqual:indexPath]) {
+        cell.cellStatus = YXCourseDetailCellStatus_PLaying;
     }
     return cell;
 }
@@ -205,7 +209,6 @@
     }
     
     [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [YXRecordManager sharedManager].chapterIndex = indexPath.section;
     [YXRecordManager sharedManager].fragmentIndex = indexPath.row;
     self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
@@ -215,6 +218,7 @@
     }else{
         [self.fileItem browseFile];
     }
+    [self.tableView reloadData];
 }
 #pragma mark - data format
 - (YXFileItemBase *)fileItemBaseFormatForChapterFragment:(YXCourseDetailItem_chapter_fragment *)fragment {

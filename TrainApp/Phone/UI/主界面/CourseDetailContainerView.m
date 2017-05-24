@@ -138,7 +138,7 @@ const NSInteger kTagBase = 10086;
     self.bottomScrollView.contentOffset = CGPointMake(self.bottomScrollView.frame.size.width*index, 0);
 }
 - (void)layoutSubviews{
-    self.bottomScrollView.contentSize = CGSizeMake(self.bottomScrollView.frame.size.width*self.viewControllers.count, self.bottomScrollView.frame.size.height);
+    self.bottomScrollView.contentSize = CGSizeMake(self.bottomScrollView.frame.size.width*self.viewControllers.count, 0);
 }
 
 #pragma mark - UIScrollViewDelegate

@@ -77,14 +77,13 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [data.fragment_name length])];
     self.titleLabel.attributedText = attributedString;
 }
-
-- (void)setWatched:(BOOL)watched{
-    _watched = watched;
-    if (watched) {
+- (void)setCellStatus:(YXCourseDetailCellStatus)cellStatus {
+    if (cellStatus == YXCourseDetailCellStatus_PLaying) {
+        self.titleLabel.textColor = [UIColor redColor];
+    }else if (cellStatus == YXCourseDetailCellStatus_Watched) {
         self.titleLabel.textColor = [UIColor colorWithHexString:@"0067be"];
-    }else{
+    }else {
         self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     }
 }
-
 @end
