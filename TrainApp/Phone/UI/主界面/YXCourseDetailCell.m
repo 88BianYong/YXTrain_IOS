@@ -7,7 +7,6 @@
 //
 
 #import "YXCourseDetailCell.h"
-
 @interface YXCourseDetailCell()
 @property (nonatomic, strong) UIImageView *typeImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -38,11 +37,19 @@
     selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
     self.selectedBackgroundView = selectedBgView;
     self.typeImageView = [[UIImageView alloc]init];
+    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+    for (int i = 0; i < 26; i ++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d视频播放",i + 1]];
+        [imageArray addObject:image];
+    }
+    self.typeImageView.animationImages = imageArray;
+    self.typeImageView.animationDuration = 1.15;
+    self.typeImageView.animationRepeatCount = 0;
     [self.contentView addSubview:self.typeImageView];
     [self.typeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.size.mas_equalTo(CGSizeMake(35, 35));
-        make.centerY.mas_equalTo(0);
+        make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -53,7 +60,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.typeImageView.mas_right).mas_offset(12);
         make.right.mas_equalTo(-15);
-        make.centerY.mas_equalTo(0);
+        make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     
     UIView *line = [[UIView alloc]init];
@@ -68,7 +75,6 @@
 
 - (void)setData:(YXCourseDetailItem_chapter_fragment *)data{
     _data = data;
-//    self.typeImageView.backgroundColor = [UIColor redColor];
     self.typeImageView.image = [UIImage imageNamed:[YXAttachmentTypeHelper picNameWithID:data.type]];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:data.fragment_name];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -78,11 +84,23 @@
     self.titleLabel.attributedText = attributedString;
 }
 - (void)setCellStatus:(YXCourseDetailCellStatus)cellStatus {
+    [self.typeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.size.mas_equalTo(CGSizeMake(35, 35));
+        make.centerY.equalTo(self.contentView.mas_centerY);
+    }];
     if (cellStatus == YXCourseDetailCellStatus_PLaying) {
-        self.titleLabel.textColor = [UIColor redColor];
+        [self.typeImageView startAnimating];
+        [self.typeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(23);
+            make.size.mas_equalTo(CGSizeMake(24, 24));
+            make.centerY.equalTo(self.contentView.mas_centerY);
+        }];
     }else if (cellStatus == YXCourseDetailCellStatus_Watched) {
+        [self.typeImageView stopAnimating];
         self.titleLabel.textColor = [UIColor colorWithHexString:@"0067be"];
     }else {
+        [self.typeImageView stopAnimating];
         self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     }
 }

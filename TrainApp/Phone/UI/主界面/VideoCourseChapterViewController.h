@@ -10,6 +10,7 @@
 #import "YXCourseListRequest.h"
 typedef void (^VideoCourseChapterFragmentCompleteBlock)(NSError *error,YXFileItemBase *fileItem ,BOOL isHaveVideo);
 
+typedef void (^VideoCourseIntroductionCompleteBlock)(YXCourseDetailItem *courseItem);
 @interface VideoCourseChapterViewController : YXBaseViewController
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course *course;
 @property (nonatomic, assign) BOOL isFromRecord;
@@ -21,5 +22,6 @@ typedef void (^VideoCourseChapterFragmentCompleteBlock)(NSError *error,YXFileIte
  */
 - (void)readyNextWillplayVideoAgain:(BOOL)isAgain;
 - (void)setVideoCourseChapterFragmentCompleteBlock:(VideoCourseChapterFragmentCompleteBlock)block;
+- (void)setVideoCourseIntroductionCompleteBlock:(VideoCourseIntroductionCompleteBlock)block;
 - (void)requestForCourseDetail;
 @end

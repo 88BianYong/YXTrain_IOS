@@ -18,7 +18,8 @@
 @property (nonatomic, strong) YXCourseDetailRequest *courseDetailRequest;
 @property (nonatomic, strong) YXCourseDetailItem *courseItem;
 @property (nonatomic, strong) YXFileItemBase *fileItem;
-@property (nonatomic,copy) VideoCourseChapterFragmentCompleteBlock fragmentBlock;
+@property (nonatomic, copy) VideoCourseChapterFragmentCompleteBlock fragmentBlock;
+@property (nonatomic, copy) VideoCourseIntroductionCompleteBlock introductionBlock;
 
 @end
 
@@ -129,6 +130,7 @@
     self.courseItem = courseItem;
     [[YXRecordManager sharedManager]setupWithCourseDetailItem:courseItem];
     [self willPlayVideo];
+    BLOCK_EXEC(self.introductionBlock,self.courseItem);
 }
 - (void)willPlayVideo {
     YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideo];
@@ -200,6 +202,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if ([self.courseItem.playIndexPath isEqual:indexPath]) {
+        return;
+    }
     YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];
     YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
     YXFileType type = [YXAttachmentTypeHelper typeWithID:fragment.type];
@@ -242,6 +247,9 @@
 }
 - (void)setVideoCourseChapterFragmentCompleteBlock:(VideoCourseChapterFragmentCompleteBlock)block {
     self.fragmentBlock = block;
+}
+- (void)setVideoCourseIntroductionCompleteBlock:(VideoCourseIntroductionCompleteBlock)block {
+    self.introductionBlock = block;
 }
 
 @end
