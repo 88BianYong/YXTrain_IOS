@@ -68,7 +68,6 @@
     [self.tableView registerClass:[YXCourseDetailHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXCourseDetailHeaderView"];
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
-    self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self requestForCourseDetail];
@@ -88,11 +87,9 @@
         self.courseDetailRequest.cid = self.course.courses_id;
         self.courseDetailRequest.stageid = self.course.module_id;
         self.courseDetailRequest.pid = [YXTrainManager sharedInstance].currentProject.pid;
-        [self startLoading];
         WEAK_SELF
         [self.courseDetailRequest startRequestWithRetClass:[YXCourseDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
-            [self stopLoading];
             YXCourseDetailRequestItem *item = (YXCourseDetailRequestItem *)retItem;
             UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
             data.requestDataExist = item.body.chapters.count != 0;
@@ -110,17 +107,16 @@
         self.moduleDetailRequest.cid = self.course.courses_id;
         self.moduleDetailRequest.w = [YXTrainManager sharedInstance].currentProject.w;
         self.moduleDetailRequest.pid = [YXTrainManager sharedInstance].currentProject.pid;
-        [self startLoading];
         WEAK_SELF
         [self.moduleDetailRequest startRequestWithRetClass:[YXModuleDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
-            [self stopLoading];
             YXModuleDetailRequestItem *item = (YXModuleDetailRequestItem *)retItem;
             UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
             data.requestDataExist = item.body.chapters.count != 0;
             data.localDataExist = NO;
             data.error = error;
             if ([self handleRequestData:data]) {
+                BLOCK_EXEC(self.fragmentBlock,error,nil,NO);
                 return;
             }
             [self dealWithCourseItem:item.body];

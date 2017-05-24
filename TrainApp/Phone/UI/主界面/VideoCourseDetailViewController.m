@@ -15,6 +15,7 @@
 @property (nonatomic, strong) VideoPlayManagerView *playMangerView;
 @property (nonatomic, strong) CourseDetailContainerView *containerView;
 @property (nonatomic ,strong) VideoClassworkManager *classworkManager;
+@property (nonatomic, strong) VideoCourseChapterViewController *chapterVC;
 @property (nonatomic, assign) BOOL isShowClossworkViewBool;//是否正在显示随堂练界面
 @end
 
@@ -30,9 +31,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     self.title = self.course.course_title;
-
     [self setupUI];
     [self setupLayout];
+    [self startLoading];
+
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -52,7 +54,9 @@
 
 #pragma mark - setupUI
 - (void)setupUI{
+    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.playMangerView = [[VideoPlayManagerView alloc] init];
+    self.playMangerView.hidden = YES;
     [self.playMangerView.thumbImageView sd_setImageWithURL:[NSURL URLWithString:self.course.course_img]];
     WEAK_SELF
     [self.playMangerView setVideoPlayManagerViewRotateScreenBlock:^(BOOL isVertical) {
@@ -63,52 +67,73 @@
         STRONG_SELF
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     }];
+    [self.playMangerView setVideoPlayManagerViewFinishBlock:^{
+        STRONG_SELF
+        [self.chapterVC readyNextWillplayVideoAgain:NO];
+    }];
+    [self.playMangerView setVideoPlayManagerViewPlayVideoBlock:^(VideoPlayManagerStatus status) {
+        STRONG_SELF
+        if (self.playMangerView.playStatus == VideoPlayManagerStatus_Finish) {
+            [self.chapterVC readyNextWillplayVideoAgain:YES];
+        }else {
+            [self.chapterVC requestForCourseDetail];
+        }
+    }];
     [self.view addSubview:self.playMangerView];
     self.containerView = [[CourseDetailContainerView alloc] init];
+    self.containerView.hidden = YES;
     [self.view addSubview:self.containerView];
-    VideoCourseChapterViewController *chapterVC = [[VideoCourseChapterViewController alloc]init];
-    chapterVC.course = self.course;
-    chapterVC.isFromRecord = NO;
-    [chapterVC setVideoCourseChapterFragmentCompleteBlock:^(NSError *error, YXFileItemBase *fileItem, BOOL isHaveVideo) {
+    self.chapterVC = [[VideoCourseChapterViewController alloc]init];
+    self.chapterVC.course = self.course;
+    self.chapterVC.isFromRecord = NO;
+    [self.chapterVC setVideoCourseChapterFragmentCompleteBlock:^(NSError *error, YXFileItemBase *fileItem, BOOL isHaveVideo) {
         STRONG_SELF
-        if (error) {
-            if (error.code == -2) {
-                self.playMangerView.playStatus = VideoPlayManagerStatus_DataError;
-            }else {
-                self.playMangerView.playStatus = VideoPlayManagerStatus_NetworkError;
-            }
-            
+        [self stopLoading];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
+        }
+        self.playMangerView.hidden = NO;
+        self.containerView.hidden = NO;
+        if (fileItem) {
+            self.playMangerView.fileItem = fileItem;
+            [self setupClassworkManager:fileItem];
         }else {
-            if (fileItem) {
-                self.playMangerView.fileItem = fileItem;
-                [self setupClassworkManager:fileItem];
+            if (isHaveVideo) {
+                self.playMangerView.playStatus = VideoPlayManagerStatus_Finish;
             }else {
-                if (isHaveVideo) {
-                    self.playMangerView.playStatus = VideoPlayManagerStatus_Finish;
-                }
+                [self setupContainerViewWithComment:NO];
             }
         }
     }];
     UIViewController *studentsVC = [[NSClassFromString(@"YXTaskViewController") alloc] init];
     studentsVC.view.backgroundColor = [UIColor grayColor];
     UIViewController *taskVC = [[NSClassFromString(@"YXTaskViewController") alloc] init];
-    [self addChildViewController:chapterVC];
+    [self addChildViewController:self.chapterVC];
     [self addChildViewController:studentsVC];
     [self addChildViewController:taskVC];
-    self.containerView.viewControllers = @[chapterVC,studentsVC,taskVC];
-    self.containerView.tag = 10001;
-    [self.playMangerView setVideoPlayManagerViewFinishBlock:^{
+    self.containerView.viewControllers = @[self.chapterVC,studentsVC,taskVC];
+    self.errorView = [[YXErrorView alloc]init];
+    self.errorView.retryBlock = ^{
         STRONG_SELF
-        [chapterVC readyNextWillplayVideoAgain:NO];
-    }];
-    [self.playMangerView setVideoPlayManagerViewPlayVideoBlock:^(VideoPlayManagerStatus status) {
-        STRONG_SELF
-        if (self.playMangerView.playStatus == VideoPlayManagerStatus_Finish) {
-            [chapterVC readyNextWillplayVideoAgain:YES];
-        }else {
-            [chapterVC requestForCourseDetail];
-        }
-    }];
+        [self startLoading];
+        [self.chapterVC requestForCourseDetail];
+    };
+}
+- (void)setupContainerViewWithComment:(BOOL)isHave {
+    for (UIViewController *vc in self.childViewControllers) {
+        [vc removeFromParentViewController];
+    }
+    UIViewController *studentsVC = [[NSClassFromString(@"YXTaskViewController") alloc] init];
+    studentsVC.view.backgroundColor = [UIColor grayColor];
+    [self addChildViewController:self.chapterVC];
+    [self addChildViewController:studentsVC];
+    self.containerView.viewControllers = @[self.chapterVC,studentsVC];
+    
+    
 }
 - (void)setupClassworkManager:(YXFileItemBase *)fileItem {
     //随堂练

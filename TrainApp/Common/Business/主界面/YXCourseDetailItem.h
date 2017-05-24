@@ -59,7 +59,7 @@
 @property (nonatomic, copy) NSString<Optional> *md5;
 @property (nonatomic, copy) NSString<Optional> *mxt;
 @property (nonatomic, copy) NSArray<YXCourseDetailItem_chapter, Optional> *chapters;
-@property (nonatomic, strong) YXCourseDetailItem_score *score;
+@property (nonatomic, strong) YXCourseDetailItem_score<Optional> *score;
 @property (nonatomic, strong) NSArray<YXCourseDetailItem_mti, Optional> *mti;
 @property (nonatomic, strong) NSIndexPath<Optional> *playIndexPath;
 - (YXCourseDetailItem_chapter_fragment *)willPlayVideo;
