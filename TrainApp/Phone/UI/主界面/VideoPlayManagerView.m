@@ -24,8 +24,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, strong) YXPlayerBufferingView *bufferingView;
 @property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
 @property (nonatomic, strong) ActivityPlayExceptionView *exceptionView;
-@property (nonatomic, strong) UIButton *playButton;
-@property (nonatomic, strong) UIImageView *thumbImageView;
+//@property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UIImageView *placeholderImageView;
 
 @property (nonatomic, copy) VideoPlayManagerViewBackActionBlock backBlock;
@@ -107,13 +106,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.placeholderImageView.image = [UIImage imageNamed:@"视频未读取过来的默认图片"];
     [self.thumbImageView addSubview:self.placeholderImageView];
     
-    self.playButton = [[UIButton alloc] init];
-    [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-正常态A"]
-                     forState:UIControlStateNormal];
-    [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-点击态A"]
-                     forState:UIControlStateHighlighted];
-    [self.playButton addTarget:self action:@selector(playButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self.thumbImageView addSubview:_playButton];
+//    self.playButton = [[UIButton alloc] init];
+//    [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-正常态A"]
+//                     forState:UIControlStateNormal];
+//    [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-点击态A"]
+//                     forState:UIControlStateHighlighted];
+//    [self.playButton addTarget:self action:@selector(playButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.thumbImageView addSubview:_playButton];
 }
 - (void)setupLayout {
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -155,10 +154,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.center.equalTo(self.thumbImageView);
     }];
     
-    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.thumbImageView);
-        make.width.height.mas_offset(50.0f);
-    }];
+//    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.center.equalTo(self.thumbImageView);
+//        make.width.height.mas_offset(50.0f);
+//    }];
 }
 #pragma mark - notification
 - (void)setupObserver {
@@ -441,6 +440,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 #pragma mark - set
 - (void)setFileItem:(YXFileItemBase *)fileItem {
     if (_fileItem) {//每次先上报上次播放结果
+        self.delegate = _fileItem;
+        self.exitDelegate = _fileItem;
         [self recordPlayerDuration];
         SAFE_CALL(self.exitDelegate, browserExit);
     }
@@ -448,6 +449,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         return;
     }
     _fileItem = fileItem;
+    self.delegate = _fileItem;
+    self.exitDelegate = _fileItem;
     self.playTime = 0;
     self.startTime = nil;
     self.topView.titleString = _fileItem.name;
@@ -487,6 +490,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     _playStatus = playStatus;
     self.exceptionView.hidden = NO;
     switch (_playStatus) {
+        case  VideoPlayManagerStatus_Finish:
+        {
+            self.exceptionView.exceptionLabel.text = @"视频课程已播放完";
+            [self.exceptionView.exceptionButton setTitle:@"点击重新观看" forState:UIControlStateNormal];
+        }
+            break;
         case  VideoPlayManagerStatus_Empty:
         {
             self.exceptionView.exceptionLabel.text = @"未找到该视频";

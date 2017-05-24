@@ -8,15 +8,18 @@
 
 #import "YXBaseViewController.h"
 #import "YXCourseListRequest.h"
-typedef void (^VideoCourseChapterFragmentCompleteBlock)(YXFileItemBase *fileItem ,BOOL isHaveVideo);
+typedef void (^VideoCourseChapterFragmentCompleteBlock)(NSError *error,YXFileItemBase *fileItem ,BOOL isHaveVideo);
 
 @interface VideoCourseChapterViewController : YXBaseViewController
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course *course;
 @property (nonatomic, assign) BOOL isFromRecord;
 
 /**
- * 准备下一个播放源
+ 准备下一个播放源
+
+ @param isAgain YES重新播放 NO 不
  */
-- (void)readyNextWillplayVideo;
+- (void)readyNextWillplayVideoAgain:(BOOL)isAgain;
 - (void)setVideoCourseChapterFragmentCompleteBlock:(VideoCourseChapterFragmentCompleteBlock)block;
+- (void)requestForCourseDetail;
 @end

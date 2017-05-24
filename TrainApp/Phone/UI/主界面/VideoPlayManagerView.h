@@ -13,6 +13,7 @@
 #import "LePlayerView.h"
 #import "ActivityPlayBottomView.h"
 typedef NS_ENUM(NSInteger, VideoPlayManagerStatus) {
+    VideoPlayManagerStatus_Finish,//视频为空
     VideoPlayManagerStatus_Empty,//视频为空
     VideoPlayManagerStatus_NotWifi,//非wifi
     VideoPlayManagerStatus_PlayError,//播放出错
@@ -29,6 +30,7 @@ typedef void (^VideoPlayManagerViewFinishBlock)();
 @property (nonatomic, strong) LePlayerView *playerView;
 @property (nonatomic, strong) ActivityPlayBottomView *bottomView;
 @property (nonatomic, strong) ActivityPlayTopView *topView;
+@property (nonatomic, strong) UIImageView *thumbImageView;
 
 @property (nonatomic, assign) VideoPlayManagerStatus playStatus;
 @property (nonatomic, assign) BOOL isFullscreen;

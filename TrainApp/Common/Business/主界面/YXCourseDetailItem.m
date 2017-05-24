@@ -15,7 +15,16 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"chapter_name": @"fragment_name"}];
 }
 @end
+@implementation YXCourseDetailItem_mti
 
+@end
+@implementation YXCourseDetailItem_score
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"self": @"sself",
+                                                       @"count": @"ccount"}];
+}
+@end
 @implementation YXCourseDetailItem_chapter
 
 @end

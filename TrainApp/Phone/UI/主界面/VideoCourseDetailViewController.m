@@ -53,22 +53,11 @@
 #pragma mark - setupUI
 - (void)setupUI{
     self.playMangerView = [[VideoPlayManagerView alloc] init];
-    //self.playMangerView.delegate = self;
+    [self.playMangerView.thumbImageView sd_setImageWithURL:[NSURL URLWithString:self.course.course_img]];
     WEAK_SELF
     [self.playMangerView setVideoPlayManagerViewRotateScreenBlock:^(BOOL isVertical) {
         STRONG_SELF
         [self rotateScreenAction];
-    }];
-    [self.playMangerView setVideoPlayManagerViewPlayVideoBlock:^(VideoPlayManagerStatus status) {
-        STRONG_SELF
-//        if (status == VideoPlayManagerViewStatus_Unknown) {
-//            YXWebViewController *VC = [[YXWebViewController alloc] init];
-//            VC.urlString = [self.toolVideoItem.body formatToolVideo].external_url;
-//            VC.isUpdatTitle = YES;
-//            [self.navigationController pushViewController:VC animated:YES];
-//        }else {
-//            [self requestForActivityToolVideo];
-//        }
     }];
     [self.playMangerView setVideoPlayManagerViewBackActionBlock:^{
         STRONG_SELF
@@ -80,18 +69,23 @@
     VideoCourseChapterViewController *chapterVC = [[VideoCourseChapterViewController alloc]init];
     chapterVC.course = self.course;
     chapterVC.isFromRecord = NO;
-    [chapterVC setVideoCourseChapterFragmentCompleteBlock:^(YXFileItemBase *fileItem, BOOL isHaveVideo) {
+    [chapterVC setVideoCourseChapterFragmentCompleteBlock:^(NSError *error, YXFileItemBase *fileItem, BOOL isHaveVideo) {
         STRONG_SELF
-        if (fileItem) {
-            self.playMangerView.delegate = fileItem;
-            self.playMangerView.exitDelegate = fileItem;
-            self.playMangerView.fileItem = fileItem;
-            [self setupClassworkManager:fileItem];
-        }else {
-            if (isHaveVideo) {
-                
+        if (error) {
+            if (error.code == -2) {
+                self.playMangerView.playStatus = VideoPlayManagerStatus_DataError;
             }else {
-                
+                self.playMangerView.playStatus = VideoPlayManagerStatus_NetworkError;
+            }
+            
+        }else {
+            if (fileItem) {
+                self.playMangerView.fileItem = fileItem;
+                [self setupClassworkManager:fileItem];
+            }else {
+                if (isHaveVideo) {
+                    self.playMangerView.playStatus = VideoPlayManagerStatus_Finish;
+                }
             }
         }
     }];
@@ -105,7 +99,15 @@
     self.containerView.tag = 10001;
     [self.playMangerView setVideoPlayManagerViewFinishBlock:^{
         STRONG_SELF
-        [chapterVC readyNextWillplayVideo];
+        [chapterVC readyNextWillplayVideoAgain:NO];
+    }];
+    [self.playMangerView setVideoPlayManagerViewPlayVideoBlock:^(VideoPlayManagerStatus status) {
+        STRONG_SELF
+        if (self.playMangerView.playStatus == VideoPlayManagerStatus_Finish) {
+            [chapterVC readyNextWillplayVideoAgain:YES];
+        }else {
+            [chapterVC requestForCourseDetail];
+        }
     }];
 }
 - (void)setupClassworkManager:(YXFileItemBase *)fileItem {
@@ -186,7 +188,6 @@
     }];
     [self remakeForHalfSize];
 }
-
 - (void)remakeForFullSize {
     self.playMangerView.isFullscreen = YES;
     self.navigationController.navigationBar.hidden = YES;
@@ -196,7 +197,6 @@
     }];
     [self.view layoutIfNeeded];
 }
-
 - (void)remakeForHalfSize {
     self.playMangerView.isFullscreen = NO;
     self.navigationController.navigationBar.hidden = NO;

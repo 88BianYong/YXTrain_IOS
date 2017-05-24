@@ -30,11 +30,16 @@
 @end
 
 @interface YXCourseDetailItem_score : JSONModel
+@property (nonatomic, copy) NSString<Optional> *avr;
+@property (nonatomic, copy) NSString<Optional> *ccount;
+@property (nonatomic, copy) NSString<Optional> *sself;
+@end
+@protocol YXCourseDetailItem_mti <NSObject>
 
 @end
-
 @interface YXCourseDetailItem_mti : JSONModel
-
+@property (nonatomic, copy) NSString<Optional> *ctn;
+@property (nonatomic, copy) NSString<Optional> *cti;
 @end
 
 @interface YXCourseDetailItem : JSONModel
@@ -54,6 +59,8 @@
 @property (nonatomic, copy) NSString<Optional> *md5;
 @property (nonatomic, copy) NSString<Optional> *mxt;
 @property (nonatomic, copy) NSArray<YXCourseDetailItem_chapter, Optional> *chapters;
+@property (nonatomic, strong) YXCourseDetailItem_score *score;
+@property (nonatomic, strong) NSArray<YXCourseDetailItem_mti, Optional> *mti;
 @property (nonatomic, strong) NSIndexPath<Optional> *playIndexPath;
 - (YXCourseDetailItem_chapter_fragment *)willPlayVideo;
 @end
