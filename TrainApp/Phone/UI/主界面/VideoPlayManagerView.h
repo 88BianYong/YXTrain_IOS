@@ -19,13 +19,12 @@ typedef void (^VideoPlayManagerViewRotateScreenBlock)(BOOL isVertical);
 typedef void (^VideoPlayManagerViewPlayVideoBlock)(VideoPlayManagerStatus status);
 typedef void (^VideoPlayManagerViewFinishBlock)();
 
-
 @interface VideoPlayManagerView : UIView
 @property (nonatomic, assign) VideoPlayManagerStatus playStatus;
 @property (nonatomic, assign) BOOL isFullscreen;
-
 @property (nonatomic, strong) YXFileItemBase *fileItem;
-
+@property (nonatomic, weak) id<YXPlayProgressDelegate> delegate;
+@property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
 
 
 - (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block;

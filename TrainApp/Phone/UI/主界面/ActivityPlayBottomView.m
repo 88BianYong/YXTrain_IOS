@@ -9,7 +9,6 @@
 #import "ActivityPlayBottomView.h"
 @interface ActivityPlayBottomView()
 @property (nonatomic, strong) UILabel *timeLabel;
-
 @end
 @implementation ActivityPlayBottomView
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -31,6 +30,11 @@
     self.slideProgressControl = [[ActivitySlideProgressControl alloc] init];
     [self addSubview:self.slideProgressControl];
 
+    self.definitionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.definitionButton.hidden = YES;
+    [self.definitionButton setTitleColor:[UIColor colorWithHexString:@"#868686"] forState:UIControlStateNormal];
+    self.definitionButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+    [self addSubview:self.definitionButton];
 }
 
 - (void)setupLayout{
@@ -52,15 +56,27 @@
         make.top.bottom.mas_equalTo(@0);
     }];
     [self.slideProgressControl updateUI];
+    
+    
+    [self.definitionButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_offset(45.0f);
+        make.right.mas_equalTo(0);
+        make.top.bottom.mas_equalTo(0);
+    }];
+    
 }
 
 #pragma mark - set
 - (void)setIsFullscreen:(BOOL)isFullscreen{
     _isFullscreen = isFullscreen;
     if (_isFullscreen) {
-        
+        [self.rotateButton setImage:[UIImage imageNamed:@"缩小按钮-"] forState:UIControlStateNormal];
+        self.definitionButton.hidden = !self.isShowDefinition;
+        self.rotateButton.hidden = self.isShowDefinition;
     }else{
-        
+        [self.rotateButton setImage:[UIImage imageNamed:@"放大按钮"] forState:UIControlStateNormal];
+        self.definitionButton.hidden = YES;
+        self.rotateButton.hidden = NO;
     }
 }
 @end

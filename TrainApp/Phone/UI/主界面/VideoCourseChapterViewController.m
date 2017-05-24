@@ -135,6 +135,8 @@
 - (void)willPlayVideo {
     YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideo];
     if (fragment) {
+        [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
+        [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
        BLOCK_EXEC(self.fragmentBlock,[self fileItemBaseFormatForChapterFragment:fragment],YES);
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,NO);
@@ -144,6 +146,8 @@
 - (void)readyNextWillplayVideo {
     YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideo];
     if (fragment) {
+        [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
+        [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
         BLOCK_EXEC(self.fragmentBlock,[self fileItemBaseFormatForChapterFragment:fragment],YES);
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,YES);

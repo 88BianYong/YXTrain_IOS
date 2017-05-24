@@ -47,6 +47,7 @@
 #pragma mark - setupUI
 - (void)setupUI{
     self.playMangerView = [[VideoPlayManagerView alloc] init];
+    //self.playMangerView.delegate = self;
     WEAK_SELF
     [self.playMangerView setVideoPlayManagerViewRotateScreenBlock:^(BOOL isVertical) {
         STRONG_SELF
@@ -76,6 +77,8 @@
     [chapterVC setVideoCourseChapterFragmentCompleteBlock:^(YXFileItemBase *fileItem, BOOL isHaveVideo) {
         STRONG_SELF
         if (fileItem) {
+            self.playMangerView.delegate = fileItem;
+            self.playMangerView.exitDelegate = fileItem;
             self.playMangerView.fileItem = fileItem;
         }else {
             if (isHaveVideo) {
@@ -166,7 +169,6 @@
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationLandscapeLeft] forKey:@"orientation"];
     }
 }
-
 - (void)naviLeftAction{
     UIInterfaceOrientation screenDirection = [UIApplication sharedApplication].statusBarOrientation;
     if(screenDirection == UIInterfaceOrientationLandscapeLeft || screenDirection ==UIInterfaceOrientationLandscapeRight){
@@ -176,11 +178,9 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-
 - (BOOL)shouldAutorotate {
     return YES;
 }
-
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations NS_AVAILABLE_IOS(6_0) {
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
@@ -192,36 +192,4 @@
         [self remakeForHalfSize];
     }
 }
-#pragma mark - request
-//- (void)requestForActivityToolVideo {
-//    if (self.videoRequest) {
-//        [self.videoRequest stopRequest];
-//    }
-//    ActivityToolVideoRequest *request = [[ActivityToolVideoRequest alloc] init];
-//    request.aid = self.tool.aid;
-//    request.toolId = self.tool.toolid;
-//    request.stageId = self.stageId;
-//    WEAK_SELF
-//    [request startRequestWithRetClass:[ActivityToolVideoRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-//        STRONG_SELF
-//        if (error) {
-//            if (error.code == -2) {
-//                self.playMangerView.playStatus = VideoPlayManagerViewStatus_DataError;
-//            }else {
-//                self.playMangerView.playStatus = VideoPlayManagerViewStatus_NetworkError;
-//            }
-//            
-//        }else {
-//            ActivityToolVideoRequestItem *item = (ActivityToolVideoRequestItem *)retItem;
-//            self.toolVideoItem = item;
-//            self.playMangerView.content = [item.body formatToolVideo];
-//            if (isEmpty([item.body formatToolVideo])) {
-//                self.playMangerView.playStatus = VideoPlayManagerViewStatus_Empty;
-//            }
-//            [self showEnclosureButton:[item.body formatToolEnclosure]];
-//        }
-//    }];
-//    self.videoRequest = request;
-//}
-
 @end

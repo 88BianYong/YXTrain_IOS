@@ -16,6 +16,13 @@
 #import "ActivityPlayExceptionView.h"
 #import "UIImage+YXImage.h"
 #import "YXCourseDetailItem.h"
+@interface VideoPlayerDefinition : NSObject
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *url;
+@end
+@implementation VideoPlayerDefinition
+@end
+
 static const NSTimeInterval kTopBottomHiddenTime = 5;
 @interface VideoPlayManagerView ()
 @property (nonatomic, strong) LePlayer *player;
@@ -38,6 +45,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, assign) BOOL isTopBottomHidden;
 @property (nonatomic, strong) NSURL *videoUrl;
 @property (nonatomic, assign) BOOL isManualPause;
+@property (nonatomic, strong) NSMutableArray<VideoPlayerDefinition *> *definitionMutableArray;
+@property (nonatomic, strong) NSMutableArray<UIButton *> *defButtonArray;
+@property (nonatomic, assign) BOOL isShowDefinition;
+@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, assign) NSTimeInterval playTime;
+
 
 
 @end
@@ -45,19 +58,24 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.disposableMutableArray = [[NSMutableArray alloc] initWithCapacity:5];
+        self.definitionMutableArray = [[NSMutableArray alloc] initWithCapacity:3];
+        self.defButtonArray = [[NSMutableArray alloc] initWithCapacity:3];
         self.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
         [self setupObserver];
+        WEAK_SELF
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kRecordNeedUpdateNotification object:nil] subscribeNext:^(id x) {
+            STRONG_SELF
+            [self recordPlayerDuration];
+        }];
         self.thumbImageView.hidden = NO;
     }
     return self;
 }
-
 #pragma mark - setupUI
 - (void)setupUI {
     self.player = [[LePlayer alloc] init];
@@ -151,7 +169,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.width.height.mas_offset(50.0f);
     }];
 }
-
 #pragma mark - notification
 - (void)setupObserver {
     Reachability *r = [Reachability reachabilityForInternetConnection];
@@ -177,6 +194,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         } else {
             self.bufferingView.hidden = YES;
             [self.bufferingView stop];
+        }
+        if ([x unsignedIntegerValue] == PlayerView_State_Playing) {
+            self.startTime = [NSDate date];
+        } else {
+            if (self.startTime) {
+                self.playTime += [[NSDate date] timeIntervalSinceDate:self.startTime];
+                self.startTime = nil;
+            }
         }
         switch ([x unsignedIntegerValue]) {
             case PlayerView_State_Buffering:
@@ -278,10 +303,16 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.player pause];
     self.playStatus = VideoPlayManagerStatus_NotWifi;
 }
-
 #pragma mark - top / bottom hide
 - (void)tapGestureRecognizer:(UITapGestureRecognizer *)tap {
     tap.enabled = NO;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        tap.enabled = YES;//防止连续点击出现UI混乱
+    });
+    if (self.isShowDefinition) {
+        [self hideDefinition];
+        return;
+    }
     if (self.isTopBottomHidden) {
         [self showTopView];
         [self showBottomView];
@@ -291,11 +322,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     self.isTopBottomHidden = !self.isTopBottomHidden;
     [self resetTopBottomHideTimer];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        tap.enabled = YES;
-    });
 }
-
 - (void)resetTopBottomHideTimer {
     [self.topBottomHideTimer invalidate];
     self.topBottomHideTimer = [NSTimer scheduledTimerWithTimeInterval:kTopBottomHiddenTime
@@ -304,13 +331,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                                                              userInfo:nil
                                                               repeats:YES];
 }
-
+- (void)invalidateTopBottomHiddenTimer {
+    [self.topBottomHideTimer invalidate];
+}
 - (void)topBottomHideTimerAction {
     [self hiddenTopView];
     [self hiddenBottomView];
     self.isTopBottomHidden = YES;
 }
-
 - (void)hiddenTopView {
     [UIView animateWithDuration:0.6 animations:^{
         [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -350,12 +378,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     } completion:^(BOOL finished) {
     }];
 }
-
+#pragma mark - playStatus
 - (void)progressAction {
     [self resetTopBottomHideTimer];
     [self.player seekTo:self.player.duration * self.bottomView.slideProgressControl.playProgress];
 }
-
 - (void)playVideoFinished {
     self.bottomView.slideProgressControl.playProgress = 0.0f;
     self.slideProgressView.playProgress = 0.0f;
@@ -364,8 +391,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.bottomView.slideProgressControl updateUI];
     [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
     BLOCK_EXEC(self.finishBlock);
+    SAFE_CALL(self.exitDelegate, browserExit);
 }
-
 #pragma mark - button Action
 - (void)playAndPauseButtonAction:(UIButton *)sender{
     [self resetTopBottomHideTimer];
@@ -385,7 +412,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.bottomView.isFullscreen = !self.bottomView.isFullscreen;
     BLOCK_EXEC(self.rotateBlock,self.bottomView.isFullscreen)
 }
-
 - (void)playButtonAction:(UIButton *)sender {
     self.thumbImageView.hidden = YES;
 //    if ([self.content.res_type isEqualToString:@"unknown"]) {
@@ -397,11 +423,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 //        self.isFirstBool = NO;
 //    }
 }
-
 - (void)backButtonAction:(UIButton *)sender {
+    [self recordPlayerDuration];
+    SAFE_CALL(self.exitDelegate, browserExit);
     BLOCK_EXEC(self.backBlock);
 }
-
 - (void)exceptionButtonAction:(UIButton *)sender {
     self.bufferingView.hidden = NO;
     [self.bufferingView start];
@@ -412,8 +438,39 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     self.exceptionView.hidden = YES;
 }
-
 #pragma mark - set
+- (void)setFileItem:(YXFileItemBase *)fileItem {
+    if (_fileItem) {//每次先上报上次播放结果
+        [self recordPlayerDuration];
+        SAFE_CALL(self.exitDelegate, browserExit);
+    }
+    if (fileItem == nil) {
+        return;
+    }
+    _fileItem = fileItem;
+    self.playTime = 0;
+    self.startTime = nil;
+    self.topView.titleString = _fileItem.name;
+    self.videoUrl = [NSURL URLWithString:_fileItem.url];
+    [self definitionFormat];
+    if ((self.delegate) && [self.delegate respondsToSelector:@selector(preProgress)]) {
+        CGFloat preProgress = [self.delegate preProgress];
+        if (preProgress > 0.99) {
+            preProgress = 0;
+        }
+        self.player.progress = preProgress;
+    }
+    self.player.videoUrl = self.videoUrl;
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+}
+- (void)setIsFullscreen:(BOOL)isFullscreen {
+    _isFullscreen = isFullscreen;
+    self.bottomView.isFullscreen = _isFullscreen;
+    self.topView.hidden = !_isFullscreen;
+    if (!_isFullscreen) {
+        [self hideDefinition];
+    }
+}
 - (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block {
     self.backBlock = block;
 }
@@ -426,42 +483,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)setVideoPlayManagerViewFinishBlock:(VideoPlayManagerViewFinishBlock)block {
     self.finishBlock = block;
 }
-
-- (void)setIsFullscreen:(BOOL)isFullscreen {
-    _isFullscreen = isFullscreen;
-    if (_isFullscreen) {
-        [self.bottomView.rotateButton setImage:[UIImage imageNamed:@"缩小按钮-"] forState:UIControlStateNormal];
-        self.topView.hidden = NO;
-    }else {
-        [self.bottomView.rotateButton setImage:[UIImage imageNamed:@"放大按钮"] forState:UIControlStateNormal];
-        self.topView.hidden = YES;
-    }
-}
-
-- (void)setFileItem:(YXFileItemBase *)fileItem {
-    _fileItem = fileItem;
-    self.topView.titleString = _fileItem.name;
-    self.videoUrl = [NSURL URLWithString:_fileItem.url];
-    self.player.videoUrl = self.videoUrl;
-}
-
-
-//- (void)setContent:(ActivityToolVideoRequestItem_Body_Content *)content {
-//    _content = content;
-//    self.videoUrl = [NSURL URLWithString:_content.previewurl];
-//    self.topView.titleString = content.resname;
-//    WEAK_SELF
-//    [self.thumbImageView sd_setImageWithURL:[NSURL URLWithString:content.res_thumb] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-//        STRONG_SELF
-//        if (!error) {
-//            self.placeholderImageView.hidden = YES;
-//        }
-//    }];
-//    if (!self.isFirstBool && self.videoUrl) {
-//        self.player.videoUrl = self.videoUrl;
-//    }
-//}
-
 - (void)setPlayStatus:(VideoPlayManagerStatus)playStatus {
     _playStatus = playStatus;
     self.exceptionView.hidden = NO;
@@ -500,16 +521,138 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             break;
     }
 }
+#pragma mark - definition
+- (void)definitionFormat {
+    [self.definitionMutableArray removeAllObjects];
+    [self.defButtonArray removeAllObjects];
+    if (!isEmpty(self.fileItem.lurl)) {
+        VideoPlayerDefinition *definition = [[VideoPlayerDefinition alloc] init];
+        definition.identifier = @"流畅";
+        definition.url = self.fileItem.lurl;
+        [self.definitionMutableArray addObject:definition];
+    }
+    if (!isEmpty(self.fileItem.murl)) {
+        VideoPlayerDefinition *definition = [[VideoPlayerDefinition alloc] init];
+        definition.identifier = @"标清";
+        definition.url = self.fileItem.murl;
+        [self.definitionMutableArray addObject:definition];
+    }
+    if (!isEmpty(self.fileItem.surl)) {
+        VideoPlayerDefinition *definition = [[VideoPlayerDefinition alloc] init];
+        definition.identifier = @"高清";
+        definition.url = self.fileItem.surl;
+        [self.definitionMutableArray addObject:definition];
+    }
+    if(isEmpty(self.definitionMutableArray)){
+        self.bottomView.isShowDefinition = NO;
+        return;
+    }
+    self.bottomView.isShowDefinition = YES;
+    [self.definitionMutableArray enumerateObjectsUsingBlock:^(VideoPlayerDefinition * _Nonnull def, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:def.identifier forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        [btn setTitleColor:[UIColor colorWithHexString:@"868686"] forState:UIControlStateNormal];
+        if (idx == 0) {
+            [btn setBackgroundImage:[UIImage imageNamed:@"流畅button"] forState:UIControlStateNormal];
+            btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 2, 0);
+        } else {
+            [btn setBackgroundImage:[UIImage imageNamed:@"高清标清button"] forState:UIControlStateNormal];
+        }
+        [self.defButtonArray addObject:btn];
+        [self addSubview:btn];
+        [btn addTarget:self action:@selector(definitionCloseAction:) forControlEvents:UIControlEventTouchUpInside];
+    }];
+    [self.bottomView.definitionButton setTitle:self.definitionMutableArray[0].identifier
+                                      forState:UIControlStateNormal];
+    self.videoUrl = [NSURL URLWithString:self.definitionMutableArray[0].url];
+    [self.bottomView.definitionButton addTarget:self action:@selector(definitionShowHiddenAction:) forControlEvents:UIControlEventTouchUpInside];
+
+}
+- (void)definitionShowHiddenAction:(UIButton *)sender {
+    if (self.defButtonArray.count <= 1) {
+        return;
+    }
+    self.isShowDefinition = !self.isShowDefinition;
+    if (self.isShowDefinition) {
+        [self showDefinition];
+    }else {
+        [self hideDefinition];
+    }
+    
+}
+- (void)showDefinition {
+    self.isShowDefinition = YES;
+    [self invalidateTopBottomHiddenTimer];
+    for (UIButton *btn in self.defButtonArray) {
+        [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(45, 25.5));
+            make.right.mas_equalTo(-3);
+            make.top.mas_equalTo(self.mas_bottom);
+        }];
+        btn.alpha = 0;
+    }
+    [self layoutIfNeeded];
+    
+    CGFloat yOffset = -50;
+    for (UIButton *btn in _defButtonArray) {
+        [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(45, 25.5));
+            make.right.mas_equalTo(-3);
+            make.bottom.mas_equalTo(yOffset);
+        }];
+        btn.alpha = 1;
+        yOffset -= 28;
+        [self bringSubviewToFront:btn];
+        [self layoutIfNeeded];
+    }
+}
+- (void)hideDefinition {
+    self.isShowDefinition = NO;
+    [self resetTopBottomHideTimer];
+    for (UIButton *btn in self.defButtonArray) {
+        [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(60, 34));
+            make.right.mas_equalTo(-10);
+            make.top.mas_equalTo(self.mas_bottom);
+        }];
+        btn.alpha = 0;
+    }
+    [self layoutIfNeeded];
+}
+- (void)definitionCloseAction:(UIButton *)sender {
+    NSInteger index = [self.defButtonArray indexOfObject:sender];
+    [self.bottomView.definitionButton setTitle:self.definitionMutableArray[index].identifier forState:UIControlStateNormal];
+    [self changeVideoUrlAndPlay:self.definitionMutableArray[index].url];
+    self.isShowDefinition = NO;
+    [self hideDefinition];
+}
+- (void)changeVideoUrlAndPlay:(NSString *)url {
+    self.player.progress = self.bottomView.slideProgressControl.playProgress;
+    self.player.videoUrl = [NSURL URLWithString:url];
+}
+#pragma mark - 
+- (void)recordPlayerDuration  {
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    if ((self.delegate) && [self.delegate respondsToSelector:@selector(playerProgress:totalDuration:stayTime:)]) {
+        if (self.player.duration) {
+            if (self.startTime) {
+                self.playTime += [[NSDate date]timeIntervalSinceDate:self.startTime];
+            }
+            [self.delegate playerProgress:self.slideProgressView.playProgress totalDuration:self.player.duration stayTime:self.playTime];
+            self.playTime = 0;
+            self.startTime = nil;
+        }
+    }
+}
 - (void)viewWillAppear {
     if (!self.isManualPause) {
         [self.player play];
     }
 }
-
 - (void)viewWillDisappear {
     [self.player pause];
 }
-
 - (void)playVideoClear {
     [self.player pause];
     self.player = nil;

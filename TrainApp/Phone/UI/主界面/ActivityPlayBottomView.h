@@ -12,6 +12,7 @@
 @property (nonatomic, strong) UIButton *playPauseButton;
 @property (nonatomic, strong) ActivitySlideProgressControl *slideProgressControl;
 @property (nonatomic, strong) UIButton *rotateButton;
+@property (nonatomic, strong) UIButton *definitionButton;
+@property (nonatomic, assign) BOOL isShowDefinition;
 @property (nonatomic, assign) BOOL isFullscreen;
-
 @end
