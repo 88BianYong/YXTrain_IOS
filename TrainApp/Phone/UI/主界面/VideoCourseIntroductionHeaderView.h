@@ -9,4 +9,6 @@
 #import <UIKit/UIKit.h>
 @interface VideoCourseIntroductionHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) YXCourseDetailItem_score *score;
+@property (nonatomic, strong) NSString *titleString;
+
 @end

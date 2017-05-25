@@ -113,8 +113,10 @@
     }];
     [self.chapterVC setVideoCourseIntroductionCompleteBlock:^(YXCourseDetailItem *courseItem) {
         STRONG_SELF
+        self.introductionVC.courseItem = courseItem;
     }];
-    self.introductionVC = [[VideoCourseIntroductionViewController alloc] init];    
+    self.introductionVC = [[VideoCourseIntroductionViewController alloc] init];
+    self.introductionVC.title = self.title;
     UIViewController *taskVC = [[NSClassFromString(@"YXTaskViewController") alloc] init];
     [self addChildViewController:self.chapterVC];
     [self addChildViewController:self.introductionVC];

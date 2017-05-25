@@ -47,14 +47,16 @@
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-11.0f);
     }];
 }
-- (void)setScore:(YXCourseDetailItem_score *)score {
-    _score = score;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_score.sself?:@""];
+- (void)setTitleString:(NSString *)titleString {
+    _titleString = titleString;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_titleString?:@""];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 7.0f;
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_score.sself?:@"" length])];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_titleString?:@"" length])];
     self.titleLabel.attributedText = attributedString;
-    
+}
+- (void)setScore:(YXCourseDetailItem_score *)score {
+    _score = score;
     NSMutableAttributedString *scoreAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"评分: %@",_score.avr]];
     [scoreAttributed addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"]} range:NSMakeRange(0,3)];
     self.scoreLabel.attributedText = scoreAttributed;

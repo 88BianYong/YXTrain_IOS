@@ -202,7 +202,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             {
                 self.thumbImageView.hidden = YES;
                 if(![r isReachable]) {
-                    self.playStatus = VideoPlayManagerStatus_PlayError;
+                    self.playStatus = VideoPlayManagerStatus_NetworkError;
                 }
             }
                 break;
@@ -414,14 +414,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 - (void)playButtonAction:(UIButton *)sender {
     self.thumbImageView.hidden = YES;
-//    if ([self.content.res_type isEqualToString:@"unknown"]) {
-//        BLOCK_EXEC(self.playBlock,VideoPlayManagerStatus_Unknown);
-//    }else {
-//        if (self.videoUrl) {
-//            self.player.videoUrl = self.videoUrl;
-//        }
-//        self.isFirstBool = NO;
-//    }
 }
 - (void)backButtonAction:(UIButton *)sender {
     [self recordPlayerDuration];
@@ -433,8 +425,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.bufferingView start];
     if (self.playStatus == VideoPlayManagerStatus_NotWifi) {//非WIFI情况下继续播放
         [self.player play];
-    }else {
+    }else if (self.playStatus == VideoPlayManagerStatus_Finish || self.playStatus ==VideoPlayManagerStatus_Empty){
         BLOCK_EXEC(self.playBlock,self.playStatus);
+    }else if (self.playStatus == VideoPlayManagerStatus_NetworkError){
+        [self.player play];
     }
     self.exceptionView.hidden = YES;
 }
@@ -463,6 +457,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             preProgress = 0;
         }
         self.player.progress = preProgress;
+    }
+    if (isEmpty(self.videoUrl)) {
+        self.playStatus =  VideoPlayManagerStatus_Empty;
+        return;
     }
     self.player.videoUrl = self.videoUrl;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
@@ -664,6 +662,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.player pause];
 }
 - (void)playVideoClear {
+    [self recordPlayerDuration];
+    SAFE_CALL(self.exitDelegate, browserExit);
     [self.player pause];
     self.player = nil;
     [self.topBottomHideTimer invalidate];
