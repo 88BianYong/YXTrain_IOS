@@ -388,6 +388,8 @@
 		92E9714F1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */; };
 		92E971591ED5801500DEAAD4 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971561ED5801500DEAAD4 /* OLImage.m */; };
 		92E9715A1ED5801500DEAAD4 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971581ED5801500DEAAD4 /* OLImageView.m */; };
+		92E9715D1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9715C1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m */; };
+		92E971601ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9715F1ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.m */; };
 		92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */; };
 		92EDC7B71D5C6C61005B91DD /* YXWriteHomeworkInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B61D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.m */; };
 		92EDC7BA1D5C7323005B91DD /* YXWriteHomeworkInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7B91D5C7323005B91DD /* YXWriteHomeworkInfoCell.m */; };
@@ -1315,6 +1317,10 @@
 		92E971561ED5801500DEAAD4 /* OLImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImage.m; sourceTree = "<group>"; };
 		92E971571ED5801500DEAAD4 /* OLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImageView.h; sourceTree = "<group>"; };
 		92E971581ED5801500DEAAD4 /* OLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImageView.m; sourceTree = "<group>"; };
+		92E9715B1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseIntroductionHeaderView.h; sourceTree = "<group>"; };
+		92E9715C1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseIntroductionHeaderView.m; sourceTree = "<group>"; };
+		92E9715E1ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseIntroductionCell.h; sourceTree = "<group>"; };
+		92E9715F1ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseIntroductionCell.m; sourceTree = "<group>"; };
 		92EDC7B01D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkAlreadyRecordCell.h; sourceTree = "<group>"; };
 		92EDC7B11D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkAlreadyRecordCell.m; sourceTree = "<group>"; };
 		92EDC7B51D5C6C60005B91DD /* YXWriteHomeworkInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWriteHomeworkInfoViewController.h; sourceTree = "<group>"; };
@@ -1771,6 +1777,14 @@
 				922661C31E8A3C89006DE8A4 /* VideoClassworkCell.m */,
 				922661C51E8A476F006DE8A4 /* VideoClassworkHeaderView.h */,
 				922661C61E8A476F006DE8A4 /* VideoClassworkHeaderView.m */,
+				921AC8301ED2A0F7001579A9 /* VideoPlayManagerView.h */,
+				921AC8311ED2A0F7001579A9 /* VideoPlayManagerView.m */,
+				92B615DD1ED3EA7600F1FDE7 /* CourseDetailContainerView.h */,
+				92B615DE1ED3EA7600F1FDE7 /* CourseDetailContainerView.m */,
+				92E9715B1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.h */,
+				92E9715C1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m */,
+				92E9715E1ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.h */,
+				92E9715F1ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2546,10 +2560,6 @@
 				92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */,
 				92E9714D1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.h */,
 				92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */,
-				921AC8301ED2A0F7001579A9 /* VideoPlayManagerView.h */,
-				921AC8311ED2A0F7001579A9 /* VideoPlayManagerView.m */,
-				92B615DD1ED3EA7600F1FDE7 /* CourseDetailContainerView.h */,
-				92B615DE1ED3EA7600F1FDE7 /* CourseDetailContainerView.m */,
 			);
 			name = "课程";
 			sourceTree = "<group>";
@@ -4208,6 +4218,7 @@
 				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
 				92F1A5BC1E5402D400015766 /* StudentsLearnFilterView.m in Sources */,
 				7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */,
+				92E971601ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.m in Sources */,
 				92EEA9211EB08348005A3B7C /* DeYangCourseListFetcher.m in Sources */,
 				92F1A59B1E52B17E00015766 /* MasterHappeningTableHeaderView.m in Sources */,
 				7CF8885C1D194BE800E7C04D /* JKAlertDialog.m in Sources */,
@@ -4405,6 +4416,7 @@
 				92F1A5B31E530D2700015766 /* MasterManageListRequest.m in Sources */,
 				928B7A3E1E88B2180067218A /* BeijingCheckedMobileUserViewController.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
+				92E9715D1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m in Sources */,
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
 				920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */,
 				924AB2661DE43EC9003EC952 /* ActivityEnclosureViewController.m in Sources */,

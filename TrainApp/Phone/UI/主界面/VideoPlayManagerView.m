@@ -214,6 +214,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Paused:
             {
                 [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
+                [self hideDefinition];
             }
                 break;
             case PlayerView_State_Finished:
