@@ -31,7 +31,7 @@
 @end
 
 @interface VideoCourseCommentsRequestItem : HttpBaseRequestItem
-@property (nonatomic, strong) VideoCourseCommentsRequestItem_Body *body;
+@property (nonatomic, strong) VideoCourseCommentsRequestItem_Body<Optional> *body;
 @end
 
 @interface VideoCourseCommentsRequest : YXGetRequest

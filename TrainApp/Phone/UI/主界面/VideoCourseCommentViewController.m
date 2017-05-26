@@ -140,7 +140,7 @@
     [self.translucentView addGestureRecognizer:showRecognizer];
     
     self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
-    //self.inputTextView.stageId = self.stageId;
+    self.inputTextView.stageId = @"1";
     [self.inputTextView setActivityCommentShowInputViewBlock:^(BOOL isShow) {
         STRONG_SELF
         if (isShow) {
@@ -324,31 +324,7 @@
 }
 
 - (void)requestForCommentLaud:(NSInteger)integer {
-//    if (self.laudRequest) {
-//        [self.laudRequest stopRequest];
-//    }
-//    CommentLaudRequest *request = [[CommentLaudRequest alloc] init];
-//    request.aid = self.tool.aid;
-//    request.toolid = self.tool.toolid;
-//    request.stageId = self.stageId;
-//    ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
-//    request.replyid = reply.replyID;
-//    request.topicid = reply.topicid;
-//    [self startLoading];
-//    WEAK_SELF
-//    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-//        STRONG_SELF
-//        [self stopLoading];
-//        if (error) {
-//            [self showErrorTotal:error];
-//        }else {
-//            ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
-//            reply.isRanked = @"true";
-//            reply.up = [NSString stringWithFormat:@"%d",(int)(reply.up.integerValue + 1)];
-//            [self.tableView reloadData];
-//        }
-//    }];
-//    self.laudRequest = request;
+    
 }
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -450,11 +426,6 @@
     }];
     [self.navigationController pushViewController:VC animated:YES];
 }
-
-//- (void)inputActitvityCommentReply:(ActivityFirstCommentRequestItem_Body_Replies *)replies {
-//    self.inputTextView.textView.placeholder = [NSString stringWithFormat:@"回复 %@:",replies.userName];
-//    [self showCommentInputView];
-//}
 - (void)formatCommentContent{
     
 }

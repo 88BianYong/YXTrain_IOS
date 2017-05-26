@@ -9,11 +9,11 @@
 #import "YXGetRequest.h"
 #import "VideoCourseCommentsRequest.h"
 @interface VideoCourseReplyCommnetRequestItem_Body : JSONModel
-@property (nonatomic, strong) VideoCourseCommentsRequestItem_Body_Comments *comment;
+@property (nonatomic, strong) VideoCourseCommentsRequestItem_Body_Comments<Optional> *comment;
 @end
 
 @interface VideoCourseReplyCommnetRequestItem : HttpBaseRequestItem
-@property (nonatomic, strong) VideoCourseReplyCommnetRequestItem_Body *body;
+@property (nonatomic, strong) VideoCourseReplyCommnetRequestItem_Body<Optional> *body;
 @end
 
 @interface VideoCourseReplyCommnetRequest : YXGetRequest

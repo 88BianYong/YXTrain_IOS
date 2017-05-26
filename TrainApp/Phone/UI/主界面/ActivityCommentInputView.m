@@ -37,9 +37,6 @@ static NSInteger kMaxCommentNumberWords = 500;
 #pragma mark - setupUI
 - (void)setupUI {
     self.textView = [[SAMTextView alloc] init];
-    if (self.stageId.integerValue == 0) {//只有15评论不支持表情
-        self.textView.delegate = self;
-    }
     self.textView.placeholder = @"评论 :";
     self.textView.textContainerInset = UIEdgeInsetsMake(15.0f, 15.0f, 0.0f, 15.0f);
     self.textView.layer.cornerRadius = YXTrainCornerRadii;
@@ -176,7 +173,12 @@ static NSInteger kMaxCommentNumberWords = 500;
     self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"b9c0c7"].CGColor;
     self.self.inputNumberLabel.text = @"0";
 }
-
+- (void)setStageId:(NSString *)stageId {
+    _stageId = stageId;
+    if (_stageId.integerValue == 0) {//只有15评论不支持表情
+        self.textView.delegate = self;
+    }
+}
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if ([[[textView textInputMode] primaryLanguage] isEqualToString:@"emoji"] || ![[textView textInputMode] primaryLanguage] || [self stringContainsEmoji:text]) {
