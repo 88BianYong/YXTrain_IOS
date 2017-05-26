@@ -1,27 +1,23 @@
 //
-//  CommentPageListViewController.m
+//  VideoCourseCommentViewController.m
 //  TrainApp
 //
-//  Created by 郑小龙 on 16/11/14.
-//  Copyright © 2016年 niuzhaowang. All rights reserved.
+//  Created by 郑小龙 on 2017/5/26.
+//  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "CommentPageListViewController.h"
+#import "VideoCourseCommentViewController.h"
 #import "MJRefresh.h"
-#import "CommentPagedListFetcher.h"
-#import "ActitvityCommentHeaderView.h"
-#import "ActitvityCommentCell.h"
-#import "ActitvityCommentFooterView.h"
+#import "VideoCourseCommentsFetcher.h"
+#import "VideoCourseCommentHeaderView.h"
+#import "VideoCourseCommentFooterView.h"
 #import "ActivityCommentInputView.h"
 #import "SendCommentView.h"
-#import "CommentReplyRequest.h"
+#import "VideoCourseReplyCommnetRequest.h"
 #import "CommentLaudRequest.h"
-#import "YXUserProfile.h"
 #import "UITableView+TemplateLayoutHeaderView.h"
-#import "SecondCommentViewController.h"
-#import "ActivityCommentHeaderView.h"
-#import "ActivityDelReplyRequest.h"
-@interface CommentPageListViewController ()<UITableViewDelegate, UITableViewDataSource>
+#import "VideoCourseSecondCommentViewController.h"
+@interface VideoCourseCommentViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) int totalPage;
 @property (nonatomic, strong) MJRefreshFooterView *footerView;
 @property (nonatomic, strong) MJRefreshHeaderView *headerView;
@@ -29,17 +25,13 @@
 @property (nonatomic, strong) UIView *translucentView;
 @property (nonatomic, strong) SendCommentView *sendView;
 
-@property (nonatomic, strong) CommentReplyRequest *replyRequest;
+@property (nonatomic, strong) VideoCourseReplyCommnetRequest *replyRequest;
 @property (nonatomic, strong) CommentLaudRequest *laudRequest;
-@property (nonatomic, strong) ActivityDelReplyRequest *deleteRequest;
-@property (nonatomic, assign) NSInteger replyInteger;
-
 @property (nonatomic, assign) BOOL isFirstShowInput;
-
-
 @end
 
-@implementation CommentPageListViewController
+@implementation VideoCourseCommentViewController
+
 - (void)dealloc {
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [self.headerView free];
@@ -53,17 +45,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"讨论";
     self.isFirstShowInput = YES;
     if (self.dataFetcher == nil) {
-        self.dataFetcher = [[CommentPagedListFetcher alloc] init];
-        self.dataFetcher.aid = self.tool.aid;
-        self.dataFetcher.toolid = self.tool.toolid;
-        self.dataFetcher.stageId = self.stageId;
-        self.dataFetcher.pageIndex = 1;
-        self.dataFetcher.pageSize = 20;
+        self.dataFetcher = [[VideoCourseCommentsFetcher alloc] init];
+        self.dataFetcher.courseID = self.courseId;
     }
-    self.replyInteger = -1;
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     [self setupUI];
     [self setupLayout];
@@ -86,18 +72,13 @@
     self.contentView = [[UIView alloc] init];
     [self.view addSubview:self.contentView];
     
-    
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor whiteColor];
-    
-    ActivityCommentHeaderView *headerView = [[ActivityCommentHeaderView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 20.0f)];
-    self.tableView.tableHeaderView = headerView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[ActitvityCommentCell class] forCellReuseIdentifier:@"ActitvityCommentCell"];
-    [self.tableView registerClass:[ActitvityCommentHeaderView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentHeaderView"];
-    [self.tableView registerClass:[ActitvityCommentFooterView class] forHeaderFooterViewReuseIdentifier:@"ActitvityCommentFooterView"];
+    [self.tableView registerClass:[VideoCourseCommentHeaderView class] forHeaderFooterViewReuseIdentifier:@"VideoCourseCommentHeaderView"];
+    [self.tableView registerClass:[VideoCourseCommentFooterView class] forHeaderFooterViewReuseIdentifier:@"VideoCourseCommentFooterView"];
     [self.contentView addSubview:self.tableView];
     self.emptyView = [[YXEmptyView alloc] init];
     self.emptyView.imageName = @"暂无评论";
@@ -159,7 +140,7 @@
     [self.translucentView addGestureRecognizer:showRecognizer];
     
     self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
-    self.inputTextView.stageId = self.stageId;
+    //self.inputTextView.stageId = self.stageId;
     [self.inputTextView setActivityCommentShowInputViewBlock:^(BOOL isShow) {
         STRONG_SELF
         if (isShow) {
@@ -224,53 +205,41 @@
         make.height.mas_offset(44.0f);
     }];
 }
-
-- (void)updateLyout {
-    
-}
 #pragma mark - request
 - (void)firstPageFetch {
     if (!self.dataFetcher) {
         return;
     }
     [self.dataFetcher stop];
-    self.dataFetcher.pageIndex = 1;
-    if (!self.dataFetcher.pageSize) {
-        self.dataFetcher.pageSize = 20;
-    }
+    self.dataFetcher.commentID = nil;
     WEAK_SELF
-    [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {
+    [self.dataFetcher startWithBlock:^(BOOL isNext, NSMutableArray *retItemArray, NSError *error) {
         STRONG_SELF
         [self stopLoading];
         [self stopAnimation];
-        self.tableView.tableHeaderView.hidden = NO;
         if (error) {
             if (isEmpty(self.dataMutableArray)) {
-                self.totalPage = 0;
                 if (error.code == -2) {
                     [self showDataErrorView];
                 }else{
                     [self showErroView];
                 }
             } else {
-                self.totalPage = 0;
                 [self showToast:error.localizedDescription];
             }
             self.isFirstShowInput = NO;
         }else {
             [self.dataMutableArray removeAllObjects];
             [self formatCommentContent];
-            self.totalNum = totalNum;
             self.errorView.hidden = YES;
             self.dataErrorView.hidden = YES;
             [self.headerView setLastUpdateTime:[NSDate date]];
-            self.totalPage = totalPage;
             [self.dataMutableArray addObjectsFromArray:retItemArray];
             if (isEmpty(self.dataMutableArray)) {
                 self.emptyView.hidden = NO;
             } else {
                 self.emptyView.hidden = YES;
-                [self pullupViewHidden:!(totalPage > currentPage)];
+                [self pullupViewHidden:!isNext];
             }
             [self.tableView reloadData];
             self.tableView.contentOffset = CGPointZero;
@@ -279,26 +248,25 @@
                 self.isFirstShowInput = NO;
             }
         }
-
+        
+        
     }];
 }
 - (void)morePageFetch {
     [self.dataFetcher stop];
-    self.dataFetcher.pageIndex++;
+    self.dataFetcher.commentID = self.dataMutableArray.lastObject.commentID;
     WEAK_SELF
-    [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {
+    [self.dataFetcher startWithBlock:^(BOOL isNext, NSMutableArray *retItemArray, NSError *error) {
         STRONG_SELF
         [self.footerView endRefreshing];
         if (error) {
-            self.dataFetcher.pageIndex--;
             [self showToast:error.localizedDescription];
         }else {
-            self.totalNum = totalNum;
             [self.dataMutableArray addObjectsFromArray:retItemArray];
-            self.totalPage = totalPage;
             [self.tableView reloadData];
-            [self pullupViewHidden:!(totalPage > currentPage)];
+            [self pullupViewHidden:!isNext];
         }
+        
     }];
 }
 - (void)stopAnimation
@@ -328,33 +296,22 @@
         [self.replyRequest stopRequest];
     }
     [self startLoading];
-    CommentReplyRequest *request = [[CommentReplyRequest alloc] init];
-    if (self.replyInteger >= 0) {
-        ActivityFirstCommentRequestItem_Body_Replies *temp = self.dataMutableArray[self.replyInteger];
-        request.parentid = temp.replyID;
-        request.topicid = temp.topicid;
-        if (self.stageId.integerValue == 0) {
-            inputString = [NSString stringWithFormat:@"回复%@%@%@%@",kNameSeparator,temp.userName,kContentSeparator,inputString];
-        }
-    }
+    VideoCourseReplyCommnetRequest *request = [[VideoCourseReplyCommnetRequest alloc] init];
     request.content = inputString;
-    request.aid = self.tool.aid;
-    request.tooltype = self.tool.toolType;
-    request.toolid = self.tool.toolid;
-    request.stageId = self.stageId;
+    request.courseID = self.courseId;
+    request.commentID = self.parentID;
     WEAK_SELF
-    [request startRequestWithRetClass:[CommentReplyRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+    [request startRequestWithRetClass:[VideoCourseReplyCommnetRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        CommentReplyRequestItem *item = retItem;
+        VideoCourseReplyCommnetRequestItem *item = retItem;
         if (error) {
             [self showErrorTotal:error];
-        }else if (item.body.reply != nil){
+        }else if (item.body.comment){
             if (self.isFullReply) {
-                [self.dataMutableArray insertObject:item.body.reply atIndex:1];
-                self.totalNum ++;
+                [self.dataMutableArray insertObject:item.body.comment atIndex:1];
             }else {
-                [self.dataMutableArray insertObject:item.body.reply atIndex:0];
+                [self.dataMutableArray insertObject:item.body.comment atIndex:0];
             }
             [self.tableView reloadData];
             self.emptyView.hidden = YES;
@@ -367,67 +324,32 @@
 }
 
 - (void)requestForCommentLaud:(NSInteger)integer {
-    if (self.laudRequest) {
-        [self.laudRequest stopRequest];
-    }
-    CommentLaudRequest *request = [[CommentLaudRequest alloc] init];
-    request.aid = self.tool.aid;
-    request.toolid = self.tool.toolid;
-    request.stageId = self.stageId;
-    ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
-    request.replyid = reply.replyID;
-    request.topicid = reply.topicid;
-    [self startLoading];
-    WEAK_SELF
-    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        if (error) {
-            [self showErrorTotal:error];
-        }else {
-            ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
-            reply.isRanked = @"true";
-            reply.up = [NSString stringWithFormat:@"%d",(int)(reply.up.integerValue + 1)];
-//            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView reloadData];
-        }
-    }];
-    self.laudRequest = request;
+//    if (self.laudRequest) {
+//        [self.laudRequest stopRequest];
+//    }
+//    CommentLaudRequest *request = [[CommentLaudRequest alloc] init];
+//    request.aid = self.tool.aid;
+//    request.toolid = self.tool.toolid;
+//    request.stageId = self.stageId;
+//    ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
+//    request.replyid = reply.replyID;
+//    request.topicid = reply.topicid;
+//    [self startLoading];
+//    WEAK_SELF
+//    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+//        STRONG_SELF
+//        [self stopLoading];
+//        if (error) {
+//            [self showErrorTotal:error];
+//        }else {
+//            ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
+//            reply.isRanked = @"true";
+//            reply.up = [NSString stringWithFormat:@"%d",(int)(reply.up.integerValue + 1)];
+//            [self.tableView reloadData];
+//        }
+//    }];
+//    self.laudRequest = request;
 }
-- (void)requestForcommentDelete:(NSInteger)integer {
-    if (self.deleteRequest) {
-        [self.deleteRequest stopRequest];
-    }
-    ActivityDelReplyRequest *request = [[ActivityDelReplyRequest alloc] init];
-    request.toolid = self.tool.toolid;
-    ActivityFirstCommentRequestItem_Body_Replies *reply = self.dataMutableArray[integer];
-    request.replyid = reply.replyID;
-    request.topicid = reply.topicid;
-    [self startLoading];
-    WEAK_SELF
-    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        if (error) {
-            [self showErrorTotal:error];
-        }else {
-            self.totalNum --;
-            [self.dataMutableArray removeObjectAtIndex:integer];
-            [self.tableView beginUpdates];
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView endUpdates];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TD:解决删除评论后section不对应问题
-                [self.tableView reloadData];
-            });
-            if (isEmpty(self.dataMutableArray)) {
-                self.emptyView.hidden = NO;
-            }
-        }
-    }];
-    self.deleteRequest = request;
-}
-
-
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.dataMutableArray.count;
@@ -438,8 +360,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ActitvityCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ActitvityCommentCell" forIndexPath:indexPath];
-    return cell;
+    return nil;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 0.0001f;
@@ -448,90 +369,43 @@
 #pragma mark - UITableViewDataSource
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
-    headerView.stageId = self.stageId;
-    headerView.isShowDelete = [replie.userId isEqualToString:[YXUserManager sharedManager].userModel.uid];
-    if (!self.isFullReply || section == 0) {
-        headerView.isFontBold = YES;
-        headerView.replie = replie;
-    }else {
-        headerView.isFontBold = NO;
-        headerView.replie = replie;
-    }
-    headerView.isShowLine = replie.childNum.integerValue <= 0;
+    VideoCourseCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"VideoCourseCommentHeaderView"];
+    headerView.comment = self.dataMutableArray[section];
+    headerView.isShowLine = self.dataMutableArray[section].childNum.integerValue <= 0;
     if (self.isFullReply && section == 0) {
-        headerView.isShowDelete = NO;
         headerView.isShowLine = NO;
     }
-    headerView.distanceTop = kDistanceTopShort;
     WEAK_SELF
-    [headerView setActitvityCommentReplyBlock:^(ActivityFirstCommentRequestItem_Body_Replies *replie) {
+    [headerView setCourseCommentsFavorBlock:^{
         STRONG_SELF
-        if (self.isFullReply) {
-            return;
-        }
-        if (self.stageId.integerValue == 0) {
-            if ([self isCheckActivityStatus]) {
-                if (self.replyInteger != section) {
-                    [self.inputTextView inputTextViewClear];
-                }
-                self.replyInteger = section;
-                [self inputActitvityCommentReply:replie];
-            }
-        }else {
-            [self showFullReply:section withShow:YES];
-        }
+        [self requestForCommentLaud:section];
     }];
-    [headerView setActitvityCommentFavorBlock:^{
+    [headerView setCourseCommentsFullReplyBlock:^(VideoCourseCommentsRequestItem_Body_Comments *replie) {
         STRONG_SELF
-        if ([self isCheckActivityStatus]) {
-            [self requestForCommentLaud:section];
-        }
+        [self showFullReply:section withShow:YES];
+
     }];
-    [headerView setActitvityCommentDeleteBlock:^(UIButton *sender) {
-        STRONG_SELF
-        if (![self isCheckActivityStatus]) {
-            return;
-        }
-        LSTAlertView *alertView = [[LSTAlertView alloc]init];
-        alertView.title = @"确定删除我的评论?";
-        alertView.imageName = @"失败icon";
-        [alertView addButtonWithTitle:@"删除" style:LSTAlertActionStyle_Cancel action:^{
-            STRONG_SELF
-            [self requestForcommentDelete:section];
-        }];
-        [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Default action:^{
-            STRONG_SELF
-        }];
-        [alertView show];        
-    }];
+
     return headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {;
-    return [tableView yx_heightForHeaderWithIdentifier:@"ActitvityCommentHeaderView" configuration:^(ActitvityCommentHeaderView *headerView) {
-        ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-        headerView.stageId = self.stageId;
-        if (!self.isFullReply || section == 0) {
-            headerView.isFontBold = YES;
-            headerView.replie = replie;
-        }else {
-            headerView.isFontBold = NO;
-            headerView.replie = replie;
+    return [tableView yx_heightForHeaderWithIdentifier:@"VideoCourseCommentHeaderView" configuration:^(VideoCourseCommentHeaderView *headerView) {
+        headerView.comment = self.dataMutableArray[section];
+        headerView.isShowLine = self.dataMutableArray[section].childNum.integerValue <= 0;
+        if (self.isFullReply && section == 0) {
+            headerView.isShowLine = NO;
         }
-        headerView.distanceTop = kDistanceTopShort;
     }];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 0 || self.stageId.integerValue == 0) {
+    if (self.dataMutableArray[section].childNum.integerValue <= 0) {
         return nil;
     }else {
-        ActitvityCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentFooterView"];
-        footerView.childNum = replie.childNum;
+        VideoCourseCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"VideoCourseCommentFooterView"];
+        footerView.childNum = self.dataMutableArray[section].childNum;
         WEAK_SELF
-        [footerView setActitvitySeeAllCommentReplyBlock:^() {
+        [footerView setVideoCourseAllCommentReplyBlock:^() {
             STRONG_SELF
             [self showFullReply:section withShow:NO];
         }];
@@ -539,26 +413,13 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    if (replie.childNum.integerValue <= 0 || self.stageId.integerValue == 0) {
-        return 0.0001f;
-    }else {
-        return 29.0f;
-    }
+    return self.dataMutableArray[section].childNum.integerValue <= 0 ? 0.0001f : 29.0f;
 }
 
 #pragma mark - inputView
 - (void)userPublishComment{
-    if ([self isCheckActivityStatus]) {
-        self.replyInteger = self.isFullReply ? 0 : -1;
-        if (self.replyInteger >= 0) {
-            ActivityFirstCommentRequestItem_Body_Replies *temp = self.dataMutableArray[self.replyInteger];
-            [self inputActitvityCommentReply:temp];
-        }else {
-            self.inputTextView.textView.placeholder = @"评论 :";
-            [self showCommentInputView];
-        }
-    }
+    self.inputTextView.textView.placeholder = @"评论 :";
+    [self showCommentInputView];
 }
 
 - (void)showCommentInputView {
@@ -575,40 +436,25 @@
     }
 }
 - (void)showFullReply:(NSInteger)section withShow:(BOOL)isShow {
-    ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
-    SecondCommentViewController *VC = [[SecondCommentViewController alloc] init];
-    VC.tool = self.tool;
-    VC.parentID = replie.replyID;
-    VC.replie = replie;
+    VideoCourseSecondCommentViewController *VC = [[VideoCourseSecondCommentViewController alloc] init];
+    VC.courseId = self.courseId;
+    VC.parentID = self.dataMutableArray[section].commentID;
+    VC.comment = self.dataMutableArray[section];
     VC.chooseInteger = section;
-    VC.stageId = self.stageId;
     VC.isShowInputView = isShow;
-    VC.status = self.status;
     WEAK_SELF
-    [VC setRefreshBlock:^(NSInteger integer, NSString *isRanked, NSInteger totalInteger) {
+    [VC setVideoCourseSecondCommentRefreshBlock:^(NSInteger chooseInteger, NSInteger totalNumber) {
         STRONG_SELF
-        replie.isRanked = isRanked;
-        replie.childNum = [NSString stringWithFormat:@"%ld",(long)totalInteger];
+        self.dataMutableArray[section].childNum = [NSString stringWithFormat:@"%ld",(long)totalNumber];
         [self.tableView reloadData];
     }];
     [self.navigationController pushViewController:VC animated:YES];
 }
 
-- (void)inputActitvityCommentReply:(ActivityFirstCommentRequestItem_Body_Replies *)replies {
-    self.inputTextView.textView.placeholder = [NSString stringWithFormat:@"回复 %@:",replies.userName];
-    [self showCommentInputView];
-}
-
-- (BOOL)isCheckActivityStatus {
-    if (self.status.integerValue == 3) {
-        [self showToast:@"活动已结束"];
-        return NO;
-    }else if (self.status.integerValue == 4){
-        [self showToast:@"活动所在阶段已关闭"];
-        return NO;
-    }
-    return YES;
-}
+//- (void)inputActitvityCommentReply:(ActivityFirstCommentRequestItem_Body_Replies *)replies {
+//    self.inputTextView.textView.placeholder = [NSString stringWithFormat:@"回复 %@:",replies.userName];
+//    [self showCommentInputView];
+//}
 - (void)formatCommentContent{
     
 }

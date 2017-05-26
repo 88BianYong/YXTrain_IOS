@@ -12,12 +12,14 @@
 #import "VideoCourseChapterViewController.h"
 #import "VideoCourseIntroductionViewController.h"
 #import "VideoClassworkManager.h"
+#import "VideoCourseCommentViewController.h"
 @interface VideoCourseDetailViewController ()
 @property (nonatomic, strong) VideoPlayManagerView *playMangerView;
 @property (nonatomic, strong) CourseDetailContainerView *containerView;
 @property (nonatomic ,strong) VideoClassworkManager *classworkManager;
 @property (nonatomic, strong) VideoCourseChapterViewController *chapterVC;
 @property (nonatomic, strong) VideoCourseIntroductionViewController *introductionVC;
+@property (nonatomic, strong) VideoCourseCommentViewController *commentVC;
 @property (nonatomic, assign) BOOL isShowClossworkViewBool;//是否正在显示随堂练界面
 @end
 
@@ -106,8 +108,6 @@
         }else {
             if (isHaveVideo) {
                 self.playMangerView.playStatus = VideoPlayManagerStatus_Finish;
-            }else {
-                [self setupContainerViewWithComment:NO];
             }
         }
     }];
@@ -117,25 +117,18 @@
     }];
     self.introductionVC = [[VideoCourseIntroductionViewController alloc] init];
     self.introductionVC.title = self.title;
-    UIViewController *taskVC = [[NSClassFromString(@"YXTaskViewController") alloc] init];
+    self.commentVC = [[VideoCourseCommentViewController alloc] init];
+    self.commentVC.courseId = self.course.courses_id;
     [self addChildViewController:self.chapterVC];
     [self addChildViewController:self.introductionVC];
-    [self addChildViewController:taskVC];
-    self.containerView.viewControllers = @[self.chapterVC,self.introductionVC,taskVC];
+    [self addChildViewController:self.commentVC];
+    self.containerView.viewControllers = @[self.chapterVC,self.introductionVC,self.commentVC];
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self startLoading];
         [self.chapterVC requestForCourseDetail];
     };
-}
-- (void)setupContainerViewWithComment:(BOOL)isHave {
-    for (UIViewController *vc in self.childViewControllers) {
-        [vc removeFromParentViewController];
-    }
-    [self addChildViewController:self.chapterVC];
-    [self addChildViewController:self.introductionVC];
-    self.containerView.viewControllers = @[self.chapterVC,self.introductionVC];    
 }
 - (void)setupClassworkManager:(YXFileItemBase *)fileItem {
     //随堂练
