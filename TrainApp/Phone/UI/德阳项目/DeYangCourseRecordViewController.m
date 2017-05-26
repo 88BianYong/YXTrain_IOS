@@ -15,6 +15,7 @@
 #import "YXCourseDetailViewController.h"
 #import "YXModuleListRequest.h"
 #import "YXCourseListRequest.h"
+#import "VideoCourseDetailViewController.h"
 static  NSString *const trackPageName = @"看课记录页面";
 @interface DeYangCourseRecordViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -265,7 +266,7 @@ static  NSString *const trackPageName = @"看课记录页面";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     self.courseIndexPatch = indexPath;
     YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[indexPath.section];
-    YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];
+    VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
     vc.course = module.courses[indexPath.row];
     vc.isFromRecord = YES;
     [self.navigationController pushViewController:vc animated:YES];

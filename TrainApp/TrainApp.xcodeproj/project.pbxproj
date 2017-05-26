@@ -1815,6 +1815,12 @@
 				92E9715C1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m */,
 				92E9715E1ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.h */,
 				92E9715F1ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.m */,
+				92FD5A501ED7DB2F00D3EBA1 /* VideoCourseCommentHeaderView.h */,
+				92FD5A511ED7DB2F00D3EBA1 /* VideoCourseCommentHeaderView.m */,
+				92FD5A531ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.h */,
+				92FD5A541ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m */,
+				92007EB51ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.h */,
+				92007EB61ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2594,12 +2600,6 @@
 				92FD5A4B1ED7C4C400D3EBA1 /* VideoCourseCommentViewController.m */,
 				92007EB21ED8194900C16F89 /* VideoCourseSecondCommentViewController.h */,
 				92007EB31ED8194900C16F89 /* VideoCourseSecondCommentViewController.m */,
-				92FD5A501ED7DB2F00D3EBA1 /* VideoCourseCommentHeaderView.h */,
-				92FD5A511ED7DB2F00D3EBA1 /* VideoCourseCommentHeaderView.m */,
-				92FD5A531ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.h */,
-				92FD5A541ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m */,
-				92007EB51ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.h */,
-				92007EB61ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m */,
 			);
 			name = "课程";
 			sourceTree = "<group>";

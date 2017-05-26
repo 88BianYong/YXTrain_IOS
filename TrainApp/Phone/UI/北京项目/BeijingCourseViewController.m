@@ -12,6 +12,7 @@
 #import "YXCourseRecordViewController.h"
 #import "BeijingCourseFilterManager.h"
 #import "BeijingCourseViewController.h"
+#import "VideoCourseDetailViewController.h"
 static  NSString *const trackPageName = @"课程列表页面";
 
 @interface BeijingCourseViewController ()<YXCourseFilterViewDelegate>
@@ -228,7 +229,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXCourseListRequestItem_body_module_course *course = self.dataArray[indexPath.row];
-    YXCourseDetailViewController *vc = [[YXCourseDetailViewController alloc]init];
+    VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
     vc.course = course;
     vc.isFromRecord = NO;
     [self.navigationController pushViewController:vc animated:YES];

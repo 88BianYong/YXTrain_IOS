@@ -54,6 +54,7 @@
     self.favorLabel = [[UILabel alloc] init];
     self.favorLabel.font = [UIFont systemFontOfSize:15.0f];
     self.favorLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    self.favorLabel.hidden = YES;
     [self.contentView addSubview:self.favorLabel];
     
     self.contentLabel = [[UILabel alloc] init];
