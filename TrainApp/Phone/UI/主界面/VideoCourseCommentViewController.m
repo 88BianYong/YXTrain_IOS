@@ -17,6 +17,8 @@
 #import "CommentLaudRequest.h"
 #import "UITableView+TemplateLayoutHeaderView.h"
 #import "VideoCourseSecondCommentViewController.h"
+#import "VideoCourseReplyCommnetViewController.h"
+#import "YXNavigationController.h"
 @interface VideoCourseCommentViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) int totalPage;
 @property (nonatomic, strong) MJRefreshFooterView *footerView;
@@ -28,6 +30,8 @@
 @property (nonatomic, strong) VideoCourseReplyCommnetRequest *replyRequest;
 @property (nonatomic, strong) CommentLaudRequest *laudRequest;
 @property (nonatomic, assign) BOOL isFirstShowInput;
+@property (nonatomic, strong) VideoCourseReplyCommnetViewController *replyCommnetVC;
+
 @end
 
 @implementation VideoCourseCommentViewController
@@ -71,7 +75,6 @@
 - (void)setupUI {
     self.contentView = [[UIView alloc] init];
     [self.view addSubview:self.contentView];
-    
     self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -140,7 +143,8 @@
     [self.translucentView addGestureRecognizer:showRecognizer];
     
     self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
-    self.inputTextView.stageId = @"1";
+    self.inputTextView.stageId = @"0";
+    self.inputTextView.hidden = !self.isFullReply;
     [self.inputTextView setActivityCommentShowInputViewBlock:^(BOOL isShow) {
         STRONG_SELF
         if (isShow) {
@@ -394,8 +398,16 @@
 
 #pragma mark - inputView
 - (void)userPublishComment{
-    self.inputTextView.textView.placeholder = @"评论 :";
-    [self showCommentInputView];
+    if (self.isFullReply) {
+        self.inputTextView.textView.placeholder = @"评论 :";
+        [self showCommentInputView];
+    }else {
+        YXNavigationController *nav = [[YXNavigationController alloc] initWithRootViewController:self.replyCommnetVC];
+        [self presentViewController:nav animated:YES completion:^{
+            
+        }];
+    }
+
 }
 
 - (void)showCommentInputView {
@@ -431,6 +443,21 @@
 }
 - (void)firstShowInputView {
     
+}
+#pragma mark - set
+- (VideoCourseReplyCommnetViewController *)replyCommnetVC {
+    if (!_replyCommnetVC) {
+        _replyCommnetVC = [[VideoCourseReplyCommnetViewController alloc] init];
+        WEAK_SELF
+        [_replyCommnetVC setVideoCourseReplyCommnetBlock:^(VideoCourseCommentsRequestItem_Body_Comments *comment) {
+            STRONG_SELF
+            [self.dataMutableArray insertObject:comment atIndex:0];
+            [self.tableView reloadData];
+            self.emptyView.hidden = YES;
+        }];
+        _replyCommnetVC.courseId = self.courseId;
+    }
+    return _replyCommnetVC;
 }
 
 @end

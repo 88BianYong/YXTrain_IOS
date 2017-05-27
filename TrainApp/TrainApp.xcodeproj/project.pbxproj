@@ -173,6 +173,7 @@
 		92007EB11ED811A700C16F89 /* VideoCourseReplyCommnetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EB01ED811A700C16F89 /* VideoCourseReplyCommnetRequest.m */; };
 		92007EB41ED8194900C16F89 /* VideoCourseSecondCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EB31ED8194900C16F89 /* VideoCourseSecondCommentViewController.m */; };
 		92007EB71ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EB61ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m */; };
+		92007EBA1ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EB91ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m */; };
 		920E23581E890E5C000F1D36 /* YXVideoQuestionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E23571E890E5C000F1D36 /* YXVideoQuestionsRequest.m */; };
 		920E235B1E890E7F000F1D36 /* YXSubmitAnswerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E235A1E890E7F000F1D36 /* YXSubmitAnswerRequest.m */; };
 		920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D181D50499500636A51 /* YXVideoRecordViewController.m */; };
@@ -915,6 +916,8 @@
 		92007EB31ED8194900C16F89 /* VideoCourseSecondCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseSecondCommentViewController.m; sourceTree = "<group>"; };
 		92007EB51ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseSecondCommentFooterView.h; sourceTree = "<group>"; };
 		92007EB61ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseSecondCommentFooterView.m; sourceTree = "<group>"; };
+		92007EB81ED9197300C16F89 /* VideoCourseReplyCommnetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseReplyCommnetViewController.h; sourceTree = "<group>"; };
+		92007EB91ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseReplyCommnetViewController.m; sourceTree = "<group>"; };
 		9202DA4B1DD175D60020F57D /* ActivityCommentInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCommentInputView.h; sourceTree = "<group>"; };
 		920E23561E890E5C000F1D36 /* YXVideoQuestionsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVideoQuestionsRequest.h; sourceTree = "<group>"; };
 		920E23571E890E5C000F1D36 /* YXVideoQuestionsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXVideoQuestionsRequest.m; sourceTree = "<group>"; };
@@ -2600,6 +2603,8 @@
 				92FD5A4B1ED7C4C400D3EBA1 /* VideoCourseCommentViewController.m */,
 				92007EB21ED8194900C16F89 /* VideoCourseSecondCommentViewController.h */,
 				92007EB31ED8194900C16F89 /* VideoCourseSecondCommentViewController.m */,
+				92007EB81ED9197300C16F89 /* VideoCourseReplyCommnetViewController.h */,
+				92007EB91ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m */,
 			);
 			name = "课程";
 			sourceTree = "<group>";
@@ -3273,8 +3278,6 @@
 				928B7A101E88B1C20067218A /* view */,
 				928B7A131E88B2180067218A /* BeijingActivityListViewController.h */,
 				928B7A141E88B2180067218A /* BeijingActivityListViewController.m */,
-				928B7A191E88B2180067218A /* BeijingCheckedMobileUserHeaderView.h */,
-				928B7A1A1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m */,
 				928B7A1B1E88B2180067218A /* BeijingCheckedMobileUserViewController.h */,
 				928B7A1C1E88B2180067218A /* BeijingCheckedMobileUserViewController.m */,
 				928B7A1F1E88B2180067218A /* BeijingCourseViewController.h */,
@@ -3292,6 +3295,8 @@
 		928B7A101E88B1C20067218A /* view */ = {
 			isa = PBXGroup;
 			children = (
+				928B7A191E88B2180067218A /* BeijingCheckedMobileUserHeaderView.h */,
+				928B7A1A1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m */,
 				928B7A111E88B2180067218A /* BeijingActivityListCell.h */,
 				928B7A121E88B2180067218A /* BeijingActivityListCell.m */,
 				928B7A151E88B2180067218A /* BeijingCheckedMobileMessageCell.h */,
@@ -4303,6 +4308,7 @@
 				920F1D5C1D53456700636A51 /* YXSaveHomeWorkRequest.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				920F1D541D53332600636A51 /* YXCategoryListRequest.m in Sources */,
+				92007EBA1ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m in Sources */,
 				E9BBA5F91DD06932000CA413 /* ActivityListFetcher.m in Sources */,
 				928B7A5C1E88C63C0067218A /* DeYangCourseRecordViewController.m in Sources */,
 				928B7A401E88B2180067218A /* BeijingCourseViewController.m in Sources */,

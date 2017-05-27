@@ -12,7 +12,7 @@
 @class VideoCourseCommentsFetcher;
 @interface VideoCourseCommentViewController : YXBaseViewController
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
-@property (nonatomic, strong) NSString *parentID;
+@property (nonatomic, copy) NSString *parentID;
 @property (nonatomic, copy) NSString *courseId;
 @property (nonatomic, strong) VideoCourseCommentsFetcher *dataFetcher;
 @property (nonatomic, strong) UIView *contentView;
