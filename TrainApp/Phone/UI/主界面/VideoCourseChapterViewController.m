@@ -132,8 +132,8 @@
     [self willPlayVideo];
     BLOCK_EXEC(self.introductionBlock,self.courseItem);
 }
-- (void)willPlayVideo {
-    YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideo];
+- (void)willPlayVideo{
+    YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideoSeek:self.seekInteger];
     if (fragment) {
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
         [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
@@ -147,7 +147,7 @@
     if (isAgain) {
         self.courseItem.playIndexPath = nil;
     }
-    YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideo];
+    YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideoSeek:0];
     if (fragment) {
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
         [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;

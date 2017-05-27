@@ -62,5 +62,5 @@
 @property (nonatomic, strong) YXCourseDetailItem_score<Optional> *score;
 @property (nonatomic, strong) NSArray<YXCourseDetailItem_mti, Optional> *mti;
 @property (nonatomic, strong) NSIndexPath<Optional> *playIndexPath;
-- (YXCourseDetailItem_chapter_fragment *)willPlayVideo;
+- (YXCourseDetailItem_chapter_fragment *)willPlayVideoSeek:(NSInteger)integer;
 @end

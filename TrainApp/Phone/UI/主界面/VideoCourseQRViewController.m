@@ -1,20 +1,20 @@
 //
-//  YXLoginByScanQRViewController.m
-//  YanXiuApp
+//  VideoCourseQRViewController.m
+//  TrainApp
 //
-//  Created by 李五民 on 15/10/10.
-//  Copyright © 2015年 yanxiu.com. All rights reserved.
+//  Created by 郑小龙 on 2017/5/27.
+//  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "YXLoginByScanQRViewController.h"
+#import "VideoCourseQRViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "YXScanQRBackgroundView.h"
 #import "YXUserProfileRequest.h"
 #import "YXUserManager.h"
 #import "YXAlertView.h"
-@interface YXLoginByScanQRViewController ()<AVCaptureMetadataOutputObjectsDelegate>{
+#import "VideoCourseDetailViewController.h"
+@interface VideoCourseQRViewController ()<AVCaptureMetadataOutputObjectsDelegate>{
     YXScanQRBackgroundView *_scanBackgroundView;
-    //YXLoginTopBarView *_topBarView;
     AVCaptureDevice *_device;
     AVCaptureDeviceInput *_input;
     AVCaptureMetadataOutput *_output;
@@ -23,14 +23,14 @@
 }
 @end
 
-@implementation YXLoginByScanQRViewController
+@implementation VideoCourseQRViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [super setupLeftBack];
     self.view.backgroundColor = [UIColor blackColor];
     self.navigationItem.title = @"扫描二维码登录";
-
+    
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusDenied)
     {
@@ -75,13 +75,11 @@
     _scanBackgroundView.backgroundColor = [UIColor clearColor];
     [_scanBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
-    }];    
+    }];
 }
 
 - (void)naviLeftAction {
-    [self dismissViewControllerAnimated:YES completion:^{
-        //
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,25 +121,16 @@
         NSString *query = [resultURL query];
         NSDictionary *paraDic = [self urlInfo:query];
         [self registerNotifications];
-        if (((NSString *)[paraDic objectForKey:@"token"]).length > 0) {
+        if (((NSString *)[paraDic objectForKey:@"cid"]).length > 0) {
             [_session stopRunning];
             [_scanBackgroundView.scanTimer setFireDate:[NSDate distantFuture]];
-            [YXUserManager sharedManager].userModel.token = [paraDic objectForKey:@"token"];
-            [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
-                [self removeNotifications];
-                if (error) {
-                    double delayInSeconds = 1.f;
-                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                        [self->_session startRunning];
-                        [self->_scanBackgroundView.scanTimer setFireDate:[NSDate date]];
-                    });
-                    [self showToast:error.localizedDescription];
-                    return;
-                }
-                [self saveUserDataAndLogin];
-                [YXDataStatisticsManger trackEvent:@"扫码登录" label:@"扫描二维码并成功登录" parameters:nil];
-            }];
+            VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
+            YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
+            course.courses_id = [paraDic objectForKey:@"cid"];
+            vc.course = course;
+            vc.seekInteger = [[paraDic objectForKey:@"seek"] integerValue];
+            vc.isFromRecord = YES;
+            [self.navigationController pushViewController:vc animated:YES];
         } else {
             [self showToast:@"无法识别该二维码"];
         }
@@ -259,15 +248,4 @@
     }
     return dict;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end

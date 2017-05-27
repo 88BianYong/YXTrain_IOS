@@ -30,7 +30,7 @@
 @end
 
 @implementation YXCourseDetailItem
-- (YXCourseDetailItem_chapter_fragment *)willPlayVideo {
+- (YXCourseDetailItem_chapter_fragment *)willPlayVideoSeek:(NSInteger)integer {
     if (self.playIndexPath == nil) {
         self.playIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     }else {
@@ -49,15 +49,17 @@
         }
         self.playIndexPath = [NSIndexPath indexPathForRow:row inSection:section];
     }
+    NSInteger currentInterger = 0;
     for (NSInteger c = self.playIndexPath.section; c < self.chapters.count; c ++) {
         YXCourseDetailItem_chapter *chapter = self.chapters[c];
         NSInteger row = c == self.playIndexPath.section ? self.playIndexPath.row : 0;
         for (NSInteger f = row;  f < chapter.fragments.count ; f ++) {
             YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[f];
-            if ([fragment.type isEqualToString:@"0"]) {
+            if ([fragment.type isEqualToString:@"0"] && currentInterger >= integer) {
                 self.playIndexPath = [NSIndexPath indexPathForRow:f inSection:c];
                 return fragment;
             }
+            currentInterger ++;
         }
     }
     self.playIndexPath = nil;

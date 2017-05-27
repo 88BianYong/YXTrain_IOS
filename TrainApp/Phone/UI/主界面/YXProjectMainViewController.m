@@ -33,7 +33,6 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     TrainProjectRequestStatus_ProjectList,//请求项目列表
     TrainProjectRequestStatus_Beijing,//请求北京校验
     TrainProjectRequestStatus_LayerList,//请求分层
-    
 };
 
 @interface YXProjectMainViewController ()
@@ -103,7 +102,9 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     [self.leftView setWebsocketRedButtonActionBlock:^{
         [YXDrawerController showDrawer];
     }];
-    [self setupLeftWithCustomView:self.leftView];    
+    [self setupLeftWithCustomView:self.leftView];
+    [self setupQRCodeRightView];
+
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
@@ -142,6 +143,23 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     [self setupRightWithCustomView:self.rightView];
 }
 
+- (void)setupQRCodeRightView{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateHighlighted];
+    button.frame = CGRectMake(25, 0, 44.0f, 44.0f);
+    WEAK_SELF
+    [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        STRONG_SELF
+        UIViewController *VC = [[NSClassFromString(@"VideoCourseQRViewController") alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }];
+    [view addSubview:button];
+    [self setupRightWithCustomView:view];
+
+
+}
 #pragma mark - request
 - (void)requestForProjectList{
     self.requestStatus = TrainProjectRequestStatus_ProjectList;

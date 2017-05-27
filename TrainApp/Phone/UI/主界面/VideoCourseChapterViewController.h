@@ -14,6 +14,7 @@ typedef void (^VideoCourseIntroductionCompleteBlock)(YXCourseDetailItem *courseI
 @interface VideoCourseChapterViewController : YXBaseViewController
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course *course;
 @property (nonatomic, assign) BOOL isFromRecord;
+@property (nonatomic, assign) NSInteger seekInteger;
 
 /**
  准备下一个播放源

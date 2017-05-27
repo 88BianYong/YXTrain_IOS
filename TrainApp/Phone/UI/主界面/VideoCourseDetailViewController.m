@@ -45,13 +45,11 @@
     [self.playMangerView viewWillAppear];
     self.classworkManager.clossworkView.alpha = 1.0f;
 }
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.playMangerView viewWillDisappear];
     self.classworkManager.clossworkView.alpha = 0.0f;
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -89,6 +87,7 @@
     [self.view addSubview:self.containerView];
     self.chapterVC = [[VideoCourseChapterViewController alloc]init];
     self.chapterVC.course = self.course;
+    self.chapterVC.seekInteger = self.seekInteger;
     self.chapterVC.isFromRecord = NO;
     [self.chapterVC setVideoCourseChapterFragmentCompleteBlock:^(NSError *error, YXFileItemBase *fileItem, BOOL isHaveVideo) {
         STRONG_SELF
@@ -114,6 +113,7 @@
     [self.chapterVC setVideoCourseIntroductionCompleteBlock:^(YXCourseDetailItem *courseItem) {
         STRONG_SELF
         self.introductionVC.courseItem = courseItem;
+        self.title = courseItem.course_title;
     }];
     self.introductionVC = [[VideoCourseIntroductionViewController alloc] init];
     self.introductionVC.title = self.title;
@@ -244,7 +244,7 @@
         [self rotateScreenAction];
     }else{
         [self.playMangerView playVideoClear];
-        [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 - (BOOL)shouldAutorotate {

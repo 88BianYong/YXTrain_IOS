@@ -174,6 +174,7 @@
 		92007EB41ED8194900C16F89 /* VideoCourseSecondCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EB31ED8194900C16F89 /* VideoCourseSecondCommentViewController.m */; };
 		92007EB71ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EB61ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m */; };
 		92007EBA1ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EB91ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m */; };
+		92007EBE1ED9358000C16F89 /* VideoCourseQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EBD1ED9358000C16F89 /* VideoCourseQRViewController.m */; };
 		920E23581E890E5C000F1D36 /* YXVideoQuestionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E23571E890E5C000F1D36 /* YXVideoQuestionsRequest.m */; };
 		920E235B1E890E7F000F1D36 /* YXSubmitAnswerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E235A1E890E7F000F1D36 /* YXSubmitAnswerRequest.m */; };
 		920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920F1D181D50499500636A51 /* YXVideoRecordViewController.m */; };
@@ -918,6 +919,8 @@
 		92007EB61ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseSecondCommentFooterView.m; sourceTree = "<group>"; };
 		92007EB81ED9197300C16F89 /* VideoCourseReplyCommnetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseReplyCommnetViewController.h; sourceTree = "<group>"; };
 		92007EB91ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseReplyCommnetViewController.m; sourceTree = "<group>"; };
+		92007EBC1ED9358000C16F89 /* VideoCourseQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseQRViewController.h; sourceTree = "<group>"; };
+		92007EBD1ED9358000C16F89 /* VideoCourseQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseQRViewController.m; sourceTree = "<group>"; };
 		9202DA4B1DD175D60020F57D /* ActivityCommentInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCommentInputView.h; sourceTree = "<group>"; };
 		920E23561E890E5C000F1D36 /* YXVideoQuestionsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVideoQuestionsRequest.h; sourceTree = "<group>"; };
 		920E23571E890E5C000F1D36 /* YXVideoQuestionsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXVideoQuestionsRequest.m; sourceTree = "<group>"; };
@@ -2605,6 +2608,8 @@
 				92007EB31ED8194900C16F89 /* VideoCourseSecondCommentViewController.m */,
 				92007EB81ED9197300C16F89 /* VideoCourseReplyCommnetViewController.h */,
 				92007EB91ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m */,
+				92007EBC1ED9358000C16F89 /* VideoCourseQRViewController.h */,
+				92007EBD1ED9358000C16F89 /* VideoCourseQRViewController.m */,
 			);
 			name = "课程";
 			sourceTree = "<group>";
@@ -4253,6 +4258,7 @@
 				9232374B1D80F40700FDACFE /* YXProvincesRequest.m in Sources */,
 				92FD5A4F1ED7D6A400D3EBA1 /* VideoCourseCommentsRequest.m in Sources */,
 				920E235B1E890E7F000F1D36 /* YXSubmitAnswerRequest.m in Sources */,
+				92007EBE1ED9358000C16F89 /* VideoCourseQRViewController.m in Sources */,
 				92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m in Sources */,
 				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
 				92006C8C1DCC79E500F80488 /* ActivityPlayViewController.m in Sources */,
