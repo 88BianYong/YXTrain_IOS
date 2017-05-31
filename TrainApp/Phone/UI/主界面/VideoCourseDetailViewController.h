@@ -8,9 +8,9 @@
 
 #import "YXBaseViewController.h"
 #import "YXCourseListRequest.h"
+#import "VideoCourseChapterViewController.h"
 @interface VideoCourseDetailViewController : YXBaseViewController
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course *course;
 @property (nonatomic, assign) NSInteger seekInteger;
-
-@property (nonatomic, assign) BOOL isFromRecord;
+@property (nonatomic, assign) VideoCourseFromWhere fromWhere;
 @end

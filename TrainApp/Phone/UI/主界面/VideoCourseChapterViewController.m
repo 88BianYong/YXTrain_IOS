@@ -82,7 +82,7 @@
 }
 
 - (void)requestForCourseDetail{
-    if (self.course.is_selected.integerValue == 0 && !self.isFromRecord) {
+    if (self.course.is_selected.integerValue == 0 && self.fromWhere == VideoCourseFromWhere_Detail) {
         [self.courseDetailRequest stopRequest];
         self.courseDetailRequest = [[YXCourseDetailRequest alloc]init];
         self.courseDetailRequest.cid = self.course.courses_id;

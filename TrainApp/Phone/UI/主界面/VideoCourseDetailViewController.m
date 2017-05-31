@@ -9,7 +9,6 @@
 #import "VideoCourseDetailViewController.h"
 #import "VideoPlayManagerView.h"
 #import "CourseDetailContainerView.h"
-#import "VideoCourseChapterViewController.h"
 #import "VideoCourseIntroductionViewController.h"
 #import "VideoClassworkManager.h"
 #import "VideoCourseCommentViewController.h"
@@ -88,7 +87,7 @@
     self.chapterVC = [[VideoCourseChapterViewController alloc]init];
     self.chapterVC.course = self.course;
     self.chapterVC.seekInteger = self.seekInteger;
-    self.chapterVC.isFromRecord = NO;
+    self.chapterVC.fromWhere = self.fromWhere;
     [self.chapterVC setVideoCourseChapterFragmentCompleteBlock:^(NSError *error, YXFileItemBase *fileItem, BOOL isHaveVideo) {
         STRONG_SELF
         [self stopLoading];
@@ -244,7 +243,11 @@
         [self rotateScreenAction];
     }else{
         [self.playMangerView playVideoClear];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        if (self.fromWhere == VideoCourseFromWhere_QRCode) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 - (BOOL)shouldAutorotate {

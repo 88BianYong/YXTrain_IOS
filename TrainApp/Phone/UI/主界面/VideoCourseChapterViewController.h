@@ -8,12 +8,17 @@
 
 #import "YXBaseViewController.h"
 #import "YXCourseListRequest.h"
+typedef NS_ENUM(NSInteger, VideoCourseFromWhere) {
+    VideoCourseFromWhere_Detail,
+    VideoCourseFromWhere_Record,
+    VideoCourseFromWhere_QRCode
+};
 typedef void (^VideoCourseChapterFragmentCompleteBlock)(NSError *error,YXFileItemBase *fileItem ,BOOL isHaveVideo);
 
 typedef void (^VideoCourseIntroductionCompleteBlock)(YXCourseDetailItem *courseItem);
 @interface VideoCourseChapterViewController : YXBaseViewController
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course *course;
-@property (nonatomic, assign) BOOL isFromRecord;
+@property (nonatomic, assign) VideoCourseFromWhere fromWhere;
 @property (nonatomic, assign) NSInteger seekInteger;
 
 /**

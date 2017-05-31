@@ -231,7 +231,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     YXCourseListRequestItem_body_module_course *course = self.dataArray[indexPath.row];
     VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
     vc.course = course;
-    vc.isFromRecord = NO;
+    vc.fromWhere = VideoCourseFromWhere_Detail;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

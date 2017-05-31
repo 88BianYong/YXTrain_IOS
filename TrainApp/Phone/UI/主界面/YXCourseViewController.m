@@ -267,7 +267,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     if (course.isSupportApp.boolValue) {
         VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
         vc.course = course;
-        vc.isFromRecord = NO;
+        vc.fromWhere = VideoCourseFromWhere_Detail;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

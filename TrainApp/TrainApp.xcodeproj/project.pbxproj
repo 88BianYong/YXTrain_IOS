@@ -1795,6 +1795,8 @@
 		7C2C3B741D24C99800A03635 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				922661BF1E8A0F19006DE8A4 /* VideoClassworkManager.h */,
+				922661C01E8A0F19006DE8A4 /* VideoClassworkManager.m */,
 				7CF8883C1D18DB7E00E7C04D /* YXCourseFilterView.h */,
 				7CF8883D1D18DB7E00E7C04D /* YXCourseFilterView.m */,
 				7CF888481D18F90000E7C04D /* YXCourseFilterCell.h */,
@@ -2600,8 +2602,6 @@
 				7C2C3B721D24C98D00A03635 /* YXCourseDetailViewController.m */,
 				7C2C3B801D24F5BE00A03635 /* YXCourseRecordViewController.h */,
 				7C2C3B811D24F5BE00A03635 /* YXCourseRecordViewController.m */,
-				922661BF1E8A0F19006DE8A4 /* VideoClassworkManager.h */,
-				922661C01E8A0F19006DE8A4 /* VideoClassworkManager.m */,
 				921AC82D1ED29DCD001579A9 /* VideoCourseDetailViewController.h */,
 				921AC82E1ED29DCD001579A9 /* VideoCourseDetailViewController.m */,
 				92C649A31ED41C7F00ABC1CE /* VideoCourseChapterViewController.h */,

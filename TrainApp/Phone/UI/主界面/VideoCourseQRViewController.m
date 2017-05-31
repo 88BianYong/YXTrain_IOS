@@ -129,7 +129,7 @@
             course.courses_id = [paraDic objectForKey:@"cid"];
             vc.course = course;
             vc.seekInteger = [[paraDic objectForKey:@"seek"] integerValue];
-            vc.isFromRecord = YES;
+            vc.fromWhere = VideoCourseFromWhere_QRCode;
             [self.navigationController pushViewController:vc animated:YES];
         } else {
             [self showToast:@"无法识别该二维码"];
