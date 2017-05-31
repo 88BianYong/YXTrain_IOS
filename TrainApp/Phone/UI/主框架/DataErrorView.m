@@ -70,10 +70,9 @@
 - (void)refreshAction {
     BLOCK_EXEC(self.refreshBlock);
 }
-
-- (void)setIsActivityVideo:(BOOL)isActivityVideo {
-    _isActivityVideo = isActivityVideo;
-    if (_isActivityVideo) {
+- (void)setIsVideo:(BOOL)isVideo{
+    _isVideo = isVideo;
+    if (_isVideo) {
         self.backgroundColor = [UIColor whiteColor];
         self.imageView.hidden = YES;
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {

@@ -31,7 +31,10 @@
     }
     return self;
 }
-
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    self.cellStatus = self.cellStatus;
+}
 - (void)setupUI{
     UIView *selectedBgView = [[UIView alloc]init];
     selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
@@ -84,6 +87,7 @@
     self.titleLabel.attributedText = attributedString;
 }
 - (void)setCellStatus:(YXCourseDetailCellStatus)cellStatus {
+    _cellStatus = cellStatus;
     [self.typeImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.size.mas_equalTo(CGSizeMake(35, 35));

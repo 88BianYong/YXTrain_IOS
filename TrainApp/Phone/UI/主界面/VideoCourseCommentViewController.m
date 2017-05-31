@@ -87,10 +87,12 @@
     self.emptyView.imageName = @"暂无评论";
     self.emptyView.title = @"暂无评论";
     self.emptyView.hidden = YES;
+    self.emptyView.isVideo = YES;
     [self.contentView addSubview:self.emptyView];
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.hidden = YES;
+    self.errorView.isVideo = YES;
     [self.errorView setRetryBlock:^{
         STRONG_SELF
         [self startLoading];
@@ -99,6 +101,7 @@
     [self.contentView addSubview:self.errorView];
     
     self.dataErrorView = [[DataErrorView alloc]initWithFrame:self.view.bounds];
+    self.dataErrorView.isVideo = YES;
     [self.contentView addSubview:self.dataErrorView];
     self.dataErrorView.hidden = YES;
     self.dataErrorView.refreshBlock = ^{

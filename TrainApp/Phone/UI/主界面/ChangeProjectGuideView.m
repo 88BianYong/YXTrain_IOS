@@ -51,8 +51,10 @@
 }
 
 - (void)removeSelfButtonAction:(UIButton *)sender{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelToUpdate" object:nil];
     [self removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelToUpdate" object:nil];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

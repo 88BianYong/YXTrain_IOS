@@ -49,3 +49,6 @@ NSString *const kYXTrainSubmitQuestionAnswer = @"submit video question answer";
 NSString *const kYXTrainPushNotification = @"push Notification dismiss view controller";
 
 NSString *const kYXTrainQRCodePrompt = @"Show QR code prompt view";
+
+NSString *const kYXTrainStartStopVideo = @"The document is loaded and stopped";
+

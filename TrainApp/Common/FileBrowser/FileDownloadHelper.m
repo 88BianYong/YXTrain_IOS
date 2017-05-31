@@ -63,9 +63,10 @@
     self.progressView.closeBlock = ^() {
         STRONG_SELF
         [self.downloader stop];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(NO)];
     };
-    
     [self.downloader start];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(YES)];
 }
 
 @end

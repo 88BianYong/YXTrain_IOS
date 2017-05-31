@@ -132,10 +132,16 @@ extern NSString *const kYXTrainSubmitQuestionAnswer;
  *  接收到推送通知dismiss界面
  */
 extern NSString *const kYXTrainPushNotification;
+//2.4.3
 /*
 *  显示二维码扫描提示
 */
 extern NSString *const kYXTrainQRCodePrompt;
+/*
+ *  开始加载文档与关闭
+ */
+extern NSString *const kYXTrainStartStopVideo;
+
 
 
 

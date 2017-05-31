@@ -90,9 +90,9 @@
     [headerView addSubview:lineView];
     self.tableView.tableHeaderView = headerView;
     self.tableView.tableHeaderView.hidden = YES;
-    self.dataErrorView.isActivityVideo = YES;
-    self.emptyView.isActivityVideo = YES;
-    self.errorView.isActivityVideo = YES;
+    self.dataErrorView.isVideo = YES;
+    self.emptyView.isVideo = YES;
+    self.errorView.isVideo = YES;
 }
 - (void)setupLayout {
     [super setupLayout];

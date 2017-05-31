@@ -12,6 +12,6 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;
 @property (nonatomic, strong) NSString *imageName;
-//活动视频界面专用
-@property (nonatomic, assign) BOOL isActivityVideo;
+//半屏视频界面专用
+@property (nonatomic, assign) BOOL isVideo;
 @end

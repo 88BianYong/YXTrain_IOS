@@ -63,6 +63,8 @@
 
 - (void)removeSelfButtonAction:(UIButton *)sender{
     [self removeFromSuperview];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstRoleChange];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

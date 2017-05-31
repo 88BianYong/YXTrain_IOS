@@ -61,10 +61,6 @@
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(0.0f);
     }];
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 15.0f)];
-    headerView.backgroundColor = [UIColor whiteColor];
-    self.tableView.tableHeaderView = headerView;
-    
     [self.tableView registerClass:[YXCourseDetailCell class] forCellReuseIdentifier:@"YXCourseDetailCell"];
     [self.tableView registerClass:[YXCourseDetailHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXCourseDetailHeaderView"];
     WEAK_SELF
@@ -137,6 +133,7 @@
     if (fragment) {
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
         [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
+        [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
        BLOCK_EXEC(self.fragmentBlock,nil,[self fileItemBaseFormatForChapterFragment:fragment],YES);
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,nil,NO);
@@ -151,11 +148,20 @@
     if (fragment) {
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
         [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
+        [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
         BLOCK_EXEC(self.fragmentBlock,nil,[self fileItemBaseFormatForChapterFragment:fragment],YES);
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,nil,YES);
     }
+
     [self.tableView reloadData];
+    if (![self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView scrollToRowAtIndexPath:self.courseItem.playIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        });
+    }
+    
+
 }
 
 #pragma mark - UITableViewDataSource
@@ -203,6 +209,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([self.courseItem.playIndexPath isEqual:indexPath]) {
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         return;
     }
     YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];

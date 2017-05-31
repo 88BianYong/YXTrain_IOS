@@ -63,6 +63,15 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             STRONG_SELF
             [self recordPlayerDuration];
         }];
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainStartStopVideo object:nil] subscribeNext:^(NSNotification *x) {
+            STRONG_SELF
+            if ([x.object boolValue]) {
+                [self.player pause];
+            }else {
+                [self.player play];
+            }
+        }];
+
         self.thumbImageView.hidden = NO;
     }
     return self;
@@ -105,14 +114,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.placeholderImageView = [[UIImageView alloc] init];
     self.placeholderImageView.image = [UIImage imageNamed:@"视频未读取过来的默认图片"];
     [self.thumbImageView addSubview:self.placeholderImageView];
-    
-//    self.playButton = [[UIButton alloc] init];
-//    [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-正常态A"]
-//                     forState:UIControlStateNormal];
-//    [self.playButton setImage:[UIImage imageNamed:@"播放视频按钮-点击态A"]
-//                     forState:UIControlStateHighlighted];
-//    [self.playButton addTarget:self action:@selector(playButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.thumbImageView addSubview:_playButton];
 }
 - (void)setupLayout {
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,29 +154,23 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.size.mas_offset(CGSizeMake(180.0f, 180.0f));
         make.center.equalTo(self.thumbImageView);
     }];
-    
-//    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.center.equalTo(self.thumbImageView);
-//        make.width.height.mas_offset(50.0f);
-//    }];
 }
 #pragma mark - notification
 - (void)setupObserver {
     Reachability *r = [Reachability reachabilityForInternetConnection];
-    @weakify(r);
     WEAK_SELF
     [r setReachableBlock:^void (Reachability * reachability) {
-        @strongify(r);
         STRONG_SELF
-        if([r isReachableViaWiFi]) {
+        if([reachability isReachableViaWiFi]) {
             return;
         }
-        if([r isReachableViaWWAN]) {
+        if([reachability isReachableViaWWAN]) {
             if (!self.classworkManager.hidden) {
                 [self.player pause];
             }else {
                 [self do3GCheck];
             }
+            return;
         }
     }];
     [r startNotifier];
@@ -201,13 +196,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Buffering:
             {
                 self.thumbImageView.hidden = YES;
-                if(![r isReachable]) {
-                    self.playStatus = VideoPlayManagerStatus_NetworkError;
-                }
             }
                 break;
             case PlayerView_State_Playing:
             {
+                self.exceptionView.hidden = YES;
+
                 [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
             }
                 break;
@@ -423,14 +417,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)exceptionButtonAction:(UIButton *)sender {
     self.bufferingView.hidden = NO;
     [self.bufferingView start];
-    if (self.playStatus == VideoPlayManagerStatus_NotWifi) {//非WIFI情况下继续播放
+    self.exceptionView.hidden = YES;
+    if (self.playStatus == VideoPlayManagerStatus_NotWifi || self.playStatus ==VideoPlayManagerStatus_NetworkError) {//非WIFI情况下继续播放
+        self.player.videoUrl = self.videoUrl;
         [self.player play];
     }else if (self.playStatus == VideoPlayManagerStatus_Finish || self.playStatus ==VideoPlayManagerStatus_Empty){
         BLOCK_EXEC(self.playBlock,self.playStatus);
-    }else if (self.playStatus == VideoPlayManagerStatus_NetworkError){
-        [self.player play];
     }
-    self.exceptionView.hidden = YES;
 }
 #pragma mark - set
 - (void)setFileItem:(YXFileItemBase *)fileItem {
@@ -464,6 +457,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     self.player.videoUrl = self.videoUrl;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
+    if (![[Reachability reachabilityForInternetConnection] isReachable]) {
+        self.playStatus = VideoPlayManagerStatus_NetworkError;
+        [self.player pause];
+    }
 }
 - (void)setIsFullscreen:(BOOL)isFullscreen {
     _isFullscreen = isFullscreen;

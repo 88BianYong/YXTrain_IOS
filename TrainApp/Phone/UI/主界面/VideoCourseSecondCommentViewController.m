@@ -37,6 +37,9 @@
     self.dataFetcher.courseID = self.courseId;
     self.dataFetcher.parentID = self.parentID;
     [super setupUI];
+    self.dataErrorView.isVideo = NO;
+    self.emptyView.isVideo = NO;
+    self.errorView.isVideo = NO;
     self.isFullReply = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
