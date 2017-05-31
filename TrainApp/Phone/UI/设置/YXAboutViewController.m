@@ -73,7 +73,7 @@ static  NSString *const trackPageName = @"关于我们页面";
     footerButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     footerButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [footerButton setTitle:@"使用条款和隐私策略" forState:UIControlStateNormal];
-    [footerButton setTitleColor:[UIColor colorWithHexString:@"41c694"] forState:UIControlStateNormal];
+    [footerButton setTitleColor:[UIColor colorWithHexString:@"cf2627"] forState:UIControlStateNormal];
     [footerButton addTarget:self action:@selector(goProvisionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:footerButton];
     [footerButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -107,7 +107,7 @@ static  NSString *const trackPageName = @"关于我们页面";
         NSString *phoneString = [NSString stringWithFormat:@"客服电话  %@",_phoneString];
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:phoneString];
         [attributeString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"]} range:NSMakeRange(0, 4)];
-        [attributeString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"41c694"]} range:NSMakeRange(5, 13)];
+        [attributeString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"cf2627"]} range:NSMakeRange(5, 13)];
         cell.titleLabel.attributedText = attributeString;
         cell.titleLabel.textAlignment = NSTextAlignmentCenter;
         cell.delegate = nil;

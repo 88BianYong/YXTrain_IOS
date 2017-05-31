@@ -63,7 +63,7 @@
     self.verifyCodeButton = [[UIButton alloc]init];
     [self.verifyCodeButton setBackgroundColor:[UIColor whiteColor]];
     [self.verifyCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-    [self.verifyCodeButton setTitleColor:[UIColor colorWithHexString:@"41c694"] forState:UIControlStateNormal];
+    [self.verifyCodeButton setTitleColor:[UIColor colorWithHexString:@"cf2627"] forState:UIControlStateNormal];
     self.verifyCodeButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [self.verifyCodeButton addTarget:self action:@selector(getVerifyCodeAction) forControlEvents:UIControlEventTouchUpInside];
     [self.containView addSubview:self.verifyCodeButton];

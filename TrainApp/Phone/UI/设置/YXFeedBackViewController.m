@@ -114,9 +114,7 @@
     [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
     _submitButton.titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
     [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _submitButton.backgroundColor = [UIColor colorWithHexString:@"41c694"];
-//    [_submitButton setBackgroundImage: [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"41c694"]] forState:UIControlStateNormal];
-//    [_submitButton setBackgroundImage: [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
+    _submitButton.backgroundColor = [UIColor colorWithHexString:@"cf2627"];
     _submitButton.layer.cornerRadius = 4;
     _submitButton.layer.masksToBounds = YES;
 }

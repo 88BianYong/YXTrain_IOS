@@ -28,10 +28,10 @@
 
 - (void)setUpUI {
     self.logoImageView = [[UIImageView alloc] init];
-    self.logoImageView.image = [UIImage imageNamed:@"logo_01"];
+    self.logoImageView.image = [UIImage imageNamed:@"1logo"];
     NSMutableArray *imageArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 40; i ++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"logo_%.2d",i + 1]];
+    for (int i = 0; i < 32; i ++) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%dlogo",i + 1]];
         [imageArray addObject:image];
     }
     self.logoImageView.animationImages = imageArray;
@@ -56,10 +56,11 @@
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(([UIScreen mainScreen].bounds.size.height - 371) * 0.44 - 31);
         make.centerX.mas_equalTo(0);
+        make.size.mas_offset(CGSizeMake(163.0f, 163.0f));
     }];
     
     [self.titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.logoImageView.mas_bottom).offset(-5);
+        make.top.equalTo(self.logoImageView.mas_bottom).offset(25.0f);
         make.centerX.mas_equalTo(0);
     }];
     

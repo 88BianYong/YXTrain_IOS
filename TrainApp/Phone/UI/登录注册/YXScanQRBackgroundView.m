@@ -73,7 +73,7 @@
     UIImage *rightUp = [UIImage imageNamed:@"方角"];
     
     UIImageView *leftUpImageView = [[UIImageView alloc] init];
-    leftUpImageView.image = [UIImage imageWithCGImage:rightUp.CGImage scale:1 orientation:UIImageOrientationLeft];
+    leftUpImageView.image = [UIImage imageWithCGImage:rightUp.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationLeft];
     [self addSubview:leftUpImageView];
     [leftUpImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(middleView.mas_top);
@@ -89,7 +89,7 @@
     }];
     
     UIImageView *leftDownImageView = [[UIImageView alloc] init];
-    leftDownImageView.image = [UIImage imageWithCGImage:rightUp.CGImage scale:1 orientation:UIImageOrientationDown];;
+    leftDownImageView.image = [UIImage imageWithCGImage:rightUp.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationDown];;
     [self addSubview:leftDownImageView];
     [leftDownImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(middleView.mas_bottom);
@@ -97,21 +97,12 @@
     }];
     
     UIImageView *rightDownImageView = [[UIImageView alloc] init];
-    rightDownImageView.image = [UIImage imageWithCGImage:rightUp.CGImage scale:1 orientation:UIImageOrientationRight];;
+    rightDownImageView.image = [UIImage imageWithCGImage:rightUp.CGImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationRight];;
     [self addSubview:rightDownImageView];
     [rightDownImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(middleView.mas_bottom);
         make.trailing.equalTo(middleView.mas_trailing);
     }];
-    
-//    UIImageView *middleImageView = [[UIImageView alloc] init];
-//    middleImageView.image = [UIImage imageNamed:@"十字"];;
-//    [self addSubview:middleImageView];
-//    [middleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(middleView.mas_centerX);
-//        make.centerY.equalTo(middleView.mas_centerY);
-//    }];
-    
 }
 
 -(void)scanAnimation

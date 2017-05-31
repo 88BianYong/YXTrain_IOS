@@ -28,7 +28,7 @@
     }];
 
     UIImageView *logoImageView = [[UIImageView alloc] init];
-    logoImageView.image = [UIImage imageNamed:@"logo"];
+    logoImageView.image = [UIImage imageNamed:@"32logo"];
     [self addSubview:logoImageView];
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     

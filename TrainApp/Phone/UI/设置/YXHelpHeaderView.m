@@ -64,7 +64,7 @@
 - (void)setIsOpen:(BOOL)isOpen{
     _isOpen = isOpen;
     if (_isOpen) {
-        self.titleLabel.textColor = [UIColor colorWithHexString:@"41c694"];
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"cf2627"];
         self.imageView.image = [UIImage imageNamed:@"Q--展开"];
     }else{
      self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];

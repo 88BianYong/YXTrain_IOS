@@ -37,7 +37,6 @@
     UIView *footerView = [[UIView alloc] init];
     footerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     UILabel *footerLabel = [[UILabel alloc] init];
-    footerLabel.text = @"邮箱账户用户,请前往 pp.yanxiu.com 重置密码";
     footerLabel.font = [UIFont systemFontOfSize:13];
     footerLabel.textColor = [UIColor colorWithHexString:@"a1a3a6"];
     [footerView addSubview:footerLabel];
@@ -46,8 +45,11 @@
         make.right.mas_equalTo(-15);
         make.top.mas_equalTo(45);
     }];
+    NSString *tipsString = @"邮箱账户用户,请前往 pp.yanxiu.com 重置密码";
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:tipsString];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"cf2627"] range:NSMakeRange(11, 14)];
+    footerLabel.attributedText = attributedString;
     self.tableView.tableFooterView = footerView;
-    // Do any additional setup after loading the view.
 }
 
 - (void)naviLeftAction {
