@@ -251,6 +251,8 @@
 		922F3AD11D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD01D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m */; };
 		922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD31D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m */; };
 		922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */; };
+		923063AB1EDE5646003AE660 /* FloatingBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923063AA1EDE5646003AE660 /* FloatingBaseView.m */; };
+		923063AE1EDE566A003AE660 /* QRCodeFloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923063AD1EDE566A003AE660 /* QRCodeFloatingView.m */; };
 		92310E4E1E52B0A500CB5F1F /* MasterHappeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92310E4B1E52B03B00CB5F1F /* MasterHappeningViewController.m */; };
 		923237161D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237151D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m */; };
 		9232371A1D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237191D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m */; };
@@ -1067,6 +1069,10 @@
 		922F3AD31D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailGroupCell.m; sourceTree = "<group>"; };
 		922F3AD51D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailInfoCell.h; sourceTree = "<group>"; };
 		922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailInfoCell.m; sourceTree = "<group>"; };
+		923063A91EDE5646003AE660 /* FloatingBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingBaseView.h; sourceTree = "<group>"; };
+		923063AA1EDE5646003AE660 /* FloatingBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingBaseView.m; sourceTree = "<group>"; };
+		923063AC1EDE566A003AE660 /* QRCodeFloatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeFloatingView.h; sourceTree = "<group>"; };
+		923063AD1EDE566A003AE660 /* QRCodeFloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeFloatingView.m; sourceTree = "<group>"; };
 		92310E4A1E52B03B00CB5F1F /* MasterHappeningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningViewController.h; sourceTree = "<group>"; };
 		92310E4B1E52B03B00CB5F1F /* MasterHappeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningViewController.m; sourceTree = "<group>"; };
 		923237141D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkInfoFinishHeaderView.h; sourceTree = "<group>"; };
@@ -3964,6 +3970,10 @@
 				F7E8F8DD1D65CE3700CDAAF4 /* YXPopUpContainerView.m */,
 				921AC82A1ECED17B001579A9 /* PopUpFloatingViewManager.h */,
 				921AC82B1ECED17B001579A9 /* PopUpFloatingViewManager.m */,
+				923063A91EDE5646003AE660 /* FloatingBaseView.h */,
+				923063AA1EDE5646003AE660 /* FloatingBaseView.m */,
+				923063AC1EDE566A003AE660 /* QRCodeFloatingView.h */,
+				923063AD1EDE566A003AE660 /* QRCodeFloatingView.m */,
 			);
 			path = "弹出";
 			sourceTree = "<group>";
@@ -4234,6 +4244,7 @@
 				CB4D91741D1A5F2000B5F1D0 /* YXDatumFilterRequest.m in Sources */,
 				92E971591ED5801500DEAAD4 /* OLImage.m in Sources */,
 				7C2C3B371D2119BB00A03635 /* YXScorePhaseHeaderView.m in Sources */,
+				923063AE1EDE566A003AE660 /* QRCodeFloatingView.m in Sources */,
 				9232372C1D69A5DD00FDACFE /* YXLoadView.m in Sources */,
 				7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */,
 				922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */,
@@ -4674,6 +4685,7 @@
 				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,
 				9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */,
 				92EDC7CB1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m in Sources */,
+				923063AB1EDE5646003AE660 /* FloatingBaseView.m in Sources */,
 				920F1D1F1D506DE500636A51 /* UIViewController+YXAddtion.m in Sources */,
 				CB3510B71D18E9830081EA3B /* YXDatumOrderViewCell.m in Sources */,
 				CBBE95071D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m in Sources */,

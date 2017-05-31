@@ -46,4 +46,6 @@ NSString *const kYXTrainRemindLeftSlip = @"Show left sliding reminder learning";
 
 NSString *const kYXTrainSubmitQuestionAnswer = @"submit video question answer";
 
- NSString *const kYXTrainPushNotification = @"push Notification dismiss view controller";
+NSString *const kYXTrainPushNotification = @"push Notification dismiss view controller";
+
+NSString *const kYXTrainQRCodePrompt = @"Show QR code prompt view";

@@ -48,9 +48,6 @@
     return self;
 }
 
-/**
-  * @brief 浮层显示顺序 1.广告页 2.升级界面 3.项目切换 4.角色切换
- */
 - (void)showPopUpFloatingView {
     if (self.isShowCMS && !self.isLoginFirst) {
         [self showCMSView];
@@ -62,7 +59,8 @@
         [self showMultiProjectCutover];
     }else if ([self isShowRoleChange]) {
         [self showMultiRoleCutover];
-        
+    }else if ([self isQRCodePrompt]) {
+        [self showQRCodePrompt];
     }
 }
 - (void)showCMSView {
@@ -172,6 +170,17 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstRoleChange];
 }
 
+//二维码扫描界面
+- (void)showQRCodePrompt{
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    UIView *roleView = [[NSClassFromString(@"QRCodeFloatingView") alloc] init];
+    [window addSubview:roleView];
+    [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainQRCodePrompt];
+}
+
 #pragma mark - judgment
 - (BOOL)isShowMoreThanOneProject {
     return ([YXTrainManager sharedInstance].trainlistItem.body.trains.count > 1) &&
@@ -183,5 +192,8 @@
     ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstRoleChange] &&
     ([YXTrainManager sharedInstance].currentProject.role.integerValue == 99) &&
     [YXTrainManager sharedInstance].currentProject.w.integerValue >= 3;
+}
+- (BOOL)isQRCodePrompt {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainQRCodePrompt];
 }
 @end
