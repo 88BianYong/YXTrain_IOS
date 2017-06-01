@@ -17,5 +17,7 @@ typedef NS_ENUM(NSUInteger,VideoClassworkAnswerStatus) {
 @interface VideoClassworkView : UIView
 @property (nonatomic, copy) void(^videoClassworkButtonActionBlock)(VideoClassworkAnswerStatus status ,NSArray *answer);
 @property (nonatomic, strong) YXVideoQuestionsRequestItem_Result_Questions_Question *question;
+@property (nonatomic, assign) BOOL isFullscreen;
+
 - (void)refreshClassworkViewAnsewr:(BOOL)isTrue quizCorrect:(BOOL)isForce;
 @end

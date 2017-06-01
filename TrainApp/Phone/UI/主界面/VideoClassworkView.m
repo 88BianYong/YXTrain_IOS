@@ -264,5 +264,21 @@
     }
     [self.tableView reloadData];
 }
+- (void)setIsFullscreen:(BOOL)isFullscreen {
+    _isFullscreen = isFullscreen;
+    if (_isFullscreen) {
+        [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self);
+            make.width.equalTo(self.mas_width).multipliedBy(9.0f/10.0f);
+            make.height.equalTo(self.mas_height).multipliedBy(9.0f/10.0f);
+        }];
+    }else {
+        [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self);
+            make.width.equalTo(self.mas_width).multipliedBy(9.0f/10.0f);
+            make.height.equalTo(self.mas_height).multipliedBy(5.0f/10.0f);
+        }];
+    }
+}
 
 @end

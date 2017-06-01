@@ -19,6 +19,7 @@
 @property (nonatomic, strong) VideoCourseChapterViewController *chapterVC;
 @property (nonatomic, strong) VideoCourseIntroductionViewController *introductionVC;
 @property (nonatomic, strong) VideoCourseCommentViewController *commentVC;
+@property (nonatomic, assign) BOOL isFullscreen;
 @property (nonatomic, assign) BOOL isShowClossworkViewBool;//是否正在显示随堂练界面
 @end
 
@@ -155,6 +156,7 @@
         }
     }];
     self.playMangerView.classworkManager = self.classworkManager;
+    self.classworkManager.clossworkView.isFullscreen = self.isFullscreen;
 }
 - (void)checkNetworkDoPlay {
     Reachability *r = [Reachability reachabilityForInternetConnection];
@@ -214,6 +216,8 @@
     [self.playMangerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
+    self.classworkManager.clossworkView.isFullscreen = YES;
+    self.isFullscreen = YES;
     [self.view layoutIfNeeded];
 }
 - (void)remakeForHalfSize {
@@ -226,6 +230,8 @@
         make.right.equalTo(self.view.mas_right);
         make.height.equalTo(self.playMangerView.mas_width).multipliedBy(9.0 / 16.0).priority(999);
     }];
+    self.isFullscreen = NO;
+    self.classworkManager.clossworkView.isFullscreen = self.isFullscreen;
     [self.view layoutIfNeeded];
 }
 #pragma mark - action
