@@ -42,6 +42,13 @@ typedef NS_ENUM(NSUInteger, YXSourceType) {
 @property (nonatomic, assign) BOOL isDeleteVideo;// 需要删除按键YES  default is NO
 @property (nonatomic, assign) YXSourceType sourceType;//仅上报数据使用  区分来源 + 区分是否显示防挂科
 
+// 上报预存
+@property (nonatomic, strong) NSString *duration;
+@property (nonatomic, strong) NSString *record;
+
+
+
+
 @property (nonatomic, weak) YXBaseViewController *baseViewController;
 - (void)addFavorWithData:(id)data completion:(void(^)())completeBlock; // 如果需要收藏，则调用此方法
 - (void)browseFile;

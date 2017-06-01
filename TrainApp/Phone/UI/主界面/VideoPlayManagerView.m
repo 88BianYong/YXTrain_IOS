@@ -428,8 +428,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 #pragma mark - set
 - (void)setFileItem:(YXFileItemBase *)fileItem {
     if (_fileItem) {//每次先上报上次播放结果
-        self.delegate = _fileItem;
-        self.exitDelegate = _fileItem;
         [self recordPlayerDuration];
         SAFE_CALL(self.exitDelegate, browserExit);
     }
@@ -444,13 +442,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.topView.titleString = _fileItem.name;
     self.videoUrl = [NSURL URLWithString:_fileItem.url];
     [self definitionFormat];
-    if ((self.delegate) && [self.delegate respondsToSelector:@selector(preProgress)]) {
-        CGFloat preProgress = [self.delegate preProgress];
-        if (preProgress > 0.99) {
-            preProgress = 0;
-        }
-        self.player.progress = preProgress;
+    CGFloat preProgress = fileItem.record.floatValue / fileItem.duration.floatValue;
+    if (preProgress > 0.99) {
+        preProgress = 0;
     }
+    self.player.progress = preProgress;
     if (isEmpty(self.videoUrl)) {
         self.playStatus =  VideoPlayManagerStatus_Empty;
         return;

@@ -270,4 +270,7 @@
         [self remakeForHalfSize];
     }
 }
+
+
+
 @end

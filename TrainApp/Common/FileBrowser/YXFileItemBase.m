@@ -92,7 +92,7 @@
 }
 - (CGFloat)preProgress{
     if ([YXRecordManager sharedManager].isActive) {
-        return [[YXRecordManager sharedManager]preProgress];
+        return [[YXRecordManager sharedManager] preProgress];
     }
     return 0;
 }

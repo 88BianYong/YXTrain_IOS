@@ -124,21 +124,27 @@
 - (void)dealWithCourseItem:(YXCourseDetailItem *)courseItem{
     courseItem.course_id = self.course.courses_id;
     self.courseItem = courseItem;
-    [[YXRecordManager sharedManager]setupWithCourseDetailItem:courseItem];
+    [[YXRecordManager sharedManager] setupWithCourseDetailItem:courseItem];
     [self willPlayVideo];
     BLOCK_EXEC(self.introductionBlock,self.courseItem);
 }
 - (void)willPlayVideo{
     YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideoSeek:self.seekInteger];
     if (fragment) {
+        self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
+        [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
+       BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
         [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
-        [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
-       BLOCK_EXEC(self.fragmentBlock,nil,[self fileItemBaseFormatForChapterFragment:fragment],YES);
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,nil,NO);
     }
     [self.tableView reloadData];
+    if (![self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath]){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView scrollToRowAtIndexPath:self.courseItem.playIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        });
+    }
 }
 - (void)readyNextWillplayVideoAgain:(BOOL)isAgain{
     if (isAgain) {
@@ -146,22 +152,20 @@
     }
     YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideoSeek:0];
     if (fragment) {
+        self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
+        [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
+        BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
         [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
-        [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
-        BLOCK_EXEC(self.fragmentBlock,nil,[self fileItemBaseFormatForChapterFragment:fragment],YES);
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,nil,YES);
     }
-
     [self.tableView reloadData];
     if (![self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath]){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView scrollToRowAtIndexPath:self.courseItem.playIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
         });
     }
-    
-
 }
 
 #pragma mark - UITableViewDataSource
@@ -221,8 +225,6 @@
     }
     
     [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
-    [YXRecordManager sharedManager].chapterIndex = indexPath.section;
-    [YXRecordManager sharedManager].fragmentIndex = indexPath.row;
     self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
     if (self.fileItem.type == YXFileTypeVideo) {
         self.courseItem.playIndexPath = indexPath;
@@ -230,6 +232,8 @@
     }else{
         [self.fileItem browseFile];
     }
+    [YXRecordManager sharedManager].chapterIndex = indexPath.section;
+    [YXRecordManager sharedManager].fragmentIndex = indexPath.row;
     [self.tableView reloadData];
 }
 #pragma mark - data format
@@ -250,6 +254,8 @@
     fileItem.source = self.courseItem.source;
     fileItem.baseViewController = self;
     fileItem.sourceType = YXSourceTypeCourse;
+    fileItem.duration = fragment.duration;
+    fileItem.record = fragment.record;
     return fileItem;
 }
 - (void)setVideoCourseChapterFragmentCompleteBlock:(VideoCourseChapterFragmentCompleteBlock)block {
