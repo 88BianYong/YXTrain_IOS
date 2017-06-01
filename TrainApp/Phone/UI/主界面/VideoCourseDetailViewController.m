@@ -57,6 +57,9 @@
 #pragma mark - setupUI
 - (void)setupUI{
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.containerView = [[CourseDetailContainerView alloc] init];
+    self.containerView.hidden = YES;
+    [self.view addSubview:self.containerView];
     self.playMangerView = [[VideoPlayManagerView alloc] init];
     self.playMangerView.hidden = YES;
     [self.playMangerView.thumbImageView sd_setImageWithURL:[NSURL URLWithString:self.course.course_img]];
@@ -82,9 +85,7 @@
         }
     }];
     [self.view addSubview:self.playMangerView];
-    self.containerView = [[CourseDetailContainerView alloc] init];
-    self.containerView.hidden = YES;
-    [self.view addSubview:self.containerView];
+
     self.chapterVC = [[VideoCourseChapterViewController alloc]init];
     self.chapterVC.course = self.course;
     self.chapterVC.seekInteger = self.seekInteger;
@@ -203,7 +204,7 @@
 - (void)setupLayout {
     [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
-        make.right.equalTo(self.view.mas_right);
+        make.width.mas_offset(kScreenWidth);
         make.bottom.equalTo(self.view.mas_bottom);
         make.top.equalTo(self.playMangerView.mas_bottom);
     }];

@@ -134,6 +134,7 @@ const NSInteger kTagBase = 10086;
             make.bottom.equalTo(self.topView.mas_bottom);
             make.centerX.equalTo(sender.mas_centerX);
         }];
+        [self layoutIfNeeded];
     }];
     self.bottomScrollView.contentOffset = CGPointMake(self.bottomScrollView.frame.size.width*index, 0);
 }
@@ -143,12 +144,7 @@ const NSInteger kTagBase = 10086;
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    UIButton *selectedButton = [self.topView viewWithTag:kTagBase + (scrollView.contentOffset.x / 375.0f)];
-    [self.sliderView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_offset(CGSizeMake(45.0f, 2.0f));
-        make.bottom.equalTo(self.topView.mas_bottom);
-        make.centerX.equalTo(selectedButton.mas_centerX);
-    }];
+
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -158,6 +154,14 @@ const NSInteger kTagBase = 10086;
             b.selected = NO;
             if (b.tag-kTagBase == index) {
                 b.selected = YES;
+                [UIView animateWithDuration:0.3 animations:^{
+                    [self.sliderView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                        make.size.mas_offset(CGSizeMake(45.0f, 2.0f));
+                        make.bottom.equalTo(self.topView.mas_bottom);
+                        make.centerX.equalTo(b.mas_centerX);
+                        [self layoutIfNeeded];
+                    }];
+                }];
             }
         }
     }

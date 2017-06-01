@@ -100,11 +100,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.slideProgressView = [[ActivitySlideProgressView alloc] init];
     self.slideProgressView.hidden = YES;
     [self addSubview:self.slideProgressView];
-    
-    self.exceptionView = [[ActivityPlayExceptionView alloc] init];
-    [self.exceptionView.exceptionButton  addTarget:self action:@selector(exceptionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.exceptionView.hidden = YES;
-    [self addSubview:self.exceptionView];
+
     
     self.thumbImageView = [[UIImageView alloc] init];
     self.thumbImageView.backgroundColor = [UIColor colorWithHexString:@"e7e8ec"];
@@ -112,8 +108,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self addSubview:self.thumbImageView];
     
     self.placeholderImageView = [[UIImageView alloc] init];
+    self.placeholderImageView.hidden = YES;
     self.placeholderImageView.image = [UIImage imageNamed:@"视频未读取过来的默认图片"];
     [self.thumbImageView addSubview:self.placeholderImageView];
+    
+    self.exceptionView = [[ActivityPlayExceptionView alloc] init];
+    [self.exceptionView.exceptionButton  addTarget:self action:@selector(exceptionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.exceptionView.hidden = YES;
+    [self addSubview:self.exceptionView];
 }
 - (void)setupLayout {
     [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -196,29 +198,39 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             case PlayerView_State_Buffering:
             {
                 self.thumbImageView.hidden = YES;
+                DDLogDebug(@"加载");
+                if (![r isReachable]) {
+                    self.playStatus = VideoPlayManagerStatus_NetworkError;
+                    [self.player pause];
+                }else {
+                    self.exceptionView.hidden = YES;
+                }
             }
                 break;
             case PlayerView_State_Playing:
             {
                 self.exceptionView.hidden = YES;
-
+                DDLogDebug(@"播放");
                 [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
             }
                 break;
             case PlayerView_State_Paused:
             {
+                DDLogDebug(@"暂停");
                 [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
                 [self hideDefinition];
             }
                 break;
             case PlayerView_State_Finished:
             {
+                DDLogDebug(@"完成");
                 [self playVideoFinished];
                 self.thumbImageView.hidden = NO;
             }
                 break;
             case PlayerView_State_Error:
             {
+                DDLogDebug(@"错误");
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.bufferingView stop];
                     self.bufferingView.hidden = YES;
@@ -418,11 +430,18 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.bufferingView.hidden = NO;
     [self.bufferingView start];
     self.exceptionView.hidden = YES;
-    if (self.playStatus == VideoPlayManagerStatus_NotWifi || self.playStatus ==VideoPlayManagerStatus_NetworkError) {//非WIFI情况下继续播放
+    if (self.playStatus == VideoPlayManagerStatus_NotWifi) {//非WIFI情况下继续播放
         self.player.videoUrl = self.videoUrl;
         [self.player play];
     }else if (self.playStatus == VideoPlayManagerStatus_Finish || self.playStatus ==VideoPlayManagerStatus_Empty){
         BLOCK_EXEC(self.playBlock,self.playStatus);
+    }else if (self.playStatus == VideoPlayManagerStatus_NetworkError) {
+        if ([[Reachability reachabilityForInternetConnection] isReachable]) {
+            self.player.videoUrl = self.videoUrl;
+            [self.player play];
+        }else {
+            self.exceptionView.hidden = NO;
+        }
     }
 }
 #pragma mark - set

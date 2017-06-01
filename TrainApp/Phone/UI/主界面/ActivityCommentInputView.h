@@ -12,6 +12,7 @@ typedef void(^ActivityCommentInputTextBlock) (NSString *inputText);
 @interface ActivityCommentInputView : UIView
 @property (nonatomic, strong) SAMTextView *textView;
 @property (nonatomic, copy) NSString *stageId;
+@property (nonatomic, assign) NSInteger maxTextNumber;
 
 - (void)setActivityCommentShowInputViewBlock:(ActivityCommentShowInputViewBlock)block;
 - (void)setActivityCommentInputTextBlock:(ActivityCommentInputTextBlock)block;

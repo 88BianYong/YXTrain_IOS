@@ -37,6 +37,7 @@
     label.font = [UIFont systemFontOfSize:14.0f];
     label.layer.cornerRadius = 16.0f;
     label.clipsToBounds = YES;
+    label.tag = 10086;
     label.layer.borderWidth = 1.0f / [UIScreen mainScreen].scale;
     label.layer.borderColor = [UIColor colorWithHexString:@"d0d2d5"].CGColor;
     [self addSubview:label];
@@ -46,5 +47,10 @@
         make.centerY.equalTo(self.mas_centerY);
         make.height.mas_offset(32.0f);
     }];
+}
+- (void)setPlaceholderString:(NSString *)placeholderString {
+    _placeholderString = placeholderString;
+    UILabel *label = [self viewWithTag:10086];
+    label.text = _placeholderString;
 }
 @end

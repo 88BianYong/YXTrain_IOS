@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SendCommentView : UIView
-
+@property (nonatomic ,copy) NSString *placeholderString;
 @end

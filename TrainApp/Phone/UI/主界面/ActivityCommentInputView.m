@@ -29,7 +29,7 @@ static NSInteger kMaxCommentNumberWords = 500;
         self.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:UITextViewTextDidChangeNotification object:nil];
-        
+        self.maxTextNumber = kMaxCommentNumberWords;
     }
     return self;
 }
@@ -70,7 +70,7 @@ static NSInteger kMaxCommentNumberWords = 500;
     
     self.totalNumberLabel = [[UILabel alloc] init];
     self.totalNumberLabel.font = [UIFont systemFontOfSize:12.0f];
-    self.totalNumberLabel.text = [NSString stringWithFormat:@" / %ld",(long)kMaxCommentNumberWords];
+    self.totalNumberLabel.text = [NSString stringWithFormat:@" / %ld",(long)self.maxTextNumber];
     self.totalNumberLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self addSubview:self.totalNumberLabel];
 }
@@ -154,8 +154,8 @@ static NSInteger kMaxCommentNumberWords = 500;
         self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"0067be"].CGColor;
         
     }
-    if (tempTextView.text.length > kMaxCommentNumberWords) {
-        tempTextView.text = [tempTextView.text substringToIndex:kMaxCommentNumberWords];
+    if (tempTextView.text.length > self.maxTextNumber) {
+        tempTextView.text = [tempTextView.text substringToIndex:self.maxTextNumber];
     }
     self.inputNumberLabel.text = [NSString stringWithFormat:@"%d",(int)tempTextView.text.length];
 }

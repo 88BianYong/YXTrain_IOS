@@ -135,6 +135,7 @@
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     self.totalPage = (int)[self.dataMutableArray count];
     self.sendView = [[SendCommentView alloc] init];
+    self.sendView.placeholderString = @"快来说说你的感想吧...";
     [self.contentView addSubview:self.sendView];
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userPublishComment)];
     [self.sendView addGestureRecognizer:recognizer];
@@ -148,6 +149,7 @@
     self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
     self.inputTextView.stageId = @"0";
     self.inputTextView.hidden = !self.isFullReply;
+    self.inputTextView.maxTextNumber = 200;
     [self.inputTextView setActivityCommentShowInputViewBlock:^(BOOL isShow) {
         STRONG_SELF
         if (isShow) {
@@ -433,6 +435,7 @@
     VC.comment = self.dataMutableArray[section];
     VC.chooseInteger = section;
     VC.isShowInputView = isShow;
+    VC.isFullReply = YES;
     WEAK_SELF
     [VC setVideoCourseSecondCommentRefreshBlock:^(NSInteger chooseInteger, NSInteger totalNumber) {
         STRONG_SELF
