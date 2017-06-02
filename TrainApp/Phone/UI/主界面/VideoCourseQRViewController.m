@@ -29,7 +29,7 @@
     [super viewDidLoad];
     [super setupLeftBack];
     self.view.backgroundColor = [UIColor blackColor];
-    self.navigationItem.title = @"扫描二维码登录";
+    self.navigationItem.title = @"扫描二维观看课程";
     
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusDenied)

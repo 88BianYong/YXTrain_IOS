@@ -90,6 +90,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.bottomView.playPauseButton addTarget:self action:@selector(playAndPauseButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView.rotateButton addTarget:self action:@selector(rotateScreenButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView.slideProgressControl addTarget:self action:@selector(progressAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.bottomView.slideProgressControl addTarget:self action:@selector(invalidateTopBottomHiddenTimer) forControlEvents:UIControlEventTouchDown];
     self.bufferingView = [[YXPlayerBufferingView alloc] init];
     [self addSubview:self.bufferingView];
     
@@ -334,6 +335,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                                                              selector:@selector(topBottomHideTimerAction)
                                                              userInfo:nil
                                                               repeats:YES];
+    DDLogDebug(@"滑动");
 }
 - (void)invalidateTopBottomHiddenTimer {
     [self.topBottomHideTimer invalidate];
@@ -505,6 +507,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         {
             self.exceptionView.exceptionLabel.text = @"视频课程已播放完";
             [self.exceptionView.exceptionButton setTitle:@"点击重新观看" forState:UIControlStateNormal];
+            
         }
             break;
         case  VideoPlayManagerStatus_Empty:

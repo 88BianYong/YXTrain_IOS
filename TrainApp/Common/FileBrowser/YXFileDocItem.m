@@ -37,6 +37,7 @@
     qlVC.qlTitle = self.name;
     
     if (![qlVC canPreview]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(NO)];
         [self.baseViewController showToast:@"该文件无法预览"];
         return;
     }

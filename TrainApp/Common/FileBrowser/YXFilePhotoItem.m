@@ -33,6 +33,7 @@
 - (void)openPic:(NSString *)path{
     UIImage *image = [UIImage imageWithContentsOfFile:path];
     if (!image) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(NO)];
         [self.baseViewController showToast:@"该文件无法预览"];
         return;
     }

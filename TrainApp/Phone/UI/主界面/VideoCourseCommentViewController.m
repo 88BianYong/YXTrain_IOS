@@ -110,6 +110,12 @@
         [self firstPageFetch];
     };
     
+    self.emptyView = [[YXEmptyView alloc] initWithFrame:self.view.bounds];
+    self.emptyView.isVideo = YES;
+    self.emptyView.hidden = YES;
+    [self.contentView addSubview:self.emptyView];
+    
+    
     self.footerView = [MJRefreshFooterView footer];
     self.footerView.scrollView = self.tableView;
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 365.0f)];
@@ -132,6 +138,7 @@
         STRONG_SELF
         [self firstPageFetch];
     };
+    
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     self.totalPage = (int)[self.dataMutableArray count];
     self.sendView = [[SendCommentView alloc] init];
@@ -164,9 +171,10 @@
     }];
     [self.inputTextView setActivityCommentInputTextBlock:^(NSString *inputText) {
         STRONG_SELF
-        [self requestForCommentReply:inputText];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self hiddenCommentInputView];
+        [self hiddenCommentInputView];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//键盘收起引起加载动画变动 需要延时执行
+            [self requestForCommentReply:inputText];
+
         });
     }];
     [self.navigationController.view addSubview:self.inputTextView];
@@ -318,6 +326,7 @@
             [self showErrorTotal:error];
         }else if (item.body.comment){
             if (self.isFullReply) {
+                self.dataMutableArray[0].childNum = [NSString stringWithFormat:@"%ld",self.dataMutableArray[0].childNum.integerValue + 1];
                 [self.dataMutableArray insertObject:item.body.comment atIndex:1];
             }else {
                 [self.dataMutableArray insertObject:item.body.comment atIndex:0];

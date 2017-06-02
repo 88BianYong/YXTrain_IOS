@@ -7,6 +7,7 @@
 //
 
 #import "VideoCourseCommentHeaderView.h"
+#import "NSString+YXString.h"
 @interface VideoCourseCommentHeaderView ()
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
@@ -44,6 +45,7 @@
     self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.font = [UIFont systemFontOfSize:15.0f];
     self.nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    self.nameLabel.numberOfLines = 1;
     [self.contentView addSubview:self.nameLabel];
     
     self.timeLabel = [[UILabel alloc] init];
@@ -140,7 +142,7 @@
     _comment = comment;
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:_comment.ap] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
     self.nameLabel.text = _comment.userName;
-    self.timeLabel.text = _comment.timeDesc;
+    self.timeLabel.text = [NSString timeStringWithTimeStamp:_comment.time?:@""];
     if (_comment.laudNumber.integerValue >= 10000) {
         self.favorLabel.text = @"9999+";
     }else {

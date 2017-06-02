@@ -57,13 +57,26 @@
 #pragma mark - setupUI
 - (void)setupUI{
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.errorView = [[YXErrorView alloc]init];
+    WEAK_SELF
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self.chapterVC requestForCourseDetail];
+    };
+    self.dataErrorView = [[DataErrorView alloc] init];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self.chapterVC requestForCourseDetail];
+    };
+    
     self.containerView = [[CourseDetailContainerView alloc] init];
     self.containerView.hidden = YES;
     [self.view addSubview:self.containerView];
     self.playMangerView = [[VideoPlayManagerView alloc] init];
     self.playMangerView.hidden = YES;
     [self.playMangerView.thumbImageView sd_setImageWithURL:[NSURL URLWithString:self.course.course_img]];
-    WEAK_SELF
     [self.playMangerView setVideoPlayManagerViewRotateScreenBlock:^(BOOL isVertical) {
         STRONG_SELF
         [self rotateScreenAction];
@@ -124,12 +137,6 @@
     [self addChildViewController:self.introductionVC];
     [self addChildViewController:self.commentVC];
     self.containerView.viewControllers = @[self.chapterVC,self.introductionVC,self.commentVC];
-    self.errorView = [[YXErrorView alloc]init];
-    self.errorView.retryBlock = ^{
-        STRONG_SELF
-        [self startLoading];
-        [self.chapterVC requestForCourseDetail];
-    };
 }
 - (void)setupClassworkManager:(YXFileItemBase *)fileItem {
     //随堂练

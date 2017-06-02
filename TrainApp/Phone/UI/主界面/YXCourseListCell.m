@@ -97,11 +97,13 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
     if (!_course.isSupportApp.boolValue) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.historyImageView.image = [UIImage imageNamed:@"不支持"];
         self.recordLabel.text = @"暂不支持该类型课程";
         self.recordLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
         self.titleLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
     }else {
+        self.selectionStyle = UITableViewCellSelectionStyleDefault;
         self.recordLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
         self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
         int second = _course.record.intValue;

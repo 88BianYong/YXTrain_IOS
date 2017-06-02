@@ -57,7 +57,8 @@
 }
 - (void)setScore:(YXCourseDetailItem_score *)score {
     _score = score;
-    NSMutableAttributedString *scoreAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"评分: %@",_score.avr]];
+    
+    NSMutableAttributedString *scoreAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"评分: %0.1f",_score.avr.floatValue]];
     [scoreAttributed addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"]} range:NSMakeRange(0,3)];
     self.scoreLabel.attributedText = scoreAttributed;
 }

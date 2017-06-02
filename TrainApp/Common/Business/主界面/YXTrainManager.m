@@ -40,8 +40,14 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     if (isEmpty(groups)) {
         return nil;
     }
+    if (self.currentProjectIndexPath.section >= groups.count) {
+        self.currentProjectIndexPath = [NSIndexPath indexPathForRow:self.currentProjectIndexPath.row inSection:0];
+    }
     TrainListProjectGroup *group = groups[self.currentProjectIndexPath.section];
     NSArray *items = group.items;
+    if (self.currentProjectIndexPath.row >= items.count) {
+        self.currentProjectIndexPath = [NSIndexPath indexPathForRow:0 inSection:self.currentProjectIndexPath.section];
+    }
     return items[self.currentProjectIndexPath.row];
 }
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock {

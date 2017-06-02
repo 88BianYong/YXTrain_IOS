@@ -56,7 +56,7 @@
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(([UIScreen mainScreen].bounds.size.height - 371) * 0.44 - 31);
         make.centerX.mas_equalTo(0);
-        make.size.mas_offset(CGSizeMake(163.0f, 163.0f));
+        make.size.mas_offset(CGSizeMake(103.0f, 103.0f));
     }];
     
     [self.titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {

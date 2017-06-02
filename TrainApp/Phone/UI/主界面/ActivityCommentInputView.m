@@ -24,12 +24,12 @@ static NSInteger kMaxCommentNumberWords = 500;
 }
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
+        self.maxTextNumber = kMaxCommentNumberWords;
         [self setupUI];
         [self setupLayout];
         self.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidChange:) name:UITextViewTextDidChangeNotification object:nil];
-        self.maxTextNumber = kMaxCommentNumberWords;
     }
     return self;
 }
@@ -210,5 +210,10 @@ static NSInteger kMaxCommentNumberWords = 500;
                             }];
     
     return returnValue;
+}
+- (void)setMaxTextNumber:(NSInteger)maxTextNumber {
+    _maxTextNumber = maxTextNumber;
+    self.totalNumberLabel.text = [NSString stringWithFormat:@" / %ld",(long)self.maxTextNumber];
+
 }
 @end

@@ -48,12 +48,12 @@
     [RACObserve(self.downloader, state) subscribeNext:^(id x) {
         STRONG_SELF
         if ([x intValue] == DownloadStatusFinished) {
-            [self.progressView removeFromSuperview];
+            [self removeProgressView];
             BLOCK_EXEC(completeBlock,des);
         }
         
         if ([x intValue] == DownloadStatusFailed) {
-            [self.progressView removeFromSuperview];
+            [self removeProgressView];
             [self.fileItem.baseViewController showToast:@"加载失败"];
         }
     }];
@@ -67,6 +67,10 @@
     };
     [self.downloader start];
     [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(YES)];
+}
+- (void)removeProgressView {
+    [self.progressView removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(NO)];
 }
 
 @end

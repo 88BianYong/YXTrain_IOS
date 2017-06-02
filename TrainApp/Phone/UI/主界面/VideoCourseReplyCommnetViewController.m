@@ -24,6 +24,7 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"评论";
     [self setupUI];
     [self setupLayout];
 }
@@ -104,6 +105,7 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
     }];
 }
 - (void)requestForCommentReply:(NSString *)inputString {
+    [self.commentTextView resignFirstResponder];
     if (self.replyRequest) {
         [self.replyRequest stopRequest];
     }

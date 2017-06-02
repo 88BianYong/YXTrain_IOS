@@ -163,7 +163,7 @@
     [self.tableView reloadData];
     if (![self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath]){
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView scrollToRowAtIndexPath:self.courseItem.playIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            [self.tableView scrollToRowAtIndexPath:self.courseItem.playIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         });
     }
 }

@@ -146,6 +146,8 @@
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXTokenInValidNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
         [[YXUserManager sharedManager] resetUserData];
+        //[[YXUserManager sharedManager] logout];
+
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
         [YXPromtController showToast:@"帐号授权已失效,请重新登录" inView:self.window];

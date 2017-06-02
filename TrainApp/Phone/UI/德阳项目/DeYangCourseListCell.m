@@ -139,6 +139,7 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.course_title length])];
     self.titleLabel.attributedText = attributedString;
     if (!_course.isSupportApp.boolValue) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.recordLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.titleLabel.mas_left).mas_offset(23);
         }];
@@ -148,6 +149,7 @@
         self.titleLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
         self.quizzesLabel.text = @"";
     }else {
+        self.selectionStyle = UITableViewCellSelectionStyleDefault;
         self.historyImageView.hidden = YES;
         [self.recordLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.titleLabel.mas_left);
