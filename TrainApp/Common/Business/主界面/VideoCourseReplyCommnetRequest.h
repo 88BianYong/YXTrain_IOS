@@ -6,7 +6,7 @@
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "YXGetRequest.h"
+#import "YXPostRequest.h"
 #import "VideoCourseCommentsRequest.h"
 @interface VideoCourseReplyCommnetRequestItem_Body : JSONModel
 @property (nonatomic, strong) VideoCourseCommentsRequestItem_Body_Comments<Optional> *comment;
@@ -16,7 +16,7 @@
 @property (nonatomic, strong) VideoCourseReplyCommnetRequestItem_Body<Optional> *body;
 @end
 
-@interface VideoCourseReplyCommnetRequest : YXGetRequest
+@interface VideoCourseReplyCommnetRequest : YXPostRequest
 @property (nonatomic, copy) NSString<Optional> *commentID;
 @property (nonatomic, copy) NSString<Optional> *courseID;
 @property (nonatomic, copy) NSString<Optional> *content;

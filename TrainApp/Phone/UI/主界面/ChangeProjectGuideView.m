@@ -26,11 +26,8 @@
     UIImageView *descriptionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"点击可以切换当前显示的项目"]];
     [self addSubview:descriptionImageView];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"项目切换-我知道了-按钮"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"项目切换-我知道了-按钮点击态"] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(removeSelfButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"项目切换-我知道了-按钮"]];
+    [self addSubview:imageView];
     
     [arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(60);
@@ -43,18 +40,10 @@
         make.size.mas_equalTo(CGSizeMake(340, 45));
     }];
     
-    [button mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(descriptionImageView.mas_bottom).offset(50);
         make.centerX.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(170, 65));
     }];
 }
-
-- (void)removeSelfButtonAction:(UIButton *)sender{
-    [self removeFromSuperview];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelToUpdate" object:nil];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 @end

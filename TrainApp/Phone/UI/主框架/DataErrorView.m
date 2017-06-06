@@ -85,6 +85,19 @@
             make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(18.5);
             make.size.mas_equalTo(CGSizeMake(115, 33));
         }];
+    }else {
+        self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+        self.imageView.hidden = NO;
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(10);
+            make.right.mas_equalTo(-10);
+            make.top.mas_equalTo(self.imageView.mas_bottom).mas_offset(5);
+        }];
+        [self.refreshButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(0);
+            make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(18.5);
+            make.size.mas_equalTo(CGSizeMake(115, 33));
+        }];
     }
 }
 @end

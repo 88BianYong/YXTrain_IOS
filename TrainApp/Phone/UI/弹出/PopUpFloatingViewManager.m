@@ -14,11 +14,14 @@
 #import "AppDelegate.h"
 #import "YXCMSCustomView.h"
 #import "YXWebViewController.h"
-
+#import "FloatingBaseView.h"
 @interface PopUpFloatingViewManager ()
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
 @property (nonatomic, strong) YXPopUpContainerView *upgradeView;
 @property (nonatomic, assign) BOOL isShowCMS;
+@property (nonatomic, assign) BOOL isMultiProject;//多项目
+@property (nonatomic, assign) BOOL isMultiRole;//多角色
+@property (nonatomic, assign) BOOL isQRCode;//二维码扫描
 @end
 @implementation PopUpFloatingViewManager
 + (instancetype)sharedInstance {
@@ -32,13 +35,12 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.isShowCMS = YES;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPopUpFloatingView) name:@"cancelToUpdate" object:nil];
         WEAK_SELF
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainShowUpdate object:nil] subscribeNext:^(id x) {
             STRONG_SELF
             self.isShowCMS = NO;
             if ([YXInitHelper sharedHelper].isShowUpgrade && self.upgradeView == nil) {
-                [self showUpgradeView];
+                [self showPopUpFloatingView];
                 BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
             }else {
                 BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,YES);
@@ -52,14 +54,12 @@
     if (self.isShowCMS && !self.isLoginFirst) {
         [self showCMSView];
     }else if ([YXInitHelper sharedHelper].isShowUpgrade) {
-        if(self.upgradeView == nil) {
-            [self showUpgradeView];
-        }
-    }else if ([self isShowMoreThanOneProject]) {
+        [self showUpgradeView];
+    }else if ([self isShowMoreThanOneProject] || self.isMultiProject) {
         [self showMultiProjectCutover];
-    }else if ([self isShowRoleChange]) {
+    }else if ([self isShowRoleChange] || self.isMultiRole) {
         [self showMultiRoleCutover];
-    }else if ([self isQRCodePrompt]) {
+    }else if ([self isQRCodePrompt] || self.isQRCode) {
         [self showQRCodePrompt];
     }
 }
@@ -110,6 +110,9 @@
 }
 //升级弹窗
 - (void)showUpgradeView {
+    if (self.upgradeView != nil) {
+        return;
+    }
     YXInitRequestItem_Body *body = [YXInitHelper sharedHelper].item.body[0];
     self.upgradeView = [[YXPopUpContainerView alloc] init];
     YXAppUpdateData *data = [[YXAppUpdateData alloc] init];
@@ -121,7 +124,7 @@
         STRONG_SELF
         [self.upgradeView hide];
         [YXInitHelper sharedHelper].isShowUpgrade = NO;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelToUpdate" object:nil];
+        [self showPopUpFloatingView];
     };
     
     YXAlertAction *downloadUpdateAlertAct = [[YXAlertAction alloc] init];
@@ -150,32 +153,68 @@
 
 //多项目切换界面
 - (void)showMultiProjectCutover{
+    if (self.isMultiProject) {
+        return;
+    }
+    self.isMultiProject = YES;
     UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    UIView *guideView = [[NSClassFromString(@"ChangeProjectGuideView") alloc] init];
+    FloatingBaseView *guideView = [[NSClassFromString(@"ChangeProjectGuideView") alloc] init];
+    WEAK_SELF
+    [guideView setFloatingBaseRemoveCompleteBlock:^{
+        STRONG_SELF;
+        self.isMultiProject = NO;
+        [self showPopUpFloatingView];
+    }];
     [window addSubview:guideView];
     [guideView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstLaunch];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //多角色切换界面
 - (void)showMultiRoleCutover{
+    if (self.isMultiRole) {
+        return;
+    }
+    self.isMultiRole = YES;
     UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    UIView *roleView = [[NSClassFromString(@"ChangeProjectRoleView") alloc] init];
+    FloatingBaseView *roleView = [[NSClassFromString(@"ChangeProjectRoleView") alloc] init];
+    WEAK_SELF
+    [roleView setFloatingBaseRemoveCompleteBlock:^{
+        STRONG_SELF;
+        self.isMultiRole = NO;
+        [self showPopUpFloatingView];
+    }];
     [window addSubview:roleView];
     [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstRoleChange];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //二维码扫描界面
 - (void)showQRCodePrompt{
+    if (self.isQRCode) {
+        return;
+    }
+    self.isQRCode = YES;
     UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    UIView *roleView = [[NSClassFromString(@"QRCodeFloatingView") alloc] init];
-    [window addSubview:roleView];
-    [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
+    FloatingBaseView*codeView = [[NSClassFromString(@"QRCodeFloatingView") alloc] init];
+    WEAK_SELF
+    [codeView setFloatingBaseRemoveCompleteBlock:^{
+        STRONG_SELF;
+        self.isQRCode = NO;
+        [self showPopUpFloatingView];
+    }];
+    [window addSubview:codeView];
+    [codeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainQRCodePrompt];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - judgment

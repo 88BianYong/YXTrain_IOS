@@ -68,7 +68,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             if ([x.object boolValue]) {
                 [self.player pause];
             }else {
-                [self.player play];
+                if (!self.isManualPause) {
+                    [self.player play];
+                }
             }
         }];
 
@@ -399,7 +401,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.bottomView.slideProgressControl updateUI];
     [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
     BLOCK_EXEC(self.finishBlock);
+    [self recordPlayerDuration];
     SAFE_CALL(self.exitDelegate, browserExit);
+    _fileItem = nil;
 }
 #pragma mark - button Action
 - (void)playAndPauseButtonAction:(UIButton *)sender{
@@ -507,7 +511,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         {
             self.exceptionView.exceptionLabel.text = @"视频课程已播放完";
             [self.exceptionView.exceptionButton setTitle:@"点击重新观看" forState:UIControlStateNormal];
-            
         }
             break;
         case  VideoPlayManagerStatus_Empty:

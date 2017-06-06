@@ -7,18 +7,17 @@
 //
 
 #import "FloatingBaseView.h"
-
+@interface FloatingBaseView ()
+@property (nonatomic, copy) FloatingBaseRemoveCompleteBlock removeBlock;
+@end
 @implementation FloatingBaseView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    [self removeFromSuperview];
+    BLOCK_EXEC(self.removeBlock);
 }
-*/
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    [super touchesBegan:touches withEvent:event];
-//    [self removeFromSuperview];
-//}
+- (void)setFloatingBaseRemoveCompleteBlock:(FloatingBaseRemoveCompleteBlock)block {
+    self.removeBlock = block;
+}
 @end

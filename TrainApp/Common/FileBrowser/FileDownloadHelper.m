@@ -48,7 +48,7 @@
     [RACObserve(self.downloader, state) subscribeNext:^(id x) {
         STRONG_SELF
         if ([x intValue] == DownloadStatusFinished) {
-            [self removeProgressView];
+            [self.progressView removeFromSuperview];
             BLOCK_EXEC(completeBlock,des);
         }
         

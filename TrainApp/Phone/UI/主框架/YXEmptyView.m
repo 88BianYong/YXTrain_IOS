@@ -101,7 +101,17 @@
             make.centerX.equalTo(self.mas_centerX);
             make.centerY.equalTo(self.mas_centerY);
         }];
+    }else {
+        self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+        self.imageView.hidden = NO;
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.top.equalTo(self.imageView.mas_bottom).mas_offset(2);
+        }];
+        [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.mas_centerX);
+            make.centerY.equalTo(self.mas_centerY).offset(-32.0f);
+        }];
     }
- 
-}
+ }
 @end

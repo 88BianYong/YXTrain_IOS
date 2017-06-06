@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef  void(^FloatingBaseRemoveCompleteBlock)(void);
 @interface FloatingBaseView : UIView
-
+- (void)setFloatingBaseRemoveCompleteBlock:(FloatingBaseRemoveCompleteBlock)block;
 @end

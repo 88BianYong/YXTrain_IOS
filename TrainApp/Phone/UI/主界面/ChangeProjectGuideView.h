@@ -6,8 +6,8 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "FloatingBaseView.h"
 
-@interface ChangeProjectGuideView : UIView
+@interface ChangeProjectGuideView :FloatingBaseView
 
 @end

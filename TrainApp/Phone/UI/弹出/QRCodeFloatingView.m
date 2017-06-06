@@ -42,11 +42,9 @@
     UIImageView *descriptionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"内容模块B"]];
     [self addSubview:descriptionImageView];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"朕知道了"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"朕知道了"] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(removeSelfButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"朕知道了"]];
+    [self addSubview:imageView];
     
     [descriptionImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(containerView.mas_bottom);
@@ -54,16 +52,10 @@
         make.size.mas_equalTo(CGSizeMake(252.0f, 127.0f));
     }];
     
-    [button mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(descriptionImageView.mas_bottom).offset(5.0f);
         make.right.equalTo(self.mas_right).offset(-83.0f);
         make.size.mas_equalTo(CGSizeMake(95.0f, 50.0f));
     }];
-}
-
-- (void)removeSelfButtonAction:(UIButton *)sender{
-    [self removeFromSuperview];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainQRCodePrompt];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 @end

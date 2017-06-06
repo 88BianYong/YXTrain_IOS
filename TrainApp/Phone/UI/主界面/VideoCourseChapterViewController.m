@@ -43,6 +43,8 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+    [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
+    [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -140,7 +142,7 @@
         BLOCK_EXEC(self.fragmentBlock,nil,nil,NO);
     }
     [self.tableView reloadData];
-    if (![self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath]){
+    if ([self isShowPlayCell]){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView scrollToRowAtIndexPath:self.courseItem.playIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
         });
@@ -161,11 +163,22 @@
         BLOCK_EXEC(self.fragmentBlock,nil,nil,YES);
     }
     [self.tableView reloadData];
-    if (![self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath]){
+    if ([self isShowPlayCell]){
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView scrollToRowAtIndexPath:self.courseItem.playIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         });
     }
+}
+- (BOOL)isShowPlayCell {
+    if (![self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath]) {
+        return NO;
+    }
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath];
+    CGRect frame = [cell convertRect:cell.bounds toView:self.tableView];
+    if (frame.origin.x >= -5 || frame.origin.x >= self.tableView.bounds.size.height - 10.0f) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - UITableViewDataSource

@@ -15,6 +15,7 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
 @property (nonatomic, strong) SAMTextView *commentTextView;
 @property (nonatomic, strong) VideoCourseReplyCommnetRequest *replyRequest;
 @property (nonatomic, copy) VideoCourseReplyCommnetBlock replyComment;
+@property (nonatomic, strong) UIButton *sendButton;
 @end
 
 @implementation VideoCourseReplyCommnetViewController
@@ -56,14 +57,14 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
     }];
     [self setupLeftWithCustomView:button];
     
-    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [sendButton setTitle:@"发送" forState:UIControlStateNormal];
-    [sendButton setTitleColor:[UIColor colorWithHexString:@"aaabaf"] forState:UIControlStateDisabled];
-    [sendButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
-    sendButton.titleLabel.font = [UIFont systemFontOfSize:13];
-    sendButton.frame = CGRectMake(0, 0, 50.0f, 30.0f);
-    sendButton.enabled = NO;
-    [[sendButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+    self.sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.sendButton setTitle:@"发送" forState:UIControlStateNormal];
+    [self.sendButton setTitleColor:[UIColor colorWithHexString:@"aaabaf"] forState:UIControlStateDisabled];
+    [self.sendButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+    self.sendButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.sendButton.frame = CGRectMake(0, 0, 50.0f, 30.0f);
+    self.sendButton.enabled = NO;
+    [[self.sendButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
         if([[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length]==0) {
             [self showToast:@"请输入评论内容"];
@@ -71,7 +72,7 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
             [self requestForCommentReply:self.commentTextView.text];
         }
     }];
-    [self setupRightWithCustomView:sendButton];
+    [self setupRightWithCustomView:self.sendButton];
 
     self.commentTextView = [[SAMTextView alloc] init];
     self.commentTextView.delegate = self;
@@ -93,7 +94,7 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
                       }];
     [signUpActiveSignal subscribeNext:^(NSNumber *signupActive) {
         STRONG_SELF
-        sendButton.enabled = [signupActive boolValue];
+        self.sendButton.enabled = [signupActive boolValue];
     }];
 }
 - (void)setupLayout {
@@ -130,6 +131,7 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self dismissViewControllerAnimated:YES completion:^{
                     self.commentTextView.text = nil;
+                    self.sendButton.enabled = NO;
                 }];
             });
         }else {
@@ -140,5 +142,37 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
 }
 - (void)setVideoCourseReplyCommnetBlock:(VideoCourseReplyCommnetBlock)block {
     self.replyComment = block;
+}
+#pragma mark - delegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([[[textView textInputMode] primaryLanguage] isEqualToString:@"emoji"] || ![[textView textInputMode] primaryLanguage] || [self stringContainsEmoji:text]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)stringContainsEmoji:(NSString *)string {
+    __block BOOL returnValue = NO;
+    [string enumerateSubstringsInRange:NSMakeRange(0, [string length])
+                               options:NSStringEnumerationByComposedCharacterSequences
+                            usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                const unichar high = [substring characterAtIndex: 0];
+                                // Surrogate pair (U+1D000-1F9FF)
+                                if (0xD800 <= high && high <= 0xDBFF) {
+                                    const unichar low = [substring characterAtIndex: 1];
+                                    const int codepoint = ((high - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
+                                    if (0x1D000 <= codepoint && codepoint <= 0x1F9FF){
+                                        returnValue = YES;
+                                    }
+                                    // Not surrogate pair (U+2100-27BF)
+                                } else {
+                                    
+                                    //                                    if (0x2100 <= high && high <= 0x27BF){
+                                    //                                        returnValue = YES;
+                                    //                                    }
+                                }
+                            }];
+    
+    return returnValue;
 }
 @end

@@ -39,32 +39,22 @@
         make.center.equalTo(containerView);
     }];
     
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"朕知道了"]];
+    [self addSubview:imageView];
+    
     UIImageView *descriptionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"内容模块"]];
     [self addSubview:descriptionImageView];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"朕知道了"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"朕知道了"] forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(removeSelfButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button];
-
     [descriptionImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).offset(70.0f);
         make.left.mas_equalTo(self.mas_left).offset(31.0f);
         make.size.mas_equalTo(CGSizeMake(250.0f, 120.0f));
     }];
     
-    [button mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [imageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(descriptionImageView.mas_bottom).offset(16.0f);
         make.left.mas_equalTo(self.mas_left).offset(167.0f);
         make.size.mas_equalTo(CGSizeMake(95.0f, 50.0f));
     }];
 }
-
-- (void)removeSelfButtonAction:(UIButton *)sender{
-    [self removeFromSuperview];
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstRoleChange];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 @end
