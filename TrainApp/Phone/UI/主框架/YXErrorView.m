@@ -99,10 +99,10 @@
         self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
         self.imageView.hidden = NO;
         self.subTitleLabel.hidden = NO;
-        [self.subTitleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(10);
             make.right.mas_equalTo(-10);
-            make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(10);
+            make.top.mas_equalTo(self.imageView.mas_bottom).mas_offset(5);
         }];
         [self.retryButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);

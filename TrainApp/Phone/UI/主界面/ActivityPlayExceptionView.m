@@ -39,6 +39,11 @@
     self.exceptionButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
     [self.exceptionButton setTitleColor:[UIColor colorWithHexString:@"78c4ff"] forState:UIControlStateNormal];
     [self.backgroundView addSubview:self.exceptionButton];
+    
+    self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.backButton setImage:[UIImage imageNamed:@"视频全屏－返回按钮"] forState:UIControlStateNormal];
+    [self.backButton setImage:[UIImage imageNamed:@"视频全屏－返回按钮点击态"] forState:UIControlStateHighlighted];
+    [self addSubview:self.backButton];
 }
 
 - (void)setupLayout {
@@ -56,6 +61,11 @@
         make.centerX.equalTo(self.backgroundView.mas_centerX);
         make.top.equalTo(self.exceptionLabel.mas_bottom).offset(21.0f);
         make.bottom.equalTo(self.backgroundView.mas_bottom);
+    }];
+    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.top.equalTo(self.mas_top);
+        make.size.mas_offset(CGSizeMake(50.0f, 50.0f));
     }];
 }
 @end

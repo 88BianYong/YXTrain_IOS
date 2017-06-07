@@ -143,6 +143,10 @@
     self.totalPage = (int)[self.dataMutableArray count];
     self.sendView = [[SendCommentView alloc] init];
     self.sendView.placeholderString = @"快来说说你的感想吧...";
+    if ([self isKindOfClass:[VideoCourseSecondCommentViewController class]]) {
+        VideoCourseSecondCommentViewController *VC = (VideoCourseSecondCommentViewController *)self;
+        self.sendView.placeholderString = [NSString stringWithFormat:@"回复 %@:",VC.comment.userName];
+    }
     [self.contentView addSubview:self.sendView];
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userPublishComment)];
     [self.sendView addGestureRecognizer:recognizer];
@@ -155,6 +159,7 @@
     
     self.inputTextView = [[ActivityCommentInputView alloc] initWithFrame:CGRectMake(0, kScreenHeight - 64.0f - 44.0f, kScreenWidth, 44.0f)];
     self.inputTextView.stageId = @"0";
+    self.inputTextView.emptyString = @"请输入回复内容";
     self.inputTextView.hidden = !self.isFullReply;
     self.inputTextView.maxTextNumber = 200;
     [self.inputTextView setActivityCommentShowInputViewBlock:^(BOOL isShow) {
@@ -413,7 +418,7 @@
 #pragma mark - inputView
 - (void)userPublishComment{
     if (self.isFullReply) {
-        self.inputTextView.textView.placeholder = @"评论 :";
+        self.inputTextView.textView.placeholder = self.sendView.placeholderString;
         [self showCommentInputView];
     }else {
         YXNavigationController *nav = [[YXNavigationController alloc] initWithRootViewController:self.replyCommnetVC];

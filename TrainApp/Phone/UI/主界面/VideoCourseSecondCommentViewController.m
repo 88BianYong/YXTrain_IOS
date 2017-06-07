@@ -94,5 +94,18 @@
 - (void)setVideoCourseSecondCommentRefreshBlock:(VideoCourseSecondCommentRefreshBlock)block {
     self.refreshBlock = block;
 }
-
+- (void)showToast:(NSString *)toast{
+    NSArray *windows = [[UIApplication sharedApplication] windows];
+    for (UIWindow *window in [windows reverseObjectEnumerator])
+    {
+        MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:window];
+        hud.mode = MBProgressHUDModeText;
+        hud.detailsLabelText = toast;
+        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:16.0f];
+        hud.removeFromSuperViewOnHide = YES;
+        [window addSubview:hud];
+        [hud show:YES];
+        [hud hide:YES afterDelay:2];
+    }
+}
 @end

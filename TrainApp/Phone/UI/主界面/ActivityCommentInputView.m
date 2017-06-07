@@ -25,6 +25,7 @@ static NSInteger kMaxCommentNumberWords = 500;
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]){
         self.maxTextNumber = kMaxCommentNumberWords;
+        self.emptyString = @"发布内容不能为空";
         [self setupUI];
         [self setupLayout];
         self.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
@@ -105,7 +106,7 @@ static NSInteger kMaxCommentNumberWords = 500;
     if ([[self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0) {
         BLOCK_EXEC(self.inputTextBlock,self.textView.text);
     }else {
-        [YXPromtController showToast:@"发布内容不能为空" inView:[self viewController].view];
+        [YXPromtController showToast:self.emptyString inView:[self viewController].view];
     }
     
 }

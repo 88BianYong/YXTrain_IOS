@@ -175,4 +175,18 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
     
     return returnValue;
 }
+- (void)showToast:(NSString *)toast{
+    NSArray *windows = [[UIApplication sharedApplication] windows];
+    for (UIWindow *window in [windows reverseObjectEnumerator])
+    {
+        MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:window];
+        hud.mode = MBProgressHUDModeText;
+        hud.detailsLabelText = toast;
+        hud.detailsLabelFont = [UIFont boldSystemFontOfSize:16.0f];
+        hud.removeFromSuperViewOnHide = YES;
+        [window addSubview:hud];
+        [hud show:YES];
+        [hud hide:YES afterDelay:2];
+    }
+}
 @end

@@ -64,6 +64,10 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     [[YXWebSocketManger  sharedInstance] close];
+    if ([YXRecordManager sharedManager].isActive) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:kRecordNeedUpdateNotification object:nil];
+        [[YXRecordManager sharedManager] report];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -84,7 +88,7 @@
             self.backgroundTimer = nil;
             [self endBackgroundTask];
         }];
-        self.backgroundTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
+        self.backgroundTimer = [NSTimer scheduledTimerWithTimeInterval:0.3f target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(finishRecordTimer) name:kRecordReportCompleteNotification object:nil];
     }
 }

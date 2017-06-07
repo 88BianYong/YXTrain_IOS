@@ -73,6 +73,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 }
             }
         }];
+        
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillTerminateNotification object:nil] subscribeNext:^(id x) {
+            self.player = nil;
+        }];
 
         self.thumbImageView.hidden = NO;
     }
@@ -118,6 +122,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.exceptionView = [[ActivityPlayExceptionView alloc] init];
     [self.exceptionView.exceptionButton  addTarget:self action:@selector(exceptionButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     self.exceptionView.hidden = YES;
+    WEAK_SELF
+    [[self.exceptionView.backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        STRONG_SELF
+        BLOCK_EXEC(self.backBlock);
+    }];
     [self addSubview:self.exceptionView];
 }
 - (void)setupLayout {
@@ -182,13 +191,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
         STRONG_SELF
-        if ([x unsignedIntegerValue] == PlayerView_State_Buffering) {
-            self.bufferingView.hidden = NO;
-            [self.bufferingView start];
-        } else {
-            self.bufferingView.hidden = YES;
-            [self.bufferingView stop];
-        }
+//        if ([x unsignedIntegerValue] == PlayerView_State_Buffering) {
+//            self.bufferingView.hidden = NO;
+//            [self.bufferingView start];
+//        } else {
+//            self.bufferingView.hidden = YES;
+//            [self.bufferingView stop];
+//        }
         if ([x unsignedIntegerValue] == PlayerView_State_Playing) {
             self.startTime = [NSDate date];
         } else {
@@ -200,6 +209,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         switch ([x unsignedIntegerValue]) {
             case PlayerView_State_Buffering:
             {
+                self.bufferingView.hidden = NO;
+                [self.bufferingView start];
                 self.thumbImageView.hidden = YES;
                 DDLogDebug(@"加载");
                 if (![r isReachable]) {
@@ -212,6 +223,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 break;
             case PlayerView_State_Playing:
             {
+                self.bufferingView.hidden = YES;
+                [self.bufferingView stop];
                 self.exceptionView.hidden = YES;
                 DDLogDebug(@"播放");
                 [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
@@ -246,20 +259,20 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         }
     }];
     
-    RACDisposable *r1 = [self.player rac_observeKeyPath:@"bIsPlayable"
-                                                options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                                               observer:self
-                                                  block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
-                                                      STRONG_SELF
-                                                      if ([value boolValue]) {
-                                                          self.bufferingView.hidden = YES;
-                                                          [self.bufferingView stop];
-                                                          [self showTopView];
-                                                          [self showBottomView];
-                                                          self.isTopBottomHidden = NO;
-                                                          [self resetTopBottomHideTimer];
-                                                      }
-                                                  }];
+//    RACDisposable *r1 = [self.player rac_observeKeyPath:@"bIsPlayable"
+//                                                options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+//                                               observer:self
+//                                                  block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
+//                                                      STRONG_SELF
+//                                                      if ([value boolValue]) {
+//                                                          self.bufferingView.hidden = YES;
+//                                                          [self.bufferingView stop];
+//                                                          [self showTopView];
+//                                                          [self showBottomView];
+//                                                          self.isTopBottomHidden = NO;
+//                                                          [self resetTopBottomHideTimer];
+//                                                      }
+//                                                  }];
     
     RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
         STRONG_SELF
@@ -301,7 +314,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }];
     
     [self.disposableMutableArray addObject:r0];
-    [self.disposableMutableArray addObject:r1];
+   // [self.disposableMutableArray addObject:r1];
     [self.disposableMutableArray addObject:r2];
     [self.disposableMutableArray addObject:r3];
     [self.disposableMutableArray addObject:r4];
@@ -443,7 +456,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         BLOCK_EXEC(self.playBlock,self.playStatus);
     }else if (self.playStatus == VideoPlayManagerStatus_NetworkError) {
         if ([[Reachability reachabilityForInternetConnection] isReachable]) {
-            self.player.videoUrl = self.videoUrl;
+//            self.player.progress = self.player.progress;
+//            self.player.videoUrl = self.videoUrl;
             [self.player play];
         }else {
             self.exceptionView.hidden = NO;
@@ -490,6 +504,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     if (!_isFullscreen) {
         [self hideDefinition];
     }
+    self.exceptionView.backButton.hidden = !_isFullscreen;
 }
 - (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block {
     self.backBlock = block;

@@ -11,4 +11,5 @@
 @interface ActivityPlayExceptionView : UIView
 @property (nonatomic, strong) UILabel *exceptionLabel;
 @property (nonatomic, strong) UIButton *exceptionButton;
+@property (nonatomic, strong) UIButton *backButton;
 @end
