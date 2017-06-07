@@ -11,6 +11,7 @@
 
 typedef NS_ENUM(NSUInteger, PlayerView_State) {
     PlayerView_State_Buffering,
+    PlayerView_State_willPlaying,
     PlayerView_State_Playing,
     PlayerView_State_Paused,
     PlayerView_State_Finished,

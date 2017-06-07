@@ -221,6 +221,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 }
             }
                 break;
+            case PlayerView_State_willPlaying:
+            {
+                [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
+            }
+                break;
             case PlayerView_State_Playing:
             {
                 self.bufferingView.hidden = YES;
@@ -258,22 +263,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 break;
         }
     }];
-    
-//    RACDisposable *r1 = [self.player rac_observeKeyPath:@"bIsPlayable"
-//                                                options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-//                                               observer:self
-//                                                  block:^(id value, NSDictionary *change, BOOL causedByDealloc, BOOL affectedOnlyLastComponent) {
-//                                                      STRONG_SELF
-//                                                      if ([value boolValue]) {
-//                                                          self.bufferingView.hidden = YES;
-//                                                          [self.bufferingView stop];
-//                                                          [self showTopView];
-//                                                          [self showBottomView];
-//                                                          self.isTopBottomHidden = NO;
-//                                                          [self resetTopBottomHideTimer];
-//                                                      }
-//                                                  }];
-    
     RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
         STRONG_SELF
         self.bottomView.slideProgressControl.duration = [x doubleValue];

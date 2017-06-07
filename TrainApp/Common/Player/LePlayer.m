@@ -106,7 +106,7 @@ static const int kTimeout = 600;
 //        return;
 //    }
     [self.player play];
-    self.state = PlayerView_State_Playing;
+    self.state = PlayerView_State_willPlaying;
     _playPauseState = PlayerView_State_Playing;
 }
 
@@ -247,7 +247,7 @@ static const CGFloat kVolumnStep = 0.0625;
                 AVPlayerLayer *playerLayer = (AVPlayerLayer *)self.view.layer;
                 playerLayer.player = self.player;
                 [self _setupObservers];
-                if (self.playPauseState == PlayerView_State_Playing) {
+                if (self.playPauseState == PlayerView_State_Playing || self.playPauseState == PlayerView_State_willPlaying) {
                     [self.player play];
                 }
                 if (self.progress) {
@@ -381,7 +381,7 @@ static const CGFloat kVolumnStep = 0.0625;
 //            return;
 //        }
         
-        if (self.playPauseState == PlayerView_State_Playing) {
+        if (self.playPauseState == PlayerView_State_Playing || self.playPauseState == PlayerView_State_Playing) {
             [self.view.player play];
         }
         
@@ -469,7 +469,13 @@ static const CGFloat kVolumnStep = 0.0625;
                                                                    
                                                                    @strongify(self); if (!self) return;
                                                                    // 更新timePlayed
-                                                                   self.timePlayed = CMTimeGetSeconds([self.playerItem currentTime]);
+                                                                   CGFloat temp = CMTimeGetSeconds([self.playerItem currentTime]);
+                                                                   if(temp > self.timeBuffered) {
+                                                                       self.state = PlayerView_State_Buffering;
+                                                                   }else {
+                                                                       self.timePlayed = CMTimeGetSeconds([self.playerItem currentTime]);
+                                                                        self.state = PlayerView_State_Playing;
+                                                                   }
                                                                }];
 }
 
