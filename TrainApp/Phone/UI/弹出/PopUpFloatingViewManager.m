@@ -230,6 +230,7 @@
     [YXTrainManager sharedInstance].currentProject.w.integerValue >= 3;
 }
 - (BOOL)isQRCodePrompt {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainQRCodePrompt];
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainQRCodePrompt] &&
+    [YXTrainManager sharedInstance].currentProject != nil;
 }
 @end

@@ -124,6 +124,7 @@
     [questions.question.answerJson enumerateObjectsUsingBlock:^(YXVideoQuestionsRequestItem_Result_Questions_Question_AnswerJson  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         obj.isChoose = @"0";
     }];
+    [self.clossworkView.superview bringSubviewToFront:self.clossworkView];
     self.clossworkView.hidden = NO;
     BLOCK_EXEC(self.videoClassworkManagerBlock,NO,0);
 }

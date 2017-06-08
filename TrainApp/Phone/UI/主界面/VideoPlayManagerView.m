@@ -81,7 +81,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             self.player = nil;
         }];
 
-        self.thumbImageView.hidden = NO;
     }
     return self;
 }
@@ -249,7 +248,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             {
                 DDLogDebug(@"完成");
                 [self playVideoFinished];
-                self.thumbImageView.hidden = NO;
             }
                 break;
             case PlayerView_State_Error:
@@ -478,7 +476,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         preProgress = 0;
     }
     self.player.progress = preProgress;
-    if (isEmpty(self.videoUrl)) {
+    if (isEmpty(self.videoUrl.absoluteString)) {
         self.playStatus =  VideoPlayManagerStatus_Empty;
         return;
     }
