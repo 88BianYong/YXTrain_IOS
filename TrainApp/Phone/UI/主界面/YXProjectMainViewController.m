@@ -103,7 +103,6 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         [YXDrawerController showDrawer];
     }];
     [self setupLeftWithCustomView:self.leftView];
-    [self setupQRCodeRightView];
 
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
@@ -182,6 +181,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目需要校验信息
             [self requestCheckedMobileUser];
         }else {
+            [self setupQRCodeRightView];
             [self dealWithProjectGroups:self.dataMutableArrray];
             [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
         }

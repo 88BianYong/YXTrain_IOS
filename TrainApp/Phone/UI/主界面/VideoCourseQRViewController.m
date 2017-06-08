@@ -34,7 +34,7 @@
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusDenied)
     {
-        YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问相机" message:@"请到“设置->隐私->相aut机”中设置为允许访问相机！"];
+        YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"无法访问相机" message:@"请到“设置->隐私->相机”中设置为允许访问相机！"];
         [alertView addButtonWithTitle:@"确定"];
         [alertView show];
     }else if(authStatus == AVAuthorizationStatusNotDetermined)

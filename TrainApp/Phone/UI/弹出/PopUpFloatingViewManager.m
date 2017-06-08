@@ -231,6 +231,7 @@
 }
 - (BOOL)isQRCodePrompt {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainQRCodePrompt] &&
-    [YXTrainManager sharedInstance].currentProject != nil;
+    [YXTrainManager sharedInstance].currentProject != nil &&
+    [YXTrainManager sharedInstance].trainHelper.presentProject != LSTTrainPresentProject_Beijing;
 }
 @end

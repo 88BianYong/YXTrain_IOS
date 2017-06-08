@@ -495,6 +495,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         [self hideDefinition];
     }
     self.exceptionView.backButton.hidden = !_isFullscreen;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TBD: 修改进度条白点跳动问题
+        [self.bottomView.slideProgressControl updateUI];
+    });
 }
 - (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block {
     self.backBlock = block;
