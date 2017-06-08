@@ -57,9 +57,15 @@
 }
 - (void)setScore:(YXCourseDetailItem_score *)score {
     _score = score;
-    
-    NSMutableAttributedString *scoreAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"评分: %0.1f",_score.avr.floatValue]];
-    [scoreAttributed addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"]} range:NSMakeRange(0,3)];
-    self.scoreLabel.attributedText = scoreAttributed;
+    if (_score.avr.floatValue > 0) {
+        NSMutableAttributedString *scoreAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"评分: %0.1f",_score.avr.floatValue]];
+        [scoreAttributed addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"]} range:NSMakeRange(0,3)];
+        self.scoreLabel.attributedText = scoreAttributed;
+    }else {
+        NSMutableAttributedString *scoreAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"暂无评分"]];
+        [scoreAttributed addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"333333"]} range:NSMakeRange(0,4)];
+        self.scoreLabel.attributedText = scoreAttributed;
+    }
+
 }
 @end

@@ -381,7 +381,7 @@ static const CGFloat kVolumnStep = 0.0625;
 //            return;
 //        }
         
-        if (self.playPauseState == PlayerView_State_Playing || self.playPauseState == PlayerView_State_Playing) {
+        if (self.playPauseState == PlayerView_State_Playing) {
             [self.view.player play];
         }
         
