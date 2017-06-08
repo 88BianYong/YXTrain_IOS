@@ -171,7 +171,7 @@
 }
 - (BOOL)isShowPlayCell {
     if (![self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath]) {
-        return NO;
+        return YES;
     }
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath];
     CGRect frame = [cell convertRect:cell.bounds toView:self.tableView];

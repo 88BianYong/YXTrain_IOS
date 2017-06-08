@@ -31,6 +31,7 @@
 @property (nonatomic, strong) CommentLaudRequest *laudRequest;
 @property (nonatomic, assign) BOOL isFirstShowInput;
 @property (nonatomic, strong) VideoCourseReplyCommnetViewController *replyCommnetVC;
+@property (nonatomic, assign) BOOL isShowInputView;
 
 @end
 
@@ -63,12 +64,19 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.translucentView.hidden = NO;
+    self.inputTextView.alpha = 1.0f;
+    if (self.isShowInputView) {
+        [self hiddenCommentInputView];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.inputTextView inputTextViewClear];
     self.translucentView.hidden = YES;
+    if (self.isShowInputView) {
+        [self showCommentInputView];
+    }
 }
 
 #pragma mark - setupUI
@@ -430,9 +438,11 @@
 }
 
 - (void)showCommentInputView {
+    self.isShowInputView = YES;
     [self.inputTextView.textView becomeFirstResponder];
 }
 - (void)hiddenCommentInputView {
+    self.isShowInputView = NO;
     [self.inputTextView.textView resignFirstResponder];
 }
 - (void)showErrorTotal:(NSError *)error {

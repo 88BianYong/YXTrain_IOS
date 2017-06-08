@@ -28,6 +28,14 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
     self.title = @"评论";
     [self setupUI];
     [self setupLayout];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPushNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self.commentTextView resignFirstResponder];
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

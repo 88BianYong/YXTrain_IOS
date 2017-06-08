@@ -65,6 +65,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         }];
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainStartStopVideo object:nil] subscribeNext:^(NSNotification *x) {
             STRONG_SELF
+            if (self.playStatus == VideoPlayManagerStatus_Finish) {
+                return;
+            }
             if ([x.object boolValue]) {
                 [self.player pause];
             }else {
