@@ -65,7 +65,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         }];
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainStartStopVideo object:nil] subscribeNext:^(NSNotification *x) {
             STRONG_SELF
-            if (self.playStatus == VideoPlayManagerStatus_Finish) {
+            if (!self.exceptionView.hidden) {
                 return;
             }
             if ([x.object boolValue]) {
@@ -213,7 +213,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             {
                 self.bufferingView.hidden = NO;
                 [self.bufferingView start];
-                self.thumbImageView.hidden = YES;
                 DDLogDebug(@"加载");
                 if (![r isReachable]) {
                     self.playStatus = VideoPlayManagerStatus_NetworkError;
@@ -481,6 +480,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         return;
     }
     self.player.videoUrl = self.videoUrl;
+    self.thumbImageView.hidden = YES;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
     if (![[Reachability reachabilityForInternetConnection] isReachable]) {
         self.playStatus = VideoPlayManagerStatus_NetworkError;

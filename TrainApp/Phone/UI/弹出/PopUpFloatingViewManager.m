@@ -35,6 +35,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.isShowCMS = YES;
+        self.loginStatus = PopUpFloatingLoginStatus_Already;
         WEAK_SELF
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainShowUpdate object:nil] subscribeNext:^(id x) {
             STRONG_SELF
@@ -51,7 +52,10 @@
 }
 
 - (void)showPopUpFloatingView {
-    if (self.isShowCMS && !self.isLoginFirst) {
+    if (self.loginStatus == PopUpFloatingLoginStatus_QRCode) {
+        return;
+    }
+    if (self.isShowCMS && self.loginStatus == PopUpFloatingLoginStatus_Already) {
         [self showCMSView];
     }else if ([YXInitHelper sharedHelper].isShowUpgrade) {
         [self showUpgradeView];

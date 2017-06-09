@@ -128,7 +128,7 @@
             YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
             course.courses_id = [paraDic objectForKey:@"cid"];
             vc.course = course;
-            vc.seekInteger = [[paraDic objectForKey:@"seek"] integerValue];
+            vc.seekInteger = [[paraDic objectForKey:@"seg"] integerValue];
             vc.fromWhere = VideoCourseFromWhere_QRCode;
             [self.navigationController pushViewController:vc animated:YES];
         } else {

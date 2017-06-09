@@ -14,6 +14,9 @@
 @property (nonatomic, strong) NSURL *scanCodeUrl;
 @property (nonatomic, assign) BOOL isRemoteNotification;
 
+@property (nonatomic, copy) NSString *courseId;
+@property (nonatomic, copy) NSString *seg;
+
 
 // 启动的根视图控制器
 - (void)setupRootViewController;

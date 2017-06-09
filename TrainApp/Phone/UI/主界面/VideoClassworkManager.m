@@ -118,7 +118,7 @@
 - (BOOL)comparisonTime:(NSInteger)playTime originalTime:(NSInteger)contrastTime {
     return (playTime >= (contrastTime - VideoClassworkTriggerTime)) &&  (playTime <= (contrastTime + VideoClassworkTriggerTime));
 }
-- (void)showVideoClassworkView:(YXVideoQuestionsRequestItem *)item {;
+- (void)showVideoClassworkView:(YXVideoQuestionsRequestItem *)item {
     YXVideoQuestionsRequestItem_Result_Questions *questions = item.result.questions[0];
     self.clossworkView.question = questions.question;
     [questions.question.answerJson enumerateObjectsUsingBlock:^(YXVideoQuestionsRequestItem_Result_Questions_Question_AnswerJson  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -208,6 +208,17 @@
     }];
 }
 
+- (void)setClassworMutableArray:(NSMutableArray<__kindof YXFileVideoClassworkItem *> *)classworMutableArray {
+    NSArray *sorte = [classworMutableArray sortedArrayUsingComparator:^NSComparisonResult(YXFileVideoClassworkItem *obj1, YXFileVideoClassworkItem *obj2) {
+        if (obj1.timeString.integerValue < obj2.timeString.integerValue) {
+            return(NSComparisonResult)NSOrderedAscending;
+        }else {
+            return(NSComparisonResult)NSOrderedDescending;
+        }
+        
+    }];
+    _classworMutableArray = [NSMutableArray arrayWithArray:sorte];
+}
 - (BOOL)isHidden {
     return self.clossworkView.hidden;
 }

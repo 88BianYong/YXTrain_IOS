@@ -259,6 +259,8 @@
         [self.playMangerView playVideoClear];
         if (self.fromWhere == VideoCourseFromWhere_QRCode) {
             [self.navigationController popToRootViewControllerAnimated:YES];
+            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
+            [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
         }else {
             [self.navigationController popViewControllerAnimated:YES];
         }

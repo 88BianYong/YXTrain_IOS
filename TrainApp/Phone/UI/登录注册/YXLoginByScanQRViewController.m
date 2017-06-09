@@ -12,6 +12,8 @@
 #import "YXUserProfileRequest.h"
 #import "YXUserManager.h"
 #import "YXAlertView.h"
+#import "AppDelegate.h"
+
 @interface YXLoginByScanQRViewController ()<AVCaptureMetadataOutputObjectsDelegate>{
     YXScanQRBackgroundView *_scanBackgroundView;
     //YXLoginTopBarView *_topBarView;
@@ -141,6 +143,11 @@
                     return;
                 }
                 [self saveUserDataAndLogin];
+                AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                if (((NSString *)[paraDic objectForKey:@"cid"]).length > 0) {
+                    appDelegate.appDelegateHelper.courseId = [paraDic objectForKey:@"cid"];
+                    appDelegate.appDelegateHelper.seg = [paraDic objectForKey:@"seg"];
+                }
                 [YXDataStatisticsManger trackEvent:@"扫码登录" label:@"扫描二维码并成功登录" parameters:nil];
             }];
         } else {

@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+typedef NS_ENUM(NSInteger,PopUpFloatingLoginStatus) {
+    PopUpFloatingLoginStatus_Already,//已经登录
+    PopUpFloatingLoginStatus_Default,//普通登录
+    PopUpFloatingLoginStatus_QRCode//扫码登录
+};
 @interface PopUpFloatingViewManager : NSObject
-@property (nonatomic, assign) BOOL isLoginFirst;//区分登录进入
+@property (nonatomic, assign) PopUpFloatingLoginStatus loginStatus;//区分登录进入
 @property (nonatomic, copy) void(^popUpFloatingViewManagerCompleteBlock)(BOOL isShow);//区分是否可以进入动态
 + (instancetype)sharedInstance;
 /**

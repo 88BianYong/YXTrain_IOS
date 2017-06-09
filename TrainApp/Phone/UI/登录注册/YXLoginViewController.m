@@ -74,7 +74,13 @@
             userModel.uname = userModel.profile.name;
             userModel.head = userModel.profile.head;
             [[YXUserManager sharedManager] login];
+            if (((NSString *)[paraDic objectForKey:@"cid"]).length > 0) {
+                appDelegate.appDelegateHelper.courseId = [paraDic objectForKey:@"cid"];
+                appDelegate.appDelegateHelper.seg = [paraDic objectForKey:@"seg"];
+            }
         }];
+        
+
     }
 }
 #pragma mark- 链接内容

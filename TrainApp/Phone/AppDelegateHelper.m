@@ -117,7 +117,8 @@
     YXSideMenuViewController *menuVC = [[YXSideMenuViewController alloc]init];
     YXProjectMainViewController *projectVC = [[YXProjectMainViewController alloc]init];
     YXNavigationController *projectNavi = [[YXNavigationController alloc]initWithRootViewController:projectVC];
-    
+    projectVC.courseId = self.courseId;
+    projectVC.seg = self.seg;
     YXDrawerViewController *drawerVC = [[YXDrawerViewController alloc]init];
     drawerVC.drawerViewController = menuVC;
     drawerVC.paneViewController = projectNavi;
@@ -134,7 +135,11 @@
         STRONG_SELF
         self.window.rootViewController = [self rootDrawerViewController];
         [self requestCommonData];
-        [PopUpFloatingViewManager sharedInstance].isLoginFirst = YES;
+        if (!isEmpty(self.courseId)) {
+            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_QRCode;
+        }else {
+            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
+        }
         [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
         [[TrainGeTuiManger sharedInstance] loginSuccess];
         self.isRemoteNotification = NO;
