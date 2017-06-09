@@ -145,6 +145,7 @@
                 AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
                 if (((NSString *)[paraDic objectForKey:@"courseId"]).length > 0) {
                     appDelegate.appDelegateHelper.courseId = [paraDic objectForKey:@"courseId"];
+                    appDelegate.appDelegateHelper.projectId = [paraDic objectForKey:@"projectId"];
                     appDelegate.appDelegateHelper.seg = [paraDic objectForKey:@"cInx"];
                 }else {
                     appDelegate.appDelegateHelper.courseId = nil;

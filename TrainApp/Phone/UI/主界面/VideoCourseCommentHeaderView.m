@@ -142,7 +142,7 @@
     _comment = comment;
     [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:_comment.ap] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
     self.nameLabel.text = _comment.userName;
-    self.timeLabel.text = _comment.timeDesc;
+    self.timeLabel.text = [NSString timeStringWithTimeStamp:_comment.time?:@""];
     if (_comment.laudNumber.integerValue >= 10000) {
         self.favorLabel.text = @"9999+";
     }else {

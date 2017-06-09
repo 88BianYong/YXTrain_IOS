@@ -195,9 +195,12 @@
     YXCourseDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXCourseDetailCell"];
     YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];
     YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
+    YXFileType type = [YXAttachmentTypeHelper typeWithID:fragment.type];
     cell.data = fragment;
     if ([[YXFileRecordManager sharedInstance]hasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
         cell.cellStatus = YXCourseDetailCellStatus_Watched;
+    }else if (type == YXFileTypeUnknown) {
+        cell.cellStatus = YXCourseDetailCellStatus_PLaying;
     }else{
         cell.cellStatus = YXCourseDetailCellStatus_Default;
     }
@@ -225,15 +228,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if ([self.courseItem.playIndexPath isEqual:indexPath]) {
-        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        return;
-    }
     YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];
     YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
     YXFileType type = [YXAttachmentTypeHelper typeWithID:fragment.type];
     if (type == YXFileTypeUnknown) {
         [self showToast:@"移动端不支持当前课程学习"];
+        return;
+    }
+    if ([self.courseItem.playIndexPath isEqual:indexPath]) {
+        [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
         return;
     }
     

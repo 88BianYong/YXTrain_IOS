@@ -9,6 +9,7 @@
 #import "YXTrainManager.h"
 #import "YXCourseViewController.h"
 #import "YXHomeworkInfoViewController.h"
+#import "AppDelegate.h"
 static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 @interface YXTrainManager()
 @property (nonatomic, strong) YXTrainListRequest *request;
@@ -59,7 +60,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         STRONG_SELF
         if (error) {
             if (self.trainlistItem) {
-                self.currentProjectIndexPath = [self chooseProjectWithChoosePid:self.trainlistItem.body.choosePid];
+                self.currentProjectIndexPath = [self chooseProjectWithChoosePid:self.trainlistItem.body.choosePid withBody:self.trainlistItem.body];
                 BLOCK_EXEC(completeBlock,[TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body],nil);
             }else {
                 BLOCK_EXEC(completeBlock,nil,error);
@@ -67,16 +68,22 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
             return;
         }
         YXTrainListRequestItem *item = (YXTrainListRequestItem *)retItem;
-        self.currentProjectIndexPath = [self chooseProjectWithChoosePid:self.trainlistItem.body.choosePid];
-        item.body.choosePid = self.trainlistItem.body.choosePid;
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if (!isEmpty(appDelegate.appDelegateHelper.projectId)) {
+            self.currentProjectIndexPath = [self chooseProjectWithChoosePid:appDelegate.appDelegateHelper.projectId withBody:item.body];
+            item.body.choosePid = appDelegate.appDelegateHelper.projectId;
+        }else {
+            self.currentProjectIndexPath = [self chooseProjectWithChoosePid:self.trainlistItem.body.choosePid withBody:item.body];
+            item.body.choosePid = self.trainlistItem.body.choosePid;
+        }
         self.trainlistItem = item;
         NSArray *projectGroupArray = [TrainListProjectGroup projectGroupsWithRawData:item.body];
         BLOCK_EXEC(completeBlock,projectGroupArray,nil);
         [self saveToCache];
     }];
 }
-- (NSIndexPath *)chooseProjectWithChoosePid:(NSString *)pid {
-    NSArray<TrainListProjectGroup *> *groups = [TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body];
+- (NSIndexPath *)chooseProjectWithChoosePid:(NSString *)pid withBody:(YXTrainListRequestItem_body *)body{
+    NSArray<TrainListProjectGroup *> *groups = [TrainListProjectGroup projectGroupsWithRawData:body];
     __block NSInteger sectionInteger = 0;
     __block NSInteger indexInteger = 0;
     [groups enumerateObjectsUsingBlock:^(TrainListProjectGroup * _Nonnull obj, NSUInteger section, BOOL * _Nonnull stop) {
@@ -101,6 +108,9 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 }
 - (NSIndexPath *)currentProjectIndexPath {
     return _currentProjectIndexPath;
+}
+- (void)setupProjectId:(NSString *)projectId {
+    self.currentProjectIndexPath = [self chooseProjectWithChoosePid:projectId withBody:self.trainlistItem.body];
 }
 - (void)saveToCache {
     self.trainHelper = nil;

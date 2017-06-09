@@ -339,7 +339,7 @@ static const CGFloat kVolumnStep = 0.0625;
         
         @strongify(self); if (!self) return;
         if ([x boolValue]) {
-            //NSLog(@"playbackLikelyToKeepUp");
+            NSLog(@"playbackLikelyToKeepUp");
             self.state = self->_playPauseState;
             // 更新bIsPlayable
             self.bIsPlayable = YES;

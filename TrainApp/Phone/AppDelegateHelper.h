@@ -15,6 +15,7 @@
 @property (nonatomic, assign) BOOL isRemoteNotification;
 
 @property (nonatomic, copy) NSString *courseId;
+@property (nonatomic, copy) NSString *projectId;
 @property (nonatomic, copy) NSString *seg;
 
 

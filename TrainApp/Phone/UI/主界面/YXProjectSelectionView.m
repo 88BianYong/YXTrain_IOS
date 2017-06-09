@@ -141,11 +141,13 @@ static const CGFloat kImageWidth = 30;
 - (void)receiveDynamicNotification:(NSNotification *)aNotification {
     NSString *pid = aNotification.object;
     __block NSInteger index = -1;
+    __block NSInteger section = -1;
     [self.projectGroup enumerateObjectsUsingBlock:^(TrainListProjectGroup * _Nonnull group, NSUInteger idx, BOOL * _Nonnull stop) {
+        section = idx;
         [group.items enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj.pid isEqualToString:pid]) {
                 index = idx;
-                [self currentProjectIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+                [self currentProjectIndexPath:[NSIndexPath indexPathForRow:index inSection:section]];
                 *stop = YES;
             }
         }];

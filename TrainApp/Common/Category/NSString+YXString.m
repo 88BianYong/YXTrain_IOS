@@ -170,13 +170,13 @@
     if (interval < 60) {//小于1分钟
        return @"刚刚";
     }else if (interval < 60 * 60){//小于60分钟
-        return [NSString stringWithFormat:@"%d分钟",(int)(interval/60.0f)];
+        return [NSString stringWithFormat:@"%d分钟前",(int)(interval/60.0f)];
     }
     else if (interval < 24 * 60 * 60){
-        return [NSString stringWithFormat:@"%d小时",(int)(interval/60.0f/60.0f)];
+        return [NSString stringWithFormat:@"%d小时前",(int)(interval/60.0f/60.0f)];
     }
     else if (interval < 7 * 24 * 60 * 60){
-        return [NSString stringWithFormat:@"%d天",(int)(interval/60.0f/60.0f/24.0f)];
+        return [NSString stringWithFormat:@"%d天前",(int)(interval/60.0f/60.0f/24.0f)];
     }
     else {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;

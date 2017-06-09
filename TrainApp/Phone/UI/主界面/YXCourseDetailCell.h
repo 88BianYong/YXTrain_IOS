@@ -11,7 +11,8 @@
 typedef NS_ENUM(NSInteger ,YXCourseDetailCellStatus) {
     YXCourseDetailCellStatus_Default,
     YXCourseDetailCellStatus_Watched,
-    YXCourseDetailCellStatus_PLaying
+    YXCourseDetailCellStatus_PLaying,
+    YXCourseDetailCellStatus_Unknown
 };
 
 @interface YXCourseDetailCell : UITableViewCell

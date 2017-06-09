@@ -21,5 +21,5 @@
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock;
 - (void)saveToCache;
 - (void)clear;
-
+- (void)setupProjectId:(NSString *)projectId;
 @end

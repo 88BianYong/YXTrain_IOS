@@ -103,9 +103,12 @@
     }else if (cellStatus == YXCourseDetailCellStatus_Watched) {
         [self.typeImageView stopAnimating];
         self.titleLabel.textColor = [UIColor colorWithHexString:@"0067be"];
-    }else {
+    }else if (cellStatus == YXCourseDetailCellStatus_Default){
         [self.typeImageView stopAnimating];
         self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    }else {
+        [self.typeImageView stopAnimating];
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"cdd2d9"];
     }
 }
 @end

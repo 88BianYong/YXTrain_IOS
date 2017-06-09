@@ -133,6 +133,10 @@
             vc.seekInteger = [[paraDic objectForKey:@"cInx"] integerValue];
             vc.fromWhere = VideoCourseFromWhere_QRCode;
             [self.navigationController pushViewController:vc animated:YES];
+            if (![[YXTrainManager sharedInstance].currentProject.pid isEqualToString:[paraDic objectForKey:@"projectId"]]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:[paraDic objectForKey:@"projectId"]];
+                [[YXTrainManager sharedInstance] setupProjectId:[paraDic objectForKey:@"projectId"]];
+            }
         } else {
             [self showToast:@"无法识别该二维码"];
         }

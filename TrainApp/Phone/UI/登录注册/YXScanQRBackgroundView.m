@@ -124,5 +124,6 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _titleString.length)];
     UILabel *label = [self viewWithTag:10086];
     label.attributedText = attributedString;
+    label.textAlignment = NSTextAlignmentCenter;
 }
 @end
