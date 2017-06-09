@@ -73,11 +73,14 @@
             userModel.uid = userModel.profile.uid;
             userModel.uname = userModel.profile.name;
             userModel.head = userModel.profile.head;
-            [[YXUserManager sharedManager] login];
-            if (((NSString *)[paraDic objectForKey:@"cid"]).length > 0) {
-                appDelegate.appDelegateHelper.courseId = [paraDic objectForKey:@"cid"];
-                appDelegate.appDelegateHelper.seg = [paraDic objectForKey:@"seg"];
+            if (((NSString *)[paraDic objectForKey:@"courseId"]).length > 0) {
+                appDelegate.appDelegateHelper.courseId = [paraDic objectForKey:@"courseId"];
+                appDelegate.appDelegateHelper.seg = [paraDic objectForKey:@"cInx"];
+            }else {
+                appDelegate.appDelegateHelper.courseId = nil;
+                appDelegate.appDelegateHelper.seg = nil;
             }
+            [[YXUserManager sharedManager] login];
         }];
         
 

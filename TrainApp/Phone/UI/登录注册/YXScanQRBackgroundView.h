@@ -11,5 +11,7 @@
 @interface YXScanQRBackgroundView : UIView
 
 @property (nonatomic,strong)NSTimer *scanTimer;
+@property (nonatomic, copy) NSString *titleString;
+
 
 @end

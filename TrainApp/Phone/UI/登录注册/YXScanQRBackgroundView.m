@@ -44,6 +44,7 @@
     _scanTimer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(scanAnimation) userInfo:nil repeats:YES];
     
     UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.tag = 10086;
     titleLabel.numberOfLines = 2;
     NSString *string = @"将二维码放入扫描框内\n扫描后将自动登录手机研修";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
@@ -112,5 +113,16 @@
     if (_scanCount >= [UIScreen mainScreen].bounds.size.width - 100) {
         _scanCount = 0;
     }
+}
+- (void)setTitleString:(NSString *)titleString {
+    _titleString = titleString;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_titleString];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    
+    [paragraphStyle setLineSpacing:8];//调整行间距
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _titleString.length)];
+    UILabel *label = [self viewWithTag:10086];
+    label.attributedText = attributedString;
 }
 @end

@@ -29,7 +29,7 @@
     [super viewDidLoad];
     [super setupLeftBack];
     self.view.backgroundColor = [UIColor blackColor];
-    self.navigationItem.title = @"扫描二维观看课程";
+    self.navigationItem.title = @"扫描二维码观看课程";
     
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if (authStatus == AVAuthorizationStatusDenied)
@@ -71,6 +71,8 @@
         }];
     }
     _scanBackgroundView = [[YXScanQRBackgroundView alloc] init];
+    _scanBackgroundView.titleString = @"将课程二维码放入扫描框内\n扫描后将自动播放该课程";
+
     [self.view addSubview:_scanBackgroundView];
     _scanBackgroundView.backgroundColor = [UIColor clearColor];
     [_scanBackgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,14 +123,14 @@
         NSString *query = [resultURL query];
         NSDictionary *paraDic = [self urlInfo:query];
         [self registerNotifications];
-        if (((NSString *)[paraDic objectForKey:@"cid"]).length > 0) {
+        if (((NSString *)[paraDic objectForKey:@"courseId"]).length > 0) {
             [_session stopRunning];
             [_scanBackgroundView.scanTimer setFireDate:[NSDate distantFuture]];
             VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
             YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
-            course.courses_id = [paraDic objectForKey:@"cid"];
+            course.courses_id = [paraDic objectForKey:@"courseId"];
             vc.course = course;
-            vc.seekInteger = [[paraDic objectForKey:@"seg"] integerValue];
+            vc.seekInteger = [[paraDic objectForKey:@"cInx"] integerValue];
             vc.fromWhere = VideoCourseFromWhere_QRCode;
             [self.navigationController pushViewController:vc animated:YES];
         } else {

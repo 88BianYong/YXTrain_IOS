@@ -142,13 +142,17 @@
                     [self showToast:error.localizedDescription];
                     return;
                 }
-                [self saveUserDataAndLogin];
                 AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-                if (((NSString *)[paraDic objectForKey:@"cid"]).length > 0) {
-                    appDelegate.appDelegateHelper.courseId = [paraDic objectForKey:@"cid"];
-                    appDelegate.appDelegateHelper.seg = [paraDic objectForKey:@"seg"];
+                if (((NSString *)[paraDic objectForKey:@"courseId"]).length > 0) {
+                    appDelegate.appDelegateHelper.courseId = [paraDic objectForKey:@"courseId"];
+                    appDelegate.appDelegateHelper.seg = [paraDic objectForKey:@"cInx"];
+                }else {
+                    appDelegate.appDelegateHelper.courseId = nil;
+                    appDelegate.appDelegateHelper.seg = nil;
                 }
+                [self saveUserDataAndLogin];
                 [YXDataStatisticsManger trackEvent:@"扫码登录" label:@"扫描二维码并成功登录" parameters:nil];
+                
             }];
         } else {
             [self showToast:@"无法识别该二维码"];
