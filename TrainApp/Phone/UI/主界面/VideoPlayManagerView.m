@@ -78,9 +78,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         }];
         
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillTerminateNotification object:nil] subscribeNext:^(id x) {
+            STRONG_SELF
             self.player = nil;
         }];
-
     }
     return self;
 }
@@ -193,13 +193,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
         STRONG_SELF
-//        if ([x unsignedIntegerValue] == PlayerView_State_Buffering) {
-//            self.bufferingView.hidden = NO;
-//            [self.bufferingView start];
-//        } else {
-//            self.bufferingView.hidden = YES;
-//            [self.bufferingView stop];
-//        }
+        if (self.player.isBuffering) {
+            self.bufferingView.hidden = NO;
+            [self.bufferingView start];
+        } else {
+            self.bufferingView.hidden = YES;
+            [self.bufferingView stop];
+        }
         if ([x unsignedIntegerValue] == PlayerView_State_Playing) {
             self.startTime = [NSDate date];
         } else {
@@ -211,8 +211,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         switch ([x unsignedIntegerValue]) {
             case PlayerView_State_Buffering:
             {
-                self.bufferingView.hidden = NO;
-                [self.bufferingView start];
                 DDLogDebug(@"加载");
                 if (![r isReachable]) {
                     self.playStatus = VideoPlayManagerStatus_NetworkError;
@@ -222,15 +220,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                 }
             }
                 break;
-            case PlayerView_State_willPlaying:
-            {
-                [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
-            }
-                break;
             case PlayerView_State_Playing:
             {
-                self.bufferingView.hidden = YES;
-                [self.bufferingView stop];
                 self.exceptionView.hidden = YES;
                 DDLogDebug(@"播放");
                 [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
@@ -339,7 +330,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
                                                              selector:@selector(topBottomHideTimerAction)
                                                              userInfo:nil
                                                               repeats:YES];
-    DDLogDebug(@"滑动");
 }
 - (void)invalidateTopBottomHiddenTimer {
     [self.topBottomHideTimer invalidate];
@@ -417,7 +407,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         [self.player seekTo:0];
         [self.player play];
         self.isManualPause = NO;
-    } else {
+    } else if (self.player.state == PlayerView_State_Playing){
+        [self.player pause];
+        self.isManualPause = YES;
+    }else {
         [self.player pause];
         self.isManualPause = YES;
     }
@@ -445,8 +438,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         BLOCK_EXEC(self.playBlock,self.playStatus);
     }else if (self.playStatus == VideoPlayManagerStatus_NetworkError) {
         if ([[Reachability reachabilityForInternetConnection] isReachable]) {
-//            self.player.progress = self.player.progress;
-//            self.player.videoUrl = self.videoUrl;
             [self.player play];
         }else {
             self.exceptionView.hidden = NO;

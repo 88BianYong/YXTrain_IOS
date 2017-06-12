@@ -10,6 +10,4 @@
 
 @interface YXProjectMainViewController : YXBaseViewController
 @property (nonatomic,strong ) UIViewController<YXTrackPageDataProtocol> *selectedViewController;
-@property (nonatomic, copy) NSString *courseId;
-@property (nonatomic, copy) NSString *seg;
 @end

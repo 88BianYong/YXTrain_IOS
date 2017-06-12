@@ -200,7 +200,7 @@
     if ([[YXFileRecordManager sharedInstance]hasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
         cell.cellStatus = YXCourseDetailCellStatus_Watched;
     }else if (type == YXFileTypeUnknown) {
-        cell.cellStatus = YXCourseDetailCellStatus_PLaying;
+        cell.cellStatus = YXCourseDetailCellStatus_Unknown;
     }else{
         cell.cellStatus = YXCourseDetailCellStatus_Default;
     }

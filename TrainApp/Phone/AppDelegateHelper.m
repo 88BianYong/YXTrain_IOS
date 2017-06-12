@@ -117,8 +117,6 @@
     YXSideMenuViewController *menuVC = [[YXSideMenuViewController alloc]init];
     YXProjectMainViewController *projectVC = [[YXProjectMainViewController alloc]init];
     YXNavigationController *projectNavi = [[YXNavigationController alloc]initWithRootViewController:projectVC];
-    projectVC.courseId = self.courseId;
-    projectVC.seg = self.seg;
     YXDrawerViewController *drawerVC = [[YXDrawerViewController alloc]init];
     drawerVC.drawerViewController = menuVC;
     drawerVC.paneViewController = projectNavi;

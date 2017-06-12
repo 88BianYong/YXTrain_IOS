@@ -19,6 +19,7 @@
 #import "VideoCourseSecondCommentViewController.h"
 #import "VideoCourseReplyCommnetViewController.h"
 #import "YXNavigationController.h"
+#import "VideoPlayCommentEmptyView.h"
 @interface VideoCourseCommentViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) int totalPage;
 @property (nonatomic, strong) MJRefreshFooterView *footerView;
@@ -91,11 +92,10 @@
     [self.tableView registerClass:[VideoCourseCommentHeaderView class] forHeaderFooterViewReuseIdentifier:@"VideoCourseCommentHeaderView"];
     [self.tableView registerClass:[VideoCourseCommentFooterView class] forHeaderFooterViewReuseIdentifier:@"VideoCourseCommentFooterView"];
     [self.contentView addSubview:self.tableView];
-    self.emptyView = [[YXEmptyView alloc] init];
+    self.emptyView = [[VideoPlayCommentEmptyView alloc] initWithFrame:self.view.bounds];
     self.emptyView.imageName = @"暂无评论";
     self.emptyView.title = @"暂无评论";
     self.emptyView.hidden = YES;
-    self.emptyView.isVideo = YES;
     [self.contentView addSubview:self.emptyView];
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
@@ -117,13 +117,6 @@
         [self startLoading];
         [self firstPageFetch];
     };
-    
-    self.emptyView = [[YXEmptyView alloc] initWithFrame:self.view.bounds];
-    self.emptyView.isVideo = YES;
-    self.emptyView.hidden = YES;
-    [self.contentView addSubview:self.emptyView];
-    
-    
     self.footerView = [MJRefreshFooterView footer];
     self.footerView.scrollView = self.tableView;
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 365.0f)];

@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface YXEmptyView : UIView
+@property (nonatomic, strong) UIView *containerView;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *subTitleLabel;
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;
 @property (nonatomic, strong) NSString *imageName;

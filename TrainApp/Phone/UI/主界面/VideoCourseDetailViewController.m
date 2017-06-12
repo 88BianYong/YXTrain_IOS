@@ -12,6 +12,7 @@
 #import "VideoCourseIntroductionViewController.h"
 #import "VideoClassworkManager.h"
 #import "VideoCourseCommentViewController.h"
+#import "AppDelegate.h"
 @interface VideoCourseDetailViewController ()
 @property (nonatomic, strong) VideoPlayManagerView *playMangerView;
 @property (nonatomic, strong) CourseDetailContainerView *containerView;
@@ -259,6 +260,10 @@
         [self.playMangerView playVideoClear];
         if (self.fromWhere == VideoCourseFromWhere_QRCode) {
             [self.navigationController popToRootViewControllerAnimated:YES];
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            appDelegate.appDelegateHelper.courseId = nil;
+            appDelegate.appDelegateHelper.projectId = nil;
+            appDelegate.appDelegateHelper.seg = nil;
             [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
             [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
         }else {

@@ -9,10 +9,6 @@
 #import "YXEmptyView.h"
 
 @interface YXEmptyView()
-@property (nonatomic, strong) UIView *containerView;
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *subTitleLabel;
-@property (nonatomic, strong) UIImageView *imageView;
 @end
 
 @implementation YXEmptyView

@@ -30,6 +30,7 @@
 #import "TrainLayerListRequest.h"
 #import "TrainSelectLayerRequest.h"
 #import "VideoCourseDetailViewController.h"
+#import "AppDelegate.h"
 typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     TrainProjectRequestStatus_ProjectList,//请求项目列表
     TrainProjectRequestStatus_Beijing,//请求北京校验
@@ -312,12 +313,13 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
             [self showMasterInterface];
         }
     }
-    if (!isEmpty(self.courseId)) {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (!isEmpty(appDelegate.appDelegateHelper.courseId)) {
         VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
         YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
-        course.courses_id = self.courseId;
+        course.courses_id = appDelegate.appDelegateHelper.courseId;
         vc.course = course;
-        vc.seekInteger = [self.seg integerValue];
+        vc.seekInteger = [appDelegate.appDelegateHelper.seg integerValue];
         vc.fromWhere = VideoCourseFromWhere_QRCode;
         [self.navigationController pushViewController:vc animated:YES];
     }

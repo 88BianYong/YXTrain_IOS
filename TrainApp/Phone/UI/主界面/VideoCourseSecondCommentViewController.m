@@ -37,8 +37,12 @@
     self.dataFetcher.courseID = self.courseId;
     self.dataFetcher.parentID = self.parentID;
     [super setupUI];
+    self.emptyView = [[YXEmptyView alloc] initWithFrame:self.view.bounds];
+    self.emptyView.imageName = @"暂无评论";
+    self.emptyView.title = @"暂无评论";
+    self.emptyView.hidden = YES;
+    [self.contentView addSubview:self.emptyView];
     self.dataErrorView.isVideo = NO;
-    self.emptyView.isVideo = NO;
     self.errorView.isVideo = NO;
     self.isFullReply = YES;
     self.tableView.delegate = self;

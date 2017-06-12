@@ -53,6 +53,7 @@ static const int kTimeout = 600;
             }
         }
         _volumeView.hidden = YES;
+        self.isBuffering = YES;
     }
     return self;
 }
@@ -102,18 +103,18 @@ static const int kTimeout = 600;
 }
 
 - (void)play {
-//    if (!self.bIsPlayable) {
-//        return;
-//    }
+    //    if (!self.bIsPlayable) {
+    //        return;
+    //    }
     [self.player play];
-    self.state = PlayerView_State_willPlaying;
+    self.state = PlayerView_State_Playing;
     _playPauseState = PlayerView_State_Playing;
 }
 
 - (void)pause {
-//    if (!self.bIsPlayable) {
-//        return;
-//    }
+    //    if (!self.bIsPlayable) {
+    //        return;
+    //    }
     [self.player pause];
     self.state = PlayerView_State_Paused;
     _playPauseState = PlayerView_State_Paused;
@@ -247,7 +248,7 @@ static const CGFloat kVolumnStep = 0.0625;
                 AVPlayerLayer *playerLayer = (AVPlayerLayer *)self.view.layer;
                 playerLayer.player = self.player;
                 [self _setupObservers];
-                if (self.playPauseState == PlayerView_State_Playing || self.playPauseState == PlayerView_State_willPlaying) {
+                if (self.playPauseState == PlayerView_State_Playing) {
                     [self.player play];
                 }
                 if (self.progress) {
@@ -293,7 +294,7 @@ static const CGFloat kVolumnStep = 0.0625;
         // Main Thread
         // [GlobalUtils checkMainThread];
         
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if (!self.bIsPlayable) {
             return;
         }
@@ -305,26 +306,26 @@ static const CGFloat kVolumnStep = 0.0625;
         // Main Thread
         // [GlobalUtils checkMainThread];
         
-        @strongify(self); if (!self) return;
+        STRONG_SELF
         if (!self.bIsPlayable) {
             return;
         }
         
         self.view.player = self.player;
         
-//        if ([YXGPGlobalSingleton sharedInstance].bHtmlNoti) {
-//            [self.view.player pause];
-//            return;
-//        }
+        //        if ([YXGPGlobalSingleton sharedInstance].bHtmlNoti) {
+        //            [self.view.player pause];
+        //            return;
+        //        }
     }];
     [self.disposeArray addObject:gd4];
     //*/
-
+    
     RACDisposable *d1 = [RACObserve(self.playerItem, playbackBufferEmpty) subscribeNext:^(NSNumber *x) {
         // Main Thread
         // [GlobalUtils checkMainThread];
-        
-        @strongify(self); if (!self) return;
+        STRONG_SELF
+        self.isBuffering = YES;
         if ([x boolValue]) {
             //NSLog(@"playbackBufferEmpty");
             self.state = PlayerView_State_Buffering;
@@ -334,10 +335,9 @@ static const CGFloat kVolumnStep = 0.0625;
     [self.disposeArray addObject:d1];
     
     RACDisposable *d2 = [RACObserve(self.playerItem, playbackLikelyToKeepUp) subscribeNext:^(NSNumber *x) {
-        // Main Thread
-        // [GlobalUtils checkMainThread];
-        
         @strongify(self); if (!self) return;
+        self.isBuffering = NO;
+
         if ([x boolValue]) {
             NSLog(@"playbackLikelyToKeepUp");
             self.state = self->_playPauseState;
@@ -376,19 +376,19 @@ static const CGFloat kVolumnStep = 0.0625;
             return;
         }
         
-//        if ([YXGPGlobalSingleton sharedInstance].bHtmlNoti) {
-//            [self.view.player pause];
-//            return;
-//        }
+        //        if ([YXGPGlobalSingleton sharedInstance].bHtmlNoti) {
+        //            [self.view.player pause];
+        //            return;
+        //        }
         
-        if (self.playPauseState == PlayerView_State_Playing || self.playPauseState == PlayerView_State_willPlaying) {
+        if (self.playPauseState == PlayerView_State_Playing) {
             [self.view.player play];
         }
         
         self.view.player = self.player;
     }];
     [self.disposeArray addObject:gd5];
-
+    
 }
 
 - (void)_clearObservers {
@@ -461,23 +461,14 @@ static const CGFloat kVolumnStep = 0.0625;
 
 - (void)startPlayerObserver {
     @weakify(self);
-    self.playerObserver = [self.player addPeriodicTimeObserverForInterval:CMTimeMake(1, 1)
-                                                                    queue:NULL
-                                                               usingBlock:^(CMTime time) {
-                                                                   // Main Thread
-                                                                   // [GlobalUtils checkMainThread];
-                                                                   
-                                                                   @strongify(self); if (!self) return;
-                                                                   // 更新timePlayed
-                                                                   self.timePlayed = CMTimeGetSeconds([self.playerItem currentTime]);
-//                                                                   CGFloat temp = CMTimeGetSeconds([self.playerItem currentTime]);
-//                                                                   if(temp > self.timeBuffered) {
-//                                                                       self.state = PlayerView_State_Buffering;
-//                                                                   }else {
-//                                                                       self.timePlayed = CMTimeGetSeconds([self.playerItem currentTime]);
-//                                                                        self.state = PlayerView_State_Playing;
-//                                                                   }
-                                                               }];
+    self.playerObserver = [self.player
+                           addPeriodicTimeObserverForInterval:CMTimeMake(1, 1)
+                           queue:NULL
+                           usingBlock:^(CMTime time) {
+                               @strongify(self); if (!self) return;
+                               // 更新timePlayed
+                               self.timePlayed = CMTimeGetSeconds([self.playerItem currentTime]);
+                           }];
 }
 
 - (void)endPlayerObserver {

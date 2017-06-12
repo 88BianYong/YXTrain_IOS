@@ -12,11 +12,18 @@
     UIImageView *_imageView;
     BOOL _bAnimating;
 }
-
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (id)init {
     self = [super init];
     if (self) {
         [self _setupUI];
+        WEAK_SELF
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidBecomeActiveNotification object:nil] subscribeNext:^(id x) {
+            STRONG_SELF
+            [self refresh];//解决切换后台动画停止问题
+        }];
     }
     return self;
 }
@@ -28,6 +35,16 @@
         make.center.mas_equalTo(@0);
     }];
 }
+- (void)refresh {
+    if (_bAnimating) {
+        [self.layer removeAnimationForKey:@"buffering rotation"];
+        CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation"];
+        anim.duration = 1;
+        anim.repeatCount = MAXFLOAT;
+        anim.values = @[@(0),@(M_PI_2),@(M_PI),@(M_PI*1.5),@(M_PI*2)];
+        [self.layer addAnimation:anim forKey:@"buffering rotation"];
+    }
+}
 
 - (void)start {
     if (_bAnimating) {
@@ -38,7 +55,6 @@
     anim.repeatCount = MAXFLOAT;
     anim.values = @[@(0),@(M_PI_2),@(M_PI),@(M_PI*1.5),@(M_PI*2)];
     [self.layer addAnimation:anim forKey:@"buffering rotation"];
-    
     _bAnimating = YES;
 }
 

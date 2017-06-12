@@ -11,7 +11,6 @@
 
 typedef NS_ENUM(NSUInteger, PlayerView_State) {
     PlayerView_State_Buffering,
-    PlayerView_State_willPlaying,
     PlayerView_State_Playing,
     PlayerView_State_Paused,
     PlayerView_State_Finished,
@@ -34,6 +33,7 @@ typedef NS_ENUM(NSUInteger, PlayerView_State) {
 @property (nonatomic, assign) CGFloat timePlayed;
 @property (nonatomic, assign) CGFloat timeBuffered;
 @property (nonatomic, assign) CGFloat speedByByte;
+@property (nonatomic, assign) BOOL isBuffering;
 /**
  *  在一下情况的初始阶段，我们无法测速:
  *  1, 视频第一次加载
