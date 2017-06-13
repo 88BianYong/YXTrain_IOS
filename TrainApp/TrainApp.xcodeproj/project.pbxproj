@@ -253,7 +253,6 @@
 		922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */; };
 		923063AB1EDE5646003AE660 /* FloatingBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923063AA1EDE5646003AE660 /* FloatingBaseView.m */; };
 		923063AE1EDE566A003AE660 /* QRCodeFloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923063AD1EDE566A003AE660 /* QRCodeFloatingView.m */; };
-		92310E4E1E52B0A500CB5F1F /* MasterHappeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92310E4B1E52B03B00CB5F1F /* MasterHappeningViewController.m */; };
 		923237161D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237151D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m */; };
 		9232371A1D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237191D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m */; };
 		9232372C1D69A5DD00FDACFE /* YXLoadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232372B1D69A5DD00FDACFE /* YXLoadView.m */; };
@@ -280,6 +279,34 @@
 		9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232377D1D82D76100FDACFE /* YXDynamicViewController.m */; };
 		923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237821D82D87800FDACFE /* YXDynamicCell.m */; };
 		92348F8F1EEF85FC00D3B3A7 /* VideoPlayCommentEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348F8E1EEF85FC00D3B3A7 /* VideoPlayCommentEmptyView.m */; };
+		92348FBA1EEFEDEA00D3B3A7 /* MasterConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348F931EEFEDEA00D3B3A7 /* MasterConditionCell.m */; };
+		92348FBB1EEFEDEA00D3B3A7 /* MasterConditionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348F951EEFEDEA00D3B3A7 /* MasterConditionTableView.m */; };
+		92348FBC1EEFEDEA00D3B3A7 /* MasterHappeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348F971EEFEDEA00D3B3A7 /* MasterHappeningCell.m */; };
+		92348FBD1EEFEDEA00D3B3A7 /* MasterHappeningHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348F991EEFEDEA00D3B3A7 /* MasterHappeningHeaderView.m */; };
+		92348FBE1EEFEDEA00D3B3A7 /* MasterHappeningTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348F9B1EEFEDEA00D3B3A7 /* MasterHappeningTableHeaderView.m */; };
+		92348FBF1EEFEDEA00D3B3A7 /* MasterHappeningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348F9D1EEFEDEA00D3B3A7 /* MasterHappeningViewController.m */; };
+		92348FC01EEFEDEA00D3B3A7 /* MasterManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348F9F1EEFEDEA00D3B3A7 /* MasterManageCell.m */; };
+		92348FC11EEFEDEA00D3B3A7 /* MasterManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FA11EEFEDEA00D3B3A7 /* MasterManageViewController.m */; };
+		92348FC21EEFEDEA00D3B3A7 /* MasterSchoolTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FA31EEFEDEA00D3B3A7 /* MasterSchoolTableView.m */; };
+		92348FC31EEFEDEA00D3B3A7 /* MasterTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FA51EEFEDEA00D3B3A7 /* MasterTaskViewController.m */; };
+		92348FC41EEFEDEA00D3B3A7 /* RemindLeftSlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FA71EEFEDEA00D3B3A7 /* RemindLeftSlipView.m */; };
+		92348FC51EEFEDEA00D3B3A7 /* StudentExamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FA91EEFEDEA00D3B3A7 /* StudentExamHeaderView.m */; };
+		92348FC61EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FAB1EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.m */; };
+		92348FC71EEFEDEA00D3B3A7 /* StudentExamTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FAD1EEFEDEA00D3B3A7 /* StudentExamTipsView.m */; };
+		92348FC81EEFEDEA00D3B3A7 /* StudentExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FAF1EEFEDEA00D3B3A7 /* StudentExamViewController.m */; };
+		92348FC91EEFEDEA00D3B3A7 /* StudentsLearnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FB11EEFEDEA00D3B3A7 /* StudentsLearnController.m */; };
+		92348FCA1EEFEDEA00D3B3A7 /* StudentsLearnFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FB31EEFEDEA00D3B3A7 /* StudentsLearnFilterView.m */; };
+		92348FCB1EEFEDEA00D3B3A7 /* StudentsLearnSwipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FB51EEFEDEA00D3B3A7 /* StudentsLearnSwipeCell.m */; };
+		92348FCC1EEFEDEA00D3B3A7 /* StudentsLearnTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FB71EEFEDEA00D3B3A7 /* StudentsLearnTableHeaderView.m */; };
+		92348FCD1EEFEDEA00D3B3A7 /* SwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FB91EEFEDEA00D3B3A7 /* SwipeTableViewCell.m */; };
+		92348FDD1EEFEF2A00D3B3A7 /* LearningInfoListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FD11EEFEF2A00D3B3A7 /* LearningInfoListFetcher.m */; };
+		92348FDE1EEFEF2A00D3B3A7 /* masterLearningInfoList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92348FD21EEFEF2A00D3B3A7 /* masterLearningInfoList_mock.json */; };
+		92348FDF1EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FD41EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.m */; };
+		92348FE01EEFEF2A00D3B3A7 /* masterManageList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92348FD51EEFEF2A00D3B3A7 /* masterManageList_mock.json */; };
+		92348FE11EEFEF2A00D3B3A7 /* MasterManageListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FD71EEFEF2A00D3B3A7 /* MasterManageListRequest.m */; };
+		92348FE21EEFEF2A00D3B3A7 /* MasterRemindStudyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FD91EEFEF2A00D3B3A7 /* MasterRemindStudyRequest.m */; };
+		92348FE31EEFEF2A00D3B3A7 /* masterStat_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92348FDA1EEFEF2A00D3B3A7 /* masterStat_mock.json */; };
+		92348FE41EEFEF2A00D3B3A7 /* MasterStatRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92348FDC1EEFEF2A00D3B3A7 /* MasterStatRequest.m */; };
 		9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9237FF761DD489390057FFDE /* ActivityStepListRequest.m */; };
 		9237FF791DD48F800057FFDE /* activityStep_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 9237FF781DD48F800057FFDE /* activityStep_mock.json */; };
 		9237FF7C1DD572400057FFDE /* ActivityFirstCommentRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */; };
@@ -303,8 +330,6 @@
 		92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F621DD96E3E00548424 /* ActivityPlayTopView.m */; };
 		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
 		927B6C661DFA99AE00CBBBBF /* BeijingCourseListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C651DFA99AE00CBBBBF /* BeijingCourseListRequest.m */; };
-		92835A8F1E5461CA00B71DF7 /* MasterSchoolTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92835A8E1E5461CA00B71DF7 /* MasterSchoolTableView.m */; };
-		92835A951E54797E00B71DF7 /* MasterConditionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92835A941E54797E00B71DF7 /* MasterConditionTableView.m */; };
 		92852BEA1EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */; };
 		928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A121E88B2180067218A /* BeijingActivityListCell.m */; };
 		928B7A3A1E88B2180067218A /* BeijingActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A141E88B2180067218A /* BeijingActivityListViewController.m */; };
@@ -332,12 +357,9 @@
 		928B7A591E88C0510067218A /* DeYangCourseListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A581E88C0510067218A /* DeYangCourseListCell.m */; };
 		928B7A5C1E88C63C0067218A /* DeYangCourseRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A5B1E88C63C0067218A /* DeYangCourseRecordViewController.m */; };
 		928B7A5F1E88C7220067218A /* DeYangCourseRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A5E1E88C7220067218A /* DeYangCourseRecordCell.m */; };
-		928B7A831E88EE130067218A /* masterStat_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 928B7A801E88EE130067218A /* masterStat_mock.json */; };
-		928B7A841E88EE130067218A /* MasterStatRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A821E88EE130067218A /* MasterStatRequest.m */; };
 		928B7A891E88EE750067218A /* BeijingCourseListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A861E88EE750067218A /* BeijingCourseListFetcher.m */; };
 		928B7A8A1E88EE750067218A /* BeijingExamineRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A881E88EE750067218A /* BeijingExamineRequest.m */; };
 		928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
-		928DBE7C1E547A5C0016D66C /* MasterConditionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928DBE7B1E547A5C0016D66C /* MasterConditionCell.m */; };
 		9292DC501E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC4F1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m */; };
 		9292DC531E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC521E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m */; };
 		9292DC561E9E2C2F008C6A14 /* YXCourseBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC551E9E2C2F008C6A14 /* YXCourseBaseViewController.m */; };
@@ -374,18 +396,7 @@
 		92CE51531D87D4AE0071DE79 /* YXHotspotRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51521D87D4AE0071DE79 /* YXHotspotRequest.m */; };
 		92CE51561D87D4C70071DE79 /* YXDynamicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE51551D87D4C70071DE79 /* YXDynamicRequest.m */; };
 		92CE515E1D87EF3D0071DE79 /* YXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE515D1D87EF3D0071DE79 /* YXWebViewController.m */; };
-		92CE55EA1E557B37002C1F11 /* MasterLearningInfoListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55E91E557B37002C1F11 /* MasterLearningInfoListRequest.m */; };
-		92CE55ED1E557D8F002C1F11 /* LearningInfoListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55EC1E557D8F002C1F11 /* LearningInfoListFetcher.m */; };
-		92CE55EF1E558249002C1F11 /* masterLearningInfoList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92CE55EE1E558249002C1F11 /* masterLearningInfoList_mock.json */; };
-		92CE55F11E55825C002C1F11 /* masterManageList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92CE55F01E55825C002C1F11 /* masterManageList_mock.json */; };
-		92CE55F41E5598FD002C1F11 /* StudentExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55F31E5598FD002C1F11 /* StudentExamViewController.m */; };
-		92CE55F71E559926002C1F11 /* StudentExamHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55F61E559926002C1F11 /* StudentExamHeaderView.m */; };
-		92CE55FA1E559CD8002C1F11 /* StudentExamPhaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55F91E559CD8002C1F11 /* StudentExamPhaseHeaderView.m */; };
-		92CE55FD1E55ACF8002C1F11 /* MasterRemindStudyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55FC1E55ACF8002C1F11 /* MasterRemindStudyRequest.m */; };
 		92CE56001E55C8AB002C1F11 /* UserStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE55FF1E55C8AB002C1F11 /* UserStatusView.m */; };
-		92CE56031E56822E002C1F11 /* MasterTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE56021E56822E002C1F11 /* MasterTaskViewController.m */; };
-		92CE56061E5686F7002C1F11 /* StudentExamTipsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CE56051E5686F7002C1F11 /* StudentExamTipsView.m */; };
-		92D94F071E77CDD7003AB58A /* RemindLeftSlipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D94F061E77CDD7003AB58A /* RemindLeftSlipView.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92DE3BB41DDAFDEE0011CFB7 /* ActivityStepTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BB31DDAFDEE0011CFB7 /* ActivityStepTableCell.m */; };
 		92DE3BBB1DDC329A0011CFB7 /* SecondCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BBA1DDC329A0011CFB7 /* SecondCommentViewController.m */; };
@@ -412,22 +423,11 @@
 		92EDC7D41D6323AD005B91DD /* YXHomeworkPlayVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EDC7D31D6323AD005B91DD /* YXHomeworkPlayVideoCell.m */; };
 		92EEA9211EB08348005A3B7C /* DeYangCourseListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EEA9201EB08348005A3B7C /* DeYangCourseListFetcher.m */; };
 		92EEA9241EB08563005A3B7C /* DeYangCourseTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92EEA9231EB08563005A3B7C /* DeYangCourseTableHeaderView.m */; };
-		92F1A59B1E52B17E00015766 /* MasterHappeningTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A59A1E52B17E00015766 /* MasterHappeningTableHeaderView.m */; };
-		92F1A59E1E52B3BA00015766 /* MasterHappeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A59D1E52B3BA00015766 /* MasterHappeningCell.m */; };
-		92F1A5A11E52B3DD00015766 /* MasterHappeningHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5A01E52B3DD00015766 /* MasterHappeningHeaderView.m */; };
 		92F1A5A41E52EF4700015766 /* MasterProjectContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5A31E52EF4700015766 /* MasterProjectContainerView.m */; };
 		92F1A5A71E52F16100015766 /* ChangeProjectRoleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5A61E52F16100015766 /* ChangeProjectRoleView.m */; };
 		92F1A5AD1E53083A00015766 /* YXProjectMainViewController+Master.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5AC1E53083A00015766 /* YXProjectMainViewController+Master.m */; };
 		92F1A5B01E53084A00015766 /* YXProjectMainViewController+Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5AF1E53084A00015766 /* YXProjectMainViewController+Student.m */; };
-		92F1A5B31E530D2700015766 /* MasterManageListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5B21E530D2700015766 /* MasterManageListRequest.m */; };
-		92F1A5B61E53FF9F00015766 /* MasterManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5B51E53FF9F00015766 /* MasterManageViewController.m */; };
-		92F1A5B91E53FFEC00015766 /* MasterManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5B81E53FFEC00015766 /* MasterManageCell.m */; };
-		92F1A5BC1E5402D400015766 /* StudentsLearnFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5BB1E5402D400015766 /* StudentsLearnFilterView.m */; };
-		92F1A5BF1E54036E00015766 /* StudentsLearnTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F1A5BE1E54036E00015766 /* StudentsLearnTableHeaderView.m */; };
 		92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */; };
-		92F57B7E1E515ED90061CAA2 /* StudentsLearnController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F57B7D1E515ED90061CAA2 /* StudentsLearnController.m */; };
-		92F57B821E515F310061CAA2 /* SwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F57B811E515F310061CAA2 /* SwipeTableViewCell.m */; };
-		92F57B851E5169440061CAA2 /* StudentsLearnSwipeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F57B841E5169440061CAA2 /* StudentsLearnSwipeCell.m */; };
 		92F6877F1E08E7A000A48420 /* ActivityListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F6877E1E08E7A000A48420 /* ActivityListDetailModel.m */; };
 		92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F687811E0908F400A48420 /* ActivityDetailManger.m */; };
 		92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */; };
@@ -1074,8 +1074,6 @@
 		923063AA1EDE5646003AE660 /* FloatingBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingBaseView.m; sourceTree = "<group>"; };
 		923063AC1EDE566A003AE660 /* QRCodeFloatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeFloatingView.h; sourceTree = "<group>"; };
 		923063AD1EDE566A003AE660 /* QRCodeFloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeFloatingView.m; sourceTree = "<group>"; };
-		92310E4A1E52B03B00CB5F1F /* MasterHappeningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningViewController.h; sourceTree = "<group>"; };
-		92310E4B1E52B03B00CB5F1F /* MasterHappeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningViewController.m; sourceTree = "<group>"; };
 		923237141D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkInfoFinishHeaderView.h; sourceTree = "<group>"; };
 		923237151D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHomeworkInfoFinishHeaderView.m; sourceTree = "<group>"; };
 		923237181D659B5200FDACFE /* YXUpdVideoHomeworkRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUpdVideoHomeworkRequest.h; sourceTree = "<group>"; };
@@ -1125,6 +1123,59 @@
 		923237821D82D87800FDACFE /* YXDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDynamicCell.m; sourceTree = "<group>"; };
 		92348F8D1EEF85FC00D3B3A7 /* VideoPlayCommentEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayCommentEmptyView.h; sourceTree = "<group>"; };
 		92348F8E1EEF85FC00D3B3A7 /* VideoPlayCommentEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayCommentEmptyView.m; sourceTree = "<group>"; };
+		92348F921EEFEDEA00D3B3A7 /* MasterConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionCell.h; sourceTree = "<group>"; };
+		92348F931EEFEDEA00D3B3A7 /* MasterConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConditionCell.m; sourceTree = "<group>"; };
+		92348F941EEFEDEA00D3B3A7 /* MasterConditionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionTableView.h; sourceTree = "<group>"; };
+		92348F951EEFEDEA00D3B3A7 /* MasterConditionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConditionTableView.m; sourceTree = "<group>"; };
+		92348F961EEFEDEA00D3B3A7 /* MasterHappeningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningCell.h; sourceTree = "<group>"; };
+		92348F971EEFEDEA00D3B3A7 /* MasterHappeningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningCell.m; sourceTree = "<group>"; };
+		92348F981EEFEDEA00D3B3A7 /* MasterHappeningHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningHeaderView.h; sourceTree = "<group>"; };
+		92348F991EEFEDEA00D3B3A7 /* MasterHappeningHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningHeaderView.m; sourceTree = "<group>"; };
+		92348F9A1EEFEDEA00D3B3A7 /* MasterHappeningTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningTableHeaderView.h; sourceTree = "<group>"; };
+		92348F9B1EEFEDEA00D3B3A7 /* MasterHappeningTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningTableHeaderView.m; sourceTree = "<group>"; };
+		92348F9C1EEFEDEA00D3B3A7 /* MasterHappeningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningViewController.h; sourceTree = "<group>"; };
+		92348F9D1EEFEDEA00D3B3A7 /* MasterHappeningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningViewController.m; sourceTree = "<group>"; };
+		92348F9E1EEFEDEA00D3B3A7 /* MasterManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterManageCell.h; sourceTree = "<group>"; };
+		92348F9F1EEFEDEA00D3B3A7 /* MasterManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterManageCell.m; sourceTree = "<group>"; };
+		92348FA01EEFEDEA00D3B3A7 /* MasterManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterManageViewController.h; sourceTree = "<group>"; };
+		92348FA11EEFEDEA00D3B3A7 /* MasterManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterManageViewController.m; sourceTree = "<group>"; };
+		92348FA21EEFEDEA00D3B3A7 /* MasterSchoolTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterSchoolTableView.h; sourceTree = "<group>"; };
+		92348FA31EEFEDEA00D3B3A7 /* MasterSchoolTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterSchoolTableView.m; sourceTree = "<group>"; };
+		92348FA41EEFEDEA00D3B3A7 /* MasterTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterTaskViewController.h; sourceTree = "<group>"; };
+		92348FA51EEFEDEA00D3B3A7 /* MasterTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterTaskViewController.m; sourceTree = "<group>"; };
+		92348FA61EEFEDEA00D3B3A7 /* RemindLeftSlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindLeftSlipView.h; sourceTree = "<group>"; };
+		92348FA71EEFEDEA00D3B3A7 /* RemindLeftSlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindLeftSlipView.m; sourceTree = "<group>"; };
+		92348FA81EEFEDEA00D3B3A7 /* StudentExamHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamHeaderView.h; sourceTree = "<group>"; };
+		92348FA91EEFEDEA00D3B3A7 /* StudentExamHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamHeaderView.m; sourceTree = "<group>"; };
+		92348FAA1EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamPhaseHeaderView.h; sourceTree = "<group>"; };
+		92348FAB1EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamPhaseHeaderView.m; sourceTree = "<group>"; };
+		92348FAC1EEFEDEA00D3B3A7 /* StudentExamTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamTipsView.h; sourceTree = "<group>"; };
+		92348FAD1EEFEDEA00D3B3A7 /* StudentExamTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamTipsView.m; sourceTree = "<group>"; };
+		92348FAE1EEFEDEA00D3B3A7 /* StudentExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamViewController.h; sourceTree = "<group>"; };
+		92348FAF1EEFEDEA00D3B3A7 /* StudentExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamViewController.m; sourceTree = "<group>"; };
+		92348FB01EEFEDEA00D3B3A7 /* StudentsLearnController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnController.h; sourceTree = "<group>"; };
+		92348FB11EEFEDEA00D3B3A7 /* StudentsLearnController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnController.m; sourceTree = "<group>"; };
+		92348FB21EEFEDEA00D3B3A7 /* StudentsLearnFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnFilterView.h; sourceTree = "<group>"; };
+		92348FB31EEFEDEA00D3B3A7 /* StudentsLearnFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnFilterView.m; sourceTree = "<group>"; };
+		92348FB41EEFEDEA00D3B3A7 /* StudentsLearnSwipeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnSwipeCell.h; sourceTree = "<group>"; };
+		92348FB51EEFEDEA00D3B3A7 /* StudentsLearnSwipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnSwipeCell.m; sourceTree = "<group>"; };
+		92348FB61EEFEDEA00D3B3A7 /* StudentsLearnTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnTableHeaderView.h; sourceTree = "<group>"; };
+		92348FB71EEFEDEA00D3B3A7 /* StudentsLearnTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnTableHeaderView.m; sourceTree = "<group>"; };
+		92348FB81EEFEDEA00D3B3A7 /* SwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeTableViewCell.h; sourceTree = "<group>"; };
+		92348FB91EEFEDEA00D3B3A7 /* SwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeTableViewCell.m; sourceTree = "<group>"; };
+		92348FD01EEFEF2A00D3B3A7 /* LearningInfoListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoListFetcher.h; sourceTree = "<group>"; };
+		92348FD11EEFEF2A00D3B3A7 /* LearningInfoListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoListFetcher.m; sourceTree = "<group>"; };
+		92348FD21EEFEF2A00D3B3A7 /* masterLearningInfoList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterLearningInfoList_mock.json; sourceTree = "<group>"; };
+		92348FD31EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterLearningInfoListRequest.h; sourceTree = "<group>"; };
+		92348FD41EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterLearningInfoListRequest.m; sourceTree = "<group>"; };
+		92348FD51EEFEF2A00D3B3A7 /* masterManageList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterManageList_mock.json; sourceTree = "<group>"; };
+		92348FD61EEFEF2A00D3B3A7 /* MasterManageListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterManageListRequest.h; sourceTree = "<group>"; };
+		92348FD71EEFEF2A00D3B3A7 /* MasterManageListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterManageListRequest.m; sourceTree = "<group>"; };
+		92348FD81EEFEF2A00D3B3A7 /* MasterRemindStudyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterRemindStudyRequest.h; sourceTree = "<group>"; };
+		92348FD91EEFEF2A00D3B3A7 /* MasterRemindStudyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterRemindStudyRequest.m; sourceTree = "<group>"; };
+		92348FDA1EEFEF2A00D3B3A7 /* masterStat_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterStat_mock.json; sourceTree = "<group>"; };
+		92348FDB1EEFEF2A00D3B3A7 /* MasterStatRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterStatRequest.h; sourceTree = "<group>"; };
+		92348FDC1EEFEF2A00D3B3A7 /* MasterStatRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterStatRequest.m; sourceTree = "<group>"; };
 		9237FF751DD489390057FFDE /* ActivityStepListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStepListRequest.h; sourceTree = "<group>"; };
 		9237FF761DD489390057FFDE /* ActivityStepListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityStepListRequest.m; sourceTree = "<group>"; };
 		9237FF781DD48F800057FFDE /* activityStep_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activityStep_mock.json; sourceTree = "<group>"; };
@@ -1169,9 +1220,6 @@
 		92780F671DD9A01600548424 /* CommentPagedListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentPagedListFetcher.h; sourceTree = "<group>"; };
 		927B6C641DFA99AE00CBBBBF /* BeijingCourseListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseListRequest.h; sourceTree = "<group>"; };
 		927B6C651DFA99AE00CBBBBF /* BeijingCourseListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseListRequest.m; sourceTree = "<group>"; };
-		92835A8E1E5461CA00B71DF7 /* MasterSchoolTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterSchoolTableView.m; sourceTree = "<group>"; };
-		92835A931E54797E00B71DF7 /* MasterConditionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionTableView.h; sourceTree = "<group>"; };
-		92835A941E54797E00B71DF7 /* MasterConditionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConditionTableView.m; sourceTree = "<group>"; };
 		92852BE81EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeYangGetQuizStatistics.h; sourceTree = "<group>"; };
 		92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangGetQuizStatistics.m; sourceTree = "<group>"; };
 		928B7A111E88B2180067218A /* BeijingActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListCell.h; sourceTree = "<group>"; };
@@ -1226,17 +1274,12 @@
 		928B7A5B1E88C63C0067218A /* DeYangCourseRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangCourseRecordViewController.m; sourceTree = "<group>"; };
 		928B7A5D1E88C7220067218A /* DeYangCourseRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeYangCourseRecordCell.h; sourceTree = "<group>"; };
 		928B7A5E1E88C7220067218A /* DeYangCourseRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangCourseRecordCell.m; sourceTree = "<group>"; };
-		928B7A801E88EE130067218A /* masterStat_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterStat_mock.json; sourceTree = "<group>"; };
-		928B7A811E88EE130067218A /* MasterStatRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterStatRequest.h; sourceTree = "<group>"; };
-		928B7A821E88EE130067218A /* MasterStatRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterStatRequest.m; sourceTree = "<group>"; };
 		928B7A851E88EE750067218A /* BeijingCourseListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseListFetcher.h; sourceTree = "<group>"; };
 		928B7A861E88EE750067218A /* BeijingCourseListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseListFetcher.m; sourceTree = "<group>"; };
 		928B7A871E88EE750067218A /* BeijingExamineRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingExamineRequest.h; sourceTree = "<group>"; };
 		928B7A881E88EE750067218A /* BeijingExamineRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamineRequest.m; sourceTree = "<group>"; };
 		928BAF201E82682E0091D1C7 /* TestVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVideoViewController.h; sourceTree = "<group>"; };
 		928BAF211E82682E0091D1C7 /* TestVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVideoViewController.m; sourceTree = "<group>"; };
-		928DBE7A1E547A5C0016D66C /* MasterConditionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterConditionCell.h; sourceTree = "<group>"; };
-		928DBE7B1E547A5C0016D66C /* MasterConditionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterConditionCell.m; sourceTree = "<group>"; };
 		9292DC4E1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeAndBriefDetailCell.h; sourceTree = "<group>"; };
 		9292DC4F1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeAndBriefDetailCell.m; sourceTree = "<group>"; };
 		9292DC511E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeAndBriefDetailTableHeaderView.h; sourceTree = "<group>"; };
@@ -1304,28 +1347,8 @@
 		92CE51551D87D4C70071DE79 /* YXDynamicRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDynamicRequest.m; sourceTree = "<group>"; };
 		92CE515C1D87EF3D0071DE79 /* YXWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWebViewController.h; sourceTree = "<group>"; };
 		92CE515D1D87EF3D0071DE79 /* YXWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWebViewController.m; sourceTree = "<group>"; };
-		92CE55E81E557B37002C1F11 /* MasterLearningInfoListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterLearningInfoListRequest.h; sourceTree = "<group>"; };
-		92CE55E91E557B37002C1F11 /* MasterLearningInfoListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterLearningInfoListRequest.m; sourceTree = "<group>"; };
-		92CE55EB1E557D8F002C1F11 /* LearningInfoListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LearningInfoListFetcher.h; sourceTree = "<group>"; };
-		92CE55EC1E557D8F002C1F11 /* LearningInfoListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LearningInfoListFetcher.m; sourceTree = "<group>"; };
-		92CE55EE1E558249002C1F11 /* masterLearningInfoList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterLearningInfoList_mock.json; sourceTree = "<group>"; };
-		92CE55F01E55825C002C1F11 /* masterManageList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterManageList_mock.json; sourceTree = "<group>"; };
-		92CE55F21E5598FD002C1F11 /* StudentExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamViewController.h; sourceTree = "<group>"; };
-		92CE55F31E5598FD002C1F11 /* StudentExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamViewController.m; sourceTree = "<group>"; };
-		92CE55F51E559926002C1F11 /* StudentExamHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamHeaderView.h; sourceTree = "<group>"; };
-		92CE55F61E559926002C1F11 /* StudentExamHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamHeaderView.m; sourceTree = "<group>"; };
-		92CE55F81E559CD8002C1F11 /* StudentExamPhaseHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamPhaseHeaderView.h; sourceTree = "<group>"; };
-		92CE55F91E559CD8002C1F11 /* StudentExamPhaseHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamPhaseHeaderView.m; sourceTree = "<group>"; };
-		92CE55FB1E55ACF8002C1F11 /* MasterRemindStudyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterRemindStudyRequest.h; sourceTree = "<group>"; };
-		92CE55FC1E55ACF8002C1F11 /* MasterRemindStudyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterRemindStudyRequest.m; sourceTree = "<group>"; };
 		92CE55FE1E55C8AB002C1F11 /* UserStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusView.h; sourceTree = "<group>"; };
 		92CE55FF1E55C8AB002C1F11 /* UserStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusView.m; sourceTree = "<group>"; };
-		92CE56011E56822E002C1F11 /* MasterTaskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterTaskViewController.h; sourceTree = "<group>"; };
-		92CE56021E56822E002C1F11 /* MasterTaskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterTaskViewController.m; sourceTree = "<group>"; };
-		92CE56041E5686F7002C1F11 /* StudentExamTipsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentExamTipsView.h; sourceTree = "<group>"; };
-		92CE56051E5686F7002C1F11 /* StudentExamTipsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentExamTipsView.m; sourceTree = "<group>"; };
-		92D94F051E77CDD7003AB58A /* RemindLeftSlipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemindLeftSlipView.h; sourceTree = "<group>"; };
-		92D94F061E77CDD7003AB58A /* RemindLeftSlipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemindLeftSlipView.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
 		92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUploadDepictionViewController.m; sourceTree = "<group>"; };
 		92DE3BB21DDAFDEE0011CFB7 /* ActivityStepTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStepTableCell.h; sourceTree = "<group>"; };
@@ -1378,12 +1401,6 @@
 		92EEA9201EB08348005A3B7C /* DeYangCourseListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangCourseListFetcher.m; sourceTree = "<group>"; };
 		92EEA9221EB08563005A3B7C /* DeYangCourseTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeYangCourseTableHeaderView.h; sourceTree = "<group>"; };
 		92EEA9231EB08563005A3B7C /* DeYangCourseTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangCourseTableHeaderView.m; sourceTree = "<group>"; };
-		92F1A5991E52B17E00015766 /* MasterHappeningTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningTableHeaderView.h; sourceTree = "<group>"; };
-		92F1A59A1E52B17E00015766 /* MasterHappeningTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningTableHeaderView.m; sourceTree = "<group>"; };
-		92F1A59C1E52B3BA00015766 /* MasterHappeningCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningCell.h; sourceTree = "<group>"; };
-		92F1A59D1E52B3BA00015766 /* MasterHappeningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningCell.m; sourceTree = "<group>"; };
-		92F1A59F1E52B3DD00015766 /* MasterHappeningHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterHappeningHeaderView.h; sourceTree = "<group>"; };
-		92F1A5A01E52B3DD00015766 /* MasterHappeningHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningHeaderView.m; sourceTree = "<group>"; };
 		92F1A5A21E52EF4700015766 /* MasterProjectContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterProjectContainerView.h; sourceTree = "<group>"; };
 		92F1A5A31E52EF4700015766 /* MasterProjectContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterProjectContainerView.m; sourceTree = "<group>"; };
 		92F1A5A51E52F16100015766 /* ChangeProjectRoleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeProjectRoleView.h; sourceTree = "<group>"; };
@@ -1392,25 +1409,8 @@
 		92F1A5AC1E53083A00015766 /* YXProjectMainViewController+Master.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXProjectMainViewController+Master.m"; sourceTree = "<group>"; };
 		92F1A5AE1E53084A00015766 /* YXProjectMainViewController+Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXProjectMainViewController+Student.h"; sourceTree = "<group>"; };
 		92F1A5AF1E53084A00015766 /* YXProjectMainViewController+Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXProjectMainViewController+Student.m"; sourceTree = "<group>"; };
-		92F1A5B11E530D2700015766 /* MasterManageListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterManageListRequest.h; sourceTree = "<group>"; };
-		92F1A5B21E530D2700015766 /* MasterManageListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterManageListRequest.m; sourceTree = "<group>"; };
-		92F1A5B41E53FF9F00015766 /* MasterManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterManageViewController.h; sourceTree = "<group>"; };
-		92F1A5B51E53FF9F00015766 /* MasterManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterManageViewController.m; sourceTree = "<group>"; };
-		92F1A5B71E53FFEC00015766 /* MasterManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterManageCell.h; sourceTree = "<group>"; };
-		92F1A5B81E53FFEC00015766 /* MasterManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterManageCell.m; sourceTree = "<group>"; };
-		92F1A5BA1E5402D400015766 /* StudentsLearnFilterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnFilterView.h; sourceTree = "<group>"; };
-		92F1A5BB1E5402D400015766 /* StudentsLearnFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnFilterView.m; sourceTree = "<group>"; };
-		92F1A5BD1E54036E00015766 /* StudentsLearnTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnTableHeaderView.h; sourceTree = "<group>"; };
-		92F1A5BE1E54036E00015766 /* StudentsLearnTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnTableHeaderView.m; sourceTree = "<group>"; };
-		92F1A5C01E545F8400015766 /* MasterSchoolTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterSchoolTableView.h; sourceTree = "<group>"; };
 		92F370B41D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YXWriteHomeworkInfoViewController+Request.h"; sourceTree = "<group>"; };
 		92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YXWriteHomeworkInfoViewController+Request.m"; sourceTree = "<group>"; };
-		92F57B7C1E515ED90061CAA2 /* StudentsLearnController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnController.h; sourceTree = "<group>"; };
-		92F57B7D1E515ED90061CAA2 /* StudentsLearnController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnController.m; sourceTree = "<group>"; };
-		92F57B801E515F310061CAA2 /* SwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeTableViewCell.h; sourceTree = "<group>"; };
-		92F57B811E515F310061CAA2 /* SwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeTableViewCell.m; sourceTree = "<group>"; };
-		92F57B831E5169440061CAA2 /* StudentsLearnSwipeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentsLearnSwipeCell.h; sourceTree = "<group>"; };
-		92F57B841E5169440061CAA2 /* StudentsLearnSwipeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentsLearnSwipeCell.m; sourceTree = "<group>"; };
 		92F6877D1E08E7A000A48420 /* ActivityListDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityListDetailModel.h; sourceTree = "<group>"; };
 		92F6877E1E08E7A000A48420 /* ActivityListDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListDetailModel.m; sourceTree = "<group>"; };
 		92F687801E0908F400A48420 /* ActivityDetailManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailManger.h; sourceTree = "<group>"; };
@@ -1948,10 +1948,8 @@
 			isa = PBXGroup;
 			children = (
 				928B7A8B1E88EEAD0067218A /* 德阳项目 */,
-				92310E3E1E529A9A00CB5F1F /* 坊主任务 */,
-				92310E3D1E529A8F00CB5F1F /* 坊主管理 */,
-				92310E3C1E529A8000CB5F1F /* 坊主学情 */,
 				9263544A1DF1528000FAD1DE /* 北京项目 */,
+				92348F911EEFED4F00D3B3A7 /* 坊主 */,
 				92CE514A1D87D3290071DE79 /* 热点 */,
 				92CE51491D87D3020071DE79 /* 动态 */,
 				923237841D864A1600FDACFE /* 红点 */,
@@ -2114,9 +2112,7 @@
 			children = (
 				928B7A0E1E88B06A0067218A /* 德阳项目 */,
 				928B7A0F1E88B1920067218A /* 北京项目 */,
-				92310E381E5299F100CB5F1F /* 坊主任务 */,
-				92310E321E52993C00CB5F1F /* 坊主学情 */,
-				92F57B791E515DE80061CAA2 /* 坊主管理 */,
+				92348F901EEFED1F00D3B3A7 /* 坊主 */,
 				9232375A1D814F5400FDACFE /* 热点 */,
 				9232372E1D6E9EE800FDACFE /* 启动 */,
 				F7E8F8D61D65CBB400CDAAF4 /* 弹出 */,
@@ -2933,98 +2929,6 @@
 			name = view;
 			sourceTree = "<group>";
 		};
-		92310E321E52993C00CB5F1F /* 坊主学情 */ = {
-			isa = PBXGroup;
-			children = (
-				92310E361E5299C400CB5F1F /* view */,
-				92310E371E5299CA00CB5F1F /* controller */,
-			);
-			path = "坊主学情";
-			sourceTree = "<group>";
-		};
-		92310E361E5299C400CB5F1F /* view */ = {
-			isa = PBXGroup;
-			children = (
-				92F1A5991E52B17E00015766 /* MasterHappeningTableHeaderView.h */,
-				92F1A59A1E52B17E00015766 /* MasterHappeningTableHeaderView.m */,
-				92F1A59C1E52B3BA00015766 /* MasterHappeningCell.h */,
-				92F1A59D1E52B3BA00015766 /* MasterHappeningCell.m */,
-				92F1A59F1E52B3DD00015766 /* MasterHappeningHeaderView.h */,
-				92F1A5A01E52B3DD00015766 /* MasterHappeningHeaderView.m */,
-				92CE56041E5686F7002C1F11 /* StudentExamTipsView.h */,
-				92CE56051E5686F7002C1F11 /* StudentExamTipsView.m */,
-			);
-			name = view;
-			sourceTree = "<group>";
-		};
-		92310E371E5299CA00CB5F1F /* controller */ = {
-			isa = PBXGroup;
-			children = (
-				92310E4A1E52B03B00CB5F1F /* MasterHappeningViewController.h */,
-				92310E4B1E52B03B00CB5F1F /* MasterHappeningViewController.m */,
-			);
-			name = controller;
-			sourceTree = "<group>";
-		};
-		92310E381E5299F100CB5F1F /* 坊主任务 */ = {
-			isa = PBXGroup;
-			children = (
-				92310E3A1E529A0500CB5F1F /* view */,
-				92310E391E5299FB00CB5F1F /* controller */,
-			);
-			path = "坊主任务";
-			sourceTree = "<group>";
-		};
-		92310E391E5299FB00CB5F1F /* controller */ = {
-			isa = PBXGroup;
-			children = (
-				92CE56011E56822E002C1F11 /* MasterTaskViewController.h */,
-				92CE56021E56822E002C1F11 /* MasterTaskViewController.m */,
-			);
-			name = controller;
-			sourceTree = "<group>";
-		};
-		92310E3A1E529A0500CB5F1F /* view */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = view;
-			sourceTree = "<group>";
-		};
-		92310E3C1E529A8000CB5F1F /* 坊主学情 */ = {
-			isa = PBXGroup;
-			children = (
-				928B7A801E88EE130067218A /* masterStat_mock.json */,
-				928B7A811E88EE130067218A /* MasterStatRequest.h */,
-				928B7A821E88EE130067218A /* MasterStatRequest.m */,
-			);
-			path = "坊主学情";
-			sourceTree = "<group>";
-		};
-		92310E3D1E529A8F00CB5F1F /* 坊主管理 */ = {
-			isa = PBXGroup;
-			children = (
-				92CE55F01E55825C002C1F11 /* masterManageList_mock.json */,
-				92F1A5B11E530D2700015766 /* MasterManageListRequest.h */,
-				92F1A5B21E530D2700015766 /* MasterManageListRequest.m */,
-				92CE55EE1E558249002C1F11 /* masterLearningInfoList_mock.json */,
-				92CE55E81E557B37002C1F11 /* MasterLearningInfoListRequest.h */,
-				92CE55E91E557B37002C1F11 /* MasterLearningInfoListRequest.m */,
-				92CE55EB1E557D8F002C1F11 /* LearningInfoListFetcher.h */,
-				92CE55EC1E557D8F002C1F11 /* LearningInfoListFetcher.m */,
-				92CE55FB1E55ACF8002C1F11 /* MasterRemindStudyRequest.h */,
-				92CE55FC1E55ACF8002C1F11 /* MasterRemindStudyRequest.m */,
-			);
-			path = "坊主管理";
-			sourceTree = "<group>";
-		};
-		92310E3E1E529A9A00CB5F1F /* 坊主任务 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "坊主任务";
-			sourceTree = "<group>";
-		};
 		923237101D64075600FDACFE /* 作业列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3180,6 +3084,89 @@
 				924C9A101EA9DC740017B31B /* TrainRedPointManger.m */,
 			);
 			path = "红点";
+			sourceTree = "<group>";
+		};
+		92348F901EEFED1F00D3B3A7 /* 坊主 */ = {
+			isa = PBXGroup;
+			children = (
+				92348FCE1EEFEDFB00D3B3A7 /* view */,
+				92348FCF1EEFEE0100D3B3A7 /* viewController */,
+			);
+			path = "坊主";
+			sourceTree = "<group>";
+		};
+		92348F911EEFED4F00D3B3A7 /* 坊主 */ = {
+			isa = PBXGroup;
+			children = (
+				92348FD01EEFEF2A00D3B3A7 /* LearningInfoListFetcher.h */,
+				92348FD11EEFEF2A00D3B3A7 /* LearningInfoListFetcher.m */,
+				92348FD21EEFEF2A00D3B3A7 /* masterLearningInfoList_mock.json */,
+				92348FD31EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.h */,
+				92348FD41EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.m */,
+				92348FD51EEFEF2A00D3B3A7 /* masterManageList_mock.json */,
+				92348FD61EEFEF2A00D3B3A7 /* MasterManageListRequest.h */,
+				92348FD71EEFEF2A00D3B3A7 /* MasterManageListRequest.m */,
+				92348FD81EEFEF2A00D3B3A7 /* MasterRemindStudyRequest.h */,
+				92348FD91EEFEF2A00D3B3A7 /* MasterRemindStudyRequest.m */,
+				92348FDA1EEFEF2A00D3B3A7 /* masterStat_mock.json */,
+				92348FDB1EEFEF2A00D3B3A7 /* MasterStatRequest.h */,
+				92348FDC1EEFEF2A00D3B3A7 /* MasterStatRequest.m */,
+			);
+			path = "坊主";
+			sourceTree = "<group>";
+		};
+		92348FCE1EEFEDFB00D3B3A7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92348F9E1EEFEDEA00D3B3A7 /* MasterManageCell.h */,
+				92348F9F1EEFEDEA00D3B3A7 /* MasterManageCell.m */,
+				92348F921EEFEDEA00D3B3A7 /* MasterConditionCell.h */,
+				92348F931EEFEDEA00D3B3A7 /* MasterConditionCell.m */,
+				92348F941EEFEDEA00D3B3A7 /* MasterConditionTableView.h */,
+				92348F951EEFEDEA00D3B3A7 /* MasterConditionTableView.m */,
+				92348F961EEFEDEA00D3B3A7 /* MasterHappeningCell.h */,
+				92348F971EEFEDEA00D3B3A7 /* MasterHappeningCell.m */,
+				92348F981EEFEDEA00D3B3A7 /* MasterHappeningHeaderView.h */,
+				92348F991EEFEDEA00D3B3A7 /* MasterHappeningHeaderView.m */,
+				92348F9A1EEFEDEA00D3B3A7 /* MasterHappeningTableHeaderView.h */,
+				92348F9B1EEFEDEA00D3B3A7 /* MasterHappeningTableHeaderView.m */,
+				92348FA21EEFEDEA00D3B3A7 /* MasterSchoolTableView.h */,
+				92348FA31EEFEDEA00D3B3A7 /* MasterSchoolTableView.m */,
+				92348FA61EEFEDEA00D3B3A7 /* RemindLeftSlipView.h */,
+				92348FA71EEFEDEA00D3B3A7 /* RemindLeftSlipView.m */,
+				92348FA81EEFEDEA00D3B3A7 /* StudentExamHeaderView.h */,
+				92348FA91EEFEDEA00D3B3A7 /* StudentExamHeaderView.m */,
+				92348FAA1EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.h */,
+				92348FAB1EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.m */,
+				92348FAC1EEFEDEA00D3B3A7 /* StudentExamTipsView.h */,
+				92348FAD1EEFEDEA00D3B3A7 /* StudentExamTipsView.m */,
+				92348FB21EEFEDEA00D3B3A7 /* StudentsLearnFilterView.h */,
+				92348FB31EEFEDEA00D3B3A7 /* StudentsLearnFilterView.m */,
+				92348FB41EEFEDEA00D3B3A7 /* StudentsLearnSwipeCell.h */,
+				92348FB51EEFEDEA00D3B3A7 /* StudentsLearnSwipeCell.m */,
+				92348FB61EEFEDEA00D3B3A7 /* StudentsLearnTableHeaderView.h */,
+				92348FB71EEFEDEA00D3B3A7 /* StudentsLearnTableHeaderView.m */,
+				92348FB81EEFEDEA00D3B3A7 /* SwipeTableViewCell.h */,
+				92348FB91EEFEDEA00D3B3A7 /* SwipeTableViewCell.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		92348FCF1EEFEE0100D3B3A7 /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				92348FA41EEFEDEA00D3B3A7 /* MasterTaskViewController.h */,
+				92348FA51EEFEDEA00D3B3A7 /* MasterTaskViewController.m */,
+				92348FA01EEFEDEA00D3B3A7 /* MasterManageViewController.h */,
+				92348FA11EEFEDEA00D3B3A7 /* MasterManageViewController.m */,
+				92348F9C1EEFEDEA00D3B3A7 /* MasterHappeningViewController.h */,
+				92348F9D1EEFEDEA00D3B3A7 /* MasterHappeningViewController.m */,
+				92348FAE1EEFEDEA00D3B3A7 /* StudentExamViewController.h */,
+				92348FAF1EEFEDEA00D3B3A7 /* StudentExamViewController.m */,
+				92348FB01EEFEDEA00D3B3A7 /* StudentsLearnController.h */,
+				92348FB11EEFEDEA00D3B3A7 /* StudentsLearnController.m */,
+			);
+			name = viewController;
 			sourceTree = "<group>";
 		};
 		924AB2531DE41BDF003EC952 /* 评论 */ = {
@@ -3434,58 +3421,6 @@
 				92AC98471EA4AA4C0026B640 /* NoticeAndBriefDetailHeaderView.m */,
 			);
 			name = view;
-			sourceTree = "<group>";
-		};
-		92F57B791E515DE80061CAA2 /* 坊主管理 */ = {
-			isa = PBXGroup;
-			children = (
-				92F57B7A1E515E150061CAA2 /* view */,
-				92F57B7B1E515E250061CAA2 /* controller */,
-			);
-			name = "坊主管理";
-			path = "管理";
-			sourceTree = "<group>";
-		};
-		92F57B7A1E515E150061CAA2 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				92F1A5B71E53FFEC00015766 /* MasterManageCell.h */,
-				92F1A5B81E53FFEC00015766 /* MasterManageCell.m */,
-				92F57B801E515F310061CAA2 /* SwipeTableViewCell.h */,
-				92F57B811E515F310061CAA2 /* SwipeTableViewCell.m */,
-				92F57B831E5169440061CAA2 /* StudentsLearnSwipeCell.h */,
-				92F57B841E5169440061CAA2 /* StudentsLearnSwipeCell.m */,
-				92F1A5BA1E5402D400015766 /* StudentsLearnFilterView.h */,
-				92F1A5BB1E5402D400015766 /* StudentsLearnFilterView.m */,
-				92F1A5BD1E54036E00015766 /* StudentsLearnTableHeaderView.h */,
-				92F1A5BE1E54036E00015766 /* StudentsLearnTableHeaderView.m */,
-				92F1A5C01E545F8400015766 /* MasterSchoolTableView.h */,
-				92835A8E1E5461CA00B71DF7 /* MasterSchoolTableView.m */,
-				92835A931E54797E00B71DF7 /* MasterConditionTableView.h */,
-				92835A941E54797E00B71DF7 /* MasterConditionTableView.m */,
-				928DBE7A1E547A5C0016D66C /* MasterConditionCell.h */,
-				928DBE7B1E547A5C0016D66C /* MasterConditionCell.m */,
-				92CE55F51E559926002C1F11 /* StudentExamHeaderView.h */,
-				92CE55F61E559926002C1F11 /* StudentExamHeaderView.m */,
-				92CE55F81E559CD8002C1F11 /* StudentExamPhaseHeaderView.h */,
-				92CE55F91E559CD8002C1F11 /* StudentExamPhaseHeaderView.m */,
-				92D94F051E77CDD7003AB58A /* RemindLeftSlipView.h */,
-				92D94F061E77CDD7003AB58A /* RemindLeftSlipView.m */,
-			);
-			name = view;
-			sourceTree = "<group>";
-		};
-		92F57B7B1E515E250061CAA2 /* controller */ = {
-			isa = PBXGroup;
-			children = (
-				92F1A5B41E53FF9F00015766 /* MasterManageViewController.h */,
-				92F1A5B51E53FF9F00015766 /* MasterManageViewController.m */,
-				92F57B7C1E515ED90061CAA2 /* StudentsLearnController.h */,
-				92F57B7D1E515ED90061CAA2 /* StudentsLearnController.m */,
-				92CE55F21E5598FD002C1F11 /* StudentExamViewController.h */,
-				92CE55F31E5598FD002C1F11 /* StudentExamViewController.m */,
-			);
-			name = controller;
 			sourceTree = "<group>";
 		};
 		92F687761E08E5B600A48420 /* 活动列表 */ = {
@@ -4117,12 +4052,14 @@
 				92134E3D1E8BAE2900A5B9B7 /* submitAnswer_mock.json in Resources */,
 				9223C83A1D2F82D8000F74DF /* search.txt in Resources */,
 				E9CD95841DE3E8C600AE6704 /* downloadResource_mock.json in Resources */,
+				92348FE01EEFEF2A00D3B3A7 /* masterManageList_mock.json in Resources */,
 				7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */,
 				926F11FA1EA456CE0041D66F /* selectLayer_mock.json in Resources */,
 				923237591D81122700FDACFE /* provinceData.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
+				92348FDE1EEFEF2A00D3B3A7 /* masterLearningInfoList_mock.json in Resources */,
 				7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */,
 				92B2C0A41DD41EFA003E27F9 /* Image.html in Resources */,
 				92AD8EF11E10F0C300A3E91C /* beijingActivityFilter_mock.json in Resources */,
@@ -4131,17 +4068,15 @@
 				E9A7B5F41DDC63EF00136335 /* shareResources_mock.json in Resources */,
 				923237481D800DA900FDACFE /* getRotateList_mock.json in Resources */,
 				7CF888821D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf in Resources */,
-				928B7A831E88EE130067218A /* masterStat_mock.json in Resources */,
 				924AB2561DE41C47003EC952 /* firstComment_mock.json in Resources */,
 				92126C7A1E9F732900C061EF /* trainLayerList_mock.json in Resources */,
 				CB748EEE1D250086004BCFBF /* PhoneImage.xcassets in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
-				92CE55EF1E558249002C1F11 /* masterLearningInfoList_mock.json in Resources */,
 				9223C81D1D2D0EB6000F74DF /* temp.txt in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
-				92CE55F11E55825C002C1F11 /* masterManageList_mock.json in Resources */,
 				7C7BF7C61E0788FD007B017C /* env_config.json in Resources */,
 				920F1D3B1D51A40D00636A51 /* homeworklist_mock.json in Resources */,
+				92348FE31EEFEF2A00D3B3A7 /* masterStat_mock.json in Resources */,
 				92AC98451EA498960026B640 /* noticeAndBriefDetail_mock.json in Resources */,
 				923237701D816DAD00FDACFE /* stageAndSubject.json in Resources */,
 			);
@@ -4216,26 +4151,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92310E4E1E52B0A500CB5F1F /* MasterHappeningViewController.m in Sources */,
 				928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */,
 				92FD5A551ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m in Sources */,
-				92F57B821E515F310061CAA2 /* SwipeTableViewCell.m in Sources */,
 				92131F671E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m in Sources */,
 				922661C11E8A0F19006DE8A4 /* VideoClassworkManager.m in Sources */,
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
-				92D94F071E77CDD7003AB58A /* RemindLeftSlipView.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */,
 				928B7A4A1E88B2180067218A /* BeijingHomeworkInfoView.m in Sources */,
 				92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */,
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */,
+				92348FE11EEFEF2A00D3B3A7 /* MasterManageListRequest.m in Sources */,
 				CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */,
 				928B7A3D1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m in Sources */,
 				92F1A5B01E53084A00015766 /* YXProjectMainViewController+Student.m in Sources */,
 				7C2991B31DFE6F7000AE921C /* FileDownloadHelper.m in Sources */,
 				92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */,
+				92348FE41EEFEF2A00D3B3A7 /* MasterStatRequest.m in Sources */,
 				928B7A4F1E88B3120067218A /* DeYangExamViewController.m in Sources */,
+				92348FC91EEFEDEA00D3B3A7 /* StudentsLearnController.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
 				7C2C3B7D1D24F23600A03635 /* YXCourseRecordRequest.m in Sources */,
 				7C2C3B2B1D20FF5700A03635 /* YXScoreViewController.m in Sources */,
@@ -4259,16 +4194,17 @@
 				7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */,
 				92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.m in Sources */,
 				92AD33551EA060B2001F2718 /* ProjectChooseLayerView.m in Sources */,
+				92348FDF1EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.m in Sources */,
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
 				92F1A5A41E52EF4700015766 /* MasterProjectContainerView.m in Sources */,
 				92A770091DD18A5800C578F2 /* InputTextView.m in Sources */,
+				92348FC11EEFEDEA00D3B3A7 /* MasterManageViewController.m in Sources */,
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
 				92852BEA1EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m in Sources */,
 				921AC82F1ED29DCD001579A9 /* VideoCourseDetailViewController.m in Sources */,
 				92AD33581EA0AB58001F2718 /* ProjectChooseLayerHeaderView.m in Sources */,
 				E9CD95791DE3E36500AE6704 /* ShareResourcesViewController.m in Sources */,
-				92CE55F71E559926002C1F11 /* StudentExamHeaderView.m in Sources */,
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
 				920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */,
 				9232374B1D80F40700FDACFE /* YXProvincesRequest.m in Sources */,
@@ -4282,14 +4218,12 @@
 				92FAE4A41DDAA845000C3C00 /* CoreTextViewHandler.m in Sources */,
 				92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
-				92F57B7E1E515ED90061CAA2 /* StudentsLearnController.m in Sources */,
 				7C3177B51D0EB7F1004AAC90 /* UIViewController+Keyboard.m in Sources */,
 				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
-				92F1A5BC1E5402D400015766 /* StudentsLearnFilterView.m in Sources */,
 				7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */,
+				92348FC51EEFEDEA00D3B3A7 /* StudentExamHeaderView.m in Sources */,
 				92E971601ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.m in Sources */,
 				92EEA9211EB08348005A3B7C /* DeYangCourseListFetcher.m in Sources */,
-				92F1A59B1E52B17E00015766 /* MasterHappeningTableHeaderView.m in Sources */,
 				7CF8885C1D194BE800E7C04D /* JKAlertDialog.m in Sources */,
 				CB7462851D1FF00D0065113A /* YXResetPasswordRequest.m in Sources */,
 				7C31780B1D12830A004AAC90 /* YXFileFavorWrapper.m in Sources */,
@@ -4300,6 +4234,7 @@
 				921AC82C1ECED17B001579A9 /* PopUpFloatingViewManager.m in Sources */,
 				7C2C3B341D2114DC00A03635 /* YXScoreTypeHeaderView.m in Sources */,
 				CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */,
+				92348FBC1EEFEDEA00D3B3A7 /* MasterHappeningCell.m in Sources */,
 				928B7A3F1E88B2180067218A /* BeijingCourseListCell.m in Sources */,
 				920E23581E890E5C000F1D36 /* YXVideoQuestionsRequest.m in Sources */,
 				E9DE2BC51E13BB890033434F /* ChangeProjectGuideView.m in Sources */,
@@ -4309,9 +4244,9 @@
 				CBF66E401D2F5A4800F4E408 /* YXStageAndSubjectRequest.m in Sources */,
 				CBF66E281D2E36EE00F4E408 /* YXUserProfile.m in Sources */,
 				CBB62E091D2CB98300DAA6DE /* NSDate+Utilities.m in Sources */,
+				92348FC41EEFEDEA00D3B3A7 /* RemindLeftSlipView.m in Sources */,
 				E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */,
 				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
-				92F1A5A11E52B3DD00015766 /* MasterHappeningHeaderView.m in Sources */,
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */,
@@ -4325,6 +4260,7 @@
 				92AD8EE41E0A5B5800A3E91C /* WriteHomeworkManager.m in Sources */,
 				9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */,
 				922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */,
+				92348FCA1EEFEDEA00D3B3A7 /* StudentsLearnFilterView.m in Sources */,
 				CB52FCFB1D2BC1720096D8DC /* YXNoticeListFetch.m in Sources */,
 				928B7A4C1E88B2180067218A /* WebsocketRedRightView.m in Sources */,
 				920F1D5C1D53456700636A51 /* YXSaveHomeWorkRequest.m in Sources */,
@@ -4346,7 +4282,7 @@
 				928B7A3C1E88B2180067218A /* BeijingCheckedMobileUserCell.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
-				92CE55F41E5598FD002C1F11 /* StudentExamViewController.m in Sources */,
+				92348FE21EEFEF2A00D3B3A7 /* MasterRemindStudyRequest.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
 				92EEA9241EB08563005A3B7C /* DeYangCourseTableHeaderView.m in Sources */,
 				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
@@ -4354,6 +4290,7 @@
 				92FAE4A71DDAC9ED000C3C00 /* ActivityStepViewController.m in Sources */,
 				92AA47751E12440B00C88DDC /* BeijingCourseFilterManager.m in Sources */,
 				92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */,
+				92348FBF1EEFEDEA00D3B3A7 /* MasterHappeningViewController.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
 				CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
@@ -4372,8 +4309,12 @@
 				E935D87C1E00E0A6005CC8BD /* UnhandledRequestData.m in Sources */,
 				7C1A5E921E10E9E800832DED /* AccountListView.m in Sources */,
 				7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */,
+				92348FBA1EEFEDEA00D3B3A7 /* MasterConditionCell.m in Sources */,
+				92348FC81EEFEDEA00D3B3A7 /* StudentExamViewController.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
 				F7E8F8DB1D65CCC000CDAAF4 /* YXAppUpdatePopUpView.m in Sources */,
+				92348FC21EEFEDEA00D3B3A7 /* MasterSchoolTableView.m in Sources */,
+				92348FBD1EEFEDEA00D3B3A7 /* MasterHappeningHeaderView.m in Sources */,
 				920F1D6E1D59759D00636A51 /* YXSaveVideoProgressView.m in Sources */,
 				923237161D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m in Sources */,
 				CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */,
@@ -4385,11 +4326,11 @@
 				7C2C3B5A1D23BEE100A03635 /* YXCourseListFetcher.m in Sources */,
 				7C3F25901D20CB5F00F0A17A /* YXTaskListRequest.m in Sources */,
 				CB3510AA1D18E9730081EA3B /* YXDatumViewController.m in Sources */,
+				92348FC31EEFEDEA00D3B3A7 /* MasterTaskViewController.m in Sources */,
 				920F1D411D51EFB100636A51 /* YXHomeworkListViewController.m in Sources */,
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
 				92FED8931DD2BDA000457228 /* ActivityDetailViewController.m in Sources */,
 				928B7A8A1E88EE750067218A /* BeijingExamineRequest.m in Sources */,
-				92CE55ED1E557D8F002C1F11 /* LearningInfoListFetcher.m in Sources */,
 				92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */,
 				922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
@@ -4418,13 +4359,13 @@
 				7C2C3B851D24F6F700A03635 /* YXCourseRecordCell.m in Sources */,
 				7C3177FD1D1177F9004AAC90 /* DownloadManager.m in Sources */,
 				CBBE95041D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m in Sources */,
+				92348FCC1EEFEDEA00D3B3A7 /* StudentsLearnTableHeaderView.m in Sources */,
 				7CFBA6C51D3633E7005D08B1 /* YXModuleListRequest.m in Sources */,
 				7C3177991D0EA6A8004AAC90 /* GetRequest.m in Sources */,
 				7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */,
 				92CE51561D87D4C70071DE79 /* YXDynamicRequest.m in Sources */,
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
 				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
-				92CE55EA1E557B37002C1F11 /* MasterLearningInfoListRequest.m in Sources */,
 				924797E11E022C1F0033BFDC /* BeijingActivityFilterRequest.m in Sources */,
 				92F1A5AD1E53083A00015766 /* YXProjectMainViewController+Master.m in Sources */,
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
@@ -4437,6 +4378,7 @@
 				920F1D6B1D58419900636A51 /* UIView+YXAddtion.m in Sources */,
 				7C2C3B6C1D24C74F00A03635 /* YXModuleDetailRequest.m in Sources */,
 				CB1606041D2FC7C60071BA01 /* YXImagePickerController.m in Sources */,
+				92348FCD1EEFEDEA00D3B3A7 /* SwipeTableViewCell.m in Sources */,
 				920F1D771D59D1B500636A51 /* YXNotAutorotateView.m in Sources */,
 				92EDC7C81D61AD76005B91DD /* YXSelectHomeworkInfoView.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
@@ -4453,14 +4395,15 @@
 				CBBE94FE1D1D193400C935C8 /* YXLoginButtonTableViewCell.m in Sources */,
 				7CFBA6C21D33375D005D08B1 /* YXEmptyView.m in Sources */,
 				7C3177BD1D0EBA79004AAC90 /* UIView+YXShadowColor.m in Sources */,
-				92F1A5B91E53FFEC00015766 /* MasterManageCell.m in Sources */,
 				CB74627F1D1FDE180065113A /* YXPhoneVerifyCodeRequest.m in Sources */,
 				92FAE4AE1DDAE2A7000C3C00 /* ActivityStepHeaderView.m in Sources */,
 				920F1D7A1D5ADDEE00636A51 /* YXAlertCustomView.m in Sources */,
 				7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */,
 				7CF844651D2B622200B1CE55 /* YXRecordManager.m in Sources */,
 				92007EB41ED8194900C16F89 /* VideoCourseSecondCommentViewController.m in Sources */,
+				92348FBB1EEFEDEA00D3B3A7 /* MasterConditionTableView.m in Sources */,
 				9232377B1D826CC800FDACFE /* YXHelpCell.m in Sources */,
+				92348FBE1EEFEDEA00D3B3A7 /* MasterHappeningTableHeaderView.m in Sources */,
 				922661C41E8A3C89006DE8A4 /* VideoClassworkCell.m in Sources */,
 				7C2C3B521D23A01A00A03635 /* YXCourseFilterBgView.m in Sources */,
 				92007EB11ED811A700C16F89 /* VideoCourseReplyCommnetRequest.m in Sources */,
@@ -4472,13 +4415,11 @@
 				9223C82F1D2E36F0000F74DF /* YXAboutCell.m in Sources */,
 				CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */,
 				7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */,
-				92F1A5B61E53FF9F00015766 /* MasterManageViewController.m in Sources */,
 				92AFFAFD1D9B7ADA00E1526C /* YXEmptCell.m in Sources */,
 				928B7A461E88B2180067218A /* BeijingExamGenreExplainHeaderView.m in Sources */,
 				920F1D261D50986E00636A51 /* YXQiNiuVideoUpload.m in Sources */,
 				92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */,
 				92CE51531D87D4AE0071DE79 /* YXHotspotRequest.m in Sources */,
-				92CE55FA1E559CD8002C1F11 /* StudentExamPhaseHeaderView.m in Sources */,
 				9292DC531E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m in Sources */,
 				92FD5A521ED7DB2F00D3EBA1 /* VideoCourseCommentHeaderView.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
@@ -4486,9 +4427,7 @@
 				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
 				92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */,
-				92CE55FD1E55ACF8002C1F11 /* MasterRemindStudyRequest.m in Sources */,
 				7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */,
-				92F1A5B31E530D2700015766 /* MasterManageListRequest.m in Sources */,
 				928B7A3E1E88B2180067218A /* BeijingCheckedMobileUserViewController.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				92E9715D1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m in Sources */,
@@ -4521,9 +4460,7 @@
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
 				920F1D681D58347600636A51 /* YXVideoRecordBottomView.m in Sources */,
 				CB52FCF11D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m in Sources */,
-				92835A8F1E5461CA00B71DF7 /* MasterSchoolTableView.m in Sources */,
 				9229015F1DE6C241001474CE /* VideoCommentErrorView.m in Sources */,
-				92F1A5BF1E54036E00015766 /* StudentsLearnTableHeaderView.m in Sources */,
 				E935D8751DFE4E85005CC8BD /* LSTAlertTitleLabel.m in Sources */,
 				7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */,
 				926F11FE1EA45C380041D66F /* NoticeAndBriefDetailRequest.m in Sources */,
@@ -4532,12 +4469,10 @@
 				928B7A891E88EE750067218A /* BeijingCourseListFetcher.m in Sources */,
 				928B7A591E88C0510067218A /* DeYangCourseListCell.m in Sources */,
 				9223C8151D2CFF89000F74DF /* YXWorkshopDatumViewController.m in Sources */,
-				92F1A59E1E52B3BA00015766 /* MasterHappeningCell.m in Sources */,
 				928B7A481E88B2180067218A /* BeijingExamTipCell.m in Sources */,
 				7CF8445D1D2A5E4800B1CE55 /* FileRecordEntity+CoreDataProperties.m in Sources */,
 				7C2991B01DFE4C4D00AE921C /* FileBrowserFactory.m in Sources */,
 				928B7A3B1E88B2180067218A /* BeijingCheckedMobileMessageCell.m in Sources */,
-				92CE56061E5686F7002C1F11 /* StudentExamTipsView.m in Sources */,
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
@@ -4548,7 +4483,6 @@
 				CB748EE31D228B51004BCFBF /* YXFilterButton.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
 				CB227EA51D34C3A800D5327B /* YXGuideCustomView.m in Sources */,
-				928B7A841E88EE130067218A /* MasterStatRequest.m in Sources */,
 				92F6877F1E08E7A000A48420 /* ActivityListDetailModel.m in Sources */,
 				9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
@@ -4563,7 +4497,6 @@
 				CB8524641D334BFB009FA14B /* HJCActionSheet.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
 				920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */,
-				92CE56031E56822E002C1F11 /* MasterTaskViewController.m in Sources */,
 				9237FF7C1DD572400057FFDE /* ActivityFirstCommentRequest.m in Sources */,
 				CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */,
 				9232376E1D81668000FDACFE /* YXCheckRequest.m in Sources */,
@@ -4573,6 +4506,7 @@
 				E9BBA6171DD2EDB2000CA413 /* ActivityFilterModel.m in Sources */,
 				CBB62E191D2CCE3D00DAA6DE /* YXShowWebMenuTableViewCell.m in Sources */,
 				7C3177971D0EA6A8004AAC90 /* HttpBaseRequest.m in Sources */,
+				92348FCB1EEFEDEA00D3B3A7 /* StudentsLearnSwipeCell.m in Sources */,
 				922F3AD11D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m in Sources */,
 				7C3177B21D0EB738004AAC90 /* UIButton+HighlightColor.m in Sources */,
 				7CF888761D1BD06D00E7C04D /* YXExamProgressCell.m in Sources */,
@@ -4590,7 +4524,6 @@
 				922661BE1E8A08F1006DE8A4 /* VideoClassworkView.m in Sources */,
 				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
 				E9BBA5F51DD05CC4000CA413 /* ActivityListViewController.m in Sources */,
-				928DBE7C1E547A5C0016D66C /* MasterConditionCell.m in Sources */,
 				929468071DDE8F220070C3B7 /* ActivitySlideProgressView.m in Sources */,
 				9292DC561E9E2C2F008C6A14 /* YXCourseBaseViewController.m in Sources */,
 				9232373D1D7E630700FDACFE /* YXRotateListRequest.m in Sources */,
@@ -4616,6 +4549,7 @@
 				CB1606071D2FC8490071BA01 /* UIImage+YXImage.m in Sources */,
 				9241FFD91E1E1BE60015B587 /* ActivityCommentHeaderView.m in Sources */,
 				923237731D825C6500FDACFE /* YXHelpViewController.m in Sources */,
+				92348FC61EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.m in Sources */,
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
 				92CE56001E55C8AB002C1F11 /* UserStatusView.m in Sources */,
@@ -4630,10 +4564,8 @@
 				92DE3BC71DDD82350011CFB7 /* ActivityToolVideoRequest.m in Sources */,
 				7CF844781D2E367900B1CE55 /* YXProjectSelectionView.m in Sources */,
 				CB3510CB1D18F9C30081EA3B /* YXDatumCellModel.m in Sources */,
-				92835A951E54797E00B71DF7 /* MasterConditionTableView.m in Sources */,
 				7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */,
 				7C3178271D129C01004AAC90 /* ReaderDocumentOutline.m in Sources */,
-				92F57B851E5169440061CAA2 /* StudentsLearnSwipeCell.m in Sources */,
 				CB3510AB1D18E9730081EA3B /* YXMyDatumViewController.m in Sources */,
 				7C3F258B1D20C42D00F0A17A /* YXTrainListRequest.m in Sources */,
 				CB52FCF41D2BB5280096D8DC /* YXNoticeTopTableViewCell.m in Sources */,
@@ -4647,6 +4579,7 @@
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
 				9223C8351D2F4BD2000F74DF /* YXSchoolSearchViewController.m in Sources */,
 				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
+				92348FC71EEFEDEA00D3B3A7 /* StudentExamTipsView.m in Sources */,
 				9292DC501E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m in Sources */,
 				CBBA47A51D25FED80000EA84 /* UIImageView+AnimationCompletion.m in Sources */,
 				E9BD43E31DAC9507007BE8F6 /* YXDetailHotspotViewController.m in Sources */,
@@ -4667,6 +4600,7 @@
 				7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */,
 				9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,
+				92348FDD1EEFEF2A00D3B3A7 /* LearningInfoListFetcher.m in Sources */,
 				7C3177B81D0EB9EE004AAC90 /* UIView+ViewController.m in Sources */,
 				9223C8521D40D0A1000F74DF /* YXPageControl.m in Sources */,
 				CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */,
@@ -4697,6 +4631,7 @@
 				CBBE95071D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m in Sources */,
 				922661C71E8A476F006DE8A4 /* VideoClassworkHeaderView.m in Sources */,
 				7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */,
+				92348FC01EEFEDEA00D3B3A7 /* MasterManageCell.m in Sources */,
 				928B7A4B1E88B2180067218A /* BeijingHomeworkInfoViewController.m in Sources */,
 				7C3178231D129C01004AAC90 /* ReaderContentPage.m in Sources */,
 				7C3177A31D0EA723004AAC90 /* YXUploadRequest.m in Sources */,
