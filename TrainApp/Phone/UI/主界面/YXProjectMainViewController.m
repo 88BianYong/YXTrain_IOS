@@ -51,6 +51,8 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 @property (nonatomic, strong) WebsocketRedRightView *rightView;
 @property (nonatomic, strong) ProjectChooseLayerView *chooseLayerView;
 
+@property (nonatomic, strong) UIView *QRCodeView;
+
 @end
 
 @implementation YXProjectMainViewController
@@ -105,7 +107,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         [YXDrawerController showDrawer];
     }];
     [self setupLeftWithCustomView:self.leftView];
-
+    
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
@@ -145,7 +147,8 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 
 - (void)setupQRCodeRightView{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+    self.QRCodeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+    self.QRCodeView.hidden = YES;
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateHighlighted];
@@ -156,10 +159,10 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         UIViewController *VC = [[NSClassFromString(@"VideoCourseQRViewController") alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
     }];
-    [view addSubview:button];
-    [self setupRightWithCustomView:view];
-
-
+    [self.QRCodeView addSubview:button];
+    [self setupRightWithCustomView:self.QRCodeView];
+    
+    
 }
 #pragma mark - request
 - (void)requestForProjectList{
@@ -236,7 +239,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 
 - (void)requestForLayerList {
     if (self.layerMutableDictionary[[YXTrainManager sharedInstance].currentProject.pid]) {
-       [self showTrainLayerView:self.layerMutableDictionary[[YXTrainManager sharedInstance].currentProject.pid]];
+        [self showTrainLayerView:self.layerMutableDictionary[[YXTrainManager sharedInstance].currentProject.pid]];
     }else {
         self.requestStatus = TrainProjectRequestStatus_LayerList;
         TrainLayerListRequest *request = [[TrainLayerListRequest alloc] init];
@@ -304,6 +307,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
     if ([YXTrainManager sharedInstance].currentProject.isOpenLayer.boolValue) {
         [self requestForLayerList];
+        self.QRCodeView.hidden = YES;
     }else {
         [self stopLoading];
         if ([YXTrainManager sharedInstance].currentProject.role.intValue == 9 ||
@@ -312,18 +316,20 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         }else {
             [self showMasterInterface];
         }
-    }
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (!isEmpty(appDelegate.appDelegateHelper.courseId)) {
-        VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
-        YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
-        course.courses_id = appDelegate.appDelegateHelper.courseId;
-        vc.course = course;
-        vc.seekInteger = [appDelegate.appDelegateHelper.seg integerValue];
-        vc.fromWhere = VideoCourseFromWhere_QRCode;
-        [self.navigationController pushViewController:vc animated:YES];
+        self.QRCodeView.hidden = NO;
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        if (!isEmpty(appDelegate.appDelegateHelper.courseId)) {
+            VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
+            YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
+            course.courses_id = appDelegate.appDelegateHelper.courseId;
+            vc.course = course;
+            vc.seekInteger = [appDelegate.appDelegateHelper.seg integerValue];
+            vc.fromWhere = VideoCourseFromWhere_QRCode;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
+
 - (void)showTrainLayerView:(TrainLayerListRequestItem *)item {
     [self.view addSubview:self.chooseLayerView];
     [self.chooseLayerView mas_makeConstraints:^(MASConstraintMaker *make) {

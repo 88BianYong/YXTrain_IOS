@@ -176,7 +176,6 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     }else{
         self.isSelected = NO;
     }
-    
     [YXDataStatisticsManger trackPage:trackPageName withStatus:status];
 }
 @end
