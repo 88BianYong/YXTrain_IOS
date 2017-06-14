@@ -127,8 +127,8 @@
     }];
     [self.chapterVC setVideoCourseIntroductionCompleteBlock:^(YXCourseDetailItem *courseItem) {
         STRONG_SELF
-        self.introductionVC.courseItem = courseItem;
         self.title = courseItem.course_title;
+        self.introductionVC.courseItem = courseItem;
     }];
     self.introductionVC = [[VideoCourseIntroductionViewController alloc] init];
     self.introductionVC.title = self.title;

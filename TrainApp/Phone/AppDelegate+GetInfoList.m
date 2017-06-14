@@ -43,7 +43,6 @@
         }
     }];
     self.checkRequest = request;
-
 }
 
 

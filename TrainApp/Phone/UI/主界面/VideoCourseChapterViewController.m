@@ -128,18 +128,19 @@
     self.courseItem = courseItem;
     [[YXRecordManager sharedManager] setupWithCourseDetailItem:courseItem];
     [self willPlayVideo];
-    BLOCK_EXEC(self.introductionBlock,self.courseItem);
 }
 - (void)willPlayVideo{
     YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideoSeek:self.seekInteger];
     if (fragment) {
         self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
         [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
-       BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
+        BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
+        BLOCK_EXEC(self.introductionBlock,self.courseItem);
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
         [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,nil,NO);
+        BLOCK_EXEC(self.introductionBlock,self.courseItem);
     }
     [self.tableView reloadData];
     if ([self isShowPlayCell]){
@@ -157,10 +158,12 @@
         self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
         [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
         BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
+        BLOCK_EXEC(self.introductionBlock,self.courseItem);
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
         [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,nil,YES);
+        BLOCK_EXEC(self.introductionBlock,self.courseItem);
     }
     [self.tableView reloadData];
     if ([self isShowPlayCell]){

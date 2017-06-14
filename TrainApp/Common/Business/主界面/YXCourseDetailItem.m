@@ -7,6 +7,8 @@
 //
 
 #import "YXCourseDetailItem.h"
+@implementation YXCourseDetailItem_chapter_fragment_items
+@end
 
 @implementation YXCourseDetailItem_chapter_fragment
 + (JSONKeyMapper *)keyMapper

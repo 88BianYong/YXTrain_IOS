@@ -42,14 +42,12 @@
     [super setSelected:selected animated:animated];
 
 }
-- (void)setMti:(YXCourseDetailItem_mti *)mti {
-    _mti = mti;
-    NSString *contentString = [NSString stringWithFormat:@"%@%@",_mti.ctn,_mti.cti];
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:contentString];
+- (void)setIntroduction:(NSString *)introduction {
+    _introduction = introduction;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:_introduction?:@""];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 7.0f;
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, contentString.length)];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _introduction.length)];
     self.contentLabel.attributedText = attributedString;
 }
-
 @end

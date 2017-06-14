@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface VideoCourseIntroductionCell : UITableViewCell
-@property (nonatomic, strong) YXCourseDetailItem_mti *mti;
+@property (nonatomic, copy) NSString *introduction;
 @end

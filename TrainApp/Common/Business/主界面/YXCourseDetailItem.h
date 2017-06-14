@@ -7,6 +7,13 @@
 //
 
 #import "HttpBaseRequest.h"
+@protocol YXCourseDetailItem_chapter_fragment_items <NSObject>
+@end
+@interface YXCourseDetailItem_chapter_fragment_items : JSONModel
+@property (nonatomic, copy) NSString<Optional> *sgtnm;
+@property (nonatomic, copy) NSString<Optional> *sgdes;
+@end
+
 
 @protocol YXCourseDetailItem_chapter_fragment <NSObject>
 @end
@@ -20,6 +27,8 @@
 @property (nonatomic, copy) NSString<Optional> *record;
 @property (nonatomic, copy) NSString<Optional> *duration;
 @property (nonatomic, copy) NSString<Optional> *sgqz;
+@property (nonatomic, copy) NSArray<YXCourseDetailItem_chapter_fragment_items, Optional> *items;
+
 @end
 
 @protocol YXCourseDetailItem_chapter <NSObject>

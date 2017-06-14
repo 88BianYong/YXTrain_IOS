@@ -12,6 +12,7 @@
 #import "VideoCourseIntroductionHeaderView.h"
 @interface VideoCourseIntroductionViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
+@property (nonatomic, strong) NSMutableArray<NSString *> *introductionMutableArray;
 @end
 
 @implementation VideoCourseIntroductionViewController
@@ -19,6 +20,7 @@
 - (void)viewDidLoad {
     //[self setupModel];
     [super viewDidLoad];
+    self.introductionMutableArray = [[NSMutableArray alloc] initWithCapacity:3];
     [self setupUI];
     [self setupLayout];
 }
@@ -47,7 +49,21 @@
     }];
 }
 - (void)setCourseItem:(YXCourseDetailItem *)courseItem {
+    [self.introductionMutableArray removeAllObjects];
     _courseItem = courseItem;
+    self.title = _courseItem.course_title;
+    YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[_courseItem.playIndexPath.section];
+    YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[_courseItem.playIndexPath.row];
+    [fragment.items enumerateObjectsUsingBlock:^(YXCourseDetailItem_chapter_fragment_items *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *introductionString = [NSString stringWithFormat:@"%@%@",obj.sgtnm?:@"",obj.sgdes?:@""];
+        [self.introductionMutableArray addObject:introductionString];
+    }];
+    if (self.introductionMutableArray.count == 0) {
+        [self.courseItem.mti enumerateObjectsUsingBlock:^(YXCourseDetailItem_mti *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *introductionString = [NSString stringWithFormat:@"%@%@",obj.ctn?:@"",obj.cti?:@""];
+            [self.introductionMutableArray addObject:introductionString];
+        }];
+    }
     [self.tableView reloadData];
 }
 #pragma mark - UITableViewDelegate 
@@ -65,15 +81,15 @@
     return 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.courseItem.mti.count;
+    return self.introductionMutableArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VideoCourseIntroductionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VideoCourseIntroductionCell" forIndexPath:indexPath];
-    cell.mti = self.courseItem.mti[indexPath.row];
+
+    cell.introduction = self.introductionMutableArray[indexPath.row];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.00001f;
 }
-
 @end
