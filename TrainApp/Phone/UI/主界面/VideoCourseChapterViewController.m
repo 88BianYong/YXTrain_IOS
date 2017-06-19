@@ -275,6 +275,7 @@
     fileItem.sourceType = YXSourceTypeCourse;
     fileItem.duration = fragment.duration;
     fileItem.record = fragment.record;
+    fileItem.vhead = self.courseItem.vhead;
     return fileItem;
 }
 - (void)setVideoCourseChapterFragmentCompleteBlock:(VideoCourseChapterFragmentCompleteBlock)block {

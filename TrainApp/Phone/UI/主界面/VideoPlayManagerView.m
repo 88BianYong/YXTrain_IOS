@@ -12,6 +12,7 @@
 #import "ActivityPlayExceptionView.h"
 #import "UIImage+YXImage.h"
 #import "YXCourseDetailItem.h"
+#import "VideoBeginningView.h"
 @interface VideoPlayerDefinition : NSObject
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *url;
@@ -24,8 +25,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, strong) YXPlayerBufferingView *bufferingView;
 @property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
 @property (nonatomic, strong) ActivityPlayExceptionView *exceptionView;
-//@property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UIImageView *placeholderImageView;
+
+@property (nonatomic, strong) VideoBeginningView *beginningView;
 
 @property (nonatomic, copy) VideoPlayManagerViewBackActionBlock backBlock;
 @property (nonatomic, copy) VideoPlayManagerViewRotateScreenBlock rotateBlock;
@@ -171,6 +173,150 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.center.equalTo(self.thumbImageView);
     }];
 }
+
+- (void)showBeginningView {
+    self.beginningView = [[VideoBeginningView alloc] init];
+    WEAK_SELF
+    [self.beginningView setVideoBeginningViewBackBlock:^{
+        STRONG_SELF
+        BLOCK_EXEC(self.backBlock);
+    }];
+    [self.beginningView setVideoBeginningViewFinishBlock:^{
+        STRONG_SELF
+        NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainPlayBeginningCourse]];
+        mutableDictionary[self.fileItem.cid] = [NSDate date];
+        [[NSUserDefaults standardUserDefaults] setObject:mutableDictionary forKey:kYXTrainPlayBeginningCourse];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        self ->_beginningView = nil;
+        [self.player play];
+    }];
+    [self addSubview:self.beginningView];
+    self.beginningView.videoUrl = [NSURL URLWithString:@"http://yuncdn.teacherclub.com.cn/course/cf/xk/czsw/tkygffycl/video/1-1_l/1-1_l.m3u8"];
+    [self.beginningView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+}
+- (BOOL)isPlayBeginningVideo {
+    NSMutableDictionary *mutableDictionary = [[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainPlayBeginningCourse];
+    NSDate *oldDate = mutableDictionary[self.fileItem.cid];
+    BOOL playBool = NO;
+    if (oldDate == nil) {
+        playBool = YES;
+    }else {
+        NSTimeInterval  value = [[NSDate date] timeIntervalSinceDate:oldDate];
+        playBool = (value > 12 * 60 * 60) ? YES : NO;
+    }
+    return playBool && self.beginningView == nil && self.isPlayBeginning;
+}
+#pragma mark - set
+- (void)setFileItem:(YXFileItemBase *)fileItem {
+    if (_fileItem) {//每次先上报上次播放结果
+        [self recordPlayerDuration];
+        SAFE_CALL(self.exitDelegate, browserExit);
+    }
+    if (fileItem == nil) {
+        return;
+    }
+    _fileItem = fileItem;
+    self.delegate = _fileItem;
+    self.exitDelegate = _fileItem;
+    self.playTime = 0;
+    self.startTime = nil;
+    self.topView.titleString = _fileItem.name;
+    self.videoUrl = [NSURL URLWithString:_fileItem.url];
+    [self definitionFormat];
+    CGFloat preProgress = fileItem.record.floatValue / fileItem.duration.floatValue;
+    if (preProgress > 0.99) {
+        preProgress = 0;
+    }
+    self.player.progress = preProgress;
+    if (isEmpty(self.videoUrl.absoluteString)) {
+        self.playStatus =  VideoPlayManagerStatus_Empty;
+        return;
+    }
+    self.player.videoUrl = self.videoUrl;
+    if (self.isPlayBeginning  && [self isPlayBeginningVideo]) {
+        self.isManualPause = YES;
+        self.player.playPauseState = PlayerView_State_Paused;
+        [self showBeginningView];
+    }
+    self.thumbImageView.hidden = YES;
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    if (![[Reachability reachabilityForInternetConnection] isReachable]) {
+        self.playStatus = VideoPlayManagerStatus_NetworkError;
+        [self.player pause];
+    }
+}
+- (void)setIsFullscreen:(BOOL)isFullscreen {
+    _isFullscreen = isFullscreen;
+    self.bottomView.isFullscreen = _isFullscreen;
+    self.topView.hidden = !_isFullscreen;
+    if (!_isFullscreen) {
+        [self hideDefinition];
+    }
+    self.exceptionView.backButton.hidden = !_isFullscreen;
+    self.beginningView.backButton.hidden = !_isFullscreen;
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TBD: 修改进度条白点跳动问题
+        [self.bottomView.slideProgressControl updateUI];
+    });
+}
+- (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block {
+    self.backBlock = block;
+}
+- (void)setVideoPlayManagerViewRotateScreenBlock:(VideoPlayManagerViewRotateScreenBlock)block {
+    self.rotateBlock = block;
+}
+- (void)setVideoPlayManagerViewPlayVideoBlock:(VideoPlayManagerViewPlayVideoBlock)block {
+    self.playBlock = block;
+}
+- (void)setVideoPlayManagerViewFinishBlock:(VideoPlayManagerViewFinishBlock)block {
+    self.finishBlock = block;
+}
+- (void)setPlayStatus:(VideoPlayManagerStatus)playStatus {
+    _playStatus = playStatus;
+    self.exceptionView.hidden = NO;
+    switch (_playStatus) {
+        case  VideoPlayManagerStatus_Finish:
+        {
+            self.exceptionView.exceptionLabel.text = @"视频课程已播放完";
+            [self.exceptionView.exceptionButton setTitle:@"点击重新观看" forState:UIControlStateNormal];
+        }
+            break;
+        case  VideoPlayManagerStatus_Empty:
+        {
+            self.exceptionView.exceptionLabel.text = @"未找到该视频";
+            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
+        }
+            break;
+        case  VideoPlayManagerStatus_NotWifi:
+        {
+            self.exceptionView.exceptionLabel.text = @"当前为非wifi网络,继续播放会产生流量费用";
+            [self.exceptionView.exceptionButton setTitle:@"继续观看" forState:UIControlStateNormal];
+        }
+            break;
+        case  VideoPlayManagerStatus_PlayError:
+        {
+            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
+            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
+        }
+            break;
+        case  VideoPlayManagerStatus_NetworkError:
+        {
+            self.exceptionView.exceptionLabel.text = @"网络已断开,请检查网络设置";
+            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
+        }
+            break;
+        case  VideoPlayManagerStatus_DataError:
+        {
+            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
+            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
+        }
+            break;
+        default:
+            break;
+    }
+}
 #pragma mark - notification
 - (void)setupObserver {
     Reachability *r = [Reachability reachabilityForInternetConnection];
@@ -178,6 +324,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [r setReachableBlock:^void (Reachability * reachability) {
         STRONG_SELF
         if([reachability isReachableViaWiFi]) {
+            if (self.beginningView) {
+                self.fileItem = self.fileItem;
+            }
             return;
         }
         if([reachability isReachableViaWWAN]) {
@@ -444,108 +593,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         }
     }
 }
-#pragma mark - set
-- (void)setFileItem:(YXFileItemBase *)fileItem {
-    if (_fileItem) {//每次先上报上次播放结果
-        [self recordPlayerDuration];
-        SAFE_CALL(self.exitDelegate, browserExit);
-    }
-    if (fileItem == nil) {
-        return;
-    }
-    _fileItem = fileItem;
-    self.delegate = _fileItem;
-    self.exitDelegate = _fileItem;
-    self.playTime = 0;
-    self.startTime = nil;
-    self.topView.titleString = _fileItem.name;
-    self.videoUrl = [NSURL URLWithString:_fileItem.url];
-    [self definitionFormat];
-    CGFloat preProgress = fileItem.record.floatValue / fileItem.duration.floatValue;
-    if (preProgress > 0.99) {
-        preProgress = 0;
-    }
-    self.player.progress = preProgress;
-    if (isEmpty(self.videoUrl.absoluteString)) {
-        self.playStatus =  VideoPlayManagerStatus_Empty;
-        return;
-    }
-    self.player.videoUrl = self.videoUrl;
-    self.thumbImageView.hidden = YES;
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
-    if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-        self.playStatus = VideoPlayManagerStatus_NetworkError;
-        [self.player pause];
-    }
-}
-- (void)setIsFullscreen:(BOOL)isFullscreen {
-    _isFullscreen = isFullscreen;
-    self.bottomView.isFullscreen = _isFullscreen;
-    self.topView.hidden = !_isFullscreen;
-    if (!_isFullscreen) {
-        [self hideDefinition];
-    }
-    self.exceptionView.backButton.hidden = !_isFullscreen;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TBD: 修改进度条白点跳动问题
-        [self.bottomView.slideProgressControl updateUI];
-    });
-}
-- (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block {
-    self.backBlock = block;
-}
-- (void)setVideoPlayManagerViewRotateScreenBlock:(VideoPlayManagerViewRotateScreenBlock)block {
-    self.rotateBlock = block;
-}
-- (void)setVideoPlayManagerViewPlayVideoBlock:(VideoPlayManagerViewPlayVideoBlock)block {
-    self.playBlock = block;
-}
-- (void)setVideoPlayManagerViewFinishBlock:(VideoPlayManagerViewFinishBlock)block {
-    self.finishBlock = block;
-}
-- (void)setPlayStatus:(VideoPlayManagerStatus)playStatus {
-    _playStatus = playStatus;
-    self.exceptionView.hidden = NO;
-    switch (_playStatus) {
-        case  VideoPlayManagerStatus_Finish:
-        {
-            self.exceptionView.exceptionLabel.text = @"视频课程已播放完";
-            [self.exceptionView.exceptionButton setTitle:@"点击重新观看" forState:UIControlStateNormal];
-        }
-            break;
-        case  VideoPlayManagerStatus_Empty:
-        {
-            self.exceptionView.exceptionLabel.text = @"未找到该视频";
-            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
-        }
-            break;
-        case  VideoPlayManagerStatus_NotWifi:
-        {
-            self.exceptionView.exceptionLabel.text = @"当前为非wifi网络,继续播放会产生流量费用";
-            [self.exceptionView.exceptionButton setTitle:@"继续观看" forState:UIControlStateNormal];
-        }
-            break;
-        case  VideoPlayManagerStatus_PlayError:
-        {
-            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
-            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
-        }
-            break;
-        case  VideoPlayManagerStatus_NetworkError:
-        {
-            self.exceptionView.exceptionLabel.text = @"网络已断开,请检查网络设置";
-            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
-        }
-            break;
-        case  VideoPlayManagerStatus_DataError:
-        {
-            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
-            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
-        }
-            break;
-        default:
-            break;
-    }
-}
 #pragma mark - definition
 - (void)definitionFormat {
     [self.definitionMutableArray removeAllObjects];
@@ -674,11 +721,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     if (!self.isManualPause) {
         [self.player play];
     }
+    [_beginningView viewWillAppear];
 }
 - (void)viewWillDisappear {
     [self.player pause];
+    [_beginningView viewWillDisappear];
 }
 - (void)playVideoClear {
+    [_beginningView playVideoClear];
     [self recordPlayerDuration];
     SAFE_CALL(self.exitDelegate, browserExit);
     [self.player pause];

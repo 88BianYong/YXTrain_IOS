@@ -142,6 +142,11 @@ extern NSString *const kYXTrainQRCodePrompt;
  */
 extern NSString *const kYXTrainStartStopVideo;
 
+/*
+ *  播放过片头的课程ID
+ */
+extern NSString *const kYXTrainPlayBeginningCourse;
+
 
 
 

@@ -52,3 +52,5 @@ NSString *const kYXTrainQRCodePrompt = @"Show QR code prompt view";
 
 NSString *const kYXTrainStartStopVideo = @"The document is loaded and stopped";
 
+NSString *const kYXTrainPlayBeginningCourse = @"Play beginning Course Id";
+

@@ -212,6 +212,7 @@
 		921AC82C1ECED17B001579A9 /* PopUpFloatingViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 921AC82B1ECED17B001579A9 /* PopUpFloatingViewManager.m */; };
 		921AC82F1ED29DCD001579A9 /* VideoCourseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921AC82E1ED29DCD001579A9 /* VideoCourseDetailViewController.m */; };
 		921AC8321ED2A0F7001579A9 /* VideoPlayManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921AC8311ED2A0F7001579A9 /* VideoPlayManagerView.m */; };
+		921E357D1EF769380038F5CD /* VideoBeginningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921E357C1EF769380038F5CD /* VideoBeginningView.m */; };
 		9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */; };
 		9223C8051D2BAA2C000F74DF /* YXWorkshopDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8041D2BAA2C000F74DF /* YXWorkshopDetailRequest.m */; };
 		9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9223C8081D2BC59E000F74DF /* YXWorkshopMemberViewController.m */; };
@@ -994,6 +995,8 @@
 		921AC82E1ED29DCD001579A9 /* VideoCourseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseDetailViewController.m; sourceTree = "<group>"; };
 		921AC8301ED2A0F7001579A9 /* VideoPlayManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayManagerView.h; sourceTree = "<group>"; };
 		921AC8311ED2A0F7001579A9 /* VideoPlayManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayManagerView.m; sourceTree = "<group>"; };
+		921E357B1EF769380038F5CD /* VideoBeginningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoBeginningView.h; sourceTree = "<group>"; };
+		921E357C1EF769380038F5CD /* VideoBeginningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoBeginningView.m; sourceTree = "<group>"; };
 		9223C8001D2B9DD5000F74DF /* YXWorkshopListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopListRequest.h; sourceTree = "<group>"; };
 		9223C8011D2B9DD5000F74DF /* YXWorkshopListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopListRequest.m; sourceTree = "<group>"; };
 		9223C8031D2BAA2C000F74DF /* YXWorkshopDetailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailRequest.h; sourceTree = "<group>"; };
@@ -1828,6 +1831,8 @@
 				922661C61E8A476F006DE8A4 /* VideoClassworkHeaderView.m */,
 				921AC8301ED2A0F7001579A9 /* VideoPlayManagerView.h */,
 				921AC8311ED2A0F7001579A9 /* VideoPlayManagerView.m */,
+				921E357B1EF769380038F5CD /* VideoBeginningView.h */,
+				921E357C1EF769380038F5CD /* VideoBeginningView.m */,
 				92E9715B1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.h */,
 				92E9715C1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m */,
 				92E9715E1ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.h */,
@@ -4420,6 +4425,7 @@
 				920F1D261D50986E00636A51 /* YXQiNiuVideoUpload.m in Sources */,
 				92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */,
 				92CE51531D87D4AE0071DE79 /* YXHotspotRequest.m in Sources */,
+				921E357D1EF769380038F5CD /* VideoBeginningView.m in Sources */,
 				9292DC531E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m in Sources */,
 				92FD5A521ED7DB2F00D3EBA1 /* VideoCourseCommentHeaderView.m in Sources */,
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,

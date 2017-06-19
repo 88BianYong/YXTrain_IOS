@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, VideoPlayManagerStatus) {
 typedef void (^VideoPlayManagerViewBackActionBlock)(void);
 typedef void (^VideoPlayManagerViewRotateScreenBlock)(BOOL isVertical);
 typedef void (^VideoPlayManagerViewPlayVideoBlock)(VideoPlayManagerStatus status);
-typedef void (^VideoPlayManagerViewFinishBlock)();
+typedef void (^VideoPlayManagerViewFinishBlock)(void);
 
 @interface VideoPlayManagerView : UIView
 @property (nonatomic, strong) LePlayer *player;
@@ -34,11 +34,11 @@ typedef void (^VideoPlayManagerViewFinishBlock)();
 
 @property (nonatomic, assign) VideoPlayManagerStatus playStatus;
 @property (nonatomic, assign) BOOL isFullscreen;
+@property (nonatomic, assign) BOOL isPlayBeginning;
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 @property (nonatomic, weak) id<YXPlayProgressDelegate> delegate;
 @property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
 @property (nonatomic ,weak) VideoClassworkManager *classworkManager;
-
 
 
 - (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block;
