@@ -10,4 +10,5 @@
 #import "YXVideoQuestionsRequest.h"
 @interface VideoClassworkHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) YXVideoQuestionsRequestItem_Result_Questions_Question *question;
+@property (nonatomic, assign) BOOL isFullscreen;
 @end

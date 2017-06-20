@@ -37,13 +37,13 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(25.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-25.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(25.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(15.0f);
     }];
     
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(25.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-25.0f);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(15.0f);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(7.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-11.0f);
     }];
 }
@@ -63,7 +63,7 @@
         self.scoreLabel.attributedText = scoreAttributed;
     }else {
         NSMutableAttributedString *scoreAttributed = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"暂无评分"]];
-        [scoreAttributed addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"333333"]} range:NSMakeRange(0,4)];
+        [scoreAttributed addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"]} range:NSMakeRange(0,4)];
         self.scoreLabel.attributedText = scoreAttributed;
     }
 

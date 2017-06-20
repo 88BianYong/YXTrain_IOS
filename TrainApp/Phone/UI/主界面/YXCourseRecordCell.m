@@ -55,21 +55,18 @@
     recordBgView.layer.cornerRadius = YXTrainCornerRadii;
     [self.courseImageView addSubview:recordBgView];
     [recordBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(14);
-//        make.right.mas_equalTo(-14);
+
         make.center.mas_equalTo(0);
         make.height.mas_equalTo(36);
         make.width.mas_equalTo(120);
     }];
 
     UIImageView *historyImageView = [[UIImageView alloc]init];
-//    historyImageView.backgroundColor = [UIColor redColor];
     historyImageView.image = [UIImage imageNamed:@"看课记录时间icon"];
     [recordBgView addSubview:historyImageView];
     [historyImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(20, 20));
-//        make.right.mas_equalTo(self.recordLabel.mas_left).mas_offset(-3);
         make.left.mas_equalTo(5);
     }];
     
@@ -79,7 +76,6 @@
     [recordBgView addSubview:self.recordLabel];
     [self.recordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
-//        make.centerX.mas_equalTo(11);
         make.left.mas_equalTo(historyImageView.mas_right).mas_offset(5);
         make.right.mas_equalTo(-3);
     }];

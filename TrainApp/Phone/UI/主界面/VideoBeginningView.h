@@ -16,7 +16,7 @@ typedef NS_ENUM(NSInteger, VideoBeginningStatus) {
 
 
 typedef void (^VideoBeginningViewBackBlock)(void);
-typedef void (^VideoBeginningViewFinishBlock)(void);
+typedef void (^VideoBeginningViewFinishBlock)(BOOL isSave);
 @interface VideoBeginningView : UIView
 @property (nonatomic, strong) NSURL *videoUrl;
 @property (nonatomic, strong) UIButton *backButton;

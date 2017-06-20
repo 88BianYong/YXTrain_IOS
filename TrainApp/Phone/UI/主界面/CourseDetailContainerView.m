@@ -77,6 +77,7 @@ const NSInteger kTagBase = 10086;
         [v removeFromSuperview];
     }
     [self.sliderView removeFromSuperview];
+    NSMutableArray *viewMutableArray = [[NSMutableArray alloc] init];
     [_viewControllers enumerateObjectsUsingBlock:^(UIViewController * _Nonnull vc, NSUInteger idx, BOOL * _Nonnull stop) {
         [self.bottomScrollView addSubview:vc.view];
         [vc.view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,19 +88,18 @@ const NSInteger kTagBase = 10086;
         }];
         // top
         UIButton *b = [self buttonWithTitle:self.tabItemArray[idx]];
-        
-        CGFloat btnWidth = kScreenWidth/self->_viewControllers.count;
         b.tag = kTagBase + idx;
         [self.topView addSubview:b];
         [b mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.topView.mas_left).offset(btnWidth * idx);
             make.top.equalTo(self.topView.mas_top);
-            make.size.mas_offset(CGSizeMake(btnWidth, 45.0f));
+            make.size.mas_offset(CGSizeMake(30.0f, 45.0f));
         }];
+        [viewMutableArray addObject:b];
         if (idx == 0) {
             b.selected = YES;
         }
     }];
+    [self distributeSpacingHorizontallyWith:viewMutableArray];
     [self addSubview:self.sliderView];
     UIButton *selectedButton = [self.topView viewWithTag:kTagBase];
     [self.sliderView mas_makeConstraints:^(MASConstraintMaker *make) {

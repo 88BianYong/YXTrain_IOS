@@ -157,9 +157,12 @@
         }
         if ([x unsignedIntegerValue] == PlayerView_State_Playing) {
             DDLogDebug(@"播放");
-        } else if ([x unsignedIntegerValue] == PlayerView_State_Finished || [x unsignedIntegerValue] == PlayerView_State_Error)  {
+        } else if ([x unsignedIntegerValue] == PlayerView_State_Finished)  {
             [self playVideoClear];
-            BLOCK_EXEC(self.finishBlock);
+            BLOCK_EXEC(self.finishBlock,YES);
+        }else if ([x unsignedIntegerValue] == PlayerView_State_Error) {
+            [self playVideoClear];
+            BLOCK_EXEC(self.finishBlock,NO);
         }else if ([x unsignedIntegerValue] == PlayerView_State_Paused) {
             DDLogDebug(@"加载");
         }

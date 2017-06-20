@@ -16,4 +16,6 @@ typedef NS_ENUM(NSUInteger, VideoClassworkCellStatus) {
 @interface VideoClassworkCell : UITableViewCell
 @property (nonatomic, strong) YXVideoQuestionsRequestItem_Result_Questions_Question_AnswerJson *answer;
 @property (nonatomic, assign) VideoClassworkCellStatus classworkStatus;
+@property (nonatomic, assign) BOOL isFullscreen;
+
 @end

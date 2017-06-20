@@ -30,7 +30,7 @@
 }
 - (void)setupLayout {
     [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(5.0f, 25.0f, 10.0f, 25.0f));
+        make.edges.equalTo(self.contentView).insets(UIEdgeInsetsMake(11.0f, 25.0f, 10.0f, 25.0f));
     }];
 }
 - (void)awakeFromNib {

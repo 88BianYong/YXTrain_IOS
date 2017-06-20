@@ -79,6 +79,21 @@
 - (void)setData:(YXCourseDetailItem_chapter_fragment *)data{
     _data = data;
     self.typeImageView.image = [UIImage imageNamed:[YXAttachmentTypeHelper picNameWithID:data.type]];
+    [self.titleLabel sizeToFit];
+    CGRect frame = self.titleLabel.frame;
+    if (frame.size.width > kScreenWidth - 62.0f){
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.typeImageView.mas_right).mas_offset(12);
+            make.right.mas_equalTo(-15);
+            make.centerY.equalTo(self.contentView.mas_centerY);
+        }];
+    }else{
+        [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(self.typeImageView.mas_right).mas_offset(12);
+            make.right.mas_equalTo(-15);
+            make.centerY.equalTo(self.contentView.mas_centerY).offset(5.0f);
+        }];
+    }
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:data.fragment_name];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7];//调整行间距

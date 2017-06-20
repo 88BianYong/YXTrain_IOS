@@ -52,7 +52,7 @@
     [self.tableView registerClass:[VideoClassworkCell class]
            forCellReuseIdentifier:@"VideoClassworkCell"];
     [self.tableView registerClass:[VideoClassworkHeaderView class] forHeaderFooterViewReuseIdentifier:@"VideoClassworkHeaderView"];
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth * 0.9f, 65.0f)];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth * 0.9f, 79.0f)];
     self.tableView.tableFooterView = footerView;
     
     self.confirmButton = [[UIButton alloc] init];
@@ -123,6 +123,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     VideoClassworkCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VideoClassworkCell" forIndexPath:indexPath];
     cell.answer = self.question.answerJson[indexPath.row];
+    cell.isFullscreen = self.isFullscreen;
     if ([self isFirstChooseAnswer:cell.answer.no.integerValue]) {
         cell.classworkStatus = self.answerStatus == VideoClassworkAnswerStatus_Right ? VideoClassworkCellStatus_Right : VideoClassworkCellStatus_Error;
     }else {
@@ -149,16 +150,19 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     VideoClassworkHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"VideoClassworkHeaderView"];
     headerView.question = self.question;
+    headerView.isFullscreen = self.isFullscreen;
     return headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return [tableView yx_heightForHeaderWithIdentifier:@"VideoClassworkHeaderView" configuration:^(VideoClassworkHeaderView *headerView) {
         headerView.question = self.question;
+        headerView.isFullscreen = self.isFullscreen;
     }];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [tableView fd_heightForCellWithIdentifier:@"VideoClassworkCell" configuration:^(VideoClassworkCell *cell) {
         cell.answer = self.question.answerJson[indexPath.row];
+        cell.isFullscreen = self.isFullscreen;
         if ([self isFirstChooseAnswer:cell.answer.no.integerValue]) {
             cell.classworkStatus = self.answerStatus == VideoClassworkAnswerStatus_Right ? VideoClassworkCellStatus_Right : VideoClassworkCellStatus_Error;
         }else {
@@ -279,6 +283,7 @@
             make.height.equalTo(self.mas_height).multipliedBy(5.0f/10.0f);
         }];
     }
+    [self.tableView reloadData];
 }
 
 @end

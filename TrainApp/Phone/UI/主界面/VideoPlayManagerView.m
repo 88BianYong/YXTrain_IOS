@@ -181,12 +181,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         STRONG_SELF
         BLOCK_EXEC(self.backBlock);
     }];
-    [self.beginningView setVideoBeginningViewFinishBlock:^{
+    [self.beginningView setVideoBeginningViewFinishBlock:^(BOOL isSave){
         STRONG_SELF
-        NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainPlayBeginningCourse]];
-        mutableDictionary[self.fileItem.cid] = [NSDate date];
-        [[NSUserDefaults standardUserDefaults] setObject:mutableDictionary forKey:kYXTrainPlayBeginningCourse];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        if (isSave) {
+            NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainPlayBeginningCourse]];
+            mutableDictionary[self.fileItem.cid] = [NSDate date];
+            [[NSUserDefaults standardUserDefaults] setObject:mutableDictionary forKey:kYXTrainPlayBeginningCourse];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
         self ->_beginningView = nil;
         [self.player play];
     }];

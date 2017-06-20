@@ -48,7 +48,7 @@ static NSString *kClassworkAnswerError = @"   [ 错误 ]";
     }];
     
     [self.answerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(87.0f);
+        make.left.equalTo(self.chooseImageView.mas_right).offset(30.0f);
         make.top.equalTo(self.contentView.mas_top).offset(11.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-20.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-11.0f);
@@ -86,5 +86,22 @@ static NSString *kClassworkAnswerError = @"   [ 错误 ]";
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
+- (void)setIsFullscreen:(BOOL)isFullscreen {
+    _isFullscreen = isFullscreen;
+    if (_isFullscreen) {
+        [self.chooseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(38.0f);
+            make.centerY.equalTo(self.contentView.mas_centerY);
+            make.size.mas_offset(CGSizeMake(20.0f, 20.0f));
+        }];
+    }else {
+        [self.chooseImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(20.0f);
+            make.centerY.equalTo(self.contentView.mas_centerY);
+            make.size.mas_offset(CGSizeMake(20.0f, 20.0f));
+        }];
+    }
+}
+
 
 @end

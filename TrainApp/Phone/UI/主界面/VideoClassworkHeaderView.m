@@ -75,4 +75,32 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [_question.title length])];
     self.stemLabel.attributedText = attributedString;
 }
+- (void)setIsFullscreen:(BOOL)isFullscreen {
+    _isFullscreen = isFullscreen;
+    if (_isFullscreen) {
+        [self.typeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(18.0f);
+            make.top.equalTo(self.contentView.mas_top).offset(17.0f);
+            make.size.mas_offset(CGSizeMake(55.0f, 18.0f));
+        }];
+        [self.stemLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.typeLabel.mas_right).offset(12.0f);
+            make.top.equalTo(self.contentView.mas_top).offset(18.0f);
+            make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-11.0f);
+        }];
+    }else {
+        [self.typeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(20.0f);
+            make.top.equalTo(self.contentView.mas_top).offset(17.0f);
+            make.size.mas_offset(CGSizeMake(55.0f, 18.0f));
+        }];
+        [self.stemLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.typeLabel.mas_left);
+            make.top.equalTo(self.typeLabel.mas_bottom).offset(10.0f);
+            make.right.equalTo(self.contentView.mas_right).offset(-20.0f);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-11.0f);
+        }];
+    }
+}
 @end
