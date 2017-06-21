@@ -384,6 +384,7 @@
 		92B2C0A61DD42D62003E27F9 /* icon_smile.gif in Resources */ = {isa = PBXBuildFile; fileRef = 92B2C0A51DD42D62003E27F9 /* icon_smile.gif */; };
 		92B2C0A91DD43B6F003E27F9 /* ActivityDetailTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B2C0A81DD43B6F003E27F9 /* ActivityDetailTableSectionView.m */; };
 		92B2C0AC1DD45450003E27F9 /* ActivityDetailStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B2C0AB1DD45450003E27F9 /* ActivityDetailStepCell.m */; };
+		92B520B81EFA14A40076FC8A /* 片头.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 92B520B71EFA14A40076FC8A /* 片头.mp4 */; };
 		92B615DF1ED3EA7700F1FDE7 /* CourseDetailContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B615DE1ED3EA7600F1FDE7 /* CourseDetailContainerView.m */; };
 		92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */; };
 		92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */; };
@@ -1324,6 +1325,7 @@
 		92B2C0A81DD43B6F003E27F9 /* ActivityDetailTableSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailTableSectionView.m; sourceTree = "<group>"; };
 		92B2C0AA1DD45450003E27F9 /* ActivityDetailStepCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailStepCell.h; sourceTree = "<group>"; };
 		92B2C0AB1DD45450003E27F9 /* ActivityDetailStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailStepCell.m; sourceTree = "<group>"; };
+		92B520B71EFA14A40076FC8A /* 片头.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "片头.mp4"; sourceTree = "<group>"; };
 		92B615DD1ED3EA7600F1FDE7 /* CourseDetailContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailContainerView.h; sourceTree = "<group>"; };
 		92B615DE1ED3EA7600F1FDE7 /* CourseDetailContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailContainerView.m; sourceTree = "<group>"; };
 		92C649A31ED41C7F00ABC1CE /* VideoCourseChapterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseChapterViewController.h; sourceTree = "<group>"; };
@@ -1914,6 +1916,7 @@
 		7C31775C1D0E5E0F004AAC90 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				92B520B71EFA14A40076FC8A /* 片头.mp4 */,
 				7C7BF7C51E0788FD007B017C /* env_config.json */,
 				9232376F1D816DAD00FDACFE /* stageAndSubject.json */,
 				7CF888571D194B8300E7C04D /* PrefixHeader.pch */,
@@ -4077,6 +4080,7 @@
 				92126C7A1E9F732900C061EF /* trainLayerList_mock.json in Resources */,
 				CB748EEE1D250086004BCFBF /* PhoneImage.xcassets in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
+				92B520B81EFA14A40076FC8A /* 片头.mp4 in Resources */,
 				9223C81D1D2D0EB6000F74DF /* temp.txt in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
 				7C7BF7C61E0788FD007B017C /* env_config.json in Resources */,
