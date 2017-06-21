@@ -178,7 +178,7 @@
     }
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:self.courseItem.playIndexPath];
     CGRect frame = [cell convertRect:cell.bounds toView:self.tableView];
-    if (frame.origin.x >= -5 || frame.origin.x >= self.tableView.bounds.size.height - 10.0f) {
+    if (frame.origin.y <= -15 || frame.origin.y >= self.tableView.bounds.size.height - 35.0f) {
         return YES;
     }
     return NO;

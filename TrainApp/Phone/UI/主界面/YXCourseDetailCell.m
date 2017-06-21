@@ -83,13 +83,13 @@
     CGRect frame = self.titleLabel.frame;
     if (frame.size.width > kScreenWidth - 62.0f){
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.typeImageView.mas_right).mas_offset(12);
+            make.left.mas_equalTo(self.contentView.mas_left).mas_offset(62);
             make.right.mas_equalTo(-15);
             make.centerY.equalTo(self.contentView.mas_centerY);
         }];
     }else{
         [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.typeImageView.mas_right).mas_offset(12);
+            make.left.mas_equalTo(self.contentView.mas_left).mas_offset(62);
             make.right.mas_equalTo(-15);
             make.centerY.equalTo(self.contentView.mas_centerY).offset(5.0f);
         }];

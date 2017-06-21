@@ -340,6 +340,7 @@
             [self.tableView reloadData];
             self.emptyView.hidden = YES;
             [self.inputTextView inputTextViewClear];
+            [self showToast:@"评论成功"];
         }else {
             [self showToast:@"数据错误"];
         }
@@ -477,6 +478,7 @@
             [self.dataMutableArray insertObject:comment atIndex:0];
             [self.tableView reloadData];
             self.emptyView.hidden = YES;
+            [self showToast:@"评论成功"];
         }];
         _replyCommnetVC.courseId = self.courseId;
     }

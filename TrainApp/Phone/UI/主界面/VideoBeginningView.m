@@ -43,6 +43,19 @@
                 [self.player play];
             }
         }];
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillResignActiveNotification object:nil] subscribeNext:^(NSNotification *x) {
+            STRONG_SELF
+            if (!self.exceptionView.hidden) {
+                return;
+            }
+            [self.player pause];
+        }];
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidBecomeActiveNotification object:nil] subscribeNext:^(id x) {
+            STRONG_SELF
+            if (self.exceptionView.hidden) {
+                [self.player play];
+            }
+        }];
     }
     return self;
 }

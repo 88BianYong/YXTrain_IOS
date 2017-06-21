@@ -138,6 +138,8 @@
     [self addChildViewController:self.introductionVC];
     [self addChildViewController:self.commentVC];
     self.containerView.viewControllers = @[self.chapterVC,self.introductionVC,self.commentVC];
+    
+    [self setupRightWithTitle:@" "];//标题右移
 }
 - (void)setupClassworkManager:(YXFileItemBase *)fileItem {
     //随堂练
