@@ -34,7 +34,7 @@ typedef void (^VideoPlayManagerViewFinishBlock)(void);
 
 @property (nonatomic, assign) VideoPlayManagerStatus playStatus;
 @property (nonatomic, assign) BOOL isFullscreen;
-@property (nonatomic, assign) BOOL isPlayBeginning;
+@property (nonatomic, assign) BOOL isBeginPlayEnd;
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 @property (nonatomic, weak) id<YXPlayProgressDelegate> delegate;
 @property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;

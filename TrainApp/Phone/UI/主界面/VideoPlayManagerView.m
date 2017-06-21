@@ -175,6 +175,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 }
 
 - (void)showBeginningView {
+    [self.beginningView playVideoClear];
+    self.beginningView = nil;
     self.beginningView = [[VideoBeginningView alloc] init];
     WEAK_SELF
     [self.beginningView setVideoBeginningViewBackBlock:^{
@@ -188,6 +190,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             mutableDictionary[self.fileItem.cid] = [NSDate date];
             [[NSUserDefaults standardUserDefaults] setObject:mutableDictionary forKey:kYXTrainPlayBeginningCourse];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            self.isBeginPlayEnd = YES;
         }
         self ->_beginningView = nil;
         [self.player play];
@@ -198,7 +201,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.edges.equalTo(self);
     }];
 }
-- (BOOL)isPlayBeginningVideo {
+- (BOOL)isPlayBeginningVideo:(BOOL)vHead {
     NSMutableDictionary *mutableDictionary = [[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainPlayBeginningCourse];
     NSDate *oldDate = mutableDictionary[self.fileItem.cid];
     BOOL playBool = NO;
@@ -208,7 +211,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         NSTimeInterval  value = [[NSDate date] timeIntervalSinceDate:oldDate];
         playBool = (value > 12 * 60 * 60) ? YES : NO;
     }
-    return playBool && self.beginningView == nil && self.isPlayBeginning;
+    return playBool && vHead && !self.isBeginPlayEnd;
 }
 #pragma mark - set
 - (void)setFileItem:(YXFileItemBase *)fileItem {
@@ -237,7 +240,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         return;
     }
     self.player.videoUrl = self.videoUrl;
-    if (self.isPlayBeginning  && [self isPlayBeginningVideo]) {
+    if ([self isPlayBeginningVideo:[_fileItem.vhead boolValue]]) {
         self.isManualPause = YES;
         self.player.playPauseState = PlayerView_State_Paused;
         [self showBeginningView];

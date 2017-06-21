@@ -117,7 +117,6 @@
         self.playMangerView.hidden = NO;
         self.containerView.hidden = NO;
         if (fileItem) {
-            self.playMangerView.isPlayBeginning = fileItem.vhead.boolValue;
             self.playMangerView.fileItem = fileItem;
             [self setupClassworkManager:fileItem];
         }else {

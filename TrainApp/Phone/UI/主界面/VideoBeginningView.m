@@ -103,6 +103,7 @@
 }
 #pragma mark - set
 - (void)setVideoUrl:(NSURL *)videoUrl {
+#warning 撤销
     _videoUrl = videoUrl;
     NSString *filePath = [[NSBundle mainBundle]pathForResource:@"片头" ofType:@"mp4"];
     _videoUrl = [NSURL fileURLWithPath:filePath];
