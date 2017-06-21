@@ -39,7 +39,7 @@
     }];
     
     UIImageView *titleImageView = [[UIImageView alloc] init];
-    titleImageView.image = [UIImage imageNamed:@"手机研修"];
+    titleImageView.image = [UIImage imageNamed:@"i研修"];
     [self addSubview:titleImageView];
     [titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(logoImageView.mas_bottom).offset(26.0f);

@@ -43,7 +43,7 @@
     [self addSubview:self.logoImageView];
     
     self.titleImageView = [[UIImageView alloc] init];
-    self.titleImageView.image = [UIImage imageNamed:@"手机研修"];
+    self.titleImageView.image = [UIImage imageNamed:@"i研修"];
     [self addSubview:self.titleImageView];
     
     self.versionLabel = [[UILabel alloc] init];
