@@ -8,9 +8,6 @@
 
 #import "VideoCourseSecondCommentViewController.h"
 #import "CommentPagedListFetcher.h"
-#import "ActitvityCommentHeaderView.h"
-#import "ActitvityCommentCell.h"
-#import "ActitvityCommentFooterView.h"
 #import "VideoCourseSecondCommentFooterView.h"
 #import "VideoCourseCommentsFetcher.h"
 #import "UITableView+TemplateLayoutHeaderView.h"
@@ -69,6 +66,16 @@
 }
 
 #pragma mark - UITableViewDataSource
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    VideoCourseCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"VideoCourseCommentHeaderView"];
+    headerView.comment = self.dataMutableArray[section];
+    headerView.isShowLine = self.dataMutableArray[section].childNum.integerValue <= 0;
+    if (self.isFullReply && section == 0) {
+        headerView.isShowLine = NO;
+    }
+    return headerView;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == 0) {
         VideoCourseSecondCommentFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"VideoCourseSecondCommentFooterView"];

@@ -20,6 +20,7 @@ typedef void (^VideoBeginningViewFinishBlock)(BOOL isSave);
 @interface VideoBeginningView : UIView
 @property (nonatomic, strong) NSURL *videoUrl;
 @property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) UIButton *rotateButton;
 
 - (void)setVideoBeginningViewBackBlock:(VideoBeginningViewBackBlock)block;
 - (void)setVideoBeginningViewFinishBlock:(VideoBeginningViewFinishBlock)block;

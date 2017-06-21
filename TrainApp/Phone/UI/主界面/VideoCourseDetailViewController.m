@@ -265,7 +265,7 @@
             appDelegate.appDelegateHelper.projectId = nil;
             appDelegate.appDelegateHelper.seg = nil;
             [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
-            [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
+            [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
         }else {
             [self.navigationController popViewControllerAnimated:YES];
         }

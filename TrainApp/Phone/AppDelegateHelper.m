@@ -101,7 +101,7 @@
             }
             self.isRemoteNotification = NO;
         }];
-        [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
+        [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
     } else {
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
@@ -138,7 +138,7 @@
         }else {
             [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
         }
-        [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
+        [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
         [[TrainGeTuiManger sharedInstance] loginSuccess];
         self.isRemoteNotification = NO;
     }];

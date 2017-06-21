@@ -69,15 +69,15 @@
     }];
     
     self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.backButton.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.7f];
+    self.backButton.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
     self.backButton.layer.cornerRadius = 15.0f;
     self.backButton.clipsToBounds = YES;
     [self.backButton setImage:[UIImage imageNamed:@"视频全屏－返回按钮"] forState:UIControlStateNormal];
-//    [self.backButton setImage:[UIImage imageNamed:@"视频全屏－返回按钮点击态"] forState:UIControlStateHighlighted];
-    [self.backButton setTitle:@"返回" forState:UIControlStateNormal];
-    self.backButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-    self.backButton.imageEdgeInsets = UIEdgeInsetsMake(0.0f, -5.0f, 0.0f, 0.0f);
-    self.backButton.titleEdgeInsets = UIEdgeInsetsMake(0.0f, -15.0f, 0.0f, 0.0f);
+    [self.backButton setImage:[UIImage imageNamed:@"视频全屏－返回按钮点击态"] forState:UIControlStateHighlighted];
+//    [self.backButton setTitle:@"返回" forState:UIControlStateNormal];
+//    self.backButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+//    self.backButton.imageEdgeInsets = UIEdgeInsetsMake(0.0f, -5.0f, 0.0f, 0.0f);
+//    self.backButton.titleEdgeInsets = UIEdgeInsetsMake(0.0f, -15.0f, 0.0f, 0.0f);
 
     [[self.backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
@@ -85,6 +85,12 @@
     }];
     self.backButton.hidden = YES;
     [self addSubview:self.backButton];
+    
+    self.rotateButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.rotateButton.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
+    self.rotateButton.layer.cornerRadius = 15.0f;
+    [self.rotateButton setImage:[UIImage imageNamed:@"放大按钮"] forState:UIControlStateNormal];
+    [self addSubview:self.rotateButton];
     
 }
 - (void)setupLayout {
@@ -96,9 +102,14 @@
         make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
     }];
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(10.0f);
-        make.top.equalTo(self.mas_top).offset(10.0f);
-        make.size.mas_offset(CGSizeMake(60.0f, 40.0f));
+        make.left.equalTo(self.mas_left).offset(5.0f);
+        make.top.equalTo(self.mas_top).offset(7.0f);
+        make.size.mas_offset(CGSizeMake(30.0f, 30.0f));
+    }];
+    [self.rotateButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
+        make.bottom.equalTo(self.mas_bottom).offset(-7.0f);
+        make.right.equalTo(self.mas_right).offset(-7.0f);
     }];
 }
 #pragma mark - set

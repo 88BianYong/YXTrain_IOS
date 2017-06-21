@@ -41,7 +41,7 @@
             STRONG_SELF
             self.isShowCMS = NO;
             if ([YXInitHelper sharedHelper].isShowUpgrade && self.upgradeView == nil) {
-                [self showPopUpFloatingView];
+                [self startPopUpFloatingView];
                 BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
             }else {
                 BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,YES);
@@ -51,7 +51,7 @@
     return self;
 }
 
-- (void)showPopUpFloatingView {
+- (void)startPopUpFloatingView {
     if (self.loginStatus == PopUpFloatingLoginStatus_QRCode) {
         return;
     }
@@ -67,6 +67,23 @@
         [self showQRCodePrompt];
     }
 }
+- (void)showPopUpFloatingView {
+    [self popUpFloatingViewStatus:YES];
+}
+- (void)hiddenPopUpFloatingView {
+    [self popUpFloatingViewStatus:NO];
+}
+- (void)popUpFloatingViewStatus:(BOOL)isShow {
+    if (self.isMultiProject || self.isMultiRole || self.isQRCode) {
+        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+        [window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:[FloatingBaseView class]]) {
+                obj.hidden = !isShow;
+            }
+        }];
+    }
+}
+
 - (void)showCMSView {
     if (self.cmsView) {
         return;
@@ -128,7 +145,7 @@
         STRONG_SELF
         [self.upgradeView hide];
         [YXInitHelper sharedHelper].isShowUpgrade = NO;
-        [self showPopUpFloatingView];
+        [self startPopUpFloatingView];
     };
     
     YXAlertAction *downloadUpdateAlertAct = [[YXAlertAction alloc] init];
@@ -167,7 +184,7 @@
     [guideView setFloatingBaseRemoveCompleteBlock:^{
         STRONG_SELF;
         self.isMultiProject = NO;
-        [self showPopUpFloatingView];
+        [self startPopUpFloatingView];
     }];
     [window addSubview:guideView];
     [guideView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -189,7 +206,7 @@
     [roleView setFloatingBaseRemoveCompleteBlock:^{
         STRONG_SELF;
         self.isMultiRole = NO;
-        [self showPopUpFloatingView];
+        [self startPopUpFloatingView];
     }];
     [window addSubview:roleView];
     [roleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -211,7 +228,7 @@
     [codeView setFloatingBaseRemoveCompleteBlock:^{
         STRONG_SELF;
         self.isQRCode = NO;
-        [self showPopUpFloatingView];
+        [self startPopUpFloatingView];
     }];
     [window addSubview:codeView];
     [codeView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -258,6 +258,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.topView.hidden = !_isFullscreen;
     if (!_isFullscreen) {
         [self hideDefinition];
+        [self.beginningView.rotateButton setImage:[UIImage imageNamed:@"放大按钮"] forState:UIControlStateNormal];
+    }else {
+        [self.beginningView.rotateButton setImage:[UIImage imageNamed:@"缩小按钮-"] forState:UIControlStateNormal];
     }
     self.exceptionView.backButton.hidden = !_isFullscreen;
     self.beginningView.backButton.hidden = !_isFullscreen;

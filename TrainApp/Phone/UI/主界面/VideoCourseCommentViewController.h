@@ -9,6 +9,7 @@
 #import "YXBaseViewController.h"
 #import "YXNoFloatingHeaderFooterTableView.h"
 #import "VideoCourseCommentsRequest.h"
+#import "VideoCourseCommentHeaderView.h"
 @class VideoCourseCommentsFetcher;
 @interface VideoCourseCommentViewController : YXBaseViewController
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
@@ -24,5 +25,5 @@
 - (void)formatCommentContent;
 - (void)userPublishComment;//需要全部回复界面实现
 - (void)firstShowInputView;//需要全部回复界面实现
-
+- (void)requestForCommentLaud:(NSInteger)integer;
 @end

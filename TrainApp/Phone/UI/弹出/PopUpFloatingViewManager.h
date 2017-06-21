@@ -19,5 +19,9 @@ typedef NS_ENUM(NSInteger,PopUpFloatingLoginStatus) {
 /**
  * @brief 浮层显示顺序 1.广告页 2.升级界面 3.项目切换 4.角色切换  5.二维码扫描 其中任何一个需要显示时调用该方法内部自动判断
  */
+- (void)startPopUpFloatingView;
+
 - (void)showPopUpFloatingView;
+
+- (void)hiddenPopUpFloatingView;
 @end
