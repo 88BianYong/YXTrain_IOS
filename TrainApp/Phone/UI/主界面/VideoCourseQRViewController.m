@@ -131,12 +131,12 @@
             course.courses_id = [paraDic objectForKey:@"courseId"];
             vc.course = course;
             vc.seekInteger = [[paraDic objectForKey:@"cInx"] integerValue];
-            vc.fromWhere = VideoCourseFromWhere_QRCode;
-            [self.navigationController pushViewController:vc animated:YES];
-            if (![[YXTrainManager sharedInstance].currentProject.pid isEqualToString:[paraDic objectForKey:@"projectId"]]) {
+            vc.fromWhere = VideoCourseFromWhere_NotFound;
+            if ( [[YXTrainManager sharedInstance] setupProjectId:@"1212"]) {
+                vc.fromWhere = VideoCourseFromWhere_QRCode;
                 [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:[paraDic objectForKey:@"projectId"]];
-                [[YXTrainManager sharedInstance] setupProjectId:[paraDic objectForKey:@"projectId"]];
             }
+            [self.navigationController pushViewController:vc animated:YES];
         } else {
             [self showToast:@"无法识别该二维码"];
         }

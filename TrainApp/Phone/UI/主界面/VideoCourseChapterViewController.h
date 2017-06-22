@@ -11,7 +11,8 @@
 typedef NS_ENUM(NSInteger, VideoCourseFromWhere) {
     VideoCourseFromWhere_Detail,
     VideoCourseFromWhere_Record,
-    VideoCourseFromWhere_QRCode
+    VideoCourseFromWhere_QRCode,
+    VideoCourseFromWhere_NotFound
 };
 typedef void (^VideoCourseChapterFragmentCompleteBlock)(NSError *error,YXFileItemBase *fileItem ,BOOL isHaveVideo);
 

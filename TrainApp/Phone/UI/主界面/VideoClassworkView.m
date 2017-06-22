@@ -48,6 +48,7 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.fd_debugLogEnabled
     [self.containerView addSubview:self.tableView];
     [self.tableView registerClass:[VideoClassworkCell class]
            forCellReuseIdentifier:@"VideoClassworkCell"];
@@ -104,8 +105,6 @@
         make.centerX.equalTo(self.containerView.mas_centerX);
         make.height.mas_offset(50.0f);
     }];
-    
-    
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView.mas_left);
         make.right.equalTo(self.containerView.mas_right);
@@ -273,14 +272,14 @@
     if (_isFullscreen) {
         [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
-            make.width.equalTo(self.mas_width).multipliedBy(9.0f/10.0f);
-            make.height.equalTo(self.mas_height).multipliedBy(9.0f/10.0f);
+            make.size.equalTo(self).multipliedBy(9.0f/10.0f);
         }];
     }else {
-        [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+        [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
             make.width.equalTo(self.mas_width).multipliedBy(9.0f/10.0f);
-            make.height.equalTo(self.mas_height).multipliedBy(5.0f/10.0f);
+//            make.height.lessThanOrEqualTo(self.mas_height).multipliedBy(9.0f/10.0f);
+            make.height.greaterThanOrEqualTo(self.mas_height).multipliedBy(5.0f/10.0f);
         }];
     }
     [self.tableView reloadData];

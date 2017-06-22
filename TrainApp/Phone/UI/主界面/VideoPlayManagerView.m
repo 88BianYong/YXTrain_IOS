@@ -191,6 +191,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [self.beginningView playVideoClear];
     self.beginningView = nil;
     self.beginningView = [[VideoBeginningView alloc] init];
+    [self.beginningView.rotateButton addTarget:self action:@selector(rotateScreenButtonAction:)forControlEvents:UIControlEventTouchUpInside];
     WEAK_SELF
     [self.beginningView setVideoBeginningViewBackBlock:^{
         STRONG_SELF
