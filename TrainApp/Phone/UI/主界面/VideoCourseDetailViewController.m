@@ -37,7 +37,6 @@
     self.view.backgroundColor = [UIColor blackColor];
     self.title = self.course.course_title;
     if (self.fromWhere == VideoCourseFromWhere_NotFound){
-        [self showToast:@"没有找到该课程"];
         [self.navigationController popToRootViewControllerAnimated:YES];
         return;
     }

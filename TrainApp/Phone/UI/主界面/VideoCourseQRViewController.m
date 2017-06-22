@@ -126,17 +126,18 @@
         if (((NSString *)[paraDic objectForKey:@"courseId"]).length > 0) {
             [_session stopRunning];
             [_scanBackgroundView.scanTimer setFireDate:[NSDate distantFuture]];
-            VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
-            YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
-            course.courses_id = [paraDic objectForKey:@"courseId"];
-            vc.course = course;
-            vc.seekInteger = [[paraDic objectForKey:@"cInx"] integerValue];
-            vc.fromWhere = VideoCourseFromWhere_NotFound;
-            if ( [[YXTrainManager sharedInstance] setupProjectId:@"1212"]) {
+            if ( [[YXTrainManager sharedInstance] setupProjectId:[paraDic objectForKey:@"projectId"]]) {
+                VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
+                YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
+                course.courses_id = [paraDic objectForKey:@"courseId"];
+                vc.course = course;
+                vc.seekInteger = [[paraDic objectForKey:@"cInx"] integerValue];
                 vc.fromWhere = VideoCourseFromWhere_QRCode;
                 [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:[paraDic objectForKey:@"projectId"]];
+                [self.navigationController pushViewController:vc animated:YES];
+            }else {
+                [self showToast:@"没有找到该课程"];
             }
-            [self.navigationController pushViewController:vc animated:YES];
         } else {
             [self showToast:@"无法识别该二维码"];
         }

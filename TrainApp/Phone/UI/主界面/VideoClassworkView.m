@@ -52,7 +52,7 @@
     [self.tableView registerClass:[VideoClassworkCell class]
            forCellReuseIdentifier:@"VideoClassworkCell"];
     [self.tableView registerClass:[VideoClassworkHeaderView class] forHeaderFooterViewReuseIdentifier:@"VideoClassworkHeaderView"];
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth * 0.9f, 79.0f)];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth * 0.9f, 79.0f + 25.0f)];
     self.tableView.tableFooterView = footerView;
     
     self.confirmButton = [[UIButton alloc] init];
@@ -242,17 +242,17 @@
 }
 
 - (void)setHidden:(BOOL)hidden {
-    [super setHidden:hidden];
     if (hidden) {
         self.answerStatus = VideoClassworkAnswerStatus_Normal;
         self.confirmButton.layer.borderColor = [UIColor colorWithHexString:@"f3f7fa"].CGColor;
         self.confirmButton.enabled = NO;
         [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f)];
     }else {
+        self.isFullscreen = _isFullscreen;
         [self.answerMutableArray removeAllObjects];
         [self.tableView reloadData];
     }
-
+    [super setHidden:hidden];
 }
 - (void)refreshClassworkViewAnsewr:(BOOL)isTrue quizCorrect:(BOOL)isForce {
     if (isTrue) {
@@ -273,22 +273,37 @@
             make.center.equalTo(self);
             make.size.equalTo(self).multipliedBy(9.0f/10.0f);
         }];
+        [self.tableView reloadData];
     }else {
-        [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(self);
-            make.width.equalTo(self.mas_width).multipliedBy(9.0f/10.0f);
-//            make.height.mas_offset(1000.0f);
-
-            make.height.lessThanOrEqualTo(self.mas_height).multipliedBy(9.0f/10.0f).priorityHigh();
-            make.height.greaterThanOrEqualTo(self.mas_height).multipliedBy(5.0f/10.0f).priorityHigh();
-            DDLogDebug(@">>>%@",self.tableView.fd_keyedHeightCache);
-        }];
-        __block CGFloat height = 0.0f;
-        [self.tableView.visibleCells enumerateObjectsUsingBlock:^(__kindof UITableViewCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            height += obj.frame.size.height;
-        }];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            __block CGFloat height = 79.0f + 50.0f + 25.0f;
+            [self.tableView.visibleCells enumerateObjectsUsingBlock:^(__kindof UITableViewCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                height += obj.frame.size.height;
+            }];
+            VideoClassworkHeaderView *headerView = (VideoClassworkHeaderView *)[self.tableView headerViewForSection:0];
+            height = height + headerView.frame.size.height;
+            if (height > kScreenHeight * 0.7f) {
+                [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.center.equalTo(self);
+                    make.width.equalTo(self.mas_width).multipliedBy(9.0f/10.0f);
+                    make.height.equalTo(self.mas_height).multipliedBy(7.0f/10.0f);
+                }];
+            }else if (height > kScreenHeight * 0.52f && height < kScreenHeight * 0.7f) {
+                [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.center.equalTo(self);
+                    make.width.equalTo(self.mas_width).multipliedBy(9.0f/10.0f);
+                    make.height.mas_offset(height);
+                }];
+            }else {
+                [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.center.equalTo(self);
+                    make.width.equalTo(self.mas_width).multipliedBy(9.0f/10.0f);
+                    make.height.equalTo(self.mas_height).multipliedBy(5.2f/10.0f);
+                }];
+            }
+            [self.tableView reloadData];
+        });
     }
-    [self.tableView reloadData];
 }
 
 @end
