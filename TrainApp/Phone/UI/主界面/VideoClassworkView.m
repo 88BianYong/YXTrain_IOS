@@ -48,7 +48,6 @@
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.fd_debugLogEnabled
     [self.containerView addSubview:self.tableView];
     [self.tableView registerClass:[VideoClassworkCell class]
            forCellReuseIdentifier:@"VideoClassworkCell"];
@@ -278,8 +277,15 @@
         [self.containerView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self);
             make.width.equalTo(self.mas_width).multipliedBy(9.0f/10.0f);
-//            make.height.lessThanOrEqualTo(self.mas_height).multipliedBy(9.0f/10.0f);
-            make.height.greaterThanOrEqualTo(self.mas_height).multipliedBy(5.0f/10.0f);
+//            make.height.mas_offset(1000.0f);
+
+            make.height.lessThanOrEqualTo(self.mas_height).multipliedBy(9.0f/10.0f).priorityHigh();
+            make.height.greaterThanOrEqualTo(self.mas_height).multipliedBy(5.0f/10.0f).priorityHigh();
+            DDLogDebug(@">>>%@",self.tableView.fd_keyedHeightCache);
+        }];
+        __block CGFloat height = 0.0f;
+        [self.tableView.visibleCells enumerateObjectsUsingBlock:^(__kindof UITableViewCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            height += obj.frame.size.height;
         }];
     }
     [self.tableView reloadData];
