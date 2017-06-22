@@ -38,6 +38,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, assign) BOOL isTopBottomHidden;
 @property (nonatomic, strong) NSURL *videoUrl;
 @property (nonatomic, assign) BOOL isManualPause;
+@property (nonatomic, assign) BOOL isShowTop;
 @property (nonatomic, strong) NSMutableArray<VideoPlayerDefinition *> *definitionMutableArray;
 @property (nonatomic, strong) NSMutableArray<UIButton *> *defButtonArray;
 @property (nonatomic, assign) BOOL isShowDefinition;
@@ -57,6 +58,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         self.definitionMutableArray = [[NSMutableArray alloc] initWithCapacity:3];
         self.defButtonArray = [[NSMutableArray alloc] initWithCapacity:3];
         self.clipsToBounds = YES;
+        self.isShowTop = YES;
         [self setupUI];
         [self setupLayout];
         [self setupObserver];
@@ -92,7 +94,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         }];
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidBecomeActiveNotification object:nil] subscribeNext:^(id x) {
             STRONG_SELF
-            if (self.exceptionView.hidden  && !self.isManualPause) {
+            if (self.exceptionView.hidden  && !self.isManualPause && self.isShowTop) {
                 [self.player play];
             }
         }];
@@ -743,10 +745,12 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     if (!self.isManualPause) {
         [self.player play];
     }
+    self.isShowTop = YES;
     [_beginningView viewWillAppear];
 }
 - (void)viewWillDisappear {
     [self.player pause];
+    self.isShowTop = NO;
     [_beginningView viewWillDisappear];
 }
 - (void)playVideoClear {

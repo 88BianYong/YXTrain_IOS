@@ -18,10 +18,14 @@
 @property (nonatomic, strong) ActivityPlayExceptionView *exceptionView;
 
 
+
 @property (nonatomic, strong) RACDisposable *disposable;
 @property (nonatomic, copy) VideoBeginningViewBackBlock backBlock;
 @property (nonatomic, copy) VideoBeginningViewFinishBlock finishBlock;
 @property (nonatomic, assign) VideoBeginningStatus playStatus;
+@property (nonatomic, assign) BOOL isShowTop;
+
+
 
 @end
 @implementation VideoBeginningView
@@ -31,6 +35,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = YES;
+        self.isShowTop = YES;
         [self setupUI];
         [self setupLayout];
         [self setupObserver];
@@ -52,7 +57,7 @@
         }];
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidBecomeActiveNotification object:nil] subscribeNext:^(id x) {
             STRONG_SELF
-            if (self.exceptionView.hidden) {
+            if (self.exceptionView.hidden && self.isShowTop) {
                 [self.player play];
             }
         }];
@@ -208,9 +213,11 @@
 }
 #pragma mark - play Setting
 - (void)viewWillAppear {
+    self.isShowTop = YES;
     [self.player play];
 }
 - (void)viewWillDisappear {
+    self.isShowTop = NO;
     [self.player pause];
 }
 - (void)playVideoClear {
