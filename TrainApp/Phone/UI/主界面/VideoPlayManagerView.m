@@ -46,6 +46,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, assign) NSTimeInterval playTime;
 
 
+@property (nonatomic, strong) NSURL *oldUrl;
+
+
 
 @end
 @implementation VideoPlayManagerView
@@ -235,6 +238,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         [self recordPlayerDuration];
         SAFE_CALL(self.exitDelegate, browserExit);
     }
+    if (![[Reachability reachabilityForInternetConnection] isReachable] && self.oldUrl == nil) {
+        self.oldUrl = self.player.videoUrl;
+    }
     if (fileItem == nil) {
         return;
     }
@@ -263,10 +269,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     self.thumbImageView.hidden = YES;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
-    if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-        self.playStatus = VideoPlayManagerStatus_NetworkError;
-        [self.player pause];
-    }
 }
 - (void)setIsFullscreen:(BOOL)isFullscreen {
     _isFullscreen = isFullscreen;
@@ -321,12 +323,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             break;
         case  VideoPlayManagerStatus_PlayError:
         {
+            [self.player pause];
             self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
             [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
         }
             break;
         case  VideoPlayManagerStatus_NetworkError:
         {
+            [self.player pause];
             self.exceptionView.exceptionLabel.text = @"网络已断开,请检查网络设置";
             [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
         }
@@ -611,7 +615,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         BLOCK_EXEC(self.playBlock,self.playStatus);
     }else if (self.playStatus == VideoPlayManagerStatus_NetworkError) {
         if ([[Reachability reachabilityForInternetConnection] isReachable]) {
+            if (self.oldUrl != nil) {
+                self.player.videoUrl = self.videoUrl;//TBD: 无网络情况下切换播放地址会播放上一个
+            }
             [self.player play];
+            self.oldUrl = nil;
         }else {
             self.exceptionView.hidden = NO;
         }
