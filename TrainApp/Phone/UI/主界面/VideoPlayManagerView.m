@@ -38,7 +38,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, assign) BOOL isTopBottomHidden;
 @property (nonatomic, strong) NSURL *videoUrl;
 @property (nonatomic, assign) BOOL isManualPause;
-@property (nonatomic, assign) BOOL isShowTop;
+@property (nonatomic, assign) BOOL isShowTop;//TBD:双层控制播放 需要优化
 @property (nonatomic, strong) NSMutableArray<VideoPlayerDefinition *> *definitionMutableArray;
 @property (nonatomic, strong) NSMutableArray<UIButton *> *defButtonArray;
 @property (nonatomic, assign) BOOL isShowDefinition;
@@ -212,7 +212,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         [self.player play];
     }];
     [self addSubview:self.beginningView];
-    self.beginningView.videoUrl = [NSURL URLWithString:@"http://yuncdn.teacherclub.com.cn/course/cf/xk/czsw/tkygffycl/video/1-1_l/1-1_l.m3u8"];
+    self.beginningView.videoUrl = [NSURL URLWithString:@"http://upload.ugc.yanxiu.com/video/4620490456e684328d4fcf5a920f54a1.mp4"];
     [self.beginningView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
