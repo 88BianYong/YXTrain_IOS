@@ -207,6 +207,7 @@
 - (void)exceptionButtonAction:(UIButton *)sender {
     if ([[Reachability reachabilityForInternetConnection] isReachable]) {
         [self.player play];
+        self.exceptionView.hidden = YES;
     }else {
         self.exceptionView.hidden = NO;
     }
