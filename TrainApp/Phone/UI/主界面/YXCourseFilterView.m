@@ -43,6 +43,7 @@ static const NSUInteger kTagBase = 876;
 
 - (void)setupUI{
     self.typeContainerView = [[UIView alloc]initWithFrame:self.bounds];
+    self.typeContainerView.frame = CGRectMake(5.0f, 0.0f, self.bounds.size.width - 10.0f, self.bounds.size.height);
 //    CGFloat lineHeight = 1/[UIScreen mainScreen].scale;
 //    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(0, self.typeContainerView.bounds.size.height-lineHeight, self.typeContainerView.frame.size.width, lineHeight)];
 //    line.backgroundColor = [UIColor blackColor];
