@@ -165,10 +165,12 @@
             if (playTime >= 0) {
                 [self.playMangerView.player seekTo:playTime];
             }
+            self.playMangerView.isShowTop = YES;
             [self checkNetworkDoPlay];
         }else {
             self.playMangerView.bottomView.slideProgressControl.bSliding = NO;
             [self.playMangerView.player pause];
+            self.playMangerView.isShowTop = NO;
         }
     }];
     self.playMangerView.classworkManager = self.classworkManager;

@@ -39,6 +39,8 @@ typedef void (^VideoPlayManagerViewFinishBlock)(void);
 @property (nonatomic, weak) id<YXPlayProgressDelegate> delegate;
 @property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
 @property (nonatomic ,weak) VideoClassworkManager *classworkManager;
+@property (nonatomic, assign) BOOL isShowTop;//TBD:双层控制播放 需要优化
+
 
 
 - (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block;

@@ -38,7 +38,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, assign) BOOL isTopBottomHidden;
 @property (nonatomic, strong) NSURL *videoUrl;
 @property (nonatomic, assign) BOOL isManualPause;
-@property (nonatomic, assign) BOOL isShowTop;//TBD:双层控制播放 需要优化
 @property (nonatomic, strong) NSMutableArray<VideoPlayerDefinition *> *definitionMutableArray;
 @property (nonatomic, strong) NSMutableArray<UIButton *> *defButtonArray;
 @property (nonatomic, assign) BOOL isShowDefinition;
