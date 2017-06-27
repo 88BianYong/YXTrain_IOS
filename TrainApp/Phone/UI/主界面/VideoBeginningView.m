@@ -86,23 +86,13 @@
         make.edges.equalTo(self);
     }];
     
-    self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.backButton.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
-    self.backButton.layer.cornerRadius = 15.0f;
-    self.backButton.clipsToBounds = YES;
-    [self.backButton setImage:[UIImage imageNamed:@"视频全屏－返回按钮"] forState:UIControlStateNormal];
-    [self.backButton setImage:[UIImage imageNamed:@"视频全屏－返回按钮点击态"] forState:UIControlStateHighlighted];
-//    [self.backButton setTitle:@"返回" forState:UIControlStateNormal];
-//    self.backButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-//    self.backButton.imageEdgeInsets = UIEdgeInsetsMake(0.0f, -5.0f, 0.0f, 0.0f);
-//    self.backButton.titleEdgeInsets = UIEdgeInsetsMake(0.0f, -15.0f, 0.0f, 0.0f);
-
-    [[self.backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+    self.topView = [[VideoBeginningTopView alloc] init];
+    [[self.topView.backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
         BLOCK_EXEC(self.backBlock);
     }];
-    self.backButton.hidden = YES;
-    [self addSubview:self.backButton];
+    self.topView.hidden = YES;
+    [self addSubview:self.topView];
     
     self.rotateButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.rotateButton.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
@@ -119,10 +109,11 @@
         make.center.mas_equalTo(@0);
         make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
     }];
-    [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(5.0f);
-        make.top.equalTo(self.mas_top).offset(7.0f);
-        make.size.mas_offset(CGSizeMake(30.0f, 30.0f));
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.height.mas_offset(44.0f);
     }];
     [self.rotateButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
@@ -132,7 +123,6 @@
 }
 #pragma mark - set
 - (void)setVideoUrl:(NSURL *)videoUrl {
-#warning 撤销
     _videoUrl = videoUrl;
 //    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"片头" ofType:@"mp4"];
 //    _videoUrl = [NSURL fileURLWithPath:filePath];

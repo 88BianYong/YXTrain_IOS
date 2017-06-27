@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoBeginningTopView.h"
 typedef NS_ENUM(NSInteger, VideoBeginningStatus) {
     VideoBeginningStatus_Finish,//视频为空
     VideoBeginningStatus_NotWifi,//非wifi
@@ -19,7 +20,7 @@ typedef void (^VideoBeginningViewBackBlock)(void);
 typedef void (^VideoBeginningViewFinishBlock)(BOOL isSave);
 @interface VideoBeginningView : UIView
 @property (nonatomic, strong) NSURL *videoUrl;
-@property (nonatomic, strong) UIButton *backButton;
+@property (nonatomic, strong) VideoBeginningTopView *topView;
 @property (nonatomic, strong) UIButton *rotateButton;
 
 - (void)setVideoBeginningViewBackBlock:(VideoBeginningViewBackBlock)block;

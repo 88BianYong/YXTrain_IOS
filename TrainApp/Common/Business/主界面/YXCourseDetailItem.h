@@ -72,5 +72,6 @@
 @property (nonatomic, strong) NSArray<YXCourseDetailItem_mti, Optional> *mti;
 @property (nonatomic, strong) NSIndexPath<Optional> *playIndexPath;
 @property (nonatomic, copy) NSString<Optional> *vhead;
+@property (nonatomic, copy) NSString<Optional> *vheadUrl;
 - (YXCourseDetailItem_chapter_fragment *)willPlayVideoSeek:(NSInteger)integer;
 @end

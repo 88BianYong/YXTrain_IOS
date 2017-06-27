@@ -330,6 +330,7 @@
 		92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F5F1DD9666700548424 /* ActivitySlideProgressControl.m */; };
 		92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F621DD96E3E00548424 /* ActivityPlayTopView.m */; };
 		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
+		927874311F01F89300A70DC0 /* VideoBeginningTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927874301F01F89300A70DC0 /* VideoBeginningTopView.m */; };
 		927B6C661DFA99AE00CBBBBF /* BeijingCourseListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C651DFA99AE00CBBBBF /* BeijingCourseListRequest.m */; };
 		92852BEA1EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */; };
 		928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A121E88B2180067218A /* BeijingActivityListCell.m */; };
@@ -1222,6 +1223,8 @@
 		92780F641DD99FC300548424 /* CommentPageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentPageListViewController.h; sourceTree = "<group>"; };
 		92780F651DD99FC300548424 /* CommentPageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPageListViewController.m; sourceTree = "<group>"; };
 		92780F671DD9A01600548424 /* CommentPagedListFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentPagedListFetcher.h; sourceTree = "<group>"; };
+		9278742F1F01F89300A70DC0 /* VideoBeginningTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoBeginningTopView.h; sourceTree = "<group>"; };
+		927874301F01F89300A70DC0 /* VideoBeginningTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoBeginningTopView.m; sourceTree = "<group>"; };
 		927B6C641DFA99AE00CBBBBF /* BeijingCourseListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseListRequest.h; sourceTree = "<group>"; };
 		927B6C651DFA99AE00CBBBBF /* BeijingCourseListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseListRequest.m; sourceTree = "<group>"; };
 		92852BE81EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeYangGetQuizStatistics.h; sourceTree = "<group>"; };
@@ -1835,6 +1838,8 @@
 				921AC8311ED2A0F7001579A9 /* VideoPlayManagerView.m */,
 				921E357B1EF769380038F5CD /* VideoBeginningView.h */,
 				921E357C1EF769380038F5CD /* VideoBeginningView.m */,
+				9278742F1F01F89300A70DC0 /* VideoBeginningTopView.h */,
+				927874301F01F89300A70DC0 /* VideoBeginningTopView.m */,
 				92E9715B1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.h */,
 				92E9715C1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m */,
 				92E9715E1ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.h */,
@@ -4168,6 +4173,7 @@
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */,
 				928B7A4A1E88B2180067218A /* BeijingHomeworkInfoView.m in Sources */,
+				927874311F01F89300A70DC0 /* VideoBeginningTopView.m in Sources */,
 				92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */,
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */,

@@ -215,7 +215,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         [self.player play];
     }];
     [self addSubview:self.beginningView];
-    self.beginningView.videoUrl = [NSURL URLWithString:@"http://upload.ugc.yanxiu.com/video/4620490456e684328d4fcf5a920f54a1.mp4"];
+    self.beginningView.videoUrl = [NSURL URLWithString:self.fileItem.vheadUrl];
+    //[NSURL URLWithString:@"http://upload.ugc.yanxiu.com/video/4620490456e684328d4fcf5a920f54a1.mp4"];
     [self.beginningView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
@@ -262,7 +263,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         return;
     }
     self.player.videoUrl = self.videoUrl;
-    if ([self isPlayBeginningVideo:[_fileItem.vhead boolValue]]) {
+    if ([self isPlayBeginningVideo:[_fileItem.vhead boolValue]] && self.fileItem.vheadUrl.length > 0) {
         self.isManualPause = YES;
         self.player.playPauseState = PlayerView_State_Paused;
         [self showBeginningView];
@@ -281,7 +282,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         [self.beginningView.rotateButton setImage:[UIImage imageNamed:@"缩小按钮-"] forState:UIControlStateNormal];
     }
     self.exceptionView.backButton.hidden = !_isFullscreen;
-    self.beginningView.backButton.hidden = !_isFullscreen;
+    self.beginningView.topView.hidden = !_isFullscreen;
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TBD: 修改进度条白点跳动问题
         [self.bottomView.slideProgressControl updateUI];

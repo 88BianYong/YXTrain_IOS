@@ -144,7 +144,18 @@ const NSInteger kTagBase = 10086;
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
+    CGFloat offsetX = scrollView.contentOffset.x;
+    CGFloat sliderX = offsetX/scrollView.contentSize.width*self.topView.frame.size.width;
+    CGPoint point = CGPointMake(self.topView.frame.size.width/self.tabItemArray.count/2+sliderX, self.sliderView.center.y);
+    UIButton *minButton = [self.topView viewWithTag:kTagBase];
+    if (point.x < minButton.center.x) {
+        point.x = minButton.center.x;
+    }
+    UIButton *maxButton = [self.topView viewWithTag:kTagBase + 2];
+    if (point.x > maxButton.center.x) {
+        point.x = maxButton.center.x;
+    }
+    self.sliderView.center = point;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{

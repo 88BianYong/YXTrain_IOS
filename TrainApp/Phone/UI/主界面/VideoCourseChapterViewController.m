@@ -276,6 +276,7 @@
     fileItem.duration = fragment.duration;
     fileItem.record = fragment.record;
     fileItem.vhead = self.courseItem.vhead;
+    fileItem.vheadUrl = self.courseItem.vheadUrl;
     return fileItem;
 }
 - (void)setVideoCourseChapterFragmentCompleteBlock:(VideoCourseChapterFragmentCompleteBlock)block {
