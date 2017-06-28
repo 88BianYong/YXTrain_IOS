@@ -190,7 +190,6 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         make.center.equalTo(self.thumbImageView);
     }];
 }
-
 - (void)showBeginningView {
     [self.beginningView playVideoClear];
     self.beginningView = nil;

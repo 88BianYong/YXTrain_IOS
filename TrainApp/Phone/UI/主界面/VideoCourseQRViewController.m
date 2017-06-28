@@ -137,6 +137,9 @@
                 [self.navigationController pushViewController:vc animated:YES];
             }else {
                 [self showToast:@"没有找到该课程"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self.navigationController popViewControllerAnimated:YES];                    
+                });
             }
         } else {
             [self showToast:@"无法识别该二维码"];
