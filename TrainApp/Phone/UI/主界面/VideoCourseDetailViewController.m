@@ -154,7 +154,7 @@
     self.classworkManager.classworMutableArray = [self quizeesExercisesFormatSgqz:fileItem.sgqz];
     self.classworkManager.cid = fileItem.cid;
     self.classworkManager.source = fileItem.source;
-    self.classworkManager.forcequizcorrect = fileItem.forcequizcorrect;
+    self.classworkManager.forcequizcorrect = fileItem.forcequizcorrect.boolValue;
     [self.classworkManager startBatchRequestForVideoQuestions];
     WEAK_SELF
     [self.classworkManager setVideoClassworkManagerBlock:^(BOOL isPlay, NSInteger playTime) {
