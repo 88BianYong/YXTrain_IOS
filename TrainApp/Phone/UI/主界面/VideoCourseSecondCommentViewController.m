@@ -48,7 +48,7 @@
 }
 - (void)naviLeftAction {
     if (self.dataMutableArray.count > 0) {
-        BLOCK_EXEC(self.refreshBlock ,self.chooseInteger ,self.dataMutableArray.count - 1);
+        BLOCK_EXEC(self.refreshBlock ,self.chooseInteger ,self.dataMutableArray[0].childNum.integerValue);
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
