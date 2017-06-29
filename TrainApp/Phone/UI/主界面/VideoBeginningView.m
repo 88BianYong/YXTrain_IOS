@@ -192,6 +192,7 @@
 }
 - (void)do3GCheck {
     [self.player pause];
+    self.playStatus = VideoBeginningStatus_NotWifi;
 }
 #pragma mark - button Action
 - (void)exceptionButtonAction:(UIButton *)sender {

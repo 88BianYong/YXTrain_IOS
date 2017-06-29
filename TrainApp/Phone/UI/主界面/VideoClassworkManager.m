@@ -92,10 +92,10 @@
 - (void)compareClassworkPlayTime:(NSInteger)playProgress {
     __block BOOL isLastBool = YES;
     if ((playProgress >= self.quizzesInteger) && self.isRequestFinish) {
-        [self.classworMutableArray enumerateObjectsUsingBlock:^(__kindof YXFileVideoClassworkItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.classworkMutableArray enumerateObjectsUsingBlock:^(__kindof YXFileVideoClassworkItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (!obj.isTrue && isLastBool) {
                 if (idx > 0) {
-                    YXFileVideoClassworkItem *item = self.classworMutableArray[idx - 1];
+                    YXFileVideoClassworkItem *item = self.classworkMutableArray[idx - 1];
                     self.lastInteger = [item.timeString integerValue];
                 }else {
                     self.lastInteger = 0;
@@ -188,7 +188,7 @@
 }
 
 - (void)startBatchRequestForVideoQuestions{
-    [self.classworMutableArray enumerateObjectsUsingBlock:^(__kindof YXFileVideoClassworkItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.classworkMutableArray enumerateObjectsUsingBlock:^(__kindof YXFileVideoClassworkItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXVideoQuestionsRequest *request = [[YXVideoQuestionsRequest alloc] init];
         request.qID = obj.quizzesID;
         request.cID = self.cid;
@@ -208,8 +208,8 @@
     }];
 }
 
-- (void)setClassworMutableArray:(NSMutableArray<__kindof YXFileVideoClassworkItem *> *)classworMutableArray {
-    NSArray *sorte = [classworMutableArray sortedArrayUsingComparator:^NSComparisonResult(YXFileVideoClassworkItem *obj1, YXFileVideoClassworkItem *obj2) {
+- (void)setclassworkMutableArray:(NSMutableArray<__kindof YXFileVideoClassworkItem *> *)classworkMutableArray {
+    NSArray *sorte = [classworkMutableArray sortedArrayUsingComparator:^NSComparisonResult(YXFileVideoClassworkItem *obj1, YXFileVideoClassworkItem *obj2) {
         if (obj1.timeString.integerValue < obj2.timeString.integerValue) {
             return(NSComparisonResult)NSOrderedAscending;
         }else {
@@ -217,7 +217,7 @@
         }
         
     }];
-    _classworMutableArray = [NSMutableArray arrayWithArray:sorte];
+    _classworkMutableArray = [NSMutableArray arrayWithArray:sorte];
 }
 - (BOOL)isHidden {
     return self.clossworkView.hidden;

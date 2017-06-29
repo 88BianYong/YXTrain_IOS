@@ -17,7 +17,7 @@ static const NSInteger VideoClassworkTriggerTime = 5;
 
 @property (nonatomic, strong) NSString *cid;
 @property (nonatomic, strong) NSString *source;
-@property (nonatomic, strong) NSMutableArray<__kindof YXFileVideoClassworkItem *> *classworMutableArray;
+@property (nonatomic, strong) NSMutableArray<__kindof YXFileVideoClassworkItem *> *classworkMutableArray;
 @property (nonatomic, copy) void(^videoClassworkManagerBlock)(BOOL isPlay, NSInteger playTime);
 
 - (instancetype)initClassworkRootViewController:(UIViewController *)controller NS_DESIGNATED_INITIALIZER;

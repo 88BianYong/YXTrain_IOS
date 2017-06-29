@@ -1804,8 +1804,6 @@
 		7C2C3B741D24C99800A03635 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				922661BF1E8A0F19006DE8A4 /* VideoClassworkManager.h */,
-				922661C01E8A0F19006DE8A4 /* VideoClassworkManager.m */,
 				7CF8883C1D18DB7E00E7C04D /* YXCourseFilterView.h */,
 				7CF8883D1D18DB7E00E7C04D /* YXCourseFilterView.m */,
 				7CF888481D18F90000E7C04D /* YXCourseFilterCell.h */,
@@ -1826,6 +1824,8 @@
 				7C2C3B8D1D2508E200A03635 /* YXCourseRecordFooterView.m */,
 				92B615DD1ED3EA7600F1FDE7 /* CourseDetailContainerView.h */,
 				92B615DE1ED3EA7600F1FDE7 /* CourseDetailContainerView.m */,
+				922661BF1E8A0F19006DE8A4 /* VideoClassworkManager.h */,
+				922661C01E8A0F19006DE8A4 /* VideoClassworkManager.m */,
 				922661BC1E8A08F1006DE8A4 /* VideoClassworkView.h */,
 				922661BD1E8A08F1006DE8A4 /* VideoClassworkView.m */,
 				922661C21E8A3C89006DE8A4 /* VideoClassworkCell.h */,
@@ -2399,8 +2399,8 @@
 		7C3178401D139789004AAC90 /* 主界面 */ = {
 			isa = PBXGroup;
 			children = (
-				926F11FB1EA45BC40041D66F /* 通知简报 */,
 				92126C751E9F54E500C061EF /* 项目管理 */,
+				926F11FB1EA45BC40041D66F /* 通知简报 */,
 				7C2C3B621D24C41F00A03635 /* 考核 */,
 				7C2C3B611D24C41B00A03635 /* 任务 */,
 				7C3F25891D20C42D00F0A17A /* YXTrainListRequest.h */,
@@ -2836,10 +2836,10 @@
 				E9A7B5F61DDD91DC00136335 /* TrainListProjectGroup.m */,
 				92CA55DE1DFE75DD00AA2C50 /* LSTTrainHelper.h */,
 				92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */,
-				92CA55E11DFE75F200AA2C50 /* LSTTrainHelper_Beijing.h */,
-				92CA55E21DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m */,
 				92CA55E41DFE761400AA2C50 /* LSTTrainHelper_Default.h */,
 				92CA55E51DFE761400AA2C50 /* LSTTrainHelper_Default.m */,
+				92CA55E11DFE75F200AA2C50 /* LSTTrainHelper_Beijing.h */,
+				92CA55E21DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m */,
 				928B7A501E88B4FF0067218A /* LSTTrainHelper_DeYang.h */,
 				928B7A511E88B4FF0067218A /* LSTTrainHelper_DeYang.m */,
 			);

@@ -144,14 +144,14 @@
     [self addChildViewController:self.commentVC];
     self.containerView.viewControllers = @[self.chapterVC,self.introductionVC,self.commentVC];
     
-    [self setupRightWithTitle:@" "];//标题右移
+    [self setupRightWithTitle:@" "];//TBD: 标题右移
 }
 - (void)setupClassworkManager:(YXFileItemBase *)fileItem {
     //随堂练
     [self.classworkManager clear];
     self.classworkManager = nil;
     self.classworkManager = [[VideoClassworkManager alloc] initClassworkRootViewController:self.navigationController];
-    self.classworkManager.classworMutableArray = [self quizeesExercisesFormatSgqz:fileItem.sgqz];
+    self.classworkManager.classworkMutableArray = [self quizeesExercisesFormatSgqz:fileItem.sgqz];
     self.classworkManager.cid = fileItem.cid;
     self.classworkManager.source = fileItem.source;
     self.classworkManager.forcequizcorrect = fileItem.forcequizcorrect.boolValue;

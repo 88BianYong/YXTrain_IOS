@@ -10,7 +10,7 @@
 typedef NS_ENUM(NSInteger,PopUpFloatingLoginStatus) {
     PopUpFloatingLoginStatus_Already,//已经登录
     PopUpFloatingLoginStatus_Default,//普通登录
-    PopUpFloatingLoginStatus_QRCode//扫码登录
+    PopUpFloatingLoginStatus_QRCode//扫码带课程登录
 };
 @interface PopUpFloatingViewManager : NSObject
 @property (nonatomic, assign) PopUpFloatingLoginStatus loginStatus;//区分登录进入
@@ -22,6 +22,5 @@ typedef NS_ENUM(NSInteger,PopUpFloatingLoginStatus) {
 - (void)startPopUpFloatingView;
 
 - (void)showPopUpFloatingView;
-
 - (void)hiddenPopUpFloatingView;
 @end

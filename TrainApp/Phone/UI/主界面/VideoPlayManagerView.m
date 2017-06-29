@@ -353,6 +353,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
         if([reachability isReachableViaWiFi]) {
             if (self.beginningView) {
                 self.fileItem = self.fileItem;
+                if (self.playStatus == VideoPlayManagerStatus_NotWifi) {
+                    self.exceptionView.hidden = YES;
+                }
             }
             return;
         }

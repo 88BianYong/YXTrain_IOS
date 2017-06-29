@@ -194,7 +194,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     
     //随堂练
     self.classworkManager = [[VideoClassworkManager alloc] initClassworkRootViewController:self];
-    self.classworkManager.classworMutableArray = self.classworkMutableArray;
+    self.classworkManager.classworkMutableArray = self.classworkMutableArray;
     self.classworkManager.cid = self.cid;
     self.classworkManager.source = self.source;
     self.classworkManager.forcequizcorrect = self.forcequizcorrect;
