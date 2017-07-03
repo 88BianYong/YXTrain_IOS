@@ -10,7 +10,7 @@
 typedef NS_ENUM (NSInteger, LSTTrainPresentProject) {
     LSTTrainPresentProject_Default = 1,
     LSTTrainPresentProject_Beijing = 2,
-    LSTTrainPresentProject_DeYang = 2,
+    LSTTrainPresentProject_DeYang = 3,
 };
 @interface LSTTrainHelper : NSObject
 @property (nonatomic, copy) NSString *requireId;//北京项目专用

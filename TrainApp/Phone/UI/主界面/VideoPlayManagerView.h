@@ -13,7 +13,7 @@
 #import "LePlayerView.h"
 #import "ActivityPlayBottomView.h"
 typedef NS_ENUM(NSInteger, VideoPlayManagerStatus) {
-    VideoPlayManagerStatus_Finish,//视频为空
+    VideoPlayManagerStatus_Finish,//视频完成
     VideoPlayManagerStatus_Empty,//视频为空
     VideoPlayManagerStatus_NotWifi,//非wifi
     VideoPlayManagerStatus_PlayError,//播放出错
