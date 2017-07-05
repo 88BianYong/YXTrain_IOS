@@ -28,7 +28,7 @@
     self.button = [[UIButton alloc] init];
     [self.button setTitle:@"忘记密码" forState:UIControlStateNormal];
     self.button.titleLabel.font = [UIFont systemFontOfSize:12];
-    [self.button setTitleColor:[UIColor colorWithHexString:@"cf2627"] forState:UIControlStateNormal];
+    [self.button setTitleColor:[UIColor colorWithHexString:@"a53027"] forState:UIControlStateNormal];
     [self.button addTarget:self action:@selector(buttonClickedOut) forControlEvents:UIControlEventTouchUpInside];
     [self.button addTarget:self action:@selector(buttonClickedIn) forControlEvents:UIControlEventTouchDown];
     [self addSubview:self.button];
@@ -38,7 +38,7 @@
     }];
     
     self.bottomView = [[UIView alloc] init];
-    self.bottomView.backgroundColor = [UIColor colorWithHexString:@"cf2627"];
+    self.bottomView.backgroundColor = [UIColor colorWithHexString:@"a53027"];
     [self addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.button.mas_bottom).offset(-6.5);

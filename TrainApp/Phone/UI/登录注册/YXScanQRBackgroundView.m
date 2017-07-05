@@ -46,7 +46,7 @@
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.tag = 10086;
     titleLabel.numberOfLines = 2;
-    NSString *string = @"将二维码放入扫描框内\n扫描后将自动登录i研修";
+    NSString *string = @"将二维码放入扫描框内\n扫描后将自动登录手机研修";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     

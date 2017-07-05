@@ -188,12 +188,12 @@
     [containerView addSubview:self.touristLoginButton];
     
     UIButton *loginButton = [[UIButton alloc] init];
-    [loginButton setTitleColor:[UIColor colorWithHexString:@"cf2627"] forState:UIControlStateNormal];
+    [loginButton setTitleColor:[UIColor colorWithHexString:@"a53027"] forState:UIControlStateNormal];
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    [loginButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"cf2627"]] forState:UIControlStateHighlighted];
+    [loginButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"a53027"]] forState:UIControlStateHighlighted];
     [loginButton addTarget:self action:@selector(startLoginRequest) forControlEvents:UIControlEventTouchUpInside];
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
-    loginButton.layer.borderColor = [[UIColor colorWithHexString:@"cf2627"] CGColor];
+    loginButton.layer.borderColor = [[UIColor colorWithHexString:@"a53027"] CGColor];
     loginButton.layer.borderWidth = 1;
     loginButton.layer.cornerRadius = YXTrainCornerRadii;
     loginButton.layer.masksToBounds = YES;

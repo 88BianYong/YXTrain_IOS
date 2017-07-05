@@ -28,22 +28,22 @@
 
 - (void)setUpUI {
     self.logoImageView = [[UIImageView alloc] init];
-    self.logoImageView.image = [UIImage imageNamed:@"1logo"];
-    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 32; i ++) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%dlogo",i + 1]];
-        [imageArray addObject:image];
-    }
-    self.logoImageView.animationImages = imageArray;
-    self.logoImageView.animationDuration = 1.15;
-    self.logoImageView.animationRepeatCount = 1;
-    [self.logoImageView startAnimatingWithDelayTime:0.5 CompletionBlock:^(BOOL success) {
-        //self.logoImageView.image = [UIImage imageNamed:@"logo_40"];
-    }];
+    self.logoImageView.image = [UIImage imageNamed:@"logo"];
+//    NSMutableArray *imageArray = [[NSMutableArray alloc] init];
+//    for (int i = 0; i < 32; i ++) {
+//        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%dlogo",i + 1]];
+//        [imageArray addObject:image];
+//    }
+//    self.logoImageView.animationImages = imageArray;
+//    self.logoImageView.animationDuration = 1.15;
+//    self.logoImageView.animationRepeatCount = 1;
+//    [self.logoImageView startAnimatingWithDelayTime:0.5 CompletionBlock:^(BOOL success) {
+//        //self.logoImageView.image = [UIImage imageNamed:@"logo_40"];
+//    }];
     [self addSubview:self.logoImageView];
     
     self.titleImageView = [[UIImageView alloc] init];
-    self.titleImageView.image = [UIImage imageNamed:@"i研修"];
+    self.titleImageView.image = [UIImage imageNamed:@"手机研修"];
     [self addSubview:self.titleImageView];
     
     self.versionLabel = [[UILabel alloc] init];
@@ -56,7 +56,6 @@
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(([UIScreen mainScreen].bounds.size.height - 371) * 0.44 - 31);
         make.centerX.mas_equalTo(0);
-        make.size.mas_offset(CGSizeMake(103.0f, 103.0f));
     }];
     
     [self.titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {

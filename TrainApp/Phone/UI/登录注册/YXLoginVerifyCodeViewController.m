@@ -47,7 +47,7 @@
     }];
     NSString *tipsString = @"邮箱账户用户,请前往 pp.yanxiu.com 重置密码";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:tipsString];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"cf2627"] range:NSMakeRange(11, 14)];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"a53027"] range:NSMakeRange(11, 14)];
     footerLabel.attributedText = attributedString;
     self.tableView.tableFooterView = footerView;
 }
