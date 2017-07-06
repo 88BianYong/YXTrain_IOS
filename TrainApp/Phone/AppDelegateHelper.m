@@ -25,6 +25,8 @@
 #import "TrainGeTuiManger.h"
 #import "TrainGeTuiManger.h"
 #import "PopUpFloatingViewManager.h"
+#import "XYChooseProjectViewController.h"
+#import "YXTabBarViewController_17.h"
 @interface AppDelegateHelper ()
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
@@ -61,7 +63,6 @@
         return ;
     }
     UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
-//    [projectNavi popToRootViewControllerAnimated:NO];
     [projectNavi pushViewController:VC animated:YES];
 }
 - (void)setupRootViewController{
@@ -91,7 +92,7 @@
 }
 - (void)startRootVC {
     if ([[YXUserManager sharedManager] isLogin]) {
-        self.window.rootViewController = [self rootDrawerViewController];
+        self.window.rootViewController = ([YXTrainManager sharedInstance].trainStatus == LSTTrainProjectStatus_2017) ?[self rootTabBarViewController] : [self rootDrawerViewController];
         [self requestCommonData];
         WEAK_SELF
         [[PopUpFloatingViewManager sharedInstance] setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
@@ -123,6 +124,31 @@
     drawerVC.drawerWidth = [UIScreen mainScreen].bounds.size.width * YXTrainLeftDrawerWidth/750.0f;
     return drawerVC;
 }
+- (YXTabBarViewController_17 *)rootTabBarViewController {
+    YXTabBarViewController_17 *tabVC = [[YXTabBarViewController_17 alloc] init];
+    UIViewController *learningVC = [[NSClassFromString(@"YXLearningViewController_17") alloc]init];
+    YXNavigationController *learningNav = [[YXNavigationController alloc]initWithRootViewController:learningVC];
+    UIViewController *messageVC = [[NSClassFromString(@"YXMessageViewController_17") alloc]init];
+    YXNavigationController *messageNav = [[YXNavigationController alloc]initWithRootViewController:messageVC];
+    UIViewController *mineVC = [[NSClassFromString(@"YXMineViewController_17") alloc]init];
+    YXNavigationController *mineNav = [[YXNavigationController alloc]initWithRootViewController:mineVC];
+    [self setTabBarItem:learningNav title:@"学习" image:@"活动icon-1" selectedImage:@"活动icon-1" tag:1];
+    [self setTabBarItem:messageNav title:@"消息" image:@"活动icon-1" selectedImage:@"活动icon-1" tag:2];
+    [self setTabBarItem:mineNav title:@"我" image:@"活动icon-1" selectedImage:@"活动icon-1" tag:3];
+    tabVC.viewControllers = @[learningNav, messageNav, mineNav];
+    return tabVC;
+}
+- (void)setTabBarItem:(YXNavigationController *)navController title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage tag:(NSUInteger)tag {
+    navController.tabBarItem.title = title;
+    if (image.length > 0) {
+        navController.tabBarItem.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
+    if (selectedImage.length > 0) {
+        navController.tabBarItem.selectedImage = [[UIImage imageNamed:selectedImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
+    navController.tabBarItem.tag = tag;
+    [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blueColor],NSFontAttributeName:[UIFont systemFontOfSize:11.0f]} forState:UIControlStateSelected];
+}
 
 #pragma mark - add notification
 - (void)registeNotifications
@@ -131,16 +157,8 @@
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLoginSuccessNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
-        self.window.rootViewController = [self rootDrawerViewController];
-        [self requestCommonData];
-        if (!isEmpty(self.courseId)) {
-            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_QRCode;
-        }else {
-            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
-        }
-        [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
-        [[TrainGeTuiManger sharedInstance] loginSuccess];
-        self.isRemoteNotification = NO;
+        YXNavigationController *projectNav = [[YXNavigationController alloc]initWithRootViewController:[[XYChooseProjectViewController alloc] init]];
+        self.window.rootViewController = projectNav;
     }];
     
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLogoutSuccessNotification object:nil] subscribeNext:^(id x) {
@@ -157,6 +175,20 @@
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
         [YXPromtController showToast:@"帐号授权已失效,请重新登录" inView:self.window];
+    }];
+    
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kXYTrainChooseProject object:nil] subscribeNext:^(NSNotification *x) {
+        STRONG_SELF
+        self.window.rootViewController = [x.object boolValue]?[self rootTabBarViewController] : [self rootDrawerViewController];
+        [self requestCommonData];
+        if (!isEmpty(self.courseId)) {
+            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_QRCode;
+        }else {
+            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
+        }
+        [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
+        [[TrainGeTuiManger sharedInstance] loginSuccess];
+        self.isRemoteNotification = NO;
     }];
 }
 

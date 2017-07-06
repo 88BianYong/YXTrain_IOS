@@ -14,6 +14,7 @@ NSString *const YXTrainBeijingProjectId = @"1639";
 NSString *const YXTrainDeYangProjectId =  @"2286,2287,2288";
 NSString *const YXTrainUploadDepictionString = @"1.视频时间控制在15-40分钟，建议上传最能体现信息技术应用的视频课例片段\n2.视频主要是记录应用信息技术的过程和设计思想，设备薄弱地区的参训教师可用手机进行拍摄\n3.每位教师都必须上传视频\n4.视频格式建议为MP4，分辨率在720*576左右（考虑到清晰度和文件大小，其他格式的视频，如AVI、MPEG、WMV等，请转换为MP4格式再上传）\n5.单个视频文件的大小建议在600M以内（600M以内的视频文件，上传后可直接在线观看；600M以上的视频文件，只可下载观看，不能在线播放）\n6.上传的视频资源应为原创，符合国家知识产权、著作权及网络安全等相关法律法规，上传者为相应资源的开发主体，拥有相应的知识产权和所有权\n7.上传者享有成果的著作权，须同意授权中国教师研修网和区域教育行政部门享有网络传播权\n8.优秀作品将在中国教师研修网信息技术应用竞品成果展示专区进行展示交流，并获得相应的荣誉证书";
 
+NSString *const kXYTrainChooseProject =  @"train list choose project";
 
 NSString *const kYXTrainFirstLaunch = @"the first to enter the TrainApp";
 

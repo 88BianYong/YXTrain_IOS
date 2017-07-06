@@ -32,7 +32,6 @@
 #import "VideoCourseDetailViewController.h"
 #import "AppDelegate.h"
 typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
-    TrainProjectRequestStatus_ProjectList,//请求项目列表
     TrainProjectRequestStatus_Beijing,//请求北京校验
     TrainProjectRequestStatus_LayerList,//请求分层
 };
@@ -77,7 +76,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     self.layerMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:3];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserRoleInterface) name:kYXTrainUserIdentityChange object:nil];
     [self setupUI];
-    [self requestForProjectList];
+    [self showProjectMainView];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -114,9 +113,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
-        if (self.requestStatus == TrainProjectRequestStatus_ProjectList) {
-            [self requestForProjectList];
-        }else if (self.requestStatus == TrainProjectRequestStatus_Beijing){
+        if (self.requestStatus == TrainProjectRequestStatus_Beijing){
             [self requestCheckedMobileUser];
         }else {
             [self requestForLayerList];
@@ -126,9 +123,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
-        if (self.requestStatus == TrainProjectRequestStatus_ProjectList) {
-            [self requestForProjectList];
-        }else if (self.requestStatus == TrainProjectRequestStatus_Beijing){
+        if (self.requestStatus == TrainProjectRequestStatus_Beijing){
             [self requestCheckedMobileUser];
         }else {
             [self requestForLayerList];
@@ -167,32 +162,27 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     
 }
 #pragma mark - request
-- (void)requestForProjectList{
-    self.requestStatus = TrainProjectRequestStatus_ProjectList;
-    [self startLoading];
-    WEAK_SELF
-    [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(NSArray *groups, NSError *error) {
-        STRONG_SELF
-        self.emptyView.imageName = @"无培训项目";
-        self.emptyView.title = @"您没有已参加的培训项目";
-        self.emptyView.subTitle = @"";
-        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = groups.count != 0;
-        data.localDataExist = NO;
-        data.error = error;
-        if ([self handleRequestData:data]) {
-            [self stopLoading];
-            return;
-        }
-        [self.dataMutableArrray addObjectsFromArray:groups];
-        if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目需要校验信息
-            [self requestCheckedMobileUser];
-        }else {
-            [self setupQRCodeRightView];
-            [self dealWithProjectGroups:self.dataMutableArrray];
-            [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
-        }
-    }];
+- (void)showProjectMainView{
+    NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:[YXTrainManager sharedInstance].trainlistItem.body];
+    self.emptyView.imageName = @"无培训项目";
+    self.emptyView.title = @"您没有已参加的培训项目";
+    self.emptyView.subTitle = @"";
+    UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+    data.requestDataExist = groups.count != 0;
+    data.localDataExist = NO;
+    data.error = nil;
+    if ([self handleRequestData:data]) {
+        [self stopLoading];
+        return;
+    }
+    [self.dataMutableArrray addObjectsFromArray:groups];
+    if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目需要校验信息
+        [self requestCheckedMobileUser];
+    }else {
+        [self setupQRCodeRightView];
+        [self dealWithProjectGroups:self.dataMutableArrray];
+        [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
+    }
 }
 
 - (void)requestCheckedMobileUser {

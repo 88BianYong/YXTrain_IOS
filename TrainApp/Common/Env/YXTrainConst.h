@@ -63,6 +63,10 @@ typedef NS_ENUM (NSInteger ,YXWriteHomeworkListStatus) {
 };
 
 //定义key值
+/*
+ *  播放过片头的课程ID
+ */
+extern NSString *const kXYTrainChooseProject;
 /**
  *  是否第一次进入APP
  */
@@ -151,9 +155,6 @@ extern NSString *const kYXTrainPlayBeginningCourse;
 
 
 
-//全局主色调
-extern UIColor *const kGlobalMainColor;
-//全局名称
 
 
 /**

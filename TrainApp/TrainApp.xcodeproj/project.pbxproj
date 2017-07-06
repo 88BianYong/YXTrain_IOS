@@ -368,6 +368,10 @@
 		9292DC591E9E3131008C6A14 /* YXActivityListBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC581E9E3130008C6A14 /* YXActivityListBaseViewController.m */; };
 		929468071DDE8F220070C3B7 /* ActivitySlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */; };
 		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
+		92A791601F0E203100E3D258 /* YXTabBarViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7915F1F0E203100E3D258 /* YXTabBarViewController_17.m */; };
+		92A791631F0E20AB00E3D258 /* YXLearningViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A791621F0E20AB00E3D258 /* YXLearningViewController_17.m */; };
+		92A7916F1F0E21A500E3D258 /* YXMessageViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7916E1F0E21A500E3D258 /* YXMessageViewController_17.m */; };
+		92A791721F0E21CA00E3D258 /* YXMineViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A791711F0E21CA00E3D258 /* YXMineViewController_17.m */; };
 		92AA47721E12437400C88DDC /* BeijingCourseFilterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47711E12437400C88DDC /* BeijingCourseFilterRequest.m */; };
 		92AA47751E12440B00C88DDC /* BeijingCourseFilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47741E12440B00C88DDC /* BeijingCourseFilterManager.m */; };
 		92AA47781E1B925300C88DDC /* WebsocketRedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92AA47771E1B925300C88DDC /* WebsocketRedView.m */; };
@@ -405,6 +409,7 @@
 		92DE3BBE1DDC45DE0011CFB7 /* SecondCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BBD1DDC45DE0011CFB7 /* SecondCommentFooterView.m */; };
 		92DE3BC41DDC590D0011CFB7 /* SendCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BC31DDC590D0011CFB7 /* SendCommentView.m */; };
 		92DE3BC71DDD82350011CFB7 /* ActivityToolVideoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */; };
+		92E268B41F0E0F950022EA5A /* XYChooseProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E268B31F0E0F950022EA5A /* XYChooseProjectViewController.m */; };
 		92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */; };
 		92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */; };
 		92E9714F1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */; };
@@ -1298,6 +1303,13 @@
 		929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySlideProgressView.m; sourceTree = "<group>"; };
 		92A770071DD18A5800C578F2 /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
 		92A770081DD18A5800C578F2 /* InputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextView.m; sourceTree = "<group>"; };
+		92A7915F1F0E203100E3D258 /* YXTabBarViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTabBarViewController_17.m; sourceTree = "<group>"; };
+		92A791611F0E20AB00E3D258 /* YXLearningViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningViewController_17.h; sourceTree = "<group>"; };
+		92A791621F0E20AB00E3D258 /* YXLearningViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningViewController_17.m; sourceTree = "<group>"; };
+		92A7916D1F0E21A500E3D258 /* YXMessageViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMessageViewController_17.h; sourceTree = "<group>"; };
+		92A7916E1F0E21A500E3D258 /* YXMessageViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMessageViewController_17.m; sourceTree = "<group>"; };
+		92A791701F0E21CA00E3D258 /* YXMineViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineViewController_17.h; sourceTree = "<group>"; };
+		92A791711F0E21CA00E3D258 /* YXMineViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineViewController_17.m; sourceTree = "<group>"; };
 		92AA47701E12437400C88DDC /* BeijingCourseFilterRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseFilterRequest.h; sourceTree = "<group>"; };
 		92AA47711E12437400C88DDC /* BeijingCourseFilterRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCourseFilterRequest.m; sourceTree = "<group>"; };
 		92AA47731E12440B00C88DDC /* BeijingCourseFilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCourseFilterManager.h; sourceTree = "<group>"; };
@@ -1367,6 +1379,9 @@
 		92DE3BC31DDC590D0011CFB7 /* SendCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendCommentView.m; sourceTree = "<group>"; };
 		92DE3BC51DDD82350011CFB7 /* ActivityToolVideoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityToolVideoRequest.h; sourceTree = "<group>"; };
 		92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityToolVideoRequest.m; sourceTree = "<group>"; };
+		92E268B21F0E0F950022EA5A /* XYChooseProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYChooseProjectViewController.h; sourceTree = "<group>"; };
+		92E268B31F0E0F950022EA5A /* XYChooseProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYChooseProjectViewController.m; sourceTree = "<group>"; };
+		92E268B91F0E1E040022EA5A /* YXTabBarViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTabBarViewController_17.h; sourceTree = "<group>"; };
 		92E8FD671D8E1F8D00004700 /* YXHotReadedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHotReadedRequest.h; sourceTree = "<group>"; };
 		92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHotReadedRequest.m; sourceTree = "<group>"; };
 		92E8FD6A1D8E1FE600004700 /* YXMsgReadedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMsgReadedRequest.h; sourceTree = "<group>"; };
@@ -2120,6 +2135,8 @@
 		7C3177BF1D0EC0FC004AAC90 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				92E268AD1F0E073C0022EA5A /* 2017 */,
+				92E268AC1F0E07330022EA5A /* 2016 */,
 				928B7A0E1E88B06A0067218A /* 德阳项目 */,
 				928B7A0F1E88B1920067218A /* 北京项目 */,
 				92348F901EEFED1F00D3B3A7 /* 坊主 */,
@@ -3364,6 +3381,81 @@
 			path = "德阳项目";
 			sourceTree = "<group>";
 		};
+		92A791641F0E20B000E3D258 /* 学习 */ = {
+			isa = PBXGroup;
+			children = (
+				92A791661F0E20C900E3D258 /* controller */,
+				92A791651F0E20C300E3D258 /* view */,
+			);
+			name = "学习";
+			sourceTree = "<group>";
+		};
+		92A791651F0E20C300E3D258 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		92A791661F0E20C900E3D258 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				92A791611F0E20AB00E3D258 /* YXLearningViewController_17.h */,
+				92A791621F0E20AB00E3D258 /* YXLearningViewController_17.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		92A791671F0E20F400E3D258 /* 消息 */ = {
+			isa = PBXGroup;
+			children = (
+				92A7916A1F0E213C00E3D258 /* controller */,
+				92A791691F0E213800E3D258 /* view */,
+			);
+			name = "消息";
+			sourceTree = "<group>";
+		};
+		92A791681F0E20FD00E3D258 /* 我的 */ = {
+			isa = PBXGroup;
+			children = (
+				92A7916C1F0E214800E3D258 /* controller */,
+				92A7916B1F0E214400E3D258 /* view */,
+			);
+			name = "我的";
+			sourceTree = "<group>";
+		};
+		92A791691F0E213800E3D258 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		92A7916A1F0E213C00E3D258 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				92A7916D1F0E21A500E3D258 /* YXMessageViewController_17.h */,
+				92A7916E1F0E21A500E3D258 /* YXMessageViewController_17.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		92A7916B1F0E214400E3D258 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		92A7916C1F0E214800E3D258 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				92A791701F0E21CA00E3D258 /* YXMineViewController_17.h */,
+				92A791711F0E21CA00E3D258 /* YXMineViewController_17.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
 		92CE51491D87D3020071DE79 /* 动态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3397,6 +3489,43 @@
 				92CE515D1D87EF3D0071DE79 /* YXWebViewController.m */,
 			);
 			name = "网页";
+			sourceTree = "<group>";
+		};
+		92E268AC1F0E07330022EA5A /* 2016 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = 2016;
+			sourceTree = "<group>";
+		};
+		92E268AD1F0E073C0022EA5A /* 2017 */ = {
+			isa = PBXGroup;
+			children = (
+				92E268AE1F0E0D370022EA5A /* 启动 */,
+				92E268B51F0E1D790022EA5A /* 主界面 */,
+				92A791641F0E20B000E3D258 /* 学习 */,
+				92A791671F0E20F400E3D258 /* 消息 */,
+				92A791681F0E20FD00E3D258 /* 我的 */,
+			);
+			path = 2017;
+			sourceTree = "<group>";
+		};
+		92E268AE1F0E0D370022EA5A /* 启动 */ = {
+			isa = PBXGroup;
+			children = (
+				92E268B21F0E0F950022EA5A /* XYChooseProjectViewController.h */,
+				92E268B31F0E0F950022EA5A /* XYChooseProjectViewController.m */,
+			);
+			name = "启动";
+			sourceTree = "<group>";
+		};
+		92E268B51F0E1D790022EA5A /* 主界面 */ = {
+			isa = PBXGroup;
+			children = (
+				92E268B91F0E1E040022EA5A /* YXTabBarViewController_17.h */,
+				92A7915F1F0E203100E3D258 /* YXTabBarViewController_17.m */,
+			);
+			name = "主界面";
 			sourceTree = "<group>";
 		};
 		92E971541ED57FC100DEAAD4 /* OLImageView */ = {
@@ -4171,6 +4300,7 @@
 				928B7A4A1E88B2180067218A /* BeijingHomeworkInfoView.m in Sources */,
 				927874311F01F89300A70DC0 /* VideoBeginningTopView.m in Sources */,
 				92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */,
+				92A791721F0E21CA00E3D258 /* YXMineViewController_17.m in Sources */,
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */,
 				92348FE11EEFEF2A00D3B3A7 /* MasterManageListRequest.m in Sources */,
@@ -4259,6 +4389,7 @@
 				E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */,
 				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
+				92E268B41F0E0F950022EA5A /* XYChooseProjectViewController.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */,
 				CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */,
@@ -4495,6 +4626,7 @@
 				CB748EE31D228B51004BCFBF /* YXFilterButton.m in Sources */,
 				7C3178211D129C01004AAC90 /* CGPDFDocument.m in Sources */,
 				CB227EA51D34C3A800D5327B /* YXGuideCustomView.m in Sources */,
+				92A791601F0E203100E3D258 /* YXTabBarViewController_17.m in Sources */,
 				92F6877F1E08E7A000A48420 /* ActivityListDetailModel.m in Sources */,
 				9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
@@ -4575,6 +4707,7 @@
 				9223C8271D2E0E44000F74DF /* YXFeedBackRequest.m in Sources */,
 				92DE3BC71DDD82350011CFB7 /* ActivityToolVideoRequest.m in Sources */,
 				7CF844781D2E367900B1CE55 /* YXProjectSelectionView.m in Sources */,
+				92A791631F0E20AB00E3D258 /* YXLearningViewController_17.m in Sources */,
 				CB3510CB1D18F9C30081EA3B /* YXDatumCellModel.m in Sources */,
 				7C31784F1D139A18004AAC90 /* YXExamViewController.m in Sources */,
 				7C3178271D129C01004AAC90 /* ReaderDocumentOutline.m in Sources */,
@@ -4583,6 +4716,7 @@
 				CB52FCF41D2BB5280096D8DC /* YXNoticeTopTableViewCell.m in Sources */,
 				7CF888851D1BE20400E7C04D /* YXExamPhaseShadowCell.m in Sources */,
 				92B2C0A91DD43B6F003E27F9 /* ActivityDetailTableSectionView.m in Sources */,
+				92A7916F1F0E21A500E3D258 /* YXMessageViewController_17.m in Sources */,
 				923237511D81021A00FDACFE /* AppDelegate+GetInfoList.m in Sources */,
 				7CF888671D1BC49200E7C04D /* YXWaveView.m in Sources */,
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,

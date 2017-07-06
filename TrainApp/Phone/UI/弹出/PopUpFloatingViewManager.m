@@ -124,7 +124,12 @@
                     self.isShowCMS = NO;
                     BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
                 }];
-                [window.rootViewController.navigationController pushViewController:webView animated:YES];
+                if ([window.rootViewController isKindOfClass:[UITabBarController class]]) {
+                    UITabBarController *tabBarVC = (UITabBarController *)window.rootViewController;
+                    [(UINavigationController *)(tabBarVC.selectedViewController) pushViewController:webView animated:YES];
+                }else {
+                    [window.rootViewController.navigationController pushViewController:webView animated:YES];
+                }
             };
         }
     }];
