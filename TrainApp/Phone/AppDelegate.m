@@ -41,7 +41,7 @@
         self.appDelegateHelper.isRemoteNotification = YES;//标记推送启动
     }
     WEAK_SELF
-    [[YXInitHelper sharedHelper] requestCompeletion:^(BOOL upgrade) {
+    [[LSTSharedInstance sharedInstance].upgradeManger requestCompeletion:^(BOOL upgrade) {
         STRONG_SELF
         if (upgrade) {
             [self.appDelegateHelper setupRootViewController];

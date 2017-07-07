@@ -69,7 +69,6 @@ extern NSString *const YXInitSuccessNotification;
 @property (nonatomic, strong) YXInitRequestItem *item;
 @property (nonatomic, assign) BOOL isShowUpgrade;
 
-+ (instancetype)sharedHelper;
 - (void)requestCompeletion:(void(^)(BOOL))completion;
 - (void)requestLoginCompeletion:(void (^)(YXInitRequestItem *, NSError *))completion;
 - (BOOL)isAppleChecking;

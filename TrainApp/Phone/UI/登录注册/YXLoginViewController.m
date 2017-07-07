@@ -269,7 +269,7 @@
         make.bottom.equalTo(registerView.mas_top);
         make.left.right.top.equalTo(containerView);
     }];
-    self.touristLoginButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
+    self.touristLoginButton.hidden = ![[LSTSharedInstance sharedInstance].upgradeManger isAppleChecking];
  }
 
 - (void)setObserver {
@@ -279,7 +279,7 @@
         if (!self) {
             return;
         }
-        self.touristLoginButton.hidden = ![[YXInitHelper sharedHelper] isAppleChecking];
+        self.touristLoginButton.hidden = ![[LSTSharedInstance sharedInstance].upgradeManger isAppleChecking];
     }];
 }
 
@@ -387,7 +387,7 @@
     [YXUserManager sharedManager].userModel.head = item.head;
     if (![item.token isEqualToString:[YXUserManager sharedManager].userModel.token]) {
         [YXUserManager sharedManager].userModel.token = item.token;
-        [[YXInitHelper sharedHelper] requestLoginCompeletion:nil];
+        [[LSTSharedInstance sharedInstance].upgradeManger requestLoginCompeletion:nil];
     }
     [YXUserManager sharedManager].userModel.token = item.token;
     [[YXUserManager sharedManager] login];

@@ -108,21 +108,10 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 - (instancetype)init {
     if (self = [super init]) {
         self.isShowUpgrade = NO;
+        [self registerNotifications];
     }
     return self;
 }
-
-+ (instancetype)sharedHelper
-{
-    static YXInitHelper *helper = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        helper = [[self alloc] init];
-        [helper registerNotifications];
-    });
-    return helper;
-}
-
 - (void)requestLoginCompeletion:(void (^)(YXInitRequestItem *, NSError *))completion
 {
     if (self.request) {
@@ -163,16 +152,10 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 
 - (void)registerNotifications
 {
-    [self removeNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(willEnterForeground:)
                                                  name:UIApplicationWillEnterForegroundNotification
                                                object:nil];
-}
-
-- (void)removeNotifications
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)willEnterForeground:(NSNotification *)notification

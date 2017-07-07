@@ -36,7 +36,7 @@
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainShowUpdate object:nil] subscribeNext:^(id x) {
             STRONG_SELF
             self.isShowCMS = NO;
-            if ([YXInitHelper sharedHelper].isShowUpgrade && self.upgradeView == nil) {
+            if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade && self.upgradeView == nil) {
                 [self startPopUpFloatingView];
                 BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
             }else {
@@ -53,7 +53,7 @@
     }
     if (self.isShowCMS && self.loginStatus == PopUpFloatingLoginStatus_Already) {
         [self showCMSView];
-    }else if ([YXInitHelper sharedHelper].isShowUpgrade) {
+    }else if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade) {
         [self showUpgradeView];
     }else if ([self isShowMoreThanOneProject] || self.isMultiProject) {
         [self showMultiProjectCutover];
@@ -98,7 +98,7 @@
         if (error || item.rotates.count <= 0) {
             self.isShowCMS = NO;
             [self.cmsView removeFromSuperview];
-            if ([YXInitHelper sharedHelper].isShowUpgrade && self.upgradeView == nil) {
+            if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade && self.upgradeView == nil) {
                 [self showUpgradeView];
                 BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
             }else {
@@ -116,7 +116,7 @@
                 webView.titleString = model.name;
                 [webView setBackBlock:^{
                     STRONG_SELF
-                    if ([YXInitHelper sharedHelper].isShowUpgrade && self.upgradeView == nil) {
+                    if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade && self.upgradeView == nil) {
                         [self showUpgradeView];
                     }
                     self.isShowCMS = NO;
@@ -138,7 +138,7 @@
     if (self.upgradeView != nil) {
         return;
     }
-    YXInitRequestItem_Body *body = [YXInitHelper sharedHelper].item.body[0];
+    YXInitRequestItem_Body *body = [LSTSharedInstance sharedInstance].upgradeManger.item.body[0];
     self.upgradeView = [[YXPopUpContainerView alloc] init];
     YXAppUpdateData *data = [[YXAppUpdateData alloc] init];
     data.title = body.title;
@@ -148,14 +148,14 @@
     cancelAlertAct.block = ^{
         STRONG_SELF
         [self.upgradeView hide];
-        [YXInitHelper sharedHelper].isShowUpgrade = NO;
+        [LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade = NO;
         [self startPopUpFloatingView];
     };
     
     YXAlertAction *downloadUpdateAlertAct = [[YXAlertAction alloc] init];
     downloadUpdateAlertAct.block = ^{
         STRONG_SELF
-        [YXInitHelper sharedHelper].isShowUpgrade = NO;
+        [LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade = NO;
         Reachability *r = [Reachability reachabilityForInternetConnection];
         NetworkStatus status = [r currentReachabilityStatus];
         if (status == ReachableViaWiFi) {
