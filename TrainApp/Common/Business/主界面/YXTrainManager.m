@@ -18,7 +18,12 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 
 @implementation YXTrainManager
 @synthesize currentProjectIndexPath = _currentProjectIndexPath;
-
+- (instancetype)init {
+    if (self = [super init]) {
+        [self loadFromCache];
+    }
+    return self;
+}
 - (LSTTrainHelper *)trainHelper {
     if (_trainHelper == nil) {
         _trainHelper = [LSTTrainHelper alloc];
@@ -135,6 +140,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     [[NSUserDefaults standardUserDefaults]synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainListDynamic object:nil];
 }
+
 
 - (void)loadFromCache {
     NSString *json = [[NSUserDefaults standardUserDefaults]valueForKey:@"kTrainListItem"];

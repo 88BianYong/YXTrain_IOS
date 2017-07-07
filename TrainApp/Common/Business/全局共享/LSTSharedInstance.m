@@ -30,4 +30,10 @@
     }
     return _trainManager;
 }
+- (TrainGeTuiManger *)geTuiManger {
+    if (_geTuiManger == nil) {
+        _geTuiManger = [[TrainGeTuiManger alloc] init];
+    }
+    return _geTuiManger;
+}
 @end

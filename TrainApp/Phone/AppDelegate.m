@@ -50,7 +50,7 @@
     [GlobalUtils setDefaultExceptionHandler];
     [TalkingData setExceptionReportEnabled:YES];
     [YXDataStatisticsManger sessionStarted:@"2D51075BBBC948E36A11E656DABC1775" withChannelId:@"AppStore"];
-    [[TrainGeTuiManger sharedInstance] registerGeTui];
+    [[LSTSharedInstance sharedInstance].geTuiManger registerGeTui];
     return YES;
 }
 
@@ -128,7 +128,7 @@
     [GlobalUtils clearCore];
 }
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    [[TrainGeTuiManger sharedInstance] resume]; // 后台恢复SDK 运行
+    [[LSTSharedInstance sharedInstance].geTuiManger resume]; // 后台恢复SDK 运行
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
@@ -137,11 +137,11 @@
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [[TrainGeTuiManger sharedInstance] registerDeviceToken:deviceToken];
+    [[LSTSharedInstance sharedInstance].geTuiManger registerDeviceToken:deviceToken];
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
     BOOL result = ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground);
-    [[TrainGeTuiManger sharedInstance] handleApnsContent:userInfo isPush:!result];
+    [[LSTSharedInstance sharedInstance].geTuiManger handleApnsContent:userInfo isPush:!result];
     completionHandler(UIBackgroundFetchResultNewData);
 }
 

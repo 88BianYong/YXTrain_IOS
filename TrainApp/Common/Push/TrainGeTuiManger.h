@@ -10,7 +10,7 @@
 
 @interface TrainGeTuiManger : NSObject
 @property (nonatomic, copy) void (^trainGeTuiMangerCompleteBlock)(void);
-+ (TrainGeTuiManger *)sharedInstance;
+
 - (void)resume;
 - (void)resetBadge;
 - (void)registerGeTui;

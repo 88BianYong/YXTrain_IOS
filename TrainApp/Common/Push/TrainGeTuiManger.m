@@ -15,14 +15,6 @@
 @property (nonatomic, strong) NSString *currentUid;
 @end
 @implementation TrainGeTuiManger
-+ (TrainGeTuiManger *)sharedInstance {
-    static TrainGeTuiManger *manger = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manger = [[TrainGeTuiManger alloc] init];
-    });
-    return manger;
-}
 - (void)registerGeTui {
     if ([[YXUserManager sharedManager] isLogin]) {
         [GeTuiSdk runBackgroundEnable:YES];

@@ -41,7 +41,7 @@
     return self;
 }
 - (void)showNotificationViewController{
-    [[TrainGeTuiManger sharedInstance] setTrainGeTuiMangerCompleteBlock:^{
+    [[LSTSharedInstance sharedInstance].geTuiManger setTrainGeTuiMangerCompleteBlock:^{
         if (self.isRemoteNotification || ![[YXUserManager sharedManager] isLogin] ||
             [YXInitHelper sharedHelper].isShowUpgrade) {
             return ;//1.通过通知启动需要等待升级接口返回才进行跳转2.未登录不进行跳转3.弹出升级界面不进行跳转
@@ -74,7 +74,7 @@
         NSString *lastVersion = [[NSUserDefaults standardUserDefaults] objectForKey:versionKey];
         NSString *currentVersion = [[NSBundle mainBundle].infoDictionary objectForKey:versionKey];
         if ([currentVersion compare:lastVersion] != NSOrderedSame) {
-            [[TrainGeTuiManger sharedInstance] resetBadge];
+            [[LSTSharedInstance sharedInstance].geTuiManger resetBadge];
             YXGuideViewController *vc = [[YXGuideViewController alloc] init];
             vc.startMainVCBlock = ^{
                 [self startRootVC];
@@ -165,7 +165,7 @@
         STRONG_SELF
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
-        [[TrainGeTuiManger sharedInstance] logoutSuccess];
+        [[LSTSharedInstance sharedInstance].geTuiManger logoutSuccess];
     }];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXTokenInValidNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
@@ -187,7 +187,7 @@
             [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
         }
         [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
-        [[TrainGeTuiManger sharedInstance] loginSuccess];
+        [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
         self.isRemoteNotification = NO;
     }];
 }
