@@ -417,7 +417,7 @@ static  NSString *const trackPageName = @"个人信息页面";
     }
     @weakify(self);
     [self startLoading];
-    [[YXUpdateProfileHelper instance] requestWithType:YXUpdateProfileTypeRealname param:@{@"realName":name} completion:^(NSError *error) {
+    [[LSTSharedInstance sharedInstance].updateProfileHelper requestWithType:YXUpdateProfileTypeRealname param:@{@"realName":name} completion:^(NSError *error) {
         @strongify(self);
         [self stopLoading];
         YXUserTextFieldTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
@@ -447,7 +447,7 @@ static  NSString *const trackPageName = @"个人信息页面";
                             @"subject": self.selectedSubject.name};
     @weakify(self);
     [self startLoading];
-    [[YXUpdateProfileHelper instance] requestWithType:YXUpdateProfileTypeStage param:param completion:^(NSError *error) {
+    [[LSTSharedInstance sharedInstance].updateProfileHelper requestWithType:YXUpdateProfileTypeStage param:param completion:^(NSError *error) {
         @strongify(self);
         [self stopLoading];
         if (error) {
@@ -472,7 +472,7 @@ static  NSString *const trackPageName = @"个人信息页面";
                             @"region":self.selectedCounty.name};
     @weakify(self);
     [self startLoading];
-    [[YXUpdateProfileHelper instance] requestWithType:YXUpdateProfileTypeArea param:param completion:^(NSError *error) {
+    [[LSTSharedInstance sharedInstance].updateProfileHelper requestWithType:YXUpdateProfileTypeArea param:param completion:^(NSError *error) {
         @strongify(self);
         [self stopLoading];
         if (error) {

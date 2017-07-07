@@ -28,17 +28,6 @@ NSString *const YXUpdateProfileTypeKey = @"kYXUpdateProfileTypeKey";
 
 @end
 @implementation YXUpdateProfileHelper
-
-+ (instancetype)instance
-{
-    static YXUpdateProfileHelper *instance = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        instance = [[YXUpdateProfileHelper alloc] init];
-    });
-    return instance;
-}
-
 - (void)requestWithType:(YXUpdateProfileType)type
                   param:(NSDictionary *)param
              completion:(void (^)(NSError *))completion

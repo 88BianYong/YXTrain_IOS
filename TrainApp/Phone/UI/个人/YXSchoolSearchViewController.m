@@ -256,7 +256,7 @@
                             @"schoolId": school.sid?:@""};
     WEAK_SELF
     [self startLoading];
-    [[YXUpdateProfileHelper instance] requestWithType:YXUpdateProfileTypeSchool param:param completion:^(NSError *error) {
+    [[LSTSharedInstance sharedInstance].updateProfileHelper requestWithType:YXUpdateProfileTypeSchool param:param completion:^(NSError *error) {
         STRONG_SELF
         [self stopLoading];
         if (error) {

@@ -13,6 +13,7 @@
 #import "YXFileRecordManager.h"
 #import "YXInitRequest.h"
 #import "YXRecordManager.h"
+#import "YXUpdateProfileRequest.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
@@ -20,6 +21,7 @@
     YXFileRecordManager *_fileRecordManager;
     YXInitHelper *_upgradeManger;
     YXRecordManager *_recordManager;
+    YXUpdateProfileHelper *_updateProfileHelper;
 }
 @end
 @implementation LSTSharedInstance
@@ -71,5 +73,11 @@
         _recordManager = [[YXRecordManager alloc] init];
     }
     return _recordManager;
+}
+- (YXUpdateProfileHelper *)updateProfileHelper {
+    if (_updateProfileHelper == nil) {
+        _updateProfileHelper = [[YXUpdateProfileHelper alloc] init];
+    }
+    return _updateProfileHelper;
 }
 @end

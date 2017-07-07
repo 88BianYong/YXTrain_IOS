@@ -41,7 +41,6 @@ extern NSString *const YXUpdateProfileTypeKey; // 值为NSNumber对象ern NSStri
 @end
 
 @interface YXUpdateProfileHelper : NSObject
-+ (instancetype)instance;
 
 - (void)requestWithType:(YXUpdateProfileType)type
                   param:(NSDictionary *)param
