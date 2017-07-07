@@ -9,9 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface YXFileRecordManager : NSObject
-
-+ (instancetype)sharedInstance;
-
 - (BOOL)hasRecordWithFilename:(NSString *)name url:(NSString *)url;
 - (void)saveRecordWithFilename:(NSString *)name url:(NSString *)url;
 

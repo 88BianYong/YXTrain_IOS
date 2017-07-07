@@ -133,7 +133,7 @@
     YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideoSeek:self.seekInteger];
     if (fragment) {
         self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
-        [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
+        [[LSTSharedInstance sharedInstance].fileRecordManager saveRecordWithFilename:fragment.fragment_name url:fragment.url];
         BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
@@ -156,7 +156,7 @@
     YXCourseDetailItem_chapter_fragment *fragment = [self.courseItem willPlayVideoSeek:0];
     if (fragment) {
         self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
-        [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
+        [[LSTSharedInstance sharedInstance].fileRecordManager saveRecordWithFilename:fragment.fragment_name url:fragment.url];
         BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
         [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
@@ -200,7 +200,7 @@
     YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
     YXFileType type = [YXAttachmentTypeHelper typeWithID:fragment.type];
     cell.data = fragment;
-    if ([[YXFileRecordManager sharedInstance]hasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
+    if ([[LSTSharedInstance sharedInstance].fileRecordManager hasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
         cell.cellStatus = YXCourseDetailCellStatus_Watched;
     }else if (type == YXFileTypeUnknown) {
         cell.cellStatus = YXCourseDetailCellStatus_Unknown;
@@ -243,7 +243,7 @@
         return;
     }
     
-    [[YXFileRecordManager sharedInstance] saveRecordWithFilename:fragment.fragment_name url:fragment.url];
+    [[LSTSharedInstance sharedInstance].fileRecordManager saveRecordWithFilename:fragment.fragment_name url:fragment.url];
     self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
     if (self.fileItem.type == YXFileTypeVideo) {
         self.courseItem.playIndexPath = indexPath;

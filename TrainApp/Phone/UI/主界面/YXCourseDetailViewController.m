@@ -146,7 +146,7 @@
     YXCourseDetailItem_chapter *chapter = self.courseItem.chapters[indexPath.section];
     YXCourseDetailItem_chapter_fragment *fragment = chapter.fragments[indexPath.row];
     cell.data = fragment;
-//    if ([[YXFileRecordManager sharedInstance]hasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
+//    if ([LSTSharedInstance sharedInstance].fileRecordManagerhasRecordWithFilename:fragment.fragment_name url:fragment.url]) {
 //        cell.watched = YES;
 //    }else{
 //        cell.watched = NO;
@@ -181,7 +181,7 @@
         return;
     }
     
-    [[YXFileRecordManager sharedInstance]saveRecordWithFilename:fragment.fragment_name url:fragment.url];
+    [[LSTSharedInstance sharedInstance].fileRecordManager saveRecordWithFilename:fragment.fragment_name url:fragment.url];
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     
     [YXRecordManager sharedManager].chapterIndex = indexPath.section;

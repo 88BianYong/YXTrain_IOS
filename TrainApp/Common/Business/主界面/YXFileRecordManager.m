@@ -10,16 +10,6 @@
 #import "FileRecordEntity.h"
 
 @implementation YXFileRecordManager
-
-+ (instancetype)sharedInstance{
-    static YXFileRecordManager *manager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[YXFileRecordManager alloc] init];
-    });
-    return manager;
-}
-
 - (BOOL)hasRecordWithFilename:(NSString *)name url:(NSString *)url{
     NSString *uid = [name stringByAppendingString:[url md5]];
     FileRecordEntity *item = [FileRecordEntity MR_findFirstByAttribute:@"uid" withValue:uid];

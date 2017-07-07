@@ -10,10 +10,12 @@
 #import "YXTrainManager.h"
 #import "TrainGeTuiManger.h"
 #import "PopUpFloatingViewManager.h"
+#import "YXFileRecordManager.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
     PopUpFloatingViewManager *_floatingViewManager;
+    YXFileRecordManager *_fileRecordManager;
 }
 @end
 @implementation LSTSharedInstance
@@ -47,5 +49,11 @@
         }
     }
     return _floatingViewManager;
+}
+- (YXFileRecordManager *)fileRecordManager {
+    if (_fileRecordManager == nil) {
+        _fileRecordManager = [[YXFileRecordManager alloc] init];
+    }
+    return _fileRecordManager;
 }
 @end
