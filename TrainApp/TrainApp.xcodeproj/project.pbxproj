@@ -259,7 +259,6 @@
 		923237351D79623E00FDACFE /* YXScoreLeadingGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237341D79623E00FDACFE /* YXScoreLeadingGroupCell.m */; };
 		923237381D7975F300FDACFE /* YXScoreExpGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237371D7975F300FDACFE /* YXScoreExpGroupCell.m */; };
 		9232373D1D7E630700FDACFE /* YXRotateListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232373C1D7E630700FDACFE /* YXRotateListRequest.m */; };
-		923237401D7E660000FDACFE /* YXCMSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9232373F1D7E660000FDACFE /* YXCMSManager.m */; };
 		923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237421D7EA80E00FDACFE /* YXCMSCustomView.m */; };
 		923237461D7EA9FE00FDACFE /* YXCMSTimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237451D7EA9FE00FDACFE /* YXCMSTimerView.m */; };
 		923237481D800DA900FDACFE /* getRotateList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 923237471D800DA800FDACFE /* getRotateList_mock.json */; };
@@ -1096,8 +1095,6 @@
 		923237371D7975F300FDACFE /* YXScoreExpGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXScoreExpGroupCell.m; sourceTree = "<group>"; };
 		9232373B1D7E630700FDACFE /* YXRotateListRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXRotateListRequest.h; sourceTree = "<group>"; };
 		9232373C1D7E630700FDACFE /* YXRotateListRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXRotateListRequest.m; sourceTree = "<group>"; };
-		9232373E1D7E660000FDACFE /* YXCMSManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCMSManager.h; sourceTree = "<group>"; };
-		9232373F1D7E660000FDACFE /* YXCMSManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCMSManager.m; sourceTree = "<group>"; };
 		923237411D7EA80E00FDACFE /* YXCMSCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCMSCustomView.h; sourceTree = "<group>"; };
 		923237421D7EA80E00FDACFE /* YXCMSCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXCMSCustomView.m; sourceTree = "<group>"; };
 		923237441D7EA9FE00FDACFE /* YXCMSTimerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCMSTimerView.h; sourceTree = "<group>"; };
@@ -3055,8 +3052,6 @@
 				923237471D800DA800FDACFE /* getRotateList_mock.json */,
 				9232373B1D7E630700FDACFE /* YXRotateListRequest.h */,
 				9232373C1D7E630700FDACFE /* YXRotateListRequest.m */,
-				9232373E1D7E660000FDACFE /* YXCMSManager.h */,
-				9232373F1D7E660000FDACFE /* YXCMSManager.m */,
 			);
 			path = CMS;
 			sourceTree = "<group>";
@@ -4437,7 +4432,6 @@
 				92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */,
 				CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */,
 				922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */,
-				923237401D7E660000FDACFE /* YXCMSManager.m in Sources */,
 				92FED8891DD1C37200457228 /* ActitvityCommentCell.m in Sources */,
 				7C2C3B3A1D212C9200A03635 /* YXScoreBlankCell.m in Sources */,
 				7CF8884A1D18F90000E7C04D /* YXCourseFilterCell.m in Sources */,

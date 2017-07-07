@@ -15,9 +15,13 @@
 #import "YXCMSCustomView.h"
 #import "YXWebViewController.h"
 #import "FloatingBaseView.h"
+#import "YXRotateListRequest.h"
 @interface PopUpFloatingViewManager_16 ()
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
 @property (nonatomic, strong) YXPopUpContainerView *upgradeView;
+
+@property (nonatomic, strong) YXRotateListRequest *rotateListRequest;
+
 @property (nonatomic, assign) BOOL isShowCMS;
 @property (nonatomic, assign) BOOL isMultiProject;//多项目
 @property (nonatomic, assign) BOOL isMultiRole;//多角色
@@ -87,9 +91,11 @@
         make.edges.mas_equalTo(0);
     }];
     WEAK_SELF
-    [[YXCMSManager sharedManager] requestWithType:@"1" completion:^(NSArray *rotates, NSError *error) {
+    YXRotateListRequest *request = [[YXRotateListRequest alloc] init];
+    [request startRequestWithRetClass:[YXRotateListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        YXRotateListRequestItem *item = retItem;
         STRONG_SELF
-        if (error || rotates.count <= 0) {
+        if (error || item.rotates.count <= 0) {
             self.isShowCMS = NO;
             [self.cmsView removeFromSuperview];
             if ([YXInitHelper sharedHelper].isShowUpgrade && self.upgradeView == nil) {
@@ -100,7 +106,7 @@
             }
         }
         else{
-            YXRotateListRequestItem_Rotates *rotate = rotates[0];
+            YXRotateListRequestItem_Rotates *rotate = item.rotates[0];
             [self.cmsView reloadWithModel:rotate];
             WEAK_SELF
             self.cmsView.clickedBlock = ^(YXRotateListRequestItem_Rotates *model) {
@@ -125,6 +131,7 @@
             };
         }
     }];
+    self.rotateListRequest = request;
 }
 //升级弹窗
 - (void)showUpgradeView {
