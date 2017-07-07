@@ -12,6 +12,7 @@
 #import "YXTrackPageDataProtocol.h"
 #import "LSTTrainHelper.h"
 typedef NS_ENUM (NSInteger, LSTTrainProjectStatus) {
+    LSTTrainProjectStatus_unKnow = 0,
     LSTTrainProjectStatus_2016 = 2016,
     LSTTrainProjectStatus_2017 = 2017
 };

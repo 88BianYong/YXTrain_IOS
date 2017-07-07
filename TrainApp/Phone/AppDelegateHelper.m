@@ -95,14 +95,14 @@
         self.window.rootViewController = ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2017) ?[self rootTabBarViewController] : [self rootDrawerViewController];
         [self requestCommonData];
         WEAK_SELF
-        [[PopUpFloatingViewManager sharedInstance] setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
+        [[LSTSharedInstance sharedInstance].floatingViewManager setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
             STRONG_SELF
             if (isShow && self.isRemoteNotification) {
                 [self showDrawerViewController];
             }
             self.isRemoteNotification = NO;
         }];
-        [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
+        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
     } else {
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
@@ -182,11 +182,11 @@
         self.window.rootViewController = ([x.object integerValue] == LSTTrainProjectStatus_2017) ? [self rootTabBarViewController] : [self rootDrawerViewController];
         [self requestCommonData];
         if (!isEmpty(self.courseId)) {
-            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_QRCode;
+            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_QRCode;
         }else {
-            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
+            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
         }
-        [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
+        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
         self.isRemoteNotification = NO;
     }];

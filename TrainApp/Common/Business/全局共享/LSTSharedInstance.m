@@ -9,9 +9,11 @@
 #import "LSTSharedInstance.h"
 #import "YXTrainManager.h"
 #import "TrainGeTuiManger.h"
+#import "PopUpFloatingViewManager.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
+    PopUpFloatingViewManager *_floatingViewManager;
 }
 @end
 @implementation LSTSharedInstance
@@ -35,5 +37,15 @@
         _geTuiManger = [[TrainGeTuiManger alloc] init];
     }
     return _geTuiManger;
+}
+- (PopUpFloatingViewManager *)floatingViewManager {
+    if (_floatingViewManager == nil && self.trainManager.trainStatus != LSTTrainProjectStatus_unKnow) {
+        if (self.trainManager.trainStatus == LSTTrainProjectStatus_2017) {
+            _floatingViewManager = [[NSClassFromString(@"PopUpFloatingViewManager_17") alloc] init];
+        }else {
+            _floatingViewManager = [[NSClassFromString(@"PopUpFloatingViewManager_16") alloc] init];
+        }
+    }
+    return _floatingViewManager;
 }
 @end

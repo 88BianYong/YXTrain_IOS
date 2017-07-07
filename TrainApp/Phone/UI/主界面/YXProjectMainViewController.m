@@ -82,7 +82,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     [super viewWillAppear:animated];
     self.leftView.hidden = NO;
     [self showProjectSelectionView];
-    [[PopUpFloatingViewManager sharedInstance] showPopUpFloatingView];
+    [[LSTSharedInstance sharedInstance].floatingViewManager showPopUpFloatingView];
     [self showAlertView];
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -91,7 +91,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self hideProjectSelectionView];
-    [[PopUpFloatingViewManager sharedInstance] hiddenPopUpFloatingView];
+    [[LSTSharedInstance sharedInstance].floatingViewManager hiddenPopUpFloatingView];
     [self hideAlertView];
 }
 - (void)viewDidDisappear:(BOOL)animated{
@@ -296,7 +296,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     for (UIView *v in self.view.subviews) {
         [v removeFromSuperview];
     }
-    [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
+    [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
     if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenLayer.boolValue) {
         [self requestForLayerList];
         self.QRCodeView.hidden = YES;

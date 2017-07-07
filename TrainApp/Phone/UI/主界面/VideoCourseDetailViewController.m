@@ -273,8 +273,8 @@
             appDelegate.appDelegateHelper.courseId = nil;
             appDelegate.appDelegateHelper.projectId = nil;
             appDelegate.appDelegateHelper.seg = nil;
-            [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_Default;
-            [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
+            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
+            [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         }else {
             [self.navigationController popViewControllerAnimated:YES];
         }
