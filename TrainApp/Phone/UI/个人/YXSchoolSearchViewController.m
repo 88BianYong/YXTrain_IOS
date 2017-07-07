@@ -248,7 +248,7 @@
 - (void)updateRequestWithSchool:(YXSchool *)school
 {
     if (![school.name yx_isValidString]
-        || [school.name isEqualToString:[YXUserManager sharedManager].userModel.profile.school]) {
+        || [school.name isEqualToString:[LSTSharedInstance sharedInstance].userManger.userModel.profile.school]) {
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }

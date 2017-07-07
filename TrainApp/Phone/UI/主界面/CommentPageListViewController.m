@@ -451,7 +451,7 @@
     ActivityFirstCommentRequestItem_Body_Replies *replie = self.dataMutableArray[section];
     ActitvityCommentHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActitvityCommentHeaderView"];
     headerView.stageId = self.stageId;
-    headerView.isShowDelete = [replie.userId isEqualToString:[YXUserManager sharedManager].userModel.uid];
+    headerView.isShowDelete = [replie.userId isEqualToString:[LSTSharedInstance sharedInstance].userManger.userModel.uid];
     if (!self.isFullReply || section == 0) {
         headerView.isFontBold = YES;
         headerView.replie = replie;

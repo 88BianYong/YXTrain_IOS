@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class YXTrainManager, TrainGeTuiManger, PopUpFloatingViewManager,YXFileRecordManager, YXInitHelper, YXRecordManager,YXUpdateProfileHelper;
+@class YXTrainManager, TrainGeTuiManger, PopUpFloatingViewManager,YXFileRecordManager, YXInitHelper, YXRecordManager,YXUpdateProfileHelper,YXUserManager;
 @interface LSTSharedInstance : NSObject
+@property (nonatomic, strong, readonly) YXUserManager *userManger;//储存个人信息
 @property (nonatomic, strong, readonly) YXTrainManager *trainManager;//项目列表
 @property (nonatomic, strong, readonly) TrainGeTuiManger *geTuiManger;//个推
 @property (nonatomic, strong, readonly) PopUpFloatingViewManager *floatingViewManager;//浮层管理

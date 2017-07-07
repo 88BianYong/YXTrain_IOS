@@ -62,10 +62,10 @@
         NSString *query = [url query];
         NSDictionary *paraDic = [self urlInfo:query];
 
-        [YXUserManager sharedManager].userModel.token =paraDic[@"token"];
+        [LSTSharedInstance sharedInstance].userManger.userModel.token =paraDic[@"token"];
         [self startLoading];
         YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
-        request.targetuid = [YXUserManager sharedManager].userModel.uid;
+        request.targetuid = [LSTSharedInstance sharedInstance].userManger.userModel.uid;
         WEAK_SELF
         [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
@@ -76,11 +76,11 @@
             }
             YXUserProfileItem *item = retItem;
             if (item) {
-                [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
-                [[YXUserManager sharedManager] saveUserData];
+                [LSTSharedInstance sharedInstance].userManger.userModel.profile = item.editUserInfo;
+                [[LSTSharedInstance sharedInstance].userManger saveUserData];
                 [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
             }
-            YXUserModel *userModel = [YXUserManager sharedManager].userModel;
+            YXUserModel *userModel = [LSTSharedInstance sharedInstance].userManger.userModel;
             userModel.uid = userModel.profile.uid;
             userModel.uname = userModel.profile.name;
             userModel.head = userModel.profile.head;
@@ -92,7 +92,7 @@
                 appDelegate.appDelegateHelper.courseId = nil;
                 appDelegate.appDelegateHelper.seg = nil;
             }
-            [[YXUserManager sharedManager] login];
+            [[LSTSharedInstance sharedInstance].userManger login];
         }];
         self.userProfileRequest = request;
     }
@@ -391,16 +391,16 @@
 
 - (void)saveUserDataWithLoginItem:(YXLoginRequestItem *)item
 {
-    [YXUserManager sharedManager].userModel.uid = item.uid;
-    [YXUserManager sharedManager].userModel.actiFlag = item.actiFlag;
-    [YXUserManager sharedManager].userModel.uname = item.uname;
-    [YXUserManager sharedManager].userModel.head = item.head;
-    if (![item.token isEqualToString:[YXUserManager sharedManager].userModel.token]) {
-        [YXUserManager sharedManager].userModel.token = item.token;
+    [LSTSharedInstance sharedInstance].userManger.userModel.uid = item.uid;
+    [LSTSharedInstance sharedInstance].userManger.userModel.actiFlag = item.actiFlag;
+    [LSTSharedInstance sharedInstance].userManger.userModel.uname = item.uname;
+    [LSTSharedInstance sharedInstance].userManger.userModel.head = item.head;
+    if (![item.token isEqualToString:[LSTSharedInstance sharedInstance].userManger.userModel.token]) {
+        [LSTSharedInstance sharedInstance].userManger.userModel.token = item.token;
         [[LSTSharedInstance sharedInstance].upgradeManger requestLoginCompeletion:nil];
     }
-    [YXUserManager sharedManager].userModel.token = item.token;
-    [[YXUserManager sharedManager] login];
+    [LSTSharedInstance sharedInstance].userManger.userModel.token = item.token;
+    [[LSTSharedInstance sharedInstance].userManger login];
 }
 
 

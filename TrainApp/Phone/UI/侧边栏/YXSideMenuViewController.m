@@ -221,17 +221,17 @@
 
 - (void)loadUserProfile
 {
-    self.profile = [YXUserManager sharedManager].userModel.profile;
+    self.profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
     if (!self.profile) {
         YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
-        request.targetuid = [YXUserManager sharedManager].userModel.uid;
+        request.targetuid = [LSTSharedInstance sharedInstance].userManger.userModel.uid;
         WEAK_SELF
         [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
             YXUserProfileItem *item = retItem;
             if (item) {
-                [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
-                [[YXUserManager sharedManager] saveUserData];
+                [LSTSharedInstance sharedInstance].userManger.userModel.profile = item.editUserInfo;
+                [[LSTSharedInstance sharedInstance].userManger saveUserData];
                 [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
             }else {
                 [self showToast:error.localizedDescription];
@@ -245,7 +245,7 @@
 
 - (void)reloadUserProfileView
 {
-    self.profile = [YXUserManager sharedManager].userModel.profile;
+    self.profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
     _nameLabel.text = self.profile.realName;
     _schoolNameLabel.text = self.profile.school;
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:self.profile.head] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];

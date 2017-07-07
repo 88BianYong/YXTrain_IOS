@@ -25,7 +25,7 @@
         self.left = @"-40";
         self.top = @"40";
         self.rate = @"1";
-        self.token = [YXUserManager sharedManager].userModel.token;
+        self.token = [LSTSharedInstance sharedInstance].userManger.userModel.token;
     }
     return self;
 }

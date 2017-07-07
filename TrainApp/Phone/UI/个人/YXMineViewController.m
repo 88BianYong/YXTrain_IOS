@@ -82,7 +82,7 @@ static  NSString *const trackPageName = @"个人信息页面";
 }
 - (void)reloadUserProfileData
 {
-//    self.profile = [YXUserManager sharedManager].userModel.profile;
+//    self.profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
 //    if (!self.profile) {
 //        [self requestUserProfile];
 //    } else {
@@ -96,17 +96,17 @@ static  NSString *const trackPageName = @"个人信息页面";
 {
     [self startLoading];
     YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
-    request.targetuid = [YXUserManager sharedManager].userModel.uid;
+    request.targetuid = [LSTSharedInstance sharedInstance].userManger.userModel.uid;
     WEAK_SELF
     [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         YXUserProfileItem *item = retItem;
         if (item) {
-            [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
-            [[YXUserManager sharedManager] saveUserData];
+            [LSTSharedInstance sharedInstance].userManger.userModel.profile = item.editUserInfo;
+            [[LSTSharedInstance sharedInstance].userManger saveUserData];
             [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
         }
-        self.profile = [YXUserManager sharedManager].userModel.profile;
+        self.profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
         [self stopLoading];
         [self reloadDataWithProfile:self.profile];
         [self.tableView reloadData];
@@ -208,7 +208,7 @@ static  NSString *const trackPageName = @"个人信息页面";
                     [self.view endEditing:YES];
                     YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:4]];
                     [cell configUIwithTitle:@"学校" content:schoolName];
-                    self.profile = [YXUserManager sharedManager].userModel.profile;
+                    self.profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
                     if (self.userInfoModifySuccess) {
                         self.userInfoModifySuccess();
                     }
@@ -423,7 +423,7 @@ static  NSString *const trackPageName = @"个人信息页面";
 }
 
 - (void)updateUserNameWithString:(NSString *)name {
-    if ([name isEqualToString:[YXUserManager sharedManager].userModel.profile.realName]) {
+    if ([name isEqualToString:[LSTSharedInstance sharedInstance].userManger.userModel.profile.realName]) {
         return;
     }
     @weakify(self);
@@ -433,7 +433,7 @@ static  NSString *const trackPageName = @"个人信息页面";
         [self stopLoading];
         YXUserTextFieldTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
         if (!error) {
-            self.profile = [YXUserManager sharedManager].userModel.profile;
+            self.profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
             [cell setUserName:name];
             if (self.userInfoModifySuccess) {
                 self.userInfoModifySuccess();
@@ -447,8 +447,8 @@ static  NSString *const trackPageName = @"个人信息页面";
 
 - (void)updateStageAndSubject
 {
-    if ([self.selectedStage.sid isEqualToString:[YXUserManager sharedManager].userModel.profile.stageId]
-        && [self.selectedSubject.sid isEqualToString:[YXUserManager sharedManager].userModel.profile.subjectId]) {
+    if ([self.selectedStage.sid isEqualToString:[LSTSharedInstance sharedInstance].userManger.userModel.profile.stageId]
+        && [self.selectedSubject.sid isEqualToString:[LSTSharedInstance sharedInstance].userManger.userModel.profile.subjectId]) {
         return;
     }
     
@@ -464,7 +464,7 @@ static  NSString *const trackPageName = @"个人信息页面";
         if (error) {
             [self showToast:error.localizedDescription];
         } else {
-            self.profile = [YXUserManager sharedManager].userModel.profile;
+            self.profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
             YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:2]];
             [cell configUIwithTitle:@"学科 | 学段" content:[NSString stringWithFormat:@"%@ / %@", self.selectedStage.name, self.selectedSubject.name]];
         }
@@ -473,7 +473,7 @@ static  NSString *const trackPageName = @"个人信息页面";
 
 - (void)updateArea
 {
-    if ([self.selectedCounty.number isEqualToString:[YXUserManager sharedManager].userModel.profile.regionId]) {
+    if ([self.selectedCounty.number isEqualToString:[LSTSharedInstance sharedInstance].userManger.userModel.profile.regionId]) {
         return;
     }
     
@@ -489,7 +489,7 @@ static  NSString *const trackPageName = @"个人信息页面";
         if (error) {
             [self showToast:error.localizedDescription];
         } else {
-            self.profile = [YXUserManager sharedManager].userModel.profile;
+            self.profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
             YXUserInfoTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:3]];
             [cell configUIwithTitle:@"地区" content:[NSString stringWithFormat:@"%@%@%@", self.selectedProvince.name, self.selectedCity.name,self.selectedCounty.name]];
         }
@@ -775,9 +775,9 @@ static  NSString *const trackPageName = @"个人信息页面";
             YXUploadHeadImgItem *item = retItem;
             self.profile.head = item.url;
             self.profile.headDetail = item.headDetail;
-            [YXUserManager sharedManager].userModel.head = item.url;
-            [YXUserManager sharedManager].userModel.profile.headDetail = item.headDetail;
-            [[YXUserManager sharedManager] saveUserData];
+            [LSTSharedInstance sharedInstance].userManger.userModel.head = item.url;
+            [LSTSharedInstance sharedInstance].userManger.userModel.profile.headDetail = item.headDetail;
+            [[LSTSharedInstance sharedInstance].userManger saveUserData];
             
             YXUserImageTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             [cell setImageWithDataImage:image];

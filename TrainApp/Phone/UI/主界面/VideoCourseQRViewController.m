@@ -153,11 +153,11 @@
 
 - (void)saveUserDataAndLogin
 {
-    YXUserModel *userModel = [YXUserManager sharedManager].userModel;
+    YXUserModel *userModel = [LSTSharedInstance sharedInstance].userManger.userModel;
     userModel.uid = userModel.profile.uid;
     userModel.uname = userModel.profile.name;
     userModel.head = userModel.profile.head;
-    [[YXUserManager sharedManager] login];
+    [[LSTSharedInstance sharedInstance].userManger login];
 }
 
 - (void)setupCamera

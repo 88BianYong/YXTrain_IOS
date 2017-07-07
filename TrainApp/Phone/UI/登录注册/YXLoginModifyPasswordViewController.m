@@ -137,11 +137,11 @@
 
 - (void)saveUserDataWithResetPasswordItem:(YXResetPasswordRequestItem *)item
 {
-    [YXUserManager sharedManager].userModel.token = item.token;
-    [YXUserManager sharedManager].userModel.uid = item.uid;
-    [YXUserManager sharedManager].userModel.uname = item.uname;
-    [YXUserManager sharedManager].userModel.head = item.head;
-    [[YXUserManager sharedManager] login];
+    [LSTSharedInstance sharedInstance].userManger.userModel.token = item.token;
+    [LSTSharedInstance sharedInstance].userManger.userModel.uid = item.uid;
+    [LSTSharedInstance sharedInstance].userManger.userModel.uname = item.uname;
+    [LSTSharedInstance sharedInstance].userManger.userModel.head = item.head;
+    [[LSTSharedInstance sharedInstance].userManger login];
 }
 
 

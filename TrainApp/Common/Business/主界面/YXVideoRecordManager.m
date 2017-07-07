@@ -171,7 +171,7 @@
 
 + (NSString *)getFileNameWithJobId:(NSString *)jojid
 {
-    return [[YXUserManager sharedManager].userModel.uid stringByAppendingString:jojid];
+    return [[LSTSharedInstance sharedInstance].userManger.userModel.uid stringByAppendingString:jojid];
 }
 
 

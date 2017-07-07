@@ -24,9 +24,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    if([launchOptions objectForKey:UIApplicationLaunchOptionsURLKey] && [[YXUserManager sharedManager] isLogin]){
+    if([launchOptions objectForKey:UIApplicationLaunchOptionsURLKey] && [[LSTSharedInstance sharedInstance].userManger isLogin]){
          self.appDelegateHelper.scanCodeUrl = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
-        [[YXUserManager sharedManager] logout];
+        [[LSTSharedInstance sharedInstance].userManger logout];
     }
     [GlobalUtils setupCore];
     [YXNavigationBarController setup];
@@ -161,7 +161,7 @@
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
     self.appDelegateHelper.scanCodeUrl = url;
     [[YXWebSocketManger sharedInstance] close];
-    [[YXUserManager sharedManager] logout];
+    [[LSTSharedInstance sharedInstance].userManger logout];
 	return YES;
 }
 @end

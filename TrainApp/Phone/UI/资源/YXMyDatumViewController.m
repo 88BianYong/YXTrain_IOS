@@ -166,7 +166,7 @@ static  NSString *const trackPageName = @"我的资源页面";
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     YXDatumCellModel *model = self.dataArray[indexPath.row];
-    //    if ([model.uid isEqualToString:[YXUserManager sharedManager].userModel.uid]) {  // 我的上传
+    //    if ([model.uid isEqualToString:[LSTSharedInstance sharedInstance].userManger.userModel.uid]) {  // 我的上传
     //        if (self.delSourceRequest) {//11,29产品要求,现在项目没有上传的功能~
     //            [self.delSourceRequest stopRequest];
     //        }

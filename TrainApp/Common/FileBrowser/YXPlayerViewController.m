@@ -411,8 +411,8 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             {
                 DDLogError(@"Error");
                 NSDictionary *dict = @{
-                                       @"token": [YXUserManager sharedManager].userModel.token?:@"",
-                                       @"uid": [YXUserManager sharedManager].userModel.uid?:@"",
+                                       @"token": [LSTSharedInstance sharedInstance].userManger.userModel.token?:@"",
+                                       @"uid": [LSTSharedInstance sharedInstance].userManger.userModel.uid?:@"",
                                        @"url": self.videoUrl?:@""
                                        };
                 [YXDataStatisticsManger trackEvent:@"播放出错" label:@"出错信息" parameters:dict];

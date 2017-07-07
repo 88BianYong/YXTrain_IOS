@@ -50,8 +50,6 @@ extern NSString *const YXUserLogoutSuccessNotification;
 
 @property (nonatomic, strong) YXUserModel *userModel;
 
-+ (instancetype)sharedManager;
-
 // 用户数据持久化存储方式
 - (void)saveUserData;
 

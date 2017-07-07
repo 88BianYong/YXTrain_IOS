@@ -66,8 +66,8 @@
         }else {
             NSString *error = [NSString stringWithFormat:@"error=%@,reqid=%@,xlog=%@,host=%@,id=%@,hash=%@,key=%@",i.error,i.reqId,i.xlog,i.host,i.id,resp[@"hash"],resp[@"key"]];
             NSDictionary *dict = @{
-                                   @"token": [YXUserManager sharedManager].userModel.token?:@"",
-                                   @"uid": [YXUserManager sharedManager].userModel.uid?:@"",
+                                   @"token": [LSTSharedInstance sharedInstance].userManger.userModel.token?:@"",
+                                   @"uid": [LSTSharedInstance sharedInstance].userManger.userModel.uid?:@"",
                                    @"error": error?:@""};
             [YXDataStatisticsManger trackEvent:@"上传视频七牛" label:@"出错信息" parameters:dict];
         }

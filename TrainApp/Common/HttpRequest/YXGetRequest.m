@@ -12,7 +12,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.token = [YXUserManager sharedManager].userModel.token;
+        self.token = [LSTSharedInstance sharedInstance].userManger.userModel.token;
         self.os = @"ios";
         self.ver = [YXConfigManager sharedInstance].clientVersion;
     }

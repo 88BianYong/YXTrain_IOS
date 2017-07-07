@@ -164,7 +164,7 @@ UITableViewDataSource
         
     }else{
         [[YXWebSocketManger sharedInstance] close];
-        [[YXUserManager sharedManager] logout];
+        [[LSTSharedInstance sharedInstance].userManger logout];
         [YXDataStatisticsManger trackEvent:@"退出登录" label:@"成功登出" parameters:nil];
     }
 }

@@ -16,7 +16,7 @@
 @end
 @implementation TrainGeTuiManger
 - (void)registerGeTui {
-    if ([[YXUserManager sharedManager] isLogin]) {
+    if ([[LSTSharedInstance sharedInstance].userManger isLogin]) {
         [GeTuiSdk runBackgroundEnable:YES];
         [GeTuiSdk startSdkWithAppId:[YXConfigManager sharedInstance].geTuiAppId appKey:[YXConfigManager sharedInstance].geTuiAppKey appSecret:[YXConfigManager sharedInstance].geTuiAppServer delegate:self];
         [self registerUserNotification];
@@ -66,7 +66,7 @@
 - (void)loginSuccess {
     [self resumeGeTuiSDK];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
-    NSString *uid = [[YXUserManager sharedManager] userModel].uid;
+    NSString *uid = [[LSTSharedInstance sharedInstance].userManger userModel].uid;
     self.currentUid = uid;
     // 等待SDK启动时间 以及 防止5秒内连续退出登录
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -101,7 +101,7 @@
     if (payloadData) {
         payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
     }
-    if ([[YXUserManager sharedManager] isLogin]) {
+    if ([[LSTSharedInstance sharedInstance].userManger isLogin]) {
         [self handleGeTuiContent:payloadMsg withOffLine:offLine];
     }
 }
@@ -109,7 +109,7 @@
 // SDK启动成功 则返回cid
 - (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
     DDLogDebug(@"[GTSdk RegisterClientID]:%@", clientId);
-    NSString *uid = [[YXUserManager sharedManager] userModel].uid;
+    NSString *uid = [[LSTSharedInstance sharedInstance].userManger userModel].uid;
     if (uid) {
         self.currentUid = uid;
         [self bindAlias:self.currentUid];

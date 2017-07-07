@@ -14,6 +14,7 @@
 #import "YXInitRequest.h"
 #import "YXRecordManager.h"
 #import "YXUpdateProfileRequest.h"
+#import "YXUserManager.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
@@ -22,6 +23,7 @@
     YXInitHelper *_upgradeManger;
     YXRecordManager *_recordManager;
     YXUpdateProfileHelper *_updateProfileHelper;
+    YXUserManager *_userManger;
 }
 @end
 @implementation LSTSharedInstance
@@ -34,6 +36,13 @@
     return sharedInstance;
 }
 #pragma mark - Manager
+- (YXUserManager *)userManger {
+    if (_userManger == nil) {
+        _userManger = [[YXUserManager alloc] init];
+    }
+    return _userManger;
+}
+
 - (YXTrainManager *)trainManager {
     if (_trainManager == nil) {
         _trainManager = [[YXTrainManager alloc] init];

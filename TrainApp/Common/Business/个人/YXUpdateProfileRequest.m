@@ -60,7 +60,7 @@ NSString *const YXUpdateProfileTypeKey = @"kYXUpdateProfileTypeKey";
 
 - (NSMutableDictionary *)defaultParamters
 {
-    YXUserProfile *profile = [YXUserManager sharedManager].userModel.profile;
+    YXUserProfile *profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
     NSDictionary *dictionary = @{@"realName": profile.realName?:@"",
                                  @"nickName": profile.nickName?:@"",
                                  @"stageId": profile.stageId?:@"",
@@ -85,7 +85,7 @@ NSString *const YXUpdateProfileTypeKey = @"kYXUpdateProfileTypeKey";
 
 - (void)saveDataWithParam:(NSDictionary *)param type:(YXUpdateProfileType)type
 {
-    YXUserProfile *profile = [YXUserManager sharedManager].userModel.profile;
+    YXUserProfile *profile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
     switch (type) {
         case YXUpdateProfileTypeRealname:
             profile.realName = [param objectForKey:@"realName"];
@@ -117,8 +117,8 @@ NSString *const YXUpdateProfileTypeKey = @"kYXUpdateProfileTypeKey";
         default:
             break;
     }
-    [YXUserManager sharedManager].userModel.profile = profile;
-    [[YXUserManager sharedManager] saveUserData];
+    [LSTSharedInstance sharedInstance].userManger.userModel.profile = profile;
+    [[LSTSharedInstance sharedInstance].userManger saveUserData];
 }
 
 @end

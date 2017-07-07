@@ -133,7 +133,7 @@
 //连接成功
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket{
     DDLogDebug(@"链接成功");
-    NSDictionary *dic = @{@"type":@"1",@"token":[YXUserManager sharedManager].userModel.token?:@"",@"seqno":[YXConfigManager sharedInstance].deviceID?:@"1"};
+    NSDictionary *dic = @{@"type":@"1",@"token":[LSTSharedInstance sharedInstance].userManger.userModel.token?:@"",@"seqno":[YXConfigManager sharedInstance].deviceID?:@"1"};
     DDLogDebug(@"%@",dic);
    [_webSocket send:[self dictionaryToJsonData:dic]];
     if (_state != YXWebSocketMangerState_Normal) {//如有需要待发信息 重新发送

@@ -57,18 +57,12 @@ NSString *const YXUserLogoutSuccessNotification = @"kYXUserLogoutSuccessNotifica
 @end
 
 @implementation YXUserManager
-
-+ (instancetype)sharedManager
-{
-    static YXUserManager *manager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[YXUserManager alloc] init];
-        [manager loadLocalUserData];
-    });
-    return manager;
+- (instancetype)init {
+    if (self = [super init]) {
+        [self loadLocalUserData];
+    }
+    return self;
 }
-
 - (void)saveUserData
 {
     [NSKeyedArchiver archiveRootObject:self.userModel toFile:[self userDataPath]];

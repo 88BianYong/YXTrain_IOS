@@ -44,7 +44,7 @@
 }
 - (void)showNotificationViewController{
     [[LSTSharedInstance sharedInstance].geTuiManger setTrainGeTuiMangerCompleteBlock:^{
-        if (self.isRemoteNotification || ![[YXUserManager sharedManager] isLogin] ||
+        if (self.isRemoteNotification || ![[LSTSharedInstance sharedInstance].userManger isLogin] ||
             [LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade) {
             return ;//1.通过通知启动需要等待升级接口返回才进行跳转2.未登录不进行跳转3.弹出升级界面不进行跳转
         }
@@ -93,7 +93,7 @@
     }
 }
 - (void)startRootVC {
-    if ([[YXUserManager sharedManager] isLogin]) {
+    if ([[LSTSharedInstance sharedInstance].userManger isLogin]) {
         self.window.rootViewController = ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2017) ?[self rootTabBarViewController] : [self rootDrawerViewController];
         [self requestCommonData];
         WEAK_SELF
@@ -112,14 +112,14 @@
 }
 - (void)requestCommonData {
     YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
-    request.targetuid = [YXUserManager sharedManager].userModel.uid;
+    request.targetuid = [LSTSharedInstance sharedInstance].userManger.userModel.uid;
     WEAK_SELF
     [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         YXUserProfileItem *item = retItem;
         if (item) {
-            [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
-            [[YXUserManager sharedManager] saveUserData];
+            [LSTSharedInstance sharedInstance].userManger.userModel.profile = item.editUserInfo;
+            [[LSTSharedInstance sharedInstance].userManger saveUserData];
             [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
         }
         [[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
@@ -182,8 +182,8 @@
     }];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXTokenInValidNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
-        [[YXUserManager sharedManager] resetUserData];
-        //[[YXUserManager sharedManager] logout];
+        [[LSTSharedInstance sharedInstance].userManger resetUserData];
+        //[[LSTSharedInstance sharedInstance].userManger logout];
 
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];

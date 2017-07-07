@@ -131,16 +131,16 @@
         if (((NSString *)[paraDic objectForKey:@"token"]).length > 0) {
             [_session stopRunning];
             [_scanBackgroundView.scanTimer setFireDate:[NSDate distantFuture]];
-            [YXUserManager sharedManager].userModel.token = [paraDic objectForKey:@"token"];
+            [LSTSharedInstance sharedInstance].userManger.userModel.token = [paraDic objectForKey:@"token"];
             YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
-            request.targetuid = [YXUserManager sharedManager].userModel.uid;
+            request.targetuid = [LSTSharedInstance sharedInstance].userManger.userModel.uid;
             WEAK_SELF
             [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
                 STRONG_SELF
                 YXUserProfileItem *item = retItem;
                 if (item) {
-                    [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
-                    [[YXUserManager sharedManager] saveUserData];
+                    [LSTSharedInstance sharedInstance].userManger.userModel.profile = item.editUserInfo;
+                    [[LSTSharedInstance sharedInstance].userManger saveUserData];
                     [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
                 }
                 [self removeNotifications];
@@ -176,11 +176,11 @@
 
 - (void)saveUserDataAndLogin
 {
-    YXUserModel *userModel = [YXUserManager sharedManager].userModel;
+    YXUserModel *userModel = [LSTSharedInstance sharedInstance].userManger.userModel;
     userModel.uid = userModel.profile.uid;
     userModel.uname = userModel.profile.name;
     userModel.head = userModel.profile.head;
-    [[YXUserManager sharedManager] login];
+    [[LSTSharedInstance sharedInstance].userManger login];
 }
 
 - (void)setupCamera

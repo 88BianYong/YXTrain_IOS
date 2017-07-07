@@ -262,7 +262,7 @@ UITableViewDataSource
             return;
         }
         YXHomeworkInfoRequestItem *item = retItem;
-        item.body.uid = [YXUserManager sharedManager].userModel.uid;
+        item.body.uid = [LSTSharedInstance sharedInstance].userManger.userModel.uid;
         item.body.pid = self.itemBody.pid;
         if (item.body.detail) {
             item.body.lessonStatus = YXVideoLessonStatus_Finish;

@@ -67,7 +67,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         _operType = @"app.upload.log";
         _phone = @"";
         _remoteIp = @"";
-        _token = [YXUserManager sharedManager].userModel.token;
+        _token = [LSTSharedInstance sharedInstance].userManger.userModel.token;
         _mode = [YXConfigManager sharedInstance].mode;
         self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"initialize"];
     }

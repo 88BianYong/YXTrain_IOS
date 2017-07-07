@@ -32,7 +32,7 @@
     UIImageView *userHeaderView = [[UIImageView alloc] init];
     userHeaderView.layer.cornerRadius = 16.0f;
     userHeaderView.clipsToBounds = YES;
-    [userHeaderView sd_setImageWithURL:[NSURL URLWithString:[YXUserManager sharedManager].userModel.profile.head] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
+    [userHeaderView sd_setImageWithURL:[NSURL URLWithString:[LSTSharedInstance sharedInstance].userManger.userModel.profile.head] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
     [containerView addSubview:userHeaderView];
     [userHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_offset(CGSizeMake(32.0f, 32.0f));

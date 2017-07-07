@@ -37,7 +37,7 @@
 {
     [self.request stopRequest];
     self.request = [[YXDatumFilterRequest alloc]init];
-    self.request.stage = [YXUserManager sharedManager].userModel.profile.stageId;
+    self.request.stage = [LSTSharedInstance sharedInstance].userManger.userModel.profile.stageId;
     @weakify(self);
     [self.request startRequestWithRetClass:[YXDatumFilterRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         @strongify(self);
