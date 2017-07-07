@@ -47,6 +47,8 @@ static  NSString *const trackPageName = @"个人信息页面";
 @property (nonatomic, strong) YXImagePickerController *imagePickerController;
 @property (nonatomic, strong) HJCActionSheet *actionSheet;
 @property (nonatomic, strong) YXUploadHeadImgRequest *uploadHeadImgRequest;
+@property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
+
 
 
 
@@ -93,14 +95,23 @@ static  NSString *const trackPageName = @"个人信息页面";
 - (void)requestUserProfile
 {
     [self startLoading];
-    @weakify(self);
-    [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
-        @strongify(self);
+    YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
+    request.targetuid = [YXUserManager sharedManager].userModel.uid;
+    WEAK_SELF
+    [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        YXUserProfileItem *item = retItem;
+        if (item) {
+            [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
+            [[YXUserManager sharedManager] saveUserData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
+        }
         self.profile = [YXUserManager sharedManager].userModel.profile;
         [self stopLoading];
         [self reloadDataWithProfile:self.profile];
         [self.tableView reloadData];
     }];
+    self.userProfileRequest = request;
 }
 
 - (void)setupUI {

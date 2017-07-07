@@ -35,6 +35,9 @@
 @property (nonatomic, strong) YXLoginTextFiledView *registerView;
 @property (nonatomic, strong) YXLoginTextFiledView *passwordView;
 
+@property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
+
+
 
 @end
 
@@ -61,13 +64,21 @@
 
         [YXUserManager sharedManager].userModel.token =paraDic[@"token"];
         [self startLoading];
+        YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
+        request.targetuid = [YXUserManager sharedManager].userModel.uid;
         WEAK_SELF
-        [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
+        [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF
             [self stopLoading];
             if (error) {
                 [self showToast:error.localizedDescription];
                 return;
+            }
+            YXUserProfileItem *item = retItem;
+            if (item) {
+                [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
+                [[YXUserManager sharedManager] saveUserData];
+                [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
             }
             YXUserModel *userModel = [YXUserManager sharedManager].userModel;
             userModel.uid = userModel.profile.uid;
@@ -83,8 +94,7 @@
             }
             [[YXUserManager sharedManager] login];
         }];
-        
-
+        self.userProfileRequest = request;
     }
 }
 #pragma mark- 链接内容

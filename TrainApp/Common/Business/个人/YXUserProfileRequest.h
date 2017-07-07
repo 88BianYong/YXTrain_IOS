@@ -28,11 +28,3 @@ extern NSString *const YXUserProfileGetSuccessNotification;
 @property (nonatomic, strong) NSString *targetuid;
 
 @end
-
-@interface YXUserProfileHelper : NSObject
-
-+ (instancetype)sharedHelper;
-
-- (void)requestCompeletion:(void(^)(NSError *error))completion;
-
-@end

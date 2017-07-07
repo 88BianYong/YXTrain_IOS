@@ -30,6 +30,8 @@
 @property (nonatomic, strong) UIView *footerView;
 @property (nonatomic, strong) YXUserProfile *profile;
 @property (nonatomic, strong) UIView *shadowView;
+@property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
+
 
 @end
 
@@ -221,11 +223,21 @@
 {
     self.profile = [YXUserManager sharedManager].userModel.profile;
     if (!self.profile) {
-        @weakify(self);
-        [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
-            @strongify(self);
-            [self showToast:error.localizedDescription];
+        YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
+        request.targetuid = [YXUserManager sharedManager].userModel.uid;
+        WEAK_SELF
+        [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+            STRONG_SELF
+            YXUserProfileItem *item = retItem;
+            if (item) {
+                [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
+                [[YXUserManager sharedManager] saveUserData];
+                [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
+            }else {
+                [self showToast:error.localizedDescription];
+            }
         }];
+        self.userProfileRequest = request;
     } else {
         [self reloadUserProfileView];
     }

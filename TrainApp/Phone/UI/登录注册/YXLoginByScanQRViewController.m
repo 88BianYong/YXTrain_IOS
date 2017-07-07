@@ -23,6 +23,8 @@
     AVCaptureSession *_session;
     AVCaptureVideoPreviewLayer *_preview;
 }
+@property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
+
 @end
 
 @implementation YXLoginByScanQRViewController
@@ -130,7 +132,17 @@
             [_session stopRunning];
             [_scanBackgroundView.scanTimer setFireDate:[NSDate distantFuture]];
             [YXUserManager sharedManager].userModel.token = [paraDic objectForKey:@"token"];
-            [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
+            YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
+            request.targetuid = [YXUserManager sharedManager].userModel.uid;
+            WEAK_SELF
+            [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+                STRONG_SELF
+                YXUserProfileItem *item = retItem;
+                if (item) {
+                    [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
+                    [[YXUserManager sharedManager] saveUserData];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
+                }
                 [self removeNotifications];
                 if (error) {
                     double delayInSeconds = 1.f;
@@ -150,8 +162,8 @@
                 }
                 [self saveUserDataAndLogin];
                 [YXDataStatisticsManger trackEvent:@"扫码登录" label:@"扫描二维码并成功登录" parameters:nil];
-                
             }];
+            self.userProfileRequest = request;
         } else {
             [self showToast:@"无法识别该二维码"];
         }

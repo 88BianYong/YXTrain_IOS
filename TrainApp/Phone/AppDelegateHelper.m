@@ -19,6 +19,7 @@
 #import "YXUserProfileRequest.h"
 #import "YXDatumGlobalSingleton.h"
 #import "YXInitRequest.h"
+#import "YXUserProfileRequest.h"
 
 #import "YXCMSCustomView.h"
 #import "YXWebViewController.h"
@@ -30,6 +31,7 @@
 @interface AppDelegateHelper ()
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
+@property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
 @end
 @implementation AppDelegateHelper
 - (instancetype)initWithWindow:(UIWindow *)window {
@@ -109,9 +111,20 @@
     }
 }
 - (void)requestCommonData {
-    [[YXUserProfileHelper sharedHelper] requestCompeletion:^(NSError *error) {
+    YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
+    request.targetuid = [YXUserManager sharedManager].userModel.uid;
+    WEAK_SELF
+    [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        YXUserProfileItem *item = retItem;
+        if (item) {
+            [YXUserManager sharedManager].userModel.profile = item.editUserInfo;
+            [[YXUserManager sharedManager] saveUserData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
+        }
         [[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
     }];
+    self.userProfileRequest = request;
 }
 
 - (YXDrawerViewController *)rootDrawerViewController {
