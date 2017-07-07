@@ -64,9 +64,9 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     [[YXWebSocketManger  sharedInstance] close];
-    if ([YXRecordManager sharedManager].isActive) {
+    if ([LSTSharedInstance sharedInstance].recordManager.isActive) {
         [[NSNotificationCenter defaultCenter]postNotificationName:kRecordNeedUpdateNotification object:nil];
-        [[YXRecordManager sharedManager] report];
+        [[LSTSharedInstance sharedInstance].recordManager report];
     }
 }
 
@@ -78,9 +78,9 @@
     //[self getInfoListUpdateDate];
 }
 - (void)applicationDidEnterBackground:(UIApplication *)application{
-    if ([YXRecordManager sharedManager].isActive) {
+    if ([LSTSharedInstance sharedInstance].recordManager.isActive) {
         [[NSNotificationCenter defaultCenter]postNotificationName:kRecordNeedUpdateNotification object:nil];
-        [[YXRecordManager sharedManager] report];
+        [[LSTSharedInstance sharedInstance].recordManager report];
         WEAK_SELF
         self.backgroundTaskIdentifier =[application beginBackgroundTaskWithExpirationHandler:^(void) {
             STRONG_SELF

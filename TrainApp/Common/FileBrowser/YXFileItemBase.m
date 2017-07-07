@@ -67,15 +67,15 @@
 
 #pragma mark - YXBrowserExitDelegate
 - (void)browserExit{
-    if ([YXRecordManager sharedManager].isActive) {
-        [[YXRecordManager sharedManager]report];
+    if ([LSTSharedInstance sharedInstance].recordManager.isActive) {
+        [[LSTSharedInstance sharedInstance].recordManager report];
     }
 }
 
 #pragma mark - YXPlayProgressDelegate
 - (void)playerProgress:(CGFloat)progress totalDuration:(NSTimeInterval)duration stayTime:(NSTimeInterval)time{
-    if ([YXRecordManager sharedManager].isActive) {
-        [[YXRecordManager sharedManager]updateFragmentWithDuration:duration record:duration*progress watchedTime:time];
+    if ([LSTSharedInstance sharedInstance].recordManager.isActive) {
+        [[LSTSharedInstance sharedInstance].recordManager updateFragmentWithDuration:duration record:duration*progress watchedTime:time];
     }
     NSInteger min = time / 60;
     NSInteger sec = (NSInteger)time % 60;
@@ -91,15 +91,15 @@
     }
 }
 - (CGFloat)preProgress{
-    if ([YXRecordManager sharedManager].isActive) {
-        return [[YXRecordManager sharedManager] preProgress];
+    if ([LSTSharedInstance sharedInstance].recordManager.isActive) {
+        return [[LSTSharedInstance sharedInstance].recordManager preProgress];
     }
     return 0;
 }
 #pragma mark - YXBrowseTimeDelegate
 - (void)browseTimeUpdated:(NSTimeInterval)time{
-    if ([YXRecordManager sharedManager].isActive) {
-        [[YXRecordManager sharedManager]updateFragmentWithFileBrowseTime:time];
+    if ([LSTSharedInstance sharedInstance].recordManager.isActive) {
+        [[LSTSharedInstance sharedInstance].recordManager updateFragmentWithFileBrowseTime:time];
     }
 }
 

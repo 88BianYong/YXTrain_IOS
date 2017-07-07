@@ -12,12 +12,14 @@
 #import "PopUpFloatingViewManager.h"
 #import "YXFileRecordManager.h"
 #import "YXInitRequest.h"
+#import "YXRecordManager.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
     PopUpFloatingViewManager *_floatingViewManager;
     YXFileRecordManager *_fileRecordManager;
     YXInitHelper *_upgradeManger;
+    YXRecordManager *_recordManager;
 }
 @end
 @implementation LSTSharedInstance
@@ -63,5 +65,11 @@
         _upgradeManger = [[YXInitHelper alloc] init];
     }
     return _upgradeManger;
+}
+- (YXRecordManager *)recordManager {
+    if (_recordManager == nil) {
+        _recordManager = [[YXRecordManager alloc] init];
+    }
+    return _recordManager;
 }
 @end

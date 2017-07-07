@@ -25,7 +25,7 @@
 @implementation YXCourseDetailViewController
 
 - (void)dealloc{
-    [[YXRecordManager sharedManager]clear];
+    [[LSTSharedInstance sharedInstance].recordManager clear];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -129,7 +129,7 @@
     courseItem.course_id = self.course.courses_id;
     self.courseItem = courseItem;
     [self.tableView reloadData];
-    [[YXRecordManager sharedManager]setupWithCourseDetailItem:courseItem];
+    [[LSTSharedInstance sharedInstance].recordManager setupWithCourseDetailItem:courseItem];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -184,8 +184,8 @@
     [[LSTSharedInstance sharedInstance].fileRecordManager saveRecordWithFilename:fragment.fragment_name url:fragment.url];
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     
-    [YXRecordManager sharedManager].chapterIndex = indexPath.section;
-    [YXRecordManager sharedManager].fragmentIndex = indexPath.row;
+    [LSTSharedInstance sharedInstance].recordManager.chapterIndex = indexPath.section;
+    [LSTSharedInstance sharedInstance].recordManager.fragmentIndex = indexPath.row;
     
     NSMutableString *fixUrl = [NSMutableString stringWithString:fragment.url];
     [fixUrl replaceOccurrencesOfString:@"\\" withString:@"/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [fixUrl length])];

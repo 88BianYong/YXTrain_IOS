@@ -27,7 +27,7 @@
 
 
 - (void)dealloc{
-    [[YXRecordManager sharedManager]clear];
+    [[LSTSharedInstance sharedInstance].recordManager clear];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,8 +43,8 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
-    [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
-    [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
+    [LSTSharedInstance sharedInstance].recordManager.chapterIndex = self.courseItem.playIndexPath.section;
+    [LSTSharedInstance sharedInstance].recordManager.fragmentIndex = self.courseItem.playIndexPath.row;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -126,7 +126,7 @@
 - (void)dealWithCourseItem:(YXCourseDetailItem *)courseItem{
     courseItem.course_id = self.course.courses_id;
     self.courseItem = courseItem;
-    [[YXRecordManager sharedManager] setupWithCourseDetailItem:courseItem];
+    [[LSTSharedInstance sharedInstance].recordManager setupWithCourseDetailItem:courseItem];
     [self willPlayVideo];
 }
 - (void)willPlayVideo{
@@ -136,8 +136,8 @@
         [[LSTSharedInstance sharedInstance].fileRecordManager saveRecordWithFilename:fragment.fragment_name url:fragment.url];
         BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
-        [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
-        [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
+        [LSTSharedInstance sharedInstance].recordManager.chapterIndex = self.courseItem.playIndexPath.section;
+        [LSTSharedInstance sharedInstance].recordManager.fragmentIndex = self.courseItem.playIndexPath.row;
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,nil,NO);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
@@ -159,8 +159,8 @@
         [[LSTSharedInstance sharedInstance].fileRecordManager saveRecordWithFilename:fragment.fragment_name url:fragment.url];
         BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
-        [YXRecordManager sharedManager].chapterIndex = self.courseItem.playIndexPath.section;
-        [YXRecordManager sharedManager].fragmentIndex = self.courseItem.playIndexPath.row;
+        [LSTSharedInstance sharedInstance].recordManager.chapterIndex = self.courseItem.playIndexPath.section;
+        [LSTSharedInstance sharedInstance].recordManager.fragmentIndex = self.courseItem.playIndexPath.row;
     }else {
         BLOCK_EXEC(self.fragmentBlock,nil,nil,YES);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
@@ -251,8 +251,8 @@
     }else{
         [self.fileItem browseFile];
     }
-    [YXRecordManager sharedManager].chapterIndex = indexPath.section;
-    [YXRecordManager sharedManager].fragmentIndex = indexPath.row;
+    [LSTSharedInstance sharedInstance].recordManager.chapterIndex = indexPath.section;
+    [LSTSharedInstance sharedInstance].recordManager.fragmentIndex = indexPath.row;
     [self.tableView reloadData];
 }
 #pragma mark - data format

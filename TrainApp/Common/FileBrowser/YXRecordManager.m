@@ -17,16 +17,6 @@
 @end
 
 @implementation YXRecordManager
-
-+ (instancetype)sharedManager{
-    static YXRecordManager *manager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[YXRecordManager alloc] init];
-    });
-    return manager;
-}
-
 - (void)setupWithCourseDetailItem:(YXCourseDetailItem *)item{
     self.courseDetailItem = item;
     self.isActive = YES;

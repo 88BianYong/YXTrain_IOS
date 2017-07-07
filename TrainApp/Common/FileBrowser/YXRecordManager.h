@@ -15,8 +15,6 @@ static NSString * const kRecordNeedUpdateNotification = @"kRecordNeedUpdateNotif
 
 @interface YXRecordManager : NSObject
 
-+ (instancetype)sharedManager;
-
 - (void)setupWithCourseDetailItem:(YXCourseDetailItem *)item;
 - (void)clear;
 
