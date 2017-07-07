@@ -102,8 +102,8 @@
 
 - (void)requestForExamine{
     self.request = [[YXExamineRequest alloc]init];
-    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    self.request.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
     self.request.userId = self.userId;
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

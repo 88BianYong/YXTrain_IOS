@@ -54,7 +54,7 @@
 }
 - (void)setupFetcher {
     ActivityListFetcher *fetcher = [[ActivityListFetcher alloc]init];
-    fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    fetcher.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     fetcher.pageindex = 0;
     fetcher.pagesize = 10;
     WEAK_SELF

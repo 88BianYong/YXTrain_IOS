@@ -65,8 +65,8 @@
     [self.request stopRequest];
     self.request = [[YXSaveProcessRequest alloc] init];
     self.request.cid = self.courseDetailItem.course_id;
-    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    self.request.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
     self.request.content = [[YXRecordContent contentFromCourseDetailItem:self.courseDetailItem]toJSONString];
     
     NSString *course_id = self.courseDetailItem.course_id;

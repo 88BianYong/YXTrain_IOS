@@ -119,8 +119,8 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 - (void)getDataShowLoading:(BOOL)isShow{
     [self.request stopRequest];
     self.request = [[BeijingExamineRequest alloc]init];
-    self.request.projectid = [YXTrainManager sharedInstance].currentProject.pid;
-    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.request.projectid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    self.request.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
     self.request.role = @"9";
     if (isShow) {
         [self startLoading];
@@ -240,7 +240,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
                 itemBody.type = @"4";
                 itemBody.requireId = tool.requireid;
                 itemBody.homeworkid = tool.homeworkid;
-                itemBody.pid = [YXTrainManager sharedInstance].currentProject.pid;
+                itemBody.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
                 BeijingHomeworkInfoViewController *VC = [[BeijingHomeworkInfoViewController alloc] init];
                 VC.itemBody = itemBody;
                 [self.navigationController pushViewController:VC animated:YES];
@@ -266,8 +266,8 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     BeijingExamineRequestItem_ExamineVoList *list = self.examineItem.examineVoList[section];
     BeijingExamineRequestItem_ExamineVoList_ToolExamineVoList *toolExamine = list.toolExamineVoList[0];
     if (toolExamine.toolid.integerValue == 205 ) {
-        [YXTrainManager sharedInstance].trainHelper.requireId = toolExamine.requireid;
-        [YXTrainManager sharedInstance].trainHelper.homeworkid = toolExamine.homeworkid;
+        [LSTSharedInstance sharedInstance].trainManager.trainHelper.requireId = toolExamine.requireid;
+        [LSTSharedInstance sharedInstance].trainManager.trainHelper.homeworkid = toolExamine.homeworkid;
     }
     return 45.0f;
 }

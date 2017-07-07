@@ -49,7 +49,7 @@
 }
 - (void)setupFetcher {
     LearningInfoListFetcher *fetcher = [[LearningInfoListFetcher alloc]init];
-    fetcher.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    fetcher.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     fetcher.pageindex = 0;
     WEAK_SELF
     [fetcher setLearningInfoListFetcherBlock:^(MasterLearningInfoListRequestItem_Body *body) {
@@ -301,7 +301,7 @@
 #pragma mark - request
 - (void)requestForLearningInfo {
     self.listRequest = [[MasterManageListRequest alloc] init];
-    self.listRequest.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    self.listRequest.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     [self startLoading];
     WEAK_SELF
     [self.listRequest startRequestWithRetClass:[MasterManageListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -341,7 +341,7 @@
         [self.studyRequest stopRequest];
     }
     MasterRemindStudyRequest *request = [[MasterRemindStudyRequest alloc] init];
-    request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.userIds = [[self.userIdSet allObjects] componentsJoinedByString:@","];
     if (!isBatch) {
         [self clearSelectedRemindData];//单个提醒请求错误也需要清空数据

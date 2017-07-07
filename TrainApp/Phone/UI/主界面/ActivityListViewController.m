@@ -45,7 +45,7 @@
 }
 - (void)setupFetcher {
     ActivityListFetcher *fetcher = [[ActivityListFetcher alloc]init];
-    fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    fetcher.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     fetcher.stageid = self.stageID;
     fetcher.pageindex = 0;
     fetcher.pagesize = 10;
@@ -112,8 +112,8 @@
 - (void)allFilters {
     [self.filterRequest stopRequest];
     self.filterRequest = [[ActivityFilterRequest alloc]init];
-    self.filterRequest.projectId = [YXTrainManager sharedInstance].currentProject.pid;
-    self.filterRequest.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.filterRequest.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    self.filterRequest.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
     [self startLoading];
     WEAK_SELF
     [self.filterRequest startRequestWithRetClass:[ActivityFilterRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

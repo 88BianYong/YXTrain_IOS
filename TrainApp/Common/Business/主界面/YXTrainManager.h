@@ -23,7 +23,6 @@ typedef NS_ENUM (NSInteger, LSTTrainProjectStatus) {
 @property (nonatomic, strong) LSTTrainHelper *trainHelper;
 @property (nonatomic, assign ,readonly) LSTTrainProjectStatus trainStatus;
 
-+ (instancetype)sharedInstance;
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock;
 - (void)saveToCache;
 - (void)clear;

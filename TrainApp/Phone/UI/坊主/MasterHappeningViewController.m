@@ -133,8 +133,8 @@
 #pragma mark - request
 - (void)requestForMasterStat {
     MasterStatRequest *request = [[MasterStatRequest alloc] init];
-    request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
-    request.roleId =[YXTrainManager sharedInstance].currentProject.role;
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.roleId =[LSTSharedInstance sharedInstance].trainManager.currentProject.role;
     WEAK_SELF
     [request startRequestWithRetClass:[MasterStatRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

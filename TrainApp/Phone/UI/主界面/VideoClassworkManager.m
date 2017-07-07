@@ -135,7 +135,7 @@
     request.qID = quizzesID;
     request.cID = self.cid;
     request.src = self.source;
-    request.pID = [YXTrainManager sharedInstance].currentProject.pid;
+    request.pID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     WEAK_SELF
     [request startRequestWithRetClass:[YXVideoQuestionsRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
@@ -163,7 +163,7 @@
     request.sm = @"1";
     request.aj = jsonString;
     request.cID = self.cid;
-    request.pID = [YXTrainManager sharedInstance].currentProject.pid;
+    request.pID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     [YXPromtController startLoadingInView:self.rootViewController.view];
     WEAK_SELF
     [request startRequestWithRetClass:[YXSubmitAnswerRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -193,7 +193,7 @@
         request.qID = obj.quizzesID;
         request.cID = self.cid;
         request.src = self.source;
-        request.pID = [YXTrainManager sharedInstance].currentProject.pid;
+        request.pID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
         WEAK_SELF
         [request startRequestWithRetClass:[YXVideoQuestionsRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF

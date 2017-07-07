@@ -50,7 +50,7 @@
         [stageArray addObject:item];
     }
     ActivityFilterGroup *stageGroup = [[ActivityFilterGroup alloc]init];
-    stageGroup.name = [YXTrainManager sharedInstance].trainHelper.activityStageName;
+    stageGroup.name = [LSTSharedInstance sharedInstance].trainManager.trainHelper.activityStageName;
     stageGroup.filterArray = stageArray;
     
     ActivityFilterModel *model = [[ActivityFilterModel alloc]init];

@@ -20,7 +20,7 @@
 - (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock {
     [self stop];
     self.request = [[YXBriefListRequest alloc] init];
-    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    self.request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     [self.request startRequestWithRetClass:[YXBriefListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         if (error) {
             aCompleteBlock(0, nil, error);

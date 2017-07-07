@@ -63,7 +63,7 @@
         [self.filterRequest stopRequest];
     }
     BeijingActivityFilterRequest *request = [[BeijingActivityFilterRequest alloc]init];
-    request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     WEAK_SELF
     [request startRequestWithRetClass:[BeijingActivityFilterRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

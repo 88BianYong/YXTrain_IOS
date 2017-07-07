@@ -63,7 +63,7 @@ UITableViewDataSource
 }
 #pragma mark - setupUI
 - (BOOL)isJudgmentChooseCourse{
-    if ([YXTrainManager sharedInstance].currentProject.isOpenTheme.boolValue) {
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme.boolValue) {
         self.emptyView = [[YXEmptyView alloc]init];
         self.emptyView.title = @"请先等待主题选学";
         self.emptyView.imageName = @"没选课";
@@ -143,7 +143,7 @@ UITableViewDataSource
     YXHomeworkListRequestItem_Body_Stages *stages = (YXHomeworkListRequestItem_Body_Stages *)_listItem.body.stages[indexPath.section];
     if (stages.homeworks.count > 0) {
         YXHomeworkInfoRequestItem_Body *homework = stages.homeworks[indexPath.row];
-        homework.pid = [YXTrainManager sharedInstance].currentProject.pid;
+        homework.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
         YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
         VC.itemBody = homework;
         [self.navigationController pushViewController:VC animated:YES];
@@ -180,7 +180,7 @@ UITableViewDataSource
 #pragma mark - request
 - (void)requestForHomeworkList:(BOOL)isShow{
     YXHomeworkListRequest *request = [[YXHomeworkListRequest alloc] init];
-    request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     if (isShow) {
         [self startLoading];
     }

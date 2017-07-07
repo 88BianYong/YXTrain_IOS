@@ -41,7 +41,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 }
 - (void)viewDidLoad {
     DeYangCourseListFetcher *fetcher = [[DeYangCourseListFetcher alloc]init];
-    fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    fetcher.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     WEAK_SELF
     fetcher.filterBlock = ^(YXCourseListFilterModel *model){
         STRONG_SELF
@@ -154,7 +154,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     [self.stageQuiz enumerateObjectsUsingBlock:^(__kindof YXCourseListRequestItem_body_stage_quiz * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.isSelected.integerValue == 1) {
             DeYangGetQuizStatistics *request = [[DeYangGetQuizStatistics alloc] init];
-            request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+            request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
             request.stageid = obj.stageID;
             [request startRequestWithRetClass:[DeYangGetQuizStatisticsItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
                 STRONG_SELF
@@ -175,7 +175,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (void)getFilters{
     [self.request stopRequest];
     self.request = [[YXCourseListRequest alloc] init];
-    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    self.request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     self.request.pageindex = @"1";
     self.request.pagesize = @"10";
     [self startLoading];

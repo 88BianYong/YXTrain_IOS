@@ -42,7 +42,7 @@ UITableViewDataSource
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = [YXTrainManager sharedInstance].trainHelper.workshopDetailTitle;
+    self.title = [LSTSharedInstance sharedInstance].trainManager.trainHelper.workshopDetailTitle;
     _dataMutableArray = [[NSMutableArray alloc] initWithCapacity:2];
     [self workshopDetailDataFormat:nil];
     _detailItem = [[YXWorkshopDetailRequestItem alloc] init];

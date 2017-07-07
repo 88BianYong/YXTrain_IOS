@@ -21,7 +21,7 @@
 
 - (void)setupUIAndLayoutInterface{
     UIImageView *imageView = [[UIImageView alloc] init];
-    imageView.image = [UIImage imageNamed:[YXTrainManager sharedInstance].trainHelper.firstHomeworkImageName];
+    imageView.image = [UIImage imageNamed:[LSTSharedInstance sharedInstance].trainManager.trainHelper.firstHomeworkImageName];
     [self addSubview:imageView];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

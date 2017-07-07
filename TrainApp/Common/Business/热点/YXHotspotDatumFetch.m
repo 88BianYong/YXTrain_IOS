@@ -14,7 +14,7 @@
 @implementation YXHotspotDatumFetch
 - (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock{
     YXHotspotRequest *request = [[YXHotspotRequest alloc] init];
-    request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.pageNo = [NSString stringWithFormat:@"%d", self.pageindex + 1];
     request.pageSize = [NSString stringWithFormat:@"%d", self.pagesize];
     [request startRequestWithRetClass:[YXHotspotRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

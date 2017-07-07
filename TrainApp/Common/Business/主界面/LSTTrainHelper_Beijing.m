@@ -59,7 +59,7 @@
     itemBody.type = @"4";
     itemBody.requireId = self.requireId;
     itemBody.homeworkid = self.homeworkid;
-    itemBody.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    itemBody.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     VC.itemBody = itemBody;
     [viewController.navigationController pushViewController:VC animated:YES];
 }

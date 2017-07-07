@@ -14,13 +14,13 @@
 @implementation LSTTrainHelper
 + (instancetype)alloc{
     if ([self class] == [LSTTrainHelper class]) {
-        if ([[YXTrainManager sharedInstance].currentProject.pid isEqualToString:YXTrainBeijingProjectId]) {
+        if ([[LSTSharedInstance sharedInstance].trainManager.currentProject.pid isEqualToString:YXTrainBeijingProjectId]) {
             return [LSTTrainHelper_Beijing alloc];
         }
         NSArray *array = [YXTrainDeYangProjectId componentsSeparatedByString:@","];
         __block BOOL isDeYang = NO;
         [array enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isEqualToString:[YXTrainManager sharedInstance].currentProject.pid]) {
+            if ([obj isEqualToString:[LSTSharedInstance sharedInstance].trainManager.currentProject.pid]) {
                 isDeYang = YES;
                 *stop = YES;
             }

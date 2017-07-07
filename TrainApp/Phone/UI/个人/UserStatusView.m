@@ -31,7 +31,7 @@
         STRONG_SELF
         if (!self.isMasterBool) {
             self.isMasterBool = YES;
-            [YXTrainManager sharedInstance].currentProject.role = @"99";
+            [LSTSharedInstance sharedInstance].trainManager.currentProject.role = @"99";
             [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainUserIdentityChange object:nil];
         }
     }];
@@ -45,7 +45,7 @@
         STRONG_SELF
         if (self.isMasterBool) {
             self.isMasterBool = NO;
-            [YXTrainManager sharedInstance].currentProject.role = @"9";
+            [LSTSharedInstance sharedInstance].trainManager.currentProject.role = @"9";
             [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainUserIdentityChange object:nil];
         }
     }];

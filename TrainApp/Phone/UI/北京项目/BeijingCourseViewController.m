@@ -35,8 +35,8 @@ static  NSString *const trackPageName = @"课程列表页面";
 }
 - (void)viewDidLoad {
     BeijingCourseListFetcher *fetcher = [[BeijingCourseListFetcher alloc]init];
-    fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    fetcher.w = [YXTrainManager sharedInstance].currentProject.w;
+    fetcher.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    fetcher.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
     fetcher.stageid = self.stageID;
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;

@@ -126,7 +126,7 @@
         if (((NSString *)[paraDic objectForKey:@"courseId"]).length > 0) {
             [_session stopRunning];
             [_scanBackgroundView.scanTimer setFireDate:[NSDate distantFuture]];
-            if ( [[YXTrainManager sharedInstance] setupProjectId:[paraDic objectForKey:@"projectId"]]) {
+            if ( [[LSTSharedInstance sharedInstance].trainManager setupProjectId:[paraDic objectForKey:@"projectId"]]) {
                 VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
                 YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
                 course.courses_id = [paraDic objectForKey:@"courseId"];

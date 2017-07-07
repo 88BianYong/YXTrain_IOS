@@ -53,6 +53,7 @@ extern int ddLogLevel;
 #import "YXAlertCustomView.h"
 
 #pragma mark - Other
+#import "LSTSharedInstance.h"
 #import "YXDefinitions.h"
 #import "YXConfigManager.h"
 #import "GlobalUtils.h"

@@ -18,15 +18,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 
 @implementation YXTrainManager
 @synthesize currentProjectIndexPath = _currentProjectIndexPath;
-+ (instancetype)sharedInstance {
-    static YXTrainManager *manager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[YXTrainManager alloc] init];
-        [manager loadFromCache];
-    });
-    return manager;
-}
+
 - (LSTTrainHelper *)trainHelper {
     if (_trainHelper == nil) {
         _trainHelper = [LSTTrainHelper alloc];
@@ -121,7 +113,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     if (projectGroupArray.count > 0) {
         TrainListProjectGroup *trainingGroup = projectGroupArray[0];
         if (trainingGroup.items.count > 0) {
-            if (trainingGroup.items[0].w.integerValue <= 5) {
+            if (trainingGroup.items[0].w.integerValue >= 5) {
                 return LSTTrainProjectStatus_2017;
             }
         }

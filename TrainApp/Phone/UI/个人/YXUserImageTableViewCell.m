@@ -84,9 +84,9 @@
         make.left.mas_equalTo(20);
         make.right.mas_equalTo(-20);
     }];
-    if ([YXTrainManager sharedInstance].currentProject.isDoubel.boolValue) {
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isDoubel.boolValue) {
         self.statusView = [[UserStatusView alloc]init];
-        self.statusView.isMasterBool = [YXTrainManager sharedInstance].currentProject.role.intValue == 99;
+        self.statusView.isMasterBool = [LSTSharedInstance sharedInstance].trainManager.currentProject.role.intValue == 99;
         [self.contentView addSubview:self.statusView];
         [self.statusView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_offset(CGSizeMake(169.0f, 26.0f));

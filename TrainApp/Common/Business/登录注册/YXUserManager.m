@@ -83,7 +83,7 @@ NSString *const YXUserLogoutSuccessNotification = @"kYXUserLogoutSuccessNotifica
 
 - (void)logout
 {
-    [[YXTrainManager sharedInstance] clear];
+    [[LSTSharedInstance sharedInstance].trainManager clear];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kYXTrainFirstGoInHomeworkInfo];
     [self logoutIsTokenInvalid:NO];
 }

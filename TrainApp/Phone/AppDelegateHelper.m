@@ -82,8 +82,8 @@
             self.window.rootViewController = vc;
             [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:versionKey];
             [[NSUserDefaults standardUserDefaults] synchronize];
-            if (![YXTrainManager sharedInstance].trainlistItem.body.training &&![YXTrainManager sharedInstance].trainlistItem.body.trained) {
-                [[YXTrainManager sharedInstance] clear];
+            if (![LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.training &&![LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trained) {
+                [[LSTSharedInstance sharedInstance].trainManager clear];
             }
         }else {
             [self startRootVC];
@@ -92,7 +92,7 @@
 }
 - (void)startRootVC {
     if ([[YXUserManager sharedManager] isLogin]) {
-        self.window.rootViewController = ([YXTrainManager sharedInstance].trainStatus == LSTTrainProjectStatus_2017) ?[self rootTabBarViewController] : [self rootDrawerViewController];
+        self.window.rootViewController = ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2017) ?[self rootTabBarViewController] : [self rootDrawerViewController];
         [self requestCommonData];
         WEAK_SELF
         [[PopUpFloatingViewManager sharedInstance] setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
@@ -179,7 +179,7 @@
     
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kXYTrainChooseProject object:nil] subscribeNext:^(NSNotification *x) {
         STRONG_SELF
-        self.window.rootViewController = [x.object boolValue]?[self rootTabBarViewController] : [self rootDrawerViewController];
+        self.window.rootViewController = ([x.object integerValue] == LSTTrainProjectStatus_2017) ? [self rootTabBarViewController] : [self rootDrawerViewController];
         [self requestCommonData];
         if (!isEmpty(self.courseId)) {
             [PopUpFloatingViewManager sharedInstance].loginStatus = PopUpFloatingLoginStatus_QRCode;

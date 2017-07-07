@@ -34,7 +34,7 @@
     self.button.clipsToBounds = YES;
 }
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
-    if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {
+    if ([LSTSharedInstance sharedInstance].trainManager.trainHelper.presentProject == LSTTrainPresentProject_Beijing) {
         self.redPointNumber = [TrainRedPointManger sharedInstance].hotspotInteger > 0 ? 0 : -1;
     }else {
         self.redPointNumber = [TrainRedPointManger sharedInstance].showRedPointInteger;

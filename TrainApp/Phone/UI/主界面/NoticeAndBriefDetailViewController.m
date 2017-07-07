@@ -150,7 +150,7 @@
 #pragma mark - request
 - (void)requestForNoticeAndBriefDetail{
     NoticeAndBriefDetailRequest *request = [[NoticeAndBriefDetailRequest alloc] init];
-    request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.nbID = self.nbIdString;
     [self startLoading];
     WEAK_SELF

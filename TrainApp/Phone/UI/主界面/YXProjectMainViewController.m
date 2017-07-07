@@ -163,7 +163,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 #pragma mark - request
 - (void)showProjectMainView{
-    NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:[YXTrainManager sharedInstance].trainlistItem.body];
+    NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
     self.emptyView.imageName = @"无培训项目";
     self.emptyView.title = @"您没有已参加的培训项目";
     self.emptyView.subTitle = @"";
@@ -176,12 +176,12 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         return;
     }
     [self.dataMutableArrray addObjectsFromArray:groups];
-    if ([YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目需要校验信息
+    if ([LSTSharedInstance sharedInstance].trainManager.trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目需要校验信息
         [self requestCheckedMobileUser];
     }else {
         [self setupQRCodeRightView];
         [self dealWithProjectGroups:self.dataMutableArrray];
-        [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
+        [self showProjectWithIndexPath:[LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath];
     }
 }
 
@@ -193,7 +193,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     WEAK_SELF
     [self startLoading];
     BeijingCheckedMobileUserRequest *request = [[BeijingCheckedMobileUserRequest alloc] init];
-    request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     [request startRequestWithRetClass:[BeijingCheckedMobileUserRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         BeijingCheckedMobileUserRequestItem *item = retItem;
@@ -222,7 +222,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         }else {
             [self.emptyView removeFromSuperview];
             [self setupRightView];
-            [self showProjectWithIndexPath:[YXTrainManager sharedInstance].currentProjectIndexPath];
+            [self showProjectWithIndexPath:[LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath];
         }
         [self dealWithProjectGroups:self.dataMutableArrray];
     }];
@@ -230,12 +230,12 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 
 - (void)requestForLayerList {
-    if (self.layerMutableDictionary[[YXTrainManager sharedInstance].currentProject.pid]) {
-        [self showTrainLayerView:self.layerMutableDictionary[[YXTrainManager sharedInstance].currentProject.pid]];
+    if (self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid]) {
+        [self showTrainLayerView:self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid]];
     }else {
         self.requestStatus = TrainProjectRequestStatus_LayerList;
         TrainLayerListRequest *request = [[TrainLayerListRequest alloc] init];
-        request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+        request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
         WEAK_SELF
         [self startLoading];
         [request startRequestWithRetClass:[TrainLayerListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -250,7 +250,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
                 return;
             }
             if (item) {
-                self.layerMutableDictionary[[YXTrainManager sharedInstance].currentProject.pid] = item;
+                self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid] = item;
                 [self showTrainLayerView:item];
             }
         }];
@@ -260,7 +260,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 - (void)requestForSelectLayer:(NSString *)layerId {
     [self startLoading];
     TrainSelectLayerRequest *request = [[TrainSelectLayerRequest alloc] init];
-    request.projectId = [YXTrainManager sharedInstance].currentProject.pid;
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.layerId = layerId;
     WEAK_SELF
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -273,9 +273,9 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         if ([self handleRequestData:data]) {
             return;
         }
-        [YXTrainManager sharedInstance].currentProject.isOpenLayer = @"0";
-        [YXTrainManager sharedInstance].currentProject.layerId = layerId;
-        [[YXTrainManager sharedInstance] saveToCache];
+        [LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenLayer = @"0";
+        [LSTSharedInstance sharedInstance].trainManager.currentProject.layerId = layerId;
+        [[LSTSharedInstance sharedInstance].trainManager saveToCache];
         [self.chooseLayerView removeFromSuperview];
         [self refreshUserRoleInterface];
     }];
@@ -284,8 +284,8 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 
 #pragma mark - showView
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
-    [YXTrainManager sharedInstance].currentProject.role = nil;
-    [YXTrainManager sharedInstance].currentProjectIndexPath = indexPath;
+    [LSTSharedInstance sharedInstance].trainManager.currentProject.role = nil;
+    [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
     [self refreshUserRoleInterface];
 }
 
@@ -297,13 +297,13 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         [v removeFromSuperview];
     }
     [[PopUpFloatingViewManager sharedInstance] startPopUpFloatingView];
-    if ([YXTrainManager sharedInstance].currentProject.isOpenLayer.boolValue) {
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenLayer.boolValue) {
         [self requestForLayerList];
         self.QRCodeView.hidden = YES;
     }else {
         [self stopLoading];
-        if ([YXTrainManager sharedInstance].currentProject.role.intValue == 9 ||
-            [YXTrainManager sharedInstance].currentProject.w.integerValue < 3) {
+        if ([LSTSharedInstance sharedInstance].trainManager.currentProject.role.intValue == 9 ||
+            [LSTSharedInstance sharedInstance].trainManager.currentProject.w.integerValue < 3) {
             [self showStudentInterface];
         }else {
             [self showMasterInterface];
@@ -332,7 +332,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 #pragma mark - peojects hide & show
 - (void)dealWithProjectGroups:(NSArray *)groups{
     YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
-    selectionView.currentIndexPath = [YXTrainManager sharedInstance].currentProjectIndexPath;
+    selectionView.currentIndexPath = [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath;
     selectionView.projectGroup = groups;
     WEAK_SELF
     selectionView.projectChangeBlock = ^(NSIndexPath *indexPath){

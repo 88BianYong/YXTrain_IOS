@@ -177,7 +177,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];// TD: fix bug 192
     
     //北京项目课程显示防挂课功能
-    if (self.sourceType == YXSourceTypeCourse && [YXTrainManager sharedInstance].trainHelper.presentProject == LSTTrainPresentProject_Beijing) {
+    if (self.sourceType == YXSourceTypeCourse && [LSTSharedInstance sharedInstance].trainManager.trainHelper.presentProject == LSTTrainPresentProject_Beijing) {
         self.preventView = [[PreventHangingCourseView alloc] init];
         [self.preventView setPreventHangingCourseBlock:^{
             STRONG_SELF

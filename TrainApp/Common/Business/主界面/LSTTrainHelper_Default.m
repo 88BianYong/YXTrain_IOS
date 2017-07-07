@@ -29,7 +29,7 @@
     return @"APP仅支持视频课例，其他作业-请到研修网完成～";
 }
 - (NSString *)w {
-    return [YXTrainManager sharedInstance].currentProject.w;
+    return [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
 }
 - (NSArray *)sideMenuArray {
     return  @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},

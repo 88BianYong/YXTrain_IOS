@@ -13,7 +13,7 @@
 #import "YXCourseRecordViewController.h"
 @implementation YXProjectMainViewController (Student)
 - (void)showStudentInterface {
-    if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.w.integerValue >= 3) {
         YXProjectContainerView *containerView = [[YXProjectContainerView alloc]initWithFrame:self.view.bounds];
         WEAK_SELF
         containerView.selectedViewContrller = ^(UIViewController<YXTrackPageDataProtocol> *vc){
@@ -22,7 +22,7 @@
             self.selectedViewController = vc;
             [self.selectedViewController report:YES];
         };
-        UIViewController<YXTrackPageDataProtocol> *examVC = [[YXTrainManager sharedInstance].trainHelper showExamProject];
+        UIViewController<YXTrackPageDataProtocol> *examVC = [[LSTSharedInstance sharedInstance].trainManager.trainHelper showExamProject];
         YXTaskViewController *taskVC = [[YXTaskViewController alloc]init];
         YXNoticeViewController *notiVC = [[YXNoticeViewController alloc]init];
         notiVC.flag = YXFlag_Notice;

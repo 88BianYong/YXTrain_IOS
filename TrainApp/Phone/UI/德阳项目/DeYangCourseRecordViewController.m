@@ -109,7 +109,7 @@ static  NSString *const trackPageName = @"看课记录页面";
         [self getDataShowLoading:YES];
     };
     self.emptyView = [[YXEmptyView alloc]init];
-    if ([YXTrainManager sharedInstance].currentProject.w.integerValue >= 3) {
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.w.integerValue >= 3) {
         self.emptyView.title = @"您还没有开始看课";
         self.emptyView.imageName = @"没开始看课";
     }else{
@@ -127,8 +127,8 @@ static  NSString *const trackPageName = @"看课记录页面";
 - (void)getDataShowLoading:(BOOL)isShow{
     [self.request stopRequest];
     self.request = [[YXCourseRecordRequest alloc]init];
-    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
-    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    self.request.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
+    self.request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     if (isShow) {
         [self startLoading];
     }
@@ -192,8 +192,8 @@ static  NSString *const trackPageName = @"看课记录页面";
     [self.moduleListRequest stopRequest];
     self.moduleListRequest = [[YXModuleListRequest alloc]init];
     self.moduleListRequest.mid = module.module_id;
-    self.moduleListRequest.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    self.moduleListRequest.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.moduleListRequest.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    self.moduleListRequest.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
     [self startLoading];
     WEAK_SELF
     [self.moduleListRequest startRequestWithRetClass:[YXModuleListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

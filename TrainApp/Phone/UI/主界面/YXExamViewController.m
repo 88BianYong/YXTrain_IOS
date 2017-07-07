@@ -111,8 +111,8 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         STRONG_SELF
         [self requestForExamineContent];
     };
-    if (![YXTrainManager sharedInstance].currentProject.isContainsTeacher.boolValue &&
-        [YXTrainManager sharedInstance].currentProject.isDoubel.boolValue) {
+    if (![LSTSharedInstance sharedInstance].trainManager.currentProject.isContainsTeacher.boolValue &&
+        [LSTSharedInstance sharedInstance].trainManager.currentProject.isDoubel.boolValue) {
         self.tipsView = [[StudentExamTipsView alloc] init];
         [self.tipsView setStudentExamTipsOpenCloseBlock:^(UIButton *sender) {
             STRONG_SELF
@@ -143,8 +143,8 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
         [self.examineRequest stopRequest];
     }
     YXExamineRequest *request = [[YXExamineRequest alloc]init];
-    request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    request.w = [YXTrainManager sharedInstance].currentProject.w;
+    request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
     WEAK_SELF
     [request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

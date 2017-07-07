@@ -240,7 +240,7 @@
     [self.view setNeedsLayout];
 }
 - (void)reloadMenuTableView{
-    NSArray *trainArray = [YXTrainManager sharedInstance].trainlistItem.body.trains;
+    NSArray *trainArray = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains;
     __block BOOL isShow = NO;
     [trainArray enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.w.integerValue >= 3) {
@@ -249,11 +249,11 @@
         }
     }];
     if (isShow){//北京项目 13,14项目没有消息动态
-        _titleArray = [NSArray arrayWithArray:[YXTrainManager sharedInstance].trainHelper.sideMenuArray];
+        _titleArray = [NSArray arrayWithArray:[LSTSharedInstance sharedInstance].trainManager.trainHelper.sideMenuArray];
     }else{
         _titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
                         @{@"title":@"资源",@"normalIcon":@"资源icon正常态",@"hightIcon":@"资源icon点击态"},
-                        @{@"title":[YXTrainManager sharedInstance].trainHelper.workshopListTitle,@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"}];
+                        @{@"title":[LSTSharedInstance sharedInstance].trainManager.trainHelper.workshopListTitle,@"normalIcon":@"我的工作坊icon-正常态",@"hightIcon":@"我的工作坊icon-点击态"}];
     }
     [self.tableView reloadData];
 }

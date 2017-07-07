@@ -31,7 +31,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 }
 - (void)viewDidLoad {
     YXCourseListFetcher *fetcher = [[YXCourseListFetcher alloc]init];
-    fetcher.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    fetcher.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     fetcher.stageid = self.stageID;
     WEAK_SELF
     fetcher.filterBlock = ^(YXCourseListFilterModel *model){
@@ -98,7 +98,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (void)getFilters{
     [self.request stopRequest];
     self.request = [[YXCourseListRequest alloc] init];
-    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
+    self.request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     self.request.pageindex = @"1";
     self.request.pagesize = @"10";
     [self startLoading];

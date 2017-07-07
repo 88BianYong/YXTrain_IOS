@@ -23,7 +23,7 @@
     }
 }
 - (BOOL)isJudgmentChooseCourse{
-    if ([YXTrainManager sharedInstance].currentProject.isOpenTheme.boolValue) {
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme.boolValue) {
         self.emptyView = [[YXEmptyView alloc]init];
         self.emptyView.title = @"请先等待主题选学";
         self.emptyView.imageName = @"没选课";

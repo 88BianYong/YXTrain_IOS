@@ -245,19 +245,19 @@
 
 #pragma mark - judgment
 - (BOOL)isShowMoreThanOneProject {
-    return ([YXTrainManager sharedInstance].trainlistItem.body.trains.count > 1) &&
+    return ([LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains.count > 1) &&
     ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstLaunch] &&
-    [YXTrainManager sharedInstance].currentProject.w.integerValue >= 3;
+    [LSTSharedInstance sharedInstance].trainManager.currentProject.w.integerValue >= 3;
 }
 - (BOOL)isShowRoleChange {
-    return [YXTrainManager sharedInstance].currentProject.isDoubel.boolValue &&
+    return [LSTSharedInstance sharedInstance].trainManager.currentProject.isDoubel.boolValue &&
     ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstRoleChange] &&
-    ([YXTrainManager sharedInstance].currentProject.role.integerValue == 99) &&
-    [YXTrainManager sharedInstance].currentProject.w.integerValue >= 3;
+    ([LSTSharedInstance sharedInstance].trainManager.currentProject.role.integerValue == 99) &&
+    [LSTSharedInstance sharedInstance].trainManager.currentProject.w.integerValue >= 3;
 }
 - (BOOL)isQRCodePrompt {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainQRCodePrompt] &&
-    [YXTrainManager sharedInstance].currentProject != nil &&
-    [YXTrainManager sharedInstance].trainHelper.presentProject != LSTTrainPresentProject_Beijing;
+    [LSTSharedInstance sharedInstance].trainManager.currentProject != nil &&
+    [LSTSharedInstance sharedInstance].trainManager.trainHelper.presentProject != LSTTrainPresentProject_Beijing;
 }
 @end

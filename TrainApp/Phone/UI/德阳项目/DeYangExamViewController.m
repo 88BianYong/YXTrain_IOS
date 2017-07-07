@@ -44,7 +44,7 @@ static  NSString *const trackPageName = @"考核页面";
     [super viewDidLoad];
     self.isSelected = YES;
     self.isShowLoding = YES;
-    self.urlString = [NSString stringWithFormat:@"http://i.yanxiu.com/uft/train/mobile/projectstat.vm?projectid=%@&token=%@",[YXTrainManager sharedInstance].currentProject.pid,[YXUserManager sharedManager].userModel.token];
+    self.urlString = [NSString stringWithFormat:@"http://i.yanxiu.com/uft/train/mobile/projectstat.vm?projectid=%@&token=%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.pid,[YXUserManager sharedManager].userModel.token];
     [self setupLeftBack];
     [self setupRightWithImageNamed:@"更多icon" highlightImageNamed:@"更多icon-点击态"];
     self.webView = [UIWebView new];

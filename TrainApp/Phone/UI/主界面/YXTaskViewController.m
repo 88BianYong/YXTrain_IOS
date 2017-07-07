@@ -99,8 +99,8 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 - (void)getData{
     [self.request stopRequest];
     self.request = [[YXTaskListRequest alloc]init];
-    self.request.pid = [YXTrainManager sharedInstance].currentProject.pid;
-    self.request.w = [YXTrainManager sharedInstance].currentProject.w;
+    self.request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    self.request.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
     [self startLoading];
     WEAK_SELF
     [self.request startRequestWithRetClass:[YXTaskListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -156,16 +156,16 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXTaskListRequestItem_body_task *task = self.tasklistItem.body.tasks[indexPath.row];
     if (task.toolid.integerValue == 201) {
-        [[YXTrainManager sharedInstance].trainHelper courseInterfaceSkip:self];
+        [[LSTSharedInstance sharedInstance].trainManager.trainHelper courseInterfaceSkip:self];
     }else if ([task.toolid isEqualToString:@"203"] || [task.toolid isEqualToString:@"303"]){//作业
-        [[YXTrainManager sharedInstance].trainHelper workshopInterfaceSkip:self];
+        [[LSTSharedInstance sharedInstance].trainManager.trainHelper workshopInterfaceSkip:self];
     }else if ([task.toolid isEqualToString:@"205"] || [task.toolid isEqualToString:@"305"]){//研修总结
         NSString *string = @"YXHomeworkListViewController";
         UIViewController *VC = [[NSClassFromString(string) alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
         [YXDataStatisticsManger trackEvent:@"作业列表" label:trackLabelOfJumpFromTaskList parameters:nil];
     }else if ([task.toolid isEqualToString:@"202"] || [task.toolid isEqualToString:@"302"]){//活动
-        [[YXTrainManager sharedInstance].trainHelper activityInterfaceSkip:self];
+        [[LSTSharedInstance sharedInstance].trainManager.trainHelper activityInterfaceSkip:self];
     }else{
         [self showToast:@"相关功能暂未开放"];
     }

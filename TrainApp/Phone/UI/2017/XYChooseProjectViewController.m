@@ -48,7 +48,7 @@
 - (void)requestForProjectList {
     [self startLoading];
     WEAK_SELF
-    [[YXTrainManager sharedInstance] getProjectsWithCompleteBlock:^(NSArray *groups, NSError *error) {
+    [[LSTSharedInstance sharedInstance].trainManager getProjectsWithCompleteBlock:^(NSArray *groups, NSError *error) {
         STRONG_SELF
         self.emptyView.imageName = @"无培训项目";
         self.emptyView.title = @"您没有已参加的培训项目";
@@ -61,7 +61,7 @@
             [self stopLoading];
             return;
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChooseProject object:@(YES)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChooseProject object:@([LSTSharedInstance sharedInstance].trainManager.trainStatus)];
     }];
 }
 @end
