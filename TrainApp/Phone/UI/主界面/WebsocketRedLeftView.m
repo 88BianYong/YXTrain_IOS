@@ -35,9 +35,9 @@
 }
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
     if ([LSTSharedInstance sharedInstance].trainManager.trainHelper.presentProject == LSTTrainPresentProject_Beijing) {
-        self.redPointNumber = [TrainRedPointManger sharedInstance].hotspotInteger > 0 ? 0 : -1;
+        self.redPointNumber = [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger > 0 ? 0 : -1;
     }else {
-        self.redPointNumber = [TrainRedPointManger sharedInstance].showRedPointInteger;
+        self.redPointNumber = [LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger;
     }
 }
 @end

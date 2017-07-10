@@ -307,7 +307,7 @@
     switch (indexPath.section) {
         case 0:
         {
-            [TrainRedPointManger sharedInstance].hotspotInteger = -1;
+            [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = -1;
             [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Hotspot];
             YXHotspotViewController *hotspot = [[YXHotspotViewController alloc] init];
             [self.navigationController pushViewController:hotspot animated:YES];

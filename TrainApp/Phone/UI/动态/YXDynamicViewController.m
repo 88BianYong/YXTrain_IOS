@@ -54,7 +54,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
 - (void)naviLeftAction {
     if (self.isSuccess) {
         [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Dynamic];
-        [TrainRedPointManger sharedInstance].dynamicInteger = -1;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = -1;
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     }
     [self.navigationController popViewControllerAnimated:YES];
@@ -191,7 +191,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     self.isSuccess = YES;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Dynamic];
-        [TrainRedPointManger sharedInstance].dynamicInteger = -1;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = -1;
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     });
 }

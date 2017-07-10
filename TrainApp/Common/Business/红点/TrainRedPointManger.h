@@ -13,6 +13,4 @@
 
 @property (nonatomic, assign) NSInteger hotspotInteger;
 @property (nonatomic, assign) NSInteger dynamicInteger;
-
-+ (instancetype)sharedInstance;
 @end

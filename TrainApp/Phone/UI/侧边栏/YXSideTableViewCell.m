@@ -107,7 +107,7 @@
     switch (_cellStatus) {
         case YXSideTableViewCellStatus_Hotspot:
         {
-            self.redPointNumber = [TrainRedPointManger sharedInstance].hotspotInteger > 0 ? 0 : - 1;
+            self.redPointNumber = [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger > 0 ? 0 : - 1;
         }
             break;
         case YXSideTableViewCellStatus_Datum:
@@ -122,7 +122,7 @@
             break;
         case YXSideTableViewCellStatus_Dynamic:
         {
-            self.redPointNumber = [TrainRedPointManger sharedInstance].dynamicInteger > 0 ? [TrainRedPointManger sharedInstance].dynamicInteger : - 1;
+            self.redPointNumber = [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger > 0 ? [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger : - 1;
         }
             break;
     }

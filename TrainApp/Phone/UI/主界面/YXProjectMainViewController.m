@@ -135,7 +135,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     WEAK_SELF
     [self.rightView setWebsocketRedButtonActionBlock:^{
         STRONG_SELF
-        [TrainRedPointManger sharedInstance].dynamicInteger = -1;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = -1;
         [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Dynamic];
         BeijingDynamicViewController *VC = [[BeijingDynamicViewController alloc] init];
         [self.navigationController pushViewController:VC animated:YES];

@@ -16,6 +16,7 @@
 #import "YXUpdateProfileRequest.h"
 #import "YXUserManager.h"
 #import "YXWebSocketManger.h"
+#import "TrainRedPointManger.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
@@ -26,6 +27,7 @@
     YXUpdateProfileHelper *_updateProfileHelper;
     YXUserManager *_userManger;
     YXWebSocketManger *_webSocketManger;
+    TrainRedPointManger *_redPointManger;
 }
 @end
 @implementation LSTSharedInstance
@@ -96,5 +98,11 @@
         _webSocketManger = [[YXWebSocketManger alloc] init];
     }
     return _webSocketManger;
+}
+- (TrainRedPointManger *)redPointManger {
+    if (_redPointManger == nil) {
+        _redPointManger = [[TrainRedPointManger alloc] init];
+    }
+    return _redPointManger;
 }
 @end

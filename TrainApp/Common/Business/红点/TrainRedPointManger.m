@@ -9,14 +9,6 @@
 #import "TrainRedPointManger.h"
 
 @implementation TrainRedPointManger
-+ (instancetype)sharedInstance {
-    static TrainRedPointManger *manger = nil;
-    static dispatch_once_t oneToken;
-    dispatch_once(&oneToken, ^{
-        manger = [[TrainRedPointManger alloc] init];
-    });
-    return manger;
-}
 - (instancetype)init {
     if (self = [super init]) {
         _dynamicInteger = -1;

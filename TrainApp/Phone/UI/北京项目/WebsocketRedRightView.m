@@ -23,10 +23,10 @@
     self.button.frame = CGRectMake(0, 0, 32.0f, 32.0f);
 }
 - (void)webSocketReceiveMessage:(NSNotification *)aNotification{
-    if ([TrainRedPointManger sharedInstance].dynamicInteger <= 0) {
+    if ([LSTSharedInstance sharedInstance].redPointManger.dynamicInteger <= 0) {
         self.redPointNumber = -1;
     }else {
-        self.redPointNumber = [TrainRedPointManger sharedInstance].dynamicInteger;
+        self.redPointNumber = [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger;
     }
 }
 @end

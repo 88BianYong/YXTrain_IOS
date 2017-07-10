@@ -21,7 +21,7 @@
         [GeTuiSdk startSdkWithAppId:[YXConfigManager sharedInstance].geTuiAppId appKey:[YXConfigManager sharedInstance].geTuiAppKey appSecret:[YXConfigManager sharedInstance].geTuiAppServer delegate:self];
         [self registerUserNotification];
     }
-   [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+   [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
 }
 
 - (void)registerUserNotification {
@@ -174,8 +174,8 @@
 - (void)resetBadge {
     [GeTuiSdk resetBadge];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    [TrainRedPointManger sharedInstance].dynamicInteger = -1;
-    [TrainRedPointManger sharedInstance].hotspotInteger = -1;
+    [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = -1;
+    [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = -1;
 }
 
 #pragma mark - Handle Notification
@@ -183,9 +183,9 @@
 - (void)handleGeTuiContent:(NSString *)content  withOffLine:(BOOL)offLine{
     if (!offLine) {//在线
         [UIApplication sharedApplication].applicationIconBadgeNumber ++;
-        [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
     }else {
-        [TrainRedPointManger sharedInstance].dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
     }
     
 }
