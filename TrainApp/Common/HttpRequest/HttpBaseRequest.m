@@ -80,10 +80,10 @@
     self->_retClass = retClass;
     
     NSString *key = NSStringFromClass([self class]);
-    if ([[YXMockManager sharedInstance] hasMockDataForKey:key]) {
+    if ([[LSTSharedInstance sharedInstance].mockParser hasMockDataForKey:key]) {
         self->_isMock = YES;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([YXMockManager sharedInstance].requestDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            NSString *json = [[YXMockManager sharedInstance] mockDataForKey:key];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)([LSTSharedInstance sharedInstance].mockParser.timeUse * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSString *json = [[LSTSharedInstance sharedInstance].mockParser mockDataForKey:key];
             [self dealWithResponseJson:json];
         });
         return;

@@ -32,6 +32,7 @@
     TrainRedPointManger *_redPointManger;
     YXConfigManager *_configManager;
     YXDatumGlobalSingleton *_globalSingleton;
+    YXMockParser *_mockParser;
 }
 @end
 @implementation LSTSharedInstance
@@ -120,5 +121,11 @@
         _globalSingleton = [[YXDatumGlobalSingleton alloc] init];
     }
     return _globalSingleton;
+}
+- (YXMockParser *)mockParser {
+    if (_mockParser == nil) {
+        _mockParser = [[YXMockParser alloc] initWithConfigFile:@"MockConfig"];
+    }
+    return _mockParser;
 }
 @end

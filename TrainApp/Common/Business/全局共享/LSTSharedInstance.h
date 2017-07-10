@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-@class YXTrainManager, TrainGeTuiManger, PopUpFloatingViewManager,YXFileRecordManager, YXInitHelper, YXRecordManager,YXUpdateProfileHelper,YXUserManager,YXWebSocketManger,TrainRedPointManger,YXConfigManager,YXDatumGlobalSingleton;
+#import "YXMockParser.h"
+@class YXTrainManager, TrainGeTuiManger, PopUpFloatingViewManager,YXFileRecordManager, YXInitHelper, YXRecordManager,YXUpdateProfileHelper,YXUserManager,YXWebSocketManger,TrainRedPointManger,YXConfigManager,YXDatumGlobalSingleton,YXMockParser;
 @interface LSTSharedInstance : NSObject
 @property (nonatomic, strong, readonly) YXConfigManager *configManager;//配置文件
 @property (nonatomic, strong, readonly) YXUserManager *userManger;//储存个人信息
@@ -21,5 +22,6 @@
 @property (nonatomic, strong, readonly) YXWebSocketManger *webSocketManger;//websock
 @property (nonatomic, strong, readonly) TrainRedPointManger *redPointManger;//红点管理
 @property (nonatomic, strong, readonly) YXDatumGlobalSingleton *globalSingleton;//资源筛选
+@property (nonatomic, strong, readonly) YXMockParser *mockParser;//mock数据管理
 + (instancetype)sharedInstance;
 @end
