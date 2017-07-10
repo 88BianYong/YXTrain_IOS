@@ -282,7 +282,7 @@
 }
 
 - (void)setWebSocket {
-    [[YXWebSocketManger sharedInstance] open];
+    [[LSTSharedInstance  sharedInstance].webSocketManger open];
 }
 
 #pragma mark - UITableViewDataSource
@@ -308,7 +308,7 @@
         case 0:
         {
             [TrainRedPointManger sharedInstance].hotspotInteger = -1;
-            [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Hotspot];
+            [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Hotspot];
             YXHotspotViewController *hotspot = [[YXHotspotViewController alloc] init];
             [self.navigationController pushViewController:hotspot animated:YES];
         }
@@ -371,7 +371,7 @@
 
 - (void)displayShadowView {
     self.shadowView.hidden = NO;
-    [[YXWebSocketManger sharedInstance] open];
+    [[LSTSharedInstance  sharedInstance].webSocketManger open];
 }
 - (void)dismissShadowView {
     self.shadowView.hidden = YES;

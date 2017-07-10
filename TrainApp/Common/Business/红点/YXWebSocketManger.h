@@ -16,7 +16,6 @@ typedef NS_ENUM(NSUInteger ,YXWebSocketMangerState){
 
 @interface YXWebSocketManger : NSObject
 @property (nonatomic ,assign) YXWebSocketMangerState state;
-+ (instancetype)sharedInstance;
 - (void)open;
 - (void)close;
 @end

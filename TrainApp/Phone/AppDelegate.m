@@ -63,7 +63,7 @@
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    [[YXWebSocketManger  sharedInstance] close];
+    [[LSTSharedInstance  sharedInstance].webSocketManger close];
     if ([LSTSharedInstance sharedInstance].recordManager.isActive) {
         [[NSNotificationCenter defaultCenter]postNotificationName:kRecordNeedUpdateNotification object:nil];
         [[LSTSharedInstance sharedInstance].recordManager report];
@@ -160,7 +160,7 @@
 // 9.0
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options {
     self.appDelegateHelper.scanCodeUrl = url;
-    [[YXWebSocketManger sharedInstance] close];
+    [[LSTSharedInstance  sharedInstance].webSocketManger close];
     [[LSTSharedInstance sharedInstance].userManger logout];
 	return YES;
 }

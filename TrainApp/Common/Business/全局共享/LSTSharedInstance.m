@@ -15,6 +15,7 @@
 #import "YXRecordManager.h"
 #import "YXUpdateProfileRequest.h"
 #import "YXUserManager.h"
+#import "YXWebSocketManger.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
@@ -24,6 +25,7 @@
     YXRecordManager *_recordManager;
     YXUpdateProfileHelper *_updateProfileHelper;
     YXUserManager *_userManger;
+    YXWebSocketManger *_webSocketManger;
 }
 @end
 @implementation LSTSharedInstance
@@ -88,5 +90,11 @@
         _updateProfileHelper = [[YXUpdateProfileHelper alloc] init];
     }
     return _updateProfileHelper;
+}
+- (YXWebSocketManger *)webSocketManger {
+    if (_webSocketManger == nil) {
+        _webSocketManger = [[YXWebSocketManger alloc] init];
+    }
+    return _webSocketManger;
 }
 @end

@@ -53,7 +53,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
 }
 - (void)naviLeftAction {
     if (self.isSuccess) {
-        [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
+        [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Dynamic];
         [TrainRedPointManger sharedInstance].dynamicInteger = -1;
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     }
@@ -190,7 +190,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
 - (void)tableViewWillRefresh {
     self.isSuccess = YES;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[YXWebSocketManger sharedInstance] setState:YXWebSocketMangerState_Dynamic];
+        [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Dynamic];
         [TrainRedPointManger sharedInstance].dynamicInteger = -1;
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     });

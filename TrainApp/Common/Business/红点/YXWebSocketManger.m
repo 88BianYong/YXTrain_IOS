@@ -30,14 +30,6 @@
     return self;
 }
 
-+ (instancetype)sharedInstance{
-    static YXWebSocketManger *manager = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        manager = [[self alloc] init];
-    });
-    return manager;
-}
 - (void)setNetObserver {
     Reachability *reach = [Reachability reachabilityForInternetConnection];
     WEAK_SELF

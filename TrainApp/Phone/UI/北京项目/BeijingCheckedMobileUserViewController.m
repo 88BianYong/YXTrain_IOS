@@ -60,7 +60,7 @@ UITableViewDataSource
     [[IQKeyboardManager sharedManager] setEnable:NO];
 }
 - (void)naviLeftAction {
-    [[YXWebSocketManger sharedInstance] close];
+    [[LSTSharedInstance  sharedInstance].webSocketManger close];
     [[LSTSharedInstance sharedInstance].userManger logout];
     [YXDataStatisticsManger trackEvent:@"退出登录" label:@"成功登出" parameters:nil];
 }
