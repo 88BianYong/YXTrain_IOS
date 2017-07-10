@@ -1,0 +1,137 @@
+{
+    "code": 0,
+    "projectid": 1255,
+    "user": {
+        "userId": 8989628,
+        "userName": "张三",
+        "stageName": "小学",
+        "studyName": "语文",
+        "roles": "9,99",
+        "headImg": "http://s1.jsyxw.cn/yanxiu/avatar_new_large_80_80.png",
+        "isContainsTeacher": true,
+        "isInfoConfirm": 0
+    },
+    "theme": {
+        "isOpenTheme": 0,
+        "themeid": 0,
+        "themeName": "",
+        "isShowSwitchTheme": 0,
+        "isUseSelectTheme": 0,
+        "isCanEditTheme": 0
+    },
+    "layer": {
+        "isOpenLayerStudy": 0,
+        "isShowSwitchLayer": 0,
+        "isUseLayerStudy": 0,
+        "layerName": "",
+        "layerid": 0
+    },
+    "stages": [
+               {
+               "isCurrStage": 0,
+               "isFinish": 0,
+               "name": "第一阶段",
+               "notes": "",
+               "stageid": 5108,
+               "starttime": "2017-05-08",
+               "status": 1,
+               "subject": "诊断订计划",
+               "tools": [
+                         {
+                         "toolid": 201,
+                         "name": "课程",
+                         "status": 0
+                         },
+                         {
+                         "toolid": 202,
+                         "name": "活动",
+                         "status": 0
+                         },
+                         {
+                         "toolid": 203,
+                         "name": "作业",
+                         "status": 0
+                         }
+                         ],
+               "totalscore": 20,
+               "userscore": 0
+               },
+               {
+               "isCurrStage": 0,
+               "isFinish": 0,
+               "name": "第二阶段",
+               "notes": "",
+               "stageid": 5109,
+               "starttime": "2017-06-10",
+               "status": 1,
+               "subject": "技术助教学",
+               "tools": [
+                         {
+                         "toolid": 201,
+                         "name": "课程",
+                         "status": 0
+                         },
+                         {
+                         "toolid": 202,
+                         "name": "活动",
+                         "status": 0
+                         },
+                         {
+                         "toolid": 203,
+                         "name": "作业",
+                         "status": 0
+                         }
+                         ],
+               "totalscore": 27,
+               "userscore": 0
+               },
+               {
+               "isCurrStage": 1,
+               "isFinish": 0,
+               "name": "第三阶段",
+               "notes": "",
+               "stageid": 5110,
+               "starttime": "2017-06-20",
+               "status": 1,
+               "subject": "以评促应用",
+               "tools": [
+                         {
+                         "toolid": 201,
+                         "name": "课程",
+                         "status": 0
+                         },
+                         {
+                         "toolid": 202,
+                         "name": "活动",
+                         "status": 0
+                         },
+                         {
+                         "toolid": 203,
+                         "name": "作业",
+                         "status": 0
+                         }
+                         ],
+               "totalscore": 23,
+               "userscore": 0
+               }
+               ],
+    "expert": {
+        "isShowExpertChannel": 0,
+        "expertProjectId": 0
+    },
+    "other": {
+        "isShowCourseMarket": 0,
+        "isShowOfflineActive": 0,
+        "ifWorks": 0,
+        "guide": "http://www.yanxiu.com",
+        "plans": "http://www.yanxiu.com"
+    },
+    "banner": [
+               {
+               "id": 1,
+               "name": "精彩绽放",
+               "url": "http://www.yanxiu.com",
+               "pic": "http://s6.jsyxw.cn/res/static/train/widget/blossom/img/jingcai_2016_11708b7.jpg"
+               }
+               ]
+}

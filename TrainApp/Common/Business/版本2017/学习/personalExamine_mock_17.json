@@ -1,0 +1,187 @@
+{
+    "code": 0,
+    "examine": {
+        "checkway": 0,
+        "process": [
+                    {
+                    "descr": "",
+                    "enddate": "2017-08-31",
+                    "id": 5108,
+                    "ifquestion": 0,
+                    "isfinish": 0,
+                    "ispass": 0,
+                    "name": "第一阶段",
+                    "passscore": 0,
+                    "stageId": 5108,
+                    "toolExamineVoList": [
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "课程",
+                                          "tooldesc": "课程",
+                                          "toolid": 201,
+                                          "totalnum": 160,
+                                          "totalscore": 8,
+                                          "userscore": 0
+                                          },
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "作业",
+                                          "tooldesc": "作业",
+                                          "toolid": 203,
+                                          "totalnum": 1,
+                                          "totalscore": 8,
+                                          "userscore": 0
+                                          },
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "活动",
+                                          "tooldesc": "活动",
+                                          "toolid": 202,
+                                          "totalnum": 1,
+                                          "totalscore": 4,
+                                          "userscore": 0
+                                          }
+                                          ],
+                    "totalscore": 20,
+                    "userscore": 0
+                    },
+                    {
+                    "descr": "",
+                    "enddate": "2017-08-31",
+                    "id": 5109,
+                    "ifquestion": 0,
+                    "isfinish": 0,
+                    "ispass": 0,
+                    "name": "第二阶段",
+                    "passscore": 0,
+                    "stageId": 5109,
+                    "toolExamineVoList": [
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "课程",
+                                          "tooldesc": "课程",
+                                          "toolid": 201,
+                                          "totalnum": 240,
+                                          "totalscore": 12,
+                                          "userscore": 0
+                                          },
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "作业",
+                                          "tooldesc": "作业",
+                                          "toolid": 203,
+                                          "totalnum": 1,
+                                          "totalscore": 11,
+                                          "userscore": 0
+                                          },
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "活动",
+                                          "tooldesc": "活动",
+                                          "toolid": 202,
+                                          "totalnum": 1,
+                                          "totalscore": 4,
+                                          "userscore": 0
+                                          }
+                                          ],
+                    "totalscore": 27,
+                    "userscore": 0
+                    },
+                    {
+                    "descr": "",
+                    "enddate": "2017-08-31",
+                    "id": 5110,
+                    "ifquestion": 0,
+                    "isfinish": 0,
+                    "ispass": 0,
+                    "name": "第三阶段",
+                    "passscore": 0,
+                    "stageId": 5110,
+                    "toolExamineVoList": [
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "课程",
+                                          "tooldesc": "课程",
+                                          "toolid": 201,
+                                          "totalnum": 160,
+                                          "totalscore": 8,
+                                          "userscore": 0
+                                          },
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "作业",
+                                          "tooldesc": "作业",
+                                          "toolid": 203,
+                                          "totalnum": 1,
+                                          "totalscore": 11,
+                                          "userscore": 0
+                                          },
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0, 
+                                          "name": "活动", 
+                                          "tooldesc": "活动", 
+                                          "toolid": 202, 
+                                          "totalnum": 1, 
+                                          "totalscore": 4, 
+                                          "userscore": 0
+                                          }
+                                          ], 
+                    "totalscore": 23, 
+                    "userscore": 0
+                    }, 
+                    {
+                    "descr": "", 
+                    "enddate": "2017-08-31", 
+                    "id": 5111, 
+                    "ifquestion": 4, 
+                    "isfinish": 0, 
+                    "ispass": 0, 
+                    "name": "线下实践测评", 
+                    "passscore": 0, 
+                    "stageId": 5111, 
+                    "isExistsNext": 0, 
+                    "toolExamineVoList": [
+                                          {
+                                          "finishnum": 0, 
+                                          "isneedmark": 0, 
+                                          "name": "综合评定", 
+                                          "tooldesc": "综合评定", 
+                                          "toolid": 206, 
+                                          "totalnum": 100, 
+                                          "totalscore": 30, 
+                                          "userscore": 0
+                                          }
+                                          ], 
+                    "totalscore": 30, 
+                    "userscore": 0
+                    }
+                    ]
+    }, 
+    "expert": {
+        "isShowExpertChannel": 0, 
+        "expertProjectId": 0
+    }, 
+    "other": {
+        "isShowCourseMarket": 0, 
+        "isShowOfflineActive": 0, 
+        "ifWorks": 0, 
+        "guide": "http://www.yanxiu.com", 
+        "plans": "http://www.yanxiu.com"
+    }, 
+    "banner": [
+               {
+               "id": 1, 
+               "name": "精彩绽放", 
+               "url": "http://www.yanxiu.com"
+               }
+               ]
+}
