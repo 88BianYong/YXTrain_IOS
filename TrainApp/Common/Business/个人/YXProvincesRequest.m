@@ -23,7 +23,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"getAllProvinces"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"getAllProvinces"];
     }
     return self;
 }

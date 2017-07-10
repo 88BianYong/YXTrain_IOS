@@ -18,7 +18,7 @@
 - (void)registerGeTui {
     if ([[LSTSharedInstance sharedInstance].userManger isLogin]) {
         [GeTuiSdk runBackgroundEnable:YES];
-        [GeTuiSdk startSdkWithAppId:[YXConfigManager sharedInstance].geTuiAppId appKey:[YXConfigManager sharedInstance].geTuiAppKey appSecret:[YXConfigManager sharedInstance].geTuiAppServer delegate:self];
+        [GeTuiSdk startSdkWithAppId:[LSTSharedInstance sharedInstance].configManager.geTuiAppId appKey:[LSTSharedInstance sharedInstance].configManager.geTuiAppKey appSecret:[LSTSharedInstance sharedInstance].configManager.geTuiAppServer delegate:self];
         [self registerUserNotification];
     }
    [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
@@ -87,7 +87,7 @@
 - (void)resumeGeTuiSDK {
     [GeTuiSdk resume];
     [GeTuiSdk runBackgroundEnable:YES];
-    [GeTuiSdk startSdkWithAppId:[YXConfigManager sharedInstance].geTuiAppId appKey:[YXConfigManager sharedInstance].geTuiAppKey appSecret:[YXConfigManager sharedInstance].geTuiAppServer delegate:self];
+    [GeTuiSdk startSdkWithAppId:[LSTSharedInstance sharedInstance].configManager.geTuiAppId appKey:[LSTSharedInstance sharedInstance].configManager.geTuiAppKey appSecret:[LSTSharedInstance sharedInstance].configManager.geTuiAppServer delegate:self];
     [self registerUserNotification];
 }
 

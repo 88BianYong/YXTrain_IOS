@@ -45,7 +45,7 @@
 @implementation ActivityFilterRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/condition"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"club/condition"];
     }
     return self;
 }

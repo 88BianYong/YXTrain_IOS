@@ -58,18 +58,18 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 {
     self = [super init];
     if (self) {
-        _did = [YXConfigManager sharedInstance].deviceID;
-        _brand = [YXConfigManager sharedInstance].deviceType;
+        _did = [LSTSharedInstance sharedInstance].configManager.deviceID;
+        _brand = [LSTSharedInstance sharedInstance].configManager.deviceType;
         [self setCurrentNetType];
         _osType = @"1";
-        _appVersion = [YXConfigManager sharedInstance].clientVersion;
+        _appVersion = [LSTSharedInstance sharedInstance].configManager.clientVersion;
         _content = @"";
         _operType = @"app.upload.log";
         _phone = @"";
         _remoteIp = @"";
         _token = [LSTSharedInstance sharedInstance].userManger.userModel.token;
-        _mode = [YXConfigManager sharedInstance].mode;
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"initialize"];
+        _mode = [LSTSharedInstance sharedInstance].configManager.mode;
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"initialize"];
     }
     return self;
 }

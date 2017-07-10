@@ -63,7 +63,7 @@
 - (void)setupData{
     _webSocket.delegate = nil;
     [_webSocket close];
-    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[YXConfigManager sharedInstance].websocketServer]]];
+    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[LSTSharedInstance sharedInstance].configManager.websocketServer]]];
     _webSocket.delegate = self;
     [_webSocket open];
 }
@@ -125,7 +125,7 @@
 //连接成功
 - (void)webSocketDidOpen:(SRWebSocket *)webSocket{
     DDLogDebug(@"链接成功");
-    NSDictionary *dic = @{@"type":@"1",@"token":[LSTSharedInstance sharedInstance].userManger.userModel.token?:@"",@"seqno":[YXConfigManager sharedInstance].deviceID?:@"1"};
+    NSDictionary *dic = @{@"type":@"1",@"token":[LSTSharedInstance sharedInstance].userManger.userModel.token?:@"",@"seqno":[LSTSharedInstance sharedInstance].configManager.deviceID?:@"1"};
     DDLogDebug(@"%@",dic);
    [_webSocket send:[self dictionaryToJsonData:dic]];
     if (_state != YXWebSocketMangerState_Normal) {//如有需要待发信息 重新发送

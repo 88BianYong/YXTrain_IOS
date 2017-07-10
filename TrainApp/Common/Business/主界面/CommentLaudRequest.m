@@ -11,7 +11,7 @@
 @implementation CommentLaudRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/reply/laud"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"club/reply/laud"];
     }
     return self;
 }

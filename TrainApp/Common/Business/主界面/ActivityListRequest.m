@@ -20,7 +20,7 @@
 @implementation ActivityListRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/actives"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"club/actives"];
     }
     return self;
 }

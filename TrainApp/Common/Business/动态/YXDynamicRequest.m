@@ -23,7 +23,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"notice/getMessages"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"notice/getMessages"];
     }
     return self;
 }

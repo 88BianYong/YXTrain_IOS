@@ -12,7 +12,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"guopei/course/saveprocess"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"guopei/course/saveprocess"];
     }
     return self;
 }

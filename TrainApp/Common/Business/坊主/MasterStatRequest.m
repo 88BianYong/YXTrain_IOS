@@ -75,7 +75,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"peixun/master/masterStat"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/master/masterStat"];
     }
     return self;
 }

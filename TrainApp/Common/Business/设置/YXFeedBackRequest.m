@@ -14,7 +14,7 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"feedback/collect"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"feedback/collect"];
     }
     return self;
 }

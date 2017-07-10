@@ -22,7 +22,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].loginServer stringByAppendingString:@"validateMobile.json"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.loginServer stringByAppendingString:@"validateMobile.json"];
     }
     return self;
 }

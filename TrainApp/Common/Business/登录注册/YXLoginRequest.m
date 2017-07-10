@@ -17,7 +17,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].loginServer stringByAppendingString:@"login.json"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.loginServer stringByAppendingString:@"login.json"];
     }
     return self;
 }

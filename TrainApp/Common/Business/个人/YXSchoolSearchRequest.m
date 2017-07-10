@@ -25,7 +25,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"psprofile/searchSchoolInfo"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"psprofile/searchSchoolInfo"];
     }
     return self;
 }

@@ -16,7 +16,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"cooperate/memberlist"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"cooperate/memberlist"];
     }
     return self;
 }

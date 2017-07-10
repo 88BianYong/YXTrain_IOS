@@ -9,9 +9,6 @@
 #import <JSONModel/JSONModel.h>
 
 @interface YXConfigManager : JSONModel
-
-+ (YXConfigManager *)sharedInstance;
-
 @property (nonatomic, strong) NSString<Optional> *server;      // 切换正式、测试环境 Url Header
 @property (nonatomic, strong) NSString<Optional> *loginServer;
 @property (nonatomic, strong) NSString<Optional> *uploadServer;
@@ -37,4 +34,5 @@
 @property (nonatomic, strong) NSString<Ignore> *geTuiAppId;
 @property (nonatomic, strong) NSString<Ignore> *geTuiAppKey;
 @property (nonatomic, strong) NSString<Ignore> *geTuiAppServer;
+- (instancetype)initWithConfigFile:(NSString *)filename;
 @end

@@ -35,7 +35,7 @@
 @implementation DownloadResourceRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/active/tool/download"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"club/active/tool/download"];
     }
     return self;
 }

@@ -27,7 +27,7 @@
 @implementation BeijingActivityFilterRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"peixun/bj/condition/v2"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/bj/condition/v2"];
     }
     return self;
 }

@@ -35,7 +35,7 @@
 @implementation ShareResourcesRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/active/tool/resources"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"club/active/tool/resources"];
     }
     return self;
 }

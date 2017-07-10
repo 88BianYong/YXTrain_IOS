@@ -20,7 +20,7 @@ NSString *const YXUserProfileGetSuccessNotification = @"kYXUserProfileGetSuccess
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"psprofile/getEditUserInfo"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"psprofile/getEditUserInfo"];
     }
     return self;
 }

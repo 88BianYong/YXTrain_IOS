@@ -12,19 +12,7 @@
 
 @implementation YXConfigManager
 
-+ (YXConfigManager *)sharedInstance {
-    NSAssert([YXConfigManager class] == self, @"Incorrect use of singleton : %@, %@", [YXConfigManager class], [self class]);
-    static dispatch_once_t once;
-    static YXConfigManager *sharedInstance;
-    dispatch_once(&once, ^{
-        sharedInstance = [[self alloc] initWithConfigFile:@"YXConfig"];
-        [sharedInstance setupServerEnv];
-    });
-    
-    return sharedInstance;
-}
-
-- (id)initWithConfigFile:(NSString *)filename {
+- (instancetype)initWithConfigFile:(NSString *)filename {
     NSString *filepath = [[NSBundle mainBundle] pathForResource:filename ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:filepath];
     NSError *error = nil;
@@ -33,6 +21,7 @@
         // make sure works even without a config plist
         self = [super init];
     }
+    [self setupServerEnv];
     return self;
 }
 

@@ -12,7 +12,7 @@
 @implementation DeYangGetQuizStatistics
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"quiz/getQuizStatistics"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"quiz/getQuizStatistics"];
     }
     return self;
 }

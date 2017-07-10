@@ -20,7 +20,7 @@
 @implementation ActivityFirstCommentRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/replies"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"club/replies"];
     }
     return self;
 }

@@ -14,7 +14,7 @@
 {
     if (self = [super init]) {
         self.token = [LSTSharedInstance sharedInstance].userManger.userModel.token;
-        self.ver = [YXConfigManager sharedInstance].clientVersion;
+        self.ver = [LSTSharedInstance sharedInstance].configManager.clientVersion;
         self.os = @"ios";
     }
     return self;

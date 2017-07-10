@@ -17,7 +17,7 @@ NSString *const YXUpdateProfileTypeKey = @"kYXUpdateProfileTypeKey";
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"psprofile/update"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"psprofile/update"];
     }
     return self;
 }

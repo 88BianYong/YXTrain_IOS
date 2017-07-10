@@ -17,6 +17,8 @@
 #import "YXUserManager.h"
 #import "YXWebSocketManger.h"
 #import "TrainRedPointManger.h"
+#import "YXConfigManager.h"
+#import "YXDatumGlobalSingleton.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
@@ -28,6 +30,8 @@
     YXUserManager *_userManger;
     YXWebSocketManger *_webSocketManger;
     TrainRedPointManger *_redPointManger;
+    YXConfigManager *_configManager;
+    YXDatumGlobalSingleton *_globalSingleton;
 }
 @end
 @implementation LSTSharedInstance
@@ -104,5 +108,17 @@
         _redPointManger = [[TrainRedPointManger alloc] init];
     }
     return _redPointManger;
+}
+- (YXConfigManager*)configManager {
+    if (_configManager == nil) {
+        _configManager = [[YXConfigManager alloc] initWithConfigFile:@"YXConfig"];
+    }
+    return _configManager;
+}
+- (YXDatumGlobalSingleton *)globalSingleton {
+    if (_globalSingleton == nil) {
+        _globalSingleton = [[YXDatumGlobalSingleton alloc] init];
+    }
+    return _globalSingleton;
 }
 @end

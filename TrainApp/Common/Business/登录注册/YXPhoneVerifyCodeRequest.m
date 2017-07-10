@@ -13,7 +13,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].loginServer stringByAppendingString:@"verifyCode.json"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.loginServer stringByAppendingString:@"verifyCode.json"];
     }
     return self;
 }

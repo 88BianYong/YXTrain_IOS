@@ -68,7 +68,7 @@
     [projectNavi pushViewController:VC animated:YES];
 }
 - (void)setupRootViewController{
-    if ([YXConfigManager sharedInstance].testFrameworkOn.boolValue) {
+    if ([LSTSharedInstance sharedInstance].configManager.testFrameworkOn.boolValue) {
         YXTestViewController *vc = [[YXTestViewController alloc] init];
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     }else{
@@ -122,7 +122,7 @@
             [[LSTSharedInstance sharedInstance].userManger saveUserData];
             [[NSNotificationCenter defaultCenter] postNotificationName:YXUserProfileGetSuccessNotification object:nil];
         }
-        [[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:nil];
+        [[LSTSharedInstance sharedInstance].globalSingleton getDatumFilterData:nil];
     }];
     self.userProfileRequest = request;
 }

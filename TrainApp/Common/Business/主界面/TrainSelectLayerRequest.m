@@ -11,7 +11,7 @@
 @implementation TrainSelectLayerRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"peixun/layer/selectLayer"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/layer/selectLayer"];
     }
     return self;
 }

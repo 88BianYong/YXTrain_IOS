@@ -26,8 +26,8 @@
         self.request.myOffset = @"0";
         self.request.slOffset = @"0";
     }else{
-        self.request.myOffset = [YXDatumGlobalSingleton sharedInstance].myOffset;
-        self.request.slOffset = [YXDatumGlobalSingleton sharedInstance].slOffset;
+        self.request.myOffset = [LSTSharedInstance sharedInstance].globalSingleton.myOffset;
+        self.request.slOffset = [LSTSharedInstance sharedInstance].globalSingleton.slOffset;
     }
     @weakify(self);
     [self.request startRequestWithRetClass:[YXMyDatumRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -41,8 +41,8 @@
             [self saveToCache];
         }
         YXMyDatumRequestItem *item = retItem;
-        [YXDatumGlobalSingleton sharedInstance].myOffset = item.myOffset;
-        [YXDatumGlobalSingleton sharedInstance].slOffset = item.slOffset;
+        [LSTSharedInstance sharedInstance].globalSingleton.myOffset = item.myOffset;
+        [LSTSharedInstance sharedInstance].globalSingleton.slOffset = item.slOffset;
         NSMutableArray *array = [NSMutableArray array];
         for (YXMyDatumRequestItem_result_list *list in item.result.list) {
             YXDatumCellModel *model = [YXDatumCellModel modelFromMyDatumRequestResultList:list];

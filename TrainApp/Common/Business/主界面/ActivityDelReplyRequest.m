@@ -11,7 +11,7 @@
 @implementation ActivityDelReplyRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/delReply"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"club/delReply"];
     }
     return self;
 }

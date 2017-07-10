@@ -16,7 +16,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"search/search"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"search/search"];
     }
     return self;
 }

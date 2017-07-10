@@ -37,7 +37,7 @@
 @implementation ActivityToolVideoRequest
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"club/active/tool/video"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"club/active/tool/video"];
     }
     return self;
 }

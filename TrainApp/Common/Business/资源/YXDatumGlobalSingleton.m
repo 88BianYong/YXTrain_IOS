@@ -18,18 +18,12 @@
 @end
 
 @implementation YXDatumGlobalSingleton
-
-+ (YXDatumGlobalSingleton *)sharedInstance {
-    NSAssert([YXDatumGlobalSingleton class] == self, @"Incorrect use of singleton : %@, %@", [YXDatumGlobalSingleton class], [self class]);
-    static dispatch_once_t once;
-    static YXDatumGlobalSingleton *sharedInstance;
-    dispatch_once(&once, ^{
-        sharedInstance = [[self alloc] init];
-        sharedInstance.myOffset = @"0";
-        sharedInstance.slOffset = @"0";
-    });
-    
-    return sharedInstance;
+- (instancetype)init {
+    if (self = [super init]) {
+        self.myOffset = @"0";
+        self.slOffset = @"0";
+    }
+    return self;
 }
 
 // 获取资源筛选目录

@@ -39,13 +39,13 @@
 - (void)prapareData {
     self.typeNameArray = [[NSMutableArray alloc] init];
     BOOL isExist = NO;
-    for (YXFilterType *type in [YXDatumGlobalSingleton sharedInstance].filterModel.filterArray) {
+    for (YXFilterType *type in [LSTSharedInstance sharedInstance].globalSingleton.filterModel.filterArray) {
         if (type.subtypeArray.count> 1) {
             isExist = YES;
         }
     }
-    if ([YXDatumGlobalSingleton sharedInstance].filterModel && isExist) {
-        self.filterModel = [YXDatumGlobalSingleton sharedInstance].filterModel;
+    if ([LSTSharedInstance sharedInstance].globalSingleton.filterModel && isExist) {
+        self.filterModel = [LSTSharedInstance sharedInstance].globalSingleton.filterModel;
         [YXFilterModel resetFilters:self.filterModel];//BUG 666 重置筛选条件
     }else{
         [self getFilter];
@@ -118,9 +118,9 @@
 - (void)getFilter
 {
     @weakify(self);
-    [[YXDatumGlobalSingleton sharedInstance] getDatumFilterData:^(NSError *error) {
+    [[LSTSharedInstance sharedInstance].globalSingleton getDatumFilterData:^(NSError *error) {
         @strongify(self);
-        self.filterModel = [YXDatumGlobalSingleton sharedInstance].filterModel;
+        self.filterModel = [LSTSharedInstance sharedInstance].globalSingleton.filterModel;
     }];
 }
 

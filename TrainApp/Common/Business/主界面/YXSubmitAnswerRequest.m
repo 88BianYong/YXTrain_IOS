@@ -18,7 +18,7 @@
 }
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"quiz/submitUserQuiz"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"quiz/submitUserQuiz"];
     }
     return self;
 }

@@ -19,7 +19,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"resource/uploadheader"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"resource/uploadheader"];
         self.width = @"80";
         self.height = @"80";
         self.left = @"-40";

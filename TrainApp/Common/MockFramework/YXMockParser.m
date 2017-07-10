@@ -42,7 +42,7 @@
     NSString *filepath = [[NSBundle mainBundle] pathForResource:filename ofType:@"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:filepath];
     
-    self.mockEnable = [YXConfigManager sharedInstance].mockFrameworkOn.boolValue;
+    self.mockEnable = [LSTSharedInstance sharedInstance].configManager.mockFrameworkOn.boolValue;
     self.maxTimeUse = ((NSNumber *)[dict valueForKey:@"maxTimeUse"]).integerValue;
     if (!self.mockEnable) {
         return;

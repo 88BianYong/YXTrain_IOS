@@ -20,7 +20,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"guopei/user/mobile/mWriteHomework.tc"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"guopei/user/mobile/mWriteHomework.tc"];
     }
     return self;
 }

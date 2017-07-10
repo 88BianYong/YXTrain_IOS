@@ -24,7 +24,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        self.urlHead = [[YXConfigManager sharedInstance].server stringByAppendingString:@"meizi/resource-chapter/cascade2"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"meizi/resource-chapter/cascade2"];
     }
     return self;
 }

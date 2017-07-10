@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-@class YXTrainManager, TrainGeTuiManger, PopUpFloatingViewManager,YXFileRecordManager, YXInitHelper, YXRecordManager,YXUpdateProfileHelper,YXUserManager,YXWebSocketManger,TrainRedPointManger;
+@class YXTrainManager, TrainGeTuiManger, PopUpFloatingViewManager,YXFileRecordManager, YXInitHelper, YXRecordManager,YXUpdateProfileHelper,YXUserManager,YXWebSocketManger,TrainRedPointManger,YXConfigManager,YXDatumGlobalSingleton;
 @interface LSTSharedInstance : NSObject
+@property (nonatomic, strong, readonly) YXConfigManager *configManager;//配置文件
 @property (nonatomic, strong, readonly) YXUserManager *userManger;//储存个人信息
 @property (nonatomic, strong, readonly) YXTrainManager *trainManager;//项目列表
 @property (nonatomic, strong, readonly) TrainGeTuiManger *geTuiManger;//个推
@@ -19,5 +20,6 @@
 @property (nonatomic, strong, readonly) YXUpdateProfileHelper *updateProfileHelper;//更新用户信息
 @property (nonatomic, strong, readonly) YXWebSocketManger *webSocketManger;//websock
 @property (nonatomic, strong, readonly) TrainRedPointManger *redPointManger;//红点管理
+@property (nonatomic, strong, readonly) YXDatumGlobalSingleton *globalSingleton;//资源筛选
 + (instancetype)sharedInstance;
 @end
