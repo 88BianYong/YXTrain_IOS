@@ -9,7 +9,6 @@
 #import <MSDynamicsDrawerViewController.h>
 #import "AppDelegate.h"
 #import "YXStartViewController.h"
-#import "YXInitRequest.h"
 #import "YXNavigationController.h"
 #import "YXWebSocketManger.h"
 #import "AppDelegate+GetInfoList.h"

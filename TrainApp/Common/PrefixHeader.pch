@@ -55,7 +55,6 @@ extern int ddLogLevel;
 #pragma mark - Other
 #import "LSTSharedInstance.h"
 #import "YXDefinitions.h"
-#import "YXConfigManager.h"
 #import "GlobalUtils.h"
 #import "YXFileDocItem.h"
 #import "YXFileHtmlItem.h"
@@ -64,9 +63,6 @@ extern int ddLogLevel;
 #import "YXFileVideoItem.h"
 #import "YXPromtController.h"
 #import "YXNavigationBarController.h"
-#import "YXUserManager.h"
-#import "YXTrainManager.h"
-#import "YXRecordManager.h"
 #import "YXAttachmentTypeHelper.h"
 #import "YXTriangleView.h"
 #import "YXErrorView.h"
@@ -76,6 +72,5 @@ extern int ddLogLevel;
 #import "YXTrackPageDataProtocol.h"
 #import "FileBrowserFactory.h"
 #import "LSTAlertView.h"
-#import "PopUpFloatingViewManager.h"
 #endif 
 /* PrefixHeader_pch */

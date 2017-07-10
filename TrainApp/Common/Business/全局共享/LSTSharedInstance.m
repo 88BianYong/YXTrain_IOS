@@ -7,18 +7,6 @@
 //
 
 #import "LSTSharedInstance.h"
-#import "YXTrainManager.h"
-#import "TrainGeTuiManger.h"
-#import "PopUpFloatingViewManager.h"
-#import "YXFileRecordManager.h"
-#import "YXInitRequest.h"
-#import "YXRecordManager.h"
-#import "YXUpdateProfileRequest.h"
-#import "YXUserManager.h"
-#import "YXWebSocketManger.h"
-#import "TrainRedPointManger.h"
-#import "YXConfigManager.h"
-#import "YXDatumGlobalSingleton.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
@@ -43,6 +31,28 @@
         sharedInstance = [[LSTSharedInstance alloc] init];
     });
     return sharedInstance;
+}
+- (instancetype)init {
+    if (self = [super init]) {
+        WEAK_SELF
+        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLogoutSuccessNotification object:nil] subscribeNext:^(id x) {
+            STRONG_SELF
+            self->_floatingViewManager = nil;
+//            self->_trainManager = nil;
+//            self->_geTuiManger = nil;
+//            self->_fileRecordManager = nil;
+//            self->_upgradeManger = nil;
+//            self->_recordManager = nil;
+//            self->_userManger = nil;
+//            self->_webSocketManger = nil;
+//            self->_redPointManger = nil;
+//            self->_configManager = nil;
+//            self->_globalSingleton = nil;
+//            self->_mockParser = nil;
+//            self->_updateProfileHelper = nil;
+        }];
+    }
+    return self;
 }
 #pragma mark - Manager
 - (YXUserManager *)userManger {

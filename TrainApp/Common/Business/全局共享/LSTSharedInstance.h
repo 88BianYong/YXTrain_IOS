@@ -8,7 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "YXMockParser.h"
-@class YXTrainManager, TrainGeTuiManger, PopUpFloatingViewManager,YXFileRecordManager, YXInitHelper, YXRecordManager,YXUpdateProfileHelper,YXUserManager,YXWebSocketManger,TrainRedPointManger,YXConfigManager,YXDatumGlobalSingleton,YXMockParser;
+#import "YXTrainManager.h"
+#import "TrainGeTuiManger.h"
+#import "PopUpFloatingViewManager.h"
+#import "YXFileRecordManager.h"
+#import "YXRecordManager.h"
+#import "YXUserManager.h"
+#import "YXWebSocketManger.h"
+#import "TrainRedPointManger.h"
+#import "YXConfigManager.h"
+#import "YXDatumGlobalSingleton.h"
+#import "YXMockParser.h"
+#import "YXInitRequest.h"
+#import "YXUpdateProfileRequest.h"
+
 @interface LSTSharedInstance : NSObject
 @property (nonatomic, strong, readonly) YXConfigManager *configManager;//配置文件
 @property (nonatomic, strong, readonly) YXUserManager *userManger;//储存个人信息

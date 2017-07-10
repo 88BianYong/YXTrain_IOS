@@ -17,9 +17,7 @@
 #import "YXUserProfileRequest.h"
 #import "YXUserManager.h"
 #import "YXLoginRequest.h"
-#import "YXInitRequest.h"
 #import "YXAlertView.h"
-#import "YXInitRequest.h"
 #import "AccountListView.h"
 #import "AppDelegate.h"
 
