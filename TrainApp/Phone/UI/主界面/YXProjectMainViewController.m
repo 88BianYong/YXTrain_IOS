@@ -158,8 +158,6 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     }];
     [self.QRCodeView addSubview:button];
     [self setupRightWithCustomView:self.QRCodeView];
-    
-    
 }
 #pragma mark - request
 - (void)showProjectMainView{

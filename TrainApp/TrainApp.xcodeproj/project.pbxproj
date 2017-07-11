@@ -338,7 +338,7 @@
 		927B6C661DFA99AE00CBBBBF /* BeijingCourseListRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C651DFA99AE00CBBBBF /* BeijingCourseListRequest.m */; };
 		927B6C671F0F3F710082DB27 /* LSTSharedInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C661F0F3F710082DB27 /* LSTSharedInstance.m */; };
 		927B6C6A1F132ED40082DB27 /* XYChooseProjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C691F132ED40082DB27 /* XYChooseProjectViewController.m */; };
-		927B6C731F1330350082DB27 /* MasterStatRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C721F1330350082DB27 /* MasterStatRequest_17.m */; };
+		927B6C731F1330350082DB27 /* ExamineDetailRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C721F1330350082DB27 /* ExamineDetailRequest_17.m */; };
 		927B6C781F1359B40082DB27 /* PersonalExamineRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C771F1359B40082DB27 /* PersonalExamineRequest_17.m */; };
 		927B6C7C1F1364920082DB27 /* masterStat_mock_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 927B6C7B1F1364920082DB27 /* masterStat_mock_17.json */; };
 		927B6C7E1F1364B10082DB27 /* personalExamine_mock_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 927B6C7D1F1364B10082DB27 /* personalExamine_mock_17.json */; };
@@ -1252,8 +1252,8 @@
 		927B6C661F0F3F710082DB27 /* LSTSharedInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LSTSharedInstance.m; sourceTree = "<group>"; };
 		927B6C681F132ED40082DB27 /* XYChooseProjectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYChooseProjectViewController.h; sourceTree = "<group>"; };
 		927B6C691F132ED40082DB27 /* XYChooseProjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYChooseProjectViewController.m; sourceTree = "<group>"; };
-		927B6C711F1330350082DB27 /* MasterStatRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterStatRequest_17.h; sourceTree = "<group>"; };
-		927B6C721F1330350082DB27 /* MasterStatRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterStatRequest_17.m; sourceTree = "<group>"; };
+		927B6C711F1330350082DB27 /* ExamineDetailRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamineDetailRequest_17.h; sourceTree = "<group>"; };
+		927B6C721F1330350082DB27 /* ExamineDetailRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamineDetailRequest_17.m; sourceTree = "<group>"; };
 		927B6C761F1359B40082DB27 /* PersonalExamineRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalExamineRequest_17.h; sourceTree = "<group>"; };
 		927B6C771F1359B40082DB27 /* PersonalExamineRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalExamineRequest_17.m; sourceTree = "<group>"; };
 		927B6C7B1F1364920082DB27 /* masterStat_mock_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterStat_mock_17.json; sourceTree = "<group>"; };
@@ -3356,8 +3356,8 @@
 			children = (
 				927B6C7D1F1364B10082DB27 /* personalExamine_mock_17.json */,
 				927B6C7B1F1364920082DB27 /* masterStat_mock_17.json */,
-				927B6C711F1330350082DB27 /* MasterStatRequest_17.h */,
-				927B6C721F1330350082DB27 /* MasterStatRequest_17.m */,
+				927B6C711F1330350082DB27 /* ExamineDetailRequest_17.h */,
+				927B6C721F1330350082DB27 /* ExamineDetailRequest_17.m */,
 				927B6C761F1359B40082DB27 /* PersonalExamineRequest_17.h */,
 				927B6C771F1359B40082DB27 /* PersonalExamineRequest_17.m */,
 			);
@@ -4390,7 +4390,7 @@
 				928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */,
 				92348FE11EEFEF2A00D3B3A7 /* MasterManageListRequest.m in Sources */,
 				CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */,
-				927B6C731F1330350082DB27 /* MasterStatRequest_17.m in Sources */,
+				927B6C731F1330350082DB27 /* ExamineDetailRequest_17.m in Sources */,
 				928B7A3D1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m in Sources */,
 				92F1A5B01E53084A00015766 /* YXProjectMainViewController+Student.m in Sources */,
 				7C2991B31DFE6F7000AE921C /* FileDownloadHelper.m in Sources */,

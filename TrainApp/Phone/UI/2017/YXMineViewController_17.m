@@ -25,7 +25,7 @@ UITableViewDataSource
 @implementation YXMineViewController_17
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"设置";
+    self.title = @"我";
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.titleArray = @[@[@"清空缓存",@"帮助与反馈",@"去AppStore评分",@"关于我们"],@[@"退出登录"]];
     [self setupUI];
@@ -43,7 +43,6 @@ UITableViewDataSource
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UI setting
@@ -59,7 +58,6 @@ UITableViewDataSource
     [self.tableView registerClass:[YXMySettingCell class] forCellReuseIdentifier:@"YXMySettingCell"];
     [self.view addSubview:self.tableView];
 }
-
 - (void)layoutInterface{
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);

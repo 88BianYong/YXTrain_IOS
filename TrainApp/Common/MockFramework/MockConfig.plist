@@ -356,7 +356,7 @@
 				</dict>
 			</array>
 		</dict>
-		<key>MasterStatRequest_17</key>
+		<key>ExamineDetailRequest_17</key>
 		<dict>
 			<key>mockEnable</key>
 			<true/>

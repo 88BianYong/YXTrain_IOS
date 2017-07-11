@@ -53,7 +53,7 @@
 @implementation PersonalExamineRequest_17
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/2017/person/score"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/examine/score"];
     }
     return self;
 }
