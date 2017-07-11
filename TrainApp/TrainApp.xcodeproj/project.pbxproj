@@ -342,6 +342,9 @@
 		927B6C781F1359B40082DB27 /* PersonalExamineRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C771F1359B40082DB27 /* PersonalExamineRequest_17.m */; };
 		927B6C7C1F1364920082DB27 /* masterStat_mock_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 927B6C7B1F1364920082DB27 /* masterStat_mock_17.json */; };
 		927B6C7E1F1364B10082DB27 /* personalExamine_mock_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 927B6C7D1F1364B10082DB27 /* personalExamine_mock_17.json */; };
+		927B6C811F136B470082DB27 /* YXLearningTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C801F136B470082DB27 /* YXLearningTableHeaderView.m */; };
+		927B6C841F1376470082DB27 /* YXMessageCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C831F1376470082DB27 /* YXMessageCell_17.m */; };
+		927B6C871F137E3C0082DB27 /* YXSectionHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C861F137E3C0082DB27 /* YXSectionHeaderFooterView.m */; };
 		92852BEA1EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */; };
 		928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A121E88B2180067218A /* BeijingActivityListCell.m */; };
 		928B7A3A1E88B2180067218A /* BeijingActivityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A141E88B2180067218A /* BeijingActivityListViewController.m */; };
@@ -1255,6 +1258,12 @@
 		927B6C771F1359B40082DB27 /* PersonalExamineRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalExamineRequest_17.m; sourceTree = "<group>"; };
 		927B6C7B1F1364920082DB27 /* masterStat_mock_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterStat_mock_17.json; sourceTree = "<group>"; };
 		927B6C7D1F1364B10082DB27 /* personalExamine_mock_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = personalExamine_mock_17.json; sourceTree = "<group>"; };
+		927B6C7F1F136B470082DB27 /* YXLearningTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningTableHeaderView.h; sourceTree = "<group>"; };
+		927B6C801F136B470082DB27 /* YXLearningTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningTableHeaderView.m; sourceTree = "<group>"; };
+		927B6C821F1376470082DB27 /* YXMessageCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMessageCell_17.h; sourceTree = "<group>"; };
+		927B6C831F1376470082DB27 /* YXMessageCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMessageCell_17.m; sourceTree = "<group>"; };
+		927B6C851F137E3C0082DB27 /* YXSectionHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXSectionHeaderFooterView.h; sourceTree = "<group>"; };
+		927B6C861F137E3C0082DB27 /* YXSectionHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSectionHeaderFooterView.m; sourceTree = "<group>"; };
 		92852BE81EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeYangGetQuizStatistics.h; sourceTree = "<group>"; };
 		92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangGetQuizStatistics.m; sourceTree = "<group>"; };
 		928B7A111E88B2180067218A /* BeijingActivityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingActivityListCell.h; sourceTree = "<group>"; };
@@ -1988,23 +1997,17 @@
 		7C3177641D0E688D004AAC90 /* Business */ = {
 			isa = PBXGroup;
 			children = (
-				927B6C6C1F132F9F0082DB27 /* 版本2016 */,
 				927B6C6B1F132F820082DB27 /* 版本2017 */,
+				927B6C6C1F132F9F0082DB27 /* 版本2016 */,
+				CB227EAB1D34D10700D5327B /* 引导页 */,
 				927B6C641F0F3F380082DB27 /* 全局共享 */,
-				928B7A8B1E88EEAD0067218A /* 德阳项目 */,
-				9263544A1DF1528000FAD1DE /* 北京项目 */,
-				92348F911EEFED4F00D3B3A7 /* 坊主 */,
 				92CE514A1D87D3290071DE79 /* 热点 */,
 				92CE51491D87D3020071DE79 /* 动态 */,
 				923237841D864A1600FDACFE /* 红点 */,
 				9232373A1D7E627E00FDACFE /* CMS */,
-				CB227EAB1D34D10700D5327B /* 引导页 */,
 				9223C8241D2E0DFC000F74DF /* 设置 */,
 				7CF888451D18E88500E7C04D /* 登录注册 */,
 				7C31783C1D139789004AAC90 /* 个人 */,
-				7C31783E1D139789004AAC90 /* 工作坊 */,
-				7C3178401D139789004AAC90 /* 主界面 */,
-				7C3178421D139789004AAC90 /* 资源 */,
 			);
 			path = Business;
 			sourceTree = "<group>";
@@ -2154,6 +2157,8 @@
 		7C3177BF1D0EC0FC004AAC90 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				92E268AD1F0E073C0022EA5A /* 版本2017 */,
+				92E268AC1F0E07330022EA5A /* 版本2016 */,
 				9232375A1D814F5400FDACFE /* 热点 */,
 				F7E8F8D21D65AEB600CDAAF4 /* 为空&错误 */,
 				7C3178361D13949C004AAC90 /* 动态 */,
@@ -2165,8 +2170,6 @@
 				7CF888421D18E86A00E7C04D /* 引导页 */,
 				92E268AE1F0E0D370022EA5A /* 启动 */,
 				927B6C4D1F0F39ED0082DB27 /* 弹出 */,
-				92E268AD1F0E073C0022EA5A /* 版本2017 */,
-				92E268AC1F0E07330022EA5A /* 版本2016 */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2582,6 +2585,8 @@
 				9232372A1D69A5DD00FDACFE /* YXLoadView.h */,
 				9232372B1D69A5DD00FDACFE /* YXLoadView.m */,
 				E935D8531DFE4047005CC8BD /* 提示相关 */,
+				927B6C851F137E3C0082DB27 /* YXSectionHeaderFooterView.h */,
+				927B6C861F137E3C0082DB27 /* YXSectionHeaderFooterView.m */,
 			);
 			name = "样式";
 			sourceTree = "<group>";
@@ -3336,6 +3341,12 @@
 		927B6C6C1F132F9F0082DB27 /* 版本2016 */ = {
 			isa = PBXGroup;
 			children = (
+				7C3178401D139789004AAC90 /* 主界面 */,
+				92348F911EEFED4F00D3B3A7 /* 坊主 */,
+				7C3178421D139789004AAC90 /* 资源 */,
+				7C31783E1D139789004AAC90 /* 工作坊 */,
+				928B7A8B1E88EEAD0067218A /* 德阳项目 */,
+				9263544A1DF1528000FAD1DE /* 北京项目 */,
 			);
 			name = "版本2016";
 			sourceTree = "<group>";
@@ -3458,6 +3469,8 @@
 		92A791651F0E20C300E3D258 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				927B6C7F1F136B470082DB27 /* YXLearningTableHeaderView.h */,
+				927B6C801F136B470082DB27 /* YXLearningTableHeaderView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3492,6 +3505,8 @@
 		92A791691F0E213800E3D258 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				927B6C821F1376470082DB27 /* YXMessageCell_17.h */,
+				927B6C831F1376470082DB27 /* YXMessageCell_17.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -4593,6 +4608,7 @@
 				920F1D771D59D1B500636A51 /* YXNotAutorotateView.m in Sources */,
 				92EDC7C81D61AD76005B91DD /* YXSelectHomeworkInfoView.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
+				927B6C871F137E3C0082DB27 /* YXSectionHeaderFooterView.m in Sources */,
 				7C2C3B601D23D68500A03635 /* YXCourseListFilterModel.m in Sources */,
 				7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */,
 				CBB62E101D2CBE4C00DAA6DE /* YXBriefListFetch.m in Sources */,
@@ -4643,6 +4659,7 @@
 				928B7A3E1E88B2180067218A /* BeijingCheckedMobileUserViewController.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				92E9715D1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m in Sources */,
+				927B6C811F136B470082DB27 /* YXLearningTableHeaderView.m in Sources */,
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
 				920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */,
 				924AB2661DE43EC9003EC952 /* ActivityEnclosureViewController.m in Sources */,
@@ -4669,6 +4686,7 @@
 				920F1D301D518C1600636A51 /* YXHomeworkListRequest.m in Sources */,
 				7C2C3B911D26406400A03635 /* YXTrainManager.m in Sources */,
 				920F1D651D58346500636A51 /* YXVideoRecordTopView.m in Sources */,
+				927B6C841F1376470082DB27 /* YXMessageCell_17.m in Sources */,
 				CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
 				920F1D681D58347600636A51 /* YXVideoRecordBottomView.m in Sources */,

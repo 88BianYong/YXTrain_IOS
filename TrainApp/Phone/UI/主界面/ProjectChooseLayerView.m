@@ -7,7 +7,6 @@
 //
 
 #import "ProjectChooseLayerView.h"
-#import "YXNoFloatingHeaderFooterTableView.h"
 #import "ProjectChooseLayerHeaderView.h"
 #import "ProjectChooseLayerCell.h"
 #import "UITableView+TemplateLayoutHeaderView.h"

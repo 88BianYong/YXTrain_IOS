@@ -7,7 +7,6 @@
 //
 
 #import "VideoCourseIntroductionViewController.h"
-#import "YXNoFloatingHeaderFooterTableView.h"
 #import "VideoCourseIntroductionCell.h"
 #import "VideoCourseIntroductionHeaderView.h"
 @interface VideoCourseIntroductionViewController ()<UITableViewDelegate, UITableViewDataSource>

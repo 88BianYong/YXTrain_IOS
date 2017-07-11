@@ -10,8 +10,6 @@
 #import "UITableView+TemplateLayoutHeaderView.h"
 #import "VideoClassworkCell.h"
 #import "VideoClassworkHeaderView.h"
-#import "YXNoFloatingHeaderFooterTableView.h"
-
 @interface VideoClassworkView ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UILabel *titleLabel;

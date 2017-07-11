@@ -72,5 +72,6 @@ extern int ddLogLevel;
 #import "YXTrackPageDataProtocol.h"
 #import "FileBrowserFactory.h"
 #import "LSTAlertView.h"
+#import "YXNoFloatingHeaderFooterTableView.h"
 #endif 
 /* PrefixHeader_pch */

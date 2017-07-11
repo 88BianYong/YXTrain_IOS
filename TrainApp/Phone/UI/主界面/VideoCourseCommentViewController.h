@@ -7,7 +7,6 @@
 //
 
 #import "YXBaseViewController.h"
-#import "YXNoFloatingHeaderFooterTableView.h"
 #import "VideoCourseCommentsRequest.h"
 #import "VideoCourseCommentHeaderView.h"
 @class VideoCourseCommentsFetcher;

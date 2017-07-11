@@ -7,28 +7,43 @@
 //
 
 #import "YXLearningViewController_17.h"
-
-@interface YXLearningViewController_17 ()
-
+@interface YXLearningViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @end
 
 @implementation YXLearningViewController_17
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"学习";
-    UILabel *label = [[UILabel alloc] init];
-    label.text = @"学习";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:label];
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];}
+    [self setupUI];
+    [self setupLayout];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+#pragma mark - setupUI
+- (void)setupUI {
+    self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+}
+- (void)setupLayout {
+    
+}
+#pragma mark - UITableViewDelegate
+
+#pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
 }
 
 @end
