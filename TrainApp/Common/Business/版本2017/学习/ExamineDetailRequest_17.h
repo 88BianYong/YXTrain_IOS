@@ -84,9 +84,10 @@
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Expert<Optional> *expert;
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Other<Optional> *other;
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Banner<Optional> *banner;
+@property (nonatomic, strong) NSDictionary<Optional> *theme;
 @end
 
 @interface ExamineDetailRequest_17 : YXGetRequest
-@property (nonatomic, copy) NSString *projectId;
+@property (nonatomic, copy) NSString *projectID;
 @property (nonatomic, copy) NSString *role;
 @end

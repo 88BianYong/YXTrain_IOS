@@ -73,6 +73,6 @@
 @end
 
 @interface PersonalExamineRequest_17 : YXGetRequest
-@property (nonatomic, copy) NSString *projectId;
+@property (nonatomic, copy) NSString *projectID;
 @property (nonatomic, copy) NSString *role;
 @end

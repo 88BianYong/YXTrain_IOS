@@ -422,6 +422,8 @@
 		92DE3BBE1DDC45DE0011CFB7 /* SecondCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BBD1DDC45DE0011CFB7 /* SecondCommentFooterView.m */; };
 		92DE3BC41DDC590D0011CFB7 /* SendCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BC31DDC590D0011CFB7 /* SendCommentView.m */; };
 		92DE3BC71DDD82350011CFB7 /* ActivityToolVideoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */; };
+		92E4F9AF1F15C0A8001CB34E /* CourseListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F9AE1F15C0A8001CB34E /* CourseListRequest_17.m */; };
+		92E4F9B31F15FA38001CB34E /* courseList_mock_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 92E4F9B21F15FA38001CB34E /* courseList_mock_17.json */; };
 		92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */; };
 		92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */; };
 		92E9714F1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */; };
@@ -1413,6 +1415,9 @@
 		92DE3BC51DDD82350011CFB7 /* ActivityToolVideoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityToolVideoRequest.h; sourceTree = "<group>"; };
 		92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityToolVideoRequest.m; sourceTree = "<group>"; };
 		92E268B91F0E1E040022EA5A /* YXTabBarViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTabBarViewController_17.h; sourceTree = "<group>"; };
+		92E4F9AD1F15C0A8001CB34E /* CourseListRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListRequest_17.h; sourceTree = "<group>"; };
+		92E4F9AE1F15C0A8001CB34E /* CourseListRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListRequest_17.m; sourceTree = "<group>"; };
+		92E4F9B21F15FA38001CB34E /* courseList_mock_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = courseList_mock_17.json; sourceTree = "<group>"; };
 		92E8FD671D8E1F8D00004700 /* YXHotReadedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHotReadedRequest.h; sourceTree = "<group>"; };
 		92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHotReadedRequest.m; sourceTree = "<group>"; };
 		92E8FD6A1D8E1FE600004700 /* YXMsgReadedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMsgReadedRequest.h; sourceTree = "<group>"; };
@@ -3333,6 +3338,7 @@
 		927B6C6B1F132F820082DB27 /* 版本2017 */ = {
 			isa = PBXGroup;
 			children = (
+				92E4F9AC1F15C06F001CB34E /* 课程 */,
 				927B6C701F1330060082DB27 /* 学习 */,
 			);
 			path = "版本2017";
@@ -3617,6 +3623,16 @@
 				92A7915F1F0E203100E3D258 /* YXTabBarViewController_17.m */,
 			);
 			name = "主界面";
+			sourceTree = "<group>";
+		};
+		92E4F9AC1F15C06F001CB34E /* 课程 */ = {
+			isa = PBXGroup;
+			children = (
+				92E4F9B21F15FA38001CB34E /* courseList_mock_17.json */,
+				92E4F9AD1F15C0A8001CB34E /* CourseListRequest_17.h */,
+				92E4F9AE1F15C0A8001CB34E /* CourseListRequest_17.m */,
+			);
+			path = "课程";
 			sourceTree = "<group>";
 		};
 		92E971541ED57FC100DEAAD4 /* OLImageView */ = {
@@ -4284,6 +4300,7 @@
 				92348FDE1EEFEF2A00D3B3A7 /* masterLearningInfoList_mock.json in Resources */,
 				7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */,
 				92B2C0A41DD41EFA003E27F9 /* Image.html in Resources */,
+				92E4F9B31F15FA38001CB34E /* courseList_mock_17.json in Resources */,
 				92AD8EF11E10F0C300A3E91C /* beijingActivityFilter_mock.json in Resources */,
 				7C2C3B571D23B87B00A03635 /* courselist_mock.json in Resources */,
 				927B6C5A1F0F3A5E0082DB27 /* readme.txt in Resources */,
@@ -4787,6 +4804,7 @@
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
 				92CE56001E55C8AB002C1F11 /* UserStatusView.m in Sources */,
+				92E4F9AF1F15C0A8001CB34E /* CourseListRequest_17.m in Sources */,
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
 				7CF8882A1D17E6C600E7C04D /* YXPlayerBufferingView.m in Sources */,
 				7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */,

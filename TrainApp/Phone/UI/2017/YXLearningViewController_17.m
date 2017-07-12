@@ -154,7 +154,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 #pragma mark - request
 - (void)requestForExamineDetail {
     ExamineDetailRequest_17 *request = [[ExamineDetailRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.role = [LSTSharedInstance sharedInstance].trainManager.currentProject.role;
     WEAK_SELF
     [request startRequestWithRetClass:[ExamineDetailRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -169,6 +169,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
             return;
         }
         self.examineDetailItem = retItem;
+        
     }];
     self.examineDetailRequest = request;
 }
