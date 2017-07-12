@@ -29,7 +29,7 @@
     "stages": [
                {
                "isCurrStage": 0,
-               "isFinish": 0,
+               "isFinish": 1,
                "name": "第一阶段",
                "notes": "",
                "stageid": 5108,
@@ -40,17 +40,17 @@
                          {
                          "toolid": 201,
                          "name": "课程",
-                         "status": 0
+                         "status": 2
                          },
                          {
                          "toolid": 202,
-                         "name": "活动",
-                         "status": 0
+                         "name": "活动你带你大声道",
+                         "status": 2
                          },
                          {
                          "toolid": 203,
                          "name": "作业",
-                         "status": 0
+                         "status": 1
                          }
                          ],
                "totalscore": 20,
@@ -69,11 +69,16 @@
                          {
                          "toolid": 201,
                          "name": "课程",
-                         "status": 0
+                         "status": 2
                          },
                          {
                          "toolid": 202,
                          "name": "活动",
+                         "status": 1
+                         },
+                         {
+                         "toolid": 203,
+                         "name": "作业",
                          "status": 0
                          },
                          {
@@ -92,7 +97,7 @@
                "notes": "",
                "stageid": 5110,
                "starttime": "2017-06-20",
-               "status": 1,
+               "status": 0,
                "subject": "以评促应用",
                "tools": [
                          {
@@ -116,12 +121,16 @@
                }
                ],
     "expert": {
-        "isShowExpertChannel": 0,
-        "expertProjectId": 0
+        "isShowExpertChannel": 1,
+        "expertProjectId": 0,
+        "channelid":200243
+    },
+    "examine": {
+        "userGetScore": 44
     },
     "other": {
-        "isShowCourseMarket": 0,
-        "isShowOfflineActive": 0,
+        "isShowCourseMarket": 1,
+        "isShowOfflineActive": 1,
         "ifWorks": 0,
         "guide": "http://www.yanxiu.com",
         "plans": "http://www.yanxiu.com"

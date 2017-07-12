@@ -63,38 +63,41 @@
 
 @implementation CourseListRequest_17Item_SearchTerm
 - (NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment,Optional> *)segmentModel {
-    NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> *mutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> alloc] init];
-    WEAK_SELF
-    [self.segments.allKeys enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        STRONG_SELF
-        CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = [[CourseListRequest_17Item_SearchTerm_MockSegment alloc] init];
-        mockSegment.segmentID = obj;
-        mockSegment.segmentName = self.segments[obj];
-        NSDictionary *chapterDic = self.studys[obj][@"c"];
-        if (chapterDic != nil) {
-            NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> *chapterMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> alloc] init];
-            [chapterDic.allKeys enumerateObjectsUsingBlock:^(NSString *cObj, NSUInteger idx, BOOL * _Nonnull stop) {
-                CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = [[CourseListRequest_17Item_SearchTerm_MockSegment_Chapter alloc] init];
-                chapter.chapterID = cObj;
-                chapter.chapterName = chapterDic[cObj];
-                [chapterMutableArray addObject:chapter];
-            }];
-            mockSegment.chapter = chapterMutableArray;
-        }
-        NSDictionary *gradeDic = self.studys[obj][@"g"];
-        if (gradeDic != nil) {
-            NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> *gradeMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> alloc] init];
-            [gradeDic.allKeys enumerateObjectsUsingBlock:^(NSString *gObj, NSUInteger idx, BOOL * _Nonnull stop) {
-                CourseListRequest_17Item_SearchTerm_MockSegment_Grade *grade = [[CourseListRequest_17Item_SearchTerm_MockSegment_Grade alloc] init];
-                grade.gradeID = gObj;
-                grade.gradeName = gradeDic[gObj];
-                [gradeMutableArray addObject:grade];
-            }];
-            mockSegment.grade = gradeMutableArray;
-        }
-        [mutableArray addObject:mockSegment];
-    }];
-    return mutableArray;
+    if (_segmentModel == nil) {
+        NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> *mutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> alloc] init];
+        WEAK_SELF
+        [self.segments.allKeys enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            STRONG_SELF
+            CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = [[CourseListRequest_17Item_SearchTerm_MockSegment alloc] init];
+            mockSegment.segmentID = obj;
+            mockSegment.segmentName = self.segments[obj];
+            NSDictionary *chapterDic = self.studys[obj][@"c"];
+            if (chapterDic != nil) {
+                NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> *chapterMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> alloc] init];
+                [chapterDic.allKeys enumerateObjectsUsingBlock:^(NSString *cObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = [[CourseListRequest_17Item_SearchTerm_MockSegment_Chapter alloc] init];
+                    chapter.chapterID = cObj;
+                    chapter.chapterName = chapterDic[cObj];
+                    [chapterMutableArray addObject:chapter];
+                }];
+                mockSegment.chapter = chapterMutableArray;
+            }
+            NSDictionary *gradeDic = self.studys[obj][@"g"];
+            if (gradeDic != nil) {
+                NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> *gradeMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> alloc] init];
+                [gradeDic.allKeys enumerateObjectsUsingBlock:^(NSString *gObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    CourseListRequest_17Item_SearchTerm_MockSegment_Grade *grade = [[CourseListRequest_17Item_SearchTerm_MockSegment_Grade alloc] init];
+                    grade.gradeID = gObj;
+                    grade.gradeName = gradeDic[gObj];
+                    [gradeMutableArray addObject:grade];
+                }];
+                mockSegment.grade = gradeMutableArray;
+            }
+            [mutableArray addObject:mockSegment];
+        }];
+        _segmentModel = mutableArray;
+    }
+    return _segmentModel;
 }
 @end
 @implementation CourseListRequest_17Item

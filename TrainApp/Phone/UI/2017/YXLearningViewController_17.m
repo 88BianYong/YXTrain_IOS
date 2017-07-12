@@ -11,15 +11,24 @@
 #import "MJRefresh.h"
 #import "ProjectChooseLayerView.h"
 #import "TrainSelectLayerRequest.h"
-typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
-    TrainProjectRequestStatus_Beijing,//请求北京校验
-    TrainProjectRequestStatus_LayerList,//请求分层
+#import "YXProjectSelectionView.h"
+#import "YXLearningTableHeaderView_17.h"
+#import "YXLearningStageHeaderView_17.h"
+#import "YXSectionHeaderFooterView.h"
+#import "YXLearningStageCell_17.h"
+#import "YXLearningChannelHeaderView_17.h"
+typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
+    YXLearningRequestStatus_ExamineDetail,//请求个人工作室信息
+    YXLearningRequestStatus_LayerList,//请求分层
 };
 @interface YXLearningViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) UIView *qrCodeView;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) ProjectChooseLayerView *chooseLayerView;
+@property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
+@property (nonatomic, strong) YXLearningTableHeaderView_17 *headerView;
+
 
 
 @property (nonatomic, strong) ExamineDetailRequest_17 *examineDetailRequest;
@@ -28,6 +37,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 @property (nonatomic, strong) TrainSelectLayerRequest *selectLayerRequest;
 
 @property (nonatomic, strong) NSMutableDictionary *layerMutableDictionary;
+@property (nonatomic, assign) YXLearningRequestStatus requestStatus;
 
 
 @end
@@ -41,13 +51,26 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     [self setupUI];
     [self setupLayout];
     [self startLoading];
+     NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
+    [self dealWithProjectGroups:groups];
     self.layerMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:3];
     if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenLayer.boolValue) {
         [self requestForLayerList];
     }else {
-
         [self requestForExamineDetail];
     }
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self showProjectSelectionView];
+
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self hideProjectSelectionView];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -59,34 +82,57 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         WEAK_SELF
         [_chooseLayerView setProjectChooseLayerCompleteBlock:^(NSString *layerId){
             STRONG_SELF;
-            //[self requestForSelectLayer:layerId];
+            [self requestForSelectLayer:layerId];
         }];
     }
     return _chooseLayerView;
 }
 - (void)setExamineDetailItem:(ExamineDetailRequest_17Item *)examineDetailItem {
     _examineDetailItem = examineDetailItem;
+    self.headerView.scoreString = _examineDetailItem.examine.userGetScore;
+    self.headerView.hidden = NO;
+    [self.tableView reloadData];
 }
 
 #pragma mark - setupUI
 - (void)setupUI {
-    self.navigationItem.title = [LSTSharedInstance sharedInstance].trainManager.currentProject.name;
+    self.navigationItem.title = @"";
     self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-    self.errorView = [[YXErrorView alloc] init];
+    [self.tableView registerClass:[YXLearningStageHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"YXLearningStageHeaderView_17"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
+    [self.tableView registerClass:[YXLearningStageCell_17 class] forCellReuseIdentifier:@"YXLearningStageCell_17"];
+    [self.tableView registerClass:[YXLearningChannelHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"YXLearningChannelHeaderView_17"];
+    self.headerView = [[YXLearningTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 155.0f)];
+    self.headerView.hidden = YES;
     WEAK_SELF
+    self.headerView.learningMyScoreCompleteBlock = ^{
+        STRONG_SELF
+        UIViewController *VC = [[NSClassFromString(@"YXMyLearningScoreViewController") alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+    };
+    self.tableView.tableHeaderView = self.headerView;
+    self.errorView = [[YXErrorView alloc] init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
-        [self requestForExamineDetail];
+        if (self.requestStatus == YXLearningRequestStatus_LayerList) {
+            [self requestForLayerList];
+        }else {
+            [self requestForExamineDetail];
+        }
     };
     self.dataErrorView = [[DataErrorView alloc] init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
-        [self requestForExamineDetail];
+        if (self.requestStatus == YXLearningRequestStatus_LayerList) {
+            [self requestForLayerList];
+        }else {
+            [self requestForExamineDetail];
+        }
     };
     self.header = [MJRefreshHeaderView header];
     self.header.scrollView = self.tableView;
@@ -101,6 +147,36 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         make.edges.equalTo(self.view);
     }];
 }
+#pragma mark - peojects hide & show
+- (void)dealWithProjectGroups:(NSArray *)groups{
+    self.projectSelectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
+    self.projectSelectionView.currentIndexPath = [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath;
+   self.projectSelectionView.projectGroup = groups;
+    WEAK_SELF
+    self.projectSelectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
+        STRONG_SELF
+        [self showProjectWithIndexPath:indexPath];
+    };
+    [self showProjectSelectionView];
+}
+- (void)showProjectSelectionView {
+    if (self.navigationController.topViewController == self) {
+        [self.navigationController.navigationBar addSubview:self.projectSelectionView];
+    }
+}
+- (void)hideProjectSelectionView {
+    [self.projectSelectionView removeFromSuperview];
+}
+#pragma mark - showView
+- (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
+    [LSTSharedInstance sharedInstance].trainManager.currentProject.role = nil;
+    [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenLayer.boolValue) {
+        [self requestForLayerList];
+    }else {
+        [self requestForExamineDetail];
+    }
+}
 - (void)showTrainLayerView:(TrainLayerListRequestItem *)item {
     [self.view addSubview:self.chooseLayerView];
     [self.chooseLayerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -108,7 +184,6 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     }];
     self.chooseLayerView.dataMutableArray = item.body;
 }
-
 - (void)setupQRCodeLeftView{
     self.qrCodeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -126,33 +201,70 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 #pragma mark - UITableViewDelegate
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return nil;
+    if (section >= self.examineDetailItem.stages.count) {
+        YXLearningChannelHeaderView_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXLearningChannelHeaderView_17"];
+        headerView.mockOther = self.examineDetailItem.mockOthers[section - self.examineDetailItem.stages.count];
+        WEAK_SELF
+        headerView.learningChannelButtonCompleteBlock = ^(ExamineDetailRequest_17Item_MockOther *mockOther) {
+            STRONG_SELF
+            DDLogDebug(@">>>>>>>>>>>%@",mockOther.otherName);
+        };
+        return headerView;
+        
+    }else {
+        YXLearningStageHeaderView_17 *heaerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXLearningStageHeaderView_17"];
+        heaerView.stage = self.examineDetailItem.stages[section];
+        WEAK_SELF
+        heaerView.learningStageHeaderViewBlock = ^() {
+            STRONG_SELF
+            ExamineDetailRequest_17Item_Stages *stage = self.examineDetailItem.stages[section];
+            stage.isMockFold = stage.isMockFold.boolValue ? @"0" : @"1";
+            [tableView beginUpdates];
+            [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
+            [tableView endUpdates];
+        };
+        return heaerView;
+    }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return nil;
+    YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return headerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.0001f;
+    return 5.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.0001f;
+    return section >= self.examineDetailItem.stages.count ? 45.0f : 80.f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 0.0001f;
+    return 80.0f;
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
+    return self.examineDetailItem.stages.count + self.examineDetailItem.mockOthers.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    if (section >= self.examineDetailItem.stages.count) {
+        return 0;
+    }else {
+        ExamineDetailRequest_17Item_Stages *stage = self.examineDetailItem.stages[section];
+        if (!stage.status.boolValue || !stage.isMockFold.boolValue) {
+            return 0;
+        }else {
+            return 1;
+        }
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    YXLearningStageCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXLearningStageCell_17" forIndexPath:indexPath];
+    ExamineDetailRequest_17Item_Stages *stages = self.examineDetailItem.stages[indexPath.section];
+    cell.tools = stages.tools;
+    return cell;
 }
 #pragma mark - request
 - (void)requestForExamineDetail {
+    self.requestStatus = YXLearningRequestStatus_ExamineDetail;
     ExamineDetailRequest_17 *request = [[ExamineDetailRequest_17 alloc] init];
     request.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.role = [LSTSharedInstance sharedInstance].trainManager.currentProject.role;
@@ -177,7 +289,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     if (self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid]) {
         [self showTrainLayerView:self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid]];
     }else {
-       // self.requestStatus = TrainProjectRequestStatus_LayerList;
+        self.requestStatus = YXLearningRequestStatus_LayerList;
         TrainLayerListRequest *request = [[TrainLayerListRequest alloc] init];
         request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
         WEAK_SELF

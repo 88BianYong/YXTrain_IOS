@@ -94,7 +94,8 @@
 }
 - (void)startRootVC {
     if ([[LSTSharedInstance sharedInstance].userManger isLogin]) {
-        self.window.rootViewController = ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2017) ?[self rootTabBarViewController] : [self rootDrawerViewController];
+        YXNavigationController *projectNav = [[YXNavigationController alloc]initWithRootViewController:[[XYChooseProjectViewController alloc] init]];
+        self.window.rootViewController = projectNav;
         [self requestCommonData];
         WEAK_SELF
         [[LSTSharedInstance sharedInstance].floatingViewManager setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){

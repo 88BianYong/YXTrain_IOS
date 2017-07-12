@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface YXLearningTableHeaderView : UIView
-
+@interface YXLearningTableHeaderView_17 : UIView
+@property (nonatomic, copy) NSString *scoreString;
+@property (nonatomic, copy) void(^learningMyScoreCompleteBlock)();
 @end

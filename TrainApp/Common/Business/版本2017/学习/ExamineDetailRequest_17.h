@@ -26,6 +26,7 @@
 @interface ExamineDetailRequest_17Item_Expert : JSONModel
 @property (nonatomic, copy) NSString<Optional> *isShowExpertChannel;
 @property (nonatomic, copy) NSString<Optional> *expertProjectId;
+@property (nonatomic, copy) NSString<Optional> *channelID;
 @end
 @protocol ExamineDetailRequest_17Item_Stages_Tools <NSObject>
 
@@ -48,6 +49,7 @@
 @property (nonatomic, copy) NSString<Optional> *startTime;
 @property (nonatomic, copy) NSString<Optional> *status;
 @property (nonatomic, copy) NSString<Optional> *subject;
+@property (nonatomic, copy) NSString<Optional> *isMockFold;//是否折叠 用于判断展开收起
 @property (nonatomic, strong) NSArray<ExamineDetailRequest_17Item_Stages_Tools,Optional> *tools;
 @end
 
@@ -78,13 +80,32 @@
 @property (nonatomic, copy) NSString<Optional> *sInfoConfirm;
 @end
 
+@protocol ExamineDetailRequest_17Item_MockOther <NSObject>
+
+@end
+@interface ExamineDetailRequest_17Item_MockOther : JSONModel
+/**
+    otherType  1选课超市 2在线考试 3 专家频道
+ */
+@property (nonatomic, copy) NSString *otherType;
+@property (nonatomic, copy) NSString *otherID;
+@property (nonatomic, copy) NSString *otherName;
+@end
+
+@interface ExamineDetailRequest_17Item_Examine : JSONModel
+@property (nonatomic, copy) NSString<Optional> *userGetScore;
+@end
+
 @interface ExamineDetailRequest_17Item: HttpBaseRequestItem
 @property (nonatomic, strong) ExamineDetailRequest_17Item_User<Optional> *user;
 @property (nonatomic, strong) NSArray<ExamineDetailRequest_17Item_Stages,Optional> *stages;
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Expert<Optional> *expert;
+@property (nonatomic, strong) ExamineDetailRequest_17Item_Examine<Optional> *examine;
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Other<Optional> *other;
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Banner<Optional> *banner;
-@property (nonatomic, strong) NSDictionary<Optional> *theme;
+@property (nonatomic, strong) ExamineDetailRequest_17Item_Theme<Optional> *theme;
+
+@property (nonatomic, strong) NSMutableArray<ExamineDetailRequest_17Item_MockOther,Optional> *mockOthers;
 @end
 
 @interface ExamineDetailRequest_17 : YXGetRequest
