@@ -109,10 +109,15 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     self.headerView = [[YXLearningTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 155.0f)];
     self.headerView.hidden = YES;
     WEAK_SELF
-    self.headerView.learningMyScoreCompleteBlock = ^{
+    self.headerView.learningMyScoreCompleteBlock = ^(BOOL isScoreBool) {
         STRONG_SELF
-        UIViewController *VC = [[NSClassFromString(@"YXMyLearningScoreViewController") alloc] init];
-        [self.navigationController pushViewController:VC animated:YES];
+        if (isScoreBool) {
+            UIViewController *VC = [[NSClassFromString(@"YXMyLearningScoreViewController") alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }else {
+            
+            
+        }
     };
     self.tableView.tableHeaderView = self.headerView;
     self.errorView = [[YXErrorView alloc] init];
@@ -236,7 +241,8 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     return section >= self.examineDetailItem.stages.count ? 45.0f : 80.f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 80.0f;
+    ExamineDetailRequest_17Item_Stages *stages = self.examineDetailItem.stages[indexPath.section];
+    return ceil((double)stages.tools.count/4.0f) * 80.0f;;
 }
 
 #pragma mark - UITableViewDataSource

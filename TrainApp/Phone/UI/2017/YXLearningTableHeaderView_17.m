@@ -56,6 +56,7 @@
 
 @property (nonatomic, strong) LearningTableHeaderBottomView *bottomView;
 @property (nonatomic, strong) UIButton *myScoreButton;
+@property (nonatomic, strong) UIButton *noticeBriefButton;
 @end
 @implementation YXLearningTableHeaderView_17
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -81,9 +82,15 @@
     WEAK_SELF
     [[self.myScoreButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
-        BLOCK_EXEC(self.learningMyScoreCompleteBlock);
+        BLOCK_EXEC(self.learningMyScoreCompleteBlock,YES);
     }];
     [self.containerView addSubview:self.myScoreButton];
+    
+    self.noticeBriefButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [[self.noticeBriefButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        BLOCK_EXEC(self.learningMyScoreCompleteBlock,NO);
+    }];
     
     self.scoreLabel = [[UILabel alloc] init];
     self.scoreLabel.font = [UIFont fontWithName:YXFontMetro_Medium size:31.0f];
@@ -128,6 +135,14 @@
         make.bottom.equalTo(self.containerView.mas_bottom);
         make.width.equalTo(self.containerView.mas_width).multipliedBy(1.0f/2.0f);
     }];
+    [self.noticeBriefButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.containerView.mas_top);
+        make.right.equalTo(self.containerView.mas_right);
+        make.bottom.equalTo(self.containerView.mas_bottom);
+        make.width.equalTo(self.containerView.mas_width).multipliedBy(1.0f/2.0f);
+    }];
+    
+    
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView.mas_left);
         make.width.equalTo(self.containerView.mas_width).multipliedBy(1.0f/2.0f);

@@ -60,7 +60,20 @@
 -(void)setupUI {
     UIColor *color = [UIColor colorWithHexString:@"f1f1f1"];
     self.gradientView = [[YXGradientView alloc]initWithStartColor:color endColor:[color colorWithAlphaComponent:0] orientation:YXGradientTopToBottom];
+    self.gradientView.tag = 5;
     [self.contentView addSubview:self.gradientView];
+    for (int i = 1; i < 4; i ++) {
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+        lineView.tag = i + 1;
+        [self.contentView addSubview:lineView];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left).offset(kScreenWidth/4.0f * i - 0.5f/[UIScreen mainScreen].scale);
+            make.top.equalTo(self.contentView.mas_top);
+            make.bottom.equalTo(self.contentView.mas_bottom);
+            make.width.mas_offset(1.0f/[UIScreen mainScreen].scale);
+        }];
+    }
 }
 - (void)setupLayout {
     [self.gradientView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -71,12 +84,67 @@
 }
 - (void)setupToolButton:(NSArray<UIButton *> *)toolButtons {
     [toolButtons enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top);
-            make.left.equalTo(self.contentView.mas_left).offset(kScreenWidth/4.0f * idx);
-            make.width.mas_offset(kScreenWidth/4.0f);
-            make.bottom.equalTo(self.contentView.mas_bottom);
-        }];
+        if ((idx / 4 % 2) == 0) {
+            [obj mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 40.0f);
+                make.left.equalTo(self.contentView.mas_left).offset(kScreenWidth/4.0f * (idx % 4));
+                make.width.mas_offset(kScreenWidth/4.0f);
+            }];
+            if (idx + 1 != toolButtons.count) {
+                if ((idx+1) % 4 != 0) {
+                    UIImageView *imageView = [[UIImageView alloc] init];
+                    imageView.backgroundColor = [UIColor redColor];
+                    imageView.tag = 20086+ idx;
+                    [self.contentView addSubview:imageView];
+                    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
+                        make.centerX.equalTo(obj.mas_right);
+                        make.centerY.equalTo(obj.mas_centerY);
+                    }];
+                }else {
+                    UIImageView *imageView = [[UIImageView alloc] init];
+                    imageView.backgroundColor = [UIColor greenColor];
+                    imageView.tag = 20086+ idx;
+                    [self.contentView addSubview:imageView];
+                    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
+                        make.centerX.equalTo(obj.mas_centerX);
+                        make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 80.0f);
+                    }];
+                }
+            }
+
+        }else {
+            [obj mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 40.0f);
+                make.right.equalTo(self.contentView.mas_right).offset(-kScreenWidth/4.0f * (idx % 4));
+                make.width.mas_offset(kScreenWidth/4.0f);
+            }];
+            if (idx + 1 != toolButtons.count) {
+                if ((idx+1) % 4 != 0) {
+                    UIImageView *imageView = [[UIImageView alloc] init];
+                    imageView.backgroundColor = [UIColor blueColor];
+                    imageView.tag = 20086+ idx;
+                    [self.contentView addSubview:imageView];
+                    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
+                        make.centerX.equalTo(obj.mas_left);
+                        make.centerY.equalTo(obj.mas_centerY);
+                    }];
+                    
+                }else {
+                    UIImageView *imageView = [[UIImageView alloc] init];
+                    imageView.backgroundColor = [UIColor blueColor];
+                    imageView.tag = 20086+ idx;
+                    [self.contentView addSubview:imageView];
+                    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
+                        make.centerX.equalTo(obj.mas_right);
+                        make.centerY.mas_offset(idx/4 * 80.0f + 80.0f);
+                    }];
+                }
+            }
+        }
     }];
 }
 
@@ -88,6 +156,16 @@
     [self.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[UIButton class]]) {
             [obj removeFromSuperview];
+        }
+        if ([obj isKindOfClass:[UIView class]]) {
+            if (obj.tag >= 10086) {
+                [obj removeFromSuperview];
+            }
+        }
+        if ([obj isKindOfClass:[UIImageView class]]) {
+            if (obj.tag >= 20086) {
+                [obj removeFromSuperview];
+            }
         }
     }];
     for (ExamineDetailRequest_17Item_Stages_Tools *tool in tools) {
@@ -110,6 +188,19 @@
         }];
         [buttonMutableArray addObject:button];
     }
+    for (int i = 1; i * 4 <= tools.count; i ++) {
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+        lineView.tag = 10086 + i;
+        [self.contentView addSubview:lineView];
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.contentView.mas_left);
+            make.right.equalTo(self.contentView.mas_right);
+            make.bottom.equalTo(self.contentView.mas_top).offset(i * 80.0f);
+            make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
+        }];
+    }
+    
     [self setupToolButton:buttonMutableArray];
 }
 - (void)awakeFromNib {
@@ -119,7 +210,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

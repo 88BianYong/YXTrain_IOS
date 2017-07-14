@@ -113,9 +113,9 @@
     }
 }
 
-- (void)setupToolScoreView:(NSArray<YXMyLearningUserScoreView *> *)toolButtons {
-    [toolButtons enumerateObjectsUsingBlock:^(YXMyLearningUserScoreView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ((toolButtons.count / 4 % 2) == 0) {
+- (void)setupToolScoreView:(NSArray<YXMyLearningUserScoreView *> *)toolView {
+    [toolView enumerateObjectsUsingBlock:^(YXMyLearningUserScoreView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ((idx / 4 % 2) == 0) {
             [obj mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 40.0f);
                 make.left.equalTo(self.contentView.mas_left).offset(kScreenWidth/4.0f * (idx % 4));

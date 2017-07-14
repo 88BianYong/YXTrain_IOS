@@ -17,7 +17,7 @@
                                           {
                                           "finishnum": 0,
                                           "isneedmark": 0,
-                                          "name": "课程",
+                                          "name": "课程1",
                                           "tooldesc": "课程",
                                           "toolid": 201,
                                           "totalnum": 160,
@@ -27,7 +27,7 @@
                                           {
                                           "finishnum": 0,
                                           "isneedmark": 0,
-                                          "name": "作业",
+                                          "name": "课程2",
                                           "tooldesc": "作业",
                                           "toolid": 203,
                                           "totalnum": 1,
@@ -37,7 +37,7 @@
                                           {
                                           "finishnum": 0,
                                           "isneedmark": 0,
-                                          "name": "活动",
+                                          "name": "课程3",
                                           "tooldesc": "活动",
                                           "toolid": 202,
                                           "totalnum": 1,
@@ -46,7 +46,7 @@
                                           },{
                                           "finishnum": 0,
                                           "isneedmark": 0,
-                                          "name": "课程",
+                                          "name": "课程4",
                                           "tooldesc": "课程",
                                           "toolid": 201,
                                           "totalnum": 160,
@@ -56,7 +56,7 @@
                                           {
                                           "finishnum": 0,
                                           "isneedmark": 0,
-                                          "name": "作业",
+                                          "name": "课程5",
                                           "tooldesc": "作业",
                                           "toolid": 203,
                                           "totalnum": 1,
@@ -66,7 +66,7 @@
                                           {
                                           "finishnum": 0,
                                           "isneedmark": 0,
-                                          "name": "活动",
+                                          "name": "课程6",
                                           "tooldesc": "活动",
                                           "toolid": 202,
                                           "totalnum": 1,
