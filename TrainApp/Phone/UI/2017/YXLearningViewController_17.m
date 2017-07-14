@@ -14,7 +14,6 @@
 #import "YXProjectSelectionView.h"
 #import "YXLearningTableHeaderView_17.h"
 #import "YXLearningStageHeaderView_17.h"
-#import "YXSectionHeaderFooterView.h"
 #import "YXLearningStageCell_17.h"
 #import "YXLearningChannelHeaderView_17.h"
 typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
@@ -227,8 +226,8 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
-    return headerView;
+    YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return footerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 5.0f;

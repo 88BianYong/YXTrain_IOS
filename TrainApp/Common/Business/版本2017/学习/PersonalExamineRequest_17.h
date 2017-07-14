@@ -40,7 +40,7 @@
 @property (nonatomic, copy) NSString<Optional> *toolID;
 @property (nonatomic, copy) NSString<Optional> *totalNum;
 @property (nonatomic, copy) NSString<Optional> *totalScore;
-@property (nonatomic, copy) NSString<Optional> *usersCore;
+@property (nonatomic, copy) NSString<Optional> *userScore;
 @end
 
 @protocol PersonalExamineRequest_17Item_Examine_Process <NSObject>
@@ -57,7 +57,7 @@
 @property (nonatomic, copy) NSString<Optional> *stageID;
 @property (nonatomic, strong) NSArray<PersonalExamineRequest_17Item_Examine_Process_ToolExamineVoList,Optional> *toolExamineVoList;
 @property (nonatomic, copy) NSString<Optional> *totalScore;
-@property (nonatomic, copy) NSString<Optional> *usersCore;
+@property (nonatomic, copy) NSString<Optional> *userScore;
 @end
 
 @interface PersonalExamineRequest_17Item_Examine : JSONModel

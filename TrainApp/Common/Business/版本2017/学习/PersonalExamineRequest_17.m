@@ -50,6 +50,9 @@
 @implementation PersonalExamineRequest_17Item_Examine
 
 @end
+@implementation PersonalExamineRequest_17Item
+
+@end
 @implementation PersonalExamineRequest_17
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectId":@"projectID"}];

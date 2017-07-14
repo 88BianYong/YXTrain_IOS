@@ -43,10 +43,39 @@
                                           "totalnum": 1,
                                           "totalscore": 4,
                                           "userscore": 0
+                                          },{
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "课程",
+                                          "tooldesc": "课程",
+                                          "toolid": 201,
+                                          "totalnum": 160,
+                                          "totalscore": 8,
+                                          "userscore": 0
+                                          },
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "作业",
+                                          "tooldesc": "作业",
+                                          "toolid": 203,
+                                          "totalnum": 1,
+                                          "totalscore": 8,
+                                          "userscore": 0
+                                          },
+                                          {
+                                          "finishnum": 0,
+                                          "isneedmark": 0,
+                                          "name": "活动",
+                                          "tooldesc": "活动",
+                                          "toolid": 202,
+                                          "totalnum": 1,
+                                          "totalscore": 4,
+                                          "userscore": 0
                                           }
                                           ],
                     "totalscore": 20,
-                    "userscore": 0
+                    "userscore": 5
                     },
                     {
                     "descr": "",
@@ -91,7 +120,7 @@
                                           }
                                           ],
                     "totalscore": 27,
-                    "userscore": 0
+                    "userscore": 10
                     },
                     {
                     "descr": "",
@@ -136,7 +165,7 @@
                                           }
                                           ], 
                     "totalscore": 23, 
-                    "userscore": 0
+                    "userscore": 23
                     }, 
                     {
                     "descr": "", 

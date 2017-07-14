@@ -12,6 +12,7 @@
 #import "YXErrorView.h"
 #import "DataErrorView.h"
 #import "UnhandledRequestData.h"
+#import "YXSectionHeaderFooterView.h"
 @interface YXBaseViewController : UIViewController
 /**
  *  内容为空/网络错误/数据错误界面
