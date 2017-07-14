@@ -10,6 +10,7 @@
 @interface YXLearningIntroductionView : UIView
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *startTimeLabel;
+@property (nonatomic, strong) UIImageView *statusImageView;
 @end
 @implementation YXLearningIntroductionView
 
@@ -34,6 +35,14 @@
             make.left.equalTo(self.mas_left);
             make.bottom.equalTo(self.mas_bottom);
             make.top.equalTo(self.nameLabel.mas_bottom).offset(10.0f);
+        }];
+        
+        self.statusImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"小锁（未打开）"]];
+        [self addSubview:self.statusImageView];
+        [self.statusImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(12.0f, 15.0f));
+            make.left.equalTo(self.nameLabel.mas_right).offset(10.0f);
+            make.centerY.equalTo(self.nameLabel.mas_centerY);
         }];
     }
     return self;
@@ -112,15 +121,12 @@
 - (void)setStage:(ExamineDetailRequest_17Item_Stages *)stage {
     _stage = stage;
     self.finishImageView.hidden = !_stage.isFinish.boolValue;
-    if (!_stage.status.boolValue) {
-        self.enterImageView.image = [UIImage imageNamed:@"关闭按钮"];
-    }else {
-        if (_stage.isMockFold.boolValue) {
-            self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头"];
-        }else{
-            self.enterImageView.image = [UIImage imageNamed:@"第二阶段收起箭头"];
-        }
+    if (_stage.isMockFold.boolValue) {
+        self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头"];
+    }else{
+        self.enterImageView.image = [UIImage imageNamed:@"第二阶段收起箭头"];
     }
+    self.introductionView.statusImageView.hidden = _stage.status.boolValue;
     self.introductionView.nameLabel.text = _stage.name;
     self.introductionView.startTimeLabel.text = [NSString stringWithFormat:@"开始时间: %@",_stage.startTime];
 }

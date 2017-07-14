@@ -92,8 +92,9 @@
             }];
             if (idx + 1 != toolButtons.count) {
                 if ((idx+1) % 4 != 0) {
-                    UIImageView *imageView = [[UIImageView alloc] init];
-                    imageView.backgroundColor = [UIColor redColor];
+                    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"下一步"]];
+                    imageView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+                    imageView.layer.cornerRadius = 7.5f;
                     imageView.tag = 20086+ idx;
                     [self.contentView addSubview:imageView];
                     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -102,9 +103,11 @@
                         make.centerY.equalTo(obj.mas_centerY);
                     }];
                 }else {
-                    UIImageView *imageView = [[UIImageView alloc] init];
-                    imageView.backgroundColor = [UIColor greenColor];
+                    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"下一步"]];
+                    imageView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+                    imageView.layer.cornerRadius = 7.5f;
                     imageView.tag = 20086+ idx;
+                    imageView.transform=CGAffineTransformMakeRotation(M_PI/2);
                     [self.contentView addSubview:imageView];
                     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
@@ -122,9 +125,11 @@
             }];
             if (idx + 1 != toolButtons.count) {
                 if ((idx+1) % 4 != 0) {
-                    UIImageView *imageView = [[UIImageView alloc] init];
-                    imageView.backgroundColor = [UIColor blueColor];
+                    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"下一步"]];
+                    imageView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+                    imageView.layer.cornerRadius = 7.5f;
                     imageView.tag = 20086+ idx;
+                    imageView.transform=CGAffineTransformMakeRotation(-M_PI);
                     [self.contentView addSubview:imageView];
                     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
@@ -133,9 +138,11 @@
                     }];
                     
                 }else {
-                    UIImageView *imageView = [[UIImageView alloc] init];
-                    imageView.backgroundColor = [UIColor blueColor];
+                    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"下一步"]];
+                    imageView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+                    imageView.layer.cornerRadius = 7.5f;
                     imageView.tag = 20086+ idx;
+                    imageView.transform=CGAffineTransformMakeRotation(M_PI/2);
                     [self.contentView addSubview:imageView];
                     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
@@ -175,11 +182,11 @@
         YXLearningToolView *toolView = [[YXLearningToolView alloc] init];
         toolView.nameLable.text = tool.name;
         if (tool.status.integerValue == 0) {
-            toolView.imageView.image = [UIImage imageNamed:@"Q--未展开"];
+            toolView.imageView.image = [UIImage imageNamed:@"未解锁"];
         }else if (tool.status.integerValue == 1) {
-            toolView.imageView.image = [UIImage imageNamed:@"选择"];
+            toolView.imageView.image = [UIImage imageNamed:@"当前"];
         }else {
-            toolView.imageView.image = [UIImage imageNamed:@"未选择"];
+            toolView.imageView.image = [UIImage imageNamed:@"已完成"];
         }
         [button addSubview:toolView];
         [toolView mas_makeConstraints:^(MASConstraintMaker *make) {

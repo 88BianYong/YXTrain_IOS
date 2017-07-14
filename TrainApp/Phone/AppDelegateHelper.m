@@ -146,9 +146,9 @@
     YXNavigationController *messageNav = [[YXNavigationController alloc]initWithRootViewController:messageVC];
     UIViewController *mineVC = [[NSClassFromString(@"YXMineViewController_17") alloc]init];
     YXNavigationController *mineNav = [[YXNavigationController alloc]initWithRootViewController:mineVC];
-    [self setTabBarItem:learningNav title:@"学习" image:@"活动icon-1" selectedImage:@"活动icon-1" tag:1];
-    [self setTabBarItem:messageNav title:@"消息" image:@"活动icon-1" selectedImage:@"活动icon-1" tag:2];
-    [self setTabBarItem:mineNav title:@"我" image:@"活动icon-1" selectedImage:@"活动icon-1" tag:3];
+    [self setTabBarItem:learningNav title:@"学习" image:@"学习未选中" selectedImage:@"学习选中" tag:1];
+    [self setTabBarItem:messageNav title:@"消息" image:@"消息" selectedImage:@"消息选中" tag:2];
+    [self setTabBarItem:mineNav title:@"我" image:@"我未选中" selectedImage:@"我选中" tag:3];
     tabVC.viewControllers = @[learningNav, messageNav, mineNav];
     return tabVC;
 }

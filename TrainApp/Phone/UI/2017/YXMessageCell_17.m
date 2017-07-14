@@ -68,13 +68,13 @@
 }
 - (void)setupLayout {
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(25);
+        make.left.mas_equalTo(15);
         make.centerY.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(25, 25));
     }];
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.iconImageView.mas_right).offset(21);
+        make.left.equalTo(self.iconImageView.mas_right).offset(11);
         make.centerY.mas_equalTo(0);
     }];
     

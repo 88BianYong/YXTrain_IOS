@@ -91,6 +91,7 @@
         STRONG_SELF
         BLOCK_EXEC(self.learningMyScoreCompleteBlock,NO);
     }];
+    [self.containerView addSubview:self.noticeBriefButton];
     
     self.scoreLabel = [[UILabel alloc] init];
     self.scoreLabel.font = [UIFont fontWithName:YXFontMetro_Medium size:31.0f];
@@ -106,8 +107,7 @@
     self.scoreNameLabel.textAlignment = NSTextAlignmentCenter;
     [self.containerView addSubview:self.scoreNameLabel];
     
-    self.noticeBriefImageView = [[UIImageView alloc] init];
-    self.noticeBriefImageView.backgroundColor = [UIColor redColor];
+    self.noticeBriefImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"简报"]];
     [self.containerView addSubview:self.noticeBriefImageView];
     
     self.noticeBriefLabel = [[UILabel alloc] init];
