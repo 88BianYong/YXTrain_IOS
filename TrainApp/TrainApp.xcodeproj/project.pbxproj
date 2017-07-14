@@ -387,6 +387,9 @@
 		9292DC561E9E2C2F008C6A14 /* YXCourseBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC551E9E2C2F008C6A14 /* YXCourseBaseViewController.m */; };
 		9292DC591E9E3131008C6A14 /* YXActivityListBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC581E9E3130008C6A14 /* YXActivityListBaseViewController.m */; };
 		929468071DDE8F220070C3B7 /* ActivitySlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */; };
+		92A10F6C1F186BAB00B37814 /* NoticeBriefMangerViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A10F6B1F186BAB00B37814 /* NoticeBriefMangerViewController_17.m */; };
+		92A10F6F1F186BC700B37814 /* NoticeListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A10F6E1F186BC700B37814 /* NoticeListViewController_17.m */; };
+		92A10F721F186BEE00B37814 /* BriefListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A10F711F186BEE00B37814 /* BriefListViewController_17.m */; };
 		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
 		92A791601F0E203100E3D258 /* YXTabBarViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7915F1F0E203100E3D258 /* YXTabBarViewController_17.m */; };
 		92A791631F0E20AB00E3D258 /* YXLearningViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A791621F0E20AB00E3D258 /* YXLearningViewController_17.m */; };
@@ -1359,6 +1362,12 @@
 		9292DC581E9E3130008C6A14 /* YXActivityListBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXActivityListBaseViewController.m; sourceTree = "<group>"; };
 		929468051DDE8F220070C3B7 /* ActivitySlideProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitySlideProgressView.h; sourceTree = "<group>"; };
 		929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivitySlideProgressView.m; sourceTree = "<group>"; };
+		92A10F6A1F186BAB00B37814 /* NoticeBriefMangerViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeBriefMangerViewController_17.h; sourceTree = "<group>"; };
+		92A10F6B1F186BAB00B37814 /* NoticeBriefMangerViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeBriefMangerViewController_17.m; sourceTree = "<group>"; };
+		92A10F6D1F186BC700B37814 /* NoticeListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeListViewController_17.h; sourceTree = "<group>"; };
+		92A10F6E1F186BC700B37814 /* NoticeListViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeListViewController_17.m; sourceTree = "<group>"; };
+		92A10F701F186BEE00B37814 /* BriefListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BriefListViewController_17.h; sourceTree = "<group>"; };
+		92A10F711F186BEE00B37814 /* BriefListViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BriefListViewController_17.m; sourceTree = "<group>"; };
 		92A770071DD18A5800C578F2 /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
 		92A770081DD18A5800C578F2 /* InputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextView.m; sourceTree = "<group>"; };
 		92A7915F1F0E203100E3D258 /* YXTabBarViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTabBarViewController_17.m; sourceTree = "<group>"; };
@@ -3525,9 +3534,39 @@
 			path = "德阳项目";
 			sourceTree = "<group>";
 		};
+		92A10F631F186A4E00B37814 /* 通知简报 */ = {
+			isa = PBXGroup;
+			children = (
+				92A10F651F186A7C00B37814 /* view */,
+				92A10F641F186A6600B37814 /* controller */,
+			);
+			name = "通知简报";
+			sourceTree = "<group>";
+		};
+		92A10F641F186A6600B37814 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				92A10F6A1F186BAB00B37814 /* NoticeBriefMangerViewController_17.h */,
+				92A10F6B1F186BAB00B37814 /* NoticeBriefMangerViewController_17.m */,
+				92A10F6D1F186BC700B37814 /* NoticeListViewController_17.h */,
+				92A10F6E1F186BC700B37814 /* NoticeListViewController_17.m */,
+				92A10F701F186BEE00B37814 /* BriefListViewController_17.h */,
+				92A10F711F186BEE00B37814 /* BriefListViewController_17.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		92A10F651F186A7C00B37814 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
 		92A791641F0E20B000E3D258 /* 学习 */ = {
 			isa = PBXGroup;
 			children = (
+				92A10F631F186A4E00B37814 /* 通知简报 */,
 				9272D5301F1749D40010B177 /* 我的成绩 */,
 				92A791661F0E20C900E3D258 /* controller */,
 				92A791651F0E20C300E3D258 /* view */,
@@ -4705,6 +4744,7 @@
 				7C31785E1D13DE38004AAC90 /* YXPromtController.m in Sources */,
 				CBB62E101D2CBE4C00DAA6DE /* YXBriefListFetch.m in Sources */,
 				7C3178071D123935004AAC90 /* YXQLPreviewController.m in Sources */,
+				92A10F6F1F186BC700B37814 /* NoticeListViewController_17.m in Sources */,
 				7C3177CB1D10F496004AAC90 /* YXNavigationController.m in Sources */,
 				7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */,
 				92CE515E1D87EF3D0071DE79 /* YXWebViewController.m in Sources */,
@@ -4976,6 +5016,7 @@
 				CB3510C51D18F1A90081EA3B /* YXDatumSearchRequest.m in Sources */,
 				7CF8446C1D2CA32000B1CE55 /* YXSaveProcessRequest.m in Sources */,
 				920F1D481D51F09200636A51 /* YXHomeworkListHeaderView.m in Sources */,
+				92A10F721F186BEE00B37814 /* BriefListViewController_17.m in Sources */,
 				7C2C3B771D24CA6E00A03635 /* YXCourseDetailCell.m in Sources */,
 				CB3510C81D18F62A0081EA3B /* YXWholeDatumFetcher.m in Sources */,
 				927B6C6A1F132ED40082DB27 /* XYChooseProjectViewController.m in Sources */,
@@ -4988,6 +5029,7 @@
 				CB748EEC1D24F3CD004BCFBF /* YXPagedListEmptyView.m in Sources */,
 				92EDC7CE1D62C33A005B91DD /* YXChapterListRequest.m in Sources */,
 				9232377E1D82D76100FDACFE /* YXDynamicViewController.m in Sources */,
+				92A10F6C1F186BAB00B37814 /* NoticeBriefMangerViewController_17.m in Sources */,
 				E93C06191DCB1F9400666265 /* DataErrorView.m in Sources */,
 				9292DC591E9E3131008C6A14 /* YXActivityListBaseViewController.m in Sources */,
 				7C3178241D129C01004AAC90 /* ReaderContentTile.m in Sources */,
