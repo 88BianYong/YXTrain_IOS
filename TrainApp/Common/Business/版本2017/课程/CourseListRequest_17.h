@@ -102,11 +102,11 @@
 @property (nonatomic, strong) CourseListRequest_17Item_SearchTerm_DefaultValue<Optional> *defaultValue;
 @property (nonatomic, copy) NSString<Optional> *isLockStudy;
 /**
- 内部解析用 读取使用 gmentModel
+ 内部解析用 读取使用 segmentModel
  */
 @property (nonatomic, strong) NSDictionary<Optional> *segments;
 /**
- 内部解析用 读取使用 gmentModel
+ 内部解析用 读取使用 segmentModel
  */
 @property (nonatomic, strong) NSDictionary<Optional> *studys;
 @property (nonatomic, strong) NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment, Optional> *segmentModel;
@@ -133,6 +133,4 @@
 @property (nonatomic, copy) NSString<Optional> *page;//页数
 @property (nonatomic, copy) NSString<Optional> *limit;//每页数量
 
-//@property (nonatomic, assign) int pageindex;
-//@property (nonatomic, assign) int pagesize;
 @end

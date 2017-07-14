@@ -16,6 +16,7 @@
 #import "YXLearningStageHeaderView_17.h"
 #import "YXLearningStageCell_17.h"
 #import "YXLearningChannelHeaderView_17.h"
+#import "CourseListMangerViewController_17.h"
 typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     YXLearningRequestStatus_ExamineDetail,//请求个人工作室信息
     YXLearningRequestStatus_LayerList,//请求分层
@@ -265,6 +266,12 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     YXLearningStageCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXLearningStageCell_17" forIndexPath:indexPath];
     ExamineDetailRequest_17Item_Stages *stages = self.examineDetailItem.stages[indexPath.section];
     cell.tools = stages.tools;
+    WEAK_SELF
+    cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool) {
+        STRONG_SELF
+        CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+    };
     return cell;
 }
 #pragma mark - request

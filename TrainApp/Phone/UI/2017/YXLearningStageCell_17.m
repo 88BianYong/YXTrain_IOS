@@ -51,6 +51,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self setupUI];
         [self setupLayout];
     }
@@ -89,6 +90,7 @@
                 make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 40.0f);
                 make.left.equalTo(self.contentView.mas_left).offset(kScreenWidth/4.0f * (idx % 4));
                 make.width.mas_offset(kScreenWidth/4.0f);
+                make.height.mas_offset(80.0f);
             }];
             if (idx + 1 != toolButtons.count) {
                 if ((idx+1) % 4 != 0) {
@@ -122,6 +124,7 @@
                 make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 40.0f);
                 make.right.equalTo(self.contentView.mas_right).offset(-kScreenWidth/4.0f * (idx % 4));
                 make.width.mas_offset(kScreenWidth/4.0f);
+                make.height.mas_offset(80.0f);
             }];
             if (idx + 1 != toolButtons.count) {
                 if ((idx+1) % 4 != 0) {
@@ -154,8 +157,6 @@
         }
     }];
 }
-
-
 #pragma mark - set
 - (void)setTools:(NSArray<__kindof ExamineDetailRequest_17Item_Stages_Tools *> *)tools {
     _tools = tools;
@@ -175,11 +176,17 @@
             }
         }
     }];
-    for (ExamineDetailRequest_17Item_Stages_Tools *tool in tools) {
+    [tools enumerateObjectsUsingBlock:^(__kindof ExamineDetailRequest_17Item_Stages_Tools * _Nonnull tool, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.tag = tool.toolID.integerValue;
+        button.tag = idx + 1;
+        WEAK_SELF
+        [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            STRONG_SELF;
+            BLOCK_EXEC(self.learningStageToolCompleteBlock,tool);
+        }];
         [self.contentView addSubview:button];
         YXLearningToolView *toolView = [[YXLearningToolView alloc] init];
+        toolView.userInteractionEnabled = NO;
         toolView.nameLable.text = tool.name;
         if (tool.status.integerValue == 0) {
             toolView.imageView.image = [UIImage imageNamed:@"未解锁"];
@@ -194,7 +201,7 @@
             make.width.equalTo(button.mas_width);
         }];
         [buttonMutableArray addObject:button];
-    }
+    }];
     for (int i = 1; i * 4 <= tools.count; i ++) {
         UIView *lineView = [[UIView alloc] init];
         lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
@@ -214,7 +221,6 @@
     [super awakeFromNib];
     // Initialization code
 }
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
