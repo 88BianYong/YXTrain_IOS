@@ -31,7 +31,8 @@
                                                        @"id":@"objID",
                                                        @"timelength":@"timeLength",
                                                        @"stageid":@"stageID",
-                                                       @"isfinish":@"isFinish"}];
+                                                       @"isfinish":@"isFinish",
+                                                       @"timelengthsec":@"timeLengthSec"}];
 }
 @end
 

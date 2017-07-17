@@ -420,6 +420,7 @@
 		92B9583F1F18A2F900A07203 /* CourseListTableViewHeader_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9583E1F18A2F900A07203 /* CourseListTableViewHeader_17.m */; };
 		92B958421F18A34200A07203 /* CourseListHeader_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B958411F18A34200A07203 /* CourseListHeader_17.m */; };
 		92B958451F18A37B00A07203 /* CourseListCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B958441F18A37B00A07203 /* CourseListCell_17.m */; };
+		92B958481F1C8BDC00A07203 /* CourseListFilterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B958471F1C8BDC00A07203 /* CourseListFilterView_17.m */; };
 		92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */; };
 		92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */; };
 		92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */; };
@@ -1429,6 +1430,8 @@
 		92B958411F18A34200A07203 /* CourseListHeader_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListHeader_17.m; sourceTree = "<group>"; };
 		92B958431F18A37B00A07203 /* CourseListCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListCell_17.h; sourceTree = "<group>"; };
 		92B958441F18A37B00A07203 /* CourseListCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListCell_17.m; sourceTree = "<group>"; };
+		92B958461F1C8BDC00A07203 /* CourseListFilterView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListFilterView_17.h; sourceTree = "<group>"; };
+		92B958471F1C8BDC00A07203 /* CourseListFilterView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListFilterView_17.m; sourceTree = "<group>"; };
 		92C649A31ED41C7F00ABC1CE /* VideoCourseChapterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseChapterViewController.h; sourceTree = "<group>"; };
 		92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseChapterViewController.m; sourceTree = "<group>"; };
 		92CA55DB1DFE574D00AA2C50 /* AppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateHelper.h; sourceTree = "<group>"; };
@@ -3422,6 +3425,8 @@
 				92B958411F18A34200A07203 /* CourseListHeader_17.m */,
 				92B958431F18A37B00A07203 /* CourseListCell_17.h */,
 				92B958441F18A37B00A07203 /* CourseListCell_17.m */,
+				92B958461F1C8BDC00A07203 /* CourseListFilterView_17.h */,
+				92B958471F1C8BDC00A07203 /* CourseListFilterView_17.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -5039,6 +5044,7 @@
 				9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,
 				92348FDD1EEFEF2A00D3B3A7 /* LearningInfoListFetcher.m in Sources */,
+				92B958481F1C8BDC00A07203 /* CourseListFilterView_17.m in Sources */,
 				7C3177B81D0EB9EE004AAC90 /* UIView+ViewController.m in Sources */,
 				9223C8521D40D0A1000F74DF /* YXPageControl.m in Sources */,
 				CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */,

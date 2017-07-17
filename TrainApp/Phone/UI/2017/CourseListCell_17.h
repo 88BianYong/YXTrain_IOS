@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CourseListRequest_17.h"
 @interface CourseListCell_17 : UITableViewCell
-
+@property (nonatomic, strong) CourseListRequest_17Item_Objs *course;
 @end

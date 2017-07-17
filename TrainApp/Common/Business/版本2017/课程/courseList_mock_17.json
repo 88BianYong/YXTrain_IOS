@@ -1,12 +1,12 @@
 {
     "searchTerm":{
         "moduleVo":[
-            {
-                "id":11,
-                "name":"模块一",
-                "stageid":1111
-            }
-        ],
+                    {
+                    "id":11,
+                    "name":"模块一",
+                    "stageid":1111
+                    }
+                    ],
         "defaultValue":{
             "segment":99,
             "study":99
@@ -73,7 +73,7 @@
     },
     "descr":"当前7门必修，已看5门课程，已完成2门课程（当设置了完成考核时），累计看课时长50分钟",
     "objs":[
-        {
+            {
             "name":"学为人师 行为世范——“四有”好老师",
             "trainingid":2286,
             "status":"102",
@@ -82,9 +82,11 @@
             "segmentcode":"0",
             "template":"Default0610",
             "id":10402325,
-            "content":
-{"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
-            "timelength":"0",
+            "content":{
+            "cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。",
+            "teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"
+            },
+            "timelength":"2122",
             "speaker":"",
             "score":0,
             "isSelected":0,
@@ -94,15 +96,305 @@
             "teacher":"研修网课程团队",
             "credit":null,
             "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
-            "time":null,
+            "time": 60600,
             "stageid":4740,
             "isfinish":0,
             "quiz":{
-                "finish":0,
-                "total":1
+            "finish":0,
+            "total":1
             }
-        }
-    ],
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            },
+            {
+            "name":"学为人师 行为世范——“四有”好老师",
+            "trainingid":2286,
+            "status":"102",
+            "type":"102",
+            "studycode":"0",
+            "segmentcode":"0",
+            "template":"Default0610",
+            "id":10402325,
+            "content":
+            {"cinfo":"本课介绍了四有好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以四有为标准，在教书育人的工作中不断创造新业绩。","teacher":"研修网课程团队","imgurl":"http://scc.jsyxw.cn/course/37/8837.jpg"},
+            "timelength":"2122",
+            "speaker":"",
+            "score":0,
+            "isSelected":0,
+            "pic":"http://scc.jsyxw.cn/course/37/8837.jpg",
+            "studyName":null,
+            "segmentName":null,
+            "teacher":"研修网课程团队",
+            "credit":null,
+            "cinfo":"本课介绍了“四有”好老师的提出和内涵，希望广大教育工作者以习总书记的讲话精神为指引，以“四有”为标准，在教书育人的工作中不断创造新业绩。",
+            "time": 60600,
+            "stageid":4740,
+            "isfinish":0,
+            "quiz":{
+            "finish":0,
+            "total":1
+            }
+            }
+            ],
     "count":12,
     "page":1,
     "totalPage":2,

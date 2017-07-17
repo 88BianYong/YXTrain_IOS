@@ -59,6 +59,7 @@
 @property (nonatomic, copy) NSString<Optional> *objID;//
 @property (nonatomic, strong) CourseListRequest_17Item_Objs_Content<Optional> *content;
 @property (nonatomic, copy) NSString<Optional> *timeLength;//
+@property (nonatomic, copy) NSString<Optional> *timeLengthSec;//
 @property (nonatomic, copy) NSString<Optional> *speaker;
 @property (nonatomic, copy) NSString<Optional> *score;
 @property (nonatomic, copy) NSString<Optional> *isSelected;
