@@ -12,10 +12,13 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *recordLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *finishLabel;
 
 @property (nonatomic, strong) UILabel *statsLabel;
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) UIView *recordBgView;
+
+
 @end
 @implementation CourseListCell_17
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -86,6 +89,12 @@
     self.recordLabel.textColor = [UIColor whiteColor];
     [self.recordBgView addSubview:self.recordLabel];
     
+    self.finishLabel = [[UILabel alloc] init];
+    self.finishLabel.text = @"已完成";
+    self.finishLabel.textColor = [UIColor colorWithHexString:@"0070c9"];
+    self.finishLabel.font = [UIFont systemFontOfSize:11.0f];
+    [self.contentView addSubview:self.finishLabel];
+    
     self.lineView = [[UIView alloc]init];
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.contentView addSubview:self.lineView];
@@ -127,6 +136,11 @@
         make.size.mas_offset(CGSizeMake(29.0f, 15.0f));
     }];
     
+    [self.finishLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel.mas_left);
+        make.bottom.equalTo(self.courseImageView.mas_bottom).offset(-10.0f);
+    }];
+    
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.courseImageView.mas_left);
         make.right.mas_equalTo(0);
@@ -166,6 +180,7 @@
         self.statsLabel.text = @"必修";
         self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"65aee7"];
     }
+    self.finishLabel.hidden = _course.isFinish.boolValue;
 }
 
 @end

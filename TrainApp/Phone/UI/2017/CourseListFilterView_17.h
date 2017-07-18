@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CourseListRequest_17.h"
 @interface CourseListFilterView_17 : UIView
-
+@property (nonatomic, strong) CourseListRequest_17Item_SearchTerm *searchTerm;
 @end

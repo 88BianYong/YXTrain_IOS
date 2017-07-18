@@ -23,6 +23,11 @@
     }
     return self;
 }
+#pragma mark - set
+- (void)setCourse:(CourseListRequest_17Item_Objs *)course {
+    _course = course;
+    
+}
 #pragma mark - setupUI
 - (void)setupUI {
     self.mainPointLabel = [[UILabel alloc] init];

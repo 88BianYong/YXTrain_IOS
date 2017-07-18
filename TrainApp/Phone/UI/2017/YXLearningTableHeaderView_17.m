@@ -70,6 +70,10 @@
 #pragma mark - set
 - (void)setScoreString:(NSString *)scoreString {
     _scoreString = scoreString;
+    if (isEmpty(_scoreString)) {
+        self.scoreLabel.text = @" ";
+        return;
+    }
     self.scoreLabel.text = _scoreString;
 }
 #pragma mark - setupUI

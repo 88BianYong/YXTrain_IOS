@@ -29,7 +29,6 @@
 @property (nonatomic, copy) NSString<Optional> *segmentID;
 @property (nonatomic, copy) NSString<Optional> *segmentName;
 @property (nonatomic, strong) NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade,Optional>*grade;
-
 @property (nonatomic, strong) NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter,Optional>*chapter;
 @end
 
@@ -111,6 +110,7 @@
  */
 @property (nonatomic, strong) NSDictionary<Optional> *studys;
 @property (nonatomic, strong) NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment, Optional> *segmentModel;
+@property (nonatomic, strong) NSIndexPath<Optional> *selectedIndexPath;
 @end
 
 @interface CourseListRequest_17Item : HttpBaseRequestItem

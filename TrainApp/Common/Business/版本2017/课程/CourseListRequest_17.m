@@ -66,8 +66,11 @@
 - (NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment,Optional> *)segmentModel {
     if (_segmentModel == nil) {
         NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> *mutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> alloc] init];
+        NSArray *segmentsArray = [self.segments.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            return [obj1 compare:obj2];
+        }];
         WEAK_SELF
-        [self.segments.allKeys enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [segmentsArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             STRONG_SELF
             CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = [[CourseListRequest_17Item_SearchTerm_MockSegment alloc] init];
             mockSegment.segmentID = obj;
@@ -75,7 +78,10 @@
             NSDictionary *chapterDic = self.studys[obj][@"c"];
             if (chapterDic != nil) {
                 NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> *chapterMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> alloc] init];
-                [chapterDic.allKeys enumerateObjectsUsingBlock:^(NSString *cObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSArray *chapterArray = [chapterDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                    return [obj1 compare:obj2];
+                }];
+                [chapterArray enumerateObjectsUsingBlock:^(NSString *cObj, NSUInteger idx, BOOL * _Nonnull stop) {
                     CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = [[CourseListRequest_17Item_SearchTerm_MockSegment_Chapter alloc] init];
                     chapter.chapterID = cObj;
                     chapter.chapterName = chapterDic[cObj];
@@ -86,7 +92,10 @@
             NSDictionary *gradeDic = self.studys[obj][@"g"];
             if (gradeDic != nil) {
                 NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> *gradeMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> alloc] init];
-                [gradeDic.allKeys enumerateObjectsUsingBlock:^(NSString *gObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSArray *gradeArray = [gradeDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                    return [obj1 compare:obj2];
+                }];
+                [gradeArray enumerateObjectsUsingBlock:^(NSString *gObj, NSUInteger idx, BOOL * _Nonnull stop) {
                     CourseListRequest_17Item_SearchTerm_MockSegment_Grade *grade = [[CourseListRequest_17Item_SearchTerm_MockSegment_Grade alloc] init];
                     grade.gradeID = gObj;
                     grade.gradeName = gradeDic[gObj];
@@ -99,6 +108,27 @@
         _segmentModel = mutableArray;
     }
     return _segmentModel;
+}
+- (NSIndexPath<Optional> *)selectedIndexPath {
+    if (_selectedIndexPath == nil){
+        __block NSInteger section = 0;
+        __block NSInteger row = 0;
+        [self.segmentModel enumerateObjectsUsingBlock:^(CourseListRequest_17Item_SearchTerm_MockSegment  *segment, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (self.defaultValue.segment.integerValue == segment.segmentID.integerValue) {
+                section = idx;
+                [segment.chapter enumerateObjectsUsingBlock:^(CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (self.defaultValue.study.integerValue == chapter.chapterID.integerValue) {
+                        row = idx;
+                        self->_selectedIndexPath = [NSIndexPath indexPathForRow:row inSection:section];
+                    }
+                }];
+            }
+        }];
+        if (_selectedIndexPath == nil) {
+            self->_selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+         }
+    }
+    return _selectedIndexPath;
 }
 @end
 @implementation CourseListRequest_17Item

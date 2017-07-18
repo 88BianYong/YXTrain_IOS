@@ -32,6 +32,9 @@
     WEAK_SELF
     fetcher.courseListItemBlock = ^(CourseListRequest_17Item *model) {
         STRONG_SELF
+        if (self.filterView.searchTerm == nil) {
+            self.filterView.searchTerm = model.searchTerm;
+        }
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
@@ -144,4 +147,9 @@
     }
 }
 
+#pragma mark - request
+- (void)firstPageFetch {
+    self.filterView.searchTerm = nil;
+    [super firstPageFetch];
+}
 @end
