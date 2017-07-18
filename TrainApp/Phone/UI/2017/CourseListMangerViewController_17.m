@@ -27,7 +27,7 @@
 }
 
 - (void)setupUI {
-    [self setDatumTitleView];
+    [self setCourseTitleView];
     CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];
     [self addChildViewController:compulsoryVC];
     CourseListElectiveViewController_17 *electiveVC = [[CourseListElectiveViewController_17 alloc] init];
@@ -42,7 +42,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)setDatumTitleView {
+- (void)setCourseTitleView {
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"必修课程",@"选修课程"]];
     seg.tintColor = [UIColor whiteColor];
     seg.backgroundColor = [UIColor whiteColor];

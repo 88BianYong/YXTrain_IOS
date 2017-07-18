@@ -6,8 +6,8 @@
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "YXBaseViewController.h"
+#import "PagedListViewControllerBase.h"
 
-@interface BriefListViewController_17 : YXBaseViewController
+@interface BriefListViewController_17 : PagedListViewControllerBase
 
 @end

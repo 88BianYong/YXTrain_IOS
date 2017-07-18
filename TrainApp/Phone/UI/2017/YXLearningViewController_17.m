@@ -116,8 +116,8 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
             UIViewController *VC = [[NSClassFromString(@"YXMyLearningScoreViewController") alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
         }else {
-            
-            
+            UIViewController *VC = [[NSClassFromString(@"NoticeBriefMangerViewController_17") alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
         }
     };
     self.tableView.tableHeaderView = self.headerView;

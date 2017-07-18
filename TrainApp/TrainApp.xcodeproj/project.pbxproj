@@ -453,6 +453,7 @@
 		92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */; };
 		92E927A51F1DB35500BEF834 /* CourseHistoryViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927A41F1DB35500BEF834 /* CourseHistoryViewController_17.m */; };
 		92E927A81F1DB4BA00BEF834 /* CourseHistoryCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927A71F1DB4BA00BEF834 /* CourseHistoryCell_17.m */; };
+		92E927AB1F1DDCEB00BEF834 /* NoticeBriefCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927AA1F1DDCEB00BEF834 /* NoticeBriefCell_17.m */; };
 		92E9714F1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */; };
 		92E971591ED5801500DEAAD4 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971561ED5801500DEAAD4 /* OLImage.m */; };
 		92E9715A1ED5801500DEAAD4 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971581ED5801500DEAAD4 /* OLImageView.m */; };
@@ -1504,6 +1505,8 @@
 		92E927A41F1DB35500BEF834 /* CourseHistoryViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseHistoryViewController_17.m; sourceTree = "<group>"; };
 		92E927A61F1DB4BA00BEF834 /* CourseHistoryCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseHistoryCell_17.h; sourceTree = "<group>"; };
 		92E927A71F1DB4BA00BEF834 /* CourseHistoryCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseHistoryCell_17.m; sourceTree = "<group>"; };
+		92E927A91F1DDCEB00BEF834 /* NoticeBriefCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeBriefCell_17.h; sourceTree = "<group>"; };
+		92E927AA1F1DDCEB00BEF834 /* NoticeBriefCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeBriefCell_17.m; sourceTree = "<group>"; };
 		92E9714D1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseIntroductionViewController.h; sourceTree = "<group>"; };
 		92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseIntroductionViewController.m; sourceTree = "<group>"; };
 		92E971551ED5801500DEAAD4 /* OLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImage.h; sourceTree = "<group>"; };
@@ -3656,6 +3659,8 @@
 		92A10F651F186A7C00B37814 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				92E927A91F1DDCEB00BEF834 /* NoticeBriefCell_17.h */,
+				92E927AA1F1DDCEB00BEF834 /* NoticeBriefCell_17.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -5036,6 +5041,7 @@
 				92348FC61EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.m in Sources */,
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
+				92E927AB1F1DDCEB00BEF834 /* NoticeBriefCell_17.m in Sources */,
 				92CE56001E55C8AB002C1F11 /* UserStatusView.m in Sources */,
 				92E4F9AF1F15C0A8001CB34E /* CourseListRequest_17.m in Sources */,
 				7C3177CF1D10F791004AAC90 /* YXSideMenuViewController.m in Sources */,
