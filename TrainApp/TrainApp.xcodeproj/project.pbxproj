@@ -454,6 +454,7 @@
 		92E927A51F1DB35500BEF834 /* CourseHistoryViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927A41F1DB35500BEF834 /* CourseHistoryViewController_17.m */; };
 		92E927A81F1DB4BA00BEF834 /* CourseHistoryCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927A71F1DB4BA00BEF834 /* CourseHistoryCell_17.m */; };
 		92E927AB1F1DDCEB00BEF834 /* NoticeBriefCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927AA1F1DDCEB00BEF834 /* NoticeBriefCell_17.m */; };
+		92E927AE1F1DEB8A00BEF834 /* YXMineHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927AD1F1DEB8A00BEF834 /* YXMineHeaderView_17.m */; };
 		92E9714F1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */; };
 		92E971591ED5801500DEAAD4 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971561ED5801500DEAAD4 /* OLImage.m */; };
 		92E9715A1ED5801500DEAAD4 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971581ED5801500DEAAD4 /* OLImageView.m */; };
@@ -1507,6 +1508,8 @@
 		92E927A71F1DB4BA00BEF834 /* CourseHistoryCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseHistoryCell_17.m; sourceTree = "<group>"; };
 		92E927A91F1DDCEB00BEF834 /* NoticeBriefCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeBriefCell_17.h; sourceTree = "<group>"; };
 		92E927AA1F1DDCEB00BEF834 /* NoticeBriefCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeBriefCell_17.m; sourceTree = "<group>"; };
+		92E927AC1F1DEB8A00BEF834 /* YXMineHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineHeaderView_17.h; sourceTree = "<group>"; };
+		92E927AD1F1DEB8A00BEF834 /* YXMineHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineHeaderView_17.m; sourceTree = "<group>"; };
 		92E9714D1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseIntroductionViewController.h; sourceTree = "<group>"; };
 		92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseIntroductionViewController.m; sourceTree = "<group>"; };
 		92E971551ED5801500DEAAD4 /* OLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImage.h; sourceTree = "<group>"; };
@@ -3740,6 +3743,8 @@
 		92A7916B1F0E214400E3D258 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				92E927AC1F1DEB8A00BEF834 /* YXMineHeaderView_17.h */,
+				92E927AD1F1DEB8A00BEF834 /* YXMineHeaderView_17.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -5049,6 +5054,7 @@
 				7CF888361D17ECB800E7C04D /* YXAudioPlayerViewController.m in Sources */,
 				928B7A441E88B2180067218A /* BeijingExamGenreCell.m in Sources */,
 				92AC98481EA4AA4C0026B640 /* NoticeAndBriefDetailHeaderView.m in Sources */,
+				92E927AE1F1DEB8A00BEF834 /* YXMineHeaderView_17.m in Sources */,
 				7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */,
 				927B6C781F1359B40082DB27 /* PersonalExamineRequest_17.m in Sources */,
 				7C2C3B7A1D24CBB700A03635 /* YXCourseDetailHeaderView.m in Sources */,

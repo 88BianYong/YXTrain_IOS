@@ -12,6 +12,8 @@
 #import "YXAboutViewController.h"
 #import "YXMySettingCell.h"
 #import "YXWebSocketManger.h"
+#import "YXUserProfileRequest.h"
+#import "YXMineHeaderView_17.h"
 static  NSString *const trackPageName = @"设置页面";
 @interface YXMineViewController_17 ()
 <
@@ -20,6 +22,9 @@ UITableViewDataSource
 >
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
+@property (nonatomic, strong) YXUserProfile *userProfile;
+@property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
+@property (nonatomic, strong) YXMineHeaderView_17 *headerView;
 @end
 
 @implementation YXMineViewController_17
@@ -30,6 +35,7 @@ UITableViewDataSource
     self.titleArray = @[@[@"清空缓存",@"帮助与反馈",@"去AppStore评分",@"关于我们"],@[@"退出登录"]];
     [self setupUI];
     [self layoutInterface];
+    [self reloadUserProfileData];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -57,6 +63,14 @@ UITableViewDataSource
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"staticString"];
     [self.tableView registerClass:[YXMySettingCell class] forCellReuseIdentifier:@"YXMySettingCell"];
     [self.view addSubview:self.tableView];
+    self.headerView = [[YXMineHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 133.0f)];
+    WEAK_SELF
+    self.headerView.mineHeaderUserCompleteBlock = ^{
+        STRONG_SELF
+        UIViewController *VC = [[NSClassFromString(@"YXMineViewController") alloc] init];
+        [self.navigationController pushViewController:VC animated:YES];
+    };
+    self.tableView.tableHeaderView = self.headerView;
 }
 - (void)layoutInterface{
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,7 +88,6 @@ UITableViewDataSource
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (indexPath.section == 0) {
         YXMySettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMySettingCell" forIndexPath:indexPath];
         [cell reloadWithText:_titleArray[indexPath.section][indexPath.row] imageName:@""];
@@ -92,7 +105,6 @@ UITableViewDataSource
         cell.selectedBackgroundView = selectedBgView;
         return cell;
     }
-    
 }
 
 #pragma mark - tableView Delegate
@@ -111,7 +123,7 @@ UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 5.0f;
+        return 0.00001f;
     }else{
         return 30.0f;
     }
@@ -160,6 +172,33 @@ UITableViewDataSource
         [[LSTSharedInstance sharedInstance].userManger logout];
         [YXDataStatisticsManger trackEvent:@"退出登录" label:@"成功登出" parameters:nil];
     }
+}
+#pragma mark - request
+- (void)reloadUserProfileData {
+    self.userProfile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
+    if (!self.userProfile) {
+          [self requestUserProfile];
+     }else {
+          [self.tableView reloadData];
+    }
+    self.headerView.userProfile = self.userProfile;
+    [self requestUserProfile];
+}
+- (void)requestUserProfile {
+    YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];
+    request.targetuid = [LSTSharedInstance sharedInstance].userManger.userModel.uid;
+    WEAK_SELF
+    [request startRequestWithRetClass:[YXUserProfileItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        YXUserProfileItem *item = retItem;
+        if (item) {
+            [LSTSharedInstance sharedInstance].userManger.userModel.profile = item.editUserInfo;
+            [[LSTSharedInstance sharedInstance].userManger saveUserData];
+        }
+        self.userProfile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
+        self.headerView.userProfile = self.userProfile;
+    }];
+    self.userProfileRequest = request;
 }
 
 @end

@@ -73,8 +73,12 @@
     
     self.maskView = [[UIView alloc]init];
     self.maskView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapAction)];
-//    [self.maskView addGestureRecognizer:tap];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+    [[tapGestureRecognizer rac_gestureSignal] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self hideFilterSelectionView];
+    }];
+    [self.maskView addGestureRecognizer:tapGestureRecognizer];
     
     CollectionViewEqualSpaceFlowLayout *flowLayout = [[CollectionViewEqualSpaceFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
