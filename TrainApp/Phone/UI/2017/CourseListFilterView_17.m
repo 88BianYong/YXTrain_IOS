@@ -134,11 +134,11 @@
 }
 
 - (void)hideFilterSelectionView{
-//    [self.selectionTableView.superview removeFromSuperview];
-//    [self.maskView removeFromSuperview];
-//    NSInteger index = [self.filterItemArray indexOfObject:self.currentFilterItem];
-//    UIButton *b = [self.typeContainerView viewWithTag:index+kTagBase];
-//    [self changeButton:b foldStatus:YES];
+    [UIView animateWithDuration:0.25f animations:^{
+        self.collectionView.frame = CGRectMake(0.0f, 0.0f, self.collectionView.contentSize.width, 0.0f);
+    } completion:^(BOOL finished) {
+        [self.maskView removeFromSuperview];
+    }];
 }
 - (void)reloadData {
     [self.collectionView reloadData];
@@ -198,6 +198,14 @@
         return headerView;
     }else if (kind == UICollectionElementKindSectionFooter && indexPath.section == 1){
         CourseFilterFooterView_17 *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"CourseFilterFooterView_17" forIndexPath:indexPath];
+        WEAK_SELF
+        footerView.courseFilterCompleteBlock = ^(BOOL isCancleBool) {
+            STRONG_SELF
+            if (isCancleBool) {
+                
+            }
+            [self hideFilterSelectionView];
+        };
         return footerView;
     }
     return nil;

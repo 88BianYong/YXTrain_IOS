@@ -398,6 +398,20 @@
 				</dict>
 			</array>
 		</dict>
+		<key>CourseHistoryListRequest_17</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
+				<dict>
+					<key>fileName</key>
+					<string>courseList_mock_17.json</string>
+					<key>percent</key>
+					<integer>100</integer>
+				</dict>
+			</array>
+		</dict>
 	</dict>
 </dict>
 </plist>

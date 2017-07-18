@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface CourseFilterFooterView_17 : UICollectionReusableView
-
+@property (nonatomic, copy) void(^courseFilterCompleteBlock)(BOOL isCancleBool);
 @end

@@ -34,6 +34,11 @@
     [self.cancleButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateNormal];
     [self.cancleButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
     self.cancleButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    WEAK_SELF
+    [[self.cancleButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        BLOCK_EXEC(self.courseFilterCompleteBlock,YES);
+    }];
     [self addSubview:self.cancleButton];
     
     self.confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -44,9 +49,12 @@
     [self.confirmButton setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateHighlighted];
     [self.confirmButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateNormal];
     [self.confirmButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
-        self.confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [[self.confirmButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        BLOCK_EXEC(self.courseFilterCompleteBlock,NO);
+    }];
     [self addSubview:self.confirmButton];
-    
 }
 - (void)seupLayout {
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {

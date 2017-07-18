@@ -384,6 +384,8 @@
 		928B7A891E88EE750067218A /* BeijingCourseListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A861E88EE750067218A /* BeijingCourseListFetcher.m */; };
 		928B7A8A1E88EE750067218A /* BeijingExamineRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 928B7A881E88EE750067218A /* BeijingExamineRequest.m */; };
 		928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C3177531D0E5E04004AAC90 /* AppDelegate.m */; };
+		928C253F1F1DAFF200FA853A /* CourseHistoryListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 928C253E1F1DAFF200FA853A /* CourseHistoryListRequest_17.m */; };
+		928C25421F1DB01E00FA853A /* CourseHistoryListFetcher_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 928C25411F1DB01E00FA853A /* CourseHistoryListFetcher_17.m */; };
 		92913AD01F175AF400934598 /* YXMyLearningScoreCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92913ACF1F175AF400934598 /* YXMyLearningScoreCell_17.m */; };
 		9292DC501E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC4F1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m */; };
 		9292DC531E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9292DC521E9E090D008C6A14 /* NoticeAndBriefDetailTableHeaderView.m */; };
@@ -449,6 +451,8 @@
 		92E4F9B61F1629A2001CB34E /* YXLearningStageHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F9B51F1629A2001CB34E /* YXLearningStageHeaderView_17.m */; };
 		92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */; };
 		92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */; };
+		92E927A51F1DB35500BEF834 /* CourseHistoryViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927A41F1DB35500BEF834 /* CourseHistoryViewController_17.m */; };
+		92E927A81F1DB4BA00BEF834 /* CourseHistoryCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927A71F1DB4BA00BEF834 /* CourseHistoryCell_17.m */; };
 		92E9714F1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */; };
 		92E971591ED5801500DEAAD4 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971561ED5801500DEAAD4 /* OLImage.m */; };
 		92E9715A1ED5801500DEAAD4 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971581ED5801500DEAAD4 /* OLImageView.m */; };
@@ -1368,6 +1372,10 @@
 		928B7A881E88EE750067218A /* BeijingExamineRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingExamineRequest.m; sourceTree = "<group>"; };
 		928BAF201E82682E0091D1C7 /* TestVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVideoViewController.h; sourceTree = "<group>"; };
 		928BAF211E82682E0091D1C7 /* TestVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVideoViewController.m; sourceTree = "<group>"; };
+		928C253D1F1DAFF200FA853A /* CourseHistoryListRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseHistoryListRequest_17.h; sourceTree = "<group>"; };
+		928C253E1F1DAFF200FA853A /* CourseHistoryListRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseHistoryListRequest_17.m; sourceTree = "<group>"; };
+		928C25401F1DB01E00FA853A /* CourseHistoryListFetcher_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseHistoryListFetcher_17.h; sourceTree = "<group>"; };
+		928C25411F1DB01E00FA853A /* CourseHistoryListFetcher_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseHistoryListFetcher_17.m; sourceTree = "<group>"; };
 		92913ACE1F175AF400934598 /* YXMyLearningScoreCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreCell_17.h; sourceTree = "<group>"; };
 		92913ACF1F175AF400934598 /* YXMyLearningScoreCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyLearningScoreCell_17.m; sourceTree = "<group>"; };
 		9292DC4E1E9E08E8008C6A14 /* NoticeAndBriefDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeAndBriefDetailCell.h; sourceTree = "<group>"; };
@@ -1492,6 +1500,10 @@
 		92E8FD681D8E1F8D00004700 /* YXHotReadedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXHotReadedRequest.m; sourceTree = "<group>"; };
 		92E8FD6A1D8E1FE600004700 /* YXMsgReadedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMsgReadedRequest.h; sourceTree = "<group>"; };
 		92E8FD6B1D8E1FE600004700 /* YXMsgReadedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMsgReadedRequest.m; sourceTree = "<group>"; };
+		92E927A31F1DB35500BEF834 /* CourseHistoryViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseHistoryViewController_17.h; sourceTree = "<group>"; };
+		92E927A41F1DB35500BEF834 /* CourseHistoryViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseHistoryViewController_17.m; sourceTree = "<group>"; };
+		92E927A61F1DB4BA00BEF834 /* CourseHistoryCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseHistoryCell_17.h; sourceTree = "<group>"; };
+		92E927A71F1DB4BA00BEF834 /* CourseHistoryCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseHistoryCell_17.m; sourceTree = "<group>"; };
 		92E9714D1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseIntroductionViewController.h; sourceTree = "<group>"; };
 		92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseIntroductionViewController.m; sourceTree = "<group>"; };
 		92E971551ED5801500DEAAD4 /* OLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImage.h; sourceTree = "<group>"; };
@@ -3426,6 +3438,8 @@
 				9274291E1F187ACA002D9D7B /* CourseListCompulsoryViewController_17.m */,
 				920886B01F187D26004D0FC5 /* CourseListElectiveViewController_17.h */,
 				927429241F187B63002D9D7B /* CourseListElectiveViewController_17.m */,
+				92E927A31F1DB35500BEF834 /* CourseHistoryViewController_17.h */,
+				92E927A41F1DB35500BEF834 /* CourseHistoryViewController_17.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -3447,6 +3461,8 @@
 				92D29C3C1F1C97F0003DF29B /* CourseFilterHeaderView_17.m */,
 				92D29C411F1CB7D4003DF29B /* CourseFilterFooterView_17.h */,
 				92D29C421F1CB7D4003DF29B /* CourseFilterFooterView_17.m */,
+				92E927A61F1DB4BA00BEF834 /* CourseHistoryCell_17.h */,
+				92E927A71F1DB4BA00BEF834 /* CourseHistoryCell_17.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -3823,6 +3839,10 @@
 				92E4F9AE1F15C0A8001CB34E /* CourseListRequest_17.m */,
 				92B9583A1F189E1600A07203 /* CourseListFetcher_17.h */,
 				92B9583B1F189E1600A07203 /* CourseListFetcher_17.m */,
+				928C253D1F1DAFF200FA853A /* CourseHistoryListRequest_17.h */,
+				928C253E1F1DAFF200FA853A /* CourseHistoryListRequest_17.m */,
+				928C25401F1DB01E00FA853A /* CourseHistoryListFetcher_17.h */,
+				928C25411F1DB01E00FA853A /* CourseHistoryListFetcher_17.m */,
 			);
 			path = "课程";
 			sourceTree = "<group>";
@@ -4645,6 +4665,7 @@
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
 				92852BEA1EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m in Sources */,
 				921AC82F1ED29DCD001579A9 /* VideoCourseDetailViewController.m in Sources */,
+				928C253F1F1DAFF200FA853A /* CourseHistoryListRequest_17.m in Sources */,
 				92AD33581EA0AB58001F2718 /* ProjectChooseLayerHeaderView.m in Sources */,
 				E9CD95791DE3E36500AE6704 /* ShareResourcesViewController.m in Sources */,
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
@@ -4828,6 +4849,7 @@
 				92348FCD1EEFEDEA00D3B3A7 /* SwipeTableViewCell.m in Sources */,
 				920F1D771D59D1B500636A51 /* YXNotAutorotateView.m in Sources */,
 				92EDC7C81D61AD76005B91DD /* YXSelectHomeworkInfoView.m in Sources */,
+				92E927A81F1DB4BA00BEF834 /* CourseHistoryCell_17.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
 				927B6C871F137E3C0082DB27 /* YXSectionHeaderFooterView.m in Sources */,
 				7C2C3B601D23D68500A03635 /* YXCourseListFilterModel.m in Sources */,
@@ -4877,6 +4899,7 @@
 				7C3178291D129C01004AAC90 /* ReaderViewController.m in Sources */,
 				7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */,
 				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
+				92E927A51F1DB35500BEF834 /* CourseHistoryViewController_17.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
 				92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */,
 				7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */,
@@ -5081,6 +5104,7 @@
 				92348F8F1EEF85FC00D3B3A7 /* VideoPlayCommentEmptyView.m in Sources */,
 				923237351D79623E00FDACFE /* YXScoreLeadingGroupCell.m in Sources */,
 				7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */,
+				928C25421F1DB01E00FA853A /* CourseHistoryListFetcher_17.m in Sources */,
 				7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */,
 				9241FFDC1E1F39E30015B587 /* ActivityDelReplyRequest.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,

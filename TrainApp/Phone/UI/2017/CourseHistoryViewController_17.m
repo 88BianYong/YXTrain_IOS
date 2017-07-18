@@ -1,71 +1,47 @@
 //
-//  ElectiveCourseListViewController_17.m
+//  CourseHistoryViewController_17.m
 //  TrainApp
 //
-//  Created by 郑小龙 on 2017/7/14.
+//  Created by 郑小龙 on 2017/7/18.
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "CourseListElectiveViewController_17.h"
-#import "CourseListCompulsoryViewController_17.h"
-#import "CourseListFetcher_17.h"
-#import "CourseListFilterView_17.h"
-#import "CourseListHeader_17.h"
-#import "CourseListCell_17.h"
+#import "CourseHistoryViewController_17.h"
+#import "CourseListRequest_17.h"
+#import "CourseHistoryListFetcher_17.h"
+#import "CourseHistoryCell_17.h"
 #import "YXCourseListRequest.h"
 #import "VideoCourseDetailViewController.h"
-@interface CourseListElectiveViewController_17 ()
-@property (nonatomic, strong) CourseListFilterView_17 *filterView;
+@interface CourseHistoryViewController_17 ()
 @end
 
-@implementation CourseListElectiveViewController_17
+@implementation CourseHistoryViewController_17
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewDidLoad {
-    CourseListFetcher_17 *fetcher = [[CourseListFetcher_17 alloc]init];
-    fetcher.stageID = @"";
-    fetcher.study = @"";
-    fetcher.segment = @"";
-    fetcher.type = @"";
-    WEAK_SELF
-    fetcher.courseListItemBlock = ^(CourseListRequest_17Item *model) {
-        STRONG_SELF
-        if (self.filterView.searchTerm == nil) {
-            self.filterView.searchTerm = model.searchTerm;
-            self.filterView.hidden = NO;
-        }
-    };
+    CourseHistoryListFetcher_17 *fetcher = [[CourseHistoryListFetcher_17 alloc]init];
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self setupUI];
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark - setupUI
 - (void)setupUI {
-    self.filterView = [[CourseListFilterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
-    self.filterView.hidden = YES;
-    [self.contentView addSubview:self.filterView];
-    [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left);
-        make.right.equalTo(self.contentView.mas_right);
-        make.top.equalTo(self.contentView.mas_top);
-        make.height.mas_offset(30.0f);
-    }];
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left);
-        make.right.equalTo(self.contentView.mas_right);
-        make.top.equalTo(self.filterView.mas_bottom);
-        make.bottom.equalTo(self.contentView.mas_bottom);
-    }];
+    self.title = @"看课记录";
     self.emptyView.title = @"没有符合条件的课程";
     self.emptyView.imageName = @"没有符合条件的课程";
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.tableView registerClass:[CourseListCell_17 class]
-           forCellReuseIdentifier:@"CourseListCell_17"];
-    [self.tableView registerClass:[CourseListHeader_17 class] forHeaderFooterViewReuseIdentifier:@"CourseListHeader_17"];
+    [self.tableView registerClass:[CourseHistoryCell_17 class]
+           forCellReuseIdentifier:@"CourseHistoryCell_17"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self setupObservers];
-    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -73,12 +49,7 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
 
 - (void)setupObservers{
     WEAK_SELF
@@ -97,30 +68,32 @@
         }];
     }];
 }
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.dataArray.count > 0 ? 1 : 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CourseListCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseListCell_17" forIndexPath:indexPath];
-    cell.course = self.dataArray[indexPath.row];
+    CourseHistoryCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseHistoryCell_17" forIndexPath:indexPath];
+    cell.course = self.dataArray[indexPath.row];    
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 104.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 70.0f;
+    return 5.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.0001;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    CourseListHeader_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CourseListHeader_17"];
+    YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return headerView;
 }
 
@@ -143,5 +116,4 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-
 @end

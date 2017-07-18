@@ -13,6 +13,7 @@
 #import "CourseListCell_17.h"
 #import "YXCourseListRequest.h"
 #import "VideoCourseDetailViewController.h"
+#import "CourseHistoryViewController_17.h"
 @interface CourseListCompulsoryViewController_17 ()
 @property (nonatomic, strong) CourseListFilterView_17 *filterView;
 
@@ -34,14 +35,17 @@
         STRONG_SELF
         if (self.filterView.searchTerm == nil) {
             self.filterView.searchTerm = model.searchTerm;
+            self.filterView.hidden = NO;
         }
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
 }
 - (void)setupUI {
     self.filterView = [[CourseListFilterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
+    self.filterView.hidden = YES;
     [self.contentView addSubview:self.filterView];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left);
@@ -57,8 +61,6 @@
     }];
     self.emptyView.title = @"没有符合条件的课程";
     self.emptyView.imageName = @"没有符合条件的课程";
-    [self setupRightWithTitle:@"看课记录"];
-    [self setupObservers];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[CourseListCell_17 class]
@@ -78,8 +80,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-
 - (void)setupObservers{
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kRecordReportSuccessNotification object:nil]subscribeNext:^(id x) {
@@ -98,14 +98,12 @@
     }];
 }
 
-- (void)naviRightAction{
-//    YXCourseRecordViewController *vc = [[YXCourseRecordViewController alloc]init];
-//    [self.navigationController pushViewController:vc animated:YES];
-}
-
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.dataArray.count > 0 ? 1 : 0;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CourseListCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseListCell_17"];
+    CourseListCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseListCell_17" forIndexPath:indexPath];
     cell.course = self.dataArray[indexPath.row];
     return cell;
 }

@@ -9,6 +9,7 @@
 #import "CourseListMangerViewController_17.h"
 #import "CourseListCompulsoryViewController_17.h"
 #import "CourseListElectiveViewController_17.h"
+#import "CourseHistoryViewController_17.h"
 @interface CourseListMangerViewController_17 ()
 @property (nonatomic,strong) UIViewController *currentViewController;
 @property (nonatomic, assign) NSInteger selectedIndex;
@@ -34,6 +35,11 @@
     [compulsoryVC didMoveToParentViewController:self];
     [self.view addSubview:compulsoryVC.view];
     self.currentViewController = compulsoryVC;
+    [self setupRightWithTitle:@"看课记录"];
+}
+- (void)naviRightAction{
+    CourseHistoryViewController_17 *vc = [[CourseHistoryViewController_17 alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)setDatumTitleView {
