@@ -54,7 +54,7 @@
         self.emptyView.title = @"您没有已参加的培训项目";
         self.emptyView.subTitle = @"";
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = groups.count != 0;
+        data.requestDataExist = YES;
         data.localDataExist = NO;
         data.error = error;
         if ([self handleRequestData:data]) {

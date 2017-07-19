@@ -1,0 +1,77 @@
+{
+    "scheme": {
+        "scheme": {
+            "toolid": 222,
+            "finishnum": 2,
+            "finishscore": 10,
+            "type": 0
+        },
+        "process": {
+            "userfinishnum": 1,
+            "userfinishscore": 5
+        }
+    },
+    "objs": [
+             {
+             "id": 10402325,
+             "name": "主题实施方案",
+             "isfinish": 1,
+             "timelength": 10,
+             "content": "文本内容",
+             "affix":
+             {
+             "resid": 111111,
+             "resname": "测试附件",
+             "convertstatus": 0,
+             "previewurl": "http://ugc.upload.yanxiu.com",
+             "downloadurl": "http://ugc.upload.yanxiu.com"
+             }
+             },
+             {
+             "id": 10402325,
+             "name": "培训安排",
+             "isfinish": 0,
+             "timelength": 10,
+             "content": "文本内容",
+             "affix": {
+             "resid": 111111,
+             "resname": "测试附件",
+             "convertstatus": 0,
+             "previewurl": "http://ugc.upload.yanxiu.com",
+             "downloadurl": "http://ugc.upload.yanxiu.com"
+             }
+             },
+             {
+             "id": 10402325,
+             "name": "主题实施方案",
+             "isfinish": 0,
+             "timelength": 10,
+             "content": "文本内容",
+             "affix": {
+             "resid": 111111,
+             "resname": "测试附件",
+             "convertstatus": 0,
+             "previewurl": "http://ugc.upload.yanxiu.com",
+             "downloadurl": "http://ugc.upload.yanxiu.com"
+             }
+             },
+             {
+             "id": 10402325,
+             "name": "配附件爱咖啡撒",
+             "isfinish": 0,
+             "timelength": 10,
+             "content": "文本内容",
+             "affix": {
+             "resid": 111111,
+             "resname": "测试附件",
+             "convertstatus": 0,
+             "previewurl": "http://ugc.upload.yanxiu.com",
+             "downloadurl": "http://ugc.upload.yanxiu.com"
+             }
+             }
+             ],
+    "descr": "测试描述",
+    "isfinish": 0,
+    "stageStatus": 1,
+    "code": 0
+}

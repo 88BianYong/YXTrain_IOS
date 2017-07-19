@@ -211,6 +211,9 @@
 		92134E3D1E8BAE2900A5B9B7 /* submitAnswer_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92134E3C1E8BAE2900A5B9B7 /* submitAnswer_mock.json */; };
 		92177FFE1F17797B0041F70D /* YXMyExamExplainView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92177FFD1F17797B0041F70D /* YXMyExamExplainView_17.m */; };
 		921780011F177FA40041F70D /* YXMyExamExplainHelp_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 921780001F177FA40041F70D /* YXMyExamExplainHelp_17.m */; };
+		9219A18F1F1F054600C49D78 /* ReadingDetailViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A18E1F1F054600C49D78 /* ReadingDetailViewController_17.m */; };
+		9219A1921F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A1911F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m */; };
+		9219A1951F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A1941F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m */; };
 		921AC82F1ED29DCD001579A9 /* VideoCourseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 921AC82E1ED29DCD001579A9 /* VideoCourseDetailViewController.m */; };
 		921AC8321ED2A0F7001579A9 /* VideoPlayManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921AC8311ED2A0F7001579A9 /* VideoPlayManagerView.m */; };
 		921E357D1EF769380038F5CD /* VideoBeginningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921E357C1EF769380038F5CD /* VideoBeginningView.m */; };
@@ -424,6 +427,7 @@
 		92B958451F18A37B00A07203 /* CourseListCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B958441F18A37B00A07203 /* CourseListCell_17.m */; };
 		92B958481F1C8BDC00A07203 /* CourseListFilterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B958471F1C8BDC00A07203 /* CourseListFilterView_17.m */; };
 		92B9584B1F1C915F00A07203 /* CourseFilterCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9584A1F1C915F00A07203 /* CourseFilterCell_17.m */; };
+		92BBE0121F1F3194009230AC /* ReadingDetailHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0111F1F3194009230AC /* ReadingDetailHeaderView_17.m */; };
 		92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */; };
 		92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */; };
 		92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */; };
@@ -455,6 +459,12 @@
 		92E927A81F1DB4BA00BEF834 /* CourseHistoryCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927A71F1DB4BA00BEF834 /* CourseHistoryCell_17.m */; };
 		92E927AB1F1DDCEB00BEF834 /* NoticeBriefCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927AA1F1DDCEB00BEF834 /* NoticeBriefCell_17.m */; };
 		92E927AE1F1DEB8A00BEF834 /* YXMineHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927AD1F1DEB8A00BEF834 /* YXMineHeaderView_17.m */; };
+		92E927B21F1E031800BEF834 /* ReadingListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927B11F1E031800BEF834 /* ReadingListRequest_17.m */; };
+		92E927B61F1E0ABB00BEF834 /* readingList_mock_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 92E927B51F1E0ABB00BEF834 /* readingList_mock_17.json */; };
+		92E927BC1F1E0C0B00BEF834 /* ReadingListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927BB1F1E0C0B00BEF834 /* ReadingListViewController_17.m */; };
+		92E927BF1F1E0C6700BEF834 /* ReadingListCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927BE1F1E0C6700BEF834 /* ReadingListCell_17.m */; };
+		92E927C21F1E0CAF00BEF834 /* ReadingListHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927C11F1E0CAF00BEF834 /* ReadingListHeaderView_17.m */; };
+		92E927C51F1E0CC900BEF834 /* ReadingListTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E927C41F1E0CC900BEF834 /* ReadingListTableHeaderView_17.m */; };
 		92E9714F1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */; };
 		92E971591ED5801500DEAAD4 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971561ED5801500DEAAD4 /* OLImage.m */; };
 		92E9715A1ED5801500DEAAD4 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E971581ED5801500DEAAD4 /* OLImageView.m */; };
@@ -1041,6 +1051,11 @@
 		92177FFD1F17797B0041F70D /* YXMyExamExplainView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyExamExplainView_17.m; sourceTree = "<group>"; };
 		92177FFF1F177FA40041F70D /* YXMyExamExplainHelp_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyExamExplainHelp_17.h; sourceTree = "<group>"; };
 		921780001F177FA40041F70D /* YXMyExamExplainHelp_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyExamExplainHelp_17.m; sourceTree = "<group>"; };
+		9219A18D1F1F054600C49D78 /* ReadingDetailViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailViewController_17.h; sourceTree = "<group>"; };
+		9219A18E1F1F054600C49D78 /* ReadingDetailViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingDetailViewController_17.m; sourceTree = "<group>"; };
+		9219A1901F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailTableHeaderView_17.h; sourceTree = "<group>"; };
+		9219A1911F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingDetailTableHeaderView_17.m; sourceTree = "<group>"; };
+		9219A1941F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingDetailAnnexCell_17.m; sourceTree = "<group>"; };
 		921AC82D1ED29DCD001579A9 /* VideoCourseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseDetailViewController.h; sourceTree = "<group>"; };
 		921AC82E1ED29DCD001579A9 /* VideoCourseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseDetailViewController.m; sourceTree = "<group>"; };
 		921AC8301ED2A0F7001579A9 /* VideoPlayManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayManagerView.h; sourceTree = "<group>"; };
@@ -1230,6 +1245,7 @@
 		9237FF781DD48F800057FFDE /* activityStep_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = activityStep_mock.json; sourceTree = "<group>"; };
 		9237FF7A1DD572400057FFDE /* ActivityFirstCommentRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFirstCommentRequest.h; sourceTree = "<group>"; };
 		9237FF7B1DD572400057FFDE /* ActivityFirstCommentRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFirstCommentRequest.m; sourceTree = "<group>"; };
+		923AC3781F1F11AE004C04A0 /* ReadingDetailAnnexCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailAnnexCell_17.h; sourceTree = "<group>"; };
 		9241FFD71E1E1BE60015B587 /* ActivityCommentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCommentHeaderView.h; sourceTree = "<group>"; };
 		9241FFD81E1E1BE60015B587 /* ActivityCommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCommentHeaderView.m; sourceTree = "<group>"; };
 		9241FFDA1E1F39E30015B587 /* ActivityDelReplyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDelReplyRequest.h; sourceTree = "<group>"; };
@@ -1449,6 +1465,8 @@
 		92B958491F1C915F00A07203 /* CourseFilterCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseFilterCell_17.h; sourceTree = "<group>"; };
 		92B9584A1F1C915F00A07203 /* CourseFilterCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseFilterCell_17.m; sourceTree = "<group>"; };
 		92B9584C1F1C919800A07203 /* CourseFilterHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseFilterHeaderView_17.h; sourceTree = "<group>"; };
+		92BBE0101F1F3194009230AC /* ReadingDetailHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailHeaderView_17.h; sourceTree = "<group>"; };
+		92BBE0111F1F3194009230AC /* ReadingDetailHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingDetailHeaderView_17.m; sourceTree = "<group>"; };
 		92C649A31ED41C7F00ABC1CE /* VideoCourseChapterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseChapterViewController.h; sourceTree = "<group>"; };
 		92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseChapterViewController.m; sourceTree = "<group>"; };
 		92CA55DB1DFE574D00AA2C50 /* AppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateHelper.h; sourceTree = "<group>"; };
@@ -1510,6 +1528,17 @@
 		92E927AA1F1DDCEB00BEF834 /* NoticeBriefCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeBriefCell_17.m; sourceTree = "<group>"; };
 		92E927AC1F1DEB8A00BEF834 /* YXMineHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMineHeaderView_17.h; sourceTree = "<group>"; };
 		92E927AD1F1DEB8A00BEF834 /* YXMineHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMineHeaderView_17.m; sourceTree = "<group>"; };
+		92E927B01F1E031800BEF834 /* ReadingListRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReadingListRequest_17.h; path = "内容阅读/ReadingListRequest_17.h"; sourceTree = "<group>"; };
+		92E927B11F1E031800BEF834 /* ReadingListRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReadingListRequest_17.m; path = "内容阅读/ReadingListRequest_17.m"; sourceTree = "<group>"; };
+		92E927B51F1E0ABB00BEF834 /* readingList_mock_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = readingList_mock_17.json; sourceTree = "<group>"; };
+		92E927BA1F1E0C0B00BEF834 /* ReadingListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingListViewController_17.h; sourceTree = "<group>"; };
+		92E927BB1F1E0C0B00BEF834 /* ReadingListViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingListViewController_17.m; sourceTree = "<group>"; };
+		92E927BD1F1E0C6700BEF834 /* ReadingListCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingListCell_17.h; sourceTree = "<group>"; };
+		92E927BE1F1E0C6700BEF834 /* ReadingListCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingListCell_17.m; sourceTree = "<group>"; };
+		92E927C01F1E0CAF00BEF834 /* ReadingListHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingListHeaderView_17.h; sourceTree = "<group>"; };
+		92E927C11F1E0CAF00BEF834 /* ReadingListHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingListHeaderView_17.m; sourceTree = "<group>"; };
+		92E927C31F1E0CC900BEF834 /* ReadingListTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingListTableHeaderView_17.h; sourceTree = "<group>"; };
+		92E927C41F1E0CC900BEF834 /* ReadingListTableHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingListTableHeaderView_17.m; sourceTree = "<group>"; };
 		92E9714D1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseIntroductionViewController.h; sourceTree = "<group>"; };
 		92E9714E1ED5755600DEAAD4 /* VideoCourseIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseIntroductionViewController.m; sourceTree = "<group>"; };
 		92E971551ED5801500DEAAD4 /* OLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImage.h; sourceTree = "<group>"; };
@@ -3512,6 +3541,7 @@
 		927B6C6B1F132F820082DB27 /* 版本2017 */ = {
 			isa = PBXGroup;
 			children = (
+				92E927AF1F1E02B600BEF834 /* 内容阅读 */,
 				92E4F9AC1F15C06F001CB34E /* 课程 */,
 				927B6C701F1330060082DB27 /* 学习 */,
 			);
@@ -3671,6 +3701,7 @@
 		92A791641F0E20B000E3D258 /* 学习 */ = {
 			isa = PBXGroup;
 			children = (
+				92E927B71F1E0B2500BEF834 /* 阅读 */,
 				927429171F18798D002D9D7B /* 课程 */,
 				92A10F631F186A4E00B37814 /* 通知简报 */,
 				9272D5301F1749D40010B177 /* 我的成绩 */,
@@ -3855,6 +3886,55 @@
 				928C25411F1DB01E00FA853A /* CourseHistoryListFetcher_17.m */,
 			);
 			path = "课程";
+			sourceTree = "<group>";
+		};
+		92E927AF1F1E02B600BEF834 /* 内容阅读 */ = {
+			isa = PBXGroup;
+			children = (
+				92E927B51F1E0ABB00BEF834 /* readingList_mock_17.json */,
+				92E927B01F1E031800BEF834 /* ReadingListRequest_17.h */,
+				92E927B11F1E031800BEF834 /* ReadingListRequest_17.m */,
+			);
+			name = "内容阅读";
+			sourceTree = "<group>";
+		};
+		92E927B71F1E0B2500BEF834 /* 阅读 */ = {
+			isa = PBXGroup;
+			children = (
+				92E927B91F1E0B5600BEF834 /* view */,
+				92E927B81F1E0B4D00BEF834 /* controller */,
+			);
+			path = "阅读";
+			sourceTree = "<group>";
+		};
+		92E927B81F1E0B4D00BEF834 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				92E927BA1F1E0C0B00BEF834 /* ReadingListViewController_17.h */,
+				92E927BB1F1E0C0B00BEF834 /* ReadingListViewController_17.m */,
+				9219A18D1F1F054600C49D78 /* ReadingDetailViewController_17.h */,
+				9219A18E1F1F054600C49D78 /* ReadingDetailViewController_17.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		92E927B91F1E0B5600BEF834 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92E927BD1F1E0C6700BEF834 /* ReadingListCell_17.h */,
+				92E927BE1F1E0C6700BEF834 /* ReadingListCell_17.m */,
+				92E927C01F1E0CAF00BEF834 /* ReadingListHeaderView_17.h */,
+				92E927C11F1E0CAF00BEF834 /* ReadingListHeaderView_17.m */,
+				92E927C31F1E0CC900BEF834 /* ReadingListTableHeaderView_17.h */,
+				92E927C41F1E0CC900BEF834 /* ReadingListTableHeaderView_17.m */,
+				9219A1901F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.h */,
+				9219A1911F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m */,
+				923AC3781F1F11AE004C04A0 /* ReadingDetailAnnexCell_17.h */,
+				9219A1941F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m */,
+				92BBE0101F1F3194009230AC /* ReadingDetailHeaderView_17.h */,
+				92BBE0111F1F3194009230AC /* ReadingDetailHeaderView_17.m */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 		92E971541ED57FC100DEAAD4 /* OLImageView */ = {
@@ -4515,6 +4595,7 @@
 				92348FE01EEFEF2A00D3B3A7 /* masterManageList_mock.json in Resources */,
 				7CF8888D1D1D147600E7C04D /* examine_mock.json in Resources */,
 				926F11FA1EA456CE0041D66F /* selectLayer_mock.json in Resources */,
+				92E927B61F1E0ABB00BEF834 /* readingList_mock_17.json in Resources */,
 				923237591D81122700FDACFE /* provinceData.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
@@ -4614,6 +4695,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92E927BC1F1E0C0B00BEF834 /* ReadingListViewController_17.m in Sources */,
 				928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */,
 				92FD5A551ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m in Sources */,
 				92131F671E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m in Sources */,
@@ -4631,6 +4713,7 @@
 				9272D53E1F175A9E0010B177 /* YXMyLearningScoreHeaderView_17.m in Sources */,
 				CBF66E2E1D2E37B000F4E408 /* YXMineViewController.m in Sources */,
 				927B6C731F1330350082DB27 /* ExamineDetailRequest_17.m in Sources */,
+				9219A1951F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m in Sources */,
 				928B7A3D1E88B2180067218A /* BeijingCheckedMobileUserHeaderView.m in Sources */,
 				92F1A5B01E53084A00015766 /* YXProjectMainViewController+Student.m in Sources */,
 				7C2991B31DFE6F7000AE921C /* FileDownloadHelper.m in Sources */,
@@ -4657,6 +4740,7 @@
 				9232372C1D69A5DD00FDACFE /* YXLoadView.m in Sources */,
 				7C3178611D13DE57004AAC90 /* YXNavigationBarController.m in Sources */,
 				922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */,
+				92E927BF1F1E0C6700BEF834 /* ReadingListCell_17.m in Sources */,
 				923237771D82609F00FDACFE /* YXHelpHeaderView.m in Sources */,
 				9223C81B1D2D0144000F74DF /* YXWorkshopDatumRequest.m in Sources */,
 				923237311D6E9F3000FDACFE /* YXStartViewController.m in Sources */,
@@ -4738,6 +4822,7 @@
 				CB52FCFB1D2BC1720096D8DC /* YXNoticeListFetch.m in Sources */,
 				928B7A4C1E88B2180067218A /* WebsocketRedRightView.m in Sources */,
 				920F1D5C1D53456700636A51 /* YXSaveHomeWorkRequest.m in Sources */,
+				92E927B21F1E031800BEF834 /* ReadingListRequest_17.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				920F1D541D53332600636A51 /* YXCategoryListRequest.m in Sources */,
 				92007EBA1ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m in Sources */,
@@ -4754,6 +4839,7 @@
 				92FED8981DD2BE8D00457228 /* ActivityDetailTableHeaderView.m in Sources */,
 				CB4D91801D1A650A00B5F1D0 /* YXMyDatumNormalInfoView.m in Sources */,
 				92FED88C1DD1C38E00457228 /* ActitvityCommentHeaderView.m in Sources */,
+				92E927C51F1E0CC900BEF834 /* ReadingListTableHeaderView_17.m in Sources */,
 				928B7A3C1E88B2180067218A /* BeijingCheckedMobileUserCell.m in Sources */,
 				9272D53B1F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
@@ -4766,8 +4852,10 @@
 				92FAE4A71DDAC9ED000C3C00 /* ActivityStepViewController.m in Sources */,
 				92AA47751E12440B00C88DDC /* BeijingCourseFilterManager.m in Sources */,
 				92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */,
+				9219A18F1F1F054600C49D78 /* ReadingDetailViewController_17.m in Sources */,
 				92348FBF1EEFEDEA00D3B3A7 /* MasterHappeningViewController.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
+				9219A1921F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m in Sources */,
 				CBF66E341D2E435E00F4E408 /* YXUserInfoTableViewCell.m in Sources */,
 				7C3177BE1D0EBA79004AAC90 /* UIImage+YXResize.m in Sources */,
 				92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */,
@@ -4842,6 +4930,7 @@
 				7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */,
 				92CE51561D87D4C70071DE79 /* YXDynamicRequest.m in Sources */,
 				92913AD01F175AF400934598 /* YXMyLearningScoreCell_17.m in Sources */,
+				92E927C21F1E0CAF00BEF834 /* ReadingListHeaderView_17.m in Sources */,
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
 				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
 				924797E11E022C1F0033BFDC /* BeijingActivityFilterRequest.m in Sources */,
@@ -4937,6 +5026,7 @@
 				922850C71DD05E3000A64AB7 /* ActivityPlayBottomView.m in Sources */,
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
 				7C2C3B4F1D2364E300A03635 /* YXTaskCell.m in Sources */,
+				92BBE0121F1F3194009230AC /* ReadingDetailHeaderView_17.m in Sources */,
 				9232376B1D8151B900FDACFE /* YXHotspotViewController.m in Sources */,
 				927B6C591F0F3A5E0082DB27 /* PopUpFloatingViewManager.m in Sources */,
 				7CF844691D2C9E5700B1CE55 /* YXRecordContent.m in Sources */,

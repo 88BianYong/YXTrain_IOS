@@ -30,7 +30,7 @@
                {
                "isCurrStage": 0,
                "isFinish": 1,
-               "name": "第一阶段",
+               "name": "概述",
                "notes": "",
                "stageid": 5108,
                "starttime": "2017-05-08",
@@ -39,30 +39,54 @@
                "tools": [
                          {
                          "toolid": 201,
+                         "name": "阅读",
+                         "status": 1
+                         },
+                         {
+                         "toolid": 202,
+                         "name": "测评",
+                         "status": 0
+                         }
+                         ],
+               "totalscore": 20,
+               "userscore": 0
+               },
+               {
+               "isCurrStage": 0,
+               "isFinish": 1,
+               "name": "第一阶段",
+               "notes": "",
+               "stageid": 5108,
+               "starttime": "2017-05-08",
+               "status": 1,
+               "subject": "诊断订计划",
+               "tools": [
+                         {
+                         "toolid": 203,
                          "name": "课程1",
                          "status": 2
                          },
                          {
-                         "toolid": 202,
+                         "toolid": 204,
                          "name": "课程2",
                          "status": 2
                          },
                          {
-                         "toolid": 203,
+                         "toolid": 205,
                          "name": "课程3",
-                         "status": 1
+                         "status": 2
                          },{
-                         "toolid": 201,
+                         "toolid": 206,
                          "name": "课程4",
                          "status": 2
                          },
                          {
-                         "toolid": 202,
+                         "toolid": 207,
                          "name": "课程5",
                          "status": 2
                          },
                          {
-                         "toolid": 203,
+                         "toolid": 208,
                          "name": "课程6",
                          "status": 1
                          }
