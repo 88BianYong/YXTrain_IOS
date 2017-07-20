@@ -62,7 +62,7 @@
                "subject": "诊断订计划",
                "tools": [
                          {
-                         "toolid": 203,
+                         "toolid": 204,
                          "name": "课程1",
                          "status": 2
                          },
@@ -110,12 +110,12 @@
                          "status": 2
                          },
                          {
-                         "toolid": 202,
+                         "toolid": 203,
                          "name": "活动",
                          "status": 1
                          },
                          {
-                         "toolid": 203,
+                         "toolid": 204,
                          "name": "作业",
                          "status": 0
                          },

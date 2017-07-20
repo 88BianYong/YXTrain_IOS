@@ -28,13 +28,19 @@
 @property (nonatomic, copy) NSString<Optional> *segmentID;
 @property (nonatomic, copy) NSString<Optional> *name;
 @end
+@interface ActivityFilterRequestItem_body_default : JSONModel
+@property (nonatomic, copy) NSString<Optional> *segmentId;
+@property (nonatomic, copy) NSString<Optional> *studyId;
+@end
 
 @protocol ActivityFilterRequestItem_body <NSObject>
 @end
+
 @interface ActivityFilterRequestItem_body : JSONModel
 @property (nonatomic, strong) NSArray<ActivityFilterRequestItem_body_stage,Optional> *stages;
 @property (nonatomic, strong) NSArray<ActivityFilterRequestItem_body_segment,Optional> *segments;
 @property (nonatomic, strong) NSArray<ActivityFilterRequestItem_body_study,Optional> *studys;
+@property (nonatomic, strong) ActivityFilterRequestItem_body_default<Optional> *defaultChoose;
 @end
 
 @interface ActivityFilterRequestItem : HttpBaseRequestItem

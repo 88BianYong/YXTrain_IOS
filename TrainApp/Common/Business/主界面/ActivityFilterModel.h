@@ -20,5 +20,6 @@
 
 @interface ActivityFilterModel : NSObject
 @property (nonatomic, strong) NSArray *groupArray;
+@property (nonatomic, strong) NSIndexPath *chooseIndexPatch;
 + (ActivityFilterModel *)modelFromRawData:(ActivityFilterRequestItem *)item;
 @end

@@ -230,10 +230,8 @@
             return;
         }
         if ((scrollView.contentOffset.y > self.oldOffsetY) && self.isAllowChange) {
-//            NSLog(@"隐藏nav1---20,self.isAllowChange = %@",@(self.isAllowChange));
             self.isNavBarHidden = YES;
             self.isAllowChange = NO;
-//            NSLog(@"隐藏nav2---20,self.isAllowChange = %@",@(self.isAllowChange));
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -242,10 +240,8 @@
             }];
         }
         if ((scrollView.contentOffset.y < self.oldOffsetY) && self.isAllowChange) {
-//            NSLog(@"显示nav1---0,self.isAllowChange = %@",@(self.isAllowChange));
             self.isNavBarHidden = NO;
             self.isAllowChange = NO;
-//            NSLog(@"显示nav2---0,self.isAllowChange = %@",@(self.isAllowChange));
             [self.navigationController setNavigationBarHidden:NO animated:YES];
             self.filterView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -266,7 +262,6 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     self.oldOffsetY = MAX(scrollView.contentOffset.y, 0.0f);
     self.isAllowChange = YES;
-//    NSLog(@"减速,self.isAllowChange = %@",@(self.isAllowChange));
 }
 
 @end

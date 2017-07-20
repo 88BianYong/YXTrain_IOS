@@ -25,13 +25,31 @@
 @property (nonatomic, copy) NSString<Optional> *source;//活动来源 club或train->研修网;zgjiaoyan->教研网
 @property (nonatomic, copy) NSString<Optional> *joinUserCount;
 @property (nonatomic, copy) NSString<Optional> *restrictTime;//是否限制时间，1为限制，0为不限制
+@property (nonatomic, copy) NSString<Optional> *isRecommend;//1代表推荐
+
 @end
+@interface ActivityListRequestItem_body_scheme_process : JSONModel
+@property (nonatomic, copy) NSString<Optional> *userfinishnum;
+@property (nonatomic, copy) NSString<Optional> *userfinishscore;
+@end
+
+@interface ActivityListRequestItem_body_scheme_scheme : JSONModel
+@property (nonatomic, copy) NSString<Optional> *finishnum;
+@property (nonatomic, copy) NSString<Optional> *finishscore;
+@end
+
+@interface ActivityListRequestItem_body_scheme : JSONModel
+@property (nonatomic, strong) ActivityListRequestItem_body_scheme_scheme<Optional> *scheme;
+@property (nonatomic, strong) ActivityListRequestItem_body_scheme_process<Optional> *process;
+@end
+
 
 @interface ActivityListRequestItem_body : JSONModel
 @property (nonatomic, copy) NSString<Optional> *pageSize;
 @property (nonatomic, copy) NSString<Optional> *page;
 @property (nonatomic, copy) NSString<Optional> *totalPage;
 @property (nonatomic, strong) NSArray<ActivityListRequestItem_body_activity,Optional> *actives;
+@property (nonatomic, strong) ActivityListRequestItem_body_scheme<Optional> *scheme;
 @end
 
 @interface ActivityListRequestItem : HttpBaseRequestItem

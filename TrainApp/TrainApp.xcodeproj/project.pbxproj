@@ -428,6 +428,21 @@
 		92B958481F1C8BDC00A07203 /* CourseListFilterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B958471F1C8BDC00A07203 /* CourseListFilterView_17.m */; };
 		92B9584B1F1C915F00A07203 /* CourseFilterCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9584A1F1C915F00A07203 /* CourseFilterCell_17.m */; };
 		92BBE0121F1F3194009230AC /* ReadingDetailHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0111F1F3194009230AC /* ReadingDetailHeaderView_17.m */; };
+		92BBE0161F1F4A02009230AC /* ActivityListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0151F1F4A02009230AC /* ActivityListViewController_17.m */; };
+		92BBE01E1F1F4B1C009230AC /* ActivityListCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE01D1F1F4B1C009230AC /* ActivityListCell_17.m */; };
+		92BBE0211F1F62DE009230AC /* ActivityListFilterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0201F1F62DE009230AC /* ActivityListFilterView_17.m */; };
+		92BBE0271F1F63A6009230AC /* ActivityFilterCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0261F1F63A6009230AC /* ActivityFilterCell_17.m */; };
+		92BBE02D1F1F63EF009230AC /* ActivityFilterHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE02C1F1F63EF009230AC /* ActivityFilterHeaderView_17.m */; };
+		92BBE0301F1F6405009230AC /* ActivityFilterFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE02F1F1F6405009230AC /* ActivityFilterFooterView_17.m */; };
+		92BBE0361F205C43009230AC /* HomeworkListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0351F205C43009230AC /* HomeworkListViewController_17.m */; };
+		92BBE0391F205F5D009230AC /* HomeworkListDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0381F205F5D009230AC /* HomeworkListDefaultCell_17.m */; };
+		92BBE03D1F206043009230AC /* HomeworkListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE03C1F206043009230AC /* HomeworkListRequest_17.m */; };
+		92BBE03F1F20A0C0009230AC /* homeworkList_mock_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 92BBE03E1F20A0C0009230AC /* homeworkList_mock_17.json */; };
+		92BBE0481F20AE60009230AC /* HomeworkListClaimCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0471F20AE60009230AC /* HomeworkListClaimCell_17.m */; };
+		92BBE04E1F20B360009230AC /* HomeworkListHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE04D1F20B360009230AC /* HomeworkListHeaderView_17.m */; };
+		92BBE0511F219196009230AC /* HomeworkListVideoDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0501F219196009230AC /* HomeworkListVideoDefaultCell_17.m */; };
+		92BBE0541F219D03009230AC /* HomeworkListVideoSpecialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0531F219D03009230AC /* HomeworkListVideoSpecialCell.m */; };
+		92BBE0581F21A2DE009230AC /* HomeworkListFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0571F21A2DE009230AC /* HomeworkListFooterView_17.m */; };
 		92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */; };
 		92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */; };
 		92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */; };
@@ -1467,6 +1482,35 @@
 		92B9584C1F1C919800A07203 /* CourseFilterHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseFilterHeaderView_17.h; sourceTree = "<group>"; };
 		92BBE0101F1F3194009230AC /* ReadingDetailHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailHeaderView_17.h; sourceTree = "<group>"; };
 		92BBE0111F1F3194009230AC /* ReadingDetailHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingDetailHeaderView_17.m; sourceTree = "<group>"; };
+		92BBE0141F1F4A02009230AC /* ActivityListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityListViewController_17.h; path = "活动/ActivityListViewController_17.h"; sourceTree = "<group>"; };
+		92BBE0151F1F4A02009230AC /* ActivityListViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityListViewController_17.m; path = "活动/ActivityListViewController_17.m"; sourceTree = "<group>"; };
+		92BBE01C1F1F4B1C009230AC /* ActivityListCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityListCell_17.h; path = "活动/ActivityListCell_17.h"; sourceTree = "<group>"; };
+		92BBE01D1F1F4B1C009230AC /* ActivityListCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityListCell_17.m; path = "活动/ActivityListCell_17.m"; sourceTree = "<group>"; };
+		92BBE01F1F1F62DE009230AC /* ActivityListFilterView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityListFilterView_17.h; path = "活动/ActivityListFilterView_17.h"; sourceTree = "<group>"; };
+		92BBE0201F1F62DE009230AC /* ActivityListFilterView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityListFilterView_17.m; path = "活动/ActivityListFilterView_17.m"; sourceTree = "<group>"; };
+		92BBE0251F1F63A6009230AC /* ActivityFilterCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityFilterCell_17.h; path = "活动/ActivityFilterCell_17.h"; sourceTree = "<group>"; };
+		92BBE0261F1F63A6009230AC /* ActivityFilterCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityFilterCell_17.m; path = "活动/ActivityFilterCell_17.m"; sourceTree = "<group>"; };
+		92BBE02B1F1F63EF009230AC /* ActivityFilterHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityFilterHeaderView_17.h; path = "活动/ActivityFilterHeaderView_17.h"; sourceTree = "<group>"; };
+		92BBE02C1F1F63EF009230AC /* ActivityFilterHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityFilterHeaderView_17.m; path = "活动/ActivityFilterHeaderView_17.m"; sourceTree = "<group>"; };
+		92BBE02E1F1F6405009230AC /* ActivityFilterFooterView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ActivityFilterFooterView_17.h; path = "活动/ActivityFilterFooterView_17.h"; sourceTree = "<group>"; };
+		92BBE02F1F1F6405009230AC /* ActivityFilterFooterView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityFilterFooterView_17.m; path = "活动/ActivityFilterFooterView_17.m"; sourceTree = "<group>"; };
+		92BBE0341F205C43009230AC /* HomeworkListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListViewController_17.h; sourceTree = "<group>"; };
+		92BBE0351F205C43009230AC /* HomeworkListViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListViewController_17.m; sourceTree = "<group>"; };
+		92BBE0371F205F5D009230AC /* HomeworkListDefaultCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListDefaultCell_17.h; sourceTree = "<group>"; };
+		92BBE0381F205F5D009230AC /* HomeworkListDefaultCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListDefaultCell_17.m; sourceTree = "<group>"; };
+		92BBE03B1F206043009230AC /* HomeworkListRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeworkListRequest_17.h; path = "作业/HomeworkListRequest_17.h"; sourceTree = "<group>"; };
+		92BBE03C1F206043009230AC /* HomeworkListRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeworkListRequest_17.m; path = "作业/HomeworkListRequest_17.m"; sourceTree = "<group>"; };
+		92BBE03E1F20A0C0009230AC /* homeworkList_mock_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = homeworkList_mock_17.json; sourceTree = "<group>"; };
+		92BBE0461F20AE60009230AC /* HomeworkListClaimCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListClaimCell_17.h; sourceTree = "<group>"; };
+		92BBE0471F20AE60009230AC /* HomeworkListClaimCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListClaimCell_17.m; sourceTree = "<group>"; };
+		92BBE04C1F20B360009230AC /* HomeworkListHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListHeaderView_17.h; sourceTree = "<group>"; };
+		92BBE04D1F20B360009230AC /* HomeworkListHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListHeaderView_17.m; sourceTree = "<group>"; };
+		92BBE04F1F219196009230AC /* HomeworkListVideoDefaultCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListVideoDefaultCell_17.h; sourceTree = "<group>"; };
+		92BBE0501F219196009230AC /* HomeworkListVideoDefaultCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListVideoDefaultCell_17.m; sourceTree = "<group>"; };
+		92BBE0521F219D03009230AC /* HomeworkListVideoSpecialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListVideoSpecialCell.h; sourceTree = "<group>"; };
+		92BBE0531F219D03009230AC /* HomeworkListVideoSpecialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListVideoSpecialCell.m; sourceTree = "<group>"; };
+		92BBE0561F21A2DE009230AC /* HomeworkListFooterView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListFooterView_17.h; sourceTree = "<group>"; };
+		92BBE0571F21A2DE009230AC /* HomeworkListFooterView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListFooterView_17.m; sourceTree = "<group>"; };
 		92C649A31ED41C7F00ABC1CE /* VideoCourseChapterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseChapterViewController.h; sourceTree = "<group>"; };
 		92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseChapterViewController.m; sourceTree = "<group>"; };
 		92CA55DB1DFE574D00AA2C50 /* AppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateHelper.h; sourceTree = "<group>"; };
@@ -3541,6 +3585,7 @@
 		927B6C6B1F132F820082DB27 /* 版本2017 */ = {
 			isa = PBXGroup;
 			children = (
+				92BBE03A1F206001009230AC /* 作业 */,
 				92E927AF1F1E02B600BEF834 /* 内容阅读 */,
 				92E4F9AC1F15C06F001CB34E /* 课程 */,
 				927B6C701F1330060082DB27 /* 学习 */,
@@ -3701,6 +3746,8 @@
 		92A791641F0E20B000E3D258 /* 学习 */ = {
 			isa = PBXGroup;
 			children = (
+				92BBE0311F205B90009230AC /* 作业 */,
+				92BBE0131F1F49CA009230AC /* 活动 */,
 				92E927B71F1E0B2500BEF834 /* 阅读 */,
 				927429171F18798D002D9D7B /* 课程 */,
 				92A10F631F186A4E00B37814 /* 通知简报 */,
@@ -3787,6 +3834,88 @@
 				92A791711F0E21CA00E3D258 /* YXMineViewController_17.m */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		92BBE0131F1F49CA009230AC /* 活动 */ = {
+			isa = PBXGroup;
+			children = (
+				92BBE0181F1F4ABA009230AC /* view */,
+				92BBE0171F1F4AAF009230AC /* controller */,
+			);
+			name = "活动";
+			sourceTree = "<group>";
+		};
+		92BBE0171F1F4AAF009230AC /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				92BBE0141F1F4A02009230AC /* ActivityListViewController_17.h */,
+				92BBE0151F1F4A02009230AC /* ActivityListViewController_17.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		92BBE0181F1F4ABA009230AC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92BBE01C1F1F4B1C009230AC /* ActivityListCell_17.h */,
+				92BBE01D1F1F4B1C009230AC /* ActivityListCell_17.m */,
+				92BBE01F1F1F62DE009230AC /* ActivityListFilterView_17.h */,
+				92BBE0201F1F62DE009230AC /* ActivityListFilterView_17.m */,
+				92BBE0251F1F63A6009230AC /* ActivityFilterCell_17.h */,
+				92BBE0261F1F63A6009230AC /* ActivityFilterCell_17.m */,
+				92BBE02B1F1F63EF009230AC /* ActivityFilterHeaderView_17.h */,
+				92BBE02C1F1F63EF009230AC /* ActivityFilterHeaderView_17.m */,
+				92BBE02E1F1F6405009230AC /* ActivityFilterFooterView_17.h */,
+				92BBE02F1F1F6405009230AC /* ActivityFilterFooterView_17.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		92BBE0311F205B90009230AC /* 作业 */ = {
+			isa = PBXGroup;
+			children = (
+				92BBE0331F205C0F009230AC /* view */,
+				92BBE0321F205C08009230AC /* controller */,
+			);
+			path = "作业";
+			sourceTree = "<group>";
+		};
+		92BBE0321F205C08009230AC /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				92BBE0341F205C43009230AC /* HomeworkListViewController_17.h */,
+				92BBE0351F205C43009230AC /* HomeworkListViewController_17.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
+		92BBE0331F205C0F009230AC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92BBE0371F205F5D009230AC /* HomeworkListDefaultCell_17.h */,
+				92BBE0381F205F5D009230AC /* HomeworkListDefaultCell_17.m */,
+				92BBE0461F20AE60009230AC /* HomeworkListClaimCell_17.h */,
+				92BBE0471F20AE60009230AC /* HomeworkListClaimCell_17.m */,
+				92BBE04C1F20B360009230AC /* HomeworkListHeaderView_17.h */,
+				92BBE04D1F20B360009230AC /* HomeworkListHeaderView_17.m */,
+				92BBE04F1F219196009230AC /* HomeworkListVideoDefaultCell_17.h */,
+				92BBE0501F219196009230AC /* HomeworkListVideoDefaultCell_17.m */,
+				92BBE0521F219D03009230AC /* HomeworkListVideoSpecialCell.h */,
+				92BBE0531F219D03009230AC /* HomeworkListVideoSpecialCell.m */,
+				92BBE0561F21A2DE009230AC /* HomeworkListFooterView_17.h */,
+				92BBE0571F21A2DE009230AC /* HomeworkListFooterView_17.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		92BBE03A1F206001009230AC /* 作业 */ = {
+			isa = PBXGroup;
+			children = (
+				92BBE03E1F20A0C0009230AC /* homeworkList_mock_17.json */,
+				92BBE03B1F206043009230AC /* HomeworkListRequest_17.h */,
+				92BBE03C1F206043009230AC /* HomeworkListRequest_17.m */,
+			);
+			name = "作业";
 			sourceTree = "<group>";
 		};
 		92CE51491D87D3020071DE79 /* 动态 */ = {
@@ -4601,6 +4730,7 @@
 				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
 				92348FDE1EEFEF2A00D3B3A7 /* masterLearningInfoList_mock.json in Resources */,
+				92BBE03F1F20A0C0009230AC /* homeworkList_mock_17.json in Resources */,
 				7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */,
 				92B2C0A41DD41EFA003E27F9 /* Image.html in Resources */,
 				92E4F9B31F15FA38001CB34E /* courseList_mock_17.json in Resources */,
@@ -4697,6 +4827,7 @@
 			files = (
 				92E927BC1F1E0C0B00BEF834 /* ReadingListViewController_17.m in Sources */,
 				928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */,
+				92BBE0161F1F4A02009230AC /* ActivityListViewController_17.m in Sources */,
 				92FD5A551ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m in Sources */,
 				92131F671E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m in Sources */,
 				922661C11E8A0F19006DE8A4 /* VideoClassworkManager.m in Sources */,
@@ -4774,6 +4905,7 @@
 				92AA477E1E1B9BD900C88DDC /* WebsocketRedLeftView.m in Sources */,
 				92FAE4A41DDAA845000C3C00 /* CoreTextViewHandler.m in Sources */,
 				92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */,
+				92BBE0541F219D03009230AC /* HomeworkListVideoSpecialCell.m in Sources */,
 				7C3177751D0E87E4004AAC90 /* TestsRootViewController.m in Sources */,
 				7C3177B51D0EB7F1004AAC90 /* UIViewController+Keyboard.m in Sources */,
 				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
@@ -4842,8 +4974,10 @@
 				92E927C51F1E0CC900BEF834 /* ReadingListTableHeaderView_17.m in Sources */,
 				928B7A3C1E88B2180067218A /* BeijingCheckedMobileUserCell.m in Sources */,
 				9272D53B1F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.m in Sources */,
+				92BBE01E1F1F4B1C009230AC /* ActivityListCell_17.m in Sources */,
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
+				92BBE0511F219196009230AC /* HomeworkListVideoDefaultCell_17.m in Sources */,
 				92348FE21EEFEF2A00D3B3A7 /* MasterRemindStudyRequest.m in Sources */,
 				CB4D917A1D1A642F00B5F1D0 /* YXDatumDelSourseRequest.m in Sources */,
 				92EEA9241EB08563005A3B7C /* DeYangCourseTableHeaderView.m in Sources */,
@@ -4930,6 +5064,7 @@
 				7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */,
 				92CE51561D87D4C70071DE79 /* YXDynamicRequest.m in Sources */,
 				92913AD01F175AF400934598 /* YXMyLearningScoreCell_17.m in Sources */,
+				92BBE0581F21A2DE009230AC /* HomeworkListFooterView_17.m in Sources */,
 				92E927C21F1E0CAF00BEF834 /* ReadingListHeaderView_17.m in Sources */,
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
 				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
@@ -4949,6 +5084,7 @@
 				920F1D771D59D1B500636A51 /* YXNotAutorotateView.m in Sources */,
 				92EDC7C81D61AD76005B91DD /* YXSelectHomeworkInfoView.m in Sources */,
 				92E927A81F1DB4BA00BEF834 /* CourseHistoryCell_17.m in Sources */,
+				92BBE0361F205C43009230AC /* HomeworkListViewController_17.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
 				927B6C871F137E3C0082DB27 /* YXSectionHeaderFooterView.m in Sources */,
 				7C2C3B601D23D68500A03635 /* YXCourseListFilterModel.m in Sources */,
@@ -5014,6 +5150,7 @@
 				CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
+				92BBE0481F20AE60009230AC /* HomeworkListClaimCell_17.m in Sources */,
 				92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */,
 				92FD5A4C1ED7C4C400D3EBA1 /* VideoCourseCommentViewController.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
@@ -5041,6 +5178,7 @@
 				CB52FCF11D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m in Sources */,
 				9229015F1DE6C241001474CE /* VideoCommentErrorView.m in Sources */,
 				E935D8751DFE4E85005CC8BD /* LSTAlertTitleLabel.m in Sources */,
+				92BBE0211F1F62DE009230AC /* ActivityListFilterView_17.m in Sources */,
 				7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */,
 				926F11FE1EA45C380041D66F /* NoticeAndBriefDetailRequest.m in Sources */,
 				927B6C671F0F3F710082DB27 /* LSTSharedInstance.m in Sources */,
@@ -5056,6 +5194,7 @@
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
+				92BBE04E1F20B360009230AC /* HomeworkListHeaderView_17.m in Sources */,
 				922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */,
 				92CE514D1D87D4180071DE79 /* YXHotspotDatumFetch.m in Sources */,
 				E9A7B6001DDECB5D00136335 /* ResourceMessageView.m in Sources */,
@@ -5072,10 +5211,12 @@
 				E9CD957F1DE3E47C00AE6704 /* DownloadResourceViewController.m in Sources */,
 				7C2C3B821D24F5BE00A03635 /* YXCourseRecordViewController.m in Sources */,
 				922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */,
+				92BBE0301F1F6405009230AC /* ActivityFilterFooterView_17.m in Sources */,
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
 				CB4D91831D1A73EA00B5F1D0 /* YXDatumSearchViewController.m in Sources */,
 				92EDC7B71D5C6C61005B91DD /* YXWriteHomeworkInfoViewController.m in Sources */,
 				CB8524641D334BFB009FA14B /* HJCActionSheet.m in Sources */,
+				92BBE0271F1F63A6009230AC /* ActivityFilterCell_17.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
 				920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */,
 				9237FF7C1DD572400057FFDE /* ActivityFirstCommentRequest.m in Sources */,
@@ -5084,6 +5225,7 @@
 				92CE51481D87D2FF0071DE79 /* YXGuideModel.m in Sources */,
 				9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */,
 				7C2C3B551D23B34300A03635 /* YXCourseListRequest.m in Sources */,
+				92BBE03D1F206043009230AC /* HomeworkListRequest_17.m in Sources */,
 				E9BBA6171DD2EDB2000CA413 /* ActivityFilterModel.m in Sources */,
 				CBB62E191D2CCE3D00DAA6DE /* YXShowWebMenuTableViewCell.m in Sources */,
 				7C3177971D0EA6A8004AAC90 /* HttpBaseRequest.m in Sources */,
@@ -5125,6 +5267,7 @@
 				92FED88F1DD1C39E00457228 /* ActitvityCommentFooterView.m in Sources */,
 				7C3177981D0EA6A8004AAC90 /* UploadRequest.m in Sources */,
 				7C3177A11D0EA723004AAC90 /* YXGetRequest.m in Sources */,
+				92BBE02D1F1F63EF009230AC /* ActivityFilterHeaderView_17.m in Sources */,
 				9274291F1F187ACA002D9D7B /* CourseListCompulsoryViewController_17.m in Sources */,
 				7C31782A1D129C01004AAC90 /* UIXToolbarView.m in Sources */,
 				CBBE94F81D1D111300C935C8 /* YXLoginBaseViewController.m in Sources */,
@@ -5225,6 +5368,7 @@
 				922661C71E8A476F006DE8A4 /* VideoClassworkHeaderView.m in Sources */,
 				7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */,
 				92348FC01EEFEDEA00D3B3A7 /* MasterManageCell.m in Sources */,
+				92BBE0391F205F5D009230AC /* HomeworkListDefaultCell_17.m in Sources */,
 				928B7A4B1E88B2180067218A /* BeijingHomeworkInfoViewController.m in Sources */,
 				7C3178231D129C01004AAC90 /* ReaderContentPage.m in Sources */,
 				7C3177A31D0EA723004AAC90 /* YXUploadRequest.m in Sources */,

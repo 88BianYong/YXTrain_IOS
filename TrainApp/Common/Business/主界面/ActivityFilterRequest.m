@@ -8,6 +8,9 @@
 
 #import "ActivityFilterRequest.h"
 #import "ActivityFilterModel.h"
+@implementation ActivityFilterRequestItem_body_default
+@end
+
 @implementation ActivityFilterRequestItem_body_stage
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"stageID"}];
@@ -30,8 +33,8 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"stage":@"stages",
                                                        @"segment":@"segments",
-                                                       @"study":@"studys"
-                                                       }];
+                                                       @"study":@"studys",
+                                                       @"default":@"defaultChoose"}];
 }
 
 @end

@@ -23,7 +23,8 @@
                    "createtime":"2016-11-08 12:01:03",
                    "status":2,
                    "pic":"http://s1.jsyxw.cn/res/web/3.0/img/active/default.jpg",
-                   "source":"club"
+                   "source":"club",
+                   "isRecommend" : 1
                    },
                    {
                    "aid":234225,
@@ -44,7 +45,9 @@
                    "createtime":"2016-11-08 12:01:03",
                    "status":2,
                    "pic":"http://s1.jsyxw.cn/res/web/3.0/img/active/default.jpg",
-                   "source":"club"
+                   "source":"club",
+                   "isRecommend" : 1
+                   
                    },
                    {
                    "aid":234226,
@@ -65,7 +68,8 @@
                    "createtime":"2016-11-08 12:01:03",
                    "status":2,
                    "pic":"http://s1.jsyxw.cn/res/web/3.0/img/active/default.jpg",
-                   "source":"club"
+                   "source":"club",
+                   "isRecommend" : 1
                    },
                    {
                    "aid":234227,

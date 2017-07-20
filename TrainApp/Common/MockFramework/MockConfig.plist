@@ -149,7 +149,7 @@
 		<key>ActivityFilterRequest</key>
 		<dict>
 			<key>mockEnable</key>
-			<false/>
+			<true/>
 			<key>mockFile</key>
 			<array>
 				<dict>
@@ -163,7 +163,7 @@
 		<key>ActivityListRequest</key>
 		<dict>
 			<key>mockEnable</key>
-			<false/>
+			<true/>
 			<key>mockFile</key>
 			<array>
 				<dict>
@@ -421,6 +421,20 @@
 				<dict>
 					<key>fileName</key>
 					<string>readingList_mock_17.json</string>
+					<key>percent</key>
+					<integer>100</integer>
+				</dict>
+			</array>
+		</dict>
+		<key>HomeworkListRequest_17</key>
+		<dict>
+			<key>mockEnable</key>
+			<true/>
+			<key>mockFile</key>
+			<array>
+				<dict>
+					<key>fileName</key>
+					<string>homeworkList_mock_17.json</string>
 					<key>percent</key>
 					<integer>100</integer>
 				</dict>

@@ -7,7 +7,12 @@
 //
 
 #import "ActivityListRequest.h"
-
+@implementation ActivityListRequestItem_body_scheme_scheme
+@end
+@implementation ActivityListRequestItem_body_scheme_process
+@end
+@implementation ActivityListRequestItem_body_scheme
+@end
 @implementation ActivityListRequestItem_body_activity
 @end
 

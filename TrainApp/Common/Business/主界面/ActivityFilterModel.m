@@ -18,23 +18,33 @@
 + (ActivityFilterModel *)modelFromRawData:(ActivityFilterRequestItem *)item {
     // 学段
     NSMutableArray *segmentArray = [NSMutableArray array];
-    for (ActivityFilterRequestItem_body_segment *segment in item.body.segments) {
-        ActivityFilter *item = [[ActivityFilter alloc]init];
-        item.filterID = segment.segmentID;
-        item.name = segment.name;
-        [segmentArray addObject:item];
-    }
+    __block NSInteger section = 0;
+    __block NSInteger row = 0;
+    [item.body.segments  enumerateObjectsUsingBlock:^(ActivityFilterRequestItem_body_segment *segment, NSUInteger idx, BOOL * _Nonnull stop) {
+        ActivityFilter *temp = [[ActivityFilter alloc]init];
+        temp.filterID = segment.segmentID;
+        temp.name = segment.name;
+        [segmentArray addObject:temp];
+        if (item.body.defaultChoose.segmentId.integerValue == segment.segmentID.integerValue) {
+            section = idx;
+        }
+    }];
     ActivityFilterGroup *segmentGroup = [[ActivityFilterGroup alloc]init];
     segmentGroup.name = @"学段";
     segmentGroup.filterArray = segmentArray;
+    
     // 学科
     NSMutableArray *studyArray = [NSMutableArray array];
-    for (ActivityFilterRequestItem_body_study *study in item.body.studys) {
-        ActivityFilter *item = [[ActivityFilter alloc]init];
-        item.filterID = study.studyID;
-        item.name = study.name;
-        [studyArray addObject:item];
-    }
+    [item.body.studys  enumerateObjectsUsingBlock:^(ActivityFilterRequestItem_body_study *study, NSUInteger idx, BOOL * _Nonnull stop) {
+        ActivityFilter *temp = [[ActivityFilter alloc]init];
+        temp.filterID = study.studyID;
+        temp.name = study.name;
+        [studyArray addObject:temp];
+        if (item.body.defaultChoose.studyId.integerValue == study.studyID.integerValue) {
+            row = idx;
+        }
+    }];
+
     ActivityFilterGroup *studyGroup = [[ActivityFilterGroup alloc]init];
     studyGroup.name = @"学科";
     studyGroup.filterArray = studyArray;
@@ -55,6 +65,7 @@
     
     ActivityFilterModel *model = [[ActivityFilterModel alloc]init];
     model.groupArray = @[stageGroup,segmentGroup,studyGroup];
+    model.chooseIndexPatch = [NSIndexPath indexPathForRow:row inSection:section];
     return model;
 }
 @end

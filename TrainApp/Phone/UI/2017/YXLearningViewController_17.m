@@ -18,6 +18,8 @@
 #import "YXLearningChannelHeaderView_17.h"
 #import "CourseListMangerViewController_17.h"
 #import "ReadingListViewController_17.h"
+#import "ActivityListViewController_17.h"
+#import "HomeworkListViewController_17.h"
 typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     YXLearningRequestStatus_ExamineDetail,//请求个人工作室信息
     YXLearningRequestStatus_LayerList,//请求分层
@@ -273,10 +275,21 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         if (tool.toolID.integerValue == 201) {
             ReadingListViewController_17 *VC = [[ReadingListViewController_17 alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
+        }else if (tool.toolID.integerValue == 203){
+            ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }else if (tool.toolID.integerValue == 204){
+            HomeworkListViewController_17 *VC = [[HomeworkListViewController_17 alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }else if (tool.toolID.integerValue == 203){
+            ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }else if (tool.toolID.integerValue == 203){
+            ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
+            [self.navigationController pushViewController:VC animated:YES];
         }else {
             CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
-            
         }
 
     };
