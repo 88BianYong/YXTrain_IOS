@@ -29,6 +29,7 @@
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
 }
-
-
+- (BOOL)shouldAutorotate {
+    return NO;
+}
 @end

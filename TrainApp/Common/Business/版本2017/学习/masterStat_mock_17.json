@@ -1,184 +1,568 @@
 {
-    "code": 0,
-    "projectid": 1255,
-    "user": {
-        "userId": 8989628,
-        "userName": "张三",
-        "stageName": "小学",
-        "studyName": "语文",
-        "roles": "9,99",
-        "headImg": "http://s1.jsyxw.cn/yanxiu/avatar_new_large_80_80.png",
-        "isContainsTeacher": true,
-        "isInfoConfirm": 0
+    "banner":[
+              {
+              "id":1,
+              "name":"深度宣传解读",
+              "pic":"http://s5.jsyxw.cn/res/static/train/widget/blossom/img/bb_sanke.jpg",
+              "url":"http://zgjiaoyan.com/zt_sk/"
+              },
+              {
+              "id":2,
+              "name":"精彩绽放",
+              "pic":"http://s6.jsyxw.cn/res/static/train/widget/blossom/img/jingcai_2016.jpg",
+              "url":"http://px.yanxiu.com/2016jczf/index.html"
+              }
+              ],
+    "examine":{
+        "isPass":0,
+        "process":[
+                   {
+                   "descr":"",
+                   "enddate":"2017-07-31",
+                   "id":4761,
+                   "ifquestion":7,
+                   "isExistsNext":1,
+                   "isfinish":1,
+                   "ispass":0,
+                   "name":"前置阶段",
+                   "passscore":0,
+                   "stageId":4761,
+                   "status":0,
+                   "toolExamineVoList":[
+                                        {
+                                        "finishnum":3,
+                                        "isExistsNext":0,
+                                        "isneedmark":0,
+                                        "name":"阅读工具",
+                                        "status":1,
+                                        "toolid":222,
+                                        "totalnum":3,
+                                        "totalscore":3,
+                                        "type":0,
+                                        "userscore":3
+                                        }
+                                        ],
+                   "totalscore":3,
+                   "userscore":3
+                   },
+                   {
+                   "descr":"",
+                   "enddate":"2017-08-31",
+                   "id":4762,
+                   "ifquestion":0,
+                   "isExistsNext":1,
+                   "isfinish":0,
+                   "ispass":0,
+                   "name":"第一阶段",
+                   "passscore":0,
+                   "stageId":4762,
+                   "status":0,
+                   "toolExamineVoList":[
+                                        {
+                                        "finishnum":1669,
+                                        "isExistsNext":1,
+                                        "isneedmark":0,
+                                        "name":"课程",
+                                        "status":0,
+                                        "toolExamineVoList":[
+                                                             {
+                                                             "finishnum":1669,
+                                                             "isExistsNext":0,
+                                                             "isneedmark":0,
+                                                             "name":"课程",
+                                                             "status":1,
+                                                             "toolid":201,
+                                                             "totalnum":100,
+                                                             "totalscore":10,
+                                                             "type":0,
+                                                             "userscore":10
+                                                             }
+                                                             ],
+                                        "toolid":201,
+                                        "totalnum":100,
+                                        "totalscore":10,
+                                        "type":0,
+                                        "userscore":10
+                                        },
+                                        {
+                                        "finishnum":10,
+                                        "isExistsNext":1,
+                                        "isneedmark":0,
+                                        "name":"作业",
+                                        "status":0,
+                                        "toolExamineVoList":[
+                                                             {
+                                                             "finishnum":5,
+                                                             "isExistsNext":0,
+                                                             "isneedmark":0,
+                                                             "name":"作业",
+                                                             "status":1,
+                                                             "toolid":203,
+                                                             "totalnum":1,
+                                                             "totalscore":6,
+                                                             "type":0,
+                                                             "userscore":6
+                                                             },
+                                                             {
+                                                             "finishnum":5,
+                                                             "isExistsNext":0,
+                                                             "isneedmark":0,
+                                                             "name":"互评作业",
+                                                             "status":1,
+                                                             "toolid":219,
+                                                             "totalnum":2,
+                                                             "totalscore":2,
+                                                             "type":0,
+                                                             "userscore":6
+                                                             }
+                                                             ],
+                                        "toolid":203,
+                                        "totalnum":3,
+                                        "totalscore":8,
+                                        "type":0,
+                                        "userscore":12
+                                        },
+                                        {
+                                        "finishnum":1,
+                                        "isExistsNext":0,
+                                        "isneedmark":0,
+                                        "name":"活动",
+                                        "status":1,
+                                        "toolid":202,
+                                        "totalnum":1,
+                                        "totalscore":4,
+                                        "type":0,
+                                        "userscore":4
+                                        }
+                                        ],
+                   "totalscore":22,
+                   "userscore":20
+                   },
+                   {
+                   "descr":"",
+                   "enddate":"2017-09-01",
+                   "id":4763,
+                   "ifquestion":0,
+                   "isExistsNext":1,
+                   "isfinish":0,
+                   "ispass":0,
+                   "name":"第二阶段",
+                   "passscore":0,
+                   "stageId":4763,
+                   "status":0,
+                   "toolExamineVoList":[
+                                        {
+                                        "finishnum":1667,
+                                        "isExistsNext":1,
+                                        "isneedmark":0,
+                                        "name":"课程",
+                                        "status":0,
+                                        "toolExamineVoList":[
+                                                             {
+                                                             "finishnum":1667,
+                                                             "isExistsNext":0,
+                                                             "isneedmark":0,
+                                                             "name":"课程",
+                                                             "status":1,
+                                                             "toolid":201,
+                                                             "totalnum":10,
+                                                             "totalscore":10,
+                                                             "type":0,
+                                                             "userscore":10
+                                                             }
+                                                             ],
+                                        "toolid":201,
+                                        "totalnum":10,
+                                        "totalscore":10,
+                                        "type":0,
+                                        "userscore":10
+                                        },
+                                        {
+                                        "finishnum":1,
+                                        "isExistsNext":1,
+                                        "isneedmark":0,
+                                        "name":"作业",
+                                        "status":0,
+                                        "toolExamineVoList":[
+                                                             {
+                                                             "finishnum":1,
+                                                             "isExistsNext":0,
+                                                             "isneedmark":0,
+                                                             "name":"作业",
+                                                             "status":1,
+                                                             "toolid":203,
+                                                             "totalnum":1,
+                                                             "totalscore":2,
+                                                             "type":0,
+                                                             "userscore":2
+                                                             }
+                                                             ],
+                                        "toolid":203,
+                                        "totalnum":1,
+                                        "totalscore":2,
+                                        "type":0,
+                                        "userscore":2
+                                        },
+                                        {
+                                        "finishnum":1,
+                                        "isExistsNext":0,
+                                        "isneedmark":0,
+                                        "name":"活动",
+                                        "status":1,
+                                        "toolid":202,
+                                        "totalnum":1,
+                                        "totalscore":2,
+                                        "type":0,
+                                        "userscore":0
+                                        }
+                                        ],
+                   "totalscore":14,
+                   "userscore":12
+                   },
+                   {
+                   "descr":"",
+                   "enddate":"2017-08-05",
+                   "id":4766,
+                   "ifquestion":3,
+                   "isExistsNext":1,
+                   "isfinish":0,
+                   "ispass":0,
+                   "name":"研修总结",
+                   "passscore":0,
+                   "stageId":4766,
+                   "status":0,
+                   "toolExamineVoList":[
+                                        {
+                                        "finishnum":1,
+                                        "isExistsNext":0,
+                                        "isneedmark":0,
+                                        "name":"总结",
+                                        "status":1,
+                                        "toolid":205,
+                                        "totalnum":1,
+                                        "totalscore":2,
+                                        "type":0,
+                                        "userscore":0
+                                        }
+                                        ],
+                   "totalscore":2,
+                   "userscore":0
+                   },
+                   {
+                   "descr":"",
+                   "id":308,
+                   "ifquestion":0,
+                   "isExistsNext":0,
+                   "isfinish":1,
+                   "ispass":0,
+                   "name":"自荐作业",
+                   "passscore":0,
+                   "stageId":0,
+                   "status":0,
+                   "toolExamineVoList":[
+                                        {
+                                        "finishnum":3,
+                                        "isExistsNext":0,
+                                        "isneedmark":0,
+                                        "name":"自荐作业",
+                                        "status":1,
+                                        "toolid":208,
+                                        "totalnum":2,
+                                        "totalscore":4,
+                                        "type":0,
+                                        "userscore":1.8
+                                        }
+                                        ],
+                   "totalscore":4,
+                   "userscore":1.8
+                   },
+                   {
+                   "descr":"",
+                   "id":315,
+                   "ifquestion":0,
+                   "isExistsNext":0,
+                   "isfinish":0,
+                   "ispass":0,
+                   "name":"选修课程",
+                   "passscore":0,
+                   "stageId":0,
+                   "status":0,
+                   "toolExamineVoList":[
+                                        {
+                                        "finishnum":0,
+                                        "isExistsNext":0,
+                                        "isneedmark":0,
+                                        "name":"选修课程",
+                                        "status":0,
+                                        "toolid":215,
+                                        "totalnum":100,
+                                        "totalscore":10,
+                                        "type":0,
+                                        "userscore":0
+                                        }
+                                        ],
+                   "totalscore":10,
+                   "userscore":0
+                   },
+                   {
+                   "descr":"",
+                   "id":317,
+                   "ifquestion":0,
+                   "isExistsNext":0,
+                   "isfinish":0,
+                   "ispass":0,
+                   "name":"本地课程",
+                   "passscore":0,
+                   "stageId":0,
+                   "status":0,
+                   "toolExamineVoList":[
+                                        {
+                                        "finishnum":0,
+                                        "isExistsNext":0,
+                                        "isneedmark":0,
+                                        "name":"本地课程",
+                                        "status":0,
+                                        "toolid":217,
+                                        "totalnum":200,
+                                        "totalscore":20,
+                                        "type":0,
+                                        "userscore":0
+                                        }
+                                        ],
+                   "totalscore":20,
+                   "userscore":0
+                   },
+                   {
+                   "descr":"",
+                   "id":304,
+                   "ifquestion":0,
+                   "isExistsNext":1,
+                   "isfinish":0,
+                   "ispass":0,
+                   "name":"在线考试",
+                   "passscore":0,
+                   "stageId":0,
+                   "status":0,
+                   "toolExamineVoList":[
+                                        {
+                                        "finishnum":0,
+                                        "isExistsNext":0,
+                                        "isneedmark":0,
+                                        "name":"期中考试",
+                                        "status":0,
+                                        "toolid":204,
+                                        "totalnum":1,
+                                        "totalscore":10,
+                                        "type":0,
+                                        "userscore":0
+                                        }
+                                        ],
+                   "totalscore":20,
+                   "userscore":0
+                   }
+                   ],
+        "totalscore":100,
+        "userGetScore":50.6,
+        "userName":"学员602"
     },
-    "theme": {
-        "isOpenTheme": 0,
-        "themeid": 0,
-        "themeName": "",
-        "isShowSwitchTheme": 0,
-        "isUseSelectTheme": 0,
-        "isCanEditTheme": 0
+    "expert":{
+        "channelId":0,
+        "expertProjectId":0,
+        "isShowExpertChannel":0
     },
-    "layer": {
-        "isOpenLayerStudy": 0,
-        "isShowSwitchLayer": 0,
-        "isUseLayerStudy": 0,
-        "layerName": "",
-        "layerid": 0
+    "isNewPlatform":2,
+    "layer":{
+        "isOpenLayerStudy":0,
+        "isShowSwitchLayer":0,
+        "isUseLayerStudy":0,
+        "layerName":"",
+        "layerid":0
     },
-    "stages": [
-               {
-               "isCurrStage": 0,
-               "isFinish": 1,
-               "name": "概述",
-               "notes": "",
-               "stageid": 5108,
-               "starttime": "2017-05-08",
-               "status": 1,
-               "subject": "诊断订计划",
-               "tools": [
-                         {
-                         "toolid": 201,
-                         "name": "阅读",
-                         "status": 1
-                         },
-                         {
-                         "toolid": 202,
-                         "name": "测评",
-                         "status": 0
-                         }
-                         ],
-               "totalscore": 20,
-               "userscore": 0
-               },
-               {
-               "isCurrStage": 0,
-               "isFinish": 1,
-               "name": "第一阶段",
-               "notes": "",
-               "stageid": 5108,
-               "starttime": "2017-05-08",
-               "status": 1,
-               "subject": "诊断订计划",
-               "tools": [
-                         {
-                         "toolid": 204,
-                         "name": "课程1",
-                         "status": 2
-                         },
-                         {
-                         "toolid": 204,
-                         "name": "课程2",
-                         "status": 2
-                         },
-                         {
-                         "toolid": 205,
-                         "name": "课程3",
-                         "status": 2
-                         },{
-                         "toolid": 206,
-                         "name": "课程4",
-                         "status": 2
-                         },
-                         {
-                         "toolid": 207,
-                         "name": "课程5",
-                         "status": 2
-                         },
-                         {
-                         "toolid": 208,
-                         "name": "课程6",
-                         "status": 1
-                         }
-                         ],
-               "totalscore": 20,
-               "userscore": 0
-               },
-               {
-               "isCurrStage": 0,
-               "isFinish": 0,
-               "name": "第二阶段",
-               "notes": "",
-               "stageid": 5109,
-               "starttime": "2017-06-10",
-               "status": 1,
-               "subject": "技术助教学",
-               "tools": [
-                         {
-                         "toolid": 201,
-                         "name": "课程",
-                         "status": 2
-                         },
-                         {
-                         "toolid": 203,
-                         "name": "活动",
-                         "status": 1
-                         },
-                         {
-                         "toolid": 204,
-                         "name": "作业",
-                         "status": 0
-                         },
-                         {
-                         "toolid": 203,
-                         "name": "作业",
-                         "status": 0
-                         }
-                         ],
-               "totalscore": 27,
-               "userscore": 0
-               },
-               {
-               "isCurrStage": 1,
-               "isFinish": 0,
-               "name": "第三阶段",
-               "notes": "",
-               "stageid": 5110,
-               "starttime": "2017-06-20",
-               "status": 0,
-               "subject": "以评促应用",
-               "tools": [
-                         {
-                         "toolid": 201,
-                         "name": "课程",
-                         "status": 0
-                         },
-                         {
-                         "toolid": 202,
-                         "name": "活动",
-                         "status": 0
-                         },
-                         {
-                         "toolid": 203,
-                         "name": "作业",
-                         "status": 0
-                         }
-                         ],
-               "totalscore": 23,
-               "userscore": 0
-               }
-               ],
-    "expert": {
-        "isShowExpertChannel": 1,
-        "expertProjectId": 0,
-        "channelid":200243
+    "other":{
+        "guide":"",
+        "ifWorks":0,
+        "isOpenGroup":0,
+        "isShowCert":0,
+        "isShowCourseMarket":1,
+        "isShowLocalcourse":1,
+        "isShowOfflineActive":0,
+        "plans":"http://www.teacherclub.com.cn"
     },
-    "examine": {
-        "userGetScore": 44
+    "passport":"XY00000164@yanxiu.com",
+    "projectId":"2393",
+    "projectid":2393,
+    "role":9,
+    "serverRole":"9",
+    "stages":[
+              {
+              "isCurrStage":0,
+              "isFinish":0,
+              "name":"前置阶段",
+              "stageid":4761,
+              "starttime":"2017-07-11",
+              "status":1,
+              "subject":"前置阶段",
+              "tools":[
+                       {
+                       "name":"方案解读",
+                       "orderNu":1,
+                       "status":2,
+                       "toolid":222
+                       },
+                       {
+                       "name":"测评",
+                       "orderNu":2,
+                       "status":2,
+                       "toolid":207
+                       }
+                       ]
+              },
+              {
+              "isCurrStage":1,
+              "isFinish":0,
+              "name":"第一阶段",
+              "stageid":4762,
+              "starttime":"2017-07-11",
+              "status":1,
+              "subject":"第一阶段",
+              "tools":[
+                       {
+                       "name":"课程",
+                       "orderNu":1,
+                       "status":1,
+                       "toolid":201
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":2,
+                       "status":0,
+                       "toolid":203
+                       },
+                       {
+                       "name":"活动",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":202
+                       }
+                       ]
+              },
+              {
+              "isCurrStage":0,
+              "isFinish":0,
+              "name":"第二阶段",
+              "stageid":4763,
+              "starttime":"2017-07-16",
+              "status":1,
+              "subject":"第二阶段",
+              "tools":[
+                       {
+                       "name":"课程",
+                       "orderNu":1,
+                       "status":0,
+                       "toolid":208
+                       },
+                       {
+                       "name":"活动",
+                       "orderNu":2,
+                       "status":0,
+                       "toolid":208
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":208
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":208
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":203
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":203
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":203
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":203
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":203
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":203
+                       },
+                       {
+                       "name":"作业",
+                       "orderNu":3,
+                       "status":0,
+                       "toolid":203
+                       }
+                       ]
+              },
+              {
+              "isCurrStage":0,
+              "isFinish":0,
+              "name":"研修总结",
+              "stageid":4766,
+              "starttime":"2017-07-18",
+              "status":1,
+              "subject":"研修总结",
+              "tools":[
+                       {
+                       "name":"总结",
+                       "orderNu":0,
+                       "status":0,
+                       "toolid":203
+                       }
+                       ]
+              }
+              ],
+    "theme":{
+        "isCanEditTheme":0,
+        "isHasHistoryTheme":0,
+        "isOpenTheme":0,
+        "isShowSwitchTheme":0,
+        "isUseSelectTheme":0,
+        "themeName":"",
+        "themeid":0
     },
-    "other": {
-        "isShowCourseMarket": 1,
-        "isShowOfflineActive": 1,
-        "ifWorks": 0,
-        "guide": "http://www.yanxiu.com",
-        "plans": "http://www.yanxiu.com"
-    },
-    "banner": [
-               {
-               "id": 1,
-               "name": "精彩绽放",
-               "url": "http://www.yanxiu.com",
-               "pic": "http://s6.jsyxw.cn/res/static/train/widget/blossom/img/jingcai_2016_11708b7.jpg"
-               }
-               ]
+    "user":{
+        "assiststatus":0,
+        "containsTeacher":true,
+        "headImg":"http://s1.jsyxw.cn/yanxiu/avatar_new_large_80_80.png",
+        "isCurrRole":9,
+        "isInfoConfirm":0,
+        "roles":"9",
+        "school":"北京市第三中学",
+        "segment":10,
+        "stageName":"小学",
+        "study":10,
+        "studyName":"语文",
+        "userId":11948850,
+        "userName":"学员602"
+    }
 }

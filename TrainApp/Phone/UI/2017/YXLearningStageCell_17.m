@@ -149,8 +149,8 @@
                     [self.contentView addSubview:imageView];
                     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                         make.size.mas_offset(CGSizeMake(15.0f, 15.0f));
-                        make.centerX.equalTo(obj.mas_right);
-                        make.centerY.mas_offset(idx/4 * 80.0f + 80.0f);
+                        make.centerX.equalTo(obj.mas_centerX);
+                        make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 80.0f);
                     }];
                 }
             }

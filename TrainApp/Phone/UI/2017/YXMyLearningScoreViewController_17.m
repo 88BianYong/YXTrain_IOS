@@ -6,43 +6,28 @@
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "YXMyLearningScoreViewController.h"
+#import "YXMyLearningScoreViewController_17.h"
 #import "YXMyLearningScoreTableHeaderView_17.h"
 #import "YXMyLearningScoreHeaderView_17.h"
 #import "YXMyLearningScoreCell_17.h"
-#import "PersonalExamineRequest_17.h"
 #import "YXMyExamExplainView_17.h"
 #import "YXMyExamExplainHelp_17.h"
-@interface YXMyLearningScoreViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface YXMyLearningScoreViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) YXMyLearningScoreTableHeaderView_17 *headerView;
-
-@property (nonatomic, strong) PersonalExamineRequest_17 *examineScoreRequest;
-
-@property (nonatomic, strong) PersonalExamineRequest_17Item *examineScoreItem;
 @end
 
-@implementation YXMyLearningScoreViewController
+@implementation YXMyLearningScoreViewController_17
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
     [self setupLayout];
-    [self startLoading];
-    [self requestForExamineScore];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-#pragma mark - set
-- (void)setExamineScoreItem:(PersonalExamineRequest_17Item *)examineScoreItem {
-    _examineScoreItem = examineScoreItem;
-    self.headerView.isPassBool = NO;
-    self.headerView.scoreString = @"44";
-    self.headerView.hidden = NO;
-    [self.tableView reloadData];
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -57,19 +42,9 @@
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.tableView registerClass:[YXMyLearningScoreCell_17 class] forCellReuseIdentifier:@"YXMyLearningScoreCell_17"];
     self.headerView = [[YXMyLearningScoreTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 110.0f)];
-    self.headerView.hidden = YES;
+    self.headerView.isPassBool = self.examine.isPass.boolValue;
+    self.headerView.scoreString = self.examine.userGetScore;
     self.tableView.tableHeaderView = self.headerView;
-    self.errorView = [[YXErrorView alloc] init];
-    WEAK_SELF
-    self.errorView.retryBlock = ^{
-        STRONG_SELF
-        [self requestForExamineScore];
-    };
-    self.dataErrorView = [[DataErrorView alloc] init];
-    self.dataErrorView.refreshBlock = ^{
-        STRONG_SELF
-        [self requestForExamineScore];
-    };
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -83,8 +58,9 @@
     
 }
 #pragma mark - UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PersonalExamineRequest_17Item_Examine_Process *process = self.examineScoreItem.examine.process[indexPath.section];
+    ExamineDetailRequest_17Item_Examine_Process *process = self.examine.process[indexPath.section];
     return  ceil((double)process.toolExamineVoList.count/4.0f) * 80.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -99,50 +75,29 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     YXMyLearningScoreHeaderView_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXMyLearningScoreHeaderView_17"];
-    headerView.process = self.examineScoreItem.examine.process[section];
+    headerView.process = self.examine.process[section];
     WEAK_SELF
     headerView.myLearningScoreButtonBlock = ^(UIButton *sender) {
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-        [self showMarkWithOriginRect:rect explain:[self showExamExplain:self.examineScoreItem.examine.process[section]]];
-
+        [self showMarkWithOriginRect:rect explain:[self showExamExplain:self.examine.process[section]]];
     };
     return headerView;
 }
 #pragma mark - UITableViewDataSorce
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.examineScoreItem.examine.process.count;
+    return self.examine.process.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YXMyLearningScoreCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMyLearningScoreCell_17" forIndexPath:indexPath];
-    cell.process = self.examineScoreItem.examine.process[indexPath.section];
+    cell.process = self.examine.process[indexPath.section];
     return cell;
 }
-#pragma mark - request
-- (void)requestForExamineScore {
-    PersonalExamineRequest_17 *request = [[PersonalExamineRequest_17 alloc] init];
-    request.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-    request.role = [LSTSharedInstance sharedInstance].trainManager.currentProject.role;
-    WEAK_SELF
-    [request startRequestWithRetClass:[PersonalExamineRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF;
-        [self stopLoading];
-        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = YES;
-        data.localDataExist = NO;
-        data.error = error;
-        if ([self handleRequestData:data]) {
-            return;
-        }
-        self.examineScoreItem = retItem;
-    }];
-    self.examineScoreRequest = request;
-}
 #pragma mark - dataFormat
-- (NSString *)showExamExplain:(PersonalExamineRequest_17Item_Examine_Process *)process{
+- (NSString *)showExamExplain:(ExamineDetailRequest_17Item_Examine_Process *)process {
     NSMutableArray<NSString *> *mutableArray = [[NSMutableArray<NSString *> alloc] initWithCapacity:4];
     [process.toolExamineVoList enumerateObjectsUsingBlock:^(PersonalExamineRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];

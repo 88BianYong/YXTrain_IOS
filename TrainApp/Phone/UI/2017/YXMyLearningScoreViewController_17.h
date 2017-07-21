@@ -7,7 +7,7 @@
 //
 
 #import "YXBaseViewController.h"
-
-@interface YXMyLearningScoreViewController : YXBaseViewController
-
+#import "ExamineDetailRequest_17.h"
+@interface YXMyLearningScoreViewController_17 : YXBaseViewController
+@property (nonatomic, strong) ExamineDetailRequest_17Item_Examine *examine;
 @end

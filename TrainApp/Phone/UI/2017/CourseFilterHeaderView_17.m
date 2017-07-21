@@ -34,7 +34,7 @@
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
+        make.left.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
     }];
 }

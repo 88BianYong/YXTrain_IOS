@@ -82,7 +82,7 @@
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.top.equalTo(self.view.mas_top);
-        make.bottom.equalTo(self.view.mas_bottom).offset(44.0f);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-49.0f);
     }];
     
     [self.readButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -109,13 +109,13 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.courseImageView.mas_right).mas_offset(15);
         make.top.mas_equalTo(15);
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-10);
     }];
     
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.titleLabel.mas_left);
         make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(9.0f);
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-10);
     }];
     
     

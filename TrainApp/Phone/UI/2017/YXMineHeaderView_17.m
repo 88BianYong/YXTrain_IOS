@@ -63,6 +63,7 @@
     UIView *userHeaderView = [[UIView alloc] init];
     userHeaderView.backgroundColor = [UIColor clearColor];
     userHeaderView.layer.cornerRadius = 62.5f;
+    userHeaderView.userInteractionEnabled = NO;
     [self.contentView addSubview:userHeaderView];
     
     self.userHeaderImageView = [[UIImageView alloc] init];

@@ -16,6 +16,9 @@
 @end
 
 @interface ExamineDetailRequest_17Item_Other : JSONModel
+@property (nonatomic, copy) NSString<Optional> *isOpenGroup;
+@property (nonatomic, copy) NSString<Optional> *isShowCert;
+@property (nonatomic, copy) NSString<Optional> *isShowLocalcourse;
 @property (nonatomic, copy) NSString<Optional> *isShowCourseMarket;
 @property (nonatomic, copy) NSString<Optional> *isShowOfflineActive;
 @property (nonatomic, copy) NSString<Optional> *ifWorks;
@@ -25,7 +28,7 @@
 
 @interface ExamineDetailRequest_17Item_Expert : JSONModel
 @property (nonatomic, copy) NSString<Optional> *isShowExpertChannel;
-@property (nonatomic, copy) NSString<Optional> *expertProjectId;
+@property (nonatomic, copy) NSString<Optional> *expertProjectID;
 @property (nonatomic, copy) NSString<Optional> *channelID;
 @end
 @protocol ExamineDetailRequest_17Item_Stages_Tools <NSObject>
@@ -35,7 +38,7 @@
 @property (nonatomic, copy) NSString<Optional> *toolID;
 @property (nonatomic, copy) NSString<Optional> *name;
 @property (nonatomic, copy) NSString<Optional> *status;
-
+@property (nonatomic, copy) NSString<Optional> *orderNu;
 @end
 @protocol ExamineDetailRequest_17Item_Stages <NSObject>
 
@@ -44,7 +47,6 @@
 @property (nonatomic, copy) NSString<Optional> *isCurrStage;
 @property (nonatomic, copy) NSString<Optional> *isFinish;
 @property (nonatomic, copy) NSString<Optional> *name;
-@property (nonatomic, copy) NSString<Optional> *notes;
 @property (nonatomic, copy) NSString<Optional> *stageID;
 @property (nonatomic, copy) NSString<Optional> *startTime;
 @property (nonatomic, copy) NSString<Optional> *status;
@@ -54,30 +56,37 @@
 @end
 
 @interface ExamineDetailRequest_17Item_Theme : JSONModel
-@property (nonatomic, strong) NSString<Optional> *isOpenTheme;
-@property (nonatomic, strong) NSString<Optional> *themeID;
-@property (nonatomic, strong) NSString<Optional> *themeName;
-@property (nonatomic, strong) NSString<Optional> *isShowSwitchTheme;
-@property (nonatomic, strong) NSString<Optional> *isUseSelectTheme;
-@property (nonatomic, strong) NSString<Optional> *isCanEditTheme;
+@property (nonatomic, copy) NSString<Optional> *isCanEditTheme;
+@property (nonatomic, copy) NSString<Optional> *isHasHistoryTheme;
+@property (nonatomic, copy) NSString<Optional> *isOpenTheme;
+@property (nonatomic, copy) NSString<Optional> *isShowSwitchTheme;
+@property (nonatomic, copy) NSString<Optional> *isUseSelectTheme;
+@property (nonatomic, copy) NSString<Optional> *themeID;
+@property (nonatomic, copy) NSString<Optional> *themeName;
 @end
 
 @interface ExamineDetailRequest_17Item_Layer : JSONModel
-@property (nonatomic, strong) NSString<Optional> *isOpenLayerStudy;
-@property (nonatomic, strong) NSString<Optional> *isShowSwitchLayer;
-@property (nonatomic, strong) NSString<Optional> *isUseLayerStudy;
-@property (nonatomic, strong) NSString<Optional> *layerName;
-@property (nonatomic, strong) NSString<Optional> *layerid;
+@property (nonatomic, copy) NSString<Optional> *isOpenLayerStudy;
+@property (nonatomic, copy) NSString<Optional> *isShowSwitchLayer;
+@property (nonatomic, copy) NSString<Optional> *isUseLayerStudy;
+@property (nonatomic, copy) NSString<Optional> *layerName;
+@property (nonatomic, copy) NSString<Optional> *layerID;
 @end
 
 @interface ExamineDetailRequest_17Item_User : JSONModel
+@property (nonatomic, copy) NSString<Optional> *assiststatus;
+@property (nonatomic, copy) NSString<Optional> *containsTeacher;
+@property (nonatomic, copy) NSString<Optional> *headImg;
+@property (nonatomic, copy) NSString<Optional> *isCurrRole;
+@property (nonatomic, copy) NSString<Optional> *isInfoConfirm;
+@property (nonatomic, copy) NSString<Optional> *roles;
+@property (nonatomic, copy) NSString<Optional> *school;
+@property (nonatomic, copy) NSString<Optional> *segment;
+@property (nonatomic, copy) NSString<Optional> *stageName;
+@property (nonatomic, copy) NSString<Optional> *study;
+@property (nonatomic, copy) NSString<Optional> *studyName;
 @property (nonatomic, copy) NSString<Optional> *userID;
 @property (nonatomic, copy) NSString<Optional> *userName;
-@property (nonatomic, copy) NSString<Optional> *stageName;
-@property (nonatomic, copy) NSString<Optional> *roles;
-@property (nonatomic, copy) NSString<Optional> *headImg;
-@property (nonatomic, copy) NSString<Optional> *isContainsTeacher;
-@property (nonatomic, copy) NSString<Optional> *sInfoConfirm;
 @end
 
 @protocol ExamineDetailRequest_17Item_MockOther <NSObject>
@@ -87,13 +96,51 @@
 /**
     otherType  1选课超市 2在线考试 3 专家频道
  */
-@property (nonatomic, copy) NSString *otherType;
-@property (nonatomic, copy) NSString *otherID;
-@property (nonatomic, copy) NSString *otherName;
+@property (nonatomic, copy) NSString<Optional> *otherType;
+@property (nonatomic, copy) NSString<Optional> *otherID;
+@property (nonatomic, copy) NSString<Optional> *otherName;
+@end
+@protocol ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList <NSObject>
+@end
+@interface ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList : JSONModel
+@property (nonatomic, copy) NSString<Optional> *finishNum;//
+@property (nonatomic, copy) NSString<Optional> *isExistsNext;
+@property (nonatomic, copy) NSString<Optional> *isNeedMark;//
+@property (nonatomic, copy) NSString<Optional> *name;
+@property (nonatomic, copy) NSString<Optional> *status;
+@property (nonatomic, copy) NSString<Optional> *toolID;//
+@property (nonatomic, copy) NSString<Optional> *totalNum;//
+@property (nonatomic, copy) NSString<Optional> *totalScore;//
+@property (nonatomic, copy) NSString<Optional> *type;
+@property (nonatomic, copy) NSString<Optional> *userScore;//
+@property (nonatomic, copy) ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList<Optional> *toolExamineVoList;//
+@end
+@protocol ExamineDetailRequest_17Item_Examine_Process <NSObject>
+@end
+@interface ExamineDetailRequest_17Item_Examine_Process : JSONModel
+@property (nonatomic, copy) NSString<Optional> *descr;
+@property (nonatomic, copy) NSString<Optional> *endDate;//
+@property (nonatomic, copy) NSString<Optional> *processID;//
+@property (nonatomic, copy) NSString<Optional> *ifQuestion;//
+@property (nonatomic, copy) NSString<Optional> *isExistsNext;
+@property (nonatomic, copy) NSString<Optional> *isFinish;//
+@property (nonatomic, copy) NSString<Optional> *isPass;//
+@property (nonatomic, copy) NSString<Optional> *name;
+@property (nonatomic, copy) NSString<Optional> *passsCore;//
+@property (nonatomic, copy) NSString<Optional> *stageID;//
+@property (nonatomic, copy) NSString<Optional> *status;
+@property (nonatomic, copy) NSArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList, Optional> *toolExamineVoList;
+@property (nonatomic, copy) NSString<Optional> *totalScore;//
+@property (nonatomic, copy) NSString<Optional> *userScore;//
 @end
 
+
 @interface ExamineDetailRequest_17Item_Examine : JSONModel
+@property (nonatomic, copy) NSString<Optional> *isPass;
+@property (nonatomic, copy) NSString<Optional> *totalScore;
 @property (nonatomic, copy) NSString<Optional> *userGetScore;
+@property (nonatomic, copy) NSString<Optional> *userName;
+@property (nonatomic, strong) NSArray<ExamineDetailRequest_17Item_Examine_Process, Optional> *process;
 @end
 
 @interface ExamineDetailRequest_17Item: HttpBaseRequestItem
@@ -104,11 +151,15 @@
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Other<Optional> *other;
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Banner<Optional> *banner;
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Theme<Optional> *theme;
-
 @property (nonatomic, strong) NSMutableArray<ExamineDetailRequest_17Item_MockOther,Optional> *mockOthers;
+@property (nonatomic, copy) NSString<Optional> *passport;
+@property (nonatomic, copy) NSString<Optional> *projectID;
+@property (nonatomic, copy) NSString<Optional> *role;
+@property (nonatomic, copy) NSString<Optional> *serverRole;
+
 @end
 
 @interface ExamineDetailRequest_17 : YXGetRequest
-@property (nonatomic, copy) NSString *projectID;
-@property (nonatomic, copy) NSString *role;
+@property (nonatomic, copy) NSString<Optional> *projectID;
+@property (nonatomic, copy) NSString<Optional> *role;
 @end

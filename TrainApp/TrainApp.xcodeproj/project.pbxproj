@@ -329,7 +329,7 @@
 		926F11FA1EA456CE0041D66F /* selectLayer_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 926F11F91EA456CE0041D66F /* selectLayer_mock.json */; };
 		926F11FE1EA45C380041D66F /* NoticeAndBriefDetailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 926F11FD1EA45C380041D66F /* NoticeAndBriefDetailRequest.m */; };
 		926F12011EA4798A0041D66F /* NoticeAndBriefDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926F12001EA4798A0041D66F /* NoticeAndBriefDetailViewController.m */; };
-		9272D5331F174B9A0010B177 /* YXMyLearningScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9272D5321F174B9A0010B177 /* YXMyLearningScoreViewController.m */; };
+		9272D5331F174B9A0010B177 /* YXMyLearningScoreViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9272D5321F174B9A0010B177 /* YXMyLearningScoreViewController_17.m */; };
 		9272D5361F1754140010B177 /* YXLearningChannelHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9272D5351F1754140010B177 /* YXLearningChannelHeaderView_17.m */; };
 		9272D53B1F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9272D53A1F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.m */; };
 		9272D53E1F175A9E0010B177 /* YXMyLearningScoreHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9272D53D1F175A9E0010B177 /* YXMyLearningScoreHeaderView_17.m */; };
@@ -1292,8 +1292,8 @@
 		926F11FF1EA4798A0041D66F /* NoticeAndBriefDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeAndBriefDetailViewController.h; sourceTree = "<group>"; };
 		926F12001EA4798A0041D66F /* NoticeAndBriefDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeAndBriefDetailViewController.m; sourceTree = "<group>"; };
 		9272D52F1F1748270010B177 /* YXLearningTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningTableHeaderView_17.h; sourceTree = "<group>"; };
-		9272D5311F174B9A0010B177 /* YXMyLearningScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreViewController.h; sourceTree = "<group>"; };
-		9272D5321F174B9A0010B177 /* YXMyLearningScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyLearningScoreViewController.m; sourceTree = "<group>"; };
+		9272D5311F174B9A0010B177 /* YXMyLearningScoreViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreViewController_17.h; sourceTree = "<group>"; };
+		9272D5321F174B9A0010B177 /* YXMyLearningScoreViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyLearningScoreViewController_17.m; sourceTree = "<group>"; };
 		9272D5341F1754140010B177 /* YXLearningChannelHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningChannelHeaderView_17.h; sourceTree = "<group>"; };
 		9272D5351F1754140010B177 /* YXLearningChannelHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningChannelHeaderView_17.m; sourceTree = "<group>"; };
 		9272D5391F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreTableHeaderView_17.h; sourceTree = "<group>"; };
@@ -3476,8 +3476,8 @@
 		9272D5371F175A1E0010B177 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				9272D5311F174B9A0010B177 /* YXMyLearningScoreViewController.h */,
-				9272D5321F174B9A0010B177 /* YXMyLearningScoreViewController.m */,
+				9272D5311F174B9A0010B177 /* YXMyLearningScoreViewController_17.h */,
+				9272D5321F174B9A0010B177 /* YXMyLearningScoreViewController_17.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -5096,7 +5096,7 @@
 				7C3177CB1D10F496004AAC90 /* YXNavigationController.m in Sources */,
 				7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */,
 				92CE515E1D87EF3D0071DE79 /* YXWebViewController.m in Sources */,
-				9272D5331F174B9A0010B177 /* YXMyLearningScoreViewController.m in Sources */,
+				9272D5331F174B9A0010B177 /* YXMyLearningScoreViewController_17.m in Sources */,
 				CB4D91771D1A635400B5F1D0 /* YXMyDatumCell.m in Sources */,
 				E9A7B5F71DDD91DC00136335 /* TrainListProjectGroup.m in Sources */,
 				927B6C661DFA99AE00CBBBBF /* BeijingCourseListRequest.m in Sources */,

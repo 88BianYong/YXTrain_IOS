@@ -20,6 +20,7 @@
 #import "ReadingListViewController_17.h"
 #import "ActivityListViewController_17.h"
 #import "HomeworkListViewController_17.h"
+#import "YXMyLearningScoreViewController_17.h"
 typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     YXLearningRequestStatus_ExamineDetail,//请求个人工作室信息
     YXLearningRequestStatus_LayerList,//请求分层
@@ -116,7 +117,8 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     self.headerView.learningMyScoreCompleteBlock = ^(BOOL isScoreBool) {
         STRONG_SELF
         if (isScoreBool) {
-            UIViewController *VC = [[NSClassFromString(@"YXMyLearningScoreViewController") alloc] init];
+            YXMyLearningScoreViewController_17 *VC = [[YXMyLearningScoreViewController_17 alloc] init];
+            VC.examine = self.examineDetailItem.examine;
             [self.navigationController pushViewController:VC animated:YES];
         }else {
             UIViewController *VC = [[NSClassFromString(@"NoticeBriefMangerViewController_17") alloc] init];
@@ -272,26 +274,23 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     WEAK_SELF
     cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool) {
         STRONG_SELF
-        if (tool.toolID.integerValue == 201) {
+        if (tool.toolID.integerValue == 222) {
             ReadingListViewController_17 *VC = [[ReadingListViewController_17 alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
-        }else if (tool.toolID.integerValue == 203){
-            ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
+        }else if (tool.toolID.integerValue == 207){
+            [self showToast:@"手机暂不支持测评,请到电脑端完成"];
+        }else if (tool.toolID.integerValue == 201){
+            CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
-        }else if (tool.toolID.integerValue == 204){
+        }else if (tool.toolID.integerValue == 203){
             HomeworkListViewController_17 *VC = [[HomeworkListViewController_17 alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
-        }else if (tool.toolID.integerValue == 203){
-            ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
-            [self.navigationController pushViewController:VC animated:YES];
-        }else if (tool.toolID.integerValue == 203){
+        }else if (tool.toolID.integerValue == 202){
             ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
         }else {
-            CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
-            [self.navigationController pushViewController:VC animated:YES];
+            [self showToast:@"请先完成上一个任务"];
         }
-
     };
     return cell;
 }

@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIImageView *imageView;
 
 @property (nonatomic, strong) UIView *maskView;
+@property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @end
 @implementation CourseListFilterView_17
@@ -80,13 +81,17 @@
     }];
     [self.maskView addGestureRecognizer:tapGestureRecognizer];
     
+    self.backgroundView = [[UIView alloc] init];
+    self.backgroundView.backgroundColor = [UIColor whiteColor];
+    [self.maskView addSubview:self.backgroundView];
+    
     CollectionViewEqualSpaceFlowLayout *flowLayout = [[CollectionViewEqualSpaceFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    flowLayout.minimumInteritemSpacing = 10;
-    flowLayout.minimumLineSpacing = 7;
+//    flowLayout.minimumInteritemSpacing = 10;
+//    flowLayout.minimumLineSpacing = 7;
     flowLayout.headerReferenceSize = CGSizeMake(kScreenWidth, 28.0f);
     flowLayout.footerReferenceSize = CGSizeZero;
-    flowLayout.sectionInset = UIEdgeInsetsMake(10, 15, 10, 15);
+    flowLayout.sectionInset = UIEdgeInsetsMake(10, 0.0f, 10, 0.0f);
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     self.collectionView.delegate = self;
@@ -133,13 +138,15 @@
     UIView *superview = self.superview;
     self.maskView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     [superview addSubview:self.maskView];
-    self.collectionView.frame = CGRectMake(0, 0, kScreenWidth, 0.0f);
+    self.collectionView.frame = CGRectMake(15.0f, 0.0f, kScreenWidth - 30.0f , 0.0f);
+    self.backgroundView.frame = CGRectMake(0.0f, 0.0f, kScreenWidth , 0.0f);
     [self reloadData];
 }
 
 - (void)hideFilterSelectionView{
     [UIView animateWithDuration:0.25f animations:^{
-        self.collectionView.frame = CGRectMake(0.0f, 0.0f, self.collectionView.contentSize.width, 0.0f);
+        self.collectionView.frame = CGRectMake(15.0f, 0.0f, kScreenWidth - 30.0f, 0.0f);
+        self.backgroundView.frame = CGRectMake(0.0f, 0.0f, kScreenWidth , 0.0f);
     } completion:^(BOOL finished) {
         [self.maskView removeFromSuperview];
     }];
@@ -148,7 +155,8 @@
     [self.collectionView reloadData];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.25f animations:^{
-            self.collectionView.frame = CGRectMake(0.0f, 0.0f, self.collectionView.contentSize.width, self.collectionView.contentSize.height);
+            self.collectionView.frame = CGRectMake(15.0f, 0.0f, kScreenWidth - 30.0f, self.collectionView.contentSize.height);
+            self.backgroundView.frame = CGRectMake(0.0f, 0.0f, kScreenWidth , self.collectionView.contentSize.height);
         }];
     });
 }
