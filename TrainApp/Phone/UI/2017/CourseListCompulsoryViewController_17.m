@@ -14,6 +14,7 @@
 #import "YXCourseListRequest.h"
 #import "VideoCourseDetailViewController.h"
 #import "CourseHistoryViewController_17.h"
+#import "VideoCourseDetailViewController_17.h"
 @interface CourseListCompulsoryViewController_17 ()
 @property (nonatomic, strong) CourseListFilterView_17 *filterView;
 
@@ -137,8 +138,9 @@
     course.module_id = obj.stageID;
     course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
     course.type = obj.type;
+    
     if (course.isSupportApp.boolValue) {
-        VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
+       VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
         vc.course = course;
         vc.fromWhere = VideoCourseFromWhere_Detail;
         [self.navigationController pushViewController:vc animated:YES];

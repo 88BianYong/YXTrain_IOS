@@ -10,11 +10,14 @@
 #import "ReadingDetailTableHeaderView_17.h"
 #import "ReadingDetailAnnexCell_17.h"
 #import "ReadingDetailHeaderView_17.h"
+#import "ReadingSubmitStatusRequest_17.h"
 @interface ReadingDetailViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ReadingDetailTableHeaderView_17 *headerView;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) dispatch_source_t sourceTimer;
 @property (nonatomic, strong) UIButton *readButton;
+
+@property (nonatomic, strong) ReadingSubmitStatusRequest_17 *submitRequest;
 
 @end
 
@@ -72,7 +75,7 @@
     self.readButton.enabled = NO;
     [[self.readButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
-        [self.navigationController popViewControllerAnimated:YES];
+        [self requestForReadingSubmitStatus];
     }];
     [self.view addSubview:self.readButton];
     [self readDocumentTime:self.readButton time:self.reading.timeLength.integerValue];
@@ -161,5 +164,27 @@
         }
     });
     dispatch_resume(self.sourceTimer);
+}
+- (void)requestForReadingSubmitStatus {
+    ReadingSubmitStatusRequest_17 *request = [[ReadingSubmitStatusRequest_17 alloc] init];
+    request.stateID = @"";
+    request.contentID = @"";
+    WEAK_SELF
+    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = YES;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
+        }
+        [self showToast:@"已阅读"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        });
+    }];
+    self.submitRequest = request;
+    
 }
 @end

@@ -118,7 +118,7 @@
 @end
 @implementation ExamineDetailRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectId":@"projectID"}];
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID"}];
 }
 - (instancetype)init {
     if (self = [super init]) {
