@@ -9,5 +9,7 @@
 #import "YXBaseViewController.h"
 
 @interface CourseListMangerViewController_17 : YXBaseViewController
-
+@property (nonatomic, strong) NSString *stageString;
+@property (nonatomic, strong) NSString *studyString;
+@property (nonatomic, strong) NSString *segmentString;
 @end

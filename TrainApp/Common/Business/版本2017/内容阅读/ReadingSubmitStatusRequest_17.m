@@ -11,7 +11,7 @@
 @implementation ReadingSubmitStatusRequest_17
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"stateid":@"stageID",
+                                                       @"stageid":@"stageID",
                                                        @"id":@"contentID"}];
 }
 - (instancetype)init {

@@ -27,10 +27,10 @@
 }
 - (void)viewDidLoad {
     CourseListFetcher_17 *fetcher = [[CourseListFetcher_17 alloc]init];
-    fetcher.stageID = @"";
-    fetcher.study = @"";
-    fetcher.segment = @"";
-    fetcher.type = @"";
+    fetcher.stageID = self.stageString;
+    fetcher.study = self.studyString;
+    fetcher.segment = self.segmentString;
+    fetcher.type = @"101";
     WEAK_SELF
     fetcher.courseListItemBlock = ^(CourseListRequest_17Item *model) {
         STRONG_SELF

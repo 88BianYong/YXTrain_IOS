@@ -28,11 +28,24 @@
 #pragma mark - set
 - (void)setScheme:(HomeworkListRequest_17Item_Scheme *)scheme {
     _scheme = scheme;
-//    self.mainPointLabel.text = [NSString stringWithFormat:@"需要阅读%@篇文章",_item.scheme.scheme.finishNum];
-//    self.progressView.progress = [_item.scheme.process.userFinishNum floatValue]/[_item.scheme.scheme.finishNum floatValue];
-//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_item.scheme.process.userFinishNum,_item.scheme.scheme.finishNum]];
-//    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"0070c9"] range:NSMakeRange(0, _item.scheme.process.userFinishNum.length)];
-//    self.scheduleLabel.attributedText = attributedString;
+    self.mainPointLabel.text = [self mainPointContent:_scheme];
+    self.progressView.progress = [_scheme.scheme.finishNum floatValue]/[_scheme.process.userFinishNum floatValue];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_scheme.scheme.finishNum,_scheme.process.userFinishNum]];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"0070c9"] range:NSMakeRange(0, _scheme.process.userFinishNum.length)];
+    self.scheduleLabel.attributedText = attributedString;
+}
+- (NSString *)mainPointContent:(HomeworkListRequest_17Item_Scheme *)scheme{
+    if (scheme.scheme.toolID.integerValue == 219 || scheme.scheme.toolID.integerValue == 319) {
+        return [NSString stringWithFormat:@"需要互评%@篇同学作业",scheme.scheme.finishNum];
+    }else if (scheme.scheme.toolID.integerValue == 203 || scheme.scheme.toolID.integerValue == 303) {
+        return [NSString stringWithFormat:@"需要完成%@篇作业",scheme.scheme.finishNum];
+    }else if (scheme.scheme.toolID.integerValue == 218 || scheme.scheme.toolID.integerValue == 318) {
+        return [NSString stringWithFormat:@"需要完成%@篇小组作业",scheme.scheme.finishNum];
+    }else if (scheme.scheme.toolID.integerValue == 205 || scheme.scheme.toolID.integerValue == 305) {
+        return [NSString stringWithFormat:@"需要完成%@篇研修总结",scheme.scheme.finishNum];
+    }else {
+        return [NSString stringWithFormat:@"需要完成%@篇作业",scheme.scheme.finishNum];
+    }
 }
 #pragma mark - setupUI
 - (void)setupUI {

@@ -82,7 +82,7 @@
     for (PersonalExamineRequest_17Item_Examine_Process_ToolExamineVoList *tool in _process.toolExamineVoList) {
         YXMyLearningUserScoreView *view = [[YXMyLearningUserScoreView alloc] init];
         view.nameLabel.text = tool.name;
-        view.scoreLabel.attributedText = [self totalScore:_process.userScore WithScore:_process.totalScore];
+        view.scoreLabel.attributedText = [self totalScore:tool.totalScore WithScore:tool.userScore];
         [self.contentView addSubview:view];
         [mutableArray addObject:view];
     }

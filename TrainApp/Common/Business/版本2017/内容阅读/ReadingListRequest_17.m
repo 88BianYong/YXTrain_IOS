@@ -44,12 +44,13 @@
 @implementation ReadingListRequest_17
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"stateid":@"stageID",
+                                                       @"stageid":@"stageID",
                                                        @"toolid":@"toolID"}];
 }
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/examine/score"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/reading/list"];
+        self.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     }
     return self;
 }

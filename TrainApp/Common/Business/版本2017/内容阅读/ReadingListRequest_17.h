@@ -25,6 +25,7 @@
 @end
 @interface ReadingListRequest_17Item_Objs_Affix : JSONModel
 @property (nonatomic, copy) NSString<Optional> *resID;
+@property (nonatomic, copy) NSString<Optional> *res_type;
 @property (nonatomic, copy) NSString<Optional> *resName;
 @property (nonatomic, copy) NSString<Optional> *convertStatus;
 @property (nonatomic, copy) NSString<Optional> *previewUrl;

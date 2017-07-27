@@ -30,8 +30,11 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.reading.name;
     [self setupUI];
     [self setupLayout];
+    BLOCK_EXEC(self.readingDetailFinishCompleteBlock);
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,26 +69,28 @@
         });
     };
     self.tableView.tableHeaderView = self.headerView;
-    
-    self.readButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.readButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.readButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"dfe2e6"]] forState:UIControlStateDisabled];
-    [self.readButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
-    self.readButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.readButton.enabled = NO;
-    [[self.readButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        STRONG_SELF
-        [self requestForReadingSubmitStatus];
-    }];
-    [self.view addSubview:self.readButton];
-    [self readDocumentTime:self.readButton time:self.reading.timeLength.integerValue];
+    if (!self.reading.isFinish.boolValue) {
+        self.readButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.readButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.readButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"dfe2e6"]] forState:UIControlStateDisabled];
+        [self.readButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
+        self.readButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        self.readButton.enabled = NO;
+        [[self.readButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            STRONG_SELF
+            [self requestForReadingSubmitStatus];
+        }];
+        [self.view addSubview:self.readButton];
+        [self readDocumentTime:self.readButton time:self.reading.timeLength.integerValue];
+    }
+
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.top.equalTo(self.view.mas_top);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-49.0f);
+        make.bottom.equalTo(self.view.mas_bottom).offset(!self.reading.isFinish.boolValue ? -49.0f : 0);
     }];
     
     [self.readButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -98,7 +103,9 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 45.0f;
+    return [tableView fd_heightForCellWithIdentifier:@"ReadingDetailAnnexCell_17" configuration:^(ReadingDetailAnnexCell_17 *cell) {
+        cell.affix = self.reading.affix;
+    }];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 80.0f;
@@ -167,8 +174,8 @@
 }
 - (void)requestForReadingSubmitStatus {
     ReadingSubmitStatusRequest_17 *request = [[ReadingSubmitStatusRequest_17 alloc] init];
-    request.stateID = @"";
-    request.contentID = @"";
+    request.stageID = self.stageString;
+    request.contentID = self.reading.objID;
     WEAK_SELF
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
@@ -180,6 +187,8 @@
             return;
         }
         [self showToast:@"已阅读"];
+        BLOCK_EXEC(self.readingDetailFinishCompleteBlock);
+        self.reading.isFinish = @"1";
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.navigationController popViewControllerAnimated:YES];
         });

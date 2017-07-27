@@ -57,7 +57,10 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.typeImageView.mas_right).offset(15);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-15);
-        make.top.mas_equalTo(13);
+        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.top.greaterThanOrEqualTo(self.contentView.mas_top).offset(15.0f);
+        make.top.greaterThanOrEqualTo(self.contentView.mas_top).offset(15.0f);
+        make.bottom.greaterThanOrEqualTo(self.contentView.mas_bottom).offset(15.0f);
     }];
     
     [self.cellSeperatorView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -70,7 +73,7 @@
 - (void)setAffix:(ReadingListRequest_17Item_Objs_Affix *)affix {
     _affix = affix;
     self.titleLabel.text = _affix.resName;
-    NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:@"word"];
+    NSString *imageName = [YXAttachmentTypeHelper picNameWithTypeName:affix.res_type];
     self.typeImageView.image = [UIImage imageNamed:imageName];
 }
 - (void)hiddenBottomView:(BOOL)hidden {

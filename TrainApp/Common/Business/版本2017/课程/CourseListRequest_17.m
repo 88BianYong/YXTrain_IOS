@@ -65,8 +65,10 @@
 @implementation CourseListRequest_17Item_SearchTerm
 - (NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment,Optional> *)segmentModel {
     if (_segmentModel == nil) {
+        NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] initWithDictionary:self.segments];
+        mutableDictionary[@"0"] = @"通识";
         NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> *mutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> alloc] init];
-        NSArray *segmentsArray = [self.segments.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSArray *segmentsArray = [mutableDictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
             return [obj1 compare:obj2];
         }];
         WEAK_SELF
@@ -74,35 +76,37 @@
             STRONG_SELF
             CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = [[CourseListRequest_17Item_SearchTerm_MockSegment alloc] init];
             mockSegment.segmentID = obj;
-            mockSegment.segmentName = self.segments[obj];
+            mockSegment.segmentName = mutableDictionary[obj];
             NSDictionary *chapterDic = self.studys[obj][@"c"];
-            if (chapterDic != nil) {
-                NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> *chapterMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> alloc] init];
-                NSArray *chapterArray = [chapterDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                    return [obj1 compare:obj2];
-                }];
-                [chapterArray enumerateObjectsUsingBlock:^(NSString *cObj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = [[CourseListRequest_17Item_SearchTerm_MockSegment_Chapter alloc] init];
-                    chapter.chapterID = cObj;
-                    chapter.chapterName = chapterDic[cObj];
-                    [chapterMutableArray addObject:chapter];
-                }];
-                mockSegment.chapter = chapterMutableArray;
-            }
+            NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> *chapterMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> alloc] init];
+            CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = [[CourseListRequest_17Item_SearchTerm_MockSegment_Chapter alloc] init];
+            chapter.chapterID = @"0";
+            chapter.chapterName = @"通识";
+            [chapterMutableArray addObject:chapter];
+            NSArray *chapterArray = [chapterDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                return [obj1 compare:obj2];
+            }];
+            [chapterArray enumerateObjectsUsingBlock:^(NSString *cObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = [[CourseListRequest_17Item_SearchTerm_MockSegment_Chapter alloc] init];
+                chapter.chapterID = cObj;
+                chapter.chapterName = chapterDic[cObj];
+                [chapterMutableArray addObject:chapter];
+            }];
+            mockSegment.chapter = chapterMutableArray;
             NSDictionary *gradeDic = self.studys[obj][@"g"];
-            if (gradeDic != nil) {
-                NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> *gradeMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> alloc] init];
-                NSArray *gradeArray = [gradeDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                    return [obj1 compare:obj2];
-                }];
-                [gradeArray enumerateObjectsUsingBlock:^(NSString *gObj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    CourseListRequest_17Item_SearchTerm_MockSegment_Grade *grade = [[CourseListRequest_17Item_SearchTerm_MockSegment_Grade alloc] init];
-                    grade.gradeID = gObj;
-                    grade.gradeName = gradeDic[gObj];
-                    [gradeMutableArray addObject:grade];
-                }];
-                mockSegment.grade = gradeMutableArray;
-            }
+            
+            
+            NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> *gradeMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Grade> alloc] init];
+            NSArray *gradeArray = [gradeDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                return [obj1 compare:obj2];
+            }];
+            [gradeArray enumerateObjectsUsingBlock:^(NSString *gObj, NSUInteger idx, BOOL * _Nonnull stop) {
+                CourseListRequest_17Item_SearchTerm_MockSegment_Grade *grade = [[CourseListRequest_17Item_SearchTerm_MockSegment_Grade alloc] init];
+                grade.gradeID = gObj;
+                grade.gradeName = gradeDic[gObj];
+                [gradeMutableArray addObject:grade];
+            }];
+            mockSegment.grade = gradeMutableArray;
             [mutableArray addObject:mockSegment];
         }];
         _segmentModel = mutableArray;
@@ -142,7 +146,7 @@
 }
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/examine/score"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/course/list"];
     }
     return self;
 }

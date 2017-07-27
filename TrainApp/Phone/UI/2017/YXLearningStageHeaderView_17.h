@@ -10,5 +10,5 @@
 #import "ExamineDetailRequest_17.h"
 @interface YXLearningStageHeaderView_17 : UITableViewHeaderFooterView
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Stages *stage;
-@property (nonatomic, strong) void(^learningStageHeaderViewBlock)();
+@property (nonatomic, strong) void(^learningStageHeaderViewBlock)(BOOL isFinish);
 @end

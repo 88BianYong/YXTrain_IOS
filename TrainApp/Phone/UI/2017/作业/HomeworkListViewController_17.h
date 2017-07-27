@@ -9,5 +9,6 @@
 #import "YXBaseViewController.h"
 
 @interface HomeworkListViewController_17 : YXBaseViewController
-
+@property (nonatomic, strong) NSString *stageString;
+@property (nonatomic, strong) NSString *toolString;
 @end

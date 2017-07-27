@@ -38,5 +38,10 @@
     _mockOther = mockOther;
     UILabel *label = [self.contentView viewWithTag:10086];
     label.text = _mockOther.otherName;
+    if (_mockOther.otherType.integerValue == 1) {
+        label.textColor = [UIColor colorWithHexString:@"334466"];
+     }else {
+        label.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    }
 }
 @end

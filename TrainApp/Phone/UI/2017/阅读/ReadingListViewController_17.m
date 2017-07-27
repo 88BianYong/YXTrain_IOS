@@ -31,7 +31,10 @@
     [self startLoading];
     [self requestForReadingList];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -85,14 +88,19 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     ReadingDetailViewController_17 *VC = [[ReadingDetailViewController_17 alloc] init];
     VC.reading = self.listItem.objs[indexPath.row];
+    VC.stageString = self.stageString;
+    WEAK_SELF
+    VC.readingDetailFinishCompleteBlock = ^{
+        STRONG_SELF
+        self.listItem.scheme.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.listItem.scheme.process.userFinishNum.integerValue + 1];
+    };
     [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark - request
 - (void)requestForReadingList {
     ReadingListRequest_17 *request = [[ReadingListRequest_17 alloc] init];
-    request.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-    request.stageID = @"";
-    request.toolID = @"";
+    request.stageID = self.stageString;
+    request.toolID = self.toolString;
     WEAK_SELF
     [request startRequestWithRetClass:[ReadingListRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

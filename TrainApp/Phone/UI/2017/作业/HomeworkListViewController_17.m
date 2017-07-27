@@ -189,6 +189,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         HomeworkListClaimCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListClaimCell_17" forIndexPath:indexPath];
+        cell.scheme = self.listItem.scheme[indexPath.row];
         return cell;
     }else {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
@@ -212,6 +213,8 @@
 #pragma mark - request
 - (void)requestForHomeworkList{
     HomeworkListRequest_17 *request = [[HomeworkListRequest_17 alloc] init];
+    request.stageID = self.stageString;
+    request.toolID = self.toolString;
     WEAK_SELF
     [request startRequestWithRetClass:[HomeworkListRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

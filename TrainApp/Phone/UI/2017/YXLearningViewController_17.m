@@ -67,7 +67,9 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self showProjectSelectionView];
-
+    if (self.requestStatus == YXLearningRequestStatus_ExamineDetail) {
+        [self requestForExamineDetail];
+    }
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -217,7 +219,11 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         WEAK_SELF
         headerView.learningChannelButtonCompleteBlock = ^(ExamineDetailRequest_17Item_MockOther *mockOther) {
             STRONG_SELF
-            DDLogDebug(@">>>>>>>>>>>%@",mockOther.otherName);
+            if (mockOther.otherType.integerValue == 1) {
+                
+            }else  {
+                [self showToast:@"相关功能赞为开放"];
+            }
         };
         return headerView;
         
@@ -225,13 +231,18 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         YXLearningStageHeaderView_17 *heaerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXLearningStageHeaderView_17"];
         heaerView.stage = self.examineDetailItem.stages[section];
         WEAK_SELF
-        heaerView.learningStageHeaderViewBlock = ^() {
+        heaerView.learningStageHeaderViewBlock = ^(BOOL isFinish) {
             STRONG_SELF
+            if (!isFinish) {
+                [self showToast:@"请先完成上一个任务"];
+                return;
+            }
             ExamineDetailRequest_17Item_Stages *stage = self.examineDetailItem.stages[section];
             stage.isMockFold = stage.isMockFold.boolValue ? @"0" : @"1";
             [tableView beginUpdates];
             [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
             [tableView endUpdates];
+            
         };
         return heaerView;
     }
@@ -276,24 +287,33 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         STRONG_SELF
         if (tool.toolID.integerValue == 222) {
             ReadingListViewController_17 *VC = [[ReadingListViewController_17 alloc] init];
+            VC.stageString = stages.stageID;
+            VC.toolString = tool.toolID;
             [self.navigationController pushViewController:VC animated:YES];
         }else if (tool.toolID.integerValue == 207){
             [self showToast:@"手机暂不支持测评,请到电脑端完成"];
         }else if (tool.toolID.integerValue == 201){
             CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
+            VC.stageString = stages.stageID;
+            VC.studyString = self.examineDetailItem.user.study;
+            VC.segmentString = self.examineDetailItem.user.segment;
             [self.navigationController pushViewController:VC animated:YES];
-        }else if (tool.toolID.integerValue == 203){
+        }else if (tool.toolID.integerValue == 203 || tool.toolID.integerValue == 205){
             HomeworkListViewController_17 *VC = [[HomeworkListViewController_17 alloc] init];
+            VC.stageString = stages.stageID;
+            VC.toolString = tool.toolID;
             [self.navigationController pushViewController:VC animated:YES];
         }else if (tool.toolID.integerValue == 202){
             ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
             [self.navigationController pushViewController:VC animated:YES];
         }else {
+            
             [self showToast:@"请先完成上一个任务"];
         }
     };
     return cell;
 }
+
 #pragma mark - request
 - (void)requestForExamineDetail {
     self.requestStatus = YXLearningRequestStatus_ExamineDetail;

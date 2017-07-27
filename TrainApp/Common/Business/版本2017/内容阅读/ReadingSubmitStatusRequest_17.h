@@ -10,6 +10,6 @@
 
 @interface ReadingSubmitStatusRequest_17 : YXGetRequest
 @property (nonatomic, strong) NSString<Optional> *projectID;
-@property (nonatomic, strong) NSString<Optional> *stateID;
+@property (nonatomic, strong) NSString<Optional> *stageID;
 @property (nonatomic, strong) NSString<Optional> *contentID;
 @end

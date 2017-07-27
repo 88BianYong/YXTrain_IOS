@@ -71,10 +71,7 @@
     WEAK_SELF
     [[self.bgButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
-        if (!self.stage.status.boolValue) {
-            return;
-        }
-        BLOCK_EXEC(self.learningStageHeaderViewBlock);
+        BLOCK_EXEC(self.learningStageHeaderViewBlock,self.stage.status.boolValue);
     }];
     [[self.bgButton rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
         STRONG_SELF

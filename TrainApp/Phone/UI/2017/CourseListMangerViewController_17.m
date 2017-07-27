@@ -29,8 +29,14 @@
 - (void)setupUI {
     [self setCourseTitleView];
     CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];
+    compulsoryVC.segmentString = self.segmentString;
+    compulsoryVC.studyString = self.studyString;
+    compulsoryVC.stageString = self.stageString;
     [self addChildViewController:compulsoryVC];
     CourseListElectiveViewController_17 *electiveVC = [[CourseListElectiveViewController_17 alloc] init];
+    electiveVC.segmentString = self.segmentString;
+    electiveVC.studyString = self.studyString;
+    electiveVC.stageString = self.stageString;
     [self addChildViewController:electiveVC];
     [compulsoryVC didMoveToParentViewController:self];
     [self.view addSubview:compulsoryVC.view];

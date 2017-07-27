@@ -28,10 +28,10 @@
 #pragma mark - set
 - (void)setContentString:(NSString *)contentString {
     _contentString = contentString;
-    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
-    _contentString = [NSString stringWithContentsOfFile:readmePath
-                                              encoding:NSUTF8StringEncoding
-                                                 error:NULL];
+//    NSString *readmePath = [[NSBundle mainBundle] pathForResource:@"Image" ofType:@"html"];
+//    _contentString = [NSString stringWithContentsOfFile:readmePath
+//                                              encoding:NSUTF8StringEncoding
+//                                                 error:NULL];
     NSData *data = [_contentString?:@" " dataUsingEncoding:NSUTF8StringEncoding];
     NSAttributedString *string = [[NSAttributedString alloc] initWithHTMLData:data options:[CoreTextViewHandler defaultCoreTextOptions]documentAttributes:nil];
     [string enumerateAttribute:NSAttachmentAttributeName inRange:NSMakeRange(0, string.length) options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(DTTextAttachment *attachment, NSRange range, BOOL *stop) {
