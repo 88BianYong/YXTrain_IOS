@@ -13,11 +13,13 @@
 #import "ActivityFilterModel.h"
 #import "ActivityDetailViewController.h"
 #import "ActivityListFilterView_17.h"
+#import "ActivityListHeaderView_17.h"
 @interface ActivityListViewController_17 ()
 @property (nonatomic, strong) ActivityFilterRequest *filterRequest;
 @property (nonatomic, strong) ActivityFilterModel *filterModel;
 @property (nonatomic, strong) ActivityListFilterView_17 *filterView;
 @property (nonatomic, strong) YXErrorView *filterErrorView;
+@property (nonatomic, strong) ActivityListRequestItem_body_scheme *schemeItem;
 @end
 
 @implementation ActivityListViewController_17
@@ -41,6 +43,7 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ActivityListCell_17 class] forCellReuseIdentifier:@"ActivityListCell_17"];
+    [self.tableView registerClass:[ActivityListHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"ActivityListHeaderView_17"];
     
     if (self.isWaitingForFilter) {
         self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
@@ -59,18 +62,27 @@
     fetcher.pageindex = 0;
     fetcher.pagesize = 10;
     WEAK_SELF
-    fetcher.listCompleteBlock = ^(){
+    fetcher.listCompleteBlock = ^(ActivityListRequestItem_body_scheme *scheme) {
         STRONG_SELF
-        if (self.filterView) {
-            return;
+        self.schemeItem = scheme;
+        if (self.filterView == nil) {
+            [self dealWithFilterModel:self.filterModel];
         }
-        [self dealWithFilterModel:self.filterModel];
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
 }
 - (void)dealWithFilterModel:(ActivityFilterModel *)model {
     self.filterView = [[ActivityListFilterView_17 alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
+    WEAK_SELF
+    self.filterView.activityListFilterSelectedBlock = ^(NSMutableArray *selectedArray) {
+        STRONG_SELF
+        ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
+        fetcher.studyid = selectedArray[1];
+        fetcher.segid = selectedArray[0];
+        [self startLoading];
+        [self firstPageFetch];        
+    };
     [self.view addSubview:self.filterView];
     self.filterView.filterModel = model;
     [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -98,16 +110,10 @@
         ActivityFilterRequestItem *item = (ActivityFilterRequestItem *)retItem;
         self.filterModel = [item filterModel];
         self.isWaitingForFilter = NO;
-        if (self.stageID) {//因为server端无法做到"全部"时返回全部的活动,暂时解决方案:从任务跳转时默认选中"第一阶段"
-            ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
-            fetcher.stageid = self.stageID;
-        } else {
-            ActivityFilterGroup *stageGroup = self.filterModel.groupArray.firstObject;
-            ActivityFilter *filter = stageGroup.filterArray.firstObject;
-            self.stageID = filter.filterID;
-            ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
-            fetcher.stageid = self.stageID;
-        }
+        ActivityListFetcher *fetcher = (ActivityListFetcher *)self.dataFetcher;
+        fetcher.stageid = self.stageID;
+        fetcher.studyid = item.body.defaultChoose.studyId;
+        fetcher.segid = item.body.defaultChoose.segmentId;
         [self startLoading];
         [self firstPageFetch];
     }];
@@ -119,6 +125,9 @@
     [super firstPageFetch];
 }
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.dataArray.count > 0 ? 1 : 0;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ActivityListCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"ActivityListCell_17"];
     cell.activity = self.dataArray[indexPath.row];
@@ -129,10 +138,15 @@
     return 104;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 0.0001f;
+    return 70.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    ActivityListHeaderView_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"ActivityListHeaderView_17"];
+    headerView.scheme = self.schemeItem;
+    return headerView;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

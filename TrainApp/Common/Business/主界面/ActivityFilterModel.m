@@ -18,8 +18,8 @@
 + (ActivityFilterModel *)modelFromRawData:(ActivityFilterRequestItem *)item {
     // 学段
     NSMutableArray *segmentArray = [NSMutableArray array];
-    __block NSInteger section = 0;
-    __block NSInteger row = 0;
+    __block NSInteger section = -1;
+    __block NSInteger row = -1;
     [item.body.segments  enumerateObjectsUsingBlock:^(ActivityFilterRequestItem_body_segment *segment, NSUInteger idx, BOOL * _Nonnull stop) {
         ActivityFilter *temp = [[ActivityFilter alloc]init];
         temp.filterID = segment.segmentID;
@@ -65,7 +65,7 @@
     
     ActivityFilterModel *model = [[ActivityFilterModel alloc]init];
     model.groupArray = @[stageGroup,segmentGroup,studyGroup];
-    model.chooseIndexPatch = [NSIndexPath indexPathForRow:row inSection:section];
+    model.selectedMutableArray = [@[@(section),@(row)] mutableCopy];
     return model;
 }
 @end

@@ -59,9 +59,16 @@
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"e5581a"] range:NSMakeRange(6, _scoreString.length)];
     self.contentView.scoreLabel.attributedText = attributedString;
 }
-- (void)setIsPassBool:(BOOL)isPassBool {
-    _isPassBool = isPassBool;
-    self.contentView.resultLabel.text = _isPassBool ? @"考核结果: 通过" : @"考核结果: 未通过";
+- (void)setIsPassInteger:(NSInteger)isPassInteger{
+    _isPassInteger = isPassInteger;
+    if (_isPassInteger == 0) {
+        self.contentView.resultLabel.text = @"考核结果: 未通过";
+    }else if (_isPassInteger == 1) {
+        self.contentView.resultLabel.text = @"考核结果: 暂未通过";
+ 
+    }else {
+        self.contentView.resultLabel.text = @"考核结果: 已通过";
+    }
 }
 #pragma mark - setupUI
 - (void)setupUI {

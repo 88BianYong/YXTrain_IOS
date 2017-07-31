@@ -7,11 +7,11 @@
 //
 
 #import "PagedListFetcherBase.h"
-@class ActivityFilterModel;
+#import "ActivityListRequest.h"
 @interface ActivityListFetcher : PagedListFetcherBase
 @property (nonatomic, copy) NSString *studyid; //学科id
 @property (nonatomic, copy) NSString *segid;   //学段id
 @property (nonatomic, copy) NSString *stageid; //阶段id
 @property (nonatomic, copy) NSString *pid;
-@property (nonatomic, copy) void(^listCompleteBlock)();
+@property (nonatomic, copy) void(^listCompleteBlock)(ActivityListRequestItem_body_scheme *scheme);
 @end

@@ -57,15 +57,9 @@
     fetcher.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     fetcher.pageindex = 0;
     fetcher.pagesize = 10;
-    WEAK_SELF
-    fetcher.listCompleteBlock = ^(){
-        STRONG_SELF
-        
-    };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
 }
-
 
 - (void)setupUI {
     self.title = @"活动列表";

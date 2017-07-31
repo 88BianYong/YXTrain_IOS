@@ -20,6 +20,6 @@
 
 @interface ActivityFilterModel : NSObject
 @property (nonatomic, strong) NSArray *groupArray;
-@property (nonatomic, strong) NSIndexPath *chooseIndexPatch;
+@property (nonatomic, strong) NSMutableArray<Optional> *selectedMutableArray;//数组@[学段,学科]
 + (ActivityFilterModel *)modelFromRawData:(ActivityFilterRequestItem *)item;
 @end

@@ -29,13 +29,13 @@
 
 @end
 @interface ActivityListRequestItem_body_scheme_process : JSONModel
-@property (nonatomic, copy) NSString<Optional> *userfinishnum;
-@property (nonatomic, copy) NSString<Optional> *userfinishscore;
+@property (nonatomic, copy) NSString<Optional> *userFinishNum;
+@property (nonatomic, copy) NSString<Optional> *userFinishScore;
 @end
 
 @interface ActivityListRequestItem_body_scheme_scheme : JSONModel
-@property (nonatomic, copy) NSString<Optional> *finishnum;
-@property (nonatomic, copy) NSString<Optional> *finishscore;
+@property (nonatomic, copy) NSString<Optional> *finishNum;
+@property (nonatomic, copy) NSString<Optional> *finishScore;
 @end
 
 @interface ActivityListRequestItem_body_scheme : JSONModel

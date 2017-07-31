@@ -76,6 +76,10 @@ extern NSString *const kYXTrainFirstLaunch;
  */
 extern NSString *const kYXTrainFirstGoInHomeworkList;
 /**
+ *  是否第一次进入作业界面_17
+ */
+extern NSString *const kYXTrainFirstGoInHomeworkList_17;
+/**
  *  北京项目是否当前账户初次登录
  */
 extern NSString *const kYXTrainFirstGoInHomeworkInfo;
@@ -151,6 +155,22 @@ extern NSString *const kYXTrainStartStopVideo;
  *  播放过片头的课程ID
  */
 extern NSString *const kYXTrainPlayBeginningCourse;
+
+//2.5.0
+
+/*
+ *  显示查看学习成绩
+ */
+extern NSString *const kYXTrainAcademicPerformance;
+/*
+ *  显示查看通知简报
+ */
+extern NSString *const kYXTrainNoticeBriefing;
+/*
+ *  显示完成培训学习方法
+ */
+extern NSString *const kYXTrainCompleteTrainingMethod;
+
 
 
 

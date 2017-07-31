@@ -8,8 +8,16 @@
 
 #import "ActivityListRequest.h"
 @implementation ActivityListRequestItem_body_scheme_scheme
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"finishnum":@"finishNum",
+                                                       @"finishscore":@"finishScore"}];
+}
 @end
 @implementation ActivityListRequestItem_body_scheme_process
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"userfinishnum":@"userFinishNum",
+                                                       @"userfinishscore":@"userFinishScore"}];
+}
 @end
 @implementation ActivityListRequestItem_body_scheme
 @end

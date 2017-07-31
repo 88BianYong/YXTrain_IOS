@@ -50,7 +50,7 @@
     fetcher.pageindex = 0;
     fetcher.pagesize = 10;
     WEAK_SELF
-    fetcher.listCompleteBlock = ^(){
+    fetcher.listCompleteBlock = ^(ActivityListRequestItem_body_scheme *scheme) {
         STRONG_SELF
         if (self.filterView) {
             return;

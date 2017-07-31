@@ -29,7 +29,7 @@
 - (void)setScheme:(HomeworkListRequest_17Item_Scheme *)scheme {
     _scheme = scheme;
     self.mainPointLabel.text = [self mainPointContent:_scheme];
-    self.progressView.progress = [_scheme.scheme.finishNum floatValue]/[_scheme.process.userFinishNum floatValue];
+    self.progressView.progress = [_scheme.process.userFinishNum floatValue]/[_scheme.scheme.finishNum floatValue];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_scheme.scheme.finishNum,_scheme.process.userFinishNum]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"0070c9"] range:NSMakeRange(0, _scheme.process.userFinishNum.length)];
     self.scheduleLabel.attributedText = attributedString;

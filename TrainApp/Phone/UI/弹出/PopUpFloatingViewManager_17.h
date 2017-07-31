@@ -7,7 +7,7 @@
 //
 
 #import "PopUpFloatingViewManager.h"
-
+#import "ExamineDetailRequest_17.h"
 @interface PopUpFloatingViewManager_17 : PopUpFloatingViewManager
-
+@property (nonatomic, strong) ExamineDetailRequest_17Item *item;
 @end

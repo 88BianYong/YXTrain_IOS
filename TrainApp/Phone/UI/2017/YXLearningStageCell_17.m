@@ -188,7 +188,7 @@
         YXLearningToolView *toolView = [[YXLearningToolView alloc] init];
         toolView.userInteractionEnabled = NO;
         toolView.nameLable.text = tool.name;
-        if (tool.status.integerValue == 0) {
+        if (tool.status.integerValue <= 0) {
             toolView.imageView.image = [UIImage imageNamed:@"未解锁"];
         }else if (tool.status.integerValue == 1) {
             toolView.imageView.image = [UIImage imageNamed:@"当前"];

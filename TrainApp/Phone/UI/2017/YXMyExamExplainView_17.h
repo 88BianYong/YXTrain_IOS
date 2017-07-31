@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YXMyExamExplainView_17 : UIView
-@property (nonatomic, assign) CGRect originRect;
 - (void)showInView:(UIView *)view examExplain:(NSString *)string;
+- (void)setupOriginRect:(CGRect)rect withToTop:(BOOL)isTop;
 @end

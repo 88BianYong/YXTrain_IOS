@@ -30,7 +30,8 @@
                                                        @"toolid":@"toolID",
                                                        @"totalnum":@"totalNum",
                                                        @"totalscore":@"totalScore",
-                                                       @"userscore":@"userScore"}];
+                                                       @"userscore":@"userScore",
+                                                       @"passtotalscore":@"passScore"}];
 }
 @end
 

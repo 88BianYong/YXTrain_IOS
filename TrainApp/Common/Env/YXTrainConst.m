@@ -19,6 +19,7 @@ NSString *const kXYTrainChooseProject =  @"train list choose project";
 NSString *const kYXTrainFirstLaunch = @"the first to enter the TrainApp";
 
 NSString *const kYXTrainFirstGoInHomeworkList = @"the first to enter the work list interface";
+NSString *const kYXTrainFirstGoInHomeworkList_17 = @"the first to enter the work list interface 17";
 
 NSString *const kYXTrainFirstGoInHomeworkInfo = @"the first to enter the homework info interface";
 
@@ -55,4 +56,11 @@ NSString *const kYXTrainQRCodePrompt = @"Show QR code prompt view";
 NSString *const kYXTrainStartStopVideo = @"The document is loaded and stopped";
 
 NSString *const kYXTrainPlayBeginningCourse = @"Play beginning Course Id";
+
+
+
+
+NSString *const kYXTrainAcademicPerformance = @"examine academic performance";
+NSString *const kYXTrainNoticeBriefing = @"examine notification briefing";
+NSString *const kYXTrainCompleteTrainingMethod = @"complete the training method";
 

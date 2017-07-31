@@ -26,7 +26,7 @@
 @implementation CourseGetQuizesRequest_17
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@""];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/course/history"];
     }
     return self;
 }

@@ -22,6 +22,8 @@
 #import "HomeworkListViewController_17.h"
 #import "YXMyLearningScoreViewController_17.h"
 #import "CourseCenterListViewController_17.h"
+#import "ExamineToolStatusRequest_17.h"
+#import "PopUpFloatingViewManager_17.h"
 typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     YXLearningRequestStatus_ExamineDetail,//请求个人工作室信息
     YXLearningRequestStatus_LayerList,//请求分层
@@ -40,6 +42,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 @property (nonatomic, strong) ExamineDetailRequest_17Item *examineDetailItem;
 @property (nonatomic, strong) TrainLayerListRequest *layerListRequest;
 @property (nonatomic, strong) TrainSelectLayerRequest *selectLayerRequest;
+@property (nonatomic, strong) ExamineToolStatusRequest_17 *toolStatusRequest;
 
 @property (nonatomic, strong) NSMutableDictionary *layerMutableDictionary;
 @property (nonatomic, assign) YXLearningRequestStatus requestStatus;
@@ -49,6 +52,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 
 @implementation YXLearningViewController_17
 - (void)dealloc{
+    DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [self.header free];
 }
 - (void)viewDidLoad {
@@ -69,8 +73,9 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     [super viewWillAppear:animated];
     [self showProjectSelectionView];
     if (self.requestStatus == YXLearningRequestStatus_ExamineDetail) {
-        [self requestForExamineDetail];
+        [self requestForExamineToolStatus];
     }
+    [[LSTSharedInstance sharedInstance].floatingViewManager showPopUpFloatingView];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -78,6 +83,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self hideProjectSelectionView];
+    [[LSTSharedInstance sharedInstance].floatingViewManager hiddenPopUpFloatingView];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -99,6 +105,9 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     self.headerView.scoreString = _examineDetailItem.examine.userGetScore;
     self.headerView.hidden = NO;
     [self.tableView reloadData];
+    PopUpFloatingViewManager_17 *floatingView = (PopUpFloatingViewManager_17 *)[LSTSharedInstance sharedInstance].floatingViewManager;
+    floatingView.item = _examineDetailItem;
+    [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
 }
 
 #pragma mark - setupUI
@@ -236,7 +245,12 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         heaerView.learningStageHeaderViewBlock = ^(BOOL isFinish) {
             STRONG_SELF
             if (!isFinish) {
-                [self showToast:@"请先完成上一个任务"];
+                ExamineDetailRequest_17Item_Stages *stage = self.examineDetailItem.stages[section];
+                if ([self compareDateDate:stage.startTime]) {
+                    [self showToast:@"阶段尚未开始"];
+                }else {
+                    [self showToast:@"请先完成上一个任务"];
+                }
                 return;
             }
             ExamineDetailRequest_17Item_Stages *stage = self.examineDetailItem.stages[section];
@@ -247,6 +261,17 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
             
         };
         return heaerView;
+    }
+}
+- (BOOL)compareDateDate:(NSString*)dateString {
+    NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
+    [dateformater setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateformater dateFromString:dateString];
+    NSComparisonResult result = [[NSDate date] compare:date];
+    if (result == NSOrderedDescending) {
+        return NO;
+    }else {
+        return YES;
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -287,31 +312,36 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     WEAK_SELF
     cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool) {
         STRONG_SELF
-        if (tool.toolID.integerValue == 222) {
-            ReadingListViewController_17 *VC = [[ReadingListViewController_17 alloc] init];
-            VC.stageString = stages.stageID;
-            VC.toolString = tool.toolID;
-            [self.navigationController pushViewController:VC animated:YES];
-        }else if (tool.toolID.integerValue == 207){
-            [self showToast:@"手机暂不支持测评,请到电脑端完成"];
-        }else if (tool.toolID.integerValue == 201){
-            CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
-            VC.stageString = stages.stageID;
-            VC.studyString = self.examineDetailItem.user.study;
-            VC.segmentString = self.examineDetailItem.user.segment;
-            [self.navigationController pushViewController:VC animated:YES];
-        }else if (tool.toolID.integerValue == 203 || tool.toolID.integerValue == 205){
-            HomeworkListViewController_17 *VC = [[HomeworkListViewController_17 alloc] init];
-            VC.stageString = stages.stageID;
-            VC.toolString = tool.toolID;
-            [self.navigationController pushViewController:VC animated:YES];
-        }else if (tool.toolID.integerValue == 202){
-            ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
-            [self.navigationController pushViewController:VC animated:YES];
+        if (tool.status.integerValue > 0 || 1){
+            if (tool.toolID.integerValue == 222) {
+                ReadingListViewController_17 *VC = [[ReadingListViewController_17 alloc] init];
+                VC.stageString = stages.stageID;
+                VC.toolString = tool.toolID;
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if (tool.toolID.integerValue == 207){
+                [self showToast:@"手机暂不支持测评,请到电脑端完成"];
+            }else if (tool.toolID.integerValue == 201 || tool.toolID.integerValue == 223 || tool.toolID.integerValue == 301 || tool.toolID.integerValue == 215 || tool.toolID.integerValue == 315 || tool.toolID.integerValue == 217){
+                CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
+                VC.stageString = stages.stageID;
+                VC.studyString = self.examineDetailItem.user.study;
+                VC.segmentString = self.examineDetailItem.user.segment;
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if (tool.toolID.integerValue == 103 || tool.toolID.integerValue == 203 || tool.toolID.integerValue == 205 || tool.toolID.integerValue == 208 || tool.toolID.integerValue == 216 || tool.toolID.integerValue == 219){
+                HomeworkListViewController_17 *VC = [[HomeworkListViewController_17 alloc] init];
+                VC.stageString = stages.stageID;
+                VC.toolString = tool.toolID;
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if (tool.toolID.integerValue == 202 || tool.toolID.integerValue == 302){
+                ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
+                VC.stageID = stages.stageID;
+                [self.navigationController pushViewController:VC animated:YES];
+            }else {
+                
+            }
         }else {
-            
             [self showToast:@"请先完成上一个任务"];
         }
+
     };
     return cell;
 }
@@ -391,5 +421,34 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     }];
     self.selectLayerRequest = request;
 }
-
+- (void)requestForExamineToolStatus {
+    ExamineToolStatusRequest_17 *request = [[ExamineToolStatusRequest_17 alloc] init];
+    WEAK_SELF
+    [request startRequestWithRetClass:[ExamineToolStatusRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error == nil) {
+            ExamineToolStatusRequest_17Item *item = retItem;
+            [self.examineDetailItem.stages enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Stages *stage, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSDictionary *dic = item.sts[stage.stageID];
+                if (dic != nil) {
+                    stage.isMockFold = nil;
+                    stage.status = @"0";
+                    stage.isFinish = @"1";
+                    [stage.tools enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Stages_Tools *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        obj.status = dic[obj.toolID] ?: obj.status;
+                        if (obj.status.integerValue >= 1) {
+                            stage.status = @"1";
+                        }
+                        if (obj.status.integerValue != 2) {
+                            stage.isFinish =  @"0";
+                        }
+                    }];
+                }
+            }];
+            [self.tableView reloadData];
+        }
+    }];
+    self.toolStatusRequest = request;
+    
+}
 @end

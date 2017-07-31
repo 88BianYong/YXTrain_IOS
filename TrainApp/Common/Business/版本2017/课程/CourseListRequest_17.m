@@ -138,7 +138,8 @@
 @implementation CourseListRequest_17
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"stageid":@"stageID"}];
+                                                       @"stageid":@"stageID",
+                                                       @"themeid":@"themeID"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

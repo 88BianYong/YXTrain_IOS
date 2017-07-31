@@ -10,4 +10,5 @@
 #import "ActivityFilterModel.h"
 @interface ActivityListFilterView_17 : UIView
 @property (nonatomic, strong) ActivityFilterModel *filterModel;
+@property (nonatomic, copy) void(^activityListFilterSelectedBlock)(NSMutableArray *selectedArray);
 @end

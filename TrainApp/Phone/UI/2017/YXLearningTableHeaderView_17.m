@@ -150,24 +150,24 @@
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView.mas_left);
         make.width.equalTo(self.containerView.mas_width).multipliedBy(1.0f/2.0f);
-        make.centerY.equalTo(self.containerView.mas_centerY).offset(-11.5f);
+        make.bottom.equalTo(self.containerView.mas_centerY).offset(2.0f);
     }];
     
     [self.scoreNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.scoreLabel.mas_width);
-        make.top.equalTo(self.scoreLabel.mas_bottom).offset(10.0f);
+        make.top.equalTo(self.containerView.mas_centerY).offset(5.0f);
         make.centerX.equalTo(self.scoreLabel.mas_centerX);
     }];
     
     [self.noticeBriefLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.scoreNameLabel.mas_width);
-        make.centerY.equalTo(self.scoreNameLabel.mas_centerY);
+        make.top.equalTo(self.containerView.mas_centerY).offset(5.0f);
         make.right.equalTo(self.containerView.mas_right);
     }];
     
     [self.noticeBriefImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.noticeBriefLabel.mas_centerX);
-        make.centerY.equalTo(self.scoreLabel.mas_centerY);
+        make.bottom.equalTo(self.containerView.mas_centerY).offset(-5.0f);
         make.size.mas_offset(CGSizeMake(27.0f, 27.0f));
     }];
     

@@ -15,6 +15,8 @@
 @interface YXMyLearningScoreViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) YXMyLearningScoreTableHeaderView_17 *headerView;
+
+@property (nonatomic, assign) NSInteger showMarkHeight;
 @end
 
 @implementation YXMyLearningScoreViewController_17
@@ -42,7 +44,7 @@
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.tableView registerClass:[YXMyLearningScoreCell_17 class] forCellReuseIdentifier:@"YXMyLearningScoreCell_17"];
     self.headerView = [[YXMyLearningScoreTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 110.0f)];
-    self.headerView.isPassBool = self.examine.isPass.boolValue;
+    self.headerView.isPassInteger = self.examine.isPass.integerValue;
     self.headerView.scoreString = self.examine.userGetScore;
     self.tableView.tableHeaderView = self.headerView;
 }
@@ -54,8 +56,7 @@
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
     YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
-    v.originRect = rect;
-    
+    [v setupOriginRect:rect withToTop:(rect.origin.y - self.showMarkHeight - 20 > 0) ? YES : NO];
 }
 #pragma mark - UITableViewDelegate
 
@@ -80,7 +81,7 @@
     headerView.myLearningScoreButtonBlock = ^(UIButton *sender) {
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-        [self showMarkWithOriginRect:rect explain:[self showExamExplain:self.examine.process[section]]];
+         [self showMarkWithOriginRect:rect explain:[self showExamExplain:self.examine.process[section]]];
     };
     return headerView;
 }
@@ -98,16 +99,34 @@
 }
 #pragma mark - dataFormat
 - (NSString *)showExamExplain:(ExamineDetailRequest_17Item_Examine_Process *)process {
+    self.showMarkHeight = 20;
     NSMutableArray<NSString *> *mutableArray = [[NSMutableArray<NSString *> alloc] initWithCapacity:4];
     [process.toolExamineVoList enumerateObjectsUsingBlock:^(PersonalExamineRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];
-        help.toolName = obj.name;
-        help.toolID = obj.toolID;
-        help.finishNum = obj.finishNum;
-        help.finishScore = obj.userScore;
-        help.totalNum = obj.totalNum;
-        help.totalScore = obj.totalScore;
-        [mutableArray addObject:[help toolCompleteStatusExplain]];
+        if (!obj.isExistsNext.boolValue) {
+            YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];
+            help.toolName = obj.name;
+            help.toolID = obj.toolID;
+            help.finishNum = obj.finishNum;
+            help.finishScore = obj.userScore;
+            help.totalNum = obj.totalNum;
+            help.totalScore = obj.totalScore;
+            help.passTotalScore = obj.passScore ?:@"";
+            self.showMarkHeight += 23;
+            [mutableArray addObject:[help toolCompleteStatusExplain]];
+        }else {
+            [obj.toolExamineVoList enumerateObjectsUsingBlock:^(PersonalExamineRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
+                YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];
+                help.toolName = next.name;
+                help.toolID = next.toolID.integerValue == 201 ? @"212" : next.toolID;
+                help.finishNum = next.finishNum;
+                help.finishScore = next.userScore;
+                help.totalNum = next.totalNum;
+                help.totalScore = next.totalScore;
+                help.passTotalScore = next.passScore ?:@"";
+                self.showMarkHeight += 23;
+                [mutableArray addObject:[help toolCompleteStatusExplain]];
+            }];
+        }
     }];
     NSString *string = [mutableArray componentsJoinedByString:@"\n"];
     return string;

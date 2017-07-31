@@ -7,7 +7,6 @@
 //
 
 #import "ActivityListFetcher.h"
-#import "ActivityListRequest.h"
 #import "ActivityFilterRequest.h"
 @interface ActivityListFetcher()
 @property (nonatomic, strong) ActivityListRequest *request;
@@ -31,7 +30,7 @@
             return;
         }
         ActivityListRequestItem *item = (ActivityListRequestItem *)retItem;
-        BLOCK_EXEC(self.listCompleteBlock,nil);
+        BLOCK_EXEC(self.listCompleteBlock,item.body.scheme);
         BOOL isLastPage = [self.request.page isEqualToString:item.body.totalPage];
         if (isLastPage) {
             BLOCK_EXEC(aCompleteBlock,0,item.body.actives,nil);

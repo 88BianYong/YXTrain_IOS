@@ -41,6 +41,9 @@
 @property (nonatomic, copy) NSString<Optional> *totalNum;
 @property (nonatomic, copy) NSString<Optional> *totalScore;
 @property (nonatomic, copy) NSString<Optional> *userScore;
+@property (nonatomic, copy) NSString<Optional> *isExistsNext;
+@property (nonatomic, copy) NSString<Optional> *passScore;
+@property (nonatomic, strong) NSArray<PersonalExamineRequest_17Item_Examine_Process_ToolExamineVoList,Optional> *toolExamineVoList;
 @end
 
 @protocol PersonalExamineRequest_17Item_Examine_Process <NSObject>

@@ -103,17 +103,20 @@
 @protocol ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList <NSObject>
 @end
 @interface ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList : JSONModel
-@property (nonatomic, copy) NSString<Optional> *finishNum;//
-@property (nonatomic, copy) NSString<Optional> *isExistsNext;
-@property (nonatomic, copy) NSString<Optional> *isNeedMark;//
-@property (nonatomic, copy) NSString<Optional> *name;
-@property (nonatomic, copy) NSString<Optional> *status;
-@property (nonatomic, copy) NSString<Optional> *toolID;//
-@property (nonatomic, copy) NSString<Optional> *totalNum;//
+@property (nonatomic, copy) NSString<Optional> *orderNo;//
 @property (nonatomic, copy) NSString<Optional> *totalScore;//
-@property (nonatomic, copy) NSString<Optional> *type;
 @property (nonatomic, copy) NSString<Optional> *userScore;//
-@property (nonatomic, copy) ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList<Optional> *toolExamineVoList;//
+@property (nonatomic, copy) NSString<Optional> *finishNum;//
+@property (nonatomic, copy) NSString<Optional> *isNeedMark;//
+@property (nonatomic, copy) NSString<Optional> *type;
+@property (nonatomic, copy) NSString<Optional> *passScore;
+@property (nonatomic, copy) NSString<Optional> *toolID;//
+@property (nonatomic, copy) NSString<Optional> *passFinishScore;
+@property (nonatomic, copy) NSString<Optional> *totalNum;//
+@property (nonatomic, copy) NSString<Optional> *isExistsNext;
+@property (nonatomic, copy) NSString<Optional> *name;
+@property (nonatomic, strong) NSArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList,Optional> *toolExamineVoList;
+@property (nonatomic, copy) NSString<Optional> *status;
 @end
 @protocol ExamineDetailRequest_17Item_Examine_Process <NSObject>
 @end

@@ -21,11 +21,14 @@
 
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UICollectionView *collectionView;
+
+@property (nonatomic, strong) NSMutableArray *selectedMutableArray;
 @end
 @implementation ActivityListFilterView_17
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+        self.selectedMutableArray = [[NSMutableArray alloc] initWithCapacity:2];
         [self setupUI];
         [self setupLayout];
     }
@@ -34,10 +37,31 @@
 #pragma mark - set
 - (void)setFilterModel:(ActivityFilterModel *)filterModel {
     _filterModel = filterModel;
+    [self.selectedMutableArray removeAllObjects];
+    [self.selectedMutableArray addObjectsFromArray:self.filterModel.selectedMutableArray];
+    [self setupActivityFilterContent];
+}
+- (NSMutableArray *)setupActivityFilterContent {
     ActivityFilterGroup *segment = self.filterModel.groupArray[1];
-    self.segmentContentLabel.text = ((ActivityFilter *)segment.filterArray[self.filterModel.chooseIndexPatch.section]).name;
+    NSInteger segmentInteger = [self.filterModel.selectedMutableArray[0] integerValue];
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithCapacity:2];
+    if (segmentInteger >= 0) {
+        self.segmentContentLabel.text = ((ActivityFilter *)segment.filterArray[segmentInteger]).name;
+        [mutableArray addObject:((ActivityFilter *)segment.filterArray[segmentInteger]).filterID];
+    }else {
+        self.segmentContentLabel.text = @"请选择";
+        [mutableArray addObject:@"0"];
+    }
+    NSInteger studyInteger = [self.filterModel.selectedMutableArray[1] integerValue];
     ActivityFilterGroup *study = self.filterModel.groupArray[2];
-    self.studyContentLabel.text = ((ActivityFilter *)study.filterArray[self.filterModel.chooseIndexPatch.row]).name;    
+    if (studyInteger >= 0) {
+        self.studyContentLabel.text = ((ActivityFilter *)study.filterArray[studyInteger]).name;
+          [mutableArray addObject:((ActivityFilter *)study.filterArray[studyInteger]).filterID];
+    }else {
+        self.studyContentLabel.text = @"请选择";
+        [mutableArray addObject:@"0"];
+    }
+    return mutableArray;
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -84,6 +108,8 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
     [[tapGestureRecognizer rac_gestureSignal] subscribeNext:^(id x) {
         STRONG_SELF
+        [self.selectedMutableArray removeAllObjects];
+        [self.selectedMutableArray addObjectsFromArray:self.filterModel.selectedMutableArray];
         [self hideFilterSelectionView];
     }];
     [self.maskView addGestureRecognizer:tapGestureRecognizer];
@@ -180,20 +206,16 @@
     if (indexPath.section == 0) {
         ActivityFilterGroup *segment = self.filterModel.groupArray[1];
         cell.title = ((ActivityFilter *)segment.filterArray[indexPath.row]).name;
-        cell.isCurrent = indexPath.row == self.filterModel.chooseIndexPatch.section;
+        cell.isCurrent = indexPath.row == [self.selectedMutableArray[0] integerValue];
     }else {
         ActivityFilterGroup *study = self.filterModel.groupArray[2];
         cell.title = ((ActivityFilter *)study.filterArray[indexPath.row]).name;
-        cell.isCurrent = indexPath.row == self.filterModel.chooseIndexPatch.row;
+        cell.isCurrent = indexPath.row == [self.selectedMutableArray[1] integerValue];
     }
     WEAK_SELF
     cell.activityFilterButtonActionBlock = ^{
         STRONG_SELF
-        if (indexPath.section == 0) {
-//            self.searchTerm.selectedIndexPath = [NSIndexPath indexPathForRow:self.searchTerm.selectedIndexPath.row inSection:indexPath.row];
-        }else {
-//            self.searchTerm.selectedIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.searchTerm.selectedIndexPath.section];
-        }
+        self.selectedMutableArray[indexPath.section] = @(indexPath.row);
         [self reloadData];
     };
     return cell;
@@ -214,7 +236,14 @@
         footerView.activitFilterCompleteBlock = ^(BOOL isCancleBool) {
             STRONG_SELF
             if (isCancleBool) {
-                
+                [self.selectedMutableArray removeAllObjects];
+                [self.selectedMutableArray addObjectsFromArray:self.filterModel.selectedMutableArray];
+            }else {
+                if ([self.selectedMutableArray[0] integerValue] != [self.filterModel.selectedMutableArray[0] integerValue] || [self.selectedMutableArray[1] integerValue] != [self.filterModel.selectedMutableArray[1] integerValue]) {
+                    [self.filterModel.selectedMutableArray removeAllObjects];
+                    [self.filterModel.selectedMutableArray addObjectsFromArray:self.selectedMutableArray];
+                    BLOCK_EXEC(self.activityListFilterSelectedBlock,[self setupActivityFilterContent]);
+                }
             }
             [self hideFilterSelectionView];
         };

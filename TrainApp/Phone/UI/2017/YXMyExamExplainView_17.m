@@ -57,11 +57,20 @@
 - (void)tapAction{
     [self removeFromSuperview];
 }
-
+- (void)setupOriginRect:(CGRect)rect withToTop:(BOOL)isTop {
+    if (isTop) {
+        [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.superview.mas_top).offset(rect.origin.y - 10.0f);
+        }];
+    }else {
+        [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.superview.mas_top).offset(rect.origin.y + 10.0f + rect.size.height);
+        }];
+        
+    }
+}
 - (void)setOriginRect:(CGRect)originRect{
-    [self.bgView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.superview.mas_top).offset(originRect.origin.y - 10.0f);
-    }];
+
 }
 
 - (void)showInView:(UIView *)view examExplain:(NSString *)string {

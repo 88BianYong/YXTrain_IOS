@@ -105,7 +105,6 @@
             }
             self.isRemoteNotification = NO;
         }];
-        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
     } else {
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];

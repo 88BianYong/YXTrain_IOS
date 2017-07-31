@@ -16,6 +16,7 @@
 #import "HomeworkListVideoDefaultCell_17.h"
 #import "HomeworkListFooterView_17.h"
 #import "YXHomeworkInfoRequest.h"
+#import "HomeworkFloatingView_17.h"
 #import "MJRefresh.h"
 @interface HomeworkListViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
@@ -52,6 +53,22 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+#pragma mark - set
+- (void)setListItem:(HomeworkListRequest_17Item *)listItem {
+    _listItem = listItem;
+    self.tableView.hidden = NO;
+    [self.tableView reloadData];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainFirstGoInHomeworkList_17]) {
+        UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+        HomeworkFloatingView_17 *floatingView = [[HomeworkFloatingView_17 alloc] init];
+        [window addSubview:floatingView];
+        [floatingView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(window);
+        }];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkList];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 #pragma mark - setupUI
 - (BOOL)isJudgmentChooseCourse{
@@ -230,8 +247,6 @@
         }
         HomeworkListRequest_17Item *item = retItem;
         self.listItem = item;
-        self.tableView.hidden = NO;
-        [self.tableView reloadData];
     }];
     self.listRequest = request;
 }

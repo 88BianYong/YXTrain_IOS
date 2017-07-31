@@ -14,7 +14,10 @@
                                                        @"toolid":@"toolID",
                                                        @"totalnum":@"totalNum",
                                                        @"totalscore":@"totalScore",
-                                                       @"userscore":@"userScore"}];
+                                                       @"userscore":@"userScore",
+                                                       @"passscore":@"passScore",
+                                                       @"orderno":@"orderNo",
+                                                       @"passfinishscore":@"passFinishScore"}];
 }
 @end
 @implementation ExamineDetailRequest_17Item_Examine_Process
@@ -53,6 +56,9 @@
 }
 - (NSString<Optional> *)isMockFold {
     if (_isMockFold == nil) {
+        if (self.isFinish.boolValue) {
+            return @"0";
+        }
         if (self.status.integerValue == 1) {
             return @"1";
         }else {

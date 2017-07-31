@@ -193,11 +193,8 @@
     WEAK_SELF
     cell.courseFilterButtonActionBlock = ^{
         STRONG_SELF
-        if (indexPath.section == 0) {
-            self.searchTerm.selectedMutableArray[0] = @(indexPath.row);
-        }else {
-            self.searchTerm.selectedMutableArray[1] = @(indexPath.row);
-        }
+        self.searchTerm.selectedMutableArray[indexPath.section] = @(indexPath.row);
+
         [self reloadData];
     };
     return cell;

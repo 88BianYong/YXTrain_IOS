@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 @interface YXMyLearningScoreTableHeaderView_17 : UIView
 @property (nonatomic, copy) NSString *scoreString;
-@property (nonatomic, assign) BOOL isPassBool;
+@property (nonatomic, assign) NSInteger isPassInteger;
 @end
