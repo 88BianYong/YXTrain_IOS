@@ -13,6 +13,6 @@
 
 @implementation FileRecordEntity (CoreDataProperties)
 
-@dynamic uid;
+@dynamic uid,rid;
 
 @end

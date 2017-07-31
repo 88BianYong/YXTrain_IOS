@@ -113,26 +113,23 @@
     }
     return _segmentModel;
 }
-- (NSIndexPath<Optional> *)selectedIndexPath {
-    if (_selectedIndexPath == nil){
-        __block NSInteger section = 0;
-        __block NSInteger row = 0;
+- (NSMutableArray<Optional> *)selectedMutableArray {
+    if (_selectedMutableArray == nil) {
+        __block NSInteger section = -1;
+        __block NSInteger row = -1;
         [self.segmentModel enumerateObjectsUsingBlock:^(CourseListRequest_17Item_SearchTerm_MockSegment  *segment, NSUInteger idx, BOOL * _Nonnull stop) {
             if (self.defaultValue.segment.integerValue == segment.segmentID.integerValue) {
                 section = idx;
                 [segment.chapter enumerateObjectsUsingBlock:^(CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter, NSUInteger idx, BOOL * _Nonnull stop) {
                     if (self.defaultValue.study.integerValue == chapter.chapterID.integerValue) {
                         row = idx;
-                        self->_selectedIndexPath = [NSIndexPath indexPathForRow:row inSection:section];
                     }
                 }];
             }
         }];
-        if (_selectedIndexPath == nil) {
-            self->_selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-         }
+        _selectedMutableArray = [@[@(section),@(row)] mutableCopy];
     }
-    return _selectedIndexPath;
+    return _selectedMutableArray;
 }
 @end
 @implementation CourseListRequest_17Item
@@ -141,8 +138,7 @@
 @implementation CourseListRequest_17
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"stageid":@"stageID",
-                                                       @"thame":@"theme"}];
+                                                       @"stageid":@"stageID"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

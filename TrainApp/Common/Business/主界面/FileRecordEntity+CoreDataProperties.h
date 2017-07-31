@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FileRecordEntity (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *uid;
+@property (nullable, nonatomic, retain) NSString *rid;
+
 
 @end
 

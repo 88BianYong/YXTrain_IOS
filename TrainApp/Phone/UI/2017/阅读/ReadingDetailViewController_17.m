@@ -11,6 +11,7 @@
 #import "ReadingDetailAnnexCell_17.h"
 #import "ReadingDetailHeaderView_17.h"
 #import "ReadingSubmitStatusRequest_17.h"
+#import "FileReadingManager_17.h"
 @interface ReadingDetailViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) ReadingDetailTableHeaderView_17 *headerView;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
@@ -75,13 +76,18 @@
         [self.readButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"dfe2e6"]] forState:UIControlStateDisabled];
         [self.readButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
         self.readButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        self.readButton.enabled = NO;
         [[self.readButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             STRONG_SELF
             [self requestForReadingSubmitStatus];
         }];
         [self.view addSubview:self.readButton];
-        [self readDocumentTime:self.readButton time:self.reading.timeLength.integerValue];
+        if ([FileReadingManager_17 hasReadingWithFileName:self.reading.name readingID:self.reading.objID]) {
+            self.readButton.enabled = YES;
+            [self.readButton setTitle:@"我已阅读文档内容" forState:UIControlStateNormal];
+        }else {
+            self.readButton.enabled = NO;
+            [self readDocumentTime:self.readButton time:self.reading.timeLength.integerValue];
+        }
     }
 
 }
@@ -159,6 +165,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [sender setTitle:@"我已阅读文档内容" forState:UIControlStateNormal];
                 sender.enabled = YES;
+                [FileReadingManager_17 saveReadingWithFileName:self.reading.name readingID:self.reading.objID];
             });
         }
         else {

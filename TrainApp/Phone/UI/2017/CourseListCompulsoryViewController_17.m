@@ -47,18 +47,18 @@
 - (void)setupUI {
     self.filterView = [[CourseListFilterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
     self.filterView.hidden = YES;
-    [self.contentView addSubview:self.filterView];
+    [self.view addSubview:self.filterView];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left);
-        make.right.equalTo(self.contentView.mas_right);
-        make.top.equalTo(self.contentView.mas_top);
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.top.equalTo(self.view.mas_top);
         make.height.mas_offset(30.0f);
     }];
-    [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left);
-        make.right.equalTo(self.contentView.mas_right);
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
         make.top.equalTo(self.filterView.mas_bottom);
-        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.bottom.equalTo(self.view.mas_bottom);
     }];
     self.emptyView.title = @"没有符合条件的课程";
     self.emptyView.imageName = @"没有符合条件的课程";

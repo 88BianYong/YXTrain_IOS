@@ -7,6 +7,7 @@
 //
 
 #import "YXGetRequest.h"
+#import "CourseCenterConditionRequest_17.h"
 @protocol CourseListRequest_17Item_SearchTerm_MockSegment_Grade <NSObject>
 @end
 
@@ -97,10 +98,11 @@
 @property (nonatomic, copy) NSString<Optional> *segment;
 @property (nonatomic, copy) NSString<Optional> *study;
 @end
-@interface CourseListRequest_17Item_SearchTerm : JSONModel
+@interface CourseListRequest_17Item_SearchTerm : HttpBaseRequestItem
 @property (nonatomic, strong) CourseListRequest_17Item_SearchTerm_ModuleVo<Optional> *moduleVo;
 @property (nonatomic, strong) CourseListRequest_17Item_SearchTerm_DefaultValue<Optional> *defaultValue;
 @property (nonatomic, copy) NSString<Optional> *isLockStudy;
+@property (nonatomic, strong) NSArray<CourseCenterConditionRequest_17Item_CourseTypes, Optional> *coursetypes;
 /**
  内部解析用 读取使用 segmentModel
  */
@@ -110,7 +112,7 @@
  */
 @property (nonatomic, strong) NSDictionary<Optional> *studys;
 @property (nonatomic, strong) NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment, Optional> *segmentModel;
-@property (nonatomic, strong) NSIndexPath<Optional> *selectedIndexPath;
+@property (nonatomic, strong) NSMutableArray<Optional> *selectedMutableArray;//数组@[学段,学科]
 @end
 
 @interface CourseListRequest_17Item : HttpBaseRequestItem
@@ -129,7 +131,7 @@
 @property (nonatomic, copy) NSString<Optional> *stageID;
 @property (nonatomic, copy) NSString<Optional> *study;//学科id，默认值0
 @property (nonatomic, copy) NSString<Optional> *segment;//学段id，默认值0
-@property (nonatomic, copy) NSString<Optional> *theme;//主题 id，有主题时必填，默认为0
+@property (nonatomic, copy) NSString<Optional> *thame;//主题 id，有主题时必填，默认为0
 @property (nonatomic, copy) NSString<Optional> *type;//101：选修， 102：必修，默认值0
 @property (nonatomic, copy) NSString<Optional> *page;//页数
 @property (nonatomic, copy) NSString<Optional> *limit;//每页数量

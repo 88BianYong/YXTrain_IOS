@@ -21,6 +21,7 @@
 #import "ActivityListViewController_17.h"
 #import "HomeworkListViewController_17.h"
 #import "YXMyLearningScoreViewController_17.h"
+#import "CourseCenterListViewController_17.h"
 typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     YXLearningRequestStatus_ExamineDetail,//请求个人工作室信息
     YXLearningRequestStatus_LayerList,//请求分层
@@ -220,7 +221,8 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         headerView.learningChannelButtonCompleteBlock = ^(ExamineDetailRequest_17Item_MockOther *mockOther) {
             STRONG_SELF
             if (mockOther.otherType.integerValue == 1) {
-                
+                CourseCenterListViewController_17 *VC = [[CourseCenterListViewController_17 alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
             }else  {
                 [self showToast:@"相关功能赞为开放"];
             }

@@ -32,6 +32,10 @@
     }
     return self;
 }
+#pragma mark - set
+- (void)setSearchTerm:(CourseListRequest_17Item_SearchTerm *)searchTerm {
+    _searchTerm = searchTerm;
+}
 #pragma mark - setupUI
 - (void)setupUI {
     self.segmentNameLabel = [[UILabel alloc] init];
@@ -169,7 +173,7 @@
     if (section == 0) {
         return self.searchTerm.segmentModel.count;
     }else {
-        CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = self.searchTerm.segmentModel[self.searchTerm.selectedIndexPath.section];
+        CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = self.searchTerm.segmentModel[[self.searchTerm.selectedMutableArray[0] integerValue]];
         return mockSegment.chapter.count;
     }
 }
@@ -179,20 +183,20 @@
     if (indexPath.section == 0) {
         CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[indexPath.row];
         cell.title = segment.segmentName;
-        cell.isCurrent = indexPath.row == self.searchTerm.selectedIndexPath.section;
+        cell.isCurrent = indexPath.row == [self.searchTerm.selectedMutableArray[0] integerValue];
     }else {
-        CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[self.searchTerm.selectedIndexPath.section];
+        CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[[self.searchTerm.selectedMutableArray[0] integerValue]];
         CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = segment.chapter[indexPath.row];
         cell.title = chapter.chapterName;
-        cell.isCurrent = indexPath.row == self.searchTerm.selectedIndexPath.row;
+        cell.isCurrent = indexPath.row == [self.searchTerm.selectedMutableArray[1] integerValue];
     }
     WEAK_SELF
     cell.courseFilterButtonActionBlock = ^{
         STRONG_SELF
         if (indexPath.section == 0) {
-            self.searchTerm.selectedIndexPath = [NSIndexPath indexPathForRow:self.searchTerm.selectedIndexPath.row inSection:indexPath.row];
+            self.searchTerm.selectedMutableArray[0] = @(indexPath.row);
         }else {
-            self.searchTerm.selectedIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:self.searchTerm.selectedIndexPath.section];
+            self.searchTerm.selectedMutableArray[1] = @(indexPath.row);
         }
         [self reloadData];
     };
@@ -229,7 +233,7 @@
         CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[indexPath.row];
         return [CourseFilterCell_17 sizeForTitle:segment.segmentName];
     }else {
-        CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[self.searchTerm.selectedIndexPath.section];
+        CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[[self.searchTerm.selectedMutableArray[0] integerValue]];
         CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = segment.chapter[indexPath.row];
         return [CourseFilterCell_17 sizeForTitle:chapter.chapterName];
     }
