@@ -159,6 +159,7 @@
                     appDelegate.appDelegateHelper.courseId = [paraDic objectForKey:@"courseId"];
                     appDelegate.appDelegateHelper.projectId = [paraDic objectForKey:@"projectId"];
                     appDelegate.appDelegateHelper.seg = [paraDic objectForKey:@"cInx"];
+                    appDelegate.appDelegateHelper.courseType = [paraDic objectForKey:@"courseType"];
                 }
                 [self saveUserDataAndLogin];
                 [YXDataStatisticsManger trackEvent:@"扫码登录" label:@"扫描二维码并成功登录" parameters:nil];

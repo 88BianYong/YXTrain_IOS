@@ -130,6 +130,7 @@
                 VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
                 YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
                 course.courses_id = [paraDic objectForKey:@"courseId"];
+                course.courseType = [paraDic objectForKey:@"courseType"];
                 vc.course = course;
                 vc.seekInteger = [[paraDic objectForKey:@"cInx"] integerValue];
                 vc.fromWhere = VideoCourseFromWhere_QRCode;

@@ -312,6 +312,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
             VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
             YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
             course.courses_id = appDelegate.appDelegateHelper.courseId;
+            course.courseType = appDelegate.appDelegateHelper.courseType;
             vc.course = course;
             vc.seekInteger = [appDelegate.appDelegateHelper.seg integerValue];
             vc.fromWhere = VideoCourseFromWhere_QRCode;

@@ -65,6 +65,7 @@
 @property (nonatomic, strong) NSString<Optional> *credit;//北京项目专用
 @property (nonatomic, strong) NSString<Optional> *isSupportApp;
 @property (nonatomic, strong) NSString<Optional> *type;
+@property (nonatomic, strong) NSString<Optional> *courseType;//2017-08-01 添加 http://wiki.yanxiu.com/pages/viewpage.action?pageId=11603699
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course_quiz<Optional> *quiz;//德阳项目专用
 @end
 

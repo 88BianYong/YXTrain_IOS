@@ -23,6 +23,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 
 @property (nonatomic, assign) CGFloat oldOffsetY;
 @property (nonatomic, assign) BOOL isAllowChange;
+@property (nonatomic, copy) NSString *courseType;
 @end
 
 @implementation YXCourseViewController
@@ -142,6 +143,7 @@ static  NSString *const trackPageName = @"课程列表页面";
                 YXCourseListFetcher *fetcher = (YXCourseListFetcher *)self.dataFetcher;
                 fetcher.stageid = filter.filterID;
                 *stop = YES;
+                self.courseType = @"2";
             }
         }
     }];
@@ -264,6 +266,7 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     YXCourseListRequestItem_body_module_course *course = self.dataArray[indexPath.row];
+    course.courseType = self.courseType;
     if (course.isSupportApp.boolValue) {
         VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
         vc.course = course;
@@ -298,6 +301,11 @@ static  NSString *const trackPageName = @"课程列表页面";
     fetcher.segid = segmentItem.filterID;
     fetcher.stageid = stageItem.filterID;
     fetcher.type = @"0";//类型不进行筛选 默认全部
+    if ([stageItem.name isEqualToString:@"本地课程阶段"]) {
+        self.courseType = @"2";
+    }else {
+        self.courseType = nil;
+    }
     [self startLoading];
     [self firstPageFetch];
 }

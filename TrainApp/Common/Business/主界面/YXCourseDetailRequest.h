@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSString *stageid;
 @property (nonatomic, strong) NSString *cid;
 @property (nonatomic, strong) NSString *pid;
+@property (nonatomic, strong) NSString *courseType;
+
 @end

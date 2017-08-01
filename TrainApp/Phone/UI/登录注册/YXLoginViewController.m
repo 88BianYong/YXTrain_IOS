@@ -86,9 +86,12 @@
                 appDelegate.appDelegateHelper.courseId = [paraDic objectForKey:@"courseId"];
                 appDelegate.appDelegateHelper.projectId = [paraDic objectForKey:@"projectId"];
                 appDelegate.appDelegateHelper.seg = [paraDic objectForKey:@"cInx"];
+                appDelegate.appDelegateHelper.courseType = [paraDic objectForKey:@"courseType"];
             }else {
                 appDelegate.appDelegateHelper.courseId = nil;
                 appDelegate.appDelegateHelper.seg = nil;
+                appDelegate.appDelegateHelper.courseType = nil;
+
             }
             [[LSTSharedInstance sharedInstance].userManger login];
         }];

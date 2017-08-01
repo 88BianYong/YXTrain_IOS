@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString *courseId;
 @property (nonatomic, copy) NSString *projectId;
 @property (nonatomic, copy) NSString *seg;
+@property (nonatomic, copy) NSString *courseType;
 
 
 // 启动的根视图控制器

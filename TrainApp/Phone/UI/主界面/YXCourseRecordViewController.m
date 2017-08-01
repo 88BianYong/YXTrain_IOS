@@ -22,6 +22,9 @@ static  NSString *const trackPageName = @"看课记录页面";
 @property (nonatomic, strong) YXCourseRecordRequestItem *recordItem;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) YXModuleListRequest *moduleListRequest;
+@property (nonatomic, copy) NSString *courseType;
+
+
 @end
 
 @implementation YXCourseRecordViewController
@@ -218,6 +221,11 @@ static  NSString *const trackPageName = @"看课记录页面";
     if (kind == UICollectionElementKindSectionHeader) {
         YXCourseRecordHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"YXCourseRecordHeaderView" forIndexPath:indexPath];
         headerView.title = module.module_name;
+        if ([module.module_name isEqualToString:@"本地课程阶段"]) {
+            self.courseType = @"2";
+        }else {
+            self.courseType = nil;
+        }
         return headerView;
     }else{
         YXCourseRecordFooterView *footer = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"YXCourseRecordFooterView" forIndexPath:indexPath];
@@ -247,8 +255,10 @@ static  NSString *const trackPageName = @"看课记录页面";
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[indexPath.section];
+    YXCourseListRequestItem_body_module_course * course = module.courses[indexPath.row];
+    course.courseType = self.courseType;
     VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
-    vc.course = module.courses[indexPath.row];
+    vc.course = course;
     vc.fromWhere = VideoCourseFromWhere_Record;
     [self.navigationController pushViewController:vc animated:YES];
 }
