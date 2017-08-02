@@ -9,5 +9,7 @@
 #import "YXBaseViewController.h"
 
 @interface CourseTestViewController_17 : YXBaseViewController
-
+@property (nonatomic, strong) NSString *cID;
+@property (nonatomic, strong) NSString *stageString;
+@property (nonatomic, copy) void(^courseTestQuestionBlock)(BOOL isFullBool);
 @end

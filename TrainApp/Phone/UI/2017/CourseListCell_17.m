@@ -150,7 +150,7 @@
 
 - (void)setCourse:(CourseListRequest_17Item_Objs *)course {
     _course = course;
-    [self.courseImageView sd_setImageWithURL:[NSURL URLWithString:course.content.imgUrl] placeholderImage:[UIImage imageNamed:@"默认图片"]];
+    [self.courseImageView sd_setImageWithURL:[NSURL URLWithString:course.pic] placeholderImage:[UIImage imageNamed:@"默认图片"]];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:course.name];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:0];//调整行间距

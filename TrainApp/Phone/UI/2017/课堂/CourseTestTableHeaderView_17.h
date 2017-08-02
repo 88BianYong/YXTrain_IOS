@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CourseGetQuizesRequest_17.h"
 @interface CourseTestTableHeaderView_17 : UIView
-
+@property (nonatomic, strong) CourseGetQuizesRequest_17Item_Result *result;
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CourseGetQuizesRequest_17.h"
 @interface CourseTestHeaderView_17 : UITableViewHeaderFooterView
-@property (nonatomic, assign) NSInteger typeInteger;
+@property (nonatomic, assign) NSInteger numberInteger;
+@property (nonatomic, strong) CourseGetQuizesRequest_17Item_Result_Questions *question;
 @end

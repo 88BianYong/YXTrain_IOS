@@ -32,7 +32,7 @@
        self.mainPointLabel.text = [NSString stringWithFormat:@"需要观看%@门课程",_scheme.scheme.finishNum];
     }
     self.progressView.progress = _scheme.process.userFinishNum.floatValue / _scheme.scheme.finishNum.floatValue;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_scheme.scheme.finishNum,_scheme.process.userFinishNum]];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_scheme.process.userFinishNum,_scheme.scheme.finishNum]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"0070c9"] range:NSMakeRange(0, _scheme.process.userFinishNum.length)];
     self.scheduleLabel.attributedText = attributedString;
 }

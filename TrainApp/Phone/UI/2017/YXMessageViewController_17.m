@@ -19,8 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.titleArray = @[@{@"title":@"热点",@"normalIcon":@"热点icon-正常态",@"hightIcon":@"热点icon-点击态"},
-                    @{@"title":@"消息动态",@"normalIcon":@"消息动态icon-正常态",@"hightIcon":@"消息动态icon-点击态"},
-                    @{@"title":@"私信坊主",@"normalIcon":@"私信",@"hightIcon":@"私信点击"}];
+                    @{@"title":@"消息动态",@"normalIcon":@"消息动态icon-正常态",@"hightIcon":@"消息动态icon-点击态"}/*,
+                    @{@"title":@"私信坊主",@"normalIcon":@"私信",@"hightIcon":@"私信点击"}*/];
     [self setupUI];
     [self setupLayout];
 }

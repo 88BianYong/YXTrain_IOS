@@ -52,7 +52,7 @@
     }];
 }
 #pragma mark - set
-- (void)setAnswer:(CourseGetQuizesRequest_17Item_Result_Questions_AnswerJson *)answer {
+- (void)setAnswer:(CourseGetQuizesRequest_17Item_Result_Questions_Questions_AnswerJson *)answer {
     _answer = answer;
     self.answerLabel.text = _answer.content;
     self.chooseImageView.image = [UIImage imageNamed:_answer.isChoose.boolValue ? @"选择" : @"未选择"];

@@ -10,6 +10,6 @@
 #import "CourseGetQuizesRequest_17.h"
 
 @interface CourseTestCell_17 : UITableViewCell
-@property (nonatomic, strong) CourseGetQuizesRequest_17Item_Result_Questions_AnswerJson *answer;
+@property (nonatomic, strong) CourseGetQuizesRequest_17Item_Result_Questions_Questions_AnswerJson *answer;
 @property (nonatomic, assign) BOOL isFullscreen;
 @end

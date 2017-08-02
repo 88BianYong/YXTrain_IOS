@@ -32,6 +32,13 @@
 @end
 
 @implementation YXCourseDetailItem
++ (JSONKeyMapper *)keyMapper
+{
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"courseschememode": @"courseSchemeMode",
+                                                       @"openquiztime": @"openQuizTime",
+                                                       @"userquizstatus": @"userQuizStatus",
+                                                       @"quiznum": @"quizNum"}];
+}
 - (YXCourseDetailItem_chapter_fragment *)willPlayVideoSeek:(NSInteger)integer {
     if (self.playIndexPath == nil) {
         self.playIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];

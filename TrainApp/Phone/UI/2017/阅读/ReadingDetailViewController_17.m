@@ -50,7 +50,7 @@
 - (void)setupUI {
     self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.estimatedRowHeight = 150.0;
@@ -86,7 +86,7 @@
             [self.readButton setTitle:@"我已阅读文档内容" forState:UIControlStateNormal];
         }else {
             self.readButton.enabled = NO;
-            [self readDocumentTime:self.readButton time:self.reading.timeLength.integerValue];
+            [self readDocumentTime:self.readButton time:10];
         }
     }
 

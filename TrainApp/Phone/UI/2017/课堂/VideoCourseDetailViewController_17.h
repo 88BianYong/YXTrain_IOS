@@ -13,4 +13,6 @@
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course *course;
 @property (nonatomic, assign) NSInteger seekInteger;
 @property (nonatomic, assign) VideoCourseFromWhere fromWhere;
+@property (nonatomic, strong) NSString *stageString;
+
 @end

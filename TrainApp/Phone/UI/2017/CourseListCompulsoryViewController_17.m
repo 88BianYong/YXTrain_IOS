@@ -170,6 +170,7 @@
     if (course.isSupportApp.boolValue) {
        VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
         vc.course = course;
+        vc.stageString = self.stageString;
         vc.fromWhere = VideoCourseFromWhere_Detail;
         [self.navigationController pushViewController:vc animated:YES];
     }

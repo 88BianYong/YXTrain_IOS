@@ -202,7 +202,7 @@
 #pragma mark - set
 - (void)setQuestion:(YXVideoQuestionsRequestItem_Result_Questions_Question *)question {
     _question = question;
-    if (_question.types.integerValue == 4) {
+    if (_question.types.integerValue == 4) {//正确答案的no，判断题比较特殊，1=是(no=1) 0=否(no=2)
         [_question.answerJson enumerateObjectsUsingBlock:^(YXVideoQuestionsRequestItem_Result_Questions_Question_AnswerJson *obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if (obj.no.integerValue == 2) {
                 obj.no = @"0";

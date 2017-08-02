@@ -440,6 +440,9 @@
 		92B2C0A91DD43B6F003E27F9 /* ActivityDetailTableSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B2C0A81DD43B6F003E27F9 /* ActivityDetailTableSectionView.m */; };
 		92B2C0AC1DD45450003E27F9 /* ActivityDetailStepCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B2C0AB1DD45450003E27F9 /* ActivityDetailStepCell.m */; };
 		92B615DF1ED3EA7700F1FDE7 /* CourseDetailContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B615DE1ED3EA7600F1FDE7 /* CourseDetailContainerView.m */; };
+		92B87F3F1F31BD4C00F068C0 /* CourseSubmitUserQuizesRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B87F3E1F31BD4C00F068C0 /* CourseSubmitUserQuizesRequest_17.m */; };
+		92B87F421F31C9D700F068C0 /* CourseTestNotPassTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B87F411F31C9D700F068C0 /* CourseTestNotPassTableHeaderView_17.m */; };
+		92B87F451F31C9F000F068C0 /* CourseTestPassTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B87F441F31C9F000F068C0 /* CourseTestPassTableHeaderView_17.m */; };
 		92B9583C1F189E1600A07203 /* CourseListFetcher_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9583B1F189E1600A07203 /* CourseListFetcher_17.m */; };
 		92B9583F1F18A2F900A07203 /* CourseListTableViewHeader_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B9583E1F18A2F900A07203 /* CourseListTableViewHeader_17.m */; };
 		92B958421F18A34200A07203 /* CourseListHeader_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B958411F18A34200A07203 /* CourseListHeader_17.m */; };
@@ -1523,6 +1526,12 @@
 		92B2C0AB1DD45450003E27F9 /* ActivityDetailStepCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailStepCell.m; sourceTree = "<group>"; };
 		92B615DD1ED3EA7600F1FDE7 /* CourseDetailContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailContainerView.h; sourceTree = "<group>"; };
 		92B615DE1ED3EA7600F1FDE7 /* CourseDetailContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailContainerView.m; sourceTree = "<group>"; };
+		92B87F3D1F31BD4C00F068C0 /* CourseSubmitUserQuizesRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseSubmitUserQuizesRequest_17.h; sourceTree = "<group>"; };
+		92B87F3E1F31BD4C00F068C0 /* CourseSubmitUserQuizesRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseSubmitUserQuizesRequest_17.m; sourceTree = "<group>"; };
+		92B87F401F31C9D700F068C0 /* CourseTestNotPassTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseTestNotPassTableHeaderView_17.h; path = "课堂/CourseTestNotPassTableHeaderView_17.h"; sourceTree = "<group>"; };
+		92B87F411F31C9D700F068C0 /* CourseTestNotPassTableHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseTestNotPassTableHeaderView_17.m; path = "课堂/CourseTestNotPassTableHeaderView_17.m"; sourceTree = "<group>"; };
+		92B87F431F31C9F000F068C0 /* CourseTestPassTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseTestPassTableHeaderView_17.h; path = "课堂/CourseTestPassTableHeaderView_17.h"; sourceTree = "<group>"; };
+		92B87F441F31C9F000F068C0 /* CourseTestPassTableHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseTestPassTableHeaderView_17.m; path = "课堂/CourseTestPassTableHeaderView_17.m"; sourceTree = "<group>"; };
 		92B9583A1F189E1600A07203 /* CourseListFetcher_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListFetcher_17.h; sourceTree = "<group>"; };
 		92B9583B1F189E1600A07203 /* CourseListFetcher_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListFetcher_17.m; sourceTree = "<group>"; };
 		92B9583D1F18A2F900A07203 /* CourseListTableViewHeader_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListTableViewHeader_17.h; sourceTree = "<group>"; };
@@ -3644,6 +3653,10 @@
 				9222F6A81F2747A7004A75FE /* CourseDetailContainerView_17.m */,
 				9222F6AA1F282455004A75FE /* CourseTestTableHeaderView_17.h */,
 				9222F6AB1F282455004A75FE /* CourseTestTableHeaderView_17.m */,
+				92B87F401F31C9D700F068C0 /* CourseTestNotPassTableHeaderView_17.h */,
+				92B87F411F31C9D700F068C0 /* CourseTestNotPassTableHeaderView_17.m */,
+				92B87F431F31C9F000F068C0 /* CourseTestPassTableHeaderView_17.h */,
+				92B87F441F31C9F000F068C0 /* CourseTestPassTableHeaderView_17.m */,
 				9222F6AD1F28247B004A75FE /* CourseTestHeaderView_17.h */,
 				9222F6AE1F28247B004A75FE /* CourseTestHeaderView_17.m */,
 				9222F6B01F2824AB004A75FE /* CourseTestCell_17.h */,
@@ -4133,6 +4146,8 @@
 				928C25411F1DB01E00FA853A /* CourseHistoryListFetcher_17.m */,
 				9222F6A11F272EBD004A75FE /* CourseGetQuizesRequest_17.h */,
 				9222F6A21F272EBD004A75FE /* CourseGetQuizesRequest_17.m */,
+				92B87F3D1F31BD4C00F068C0 /* CourseSubmitUserQuizesRequest_17.h */,
+				92B87F3E1F31BD4C00F068C0 /* CourseSubmitUserQuizesRequest_17.m */,
 			);
 			path = "课程";
 			sourceTree = "<group>";
@@ -5284,6 +5299,7 @@
 				924C9A111EA9DC740017B31B /* TrainRedPointManger.m in Sources */,
 				E9A7B5D61DDADD0A00136335 /* ActivityListCell.m in Sources */,
 				CB748EE01D224B48004BCFBF /* YXTopFilterView.m in Sources */,
+				92B87F451F31C9F000F068C0 /* CourseTestPassTableHeaderView_17.m in Sources */,
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
 				92BBE0481F20AE60009230AC /* HomeworkListClaimCell_17.m in Sources */,
@@ -5349,6 +5365,7 @@
 				922F3ACB1D2A65EA00CBF7C3 /* YXWorkshopCell.m in Sources */,
 				92BBE0301F1F6405009230AC /* ActivityFilterFooterView_17.m in Sources */,
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
+				92B87F421F31C9D700F068C0 /* CourseTestNotPassTableHeaderView_17.m in Sources */,
 				CB4D91831D1A73EA00B5F1D0 /* YXDatumSearchViewController.m in Sources */,
 				92EDC7B71D5C6C61005B91DD /* YXWriteHomeworkInfoViewController.m in Sources */,
 				CB8524641D334BFB009FA14B /* HJCActionSheet.m in Sources */,
@@ -5494,6 +5511,7 @@
 				7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */,
 				9241FFDC1E1F39E30015B587 /* ActivityDelReplyRequest.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
+				92B87F3F1F31BD4C00F068C0 /* CourseSubmitUserQuizesRequest_17.m in Sources */,
 				924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */,
 				E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,

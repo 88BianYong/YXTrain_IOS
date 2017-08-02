@@ -37,6 +37,9 @@
 #pragma mark - set
 - (void)setSearchTerm:(CourseListRequest_17Item_SearchTerm *)searchTerm {
     _searchTerm = searchTerm;
+    if (_searchTerm == nil) {
+        return;
+    }
     [self.selectedMutableArray removeAllObjects];
     [self.selectedMutableArray addObjectsFromArray:_searchTerm.selectedMutableArray];
     [self setupCourseFilterContent];

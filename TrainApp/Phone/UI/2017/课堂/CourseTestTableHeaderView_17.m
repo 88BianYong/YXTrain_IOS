@@ -21,6 +21,12 @@
     }
     return self;
 }
+#pragma mark - set
+- (void)setResult:(CourseGetQuizesRequest_17Item_Result *)result {
+    _result = result;
+    self.explainLabel.text = [NSString stringWithFormat:@"需要答对%.0f道及以上的题目才能通过课程测验",ceil((float)_result.questions.count/10.0f*6.0f)];
+    _lastAnswerLabel.text = [NSString stringWithFormat:@"上次作答结果:(答对%@道,答错%@道),%@",_result.correctNum,_result.wrongNum,_result.lastTime];
+}
 #pragma mark - setup
 - (void)setupUI {
     self.containerView = [[UIView alloc] init];
@@ -29,7 +35,7 @@
     self.explainLabel = [[UILabel alloc] init];
     self.explainLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.explainLabel.font = [UIFont boldSystemFontOfSize:13.0f];
-    self.explainLabel.text = @"需要答对6道及以上的题目才能通过课程测验";
+    self.explainLabel.text = @"      ";
     [self.containerView addSubview:self.explainLabel];
     self.lastAnswerLabel = [[UILabel alloc] init];
     self.lastAnswerLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];

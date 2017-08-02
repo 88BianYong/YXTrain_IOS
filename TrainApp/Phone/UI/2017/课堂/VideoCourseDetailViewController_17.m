@@ -88,6 +88,15 @@
     self.containerView.courseDetailContainerButtonBlock = ^{
         STRONG_SELF
         CourseTestViewController_17 *VC = [[CourseTestViewController_17 alloc] init];
+        VC.cID = self.course.courses_id;
+        VC.stageString = self.stageString;
+        VC.courseTestQuestionBlock = ^(BOOL isFullBool) {
+            if (isFullBool) {
+                [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.top.equalTo(self.playMangerView.mas_bottom).offset(-71.0f);
+                }];
+            }
+        };
         [self.navigationController pushViewController:VC animated:YES];
     };
     self.containerView.hidden = YES;

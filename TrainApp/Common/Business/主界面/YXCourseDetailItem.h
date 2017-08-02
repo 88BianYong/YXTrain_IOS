@@ -73,5 +73,11 @@
 @property (nonatomic, strong) NSIndexPath<Optional> *playIndexPath;
 @property (nonatomic, copy) NSString<Optional> *vhead;
 @property (nonatomic, copy) NSString<Optional> *vheadUrl;
+
+
+@property (nonatomic, copy) NSString<Optional> *courseSchemeMode;//课程的考核模式，0：按时长考核，1：按完成考核
+@property (nonatomic, copy) NSString<Optional> *openQuizTime;//按完成考核时，开启测验的时间点
+@property (nonatomic, copy) NSString<Optional> *userQuizStatus;//按完成考核时，用户参加测验的结果（0：未合格，1合格）
+@property (nonatomic, copy) NSString<Optional> *quizNum;//该课程下随堂练的个数（按时长考核时固定为0）
 - (YXCourseDetailItem_chapter_fragment *)willPlayVideoSeek:(NSInteger)integer;
 @end
