@@ -17,6 +17,7 @@
 #import "VideoCourseDetailViewController_17.h"
 @interface CourseListCompulsoryViewController_17 ()
 @property (nonatomic, strong) CourseListFilterView_17 *filterView;
+@property (nonatomic, strong) CourseListRequest_17Item_Scheme *schemeItem;
 
 @end
 
@@ -34,10 +35,17 @@
     WEAK_SELF
     fetcher.courseListItemBlock = ^(CourseListRequest_17Item *model) {
         STRONG_SELF
+        if (model.scheme.count > 0) {
+            self.schemeItem = model.scheme[0];
+        }
+        if (self.schemeItem.scheme.type != 0) {
+            [self reforeUI];
+        }
         if (self.filterView.searchTerm == nil) {
             self.filterView.searchTerm = model.searchTerm;
             self.filterView.hidden = NO;
         }
+
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
@@ -46,6 +54,15 @@
 }
 - (void)setupUI {
     self.filterView = [[CourseListFilterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
+    WEAK_SELF
+    self.filterView.courseListFilterSelectedBlock = ^(NSMutableArray *selectedArray) {
+        STRONG_SELF
+        CourseListFetcher_17 *fetcher = (CourseListFetcher_17 *)self.dataFetcher;
+        fetcher.segment = selectedArray[0];
+        fetcher.study = selectedArray[1];
+        [self startLoading];
+        [self firstPageFetch];
+    };
     self.filterView.hidden = YES;
     [self.view addSubview:self.filterView];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,6 +86,16 @@
     [self.tableView registerClass:[CourseListHeader_17 class] forHeaderFooterViewReuseIdentifier:@"CourseListHeader_17"];
     [self setupObservers];
 
+}
+- (void)reforeUI {
+    self.filterView.alpha = 0.0f;
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.top.equalTo(self.view.mas_top);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -123,6 +150,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CourseListHeader_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CourseListHeader_17"];
+    headerView.scheme = self.schemeItem;
     return headerView;
 }
 

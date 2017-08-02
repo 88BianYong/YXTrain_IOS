@@ -22,11 +22,13 @@
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *selectedMutableArray;
 @end
 @implementation CourseListFilterView_17
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+        self.selectedMutableArray = [[NSMutableArray alloc] initWithCapacity:2];
         [self setupUI];
         [self setupLayout];
     }
@@ -35,6 +37,33 @@
 #pragma mark - set
 - (void)setSearchTerm:(CourseListRequest_17Item_SearchTerm *)searchTerm {
     _searchTerm = searchTerm;
+    [self.selectedMutableArray removeAllObjects];
+    [self.selectedMutableArray addObjectsFromArray:_searchTerm.selectedMutableArray];
+    [self setupCourseFilterContent];
+}
+
+- (NSMutableArray *)setupCourseFilterContent {
+    NSInteger segmentInteger = [self.searchTerm.selectedMutableArray[0] integerValue];
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] initWithCapacity:2];
+    if (segmentInteger >= 0) {
+        CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[segmentInteger];
+        self.segmentContentLabel.text = segment.segmentName;
+        [mutableArray addObject:segment.segmentID];
+    }else {
+        self.segmentContentLabel.text = @"请选择";
+        [mutableArray addObject:@"0"];
+    }
+    NSInteger studyInteger = [self.searchTerm.selectedMutableArray[1] integerValue];
+    if (studyInteger >= 0) {
+         CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[segmentInteger];
+        CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = segment.chapter[studyInteger];
+        self.studyContentLabel.text = chapter.chapterName;
+        [mutableArray addObject:chapter.chapterID];
+    }else {
+        self.studyContentLabel.text = @"请选择";
+        [mutableArray addObject:@"0"];
+    }
+    return mutableArray;
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -71,10 +100,8 @@
     [self.filterButton.titleLabel setFont:[UIFont boldSystemFontOfSize:11.0f]];
     [self addSubview:self.filterButton];
     
-    self.imageView = [[UIImageView alloc] init];
-    self.imageView.backgroundColor = [UIColor redColor];
+    self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"筛选项目，选择后箭头"]];
     [self addSubview:self.imageView];
-    
     
     self.maskView = [[UIView alloc]init];
     self.maskView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
@@ -183,18 +210,17 @@
     if (indexPath.section == 0) {
         CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[indexPath.row];
         cell.title = segment.segmentName;
-        cell.isCurrent = indexPath.row == [self.searchTerm.selectedMutableArray[0] integerValue];
+        cell.isCurrent = indexPath.row == [self.selectedMutableArray[0] integerValue];
     }else {
-        CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[[self.searchTerm.selectedMutableArray[0] integerValue]];
+        CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[[self.selectedMutableArray[0] integerValue]];
         CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = segment.chapter[indexPath.row];
         cell.title = chapter.chapterName;
-        cell.isCurrent = indexPath.row == [self.searchTerm.selectedMutableArray[1] integerValue];
+        cell.isCurrent = indexPath.row == [self.selectedMutableArray[1] integerValue];
     }
     WEAK_SELF
     cell.courseFilterButtonActionBlock = ^{
         STRONG_SELF
-        self.searchTerm.selectedMutableArray[indexPath.section] = @(indexPath.row);
-
+        self.selectedMutableArray[indexPath.section] = @(indexPath.row);
         [self reloadData];
     };
     return cell;
@@ -215,7 +241,14 @@
         footerView.courseFilterCompleteBlock = ^(BOOL isCancleBool) {
             STRONG_SELF
             if (isCancleBool) {
-                
+                [self.selectedMutableArray removeAllObjects];
+                [self.selectedMutableArray addObjectsFromArray:self.searchTerm.selectedMutableArray];
+            }else {
+                if ([self.selectedMutableArray[0] integerValue] != [self.searchTerm.selectedMutableArray[0] integerValue] || [self.selectedMutableArray[1] integerValue] != [self.searchTerm.selectedMutableArray[1] integerValue]) {
+                    [self.searchTerm.selectedMutableArray removeAllObjects];
+                    [self.searchTerm.selectedMutableArray addObjectsFromArray:self.selectedMutableArray];
+                    BLOCK_EXEC(self.courseListFilterSelectedBlock,[self setupCourseFilterContent]);
+                }
             }
             [self hideFilterSelectionView];
         };
@@ -230,7 +263,7 @@
         CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[indexPath.row];
         return [CourseFilterCell_17 sizeForTitle:segment.segmentName];
     }else {
-        CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[[self.searchTerm.selectedMutableArray[0] integerValue]];
+        CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[[self.selectedMutableArray[0] integerValue]];
         CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = segment.chapter[indexPath.row];
         return [CourseFilterCell_17 sizeForTitle:chapter.chapterName];
     }

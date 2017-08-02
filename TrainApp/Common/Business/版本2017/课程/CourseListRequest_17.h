@@ -84,6 +84,8 @@
 @property (nonatomic, copy) NSString<Optional> *userFinishScore;
 
 @end
+@protocol CourseListRequest_17Item_Scheme <NSObject>
+@end
 @interface CourseListRequest_17Item_Scheme : JSONModel
 @property (nonatomic, strong) CourseListRequest_17Item_Scheme_Process<Optional> *process;
 @property (nonatomic, strong) CourseListRequest_17Item_Scheme_Scheme<Optional> *scheme;
@@ -117,7 +119,7 @@
 
 @interface CourseListRequest_17Item : HttpBaseRequestItem
 @property (nonatomic, strong) CourseListRequest_17Item_SearchTerm<Optional> *searchTerm;
-@property (nonatomic, strong) CourseListRequest_17Item_Scheme<Optional> *scheme;
+@property (nonatomic, strong) NSArray<CourseListRequest_17Item_Scheme,Optional> *scheme;
 @property (nonatomic, copy) NSString<Optional> *descr;
 @property (nonatomic, strong) NSArray<CourseListRequest_17Item_Objs, Optional> *objs;
 @property (nonatomic, copy) NSString<Optional> *count;

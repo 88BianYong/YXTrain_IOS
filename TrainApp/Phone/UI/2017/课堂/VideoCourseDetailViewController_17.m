@@ -14,6 +14,8 @@
 #import "VideoCourseCommentViewController.h"
 #import "AppDelegate.h"
 #import "CourseTestViewController_17.h"
+#import "YXCourseDetailRequest.h"
+#import "YXModuleDetailRequest.h"
 @interface VideoCourseDetailViewController_17 ()
 @property (nonatomic, strong) VideoPlayManagerView *playMangerView;
 @property (nonatomic, strong) CourseDetailContainerView_17 *containerView;
@@ -21,6 +23,10 @@
 @property (nonatomic, strong) VideoCourseChapterViewController *chapterVC;
 @property (nonatomic, strong) VideoCourseIntroductionViewController *introductionVC;
 @property (nonatomic, strong) VideoCourseCommentViewController *commentVC;
+
+@property (nonatomic, strong) YXModuleDetailRequest *moduleDetailRequest;
+@property (nonatomic, strong) YXCourseDetailRequest *courseDetailRequest;
+
 @property (nonatomic, assign) BOOL isFullscreen;
 @property (nonatomic, assign) BOOL isShowClossworkViewBool;//是否正在显示随堂练界面
 @end
@@ -44,7 +50,7 @@
     [self setupUI];
     [self setupLayout];
     [self startLoading];
-    
+    [self requestForCourseDetail];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -69,13 +75,13 @@
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self startLoading];
-        [self.chapterVC requestForCourseDetail];
+        [self requestForCourseDetail];
     };
     self.dataErrorView = [[DataErrorView alloc] init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self startLoading];
-        [self.chapterVC requestForCourseDetail];
+        [self requestForCourseDetail];
     };
     
     self.containerView = [[CourseDetailContainerView_17 alloc] init];
@@ -106,7 +112,7 @@
         if (self.playMangerView.playStatus == VideoPlayManagerStatus_Finish) {
             [self.chapterVC readyNextWillplayVideoAgain:YES];
         }else {
-            [self.chapterVC requestForCourseDetail];
+            [self requestForCourseDetail];
         }
     }];
     [self.view addSubview:self.playMangerView];
@@ -115,16 +121,8 @@
     self.chapterVC.course = self.course;
     self.chapterVC.seekInteger = self.seekInteger;
     self.chapterVC.fromWhere = self.fromWhere;
-    [self.chapterVC setVideoCourseChapterFragmentCompleteBlock:^(NSError *error, YXFileItemBase *fileItem, BOOL isHaveVideo) {
+    [self.chapterVC setVideoCourseChapterFragmentCompleteBlock:^(YXFileItemBase *fileItem, BOOL isHaveVideo) {
         STRONG_SELF
-        [self stopLoading];
-        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = YES;
-        data.localDataExist = NO;
-        data.error = error;
-        if ([self handleRequestData:data]) {
-            return;
-        }
         self.playMangerView.hidden = NO;
         self.containerView.hidden = NO;
         if (fileItem) {
@@ -139,7 +137,6 @@
     [self.chapterVC setVideoCourseIntroductionCompleteBlock:^(YXCourseDetailItem *courseItem) {
         STRONG_SELF
         self.title = courseItem.course_title;
-        self.introductionVC.courseItem = courseItem;
     }];
     self.introductionVC = [[VideoCourseIntroductionViewController alloc] init];
     self.introductionVC.title = self.title;
@@ -300,4 +297,54 @@
         [self remakeForHalfSize];
     }
 }
+#pragma mark - request
+- (void)requestForCourseDetail{
+    if (self.course.is_selected.integerValue == 0 && self.fromWhere == VideoCourseFromWhere_Detail) {
+        [self.courseDetailRequest stopRequest];
+        self.courseDetailRequest = [[YXCourseDetailRequest alloc]init];
+        self.courseDetailRequest.cid = self.course.courses_id;
+        self.courseDetailRequest.stageid = self.course.module_id;
+        self.courseDetailRequest.courseType = self.course.courseType;
+        self.courseDetailRequest.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+        WEAK_SELF
+        [self.courseDetailRequest startRequestWithRetClass:[YXCourseDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+            STRONG_SELF
+            [self stopLoading];
+            YXCourseDetailRequestItem *item = (YXCourseDetailRequestItem *)retItem;
+            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+            data.requestDataExist = item.body.chapters.count != 0;
+            data.localDataExist = NO;
+            data.error = error;
+            if ([self handleRequestData:data]) {
+                return;
+            }
+            [self.chapterVC dealWithCourseItem:item.body];
+            self.introductionVC.courseItem = item.body;
+        }];
+    }else{
+        [self.moduleDetailRequest stopRequest];
+        self.moduleDetailRequest = [[YXModuleDetailRequest alloc]init];
+        self.moduleDetailRequest.cid = self.course.courses_id;
+        self.moduleDetailRequest.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
+        self.moduleDetailRequest.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+        self.moduleDetailRequest.courseType = self.course.courseType;
+        
+        WEAK_SELF
+        [self.moduleDetailRequest startRequestWithRetClass:[YXModuleDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+            STRONG_SELF
+            [self stopLoading];
+            YXModuleDetailRequestItem *item = (YXModuleDetailRequestItem *)retItem;
+            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+            data.requestDataExist = item.body.chapters.count != 0;
+            data.localDataExist = NO;
+            data.error = error;
+            if ([self handleRequestData:data]) {
+                return;
+            }
+            [self.chapterVC dealWithCourseItem:item.body];
+            self.introductionVC.courseItem = item.body;
+        }];
+    }
+}
+
 @end

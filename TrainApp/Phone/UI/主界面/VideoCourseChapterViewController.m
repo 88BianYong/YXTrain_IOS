@@ -14,8 +14,6 @@
 #import "YXFileRecordManager.h"
 @interface VideoCourseChapterViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) YXModuleDetailRequest *moduleDetailRequest;
-@property (nonatomic, strong) YXCourseDetailRequest *courseDetailRequest;
 @property (nonatomic, strong) YXCourseDetailItem *courseItem;
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 @property (nonatomic, copy) VideoCourseChapterFragmentCompleteBlock fragmentBlock;
@@ -34,7 +32,6 @@
     // Do any additional setup after loading the view.
     self.title = self.course.course_title;
     [self setupUI];
-    [self requestForCourseDetail];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -65,67 +62,7 @@
     }];
     [self.tableView registerClass:[YXCourseDetailCell class] forCellReuseIdentifier:@"YXCourseDetailCell"];
     [self.tableView registerClass:[YXCourseDetailHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXCourseDetailHeaderView"];
-    WEAK_SELF
-    self.errorView = [[YXErrorView alloc]init];
-    self.errorView.retryBlock = ^{
-        STRONG_SELF
-        [self requestForCourseDetail];
-    };
-    self.emptyView = [[YXEmptyView alloc]init];
-    self.dataErrorView = [[DataErrorView alloc]init];
-    self.dataErrorView.refreshBlock = ^{
-        STRONG_SELF
-        [self requestForCourseDetail];
-    };
 }
-
-- (void)requestForCourseDetail{
-    if (self.course.is_selected.integerValue == 0 && self.fromWhere == VideoCourseFromWhere_Detail) {
-        [self.courseDetailRequest stopRequest];
-        self.courseDetailRequest = [[YXCourseDetailRequest alloc]init];
-        self.courseDetailRequest.cid = self.course.courses_id;
-        self.courseDetailRequest.stageid = self.course.module_id;
-        self.courseDetailRequest.courseType = self.course.courseType;
-        self.courseDetailRequest.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-        WEAK_SELF
-        [self.courseDetailRequest startRequestWithRetClass:[YXCourseDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-            STRONG_SELF
-            YXCourseDetailRequestItem *item = (YXCourseDetailRequestItem *)retItem;
-            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-            data.requestDataExist = item.body.chapters.count != 0;
-            data.localDataExist = NO;
-            data.error = error;
-            if ([self handleRequestData:data]) {
-                BLOCK_EXEC(self.fragmentBlock,error,nil,NO);
-                return;
-            }
-            [self dealWithCourseItem:item.body];
-        }];
-    }else{
-        [self.moduleDetailRequest stopRequest];
-        self.moduleDetailRequest = [[YXModuleDetailRequest alloc]init];
-        self.moduleDetailRequest.cid = self.course.courses_id;
-        self.moduleDetailRequest.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
-        self.moduleDetailRequest.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-        self.moduleDetailRequest.courseType = self.course.courseType;
-
-        WEAK_SELF
-        [self.moduleDetailRequest startRequestWithRetClass:[YXModuleDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-            STRONG_SELF
-            YXModuleDetailRequestItem *item = (YXModuleDetailRequestItem *)retItem;
-            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-            data.requestDataExist = item.body.chapters.count != 0;
-            data.localDataExist = NO;
-            data.error = error;
-            if ([self handleRequestData:data]) {
-                BLOCK_EXEC(self.fragmentBlock,error,nil,NO);
-                return;
-            }
-            [self dealWithCourseItem:item.body];
-        }];
-    }
-}
-
 - (void)dealWithCourseItem:(YXCourseDetailItem *)courseItem{
     courseItem.course_id = self.course.courses_id;
     self.courseItem = courseItem;
@@ -137,12 +74,12 @@
     if (fragment) {
         self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
         [[LSTSharedInstance sharedInstance].fileRecordManager saveRecordWithFilename:fragment.fragment_name url:fragment.url];
-        BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
+        BLOCK_EXEC(self.fragmentBlock,self.fileItem,YES);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
         [LSTSharedInstance sharedInstance].recordManager.chapterIndex = self.courseItem.playIndexPath.section;
         [LSTSharedInstance sharedInstance].recordManager.fragmentIndex = self.courseItem.playIndexPath.row;
     }else {
-        BLOCK_EXEC(self.fragmentBlock,nil,nil,NO);
+        BLOCK_EXEC(self.fragmentBlock,nil,NO);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
     }
     [self.tableView reloadData];
@@ -160,12 +97,12 @@
     if (fragment) {
         self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
         [[LSTSharedInstance sharedInstance].fileRecordManager saveRecordWithFilename:fragment.fragment_name url:fragment.url];
-        BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
+        BLOCK_EXEC(self.fragmentBlock,self.fileItem,YES);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
         [LSTSharedInstance sharedInstance].recordManager.chapterIndex = self.courseItem.playIndexPath.section;
         [LSTSharedInstance sharedInstance].recordManager.fragmentIndex = self.courseItem.playIndexPath.row;
     }else {
-        BLOCK_EXEC(self.fragmentBlock,nil,nil,YES);
+        BLOCK_EXEC(self.fragmentBlock,nil,YES);
         BLOCK_EXEC(self.introductionBlock,self.courseItem);
     }
     [self.tableView reloadData];
@@ -250,7 +187,7 @@
     self.fileItem = [self fileItemBaseFormatForChapterFragment:fragment];
     if (self.fileItem.type == YXFileTypeVideo) {
         self.courseItem.playIndexPath = indexPath;
-        BLOCK_EXEC(self.fragmentBlock,nil,self.fileItem,YES);
+        BLOCK_EXEC(self.fragmentBlock,self.fileItem,YES);
     }else{
         [self.fileItem browseFile];
     }

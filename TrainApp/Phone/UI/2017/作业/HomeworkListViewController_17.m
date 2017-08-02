@@ -66,7 +66,7 @@
         [floatingView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(window);
         }];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkList];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainFirstGoInHomeworkList_17];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }

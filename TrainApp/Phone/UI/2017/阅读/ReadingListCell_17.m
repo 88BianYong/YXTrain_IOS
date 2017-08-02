@@ -16,6 +16,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.frame = [UIScreen mainScreen].bounds;
+        [self layoutIfNeeded];
         [self setupUI];
         [self setupLayout];
     }
@@ -29,8 +31,12 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.edges.equalTo(self);
+    }];
     self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.nameLabel.numberOfLines = 0;
     self.nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.nameLabel];
     
@@ -44,8 +50,9 @@
 - (void)setupLayout {
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
-        make.centerY.equalTo(self.contentView.mas_centerY);
         make.right.equalTo(self.chooseImageView.mas_left).offset(-10.0f);
+        make.top.equalTo(self.contentView.mas_top).offset(15.0f);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
     }];
     [self.chooseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-10.0f);

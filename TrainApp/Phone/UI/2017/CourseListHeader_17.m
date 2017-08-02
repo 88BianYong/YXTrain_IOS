@@ -24,15 +24,23 @@
     return self;
 }
 #pragma mark - set
-- (void)setCourse:(CourseListRequest_17Item_Objs *)course {
-    _course = course;
-    
+- (void)setScheme:(CourseListRequest_17Item_Scheme *)scheme {
+    _scheme = scheme;
+    if (_scheme.scheme.type.integerValue == 0) {//时长
+        self.mainPointLabel.text = [NSString stringWithFormat:@"需要观看%@分钟课程",_scheme.scheme.finishNum];
+    }else {
+       self.mainPointLabel.text = [NSString stringWithFormat:@"需要观看%@门课程",_scheme.scheme.finishNum];
+    }
+    self.progressView.progress = _scheme.process.userFinishNum.floatValue / _scheme.scheme.finishNum.floatValue;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_scheme.scheme.finishNum,_scheme.process.userFinishNum]];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"0070c9"] range:NSMakeRange(0, _scheme.process.userFinishNum.length)];
+    self.scheduleLabel.attributedText = attributedString;
 }
 #pragma mark - setupUI
 - (void)setupUI {
     self.mainPointLabel = [[UILabel alloc] init];
     self.mainPointLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.mainPointLabel.text = @"你熟练度会计分录卡迪夫;拉的屎啦咖啡";
+    self.mainPointLabel.text = @"课程";
     self.mainPointLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.mainPointLabel];
     

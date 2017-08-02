@@ -15,6 +15,8 @@
 @implementation NoticeBriefCell_17
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.frame = [UIScreen mainScreen].bounds;
+        [self layoutIfNeeded];
         [self setupUI];
         [self setupLayout];
     }
@@ -28,8 +30,12 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
+        make.edges.equalTo(self);
+    }];
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
+    self.titleLabel.numberOfLines = 0;
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.titleLabel];
     
@@ -46,9 +52,12 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
         make.top.equalTo(self.contentView.mas_top).offset(15.0f);
+        make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
     }];
     [self.timeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
+        make.top.equalTo(self.titleLabel.mas_bottom).offset(10.0f);
+        make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {

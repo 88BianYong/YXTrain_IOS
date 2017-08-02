@@ -16,6 +16,7 @@
 #import "VideoCourseDetailViewController.h"
 @interface CourseListElectiveViewController_17 ()
 @property (nonatomic, strong) CourseListFilterView_17 *filterView;
+@property (nonatomic, strong) CourseListRequest_17Item_Scheme *schemeItem;
 @end
 
 @implementation CourseListElectiveViewController_17
@@ -24,16 +25,19 @@
 }
 - (void)viewDidLoad {
     CourseListFetcher_17 *fetcher = [[CourseListFetcher_17 alloc]init];
-    fetcher.stageID = @"";
-    fetcher.study = @"";
-    fetcher.segment = @"";
-    fetcher.type = @"";
+    fetcher.stageID = self.stageString;
+    fetcher.study = self.studyString;
+    fetcher.segment = self.segmentString;
+    fetcher.type = @"101";
     WEAK_SELF
     fetcher.courseListItemBlock = ^(CourseListRequest_17Item *model) {
         STRONG_SELF
         if (self.filterView.searchTerm == nil) {
             self.filterView.searchTerm = model.searchTerm;
             self.filterView.hidden = NO;
+        }
+        if (model.scheme.count > 0) {
+            self.schemeItem = model.scheme[0];
         }
     };
     self.dataFetcher = fetcher;
@@ -43,6 +47,15 @@
 }
 - (void)setupUI {
     self.filterView = [[CourseListFilterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
+    WEAK_SELF
+    self.filterView.courseListFilterSelectedBlock = ^(NSMutableArray *selectedArray) {
+        STRONG_SELF
+        CourseListFetcher_17 *fetcher = (CourseListFetcher_17 *)self.dataFetcher;
+        fetcher.segment = selectedArray[0];
+        fetcher.study = selectedArray[1];
+        [self startLoading];
+        [self firstPageFetch];
+    };
     self.filterView.hidden = YES;
     [self.view addSubview:self.filterView];
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -121,6 +134,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CourseListHeader_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CourseListHeader_17"];
+    headerView.scheme = self.schemeItem;
     return headerView;
 }
 

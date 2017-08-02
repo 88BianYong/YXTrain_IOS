@@ -54,8 +54,7 @@
     [self.filterButton.titleLabel setFont:[UIFont boldSystemFontOfSize:11.0f]];
     [self addSubview:self.filterButton];
     
-    self.imageView = [[UIImageView alloc] init];
-    self.imageView.backgroundColor = [UIColor redColor];
+    self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"筛选项目，选择后箭头"]];
     [self addSubview:self.imageView];
     
 }

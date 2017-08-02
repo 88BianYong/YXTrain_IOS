@@ -14,7 +14,7 @@ typedef NS_ENUM(NSInteger, VideoCourseFromWhere) {
     VideoCourseFromWhere_QRCode,
     VideoCourseFromWhere_NotFound
 };
-typedef void (^VideoCourseChapterFragmentCompleteBlock)(NSError *error,YXFileItemBase *fileItem ,BOOL isHaveVideo);
+typedef void (^VideoCourseChapterFragmentCompleteBlock)(YXFileItemBase *fileItem ,BOOL isHaveVideo);
 
 typedef void (^VideoCourseIntroductionCompleteBlock)(YXCourseDetailItem *courseItem);
 @interface VideoCourseChapterViewController : YXBaseViewController
@@ -27,8 +27,8 @@ typedef void (^VideoCourseIntroductionCompleteBlock)(YXCourseDetailItem *courseI
 
  @param isAgain YES重新播放 NO 不
  */
+- (void)dealWithCourseItem:(YXCourseDetailItem *)courseItem;
 - (void)readyNextWillplayVideoAgain:(BOOL)isAgain;
 - (void)setVideoCourseChapterFragmentCompleteBlock:(VideoCourseChapterFragmentCompleteBlock)block;
 - (void)setVideoCourseIntroductionCompleteBlock:(VideoCourseIntroductionCompleteBlock)block;
-- (void)requestForCourseDetail;
 @end

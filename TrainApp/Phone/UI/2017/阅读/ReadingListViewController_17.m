@@ -78,8 +78,10 @@
     headerView.item = self.listItem;
     return headerView;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 45.0f;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [tableView fd_heightForCellWithIdentifier:@"ReadingListCell_17" configuration:^(ReadingListCell_17 *cell) {
+        cell.reading = self.listItem.objs[indexPath.row];
+    }];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 70.0f;
