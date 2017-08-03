@@ -22,9 +22,7 @@
     request.study =  self.study;
     request.segment = self.segment;
     request.type =  self.type;
-#warning 128
-    request.themeID = @"128";
-    //[LSTSharedInstance sharedInstance].trainManager.currentProject.themeId;
+    request.themeID =[LSTSharedInstance sharedInstance].trainManager.currentProject.themeId;
     WEAK_SELF
     [request startRequestWithRetClass:[CourseListRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

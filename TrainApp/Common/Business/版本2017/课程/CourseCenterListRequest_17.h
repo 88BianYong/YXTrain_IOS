@@ -36,4 +36,6 @@
 @property (nonatomic, copy) NSString<Optional> *tab;//my:我的， all: 全部
 @property (nonatomic, copy) NSString<Optional> *page;//页数
 @property (nonatomic, copy) NSString<Optional> *limit;//每页数量
+@property (nonatomic, copy) NSString<Optional> *themeid;
+@property (nonatomic, copy) NSString<Optional> *layerid;
 @end

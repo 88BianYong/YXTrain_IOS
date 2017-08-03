@@ -28,6 +28,8 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/course/centerlist"];
+        self.themeid = [LSTSharedInstance sharedInstance].trainManager.currentProject.themeId;
+        self.layerid = [LSTSharedInstance sharedInstance].trainManager.currentProject.layerId;
     }
     return self;
 }

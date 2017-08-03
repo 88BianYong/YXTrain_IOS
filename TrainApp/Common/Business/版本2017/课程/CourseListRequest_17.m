@@ -40,13 +40,17 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"toolid":@"toolID",
                                                        @"finishnum":@"finishNum",
-                                                       @"finishscore":@"finishScore"}];
+                                                       @"finishscore":@"finishScore",
+                                                       @"passfinishscore":@"passFinishScore",
+                                                       @"passScore":@"passScore"}];
 }
 @end
 @implementation CourseListRequest_17Item_Scheme_Process
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"userfinishnum":@"userFinishNum",
-                                                       @"userfinishscore":@"userFinishScore"}];
+                                                       @"userfinishscore":@"userFinishScore",
+                                                       @"userpassscore":@"userPassScore",
+                                                       @"ispass":@"isPass"}];
 }
 @end
 @implementation CourseListRequest_17Item_Scheme

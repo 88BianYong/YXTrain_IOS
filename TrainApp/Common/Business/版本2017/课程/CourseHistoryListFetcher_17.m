@@ -16,10 +16,9 @@
 - (void)startWithBlock:(void (^)(NSInteger, NSArray *, NSError *))aCompleteBlock {
     [self.listRequest stopRequest];
     CourseHistoryListRequest_17 *request = [[CourseHistoryListRequest_17 alloc] init];
-    request.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.page = [NSString stringWithFormat:@"%d",self.pageindex + 1];
     request.limit = [NSString stringWithFormat:@"%d",self.pagesize];
-    request.thame = [LSTSharedInstance sharedInstance].trainManager.currentProject.themeId;
+    request.stageID = self.stageID;
     WEAK_SELF
     [request startRequestWithRetClass:[CourseListRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

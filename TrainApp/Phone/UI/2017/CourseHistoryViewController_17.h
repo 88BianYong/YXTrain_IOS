@@ -9,5 +9,5 @@
 #import "PagedListViewControllerBase.h"
 
 @interface CourseHistoryViewController_17 : PagedListViewControllerBase
-
+@property (nonatomic, strong) NSString *stageString;
 @end

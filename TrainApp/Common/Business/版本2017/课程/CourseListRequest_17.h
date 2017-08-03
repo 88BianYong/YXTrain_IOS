@@ -72,17 +72,22 @@
 @property (nonatomic, copy) NSString<Optional> *time;
 @property (nonatomic, copy) NSString<Optional> *stageID;
 @property (nonatomic, copy) NSString<Optional> *isFinish;
+@property (nonatomic, copy) NSString<Optional> *courseType;
 @end
 @interface CourseListRequest_17Item_Scheme_Scheme : JSONModel
 @property (nonatomic, copy) NSString<Optional> *toolID;
 @property (nonatomic, copy) NSString<Optional> *finishNum;
 @property (nonatomic, copy) NSString<Optional> *finishScore;
 @property (nonatomic, copy) NSString<Optional> *type;
+@property (nonatomic, copy) NSString<Optional> *passFinishScore;
+@property (nonatomic, copy) NSString<Optional> *passScore;
+
 @end
 @interface CourseListRequest_17Item_Scheme_Process : JSONModel
 @property (nonatomic, copy) NSString<Optional> *userFinishNum;
 @property (nonatomic, copy) NSString<Optional> *userFinishScore;
-
+@property (nonatomic, copy) NSString<Optional> *userPassScore;
+@property (nonatomic, copy) NSString<Optional> *isPass;
 @end
 @protocol CourseListRequest_17Item_Scheme <NSObject>
 @end
@@ -105,6 +110,7 @@
 @property (nonatomic, strong) CourseListRequest_17Item_SearchTerm_DefaultValue<Optional> *defaultValue;
 @property (nonatomic, copy) NSString<Optional> *isLockStudy;
 @property (nonatomic, strong) NSArray<CourseCenterConditionRequest_17Item_CourseTypes, Optional> *coursetypes;
+@property (nonatomic, strong) NSArray<CourseListRequest_17Item_Scheme,Optional> *scheme;
 /**
  内部解析用 读取使用 segmentModel
  */

@@ -14,13 +14,15 @@
 @end
 @implementation CourseCenterConditionRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID"}];
-}
-- (instancetype)init {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
+                                                       @"themeid":@"themeID",
+                                                       @"layerid":@"layerID"}];
+}- (instancetype)init {
     if (self = [super init]) {
         self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/course/centercondition"];
         self.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-
+        self.themeID = [LSTSharedInstance sharedInstance].trainManager.currentProject.themeId;
+        self.layerID = [LSTSharedInstance sharedInstance].trainManager.currentProject.layerId;
     }
     return self;
 }

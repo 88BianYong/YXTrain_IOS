@@ -21,7 +21,7 @@
 #import "ActivityListViewController_17.h"
 #import "HomeworkListViewController_17.h"
 #import "YXMyLearningScoreViewController_17.h"
-#import "CourseCenterListViewController_17.h"
+#import "CourseCenterManagerViewController_17.h"
 #import "ExamineToolStatusRequest_17.h"
 #import "PopUpFloatingViewManager_17.h"
 typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
@@ -230,10 +230,10 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         headerView.learningChannelButtonCompleteBlock = ^(ExamineDetailRequest_17Item_MockOther *mockOther) {
             STRONG_SELF
             if (mockOther.otherType.integerValue == 1) {
-                CourseCenterListViewController_17 *VC = [[CourseCenterListViewController_17 alloc] init];
+                CourseCenterManagerViewController_17 *VC = [[CourseCenterManagerViewController_17 alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
             }else  {
-                [self showToast:@"相关功能赞为开放"];
+                [self showToast:@"相关功能暂未开放"];
             }
         };
         return headerView;
@@ -312,7 +312,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     WEAK_SELF
     cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool) {
         STRONG_SELF
-        if (tool.status.integerValue > 0 || 1){
+        if (tool.status.integerValue > 0){
             if (tool.toolID.integerValue == 222) {
                 ReadingListViewController_17 *VC = [[ReadingListViewController_17 alloc] init];
                 VC.stageString = stages.stageID;
@@ -325,6 +325,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
                 VC.stageString = stages.stageID;
                 VC.studyString = self.examineDetailItem.user.study;
                 VC.segmentString = self.examineDetailItem.user.segment;
+                VC.isShowCourseMarket = self.examineDetailItem.other.isShowCourseMarket.boolValue;
                 [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.toolID.integerValue == 103 || tool.toolID.integerValue == 203 || tool.toolID.integerValue == 205 || tool.toolID.integerValue == 208 || tool.toolID.integerValue == 216 || tool.toolID.integerValue == 219){
                 HomeworkListViewController_17 *VC = [[HomeworkListViewController_17 alloc] init];

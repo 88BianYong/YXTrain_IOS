@@ -27,28 +27,42 @@
 }
 
 - (void)setupUI {
-    [self setCourseTitleView];
-    CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];
-    compulsoryVC.segmentString = self.segmentString;
-    compulsoryVC.studyString = self.studyString;
-    compulsoryVC.stageString = self.stageString;
-    [self addChildViewController:compulsoryVC];
-    CourseListElectiveViewController_17 *electiveVC = [[CourseListElectiveViewController_17 alloc] init];
-    electiveVC.segmentString = self.segmentString;
-    electiveVC.studyString = self.studyString;
-    electiveVC.stageString = self.stageString;
-    [self addChildViewController:electiveVC];
-    [compulsoryVC didMoveToParentViewController:self];
-    [self.view addSubview:compulsoryVC.view];
-    self.currentViewController = compulsoryVC;
+    if (!self.isShowCourseMarket) {
+        [self setCourseTitleView];
+        CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];
+        compulsoryVC.segmentString = self.segmentString;
+        compulsoryVC.studyString = self.studyString;
+        compulsoryVC.stageString = self.stageString;
+        [self addChildViewController:compulsoryVC];
+        CourseListElectiveViewController_17 *electiveVC = [[CourseListElectiveViewController_17 alloc] init];
+        electiveVC.segmentString = self.segmentString;
+        electiveVC.studyString = self.studyString;
+        electiveVC.stageString = self.stageString;
+        [self addChildViewController:electiveVC];
+        [compulsoryVC didMoveToParentViewController:self];
+        [self.view addSubview:compulsoryVC.view];
+        self.currentViewController = compulsoryVC;
+    }else {
+        self.navigationItem.title = @"课程";
+        CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];
+        compulsoryVC.segmentString = self.segmentString;
+        compulsoryVC.studyString = self.studyString;
+        compulsoryVC.stageString = self.stageString;
+        [self addChildViewController:compulsoryVC];
+        [compulsoryVC didMoveToParentViewController:self];
+        [self.view addSubview:compulsoryVC.view];
+        self.currentViewController = compulsoryVC;
+    }
     [self setupRightWithTitle:@"看课记录"];
 }
 - (void)naviRightAction{
-    CourseHistoryViewController_17 *vc = [[CourseHistoryViewController_17 alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    CourseHistoryViewController_17 *VC = [[CourseHistoryViewController_17 alloc]init];
+    VC.stageString = self.stageString;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 - (void)setCourseTitleView {
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30.0f)];
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"必修课程",@"选修课程"]];
     seg.tintColor = [UIColor whiteColor];
     seg.backgroundColor = [UIColor whiteColor];
@@ -58,7 +72,12 @@
     seg.frame = CGRectMake(0, 0, 160, 30);
     seg.selectedSegmentIndex = _selectedIndex;
     [seg addTarget:self action:@selector(courseListChanged:) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.titleView = seg;
+    [titleView addSubview:seg];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1.0f, 17.0f)];
+    lineView.backgroundColor = [UIColor colorWithHexString:@"334466"];
+    lineView.center = seg.center;
+    [titleView addSubview:lineView];
+    self.navigationItem.titleView = titleView;
 }
 
 - (void)courseListChanged:(UISegmentedControl *)seg{

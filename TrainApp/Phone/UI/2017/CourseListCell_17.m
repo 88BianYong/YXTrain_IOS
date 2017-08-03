@@ -40,10 +40,23 @@
         self.statsLabel.text = @"选修";
         self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
         self.recordBgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.38];
+        [self.statsLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(29.0f, 15.0f));
+        }];
     }else {
         self.statsLabel.text = @"必修";
         self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"65aee7"];
         self.recordBgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.38];
+        [self.statsLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(29.0f, 15.0f));
+        }];
+    }
+    if (_course.courseType.integerValue == 2) {
+        self.statsLabel.text = @"本地课程";
+        self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"65aee7"];
+        [self.statsLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(50.0f, 15.0f));
+        }];
     }
 }
 #pragma mark - setupUI
@@ -175,9 +188,22 @@
     if (_course.type.integerValue == 101) {
         self.statsLabel.text = @"选修";
         self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
+        [self.statsLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(29.0f, 15.0f));
+        }];
     }else {
-        self.statsLabel.text = @"必修";
+        self.statsLabel.text = @"必修2";
         self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"65aee7"];
+        [self.statsLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(29.0f, 15.0f));
+        }];
+    }
+    if (_course.courseType.integerValue == 2) {
+        self.statsLabel.text = @"本地课程";
+        self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"65aee7"];
+        [self.statsLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(50.0f, 15.0f));
+        }];
     }
     self.finishLabel.hidden = _course.isFinish.boolValue;
 }

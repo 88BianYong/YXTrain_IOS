@@ -248,6 +248,9 @@
 		922661C11E8A0F19006DE8A4 /* VideoClassworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 922661C01E8A0F19006DE8A4 /* VideoClassworkManager.m */; };
 		922661C41E8A3C89006DE8A4 /* VideoClassworkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922661C31E8A3C89006DE8A4 /* VideoClassworkCell.m */; };
 		922661C71E8A476F006DE8A4 /* VideoClassworkHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922661C61E8A476F006DE8A4 /* VideoClassworkHeaderView.m */; };
+		922668B41F32C1900005CD26 /* CourseListBaseViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922668B31F32C1900005CD26 /* CourseListBaseViewController_17.m */; };
+		922668B71F32C2360005CD26 /* CourseRecordListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922668B61F32C2360005CD26 /* CourseRecordListViewController_17.m */; };
+		922668BA1F32C29A0005CD26 /* CourseCenterManagerViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922668B91F32C29A0005CD26 /* CourseCenterManagerViewController_17.m */; };
 		922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922850C31DD05DF500A64AB7 /* ActivityPlayManagerView.m */; };
 		922850C71DD05E3000A64AB7 /* ActivityPlayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922850C61DD05E3000A64AB7 /* ActivityPlayBottomView.m */; };
 		922901561DE576F5001474CE /* CommentReplyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901551DE576F5001474CE /* CommentReplyRequest.m */; };
@@ -1158,6 +1161,11 @@
 		922661C31E8A3C89006DE8A4 /* VideoClassworkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoClassworkCell.m; sourceTree = "<group>"; };
 		922661C51E8A476F006DE8A4 /* VideoClassworkHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoClassworkHeaderView.h; sourceTree = "<group>"; };
 		922661C61E8A476F006DE8A4 /* VideoClassworkHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoClassworkHeaderView.m; sourceTree = "<group>"; };
+		922668B21F32C1900005CD26 /* CourseListBaseViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseListBaseViewController_17.h; path = "课堂/CourseListBaseViewController_17.h"; sourceTree = "<group>"; };
+		922668B31F32C1900005CD26 /* CourseListBaseViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseListBaseViewController_17.m; path = "课堂/CourseListBaseViewController_17.m"; sourceTree = "<group>"; };
+		922668B61F32C2360005CD26 /* CourseRecordListViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseRecordListViewController_17.m; path = "课堂/CourseRecordListViewController_17.m"; sourceTree = "<group>"; };
+		922668B81F32C29A0005CD26 /* CourseCenterManagerViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseCenterManagerViewController_17.h; path = "课堂/CourseCenterManagerViewController_17.h"; sourceTree = "<group>"; };
+		922668B91F32C29A0005CD26 /* CourseCenterManagerViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CourseCenterManagerViewController_17.m; path = "课堂/CourseCenterManagerViewController_17.m"; sourceTree = "<group>"; };
 		922850C21DD05DF500A64AB7 /* ActivityPlayManagerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayManagerView.h; sourceTree = "<group>"; };
 		922850C31DD05DF500A64AB7 /* ActivityPlayManagerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPlayManagerView.m; sourceTree = "<group>"; };
 		922850C51DD05E3000A64AB7 /* ActivityPlayBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPlayBottomView.h; sourceTree = "<group>"; };
@@ -1333,6 +1341,7 @@
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
 		9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserRequest.m; sourceTree = "<group>"; };
+		926846701F33222000CD9784 /* CourseRecordListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseRecordListViewController_17.h; path = "课堂/CourseRecordListViewController_17.h"; sourceTree = "<group>"; };
 		9268C5ED1DF3CDCD00AA109B /* BeijingSendSmsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingSendSmsRequest.h; sourceTree = "<group>"; };
 		9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingSendSmsRequest.m; sourceTree = "<group>"; };
 		9268C5F01DF3D59400AA109B /* BeijingModifyPasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingModifyPasswordRequest.h; sourceTree = "<group>"; };
@@ -3562,6 +3571,10 @@
 			children = (
 				92706E3D1F299B0F001867C4 /* CourseCenterListViewController_17.h */,
 				92706E3E1F299B0F001867C4 /* CourseCenterListViewController_17.m */,
+				926846701F33222000CD9784 /* CourseRecordListViewController_17.h */,
+				922668B61F32C2360005CD26 /* CourseRecordListViewController_17.m */,
+				922668B81F32C29A0005CD26 /* CourseCenterManagerViewController_17.h */,
+				922668B91F32C29A0005CD26 /* CourseCenterManagerViewController_17.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -3614,6 +3627,8 @@
 		927429181F18799E002D9D7B /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				922668B21F32C1900005CD26 /* CourseListBaseViewController_17.h */,
+				922668B31F32C1900005CD26 /* CourseListBaseViewController_17.m */,
 				927429201F187B0D002D9D7B /* CourseListMangerViewController_17.h */,
 				927429211F187B0D002D9D7B /* CourseListMangerViewController_17.m */,
 				9274291D1F187ACA002D9D7B /* CourseListCompulsoryViewController_17.h */,
@@ -5024,6 +5039,7 @@
 				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
 				92F1A5A41E52EF4700015766 /* MasterProjectContainerView.m in Sources */,
+				922668B41F32C1900005CD26 /* CourseListBaseViewController_17.m in Sources */,
 				92A770091DD18A5800C578F2 /* InputTextView.m in Sources */,
 				921780011F177FA40041F70D /* YXMyExamExplainHelp_17.m in Sources */,
 				92348FC11EEFEDEA00D3B3A7 /* MasterManageViewController.m in Sources */,
@@ -5065,6 +5081,7 @@
 				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
 				92DE3BBE1DDC45DE0011CFB7 /* SecondCommentFooterView.m in Sources */,
 				92EDC7B21D5C14D2005B91DD /* YXHomeworkAlreadyRecordCell.m in Sources */,
+				922668B71F32C2360005CD26 /* CourseRecordListViewController_17.m in Sources */,
 				7C2C3B341D2114DC00A03635 /* YXScoreTypeHeaderView.m in Sources */,
 				CB16060A1D2FCA9F0071BA01 /* YXActionSheet.m in Sources */,
 				92348FBC1EEFEDEA00D3B3A7 /* MasterHappeningCell.m in Sources */,
@@ -5484,6 +5501,7 @@
 				CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */,
 				7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */,
 				92D29C401F1CAF51003DF29B /* CollectionViewEqualSpaceFlowLayout.m in Sources */,
+				922668BA1F32C29A0005CD26 /* CourseCenterManagerViewController_17.m in Sources */,
 				92F1A5A71E52F16100015766 /* ChangeProjectRoleView.m in Sources */,
 				7C2C3B4C1D226D3D00A03635 /* YXExamMarkView.m in Sources */,
 				924286AD1F2F26D400E0A9FB /* HomeworkFloatingView_17.m in Sources */,

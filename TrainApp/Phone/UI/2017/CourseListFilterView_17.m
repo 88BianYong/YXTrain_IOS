@@ -203,7 +203,7 @@
     if (section == 0) {
         return self.searchTerm.segmentModel.count;
     }else {
-        CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = self.searchTerm.segmentModel[[self.searchTerm.selectedMutableArray[0] integerValue]];
+        CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = self.searchTerm.segmentModel[[self.selectedMutableArray[0] integerValue]];
         return mockSegment.chapter.count;
     }
 }
@@ -223,6 +223,25 @@
     WEAK_SELF
     cell.courseFilterButtonActionBlock = ^{
         STRONG_SELF
+        if (indexPath.section == 0) {
+            NSInteger segmentInteger = [self.selectedMutableArray[0] integerValue];
+            NSInteger oldChapterId = 0;
+            if (segmentInteger >= 0) {
+               CourseListRequest_17Item_SearchTerm_MockSegment *oldSegment = self.searchTerm.segmentModel[segmentInteger];
+                NSInteger studyInteger = [self.selectedMutableArray[1] integerValue];
+                if (studyInteger >= 0) {
+                   CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = oldSegment.chapter[studyInteger];
+                    oldChapterId = chapter.chapterID.integerValue;
+                }
+            }
+            self.selectedMutableArray[1] = @(0);
+            CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[indexPath.row];
+            [segment.chapter enumerateObjectsUsingBlock:^(CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.chapterID.integerValue == oldChapterId) {
+                     self.selectedMutableArray[1] = @(idx);
+                }
+            }];
+        };
         self.selectedMutableArray[indexPath.section] = @(indexPath.row);
         [self reloadData];
     };

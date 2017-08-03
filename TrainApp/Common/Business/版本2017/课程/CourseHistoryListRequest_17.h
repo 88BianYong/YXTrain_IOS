@@ -10,7 +10,9 @@
 
 @interface CourseHistoryListRequest_17 : YXGetRequest
 @property (nonatomic, copy) NSString<Optional> *projectID;
-@property (nonatomic, copy) NSString<Optional> *thame;//主题 id，有主题时必填，默认为0
+@property (nonatomic, copy) NSString<Optional> *themeID;
+@property (nonatomic, copy) NSString<Optional> *layerID;
+@property (nonatomic, copy) NSString<Optional> *stageID;
 @property (nonatomic, copy) NSString<Optional> *page;//页数
 @property (nonatomic, copy) NSString<Optional> *limit;//每页数量
 @end

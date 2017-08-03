@@ -109,6 +109,13 @@
         [self requestForHomeworkList];
     };
     
+    self.dataErrorView = [[DataErrorView alloc] init];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForHomeworkList];
+    };
+    
     _header = [MJRefreshHeaderView header];
     _header.scrollView = _tableView;
     _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {

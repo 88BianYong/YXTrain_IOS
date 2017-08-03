@@ -9,4 +9,5 @@
 #import "PagedListFetcherBase.h"
 
 @interface CourseHistoryListFetcher_17 : PagedListFetcherBase
+@property (nonatomic, copy) NSString<Optional> *stageID;
 @end

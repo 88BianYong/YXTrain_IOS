@@ -51,21 +51,35 @@
         [self showDrawerViewController];
     }];
 }
+
 - (void)showDrawerViewController {
     self.isRemoteNotification = NO;
     if (self.window.rootViewController.presentedViewController) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
     }
-    YXDrawerViewController *drawerVC  = (YXDrawerViewController *)self.window.rootViewController;
-    if (drawerVC.paneViewController.presentedViewController) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+    if ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2016) {
+        YXDrawerViewController *drawerVC  = (YXDrawerViewController *)self.window.rootViewController;
+        if (drawerVC.paneViewController.presentedViewController) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+        }
+        YXNavigationController *projectNavi = (YXNavigationController *)drawerVC.paneViewController;
+        if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+            return ;
+        }
+        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
+        [projectNavi pushViewController:VC animated:YES];
+    }else {
+        YXTabBarViewController_17 *tabVC  = (YXTabBarViewController_17 *)self.window.rootViewController;
+        if (tabVC.selectedViewController.presentedViewController) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+        }
+        YXNavigationController *projectNavi = (YXNavigationController *)tabVC.selectedViewController;
+        if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+            return ;
+        }
+        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
+        [projectNavi pushViewController:VC animated:YES];
     }
-    YXNavigationController *projectNavi = (YXNavigationController *)drawerVC.paneViewController;
-    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
-        return ;
-    }
-    UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
-    [projectNavi pushViewController:VC animated:YES];
 }
 - (void)setupRootViewController{
     if ([LSTSharedInstance sharedInstance].configManager.testFrameworkOn.boolValue) {

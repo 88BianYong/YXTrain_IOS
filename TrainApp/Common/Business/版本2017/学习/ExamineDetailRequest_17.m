@@ -54,6 +54,18 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"stageid":@"stageID",
                                                        @"starttime":@"startTime"}];
 }
+- (NSArray<ExamineDetailRequest_17Item_Stages_Tools,Optional> *)tools {
+    [_tools enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Stages_Tools *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx > 0) {
+            ExamineDetailRequest_17Item_Stages_Tools *tool = self->_tools[idx - 1];
+            if (tool.status.integerValue == 1) {
+                obj.status = @"-2";
+                *stop = YES;
+            }
+        }
+    }];
+    return _tools;
+}
 - (NSString<Optional> *)isMockFold {
     if (_isMockFold == nil) {
         if (self.isFinish.boolValue) {
@@ -104,17 +116,39 @@
             other.otherName = @"选课中心";
             [mutableArray addObject:other];
         }
-        if (self.other.isShowOfflineActive.boolValue) {
+        if (self.other.isShowCert.boolValue) {
             ExamineDetailRequest_17Item_MockOther *other = [[ExamineDetailRequest_17Item_MockOther alloc] init];
             other.otherType = @"2";
             other.otherName = @"在线考试";
             [mutableArray addObject:other];
         }
+        
         if (self.expert.isShowExpertChannel.boolValue) {
             ExamineDetailRequest_17Item_MockOther *other = [[ExamineDetailRequest_17Item_MockOther alloc] init];
             other.otherType = @"3";
-            other.otherName = @"专家频道";
+            other.otherName = @"专家答疑";
             other.otherID = self.expert.channelID;
+            [mutableArray addObject:other];
+        }
+        
+        if (self.other.isShowOfflineActive.boolValue) {
+            ExamineDetailRequest_17Item_MockOther *other = [[ExamineDetailRequest_17Item_MockOther alloc] init];
+            other.otherType = @"4";
+            other.otherName = @"线下活动";
+            [mutableArray addObject:other];
+        }
+        
+        if(self.other.isShowExam.boolValue) {
+            ExamineDetailRequest_17Item_MockOther *other = [[ExamineDetailRequest_17Item_MockOther alloc] init];
+            other.otherType = @"5";
+            other.otherName = @"作品集";
+            [mutableArray addObject:other];
+        }
+        
+        if(self.other.isShowSelfHomework.boolValue){
+            ExamineDetailRequest_17Item_MockOther *other = [[ExamineDetailRequest_17Item_MockOther alloc] init];
+            other.otherType = @"6";
+            other.otherName = @"自荐作业";
             [mutableArray addObject:other];
         }
         _mockOthers = mutableArray;

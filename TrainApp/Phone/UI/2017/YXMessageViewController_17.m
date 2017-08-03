@@ -75,6 +75,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YXMessageCell_17 *cell = [self.tableView dequeueReusableCellWithIdentifier:@"YXMessageCell_17" forIndexPath:indexPath];
     cell.nameDictionary = self.titleArray[indexPath.row];
+    cell.cellStatus = indexPath.row;;
+    
     return cell;
 }
 @end

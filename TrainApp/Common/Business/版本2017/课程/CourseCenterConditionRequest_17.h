@@ -18,4 +18,6 @@
 
 @interface CourseCenterConditionRequest_17 : YXGetRequest
 @property (nonatomic, copy) NSString<Optional> *projectID;
+@property (nonatomic, copy) NSString<Optional> *themeID;
+@property (nonatomic, copy) NSString<Optional> *layerID;
 @end

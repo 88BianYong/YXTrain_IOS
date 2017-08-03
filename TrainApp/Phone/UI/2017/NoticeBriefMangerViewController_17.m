@@ -37,16 +37,22 @@
     self.currentViewController = noticeVC;
 }
 - (void)setNoticeBriefTitleView {
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30.0f)];
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"通知",@"简报"]];
     seg.tintColor = [UIColor whiteColor];
     seg.backgroundColor = [UIColor whiteColor];
     [seg setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"41c694"]] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [seg setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"],NSFontAttributeName:[UIFont systemFontOfSize:17.0f]} forState:UIControlStateNormal];
     [seg setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"],NSFontAttributeName:[UIFont systemFontOfSize:17.0f]} forState:UIControlStateSelected];
-    seg.frame = CGRectMake(0, 0, 80, 30);
+    seg.frame = CGRectMake(0, 0, 160, 30);
     seg.selectedSegmentIndex = _selectedIndex;
     [seg addTarget:self action:@selector(noticeBriefChanged:) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.titleView = seg;
+    [titleView addSubview:seg];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1.0f, 17.0f)];
+    lineView.backgroundColor = [UIColor colorWithHexString:@"334466"];
+    lineView.center = seg.center;
+    [titleView addSubview:lineView];
+    self.navigationItem.titleView = titleView;
 }
 
 - (void)noticeBriefChanged:(UISegmentedControl *)seg{
