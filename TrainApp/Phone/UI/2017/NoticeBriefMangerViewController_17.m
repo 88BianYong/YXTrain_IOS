@@ -44,7 +44,7 @@
     [seg setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"41c694"]] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     [seg setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"],NSFontAttributeName:[UIFont systemFontOfSize:17.0f]} forState:UIControlStateNormal];
     [seg setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"],NSFontAttributeName:[UIFont systemFontOfSize:17.0f]} forState:UIControlStateSelected];
-    seg.frame = CGRectMake(0, 0, 160, 30);
+    seg.frame = CGRectMake(0, 0, 100, 30);
     seg.selectedSegmentIndex = _selectedIndex;
     [seg addTarget:self action:@selector(noticeBriefChanged:) forControlEvents:UIControlEventValueChanged];
     [titleView addSubview:seg];

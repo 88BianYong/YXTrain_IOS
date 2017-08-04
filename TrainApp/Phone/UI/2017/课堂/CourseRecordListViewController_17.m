@@ -79,7 +79,7 @@
         [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CourseListRequest_17Item_Objs *course = (CourseListRequest_17Item_Objs *)obj;
             if ([course.objID isEqualToString:course_id]) {
-                course.timeLength = record;
+                course.timeLengthSec = record;
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                 *stop = YES;
             }

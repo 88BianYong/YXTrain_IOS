@@ -9,15 +9,33 @@
 #import "YXTabBarViewController_17.h"
 #import "YXNavigationController.h"
 #import "YXVideoRecordViewController.h"
+#import "UITabBar+YXAddtion.h"
 @interface YXTabBarViewController_17 ()<UITabBarControllerDelegate>
 
 @end
 
 @implementation YXTabBarViewController_17
-
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[LSTSharedInstance sharedInstance].webSocketManger open];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPushWebSocketReceiveMessage object:nil] subscribeNext:^(NSNotification *x) {
+        STRONG_SELF
+        NSInteger redInteger = [LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger;
+        if (redInteger > 0) {
+            self.viewControllers[1].navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
+            [self.tabBar hideBadgeOnItemIndex:1];
+        }else if (redInteger == 0){
+            [self.tabBar showBadgeOnItemIndex:1];
+            self.viewControllers[1].tabBarItem.badgeValue = nil;
+        }else {
+            self.viewControllers[1].tabBarItem.badgeValue = nil;
+            [self.tabBar hideBadgeOnItemIndex:1];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

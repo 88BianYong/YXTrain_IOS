@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UILabel *scheduleLabel;
 @property (nonatomic, strong) YXExamProgressView *progressView;
 @property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) UIButton *explainButton;
 @end
 @implementation HomeworkListClaimCell_17
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -33,6 +34,7 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_scheme.scheme.finishNum,_scheme.process.userFinishNum]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"0070c9"] range:NSMakeRange(0, _scheme.process.userFinishNum.length)];
     self.scheduleLabel.attributedText = attributedString;
+    self.explainButton.hidden = (_scheme.scheme.toolID.integerValue == 218 || _scheme.scheme.toolID.integerValue == 318) ? NO : YES;
 }
 - (NSString *)mainPointContent:(HomeworkListRequest_17Item_Scheme *)scheme{
     if (scheme.scheme.toolID.integerValue == 219 || scheme.scheme.toolID.integerValue == 319) {
@@ -69,6 +71,19 @@
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.lineView.hidden = YES;
     [self.contentView addSubview:self.lineView];
+    
+    self.explainButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.explainButton setImage:[UIImage imageNamed:@"解释说明图标正常态"]
+                        forState:UIControlStateNormal];
+    [self.explainButton setImage:[UIImage imageNamed:@"解释说明图标点击态"]
+                        forState:UIControlStateHighlighted];
+    WEAK_SELF
+    [[self.explainButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+       // BLOCK_EXEC(self.myLearningScoreButtonBlock,self.explainButton);
+        
+    }];
+    [self.contentView addSubview:self.explainButton];
 }
 - (void)setupLayout {
     [self.mainPointLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -90,6 +105,12 @@
         make.right.equalTo(self.contentView.mas_right);
         make.bottom.equalTo(self.contentView.mas_bottom);
         make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
+    }];
+    
+    [self.explainButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mainPointLabel.mas_right).offset(10.0f);
+        make.centerY.equalTo(self.mainPointLabel.mas_centerY);
+        make.size.mas_offset(CGSizeMake(19.0f, 19.0f));
     }];
 }
 @end

@@ -17,6 +17,8 @@
 #import "HomeworkListFooterView_17.h"
 #import "YXHomeworkInfoRequest.h"
 #import "HomeworkFloatingView_17.h"
+#import "YXMyExamExplainView_17.h"
+#import "HomeworkListGroupCell_17.h"
 #import "MJRefresh.h"
 @interface HomeworkListViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
@@ -100,6 +102,7 @@
     [self.tableView registerClass:[HomeworkListVideoDefaultCell_17 class] forCellReuseIdentifier:@"HomeworkListVideoDefaultCell_17"];
     [self.tableView registerClass:[HomeworkListHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListHeaderView_17"];
     [self.tableView registerClass:[HomeworkListFooterView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListFooterView_17"];
+    [self.tableView registerClass:[HomeworkListGroupCell_17 class] forCellReuseIdentifier:@"HomeworkListGroupCell_17"];
     [self.view addSubview:self.tableView];
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
@@ -154,7 +157,9 @@
         return 60.0f;
     }else {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
-        if (homework.templateID.integerValue == 324) {
+        if (homework.toolID.integerValue == 218 || homework.toolID.integerValue == 318) {
+            return 45.0f;
+        }else if (homework.templateID.integerValue == 324) {
             return [tableView fd_heightForCellWithIdentifier:@"HomeworkListDefaultCell_17" cacheByIndexPath:indexPath configuration:^(HomeworkListDefaultCell_17 *cell) {
                 cell.homework = self.listItem.homeworks[indexPath.row];
             }];
@@ -214,10 +219,22 @@
     if (indexPath.section == 0) {
         HomeworkListClaimCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListClaimCell_17" forIndexPath:indexPath];
         cell.scheme = self.listItem.scheme[indexPath.row];
+        WEAK_SELF
+        cell.homeworkListClaimButtonBlock = ^(UIButton *sender) {
+            STRONG_SELF
+            YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
+            CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
+            [v showInView:self.navigationController.view examExplain:@"小组作业线下完成,由组长线上提交"];
+            [v setupOriginRect:rect withToTop:YES]; 
+        };
         return cell;
     }else {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
-        if (homework.templateID.integerValue == 324) {
+        if (homework.toolID.integerValue == 218 || homework.toolID.integerValue == 318) {
+            HomeworkListGroupCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListGroupCell_17" forIndexPath:indexPath];
+            return cell;
+            
+        }else if (homework.templateID.integerValue == 324) {
             HomeworkListDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListDefaultCell_17" forIndexPath:indexPath];
             cell.homework = self.listItem.homeworks[indexPath.row];
             return cell;

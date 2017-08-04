@@ -89,12 +89,13 @@
     }else {
         self.containerView.startTimeInteger = _detailItem.openQuizTime.integerValue;
         self.containerView.playTimeInteger = _detailItem.rc.integerValue;
+        self.playMangerView.playTotalTime = _detailItem.rc.integerValue;
         self.containerView.isStartBool = self.containerView.playTimeInteger >= self.containerView.startTimeInteger;
         WEAK_SELF
         self.disposable = [RACObserve(self.playMangerView, playTotalTime) subscribeNext:^(id x) {
             STRONG_SELF
             if (self.playMangerView.playTotalTime > 0 ) {
-                self.containerView.playTimeInteger += self.playMangerView.playTotalTime;
+                self.containerView.playTimeInteger = self.playMangerView.playTotalTime;
                 if (floor((float)self.containerView.playTimeInteger/60.0f) >= ceil((float)self.containerView.startTimeInteger/60.0f) && !self.containerView.isStartBool) {
                     [self.playMangerView playReport:^(BOOL isSuccess) {
                         self.containerView.isStartBool = isSuccess;

@@ -342,6 +342,8 @@
 		925146871F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925146851F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */; };
+		926846731F344B1200CD9784 /* HomeworkListGroupCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846721F344B1200CD9784 /* HomeworkListGroupCell_17.m */; };
+		926846761F34547600CD9784 /* UITabBar+YXAddtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846751F34547600CD9784 /* UITabBar+YXAddtion.m */; };
 		9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */; };
 		9268C5F21DF3D59400AA109B /* BeijingModifyPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5F11DF3D59400AA109B /* BeijingModifyPasswordRequest.m */; };
 		926F11FA1EA456CE0041D66F /* selectLayer_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 926F11F91EA456CE0041D66F /* selectLayer_mock.json */; };
@@ -1342,6 +1344,10 @@
 		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
 		9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserRequest.m; sourceTree = "<group>"; };
 		926846701F33222000CD9784 /* CourseRecordListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseRecordListViewController_17.h; path = "课堂/CourseRecordListViewController_17.h"; sourceTree = "<group>"; };
+		926846711F344B1200CD9784 /* HomeworkListGroupCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListGroupCell_17.h; sourceTree = "<group>"; };
+		926846721F344B1200CD9784 /* HomeworkListGroupCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListGroupCell_17.m; sourceTree = "<group>"; };
+		926846741F34547600CD9784 /* UITabBar+YXAddtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+YXAddtion.h"; sourceTree = "<group>"; };
+		926846751F34547600CD9784 /* UITabBar+YXAddtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+YXAddtion.m"; sourceTree = "<group>"; };
 		9268C5ED1DF3CDCD00AA109B /* BeijingSendSmsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingSendSmsRequest.h; sourceTree = "<group>"; };
 		9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingSendSmsRequest.m; sourceTree = "<group>"; };
 		9268C5F01DF3D59400AA109B /* BeijingModifyPasswordRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingModifyPasswordRequest.h; sourceTree = "<group>"; };
@@ -2282,6 +2288,8 @@
 				920F1D1E1D506DE500636A51 /* UIViewController+YXAddtion.m */,
 				920F1D691D58419900636A51 /* UIView+YXAddtion.h */,
 				920F1D6A1D58419900636A51 /* UIView+YXAddtion.m */,
+				926846741F34547600CD9784 /* UITabBar+YXAddtion.h */,
+				926846751F34547600CD9784 /* UITabBar+YXAddtion.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -4044,6 +4052,8 @@
 				92BBE04D1F20B360009230AC /* HomeworkListHeaderView_17.m */,
 				92BBE04F1F219196009230AC /* HomeworkListVideoDefaultCell_17.h */,
 				92BBE0501F219196009230AC /* HomeworkListVideoDefaultCell_17.m */,
+				926846711F344B1200CD9784 /* HomeworkListGroupCell_17.h */,
+				926846721F344B1200CD9784 /* HomeworkListGroupCell_17.m */,
 				92BBE0521F219D03009230AC /* HomeworkListVideoSpecialCell.h */,
 				92BBE0531F219D03009230AC /* HomeworkListVideoSpecialCell.m */,
 				92BBE0561F21A2DE009230AC /* HomeworkListFooterView_17.h */,
@@ -5027,6 +5037,7 @@
 				922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */,
 				92E927BF1F1E0C6700BEF834 /* ReadingListCell_17.m in Sources */,
 				923237771D82609F00FDACFE /* YXHelpHeaderView.m in Sources */,
+				926846731F344B1200CD9784 /* HomeworkListGroupCell_17.m in Sources */,
 				9223C81B1D2D0144000F74DF /* YXWorkshopDatumRequest.m in Sources */,
 				923237311D6E9F3000FDACFE /* YXStartViewController.m in Sources */,
 				92B958451F18A37B00A07203 /* CourseListCell_17.m in Sources */,
@@ -5483,6 +5494,7 @@
 				CB7462701D1E89EE0065113A /* YXInitRequest.m in Sources */,
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
 				9223C8351D2F4BD2000F74DF /* YXSchoolSearchViewController.m in Sources */,
+				926846761F34547600CD9784 /* UITabBar+YXAddtion.m in Sources */,
 				7CF844571D2A5AFD00B1CE55 /* TrainModel.xcdatamodeld in Sources */,
 				92348FC71EEFEDEA00D3B3A7 /* StudentExamTipsView.m in Sources */,
 				9292DC501E9E08E8008C6A14 /* NoticeAndBriefDetailCell.m in Sources */,

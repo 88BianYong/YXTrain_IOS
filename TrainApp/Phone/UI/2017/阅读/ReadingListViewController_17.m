@@ -25,7 +25,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"内容阅读";
+    self.title = @"阅读内容";
     [self setupUI];
     [self setupLayout];
     [self startLoading];

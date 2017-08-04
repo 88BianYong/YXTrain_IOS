@@ -135,7 +135,7 @@
 
 - (void)setCourse:(CourseListRequest_17Item_Objs *)course {
     _course = course;
-    [self.courseImageView sd_setImageWithURL:[NSURL URLWithString:course.content.imgUrl] placeholderImage:[UIImage imageNamed:@"默认图片"]];
+    [self.courseImageView sd_setImageWithURL:[NSURL URLWithString:course.pic] placeholderImage:[UIImage imageNamed:@"默认图片"]];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:course.name];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:0];//调整行间距
@@ -144,7 +144,7 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.name length])];
     self.titleLabel.attributedText = attributedString;
     self.timeLabel.text = [NSString stringWithFormat:@"课程时长: %@",course.time];
-    int second = course.timeLength.intValue;
+    int second = course.timeLengthSec.intValue;
     if (second == 0) {
         self.recordBgView.hidden = YES;
         self.recordLabel.text = @"未观看";

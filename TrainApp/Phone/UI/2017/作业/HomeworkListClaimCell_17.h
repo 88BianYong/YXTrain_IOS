@@ -11,4 +11,6 @@
 
 @interface HomeworkListClaimCell_17 : UITableViewCell
 @property (nonatomic, strong) HomeworkListRequest_17Item_Scheme *scheme;
+@property (nonatomic, copy) void(^homeworkListClaimButtonBlock)(UIButton *sender);
+
 @end

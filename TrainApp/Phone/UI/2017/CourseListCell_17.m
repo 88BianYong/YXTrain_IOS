@@ -172,7 +172,7 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [course.name length])];
     self.titleLabel.attributedText = attributedString;
     self.timeLabel.text = [NSString stringWithFormat:@"课程时长: %@",course.time];
-    int second = course.timeLength.intValue;
+    int second = course.timeLengthSec.intValue;
     if (second == 0) {
         self.recordBgView.hidden = YES;
         self.recordLabel.text = @"未观看";
@@ -192,7 +192,7 @@
             make.size.mas_offset(CGSizeMake(29.0f, 15.0f));
         }];
     }else {
-        self.statsLabel.text = @"必修2";
+        self.statsLabel.text = @"必修";
         self.statsLabel.backgroundColor = [UIColor colorWithHexString:@"65aee7"];
         [self.statsLabel mas_updateConstraints:^(MASConstraintMaker *make) {
             make.size.mas_offset(CGSizeMake(29.0f, 15.0f));
@@ -205,7 +205,7 @@
             make.size.mas_offset(CGSizeMake(50.0f, 15.0f));
         }];
     }
-    self.finishLabel.hidden = _course.isFinish.boolValue;
+    self.finishLabel.hidden = !_course.isFinish.boolValue;
 }
 
 @end

@@ -28,6 +28,7 @@
 #import "PopUpFloatingViewManager.h"
 #import "XYChooseProjectViewController.h"
 #import "YXTabBarViewController_17.h"
+#import "UITabBar+YXAddtion.h"
 @interface AppDelegateHelper ()
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
@@ -163,6 +164,17 @@
     [self setTabBarItem:messageNav title:@"消息" image:@"消息" selectedImage:@"消息选中" tag:2];
     [self setTabBarItem:mineNav title:@"我" image:@"我未选中" selectedImage:@"我选中" tag:3];
     tabVC.viewControllers = @[learningNav, messageNav, mineNav];
+    NSInteger redInteger = [LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger;
+    if (redInteger > 0) {
+        tabVC.viewControllers[1].navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
+        [tabVC.tabBar hideBadgeOnItemIndex:1];
+    }else if (redInteger == 0){
+        [tabVC.tabBar showBadgeOnItemIndex:1];
+        tabVC.viewControllers[1].tabBarItem.badgeValue = nil;
+    }else {
+        tabVC.viewControllers[1].tabBarItem.badgeValue = nil;
+        [tabVC.tabBar hideBadgeOnItemIndex:1];
+    }
     return tabVC;
 }
 - (void)setTabBarItem:(YXNavigationController *)navController title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage tag:(NSUInteger)tag {
@@ -176,7 +188,6 @@
     navController.tabBarItem.tag = tag;
     [navController.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blueColor],NSFontAttributeName:[UIFont systemFontOfSize:11.0f]} forState:UIControlStateSelected];
 }
-
 #pragma mark - add notification
 - (void)registeNotifications
 {

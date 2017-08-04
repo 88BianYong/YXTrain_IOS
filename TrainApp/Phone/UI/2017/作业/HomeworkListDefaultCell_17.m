@@ -253,11 +253,13 @@
 - (void)setupUI {
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+    self.titleLabel.numberOfLines = 1;
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.titleLabel];
     
     self.subTitleLabel = [[UILabel alloc] init];
     self.subTitleLabel.font = [UIFont systemFontOfSize:11.0f];
+    self.subTitleLabel.numberOfLines = 0;
     self.subTitleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     [self.contentView addSubview:self.subTitleLabel];
     
