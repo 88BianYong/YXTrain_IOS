@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface HomeworkListVideoSpecialCell : UITableViewCell
-
+#import "HomeworkListRequest_17.h"
+@interface HomeworkListVideoSpecialCell_17 : UITableViewCell
+@property (nonatomic, strong) HomeworkListRequest_17Item_Homeworks *homework;
 @end

@@ -310,7 +310,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     ExamineDetailRequest_17Item_Stages *stages = self.examineDetailItem.stages[indexPath.section];
     cell.tools = stages.tools;
     WEAK_SELF
-    cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool) {
+    cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool, NSInteger tagInteger) {
         STRONG_SELF
         if (tool.status.integerValue > 0){
             if (tool.toolID.integerValue == 222) {
@@ -325,7 +325,18 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
                 VC.stageString = stages.stageID;
                 VC.studyString = self.examineDetailItem.user.study;
                 VC.segmentString = self.examineDetailItem.user.segment;
-                VC.isShowCourseMarket = self.examineDetailItem.other.isShowCourseMarket.boolValue;
+                ExamineDetailRequest_17Item_Examine_Process *process = self.examineDetailItem.examine.process[indexPath.section];
+                __block BOOL isShowChoose = NO;
+                if (process.toolExamineVoList.count > tagInteger) {
+                    ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *voList = process.toolExamineVoList[tagInteger];
+                    [voList.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if (obj.toolID.integerValue == 223) {
+                            isShowChoose = YES;
+                            *stop = YES;
+                        }
+                    }];
+                }
+                VC.isShowChoose = isShowChoose;
                 [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.toolID.integerValue == 103 || tool.toolID.integerValue == 203 || tool.toolID.integerValue == 205 || tool.toolID.integerValue == 208 || tool.toolID.integerValue == 216 || tool.toolID.integerValue == 219){
                 HomeworkListViewController_17 *VC = [[HomeworkListViewController_17 alloc] init];

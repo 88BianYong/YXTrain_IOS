@@ -101,7 +101,7 @@
 - (NSString *)showExamExplain:(ExamineDetailRequest_17Item_Examine_Process *)process {
     self.showMarkHeight = 20;
     NSMutableArray<NSString *> *mutableArray = [[NSMutableArray<NSString *> alloc] initWithCapacity:4];
-    [process.toolExamineVoList enumerateObjectsUsingBlock:^(PersonalExamineRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [process.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (!obj.isExistsNext.boolValue) {
             YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];
             help.toolName = obj.name;
@@ -110,21 +110,31 @@
             help.finishScore = obj.userScore;
             help.totalNum = obj.totalNum;
             help.totalScore = obj.totalScore;
-            help.passTotalScore = obj.passScore ?:@"";
-            self.showMarkHeight += 23;
-            [mutableArray addObject:[help toolCompleteStatusExplain]];
+            help.passTotalScore = obj.passTotalScore;
+            help.passScore = obj.passScore;
+            NSString *helpString = [help toolCompleteStatusExplain];
+            if (!isEmpty(helpString)) {
+                [mutableArray addObject:helpString];
+                self.showMarkHeight += 23;
+            }
+            
         }else {
-            [obj.toolExamineVoList enumerateObjectsUsingBlock:^(PersonalExamineRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
+            [obj.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
                 YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];
                 help.toolName = next.name;
-                help.toolID = next.toolID.integerValue == 201 ? @"212" : next.toolID;
+                help.toolID = next.toolID;
                 help.finishNum = next.finishNum;
                 help.finishScore = next.userScore;
                 help.totalNum = next.totalNum;
                 help.totalScore = next.totalScore;
-                help.passTotalScore = next.passScore ?:@"";
+                help.passTotalScore = next.passTotalScore;
+                help.passScore = next.passScore;
                 self.showMarkHeight += 23;
-                [mutableArray addObject:[help toolCompleteStatusExplain]];
+                NSString *helpString = [help toolCompleteStatusExplain];
+                if (!isEmpty(helpString)) {
+                    [mutableArray addObject:helpString];
+                    self.showMarkHeight += 23;
+                }
             }];
         }
     }];

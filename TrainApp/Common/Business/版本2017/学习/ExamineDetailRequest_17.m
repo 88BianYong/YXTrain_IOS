@@ -30,7 +30,8 @@
                                                        @"passscore":@"passsCore",
                                                        @"stageId":@"stageID",
                                                        @"totalscore":@"totalScore",
-                                                       @"userscore":@"userScore"}];
+                                                       @"userscore":@"userScore",
+                                                       @"passtotalscore":@"passTotalScore"}];
 }
 @end
 

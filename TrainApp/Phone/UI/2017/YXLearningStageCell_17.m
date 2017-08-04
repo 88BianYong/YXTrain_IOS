@@ -58,7 +58,7 @@
     return self;
 }
 #pragma mark - setupUI
--(void)setupUI {
+- (void)setupUI {
     UIColor *color = [UIColor colorWithHexString:@"f1f1f1"];
     self.gradientView = [[YXGradientView alloc]initWithStartColor:color endColor:[color colorWithAlphaComponent:0] orientation:YXGradientTopToBottom];
     self.gradientView.tag = 5;
@@ -182,7 +182,7 @@
         WEAK_SELF
         [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             STRONG_SELF;
-            BLOCK_EXEC(self.learningStageToolCompleteBlock,tool);
+            BLOCK_EXEC(self.learningStageToolCompleteBlock,tool,idx);
         }];
         [self.contentView addSubview:button];
         YXLearningToolView *toolView = [[YXLearningToolView alloc] init];

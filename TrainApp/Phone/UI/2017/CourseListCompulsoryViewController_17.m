@@ -38,7 +38,7 @@
         if (model.scheme.count > 0) {
             self.schemeItem = model.scheme[0];
         }
-        if (self.schemeItem.scheme.type != 0) {
+        if (self.schemeItem.scheme.type.integerValue != 0) {
             [self reforeUI];
         }
         if (self.filterView.searchTerm == nil) {

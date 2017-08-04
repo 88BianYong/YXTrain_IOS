@@ -27,7 +27,7 @@
 }
 
 - (void)setupUI {
-    if (!self.isShowCourseMarket) {
+    if (self.isShowChoose) {
         [self setCourseTitleView];
         CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];
         compulsoryVC.segmentString = self.segmentString;

@@ -23,7 +23,7 @@
     return self;
 }
 #pragma mark - set
-- (void)setProcess:(PersonalExamineRequest_17Item_Examine_Process *)process {
+- (void)setProcess:(ExamineDetailRequest_17Item_Examine_Process *)process{
     _process = process;
     self.titleLabel.text = process.name;
     self.scoreLable.attributedText = [self totalScore:process.totalScore WithScore:_process.userScore];

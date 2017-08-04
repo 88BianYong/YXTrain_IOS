@@ -19,6 +19,7 @@
 #import "HomeworkFloatingView_17.h"
 #import "YXMyExamExplainView_17.h"
 #import "HomeworkListGroupCell_17.h"
+#import "HomeworkListVideoSpecialCell_17.h"
 #import "MJRefresh.h"
 @interface HomeworkListViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
@@ -103,6 +104,7 @@
     [self.tableView registerClass:[HomeworkListHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListHeaderView_17"];
     [self.tableView registerClass:[HomeworkListFooterView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListFooterView_17"];
     [self.tableView registerClass:[HomeworkListGroupCell_17 class] forCellReuseIdentifier:@"HomeworkListGroupCell_17"];
+    [self.tableView registerClass:[HomeworkListVideoSpecialCell_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListVideoSpecialCell_17"];
     [self.view addSubview:self.tableView];
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
@@ -163,10 +165,10 @@
             return [tableView fd_heightForCellWithIdentifier:@"HomeworkListDefaultCell_17" cacheByIndexPath:indexPath configuration:^(HomeworkListDefaultCell_17 *cell) {
                 cell.homework = self.listItem.homeworks[indexPath.row];
             }];
-        }else if (homework.templateID.integerValue == 379) {
+        }else if (homework.templateID.integerValue == 379 || homework.homeworkID.integerValue == 0) {
             return 45.0f;
         }else{
-            return [tableView fd_heightForCellWithIdentifier:@"HomeworkListDefaultCell_17" cacheByIndexPath:indexPath configuration:^(HomeworkListDefaultCell_17 *cell) {
+            return [tableView fd_heightForCellWithIdentifier:@"HomeworkListVideoSpecialCell_17" cacheByIndexPath:indexPath configuration:^(HomeworkListVideoSpecialCell_17 *cell) {
                 cell.homework = self.listItem.homeworks[indexPath.row];
             }];
         }
@@ -190,7 +192,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (indexPath.section == 1 && indexPath.row == 1) {
+    HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
+    if (homework.templateID.integerValue == 379) {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
         YXHomeworkInfoRequestItem_Body *body = [[YXHomeworkInfoRequestItem_Body alloc] init];
         body.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
@@ -238,12 +241,12 @@
             HomeworkListDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListDefaultCell_17" forIndexPath:indexPath];
             cell.homework = self.listItem.homeworks[indexPath.row];
             return cell;
-        }else if (homework.templateID.integerValue == 379) {
+        }else if (homework.templateID.integerValue == 379 || homework.homeworkID.integerValue == 0) {
             HomeworkListVideoDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListVideoDefaultCell_17" forIndexPath:indexPath];
             cell.homework = self.listItem.homeworks[indexPath.row];
             return cell;
         }else{
-            HomeworkListDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListDefaultCell_17" forIndexPath:indexPath];
+            HomeworkListVideoSpecialCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListVideoSpecialCell_17" forIndexPath:indexPath];
             cell.homework = self.listItem.homeworks[indexPath.row];
             return cell;
         }

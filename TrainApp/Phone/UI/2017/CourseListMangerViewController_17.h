@@ -12,5 +12,5 @@
 @property (nonatomic, strong) NSString *stageString;
 @property (nonatomic, strong) NSString *studyString;
 @property (nonatomic, strong) NSString *segmentString;
-@property (nonatomic, assign) BOOL isShowCourseMarket;
+@property (nonatomic, assign) BOOL isShowChoose;
 @end

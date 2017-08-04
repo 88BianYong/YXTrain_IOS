@@ -117,6 +117,7 @@
 @property (nonatomic, copy) NSString<Optional> *totalNum;//
 @property (nonatomic, copy) NSString<Optional> *isExistsNext;
 @property (nonatomic, copy) NSString<Optional> *name;
+@property (nonatomic, copy) NSString<Optional> *passTotalScore;
 @property (nonatomic, strong) NSArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList,Optional> *toolExamineVoList;
 @property (nonatomic, copy) NSString<Optional> *status;
 @end
@@ -137,6 +138,7 @@
 @property (nonatomic, copy) NSArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList, Optional> *toolExamineVoList;
 @property (nonatomic, copy) NSString<Optional> *totalScore;//
 @property (nonatomic, copy) NSString<Optional> *userScore;//
+@property (nonatomic, copy) NSString<Optional> *passTotalScore;//
 @end
 
 

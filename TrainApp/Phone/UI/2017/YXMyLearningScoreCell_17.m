@@ -52,7 +52,7 @@
     return self;
 }
 #pragma mark - set
-- (void)setProcess:(PersonalExamineRequest_17Item_Examine_Process *)process {
+- (void)setProcess:(ExamineDetailRequest_17Item_Examine_Process *)process {
     _process = process;
     NSMutableArray<YXMyLearningUserScoreView *> *mutableArray = [[NSMutableArray<YXMyLearningUserScoreView *> alloc] initWithCapacity:4];
     [self.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -79,7 +79,7 @@
         }];
     }
     
-    for (PersonalExamineRequest_17Item_Examine_Process_ToolExamineVoList *tool in _process.toolExamineVoList) {
+    for (ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *tool in _process.toolExamineVoList) {
         YXMyLearningUserScoreView *view = [[YXMyLearningUserScoreView alloc] init];
         view.nameLabel.text = tool.name;
         view.scoreLabel.attributedText = [self totalScore:tool.totalScore WithScore:tool.userScore];

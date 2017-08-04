@@ -10,5 +10,5 @@
 #import "ExamineDetailRequest_17.h"
 @interface YXLearningStageCell_17 : UITableViewCell
 @property (nonatomic, strong) NSArray<__kindof ExamineDetailRequest_17Item_Stages_Tools *> *tools;
-@property (nonatomic, strong) void(^learningStageToolCompleteBlock)(ExamineDetailRequest_17Item_Stages_Tools *tool);
+@property (nonatomic, strong) void(^learningStageToolCompleteBlock)(ExamineDetailRequest_17Item_Stages_Tools *tool , NSInteger tagInteger);
 @end

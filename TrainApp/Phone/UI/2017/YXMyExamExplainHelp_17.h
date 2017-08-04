@@ -17,5 +17,6 @@
 @property (nonatomic, copy) NSString *totalNum;
 @property (nonatomic, copy) NSString *totalScore;
 @property (nonatomic, copy) NSString *passTotalScore;
+@property (nonatomic, copy) NSString *passScore;
 - (NSString *)toolCompleteStatusExplain;
 @end

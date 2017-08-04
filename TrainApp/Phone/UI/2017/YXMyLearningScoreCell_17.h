@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PersonalExamineRequest_17.h"
-
+#import "ExamineDetailRequest_17.h"
 @interface YXMyLearningScoreCell_17 : UITableViewCell
-@property (nonatomic, strong) PersonalExamineRequest_17Item_Examine_Process *process;
+@property (nonatomic, strong) ExamineDetailRequest_17Item_Examine_Process *process;
 @end
