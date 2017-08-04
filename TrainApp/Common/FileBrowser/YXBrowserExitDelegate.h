@@ -10,4 +10,6 @@
 
 @protocol YXBrowserExitDelegate <NSObject>
 - (void)browserExit;
+
+- (void)browserExitReport:(void(^)(BOOL isScuess))scuessBlock;
 @end

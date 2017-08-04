@@ -32,5 +32,5 @@ static NSString * const kRecordNeedUpdateNotification = @"kRecordNeedUpdateNotif
 - (void)updateFragmentWithFileBrowseTime:(NSTimeInterval)time;
 
 - (void)report;
-
+- (void)reportScuess:(void(^)(BOOL isScuess))scuessBlock;
 @end

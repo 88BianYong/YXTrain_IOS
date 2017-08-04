@@ -21,6 +21,7 @@
 @end
 
 static const NSTimeInterval kTopBottomHiddenTime = 5;
+static const NSInteger kPlayReportRetryTime = 10;
 @interface VideoPlayManagerView ()
 @property (nonatomic, strong) YXPlayerBufferingView *bufferingView;
 @property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
@@ -44,9 +45,13 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, assign) NSTimeInterval playTime;
 
-
 @property (nonatomic, strong) NSURL *oldUrl;
 
+
+@property (nonatomic, strong) NSTimer *playReportRetryTimer;
+
+@property (nonatomic, copy) void(^isReportSuccessBlock)(BOOL isSuccess);
+@property (nonatomic, assign) BOOL isTestReport;
 
 
 @end
@@ -98,6 +103,21 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             STRONG_SELF
             if (self.exceptionView.hidden  && !self.isManualPause && self.isShowTop) {
                 [self.player play];
+            }
+        }];
+        
+        [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kRecordReportSuccessNotification object:nil]subscribeNext:^(id x) {
+            STRONG_SELF
+            NSNotification *noti = (NSNotification *)x;
+            NSString *course_id = noti.userInfo.allKeys.firstObject;
+            NSString *record = noti.userInfo[course_id];
+            if (!isEmpty(record) && self.isTestReport) {
+                [self.playReportRetryTimer invalidate];
+                self.playReportRetryTimer = nil;
+                self.playTime = 0;
+                self.startTime = nil;
+                self.isTestReport = NO;                
+                BLOCK_EXEC(self.isReportSuccessBlock,YES);
             }
         }];
     }
@@ -232,6 +252,10 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     return playBool && vHead && !self.isBeginPlayEnd;
 }
 #pragma mark - set
+- (void)setPlayTime:(NSTimeInterval)playTime {
+    _playTime = playTime;
+//    self.playTotalTime += _playTime;
+}
 - (void)setFileItem:(YXFileItemBase *)fileItem {
     if (_fileItem) {//每次先上报上次播放结果
         [self recordPlayerDuration];
@@ -466,6 +490,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             if (self.bottomView.slideProgressControl.playProgress > 0) { // walkthrough 换url时slide跳动
                 [self.bottomView.slideProgressControl updateUI];
             }
+            self.playTotalTime += 1;
         }
         if (self.classworkManager.hidden){
             [self.classworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressControl.playProgress)];
@@ -750,6 +775,21 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
             self.startTime = nil;
         }
     }
+}
+- (void)playReport:(void(^)(BOOL isSuccess))block {
+    self.isReportSuccessBlock = block;
+    [self.playReportRetryTimer invalidate];
+    self.playReportRetryTimer = [NSTimer scheduledTimerWithTimeInterval:kPlayReportRetryTime
+                                                               target:self
+                                                             selector:@selector(startPlayReport)
+                                                             userInfo:nil
+                                                              repeats:YES];
+    [self.playReportRetryTimer fire];
+}
+- (void)startPlayReport {
+    self.isTestReport = YES;
+    [self recordPlayerDuration];
+    SAFE_CALL(self.exitDelegate, browserExit);
 }
 - (void)viewWillAppear {
     if (!self.isManualPause) {

@@ -41,6 +41,9 @@ typedef void (^VideoPlayManagerViewFinishBlock)(void);
 @property (nonatomic ,weak) VideoClassworkManager *classworkManager;
 @property (nonatomic, assign) BOOL isShowTop;//TBD:双层控制播放 需要优化
 
+@property (nonatomic, assign) NSTimeInterval playTotalTime;
+
+
 
 
 - (void)setVideoPlayManagerViewBackActionBlock:(VideoPlayManagerViewBackActionBlock)block;
@@ -50,4 +53,6 @@ typedef void (^VideoPlayManagerViewFinishBlock)(void);
 - (void)viewWillAppear;
 - (void)viewWillDisappear;
 - (void)playVideoClear;
+
+- (void)playReport:(void(^)(BOOL isSuccess))block;
 @end

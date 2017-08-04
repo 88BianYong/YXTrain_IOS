@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIButton *readButton;
 
 @property (nonatomic, strong) ReadingSubmitStatusRequest_17 *submitRequest;
+@property (nonatomic, strong) YXFileItemBase *fileItem;
 
 @end
 
@@ -125,18 +126,17 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    NoticeAndBriefDetailRequestItem_Body_Affix *affix = self.itemBody.affix[indexPath.row];
-//    YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:affix.res_type];
-//    if(type == YXFileTypeUnknown) {
-//        [self showToast:@"暂不支持该格式文件预览"];
-//        return;
-//    }
-//    YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
-//    fileItem.name = affix.resname;
-//    fileItem.url = affix.previewurl;
-//    fileItem.baseViewController = self;
-//    [fileItem browseFile];
-//    self.fileItem = fileItem;
+    YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:self.reading.affix.res_type];
+    if(type == YXFileTypeUnknown) {
+        [self showToast:@"暂不支持该格式文件预览"];
+        return;
+    }
+    YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
+    fileItem.name = self.reading.affix.resName;
+    fileItem.url = self.reading.affix.previewUrl;
+    fileItem.baseViewController = self;
+    [fileItem browseFile];
+    self.fileItem = fileItem;
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

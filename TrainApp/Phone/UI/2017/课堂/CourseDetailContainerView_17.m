@@ -31,7 +31,7 @@
         self.startButton.titleLabel.font = [UIFont systemFontOfSize:12.0f];
         self.startButton.layer.cornerRadius = YXTrainCornerRadii;
         self.startButton.clipsToBounds = YES;
-//        self.startButton.enabled = NO;
+        self.startButton.enabled = NO;
         [self addSubview:self.startButton];
         UIView *lineView = [[UIView alloc] init];
         lineView.backgroundColor = [UIColor colorWithHexString:@"d2d8df"];
@@ -84,6 +84,19 @@
         [self setupLayout];
     }
     return self;
+}
+#pragma mark - set 
+- (void)setStartTimeInteger:(NSInteger)startTimeInteger {
+    _startTimeInteger = startTimeInteger;
+    self.headerView.contentLabel.text = [NSString stringWithFormat:@"本课程有课程检测,至少学习%0.0f分钟开启",ceil((float)_startTimeInteger/60.0f)];
+}
+- (void)setPlayTimeInteger:(NSInteger)playTimeInteger {
+    _playTimeInteger = playTimeInteger;
+     self.headerView.timeLabel.text = [NSString stringWithFormat:@"已学习%0.0f分钟",floor((float)_playTimeInteger/60.0f)];
+}
+- (void)setIsStartBool:(BOOL)isStartBool {
+    _isStartBool = isStartBool;
+    self.headerView.startButton.enabled = _isStartBool;
 }
 #pragma mark - setupUI
 - (void)setupUI {

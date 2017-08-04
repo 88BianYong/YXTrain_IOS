@@ -71,6 +71,9 @@
         [[LSTSharedInstance sharedInstance].recordManager report];
     }
 }
+- (void)browserExitReport:(void(^)(BOOL isScuess))scuessBlock {
+    
+}
 
 #pragma mark - YXPlayProgressDelegate
 - (void)playerProgress:(CGFloat)progress totalDuration:(NSTimeInterval)duration stayTime:(NSTimeInterval)time{

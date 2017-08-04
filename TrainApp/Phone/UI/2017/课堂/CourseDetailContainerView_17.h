@@ -13,4 +13,7 @@
 @property (nonatomic, strong) NSArray<UIViewController *> *viewControllers;
 @property (nonatomic, strong) NSString *contentString;
 @property (nonatomic, copy) void(^courseDetailContainerButtonBlock)();
+@property (nonatomic, assign) NSInteger startTimeInteger;//开始秒数
+@property (nonatomic, assign) NSInteger playTimeInteger;//播放秒数
+@property (nonatomic, assign) BOOL isStartBool;
 @end

@@ -27,14 +27,22 @@
 @property (nonatomic, strong) YXModuleDetailRequest *moduleDetailRequest;
 @property (nonatomic, strong) YXCourseDetailRequest *courseDetailRequest;
 
+@property (nonatomic, strong) YXCourseDetailItem *detailItem;
+@property (nonatomic, strong) RACDisposable *disposable;
+
 @property (nonatomic, assign) BOOL isFullscreen;
 @property (nonatomic, assign) BOOL isShowClossworkViewBool;//是否正在显示随堂练界面
+
 @end
 
 @implementation VideoCourseDetailViewController_17
 
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (self.disposable) {
+        [self.disposable dispose];        
+    }
 }
 - (BOOL)isShowClossworkViewBool {
     return !self.classworkManager.hidden;
@@ -65,6 +73,36 @@
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+#pragma makr - set 
+- (void)setDetailItem:(YXCourseDetailItem *)detailItem {
+    if (detailItem == nil) {
+        return;
+    }
+    _detailItem = detailItem;
+    [self.chapterVC dealWithCourseItem:_detailItem];
+    self.introductionVC.courseItem = _detailItem;
+    if (_detailItem.quizNum.integerValue == 0 || _detailItem.courseSchemeMode.integerValue == 0 || _detailItem.userQuizStatus.integerValue == 1) {
+        [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.playMangerView.mas_bottom).offset(-71.0f);
+        }];
+    }else {
+        self.containerView.startTimeInteger = _detailItem.openQuizTime.integerValue;
+        self.containerView.playTimeInteger = _detailItem.rc.integerValue;
+        self.containerView.isStartBool = self.containerView.playTimeInteger >= self.containerView.startTimeInteger;
+        WEAK_SELF
+        self.disposable = [RACObserve(self.playMangerView, playTotalTime) subscribeNext:^(id x) {
+            STRONG_SELF
+            if (self.playMangerView.playTotalTime > 0 ) {
+                self.containerView.playTimeInteger += self.playMangerView.playTotalTime;
+                if (floor((float)self.containerView.playTimeInteger/60.0f) >= ceil((float)self.containerView.startTimeInteger/60.0f) && !self.containerView.isStartBool) {
+                    [self.playMangerView playReport:^(BOOL isSuccess) {
+                        self.containerView.isStartBool = isSuccess;
+                    }];
+                }
+            }
+        }];
+    }
 }
 
 #pragma mark - setupUI
@@ -327,8 +365,7 @@
             if ([self handleRequestData:data]) {
                 return;
             }
-            [self.chapterVC dealWithCourseItem:item.body];
-            self.introductionVC.courseItem = item.body;
+            self.detailItem = item.body;
         }];
     }else{
         [self.moduleDetailRequest stopRequest];
@@ -350,8 +387,7 @@
             if ([self handleRequestData:data]) {
                 return;
             }
-            [self.chapterVC dealWithCourseItem:item.body];
-            self.introductionVC.courseItem = item.body;
+            self.detailItem = item.body;
         }];
     }
 }

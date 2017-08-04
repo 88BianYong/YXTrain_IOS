@@ -9,7 +9,11 @@
 #import "ReadingListRequest_17.h"
 @implementation ReadingListRequest_17Item_Objs_Affix
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"resname":@"resName"}];
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"resname":@"resName",
+                                                       @"convertstatus":@"convertStatus",
+                                                       @"previewurl":@"previewUrl",
+                                                       @"downloadurl":@"downloadUrl",
+                                                       @"resid":@"resID"}];
 }
 @end
 @implementation ReadingListRequest_17Item_Objs

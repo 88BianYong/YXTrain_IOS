@@ -70,5 +70,24 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:kRecordReportCompleteNotification object:nil];
     }];
 }
-
+- (void)reportScuess:(void(^)(BOOL isScuess))scuessBlock {
+    [self.request stopRequest];
+    self.request = [[YXSaveProcessRequest alloc] init];
+    self.request.cid = self.courseDetailItem.course_id;
+    self.request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    self.request.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
+    self.request.content = [[YXRecordContent contentFromCourseDetailItem:self.courseDetailItem]toJSONString];
+    
+    NSString *course_id = self.courseDetailItem.course_id;
+    NSString *rc = self.courseDetailItem.rc;
+    WEAK_SELF
+    [self.request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (!error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRecordReportSuccessNotification object:nil userInfo:@{course_id:rc}];
+        }
+        [[NSNotificationCenter defaultCenter]postNotificationName:kRecordReportCompleteNotification object:nil];
+    }];
+    
+}
 @end

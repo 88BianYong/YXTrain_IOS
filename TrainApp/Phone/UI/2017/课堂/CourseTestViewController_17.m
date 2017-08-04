@@ -276,7 +276,7 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
 #pragma mark - request
 - (void)requestForGetQuizes {
     CourseGetQuizesRequest_17 *request = [[CourseGetQuizesRequest_17 alloc] init];
-    request.cid = @"10163566";
+    request.cid = self.cID;
     request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.stageid = self.stageString;
     WEAK_SELF
