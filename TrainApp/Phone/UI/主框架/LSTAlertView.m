@@ -122,7 +122,7 @@ CGFloat const kDefaultContentViewHeight = 155.0f;
                 make.bottom.equalTo(defaultView.mas_bottom);
                 make.left.right.equalTo(defaultView);
                 make.height.mas_offset(60.0f);
-                make.top.equalTo(imageView.mas_bottom).offset(-15.5f);
+                make.top.equalTo(lineView.mas_bottom);
             }];
         }else{
             UIButton *buttonOne = self.alertButtonItems.firstObject.button;

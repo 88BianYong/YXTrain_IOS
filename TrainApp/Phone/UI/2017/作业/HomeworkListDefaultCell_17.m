@@ -104,9 +104,9 @@
         }];
         lastView = label;
     }
-    if (self.homework.isMasterComment.boolValue) {//组长点评
+    if (self.homework.isMasterComment.boolValue) {//坊主点评
         UILabel *label = [[UILabel alloc] init];
-        label.text = @"组长点评";
+        label.text = @"坊主点评";
         label.tag = 100004;
         label.textColor = [UIColor whiteColor];
         label.layer.masksToBounds = YES;

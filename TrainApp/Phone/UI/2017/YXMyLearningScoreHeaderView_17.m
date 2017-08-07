@@ -26,23 +26,23 @@
 - (void)setProcess:(ExamineDetailRequest_17Item_Examine_Process *)process{
     _process = process;
     self.titleLabel.text = process.name;
-    __block BOOL isProcessBool = YES;
-    [_process.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (!obj.isExistsNext.boolValue) {
-            if (obj.totalScore.integerValue != 0.0f || obj.passFinishScore.integerValue != 0.0f) {
-                isProcessBool = NO;
-                *stop = YES;
-            }
-        }else {
-            [obj.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
-                if (next.totalScore.integerValue != 0.0f || next.passFinishScore.integerValue != 0.0f) {
-                    isProcessBool = NO;
-                    *stop = YES;
-                }
-            }];
-        }
-    }];
-    self.explainButton.hidden = isProcessBool;
+//    __block BOOL isProcessBool = YES;
+//    [_process.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if (!obj.isExistsNext.boolValue) {
+//            if (obj.totalScore.integerValue != 0.0f || obj.passFinishScore.integerValue != 0.0f) {
+//                isProcessBool = NO;
+//                *stop = YES;
+//            }
+//        }else {
+//            [obj.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
+//                if (next.totalScore.integerValue != 0.0f || next.passFinishScore.integerValue != 0.0f) {
+//                    isProcessBool = NO;
+//                    *stop = YES;
+//                }
+//            }];
+//        }
+//    }];
+//    self.explainButton.hidden = isProcessBool;
     self.scoreLable.attributedText = [self totalScore:process.totalScore WithScore:_process.userScore];
 }
 #pragma mark - setupUI

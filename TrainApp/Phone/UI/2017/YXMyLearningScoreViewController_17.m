@@ -31,6 +31,35 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - set
+- (void)setExamine:(ExamineDetailRequest_17Item_Examine *)examine {
+    _examine = examine;
+    NSMutableArray<ExamineDetailRequest_17Item_Examine_Process> *process = [[NSMutableArray<ExamineDetailRequest_17Item_Examine_Process> alloc] init];
+    [_examine.process enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+         __block BOOL isProcessBool = YES;
+        [obj.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *exa, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (!exa.isExistsNext.boolValue) {
+                if (exa.totalScore.integerValue != 0.0f || exa.passFinishScore.integerValue != 0.0f) {
+                    isProcessBool = NO;
+                    *stop = YES;
+                }
+            }else {
+                [obj.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (!next.isExistsNext.boolValue) {
+                        if (next.totalScore.integerValue != 0.0f || next.passFinishScore.integerValue != 0.0f) {
+                            isProcessBool = NO;
+                            *stop = YES;
+                        }
+                    }
+                }];
+            }
+        }];
+        if (!isProcessBool) {
+            [process addObject:obj];
+        }
+    }];
+    _examine.process = process;
+}
 #pragma mark - setupUI
 - (void)setupUI {
     self.navigationItem.title = @"我的成绩";
@@ -112,6 +141,7 @@
             help.totalScore = obj.totalScore;
             help.passTotalScore = obj.passTotalScore;
             help.passScore = obj.passScore;
+            help.passScore = self.examine.isExamPass;
             NSString *helpString = [help toolCompleteStatusExplain];
             if (!isEmpty(helpString)) {
                 [mutableArray addObject:helpString];
@@ -129,6 +159,7 @@
                 help.totalScore = next.totalScore;
                 help.passTotalScore = next.passTotalScore;
                 help.passScore = next.passScore;
+                help.passScore = self.examine.isExamPass;
                 self.showMarkHeight += 23;
                 NSString *helpString = [help toolCompleteStatusExplain];
                 if (!isEmpty(helpString)) {

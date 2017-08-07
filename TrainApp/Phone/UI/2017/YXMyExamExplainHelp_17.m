@@ -141,6 +141,29 @@
         rStr = @"";
     }else if (self.toolID.integerValue == 204){
         lStr = [NSString stringWithFormat:@"在线考试: 需要通过%@个,",self.totalNum];
+        if (self.isExamPass.integerValue == -1) {
+            rStr = [NSString stringWithFormat:@"总分%@分",self.totalScore];
+        }else if (self.isExamPass.integerValue == 0){
+            rStr = [NSString stringWithFormat:@"总分%@分\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t在线考试最终考核结果未合格",self.totalScore];
+        }else if (self.isExamPass.integerValue == 1){
+            rStr = [NSString stringWithFormat:@"总分%@分\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t在线考试最终考核结果未合格",self.totalScore];
+        }else {
+            rStr = [NSString stringWithFormat:@"总分%@分\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t在线考试最终考核结果合格",self.totalScore];
+        }
+    }else if (self.toolID.integerValue == 309){
+        lStr = [NSString stringWithFormat:@"日志: 需要完成%@篇,",self.totalNum];
+        rStr = [NSString stringWithFormat:@"总分%@分",self.totalScore];
+        if (self.totalScore.integerValue == 0) {
+            rStr = @"";
+        }
+    }else if (self.toolID.integerValue == 310){
+        lStr = [NSString stringWithFormat:@"资源: 需要上传%@个,",self.totalNum];
+        rStr = [NSString stringWithFormat:@"总分%@分",self.totalScore];
+        if (self.totalScore.integerValue == 0) {
+            rStr = @"";
+        }
+    }else if (self.toolID.integerValue == 211){
+        lStr = [NSString stringWithFormat:@"问答: 需要回答%@个提问,",self.totalNum];
         rStr = [NSString stringWithFormat:@"总分%@分",self.totalScore];
         if (self.totalScore.integerValue == 0) {
             rStr = @"";

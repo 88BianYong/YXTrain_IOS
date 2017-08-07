@@ -118,7 +118,7 @@
 @property (nonatomic, copy) NSString<Optional> *isExistsNext;
 @property (nonatomic, copy) NSString<Optional> *name;
 @property (nonatomic, copy) NSString<Optional> *passTotalScore;
-@property (nonatomic, strong) NSArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList,Optional> *toolExamineVoList;
+@property (nonatomic, strong) NSMutableArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList,Optional> *toolExamineVoList;
 @property (nonatomic, copy) NSString<Optional> *status;
 @end
 @protocol ExamineDetailRequest_17Item_Examine_Process <NSObject>
@@ -144,6 +144,7 @@
 
 @interface ExamineDetailRequest_17Item_Examine : JSONModel
 @property (nonatomic, copy) NSString<Optional> *isPass;
+@property (nonatomic, copy) NSString<Optional> *isExamPass;
 @property (nonatomic, copy) NSString<Optional> *totalScore;
 @property (nonatomic, copy) NSString<Optional> *userGetScore;
 @property (nonatomic, copy) NSString<Optional> *userName;

@@ -33,6 +33,11 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
     [super setHighlighted:highlighted animated:animated];
 }
+#pragma mark - set
+- (void)setHomework:(HomeworkListRequest_17Item_Homeworks *)homework {
+    _homework = homework;
+    self.titleLabel.text= _homework.title;
+}
 #pragma mark - setup UI
 - (void)setupUI{
     self.groupImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"组"]];
@@ -40,15 +45,18 @@
     [self.groupImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
+        make.size.mas_offset(CGSizeMake(20.0f, 20.0f));
     }];
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    self.titleLabel.numberOfLines = 1;
     [self.contentView addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.groupImageView.mas_right).offset(10.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
+        make.right.equalTo(self.contentView.mas_right).offset(-10.0f);
     }];
     self.lineView = [[UIView alloc] init];
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];

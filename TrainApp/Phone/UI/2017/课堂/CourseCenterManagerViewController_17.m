@@ -84,6 +84,10 @@
         [self startLoading];
         [self requestForCenterCondition];
     };
+    
+    self.emptyView = [[YXEmptyView alloc] init];
+    self.emptyView.title = @"没有符合条件的课程";
+    self.emptyView.imageName = @"没有符合条件的课程";
 }
 - (void)naviRightAction{
     CourseRecordListViewController_17 *VC = [[CourseRecordListViewController_17 alloc]init];
@@ -134,8 +138,9 @@
     [request startRequestWithRetClass:[CourseListRequest_17Item_SearchTerm class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
+        CourseListRequest_17Item_SearchTerm *item = retItem;
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = YES;
+        data.requestDataExist = item.coursetypes.count > 0;
         data.localDataExist = NO;
         data.error = error;
         if ([self handleRequestData:data]) {

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HomeworkListRequest_17.h"
 @interface HomeworkListGroupCell_17 : UITableViewCell
-
+@property (nonatomic, strong) HomeworkListRequest_17Item_Homeworks *homework;
 @end

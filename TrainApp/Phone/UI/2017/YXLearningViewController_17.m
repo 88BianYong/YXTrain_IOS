@@ -318,14 +318,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool, NSInteger tagInteger) {
         STRONG_SELF
         if (tool.status.integerValue > 0){
-            if (tool.toolID.integerValue == 222) {
-                ReadingListViewController_17 *VC = [[ReadingListViewController_17 alloc] init];
-                VC.stageString = stages.stageID;
-                VC.toolString = tool.toolID;
-                [self.navigationController pushViewController:VC animated:YES];
-            }else if (tool.toolID.integerValue == 207){
-                [self showToast:@"手机暂不支持测评,请到电脑端完成"];
-            }else if (tool.toolID.integerValue == 201 || tool.toolID.integerValue == 223 || tool.toolID.integerValue == 301 || tool.toolID.integerValue == 215 || tool.toolID.integerValue == 315 || tool.toolID.integerValue == 217){
+            if (tool.toolID.integerValue == 201){//课程
                 CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
                 VC.stageString = stages.stageID;
                 VC.studyString = self.examineDetailItem.user.study;
@@ -343,22 +336,26 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
                 }
                 VC.isShowChoose = isShowChoose;
                 [self.navigationController pushViewController:VC animated:YES];
-            }else if (tool.toolID.integerValue == 103 || tool.toolID.integerValue == 203 || tool.toolID.integerValue == 205 || tool.toolID.integerValue == 208 || tool.toolID.integerValue == 216 || tool.toolID.integerValue == 219){
+            }else if (tool.toolID.integerValue == 202){//活动
+                ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
+                VC.stageID = stages.stageID;
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if (tool.toolID.integerValue == 203){//作业
                 HomeworkListViewController_17 *VC = [[HomeworkListViewController_17 alloc] init];
                 VC.stageString = stages.stageID;
                 VC.toolString = tool.toolID;
                 [self.navigationController pushViewController:VC animated:YES];
-            }else if (tool.toolID.integerValue == 202 || tool.toolID.integerValue == 302){
-                ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
-                VC.stageID = stages.stageID;
+            }else if (tool.toolID.integerValue == 207){//测评
+                [self showToast:@"手机暂不支持测评,请到电脑端完成"];
+            }else if (tool.toolID.integerValue == 222) {//阅读
+                ReadingListViewController_17 *VC = [[ReadingListViewController_17 alloc] init];
+                VC.stageString = stages.stageID;
+                VC.toolString = tool.toolID;
                 [self.navigationController pushViewController:VC animated:YES];
-            }else {
-                
             }
         }else {
             [self showToast:@"请先完成上一个任务"];
         }
-
     };
     return cell;
 }
