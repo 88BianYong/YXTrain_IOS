@@ -87,7 +87,7 @@
             [self.readButton setTitle:@"我已阅读文档内容" forState:UIControlStateNormal];
         }else {
             self.readButton.enabled = NO;
-            [self readDocumentTime:self.readButton time:10];
+            [self readDocumentTime:self.readButton time:11];
         }
     }
 

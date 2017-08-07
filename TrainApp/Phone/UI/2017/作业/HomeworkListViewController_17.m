@@ -104,7 +104,7 @@
     [self.tableView registerClass:[HomeworkListHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListHeaderView_17"];
     [self.tableView registerClass:[HomeworkListFooterView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListFooterView_17"];
     [self.tableView registerClass:[HomeworkListGroupCell_17 class] forCellReuseIdentifier:@"HomeworkListGroupCell_17"];
-    [self.tableView registerClass:[HomeworkListVideoSpecialCell_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListVideoSpecialCell_17"];
+    [self.tableView registerClass:[HomeworkListVideoSpecialCell_17 class] forCellReuseIdentifier:@"HomeworkListVideoSpecialCell_17"];
     [self.view addSubview:self.tableView];
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
@@ -192,6 +192,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.section == 0){
+        return;
+    }
     HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
     if (homework.templateID.integerValue == 379) {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];

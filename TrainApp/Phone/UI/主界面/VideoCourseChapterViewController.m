@@ -195,6 +195,13 @@
     [LSTSharedInstance sharedInstance].recordManager.fragmentIndex = indexPath.row;
     [self.tableView reloadData];
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentSize.height >= kScreenHeight -  64.0f - kScreenWidth * 9.0f /16.0f) {
+        DDLogDebug(@"%f",scrollView.contentOffset.y);
+    }
+}
+
 #pragma mark - data format
 - (YXFileItemBase *)fileItemBaseFormatForChapterFragment:(YXCourseDetailItem_chapter_fragment *)fragment {
     YXFileType type = [YXAttachmentTypeHelper typeWithID:fragment.type];

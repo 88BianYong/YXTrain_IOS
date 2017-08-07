@@ -45,7 +45,6 @@
             self.filterView.searchTerm = model.searchTerm;
             self.filterView.hidden = NO;
         }
-
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
@@ -85,7 +84,6 @@
            forCellReuseIdentifier:@"CourseListCell_17"];
     [self.tableView registerClass:[CourseListHeader_17 class] forHeaderFooterViewReuseIdentifier:@"CourseListHeader_17"];
     [self setupObservers];
-
 }
 - (void)reforeUI {
     self.filterView.alpha = 0.0f;

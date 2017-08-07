@@ -37,7 +37,7 @@
     self.currentViewController = noticeVC;
 }
 - (void)setNoticeBriefTitleView {
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30.0f)];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 30.0f)];
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"通知",@"简报"]];
     seg.tintColor = [UIColor whiteColor];
     seg.backgroundColor = [UIColor whiteColor];
@@ -64,6 +64,9 @@
         }  completion:^(BOOL finished) {
             self.currentViewController=viewController;
             [viewController didMoveToParentViewController:self];
+            [viewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
         }];
     }
 }

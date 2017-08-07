@@ -141,6 +141,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     self.errorView = [[YXErrorView alloc] init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
+        [self startLoading];
         if (self.requestStatus == YXLearningRequestStatus_LayerList) {
             [self requestForLayerList];
         }else {
@@ -150,6 +151,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     self.dataErrorView = [[DataErrorView alloc] init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
+        [self startLoading];
         if (self.requestStatus == YXLearningRequestStatus_LayerList) {
             [self requestForLayerList];
         }else {
@@ -195,8 +197,11 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
     if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenLayer.boolValue) {
         [self requestForLayerList];
+        self.qrCodeView.hidden = YES;
     }else {
         [self requestForExamineDetail];
+        self.qrCodeView.hidden = NO;
+
     }
 }
 - (void)showTrainLayerView:(TrainLayerListRequestItem *)item {
@@ -249,7 +254,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
                 if ([self compareDateDate:stage.startTime]) {
                     [self showToast:@"阶段尚未开始"];
                 }else {
-                    [self showToast:@"请先完成上一个任务"];
+                    [self showToast:@"请先完成上一个阶段全部任务"];
                 }
                 return;
             }

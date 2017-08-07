@@ -107,7 +107,7 @@
             help.toolName = obj.name;
             help.toolID = obj.toolID;
             help.finishNum = obj.finishNum;
-            help.finishScore = obj.userScore;
+            help.finishScore = obj.passFinishScore;
             help.totalNum = obj.totalNum;
             help.totalScore = obj.totalScore;
             help.passTotalScore = obj.passTotalScore;

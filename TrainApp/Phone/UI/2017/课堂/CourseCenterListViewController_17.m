@@ -38,10 +38,8 @@
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    [self setupLayout];
 }
-
-
+#pragma mark - setupUI 
 - (void)setupUI {
     self.filterView = [[CourseListFilterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
     [self.view addSubview:self.filterView];
@@ -66,6 +64,7 @@
     self.emptyView.imageName = @"没有符合条件的课程";
     [self setupRightWithTitle:@"看课记录"];
     [self setupObservers];
+    [self setupLayout];
 }
 - (void)setupLayout {
     [self.filterView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -123,7 +122,6 @@
     cell.course = self.dataArray[indexPath.row];
     return cell;
 }
-
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 104.0f;

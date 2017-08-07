@@ -82,6 +82,9 @@
 }
 @end
 @implementation ExamineDetailRequest_17Item_Other
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"ifWorks":@"isWorks"}];
+}
 @end
 @implementation ExamineDetailRequest_17Item_Layer
 + (JSONKeyMapper *)keyMapper {
@@ -117,7 +120,7 @@
             other.otherName = @"选课中心";
             [mutableArray addObject:other];
         }
-        if (self.other.isShowCert.boolValue) {
+        if (self.other.isShowExam.boolValue) {
             ExamineDetailRequest_17Item_MockOther *other = [[ExamineDetailRequest_17Item_MockOther alloc] init];
             other.otherType = @"2";
             other.otherName = @"在线考试";
@@ -139,7 +142,7 @@
             [mutableArray addObject:other];
         }
         
-        if(self.other.isShowExam.boolValue) {
+        if(self.other.isWorks.boolValue) {
             ExamineDetailRequest_17Item_MockOther *other = [[ExamineDetailRequest_17Item_MockOther alloc] init];
             other.otherType = @"5";
             other.otherName = @"作品集";

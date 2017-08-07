@@ -9,7 +9,7 @@
 #import "YXCourseBaseViewController.h"
 #import "CourseListRequest_17.h"
 @interface CourseCenterListViewController_17 : YXCourseBaseViewController
-@property (nonatomic, strong) CourseListRequest_17Item_SearchTerm *conditionItem;
+@property (nonatomic, copy) CourseListRequest_17Item_SearchTerm *conditionItem;
 @property (nonatomic, assign) BOOL isCourseTypeBool;
 @property (nonatomic, copy) NSString *tabString;
 @end

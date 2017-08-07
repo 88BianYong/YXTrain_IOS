@@ -23,7 +23,7 @@
 @property (nonatomic, copy) NSString<Optional> *isShowOfflineActive;
 @property (nonatomic, copy) NSString<Optional> *isShowSelfHomework;
 @property (nonatomic, copy) NSString<Optional> *isShowExam;
-@property (nonatomic, copy) NSString<Optional> *ifWorks;
+@property (nonatomic, copy) NSString<Optional> *isWorks;
 @property (nonatomic, copy) NSString<Optional> *guide;
 @property (nonatomic, copy) NSString<Optional> *plans;
 @end

@@ -89,6 +89,9 @@
         }  completion:^(BOOL finished) {
             self.currentViewController=viewController;
             [viewController didMoveToParentViewController:self];
+            [viewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.edges.equalTo(self.view);
+            }];
         }];
     }
 }

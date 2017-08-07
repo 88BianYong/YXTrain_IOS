@@ -34,6 +34,9 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self requestForCenterCondition];
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
 #pragma mark - set
 - (void)setConditionItem:(CourseListRequest_17Item_SearchTerm *)conditionItem {
     if (conditionItem == nil) {
@@ -53,7 +56,6 @@
         localListVC.conditionItem = self.conditionItem;
         [self addChildViewController:localListVC];
         [centerListVC didMoveToParentViewController:self];
-        
         [self.view addSubview:centerListVC.view];
         self.currentViewController = centerListVC;
     }else {
@@ -61,6 +63,11 @@
         centerListVC.conditionItem = self.conditionItem;
         [self addChildViewController:centerListVC];
         [centerListVC didMoveToParentViewController:self];
+        [self.view addSubview:centerListVC.view];
+        self.currentViewController = centerListVC;
+        [centerListVC.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
     }
     [self setupRightWithTitle:@"看课记录"];
     WEAK_SELF
@@ -114,6 +121,9 @@
     }  completion:^(BOOL finished) {
         self.currentViewController=viewController;
         [viewController didMoveToParentViewController:self];
+        [viewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
     }];
 }
 #pragma mark - request

@@ -21,6 +21,7 @@ typedef void (^VideoCourseIntroductionCompleteBlock)(YXCourseDetailItem *courseI
 @property (nonatomic, strong) YXCourseListRequestItem_body_module_course *course;
 @property (nonatomic, assign) VideoCourseFromWhere fromWhere;
 @property (nonatomic, assign) NSInteger seekInteger;
+@property (nonatomic, copy) void(^videoCourseSlideBlcok)(BOOL isTopBool);
 
 /**
  准备下一个播放源
