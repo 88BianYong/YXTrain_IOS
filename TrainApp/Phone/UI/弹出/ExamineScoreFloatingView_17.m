@@ -21,6 +21,10 @@
     }
     return self;
 }
+- (void)setScoreString:(NSString *)scoreString {
+    _scoreString = scoreString;
+    self.scoreLabel.text = _scoreString;
+}
 
 - (void)setupUIAndLayoutInterface{
     UIImageView *containerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"50%"]];

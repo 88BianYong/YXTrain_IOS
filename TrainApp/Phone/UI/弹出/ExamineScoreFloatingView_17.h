@@ -9,5 +9,7 @@
 #import "FloatingBaseView.h"
 
 @interface ExamineScoreFloatingView_17 : FloatingBaseView
+@property (nonatomic, strong) NSString *scoreString;
+
 
 @end

@@ -16,6 +16,7 @@
 #import "YXWebViewController.h"
 #import "FloatingBaseView.h"
 #import "YXRotateListRequest.h"
+#import "ExamineScoreFloatingView_17.h"
 @interface PopUpFloatingViewManager_17 ()
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
 @property (nonatomic, strong) YXPopUpContainerView *upgradeView;
@@ -185,7 +186,8 @@
     }
     self.isScore = YES;
     UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    FloatingBaseView *guideView = [[NSClassFromString(@"ExamineScoreFloatingView_17") alloc] init];
+    ExamineScoreFloatingView_17 *guideView = [[ExamineScoreFloatingView_17 alloc] init];
+    guideView.scoreString = self.scoreString;
     WEAK_SELF
     [guideView setFloatingBaseRemoveCompleteBlock:^{
         STRONG_SELF;
@@ -246,15 +248,15 @@
 #pragma mark - judgment
 - (BOOL)isExamineUserScore {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainAcademicPerformance] &&
-    self.item != nil;
+    self.scoreString != nil;
 }
 - (BOOL)isExamineNoticeBrief {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainNoticeBriefing]&&
-    self.item != nil;
+    self.scoreString != nil;
 }
 - (BOOL)isFinishStudyStep {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainCompleteTrainingMethod]&&
-    self.item != nil;
+    self.scoreString != nil;
 }
 
 @end

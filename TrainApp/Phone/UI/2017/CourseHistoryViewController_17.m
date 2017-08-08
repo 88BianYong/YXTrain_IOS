@@ -11,7 +11,7 @@
 #import "CourseHistoryListFetcher_17.h"
 #import "CourseHistoryCell_17.h"
 #import "YXCourseListRequest.h"
-#import "VideoCourseDetailViewController.h"
+#import "VideoCourseDetailViewController_17.h"
 @interface CourseHistoryViewController_17 ()
 @end
 
@@ -111,8 +111,9 @@
     course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
     course.type = obj.type;
     if (course.isSupportApp.boolValue) {
-        VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
+        VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
         vc.course = course;
+        vc.stageString = self.stageString;
         vc.fromWhere = VideoCourseFromWhere_Detail;
         [self.navigationController pushViewController:vc animated:YES];
     }

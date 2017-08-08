@@ -40,6 +40,9 @@
 @end
 
 @implementation YXLoginViewController
+- (void)dealloc {
+    DDLogDebug(@"release=====>%@",[self class]);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -150,10 +153,10 @@
     QRScanImageView.image = [UIImage imageNamed:@"QR-icon"];
     [containerView addSubview:QRScanImageView];
     YXClickedUnderLineButton *QRScanButton = [[YXClickedUnderLineButton alloc] initWithFrame:CGRectZero];
+    WEAK_SELF
     QRScanButton.buttonClicked = ^{
-        @weakify(self);
+        STRONG_SELF
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-            @strongify(self);
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (granted) {
                     YXLoginByScanQRViewController *vc = [[YXLoginByScanQRViewController alloc] init];
@@ -190,9 +193,8 @@
     [containerView addSubview:forgetPasswordButton];
     
     self.touristLoginButton = [[YXClickedUnderLineButton alloc] init];
-    @weakify(self);
     self.touristLoginButton.buttonClicked = ^{
-        @strongify(self);
+        STRONG_SELF
         [self startTouristRequet];
     };
     [self.touristLoginButton buttonTitileWithName:@"游客登录"];

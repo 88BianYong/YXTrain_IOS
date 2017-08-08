@@ -44,11 +44,11 @@ static const NSInteger kPlayReportRetryTime = 10;
 @property (nonatomic, assign) BOOL isShowDefinition;
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, assign) NSTimeInterval playTime;
-
 @property (nonatomic, strong) NSURL *oldUrl;
 
 
 @property (nonatomic, strong) NSTimer *playReportRetryTimer;
+@property (nonatomic, strong) NSTimer *documentRetryTimer;
 
 @property (nonatomic, copy) void(^isReportSuccessBlock)(BOOL isSuccess);
 @property (nonatomic, assign) BOOL isTestReport;
@@ -75,6 +75,21 @@ static const NSInteger kPlayReportRetryTime = 10;
             [self recordPlayerDuration];
         }];
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainStartStopVideo object:nil] subscribeNext:^(NSNotification *x) {
+            if ([x.object boolValue]) {
+                [self.documentRetryTimer invalidate];
+                self.documentRetryTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                                             target:self
+                                                                           selector:@selector(playTotalTimeAdd)
+                                                                           userInfo:nil
+                                                                            repeats:YES];
+                [self.playReportRetryTimer fire];
+                
+            }else {
+                [self.documentRetryTimer invalidate];
+                self.documentRetryTimer = nil;
+      
+            }
+
             STRONG_SELF
             if (!self.exceptionView.hidden) {
                 return;
@@ -122,6 +137,9 @@ static const NSInteger kPlayReportRetryTime = 10;
         }];
     }
     return self;
+}
+- (void)playTotalTimeAdd {
+    self.playTotalTime += 1;
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -792,6 +810,9 @@ static const NSInteger kPlayReportRetryTime = 10;
     SAFE_CALL(self.exitDelegate, browserExit);
 }
 - (void)viewWillAppear {
+    if (!self.exceptionView.hidden) {
+        return;
+    }
     if (!self.isManualPause) {
         [self.player play];
     }
@@ -799,6 +820,9 @@ static const NSInteger kPlayReportRetryTime = 10;
     [_beginningView viewWillAppear];
 }
 - (void)viewWillDisappear {
+    if (!self.exceptionView.hidden) {
+        return;
+    }
     [self.player pause];
     self.isShowTop = NO;
     [_beginningView viewWillDisappear];
@@ -810,6 +834,11 @@ static const NSInteger kPlayReportRetryTime = 10;
     [self.player pause];
     self.player = nil;
     [self.topBottomHideTimer invalidate];
+    self.topBottomHideTimer = nil;
+    [self.playReportRetryTimer invalidate];
+    self.playReportRetryTimer = nil;
+    [self.documentRetryTimer invalidate];
+    self.documentRetryTimer = nil;
     for (RACDisposable *d in self.disposableMutableArray) {
         [d dispose];
     }

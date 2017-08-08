@@ -14,6 +14,7 @@
 #import "CourseListCell_17.h"
 #import "YXCourseListRequest.h"
 #import "VideoCourseDetailViewController.h"
+#import "VideoCourseDetailViewController_17.h"
 @interface CourseListElectiveViewController_17 ()
 @property (nonatomic, strong) CourseListFilterView_17 *filterView;
 @property (nonatomic, strong) CourseListRequest_17Item_Scheme *schemeItem;
@@ -37,7 +38,23 @@
             self.filterView.hidden = NO;
         }
         if (model.scheme.count > 0) {
-            self.schemeItem = model.scheme[0];
+            [model.scheme enumerateObjectsUsingBlock:^(CourseListRequest_17Item_Scheme *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (self.typeString.integerValue == 0) {
+                    self.schemeItem = obj;
+                    return;
+                }
+                if (self.typeString.integerValue == 102 && obj.scheme.toolID.integerValue == 201) {
+                    self.schemeItem = obj;
+                    return;
+                }
+                if (self.typeString.integerValue == 101 && obj.scheme.toolID.integerValue == 223) {
+                    self.schemeItem = obj;
+                    return;
+                }
+            }];
+            if (self.schemeItem == nil) {
+                self.schemeItem = model.scheme[0];
+            }
         }
     };
     self.dataFetcher = fetcher;
@@ -151,8 +168,9 @@
     course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
     course.type = obj.type;
     if (course.isSupportApp.boolValue) {
-        VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
+        VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
         vc.course = course;
+        vc.stageString = self.stageString;
         vc.fromWhere = VideoCourseFromWhere_Detail;
         [self.navigationController pushViewController:vc animated:YES];
     }

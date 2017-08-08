@@ -31,6 +31,7 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
 @property (nonatomic, strong) CourseGetQuizesRequest_17 *quizesRequest;
 @property (nonatomic, strong) CourseGetQuizesRequest_17Item *quizesItem;
 @property (nonatomic, strong) CourseSubmitUserQuizesRequest_17 *submitUserQuizesRequest;
+@property (nonatomic, strong) CourseSubmitUserQuizesRequest_17Item *submitItem;
 @property (nonatomic, assign) CourseTestSubmitStatus submitStatus;
 @end
 
@@ -69,7 +70,13 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
         }
     }];
     self.headerView.result = _quizesItem.result;
+    self.headerView.hidden = NO;
+    self.tableView.tableFooterView.hidden = NO;
     [self.tableView reloadData];
+}
+- (void)setSubmitItem:(CourseSubmitUserQuizesRequest_17Item *)submitItem {
+    _submitItem = submitItem;
+    self.passStatusHeaderView.quizesItem = _submitItem;
 }
 - (CourseTestNotPassTableHeaderView_17 *)passStatusHeaderView {
     if (_passStatusHeaderView == nil) {
@@ -106,9 +113,11 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
     [self.tableView registerClass:[CourseTestCell_17 class] forCellReuseIdentifier:@"CourseTestCell_17"];
  
     self.headerView = [[CourseTestTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 71.0f)];
+    self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100.0f, 79.0f)];
     footerView.backgroundColor = [UIColor whiteColor];
+    footerView.hidden = YES;
     self.tableView.tableFooterView = footerView;
     
     self.confirmButton = [[UIButton alloc] init];
@@ -133,17 +142,15 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
         STRONG_SELF
         if (self.submitStatus == CourseTestSubmitStatus_NotSubmi) {
             NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
-            [self.quizesItem.result.questions enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [self.quizesItem.result.questions enumerateObjectsUsingBlock:^(CourseGetQuizesRequest_17Item_Result_Questions *question, NSUInteger idx, BOOL * _Nonnull stop) {
-                    NSMutableArray *answerArray = [[NSMutableArray alloc] initWithCapacity:4];
-                    [question.question.answerJson enumerateObjectsUsingBlock:^(CourseGetQuizesRequest_17Item_Result_Questions_Questions_AnswerJson *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if (obj.isChoose.boolValue) {
-                            [answerArray addObject:obj.no];
-                        }
-                    }];
-                    NSDictionary *dictionary = @{@"type":question.question.types?:@"",@"answer":answerArray,@"id":question.question.qID?:@""};
-                    [mutableArray addObject:dictionary];
+            [self.quizesItem.result.questions enumerateObjectsUsingBlock:^(CourseGetQuizesRequest_17Item_Result_Questions *question, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSMutableArray *answerArray = [[NSMutableArray alloc] initWithCapacity:4];
+                [question.question.answerJson enumerateObjectsUsingBlock:^(CourseGetQuizesRequest_17Item_Result_Questions_Questions_AnswerJson *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (obj.isChoose.boolValue) {
+                        [answerArray addObject:obj.no];
+                    }
                 }];
+                NSDictionary *dictionary = @{@"type":question.question.types?:@"",@"answer":answerArray,@"id":question.question.qID?:@""};
+                [mutableArray addObject:dictionary];
             }];
             [self requestForSubmitUserQuizes:mutableArray];
         }else {
@@ -178,6 +185,14 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
         make.edges.equalTo(self.view);
     }];
 }
+- (void)naviRightAction {
+    if (self.submitStatus == CourseTestSubmitStatus_FullScore) {
+        BLOCK_EXEC(self.courseTestQuestionBlock,YES);
+    }else {
+        BLOCK_EXEC(self.courseTestQuestionBlock,NO);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.submitStatus == CourseTestSubmitStatus_FullScore) {
@@ -193,7 +208,19 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
     CourseTestCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseTestCell_17" forIndexPath:indexPath];
     CourseGetQuizesRequest_17Item_Result_Questions *question = self.quizesItem.result.questions[indexPath.section];
     cell.answer = question.question.answerJson[indexPath.row];
+    if (![self isFirstChooseAnswer:indexPath.section] || !cell.answer.isChoose.boolValue) {
+        cell.classworkStatus = CourseTestCellStatus_Normal;
+    }else {
+        CourseSubmitUserQuizesRequest_17Item_Data *data = self.submitItem.data[indexPath.section];
+        cell.classworkStatus = data.isCorrect.boolValue ? CourseTestCellStatus_Right : CourseTestCellStatus_Error;
+    }
     return cell;
+}
+- (BOOL)isFirstChooseAnswer:(NSInteger)integer {
+    if (self.submitStatus == CourseTestSubmitStatus_NotSubmi || self.submitItem.data.count != self.quizesItem.result.questions.count) {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - UITableViewDelegate
@@ -300,7 +327,7 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:answerArray options:NSJSONWritingPrettyPrinted error:nil];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     request.aj = jsonString;
-    request.cid = @"10163566";
+    request.cid = self.cID;
     request.stageid = self.stageString;
     [self startLoading];
     WEAK_SELF
@@ -315,13 +342,14 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
             return;
         }
         CourseSubmitUserQuizesRequest_17Item *item = retItem;
-        if (item.correctNum.integerValue != item.totalNum.integerValue) {
+        if (item.correctNum.integerValue == item.totalNum.integerValue) {
             self.tableView.tableHeaderView = self.fullScoreHeaderView;
             self.submitStatus = CourseTestSubmitStatus_FullScore;
         }else {
             self.tableView.tableHeaderView = self.passStatusHeaderView;
-            self.passStatusHeaderView.quizesItem = item;
+            self.submitItem = item;
             self.submitStatus = CourseTestSubmitStatus_PassStatus;
+            [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
         }
         [self.tableView reloadData];
     }];

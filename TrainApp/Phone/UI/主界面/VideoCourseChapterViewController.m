@@ -198,7 +198,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (scrollView.contentSize.height >= kScreenHeight -  64.0f - kScreenWidth * 9.0f /16.0f) {
-        DDLogDebug(@"%f",scrollView.contentOffset.y);
+        BLOCK_EXEC(self.videoCourseSlideDistanceBlock,scrollView.contentOffset.y);
     }
 }
 

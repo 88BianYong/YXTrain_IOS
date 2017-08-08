@@ -86,7 +86,7 @@
         [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.playMangerView.mas_bottom).offset(-71.0f);
         }];
-    }else {
+    }else {//新随堂练
         self.containerView.startTimeInteger = _detailItem.openQuizTime.integerValue;
         self.containerView.playTimeInteger = _detailItem.rc.integerValue;
         self.playMangerView.playTotalTime = _detailItem.rc.integerValue;
@@ -186,10 +186,18 @@
         STRONG_SELF
         self.title = courseItem.course_title;
     }];
+    self.chapterVC.videoCourseSlideDistanceBlock = ^(CGFloat distance) {
+        STRONG_SELF
+        [self refreshContainerView:distance];
+    };
     self.introductionVC = [[VideoCourseIntroductionViewController alloc] init];
     self.introductionVC.title = self.title;
     self.commentVC = [[VideoCourseCommentViewController alloc] init];
     self.commentVC.courseId = self.course.courses_id;
+    self.commentVC.videoCourseSlideDistanceBlock = ^(CGFloat distance) {
+        STRONG_SELF
+        [self refreshContainerView:distance];
+    };
     [self addChildViewController:self.chapterVC];
     [self addChildViewController:self.introductionVC];
     [self addChildViewController:self.commentVC];
@@ -303,6 +311,21 @@
     self.classworkManager.clossworkView.isFullscreen = self.isFullscreen;
     [self.view layoutIfNeeded];
 }
+- (void)refreshContainerView:(CGFloat)distance{
+    if (self.detailItem.quizNum.integerValue == 0 || self.detailItem.courseSchemeMode.integerValue == 0 || self.detailItem.userQuizStatus.integerValue == 1){
+        return;
+    }
+    if (distance > 10.0f) {
+        [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.playMangerView.mas_bottom).offset(-71.0f);
+        }];
+    }else if(distance < -10.0f) {
+        [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.playMangerView.mas_bottom);
+        }];
+    }
+    
+}
 #pragma mark - action
 - (void)rotateScreenAction {
     UIInterfaceOrientation screenDirection = [UIApplication sharedApplication].statusBarOrientation;
@@ -337,7 +360,6 @@
 - (UIInterfaceOrientationMask)supportedInterfaceOrientations NS_AVAILABLE_IOS(6_0) {
     return UIInterfaceOrientationMaskAllButUpsideDown;
 }
-
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
     if (size.width > size.height) {
         [self remakeForFullSize];

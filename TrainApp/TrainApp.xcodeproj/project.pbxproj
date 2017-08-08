@@ -461,12 +461,13 @@
 		92BBE02D1F1F63EF009230AC /* ActivityFilterHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE02C1F1F63EF009230AC /* ActivityFilterHeaderView_17.m */; };
 		92BBE0301F1F6405009230AC /* ActivityFilterFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE02F1F1F6405009230AC /* ActivityFilterFooterView_17.m */; };
 		92BBE0361F205C43009230AC /* HomeworkListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0351F205C43009230AC /* HomeworkListViewController_17.m */; };
-		92BBE0391F205F5D009230AC /* HomeworkListDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0381F205F5D009230AC /* HomeworkListDefaultCell_17.m */; };
+		92BBE0391F205F5D009230AC /* HomeworkListSpecialCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0381F205F5D009230AC /* HomeworkListSpecialCell_17.m */; };
 		92BBE0481F20AE60009230AC /* HomeworkListClaimCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0471F20AE60009230AC /* HomeworkListClaimCell_17.m */; };
 		92BBE04E1F20B360009230AC /* HomeworkListHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE04D1F20B360009230AC /* HomeworkListHeaderView_17.m */; };
 		92BBE0511F219196009230AC /* HomeworkListVideoDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0501F219196009230AC /* HomeworkListVideoDefaultCell_17.m */; };
 		92BBE0541F219D03009230AC /* HomeworkListVideoSpecialCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0531F219D03009230AC /* HomeworkListVideoSpecialCell_17.m */; };
 		92BBE0581F21A2DE009230AC /* HomeworkListFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0571F21A2DE009230AC /* HomeworkListFooterView_17.m */; };
+		92C05EA51F39AC500070E2DE /* HomeworkListDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C05EA41F39AC500070E2DE /* HomeworkListDefaultCell_17.m */; };
 		92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */; };
 		92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */; };
 		92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */; };
@@ -1573,8 +1574,8 @@
 		92BBE02F1F1F6405009230AC /* ActivityFilterFooterView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ActivityFilterFooterView_17.m; path = "活动/ActivityFilterFooterView_17.m"; sourceTree = "<group>"; };
 		92BBE0341F205C43009230AC /* HomeworkListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListViewController_17.h; sourceTree = "<group>"; };
 		92BBE0351F205C43009230AC /* HomeworkListViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListViewController_17.m; sourceTree = "<group>"; };
-		92BBE0371F205F5D009230AC /* HomeworkListDefaultCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListDefaultCell_17.h; sourceTree = "<group>"; };
-		92BBE0381F205F5D009230AC /* HomeworkListDefaultCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListDefaultCell_17.m; sourceTree = "<group>"; };
+		92BBE0371F205F5D009230AC /* HomeworkListSpecialCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListSpecialCell_17.h; sourceTree = "<group>"; };
+		92BBE0381F205F5D009230AC /* HomeworkListSpecialCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListSpecialCell_17.m; sourceTree = "<group>"; };
 		92BBE0461F20AE60009230AC /* HomeworkListClaimCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListClaimCell_17.h; sourceTree = "<group>"; };
 		92BBE0471F20AE60009230AC /* HomeworkListClaimCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListClaimCell_17.m; sourceTree = "<group>"; };
 		92BBE04C1F20B360009230AC /* HomeworkListHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListHeaderView_17.h; sourceTree = "<group>"; };
@@ -1585,6 +1586,8 @@
 		92BBE0531F219D03009230AC /* HomeworkListVideoSpecialCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListVideoSpecialCell_17.m; sourceTree = "<group>"; };
 		92BBE0561F21A2DE009230AC /* HomeworkListFooterView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListFooterView_17.h; sourceTree = "<group>"; };
 		92BBE0571F21A2DE009230AC /* HomeworkListFooterView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListFooterView_17.m; sourceTree = "<group>"; };
+		92C05EA31F39AC500070E2DE /* HomeworkListDefaultCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListDefaultCell_17.h; sourceTree = "<group>"; };
+		92C05EA41F39AC500070E2DE /* HomeworkListDefaultCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListDefaultCell_17.m; sourceTree = "<group>"; };
 		92C649A31ED41C7F00ABC1CE /* VideoCourseChapterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseChapterViewController.h; sourceTree = "<group>"; };
 		92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseChapterViewController.m; sourceTree = "<group>"; };
 		92CA55DB1DFE574D00AA2C50 /* AppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateHelper.h; sourceTree = "<group>"; };
@@ -4039,8 +4042,10 @@
 		92BBE0331F205C0F009230AC /* view */ = {
 			isa = PBXGroup;
 			children = (
-				92BBE0371F205F5D009230AC /* HomeworkListDefaultCell_17.h */,
-				92BBE0381F205F5D009230AC /* HomeworkListDefaultCell_17.m */,
+				92BBE0371F205F5D009230AC /* HomeworkListSpecialCell_17.h */,
+				92BBE0381F205F5D009230AC /* HomeworkListSpecialCell_17.m */,
+				92C05EA31F39AC500070E2DE /* HomeworkListDefaultCell_17.h */,
+				92C05EA41F39AC500070E2DE /* HomeworkListDefaultCell_17.m */,
 				92BBE0461F20AE60009230AC /* HomeworkListClaimCell_17.h */,
 				92BBE0471F20AE60009230AC /* HomeworkListClaimCell_17.m */,
 				92BBE04C1F20B360009230AC /* HomeworkListHeaderView_17.h */,
@@ -5517,6 +5522,7 @@
 				9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */,
 				92706E391F298FBF001867C4 /* CourseCenterConditionRequest_17.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,
+				92C05EA51F39AC500070E2DE /* HomeworkListDefaultCell_17.m in Sources */,
 				92348FDD1EEFEF2A00D3B3A7 /* LearningInfoListFetcher.m in Sources */,
 				92B958481F1C8BDC00A07203 /* CourseListFilterView_17.m in Sources */,
 				7C3177B81D0EB9EE004AAC90 /* UIView+ViewController.m in Sources */,
@@ -5552,7 +5558,7 @@
 				922661C71E8A476F006DE8A4 /* VideoClassworkHeaderView.m in Sources */,
 				7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */,
 				92348FC01EEFEDEA00D3B3A7 /* MasterManageCell.m in Sources */,
-				92BBE0391F205F5D009230AC /* HomeworkListDefaultCell_17.m in Sources */,
+				92BBE0391F205F5D009230AC /* HomeworkListSpecialCell_17.m in Sources */,
 				928B7A4B1E88B2180067218A /* BeijingHomeworkInfoViewController.m in Sources */,
 				7C3178231D129C01004AAC90 /* ReaderContentPage.m in Sources */,
 				7C3177A31D0EA723004AAC90 /* YXUploadRequest.m in Sources */,

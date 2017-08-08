@@ -36,7 +36,23 @@
     fetcher.courseListItemBlock = ^(CourseListRequest_17Item *model) {
         STRONG_SELF
         if (model.scheme.count > 0) {
-            self.schemeItem = model.scheme[0];
+            [model.scheme enumerateObjectsUsingBlock:^(CourseListRequest_17Item_Scheme *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (self.typeString.integerValue == 0) {
+                    self.schemeItem = obj;
+                    return;
+                }
+                if (self.typeString.integerValue == 102 && obj.scheme.toolID.integerValue == 201) {
+                    self.schemeItem = obj;
+                    return;
+                }
+                if (self.typeString.integerValue == 101 && obj.scheme.toolID.integerValue == 223) {
+                    self.schemeItem = obj;
+                    return;
+                }
+            }];
+            if (self.schemeItem == nil) {
+                self.schemeItem = model.scheme[0];
+            }
         }
         if (self.schemeItem.scheme.type.integerValue != 0) {
             [self reforeUI];

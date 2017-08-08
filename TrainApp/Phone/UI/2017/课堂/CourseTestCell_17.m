@@ -7,7 +7,10 @@
 //
 
 #import "CourseTestCell_17.h"
+static NSString *kClassworkAnswerRight = @"   [ 正确 ]";
+static NSString *kClassworkAnswerError = @"   [ 错误 ]";
 @interface CourseTestCell_17 ()
+
 @property (nonatomic, strong) UIImageView *chooseImageView;
 @property (nonatomic, strong) UILabel *answerLabel;
 @end
@@ -56,6 +59,23 @@
     _answer = answer;
     self.answerLabel.text = _answer.content;
     self.chooseImageView.image = [UIImage imageNamed:_answer.isChoose.boolValue ? @"选择" : @"未选择"];
+}
+- (void)setClassworkStatus:(CourseTestCellStatus)classworkStatus {
+    _classworkStatus = classworkStatus;
+    NSString *contentString = @" ";
+    UIColor *color;
+    if (_classworkStatus == CourseTestCellStatus_Right) {
+        contentString = [NSString stringWithFormat:@"%@%@",self.answer.content,kClassworkAnswerRight];
+        color = [UIColor colorWithHexString:@"2bad28"];
+    }else if (_classworkStatus == CourseTestCellStatus_Error){
+        contentString = [NSString stringWithFormat:@"%@%@",self.answer.content,kClassworkAnswerError];
+        color = [UIColor colorWithHexString:@"eb502c"];
+    }else {
+        contentString = self.answer.content;
+    }
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:contentString];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(self.answer.content.length, contentString.length - self.answer.content.length)];
+    self.answerLabel.attributedText = attributedString;
 }
 - (void)awakeFromNib {
     [super awakeFromNib];

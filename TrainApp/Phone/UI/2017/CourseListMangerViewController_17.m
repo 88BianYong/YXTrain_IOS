@@ -33,13 +33,13 @@
         compulsoryVC.segmentString = self.segmentString;
         compulsoryVC.studyString = self.studyString;
         compulsoryVC.stageString = self.stageString;
-        compulsoryVC.typeString = @"101";
+        compulsoryVC.typeString = @"102";
         [self addChildViewController:compulsoryVC];
         CourseListElectiveViewController_17 *electiveVC = [[CourseListElectiveViewController_17 alloc] init];
         electiveVC.segmentString = self.segmentString;
         electiveVC.studyString = self.studyString;
         electiveVC.stageString = self.stageString;
-        electiveVC.typeString = @"102";
+        electiveVC.typeString = @"101";
         [self addChildViewController:electiveVC];
         [compulsoryVC didMoveToParentViewController:self];
         [self.view addSubview:compulsoryVC.view];

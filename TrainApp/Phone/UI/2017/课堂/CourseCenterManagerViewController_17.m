@@ -50,17 +50,23 @@
       [self setCourseTitleView];
         CourseCenterListViewController_17 *centerListVC = [[CourseCenterListViewController_17 alloc] init];
         centerListVC.conditionItem = self.conditionItem;
+        centerListVC.tabString = @"all";
         [self addChildViewController:centerListVC];
         CourseCenterListViewController_17 *localListVC = [[CourseCenterListViewController_17 alloc] init];
         localListVC.isCourseTypeBool = YES;
         localListVC.conditionItem = self.conditionItem;
+        localListVC.tabString = @"all";
         [self addChildViewController:localListVC];
         [centerListVC didMoveToParentViewController:self];
         [self.view addSubview:centerListVC.view];
+        [centerListVC.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
         self.currentViewController = centerListVC;
     }else {
         CourseCenterListViewController_17 *centerListVC = [[CourseCenterListViewController_17 alloc] init];
         centerListVC.conditionItem = self.conditionItem;
+        centerListVC.tabString = @"all";
         [self addChildViewController:centerListVC];
         [centerListVC didMoveToParentViewController:self];
         [self.view addSubview:centerListVC.view];

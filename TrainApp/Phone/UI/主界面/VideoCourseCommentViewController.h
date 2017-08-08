@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) NSMutableArray<VideoCourseCommentsRequestItem_Body_Comments *> *dataMutableArray;
 @property (nonatomic, assign) BOOL isFullReply;
+@property (nonatomic, copy) void(^videoCourseSlideDistanceBlock)(CGFloat distance);
 
 - (void)setupUI;
 - (void)setupLayout;

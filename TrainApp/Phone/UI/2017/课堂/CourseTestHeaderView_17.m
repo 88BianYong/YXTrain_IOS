@@ -91,6 +91,7 @@
     [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.typeLabel.mas_left);
         make.top.equalTo(self.lineView.mas_top).offset(18.0f);
+        make.width.mas_offset(10.0f);
     }];
     
     [self.questionLabel mas_makeConstraints:^(MASConstraintMaker *make) {

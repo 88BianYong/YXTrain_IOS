@@ -417,6 +417,12 @@
     return self.dataMutableArray[section].childNum.integerValue <= 0 ? 0.0001f : 29.0f;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (scrollView.contentSize.height >= kScreenHeight -  64.0f - kScreenWidth * 9.0f /16.0f) {
+        BLOCK_EXEC(self.videoCourseSlideDistanceBlock,scrollView.contentOffset.y);
+    }
+}
+
 #pragma mark - inputView
 - (void)userPublishComment{
     if (self.isFullReply) {

@@ -28,6 +28,9 @@
 @end
 
 @implementation YXLoginByScanQRViewController
+- (void)dealloc {
+    DDLogDebug(@"release=====>%@",[self class]);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -182,6 +185,9 @@
     userModel.uname = userModel.profile.name;
     userModel.head = userModel.profile.head;
     [[LSTSharedInstance sharedInstance].userManger login];
+    [self dismissViewControllerAnimated:NO completion:^{
+
+    }];
 }
 
 - (void)setupCamera
@@ -239,13 +245,16 @@
 
 - (void)scanLoginFail{
     YXAlertView *alertView = [YXAlertView alertViewWithTitle:@"非常抱歉,格式不正确或token已过期,请重新扫描"];
+    WEAK_SELF
     [alertView addButtonWithTitle:@"返回" action:^{
+        STRONG_SELF
         [self->_scanBackgroundView.scanTimer invalidate];
         [self dismissViewControllerAnimated:YES completion:^{
             //
         }];
     }];
     [alertView addButtonWithTitle:@"继续扫码" action:^{
+        STRONG_SELF
         [self->_scanBackgroundView.scanTimer setFireDate:[NSDate date]];
         [self->_session startRunning];
     }];

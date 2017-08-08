@@ -114,6 +114,9 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     return _currentProjectIndexPath;
 }
 - (LSTTrainProjectStatus)trainStatus {
+    if (self.trainlistItem == nil) {
+        return LSTTrainProjectStatus_unKnow;
+    }
     NSArray *projectGroupArray = [TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body];
     if (projectGroupArray.count > 0) {
         TrainListProjectGroup *trainingGroup = projectGroupArray[0];

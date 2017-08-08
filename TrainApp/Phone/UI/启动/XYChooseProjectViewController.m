@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"手机研修";
+    [self setupUI];
     [self requestForProjectList];
     
 }

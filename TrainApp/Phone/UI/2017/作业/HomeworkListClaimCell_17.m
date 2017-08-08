@@ -20,6 +20,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
     }
@@ -80,7 +81,7 @@
     WEAK_SELF
     [[self.explainButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
-       // BLOCK_EXEC(self.myLearningScoreButtonBlock,self.explainButton);
+        BLOCK_EXEC(self.homeworkListClaimButtonBlock,self.explainButton);
         
     }];
     [self.contentView addSubview:self.explainButton];

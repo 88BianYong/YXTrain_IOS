@@ -24,6 +24,8 @@
 #import "CourseCenterManagerViewController_17.h"
 #import "ExamineToolStatusRequest_17.h"
 #import "PopUpFloatingViewManager_17.h"
+#import "VideoCourseDetailViewController_17.h"
+#import "AppDelegate.h"
 typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     YXLearningRequestStatus_ExamineDetail,//请求个人工作室信息
     YXLearningRequestStatus_LayerList,//请求分层
@@ -68,6 +70,17 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     }else {
         [self requestForExamineDetail];
     }
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (!isEmpty(appDelegate.appDelegateHelper.courseId)) {
+        VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
+        YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
+        course.courses_id = appDelegate.appDelegateHelper.courseId;
+        course.courseType = appDelegate.appDelegateHelper.courseType;
+        vc.course = course;
+        vc.seekInteger = [appDelegate.appDelegateHelper.seg integerValue];
+        vc.fromWhere = VideoCourseFromWhere_QRCode;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -106,7 +119,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     self.headerView.hidden = NO;
     [self.tableView reloadData];
     PopUpFloatingViewManager_17 *floatingView = (PopUpFloatingViewManager_17 *)[LSTSharedInstance sharedInstance].floatingViewManager;
-    floatingView.item = _examineDetailItem;
+    floatingView.scoreString = _examineDetailItem.examine.userGetScore;
     [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
 }
 
@@ -317,7 +330,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     WEAK_SELF
     cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool, NSInteger tagInteger) {
         STRONG_SELF
-        if (tool.status.integerValue > 0){
+        if (tool.status.integerValue > 0 || 1){
             if (tool.toolID.integerValue == 201){//课程
                 CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
                 VC.stageString = stages.stageID;

@@ -9,7 +9,7 @@
 #import "HomeworkListViewController_17.h"
 #import "HomeworkListRequest_17.h"
 #import "YXHomeworkListCell.h"
-#import "HomeworkListDefaultCell_17.h"
+#import "HomeworkListSpecialCell_17.h"
 #import "YXHomeworkInfoViewController.h"
 #import "HomeworkListHeaderView_17.h"
 #import "HomeworkListClaimCell_17.h"
@@ -20,6 +20,7 @@
 #import "YXMyExamExplainView_17.h"
 #import "HomeworkListGroupCell_17.h"
 #import "HomeworkListVideoSpecialCell_17.h"
+#import "HomeworkListDefaultCell_17.h"
 #import "MJRefresh.h"
 @interface HomeworkListViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
@@ -98,13 +99,14 @@
     self.tableView.dataSource = self;
     self.tableView.hidden = YES;
     self.tableView.backgroundColor = [UIColor clearColor];
-    [self.tableView registerClass:[HomeworkListDefaultCell_17 class] forCellReuseIdentifier:@"HomeworkListDefaultCell_17"];
+    [self.tableView registerClass:[HomeworkListSpecialCell_17 class] forCellReuseIdentifier:@"HomeworkListSpecialCell_17"];
     [self.tableView registerClass:[HomeworkListClaimCell_17 class] forCellReuseIdentifier:@"HomeworkListClaimCell_17"];
     [self.tableView registerClass:[HomeworkListVideoDefaultCell_17 class] forCellReuseIdentifier:@"HomeworkListVideoDefaultCell_17"];
     [self.tableView registerClass:[HomeworkListHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListHeaderView_17"];
     [self.tableView registerClass:[HomeworkListFooterView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListFooterView_17"];
     [self.tableView registerClass:[HomeworkListGroupCell_17 class] forCellReuseIdentifier:@"HomeworkListGroupCell_17"];
     [self.tableView registerClass:[HomeworkListVideoSpecialCell_17 class] forCellReuseIdentifier:@"HomeworkListVideoSpecialCell_17"];
+    [self.tableView registerClass:[HomeworkListDefaultCell_17 class] forCellReuseIdentifier:@"HomeworkListDefaultCell_17"];
     [self.view addSubview:self.tableView];
     WEAK_SELF
     self.errorView = [[YXErrorView alloc]init];
@@ -156,6 +158,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
+        HomeworkListRequest_17Item_Scheme *obj = self.listItem.scheme[indexPath.row];
+        if (obj.scheme.finishNum.integerValue == 0) {
+            return 0.00001f;
+        }
         return 60.0f;
     }else {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
@@ -170,10 +176,17 @@
                 }];
             }
         }else{
-            return [tableView fd_heightForCellWithIdentifier:@"HomeworkListDefaultCell_17" cacheByIndexPath:indexPath configuration:^(HomeworkListDefaultCell_17 *cell) {
-                cell.homework = self.listItem.homeworks[indexPath.row];
-            }];
-            
+            if (homework.homeworkID.integerValue == 0) {
+                return [tableView fd_heightForCellWithIdentifier:@"HomeworkListDefaultCell_17" cacheByIndexPath:indexPath configuration:^(HomeworkListDefaultCell_17 *cell) {
+                    cell.homework = self.listItem.homeworks[indexPath.row];
+                }];
+                
+            }else {
+                return [tableView fd_heightForCellWithIdentifier:@"HomeworkListSpecialCell_17" cacheByIndexPath:indexPath configuration:^(HomeworkListSpecialCell_17 *cell) {
+                    cell.homework = self.listItem.homeworks[indexPath.row];
+                }];
+                
+            }
         }
     }
 }
@@ -255,9 +268,17 @@
                 return cell;
             }
         }else {
-            HomeworkListDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListDefaultCell_17" forIndexPath:indexPath];
-            cell.homework = self.listItem.homeworks[indexPath.row];
-            return cell;
+            if (homework.homeworkID.integerValue == 0) {
+                HomeworkListDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListDefaultCell_17" forIndexPath:indexPath];
+                cell.homework = self.listItem.homeworks[indexPath.row];
+                return cell;
+                
+            }else {
+                HomeworkListSpecialCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListSpecialCell_17" forIndexPath:indexPath];
+                cell.homework = self.listItem.homeworks[indexPath.row];
+                return cell;
+            }
+
         }
     }
 }
