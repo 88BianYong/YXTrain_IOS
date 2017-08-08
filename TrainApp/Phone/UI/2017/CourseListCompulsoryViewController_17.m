@@ -31,7 +31,7 @@
     fetcher.stageID = self.stageString;
     fetcher.study = self.studyString;
     fetcher.segment = self.segmentString;
-    fetcher.type = @"101";
+    fetcher.type = self.typeString;
     WEAK_SELF
     fetcher.courseListItemBlock = ^(CourseListRequest_17Item *model) {
         STRONG_SELF
@@ -176,7 +176,6 @@
 
 #pragma mark - request
 - (void)firstPageFetch {
-    self.filterView.searchTerm = nil;
     [super firstPageFetch];
 }
 @end

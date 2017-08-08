@@ -166,7 +166,7 @@
     tabVC.viewControllers = @[learningNav, messageNav, mineNav];
     NSInteger redInteger = [LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger;
     if (redInteger > 0) {
-        tabVC.viewControllers[1].navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
+        tabVC.viewControllers[1].tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
         [tabVC.tabBar hideBadgeOnItemIndex:1];
     }else if (redInteger == 0){
         [tabVC.tabBar showBadgeOnItemIndex:1];

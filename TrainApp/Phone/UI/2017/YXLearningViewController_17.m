@@ -340,7 +340,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
                 ActivityListViewController_17 *VC = [[ActivityListViewController_17 alloc] init];
                 VC.stageID = stages.stageID;
                 [self.navigationController pushViewController:VC animated:YES];
-            }else if (tool.toolID.integerValue == 203){//作业
+            }else if (tool.toolID.integerValue == 203 || tool.toolID.integerValue == 205){//作业
                 HomeworkListViewController_17 *VC = [[HomeworkListViewController_17 alloc] init];
                 VC.stageString = stages.stageID;
                 VC.toolString = tool.toolID;

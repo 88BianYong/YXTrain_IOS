@@ -143,5 +143,6 @@
 @property (nonatomic, copy) NSString<Optional> *type;//101：选修， 102：必修，默认值0
 @property (nonatomic, copy) NSString<Optional> *page;//页数
 @property (nonatomic, copy) NSString<Optional> *limit;//每页数量
+@property (nonatomic, copy) NSString<Optional> *category;
 
 @end

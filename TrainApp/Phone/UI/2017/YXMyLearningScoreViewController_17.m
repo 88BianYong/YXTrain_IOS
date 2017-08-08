@@ -141,7 +141,7 @@
             help.totalScore = obj.totalScore;
             help.passTotalScore = obj.passTotalScore;
             help.passScore = obj.passScore;
-            help.passScore = self.examine.isExamPass;
+            help.isExamPass = self.examine.isExamPass;
             NSString *helpString = [help toolCompleteStatusExplain];
             if (!isEmpty(helpString)) {
                 [mutableArray addObject:helpString];
@@ -159,7 +159,7 @@
                 help.totalScore = next.totalScore;
                 help.passTotalScore = next.passTotalScore;
                 help.passScore = next.passScore;
-                help.passScore = self.examine.isExamPass;
+                help.isExamPass = self.examine.isExamPass;
                 self.showMarkHeight += 23;
                 NSString *helpString = [help toolCompleteStatusExplain];
                 if (!isEmpty(helpString)) {

@@ -17,7 +17,8 @@
                                                        @"userscore":@"userScore",
                                                        @"passscore":@"passScore",
                                                        @"orderno":@"orderNo",
-                                                       @"passfinishscore":@"passFinishScore"}];
+                                                       @"passfinishscore":@"passFinishScore",
+                                                       @"passtotalscore":@"passTotalScore"}];
 }
 @end
 @implementation ExamineDetailRequest_17Item_Examine_Process

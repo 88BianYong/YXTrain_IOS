@@ -19,8 +19,11 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.frame = [UIScreen mainScreen].bounds;
+        [self layoutIfNeeded];
         [self setupUI];
         [self setupLayout];
+        
     }
     return self;
 }
@@ -52,7 +55,7 @@
 
 #pragma mark - setupUI
 - (void)setupHomeworkStatusScoreWidth:(CGFloat)width {
-    [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.scoreLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
         make.top.equalTo(self.submitTimeLabel.mas_bottom).offset(9.0f);
     }];
@@ -251,6 +254,9 @@
     
 }
 - (void)setupUI {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     self.titleLabel.numberOfLines = 1;
