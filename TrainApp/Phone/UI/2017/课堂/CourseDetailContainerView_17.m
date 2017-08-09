@@ -51,7 +51,11 @@
         }];
         
         [self.startButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerY.equalTo(self.mas_centerY);
+            if (IS_IPHONE_5) {
+                make.centerY.equalTo(self.mas_centerY).offset(5.0f);
+            }else {
+                make.centerY.equalTo(self.mas_centerY);
+            }
             make.right.equalTo(self.mas_right).offset(-15.0f);
             make.size.mas_offset(CGSizeMake(70.0f, 28.0f));
         }];

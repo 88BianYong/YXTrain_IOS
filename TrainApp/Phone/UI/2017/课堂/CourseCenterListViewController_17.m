@@ -38,8 +38,20 @@
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    if (self.conditionItem.isLockStudy) {
+        [self reforeUI];
+    }
 }
 #pragma mark - setupUI 
+- (void)reforeUI {
+    self.filterView.alpha = 0.0f;
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.top.equalTo(self.view.mas_top);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+}
 - (void)setupUI {
     self.filterView = [[CourseListFilterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
     [self.view addSubview:self.filterView];
@@ -136,7 +148,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CourseListHeader_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CourseListHeader_17"];
-    headerView.scheme = self.conditionItem.scheme[1];
+    headerView.scheme = self.conditionItem.scheme[self.isCourseTypeBool ? 1 : 0];
     return headerView;
 }
 

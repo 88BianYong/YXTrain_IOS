@@ -56,6 +56,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.row == 0) {
+        [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = -1;
+        [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Hotspot];
         UIViewController *VC = [[NSClassFromString(@"YXHotspotViewController") alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.row == 1) {

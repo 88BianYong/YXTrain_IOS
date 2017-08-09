@@ -35,6 +35,7 @@
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
+    self.navigationItem.title = @"看课记录";
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self setupLayout];
 }

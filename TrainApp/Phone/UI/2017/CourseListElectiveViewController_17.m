@@ -55,12 +55,24 @@
             if (self.schemeItem == nil) {
                 self.schemeItem = model.scheme[0];
             }
+            if (model.searchTerm.isLockStudy.boolValue) {
+                [self reforeUI];
+            }
         }
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+}
+- (void)reforeUI {
+    self.filterView.alpha = 0.0f;
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.top.equalTo(self.view.mas_top);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
 }
 - (void)setupUI {
     self.filterView = [[CourseListFilterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];

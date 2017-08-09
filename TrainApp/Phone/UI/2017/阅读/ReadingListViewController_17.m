@@ -54,6 +54,18 @@
     ReadingListTableHeaderView_17 *headerView = [[ReadingListTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 45.0f)];
     self.tableView.tableHeaderView = headerView;
     [self.view addSubview:self.tableView];
+    WEAK_SELF
+    self.errorView = [[YXErrorView alloc]init];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self requestForReadingList];
+    };
+    self.emptyView = [[YXEmptyView alloc]init];
+    self.dataErrorView = [[DataErrorView alloc]init];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self requestForReadingList];
+    };
 }
 - (void)setupLayout {
    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

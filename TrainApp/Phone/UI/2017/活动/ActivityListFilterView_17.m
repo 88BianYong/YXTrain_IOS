@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray *selectedMutableArray;
+@property (nonatomic, strong) UIView *containerView;
 @end
 @implementation ActivityListFilterView_17
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -119,7 +120,11 @@
     flowLayout.minimumLineSpacing = 7;
     flowLayout.headerReferenceSize = CGSizeMake(kScreenWidth, 28.0f);
     flowLayout.footerReferenceSize = CGSizeZero;
-    flowLayout.sectionInset = UIEdgeInsetsMake(10, 15, 10, 15);
+    flowLayout.sectionInset = UIEdgeInsetsMake(10, 0, 10, 0);
+    self.containerView = [[UIView alloc] init];
+    self.containerView.backgroundColor =[UIColor whiteColor];
+    [self.maskView addSubview:self.containerView];
+    
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     self.collectionView.delegate = self;
@@ -129,6 +134,7 @@
     [self.collectionView registerClass:[ActivityFilterHeaderView_17 class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ActivityFilterHeaderView_17"];
     [self.collectionView registerClass:[ActivityFilterFooterView_17 class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"ActivityFilterFooterView_17"];
     [self.maskView addSubview:self.collectionView];
+    
 }
 - (void)setupLayout {
     [self.segmentNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -166,13 +172,15 @@
     UIView *superview = self.superview;
     self.maskView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     [superview addSubview:self.maskView];
-    self.collectionView.frame = CGRectMake(0, 0, kScreenWidth, 0.0f);
+    self.collectionView.frame = CGRectMake(15.0f, 0, kScreenWidth - 30.0f, 0.0f);
+    self.containerView.frame = CGRectMake(0.0f, 0, kScreenWidth, 0.0f);
     [self reloadData];
 }
 
 - (void)hideFilterSelectionView{
     [UIView animateWithDuration:0.25f animations:^{
-        self.collectionView.frame = CGRectMake(0.0f, 0.0f, self.collectionView.contentSize.width, 0.0f);
+        self.collectionView.frame = CGRectMake(15.0f, 0.0f, self.collectionView.contentSize.width, 0.0f);
+        self.containerView.frame = CGRectMake(0.0f, 0, kScreenWidth, 0.0f);
     } completion:^(BOOL finished) {
         [self.maskView removeFromSuperview];
     }];
@@ -181,7 +189,8 @@
     [self.collectionView reloadData];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.25f animations:^{
-            self.collectionView.frame = CGRectMake(0.0f, 0.0f, self.collectionView.contentSize.width, self.collectionView.contentSize.height);
+            self.collectionView.frame = CGRectMake(15.0f, 0.0f, self.collectionView.contentSize.width, self.collectionView.contentSize.height);
+            self.containerView.frame = CGRectMake(0.0f, 0, kScreenWidth, self.collectionView.contentSize.height);
         }];
     });
 }

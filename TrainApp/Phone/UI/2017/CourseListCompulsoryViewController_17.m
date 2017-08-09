@@ -54,7 +54,7 @@
                 self.schemeItem = model.scheme[0];
             }
         }
-        if (self.schemeItem.scheme.type.integerValue != 0) {
+        if (self.schemeItem.scheme.type.integerValue != 0 || model.searchTerm.isLockStudy.boolValue) {
             [self reforeUI];
         }
         if (self.filterView.searchTerm == nil) {
@@ -109,7 +109,6 @@
         make.top.equalTo(self.view.mas_top);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
-    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

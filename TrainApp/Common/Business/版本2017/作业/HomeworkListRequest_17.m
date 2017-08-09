@@ -32,7 +32,7 @@
                                                        @"userid":@"userID",
                                                        @"createtime":@"createTime",
                                                        @"templateid":@"templateID",
-                                                       @"fhomeworkid":@"homeworkID",
+                                                       @"homeworkid":@"homeworkID",
                                                        @"homeworktitle":@"homeworkTitle",
                                                        @"finishnum":@"finishNum",
                                                        @"themeid":@"themeID",

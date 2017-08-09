@@ -90,7 +90,7 @@
         self.containerView.startTimeInteger = _detailItem.openQuizTime.integerValue;
         self.containerView.playTimeInteger = _detailItem.rc.integerValue;
         self.playMangerView.playTotalTime = _detailItem.rc.integerValue;
-        self.containerView.isStartBool = self.containerView.playTimeInteger >= self.containerView.startTimeInteger;
+        self.containerView.isStartBool =floor((float)self.containerView.playTimeInteger/60.0f) >= ceil((float)self.containerView.startTimeInteger/60.0f);
         WEAK_SELF
         self.disposable = [RACObserve(self.playMangerView, playTotalTime) subscribeNext:^(id x) {
             STRONG_SELF
@@ -130,7 +130,9 @@
         VC.cID = self.course.courses_id;
         VC.stageString = self.stageString;
         VC.courseTestQuestionBlock = ^(BOOL isFullBool) {
+            STRONG_SELF
             if (isFullBool) {
+                self.detailItem.userQuizStatus = @"1";
                 [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.top.equalTo(self.playMangerView.mas_bottom).offset(-71.0f);
                 }];

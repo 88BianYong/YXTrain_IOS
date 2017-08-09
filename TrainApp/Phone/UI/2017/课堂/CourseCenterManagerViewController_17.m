@@ -33,6 +33,24 @@
     self.selectedIndex = 0;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self requestForCenterCondition];
+    WEAK_SELF
+    self.errorView = [[YXErrorView alloc]init];
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForCenterCondition];
+    };
+    
+    self.dataErrorView = [[DataErrorView alloc] init];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForCenterCondition];
+    };
+    
+    self.emptyView = [[YXEmptyView alloc] init];
+    self.emptyView.title = @"没有符合条件的课程";
+    self.emptyView.imageName = @"没有符合条件的课程";
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -64,6 +82,7 @@
         }];
         self.currentViewController = centerListVC;
     }else {
+        self.navigationItem.title = @"选课中心";
         CourseCenterListViewController_17 *centerListVC = [[CourseCenterListViewController_17 alloc] init];
         centerListVC.conditionItem = self.conditionItem;
         centerListVC.tabString = @"all";
@@ -76,24 +95,6 @@
         }];
     }
     [self setupRightWithTitle:@"看课记录"];
-    WEAK_SELF
-    self.errorView = [[YXErrorView alloc]init];
-    self.errorView.retryBlock = ^{
-        STRONG_SELF
-        [self startLoading];
-        [self requestForCenterCondition];
-    };
-    
-    self.dataErrorView = [[DataErrorView alloc] init];
-    self.dataErrorView.refreshBlock = ^{
-        STRONG_SELF
-        [self startLoading];
-        [self requestForCenterCondition];
-    };
-    
-    self.emptyView = [[YXEmptyView alloc] init];
-    self.emptyView.title = @"没有符合条件的课程";
-    self.emptyView.imageName = @"没有符合条件的课程";
 }
 - (void)naviRightAction{
     CourseRecordListViewController_17 *VC = [[CourseRecordListViewController_17 alloc]init];
@@ -103,7 +104,7 @@
 
 - (void)setCourseTitleView {
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30.0f)];   
-    UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"选课中心",@"本地课程"]];
+    UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"选修课程",@"本地课程"]];
     seg.tintColor = [UIColor whiteColor];
     seg.backgroundColor = [UIColor whiteColor];
     [seg setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"41c694"]] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];

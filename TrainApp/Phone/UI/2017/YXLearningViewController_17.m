@@ -115,6 +115,9 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 }
 - (void)setExamineDetailItem:(ExamineDetailRequest_17Item *)examineDetailItem {
     _examineDetailItem = examineDetailItem;
+    if (self.qrCodeView == nil) {
+        [self setupQRCodeLeftView];
+    }
     self.headerView.scoreString = _examineDetailItem.examine.userGetScore;
     self.headerView.hidden = NO;
     [self.tableView reloadData];
@@ -122,6 +125,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     floatingView.scoreString = _examineDetailItem.examine.userGetScore;
     [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
 }
+
 
 #pragma mark - setupUI
 - (void)setupUI {
@@ -177,7 +181,6 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         STRONG_SELF
         [self requestForExamineDetail];
     };
-    [self setupQRCodeLeftView];
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -330,7 +333,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     WEAK_SELF
     cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool, NSInteger tagInteger) {
         STRONG_SELF
-        if (tool.status.integerValue > 0 || 1){
+        if (tool.status.integerValue > 0){
             if (tool.toolID.integerValue == 201){//课程
                 CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
                 VC.stageString = stages.stageID;

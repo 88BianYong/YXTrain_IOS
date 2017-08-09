@@ -77,10 +77,10 @@
         }
     }else if (self.toolID.integerValue == 216){
         lStr = [NSString stringWithFormat:@"小组作业: 需要完成%@篇,",self.totalNum];
-        rStr = [NSString stringWithFormat:@"总分%@分\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t小组作业线下完成,由组长线上提交",self.totalScore];
+        rStr = [NSString stringWithFormat:@"总分%@分\n小组作业线下完成,由组长线上提交",self.totalScore];
     }else if (self.toolID.integerValue == 205){
         lStr = [NSString stringWithFormat:@"研修总结: 需要完成%@篇得%@分,",self.totalNum,self.totalScore];
-         rStr = [NSString stringWithFormat:@"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t研修总结评分大于%@分后,按比例得分,满分%@分",self.passScore,self.passTotalScore];
+         rStr = [NSString stringWithFormat:@"\n研修总结评分大于%@分后,按比例得分,满分%@分",self.passScore,self.passTotalScore];
     }else if (self.toolID.integerValue == 222 || self.toolID.integerValue == 322){
         lStr = [NSString stringWithFormat:@"阅读文本: 需要阅读%@篇,",self.totalNum];
         rStr = [NSString stringWithFormat:@"总分%@分",self.totalScore];
@@ -123,13 +123,13 @@
         }
     }else if (self.toolID.integerValue == 218){
         lStr = [NSString stringWithFormat:@"线下活动: 需要参加%@个得%@分",self.totalNum,self.totalScore];
-             rStr = [NSString stringWithFormat:@"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t线下活动达到%@分后,按比例得分,满分%@分",self.passScore,self.passTotalScore];
+             rStr = [NSString stringWithFormat:@"\n线下活动达到%@分后,按比例得分,满分%@分",self.passScore,self.passTotalScore];
     }else if (self.toolID.integerValue == 212 || self.toolID.integerValue == 312){
         lStr = [NSString stringWithFormat:@"作品集: 需要完成%@个得%@分",self.totalNum,self.totalScore];
-        rStr = [NSString stringWithFormat:@"\n\t\t\t\t\t\t\t\t\t\t\t\t 作品集达到%@分后,按比例得分,满分%@分",self.passScore,self.passTotalScore];
+        rStr = [NSString stringWithFormat:@"\n作品集达到%@分后,按比例得分,满分%@分",self.passScore,self.passTotalScore];
     }else if (self.toolID.integerValue == 208){
         lStr = [NSString stringWithFormat:@"自荐作业: 需要完成%@个得%@分",self.totalNum,self.totalScore];
-        rStr = [NSString stringWithFormat:@"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t自荐作业达到%@分后按比例得分,满分%@分",self.passScore,self.passTotalScore];
+        rStr = [NSString stringWithFormat:@"\n自荐作业达到%@分后按比例得分,满分%@分",self.passScore,self.passTotalScore];
     }else if (self.toolID.integerValue == 220){
         lStr = [NSString stringWithFormat:@"作业质量: 我的作业被其他同学互评%@篇,",self.totalNum];
         rStr = [NSString stringWithFormat:@"总分%@分",self.totalScore];
@@ -144,11 +144,11 @@
         if (self.isExamPass.integerValue == -1) {
             rStr = [NSString stringWithFormat:@"总分%@分",self.totalScore];
         }else if (self.isExamPass.integerValue == 0){
-            rStr = [NSString stringWithFormat:@"总分%@分\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t在线考试最终考核结果未合格",self.totalScore];
+            rStr = [NSString stringWithFormat:@"总分%@分\n在线考试最终考核结果未合格",self.totalScore];
         }else if (self.isExamPass.integerValue == 1){
-            rStr = [NSString stringWithFormat:@"总分%@分\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t在线考试最终考核结果未合格",self.totalScore];
+            rStr = [NSString stringWithFormat:@"总分%@分\n在线考试最终考核结果未合格",self.totalScore];
         }else {
-            rStr = [NSString stringWithFormat:@"总分%@分\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t在线考试最终考核结果合格",self.totalScore];
+            rStr = [NSString stringWithFormat:@"总分%@分\n在线考试最终考核结果合格",self.totalScore];
         }
     }else if (self.toolID.integerValue == 309 || self.toolID.integerValue == 209){
         lStr = [NSString stringWithFormat:@"日志: 需要完成%@篇,",self.totalNum];
@@ -178,4 +178,5 @@
     NSString *completeStr = [NSString stringWithFormat:@"%@%@",lStr,rStr];
     return completeStr;
 }
+//\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t
 @end

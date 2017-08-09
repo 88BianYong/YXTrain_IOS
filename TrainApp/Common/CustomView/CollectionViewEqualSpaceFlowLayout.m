@@ -36,6 +36,8 @@
         if(origin + maximumSpacing + currentLayoutAttributes.frame.size.width < self.collectionViewContentSize.width) {
             CGRect frame = currentLayoutAttributes.frame;
             frame.origin.x = origin + maximumSpacing;
+            
+            
             currentLayoutAttributes.frame = frame;
         }else {
             CGRect frame = currentLayoutAttributes.frame;
