@@ -38,7 +38,7 @@
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    if (self.conditionItem.isLockStudy) {
+    if (self.conditionItem.isLockStudy.boolValue) {
         [self reforeUI];
     }
 }

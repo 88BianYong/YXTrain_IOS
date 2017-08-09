@@ -17,7 +17,8 @@
 #import "CourseTestPassTableHeaderView_17.h"
 typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
     CourseTestSubmitStatus_NotSubmi = 0,//未作答
-    CourseTestSubmitStatus_PassStatus = 1,//为通过
+    CourseTestSubmitStatus_NotPass = 1,//未通过
+    CourseTestSubmitStatus_Pass = 1,//通过
     CourseTestSubmitStatus_FullScore = 2//满分
 };
 @interface CourseTestViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
@@ -154,7 +155,7 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
             }];
             [self requestForSubmitUserQuizes:mutableArray];
         }else {
-            if (self.submitStatus == CourseTestSubmitStatus_FullScore) {
+            if (self.submitStatus == CourseTestSubmitStatus_FullScore || self.submitStatus == CourseTestSubmitStatus_Pass) {
                 BLOCK_EXEC(self.courseTestQuestionBlock,YES);
             }else {
                 BLOCK_EXEC(self.courseTestQuestionBlock,NO);
@@ -185,8 +186,8 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
         make.edges.equalTo(self.view);
     }];
 }
-- (void)naviRightAction {
-    if (self.submitStatus == CourseTestSubmitStatus_FullScore) {
+- (void)naviLeftAction {
+    if (self.submitStatus == CourseTestSubmitStatus_FullScore || self.submitStatus == CourseTestSubmitStatus_Pass) {
         BLOCK_EXEC(self.courseTestQuestionBlock,YES);
     }else {
         BLOCK_EXEC(self.courseTestQuestionBlock,NO);
@@ -348,7 +349,7 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
         }else {
             self.tableView.tableHeaderView = self.passStatusHeaderView;
             self.submitItem = item;
-            self.submitStatus = CourseTestSubmitStatus_PassStatus;
+            self.submitStatus = item.isPass.boolValue ? CourseTestSubmitStatus_Pass:CourseTestSubmitStatus_NotPass;
             [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
         }
         [self.tableView reloadData];
