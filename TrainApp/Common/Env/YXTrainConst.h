@@ -170,6 +170,14 @@ extern NSString *const kYXTrainNoticeBriefing;
  *  显示完成培训学习方法
  */
 extern NSString *const kYXTrainCompleteTrainingMethod;
+/*
+ *  参加活动
+ */
+extern NSString *const kYXTrainParticipateActivity;
+/*
+ *  完成课程
+ */
+extern NSString *const kYXTrainCompleteCourse;
 
 
 
@@ -201,6 +209,10 @@ extern NSString *const YXTrainBeijingProjectId;
  *  德阳项目ID
  */
 extern NSString *const YXTrainDeYangProjectId;
+/**
+ *  定义特殊标记,表示已完成一个课程或者已参加一个活动
+ */
+extern NSString *const YXTrainSpecialCourseActivity;
 
 
 

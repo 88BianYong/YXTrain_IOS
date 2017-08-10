@@ -108,9 +108,14 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
     [[tapGestureRecognizer rac_gestureSignal] subscribeNext:^(id x) {
         STRONG_SELF
-        [self.selectedMutableArray removeAllObjects];
-        [self.selectedMutableArray addObjectsFromArray:self.filterModel.selectedMutableArray];
-        [self hideFilterSelectionView];
+        UITapGestureRecognizer * sender = x;
+        CGPoint point = [sender locationInView:self.maskView];
+        if (sender.state == UIGestureRecognizerStateEnded &&
+            !CGRectContainsPoint(self.collectionView.frame,point)) {
+            [self.selectedMutableArray removeAllObjects];
+            [self.selectedMutableArray addObjectsFromArray:self.filterModel.selectedMutableArray];
+            [self hideFilterSelectionView];
+        }
     }];
     [self.maskView addGestureRecognizer:tapGestureRecognizer];
     

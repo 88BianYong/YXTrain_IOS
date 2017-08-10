@@ -54,6 +54,28 @@
         };
         [self allFilters];
     }
+     [self setupObservers];
+}
+- (void)setupObservers{
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kYXTrainParticipateActivity object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        NSNotification *noti = (NSNotification *)x;
+        NSString *aid = noti.userInfo.allKeys.firstObject;
+        [self.dataArray enumerateObjectsUsingBlock:^(ActivityListRequestItem_body_activity  *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            ActivityListRequestItem_body_activity *activity = (ActivityListRequestItem_body_activity *)obj;
+            if ([activity.aid isEqualToString:aid]) {
+                if (activity.isJoin.integerValue == 0) {
+                    obj.isJoin = @"1";
+                    self.schemeItem.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.schemeItem.process.userFinishNum.integerValue + 1];
+                    ActivityListHeaderView_17 *headerView = (ActivityListHeaderView_17 *)[self.tableView headerViewForSection:0];
+                    headerView.scheme = self.schemeItem;
+                    [self.tableView reloadData];
+                }
+                *stop = YES;
+            }
+        }];
+    }];
 }
 - (void)setupFetcher {
     ActivityListFetcher *fetcher = [[ActivityListFetcher alloc]init];
@@ -90,6 +112,7 @@
         make.top.mas_equalTo(30.0f);
     }];
 }
+
 
 - (void)allFilters {
     [self.filterRequest stopRequest];

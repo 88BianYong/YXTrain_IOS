@@ -28,10 +28,10 @@
         if (redInteger > 0) {
             if (redInteger > 99){
                 self.viewControllers[1].tabBarItem.badgeValue = @"99+";
+            }else{
                 self.viewControllers[1].tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
-                [self.tabBar hideBadgeOnItemIndex:1];
             }
-            
+            [self.tabBar hideBadgeOnItemIndex:1];
         }else if (redInteger == 0){
             [self.tabBar showBadgeOnItemIndex:1];
             self.viewControllers[1].tabBarItem.badgeValue = nil;

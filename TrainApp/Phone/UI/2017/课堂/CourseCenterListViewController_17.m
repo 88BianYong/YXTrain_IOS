@@ -18,6 +18,7 @@
 #import "CourseCenterListFetcher_17.h"
 @interface CourseCenterListViewController_17 ()
 @property (nonatomic, strong) CourseListFilterView_17 *filterView;
+@property (nonatomic, strong) CourseListRequest_17Item_Scheme *schemeItem;
 @end
 
 @implementation CourseCenterListViewController_17
@@ -31,6 +32,7 @@
     fetcher.status = @"0";
     fetcher.tab = self.tabString;
     CourseCenterConditionRequest_17Item_CourseTypes *courseType = self.conditionItem.coursetypes[self.isCourseTypeBool ? 1 : 0];
+    self.schemeItem = self.conditionItem.scheme[self.isCourseTypeBool ? 1 : 0];
     fetcher.stageID = courseType.typeID;
     fetcher.study = self.conditionItem.defaultValue.study;
     fetcher.segment = self.conditionItem.defaultValue.segment;
@@ -113,12 +115,35 @@
         [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CourseListRequest_17Item_Objs *course = (CourseListRequest_17Item_Objs *)obj;
             if ([course.objID isEqualToString:course_id]) {
-                course.timeLength = record;
-                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                if (self.schemeItem.scheme.type.integerValue == 0) {
+                    self.schemeItem.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.schemeItem.process.userFinishNum.integerValue + (record.integerValue - course.timeLengthSec.integerValue)/60];
+                }
+                CourseListHeader_17 *headerView = (CourseListHeader_17 *)[self.tableView headerViewForSection:0];
+                headerView.scheme = self.schemeItem;
+                course.timeLengthSec = record;
+                [self.tableView reloadData];
+//                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                 *stop = YES;
             }
         }];
     }];
+    
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kYXTrainCompleteCourse object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        NSNotification *noti = (NSNotification *)x;
+        NSString *course_id = noti.userInfo.allKeys.firstObject;
+        [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            CourseListRequest_17Item_Objs *course = (CourseListRequest_17Item_Objs *)obj;
+            if ([course.objID isEqualToString:course_id] && self.schemeItem.scheme.type.integerValue == 1) {
+                course.isFinish = @"1";
+                self.schemeItem.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.schemeItem.process.userFinishNum.integerValue + 1];
+                CourseListHeader_17 *headerView = (CourseListHeader_17 *)[self.tableView headerViewForSection:0];
+                headerView.scheme = self.schemeItem;
+                *stop = YES;
+            }
+        }];
+    }];
+
 }
 
 #pragma mark - UITableViewDataSource
@@ -148,7 +173,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     CourseListHeader_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"CourseListHeader_17"];
-    headerView.scheme = self.conditionItem.scheme[self.isCourseTypeBool ? 1 : 0];
+    headerView.scheme = self.schemeItem;
     return headerView;
 }
 

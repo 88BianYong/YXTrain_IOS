@@ -18,8 +18,8 @@
 typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
     CourseTestSubmitStatus_NotSubmi = 0,//未作答
     CourseTestSubmitStatus_NotPass = 1,//未通过
-    CourseTestSubmitStatus_Pass = 1,//通过
-    CourseTestSubmitStatus_FullScore = 2//满分
+    CourseTestSubmitStatus_Pass = 2,//通过
+    CourseTestSubmitStatus_FullScore = 3//满分
 };
 @interface CourseTestViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
@@ -95,9 +95,11 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
     _submitStatus = submitStatus;
     if (_submitStatus == CourseTestSubmitStatus_NotSubmi) {
         [self.confirmButton setTitle:@"提交" forState:UIControlStateNormal];
-
     }else {
          [self.confirmButton setTitle:@"继续看课" forState:UIControlStateNormal];
+    }
+    if (_submitStatus == CourseTestSubmitStatus_Pass || _submitStatus == CourseTestSubmitStatus_FullScore) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCompleteCourse object:nil userInfo:@{self.cID:YXTrainSpecialCourseActivity}];
     }
 }
 #pragma mark - setupUI
@@ -155,12 +157,7 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
             }];
             [self requestForSubmitUserQuizes:mutableArray];
         }else {
-            if (self.submitStatus == CourseTestSubmitStatus_FullScore || self.submitStatus == CourseTestSubmitStatus_Pass) {
-                BLOCK_EXEC(self.courseTestQuestionBlock,YES);
-            }else {
-                BLOCK_EXEC(self.courseTestQuestionBlock,NO);
-            }
-            [self.navigationController popViewControllerAnimated:YES];
+            [self naviLeftAction];
         }
         
     }];
@@ -187,6 +184,31 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
     }];
 }
 - (void)naviLeftAction {
+    if (self.submitStatus == CourseTestSubmitStatus_NotSubmi) {
+        __block BOOL isChoose = NO;
+        [self.quizesItem.result.questions enumerateObjectsUsingBlock:^(CourseGetQuizesRequest_17Item_Result_Questions *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (obj.question.userChoose.integerValue != 0) {
+                isChoose = YES;
+                *stop = YES;
+            }
+        }];
+        if (isChoose) {
+            LSTAlertView *alertView = [[LSTAlertView alloc] init];
+            alertView.title = @"已作答的内容将被清除，确定退出?";
+            alertView.imageName = @"提醒icon";
+            WEAK_SELF
+            [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Cancel action:^{
+                STRONG_SELF
+                
+            }];
+            [alertView addButtonWithTitle:@"确定" style:LSTAlertActionStyle_Default action:^{
+                STRONG_SELF
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            [alertView show];
+            return;
+        }
+    }
     if (self.submitStatus == CourseTestSubmitStatus_FullScore || self.submitStatus == CourseTestSubmitStatus_Pass) {
         BLOCK_EXEC(self.courseTestQuestionBlock,YES);
     }else {
@@ -268,7 +290,6 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
     CourseGetQuizesRequest_17Item_Result_Questions_Questions_AnswerJson *answerJson = question.question.answerJson[indexPath.row];
     question.question.userChoose = @"0";
     if (question.question.types.integerValue == 2) {
-     
         answerJson.isChoose = [NSString stringWithFormat:@"%d",![answerJson.isChoose boolValue]];
         __block BOOL isChoose = NO;
         [question.question.answerJson enumerateObjectsUsingBlock:^( CourseGetQuizesRequest_17Item_Result_Questions_Questions_AnswerJson *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -349,7 +370,7 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
         }else {
             self.tableView.tableHeaderView = self.passStatusHeaderView;
             self.submitItem = item;
-            self.submitStatus = item.isPass.boolValue ? CourseTestSubmitStatus_Pass:CourseTestSubmitStatus_NotPass;
+            self.submitStatus = item.isPass.boolValue ? CourseTestSubmitStatus_Pass :CourseTestSubmitStatus_NotPass;
             [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
         }
         [self.tableView reloadData];

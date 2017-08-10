@@ -359,6 +359,7 @@
             [self.tableView reloadData];
             self.emptyView.hidden = YES;
             [self.inputTextView inputTextViewClear];
+             [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainParticipateActivity object:nil userInfo:@{self.tool.aid:YXTrainSpecialCourseActivity}];
         }else {
             [self showToast:@"数据错误"];
         }
@@ -389,6 +390,7 @@
             reply.isRanked = @"true";
             reply.up = [NSString stringWithFormat:@"%d",(int)(reply.up.integerValue + 1)];
 //            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainParticipateActivity object:nil userInfo:@{self.tool.aid:YXTrainSpecialCourseActivity}];
             [self.tableView reloadData];
         }
     }];

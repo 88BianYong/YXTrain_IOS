@@ -54,10 +54,9 @@
                 self.schemeItem = model.scheme[0];
             }
         }
-        if (self.schemeItem.scheme.type.integerValue != 0 || model.searchTerm.isLockStudy.boolValue) {
+        if (self.typeString.integerValue != 0 || model.searchTerm.isLockStudy.boolValue) {
             [self reforeUI];
-        }
-        if (self.filterView.searchTerm == nil) {
+        }else if (self.filterView.searchTerm == nil) {
             self.filterView.searchTerm = model.searchTerm;
             self.filterView.hidden = NO;
         }
@@ -131,8 +130,29 @@
         [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CourseListRequest_17Item_Objs *course = (CourseListRequest_17Item_Objs *)obj;
             if ([course.objID isEqualToString:course_id]) {
+                if (self.schemeItem.scheme.type.integerValue == 0) {
+                    self.schemeItem.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.schemeItem.process.userFinishNum.integerValue + (record.integerValue - course.timeLengthSec.integerValue)/60];
+                }
+                CourseListHeader_17 *headerView = (CourseListHeader_17 *)[self.tableView headerViewForSection:0];
+                headerView.scheme = self.schemeItem;
                 course.timeLengthSec = record;
-                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView reloadData];
+                *stop = YES;
+            }
+        }];
+    }];
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kYXTrainCompleteCourse object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        NSNotification *noti = (NSNotification *)x;
+        NSString *course_id = noti.userInfo.allKeys.firstObject;
+        [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            CourseListRequest_17Item_Objs *course = (CourseListRequest_17Item_Objs *)obj;
+            if ([course.objID isEqualToString:course_id] && self.schemeItem.scheme.type.integerValue == 1){
+                course.isFinish = @"1";
+                self.schemeItem.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.schemeItem.process.userFinishNum.integerValue + 1];
+                CourseListHeader_17 *headerView = (CourseListHeader_17 *)[self.tableView headerViewForSection:0];
+                headerView.scheme = self.schemeItem;
+                [self.tableView reloadData];
                 *stop = YES;
             }
         }];

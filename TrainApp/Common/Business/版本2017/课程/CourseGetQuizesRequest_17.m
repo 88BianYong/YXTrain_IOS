@@ -8,9 +8,9 @@
 
 #import "CourseGetQuizesRequest_17.h"
 @implementation CourseGetQuizesRequest_17Item_Result_Questions_Questions_AnswerJson
-+ (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"isChoice":@"isChoose"}];
-}
+//+ (JSONKeyMapper *)keyMapper {
+//    return [[JSONKeyMapper alloc] initWithDictionary:@{@"isChoice":@"isChoose"}];
+//}
 @end
 @implementation CourseGetQuizesRequest_17Item_Result_Questions_Question
 + (JSONKeyMapper *)keyMapper {

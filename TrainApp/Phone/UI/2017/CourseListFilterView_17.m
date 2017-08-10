@@ -41,7 +41,13 @@
         return;
     }
     [self.selectedMutableArray removeAllObjects];
-    [self.selectedMutableArray addObjectsFromArray:_searchTerm.selectedMutableArray];
+    [_searchTerm.selectedMutableArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.integerValue < 0) {
+            [self.selectedMutableArray addObject:@"0"];
+        }else {
+           [self.selectedMutableArray addObject:obj];
+        }
+    }];
     [self setupCourseFilterContent];
 }
 
@@ -111,7 +117,12 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
     [[tapGestureRecognizer rac_gestureSignal] subscribeNext:^(id x) {
         STRONG_SELF
-        [self hideFilterSelectionView];
+        UITapGestureRecognizer * sender = x;
+        CGPoint point = [sender locationInView:self.maskView];
+        if (sender.state == UIGestureRecognizerStateEnded &&
+            !CGRectContainsPoint(self.collectionView.frame,point)) {
+            [self hideFilterSelectionView];
+        }
     }];
     [self.maskView addGestureRecognizer:tapGestureRecognizer];
     
@@ -264,7 +275,13 @@
             STRONG_SELF
             if (isCancleBool) {
                 [self.selectedMutableArray removeAllObjects];
-                [self.selectedMutableArray addObjectsFromArray:self.searchTerm.selectedMutableArray];
+                [self.searchTerm.selectedMutableArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (obj.integerValue < 0) {
+                        [self.selectedMutableArray addObject:@"0"];
+                    }else {
+                        [self.selectedMutableArray addObject:obj];
+                    }
+                }];
             }else {
                 if ([self.selectedMutableArray[0] integerValue] != [self.searchTerm.selectedMutableArray[0] integerValue] || [self.selectedMutableArray[1] integerValue] != [self.searchTerm.selectedMutableArray[1] integerValue]) {
                     [self.searchTerm.selectedMutableArray removeAllObjects];
@@ -297,4 +314,5 @@
         return CGSizeZero;
     }
 }
+
 @end
