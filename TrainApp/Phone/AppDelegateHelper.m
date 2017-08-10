@@ -161,7 +161,7 @@
     UIViewController *mineVC = [[NSClassFromString(@"YXMineViewController_17") alloc]init];
     YXNavigationController *mineNav = [[YXNavigationController alloc]initWithRootViewController:mineVC];
     [self setTabBarItem:learningNav title:@"学习" image:@"学习未选中" selectedImage:@"学习选中" tag:1];
-    [self setTabBarItem:messageNav title:@"消息" image:@"消息" selectedImage:@"消息选中" tag:2];
+    [self setTabBarItem:messageNav title:@"消息" image:@"消息" selectedImage:@"消息点击" tag:2];
     [self setTabBarItem:mineNav title:@"我" image:@"我未选中" selectedImage:@"我选中" tag:3];
     tabVC.viewControllers = @[learningNav, messageNav, mineNav];
     NSInteger redInteger = [LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger;

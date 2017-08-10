@@ -56,7 +56,7 @@
     ActivityListFetcher *fetcher = [[ActivityListFetcher alloc]init];
     fetcher.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     fetcher.pageindex = 0;
-    fetcher.pagesize = 10;
+    fetcher.pagesize = 20;
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
 }

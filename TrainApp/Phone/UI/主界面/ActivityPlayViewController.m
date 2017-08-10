@@ -31,7 +31,7 @@
     self.dataFetcher.toolid = self.tool.toolid;
     self.dataFetcher.stageId = self.stageId;
     self.dataFetcher.pageIndex = 1;
-    self.dataFetcher.pageSize = 10;
+    self.dataFetcher.pageSize = 20;
     [super viewDidLoad];
     self.title = @"视频";
     self.view.backgroundColor = [UIColor blackColor];

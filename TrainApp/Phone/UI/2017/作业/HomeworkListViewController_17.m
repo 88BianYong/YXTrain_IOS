@@ -38,7 +38,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.title = @"作业列表";
+    self.title = @"作业";
+    if (self.toolString.integerValue == 205 || self.toolString.integerValue == 305) {
+        self.title = @"研修总结";
+    }
     if ([self isJudgmentChooseCourse]) {
         [self setupUI];
         [self layoutInterface];

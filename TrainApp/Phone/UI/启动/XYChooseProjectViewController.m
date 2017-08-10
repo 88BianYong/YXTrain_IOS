@@ -17,9 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"手机研修";
+    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self setupUI];
     [self requestForProjectList];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,7 +43,10 @@
         STRONG_SELF
         [self requestForProjectList];
     };
-    
+}
+- (void)naviRightAction {
+    [[LSTSharedInstance  sharedInstance].webSocketManger close];
+    [[LSTSharedInstance sharedInstance].userManger logout];
 }
 #pragma mark - request
 - (void)requestForProjectList {
@@ -59,6 +62,7 @@
         data.localDataExist = NO;
         data.error = error;
         if ([self handleRequestData:data]) {
+            [self setupRightWithTitle:@"切换账号"];
             [self stopLoading];
             return;
         }

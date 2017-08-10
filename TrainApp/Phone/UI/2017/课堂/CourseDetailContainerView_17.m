@@ -15,8 +15,7 @@
         self.contentLabel.numberOfLines = 1;
         [self addSubview:self.contentLabel];
         self.iconImageView = [[UIImageView alloc] init];
-        self.iconImageView.image = [UIImage imageNamed:@""];
-        self.iconImageView.backgroundColor = [UIColor redColor];
+        self.iconImageView.image = [UIImage imageNamed:@"课程检测学习"];
         [self addSubview:self.iconImageView];
         self.timeLabel = [[UILabel alloc] init];
         self.timeLabel.text = @"已学习12分钟";

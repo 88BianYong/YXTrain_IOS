@@ -35,15 +35,17 @@
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_scheme.process.userFinishNum,_scheme.scheme.finishNum]];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"0070c9"] range:NSMakeRange(0, _scheme.process.userFinishNum.length)];
     self.scheduleLabel.attributedText = attributedString;
-    self.explainButton.hidden = (_scheme.scheme.toolID.integerValue == 218 || _scheme.scheme.toolID.integerValue == 318) ? NO : YES;
+    self.explainButton.hidden = (_scheme.scheme.toolID.integerValue == 216 || _scheme.scheme.toolID.integerValue == 316) ? NO : YES;
 }
 - (NSString *)mainPointContent:(HomeworkListRequest_17Item_Scheme *)scheme{
     if (scheme.scheme.toolID.integerValue == 219 || scheme.scheme.toolID.integerValue == 319) {
         return [NSString stringWithFormat:@"需要互评%@篇同学作业",scheme.scheme.finishNum];
     }else if (scheme.scheme.toolID.integerValue == 203 || scheme.scheme.toolID.integerValue == 303) {
         return [NSString stringWithFormat:@"需要完成%@篇作业",scheme.scheme.finishNum];
-    }else if (scheme.scheme.toolID.integerValue == 218 || scheme.scheme.toolID.integerValue == 318) {
+    }else if (scheme.scheme.toolID.integerValue == 216 || scheme.scheme.toolID.integerValue == 316) {
         return [NSString stringWithFormat:@"需要完成%@篇小组作业",scheme.scheme.finishNum];
+    }else if (scheme.scheme.toolID.integerValue == 208 || scheme.scheme.toolID.integerValue == 308) {
+        return [NSString stringWithFormat:@"需要自荐%@篇作业",scheme.scheme.finishNum];
     }else if (scheme.scheme.toolID.integerValue == 205 || scheme.scheme.toolID.integerValue == 305) {
         return [NSString stringWithFormat:@"需要完成%@篇研修总结",scheme.scheme.finishNum];
     }else {

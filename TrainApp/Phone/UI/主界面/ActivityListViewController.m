@@ -48,7 +48,7 @@
     fetcher.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     fetcher.stageid = self.stageID;
     fetcher.pageindex = 0;
-    fetcher.pagesize = 10;
+    fetcher.pagesize = 20;
     WEAK_SELF
     fetcher.listCompleteBlock = ^(ActivityListRequestItem_body_scheme *scheme) {
         STRONG_SELF

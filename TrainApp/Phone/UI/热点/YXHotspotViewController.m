@@ -23,7 +23,7 @@ static  NSString *const trackPageName = @"热点列表页面";
 
 - (void)viewDidLoad {
     YXHotspotDatumFetch *fetcher = [[YXHotspotDatumFetch alloc] init];
-    fetcher.pagesize = 10;
+    fetcher.pagesize = 20;
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];

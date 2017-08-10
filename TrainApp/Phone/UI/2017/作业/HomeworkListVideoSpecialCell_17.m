@@ -57,7 +57,7 @@
     }
     _homework = homework;
     self.titleLabel.text = _homework.title;
-    self.subTitleLabel.text = _homework.desc;
+    self.subTitleLabel.text = _homework.homeworkTitle;
     self.submitTimeLabel.text = [NSString stringWithFormat:@"提交时间 %@",_homework.createTime];
     self.scoreLabel.text = [NSString stringWithFormat:@"%@分",_homework.score];
     [self.scoreLabel sizeToFit];

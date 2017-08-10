@@ -26,7 +26,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
 
 - (void)viewDidLoad {
     YXDynamicDatumFetch *fetcher = [[YXDynamicDatumFetch alloc] init];
-    fetcher.pagesize = 10;
+    fetcher.pagesize = 20;
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];

@@ -46,7 +46,7 @@
     }
     _homework = homework;
     self.titleLabel.text = _homework.title;
-    self.subTitleLabel.text = _homework.keyword;
+    self.subTitleLabel.text = _homework.homeworkTitle;
     if (_homework.status.integerValue > 0) {
         self.submitTimeLabel.text = [NSString stringWithFormat:@"提交时间 %@",_homework.createTime];
     }else {
