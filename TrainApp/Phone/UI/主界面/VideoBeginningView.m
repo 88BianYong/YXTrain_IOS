@@ -127,6 +127,9 @@
 //    NSString *filePath = [[NSBundle mainBundle]pathForResource:@"片头" ofType:@"mp4"];
 //    _videoUrl = [NSURL fileURLWithPath:filePath];
     self.player.videoUrl = _videoUrl;
+    if ([[Reachability reachabilityForInternetConnection] isReachableViaWWAN]) {
+        [self do3GCheck];
+    }
 }
 - (void)setPlayStatus:(VideoBeginningStatus)playStatus {
     _playStatus = playStatus;

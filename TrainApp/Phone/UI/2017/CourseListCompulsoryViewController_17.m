@@ -39,14 +39,17 @@
             [model.scheme enumerateObjectsUsingBlock:^(CourseListRequest_17Item_Scheme *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (self.typeString.integerValue == 0) {
                     self.schemeItem = obj;
-                    return;
+                    *stop = YES;
+                    return ;
                 }
                 if (self.typeString.integerValue == 102 && obj.scheme.toolID.integerValue == 201) {
                     self.schemeItem = obj;
+                    *stop = YES;
                     return;
                 }
                 if (self.typeString.integerValue == 101 && obj.scheme.toolID.integerValue == 223) {
                     self.schemeItem = obj;
+                    *stop = YES;
                     return;
                 }
             }];

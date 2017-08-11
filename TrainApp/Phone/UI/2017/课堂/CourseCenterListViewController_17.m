@@ -153,10 +153,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CourseListCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseListCell_17" forIndexPath:indexPath];
     CourseListRequest_17Item_Objs *obj = self.dataArray[indexPath.row];
+    obj.timeLengthSec = obj.timeLength;
     if (self.isCourseTypeBool) {
         obj.courseType = @"2";
     }
-    cell.course = self.dataArray[indexPath.row];
+    cell.course = obj;
     return cell;
 }
 #pragma mark - UITableViewDelegate

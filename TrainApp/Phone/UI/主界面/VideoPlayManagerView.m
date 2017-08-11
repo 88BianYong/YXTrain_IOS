@@ -247,11 +247,13 @@ static const NSInteger kPlayReportRetryTime = 10;
             [[NSUserDefaults standardUserDefaults] synchronize];
             self.isBeginPlayEnd = YES;
         }
-        self ->_beginningView = nil;
+        self.beginningView = nil;
         [self.player play];
+        self.exceptionView.hidden = YES;
     }];
     [self addSubview:self.beginningView];
     self.beginningView.videoUrl = [NSURL URLWithString:self.fileItem.vheadUrl];
+    
     //[NSURL URLWithString:@"http://upload.ugc.yanxiu.com/video/4620490456e684328d4fcf5a920f54a1.mp4"];
     [self.beginningView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
@@ -303,6 +305,9 @@ static const NSInteger kPlayReportRetryTime = 10;
         return;
     }
     self.player.videoUrl = self.videoUrl;
+    if ([[Reachability reachabilityForInternetConnection] isReachableViaWWAN]) {
+        [self do3GCheck];
+    }
     if ([self isPlayBeginningVideo:[_fileItem.vhead boolValue]] && self.fileItem.vheadUrl.length > 0) {
         self.isManualPause = YES;
         self.player.playPauseState = PlayerView_State_Paused;

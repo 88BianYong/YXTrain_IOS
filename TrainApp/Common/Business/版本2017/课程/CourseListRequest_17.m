@@ -24,6 +24,12 @@
 }
 @end
 @implementation CourseListRequest_17Item_Objs
+- (NSString<Optional> *)timeLengthSec {
+    if (_timeLengthSec == nil) {
+        _timeLengthSec = self.timeLength;
+    }
+    return _timeLengthSec;
+}
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"trainingid":@"trainingID",
                                                        @"studycode":@"studyCode",
@@ -143,7 +149,8 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
                                                        @"stageid":@"stageID",
-                                                       @"themeid":@"themeID"}];
+                                                       @"themeid":@"themeID",
+                                                       @"layerid":@"layerID"}];
 }
 - (instancetype)init {
     if (self = [super init]) {
