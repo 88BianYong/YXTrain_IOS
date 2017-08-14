@@ -98,7 +98,7 @@
 }
 - (void)naviRightAction{
     CourseRecordListViewController_17 *VC = [[CourseRecordListViewController_17 alloc]init];
-    VC.conditionItem = self.conditionItem;
+    VC.courseType = self.conditionItem.coursetypes[self.selectedIndex];
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -125,7 +125,7 @@
     if (_selectedIndex == seg.selectedSegmentIndex) {
         return;
     }
-    _selectedIndex = seg.selectedSegmentIndex;
+    self.selectedIndex = seg.selectedSegmentIndex;
     UIViewController *viewController = self.childViewControllers[seg.selectedSegmentIndex];
     [self.currentViewController willMoveToParentViewController:nil];
     [self transitionFromViewController:self.currentViewController toViewController:viewController duration:0.1 options:UIViewAnimationOptionTransitionNone animations:^{

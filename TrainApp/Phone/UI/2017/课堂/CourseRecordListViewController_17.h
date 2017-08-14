@@ -9,5 +9,6 @@
 #import "YXCourseBaseViewController.h"
 #import "CourseListRequest_17.h"
 @interface CourseRecordListViewController_17 : YXCourseBaseViewController
-@property (nonatomic, strong) CourseListRequest_17Item_SearchTerm *conditionItem;
+@property (nonatomic, strong) CourseCenterConditionRequest_17Item_CourseTypes *courseType;
+
 @end

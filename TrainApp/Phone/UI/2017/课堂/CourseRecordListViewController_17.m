@@ -28,8 +28,7 @@
     CourseCenterListFetcher_17 *fetcher = [[CourseCenterListFetcher_17 alloc]init];
     fetcher.status = @"0";
     fetcher.tab = @"my";
-    CourseCenterConditionRequest_17Item_CourseTypes *courseType = self.conditionItem.coursetypes[0];
-    fetcher.stageID = courseType.typeID;
+    fetcher.stageID = self.courseType.typeID;
     fetcher.study = @"0";
     fetcher.segment = @"0";
     self.dataFetcher = fetcher;
