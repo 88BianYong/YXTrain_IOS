@@ -98,7 +98,7 @@
         make.left.equalTo(self.numberLabel.mas_right).offset(8.0f);
         make.top.equalTo(self.numberLabel.mas_top);
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-11.0f);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
     }];
 }
 @end

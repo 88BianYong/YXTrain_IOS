@@ -22,9 +22,6 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
-    self.lineView = [[UIView alloc]init];
-    self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
-    [self addSubview:self.lineView];
     self.cancleButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.cancleButton.layer.cornerRadius = YXTrainCornerRadii;
     self.cancleButton.clipsToBounds = YES;
@@ -55,13 +52,16 @@
         BLOCK_EXEC(self.courseFilterCompleteBlock,NO);
     }];
     [self addSubview:self.confirmButton];
+    self.lineView = [[UIView alloc]init];
+    self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self addSubview:self.lineView];
 }
 - (void)seupLayout {
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_left);
+        make.left.equalTo(self.mas_left).offset(-15.0f);
+        make.right.equalTo(self.mas_right).offset(15.0f);
         make.top.equalTo(self.mas_top);
-        make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
+        make.height.mas_equalTo(1.0f/[UIScreen mainScreen].scale);
     }];
     
     [self.cancleButton mas_makeConstraints:^(MASConstraintMaker *make) {

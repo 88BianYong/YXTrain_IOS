@@ -8,8 +8,12 @@
 
 #import "YXCourseBaseViewController.h"
 #import "CourseListRequest_17.h"
+typedef NS_ENUM(NSInteger, CourseCenterListStatus) {
+    CourseCenterListStatus_Elective = 0,
+    CourseCenterListStatus_Local = 1
+};
 @interface CourseCenterListViewController_17 : YXCourseBaseViewController
 @property (nonatomic, copy) CourseListRequest_17Item_SearchTerm *conditionItem;
-@property (nonatomic, assign) BOOL isCourseTypeBool;
+@property (nonatomic, assign) CourseCenterListStatus status;
 @property (nonatomic, copy) NSString *tabString;
 @end

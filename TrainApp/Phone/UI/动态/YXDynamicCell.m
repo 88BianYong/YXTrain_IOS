@@ -41,7 +41,7 @@
     self.selectedBackgroundView = selectedBgView;
     
     self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.image = [UIImage imageNamed:@"消息动态详情页icon-0"];
+    self.iconImageView.image = [UIImage imageNamed:@"消息动态icon"];
     [self.contentView addSubview:self.iconImageView];
     
     

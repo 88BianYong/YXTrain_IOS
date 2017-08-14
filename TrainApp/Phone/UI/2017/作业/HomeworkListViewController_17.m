@@ -18,7 +18,7 @@
 #import "YXHomeworkInfoRequest.h"
 #import "HomeworkFloatingView_17.h"
 #import "YXMyExamExplainView_17.h"
-#import "HomeworkListGroupCell_17.h"
+#import "HomeworkListGroupDefaultCell_17.h"
 #import "HomeworkListVideoSpecialCell_17.h"
 #import "HomeworkListDefaultCell_17.h"
 #import "MJRefresh.h"
@@ -107,7 +107,7 @@
     [self.tableView registerClass:[HomeworkListVideoDefaultCell_17 class] forCellReuseIdentifier:@"HomeworkListVideoDefaultCell_17"];
     [self.tableView registerClass:[HomeworkListHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListHeaderView_17"];
     [self.tableView registerClass:[HomeworkListFooterView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListFooterView_17"];
-    [self.tableView registerClass:[HomeworkListGroupCell_17 class] forCellReuseIdentifier:@"HomeworkListGroupCell_17"];
+    [self.tableView registerClass:[HomeworkListGroupDefaultCell_17 class] forCellReuseIdentifier:@"HomeworkListGroupDefaultCell_17"];
     [self.tableView registerClass:[HomeworkListVideoSpecialCell_17 class] forCellReuseIdentifier:@"HomeworkListVideoSpecialCell_17"];
     [self.tableView registerClass:[HomeworkListDefaultCell_17 class] forCellReuseIdentifier:@"HomeworkListDefaultCell_17"];
     [self.view addSubview:self.tableView];
@@ -257,7 +257,7 @@
     }else {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
         if (homework.type.integerValue == 1) {
-            HomeworkListGroupCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListGroupCell_17" forIndexPath:indexPath];
+            HomeworkListGroupDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListGroupDefaultCell_17" forIndexPath:indexPath];
             cell.homework = homework;
             return cell;
         }else if (homework.templateID.integerValue == 324 || homework.templateID.integerValue == 379) {

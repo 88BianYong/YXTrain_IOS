@@ -6,13 +6,13 @@
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "HomeworkListGroupCell_17.h"
-@interface HomeworkListGroupCell_17 ()
+#import "HomeworkListGroupDefaultCell_17.h"
+@interface HomeworkListGroupDefaultCell_17 ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) UIImageView *groupImageView;
 @end
-@implementation HomeworkListGroupCell_17
+@implementation HomeworkListGroupDefaultCell_17
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {

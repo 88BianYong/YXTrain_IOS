@@ -37,6 +37,9 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
 @end
 
 @implementation CourseTestViewController_17
+- (void)dealloc {
+    DDLogDebug(@"release======>%@",NSStringFromClass([self class]));
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
@@ -106,7 +109,7 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
 - (void)setupUI {
     self.navigationItem.title = @"课程测验";
     self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -281,8 +284,9 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self classworkChooseLogic:indexPath];
-   
+    if (self.submitStatus == CourseTestSubmitStatus_NotSubmi) {
+        [self classworkChooseLogic:indexPath];
+    }
 }
 #pragma mark choose
 - (void)classworkChooseLogic:(NSIndexPath *)indexPath {

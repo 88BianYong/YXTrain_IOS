@@ -135,6 +135,7 @@
             YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];
             help.toolName = obj.name;
             help.toolID = obj.toolID;
+            help.type = obj.type;
             help.finishNum = obj.finishNum;
             help.finishScore = obj.passFinishScore;
             help.totalNum = obj.totalNum;
@@ -153,6 +154,7 @@
                 YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];
                 help.toolName = next.name;
                 help.toolID = next.toolID;
+                help.type = next.type;
                 help.finishNum = next.finishNum;
                 help.finishScore = next.userScore;
                 help.totalNum = next.totalNum;

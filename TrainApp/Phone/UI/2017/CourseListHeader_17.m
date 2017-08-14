@@ -18,6 +18,7 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        self.contentView.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
     }

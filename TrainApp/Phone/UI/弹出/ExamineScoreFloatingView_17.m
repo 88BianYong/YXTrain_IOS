@@ -45,7 +45,7 @@
     [containerView addSubview:self.scoreLabel];
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(containerView.mas_centerX).offset(1.0f);
-        make.bottom.equalTo(containerView.mas_centerY).offset(2.0f);
+        make.bottom.equalTo(containerView.mas_centerY).offset(6.0f);
     }];
     
     self.scoreNameLabel = [[UILabel alloc] init];
@@ -56,7 +56,7 @@
     [containerView addSubview:self.scoreNameLabel];
     [self.scoreNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(containerView.mas_centerX).offset(1.0f);
-        make.top.equalTo(containerView.mas_centerY).offset(5.0f);
+        make.top.equalTo(containerView.mas_centerY).offset(9.0f);
     }];
     
     

@@ -303,7 +303,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     return 5.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return section >= self.examineDetailItem.stages.count ? 45.0f : 80.f;
+    return section >= self.examineDetailItem.stages.count ? 45.0f : 70.f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     ExamineDetailRequest_17Item_Stages *stages = self.examineDetailItem.stages[indexPath.section];

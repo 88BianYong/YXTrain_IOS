@@ -342,7 +342,7 @@
 		925146871F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925146851F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */; };
-		926846731F344B1200CD9784 /* HomeworkListGroupCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846721F344B1200CD9784 /* HomeworkListGroupCell_17.m */; };
+		926846731F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846721F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m */; };
 		926846761F34547600CD9784 /* UITabBar+YXAddtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846751F34547600CD9784 /* UITabBar+YXAddtion.m */; };
 		9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */; };
 		9268C5F21DF3D59400AA109B /* BeijingModifyPasswordRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5F11DF3D59400AA109B /* BeijingModifyPasswordRequest.m */; };
@@ -541,6 +541,7 @@
 		92FD5A4F1ED7D6A400D3EBA1 /* VideoCourseCommentsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FD5A4E1ED7D6A400D3EBA1 /* VideoCourseCommentsRequest.m */; };
 		92FD5A521ED7DB2F00D3EBA1 /* VideoCourseCommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FD5A511ED7DB2F00D3EBA1 /* VideoCourseCommentHeaderView.m */; };
 		92FD5A551ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FD5A541ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m */; };
+		92FE95261F42938C0058E151 /* HomeworkListGroupSpecialCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FE95251F42938C0058E151 /* HomeworkListGroupSpecialCell_17.m */; };
 		92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED8841DD18B1600457228 /* ActivityCommentInputView.m */; };
 		92FED8891DD1C37200457228 /* ActitvityCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED8881DD1C37200457228 /* ActitvityCommentCell.m */; };
 		92FED88C1DD1C38E00457228 /* ActitvityCommentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FED88B1DD1C38E00457228 /* ActitvityCommentHeaderView.m */; };
@@ -1345,8 +1346,8 @@
 		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
 		9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserRequest.m; sourceTree = "<group>"; };
 		926846701F33222000CD9784 /* CourseRecordListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CourseRecordListViewController_17.h; path = "课堂/CourseRecordListViewController_17.h"; sourceTree = "<group>"; };
-		926846711F344B1200CD9784 /* HomeworkListGroupCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListGroupCell_17.h; sourceTree = "<group>"; };
-		926846721F344B1200CD9784 /* HomeworkListGroupCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListGroupCell_17.m; sourceTree = "<group>"; };
+		926846711F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListGroupDefaultCell_17.h; sourceTree = "<group>"; };
+		926846721F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListGroupDefaultCell_17.m; sourceTree = "<group>"; };
 		926846741F34547600CD9784 /* UITabBar+YXAddtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+YXAddtion.h"; sourceTree = "<group>"; };
 		926846751F34547600CD9784 /* UITabBar+YXAddtion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+YXAddtion.m"; sourceTree = "<group>"; };
 		9268C5ED1DF3CDCD00AA109B /* BeijingSendSmsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingSendSmsRequest.h; sourceTree = "<group>"; };
@@ -1733,6 +1734,8 @@
 		92FD5A511ED7DB2F00D3EBA1 /* VideoCourseCommentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseCommentHeaderView.m; sourceTree = "<group>"; };
 		92FD5A531ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseCommentFooterView.h; sourceTree = "<group>"; };
 		92FD5A541ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseCommentFooterView.m; sourceTree = "<group>"; };
+		92FE95241F42938C0058E151 /* HomeworkListGroupSpecialCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListGroupSpecialCell_17.h; sourceTree = "<group>"; };
+		92FE95251F42938C0058E151 /* HomeworkListGroupSpecialCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListGroupSpecialCell_17.m; sourceTree = "<group>"; };
 		92FED8841DD18B1600457228 /* ActivityCommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCommentInputView.m; sourceTree = "<group>"; };
 		92FED8871DD1C37200457228 /* ActitvityCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActitvityCommentCell.h; sourceTree = "<group>"; };
 		92FED8881DD1C37200457228 /* ActitvityCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActitvityCommentCell.m; sourceTree = "<group>"; };
@@ -4047,20 +4050,22 @@
 		92BBE0331F205C0F009230AC /* view */ = {
 			isa = PBXGroup;
 			children = (
-				92BBE0371F205F5D009230AC /* HomeworkListSpecialCell_17.h */,
-				92BBE0381F205F5D009230AC /* HomeworkListSpecialCell_17.m */,
-				92C05EA31F39AC500070E2DE /* HomeworkListDefaultCell_17.h */,
-				92C05EA41F39AC500070E2DE /* HomeworkListDefaultCell_17.m */,
 				92BBE0461F20AE60009230AC /* HomeworkListClaimCell_17.h */,
 				92BBE0471F20AE60009230AC /* HomeworkListClaimCell_17.m */,
 				92BBE04C1F20B360009230AC /* HomeworkListHeaderView_17.h */,
 				92BBE04D1F20B360009230AC /* HomeworkListHeaderView_17.m */,
+				92C05EA31F39AC500070E2DE /* HomeworkListDefaultCell_17.h */,
+				92C05EA41F39AC500070E2DE /* HomeworkListDefaultCell_17.m */,
+				92BBE0371F205F5D009230AC /* HomeworkListSpecialCell_17.h */,
+				92BBE0381F205F5D009230AC /* HomeworkListSpecialCell_17.m */,
 				92BBE04F1F219196009230AC /* HomeworkListVideoDefaultCell_17.h */,
 				92BBE0501F219196009230AC /* HomeworkListVideoDefaultCell_17.m */,
-				926846711F344B1200CD9784 /* HomeworkListGroupCell_17.h */,
-				926846721F344B1200CD9784 /* HomeworkListGroupCell_17.m */,
 				92BBE0521F219D03009230AC /* HomeworkListVideoSpecialCell_17.h */,
 				92BBE0531F219D03009230AC /* HomeworkListVideoSpecialCell_17.m */,
+				926846711F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.h */,
+				926846721F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m */,
+				92FE95241F42938C0058E151 /* HomeworkListGroupSpecialCell_17.h */,
+				92FE95251F42938C0058E151 /* HomeworkListGroupSpecialCell_17.m */,
 				92BBE0561F21A2DE009230AC /* HomeworkListFooterView_17.h */,
 				92BBE0571F21A2DE009230AC /* HomeworkListFooterView_17.m */,
 				924286AB1F2F26D400E0A9FB /* HomeworkFloatingView_17.h */,
@@ -5042,7 +5047,7 @@
 				922F3AC81D2A61DE00CBF7C3 /* YXWorkshopViewController.m in Sources */,
 				92E927BF1F1E0C6700BEF834 /* ReadingListCell_17.m in Sources */,
 				923237771D82609F00FDACFE /* YXHelpHeaderView.m in Sources */,
-				926846731F344B1200CD9784 /* HomeworkListGroupCell_17.m in Sources */,
+				926846731F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m in Sources */,
 				9223C81B1D2D0144000F74DF /* YXWorkshopDatumRequest.m in Sources */,
 				923237311D6E9F3000FDACFE /* YXStartViewController.m in Sources */,
 				92B958451F18A37B00A07203 /* CourseListCell_17.m in Sources */,
@@ -5548,6 +5553,7 @@
 				9241FFDC1E1F39E30015B587 /* ActivityDelReplyRequest.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
 				92B87F3F1F31BD4C00F068C0 /* CourseSubmitUserQuizesRequest_17.m in Sources */,
+				92FE95261F42938C0058E151 /* HomeworkListGroupSpecialCell_17.m in Sources */,
 				924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */,
 				E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,

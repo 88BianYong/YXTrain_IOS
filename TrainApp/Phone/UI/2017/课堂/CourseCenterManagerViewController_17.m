@@ -67,11 +67,12 @@
     if (self.conditionItem.coursetypes.count == 2){
       [self setCourseTitleView];
         CourseCenterListViewController_17 *centerListVC = [[CourseCenterListViewController_17 alloc] init];
+        centerListVC.status = CourseCenterListStatus_Elective;
         centerListVC.conditionItem = self.conditionItem;
         centerListVC.tabString = @"all";
         [self addChildViewController:centerListVC];
         CourseCenterListViewController_17 *localListVC = [[CourseCenterListViewController_17 alloc] init];
-        localListVC.isCourseTypeBool = YES;
+        localListVC.status = CourseCenterListStatus_Local;
         localListVC.conditionItem = self.conditionItem;
         localListVC.tabString = @"all";
         [self addChildViewController:localListVC];
@@ -84,6 +85,7 @@
     }else {
         self.navigationItem.title = @"选课中心";
         CourseCenterListViewController_17 *centerListVC = [[CourseCenterListViewController_17 alloc] init];
+        centerListVC.status = CourseCenterListStatus_Elective;
         centerListVC.conditionItem = self.conditionItem;
         centerListVC.tabString = @"all";
         [self addChildViewController:centerListVC];
@@ -103,7 +105,7 @@
 }
 
 - (void)setCourseTitleView {
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30.0f)];   
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30.0f)];
     UISegmentedControl *seg = [[UISegmentedControl alloc]initWithItems:@[@"选修课程",@"本地课程"]];
     seg.tintColor = [UIColor whiteColor];
     seg.backgroundColor = [UIColor whiteColor];

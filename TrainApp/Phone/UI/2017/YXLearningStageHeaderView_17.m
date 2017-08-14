@@ -79,9 +79,9 @@
             return;
         }
         if (self.stage.isMockFold.boolValue) {
-            self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头-点击态"];
-        }else{
             self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开收起箭头"];
+        }else{
+            self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头-点击态"];
         }
     }];
     [self.contentView addSubview:self.bgButton];
@@ -119,9 +119,9 @@
     _stage = stage;
     self.finishImageView.hidden = !_stage.isFinish.boolValue;
     if (_stage.isMockFold.boolValue) {
-        self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头"];
-    }else{
         self.enterImageView.image = [UIImage imageNamed:@"第二阶段收起箭头"];
+    }else{
+        self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头"];
     }
     self.introductionView.statusImageView.hidden = _stage.status.boolValue;
     self.introductionView.nameLabel.text = _stage.name;

@@ -15,6 +15,5 @@ typedef NS_ENUM(NSUInteger, CourseTestCellStatus) {
 };
 @interface CourseTestCell_17 : UITableViewCell
 @property (nonatomic, strong) CourseGetQuizesRequest_17Item_Result_Questions_Questions_AnswerJson *answer;
-@property (nonatomic, assign) BOOL isFullscreen;
 @property (nonatomic, assign) CourseTestCellStatus classworkStatus;
 @end

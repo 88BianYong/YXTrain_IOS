@@ -24,7 +24,8 @@
     self.seperatorView.backgroundColor = [UIColor colorWithHexString:@"e8f0fe"];
     [self addSubview:self.seperatorView];
     [self.seperatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
+        make.left.equalTo(self.mas_left).offset(-15.0f);
+        make.right.equalTo(self.mas_right).offset(15.0f);
         make.top.equalTo(self.mas_top);
         make.height.mas_equalTo(1.0f/[UIScreen mainScreen].scale);
     }];

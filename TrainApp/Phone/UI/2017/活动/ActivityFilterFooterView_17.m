@@ -58,8 +58,8 @@
 }
 - (void)seupLayout {
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_left);
+        make.left.equalTo(self.mas_left).offset(-15.0f);
+        make.right.equalTo(self.mas_right).offset(-15.0f);
         make.top.equalTo(self.mas_top);
         make.height.mas_equalTo(1/[UIScreen mainScreen].scale);
     }];

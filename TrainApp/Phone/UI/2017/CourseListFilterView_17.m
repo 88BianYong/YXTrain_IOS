@@ -99,6 +99,8 @@
     [self addSubview:self.studyContentLabel];
     
     self.filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.filterButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    //self.filterButton.titleEdgeInsets = UIEdgeInsetsMake(0.0f, -10.0f, 0.0f, 10.0f);
     [self.filterButton setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
     WEAK_SELF
     [[self.filterButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -128,6 +130,7 @@
     
     self.backgroundView = [[UIView alloc] init];
     self.backgroundView.backgroundColor = [UIColor whiteColor];
+    self.backgroundView.clipsToBounds = YES;
     [self.maskView addSubview:self.backgroundView];
     
     CollectionViewEqualSpaceFlowLayout *flowLayout = [[CollectionViewEqualSpaceFlowLayout alloc] init];
@@ -141,11 +144,12 @@
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:flowLayout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
+    self.collectionView.clipsToBounds = NO;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerClass:[CourseFilterCell_17 class] forCellWithReuseIdentifier:@"CourseFilterCell_17"];
     [self.collectionView registerClass:[CourseFilterHeaderView_17 class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CourseFilterHeaderView_17"];
     [self.collectionView registerClass:[CourseFilterFooterView_17 class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"CourseFilterFooterView_17"];
-    [self.maskView addSubview:self.collectionView];
+    [self.backgroundView addSubview:self.collectionView];
 }
 - (void)setupLayout {
     [self.segmentNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -173,9 +177,9 @@
     }];
     
     [self.filterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.imageView.mas_left).offset(-10.0f);
+        make.right.equalTo(self.mas_right);
         make.centerY.equalTo(self.mas_centerY);
-        make.size.mas_offset(CGSizeMake(23.0f, 30.0f));
+        make.size.mas_offset(CGSizeMake(48.0f, 30.0f));
     }];
 }
 #pragma mark - Show & Hide

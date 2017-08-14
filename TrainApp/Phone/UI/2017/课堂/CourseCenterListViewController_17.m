@@ -31,8 +31,17 @@
     CourseCenterListFetcher_17 *fetcher = [[CourseCenterListFetcher_17 alloc]init];
     fetcher.status = @"0";
     fetcher.tab = self.tabString;
-    CourseCenterConditionRequest_17Item_CourseTypes *courseType = self.conditionItem.coursetypes[self.isCourseTypeBool ? 1 : 0];
-    self.schemeItem = self.conditionItem.scheme[self.isCourseTypeBool ? 1 : 0];
+    CourseCenterConditionRequest_17Item_CourseTypes *courseType = self.conditionItem.coursetypes[self.status];
+    [self.conditionItem.scheme enumerateObjectsUsingBlock:^(CourseListRequest_17Item_Scheme *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (self.status == CourseCenterListStatus_Elective && (obj.scheme.toolID.integerValue == 215 || obj.scheme.toolID.integerValue == 315)) {
+            self.schemeItem = obj;
+            *stop = YES;
+        }
+        if (self.status == CourseCenterListStatus_Local && (obj.scheme.toolID.integerValue == 217 || obj.scheme.toolID.integerValue == 317)) {
+            self.schemeItem = obj;
+            *stop = YES;
+        }
+    }];
     fetcher.stageID = courseType.typeID;
     fetcher.study = self.conditionItem.defaultValue.study;
     fetcher.segment = self.conditionItem.defaultValue.segment;
@@ -154,7 +163,7 @@
     CourseListCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseListCell_17" forIndexPath:indexPath];
     CourseListRequest_17Item_Objs *obj = self.dataArray[indexPath.row];
     obj.timeLengthSec = obj.timeLength;
-    if (self.isCourseTypeBool) {
+    if (self.status == CourseCenterListStatus_Local) {
         obj.courseType = @"2";
     }
     cell.course = obj;
@@ -166,6 +175,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (self.schemeItem == nil) {
+        return 0.0001f;
+    }
     return 70.0f;
 }
 

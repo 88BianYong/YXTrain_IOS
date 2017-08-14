@@ -60,9 +60,7 @@
         make.left.right.top.bottom.equalTo(self.backgroundImageView);
     }];
     
-    UIView *userHeaderView = [[UIView alloc] init];
-    userHeaderView.backgroundColor = [UIColor clearColor];
-    userHeaderView.layer.cornerRadius = 62.5f;
+    UIImageView *userHeaderView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"头像背景"]];
     userHeaderView.userInteractionEnabled = NO;
     [self.contentView addSubview:userHeaderView];
     
@@ -73,7 +71,8 @@
     [self.contentView addSubview:self.userHeaderImageView];
     
     [userHeaderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.userHeaderImageView).insets(UIEdgeInsetsMake(-25.0f, -25.0f, -25.0f, -25.0f));
+        make.center.equalTo(self.userHeaderImageView);
+        make.size.mas_offset(CGSizeMake(143.0f, 143.0f));
     }];
     
     self.nameLabel = [[UILabel alloc] init];

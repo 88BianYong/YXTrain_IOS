@@ -75,7 +75,7 @@
         make.left.equalTo(self.contentView.mas_left);
         make.right.equalTo(self.contentView.mas_right);
         make.bottom.equalTo(self.contentView.mas_bottom);
-        make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
+        make.height.mas_offset(5.0f);
     }];
 }
 

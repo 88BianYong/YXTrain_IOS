@@ -35,7 +35,7 @@
     [noticeBriefImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(containerView.mas_centerX).offset(-1.0f);
         make.size.mas_offset(CGSizeMake(27.0f, 27.0f));
-        make.bottom.equalTo(containerView.mas_centerY).offset(-5.0f);
+        make.bottom.equalTo(containerView.mas_centerY).offset(-1.0f);
     }];
     
     UILabel *noticeBriefLabel = [[UILabel alloc] init];
@@ -46,7 +46,7 @@
     [containerView addSubview:noticeBriefLabel];
     [noticeBriefLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(containerView.mas_centerX).offset(1.0f);
-        make.top.equalTo(containerView.mas_centerY).offset(5.0f);
+        make.top.equalTo(containerView.mas_centerY).offset(9.0f);
     }];
     
     UIImageView *pointerImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"通知简报"]];

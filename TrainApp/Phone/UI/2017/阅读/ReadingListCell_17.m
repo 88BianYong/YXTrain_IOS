@@ -49,10 +49,10 @@
 }
 - (void)setupLayout {
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(15.0f);
+        make.left.equalTo(self.contentView.mas_left).offset(14.0f);
         make.right.equalTo(self.chooseImageView.mas_left).offset(-10.0f);
         make.top.equalTo(self.contentView.mas_top).offset(15.0f);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-14.0f);
     }];
     [self.chooseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-10.0f);
