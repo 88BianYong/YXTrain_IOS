@@ -129,7 +129,7 @@
                 }
                 CourseListHeader_17 *headerView = (CourseListHeader_17 *)[self.tableView headerViewForSection:0];
                 headerView.scheme = self.schemeItem;
-                course.timeLengthSec = record;
+                course.timeLength = record;
                 [self.tableView reloadData];
 //                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                 *stop = YES;
