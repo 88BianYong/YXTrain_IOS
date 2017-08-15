@@ -1,0 +1,611 @@
+//
+//  YXPlayerManagerView.m
+//  TrainApp
+//
+//  Created by 郑小龙 on 2017/8/15.
+//  Copyright © 2017年 niuzhaowang. All rights reserved.
+//
+
+#import "YXPlayerManagerView.h"
+#import "ActivitySlideProgressView.h"
+#import "ActivityPlayExceptionView.h"
+#import "YXPlayerBufferingView.h"
+@interface VideoPlayerDefinition : NSObject
+@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, copy) NSString *url;
+@end
+@implementation VideoPlayerDefinition
+@end
+
+@interface YXPlayerManagerView ()
+@property (nonatomic, strong) YXPlayerBufferingView *bufferingView;
+@property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
+@property (nonatomic, strong) ActivityPlayExceptionView *exceptionView;
+@property (nonatomic, strong) UIImageView *placeholderImageView;
+
+@property (nonatomic, strong) NSURL *videoUrl;
+@property (nonatomic, strong) NSMutableArray<VideoPlayerDefinition *> *definitionMutableArray;
+@property (nonatomic, strong) NSMutableArray<UIButton *> *defButtonArray;
+
+
+@property (nonatomic, strong) NSMutableArray<RACDisposable *> *disposableMutableArray;
+@property (nonatomic, strong) RACDisposable *topBottomHiddenDisposable;
+@property (nonatomic, assign) BOOL isTopBottomHidden;
+@property (nonatomic, assign) BOOL isShowDefinition;
+@property (nonatomic, assign) BOOL isWifiPlayer;//WIFI先允许播放
+
+@end
+@implementation YXPlayerManagerView
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.disposableMutableArray = [[NSMutableArray alloc] initWithCapacity:4];
+        self.definitionMutableArray = [[NSMutableArray alloc] initWithCapacity:3];
+        self.defButtonArray = [[NSMutableArray alloc] initWithCapacity:3];
+        self.clipsToBounds = YES;
+        [self setupUI];
+        [self setupLayout];
+        [self setupObserver];
+        [self setupNotification];
+    }
+    return self;
+}
+#pragma mark - set
+- (void)setFileItem:(YXFileItemBase *)fileItem {
+    if (fileItem == nil) {
+        return;
+    }
+    _fileItem = fileItem;
+    self.playTime = 0;
+    self.startTime = nil;
+    self.topView.titleString = _fileItem.name;
+    self.videoUrl = [self definitionFormat];
+    if (![[Reachability reachabilityForInternetConnection] isReachable]) {
+        self.playerStatus = YXPlayerManagerAbnormal_NetworkError;
+        return;
+    }
+    CGFloat preProgress = fileItem.record.floatValue / fileItem.duration.floatValue;
+    if (preProgress > 0.99) {
+        preProgress = 0;
+    }
+    self.player.progress = preProgress;
+    if (isEmpty(self.videoUrl.absoluteString)) {
+        self.playerStatus =  YXPlayerManagerAbnormal_Empty;
+        return;
+    }
+    self.player.videoUrl = self.videoUrl;
+    self.videoUrl = nil;
+    if ([[Reachability reachabilityForInternetConnection] isReachableViaWWAN]) {
+        [self.player pause];
+        self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
+    }
+    self.thumbImageView.hidden = YES;
+    [UIApplication sharedApplication].idleTimerDisabled = YES;
+}
+#pragma mark - setupUI
+- (void)setupUI {
+    [self setupPlayerView];
+    [self setupBottomView];
+    
+    self.bufferingView = [[YXPlayerBufferingView alloc] init];
+    [self addSubview:self.bufferingView];
+    WEAK_SELF
+    self.topView = [[ActivityPlayTopView alloc] init];
+    [[self.topView.backButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        BLOCK_EXEC(self.playerManagerBackActionBlock);
+    }];
+    [self addSubview:self.topView];
+    
+    self.slideProgressView = [[ActivitySlideProgressView alloc] init];
+    self.slideProgressView.hidden = YES;
+    [self addSubview:self.slideProgressView];
+    
+    self.thumbImageView = [[UIImageView alloc] init];
+    self.thumbImageView.backgroundColor = [UIColor colorWithHexString:@"e7e8ec"];
+    self.thumbImageView.userInteractionEnabled = YES;
+    [self addSubview:self.thumbImageView];
+    
+    self.placeholderImageView = [[UIImageView alloc] init];
+    self.placeholderImageView.hidden = YES;
+    self.placeholderImageView.image = [UIImage imageNamed:@"视频未读取过来的默认图片"];
+    [self.thumbImageView addSubview:self.placeholderImageView];
+    [self setupExceptionView];
+}
+- (void)setupPlayerView {
+    self.player = [[LePlayer alloc] init];
+    self.playerView = (LePlayerView *)[self.player playerViewWithFrame:CGRectZero];
+    [self addSubview:self.playerView];
+    WEAK_SELF
+    UITapGestureRecognizer *playerRecognizer = [[UITapGestureRecognizer alloc] init];
+    playerRecognizer.numberOfTapsRequired = 1;
+    [[playerRecognizer rac_gestureSignal] subscribeNext:^(UITapGestureRecognizer *x) {
+        STRONG_SELF
+        x.enabled = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            x.enabled = YES;//防止连续点击出现UI混乱
+        });
+        if (self.isShowDefinition) {
+            [self hideDefinition];
+            return;
+        }
+        if (self.isTopBottomHidden) {
+            [self showTopView];
+            [self showBottomView];
+        } else {
+            [self hiddenTopView];
+            [self hiddenBottomView];
+        }
+        self.isTopBottomHidden = !self.isTopBottomHidden;
+        [self resetTopBottomHideTimer];
+        
+    }];
+    [self.playerView addGestureRecognizer:playerRecognizer];
+    
+}
+- (void)setupBottomView {
+    WEAK_SELF
+    self.bottomView = [[ActivityPlayBottomView alloc] init];
+    [self addSubview:self.bottomView];
+    [[self.bottomView.playPauseButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self resetTopBottomHideTimer];
+        if (self.player.state == PlayerView_State_Paused) {
+            [self.player play];
+            self.pauseStatus = YXPlayerManagerPause_Not;
+        } else if (self.player.state == PlayerView_State_Finished) {
+            [self.player seekTo:0];
+            [self.player play];
+            self.pauseStatus = YXPlayerManagerPause_Not;
+        } else if (self.player.state == PlayerView_State_Playing){
+            [self.player pause];
+            self.pauseStatus = YXPlayerManagerPause_Manual;
+        }else {
+            [self.player pause];
+            self.pauseStatus = YXPlayerManagerPause_Manual;
+        }
+    }];
+    [[self.bottomView.rotateButton rac_signalForControlEvents:UIControlEventAllEvents] subscribeNext:^(id x) {
+        STRONG_SELF
+        self.bottomView.isFullscreen = !self.bottomView.isFullscreen;
+        BLOCK_EXEC(self.playerManagerRotateActionBlock)
+    }];
+    [[self.bottomView.slideProgressControl rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self resetTopBottomHideTimer];
+        [self.player seekTo:self.player.duration * self.bottomView.slideProgressControl.playProgress];
+        BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress);
+    }];
+    [[self.bottomView.slideProgressControl rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self resetTopBottomHideTimer];
+        [self.player seekTo:self.player.duration * self.bottomView.slideProgressControl.playProgress];
+        BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress);
+    }];
+    [[self.bottomView.slideProgressControl rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self.topBottomHiddenDisposable dispose];
+    }];
+}
+- (void)setupExceptionView {
+    WEAK_SELF
+    self.exceptionView = [[ActivityPlayExceptionView alloc] init];
+    [[self.exceptionView.exceptionButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        self.bufferingView.hidden = NO;
+        [self.bufferingView start];
+        self.exceptionView.hidden = YES;
+        if (self.playerStatus == YXPlayerManagerAbnormal_NotWifi) {//非WIFI情况下继续播放
+            [self.player play];
+        }else if (self.playerStatus == YXPlayerManagerAbnormal_Finish || self.playerStatus ==YXPlayerManagerAbnormal_Empty){
+            BLOCK_EXEC(self.playerManagerPlayerActionBlock,self.playerStatus);
+        }else if (self.playerStatus == YXPlayerManagerAbnormal_NetworkError) {
+            if ([[Reachability reachabilityForInternetConnection] isReachable]) {
+                if (self.videoUrl != nil) {
+                    self.player.videoUrl = self.videoUrl;//TBD: 无网络情况下切换播放地址会播放上一个
+                }
+                [self.player play];
+                self.videoUrl = nil;
+            }else {
+                self.exceptionView.hidden = NO;
+            }
+        }
+    }];
+    self.exceptionView.hidden = YES;
+    [[self.exceptionView.backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        STRONG_SELF
+        BLOCK_EXEC(self.playerManagerBackActionBlock);
+    }];
+    [self addSubview:self.exceptionView];
+    
+}
+- (void)setupLayout {
+    [self.playerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.mas_bottom);
+        make.height.mas_offset(44.0f);
+    }];
+    [self.bufferingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.mas_equalTo(@0);
+        make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
+    }];
+    
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.height.mas_offset(44.0f);
+    }];
+    [self.slideProgressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.bottom.equalTo(self.mas_bottom);
+        make.height.mas_offset(3.0f);
+    }];
+    
+    [self.exceptionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+    
+    [self.thumbImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+    [self.placeholderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_offset(CGSizeMake(180.0f, 180.0f));
+        make.center.equalTo(self.thumbImageView);
+    }];
+}
+#pragma mark - notification
+- (void)setupObserver {
+    Reachability *r = [Reachability reachabilityForInternetConnection];
+    WEAK_SELF
+    [r setReachableBlock:^void (Reachability * reachability) {
+        STRONG_SELF
+        if([reachability isReachableViaWiFi]) {
+            return;
+        }
+        if([reachability isReachableViaWWAN]) {
+            if (self.pauseStatus != YXPlayerManagerPause_Test && !self.isWifiPlayer) {
+                [self.player pause];
+                self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
+            }
+        }
+    }];
+    [r startNotifier];
+    
+    RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
+        STRONG_SELF
+//        if (self.player.isBuffering) {
+//            self.bufferingView.hidden = NO;
+//            [self.bufferingView start];
+//        } else {
+//            self.bufferingView.hidden = YES;
+//            [self.bufferingView stop];
+//        }
+        if ([x unsignedIntegerValue] == PlayerView_State_Playing) {
+            self.startTime = [NSDate date];
+        } else {
+            if (self.startTime) {
+                self.playTime += [[NSDate date] timeIntervalSinceDate:self.startTime];
+                self.startTime = nil;
+            }
+        }
+        switch ([x unsignedIntegerValue]) {
+            case PlayerView_State_Buffering:
+            {
+                DDLogDebug(@"加载");
+                if (![r isReachable]) {
+                    self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
+                    [self.player pause];
+                }else {
+                    self.exceptionView.hidden = YES;
+                }
+            }
+                break;
+            case PlayerView_State_Playing:
+            {
+                self.exceptionView.hidden = YES;
+                DDLogDebug(@"播放");
+                [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"暂停按钮A"] forState:UIControlStateNormal];
+            }
+                break;
+            case PlayerView_State_Paused:
+            {
+                DDLogDebug(@"暂停");
+                [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
+                [self hideDefinition];
+            }
+                break;
+            case PlayerView_State_Finished:
+            {
+                DDLogDebug(@"完成");
+                [self playVideoFinished];
+            }
+                break;
+            case PlayerView_State_Error:
+            {
+                DDLogDebug(@"错误");
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.bufferingView stop];
+                    self.bufferingView.hidden = YES;
+                    self.playerStatus = YXPlayerManagerAbnormal_PlayError;
+                });
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    RACDisposable *r1 = [RACObserve(self.player, isBuffering) subscribeNext:^(id x) {
+        STRONG_SELF
+        if (self.player.isBuffering) {
+            self.bufferingView.hidden = NO;
+            [self.bufferingView start];
+        } else {
+            self.bufferingView.hidden = YES;
+            [self.bufferingView stop];
+        }
+    }];
+    
+    RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
+        STRONG_SELF
+        self.bottomView.slideProgressControl.duration = [x doubleValue];
+        [self.bottomView.slideProgressControl updateUI];
+    }];
+    
+    RACDisposable *r3 = [RACObserve(self.player, timeBuffered) subscribeNext:^(id x) {
+        STRONG_SELF
+        if (self.bottomView.slideProgressControl.bSliding) {
+            return;
+        }
+        if (self.bottomView.slideProgressControl.duration > 0) {
+            CGFloat bufferProgress = [x floatValue] / self.bottomView.slideProgressControl.duration;
+            self.bottomView.slideProgressControl.bufferProgress = bufferProgress;
+            self.slideProgressView.bufferProgress = bufferProgress;
+            if (self.bottomView.slideProgressControl.bufferProgress > 0) {
+                [self.bottomView.slideProgressControl updateUI];
+            }
+        }
+    }];
+    
+    RACDisposable *r4 = [RACObserve(self.player, timePlayed) subscribeNext:^(id x) {
+        STRONG_SELF
+        if (self.bottomView.slideProgressControl.bSliding) {
+            return;
+        }
+        if (self.bottomView.slideProgressControl.duration > 0) {
+            CGFloat playProgres = [x floatValue] / self.bottomView.slideProgressControl.duration;
+            self.bottomView.slideProgressControl.playProgress = playProgres;
+            self.slideProgressView.playProgress = playProgres;
+            if (self.bottomView.slideProgressControl.playProgress > 0) { // walkthrough 换url时slide跳动
+                [self.bottomView.slideProgressControl updateUI];
+            }
+            self.playTotalTime += 1;
+        }
+//        if (self.classworkManager.hidden){
+//            [self.classworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressControl.playProgress)];
+//        }
+    }];
+    
+    [self.disposableMutableArray addObject:r0];
+    [self.disposableMutableArray addObject:r1];
+    [self.disposableMutableArray addObject:r2];
+    [self.disposableMutableArray addObject:r3];
+    [self.disposableMutableArray addObject:r4];
+    
+}
+- (void)setupNotification {
+    
+}
+
+#pragma mark - hidden show
+- (void)resetTopBottomHideTimer {
+    [self.topBottomHiddenDisposable  dispose];
+    WEAK_SELF
+    self.topBottomHiddenDisposable = [[RACSignal interval:5.0f onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(NSDate * _Nullable x) {
+        STRONG_SELF
+        [self topBottomHideTimerAction];
+    }];
+}
+- (void)topBottomHideTimerAction {
+    [self hiddenTopView];
+    [self hiddenBottomView];
+    self.isTopBottomHidden = YES;
+}
+- (void)hiddenTopView {
+    [UIView animateWithDuration:0.6 animations:^{
+        [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top).offset(-44.0f);
+        }];
+        [self layoutIfNeeded];
+    }];
+}
+- (void)hiddenBottomView {
+    [UIView animateWithDuration:0.6f animations:^{
+        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom).offset(44.0f);
+        }];
+        [self layoutIfNeeded];
+        
+    } completion:^(BOOL finished) {
+        if (finished) {
+            self.slideProgressView.hidden = NO;
+        }
+    }];
+}
+- (void)showTopView {
+    [UIView animateWithDuration:0.6 animations:^{
+        [self.topView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.mas_top);
+        }];
+        [self layoutIfNeeded];
+    }];
+}
+- (void)showBottomView {
+    self.slideProgressView.hidden = YES;
+    [UIView animateWithDuration:0.6f animations:^{
+        [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.bottom.equalTo(self.mas_bottom);
+        }];
+        [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+    }];
+}
+
+#pragma mark - definition
+- (NSURL *)definitionFormat {
+    [self.definitionMutableArray removeAllObjects];
+    [self.defButtonArray removeAllObjects];
+    if (!isEmpty(self.fileItem.lurl)) {
+        VideoPlayerDefinition *definition = [[VideoPlayerDefinition alloc] init];
+        definition.identifier = @"流畅";
+        definition.url = self.fileItem.lurl;
+        [self.definitionMutableArray addObject:definition];
+    }
+    if (!isEmpty(self.fileItem.murl)) {
+        VideoPlayerDefinition *definition = [[VideoPlayerDefinition alloc] init];
+        definition.identifier = @"标清";
+        definition.url = self.fileItem.murl;
+        [self.definitionMutableArray addObject:definition];
+    }
+    if (!isEmpty(self.fileItem.surl)) {
+        VideoPlayerDefinition *definition = [[VideoPlayerDefinition alloc] init];
+        definition.identifier = @"高清";
+        definition.url = self.fileItem.surl;
+        [self.definitionMutableArray addObject:definition];
+    }
+    if(isEmpty(self.definitionMutableArray)){
+        self.bottomView.isShowDefinition = NO;
+        return [NSURL URLWithString:_fileItem.url];
+    }
+    self.bottomView.isShowDefinition = YES;
+    [self.definitionMutableArray enumerateObjectsUsingBlock:^(VideoPlayerDefinition * _Nonnull def, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitle:def.identifier forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+        [btn setTitleColor:[UIColor colorWithHexString:@"868686"] forState:UIControlStateNormal];
+        if (idx == 0) {
+            [btn setBackgroundImage:[UIImage imageNamed:@"流畅button"] forState:UIControlStateNormal];
+            btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 2, 0);
+        } else {
+            [btn setBackgroundImage:[UIImage imageNamed:@"高清标清button"] forState:UIControlStateNormal];
+        }
+        [self.defButtonArray addObject:btn];
+        [self addSubview:btn];
+        WEAK_SELF
+        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            STRONG_SELF
+            NSInteger index = [self.defButtonArray indexOfObject:btn];
+            [self.bottomView.definitionButton setTitle:self.definitionMutableArray[index].identifier forState:UIControlStateNormal];
+            [self changeVideoUrlAndPlay:self.definitionMutableArray[index].url];
+            self.isShowDefinition = NO;
+            [self hideDefinition];
+        }];
+    }];
+    [self.bottomView.definitionButton setTitle:self.definitionMutableArray[0].identifier
+                                      forState:UIControlStateNormal];
+    WEAK_SELF
+    [[self.bottomView.definitionButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        if (self.defButtonArray.count <= 1) {
+            return;
+        }
+        self.isShowDefinition = !self.isShowDefinition;
+        if (self.isShowDefinition) {
+            [self showDefinition];
+        }else {
+            [self hideDefinition];
+        }
+    }];
+    return [NSURL URLWithString:self.definitionMutableArray[0].url];
+}
+- (void)changeVideoUrlAndPlay:(NSString *)url {
+    self.player.progress = self.bottomView.slideProgressControl.playProgress;
+    self.player.videoUrl = [NSURL URLWithString:url];
+}
+- (void)definitionShowHiddenAction:(UIButton *)sender {
+    if (self.defButtonArray.count <= 1) {
+        return;
+    }
+    self.isShowDefinition = !self.isShowDefinition;
+    if (self.isShowDefinition) {
+        [self showDefinition];
+    }else {
+        [self hideDefinition];
+    }
+}
+- (void)showDefinition {
+    self.isShowDefinition = YES;
+    [self.topBottomHiddenDisposable dispose];
+    for (UIButton *btn in self.defButtonArray) {
+        [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(45, 25.5));
+            make.right.mas_equalTo(-3);
+            make.top.mas_equalTo(self.mas_bottom);
+        }];
+        btn.alpha = 0;
+    }
+    [self layoutIfNeeded];
+    
+    CGFloat yOffset = -50;
+    for (UIButton *btn in _defButtonArray) {
+        [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(45, 25.5));
+            make.right.mas_equalTo(-3);
+            make.bottom.mas_equalTo(yOffset);
+        }];
+        btn.alpha = 1;
+        yOffset -= 28;
+        [self bringSubviewToFront:btn];
+        [self layoutIfNeeded];
+    }
+}
+- (void)hideDefinition {
+    self.isShowDefinition = NO;
+    [self resetTopBottomHideTimer];
+    for (UIButton *btn in self.defButtonArray) {
+        [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(60, 34));
+            make.right.mas_equalTo(-10);
+            make.top.mas_equalTo(self.mas_bottom);
+        }];
+        btn.alpha = 0;
+    }
+    [self layoutIfNeeded];
+}
+
+- (void)playVideoFinished {
+    self.bottomView.slideProgressControl.playProgress = 0.0f;
+    self.slideProgressView.playProgress = 0.0f;
+    self.bottomView.slideProgressControl.bufferProgress = 0.0f;
+    self.slideProgressView.bufferProgress = 0.0f;
+    [self.bottomView.slideProgressControl updateUI];
+    [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
+    BLOCK_EXEC(self.playerManagerFinishActionBlock);
+    _fileItem = nil;
+}
+#pragma mark - time
+- (NSTimeInterval)recordPlayerDuration {
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    if (self.player.duration >= 0.0f && self.startTime != nil) {
+        self.playTime += [[NSDate date]timeIntervalSinceDate:self.startTime];
+    }
+    return self.playTime;
+}
+#pragma mark - notification
+- (void)playVideoClear {
+    [self.player pause];
+    self.player = nil;
+    [self.topBottomHiddenDisposable  dispose];
+    [self.disposableMutableArray enumerateObjectsUsingBlock:^(RACDisposable * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj dispose];
+    }];
+    [self.disposableMutableArray removeAllObjects];
+}
+@end

@@ -91,7 +91,6 @@ static const NSInteger kPlayReportRetryTime = 10;
                 self.documentRetryTimer = nil;
       
             }
-
             if (!self.exceptionView.hidden) {
                 return;
             }

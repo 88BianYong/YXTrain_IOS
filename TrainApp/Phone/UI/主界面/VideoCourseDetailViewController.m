@@ -41,10 +41,6 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
     self.title = self.course.course_title;
-    if (self.fromWhere == VideoCourseFromWhere_NotFound){
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        return;
-    }
     [self setupUI];
     [self setupLayout];
     [self startLoading];

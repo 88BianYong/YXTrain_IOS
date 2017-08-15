@@ -12,6 +12,7 @@
 #import "CourseHistoryCell_17.h"
 #import "CourseListFormatModel_17.h"
 #import "VideoCourseDetailViewController_17.h"
+#import "YXCourseDetailPlayerViewController_17.h"
 @interface CourseHistoryViewController_17 ()
 @end
 
@@ -100,10 +101,38 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+<<<<<<< HEAD
     VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
     vc.course = [CourseListFormatModel_17 formatModel:self.dataArray[indexPath.row]];
     vc.stageString = self.stageString;
     vc.fromWhere = VideoCourseFromWhere_Detail;
     [self.navigationController pushViewController:vc animated:YES];
+=======
+    CourseListRequest_17Item_Objs *obj = self.dataArray[indexPath.row];
+    YXCourseListRequestItem_body_module_course *course  = [[YXCourseListRequestItem_body_module_course alloc] init];
+    course.courses_id = obj.objID;
+    course.course_title = obj.name;
+    course.course_img = obj.content.imgUrl;
+    course.record = obj.timeLength;
+    course.is_selected = obj.isSelected;
+    course.module_id = obj.stageID;
+    course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
+    course.type = obj.type;
+    if (course.isSupportApp.boolValue) {
+//        VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
+//        vc.course = course;
+//        vc.stageString = self.stageString;
+//        vc.fromWhere = VideoCourseFromWhere_Detail;
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc]init];
+        vc.course = course;
+        vc.stageString = self.stageString;
+        vc.fromWhere = VideoCourseFromWhere_Detail;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        
+    }
+>>>>>>> 播放器重构
 }
 @end
