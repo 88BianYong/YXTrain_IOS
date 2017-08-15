@@ -11,12 +11,15 @@
 #import "LePlayer.h"
 #import "LePlayerView.h"
 #import "ActivityPlayBottomView.h"
+#import "ActivitySlideProgressView.h"
+
 typedef NS_ENUM(NSInteger, YXPlayerManagerPauseStatus) {
     YXPlayerManagerPause_Not = 0,//未暂停
     YXPlayerManagerPause_Manual = 1,//手动暂停
-    YXPlayerManagerPause_Backstage = 2,//推入后台暂停
+    YXPlayerManagerPause_Backstage = 2,//退入后台暂停
     YXPlayerManagerPause_Next = 3,//进入下一界面
-    YXPlayerManagerPause_Test = 4//显示测试
+    YXPlayerManagerPause_Test = 4,//显示测试
+    YXPlayerManagerPause_Abnormal = 5//异常界面
 };
 typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
     YXPlayerManagerAbnormal_Finish,//视频完成
@@ -31,6 +34,7 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
 @property (nonatomic, strong) LePlayer *player;
 @property (nonatomic, strong) LePlayerView *playerView;
 @property (nonatomic, strong) ActivityPlayBottomView *bottomView;
+@property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
 @property (nonatomic, strong) ActivityPlayTopView *topView;
 @property (nonatomic, strong) UIImageView *thumbImageView;
 
@@ -56,4 +60,5 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
 
 
 - (NSTimeInterval)recordPlayerDuration;
+- (void)playVideoClear;
 @end

@@ -178,6 +178,10 @@ extern NSString *const kYXTrainParticipateActivity;
  *  完成课程
  */
 extern NSString *const kYXTrainCompleteCourse;
+/*
+ *  播放课程界面显示和覆盖
+ */
+extern NSString *const kYXTrainPlayCourseStatus;
 
 
 
@@ -213,6 +217,14 @@ extern NSString *const YXTrainDeYangProjectId;
  *  定义特殊标记,表示已完成一个课程或者已参加一个活动
  */
 extern NSString *const YXTrainSpecialCourseActivity;
+/**
+ *  需要暂停播放
+ */
+extern const BOOL YXTrainCourseVideoPause;
+/**
+ *  需要播放播放
+ */
+extern const BOOL YXTrainCourseVideoPlay;
 
 
 

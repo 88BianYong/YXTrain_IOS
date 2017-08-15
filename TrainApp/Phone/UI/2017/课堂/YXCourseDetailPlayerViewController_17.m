@@ -13,7 +13,7 @@
 #import "VideoCourseIntroductionViewController.h"
 #import "VideoCourseCommentViewController.h"
 #import "CourseTestViewController_17.h"
-
+#import "VideoClassworkManager.h"
 @interface YXCourseDetailPlayerViewController_17 ()
 @property (nonatomic ,strong) VideoClassworkManager *classworkManager;
 
@@ -36,7 +36,14 @@
     [self startLoading];
     [self requestForCourseDetail];
 }
-
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPlayCourseStatus object:@(YXTrainCourseVideoPlay)];
+}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPlayCourseStatus object:@(YXTrainCourseVideoPause)];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -118,29 +125,31 @@
 //    };
     self.containerView.hidden = YES;
     [self.view addSubview:self.containerView];
-    self.playMangerView = [[VideoPlayManagerView alloc] init];
+    self.playMangerView = [[YXPlayerManagerView alloc] init];
     self.playMangerView.hidden = YES;
     [self.playMangerView.thumbImageView sd_setImageWithURL:[NSURL URLWithString:self.course.course_img]];
-    [self.playMangerView setVideoPlayManagerViewRotateScreenBlock:^(BOOL isVertical) {
+    self.playMangerView.playerManagerRotateActionBlock = ^{
         STRONG_SELF
         [self rotateScreenAction];
-    }];
-    [self.playMangerView setVideoPlayManagerViewBackActionBlock:^{
+    };
+    self.playMangerView.playerManagerBackActionBlock = ^{
         STRONG_SELF
-        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
-    }];
-    [self.playMangerView setVideoPlayManagerViewFinishBlock:^{
+         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+    };
+    self.playMangerView.playerManagerFinishActionBlock = ^{
         STRONG_SELF
+        [self recordPlayerDuration];
+        SAFE_CALL(self.exitDelegate, browserExit);
         [self.chapterVC readyNextWillplayVideoAgain:NO];
-    }];
-    [self.playMangerView setVideoPlayManagerViewPlayVideoBlock:^(VideoPlayManagerStatus status) {
+    };
+    self.playMangerView.playerManagerPlayerActionBlock = ^(YXPlayerManagerAbnormalStatus status) {
         STRONG_SELF
-        if (self.playMangerView.playStatus == VideoPlayManagerStatus_Finish) {
+        if (status == YXPlayerManagerAbnormal_Finish) {
             [self.chapterVC readyNextWillplayVideoAgain:YES];
         }else {
             [self requestForCourseDetail];
         }
-    }];
+    };
     [self.view addSubview:self.playMangerView];
     
     self.chapterVC = [[VideoCourseChapterViewController alloc]init];
@@ -149,14 +158,18 @@
     self.chapterVC.fromWhere = self.fromWhere;
     [self.chapterVC setVideoCourseChapterFragmentCompleteBlock:^(YXFileItemBase *fileItem, BOOL isHaveVideo) {
         STRONG_SELF
+        [self recordPlayerDuration];
+        SAFE_CALL(self.exitDelegate, browserExit);
         self.playMangerView.hidden = NO;
         self.containerView.hidden = NO;
         if (fileItem) {
             self.playMangerView.fileItem = fileItem;
+            self.delegate = fileItem;
+            self.exitDelegate = fileItem;
             //[self setupClassworkManager:fileItem];
         }else {
             if (isHaveVideo) {
-                self.playMangerView.playStatus = VideoPlayManagerStatus_Finish;
+                self.playMangerView.playerStatus = YXPlayerManagerAbnormal_Finish;
             }
         }
     }];
@@ -190,5 +203,24 @@
         make.top.equalTo(self.playMangerView.mas_bottom);
     }];
     [self remakeForHalfSize];
+}
+#pragma mark - Notification
+- (void)setupNotification {
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kRecordNeedUpdateNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        [self recordPlayerDuration];
+    }];
+}
+#pragma mark - report
+- (void)recordPlayerDuration {
+    if (self.playMangerView.player.duration) {
+        if (self.playMangerView.startTime) {
+            self.playMangerView.playTime += [[NSDate date]timeIntervalSinceDate:self.playMangerView.startTime];
+        }
+        [self.delegate playerProgress:self.playMangerView.slideProgressView.playProgress totalDuration:self.playMangerView.player.duration stayTime:self.playMangerView.playTime];
+        self.playMangerView.playTime = 0;
+        self.playMangerView.startTime = nil;
+    }
 }
 @end

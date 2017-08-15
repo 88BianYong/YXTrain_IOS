@@ -318,6 +318,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     if (section >= self.examineDetailItem.stages.count) {
         return 0;
     }else {
+        return 1;
         ExamineDetailRequest_17Item_Stages *stage = self.examineDetailItem.stages[section];
         if (!stage.status.boolValue || !stage.isMockFold.boolValue) {
             return 0;
@@ -395,7 +396,6 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
             return;
         }
         self.examineDetailItem = retItem;
-        
     }];
     self.examineDetailRequest = request;
 }

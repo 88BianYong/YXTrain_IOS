@@ -13,6 +13,10 @@ const CGFloat YXTrainCornerRadii = 2.0f;
 
 const NSInteger YXTrainCornerStartpageTime = 3;
 
+const BOOL YXTrainCourseVideoPause = YES;
+
+const BOOL YXTrainCourseVideoPlay = NO;
+
 NSString *const YXTrainSpecialCourseActivity = @"special course and activity";
 NSString *const YXTrainBeijingProjectId = @"1639";
 NSString *const YXTrainDeYangProjectId =  @"2286,2287,2288";
@@ -70,4 +74,6 @@ NSString *const kYXTrainCompleteTrainingMethod = @"complete the training method"
 NSString *const kYXTrainParticipateActivity = @"participate in activities";
 
 NSString *const kYXTrainCompleteCourse = @"complete the course";
+
+NSString *const kYXTrainPlayCourseStatus = @"Play the course interface to show and overwrite";
 

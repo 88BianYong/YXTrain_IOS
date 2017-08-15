@@ -7,24 +7,22 @@
 //
 
 #import "YXPlayerManagerView.h"
-#import "ActivitySlideProgressView.h"
 #import "ActivityPlayExceptionView.h"
 #import "YXPlayerBufferingView.h"
-@interface VideoPlayerDefinition : NSObject
+@interface YXVideoPlayerDefinition : NSObject
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *url;
 @end
-@implementation VideoPlayerDefinition
+@implementation YXVideoPlayerDefinition
 @end
 
 @interface YXPlayerManagerView ()
 @property (nonatomic, strong) YXPlayerBufferingView *bufferingView;
-@property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
 @property (nonatomic, strong) ActivityPlayExceptionView *exceptionView;
 @property (nonatomic, strong) UIImageView *placeholderImageView;
 
 @property (nonatomic, strong) NSURL *videoUrl;
-@property (nonatomic, strong) NSMutableArray<VideoPlayerDefinition *> *definitionMutableArray;
+@property (nonatomic, strong) NSMutableArray<YXVideoPlayerDefinition *> *definitionMutableArray;
 @property (nonatomic, strong) NSMutableArray<UIButton *> *defButtonArray;
 
 
@@ -75,6 +73,7 @@
         self.playerStatus =  YXPlayerManagerAbnormal_Empty;
         return;
     }
+    self.isWifiPlayer = NO;
     self.player.videoUrl = self.videoUrl;
     self.videoUrl = nil;
     if ([[Reachability reachabilityForInternetConnection] isReachableViaWWAN]) {
@@ -83,6 +82,63 @@
     }
     self.thumbImageView.hidden = YES;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
+}
+- (void)setIsFullscreen:(BOOL)isFullscreen {
+    _isFullscreen = isFullscreen;
+    self.bottomView.isFullscreen = _isFullscreen;
+    self.topView.hidden = !_isFullscreen;
+    if (!_isFullscreen) {
+        [self hideDefinition];
+    }
+    self.exceptionView.backButton.hidden = !_isFullscreen;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{//TBD: 修改进度条白点跳动问题
+        [self.bottomView.slideProgressControl updateUI];
+    });
+}
+- (void)setPlayerStatus:(YXPlayerManagerAbnormalStatus)playerStatus {
+    _playerStatus = playerStatus;
+    self.exceptionView.hidden = NO;
+    self.pauseStatus = YXPlayerManagerPause_Abnormal;
+    switch (_playerStatus) {
+        case  YXPlayerManagerAbnormal_Finish:
+        {
+            self.exceptionView.exceptionLabel.text = @"视频课程已播放完";
+            [self.exceptionView.exceptionButton setTitle:@"点击重新观看" forState:UIControlStateNormal];
+        }
+            break;
+        case  YXPlayerManagerAbnormal_Empty:
+        {
+            self.exceptionView.exceptionLabel.text = @"未找到该视频";
+            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
+        }
+            break;
+        case  YXPlayerManagerAbnormal_NotWifi:
+        {
+            self.exceptionView.exceptionLabel.text = @"当前为非wifi网络,继续播放会产生流量费用";
+            [self.exceptionView.exceptionButton setTitle:@"继续观看" forState:UIControlStateNormal];
+        }
+            break;
+        case  YXPlayerManagerAbnormal_PlayError:
+        {
+            [self.player pause];
+            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
+            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
+        }
+            break;
+        case  YXPlayerManagerAbnormal_NetworkError:
+        {
+            [self.player pause];
+            self.exceptionView.exceptionLabel.text = @"网络已断开,请检查网络设置";
+            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
+        }
+            break;
+        case  YXPlayerManagerAbnormal_DataError:
+        {
+            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
+            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
+        }
+            break;
+    }
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -197,7 +253,9 @@
         self.bufferingView.hidden = NO;
         [self.bufferingView start];
         self.exceptionView.hidden = YES;
+        self.pauseStatus = YXPlayerManagerPause_Not;
         if (self.playerStatus == YXPlayerManagerAbnormal_NotWifi) {//非WIFI情况下继续播放
+            self.isWifiPlayer = YES;
             [self.player play];
         }else if (self.playerStatus == YXPlayerManagerAbnormal_Finish || self.playerStatus ==YXPlayerManagerAbnormal_Empty){
             BLOCK_EXEC(self.playerManagerPlayerActionBlock,self.playerStatus);
@@ -213,7 +271,6 @@
             }
         }
     }];
-    self.exceptionView.hidden = YES;
     [[self.exceptionView.backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
         BLOCK_EXEC(self.playerManagerBackActionBlock);
@@ -281,13 +338,14 @@
     
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
         STRONG_SELF
-//        if (self.player.isBuffering) {
-//            self.bufferingView.hidden = NO;
-//            [self.bufferingView start];
-//        } else {
-//            self.bufferingView.hidden = YES;
-//            [self.bufferingView stop];
-//        }
+        if (self.player.isBuffering) {
+            self.bufferingView.hidden = NO;
+            [self.bufferingView start];
+        } else {
+            self.bufferingView.hidden = YES;
+            [self.bufferingView stop];
+        }
+        
         if ([x unsignedIntegerValue] == PlayerView_State_Playing) {
             self.startTime = [NSDate date];
         } else {
@@ -300,11 +358,12 @@
             case PlayerView_State_Buffering:
             {
                 DDLogDebug(@"加载");
-                if (![r isReachable]) {
-                    self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
-                    [self.player pause];
-                }else {
+                if ([[Reachability reachabilityForInternetConnection] isReachable]) {
                     self.exceptionView.hidden = YES;
+                    self.pauseStatus = YXPlayerManagerPause_Not;
+                }else {
+                    self.playerStatus = YXPlayerManagerAbnormal_NetworkError;
+                    [self.player pause];
                 }
             }
                 break;
@@ -342,24 +401,14 @@
                 break;
         }
     }];
-    RACDisposable *r1 = [RACObserve(self.player, isBuffering) subscribeNext:^(id x) {
-        STRONG_SELF
-        if (self.player.isBuffering) {
-            self.bufferingView.hidden = NO;
-            [self.bufferingView start];
-        } else {
-            self.bufferingView.hidden = YES;
-            [self.bufferingView stop];
-        }
-    }];
     
-    RACDisposable *r2 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
+    RACDisposable *r1 = [RACObserve(self.player, duration) subscribeNext:^(id x) {
         STRONG_SELF
         self.bottomView.slideProgressControl.duration = [x doubleValue];
         [self.bottomView.slideProgressControl updateUI];
     }];
     
-    RACDisposable *r3 = [RACObserve(self.player, timeBuffered) subscribeNext:^(id x) {
+    RACDisposable *r2 = [RACObserve(self.player, timeBuffered) subscribeNext:^(id x) {
         STRONG_SELF
         if (self.bottomView.slideProgressControl.bSliding) {
             return;
@@ -374,7 +423,7 @@
         }
     }];
     
-    RACDisposable *r4 = [RACObserve(self.player, timePlayed) subscribeNext:^(id x) {
+    RACDisposable *r3 = [RACObserve(self.player, timePlayed) subscribeNext:^(id x) {
         STRONG_SELF
         if (self.bottomView.slideProgressControl.bSliding) {
             return;
@@ -397,11 +446,69 @@
     [self.disposableMutableArray addObject:r1];
     [self.disposableMutableArray addObject:r2];
     [self.disposableMutableArray addObject:r3];
-    [self.disposableMutableArray addObject:r4];
-    
 }
 - (void)setupNotification {
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainStartStopVideo object:nil] subscribeNext:^(NSNotification *x) {
+        STRONG_SELF
+        if (self.self.pauseStatus == YXPlayerManagerPause_Test || self.pauseStatus == YXPlayerManagerPause_Not) {
+            if ([x.object boolValue]) {
+                [self.player pause];
+                self.pauseStatus = YXPlayerManagerPause_Test;
+            }else {
+                [self.player play];
+                self.pauseStatus = YXPlayerManagerPause_Not;
+            }
+        }
+    }];
     
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillResignActiveNotification object:nil] subscribeNext:^(NSNotification *x) {
+        STRONG_SELF
+        if (self.pauseStatus == YXPlayerManagerPause_Not) {
+            self.pauseStatus = YXPlayerManagerPause_Backstage;
+            [self.player pause];
+        }
+    }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidBecomeActiveNotification object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        if (self.pauseStatus == YXPlayerManagerPause_Backstage) {
+            self.pauseStatus = YXPlayerManagerPause_Not;
+            [self.player play];
+        }
+    }];
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPlayCourseStatus object:nil] subscribeNext:^(NSNotification *x) {
+        STRONG_SELF
+        if (self.self.pauseStatus == YXPlayerManagerPause_Next || self.pauseStatus == YXPlayerManagerPause_Not) {
+            if ([x.object boolValue]) {
+                [self.player pause];
+                self.pauseStatus = YXPlayerManagerPause_Next;
+            }else {
+                [self.player play];
+                self.pauseStatus = YXPlayerManagerPause_Not;
+            }
+        }
+    }];
+    
+    
+    
+    
+    
+    
+    
+//    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kRecordReportSuccessNotification object:nil]subscribeNext:^(id x) {
+//        STRONG_SELF
+//        NSNotification *noti = (NSNotification *)x;
+//        NSString *course_id = noti.userInfo.allKeys.firstObject;
+//        NSString *record = noti.userInfo[course_id];
+//        if (!isEmpty(record) && self.isTestReport) {
+//            [self.playReportRetryTimer invalidate];
+//            self.playReportRetryTimer = nil;
+//            self.playTime = 0;
+//            self.startTime = nil;
+//            self.isTestReport = NO;
+//            BLOCK_EXEC(self.isReportSuccessBlock,YES);
+//        }
+//    }];
 }
 
 #pragma mark - hidden show
@@ -463,19 +570,19 @@
     [self.definitionMutableArray removeAllObjects];
     [self.defButtonArray removeAllObjects];
     if (!isEmpty(self.fileItem.lurl)) {
-        VideoPlayerDefinition *definition = [[VideoPlayerDefinition alloc] init];
+        YXVideoPlayerDefinition *definition = [[YXVideoPlayerDefinition alloc] init];
         definition.identifier = @"流畅";
         definition.url = self.fileItem.lurl;
         [self.definitionMutableArray addObject:definition];
     }
     if (!isEmpty(self.fileItem.murl)) {
-        VideoPlayerDefinition *definition = [[VideoPlayerDefinition alloc] init];
+        YXVideoPlayerDefinition *definition = [[YXVideoPlayerDefinition alloc] init];
         definition.identifier = @"标清";
         definition.url = self.fileItem.murl;
         [self.definitionMutableArray addObject:definition];
     }
     if (!isEmpty(self.fileItem.surl)) {
-        VideoPlayerDefinition *definition = [[VideoPlayerDefinition alloc] init];
+        YXVideoPlayerDefinition *definition = [[YXVideoPlayerDefinition alloc] init];
         definition.identifier = @"高清";
         definition.url = self.fileItem.surl;
         [self.definitionMutableArray addObject:definition];
@@ -485,7 +592,7 @@
         return [NSURL URLWithString:_fileItem.url];
     }
     self.bottomView.isShowDefinition = YES;
-    [self.definitionMutableArray enumerateObjectsUsingBlock:^(VideoPlayerDefinition * _Nonnull def, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.definitionMutableArray enumerateObjectsUsingBlock:^(YXVideoPlayerDefinition * _Nonnull def, NSUInteger idx, BOOL * _Nonnull stop) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setTitle:def.identifier forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];

@@ -63,14 +63,14 @@
     self.progressView.closeBlock = ^() {
         STRONG_SELF
         [self.downloader stop];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(NO)];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(YXTrainCourseVideoPlay)];
     };
     [self.downloader start];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(YES)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(YXTrainCourseVideoPause)];
 }
 - (void)removeProgressView {
     [self.progressView removeFromSuperview];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(NO)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(YXTrainCourseVideoPlay)];
 }
 
 @end

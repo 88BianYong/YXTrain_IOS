@@ -77,6 +77,7 @@
 
 #pragma mark - YXPlayProgressDelegate
 - (void)playerProgress:(CGFloat)progress totalDuration:(NSTimeInterval)duration stayTime:(NSTimeInterval)time{
+    NSLog(@"12");
     if ([LSTSharedInstance sharedInstance].recordManager.isActive) {
         [[LSTSharedInstance sharedInstance].recordManager updateFragmentWithDuration:duration record:duration*progress watchedTime:time];
     }
