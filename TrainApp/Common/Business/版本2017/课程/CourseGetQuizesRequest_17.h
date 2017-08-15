@@ -18,7 +18,7 @@
 @end
 
 @interface CourseGetQuizesRequest_17Item_Result_Questions_Question : JSONModel
-@property (nonatomic, copy) NSString<Optional> *correctAnswer;
+//@property (nonatomic, copy) NSString<Optional> *correctAnswer;
 @property (nonatomic, copy) NSString<Optional> *qID;
 @property (nonatomic, copy) NSString<Optional> *title;
 @property (nonatomic, copy) NSString<Optional> *types;
@@ -29,7 +29,7 @@
 @end
 @interface CourseGetQuizesRequest_17Item_Result_Questions : JSONModel
 @property (nonatomic, copy) NSString<Optional> *quesAnswerCount;
-@property (nonatomic, strong) CourseGetQuizesRequest_17Item_Result_Questions_Question *question;
+@property (nonatomic, strong) CourseGetQuizesRequest_17Item_Result_Questions_Question<Optional> *question;
 @end
 @protocol CourseGetQuizesRequest_17Item_Result
 @end

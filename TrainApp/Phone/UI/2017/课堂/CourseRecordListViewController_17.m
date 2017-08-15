@@ -123,8 +123,7 @@
     course.module_id = obj.stageID;
     course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
     course.type = obj.type;
-    course.courseType = @"2";
-    
+    course.courseType = obj.courseType;
     if (course.isSupportApp.boolValue) {
         VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
         vc.course = course;

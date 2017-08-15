@@ -60,7 +60,7 @@
     [_tools enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Stages_Tools *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx > 0) {
             ExamineDetailRequest_17Item_Stages_Tools *tool = self->_tools[idx - 1];
-            if (tool.status.integerValue == 1) {
+            if (tool.status.integerValue == 1 && obj.status.integerValue <= 0) {
                 obj.status = @"-2";
                 *stop = YES;
             }

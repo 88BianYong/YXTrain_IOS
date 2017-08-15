@@ -82,7 +82,7 @@
     _detailItem = detailItem;
     [self.chapterVC dealWithCourseItem:_detailItem];
     self.introductionVC.courseItem = _detailItem;
-    if (_detailItem.quizNum.integerValue == 0 || _detailItem.courseSchemeMode.integerValue == 0 || _detailItem.userQuizStatus.integerValue == 1) {
+    if (_detailItem.quizNum.integerValue == 0 || _detailItem.courseSchemeMode.integerValue == 0 || _detailItem.userQuizStatus.integerValue == 1 || self.course.courseType.integerValue == 2) {
         [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.playMangerView.mas_bottom).offset(-71.0f);
         }];
@@ -314,7 +314,7 @@
     [self.view layoutIfNeeded];
 }
 - (void)refreshContainerView:(CGFloat)distance{
-    if (self.detailItem.quizNum.integerValue == 0 || self.detailItem.courseSchemeMode.integerValue == 0 || self.detailItem.userQuizStatus.integerValue == 1){
+    if (self.detailItem.quizNum.integerValue == 0 || self.detailItem.courseSchemeMode.integerValue == 0 || self.detailItem.userQuizStatus.integerValue == 1 || self.course.courseType.integerValue == 2){
         return;
     }
     if (distance > 10.0f) {

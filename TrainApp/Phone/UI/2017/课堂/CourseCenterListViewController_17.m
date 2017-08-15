@@ -163,9 +163,6 @@
     CourseListCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseListCell_17" forIndexPath:indexPath];
     CourseListRequest_17Item_Objs *obj = self.dataArray[indexPath.row];
     obj.timeLengthSec = obj.timeLength;
-    if (self.status == CourseCenterListStatus_Local) {
-        obj.courseType = @"2";
-    }
     cell.course = obj;
     return cell;
 }

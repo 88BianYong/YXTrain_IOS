@@ -12,7 +12,7 @@
 @end
 @interface CourseSubmitUserQuizesRequest_17Item_Data : JSONModel
 @property (nonatomic, copy) NSString<Optional> *result;
-@property (nonatomic, copy) NSString<Optional> *correctAnswer;
+//@property (nonatomic, copy) NSString<Optional> *correctAnswer;
 @property (nonatomic, copy) NSString<Optional> *qid;
 @property (nonatomic, copy) NSString<Optional> *isCorrect;
 @end
