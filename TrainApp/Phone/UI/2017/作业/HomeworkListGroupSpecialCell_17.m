@@ -299,17 +299,15 @@
 - (void)setupLayout {
     [self.groupImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
-        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.centerY.equalTo(self.titleLabel.mas_centerY);
         make.size.mas_offset(CGSizeMake(20.0f, 20.0f));
     }];
-    
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.groupImageView.mas_right).offset(10.0f);
-        make.centerY.equalTo(self.contentView.mas_centerY);
         make.top.equalTo(self.contentView.mas_top).offset(12.0f);
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
     }];
-
+    
     [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
         make.top.equalTo(self.titleLabel.mas_bottom).offset(10.0f);

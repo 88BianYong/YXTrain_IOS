@@ -333,7 +333,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     WEAK_SELF
     cell.learningStageToolCompleteBlock = ^(ExamineDetailRequest_17Item_Stages_Tools *tool, NSInteger tagInteger) {
         STRONG_SELF
-        if (tool.status.integerValue > 0){
+        if (tool.status.integerValue > 0 || 1){
             if (tool.toolID.integerValue == 201){//课程
                 CourseListMangerViewController_17 *VC = [[CourseListMangerViewController_17 alloc] init];
                 VC.stageString = stages.stageID;

@@ -21,6 +21,7 @@
 #import "HomeworkListGroupDefaultCell_17.h"
 #import "HomeworkListVideoSpecialCell_17.h"
 #import "HomeworkListDefaultCell_17.h"
+#import "HomeworkListGroupSpecialCell_17.h"
 #import "MJRefresh.h"
 @interface HomeworkListViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
@@ -108,6 +109,7 @@
     [self.tableView registerClass:[HomeworkListHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListHeaderView_17"];
     [self.tableView registerClass:[HomeworkListFooterView_17 class] forHeaderFooterViewReuseIdentifier:@"HomeworkListFooterView_17"];
     [self.tableView registerClass:[HomeworkListGroupDefaultCell_17 class] forCellReuseIdentifier:@"HomeworkListGroupDefaultCell_17"];
+    [self.tableView registerClass:[HomeworkListGroupSpecialCell_17 class] forCellReuseIdentifier:@"HomeworkListGroupSpecialCell_17"];
     [self.tableView registerClass:[HomeworkListVideoSpecialCell_17 class] forCellReuseIdentifier:@"HomeworkListVideoSpecialCell_17"];
     [self.tableView registerClass:[HomeworkListDefaultCell_17 class] forCellReuseIdentifier:@"HomeworkListDefaultCell_17"];
     [self.view addSubview:self.tableView];
@@ -169,7 +171,13 @@
     }else {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
         if (homework.type.integerValue == 1) {
-            return 45.0f;
+            if (homework.homeworkID.integerValue == 0) {
+                return 45.0f;
+            }else {
+                return [tableView fd_heightForCellWithIdentifier:@"HomeworkListGroupSpecialCell_17" cacheByIndexPath:indexPath configuration:^(HomeworkListVideoSpecialCell_17 *cell) {
+                    cell.homework = self.listItem.homeworks[indexPath.row];
+                }];                
+            }
         }else if (homework.templateID.integerValue == 324 || homework.templateID.integerValue == 379) {
             if (homework.homeworkID.integerValue == 0) {
                 return 45.0f;
@@ -257,9 +265,15 @@
     }else {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
         if (homework.type.integerValue == 1) {
-            HomeworkListGroupDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListGroupDefaultCell_17" forIndexPath:indexPath];
-            cell.homework = homework;
-            return cell;
+            if (homework.homeworkID.integerValue == 0)  {
+                HomeworkListGroupDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListGroupDefaultCell_17" forIndexPath:indexPath];
+                cell.homework = homework;
+                return cell;
+            }else {
+                HomeworkListGroupSpecialCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListGroupSpecialCell_17" forIndexPath:indexPath];
+                cell.homework = homework;
+                return cell;
+            }
         }else if (homework.templateID.integerValue == 324 || homework.templateID.integerValue == 379) {
             if (homework.homeworkID.integerValue == 0) {
                 HomeworkListVideoDefaultCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeworkListVideoDefaultCell_17" forIndexPath:indexPath];
