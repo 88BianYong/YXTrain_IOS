@@ -14,12 +14,17 @@
 #import "VideoCourseCommentViewController.h"
 #import "CourseTestViewController_17.h"
 #import "VideoClassworkManager.h"
+#import "YXPlayerBeginningView.h"
 @interface YXCourseDetailPlayerViewController_17 ()
-@property (nonatomic ,strong) VideoClassworkManager *classworkManager;
+@property (nonatomic, strong) VideoClassworkManager *classworkManager;
+@property (nonatomic, strong) YXPlayerBeginningView *beginningView;
 
 @property (nonatomic, strong) VideoCourseChapterViewController *chapterVC;
 @property (nonatomic, strong) VideoCourseIntroductionViewController *introductionVC;
 @property (nonatomic, strong) VideoCourseCommentViewController *commentVC;
+
+@property (nonatomic, assign) BOOL isBeginPlayEnd;
+
 @end
 
 @implementation YXCourseDetailPlayerViewController_17
@@ -38,11 +43,11 @@
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPlayCourseStatus object:@(YXTrainCourseVideoPlay)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPlayCourseNext object:@(YXTrainCourseVideoPlay)];
 }
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPlayCourseStatus object:@(YXTrainCourseVideoPause)];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPlayCourseNext object:@(YXTrainCourseVideoPause)];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -53,9 +58,9 @@
     _isFullscreen = isFullscreen;
     self.classworkManager.clossworkView.isFullscreen = _isFullscreen;
     self.playMangerView.isFullscreen = _isFullscreen;
+    self.beginningView.isFullscreen = _isFullscreen;
 }
 - (void)setDetailItem:(YXCourseDetailItem *)detailItem {
-    _detailItem = detailItem;
     if (detailItem == nil) {
         return;
     }
@@ -166,6 +171,10 @@
             self.playMangerView.fileItem = fileItem;
             self.delegate = fileItem;
             self.exitDelegate = fileItem;
+            if ([self isPlayBeginningVideo:[fileItem.vhead boolValue]] && fileItem.vheadUrl.length > 0 || 0) {
+                self.playMangerView.pauseStatus = YXPlayerManagerPause_Manual;
+                [self showBeginningView];
+            }
             //[self setupClassworkManager:fileItem];
         }else {
             if (isHaveVideo) {
@@ -203,6 +212,50 @@
         make.top.equalTo(self.playMangerView.mas_bottom);
     }];
     [self remakeForHalfSize];
+}
+- (void)showBeginningView {
+    [self.beginningView playVideoClear];
+    self.beginningView = nil;
+    self.beginningView = [[YXPlayerBeginningView alloc] init];
+    WEAK_SELF
+    self.beginningView.playerBeginningRotateActionBlock = ^{
+        STRONG_SELF
+        [self rotateScreenAction];
+    };
+    self.beginningView.playerBeginningFinishActionBlock = ^(BOOL isSave) {
+        STRONG_SELF
+        if (isSave) {
+            NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] initWithDictionary:[[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainPlayBeginningCourse]];
+            mutableDictionary[self.playMangerView.fileItem.cid] = [NSDate date];
+            [[NSUserDefaults standardUserDefaults] setObject:mutableDictionary forKey:kYXTrainPlayBeginningCourse];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            self.isBeginPlayEnd = YES;
+        }
+        self.beginningView = nil;
+        self.playMangerView.pauseStatus = YXPlayerManagerPause_Not;        
+    };
+    self.beginningView.playerBeginningBackActionBlock = ^{
+        STRONG_SELF
+        [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
+    };
+    [self.playMangerView addSubview:self.beginningView];
+    self.beginningView.videoUrl = [NSURL URLWithString:@"http://upload.ugc.yanxiu.com/video/4620490456e684328d4fcf5a920f54a1.mp4"];
+    //[NSURL URLWithString:self.playMangerView.fileItem.vheadUrl];
+    [self.beginningView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.playMangerView);
+    }];
+}
+- (BOOL)isPlayBeginningVideo:(BOOL)vHead {
+    NSMutableDictionary *mutableDictionary = [[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainPlayBeginningCourse];
+    NSDate *oldDate = mutableDictionary[self.playMangerView.fileItem.cid];
+    BOOL playBool = NO;
+    if (oldDate == nil) {
+        playBool = YES;
+    }else {
+        NSTimeInterval  value = [[NSDate date] timeIntervalSinceDate:oldDate];
+        playBool = (value > 12 * 60 * 60) ? YES : NO;
+    }
+    return playBool && vHead && !self.isBeginPlayEnd;
 }
 #pragma mark - Notification
 - (void)setupNotification {

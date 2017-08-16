@@ -19,7 +19,8 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerPauseStatus) {
     YXPlayerManagerPause_Backstage = 2,//退入后台暂停
     YXPlayerManagerPause_Next = 3,//进入下一界面
     YXPlayerManagerPause_Test = 4,//显示测试
-    YXPlayerManagerPause_Abnormal = 5//异常界面
+    YXPlayerManagerPause_Abnormal = 5,//异常界面
+    YXPlayerManagerPause_Beginning = 6//显示片头
 };
 typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
     YXPlayerManagerAbnormal_Finish,//视频完成

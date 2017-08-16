@@ -15,8 +15,7 @@
         [self rotateScreenAction];
     }else{
         [self recordPlayerDuration];
-        [self.exitDelegate browserExit];
-        //SAFE_CALL(self.exitDelegate, browserExit);
+        SAFE_CALL(self.exitDelegate, browserExit);
         [self.playMangerView playVideoClear];
         if (self.fromWhere == VideoCourseFromWhere_QRCode) {
             [self.navigationController popToRootViewControllerAnimated:YES];

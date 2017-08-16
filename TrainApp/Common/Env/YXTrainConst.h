@@ -181,7 +181,7 @@ extern NSString *const kYXTrainCompleteCourse;
 /*
  *  播放课程界面显示和覆盖
  */
-extern NSString *const kYXTrainPlayCourseStatus;
+extern NSString *const kYXTrainPlayCourseNext;
 
 
 

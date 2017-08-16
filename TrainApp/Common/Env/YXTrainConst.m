@@ -75,5 +75,5 @@ NSString *const kYXTrainParticipateActivity = @"participate in activities";
 
 NSString *const kYXTrainCompleteCourse = @"complete the course";
 
-NSString *const kYXTrainPlayCourseStatus = @"Play the course interface to show and overwrite";
+NSString *const kYXTrainPlayCourseNext = @"Play the course interface to show and overwrite";
 

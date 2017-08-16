@@ -211,6 +211,7 @@
 		92134E3D1E8BAE2900A5B9B7 /* submitAnswer_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92134E3C1E8BAE2900A5B9B7 /* submitAnswer_mock.json */; };
 		92177FFE1F17797B0041F70D /* YXMyExamExplainView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92177FFD1F17797B0041F70D /* YXMyExamExplainView_17.m */; };
 		921780011F177FA40041F70D /* YXMyExamExplainHelp_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 921780001F177FA40041F70D /* YXMyExamExplainHelp_17.m */; };
+		921816DF1F43EFB50000BCA8 /* YXPlayerBeginningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921816DE1F43EFB50000BCA8 /* YXPlayerBeginningView.m */; };
 		9219A18F1F1F054600C49D78 /* ReadingDetailViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A18E1F1F054600C49D78 /* ReadingDetailViewController_17.m */; };
 		9219A1921F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A1911F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m */; };
 		9219A1951F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A1941F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m */; };
@@ -1096,6 +1097,8 @@
 		92177FFD1F17797B0041F70D /* YXMyExamExplainView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyExamExplainView_17.m; sourceTree = "<group>"; };
 		92177FFF1F177FA40041F70D /* YXMyExamExplainHelp_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyExamExplainHelp_17.h; sourceTree = "<group>"; };
 		921780001F177FA40041F70D /* YXMyExamExplainHelp_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyExamExplainHelp_17.m; sourceTree = "<group>"; };
+		921816DD1F43EFB50000BCA8 /* YXPlayerBeginningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXPlayerBeginningView.h; path = "课堂/YXPlayerBeginningView.h"; sourceTree = "<group>"; };
+		921816DE1F43EFB50000BCA8 /* YXPlayerBeginningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXPlayerBeginningView.m; path = "课堂/YXPlayerBeginningView.m"; sourceTree = "<group>"; };
 		9219A18D1F1F054600C49D78 /* ReadingDetailViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailViewController_17.h; sourceTree = "<group>"; };
 		9219A18E1F1F054600C49D78 /* ReadingDetailViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingDetailViewController_17.m; sourceTree = "<group>"; };
 		9219A1901F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailTableHeaderView_17.h; sourceTree = "<group>"; };
@@ -3151,6 +3154,8 @@
 			children = (
 				92FE95271F42A6B00058E151 /* YXPlayerManagerView.h */,
 				92FE95281F42A6B00058E151 /* YXPlayerManagerView.m */,
+				921816DD1F43EFB50000BCA8 /* YXPlayerBeginningView.h */,
+				921816DE1F43EFB50000BCA8 /* YXPlayerBeginningView.m */,
 			);
 			name = playView;
 			sourceTree = "<group>";
@@ -5245,6 +5250,7 @@
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
 				920F1D441D51F00700636A51 /* YXHomeworkInfoViewController.m in Sources */,
 				7CF8887C1D1BD1E300E7C04D /* YXExamBlankHeaderFooterView.m in Sources */,
+				921816DF1F43EFB50000BCA8 /* YXPlayerBeginningView.m in Sources */,
 				92DE3BBB1DDC329A0011CFB7 /* SecondCommentViewController.m in Sources */,
 				9222F6A31F272EBD004A75FE /* CourseGetQuizesRequest_17.m in Sources */,
 				921AC8321ED2A0F7001579A9 /* VideoPlayManagerView.m in Sources */,

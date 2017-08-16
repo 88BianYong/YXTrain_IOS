@@ -77,7 +77,6 @@
     self.player.videoUrl = self.videoUrl;
     self.videoUrl = nil;
     if ([[Reachability reachabilityForInternetConnection] isReachableViaWWAN]) {
-        [self.player pause];
         self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
     }
     self.thumbImageView.hidden = YES;
@@ -120,14 +119,12 @@
             break;
         case  YXPlayerManagerAbnormal_PlayError:
         {
-            [self.player pause];
             self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
             [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
         }
             break;
         case  YXPlayerManagerAbnormal_NetworkError:
         {
-            [self.player pause];
             self.exceptionView.exceptionLabel.text = @"网络已断开,请检查网络设置";
             [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
         }
@@ -138,6 +135,15 @@
             [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
         }
             break;
+    }
+}
+- (void)setPauseStatus:(YXPlayerManagerPauseStatus)pauseStatus {
+    _pauseStatus = pauseStatus;
+    if (_pauseStatus == YXPlayerManagerPause_Not) {
+        [self.player play];
+        self.exceptionView.hidden = YES;
+    }else {
+        [self.player pause];
     }
 }
 #pragma mark - setupUI
@@ -209,17 +215,13 @@
         STRONG_SELF
         [self resetTopBottomHideTimer];
         if (self.player.state == PlayerView_State_Paused) {
-            [self.player play];
             self.pauseStatus = YXPlayerManagerPause_Not;
         } else if (self.player.state == PlayerView_State_Finished) {
             [self.player seekTo:0];
-            [self.player play];
             self.pauseStatus = YXPlayerManagerPause_Not;
         } else if (self.player.state == PlayerView_State_Playing){
-            [self.player pause];
             self.pauseStatus = YXPlayerManagerPause_Manual;
         }else {
-            [self.player pause];
             self.pauseStatus = YXPlayerManagerPause_Manual;
         }
     }];
@@ -256,7 +258,7 @@
         self.pauseStatus = YXPlayerManagerPause_Not;
         if (self.playerStatus == YXPlayerManagerAbnormal_NotWifi) {//非WIFI情况下继续播放
             self.isWifiPlayer = YES;
-            [self.player play];
+            self.pauseStatus = YXPlayerManagerPause_Not;
         }else if (self.playerStatus == YXPlayerManagerAbnormal_Finish || self.playerStatus ==YXPlayerManagerAbnormal_Empty){
             BLOCK_EXEC(self.playerManagerPlayerActionBlock,self.playerStatus);
         }else if (self.playerStatus == YXPlayerManagerAbnormal_NetworkError) {
@@ -264,7 +266,7 @@
                 if (self.videoUrl != nil) {
                     self.player.videoUrl = self.videoUrl;//TBD: 无网络情况下切换播放地址会播放上一个
                 }
-                [self.player play];
+                self.pauseStatus = YXPlayerManagerPause_Not;
                 self.videoUrl = nil;
             }else {
                 self.exceptionView.hidden = NO;
@@ -320,22 +322,22 @@
 }
 #pragma mark - notification
 - (void)setupObserver {
-    Reachability *r = [Reachability reachabilityForInternetConnection];
     WEAK_SELF
-    [r setReachableBlock:^void (Reachability * reachability) {
+    [Reachability reachabilityForInternetConnection].reachableBlock = ^(Reachability *reachability) {
         STRONG_SELF
-        if([reachability isReachableViaWiFi]) {
-            return;
-        }
         if([reachability isReachableViaWWAN]) {
-            if (self.pauseStatus != YXPlayerManagerPause_Test && !self.isWifiPlayer) {
-                [self.player pause];
+            if (self.playerStatus == YXPlayerManagerAbnormal_NetworkError && !self.exceptionView.hidden) {
                 self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
             }
         }
-    }];
-    [r startNotifier];
-    
+    };
+    [Reachability reachabilityForInternetConnection].unreachableBlock = ^(Reachability *reachability) {
+        if (self.playerStatus == YXPlayerManagerAbnormal_NotWifi && !self.exceptionView.hidden) {
+            self.playerStatus = YXPlayerManagerAbnormal_NetworkError;
+        }
+    };
+    [[Reachability reachabilityForInternetConnection] startNotifier];
+
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
         STRONG_SELF
         if (self.player.isBuffering) {
@@ -359,11 +361,15 @@
             {
                 DDLogDebug(@"加载");
                 if ([[Reachability reachabilityForInternetConnection] isReachable]) {
-                    self.exceptionView.hidden = YES;
-                    self.pauseStatus = YXPlayerManagerPause_Not;
+                    if([[Reachability reachabilityForInternetConnection] isReachableViaWWAN] && !self.isWifiPlayer) {
+                        self.pauseStatus = YXPlayerManagerPause_Abnormal;
+                        self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
+                    }else {
+                        self.exceptionView.hidden = YES;
+                    }
                 }else {
                     self.playerStatus = YXPlayerManagerAbnormal_NetworkError;
-                    [self.player pause];
+                    self.pauseStatus = YXPlayerManagerPause_Abnormal;
                 }
             }
                 break;
@@ -449,50 +455,43 @@
 }
 - (void)setupNotification {
     WEAK_SELF
+    //显示文档
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainStartStopVideo object:nil] subscribeNext:^(NSNotification *x) {
         STRONG_SELF
-        if (self.self.pauseStatus == YXPlayerManagerPause_Test || self.pauseStatus == YXPlayerManagerPause_Not) {
+        if (self.self.pauseStatus == YXPlayerManagerPause_Next || self.pauseStatus == YXPlayerManagerPause_Not) {
             if ([x.object boolValue]) {
-                [self.player pause];
-                self.pauseStatus = YXPlayerManagerPause_Test;
+                self.pauseStatus = YXPlayerManagerPause_Next;
             }else {
-                [self.player play];
                 self.pauseStatus = YXPlayerManagerPause_Not;
             }
         }
     }];
     
+    //进入后台
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillResignActiveNotification object:nil] subscribeNext:^(NSNotification *x) {
         STRONG_SELF
         if (self.pauseStatus == YXPlayerManagerPause_Not) {
             self.pauseStatus = YXPlayerManagerPause_Backstage;
-            [self.player pause];
         }
     }];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidBecomeActiveNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
         if (self.pauseStatus == YXPlayerManagerPause_Backstage) {
             self.pauseStatus = YXPlayerManagerPause_Not;
-            [self.player play];
         }
     }];
-    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPlayCourseStatus object:nil] subscribeNext:^(NSNotification *x) {
+    
+    //进入下一界面
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPlayCourseNext object:nil] subscribeNext:^(NSNotification *x) {
         STRONG_SELF
         if (self.self.pauseStatus == YXPlayerManagerPause_Next || self.pauseStatus == YXPlayerManagerPause_Not) {
             if ([x.object boolValue]) {
-                [self.player pause];
                 self.pauseStatus = YXPlayerManagerPause_Next;
             }else {
-                [self.player play];
                 self.pauseStatus = YXPlayerManagerPause_Not;
             }
         }
     }];
-    
-    
-    
-    
-    
     
     
 //    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kRecordReportSuccessNotification object:nil]subscribeNext:^(id x) {
