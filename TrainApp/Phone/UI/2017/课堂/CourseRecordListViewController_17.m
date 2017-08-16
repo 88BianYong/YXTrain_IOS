@@ -127,7 +127,8 @@
     if (course.isSupportApp.boolValue) {
         VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
         vc.course = course;
-        vc.fromWhere = VideoCourseFromWhere_Detail;
+        vc.fromWhere = VideoCourseFromWhere_Record;
+        vc.isHiddenTestBool = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

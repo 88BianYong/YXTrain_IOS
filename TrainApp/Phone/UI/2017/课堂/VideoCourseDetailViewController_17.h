@@ -14,5 +14,6 @@
 @property (nonatomic, assign) NSInteger seekInteger;
 @property (nonatomic, assign) VideoCourseFromWhere fromWhere;
 @property (nonatomic, strong) NSString *stageString;
+@property (nonatomic, assign) BOOL isHiddenTestBool;
 
 @end

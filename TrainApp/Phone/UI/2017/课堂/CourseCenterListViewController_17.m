@@ -204,6 +204,7 @@
         VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
         vc.course = course;
         vc.fromWhere = VideoCourseFromWhere_Detail;
+        vc.isHiddenTestBool = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
