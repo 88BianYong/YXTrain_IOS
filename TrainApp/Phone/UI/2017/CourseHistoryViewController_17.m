@@ -119,19 +119,11 @@
     course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
     course.type = obj.type;
     if (course.isSupportApp.boolValue) {
-//        VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
-//        vc.course = course;
-//        vc.stageString = self.stageString;
-//        vc.fromWhere = VideoCourseFromWhere_Detail;
-//        [self.navigationController pushViewController:vc animated:YES];
-        
-        YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc]init];
+        VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
         vc.course = course;
         vc.stageString = self.stageString;
         vc.fromWhere = VideoCourseFromWhere_Detail;
-        [self.navigationController pushViewController:vc animated:YES];
-        
-        
+        [self.navigationController pushViewController:vc animated:YES]; 
     }
 >>>>>>> 播放器重构
 }

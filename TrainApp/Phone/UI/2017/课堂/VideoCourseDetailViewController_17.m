@@ -329,7 +329,6 @@
             make.top.equalTo(self.playMangerView.mas_bottom);
         }];
     }
-    
 }
 #pragma mark - action
 - (void)rotateScreenAction {

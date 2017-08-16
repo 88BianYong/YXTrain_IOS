@@ -12,7 +12,6 @@
 #import "LePlayerView.h"
 #import "ActivityPlayBottomView.h"
 #import "ActivitySlideProgressView.h"
-
 typedef NS_ENUM(NSInteger, YXPlayerManagerPauseStatus) {
     YXPlayerManagerPause_Not = 0,//未暂停
     YXPlayerManagerPause_Manual = 1,//手动暂停
@@ -53,7 +52,7 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
 
 @property (nonatomic, copy) void (^playerManagerBackActionBlock)(void);
 @property (nonatomic, copy) void (^playerManagerRotateActionBlock)(void);
-@property (nonatomic, copy) void (^playerManagerSlideActionBlock)(CGFloat playerTime);
+@property (nonatomic, copy) void (^playerManagerSlideActionBlock)(CGFloat playerTime, BOOL isReset);
 @property (nonatomic, copy) void (^playerManagerPlayerActionBlock)(YXPlayerManagerAbnormalStatus status);
 @property (nonatomic, copy) void (^playerManagerFinishActionBlock)(void);
 

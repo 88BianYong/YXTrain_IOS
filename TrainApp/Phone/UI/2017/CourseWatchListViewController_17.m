@@ -201,4 +201,9 @@
     vc.fromWhere = VideoCourseFromWhere_Detail;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+#pragma mark - request
+- (void)firstPageFetch {
+    [super firstPageFetch];
+}
 @end

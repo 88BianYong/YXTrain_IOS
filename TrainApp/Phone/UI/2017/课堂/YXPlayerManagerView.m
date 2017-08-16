@@ -32,6 +32,11 @@
 @property (nonatomic, assign) BOOL isShowDefinition;
 @property (nonatomic, assign) BOOL isWifiPlayer;//WIFI先允许播放
 
+@property (nonatomic, strong) NSTimer *documentRetryTimer;
+
+@property (nonatomic, copy) void(^isReportSuccessBlock)(BOOL isSuccess);
+@property (nonatomic, assign) BOOL isTestReport;
+
 @end
 @implementation YXPlayerManagerView
 - (void)dealloc {
@@ -56,6 +61,9 @@
         return;
     }
     _fileItem = fileItem;
+    [self setupPlayer];
+}
+- (void)setupPlayer {
     self.playTime = 0;
     self.startTime = nil;
     self.topView.titleString = _fileItem.name;
@@ -64,7 +72,7 @@
         self.playerStatus = YXPlayerManagerAbnormal_NetworkError;
         return;
     }
-    CGFloat preProgress = fileItem.record.floatValue / fileItem.duration.floatValue;
+    CGFloat preProgress = _fileItem.record.floatValue / _fileItem.duration.floatValue;
     if (preProgress > 0.99) {
         preProgress = 0;
     }
@@ -81,6 +89,7 @@
     }
     self.thumbImageView.hidden = YES;
     [UIApplication sharedApplication].idleTimerDisabled = YES;
+    
 }
 - (void)setIsFullscreen:(BOOL)isFullscreen {
     _isFullscreen = isFullscreen;
@@ -225,7 +234,7 @@
             self.pauseStatus = YXPlayerManagerPause_Manual;
         }
     }];
-    [[self.bottomView.rotateButton rac_signalForControlEvents:UIControlEventAllEvents] subscribeNext:^(id x) {
+    [[self.bottomView.rotateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         self.bottomView.isFullscreen = !self.bottomView.isFullscreen;
         BLOCK_EXEC(self.playerManagerRotateActionBlock)
@@ -234,13 +243,7 @@
         STRONG_SELF
         [self resetTopBottomHideTimer];
         [self.player seekTo:self.player.duration * self.bottomView.slideProgressControl.playProgress];
-        BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress);
-    }];
-    [[self.bottomView.slideProgressControl rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        STRONG_SELF
-        [self resetTopBottomHideTimer];
-        [self.player seekTo:self.player.duration * self.bottomView.slideProgressControl.playProgress];
-        BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress);
+        BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress,YES);
     }];
     [[self.bottomView.slideProgressControl rac_signalForControlEvents:UIControlEventTouchDown] subscribeNext:^(id x) {
         STRONG_SELF
@@ -264,7 +267,7 @@
         }else if (self.playerStatus == YXPlayerManagerAbnormal_NetworkError) {
             if ([[Reachability reachabilityForInternetConnection] isReachable]) {
                 if (self.videoUrl != nil) {
-                    self.player.videoUrl = self.videoUrl;//TBD: 无网络情况下切换播放地址会播放上一个
+                    [self setupPlayer];
                 }
                 self.pauseStatus = YXPlayerManagerPause_Not;
                 self.videoUrl = nil;
@@ -443,9 +446,7 @@
             }
             self.playTotalTime += 1;
         }
-//        if (self.classworkManager.hidden){
-//            [self.classworkManager compareClassworkPlayTime:(NSInteger)(self.player.duration * self.bottomView.slideProgressControl.playProgress)];
-//        }
+        BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress ,NO);
     }];
     
     [self.disposableMutableArray addObject:r0];
@@ -458,6 +459,19 @@
     //显示文档
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainStartStopVideo object:nil] subscribeNext:^(NSNotification *x) {
         STRONG_SELF
+        if ([x.object boolValue]) {//观看文档时间增加 TBD:加载文档有可能引起几秒误差
+            [self.documentRetryTimer invalidate];
+            self.documentRetryTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                                       target:self
+                                                                     selector:@selector(playTotalTimeAdd)
+                                                                     userInfo:nil
+                                                                      repeats:YES];
+            [self.documentRetryTimer fire];
+        }else {
+            [self.documentRetryTimer invalidate];
+            self.documentRetryTimer = nil;
+        }
+        
         if (self.self.pauseStatus == YXPlayerManagerPause_Next || self.pauseStatus == YXPlayerManagerPause_Not) {
             if ([x.object boolValue]) {
                 self.pauseStatus = YXPlayerManagerPause_Next;
@@ -492,24 +506,10 @@
             }
         }
     }];
-    
-    
-//    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kRecordReportSuccessNotification object:nil]subscribeNext:^(id x) {
-//        STRONG_SELF
-//        NSNotification *noti = (NSNotification *)x;
-//        NSString *course_id = noti.userInfo.allKeys.firstObject;
-//        NSString *record = noti.userInfo[course_id];
-//        if (!isEmpty(record) && self.isTestReport) {
-//            [self.playReportRetryTimer invalidate];
-//            self.playReportRetryTimer = nil;
-//            self.playTime = 0;
-//            self.startTime = nil;
-//            self.isTestReport = NO;
-//            BLOCK_EXEC(self.isReportSuccessBlock,YES);
-//        }
-//    }];
 }
-
+- (void)playTotalTimeAdd {
+    self.playTotalTime += 1;
+}
 #pragma mark - hidden show
 - (void)resetTopBottomHideTimer {
     [self.topBottomHiddenDisposable  dispose];

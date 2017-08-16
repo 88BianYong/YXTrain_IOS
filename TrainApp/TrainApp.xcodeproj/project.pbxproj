@@ -212,6 +212,7 @@
 		92177FFE1F17797B0041F70D /* YXMyExamExplainView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92177FFD1F17797B0041F70D /* YXMyExamExplainView_17.m */; };
 		921780011F177FA40041F70D /* YXMyExamExplainHelp_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 921780001F177FA40041F70D /* YXMyExamExplainHelp_17.m */; };
 		921816DF1F43EFB50000BCA8 /* YXPlayerBeginningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 921816DE1F43EFB50000BCA8 /* YXPlayerBeginningView.m */; };
+		921816E21F443E9A0000BCA8 /* YXCourseDetailPlayerViewController_17+Detection.m in Sources */ = {isa = PBXBuildFile; fileRef = 921816E11F443E9A0000BCA8 /* YXCourseDetailPlayerViewController_17+Detection.m */; };
 		9219A18F1F1F054600C49D78 /* ReadingDetailViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A18E1F1F054600C49D78 /* ReadingDetailViewController_17.m */; };
 		9219A1921F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A1911F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m */; };
 		9219A1951F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A1941F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m */; };
@@ -1099,6 +1100,8 @@
 		921780001F177FA40041F70D /* YXMyExamExplainHelp_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyExamExplainHelp_17.m; sourceTree = "<group>"; };
 		921816DD1F43EFB50000BCA8 /* YXPlayerBeginningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXPlayerBeginningView.h; path = "课堂/YXPlayerBeginningView.h"; sourceTree = "<group>"; };
 		921816DE1F43EFB50000BCA8 /* YXPlayerBeginningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXPlayerBeginningView.m; path = "课堂/YXPlayerBeginningView.m"; sourceTree = "<group>"; };
+		921816E01F443E9A0000BCA8 /* YXCourseDetailPlayerViewController_17+Detection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "YXCourseDetailPlayerViewController_17+Detection.h"; path = "课堂/YXCourseDetailPlayerViewController_17+Detection.h"; sourceTree = "<group>"; };
+		921816E11F443E9A0000BCA8 /* YXCourseDetailPlayerViewController_17+Detection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "YXCourseDetailPlayerViewController_17+Detection.m"; path = "课堂/YXCourseDetailPlayerViewController_17+Detection.m"; sourceTree = "<group>"; };
 		9219A18D1F1F054600C49D78 /* ReadingDetailViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailViewController_17.h; sourceTree = "<group>"; };
 		9219A18E1F1F054600C49D78 /* ReadingDetailViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingDetailViewController_17.m; sourceTree = "<group>"; };
 		9219A1901F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailTableHeaderView_17.h; sourceTree = "<group>"; };
@@ -3683,6 +3686,8 @@
 				921CFA9B1F4283FE006D99B7 /* YXCourseDetailPlayerViewController_17+Request.m */,
 				921CFA9D1F42859B006D99B7 /* YXCourseDetailPlayerViewController_17+Rotate.h */,
 				921CFA9E1F42859B006D99B7 /* YXCourseDetailPlayerViewController_17+Rotate.m */,
+				921816E01F443E9A0000BCA8 /* YXCourseDetailPlayerViewController_17+Detection.h */,
+				921816E11F443E9A0000BCA8 /* YXCourseDetailPlayerViewController_17+Detection.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -5198,6 +5203,7 @@
 				CB2CF3511D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.m in Sources */,
 				E9CD95821DE3E7E300AE6704 /* DownloadResourceRequest.m in Sources */,
 				92FAE4A71DDAC9ED000C3C00 /* ActivityStepViewController.m in Sources */,
+				921816E21F443E9A0000BCA8 /* YXCourseDetailPlayerViewController_17+Detection.m in Sources */,
 				92AA47751E12440B00C88DDC /* BeijingCourseFilterManager.m in Sources */,
 				92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */,
 				9219A18F1F1F054600C49D78 /* ReadingDetailViewController_17.m in Sources */,

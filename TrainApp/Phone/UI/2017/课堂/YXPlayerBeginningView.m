@@ -51,7 +51,6 @@
     }
     self.player.videoUrl = _videoUrl;
     self.isWifiPlayer = NO;
-    self.videoUrl = nil;
     if ([[Reachability reachabilityForInternetConnection] isReachableViaWWAN]) {
         [self.player pause];
         self.playerStatus = YXPlayerManagerAbnormal_NotWifi;

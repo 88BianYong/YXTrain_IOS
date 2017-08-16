@@ -26,6 +26,7 @@
 #import "PopUpFloatingViewManager_17.h"
 #import "VideoCourseDetailViewController_17.h"
 #import "AppDelegate.h"
+#import "YXCourseDetailPlayerViewController_17.h"
 typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     YXLearningRequestStatus_ExamineDetail,//请求个人工作室信息
     YXLearningRequestStatus_LayerList,//请求分层
@@ -81,6 +82,29 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         vc.fromWhere = VideoCourseFromWhere_QRCode;
         [self.navigationController pushViewController:vc animated:YES];
     }
+#warning 测试新课程
+    [self setupRightWithTitle:@"测试"];
+}
+- (void)naviRightAction {
+    YXCourseListRequestItem_body_module_course *course  = [[YXCourseListRequestItem_body_module_course alloc] init];
+    course.courses_id = @"10163206";
+    course.course_title = @"测试";
+    course.course_img = @"";
+    course.record = @"";
+    course.is_selected = @"0";
+    course.module_id = @"2240";
+    course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
+    course.type = @"1";
+    YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc]init];
+    vc.course = course;
+    vc.stageString = @"0";
+    vc.fromWhere = VideoCourseFromWhere_Detail;
+    [self.navigationController pushViewController:vc animated:YES];
+    //        request.cid = @"10163206";
+    //        request.stageid = @"2240";
+    //        request.pid = @"1798";
+    //        request.token = @"daa7d588a41a46c898dddcea53aa0ab1";
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
