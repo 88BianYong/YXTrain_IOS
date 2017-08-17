@@ -129,7 +129,7 @@
         rStr = [NSString stringWithFormat:@"\n作品集达到%@分后,按比例得分,满分%@分",self.passScore,self.passTotalScore];
     }else if (self.toolID.integerValue == 208){
         lStr = [NSString stringWithFormat:@"自荐作业: 需要完成%@个得%@分",self.totalNum,self.totalScore];
-        rStr = [NSString stringWithFormat:@"\n自荐作业达到%@分后按比例得分,满分%@分",self.passScore,self.passTotalScore];
+        rStr = [NSString stringWithFormat:@"\n自荐作业评分达到%@分后按比例得分,满分%@分",self.passScore,self.passTotalScore];
     }else if (self.toolID.integerValue == 220){
         lStr = [NSString stringWithFormat:@"作业质量: 我的作业被其他同学互评%@篇",self.totalNum];
         rStr = [NSString stringWithFormat:@",总分%@分",self.totalScore];
