@@ -38,6 +38,7 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
 @property (nonatomic, strong) ActivityPlayTopView *topView;
 @property (nonatomic, strong) UIImageView *thumbImageView;
 
+
 //播放相关时间
 @property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, assign) NSTimeInterval playTime;
@@ -48,6 +49,8 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
 @property (nonatomic, assign) YXPlayerManagerPauseStatus pauseStatus;
 @property (nonatomic, assign) YXPlayerManagerAbnormalStatus playerStatus;
 @property (nonatomic, assign) BOOL isFullscreen;
+@property (nonatomic, assign) BOOL isWifiPlayer;//WIFI先允许播放
+
 
 
 @property (nonatomic, copy) void (^playerManagerBackActionBlock)(void);

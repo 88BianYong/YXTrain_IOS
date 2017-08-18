@@ -17,14 +17,6 @@
         request.stageid = self.course.module_id;
         request.courseType = self.course.courseType;
         request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-//        request.cid = @"10163206";
-//        request.stageid = @"2240";
-//        request.pid = @"1798";
-#warning 测试
-        if (request.cid.integerValue == 10163206) {
-            request.pid = @"1798";
-            request.token = @"daa7d588a41a46c898dddcea53aa0ab1";
-        }
         WEAK_SELF
         [request startRequestWithRetClass:[YXCourseDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
             STRONG_SELF

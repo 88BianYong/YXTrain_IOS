@@ -13,6 +13,7 @@
 #import "YXCourseDetailViewController.h"
 #import "YXCourseRecordViewController.h"
 #import "VideoCourseDetailViewController.h"
+#import "YXCourseDetailPlayerViewController_17.h"
 static  NSString *const trackPageName = @"课程列表页面";
 @interface YXCourseViewController ()<YXCourseFilterViewDelegate>
 @property (nonatomic, strong) YXCourseFilterView *filterView;
@@ -268,7 +269,9 @@ static  NSString *const trackPageName = @"课程列表页面";
     YXCourseListRequestItem_body_module_course *course = self.dataArray[indexPath.row];
     course.courseType = self.courseType;
     if (course.isSupportApp.boolValue) {
-        VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
+#warning 测试
+        YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc]init];
+//        VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
         vc.course = course;
         vc.fromWhere = VideoCourseFromWhere_Detail;
         [self.navigationController pushViewController:vc animated:YES];

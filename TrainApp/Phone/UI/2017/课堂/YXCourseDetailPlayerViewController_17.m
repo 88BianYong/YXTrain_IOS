@@ -152,8 +152,7 @@
     [self.chapterVC setVideoCourseChapterFragmentCompleteBlock:^(YXFileItemBase *fileItem, BOOL isHaveVideo) {
         STRONG_SELF
         [self recordPlayerDuration];
-#warning 测试
-        //SAFE_CALL(self.exitDelegate, browserExit);
+        SAFE_CALL(self.exitDelegate, browserExit);
         self.playMangerView.hidden = NO;
         self.containerView.hidden = NO;
         if (fileItem) {
@@ -208,8 +207,7 @@
     self.playMangerView.playerManagerFinishActionBlock = ^{
         STRONG_SELF
         [self recordPlayerDuration];
-        #warning 测试
-        //SAFE_CALL(self.exitDelegate, browserExit);
+        SAFE_CALL(self.exitDelegate, browserExit);
         [self.chapterVC readyNextWillplayVideoAgain:NO];
     };
     self.playMangerView.playerManagerPlayerActionBlock = ^(YXPlayerManagerAbnormalStatus status) {
@@ -258,7 +256,10 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
         self.beginningView = nil;
-        self.playMangerView.pauseStatus = YXPlayerManagerPause_Not;        
+        self.playMangerView.pauseStatus = YXPlayerManagerPause_Not;
+        if (![[Reachability reachabilityForInternetConnection] isReachable]) {
+            self.playMangerView.playerStatus = YXPlayerManagerAbnormal_NetworkError;
+        }
     };
     self.beginningView.playerBeginningBackActionBlock = ^{
         STRONG_SELF
@@ -274,7 +275,8 @@
 }
 - (BOOL)isShowClassroomCheckButton {
     if (self.detailItem.quizNum.integerValue == 0 || self.detailItem.courseSchemeMode.integerValue == 0 || self.detailItem.userQuizStatus.integerValue == 1 || self.isHiddenTestBool) {
-        return NO;
+#warning 测试
+        return YES;
     }else {
         return YES;
     }

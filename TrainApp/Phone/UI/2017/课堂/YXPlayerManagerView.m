@@ -30,7 +30,6 @@
 @property (nonatomic, strong) RACDisposable *topBottomHiddenDisposable;
 @property (nonatomic, assign) BOOL isTopBottomHidden;
 @property (nonatomic, assign) BOOL isShowDefinition;
-@property (nonatomic, assign) BOOL isWifiPlayer;//WIFI先允许播放
 
 @property (nonatomic, strong) NSTimer *documentRetryTimer;
 
@@ -105,54 +104,63 @@
 }
 - (void)setPlayerStatus:(YXPlayerManagerAbnormalStatus)playerStatus {
     _playerStatus = playerStatus;
-    self.exceptionView.hidden = NO;
-    self.pauseStatus = YXPlayerManagerPause_Abnormal;
-    switch (_playerStatus) {
-        case  YXPlayerManagerAbnormal_Finish:
-        {
-            self.exceptionView.exceptionLabel.text = @"视频课程已播放完";
-            [self.exceptionView.exceptionButton setTitle:@"点击重新观看" forState:UIControlStateNormal];
-        }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.exceptionView.hidden = NO;
+        self.pauseStatus = YXPlayerManagerPause_Abnormal;
+        switch (self->_playerStatus) {
+            case  YXPlayerManagerAbnormal_Finish:
+            {
+                self.exceptionView.exceptionLabel.text = @"视频课程已播放完";
+                [self.exceptionView.exceptionButton setTitle:@"点击重新观看" forState:UIControlStateNormal];
+            }
             break;
-        case  YXPlayerManagerAbnormal_Empty:
-        {
-            self.exceptionView.exceptionLabel.text = @"未找到该视频";
-            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
-        }
+            case  YXPlayerManagerAbnormal_Empty:
+            {
+                self.exceptionView.exceptionLabel.text = @"未找到该视频";
+                [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
+            }
             break;
-        case  YXPlayerManagerAbnormal_NotWifi:
-        {
-            self.exceptionView.exceptionLabel.text = @"当前为非wifi网络,继续播放会产生流量费用";
-            [self.exceptionView.exceptionButton setTitle:@"继续观看" forState:UIControlStateNormal];
-        }
+            case  YXPlayerManagerAbnormal_NotWifi:
+            {
+                self.exceptionView.exceptionLabel.text = @"当前为非wifi网络,继续播放会产生流量费用";
+                [self.exceptionView.exceptionButton setTitle:@"继续观看" forState:UIControlStateNormal];
+            }
             break;
-        case  YXPlayerManagerAbnormal_PlayError:
-        {
-            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
-            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
-        }
+            case  YXPlayerManagerAbnormal_PlayError:
+            {
+                self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
+                [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
+            }
             break;
-        case  YXPlayerManagerAbnormal_NetworkError:
-        {
-            self.exceptionView.exceptionLabel.text = @"网络已断开,请检查网络设置";
-            [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
-        }
+            case  YXPlayerManagerAbnormal_NetworkError:
+            {
+                self.exceptionView.exceptionLabel.text = @"网络已断开,请检查网络设置";
+                [self.exceptionView.exceptionButton setTitle:@"刷新重试" forState:UIControlStateNormal];
+            }
             break;
-        case  YXPlayerManagerAbnormal_DataError:
-        {
-            self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
-            [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
-        }
+            case  YXPlayerManagerAbnormal_DataError:
+            {
+                self.exceptionView.exceptionLabel.text = @"抱歉,播放出错了";
+                [self.exceptionView.exceptionButton setTitle:@"重新播放" forState:UIControlStateNormal];
+            }
             break;
-    }
+        }
+    });
+
 }
 - (void)setPauseStatus:(YXPlayerManagerPauseStatus)pauseStatus {
     _pauseStatus = pauseStatus;
     if (_pauseStatus == YXPlayerManagerPause_Not) {
+        if (self.videoUrl != nil) {
+            [self setupPlayer];
+        }
         [self.player play];
         self.exceptionView.hidden = YES;
+        self.videoUrl = nil;
     }else {
-        [self.player pause];
+        if (self.player.state != PlayerView_State_Paused) {
+            [self.player pause];
+        }
     }
 }
 #pragma mark - setupUI
@@ -253,6 +261,7 @@
 - (void)setupExceptionView {
     WEAK_SELF
     self.exceptionView = [[ActivityPlayExceptionView alloc] init];
+    self.exceptionView.hidden = YES;
     [[self.exceptionView.exceptionButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         self.bufferingView.hidden = NO;
@@ -266,11 +275,7 @@
             BLOCK_EXEC(self.playerManagerPlayerActionBlock,self.playerStatus);
         }else if (self.playerStatus == YXPlayerManagerAbnormal_NetworkError) {
             if ([[Reachability reachabilityForInternetConnection] isReachable]) {
-                if (self.videoUrl != nil) {
-                    [self setupPlayer];
-                }
                 self.pauseStatus = YXPlayerManagerPause_Not;
-                self.videoUrl = nil;
             }else {
                 self.exceptionView.hidden = NO;
             }
@@ -326,20 +331,22 @@
 #pragma mark - notification
 - (void)setupObserver {
     WEAK_SELF
-    [Reachability reachabilityForInternetConnection].reachableBlock = ^(Reachability *reachability) {
+    Reachability *r = [Reachability reachabilityForInternetConnection];
+    r.reachableBlock = ^(Reachability *reachability) {
         STRONG_SELF
         if([reachability isReachableViaWWAN]) {
-            if (self.playerStatus == YXPlayerManagerAbnormal_NetworkError && !self.exceptionView.hidden) {
+            if ((self.playerStatus == YXPlayerManagerAbnormal_NetworkError || self.exceptionView.hidden || self.pauseStatus != YXPlayerManagerPause_Test) && !self.isWifiPlayer ) {
                 self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
             }
         }
     };
-    [Reachability reachabilityForInternetConnection].unreachableBlock = ^(Reachability *reachability) {
-        if (self.playerStatus == YXPlayerManagerAbnormal_NotWifi && !self.exceptionView.hidden) {
+    r.unreachableBlock = ^(Reachability *reachability) {
+        STRONG_SELF
+        if ((self.playerStatus == YXPlayerManagerAbnormal_NotWifi && !self.exceptionView.hidden) || self.player.state == PlayerView_State_Buffering ) {
             self.playerStatus = YXPlayerManagerAbnormal_NetworkError;
         }
     };
-    [[Reachability reachabilityForInternetConnection] startNotifier];
+    [r startNotifier];
 
     RACDisposable *r0 = [RACObserve(self.player, state) subscribeNext:^(id x) {
         STRONG_SELF
@@ -367,8 +374,6 @@
                     if([[Reachability reachabilityForInternetConnection] isReachableViaWWAN] && !self.isWifiPlayer) {
                         self.pauseStatus = YXPlayerManagerPause_Abnormal;
                         self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
-                    }else {
-                        self.exceptionView.hidden = YES;
                     }
                 }else {
                     self.playerStatus = YXPlayerManagerAbnormal_NetworkError;
@@ -449,10 +454,22 @@
         BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress ,NO);
     }];
     
+    RACDisposable *r4 = [RACObserve(self.player, isBuffering) subscribeNext:^(id x) {
+        STRONG_SELF
+        if (self.player.isBuffering) {
+            self.bufferingView.hidden = NO;
+            [self.bufferingView start];
+        } else {
+            self.bufferingView.hidden = YES;
+            [self.bufferingView stop];
+        }
+    }];
+    
     [self.disposableMutableArray addObject:r0];
     [self.disposableMutableArray addObject:r1];
     [self.disposableMutableArray addObject:r2];
     [self.disposableMutableArray addObject:r3];
+    [self.disposableMutableArray addObject:r4];
 }
 - (void)setupNotification {
     WEAK_SELF

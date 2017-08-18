@@ -325,9 +325,9 @@ static const CGFloat kVolumnStep = 0.0625;
         // Main Thread
         // [GlobalUtils checkMainThread];
         STRONG_SELF
-        self.isBuffering = YES;
         if ([x boolValue]) {
             //NSLog(@"playbackBufferEmpty");
+            self.isBuffering = YES;
             self.state = PlayerView_State_Buffering;
             self.bSpeedAbleToCalculateRightNow = NO;
         }
@@ -336,18 +336,30 @@ static const CGFloat kVolumnStep = 0.0625;
     
     RACDisposable *d2 = [RACObserve(self.playerItem, playbackLikelyToKeepUp) subscribeNext:^(NSNumber *x) {
         @strongify(self); if (!self) return;
-        self.isBuffering = NO;
-
         if ([x boolValue]) {
             NSLog(@"playbackLikelyToKeepUp");
             self.state = self->_playPauseState;
             // 更新bIsPlayable
+            self.isBuffering = NO;
             self.bIsPlayable = YES;
         }
     }];
     [self.disposeArray addObject:d2];
     
-    RACDisposable *d3 = [RACObserve(self.playerItem, loadedTimeRanges) subscribeNext:^(NSArray *x) {
+    RACDisposable *d3 = [RACObserve(self.playerItem, playbackBufferFull) subscribeNext:^(NSNumber *x) {
+        @strongify(self); if (!self) return;
+        
+        if ([x boolValue]) {
+            NSLog(@"playbackLikelyToKeepUp");
+            self.state = self->_playPauseState;
+            self.isBuffering = NO;
+            // 更新bIsPlayable
+            self.bIsPlayable = YES;
+        }
+    }];
+    [self.disposeArray addObject:d3];
+    
+    RACDisposable *d4= [RACObserve(self.playerItem, loadedTimeRanges) subscribeNext:^(NSArray *x) {
         // Main Thread
         // [GlobalUtils checkMainThread];
         
@@ -365,9 +377,9 @@ static const CGFloat kVolumnStep = 0.0625;
         // 更新timeBuffered
         self.timeBuffered = result;
     }];
-    [self.disposeArray addObject:d3];
+    [self.disposeArray addObject:d4];
     
-    RACDisposable *gd5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"apns html done" object:nil] subscribeNext:^(id x) {
+    RACDisposable *d5 = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"apns html done" object:nil] subscribeNext:^(id x) {
         // Main ThreadYXSlideProgressView
         // [GlobalUtils checkMainThread];
         
@@ -387,7 +399,7 @@ static const CGFloat kVolumnStep = 0.0625;
         
         self.view.player = self.player;
     }];
-    [self.disposeArray addObject:gd5];
+    [self.disposeArray addObject:d5];
     
 }
 

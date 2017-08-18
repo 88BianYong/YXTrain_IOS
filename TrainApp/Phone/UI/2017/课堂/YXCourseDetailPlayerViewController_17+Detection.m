@@ -29,6 +29,9 @@
                 [self.playMangerView.player seekTo:playTime];
             }
             self.playMangerView.pauseStatus = YXPlayerManagerPause_Not;
+            if([[Reachability reachabilityForInternetConnection] isReachableViaWWAN] && !self.playMangerView.isWifiPlayer) {
+                self.playMangerView.playerStatus = YXPlayerManagerAbnormal_NotWifi;
+            }
         }else {
             self.playMangerView.bottomView.slideProgressControl.bSliding = NO;
             [self.playMangerView.player pause];
