@@ -372,12 +372,10 @@
                 DDLogDebug(@"加载");
                 if ([[Reachability reachabilityForInternetConnection] isReachable]) {
                     if([[Reachability reachabilityForInternetConnection] isReachableViaWWAN] && !self.isWifiPlayer) {
-                        self.pauseStatus = YXPlayerManagerPause_Abnormal;
                         self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
                     }
                 }else {
                     self.playerStatus = YXPlayerManagerAbnormal_NetworkError;
-                    self.pauseStatus = YXPlayerManagerPause_Abnormal;
                 }
             }
                 break;

@@ -182,12 +182,13 @@
         if([reachability isReachableViaWWAN]) {
             if ((self.playerStatus == YXPlayerManagerAbnormal_NetworkError || self.exceptionView.hidden)) {
                 self.playerStatus = YXPlayerManagerAbnormal_NotWifi;
+                self.pauseStatus = YXPlayerManagerPause_Abnormal;
             }
         }
     };
     r.unreachableBlock = ^(Reachability *reachability) {
         STRONG_SELF
-        if (self.playerStatus == YXPlayerManagerAbnormal_NotWifi) {
+        if (self.playerStatus == YXPlayerManagerAbnormal_NotWifi || self.player.state == PlayerView_State_Buffering) {
             self.playerStatus = YXPlayerManagerAbnormal_NetworkError;
         }
     };
