@@ -135,7 +135,7 @@
 @property (nonatomic, copy) NSString<Optional> *passsCore;//
 @property (nonatomic, copy) NSString<Optional> *stageID;//
 @property (nonatomic, copy) NSString<Optional> *status;
-@property (nonatomic, copy) NSArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList, Optional> *toolExamineVoList;
+@property (nonatomic, copy) NSMutableArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList, Optional> *toolExamineVoList;
 @property (nonatomic, copy) NSString<Optional> *totalScore;//
 @property (nonatomic, copy) NSString<Optional> *userScore;//
 @property (nonatomic, copy) NSString<Optional> *passTotalScore;//

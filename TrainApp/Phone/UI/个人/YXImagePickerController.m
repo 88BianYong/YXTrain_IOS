@@ -26,12 +26,13 @@
 - (void)pickImageWithSourceType:(UIImagePickerControllerSourceType)sourceType
                      completion:(void (^)(UIImage *))completion
 {
+    
     self.isPublish = NO;
-    YXBaseViewController *viewController = (YXBaseViewController *)((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
+    UIViewController *viewController = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.rootViewController;
     if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
         ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
         if (author == kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
-            [viewController showToast:@"相册权限受限\n请在设置-隐私-相册中开启"];
+            [YXPromtController showToast:@"相册权限受限\n请在设置-隐私-相册中开启" inView:viewController.view];
             return;
         }
         self.imagePickerController.sourceType = sourceType;
@@ -39,7 +40,7 @@
         
         [viewController presentViewController:self.imagePickerController animated:YES completion:nil];
     } else {
-        [viewController showToast:@"设备不支持拍照功能！"];
+           [YXPromtController showToast:@"设备不支持拍照功能！" inView:viewController.view];
     }
 }
 

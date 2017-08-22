@@ -55,6 +55,7 @@
     
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+    effectView.alpha = 0.95f;
     [self.backgroundImageView addSubview:effectView];
     [effectView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.backgroundImageView);

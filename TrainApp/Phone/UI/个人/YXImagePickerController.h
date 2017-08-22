@@ -12,6 +12,6 @@
 
 - (void)pickImageWithSourceType:(UIImagePickerControllerSourceType)sourceType
                      completion:(void(^)(UIImage *selectedImage))completion;
-- (void)superViewController:(UIViewController *)viewController pickImagePublishWithSourceType:(UIImagePickerControllerSourceType)sourceType completion:(void (^)(UIImage *))completion;
+//- (void)superViewController:(UIViewController *)viewController pickImagePublishWithSourceType:(UIImagePickerControllerSourceType)sourceType completion:(void (^)(UIImage *))completion;
 
 @end

@@ -36,25 +36,18 @@
     _examine = examine;
     NSMutableArray<ExamineDetailRequest_17Item_Examine_Process> *process = [[NSMutableArray<ExamineDetailRequest_17Item_Examine_Process> alloc] init];
     [_examine.process enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    NSMutableArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList> *list = [[NSMutableArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList> alloc] init];
         //任何工具总分、完成标准都为0时不显示该工具
         //工具总分： passtotalscore + totalscore
         //完成标准totalNum
          __block BOOL isFilterBool = YES;
         [obj.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *exa, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (!exa.isExistsNext.boolValue) {
-                if (exa.totalScore.integerValue != 0.0f || exa.passTotalScore.integerValue != 0.0f || exa.totalNum.integerValue != 0) {
-                    isFilterBool = NO;
-                    *stop = YES;
-                }
-            }else {
-                [obj.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if (next.totalScore.integerValue != 0.0f || next.passTotalScore.integerValue != 0.0f ||next.totalNum.integerValue != 0) {
-                        isFilterBool = NO;
-                        *stop = YES;
-                    }
-                }];
+            if (exa.totalScore.integerValue != 0.0f || exa.passTotalScore.integerValue != 0.0f || exa.totalNum.integerValue != 0) {
+                isFilterBool = NO;
+                [list addObject:exa];
             }
         }];
+        obj.toolExamineVoList = list;
         if (!isFilterBool) {
             [process addObject:obj];
         }
