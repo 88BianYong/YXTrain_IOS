@@ -171,9 +171,9 @@
         }
         lastView = label;
     }
-    if (self.homework.isExpertRecommend.boolValue) {//专家推荐
+    if (self.homework.isExpertRecommend.boolValue) {//专家推优
         UILabel *label = [[UILabel alloc] init];
-        label.text = @"专家推荐";
+        label.text = @"专家推优";
         label.tag = 100006;
         label.textColor = [UIColor whiteColor];
         label.layer.masksToBounds = YES;
@@ -199,9 +199,9 @@
         }
         lastView = label;
     }
-    if (self.homework.isMasterRecommend.boolValue) {//坊主推荐
+    if (self.homework.isMasterRecommend.boolValue) {//坊主推优
         UILabel *label = [[UILabel alloc] init];
-        label.text = @"坊主推荐";
+        label.text = @"坊主推优";
         label.tag = 100007;
         label.textColor = [UIColor whiteColor];
         label.layer.masksToBounds = YES;
@@ -227,9 +227,9 @@
         }
         lastView = label;
     }
-    if (self.homework.isGrouperRecommend.boolValue) {//组长推荐
+    if (self.homework.isGrouperRecommend.boolValue) {//组长推优
         UILabel *label = [[UILabel alloc] init];
-        label.text = @"组长推荐";
+        label.text = @"组长推优";
         label.tag = 100008;
         label.textColor = [UIColor whiteColor];
         label.layer.masksToBounds = YES;

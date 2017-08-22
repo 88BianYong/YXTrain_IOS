@@ -43,9 +43,9 @@
 @property (nonatomic, copy) NSString<Optional> *type;
 @property (nonatomic, copy) NSString<Optional> *status;
 @property (nonatomic, copy) NSString<Optional> *scoreDetail;
-@property (nonatomic, copy) NSString<Optional> *isMasterRecommend;//坊主推荐
-@property (nonatomic, copy) NSString<Optional> *isGrouperRecommend;//组长推荐
-@property (nonatomic, copy) NSString<Optional> *isExpertRecommend;//专家推荐
+@property (nonatomic, copy) NSString<Optional> *isMasterRecommend;//坊主推优
+@property (nonatomic, copy) NSString<Optional> *isGrouperRecommend;//组长推优
+@property (nonatomic, copy) NSString<Optional> *isExpertRecommend;//专家推优
 @property (nonatomic, copy) NSString<Optional> *isMasterComment;//坊主点评
 @property (nonatomic, copy) NSString<Optional> *isGrouperComment;//组长点评
 @property (nonatomic, copy) NSString<Optional> *isExpertComment;//专家点评
