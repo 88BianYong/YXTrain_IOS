@@ -10,6 +10,9 @@
 
 @implementation YXTrainListRequestItem_body_train
 - (NSString<Optional> *)role {
+    if (self.w.integerValue == 5) {
+        return @"9";
+    }
     if (_role) {
         return _role;
     }else {
@@ -23,6 +26,9 @@
     }
 }
 - (NSString<Optional> *)isDoubel {
+    if (self.w.integerValue == 5) {
+        return @"0";
+    }
     BOOL isMaster = NO;
     BOOL isStudent = NO;
     NSArray *array = [self.roles componentsSeparatedByString:@","];
