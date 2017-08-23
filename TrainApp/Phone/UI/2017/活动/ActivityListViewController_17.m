@@ -58,7 +58,7 @@
 }
 - (void)setupObservers{
     WEAK_SELF
-    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kYXTrainParticipateActivity object:nil]subscribeNext:^(id x) {
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kYXTrainParticipateActivity object:nil]subscribeNext:^(id x) {//评论即视为参加活动
         STRONG_SELF
         NSNotification *noti = (NSNotification *)x;
         NSString *aid = noti.userInfo.allKeys.firstObject;

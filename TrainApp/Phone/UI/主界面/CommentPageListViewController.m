@@ -390,8 +390,8 @@
             reply.isRanked = @"true";
             reply.up = [NSString stringWithFormat:@"%d",(int)(reply.up.integerValue + 1)];
 //            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:integer] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainParticipateActivity object:nil userInfo:@{self.tool.aid:YXTrainSpecialCourseActivity}];
-            [self.tableView reloadData];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainParticipateActivity object:nil userInfo:@{self.tool.aid:YXTrainSpecialCourseActivity}];
+//            [self.tableView reloadData];
         }
     }];
     self.laudRequest = request;
