@@ -377,6 +377,7 @@
         self.courseDetailRequest.cid = self.course.courses_id;
         self.courseDetailRequest.stageid = self.course.module_id;
         self.courseDetailRequest.courseType = self.course.courseType;
+        self.courseDetailRequest.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
         self.courseDetailRequest.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
         WEAK_SELF
         [self.courseDetailRequest startRequestWithRetClass:[YXCourseDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

@@ -36,8 +36,8 @@
 @property (nonatomic, strong) NSString<Optional> *choosePid;
 @property (nonatomic, strong) NSString<Optional> *total;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trains;
-@property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *training;
-@property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trained;
+@property (nonatomic, strong) NSMutableArray<YXTrainListRequestItem_body_train,Optional> *training;
+@property (nonatomic, strong) NSMutableArray<YXTrainListRequestItem_body_train,Optional> *trained;
 @end
 
 @interface YXTrainListRequestItem : HttpBaseRequestItem

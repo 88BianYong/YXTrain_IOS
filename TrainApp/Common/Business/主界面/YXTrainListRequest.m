@@ -64,7 +64,32 @@
 @end
 
 @implementation YXTrainListRequestItem_body
-
+- (void)setTrained:(NSMutableArray<YXTrainListRequestItem_body_train,Optional> *)trained {
+    NSMutableArray<YXTrainListRequestItem_body_train> *mutableArray = [[NSMutableArray<YXTrainListRequestItem_body_train> alloc] init];
+    [trained enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.w.integerValue == 5) {
+            [mutableArray addObject:obj];
+        }
+    }];
+    if (mutableArray.count > 0) {
+        _trained = mutableArray;
+    }else {
+        _trained = trained;
+    }
+}
+- (void)setTraining:(NSMutableArray<YXTrainListRequestItem_body_train,Optional> *)training {
+    NSMutableArray<YXTrainListRequestItem_body_train> *mutableArray = [[NSMutableArray<YXTrainListRequestItem_body_train> alloc] init];
+    [training enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.w.integerValue == 5) {
+            [mutableArray addObject:obj];
+        }
+    }];
+    if (mutableArray.count > 0) {
+        _training = mutableArray;
+    }else {
+        _training = training;
+    }
+}
 @end
 
 @implementation YXTrainListRequestItem

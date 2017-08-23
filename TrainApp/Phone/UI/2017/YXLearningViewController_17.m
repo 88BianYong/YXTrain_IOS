@@ -85,7 +85,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self showProjectSelectionView];
-    if (self.requestStatus == YXLearningRequestStatus_ExamineDetail) {
+    if (self.requestStatus == YXLearningRequestStatus_ExamineDetail && self.examineDetailItem.other.stageLockWay.integerValue == 0) {
         [self requestForExamineToolStatus];
     }
     [[LSTSharedInstance sharedInstance].floatingViewManager showPopUpFloatingView];
@@ -279,7 +279,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
             [tableView beginUpdates];
             [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
             [tableView endUpdates];
-            
+
         };
         return heaerView;
     }
@@ -471,6 +471,12 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
                         }
                         if (obj.status.integerValue != 2) {
                             stage.isFinish =  @"0";
+                        }
+                        if (idx > 0) {
+                            ExamineDetailRequest_17Item_Stages_Tools *tool = stage.tools[idx - 1];
+                            if (tool.status.integerValue == 1 && obj.status.integerValue <= 0) {
+                                obj.status = @"-2";
+                            }
                         }
                     }];
                 }

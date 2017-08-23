@@ -26,6 +26,7 @@
 @property (nonatomic, copy) NSString<Optional> *isWorks;
 @property (nonatomic, copy) NSString<Optional> *guide;
 @property (nonatomic, copy) NSString<Optional> *plans;
+@property (nonatomic, copy) NSString<Optional> *stageLockWay;
 @end
 
 @interface ExamineDetailRequest_17Item_Expert : JSONModel

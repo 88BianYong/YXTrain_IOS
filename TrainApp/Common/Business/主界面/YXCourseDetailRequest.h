@@ -18,5 +18,6 @@
 @property (nonatomic, strong) NSString *cid;
 @property (nonatomic, strong) NSString *pid;
 @property (nonatomic, strong) NSString *courseType;
+@property (nonatomic, strong) NSString<Optional> *w;
 
 @end
