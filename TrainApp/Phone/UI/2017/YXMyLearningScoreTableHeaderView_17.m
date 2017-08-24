@@ -74,6 +74,7 @@
 - (void)setupUI {
     self.containerView = [[UIView alloc] init];
     self.containerView.backgroundColor = [UIColor whiteColor];
+    self.containerView.layer.cornerRadius = YXTrainCornerRadii;
     [self addSubview:self.containerView];
     
     self.contentView = [[YXMyLearningScoreContentView alloc] init];

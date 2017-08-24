@@ -8,75 +8,109 @@
 
 #import "NoticeBriefCell_17.h"
 @interface NoticeBriefCell_17 ()
-@property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UILabel *timeNameLabel;
-@property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) UIView *topView;
+@property (nonatomic, strong) UIView *middleSircleView;
+@property (nonatomic, strong) UIView *bottomView;
+
+@property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *publisherLabel;
 @end
 @implementation NoticeBriefCell_17
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.frame = [UIScreen mainScreen].bounds;
-        [self layoutIfNeeded];
         [self setupUI];
-        [self setupLayout];
     }
     return self;
 }
-#pragma mark - set
-- (void)setItem:(YXNoticeAndBulletinItem *)item {
-    _item = item;
-    self.titleLabel.text = _item.title;
-    self.timeNameLabel.text = [NSString stringWithFormat:@"%@   by%@",_item.createDate,_item.userName];
-}
-#pragma mark - setupUI
+
 - (void)setupUI {
-    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make){
-        make.edges.equalTo(self);
-    }];
-    self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
-    self.titleLabel.numberOfLines = 0;
-    self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
-    [self.contentView addSubview:self.titleLabel];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.topView = [[UIView alloc] init];
+    self.topView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.contentView addSubview:self.topView];
     
-    self.timeNameLabel = [[UILabel alloc] init];
-    self.timeNameLabel.font = [UIFont systemFontOfSize:11.0f];
-    self.timeNameLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
-    [self.contentView addSubview:self.timeNameLabel];
+    self.middleSircleView = [[UIView alloc] init];
+    self.middleSircleView.backgroundColor = [UIColor whiteColor];
+    self.middleSircleView.layer.borderColor = [[UIColor colorWithHexString:@"eceef2"] CGColor];
+    self.middleSircleView.layer.borderWidth = 3.0f;
+    [self.contentView addSubview:self.middleSircleView];
     
-    self.lineView = [[UIView alloc] init];
-    self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
-    [self.contentView addSubview:self.lineView];
-}
-- (void)setupLayout {
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(15.0f);
-        make.top.equalTo(self.contentView.mas_top).offset(15.0f);
-        make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
+    self.bottomView = [[UIView alloc] init];
+    self.bottomView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.contentView addSubview:self.bottomView];
+    
+    self.contentLabel = [[UILabel alloc] init];
+    self.contentLabel.text = @"k快上课打瞌睡克利夫兰是否快乐的时间浪费快乐的时刻";
+    self.contentLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    self.contentLabel.font = [UIFont boldSystemFontOfSize:14];
+    [self.contentView addSubview:self.contentLabel];
+    
+    self.dateLabel = [[UILabel alloc] init];
+    self.dateLabel.text = @"2016-06-07";
+    self.dateLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    self.dateLabel.font = [UIFont systemFontOfSize:11];
+    [self.contentView addSubview:self.dateLabel];
+    
+    self.publisherLabel = [[UILabel alloc] init];
+    self.publisherLabel.text = @"by YANXIAOBU";
+    self.publisherLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
+    self.publisherLabel.font = [UIFont systemFontOfSize:11];
+    [self.contentView addSubview:self.publisherLabel];
+    
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.centerX.mas_equalTo(self.middleSircleView.mas_centerX);
+        make.bottom.mas_equalTo(self.middleSircleView.mas_top);
+        make.size.mas_equalTo(CGSizeMake(2, 25.5));
     }];
-    [self.timeNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(15.0f);
-        make.top.equalTo(self.titleLabel.mas_bottom).offset(10.0f);
-        make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
+    
+    [self.middleSircleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(21);
+        make.centerY.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(13, 13));
     }];
-    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left);
-        make.right.equalTo(self.contentView.mas_right);
-        make.bottom.equalTo(self.contentView.mas_bottom);
-        make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
+    self.middleSircleView.layer.cornerRadius = 6.5;
+    self.middleSircleView.layer.masksToBounds = YES;
+    
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.middleSircleView.mas_bottom);
+        make.centerX.mas_equalTo(self.middleSircleView.mas_centerX);
+        make.bottom.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(2, 25.5));
+    }];
+    
+    [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.middleSircleView.mas_centerY);
+        make.left.mas_equalTo(self.middleSircleView.mas_right).offset(14);
+        make.right.mas_lessThanOrEqualTo(-15);
+    }];
+    
+    [self.dateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.contentLabel.mas_left);
+        make.top.mas_equalTo(self.contentLabel.mas_bottom).offset(8);
+    }];
+    
+    [self.publisherLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.dateLabel.mas_centerY);
+        make.left.mas_equalTo(self.dateLabel.mas_right).offset(10);
+        make.right.mas_lessThanOrEqualTo(-15);
     }];
 }
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)configUIwithItem:(YXNoticeAndBulletinItem *)item isFirstOne:(BOOL)isFirstOne isLastOne:(BOOL)isLastOne{
+    if (isFirstOne) {
+        self.topView.hidden = YES;
+    } else {
+        self.topView.hidden = NO;
+    }
+    if (isLastOne) {
+        self.bottomView.hidden = YES;
+    } else {
+        self.bottomView.hidden = NO;
+    }
+    self.contentLabel.text = item.title;
+    self.dateLabel.text = item.createDate;
+    self.publisherLabel.text = [NSString stringWithFormat:@"by %@",item.userName];
 }
 
 @end

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "YXNoticeListRequest.h"
 @interface NoticeBriefCell_17 : UITableViewCell
-@property (nonatomic, strong) YXNoticeAndBulletinItem *item;
+- (void)configUIwithItem:(YXNoticeAndBulletinItem *)item isFirstOne:(BOOL)isFirstOne isLastOne:(BOOL)isLastOne;
 @end

@@ -55,7 +55,9 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NoticeBriefCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"NoticeBriefCell_17" forIndexPath:indexPath];
-    cell.item = self.dataArray[indexPath.row];
+    BOOL isFirstOne = indexPath.row == 0 ?YES :NO;
+    BOOL isLastOne = indexPath.row == self.dataArray.count -1 ?YES :NO;
+    [cell configUIwithItem:self.dataArray[indexPath.section] isFirstOne:isFirstOne isLastOne:isLastOne];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -78,9 +80,7 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return [tableView fd_heightForCellWithIdentifier:@"NoticeBriefCell_17" configuration:^(NoticeBriefCell_17  *cell) {
-        cell.item = self.dataArray[indexPath.row];
-    }];
+    return 64.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 5.0f;

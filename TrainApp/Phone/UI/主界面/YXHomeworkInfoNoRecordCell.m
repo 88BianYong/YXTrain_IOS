@@ -67,7 +67,7 @@
     }];
     
     [_directionsButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-21.0f);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10.0f);
         make.centerX.equalTo(self.contentView.mas_centerX);
         make.width.mas_offset(200.0f);
     }];

@@ -36,8 +36,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.rowHeight = 50.0f;
-    self.tableView.sectionHeaderHeight = 5.0f;
-    self.tableView.sectionFooterHeight = 0.001f;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXMessageCell_17 class] forCellReuseIdentifier:@"YXMessageCell_17"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
@@ -53,26 +51,30 @@
     YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return headerView;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return footerView;
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = -1;
         [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Hotspot];
         UIViewController *VC = [[NSClassFromString(@"YXHotspotViewController") alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.row == 1) {
+    }else if (indexPath.section == 1) {
         UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
-    }else if (indexPath.row == 2) {
+    }else if (indexPath.section == 2) {
         
     }
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.titleArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.titleArray.count;
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     YXMessageCell_17 *cell = [self.tableView dequeueReusableCellWithIdentifier:@"YXMessageCell_17" forIndexPath:indexPath];
@@ -80,5 +82,14 @@
     cell.cellStatus = indexPath.row;;
     
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 5.0f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return 5.0f;
+    }
+    return 0.0001f;
 }
 @end
