@@ -7,8 +7,7 @@
 //
 
 #import "CourseListMangerViewController_17.h"
-#import "CourseListCompulsoryViewController_17.h"
-#import "CourseListElectiveViewController_17.h"
+#import "CourseWatchListViewController_17.h"
 #import "CourseHistoryViewController_17.h"
 @interface CourseListMangerViewController_17 ()
 @property (nonatomic,strong) UIViewController *currentViewController;
@@ -40,13 +39,13 @@
 - (void)setupUI {
     if (self.isShowChoose) {
         [self setCourseTitleView];
-        CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];//必修
+        CourseWatchListViewController_17 *compulsoryVC = [[CourseWatchListViewController_17 alloc] init];
         compulsoryVC.segmentString = self.segmentString;
         compulsoryVC.studyString = self.studyString;
         compulsoryVC.stageString = self.stageString;
         compulsoryVC.typeString = @"102";
         [self addChildViewController:compulsoryVC];
-        CourseListElectiveViewController_17 *electiveVC = [[CourseListElectiveViewController_17 alloc] init];//选修
+       CourseWatchListViewController_17 *electiveVC = [[CourseWatchListViewController_17 alloc] init];
         electiveVC.segmentString = self.segmentString;
         electiveVC.studyString = self.studyString;
         electiveVC.stageString = self.stageString;
@@ -57,7 +56,7 @@
         self.currentViewController = compulsoryVC;
     }else {
         self.navigationItem.title = @"课程";
-        CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];
+        CourseWatchListViewController_17 *compulsoryVC = [[CourseWatchListViewController_17 alloc] init];
         compulsoryVC.segmentString = self.segmentString;
         compulsoryVC.studyString = self.studyString;
         compulsoryVC.stageString = self.stageString;
@@ -95,18 +94,19 @@
 }
 
 - (void)courseListChanged:(UISegmentedControl *)seg{
+    if (_selectedIndex == seg.selectedSegmentIndex) {
+        return;
+    }
     _selectedIndex = seg.selectedSegmentIndex;
     UIViewController *viewController = self.childViewControllers[seg.selectedSegmentIndex];
-    if (![viewController isKindOfClass:[self.currentViewController class]]) {
-        [self.currentViewController willMoveToParentViewController:nil];
-        [self transitionFromViewController:self.currentViewController toViewController:viewController duration:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
-        }  completion:^(BOOL finished) {
-            self.currentViewController=viewController;
-            [viewController didMoveToParentViewController:self];
-            [viewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.edges.equalTo(self.view);
-            }];
+    [self.currentViewController willMoveToParentViewController:nil];
+    [self transitionFromViewController:self.currentViewController toViewController:viewController duration:0.1 options:UIViewAnimationOptionTransitionNone animations:^{
+    }  completion:^(BOOL finished) {
+        self.currentViewController=viewController;
+        [viewController didMoveToParentViewController:self];
+        [viewController.view mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
         }];
-    }
+    }];
 }
 @end

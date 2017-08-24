@@ -10,7 +10,7 @@
 #import "CourseListFilterView_17.h"
 #import "CourseListHeader_17.h"
 #import "CourseListCell_17.h"
-#import "YXCourseListRequest.h"
+#import "CourseListFormatModel_17.h"
 #import "VideoCourseDetailViewController.h"
 #import "CourseHistoryViewController_17.h"
 #import "VideoCourseDetailViewController_17.h"
@@ -125,7 +125,7 @@
             CourseListRequest_17Item_Objs *course = (CourseListRequest_17Item_Objs *)obj;
             if ([course.objID isEqualToString:course_id]) {
                 if (self.schemeItem.scheme.type.integerValue == 0) {
-                    self.schemeItem.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.schemeItem.process.userFinishNum.integerValue + (record.integerValue - course.timeLengthSec.integerValue)/60];
+                    self.schemeItem.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.schemeItem.process.userFinishNum.integerValue + (record.integerValue - course.timeLength.integerValue)/60];
                 }
                 CourseListHeader_17 *headerView = (CourseListHeader_17 *)[self.tableView headerViewForSection:0];
                 headerView.scheme = self.schemeItem;
@@ -162,7 +162,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CourseListCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"CourseListCell_17" forIndexPath:indexPath];
     CourseListRequest_17Item_Objs *obj = self.dataArray[indexPath.row];
-    obj.timeLengthSec = obj.timeLength;
     cell.course = obj;
     return cell;
 }
@@ -189,23 +188,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    CourseListRequest_17Item_Objs *obj = self.dataArray[indexPath.row];
-    YXCourseListRequestItem_body_module_course *course  = [[YXCourseListRequestItem_body_module_course alloc] init];
-    course.courses_id = obj.objID;
-    course.course_title = obj.name;
-    course.course_img = obj.content.imgUrl;
-    course.record = obj.timeLength;
-    course.is_selected = obj.isSelected;
-    course.module_id = obj.stageID;
-    course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
-    course.type = obj.type;
-    course.courseType = obj.courseType;
-    if (course.isSupportApp.boolValue) {
-        VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
-        vc.course = course;
-        vc.fromWhere = VideoCourseFromWhere_Detail;
-        vc.isHiddenTestBool = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
+    vc.course = [CourseListFormatModel_17 formatModel:self.dataArray[indexPath.row]];
+    vc.fromWhere = VideoCourseFromWhere_Detail;
+    vc.isHiddenTestBool = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

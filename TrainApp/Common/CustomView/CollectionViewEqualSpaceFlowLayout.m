@@ -33,11 +33,9 @@
         NSInteger maximumSpacing = self.minimumInteritemSpacing;
         NSInteger origin = CGRectGetMaxX(prevLayoutAttributes.frame);
         
-        if(origin + maximumSpacing + currentLayoutAttributes.frame.size.width < self.collectionViewContentSize.width) {
+        if(origin + maximumSpacing + currentLayoutAttributes.frame.size.width < self.collectionViewContentSize.width - self.sectionInset.right) {
             CGRect frame = currentLayoutAttributes.frame;
             frame.origin.x = origin + maximumSpacing;
-            
-            
             currentLayoutAttributes.frame = frame;
         }else {
             CGRect frame = currentLayoutAttributes.frame;

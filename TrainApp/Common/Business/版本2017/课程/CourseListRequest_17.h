@@ -58,8 +58,8 @@
 @property (nonatomic, copy) NSString<Optional> *template;
 @property (nonatomic, copy) NSString<Optional> *objID;//
 @property (nonatomic, strong) CourseListRequest_17Item_Objs_Content<Optional> *content;
-@property (nonatomic, copy) NSString<Optional> *timeLength;//
-@property (nonatomic, copy) NSString<Optional> *timeLengthSec;//
+@property (nonatomic, copy) NSString<Optional> *timeLength;//课程中心使用(课程中心单位为秒)
+@property (nonatomic, copy) NSString<Optional> *timeLengthSec;//观看课程使用(观看课程单位为秒)
 @property (nonatomic, copy) NSString<Optional> *speaker;
 @property (nonatomic, copy) NSString<Optional> *score;
 @property (nonatomic, copy) NSString<Optional> *isSelected;

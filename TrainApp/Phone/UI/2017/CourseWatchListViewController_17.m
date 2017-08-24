@@ -1,26 +1,28 @@
 //
-//  ElectiveCourseListViewController_17.m
+//  CompulsoryCourseListViewController_17.m
 //  TrainApp
 //
 //  Created by 郑小龙 on 2017/7/14.
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "CourseListElectiveViewController_17.h"
-#import "CourseListCompulsoryViewController_17.h"
+#import "CourseWatchListViewController_17.h"
 #import "CourseListFetcher_17.h"
 #import "CourseListFilterView_17.h"
 #import "CourseListHeader_17.h"
 #import "CourseListCell_17.h"
-#import "YXCourseListRequest.h"
+#import "CourseListFormatModel_17.h"
 #import "VideoCourseDetailViewController.h"
+#import "CourseHistoryViewController_17.h"
 #import "VideoCourseDetailViewController_17.h"
-@interface CourseListElectiveViewController_17 ()
+@interface CourseWatchListViewController_17 ()
 @property (nonatomic, strong) CourseListFilterView_17 *filterView;
 @property (nonatomic, strong) CourseListRequest_17Item_Scheme *schemeItem;
+
 @end
 
-@implementation CourseListElectiveViewController_17
+@implementation CourseWatchListViewController_17
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -33,17 +35,12 @@
     WEAK_SELF
     fetcher.courseListItemBlock = ^(CourseListRequest_17Item *model) {
         STRONG_SELF
-//        if (self.filterView.searchTerm == nil) {
-//            self.filterView.searchTerm = model.searchTerm;
-//            self.filterView.hidden = NO;
-//        }
         if (model.scheme.count > 0) {
             [model.scheme enumerateObjectsUsingBlock:^(CourseListRequest_17Item_Scheme *obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (self.typeString.integerValue == 0) {
                     self.schemeItem = obj;
                     *stop = YES;
-                    return;
-                    
+                    return ;
                 }
                 if (self.typeString.integerValue == 102 && obj.scheme.toolID.integerValue == 201) {
                     self.schemeItem = obj;
@@ -59,22 +56,18 @@
             if (self.schemeItem == nil) {
                 self.schemeItem = model.scheme[0];
             }
+        }
+        if (self.typeString.integerValue != 0 || model.searchTerm.isLockStudy.boolValue) {
             [self reforeUI];
+        }else if (self.filterView.searchTerm == nil) {
+            self.filterView.searchTerm = model.searchTerm;
+            self.filterView.hidden = NO;
         }
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-}
-- (void)reforeUI {
-    self.filterView.alpha = 0.0f;
-    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left);
-        make.right.equalTo(self.view.mas_right);
-        make.top.equalTo(self.view.mas_top);
-        make.bottom.equalTo(self.view.mas_bottom);
-    }];
 }
 - (void)setupUI {
     self.filterView = [[CourseListFilterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
@@ -109,7 +102,15 @@
            forCellReuseIdentifier:@"CourseListCell_17"];
     [self.tableView registerClass:[CourseListHeader_17 class] forHeaderFooterViewReuseIdentifier:@"CourseListHeader_17"];
     [self setupObservers];
-    
+}
+- (void)reforeUI {
+    self.filterView.alpha = 0.0f;
+    [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.top.equalTo(self.view.mas_top);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -122,8 +123,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-
 - (void)setupObservers{
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kRecordReportSuccessNotification object:nil]subscribeNext:^(id x) {
@@ -140,9 +139,8 @@
                 CourseListHeader_17 *headerView = (CourseListHeader_17 *)[self.tableView headerViewForSection:0];
                 headerView.scheme = self.schemeItem;
                 course.timeLengthSec = record;
-                [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                [self.tableView reloadData];
                 *stop = YES;
-
             }
         }];
     }];
@@ -152,7 +150,7 @@
         NSString *course_id = noti.userInfo.allKeys.firstObject;
         [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CourseListRequest_17Item_Objs *course = (CourseListRequest_17Item_Objs *)obj;
-            if ([course.objID isEqualToString:course_id] && self.schemeItem.scheme.type.integerValue == 1) {
+            if ([course.objID isEqualToString:course_id] && self.schemeItem.scheme.type.integerValue == 1){
                 course.isFinish = @"1";
                 self.schemeItem.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.schemeItem.process.userFinishNum.integerValue + 1];
                 CourseListHeader_17 *headerView = (CourseListHeader_17 *)[self.tableView headerViewForSection:0];
@@ -163,6 +161,7 @@
         }];
     }];
 }
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.dataArray.count > 0 ? 1 : 0;
@@ -196,23 +195,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    CourseListRequest_17Item_Objs *obj = self.dataArray[indexPath.row];
-    YXCourseListRequestItem_body_module_course *course  = [[YXCourseListRequestItem_body_module_course alloc] init];
-    course.courses_id = obj.objID;
-    course.course_title = obj.name;
-    course.course_img = obj.content.imgUrl;
-    course.record = obj.timeLength;
-    course.is_selected = obj.isSelected;
-    course.module_id = obj.stageID;
-    course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
-    course.type = obj.type;
-    if (course.isSupportApp.boolValue) {
-        VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
-        vc.course = course;
-        vc.stageString = self.stageString;
-        vc.fromWhere = VideoCourseFromWhere_Detail;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
+    vc.course = [CourseListFormatModel_17 formatModel:self.dataArray[indexPath.row]];
+    vc.stageString = self.stageString;
+    vc.fromWhere = VideoCourseFromWhere_Detail;
+    [self.navigationController pushViewController:vc animated:YES];
 }
-
 @end

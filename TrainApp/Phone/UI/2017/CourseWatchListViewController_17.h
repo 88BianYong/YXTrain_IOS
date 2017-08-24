@@ -8,7 +8,7 @@
 
 #import "YXCourseBaseViewController.h"
 
-@interface CourseListCompulsoryViewController_17 : YXCourseBaseViewController
+@interface CourseWatchListViewController_17 : YXCourseBaseViewController
 @property (nonatomic, strong) NSString *stageString;
 @property (nonatomic, strong) NSString *studyString;
 @property (nonatomic, strong) NSString *segmentString;
