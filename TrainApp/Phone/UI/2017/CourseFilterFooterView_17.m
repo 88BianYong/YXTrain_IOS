@@ -42,11 +42,13 @@
     [self.confirmButton setTitle:@"确认" forState:UIControlStateNormal];
     self.confirmButton.layer.cornerRadius = YXTrainCornerRadii;
     self.confirmButton.clipsToBounds = YES;
-    [self.confirmButton setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateNormal];
+    [self.confirmButton setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
     [self.confirmButton setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateHighlighted];
-    [self.confirmButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateNormal];
+    [self.confirmButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
     [self.confirmButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
     self.confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    
+    
     [[self.confirmButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         BLOCK_EXEC(self.courseFilterCompleteBlock,NO);
