@@ -21,6 +21,17 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"课程";
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme.boolValue) {
+        self.emptyView = [[YXEmptyView alloc]init];
+        self.emptyView.title = @"请先等待主题选学";
+        self.emptyView.imageName = @"没选课";
+        [self.view addSubview:self.emptyView];
+        [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+        return;
+    }
     _selectedIndex = 0;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setupUI];
