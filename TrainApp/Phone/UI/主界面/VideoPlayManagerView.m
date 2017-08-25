@@ -441,8 +441,6 @@ static const NSInteger kPlayReportRetryTime = 10;
                 if (![r isReachable]) {
                     self.playStatus = VideoPlayManagerStatus_NetworkError;
                     [self.player pause];
-                }else {
-                    self.exceptionView.hidden = YES;
                 }
             }
                 break;
