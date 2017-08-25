@@ -71,7 +71,7 @@
     [self popUpFloatingViewStatus:NO];
 }
 - (void)popUpFloatingViewStatus:(BOOL)isShow {
-    if (self.isScore || self.isNotice || self.isNotice) {
+    if (self.isScore || self.isNotice || self.isStep) {
         UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
         [window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj isKindOfClass:[FloatingBaseView class]]) {
