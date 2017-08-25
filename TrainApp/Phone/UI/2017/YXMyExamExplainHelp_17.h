@@ -19,5 +19,6 @@
 @property (nonatomic, copy) NSString *passTotalScore;
 @property (nonatomic, copy) NSString *passScore;
 @property (nonatomic, copy) NSString *isExamPass;
+@property (nonatomic, assign) BOOL isShowChoose;
 - (NSString *)toolCompleteStatusExplain;
 @end

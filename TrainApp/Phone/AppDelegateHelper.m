@@ -33,6 +33,7 @@
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
 @property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
+@property (nonatomic, assign) BOOL isLoginBool;
 @end
 @implementation AppDelegateHelper
 - (instancetype)initWithWindow:(UIWindow *)window {
@@ -199,6 +200,7 @@
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLoginSuccessNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
+        self.isLoginBool = YES;
         YXNavigationController *projectNav = [[YXNavigationController alloc]initWithRootViewController:[[XYChooseProjectViewController alloc] init]];
         self.window.rootViewController = projectNav;
     }];
@@ -207,6 +209,7 @@
         STRONG_SELF
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
+        self.isLoginBool = NO;
         [[LSTSharedInstance sharedInstance].geTuiManger logoutSuccess];
     }];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXTokenInValidNotification object:nil] subscribeNext:^(id x) {
@@ -223,10 +226,12 @@
         STRONG_SELF
         self.window.rootViewController = ([x.object integerValue] == LSTTrainProjectStatus_2017) ? [self rootTabBarViewController] : [self rootDrawerViewController];
         [self requestCommonData];
-        if (!isEmpty(self.courseId)) {
-            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_QRCode;
-        }else {
-            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
+        if (self.isLoginBool) {
+            if (!isEmpty(self.courseId)) {
+                [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_QRCode;
+            }else {
+                [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
+            }
         }
         [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];

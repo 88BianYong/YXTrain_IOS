@@ -76,7 +76,7 @@
 - (NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment,Optional> *)segmentModel {
     if (_segmentModel == nil) {
         NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] initWithDictionary:self.segments];
-        mutableDictionary[@"0"] = @"通识";
+//        mutableDictionary[@"0"] = @"通识";
         NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> *mutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment> alloc] init];
         NSArray *segmentsArray = [mutableDictionary.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
             return [obj1 compare:obj2];
@@ -89,10 +89,10 @@
             mockSegment.segmentName = mutableDictionary[obj];
             NSDictionary *chapterDic = self.studys[obj][@"c"];
             NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> *chapterMutableArray = [[NSMutableArray<CourseListRequest_17Item_SearchTerm_MockSegment_Chapter> alloc] init];
-            CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = [[CourseListRequest_17Item_SearchTerm_MockSegment_Chapter alloc] init];
-            chapter.chapterID = @"0";
-            chapter.chapterName = @"通识";
-            [chapterMutableArray addObject:chapter];
+//            CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = [[CourseListRequest_17Item_SearchTerm_MockSegment_Chapter alloc] init];
+//            chapter.chapterID = @"0";
+//            chapter.chapterName = @"通识";
+//            [chapterMutableArray addObject:chapter];
             NSArray *chapterArray = [chapterDic.allKeys sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
                 return [obj1 compare:obj2];
             }];

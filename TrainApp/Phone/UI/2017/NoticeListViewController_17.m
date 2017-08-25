@@ -57,7 +57,7 @@
     NoticeBriefCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"NoticeBriefCell_17" forIndexPath:indexPath];
     BOOL isFirstOne = indexPath.row == 0 ?YES :NO;
     BOOL isLastOne = indexPath.row == self.dataArray.count -1 ?YES :NO;
-    [cell configUIwithItem:self.dataArray[indexPath.section] isFirstOne:isFirstOne isLastOne:isLastOne];
+    [cell configUIwithItem:self.dataArray[indexPath.row] isFirstOne:isFirstOne isLastOne:isLastOne];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

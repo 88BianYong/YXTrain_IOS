@@ -29,6 +29,13 @@
                 rStr = @"";
             }
         }
+        if (!self.isShowChoose) {
+            lStr = [NSString stringWithFormat:@"观看课程: 需要观看%@分钟",self.totalNum];
+            rStr = [NSString stringWithFormat:@",总分%@分",self.totalScore];
+            if (self.totalScore.integerValue == 0) {
+                rStr = @"";
+            }
+        }
     }else if (self.toolID.integerValue == 223){
         if (self.type.integerValue == 0) {
             lStr = [NSString stringWithFormat:@"选修: 需要观看%@分钟",self.totalNum];
@@ -43,15 +50,8 @@
                 rStr = @"";
             }
         }
-    }else if (self.toolID.integerValue == 301){
-        if (self.type.integerValue == 0) {
-            lStr = [NSString stringWithFormat:@"课程: 需要观看%@分钟",self.totalNum];
-            rStr = [NSString stringWithFormat:@",总分%@分",self.totalScore];
-            if (self.totalScore.integerValue == 0) {
-                rStr = @"";
-            }
-        }else {
-            lStr = [NSString stringWithFormat:@"课程: 需要观看%@门课程",self.totalNum];
+        if (!self.isShowChoose) {
+            lStr = [NSString stringWithFormat:@"观看课程: 需要观看%@分钟",self.totalNum];
             rStr = [NSString stringWithFormat:@",总分%@分",self.totalScore];
             if (self.totalScore.integerValue == 0) {
                 rStr = @"";
@@ -168,9 +168,15 @@
         if (self.totalScore.integerValue == 0) {
             rStr = @"";
         }
+    }else if (self.toolID.integerValue == 221 || self.toolID.integerValue == 321){
+        lStr = [NSString stringWithFormat:@"随堂练: 需要答对%@个",self.totalNum];
+        rStr = [NSString stringWithFormat:@",总分%@分",self.totalScore];
+        if (self.totalScore.integerValue == 0) {
+            rStr = @"";
+        }
     }else{
-        lStr = [NSString stringWithFormat:@"已完成%@个",self.finishNum];
-        rStr = [NSString stringWithFormat:@",需要完成%@个",self.totalNum];
+        lStr = [NSString stringWithFormat:@"%@: 需要完成%@个",self.toolName,self.totalNum];
+        rStr = [NSString stringWithFormat:@",总分%@个",self.totalScore];
         if (self.totalScore.integerValue == 0) {
             rStr = @"";
         }

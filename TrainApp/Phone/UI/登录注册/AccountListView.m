@@ -56,7 +56,7 @@
     Account *a12 = [Account accountWithName:@"XY00000163@yanxiu.com" password:@"123456"];
     Account *a13 = [Account accountWithName:@"XY00000193@yanxiu.com" password:@"888888"];
     AccountGroup *g1 = [AccountGroup accountGroupWithName:@"(非北京)测试环境帐号" accounts:@[a11,a12,a13]];
-    Account *a21 = [Account accountWithName:@"XY02735506@yanxiu.com" password:@"123456"];
+    Account *a21 = [Account accountWithName:@"XY03318570@yanxiu.com" password:@"888888"];
     Account *a22 = [Account accountWithName:@"XY02698346@yanxiu.com" password:@"888888"];
     Account *a23 = [Account accountWithName:@"XY02693619@yanxiu.com" password:@"123456"];
     AccountGroup *g2 = [AccountGroup accountGroupWithName:@"(非北京)正式环境帐号" accounts:@[a21,a22,a23]];

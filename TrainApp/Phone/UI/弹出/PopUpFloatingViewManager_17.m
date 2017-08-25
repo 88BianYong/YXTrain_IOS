@@ -27,12 +27,10 @@
 @property (nonatomic, assign) BOOL isNotice;//通知简报
 @property (nonatomic, assign) BOOL isStep;//流程
 
-@property (nonatomic, assign) BOOL isTemp;
 @end
 @implementation PopUpFloatingViewManager_17
 - (instancetype)init {
     if (self = [super init]) {
-        self.isTemp = NO;
         self.isShowCMS = YES;
         self.loginStatus = PopUpFloatingLoginStatus_Already;
         WEAK_SELF
@@ -54,7 +52,7 @@
     if (self.loginStatus == PopUpFloatingLoginStatus_QRCode) {
         return;
     }
-    if (self.isShowCMS && self.loginStatus == PopUpFloatingLoginStatus_Already && self.isTemp) {
+    if (self.isShowCMS && self.loginStatus == PopUpFloatingLoginStatus_Already) {
         [self showCMSView];
     }else if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade) {
         [self showUpgradeView];

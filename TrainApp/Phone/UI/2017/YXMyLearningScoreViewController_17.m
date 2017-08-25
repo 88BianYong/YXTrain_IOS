@@ -17,6 +17,7 @@
 @property (nonatomic, strong) YXMyLearningScoreTableHeaderView_17 *headerView;
 
 @property (nonatomic, assign) NSInteger showMarkHeight;
+@property (nonatomic, assign) BOOL isShowChoose;
 @end
 
 @implementation YXMyLearningScoreViewController_17
@@ -45,6 +46,13 @@
             if (exa.totalScore.integerValue != 0.0f || exa.passTotalScore.integerValue != 0.0f || exa.totalNum.integerValue != 0) {
                 isFilterBool = NO;
                 [list addObject:exa];
+            }
+            if (exa.toolID.integerValue == 201) {
+                [exa.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if (next.toolID.integerValue == 223) {
+                        self.isShowChoose = YES;
+                    }
+                }];
             }
         }];
         obj.toolExamineVoList = list;
@@ -137,6 +145,7 @@
             help.passTotalScore = obj.passTotalScore;
             help.passScore = obj.passScore;
             help.isExamPass = self.examine.isExamPass;
+            help.isShowChoose = self.isShowChoose;
             NSString *helpString = [help toolCompleteStatusExplain];
             if (!isEmpty(helpString)) {
                 [mutableArray addObject:helpString];
@@ -156,6 +165,7 @@
                 help.passTotalScore = next.passTotalScore;
                 help.passScore = next.passScore;
                 help.isExamPass = self.examine.isExamPass;
+                help.isShowChoose = self.isShowChoose;
                 self.showMarkHeight += 23;
                 NSString *helpString = [help toolCompleteStatusExplain];
                 if (!isEmpty(helpString)) {
