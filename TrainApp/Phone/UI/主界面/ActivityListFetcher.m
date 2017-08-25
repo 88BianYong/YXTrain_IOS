@@ -22,6 +22,7 @@
     self.request.studyId = self.studyid;
     self.request.segmentId = self.segid;
     self.request.stageId = self.stageid;
+    self.request.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
      WEAK_SELF
     [self.request startRequestWithRetClass:[ActivityListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

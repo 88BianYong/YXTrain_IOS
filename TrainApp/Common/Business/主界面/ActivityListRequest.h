@@ -60,6 +60,7 @@
 @property (nonatomic, copy) NSString *projectId;
 @property (nonatomic, copy) NSString *segmentId;
 @property (nonatomic, copy) NSString *stageId;
+@property (nonatomic, copy) NSString *w;
 @property (nonatomic, copy) NSString *studyId;
 @property (nonatomic, copy) NSString *page;
 @property (nonatomic, copy) NSString *pagesize;
