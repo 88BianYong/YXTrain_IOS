@@ -20,6 +20,12 @@
                                                        @"passfinishscore":@"passFinishScore",
                                                        @"passtotalscore":@"passTotalScore"}];
 }
+- (NSString<Optional> *)name {
+    if (self.toolID.integerValue == 222) {
+        return @"任务说明";
+    }
+    return _name;
+}
 @end
 @implementation ExamineDetailRequest_17Item_Examine_Process
 + (JSONKeyMapper *)keyMapper {
@@ -42,6 +48,12 @@
 @implementation ExamineDetailRequest_17Item_Stages_Tools
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"toolid":@"toolID"}];
+}
+- (NSString<Optional> *)name {
+    if (self.toolID.integerValue == 222) {//TBD:8-25 测试要求
+        return @"任务说明";
+    }
+    return _name;
 }
 @end
 @implementation ExamineDetailRequest_17Item_User

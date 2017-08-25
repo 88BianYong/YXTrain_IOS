@@ -82,7 +82,7 @@
         lStr = [NSString stringWithFormat:@"研修总结: 需要完成%@篇得%@分,",self.totalNum,self.totalScore];
          rStr = [NSString stringWithFormat:@"\n研修总结评分大于%@分后,按比例得分,满分%@分",self.passScore,self.passTotalScore];
     }else if (self.toolID.integerValue == 222 || self.toolID.integerValue == 322){
-        lStr = [NSString stringWithFormat:@"阅读文本: 需要阅读%@篇",self.totalNum];
+        lStr = [NSString stringWithFormat:@"任务说明: 需要阅读%@篇",self.totalNum];
         rStr = [NSString stringWithFormat:@",总分%@分",self.totalScore];
         if (self.totalScore.integerValue == 0) {
             rStr = @"";

@@ -208,7 +208,7 @@
     }];
 }
 
-- (void)setclassworkMutableArray:(NSMutableArray<__kindof YXFileVideoClassworkItem *> *)classworkMutableArray {
+- (void)setClassworkMutableArray:(NSMutableArray<__kindof YXFileVideoClassworkItem *> *)classworkMutableArray {
     NSArray *sorte = [classworkMutableArray sortedArrayUsingComparator:^NSComparisonResult(YXFileVideoClassworkItem *obj1, YXFileVideoClassworkItem *obj2) {
         if (obj1.timeString.integerValue < obj2.timeString.integerValue) {
             return(NSComparisonResult)NSOrderedAscending;
