@@ -35,8 +35,6 @@
     self.title = self.reading.name;
     [self setupUI];
     [self setupLayout];
-    BLOCK_EXEC(self.readingDetailFinishCompleteBlock);
-
 }
 
 - (void)didReceiveMemoryWarning {
