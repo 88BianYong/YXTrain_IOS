@@ -24,12 +24,6 @@
 }
 @end
 @implementation CourseListRequest_17Item_Objs
-- (NSString<Optional> *)timeLengthSec {
-    if (_timeLengthSec == nil) {
-        _timeLengthSec = self.timeLength;
-    }
-    return _timeLengthSec;
-}
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"trainingid":@"trainingID",
                                                        @"studycode":@"studyCode",

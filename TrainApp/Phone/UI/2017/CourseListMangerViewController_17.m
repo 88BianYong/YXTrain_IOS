@@ -40,13 +40,13 @@
 - (void)setupUI {
     if (self.isShowChoose) {
         [self setCourseTitleView];
-        CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];
+        CourseListCompulsoryViewController_17 *compulsoryVC = [[CourseListCompulsoryViewController_17 alloc] init];//必修
         compulsoryVC.segmentString = self.segmentString;
         compulsoryVC.studyString = self.studyString;
         compulsoryVC.stageString = self.stageString;
         compulsoryVC.typeString = @"102";
         [self addChildViewController:compulsoryVC];
-        CourseListElectiveViewController_17 *electiveVC = [[CourseListElectiveViewController_17 alloc] init];
+        CourseListElectiveViewController_17 *electiveVC = [[CourseListElectiveViewController_17 alloc] init];//选修
         electiveVC.segmentString = self.segmentString;
         electiveVC.studyString = self.studyString;
         electiveVC.stageString = self.stageString;

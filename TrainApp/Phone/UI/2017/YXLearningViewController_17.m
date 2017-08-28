@@ -344,7 +344,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
                 if (process.toolExamineVoList.count > tagInteger) {
                     ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *voList = process.toolExamineVoList[tagInteger];
                     [voList.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                        if (obj.toolID.integerValue == 223) {
+                        if ((obj.toolID.integerValue == 223) || (obj.toolID.integerValue == 201 && obj.type.integerValue == 1)) {
                             isShowChoose = YES;
                             *stop = YES;
                         }
