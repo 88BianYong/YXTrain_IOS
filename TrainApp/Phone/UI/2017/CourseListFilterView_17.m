@@ -123,6 +123,14 @@
         CGPoint point = [sender locationInView:self.maskView];
         if (sender.state == UIGestureRecognizerStateEnded &&
             !CGRectContainsPoint(self.collectionView.frame,point)) {
+            [self.selectedMutableArray removeAllObjects];
+            [self.searchTerm.selectedMutableArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if (obj.integerValue < 0) {
+                    [self.selectedMutableArray addObject:@"0"];
+                }else {
+                    [self.selectedMutableArray addObject:obj];
+                }
+            }];
             [self hideFilterSelectionView];
         }
     }];
@@ -211,7 +219,11 @@
 }
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
+    CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = self.searchTerm.segmentModel[[self.selectedMutableArray[0] integerValue]];
+    if (mockSegment.chapter.count > 0) {
+        return 2;
+    }
+    return 1;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -256,6 +268,9 @@
                      self.selectedMutableArray[1] = @(idx);
                 }
             }];
+            if (segment.chapter.count == 0) {//没有学科
+                self.selectedMutableArray[1] = @(-1);
+            }
         };
         self.selectedMutableArray[indexPath.section] = @(indexPath.row);
         [self reloadData];
@@ -272,30 +287,33 @@
            headerView.title = @"学科";
         }
         return headerView;
-    }else if (kind == UICollectionElementKindSectionFooter && indexPath.section == 1){
-        CourseFilterFooterView_17 *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"CourseFilterFooterView_17" forIndexPath:indexPath];
-        WEAK_SELF
-        footerView.courseFilterCompleteBlock = ^(BOOL isCancleBool) {
-            STRONG_SELF
-            if (isCancleBool) {
-                [self.selectedMutableArray removeAllObjects];
-                [self.searchTerm.selectedMutableArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if (obj.integerValue < 0) {
-                        [self.selectedMutableArray addObject:@"0"];
-                    }else {
-                        [self.selectedMutableArray addObject:obj];
+    }else if (kind == UICollectionElementKindSectionFooter){
+        CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = self.searchTerm.segmentModel[[self.selectedMutableArray[0] integerValue]];
+        if((mockSegment.chapter.count == 0 && indexPath.section == 0) || (mockSegment.chapter.count > 0 && indexPath.section == 1)){
+            CourseFilterFooterView_17 *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"CourseFilterFooterView_17" forIndexPath:indexPath];
+            WEAK_SELF
+            footerView.courseFilterCompleteBlock = ^(BOOL isCancleBool) {
+                STRONG_SELF
+                if (isCancleBool) {
+                    [self.selectedMutableArray removeAllObjects];
+                    [self.searchTerm.selectedMutableArray enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                        if (obj.integerValue < 0) {
+                            [self.selectedMutableArray addObject:@"0"];
+                        }else {
+                            [self.selectedMutableArray addObject:obj];
+                        }
+                    }];
+                }else {
+                    if ([self.selectedMutableArray[0] integerValue] != [self.searchTerm.selectedMutableArray[0] integerValue] || [self.selectedMutableArray[1] integerValue] != [self.searchTerm.selectedMutableArray[1] integerValue]) {
+                        [self.searchTerm.selectedMutableArray removeAllObjects];
+                        [self.searchTerm.selectedMutableArray addObjectsFromArray:self.selectedMutableArray];
+                        BLOCK_EXEC(self.courseListFilterSelectedBlock,[self setupCourseFilterContent]);
                     }
-                }];
-            }else {
-                if ([self.selectedMutableArray[0] integerValue] != [self.searchTerm.selectedMutableArray[0] integerValue] || [self.selectedMutableArray[1] integerValue] != [self.searchTerm.selectedMutableArray[1] integerValue]) {
-                    [self.searchTerm.selectedMutableArray removeAllObjects];
-                    [self.searchTerm.selectedMutableArray addObjectsFromArray:self.selectedMutableArray];
-                    BLOCK_EXEC(self.courseListFilterSelectedBlock,[self setupCourseFilterContent]);
                 }
-            }
-            [self hideFilterSelectionView];
-        };
-        return footerView;
+                [self hideFilterSelectionView];
+            };
+            return footerView;
+        }
     }
     return nil;
 }
@@ -312,7 +330,8 @@
     }
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-    if (section == 1) {
+            CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = self.searchTerm.segmentModel[[self.selectedMutableArray[0] integerValue]];
+    if ((section == 0 && mockSegment.chapter.count == 0) || (section == 1 && mockSegment.chapter.count > 0)) {
         return CGSizeMake(kScreenWidth , 20.0f + 29.0f + 20.0f);
     }else {
         return CGSizeZero;
