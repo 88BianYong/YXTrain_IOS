@@ -76,7 +76,7 @@
     [self.tableView registerClass:[YXMyLearningScoreCell_17 class] forCellReuseIdentifier:@"YXMyLearningScoreCell_17"];
     self.headerView = [[YXMyLearningScoreTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 110.0f)];
     self.headerView.isPassInteger = self.examine.isPass.integerValue;
-    self.headerView.scoreString = self.examine.userGetScore;
+    self.headerView.scoreString = [NSString stringWithFormat:@"%0.2f",[self.examine.userGetScore floatValue]];
     self.tableView.tableHeaderView = self.headerView;
 }
 - (void)setupLayout {

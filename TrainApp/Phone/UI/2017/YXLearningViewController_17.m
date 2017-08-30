@@ -118,7 +118,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     if (self.qrCodeView == nil) {
         [self setupQRCodeLeftView];
     }
-    self.headerView.scoreString = _examineDetailItem.examine.userGetScore;
+    self.headerView.scoreString = [NSString stringWithFormat:@"%0.2f",[_examineDetailItem.examine.userGetScore floatValue]];
     self.headerView.hidden = NO;
     [self.tableView reloadData];
     PopUpFloatingViewManager_17 *floatingView = (PopUpFloatingViewManager_17 *)[LSTSharedInstance sharedInstance].floatingViewManager;
