@@ -49,12 +49,16 @@
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
                                                        @"stageid":@"stageID",
-                                                       @"toolid":@"toolID"}];
+                                                       @"toolid":@"toolID",
+                                                       @"themeid":@"themeID",
+                                                       @"layerid":@"layerID"}];
 }
 - (instancetype)init {
     if (self = [super init]) {
         self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/reading/list"];
         self.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+        self.themeID= [LSTSharedInstance sharedInstance].trainManager.currentProject.themeId;
+        self.layerID = [LSTSharedInstance sharedInstance].trainManager.currentProject.layerId;
     }
     return self;
 }

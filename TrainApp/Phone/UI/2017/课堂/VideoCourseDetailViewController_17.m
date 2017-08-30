@@ -208,6 +208,9 @@
     [self setupRightWithTitle:@" "];//TBD: 标题右移
 }
 - (void)setupClassworkManager:(YXFileItemBase *)fileItem {
+    if (self.detailItem.courseSchemeMode.integerValue == 1) {
+        return;
+    }
     //随堂练
     [self.classworkManager clear];
     self.classworkManager = nil;

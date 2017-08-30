@@ -5752,7 +5752,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fe7effbf-7c8a-4131-9f44-a6ba88ef4011";
+				PROVISIONING_PROFILE = "fd9dd66f-3c66-4404-8f95-ef45cf6829b3";
 				PROVISIONING_PROFILE_SPECIFIER = liangShiTong_Dev;
 			};
 			name = Debug;
@@ -5779,8 +5779,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4e7201c8-c1bc-4eb8-9fac-052f419b74af";
-				PROVISIONING_PROFILE_SPECIFIER = LiangShiTong_Adc;
+				PROVISIONING_PROFILE = $APP_PROFILE;
+				PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE;
 			};
 			name = Release;
 		};

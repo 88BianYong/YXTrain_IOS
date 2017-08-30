@@ -58,4 +58,6 @@
 @property (nonatomic, copy) NSString<Optional> *projectID;
 @property (nonatomic, copy) NSString<Optional> *stageID;
 @property (nonatomic, copy) NSString<Optional> *toolID;
+@property (nonatomic, copy) NSString<Optional> *themeID;//主题 id，有主题时必填，默认为0
+@property (nonatomic, copy) NSString<Optional> *layerID;//主题 id，有主题时必填，默认为0
 @end
