@@ -5779,8 +5779,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = $APP_PROFILE;
-				PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE;
+				PROVISIONING_PROFILE = "fb429e5a-1976-4d01-bedd-e319755d1226";
+				PROVISIONING_PROFILE_SPECIFIER = liangShiTong_Rel;
 			};
 			name = Release;
 		};
