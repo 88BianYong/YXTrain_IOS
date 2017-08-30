@@ -16,6 +16,9 @@
 @end
 
 @implementation YXMineHeaderView_17
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self setupUI];
@@ -26,7 +29,15 @@
 #pragma mark - set 
 - (void)setUserProfile:(YXUserProfile *)userProfile {
     _userProfile = userProfile;
-    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:_userProfile.headDetail ?: _userProfile.head] placeholderImage:[UIImage imageNamed:@"个人信息默认用户头像"]];
+    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:_userProfile.headDetail ?: _userProfile.head] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (error != nil){
+            self.nameLabel.textColor = [UIColor colorWithHexString:@"0067be"];
+            self.studySegmentLabel.textColor = [UIColor colorWithHexString:@"0067be"];
+        }else {
+            self.nameLabel.textColor = [UIColor whiteColor];
+            self.studySegmentLabel.textColor = [UIColor whiteColor];
+        }
+    }];
     [self.userHeaderImageView sd_setImageWithURL:[NSURL URLWithString:_userProfile.headDetail ?: _userProfile.head] placeholderImage:[UIImage imageNamed:@"个人信息默认用户头像"]];
     self.nameLabel.text = _userProfile.realName;
     NSString *contentString =_userProfile.stage;

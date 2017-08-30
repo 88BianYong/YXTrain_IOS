@@ -98,6 +98,8 @@
     }];
 }
 - (NSMutableAttributedString *)totalScore:(NSString *)tScore WithScore:(NSString *)score{
+    
+    
     NSString *completeStr = [NSString stringWithFormat:@"%@ / %@分",score,tScore];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
     [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_DemiBold size:13] range:NSMakeRange(0, score.length)];

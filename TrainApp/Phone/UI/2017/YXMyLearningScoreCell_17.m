@@ -82,13 +82,20 @@
     for (ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *tool in _process.toolExamineVoList) {
         YXMyLearningUserScoreView *view = [[YXMyLearningUserScoreView alloc] init];
         view.nameLabel.text = tool.name;
-        view.scoreLabel.attributedText = [self totalScore:tool.totalScore WithScore:tool.userScore];
+        view.scoreLabel.attributedText = [self totalScore:[NSString stringWithFormat:@"%0.2f",[tool.totalScore floatValue] + [tool.passTotalScore floatValue]] WithScore:[NSString stringWithFormat:@"%0.2f",[tool.userScore floatValue] + [tool.passFinishScore floatValue]]];
         [self.contentView addSubview:view];
         [mutableArray addObject:view];
     }
     [self setupToolScoreView:mutableArray];
 }
 - (NSMutableAttributedString *)totalScore:(NSString *)tScore WithScore:(NSString *)score{
+    if ([tScore floatValue] == ceilf([tScore floatValue]) && [tScore floatValue] == floorf([tScore floatValue])) {
+        tScore = [NSString stringWithFormat:@"%d",[tScore intValue]];
+    }
+    if ([score floatValue] == ceilf([score floatValue]) && [score floatValue] == floorf([score floatValue])) {
+        score = [NSString stringWithFormat:@"%d",[score intValue]];
+    }
+
     NSString *completeStr = [NSString stringWithFormat:@"%@ / %@分",score,tScore];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
     [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_DemiBold size:13] range:NSMakeRange(0, score.length)];

@@ -65,13 +65,13 @@
         }
         self.htmlHeight = height;
         dispatch_async(dispatch_get_main_queue(), ^{
-            BLOCK_EXEC(self.readingDetailHeaderHeightChangeBlock,height);
+            BLOCK_EXEC(self.readingDetailHeaderHeightChangeBlock,height + 10.0f);
         });
     }];
 }
 - (void)setupLayout {
     [self.htmlView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top);
+        make.top.equalTo(self.mas_top).offset(10.0f);
         make.left.equalTo(self.mas_left).offset(25.0f);
         make.right.equalTo(self.mas_right).offset(-25.0f);
         make.bottom.equalTo(self.mas_bottom);

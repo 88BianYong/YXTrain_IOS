@@ -28,6 +28,9 @@ UITableViewDataSource
 @end
 
 @implementation YXMineViewController_17
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我";
@@ -36,6 +39,11 @@ UITableViewDataSource
     [self setupUI];
     [self layoutInterface];
     [self reloadUserProfileData];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter]rac_addObserverForName:@"kYXUploadUserPicSuccessNotification" object:nil]subscribeNext:^(id x) {
+        STRONG_SELF
+        self.headerView.userProfile = [LSTSharedInstance sharedInstance].userManger.userModel.profile;
+    }];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -182,7 +190,6 @@ UITableViewDataSource
           [self.tableView reloadData];
     }
     self.headerView.userProfile = self.userProfile;
-    [self requestUserProfile];
 }
 - (void)requestUserProfile {
     YXUserProfileRequest *request = [[YXUserProfileRequest alloc] init];

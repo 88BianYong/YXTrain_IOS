@@ -36,6 +36,7 @@
 
 + (NSDictionary *)picNameMap {
     return @{@"video":@"mp4／m3u8",
+             @"flv":@"未知",
              @"audio":@"mp3",
              @"text":@"txt",
              @"image":@"jpg-png-bmp",
