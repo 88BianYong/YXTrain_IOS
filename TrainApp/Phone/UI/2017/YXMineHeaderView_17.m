@@ -29,7 +29,7 @@
 #pragma mark - set 
 - (void)setUserProfile:(YXUserProfile *)userProfile {
     _userProfile = userProfile;
-    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:_userProfile.headDetail ?: _userProfile.head] placeholderImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0067be"]]];
+//    [self.backgroundImageView sd_setImageWithURL:[NSURL URLWithString:_userProfile.headDetail ?: _userProfile.head] placeholderImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0067be"]]];
     [self.userHeaderImageView sd_setImageWithURL:[NSURL URLWithString:_userProfile.headDetail ?: _userProfile.head] placeholderImage:[UIImage imageNamed:@"个人信息默认用户头像"]];
     self.nameLabel.text = _userProfile.realName;
     NSString *contentString =_userProfile.stage;
@@ -47,6 +47,7 @@
     self.backgroundImageView = [[UIImageView alloc] init];
     self.backgroundImageView.contentMode = UIViewContentModeScaleToFill;
     self.backgroundImageView.userInteractionEnabled = YES;
+    self.backgroundImageView.image = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0067be"]];
     [self.contentView addSubview:self.backgroundImageView];
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
     WEAK_SELF
@@ -59,6 +60,7 @@
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
     effectView.alpha = 0.95f;
+    
     [self.backgroundImageView addSubview:effectView];
     [effectView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.backgroundImageView);
