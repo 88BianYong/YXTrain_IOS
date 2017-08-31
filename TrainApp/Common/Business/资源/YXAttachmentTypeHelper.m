@@ -36,7 +36,6 @@
 
 + (NSDictionary *)picNameMap {
     return @{@"video":@"mp4／m3u8",
-             @"flv":@"未知",
              @"audio":@"mp3",
              @"text":@"txt",
              @"image":@"jpg-png-bmp",
@@ -45,7 +44,22 @@
              @"word":@"word",
              @"excel":@"excel",
              @"html":@"html",
-             @"unknown":@"未知"
+             @"unknown":@"未知",
+              //2.5 文本阅读添加
+             @"doc":@"word",
+             @"docx":@"word",
+             @"xls":@"excel",
+             @"xlsx":@"excel",
+             @"pptx":@"ppt",
+             @"pps":@"ppt",
+             @"ppsx":@"ppt",
+             @"flv":@"mp4／m3u8",
+             @"rar":@"未知",
+             @"zip":@"未知",
+             @"jpg":@"jpg-png-bmp",
+             @"gif":@"jpg-png-bmp",
+             @"png":@"jpg-png-bmp",
+             @"bmp":@"jpg-png-bmp",
              };
 }
 
