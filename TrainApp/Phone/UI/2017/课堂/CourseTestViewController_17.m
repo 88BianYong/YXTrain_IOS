@@ -73,8 +73,10 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
             }];
         }
     }];
+    self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 40.0f);
     self.headerView.result = _quizesItem.result;
     self.headerView.hidden = NO;
+    self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView.hidden = NO;
     [self.tableView reloadData];
 }
@@ -120,7 +122,6 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
  
     self.headerView = [[CourseTestTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 71.0f)];
     self.headerView.hidden = YES;
-    self.tableView.tableHeaderView = self.headerView;
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100.0f, 79.0f)];
     footerView.backgroundColor = [UIColor whiteColor];
     footerView.hidden = YES;

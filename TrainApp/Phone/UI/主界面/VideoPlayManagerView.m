@@ -52,6 +52,7 @@ static const NSInteger kPlayReportRetryTime = 10;
 
 @property (nonatomic, copy) void(^isReportSuccessBlock)(BOOL isSuccess);
 @property (nonatomic, assign) BOOL isTestReport;
+@property (nonatomic, assign) NSTimeInterval reportPlayTime;
 
 
 @end
@@ -75,6 +76,7 @@ static const NSInteger kPlayReportRetryTime = 10;
             [self recordPlayerDuration];
         }];
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainStartStopVideo object:nil] subscribeNext:^(NSNotification *x) {
+            STRONG_SELF
             if ([x.object boolValue]) {
                 [self.documentRetryTimer invalidate];
                 self.documentRetryTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
@@ -90,7 +92,6 @@ static const NSInteger kPlayReportRetryTime = 10;
       
             }
 
-            STRONG_SELF
             if (!self.exceptionView.hidden) {
                 return;
             }
@@ -130,8 +131,8 @@ static const NSInteger kPlayReportRetryTime = 10;
                 [self.playReportRetryTimer invalidate];
                 self.playReportRetryTimer = nil;
                 self.playTime = 0;
-                self.startTime = nil;
-                self.isTestReport = NO;                
+                self.isTestReport = NO;
+                self.reportPlayTime = 0;
                 BLOCK_EXEC(self.isReportSuccessBlock,YES);
             }
         }];
@@ -797,19 +798,38 @@ static const NSInteger kPlayReportRetryTime = 10;
         }
     }
 }
+- (void)recordPlayerDuration2  {
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    if ((self.delegate) && [self.delegate respondsToSelector:@selector(playerProgress:totalDuration:stayTime:)]) {
+        if (self.player.duration) {
+            if (self.startTime) {
+                self.playTime += [[NSDate date]timeIntervalSinceDate:self.startTime];
+            }
+            self.playTime += self.reportPlayTime;
+
+            [self.delegate playerProgress:self.slideProgressView.playProgress totalDuration:self.player.duration stayTime:self.playTime];
+            self.playTime = 0;
+            self.startTime = nil;
+            self.reportPlayTime = self.playTime;
+        }
+    }
+}
 - (void)playReport:(void(^)(BOOL isSuccess))block {
-    self.isReportSuccessBlock = block;
-    [self.playReportRetryTimer invalidate];
-    self.playReportRetryTimer = [NSTimer scheduledTimerWithTimeInterval:kPlayReportRetryTime
-                                                               target:self
-                                                             selector:@selector(startPlayReport)
-                                                             userInfo:nil
-                                                              repeats:YES];
-    [self.playReportRetryTimer fire];
+    if (!self.isTestReport) {
+        self.isReportSuccessBlock = block;
+        [self.playReportRetryTimer invalidate];
+        self.playReportRetryTimer = [NSTimer scheduledTimerWithTimeInterval:kPlayReportRetryTime
+                                                                     target:self
+                                                                   selector:@selector(startPlayReport)
+                                                                   userInfo:nil
+                                                                    repeats:YES];
+        [self.playReportRetryTimer fire];
+    }
 }
 - (void)startPlayReport {
     self.isTestReport = YES;
-    [self recordPlayerDuration];
+    [self recordPlayerDuration2];
+    self.startTime = [NSDate date];
     SAFE_CALL(self.exitDelegate, browserExit);
 }
 - (void)viewWillAppear {

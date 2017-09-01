@@ -52,6 +52,7 @@
 }
 
 - (void)report{
+    DDLogDebug(@">>>>>%@",self.courseDetailItem.rc);
     [self.request stopRequest];
     self.request = [[YXSaveProcessRequest alloc] init];
     self.request.cid = self.courseDetailItem.course_id;

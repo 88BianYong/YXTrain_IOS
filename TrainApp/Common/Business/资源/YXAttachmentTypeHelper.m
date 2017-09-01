@@ -24,7 +24,23 @@
              @"word":@(YXFileTypeDoc),
              @"excel":@(YXFileTypeDoc),
              @"html":@(YXFileTypeHtml),
-             @"unknown":@(YXFileTypeUnknown)
+             @"unknown":@(YXFileTypeUnknown),
+             
+             //2.5 文本阅读添加
+             @"doc":@(YXFileTypeDoc),
+             @"docx":@(YXFileTypeDoc),
+             @"xls":@(YXFileTypeDoc),
+             @"xlsx":@(YXFileTypeDoc),
+             @"pptx":@(YXFileTypeDoc),
+             @"pps":@(YXFileTypeDoc),
+             @"ppsx":@(YXFileTypeDoc),
+             @"flv":@(YXFileTypeVideo),
+             @"rar":@(YXFileTypeUnknown),
+             @"zip":@(YXFileTypeUnknown),
+             @"jpg":@(YXFileTypePhoto),
+             @"gif":@(YXFileTypePhoto),
+             @"png":@(YXFileTypePhoto),
+             @"bmp":@(YXFileTypePhoto),             
              };
 }
 

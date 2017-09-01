@@ -25,7 +25,12 @@
 - (void)setResult:(CourseGetQuizesRequest_17Item_Result *)result {
     _result = result;
     self.explainLabel.text = [NSString stringWithFormat:@"需要答对%.0f道及以上的题目才能通过课程测验",ceil((float)_result.questions.count/10.0f*6.0f)];
-    _lastAnswerLabel.text = [NSString stringWithFormat:@"上次作答结果:(答对%@道,答错%@道),%@",_result.correctNum,_result.wrongNum,_result.lastTime];
+    if (_result.status.integerValue == 0) {
+          _lastAnswerLabel.text = [NSString stringWithFormat:@"上次作答结果:(答对%@道,答错%@道),%@",_result.correctNum,_result.wrongNum,_result.lastTime];
+    }else {
+        _lastAnswerLabel.text = @"";
+    }
+
 }
 #pragma mark - setup
 - (void)setupUI {
@@ -48,16 +53,16 @@
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         make.top.equalTo(self.mas_top).offset(5.0f);
-        make.height.mas_offset(61.0f);
+        make.height.equalTo(self.mas_height).offset(-10.0f);
     }];
     
     [self.explainLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView.mas_left).offset(15.0f);
-        make.bottom.equalTo(self.containerView.mas_centerY).offset(-4.0f);
+        make.top.equalTo(self.containerView.mas_top).offset(10.0f);
     }];
     [self.lastAnswerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView.mas_left).offset(15.0f);
-        make.top.equalTo(self.containerView.mas_centerY).offset(4.0f);
+        make.top.equalTo(self.explainLabel.mas_bottom).offset(10.0f);
     }];
 }
 @end

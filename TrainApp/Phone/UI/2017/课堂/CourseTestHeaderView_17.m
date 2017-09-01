@@ -62,16 +62,16 @@
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.contentView addSubview:self.lineView];
     
-    self.numberLabel = [[UILabel alloc] init];
-    self.numberLabel.font = [UIFont systemFontOfSize:13.0f];
-    self.numberLabel.textColor = [UIColor colorWithHexString:@"334466"];
-    [self.contentView addSubview:self.numberLabel];
-    
     self.questionLabel = [[UILabel alloc] init];
     self.questionLabel.font = [UIFont systemFontOfSize:13.0f];
     self.questionLabel.numberOfLines = 0;
     self.questionLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self.contentView addSubview:self.questionLabel];
+    
+    self.numberLabel = [[UILabel alloc] init];
+    self.numberLabel.font = [UIFont systemFontOfSize:13.0f];
+    self.numberLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    [self.contentView addSubview:self.numberLabel];
     
 }
 - (void)setupLayout {
@@ -91,7 +91,6 @@
     [self.numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.typeLabel.mas_left);
         make.top.equalTo(self.lineView.mas_top).offset(18.0f);
-        make.width.mas_offset(10.0f);
     }];
     
     [self.questionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
