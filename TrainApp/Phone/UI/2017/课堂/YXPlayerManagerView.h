@@ -40,9 +40,8 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
 
 
 //播放相关时间
-@property (nonatomic, strong) NSDate *startTime;
 @property (nonatomic, assign) NSTimeInterval playTime;
-@property (nonatomic, assign) NSTimeInterval playTotalTime;
+//@property (nonatomic, assign) NSTimeInterval playTotalTime;
 
 
 //播放相关状态

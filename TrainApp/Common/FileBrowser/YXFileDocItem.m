@@ -41,7 +41,7 @@
         [self.baseViewController showToast:@"该文件无法预览"];
         return;
     }
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainDocumentRetryTimer object:@(YES)];
     id favorData = [self valueForKey:@"favorData"];
     if (favorData) {
         YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:favorData baseVC:qlVC];

@@ -12,6 +12,7 @@
 @implementation YXFileAudioItem
 
 - (void)openFile {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainDocumentRetryTimer object:@(YES)];
     YXAudioPlayerViewController *vc = [[YXAudioPlayerViewController alloc] init];
     id favorData = [self valueForKey:@"favorData"];
     if (favorData) {

@@ -31,8 +31,6 @@
 @property (nonatomic, assign) BOOL isTopBottomHidden;
 @property (nonatomic, assign) BOOL isShowDefinition;
 
-@property (nonatomic, strong) NSTimer *documentRetryTimer;
-
 @property (nonatomic, copy) void(^isReportSuccessBlock)(BOOL isSuccess);
 @property (nonatomic, assign) BOOL isTestReport;
 
@@ -64,7 +62,6 @@
 }
 - (void)setupPlayer {
     self.playTime = 0;
-    self.startTime = nil;
     self.topView.titleString = _fileItem.name;
     self.videoUrl = [self definitionFormat];
     if (![[Reachability reachabilityForInternetConnection] isReachable]) {
@@ -357,15 +354,6 @@
             self.bufferingView.hidden = YES;
             [self.bufferingView stop];
         }
-        
-        if ([x unsignedIntegerValue] == PlayerView_State_Playing) {
-            self.startTime = [NSDate date];
-        } else {
-            if (self.startTime) {
-                self.playTime += [[NSDate date] timeIntervalSinceDate:self.startTime];
-                self.startTime = nil;
-            }
-        }
         switch ([x unsignedIntegerValue]) {
             case PlayerView_State_Buffering:
             {
@@ -447,7 +435,8 @@
             if (self.bottomView.slideProgressControl.playProgress > 0) { // walkthrough 换url时slide跳动
                 [self.bottomView.slideProgressControl updateUI];
             }
-            self.playTotalTime += 1;
+            self.playTime += 1;
+            DDLogDebug(@">>>>>>>>>>>%f",self.playTime);
         }
         BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress ,NO);
     }];
@@ -474,19 +463,6 @@
     //显示文档
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainStartStopVideo object:nil] subscribeNext:^(NSNotification *x) {
         STRONG_SELF
-        if ([x.object boolValue]) {//观看文档时间增加 TBD:加载文档有可能引起几秒误差
-            [self.documentRetryTimer invalidate];
-            self.documentRetryTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
-                                                                       target:self
-                                                                     selector:@selector(playTotalTimeAdd)
-                                                                     userInfo:nil
-                                                                      repeats:YES];
-            [self.documentRetryTimer fire];
-        }else {
-            [self.documentRetryTimer invalidate];
-            self.documentRetryTimer = nil;
-        }
-        
         if (self.self.pauseStatus == YXPlayerManagerPause_Next || self.pauseStatus == YXPlayerManagerPause_Not) {
             if ([x.object boolValue]) {
                 self.pauseStatus = YXPlayerManagerPause_Next;
@@ -522,9 +498,7 @@
         }
     }];
 }
-- (void)playTotalTimeAdd {
-    self.playTotalTime += 1;
-}
+
 #pragma mark - hidden show
 - (void)resetTopBottomHideTimer {
     [self.topBottomHiddenDisposable  dispose];
@@ -714,9 +688,6 @@
 #pragma mark - time
 - (NSTimeInterval)recordPlayerDuration {
     [UIApplication sharedApplication].idleTimerDisabled = NO;
-    if (self.player.duration >= 0.0f && self.startTime != nil) {
-        self.playTime += [[NSDate date]timeIntervalSinceDate:self.startTime];
-    }
     return self.playTime;
 }
 #pragma mark - notification

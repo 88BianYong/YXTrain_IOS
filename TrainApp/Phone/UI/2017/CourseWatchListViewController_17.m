@@ -14,7 +14,7 @@
 #import "CourseListFormatModel_17.h"
 #import "VideoCourseDetailViewController.h"
 #import "CourseHistoryViewController_17.h"
-#import "VideoCourseDetailViewController_17.h"
+#import "YXCourseDetailPlayerViewController_17.h"
 @interface CourseWatchListViewController_17 ()
 @property (nonatomic, strong) CourseListFilterView_17 *filterView;
 @property (nonatomic, strong) CourseListRequest_17Item_Scheme *schemeItem;
@@ -195,7 +195,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
+    YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc] init];
     vc.course = [CourseListFormatModel_17 formatModel:self.dataArray[indexPath.row]];
     vc.stageString = self.stageString;
     vc.fromWhere = VideoCourseFromWhere_Detail;

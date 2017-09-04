@@ -70,6 +70,7 @@
 
 - (void)naviLeftAction{
     [self dismissViewControllerAnimated:NO completion:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainDocumentRetryTimer object:@(NO)];
     SAFE_CALL(self.exitDelegate, browserExit);
 }
 

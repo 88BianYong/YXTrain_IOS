@@ -12,7 +12,7 @@
 #import "YXUserProfileRequest.h"
 #import "YXUserManager.h"
 #import "YXAlertView.h"
-#import "VideoCourseDetailViewController.h"
+#import "YXCourseDetailPlayerViewController_17.h"
 @interface VideoCourseQRViewController ()<AVCaptureMetadataOutputObjectsDelegate>{
     YXScanQRBackgroundView *_scanBackgroundView;
     AVCaptureDevice *_device;
@@ -127,7 +127,7 @@
             [_session stopRunning];
             [_scanBackgroundView.scanTimer setFireDate:[NSDate distantFuture]];
             if ( [[LSTSharedInstance sharedInstance].trainManager setupProjectId:[paraDic objectForKey:@"projectId"]]) {
-                VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
+                YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc] init];
                 YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
                 course.courses_id = [paraDic objectForKey:@"courseId"];
                 course.courseType = [paraDic objectForKey:@"courseType"];

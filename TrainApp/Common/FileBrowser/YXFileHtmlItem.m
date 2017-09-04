@@ -12,6 +12,7 @@
 @implementation YXFileHtmlItem
 
 - (void)openFile {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainDocumentRetryTimer object:@(YES)];
     YXBroseWebView *webView = [[YXBroseWebView alloc] init];
     webView.urlString = self.url;
     webView.titleString = self.name;

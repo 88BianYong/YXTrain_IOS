@@ -77,3 +77,5 @@ NSString *const kYXTrainCompleteCourse = @"complete the course";
 
 NSString *const kYXTrainPlayCourseNext = @"Play the course interface to show and overwrite";
 
+NSString *const kYXTrainDocumentRetryTimer = @"Used to watch documents in video playback to increase video start time";
+

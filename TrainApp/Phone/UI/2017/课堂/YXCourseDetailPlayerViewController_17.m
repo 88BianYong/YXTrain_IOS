@@ -23,8 +23,11 @@
 @property (nonatomic, strong) VideoCourseCommentViewController *commentVC;
 
 @property (nonatomic, strong) RACDisposable *disposable;
-@property (nonatomic, strong) NSTimer *playReportRetryTimer;
 @property (nonatomic, assign) BOOL isTestReport;
+@property (nonatomic, assign) NSTimeInterval recordPlayTime;
+@property (nonatomic, assign) NSTimeInterval playDocumentTime;
+@property (nonatomic, strong) NSTimer *playReportRetryTimer;
+@property (nonatomic, strong) NSTimer *documentRetryTimer;
 
 @end
 
@@ -32,6 +35,10 @@
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.playReportRetryTimer invalidate];
+    self.playReportRetryTimer = nil;
+    [self.documentRetryTimer invalidate];
+    self.documentRetryTimer = nil;
     if (self.disposable) {
         [self.disposable dispose];
     }
@@ -43,6 +50,7 @@
     [self setupUI];
     [self setupLayout];
     [self startLoading];
+    [self setupNotification];
     [self requestForCourseDetail];
 }
 - (void)viewDidAppear:(BOOL)animated {
@@ -79,28 +87,20 @@
     }
     _detailItem = detailItem;
     [self.chapterVC dealWithCourseItem:_detailItem];
-    [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.playMangerView.mas_bottom).offset(-71.0f);
-    }];
     self.introductionVC.courseItem = _detailItem;
-    if ([self isShowClassroomCheckButton]) {
+    if ([self isHiddenClassroomCheckButton]) {
         [self.containerView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.playMangerView.mas_bottom).offset(-71.0f);
         }];
     }else {//新随堂练
         self.containerView.startTimeInteger = _detailItem.openQuizTime.integerValue;
         self.containerView.playTimeInteger = _detailItem.rc.integerValue;
-        self.playMangerView.playTotalTime = _detailItem.rc.integerValue;
+        self.recordPlayTime = _detailItem.rc.floatValue;
         self.containerView.isStartBool =floor((float)self.containerView.playTimeInteger/60.0f) >= ceil((float)self.containerView.startTimeInteger/60.0f);
         WEAK_SELF
-        self.disposable = [RACObserve(self.playMangerView, playTotalTime) subscribeNext:^(id x) {
+        self.disposable = [RACObserve(self.playMangerView, playTime) subscribeNext:^(id x) {
             STRONG_SELF
-            if (self.playMangerView.playTotalTime > 0 ) {
-                self.containerView.playTimeInteger = self.playMangerView.playTotalTime;
-                if (floor((float)self.containerView.playTimeInteger/60.0f) >= ceil((float)self.containerView.startTimeInteger/60.0f) && !self.containerView.isStartBool) {
-                    [self playTestReport];
-                }
-            }
+            [self setupReportPlayTime];
         }];
     }
 }
@@ -266,19 +266,17 @@
         [[UIDevice currentDevice] setValue:[NSNumber numberWithInteger:UIDeviceOrientationPortrait] forKey:@"orientation"];
     };
     [self.playMangerView addSubview:self.beginningView];
-#warning 测试片头地址
-    self.beginningView.videoUrl = [NSURL URLWithString:@"http://upload.ugc.yanxiu.com/video/4620490456e684328d4fcf5a920f54a1.mp4"];
-    //[NSURL URLWithString:self.playMangerView.fileItem.vheadUrl];
+    self.beginningView.videoUrl = [NSURL URLWithString:self.playMangerView.fileItem.vheadUrl];
+    //[NSURL URLWithString:@"http://upload.ugc.yanxiu.com/video/4620490456e684328d4fcf5a920f54a1.mp4"];
     [self.beginningView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.playMangerView);
     }];
 }
-- (BOOL)isShowClassroomCheckButton {
+- (BOOL)isHiddenClassroomCheckButton {
     if (self.detailItem.quizNum.integerValue == 0 || self.detailItem.courseSchemeMode.integerValue == 0 || self.detailItem.userQuizStatus.integerValue == 1 || self.isHiddenTestBool) {
-#warning 测试
         return YES;
     }else {
-        return YES;
+        return NO;
     }
 }
 - (BOOL)isPlayBeginningVideo:(BOOL)vHead {
@@ -294,7 +292,7 @@
     return playBool && vHead;
 }
 - (void)refreshContainerView:(CGFloat)distance{
-    if ([self isShowClassroomCheckButton]){
+    if ([self isHiddenClassroomCheckButton]){
         return;
     }
     if (distance > 10.0f) {
@@ -325,26 +323,55 @@
             self.containerView.isStartBool = YES;
         }
     }];
+    //显示文档
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainDocumentRetryTimer object:nil] subscribeNext:^(NSNotification *x) {
+        STRONG_SELF
+        if ([x.object boolValue]) {
+            [self.documentRetryTimer invalidate];
+            self.documentRetryTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                                       target:self
+                                                                     selector:@selector(playDocumentTimeAdd)
+                                                                     userInfo:nil
+                                                                      repeats:YES];
+            [self.documentRetryTimer fire];
+        }else {
+            [self.documentRetryTimer invalidate];
+            self.documentRetryTimer = nil;
+        }
+    }];
 }
 #pragma mark - report
+- (void)setupReportPlayTime {
+    NSTimeInterval playTotalTime = self.detailItem.rc.integerValue + self.playMangerView.playTime + self.playDocumentTime;
+    if (playTotalTime > 0 ) {
+        self.containerView.playTimeInteger = playTotalTime;
+        if (floor((float)self.containerView.playTimeInteger/60.0f) >= ceil((float)self.containerView.startTimeInteger/60.0f) && !self.containerView.isStartBool) {
+            [self playTestReport];
+        }
+    }
+    
+}
+- (void)playDocumentTimeAdd {
+    self.playDocumentTime += 1;
+    [self setupReportPlayTime];
+}
 - (void)recordPlayerDuration {
     if (self.playMangerView.player.duration) {
-        if (self.playMangerView.startTime) {
-            self.playMangerView.playTime += [[NSDate date]timeIntervalSinceDate:self.playMangerView.startTime];
-        }
-        [self.delegate playerProgress:self.playMangerView.slideProgressView.playProgress totalDuration:self.playMangerView.player.duration stayTime:self.playMangerView.playTime];
+        [self.delegate playerProgress:self.playMangerView.slideProgressView.playProgress totalDuration:self.playMangerView.player.duration stayTime:self.playMangerView.playTime + self.playDocumentTime];
         self.playMangerView.playTime = 0;
-        self.playMangerView.startTime = nil;
+        self.playDocumentTime = 0;
     }
 }
 - (void)playTestReport {
-    [self.playReportRetryTimer invalidate];
-    self.playReportRetryTimer = [NSTimer scheduledTimerWithTimeInterval:10
-                                                                 target:self
-                                                               selector:@selector(startPlayReport)
-                                                               userInfo:nil
-                                                                repeats:YES];
-    [self.playReportRetryTimer fire];
+    if (!self.isTestReport) {
+        [self.playReportRetryTimer invalidate];
+        self.playReportRetryTimer = [NSTimer scheduledTimerWithTimeInterval:10
+                                                                     target:self
+                                                                   selector:@selector(startPlayReport)
+                                                                   userInfo:nil
+                                                                    repeats:YES];
+        [self.playReportRetryTimer fire];
+    }
 }
 - (void)startPlayReport {
     self.isTestReport = YES;

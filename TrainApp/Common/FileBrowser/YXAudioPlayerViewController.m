@@ -303,7 +303,7 @@
     self.navigationController.navigationBarHidden = NO;
     [UIApplication sharedApplication].statusBarHidden = NO;
     [self dismissViewControllerAnimated:YES completion:nil];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainDocumentRetryTimer object:@(NO)];
     SAFE_CALL(self.exitDelegate, browserExit);
 }
 

@@ -90,6 +90,7 @@ static  NSString *const trackBulletinDetailsPageName = @"简报详情页面";
 - (void)naviLeftAction{
     [self.navigationController popViewControllerAnimated:YES];
     SAFE_CALL_OneParam(self.browseTimeDelegate, browseTimeUpdated, [[NSDate date] timeIntervalSinceDate:self.beginDate]);
+    [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainDocumentRetryTimer object:@(NO)];
     SAFE_CALL(self.exitDelegate, browserExit);
 }
 

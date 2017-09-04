@@ -14,7 +14,7 @@
 #import "MJRefresh.h"
 #import "YXCourseDetailViewController.h"
 #import "YXModuleListRequest.h"
-#import "VideoCourseDetailViewController.h"
+#import "YXCourseDetailPlayerViewController_17.h"
 static  NSString *const trackPageName = @"看课记录页面";
 @interface YXCourseRecordViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -257,7 +257,7 @@ static  NSString *const trackPageName = @"看课记录页面";
     YXCourseRecordRequestItem_body_module *module = self.recordItem.body.modules[indexPath.section];
     YXCourseListRequestItem_body_module_course * course = module.courses[indexPath.row];
     course.courseType = self.courseType;
-    VideoCourseDetailViewController *vc = [[VideoCourseDetailViewController alloc]init];
+    YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc] init];
     vc.course = course;
     vc.fromWhere = VideoCourseFromWhere_Record;
     [self.navigationController pushViewController:vc animated:YES];

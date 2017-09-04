@@ -10,6 +10,9 @@
 
 @implementation YXCourseDetailPlayerViewController_17 (Detection)
 - (void)setupClassworkManager:(YXFileItemBase *)fileItem {
+    if (self.detailItem.courseSchemeMode.integerValue == 1) {
+        return;
+    }
     //随堂练
     [self.classworkManager clear];
     self.classworkManager = nil;

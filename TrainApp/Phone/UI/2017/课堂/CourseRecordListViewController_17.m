@@ -13,7 +13,7 @@
 #import "CourseListFormatModel_17.h"
 #import "VideoCourseDetailViewController.h"
 #import "CourseHistoryViewController_17.h"
-#import "VideoCourseDetailViewController_17.h"
+#import "YXCourseDetailPlayerViewController_17.h"
 #import "CourseCenterConditionRequest_17.h"
 #import "CourseCenterListFetcher_17.h"
 @interface CourseRecordListViewController_17 ()
@@ -113,7 +113,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    VideoCourseDetailViewController_17 *vc = [[VideoCourseDetailViewController_17 alloc]init];
+    YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc] init];
     vc.course = [CourseListFormatModel_17 formatModel:self.dataArray[indexPath.row]];
     vc.fromWhere = VideoCourseFromWhere_Record;
     vc.isHiddenTestBool = YES;

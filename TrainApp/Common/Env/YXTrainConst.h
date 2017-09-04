@@ -183,6 +183,11 @@ extern NSString *const kYXTrainCompleteCourse;
  */
 extern NSString *const kYXTrainPlayCourseNext;
 
+/*
+ *  观看文档增加时间(用于视频播放中观看文档增加视频开始时间)
+ */
+extern NSString *const kYXTrainDocumentRetryTimer;
+
 
 
 
