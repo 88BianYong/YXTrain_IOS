@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
     YXPlayerManagerAbnormal_DataError,//数据出错
 };
 @interface YXPlayerManagerView : UIView
+//播放视图相关
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 @property (nonatomic, strong) LePlayer *player;
 @property (nonatomic, strong) LePlayerView *playerView;
@@ -37,19 +38,15 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
 @property (nonatomic, strong) ActivitySlideProgressView *slideProgressView;
 @property (nonatomic, strong) ActivityPlayTopView *topView;
 @property (nonatomic, strong) UIImageView *thumbImageView;
-
+@property (nonatomic, assign) BOOL isFullscreen;
 
 //播放相关时间
 @property (nonatomic, assign) NSTimeInterval playTime;
-//@property (nonatomic, assign) NSTimeInterval playTotalTime;
-
 
 //播放相关状态
 @property (nonatomic, assign) YXPlayerManagerPauseStatus pauseStatus;
 @property (nonatomic, assign) YXPlayerManagerAbnormalStatus playerStatus;
-@property (nonatomic, assign) BOOL isFullscreen;
 @property (nonatomic, assign) BOOL isWifiPlayer;//WIFI先允许播放
-
 
 
 @property (nonatomic, copy) void (^playerManagerBackActionBlock)(void);
@@ -58,9 +55,5 @@ typedef NS_ENUM(NSInteger, YXPlayerManagerAbnormalStatus) {
 @property (nonatomic, copy) void (^playerManagerPlayerActionBlock)(YXPlayerManagerAbnormalStatus status);
 @property (nonatomic, copy) void (^playerManagerFinishActionBlock)(void);
 
-
-
-
-- (NSTimeInterval)recordPlayerDuration;
 - (void)playVideoClear;
 @end

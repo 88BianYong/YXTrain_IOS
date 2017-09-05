@@ -22,17 +22,16 @@
 @property (nonatomic, strong) UIImageView *placeholderImageView;
 
 @property (nonatomic, strong) NSURL *videoUrl;
-@property (nonatomic, strong) NSMutableArray<YXVideoPlayerDefinition *> *definitionMutableArray;
-@property (nonatomic, strong) NSMutableArray<UIButton *> *defButtonArray;
-
-
 @property (nonatomic, strong) NSMutableArray<RACDisposable *> *disposableMutableArray;
-@property (nonatomic, strong) RACDisposable *topBottomHiddenDisposable;
-@property (nonatomic, assign) BOOL isTopBottomHidden;
+
+//清晰度选择
+@property (nonatomic, strong) NSMutableArray<YXVideoPlayerDefinition *> *definitionMutableArray;
+@property (nonatomic, strong) NSMutableArray<UIButton *> *buttonMutableArray;
 @property (nonatomic, assign) BOOL isShowDefinition;
 
-@property (nonatomic, copy) void(^isReportSuccessBlock)(BOOL isSuccess);
-@property (nonatomic, assign) BOOL isTestReport;
+//上下状态栏显示隐藏
+@property (nonatomic, strong) RACDisposable *topBottomHiddenDisposable;
+@property (nonatomic, assign) BOOL isTopBottomHidden;
 
 @end
 @implementation YXPlayerManagerView
@@ -43,7 +42,7 @@
     if (self = [super initWithFrame:frame]) {
         self.disposableMutableArray = [[NSMutableArray alloc] initWithCapacity:4];
         self.definitionMutableArray = [[NSMutableArray alloc] initWithCapacity:3];
-        self.defButtonArray = [[NSMutableArray alloc] initWithCapacity:3];
+        self.buttonMutableArray = [[NSMutableArray alloc] initWithCapacity:3];
         self.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
@@ -263,19 +262,19 @@
         STRONG_SELF
         self.bufferingView.hidden = NO;
         [self.bufferingView start];
-        self.exceptionView.hidden = YES;
         self.pauseStatus = YXPlayerManagerPause_Not;
         if (self.playerStatus == YXPlayerManagerAbnormal_NotWifi) {//非WIFI情况下继续播放
             self.isWifiPlayer = YES;
             self.pauseStatus = YXPlayerManagerPause_Not;
         }else if (self.playerStatus == YXPlayerManagerAbnormal_Finish || self.playerStatus ==YXPlayerManagerAbnormal_Empty){
+            self.exceptionView.hidden = YES;
             BLOCK_EXEC(self.playerManagerPlayerActionBlock,self.playerStatus);
         }else if (self.playerStatus == YXPlayerManagerAbnormal_NetworkError) {
             if ([[Reachability reachabilityForInternetConnection] isReachable]) {
                 self.pauseStatus = YXPlayerManagerPause_Not;
-            }else {
-                self.exceptionView.hidden = NO;
             }
+        }else {
+            self.exceptionView.hidden = YES;
         }
     }];
     [[self.exceptionView.backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
@@ -556,7 +555,7 @@
 #pragma mark - definition
 - (NSURL *)definitionFormat {
     [self.definitionMutableArray removeAllObjects];
-    [self.defButtonArray removeAllObjects];
+    [self.buttonMutableArray removeAllObjects];
     if (!isEmpty(self.fileItem.lurl)) {
         YXVideoPlayerDefinition *definition = [[YXVideoPlayerDefinition alloc] init];
         definition.identifier = @"流畅";
@@ -591,12 +590,12 @@
         } else {
             [btn setBackgroundImage:[UIImage imageNamed:@"高清标清button"] forState:UIControlStateNormal];
         }
-        [self.defButtonArray addObject:btn];
+        [self.buttonMutableArray addObject:btn];
         [self addSubview:btn];
         WEAK_SELF
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             STRONG_SELF
-            NSInteger index = [self.defButtonArray indexOfObject:btn];
+            NSInteger index = [self.buttonMutableArray indexOfObject:btn];
             [self.bottomView.definitionButton setTitle:self.definitionMutableArray[index].identifier forState:UIControlStateNormal];
             [self changeVideoUrlAndPlay:self.definitionMutableArray[index].url];
             self.isShowDefinition = NO;
@@ -608,7 +607,7 @@
     WEAK_SELF
     [[self.bottomView.definitionButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
-        if (self.defButtonArray.count <= 1) {
+        if (self.buttonMutableArray.count <= 1) {
             return;
         }
         self.isShowDefinition = !self.isShowDefinition;
@@ -625,7 +624,7 @@
     self.player.videoUrl = [NSURL URLWithString:url];
 }
 - (void)definitionShowHiddenAction:(UIButton *)sender {
-    if (self.defButtonArray.count <= 1) {
+    if (self.buttonMutableArray.count <= 1) {
         return;
     }
     self.isShowDefinition = !self.isShowDefinition;
@@ -638,7 +637,7 @@
 - (void)showDefinition {
     self.isShowDefinition = YES;
     [self.topBottomHiddenDisposable dispose];
-    for (UIButton *btn in self.defButtonArray) {
+    for (UIButton *btn in self.buttonMutableArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(45, 25.5));
             make.right.mas_equalTo(-3);
@@ -649,7 +648,7 @@
     [self layoutIfNeeded];
     
     CGFloat yOffset = -50;
-    for (UIButton *btn in _defButtonArray) {
+    for (UIButton *btn in _buttonMutableArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(45, 25.5));
             make.right.mas_equalTo(-3);
@@ -664,7 +663,7 @@
 - (void)hideDefinition {
     self.isShowDefinition = NO;
     [self resetTopBottomHideTimer];
-    for (UIButton *btn in self.defButtonArray) {
+    for (UIButton *btn in self.buttonMutableArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(60, 34));
             make.right.mas_equalTo(-10);
@@ -684,11 +683,6 @@
     [self.bottomView.playPauseButton setImage:[UIImage imageNamed:@"播放按钮A"] forState:UIControlStateNormal];
     BLOCK_EXEC(self.playerManagerFinishActionBlock);
     _fileItem = nil;
-}
-#pragma mark - time
-- (NSTimeInterval)recordPlayerDuration {
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    return self.playTime;
 }
 #pragma mark - notification
 - (void)playVideoClear {

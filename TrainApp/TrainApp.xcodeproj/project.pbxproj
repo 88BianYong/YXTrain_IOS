@@ -3152,17 +3152,6 @@
 			name = "项目管理";
 			sourceTree = "<group>";
 		};
-		921CFAA01F4285C7006D99B7 /* playView */ = {
-			isa = PBXGroup;
-			children = (
-				92FE95271F42A6B00058E151 /* YXPlayerManagerView.h */,
-				92FE95281F42A6B00058E151 /* YXPlayerManagerView.m */,
-				921816DD1F43EFB50000BCA8 /* YXPlayerBeginningView.h */,
-				921816DE1F43EFB50000BCA8 /* YXPlayerBeginningView.m */,
-			);
-			name = playView;
-			sourceTree = "<group>";
-		};
 		9223C8241D2E0DFC000F74DF /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3667,9 +3656,6 @@
 		927429181F18799E002D9D7B /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				921CFAA01F4285C7006D99B7 /* playView */,
-				922668B21F32C1900005CD26 /* CourseListBaseViewController_17.h */,
-				922668B31F32C1900005CD26 /* CourseListBaseViewController_17.m */,
 				927429201F187B0D002D9D7B /* CourseListMangerViewController_17.h */,
 				927429211F187B0D002D9D7B /* CourseListMangerViewController_17.m */,
 				9297DB061F4E78E6006F5372 /* CourseWatchListViewController_17.h */,
@@ -3695,6 +3681,10 @@
 		927429191F1879AE002D9D7B /* view */ = {
 			isa = PBXGroup;
 			children = (
+				92FE95271F42A6B00058E151 /* YXPlayerManagerView.h */,
+				92FE95281F42A6B00058E151 /* YXPlayerManagerView.m */,
+				921816DD1F43EFB50000BCA8 /* YXPlayerBeginningView.h */,
+				921816DE1F43EFB50000BCA8 /* YXPlayerBeginningView.m */,
 				92B9583D1F18A2F900A07203 /* CourseListTableViewHeader_17.h */,
 				92B9583E1F18A2F900A07203 /* CourseListTableViewHeader_17.m */,
 				92B958401F18A34200A07203 /* CourseListHeader_17.h */,

@@ -24,10 +24,9 @@
 
 @property (nonatomic, strong) RACDisposable *disposable;
 @property (nonatomic, assign) BOOL isTestReport;
-@property (nonatomic, assign) NSTimeInterval recordPlayTime;
-@property (nonatomic, assign) NSTimeInterval playDocumentTime;
-@property (nonatomic, strong) NSTimer *playReportRetryTimer;
-@property (nonatomic, strong) NSTimer *documentRetryTimer;
+@property (nonatomic, assign) NSTimeInterval playDocumentTime;//观看文档时间(开启测验时间需加上观看文档时间)
+@property (nonatomic, strong) NSTimer *playReportRetryTimer;//观看到开启测验时间如上报不成功则10秒上报一次直到成功
+@property (nonatomic, strong) NSTimer *documentRetryTimer;//计算观看文档时间
 
 @end
 
@@ -95,7 +94,6 @@
     }else {//新随堂练
         self.containerView.startTimeInteger = _detailItem.openQuizTime.integerValue;
         self.containerView.playTimeInteger = _detailItem.rc.integerValue;
-        self.recordPlayTime = _detailItem.rc.floatValue;
         self.containerView.isStartBool =floor((float)self.containerView.playTimeInteger/60.0f) >= ceil((float)self.containerView.startTimeInteger/60.0f);
         WEAK_SELF
         self.disposable = [RACObserve(self.playMangerView, playTime) subscribeNext:^(id x) {
@@ -356,6 +354,7 @@
     [self setupReportPlayTime];
 }
 - (void)recordPlayerDuration {
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
     if (self.playMangerView.player.duration) {
         [self.delegate playerProgress:self.playMangerView.slideProgressView.playProgress totalDuration:self.playMangerView.player.duration stayTime:self.playMangerView.playTime + self.playDocumentTime];
         self.playMangerView.playTime = 0;
