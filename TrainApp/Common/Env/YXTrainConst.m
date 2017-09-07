@@ -24,6 +24,8 @@ NSString *const YXTrainUploadDepictionString = @"1.视频时间控制在15-40分
 
 NSString *const kXYTrainChooseProject =  @"train list choose project";
 
+NSString *const kXYTrainChangeProject =  @"train list change project";
+
 NSString *const kYXTrainFirstLaunch = @"the first to enter the TrainApp";
 
 NSString *const kYXTrainFirstGoInHomeworkList = @"the first to enter the work list interface";

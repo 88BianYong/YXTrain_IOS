@@ -64,9 +64,14 @@ typedef NS_ENUM (NSInteger ,YXWriteHomeworkListStatus) {
 
 //定义key值
 /*
- *  播放过片头的课程ID
+ *  登录后选择项目
  */
 extern NSString *const kXYTrainChooseProject;
+/*
+ *  同一账号切换新旧项目
+ */
+extern NSString *const kXYTrainChangeProject;
+
 /**
  *  是否第一次进入APP
  */

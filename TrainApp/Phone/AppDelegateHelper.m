@@ -237,6 +237,13 @@
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
         self.isRemoteNotification = NO;
     }];
+    
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kXYTrainChangeProject object:nil] subscribeNext:^(NSNotification *x) {
+        STRONG_SELF
+        self.window.rootViewController = ([x.object integerValue] == LSTTrainProjectStatus_2017) ? [self rootTabBarViewController] : [self rootDrawerViewController];
+        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
+        [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
+    }];
 }
 
 - (void)removeLoginNotifications

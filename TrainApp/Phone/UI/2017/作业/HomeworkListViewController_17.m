@@ -224,7 +224,7 @@
         return;
     }
     HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
-    if (homework.templateID.integerValue == 324 || homework.templateID.integerValue == 379) {
+    if (homework.templateID.integerValue == 324 || homework.templateID.integerValue == 379 || homework.homeworkID.integerValue > 0) {
         HomeworkListRequest_17Item_Homeworks *homework = self.listItem.homeworks[indexPath.row];
         YXHomeworkInfoRequestItem_Body *body = [[YXHomeworkInfoRequestItem_Body alloc] init];
         body.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;

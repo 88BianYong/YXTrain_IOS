@@ -13,6 +13,8 @@
 @property (nonatomic, strong) UILabel *submitTimeLabel;
 @property (nonatomic, strong) UILabel *scoreLabel;
 @property (nonatomic, strong) UIView *bottomView;
+@property (nonatomic, strong) UIImageView *nextImageView;
+
 @end
 @implementation HomeworkListSpecialCell_17
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -34,9 +36,20 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    if (!selected) {
+        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
+    }
 }
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated{
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头点击态"];
+    }
+    else{
+        self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
+    }
+}
+
 #pragma mark - set
 - (void)setHomework:(HomeworkListRequest_17Item_Homeworks *)homework {
     for (UIView *view in self.contentView.subviews) {
@@ -290,6 +303,9 @@
     self.bottomView = [[UIView alloc] init];
     self.bottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self.contentView addSubview:self.bottomView];
+    self.nextImageView = [[UIImageView alloc] init];
+    self.nextImageView.image = [UIImage imageNamed:@"意见反馈展开箭头"];
+    [self.contentView addSubview:self.nextImageView];
 }
 - (void)setupLayout {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -315,6 +331,11 @@
         make.right.equalTo(self.contentView.mas_right);
         make.bottom.equalTo(self.contentView.mas_bottom);
         make.height.mas_offset(1.0f/[UIScreen mainScreen].scale);
+    }];
+    [self.nextImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView.mas_right).offset(-12.0f);
+        make.height.width.mas_equalTo(16.0f);
+        make.centerY.equalTo(self.contentView.mas_centerY);
     }];
 }
 

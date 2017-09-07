@@ -73,7 +73,9 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
             }];
         }
     }];
-    self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 40.0f);
+    if (_quizesItem.result.status.integerValue != 0) {
+        self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 40.0f);
+    }
     self.headerView.result = _quizesItem.result;
     self.headerView.hidden = NO;
     self.tableView.tableHeaderView = self.headerView;
