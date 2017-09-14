@@ -15,7 +15,9 @@
         YXCourseDetailRequest *request = [[YXCourseDetailRequest alloc] init];
         request.cid = self.course.courses_id;
         request.stageid = self.course.module_id;
-        request.courseType = self.course.courseType;
+        if (self.course.courseType.integerValue == 2) {
+            request.courseType = self.course.courseType;
+        }
         request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
         WEAK_SELF
         [request startRequestWithRetClass:[YXCourseDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

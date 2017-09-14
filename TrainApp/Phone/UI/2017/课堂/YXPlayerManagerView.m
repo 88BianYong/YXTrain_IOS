@@ -435,7 +435,6 @@
                 [self.bottomView.slideProgressControl updateUI];
             }
             self.playTime += 1;
-            DDLogDebug(@">>>>>>>>>>>%f",self.playTime);
         }
         BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress ,NO);
     }];
