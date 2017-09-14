@@ -15,6 +15,7 @@
         YXCourseDetailRequest *request = [[YXCourseDetailRequest alloc] init];
         request.cid = self.course.courses_id;
         request.stageid = self.course.module_id;
+        request.w = [LSTSharedInstance sharedInstance].trainManager.currentProject.w;
         if (self.course.courseType.integerValue == 2) {
             request.courseType = self.course.courseType;
         }
