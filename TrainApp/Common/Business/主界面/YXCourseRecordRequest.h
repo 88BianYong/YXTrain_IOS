@@ -20,6 +20,8 @@
 @property (nonatomic, copy) NSString<Optional> *record;
 @property (nonatomic, copy) NSString<Optional> *type;
 @property (nonatomic, copy) NSString<Optional> *is_selected; //1走以前老的详情接口，0走新的详情接口
+@property (nonatomic, copy) NSString<Optional> *isSupportApp;
+@property (nonatomic, copy) NSString<Optional> *courseType;
 @property (nonatomic, strong) YXCourseRecordRequestItem_body_module_course_quiz<Optional> *quiz;
 
 @property (nonatomic, strong) NSString<Optional> *module_id; //用于传参stageid

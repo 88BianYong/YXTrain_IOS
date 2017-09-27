@@ -188,7 +188,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-     YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc]init];   vc.course = [CourseListFormatModel_17 formatModel:self.dataArray[indexPath.row]];
+     YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc]init];
+    vc.course = [CourseListFormatModel_17 formatModel:self.dataArray[indexPath.row]];
     vc.fromWhere = VideoCourseFromWhere_Detail;
     vc.isHiddenTestBool = YES;
     [self.navigationController pushViewController:vc animated:YES];
