@@ -389,6 +389,12 @@
             case PlayerView_State_Error:
             {
                 DDLogDebug(@"错误");
+                NSDictionary *dict = @{
+                                       @"token": [LSTSharedInstance sharedInstance].userManger.userModel.token?:@"",
+                                       @"uid": [LSTSharedInstance sharedInstance].userManger.userModel.uid?:@"",
+                                       @"url": self.videoUrl?:@""
+                                       };
+                [YXDataStatisticsManger trackEvent:@"播放出错" label:@"出错信息" parameters:dict];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.bufferingView stop];
                     self.bufferingView.hidden = YES;
