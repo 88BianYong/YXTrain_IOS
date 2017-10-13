@@ -12,5 +12,5 @@
 @interface YXExamTaskProgressHeaderView : UITableViewHeaderFooterView
 @property (nonatomic, strong) YXExamineRequestItem_body_bounsVoData *data;
 @property (nonatomic, copy) void(^markAction)(UIButton *b);
-@property (nonatomic, copy) void(^clickAction)();
+@property (nonatomic, copy) void(^clickAction)(void);
 @end

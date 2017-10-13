@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface YXErrorView : UIView
-@property (nonatomic, strong) void(^retryBlock)();
+@property (nonatomic, strong) void(^retryBlock)(void);
 //半屏视频界面专用
 @property (nonatomic, assign) BOOL isVideo;
 @end

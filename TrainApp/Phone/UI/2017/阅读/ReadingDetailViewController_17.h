@@ -11,5 +11,5 @@
 @interface ReadingDetailViewController_17 : YXBaseViewController
 @property (nonatomic, strong) ReadingListRequest_17Item_Objs *reading;
 @property (nonatomic, strong) NSString *stageString;
-@property (nonatomic, copy) void(^readingDetailFinishCompleteBlock)();
+@property (nonatomic, copy) void(^readingDetailFinishCompleteBlock)(void);
 @end

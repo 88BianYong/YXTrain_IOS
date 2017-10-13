@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void (^BeijingCheckedMobileUserBlock) ();
+typedef void (^BeijingCheckedMobileUserBlock) (void);
 @interface BeijingCheckedMobileUserCell : UITableViewCell
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UIButton *cancleButton;

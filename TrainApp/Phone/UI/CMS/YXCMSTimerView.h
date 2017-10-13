@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YXCMSTimerView : UIView
-@property (nonatomic, copy) void (^stopTimerBlock)();
+@property (nonatomic, copy) void (^stopTimerBlock)(void);
 - (void)startWithSeconds:(NSInteger)seconds;
 @end

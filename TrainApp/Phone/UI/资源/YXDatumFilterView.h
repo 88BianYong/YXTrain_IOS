@@ -12,6 +12,6 @@
 @interface YXDatumFilterView : UIView
 
 @property (nonatomic, strong) YXDatumFilterModel *filterModel;
-@property (nonatomic, copy) void(^didSeletedFilterItem)();
+@property (nonatomic, copy) void(^didSeletedFilterItem)(void);
 
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DataErrorView : UIView
-@property (nonatomic, copy) void(^refreshBlock)();
+@property (nonatomic, copy) void(^refreshBlock)(void);
 
 //半屏视频界面专用
 @property (nonatomic, assign) BOOL isVideo;

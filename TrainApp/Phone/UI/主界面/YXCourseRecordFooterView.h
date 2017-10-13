@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YXCourseRecordFooterView : UICollectionReusableView
-@property (nonatomic, strong) void(^actionBlock)();
+@property (nonatomic, strong) void(^actionBlock)(void);
 @end

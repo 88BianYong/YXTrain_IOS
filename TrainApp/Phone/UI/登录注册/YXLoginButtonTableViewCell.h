@@ -11,6 +11,6 @@
 @interface YXLoginButtonTableViewCell : UITableViewCell
 
 - (void)setTitleWithString:(NSString *)string;
-@property (nonatomic, copy) void(^buttonClicked)();
+@property (nonatomic, copy) void(^buttonClicked)(void);
 
 @end

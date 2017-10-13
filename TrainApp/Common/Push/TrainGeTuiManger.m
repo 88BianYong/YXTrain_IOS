@@ -8,7 +8,7 @@
 
 #import "TrainGeTuiManger.h"
 #import <UIKit/UIKit.h>
-#import "GeTuiSdk.h"
+#import <GTSDK/GeTuiSdk.h>
 #import <UserNotifications/UserNotifications.h>
 #import "TrainRedPointManger.h"
 @interface TrainGeTuiManger ()<GeTuiSdkDelegate , UNUserNotificationCenterDelegate>
@@ -51,9 +51,8 @@
     [GeTuiSdk registerDeviceToken:token];
 }
 #pragma mark - iOS10 Notification Delegate
-- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
     [self handleApnsContent:response.notification.request.content.userInfo isPush:YES];
-    completionHandler(UIBackgroundFetchResultNewData);
 }
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     
@@ -163,7 +162,7 @@
 }
 
 - (void)unbindAlias:(NSString *)alias {
-    [GeTuiSdk unbindAlias:alias andSequenceNum:[NSString stringWithFormat:@"%@-sign", alias]];
+    [GeTuiSdk unbindAlias:alias andSequenceNum:[NSString stringWithFormat:@"%@-sign", alias]andIsSelf:YES];
 }
 
 - (void)setBadge:(NSInteger)badgeNumber {

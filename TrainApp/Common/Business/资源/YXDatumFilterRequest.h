@@ -7,7 +7,7 @@
 //
 
 #import "YXGetRequest.h"
-
+@class YXDatumFilterRequestItem_data_cataele,YXDatumFilterRequestItem_data,YXDatumFilterRequestItem;
 @protocol YXDatumFilterRequestItem_data_cataele <NSObject>
 @end
 @interface YXDatumFilterRequestItem_data_cataele : HttpBaseRequestItem
@@ -22,7 +22,8 @@
 @property (nonatomic, copy) NSString<Optional> *cataCodeName;
 @property (nonatomic, strong) NSArray<YXDatumFilterRequestItem_data_cataele,Optional> *cataele;
 @end
-
+@protocol YXDatumFilterRequestItem <NSObject>
+@end
 @interface YXDatumFilterRequestItem : HttpBaseRequestItem
 @property (nonatomic, strong) NSArray<YXDatumFilterRequestItem_data,Optional> *data;
 @end

@@ -11,7 +11,7 @@
 @interface YXVideoRecordTopView : UIView
 @property (nonatomic, assign) NSInteger recordTime;
 @property (nonatomic, strong) UIButton *canleButton;
-@property (nonatomic,copy) void(^cancleHandler)();
+@property (nonatomic,copy) void(^cancleHandler)(void);
 - (void)startAnimatetion;
 - (void)stopAnimatetion;
 @end

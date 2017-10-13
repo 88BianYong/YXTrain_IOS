@@ -21,7 +21,7 @@
 @property (nonatomic, strong) YXDatumCellModel *cellModel;
 @property (nonatomic, weak) id<YXMyDatumCellDelegate> delegate;
 
-@property (nonatomic, copy) void(^canOpenDatumToast)();
+@property (nonatomic, copy) void(^canOpenDatumToast)(void);
 
 - (void)hiddenBottomView:(BOOL)hidden;
 @end

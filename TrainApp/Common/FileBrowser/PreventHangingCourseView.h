@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef void (^PreventHangingCourseBlock)();
+typedef void (^PreventHangingCourseBlock)(void);
 @interface PreventHangingCourseView : UIView
 - (void)setPreventHangingCourseBlock:(PreventHangingCourseBlock)block;
 @end

@@ -10,7 +10,7 @@
 
 @interface YXClickedUnderLineButton : UIView
 
-@property (nonatomic, copy) void(^buttonClicked)();
+@property (nonatomic, copy) void(^buttonClicked)(void);
 - (void)buttonTitileWithName:(NSString *)name;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 typedef void (^CoreTextViewHeightChangeBlock) (CGFloat height);
-typedef void (^CoreTextViewrRelayoutBlock) ();
+typedef void (^CoreTextViewrRelayoutBlock) (void);
 typedef void (^CoreTextViewLinkPushedBlock) (NSURL *url);
 
 @interface CoreTextViewHandler : UIControl

@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) NSString *errorMsg; // 默认为：网络故障，请检查重试
 @property (nonatomic, strong) UIImage *errorImage;
-@property (nonatomic, copy) void(^retryBlock)();
+@property (nonatomic, copy) void(^retryBlock)(void);
 
 @property (nonatomic, strong) NSString *errorCode;
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^actionBlock)();
+typedef void(^actionBlock)(void);
 
 @interface YXNavigationBarController : NSObject
 

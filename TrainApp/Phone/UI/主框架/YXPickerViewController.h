@@ -11,7 +11,7 @@
 @interface YXPickerViewController : YXBaseViewController
 
 @property (nonatomic, strong) UIPickerView *pickerView;
-@property (nonatomic, copy) void(^confirmBlock)();
+@property (nonatomic, copy) void(^confirmBlock)(void);
 
 // 显示PickerView并展示数据
 - (void)reloadPickerView;

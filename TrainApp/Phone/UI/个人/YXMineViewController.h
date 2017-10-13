@@ -9,5 +9,5 @@
 #import "YXBaseViewController.h"
 
 @interface YXMineViewController : YXBaseViewController
-@property (nonatomic, copy) void(^userInfoModifySuccess)();
+@property (nonatomic, copy) void(^userInfoModifySuccess)(void);
 @end

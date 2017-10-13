@@ -10,7 +10,7 @@
 
 @interface YXUserImageTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) void(^userImageTap)();
+@property (nonatomic, strong) void(^userImageTap)(void);
 
 -(void)setImageWithUrl:(NSString *)urlString;
 -(void)setImageWithDataImage:(UIImage *)image;

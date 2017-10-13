@@ -9,5 +9,5 @@
 #import "YXErrorView.h"
 
 @interface VideoCommentErrorView : UIView
-@property (nonatomic, strong) void(^retryBlock)();
+@property (nonatomic, strong) void(^retryBlock)(void);
 @end

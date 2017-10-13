@@ -11,7 +11,7 @@
 @interface YXSaveVideoProgressView : UIView
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, copy, nonnull) NSString *titleString;
-@property (nonatomic, copy, nonnull) void (^closeHandler)();
+@property (nonatomic, copy, nonnull) void (^closeHandler)(void);
 
 - (void)isShowView:(UIView *__nullable)view;
 @end

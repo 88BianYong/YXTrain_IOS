@@ -34,7 +34,7 @@ pod 'CommonCrypto'
 pod 'FCUUID'
 pod 'IQKeyboardManager'
 pod 'SocketRocket'
-pod 'GTSDK', '1.6.2.0-noidfa'
+pod 'GTSDK', '2.0.0.0-noidfa'
 
 
 pod 'SCRecorder', '~> 2.6.1'

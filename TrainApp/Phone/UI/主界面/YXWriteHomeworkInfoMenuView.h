@@ -12,6 +12,6 @@
 @property (nonatomic, strong)NSIndexPath *indexPath;
 @property (nonatomic, strong)YXChapterListRequestItem *item;
 @property (nonatomic, copy) void (^chapterIdHandler)(NSString *chapterId, NSString *chapterName);
-@property (nonatomic, copy) void (^errorHandler)();
+@property (nonatomic, copy) void (^errorHandler)(void);
 @property (nonatomic, assign) BOOL isError;
 @end

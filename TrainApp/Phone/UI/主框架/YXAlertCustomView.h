@@ -12,7 +12,7 @@ typedef NS_ENUM(NSInteger, YXAlertActionStyle) {
     YXAlertActionStyleDefault = 1,
     YXAlertActionStyleCancel = 2,
 } ;
-typedef void (^ActionBlock)();
+typedef void (^ActionBlock)(void);
 
 @interface YXAlertAction : NSObject
 @property (nonatomic, copy) NSString *title;

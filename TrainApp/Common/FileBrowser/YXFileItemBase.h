@@ -54,6 +54,6 @@ typedef NS_ENUM(NSUInteger, YXSourceType) {
 
 
 @property (nonatomic, weak) YXBaseViewController *baseViewController;
-- (void)addFavorWithData:(id)data completion:(void(^)())completeBlock; // 如果需要收藏，则调用此方法
+- (void)addFavorWithData:(id)data completion:(void(^)(void))completeBlock; // 如果需要收藏，则调用此方法
 - (void)browseFile;
 @end

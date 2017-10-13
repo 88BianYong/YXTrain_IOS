@@ -10,7 +10,7 @@
 
 @interface YXFileItemBase ()
 @property (nonatomic, strong) id favorData;
-@property (nonatomic, copy) void(^addFavorCompleteBlock)();
+@property (nonatomic, copy) void(^addFavorCompleteBlock)(void);
 @end
 
 @implementation YXFileItemBase
@@ -22,7 +22,7 @@
     return self;
 }
 
-- (void)addFavorWithData:(id)data completion:(void(^)())completeBlock{
+- (void)addFavorWithData:(id)data completion:(void(^)(void))completeBlock{
     self.favorData = data;
     self.addFavorCompleteBlock = completeBlock;
 }

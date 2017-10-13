@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityFirstCommentRequest.h"
-typedef void (^ActitvityCommentCellFavorBlock) ();
+typedef void (^ActitvityCommentCellFavorBlock) (void);
 typedef NS_OPTIONS(NSInteger, ActitvityCommentCellStatus) {
     ActitvityCommentCellStatus_Top = 1<<0,
     ActitvityCommentCellStatus_Middle = 1<<1,

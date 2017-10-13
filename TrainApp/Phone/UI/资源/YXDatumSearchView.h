@@ -11,11 +11,11 @@
 @interface YXDatumSearchView : UIView
 @property (nonatomic, strong) UITextField *searchTextField;
 
-@property (nonatomic, copy)void(^textBeginEdit)();
-@property (nonatomic, copy)void(^textShouldClear)();
+@property (nonatomic, copy)void(^textBeginEdit)(void);
+@property (nonatomic, copy)void(^textShouldClear)(void);
 @property (nonatomic, copy)void(^textShouldReturn)(NSString *);
-@property (nonatomic, copy)void(^texEndEdit)();
-@property (nonatomic, copy)void(^cancelButtonClickedBlock)();
+@property (nonatomic, copy)void(^texEndEdit)(void);
+@property (nonatomic, copy)void(^cancelButtonClickedBlock)(void);
 
 - (void)setFirstResponse;
 

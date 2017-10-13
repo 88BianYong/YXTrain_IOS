@@ -10,6 +10,6 @@
 
 @interface YXGuideViewController : YXBaseViewController
 
-@property (nonatomic, copy) void(^startMainVCBlock)();
+@property (nonatomic, copy) void(^startMainVCBlock)(void);
 
 @end

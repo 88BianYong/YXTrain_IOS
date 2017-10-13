@@ -11,7 +11,7 @@
 @interface YXExamPhaseHeaderView : UITableViewHeaderFooterView
 
 @property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) void(^actionBlock)();
+@property (nonatomic, strong) void(^actionBlock)(void);
 
 @property (nonatomic, assign) BOOL isFold;
 @property (nonatomic, assign) BOOL isFinished;

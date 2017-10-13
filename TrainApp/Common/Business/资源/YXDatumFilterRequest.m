@@ -12,9 +12,8 @@
 
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"elementId"}];
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"elementId":@"id"}];
 }
-
 @end
 
 @implementation YXDatumFilterRequestItem_data

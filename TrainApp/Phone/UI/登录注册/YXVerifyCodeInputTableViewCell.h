@@ -10,7 +10,7 @@
 
 @interface YXVerifyCodeInputTableViewCell : UITableViewCell
 
-@property (nonatomic, copy) void(^verifyCodeAction)();
+@property (nonatomic, copy) void(^verifyCodeAction)(void);
 @property (nonatomic, copy) void(^verifyCodeChangedBlock)(NSString *verifyCode);
 - (void)startTimer;
 - (void)stopTimer;
