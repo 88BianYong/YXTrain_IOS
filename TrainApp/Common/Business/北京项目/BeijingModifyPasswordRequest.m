@@ -21,6 +21,6 @@
 }
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"newPwd":@"password"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"password":@"newPwd"}];
 }
 @end

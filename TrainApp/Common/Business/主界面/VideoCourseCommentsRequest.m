@@ -12,19 +12,19 @@
 @implementation VideoCourseCommentsRequestItem_Body@end
 @implementation VideoCourseCommentsRequestItem_Body_Comments
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"commentID",
-                                                       @"usnm":@"userName",
-                                                       @"ct":@"content",
-                                                       @"rpnm":@"childNum",
-                                                       @"unm":@"laudNumber",
-                                                       @"tgid":@"parentId"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"commentID":@"id",
+                                                                  @"userName": @"usnm",
+                                                                  @"content":@"ct",
+                                                                  @"childNum":@"rpnm",
+                                                                  @"laudNumber":@"unm",
+                                                                  @"parentId":@"tgid"}];
 }
 @end
 @implementation VideoCourseCommentsRequest
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"commentID",
-                                                       @"courseId":@"courseID",
-                                                       @"parentId":@"parentID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"commentID":@"id",
+                                                                  @"courseID":@"courseId",
+                                                                  @"parentID":@"parentId"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

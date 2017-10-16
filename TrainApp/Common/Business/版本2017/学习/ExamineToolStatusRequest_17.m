@@ -11,7 +11,7 @@
 @end
 @implementation ExamineToolStatusRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

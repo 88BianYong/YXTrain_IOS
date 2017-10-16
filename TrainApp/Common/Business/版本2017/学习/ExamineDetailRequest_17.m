@@ -9,16 +9,16 @@
 #import "ExamineDetailRequest_17.h"
 @implementation ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"finishnum":@"finishNum",
-                                                       @"isExistsNext":@"isNeedMark",
-                                                       @"toolid":@"toolID",
-                                                       @"totalnum":@"totalNum",
-                                                       @"totalscore":@"totalScore",
-                                                       @"userscore":@"userScore",
-                                                       @"passscore":@"passScore",
-                                                       @"orderno":@"orderNo",
-                                                       @"passfinishscore":@"passFinishScore",
-                                                       @"passtotalscore":@"passTotalScore"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"finishNum":@"finishnum",
+                                                       @"isNeedMark":@"isExistsNext",
+                                                       @"toolID":@"toolid",
+                                                       @"totalNum":@"totalnum",
+                                                       @"totalScore":@"totalscore",
+                                                       @"userScore":@"userscore",
+                                                       @"passScore":@"passscore",
+                                                       @"orderNo":@"orderno",
+                                                       @"passFinishScore":@"passfinishscore",
+                                                       @"passTotalScore":@"passtotalscore"}];
 }
 - (NSString<Optional> *)name {
     if (self.toolID.integerValue == 222) {
@@ -29,16 +29,16 @@
 @end
 @implementation ExamineDetailRequest_17Item_Examine_Process
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"enddate":@"endDate",
-                                                       @"id":@"processID",
-                                                       @"ifquestion":@"ifQuestion",
-                                                       @"isfinish":@"isFinish",
-                                                       @"totalnum":@"isPass",
-                                                       @"passscore":@"passsCore",
-                                                       @"stageId":@"stageID",
-                                                       @"totalscore":@"totalScore",
-                                                       @"userscore":@"userScore",
-                                                       @"passtotalscore":@"passTotalScore"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"endDate":@"enddate",
+                                                                  @"processID":@"id",
+                                                                  @"ifQuestion":@"ifquestion",
+                                                                  @"isFinish":@"isfinish",
+                                                                  @"isPass":@"totalnum",
+                                                                  @"passsCore":@"passscore",
+                                                                  @"stageID":@"stageId",
+                                                                  @"totalScore":@"totalscore",
+                                                                  @"userScore":@"userscore",
+                                                                  @"passTotalScore":@"passtotalscore"}];
 }
 @end
 
@@ -47,7 +47,7 @@
 
 @implementation ExamineDetailRequest_17Item_Stages_Tools
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"toolid":@"toolID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"toolID":@"toolid"}];
 }
 - (NSString<Optional> *)name {
     if (self.toolID.integerValue == 222) {//TBD:8-25 测试要求
@@ -58,15 +58,15 @@
 @end
 @implementation ExamineDetailRequest_17Item_User
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"userId":@"userID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"userID":@"userId"}];
 }
 @end
 @implementation ExamineDetailRequest_17Item_Theme
 @end
 @implementation ExamineDetailRequest_17Item_Stages
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"stageid":@"stageID",
-                                                       @"starttime":@"startTime"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"stageID":@"stageid",
+                                                                  @"startTime":@"starttime"}];
 }
 - (NSArray<ExamineDetailRequest_17Item_Stages_Tools,Optional> *)tools {
     [_tools enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Stages_Tools *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -96,33 +96,33 @@
 @end
 @implementation ExamineDetailRequest_17Item_Other
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"ifWorks":@"isWorks"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"isWorks":@"ifWorks"}];
 }
 @end
 @implementation ExamineDetailRequest_17Item_Layer
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"layerid":@"layerID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"layerID":@"layerid"}];
 }
 @end
 @implementation ExamineDetailRequest_17Item_Expert
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"expertProjectId":@"expertProjectID",
-                                                       @"channelid":@"channelID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"expertProjectID":@"expertProjectId",
+                                                                  @"channelID":@"channelid"}];
 }
 @end
 @implementation ExamineDetailRequest_17Item_Examine
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"totalscore":@"totalScore"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"totalScore":@"totalscore"}];
 }
 @end
 @implementation ExamineDetailRequest_17Item_Banner
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"bannerID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"bannerID":@"id"}];
 }
 @end
 @implementation ExamineDetailRequest_17Item
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid"}];
 }
 - (NSMutableArray<ExamineDetailRequest_17Item_MockOther,Optional> *)mockOthers {
     if (_mockOthers == nil) {
@@ -175,7 +175,7 @@
 @end
 @implementation ExamineDetailRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

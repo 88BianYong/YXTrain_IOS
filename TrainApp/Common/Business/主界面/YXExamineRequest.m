@@ -14,13 +14,13 @@
 @implementation YXExamineRequestItem_body_leadingVo
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"voID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"voID":@"id"}];
 }
 @end
 @implementation YXExamineRequestItem_body_bounsVoData
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"voID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"voID":@"id"}];
 }
 @end
 @implementation YXExamineRequestItem_body_bounsVo

@@ -9,37 +9,37 @@
 #import "HomeworkListRequest_17.h"
 @implementation HomeworkListRequest_17Item_Scheme_Process
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"userfinishnum":@"userFinishNum",
-                                                       @"userfinishscore":@"userFinishScore"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"userFinishNum":@"userfinishnum",
+                                                                  @"userFinishScore":@"userfinishscore"}];
 }
 @end
 
 @implementation HomeworkListRequest_17Item_Scheme_Scheme
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"toolid":@"toolID",
-                                                       @"finishnum":@"finishNum",
-                                                       @"finishscore":@"finishScore"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"toolID":@"toolid",
+                                                                  @"finishNum":@"finishnum",
+                                                                  @"finishScore":@"finishscore"}];
 }
 @end
 
 @implementation HomeworkListRequest_17Item_Homeworks
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"rID",
-                                                       @"toolid":@"toolID",
-                                                       @"stageid":@"stageID",
-                                                       @"toolid":@"toolID",
-                                                       @"description":@"desc",
-                                                       @"userid":@"userID",
-                                                       @"createtime":@"createTime",
-                                                       @"templateid":@"templateID",
-                                                       @"homeworkid":@"homeworkID",
-                                                       @"homeworktitle":@"homeworkTitle",
-                                                       @"finishnum":@"finishNum",
-                                                       @"themeid":@"themeID",
-                                                       @"homeworktitle":@"homeworkTitle",
-                                                       @"projectid":@"projectID",
-                                                       @"subprojectid":@"subProjectID",
-                                                       @"totalnum":@"totalNum"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"rID":@"id",
+                                                                  @"toolID":@"toolid",
+                                                                  @"stageID":@"stageid",
+                                                                  @"toolID":@"toolid",
+                                                                  @"desc":@"description",
+                                                                  @"userID":@"userid",
+                                                                  @"createTime":@"createtime",
+                                                                  @"templateID":@"templateid",
+                                                                  @"homeworkID":@"homeworkid",
+                                                                  @"homeworkTitle":@"homeworktitle",
+                                                                  @"finishNum":@"finishnum",
+                                                                  @"themeID":@"themeid",
+                                                                  @"homeworkTitle":@"homeworktitle",
+                                                                  @"projectID":@"projectid",
+                                                                  @"subProjectID":@"subprojectid",
+                                                                  @"totalNum":@"totalnum"}];
 }
 @end
 
@@ -53,9 +53,9 @@
 
 @implementation HomeworkListRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"stageid":@"stageID",
-                                                       @"toolid":@"toolID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid",
+                                                                  @"stageID":@"stageid",
+                                                                  @"toolID":@"toolid"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

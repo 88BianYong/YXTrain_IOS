@@ -10,13 +10,13 @@
 @implementation BeijingCourseFilterRequestItem_Filter
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"filterID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"filterID":@"id"}];
 }
 @end
 @implementation BeijingCourseFilterRequestItem_Body_Segment
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"segmentID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"segmentID":@"id"}];
 }
 @end
 

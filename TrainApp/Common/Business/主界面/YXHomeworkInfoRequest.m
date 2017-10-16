@@ -12,7 +12,8 @@
 @implementation YXHomeworkInfoRequestItem_Body
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"requireId",@"description":@"depiction"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"requireId":@"id",
+                                                                  @"depiction":@"description"}];
 }
 +(BOOL)propertyIsOptional:(NSString*)propertyName
 {

@@ -9,8 +9,8 @@
 #import "ActivityFirstCommentRequest.h"
 @implementation ActivityFirstCommentRequestItem_Body_Replies
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"replyID",
-                                                       @"foorl":@"isFoorl"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"replyID":@"id",
+                                                                  @"isFoorl":@"foorl"}];
 }
 @end
 @implementation ActivityFirstCommentRequestItem_Body

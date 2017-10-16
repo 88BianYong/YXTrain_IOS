@@ -10,10 +10,10 @@
 
 @implementation CourseHistoryListRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"themeid":@"themeID",
-                                                       @"layerid":@"layerID",
-                                                       @"stageid":@"stageID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid",
+                                                                  @"themeID":@"themeid",
+                                                                  @"layerID":@"layerid",
+                                                                  @"stageID":@"stageid"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

@@ -9,14 +9,14 @@
 #import "CourseCenterConditionRequest_17.h"
 @implementation CourseCenterConditionRequest_17Item_CourseTypes
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"typeID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"typeID":@"id"}];
 }
 @end
 @implementation CourseCenterConditionRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"themeid":@"themeID",
-                                                       @"layerid":@"layerID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid",
+                                                                  @"themeID":@"themeid",
+                                                                  @"layerID":@"layerid"}];
 }- (instancetype)init {
     if (self = [super init]) {
         self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/course/centercondition"];

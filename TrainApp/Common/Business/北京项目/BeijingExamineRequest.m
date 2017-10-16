@@ -49,7 +49,7 @@
 }
 
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"examineVoID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"examineVoID":@"id"}];
 }
 @end
 @implementation BeijingExamineRequestItem

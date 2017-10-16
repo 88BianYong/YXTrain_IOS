@@ -9,10 +9,10 @@
 #import "CourseCenterListRequest_17.h"
 @implementation CourseCenterListRequest_17Item_Summary
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"coursenum":@"courseNum",
-                                                       @"studynum":@"studyNum",
-                                                       @"finishnum":@"finishNum",
-                                                       @"coursetime":@"courseTime"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"courseNum":@"coursenum",
+                                                                  @"studyNum":@"studynum",
+                                                                  @"finishNum":@"finishnum",
+                                                                  @"courseTime":@"coursetime"}];
 }
 @end
 
@@ -22,8 +22,8 @@
 
 @implementation CourseCenterListRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"stageid":@"stageID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid",
+                                                                  @"stageID":@"stageid"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

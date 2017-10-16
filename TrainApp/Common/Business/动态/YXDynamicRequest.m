@@ -10,7 +10,7 @@
 @implementation YXDynamicRequestItem_Data
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"msgId"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"msgId":@"id"}];
 }
 @end
 

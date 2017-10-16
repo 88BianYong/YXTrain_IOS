@@ -11,10 +11,9 @@
 @end
 @implementation NoticeAndBriefDetailRequestItem_Body
 +(JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"barid":@"barID",
-                                                       @"id":@"nbID",
-                                                       @"userid":@"userID"
-                                                       }];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"barID":@"barid",
+                                                                  @"nbID":@"id",
+                                                                  @"userID":@"userid"}];
 }
 @end
 @implementation NoticeAndBriefDetailRequestItem
@@ -29,7 +28,7 @@
     return self;
 }
 +(JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"nbID",
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"nbID":@"id",
                                                        }];
 }
 @end

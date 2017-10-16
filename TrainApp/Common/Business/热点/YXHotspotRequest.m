@@ -10,7 +10,7 @@
 @implementation YXHotspotRequestItem_Data
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"hotspotId"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"hotspotId":@"id"}];
 }
 
 @end

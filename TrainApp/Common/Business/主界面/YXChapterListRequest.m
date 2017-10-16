@@ -11,8 +11,7 @@
 
 +(JSONKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"id": @"chapterId",
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"chapterId":@"id",
                                                        }];
 }
 

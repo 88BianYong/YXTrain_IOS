@@ -9,7 +9,7 @@
 #import "TrainLayerListRequest.h"
 @implementation TrainLayerListRequestItem_Body
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"layerId"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"layerId":@"id"}];
 }
 @end
 @implementation TrainLayerListRequestItem

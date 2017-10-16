@@ -9,22 +9,20 @@
 #import "ShareResourcesRequest.h"
 @implementation ShareResourcesRequestItem_body_resource
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"resid":@"resId",
-                                                       @"resname":@"resName",
-                                                       @"filetype":@"fileType",
-                                                       @"res_size":@"resSize",
-                                                       @"res_type":@"resType",
-                                                       @"previewurl":@"previewUrl",
-                                                       @"downloadurl":@"downloadUrl",
-                                                       @"external_url":@"externalUrl"
-                                                       }];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"resId":@"resid",
+                                                                  @"resName":@"resname",
+                                                                  @"fileType":@"filetype",
+                                                                  @"resSize":@"res_size",
+                                                                  @"resType":@"res_type",
+                                                                  @"previewUrl":@"previewurl",
+                                                                  @"downloadUrl":@"downloadurl",
+                                                                  @"externalUrl":@"external_url"}];
 }
 @end
 
 @implementation ShareResourcesRequestItem_body
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"toolid":@"toolId"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"toolId":@"toolid"}];
 }
 @end
 

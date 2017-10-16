@@ -9,14 +9,14 @@
 #import "ActivityListRequest.h"
 @implementation ActivityListRequestItem_body_scheme_scheme
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"finishnum":@"finishNum",
-                                                       @"finishscore":@"finishScore"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"finishNum":@"finishnum",
+                                                                  @"finishScore":@"finishscore"}];
 }
 @end
 @implementation ActivityListRequestItem_body_scheme_process
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"userfinishnum":@"userFinishNum",
-                                                       @"userfinishscore":@"userFinishScore"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"userFinishNum":@"userfinishnum",
+                                                                  @"userFinishScore":@"userfinishscore"}];
 }
 @end
 @implementation ActivityListRequestItem_body_scheme

@@ -9,31 +9,31 @@
 #import "ReadingListRequest_17.h"
 @implementation ReadingListRequest_17Item_Objs_Affix
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"resname":@"resName",
-                                                       @"convertstatus":@"convertStatus",
-                                                       @"previewurl":@"previewUrl",
-                                                       @"downloadurl":@"downloadUrl",
-                                                       @"resid":@"resID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"resName":@"resname",
+                                                                  @"convertStatus":@"convertstatus",
+                                                                  @"previewUrl":@"previewurl",
+                                                                  @"downloadUrl":@"downloadurl",
+                                                                  @"resID":@"resid"}];
 }
 @end
 @implementation ReadingListRequest_17Item_Objs
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"objID",
-                                                       @"isfinish":@"isFinish",
-                                                       @"timelength":@"timeLength"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"objID":@"id",
+                                                                  @"isFinish":@"isfinish",
+                                                                  @"timeLength":@"timelength"}];
 }
 @end
 @implementation ReadingListRequest_17Item_Scheme_Process
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"userfinishnum":@"userFinishNum",
-                                                       @"userfinishscore":@"userFinishScore"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"userFinishNum":@"userfinishnum",
+                                                                  @"userFinishScore":@"userfinishscore"}];
 }
 @end
 @implementation ReadingListRequest_17Item_Scheme_Scheme
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"finishnum":@"finishNum",
-                                                       @"finishscore":@"finishScore",
-                                                       @"toolid":@"toolID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"finishNum":@"finishnum",
+                                                                  @"finishScore": @"finishscore",
+                                                                  @"toolID":@"toolid"}];
 }
 @end
 @implementation ReadingListRequest_17Item_Scheme
@@ -41,17 +41,17 @@
 @end
 @implementation ReadingListRequest_17Item
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"isfinish":@"isFinish"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"isFinish":@"isfinish"}];
 }
 @end
 
 @implementation ReadingListRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"stageid":@"stageID",
-                                                       @"toolid":@"toolID",
-                                                       @"themeid":@"themeID",
-                                                       @"layerid":@"layerID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid",
+                                                                  @"stageID":@"stageid",
+                                                                  @"toolID":@"toolid",
+                                                                  @"themeID":@"themeid",
+                                                                  @"layerID":@"layerid"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

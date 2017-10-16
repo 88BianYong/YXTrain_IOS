@@ -10,9 +10,9 @@
 
 @implementation ReadingSubmitStatusRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"stageid":@"stageID",
-                                                       @"id":@"contentID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid",
+                                                                  @"stageID":@"stageid",
+                                                                  @"contentID":@"id"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

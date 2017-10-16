@@ -15,25 +15,25 @@
 @implementation YXCourseListRequestItem_body_stage
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"stageID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"stageID":@"id"}];
 }
 @end
 @implementation YXCourseListRequestItem_body_study
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"studyID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"studyID":@"id"}];
 }
 @end
 @implementation YXCourseListRequestItem_body_type
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"typeID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"typeID":@"id"}];
 }
 @end
 @implementation YXCourseListRequestItem_body_segment
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"segmentID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"segmentID":@"id"}];
 }
 @end
 @implementation YXCourseListRequestItem_body_module_course_quiz

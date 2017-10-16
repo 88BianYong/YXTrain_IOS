@@ -14,8 +14,8 @@
 
 @implementation VideoCourseReplyCommnetRequest
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"commentID",
-                                                       @"courseId":@"courseID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"commentID":@"id",
+                                                                  @"courseID":@"courseId"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

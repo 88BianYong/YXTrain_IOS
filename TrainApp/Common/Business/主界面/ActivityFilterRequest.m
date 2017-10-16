@@ -13,28 +13,28 @@
 
 @implementation ActivityFilterRequestItem_body_stage
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"stageID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"stageID":@"id"}];
 }
 @end
 
 @implementation ActivityFilterRequestItem_body_study
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"studyID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"studyID":@"id"}];
 }
 @end
 
 @implementation ActivityFilterRequestItem_body_segment
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"segmentID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"segmentID":@"id"}];
 }
 @end
 
 @implementation ActivityFilterRequestItem_body
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"stage":@"stages",
-                                                       @"segment":@"segments",
-                                                       @"study":@"studys",
-                                                       @"default":@"defaultChoose"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"stages":@"stage",
+                                                                  @"segments":@"segment",
+                                                                  @"studys":@"study",
+                                                                  @"defaultChoose":@"default"}];
 }
 
 @end

@@ -12,9 +12,9 @@
 @end
 @implementation YXSubmitAnswerRequest
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"qid":@"qID",
-                                                       @"pid":@"pID",
-                                                       @"cid":@"cID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"qID":@"qid",
+                                                                  @"pID":@"pid",
+                                                                  @"cID":@"cid"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

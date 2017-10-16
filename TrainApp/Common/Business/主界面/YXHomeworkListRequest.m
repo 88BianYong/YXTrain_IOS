@@ -14,7 +14,7 @@
 @implementation YXHomeworkListRequestItem_Body_Stages
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"stagesId"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"stagesId":@"id"}];
 }
 @end
 

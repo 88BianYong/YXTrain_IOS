@@ -24,7 +24,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
 
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"iid"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"iid":@"id"}];
 }
 
 - (BOOL)isTest

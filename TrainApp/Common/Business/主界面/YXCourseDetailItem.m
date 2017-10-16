@@ -14,7 +14,7 @@
 + (JSONKeyMapper *)keyMapper
 {
     // 这里应该是个bug，先client搞定吧
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"chapter_name": @"fragment_name"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"fragment_name":@"chapter_name"}];
 }
 @end
 @implementation YXCourseDetailItem_mti
@@ -23,8 +23,8 @@
 @implementation YXCourseDetailItem_score
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"self": @"sself",
-                                                       @"count": @"ccount"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"sself":@"self",
+                                                                  @"ccount":@"count"}];
 }
 @end
 @implementation YXCourseDetailItem_chapter
@@ -34,10 +34,10 @@
 @implementation YXCourseDetailItem
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"courseschememode": @"courseSchemeMode",
-                                                       @"openquiztime": @"openQuizTime",
-                                                       @"userquizstatus": @"userQuizStatus",
-                                                       @"quiznum": @"quizNum"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{ @"courseSchemeMode":@"courseschememode",
+                                                                   @"openQuizTime":@"openquiztime",
+                                                                   @"userQuizStatus":@"userquizstatus",
+                                                                   @"quizNum":@"quiznum"}];
 }
 - (YXCourseDetailItem_chapter_fragment *)willPlayVideoSeek:(NSInteger)integer {
     if (self.playIndexPath == nil) {

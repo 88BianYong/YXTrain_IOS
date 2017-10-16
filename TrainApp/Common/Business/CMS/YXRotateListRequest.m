@@ -11,7 +11,7 @@
 @implementation YXRotateListRequestItem_Rotates
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"rotateId"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"rotateId":@"id"}];
 }
 
 - (NSString<Optional> *)resurl

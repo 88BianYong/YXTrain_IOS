@@ -11,7 +11,7 @@
 @implementation YXNoticeAndBulletinItem
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"nbID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"nbID":@"id"}];
 }
 @end
 

@@ -10,8 +10,7 @@
 @implementation YXSaveHomeWorkRequestModel
 +(JSONKeyMapper*)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{
-                                                       @"description": @"des",
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"des":@"description",
                                                        }];
 }
 @end

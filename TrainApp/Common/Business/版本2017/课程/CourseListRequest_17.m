@@ -20,7 +20,7 @@
 @end
 @implementation CourseListRequest_17Item_Objs_Content
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"imgurl":@"imgUrl"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"imgUrl":@"imgurl"}];
 }
 @end
 @implementation CourseListRequest_17Item_Objs
@@ -31,32 +31,32 @@
     return _timeLengthSec;
 }
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"trainingid":@"trainingID",
-                                                       @"studycode":@"studyCode",
-                                                       @"segmentcode":@"segmentCode",
-                                                       @"id":@"objID",
-                                                       @"timelength":@"timeLength",
-                                                       @"stageid":@"stageID",
-                                                       @"isfinish":@"isFinish",
-                                                       @"timelengthsec":@"timeLengthSec"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"trainingID":@"trainingid",
+                                                                  @"studyCode":@"studycode",
+                                                                  @"segmentCode":@"segmentcode",
+                                                                  @"objID":@"id",
+                                                                  @"timeLength":@"timelength",
+                                                                  @"stageID":@"stageid",
+                                                                  @"isFinish":@"isfinish",
+                                                                  @"timeLengthSec":@"timelengthsec"}];
 }
 @end
 
 @implementation CourseListRequest_17Item_Scheme_Scheme
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"toolid":@"toolID",
-                                                       @"finishnum":@"finishNum",
-                                                       @"finishscore":@"finishScore",
-                                                       @"passfinishscore":@"passFinishScore",
-                                                       @"passScore":@"passScore"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"toolID":@"toolid",
+                                                                  @"finishNum":@"finishnum",
+                                                                  @"finishScore":@"finishscore",
+                                                                  @"passFinishScore":@"passfinishscore",
+                                                                  @"passScore":@"passScore"}];
 }
 @end
 @implementation CourseListRequest_17Item_Scheme_Process
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"userfinishnum":@"userFinishNum",
-                                                       @"userfinishscore":@"userFinishScore",
-                                                       @"userpassscore":@"userPassScore",
-                                                       @"ispass":@"isPass"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"userFinishNum":@"userfinishnum",
+                                                                  @"userFinishScore":@"userfinishscore",
+                                                                  @"userPassScore":@"userpassscore",
+                                                                  @"isPass":@"ispass"}];
 }
 @end
 @implementation CourseListRequest_17Item_Scheme
@@ -65,8 +65,8 @@
 
 @implementation CourseListRequest_17Item_SearchTerm_ModuleVo
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"moduleVoID",
-                                                       @"stageid":@"stageID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"moduleVoID":@"id",
+                                                                  @"stageID":@"stageid"}];
 }
 @end
 @implementation CourseListRequest_17Item_SearchTerm_DefaultValue
@@ -147,10 +147,10 @@
 
 @implementation CourseListRequest_17
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"projectid":@"projectID",
-                                                       @"stageid":@"stageID",
-                                                       @"themeid":@"themeID",
-                                                       @"layerid":@"layerID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"projectID":@"projectid",
+                                                                  @"stageID":@"stageid",
+                                                                  @"themeID":@"themeid",
+                                                                  @"layerID":@"layerid"}];
 }
 - (instancetype)init {
     if (self = [super init]) {

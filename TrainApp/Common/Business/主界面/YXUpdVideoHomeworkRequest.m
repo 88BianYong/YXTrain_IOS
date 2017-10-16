@@ -16,7 +16,7 @@
 @implementation YXUpdVideoHomeworkRequestModel
 + (JSONKeyMapper *)keyMapper
 {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id":@"contentId"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"contentId":@"id"}];
 }
 @end
 

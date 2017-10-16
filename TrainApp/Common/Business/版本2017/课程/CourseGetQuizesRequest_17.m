@@ -9,12 +9,12 @@
 #import "CourseGetQuizesRequest_17.h"
 @implementation CourseGetQuizesRequest_17Item_Result_Questions_Questions_AnswerJson
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"isChoice":@"isChoose"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"isChoose":@"isChoice"}];
 }
 @end
 @implementation CourseGetQuizesRequest_17Item_Result_Questions_Question
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"qId":@"qID"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"qID":@"qId"}];
 }
 @end
 @implementation CourseGetQuizesRequest_17Item_Result_Questions
@@ -22,9 +22,9 @@
 @end
 @implementation CourseGetQuizesRequest_17Item_Result
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"lasttime":@"lastTime",
-                                                       @"wrongnum":@"wrongNum",
-                                                       @"correctnum":@"correctNum"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"lastTime":@"lasttime",
+                                                                  @"wrongNum":@"wrongnum",
+                                                                  @"correctNum":@"correctnum"}];
 }
 @end
 @implementation CourseGetQuizesRequest_17Item

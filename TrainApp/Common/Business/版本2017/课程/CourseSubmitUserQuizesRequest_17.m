@@ -12,10 +12,10 @@
 
 @implementation CourseSubmitUserQuizesRequest_17Item
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"correctnum":@"correctNum",
-                                                       @"totalnum":@"totalNum",
-                                                       @"passrate":@"passRate",
-                                                       @"ispass":@"isPass"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"correctNum":@"correctnum",
+                                                                  @"totalNum":@"totalnum",
+                                                                  @"passRate":@"passrate",
+                                                                  @"isPass":@"ispass"}];
 }
 @end
 @implementation CourseSubmitUserQuizesRequest_17
