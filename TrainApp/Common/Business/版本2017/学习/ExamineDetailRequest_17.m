@@ -180,6 +180,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/examine/detail"];
+        self.hook = @"yes";
     }
     return self;
 }

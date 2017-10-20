@@ -32,36 +32,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - set
-- (void)setExamine:(ExamineDetailRequest_17Item_Examine *)examine {
-    _examine = examine;
-    NSMutableArray<ExamineDetailRequest_17Item_Examine_Process> *process = [[NSMutableArray<ExamineDetailRequest_17Item_Examine_Process> alloc] init];
-    [_examine.process enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-    NSMutableArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList> *list = [[NSMutableArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList> alloc] init];
-        //任何工具总分、完成标准都为0时不显示该工具
-        //工具总分： passtotalscore + totalscore
-        //完成标准totalNum
-         __block BOOL isFilterBool = YES;
-        [obj.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *exa, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (exa.totalScore.integerValue != 0.0f || exa.passTotalScore.integerValue != 0.0f || exa.totalNum.integerValue != 0) {
-                isFilterBool = NO;
-                [list addObject:exa];
-            }
-            if (exa.toolID.integerValue == 201) {
-                [exa.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
-                    if (next.toolID.integerValue == 223) {
-                        self.isShowChoose = YES;
-                    }
-                }];
-            }
-        }];
-        obj.toolExamineVoList = list;
-        if (!isFilterBool) {
-            [process addObject:obj];
-        }
-    }];
-    _examine.process = process;
-}
 #pragma mark - setupUI
 - (void)setupUI {
     self.navigationItem.title = @"我的成绩";
@@ -87,7 +57,13 @@
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
     YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
-    [v setupOriginRect:rect withToTop:(rect.origin.y - self.showMarkHeight - 20 > 0) ? YES : NO];
+    [v setupOriginRect:rect withToTop:(rect.origin.y - [self heightForDescription:string] - 30 > 0) ? YES : NO];
+}
+- (CGFloat)heightForDescription:(NSString *)desc {
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:7];
+    CGRect rect = [desc boundingRectWithSize:CGSizeMake(kScreenWidth - 60.0f, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f],NSParagraphStyleAttributeName:paragraphStyle} context:NULL];
+    return rect.size.height;
 }
 #pragma mark - UITableViewDelegate
 
@@ -111,8 +87,9 @@
     WEAK_SELF
     headerView.myLearningScoreButtonBlock = ^(UIButton *sender) {
         STRONG_SELF
+        ExamineDetailRequest_17Item_Examine_Process *process = self.examine.process[section];
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-         [self showMarkWithOriginRect:rect explain:[self showExamExplain:self.examine.process[section]]];
+         [self showMarkWithOriginRect:rect explain:process.descr];
     };
     return headerView;
 }
@@ -127,55 +104,5 @@
     YXMyLearningScoreCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMyLearningScoreCell_17" forIndexPath:indexPath];
     cell.process = self.examine.process[indexPath.section];
     return cell;
-}
-#pragma mark - dataFormat
-- (NSString *)showExamExplain:(ExamineDetailRequest_17Item_Examine_Process *)process {
-    self.showMarkHeight = 20;
-    NSMutableArray<NSString *> *mutableArray = [[NSMutableArray<NSString *> alloc] initWithCapacity:4];
-    [process.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (!obj.isExistsNext.boolValue) {
-            YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];
-            help.toolName = obj.name;
-            help.toolID = obj.toolID;
-            help.type = obj.type;
-            help.finishNum = obj.finishNum;
-            help.finishScore = obj.passFinishScore;
-            help.totalNum = obj.totalNum;
-            help.totalScore = obj.totalScore;
-            help.passTotalScore = obj.passTotalScore;
-            help.passScore = obj.passScore;
-            help.isExamPass = self.examine.isExamPass;
-            help.isShowChoose = self.isShowChoose;
-            NSString *helpString = [help toolCompleteStatusExplain];
-            if (!isEmpty(helpString)) {
-                [mutableArray addObject:helpString];
-                self.showMarkHeight += 23;
-            }
-            
-        }else {
-            [obj.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *next, NSUInteger idx, BOOL * _Nonnull stop) {
-                YXMyExamExplainHelp_17 *help = [[YXMyExamExplainHelp_17 alloc] init];
-                help.toolName = next.name;
-                help.toolID = next.toolID;
-                help.type = next.type;
-                help.finishNum = next.finishNum;
-                help.finishScore = next.userScore;
-                help.totalNum = next.totalNum;
-                help.totalScore = next.totalScore;
-                help.passTotalScore = next.passTotalScore;
-                help.passScore = next.passScore;
-                help.isExamPass = self.examine.isExamPass;
-                help.isShowChoose = self.isShowChoose;
-                self.showMarkHeight += 23;
-                NSString *helpString = [help toolCompleteStatusExplain];
-                if (!isEmpty(helpString)) {
-                    [mutableArray addObject:helpString];
-                    self.showMarkHeight += 23;
-                }
-            }];
-        }
-    }];
-    NSString *string = [mutableArray componentsJoinedByString:@"\n"];
-    return string;
 }
 @end

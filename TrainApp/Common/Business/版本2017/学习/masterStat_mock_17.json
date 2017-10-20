@@ -15,6 +15,7 @@
               ],
     "examine":{
         "isPass":0,
+        "isExamPass":-1,
         "process":[
                    {
                    "descr":"",
@@ -242,7 +243,10 @@
                                         "totalnum":1,
                                         "totalscore":2,
                                         "type":0,
-                                        "userscore":0
+                                        "userscore":0,
+                                        "passfinishscore":0,
+                                        "passscore":0,
+                                        "passtotalscore":0
                                         }
                                         ],
                    "totalscore":2,
@@ -371,6 +375,7 @@
         "isShowExpertChannel":0
     },
     "isNewPlatform":2,
+    "projectName":"2017年培训项目",
     "layer":{
         "isOpenLayerStudy":0,
         "isShowSwitchLayer":0,
@@ -379,13 +384,19 @@
         "layerid":0
     },
     "other":{
-        "guide":"",
+        "guide":"http://px.yanxiu.com/2016gpsfx_2001/index.html",
+        "homepage":"http://p.yanxiu.com/xb",
         "ifWorks":0,
         "isOpenGroup":0,
         "isShowCert":0,
         "isShowCourseMarket":1,
         "isShowLocalcourse":1,
-        "isShowOfflineActive":0,
+        "isShowOfflineActive":1,
+        "isShowSelfHomework":1,
+        "isShowEvaluate":1,
+        "isShowExam":1,
+        "stageLockWay":1,
+        "isShowExpertAnwsers":0,
         "plans":"http://www.teacherclub.com.cn"
     },
     "passport":"XY00000164@yanxiu.com",
@@ -393,6 +404,7 @@
     "projectid":2393,
     "role":9,
     "serverRole":"9",
+    "examway":1,
     "stages":[
               {
               "isCurrStage":0,
@@ -459,61 +471,13 @@
                        "name":"课程",
                        "orderNu":1,
                        "status":0,
-                       "toolid":208
+                       "toolid":201
                        },
                        {
                        "name":"活动",
                        "orderNu":2,
                        "status":0,
-                       "toolid":208
-                       },
-                       {
-                       "name":"作业",
-                       "orderNu":3,
-                       "status":0,
-                       "toolid":208
-                       },
-                       {
-                       "name":"作业",
-                       "orderNu":3,
-                       "status":0,
-                       "toolid":208
-                       },
-                       {
-                       "name":"作业",
-                       "orderNu":3,
-                       "status":0,
-                       "toolid":203
-                       },
-                       {
-                       "name":"作业",
-                       "orderNu":3,
-                       "status":0,
-                       "toolid":203
-                       },
-                       {
-                       "name":"作业",
-                       "orderNu":3,
-                       "status":0,
-                       "toolid":203
-                       },
-                       {
-                       "name":"作业",
-                       "orderNu":3,
-                       "status":0,
-                       "toolid":203
-                       },
-                       {
-                       "name":"作业",
-                       "orderNu":3,
-                       "status":0,
-                       "toolid":203
-                       },
-                       {
-                       "name":"作业",
-                       "orderNu":3,
-                       "status":0,
-                       "toolid":203
+                       "toolid":202
                        },
                        {
                        "name":"作业",
@@ -564,5 +528,33 @@
         "studyName":"语文",
         "userId":11948850,
         "userName":"学员602"
+    },
+    "bouns":{
+        "isSchemeBouns":1,
+        "bounsVo":{
+            "bouns1":0,
+            "bouns2":0,
+            "bouns3":1,
+            "bounsscore":0.5,
+            "bounstotalscore":40,
+            "bounsneed":300,
+            "bounstotal":1,
+            "comment":0,
+            "commentEd":1,
+            "downloadEdRes":0,
+            "followUser":0,
+            "joinActive":0,
+            "joinAnswering":0,
+            "mark":0,
+            "publishBlog":0,
+            "publishHomework":0,
+            "publishWenda":0,
+            "timeCourse":0,
+            "tuiyouEdHomework":0,
+            "tuiyouEdResource":0,
+            "uploadRes":0
+        },
+        "bounsdaily":0,
+        "bounsdailylimit":40
     }
 }

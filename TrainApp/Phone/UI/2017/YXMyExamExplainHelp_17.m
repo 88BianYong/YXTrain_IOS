@@ -12,6 +12,29 @@
 - (NSString *)toolCompleteStatusExplain {
     NSString *lStr = nil;
     NSString *rStr = nil;
+//    help.toolName ==> obj.name;
+//    help.toolID ==>obj.toolID;
+//    help.type ==> obj.type;
+//    help.finishNum ==> obj.finishNum;
+//    help.finishScore ==> obj.passFinishScore;
+//    help.totalNum ==> obj.totalNum;
+//    help.totalScore ==> obj.totalScore;
+//    help.passTotalScore ==> obj.passTotalScore;
+//    help.passScore ==> obj.passScore;
+//    help.isExamPass ==> self.examine.isExamPass;
+//    help.isShowChoose ==> self.isShowChoose;
+
+    
+//    if (process.toolExamineVoList.count > tagInteger) {
+//        ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *voList = process.toolExamineVoList[tagInteger];
+//        [voList.toolExamineVoList enumerateObjectsUsingBlock:^(ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            if ((obj.toolID.integerValue == 223) || (obj.toolID.integerValue == 201 && obj.type.integerValue == 1)) {
+//                isShowChoose = YES;
+//                *stop = YES;
+//            }
+//        }];
+//    }
+    
     if(self.totalScore.integerValue == 0 && self.passTotalScore.integerValue == 0 && self.totalNum.integerValue == 0) {
         lStr = @"";
         rStr = @"";
