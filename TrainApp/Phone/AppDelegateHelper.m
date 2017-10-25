@@ -150,7 +150,7 @@
     YXDrawerViewController *drawerVC = [[YXDrawerViewController alloc]init];
     drawerVC.drawerViewController = menuVC;
     drawerVC.paneViewController = projectNavi;
-    drawerVC.drawerWidth = [UIScreen mainScreen].bounds.size.width * YXTrainLeftDrawerWidth/750.0f;
+    drawerVC.drawerWidth = kScreenWidth * YXTrainLeftDrawerWidth/750.0f;
     return drawerVC;
 }
 - (YXTabBarViewController_17 *)rootTabBarViewController {

@@ -38,6 +38,7 @@ static const CGFloat kAnimationDuration = 0.3;
         make.right.equalTo(self.view.mas_left);
         make.top.equalTo(self.view.mas_top);
         make.height.equalTo(self.view.mas_height);
+        make.width.mas_equalTo(self.drawerWidth);
     }];
     
     self.gestureView = [[UIView alloc]init];
@@ -49,6 +50,9 @@ static const CGFloat kAnimationDuration = 0.3;
     pan.delegate = self;
     pan.maximumNumberOfTouches = 1;
     [self.gestureView addGestureRecognizer:pan];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        DDLogDebug(@"%@",NSStringFromCGRect(self.drawerViewController.view.frame));
+    });
 }
 
 - (void)showDrawer{
@@ -63,6 +67,7 @@ static const CGFloat kAnimationDuration = 0.3;
                              make.left.equalTo(self.view.mas_left);
                              make.top.equalTo(self.view.mas_top);
                              make.height.equalTo(self.view.mas_height);
+                             make.width.mas_equalTo(self.drawerWidth);
                          }];
                          self.gestureView.frame = CGRectMake(self.drawerWidth, 0, self.view.frame.size.width-self.drawerWidth, self.view.frame.size.height);
                          self.gestureView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.5];
@@ -83,6 +88,7 @@ static const CGFloat kAnimationDuration = 0.3;
                              make.right.equalTo(self.view.mas_left);
                              make.top.equalTo(self.view.mas_top);
                              make.height.equalTo(self.view.mas_height);
+                             make.width.mas_equalTo(self.drawerWidth);
                          }];
                          [self.view layoutIfNeeded];
                          self.gestureView.frame = self.view.bounds;

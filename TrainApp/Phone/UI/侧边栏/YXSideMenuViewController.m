@@ -61,7 +61,6 @@
     [self.view addSubview:self.shadowView];
     [self.shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.right.mas_equalTo(@0);
-        make.width.mas_equalTo(@([UIScreen mainScreen].bounds.size.width * 600/750));
     }];
 
     self.headerView = [[UIView alloc] init];
@@ -82,14 +81,12 @@
     [self reloadMenuTableView];
     
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.mas_equalTo(@0);
+        make.top.left.right.mas_equalTo(@0);
         make.height.mas_equalTo(@121);
-        make.width.mas_equalTo(@(kScreenWidth * YXTrainLeftDrawerWidth/750.0f));
     }];
     [self.footerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.mas_equalTo(@0);
+        make.bottom.left.right.mas_equalTo(@0);
         make.height.mas_equalTo(60);
-        make.width.mas_equalTo(@(kScreenWidth * YXTrainLeftDrawerWidth/750.0f));
     }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
