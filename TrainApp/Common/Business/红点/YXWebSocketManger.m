@@ -44,11 +44,13 @@
 }
 
 - (void)open{
-    if (self ->_webSocket.readyState != SR_OPEN) {
-        _state = YXWebSocketMangerState_Normal;
-        DDLogDebug(@"开始连接");
-        [self setupData];
-    }
+    return;
+    
+//    if (self ->_webSocket.readyState != SR_OPEN) {
+//        _state = YXWebSocketMangerState_Normal;
+//        DDLogDebug(@"开始连接");
+//        [self setupData];
+//    }
 }
 - (void)close{
     [_webSocket close];
@@ -61,11 +63,13 @@
 }
 
 - (void)setupData{
-    _webSocket.delegate = nil;
-    [_webSocket close];
-    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[LSTSharedInstance sharedInstance].configManager.websocketServer]]];
-    _webSocket.delegate = self;
-    [_webSocket open];
+    return;
+    
+//    _webSocket.delegate = nil;
+//    [_webSocket close];
+//    _webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[LSTSharedInstance sharedInstance].configManager.websocketServer]]];
+//    _webSocket.delegate = self;
+//    [_webSocket open];
 }
 
 - (void)setState:(YXWebSocketMangerState)state{
