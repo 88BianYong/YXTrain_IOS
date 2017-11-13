@@ -63,6 +63,12 @@
       "idiom" : "iphone",
       "filename" : "180.png",
       "scale" : "3x"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "1024圆角.jpg",
+      "scale" : "1x"
     }
   ],
   "info" : {
