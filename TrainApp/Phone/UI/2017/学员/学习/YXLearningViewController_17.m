@@ -308,7 +308,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     ExamineDetailRequest_17Item_Stages *stages = self.examineDetailItem.stages[indexPath.section];
-    return ceil((double)stages.tools.count/4.0f) * 80.0f;;
+    return ceil((double)stages.tools.count/4.0f) * 80.0f;
 }
 
 #pragma mark - UITableViewDataSource

@@ -7,9 +7,11 @@
 //
 
 #import "MasterExamViewController_17.h"
+#import "MasterIndexRequest_17.h"
 
 @interface MasterExamViewController_17 ()
-
+@property (nonatomic, strong) MasterIndexRequest_17 *indexRequest;
+@property (nonatomic, strong) MasterIndexRequestItem_Body *masterItem;
 @end
 
 @implementation MasterExamViewController_17
@@ -24,14 +26,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

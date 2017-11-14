@@ -372,6 +372,7 @@
 		925F4AF81FBA9693003FB2FC /* RootViewControllerManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4AF71FBA9693003FB2FC /* RootViewControllerManger.m */; };
 		925F4AFE1FBA96EF003FB2FC /* RootViewControllerManger_16.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4AFD1FBA96EF003FB2FC /* RootViewControllerManger_16.m */; };
 		925F4B011FBA96FC003FB2FC /* RootViewControllerManger_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4B001FBA96FC003FB2FC /* RootViewControllerManger_17.m */; };
+		925F4B041FBAA32C003FB2FC /* MasterIndexRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4B031FBAA32C003FB2FC /* MasterIndexRequest_17.m */; };
 		9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */; };
 		926846731F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846721F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m */; };
 		926846761F34547600CD9784 /* UITabBar+YXAddtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846751F34547600CD9784 /* UITabBar+YXAddtion.m */; };
@@ -505,6 +506,11 @@
 		92D29C3D1F1C97F0003DF29B /* CourseFilterHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D29C3C1F1C97F0003DF29B /* CourseFilterHeaderView_17.m */; };
 		92D29C401F1CAF51003DF29B /* CollectionViewEqualSpaceFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D29C3F1F1CAF51003DF29B /* CollectionViewEqualSpaceFlowLayout.m */; };
 		92D29C431F1CB7D4003DF29B /* CourseFilterFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92D29C421F1CB7D4003DF29B /* CourseFilterFooterView_17.m */; };
+		92DD28331FBAC6160023F58C /* MasterHomeTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD28321FBAC6160023F58C /* MasterHomeTableHeaderView_17.m */; };
+		92DD28361FBAC6390023F58C /* MasterHomeHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD28351FBAC6390023F58C /* MasterHomeHeaderView_17.m */; };
+		92DD28391FBAC6680023F58C /* MasterHomeBarCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD28381FBAC6680023F58C /* MasterHomeBarCell_17.m */; };
+		92DD283C1FBAC67F0023F58C /* MasterHomeModuleCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD283B1FBAC67F0023F58C /* MasterHomeModuleCell_17.m */; };
+		92DD283F1FBAC8FC0023F58C /* MasterWaveView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DD283E1FBAC8FB0023F58C /* MasterWaveView_17.m */; };
 		92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */; };
 		92DE3BB41DDAFDEE0011CFB7 /* ActivityStepTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BB31DDAFDEE0011CFB7 /* ActivityStepTableCell.m */; };
 		92DE3BBB1DDC329A0011CFB7 /* SecondCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BBA1DDC329A0011CFB7 /* SecondCommentViewController.m */; };
@@ -1424,6 +1430,8 @@
 		925F4AFD1FBA96EF003FB2FC /* RootViewControllerManger_16.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewControllerManger_16.m; sourceTree = "<group>"; };
 		925F4AFF1FBA96FC003FB2FC /* RootViewControllerManger_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewControllerManger_17.h; sourceTree = "<group>"; };
 		925F4B001FBA96FC003FB2FC /* RootViewControllerManger_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewControllerManger_17.m; sourceTree = "<group>"; };
+		925F4B021FBAA32C003FB2FC /* MasterIndexRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterIndexRequest_17.h; sourceTree = "<group>"; };
+		925F4B031FBAA32C003FB2FC /* MasterIndexRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterIndexRequest_17.m; sourceTree = "<group>"; };
 		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
 		9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserRequest.m; sourceTree = "<group>"; };
 		926846711F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListGroupDefaultCell_17.h; sourceTree = "<group>"; };
@@ -1683,6 +1691,16 @@
 		92D29C3F1F1CAF51003DF29B /* CollectionViewEqualSpaceFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewEqualSpaceFlowLayout.m; sourceTree = "<group>"; };
 		92D29C411F1CB7D4003DF29B /* CourseFilterFooterView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseFilterFooterView_17.h; sourceTree = "<group>"; };
 		92D29C421F1CB7D4003DF29B /* CourseFilterFooterView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseFilterFooterView_17.m; sourceTree = "<group>"; };
+		92DD28311FBAC6160023F58C /* MasterHomeTableHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeTableHeaderView_17.h; sourceTree = "<group>"; };
+		92DD28321FBAC6160023F58C /* MasterHomeTableHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeTableHeaderView_17.m; sourceTree = "<group>"; };
+		92DD28341FBAC6390023F58C /* MasterHomeHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeHeaderView_17.h; sourceTree = "<group>"; };
+		92DD28351FBAC6390023F58C /* MasterHomeHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeHeaderView_17.m; sourceTree = "<group>"; };
+		92DD28371FBAC6680023F58C /* MasterHomeBarCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeBarCell_17.h; sourceTree = "<group>"; };
+		92DD28381FBAC6680023F58C /* MasterHomeBarCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeBarCell_17.m; sourceTree = "<group>"; };
+		92DD283A1FBAC67F0023F58C /* MasterHomeModuleCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeModuleCell_17.h; sourceTree = "<group>"; };
+		92DD283B1FBAC67F0023F58C /* MasterHomeModuleCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeModuleCell_17.m; sourceTree = "<group>"; };
+		92DD283D1FBAC8FB0023F58C /* MasterWaveView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterWaveView_17.h; sourceTree = "<group>"; };
+		92DD283E1FBAC8FB0023F58C /* MasterWaveView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterWaveView_17.m; sourceTree = "<group>"; };
 		92DDDE2E1D5B48FD001F125A /* YXUploadDepictionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXUploadDepictionViewController.h; sourceTree = "<group>"; };
 		92DDDE2F1D5B48FD001F125A /* YXUploadDepictionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXUploadDepictionViewController.m; sourceTree = "<group>"; };
 		92DE3BB21DDAFDEE0011CFB7 /* ActivityStepTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityStepTableCell.h; sourceTree = "<group>"; };
@@ -3233,9 +3251,9 @@
 			children = (
 				922DB1CE1FBA8FEB0078F6BD /* 主界面 */,
 				922DB1D21FBA900E0078F6BD /* 首页 */,
+				922DB1D31FBA901D0078F6BD /* 考核 */,
 				922DB1D51FBA90330078F6BD /* 我 */,
 				922DB1D41FBA90230078F6BD /* 消息 */,
-				922DB1D31FBA901D0078F6BD /* 考核 */,
 			);
 			path = "坊主";
 			sourceTree = "<group>";
@@ -3254,10 +3272,10 @@
 		922DB1B81FBA84060078F6BD /* 坊主 */ = {
 			isa = PBXGroup;
 			children = (
-				922DB1DA1FBA90700078F6BD /* 我 */,
-				922DB1D81FBA90630078F6BD /* 消息 */,
-				922DB1D71FBA905B0078F6BD /* 考核 */,
 				922DB1D61FBA90500078F6BD /* 首页 */,
+				922DB1D71FBA905B0078F6BD /* 考核 */,
+				922DB1D81FBA90630078F6BD /* 消息 */,
+				922DB1DA1FBA90700078F6BD /* 我 */,
 			);
 			path = "坊主";
 			sourceTree = "<group>";
@@ -3265,8 +3283,8 @@
 		922DB1CE1FBA8FEB0078F6BD /* 主界面 */ = {
 			isa = PBXGroup;
 			children = (
-				922DB1F71FBA930D0078F6BD /* MasterTabBarViewController_17.h */,
-				922DB1F81FBA930D0078F6BD /* MasterTabBarViewController_17.m */,
+				92DD282F1FBAC46C0023F58C /* view */,
+				92DD28301FBAC4740023F58C /* controller */,
 			);
 			path = "主界面";
 			sourceTree = "<group>";
@@ -3310,6 +3328,8 @@
 		922DB1D61FBA90500078F6BD /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				925F4B021FBAA32C003FB2FC /* MasterIndexRequest_17.h */,
+				925F4B031FBAA32C003FB2FC /* MasterIndexRequest_17.m */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -3338,6 +3358,16 @@
 		922DB1DB1FBA90810078F6BD /* view */ = {
 			isa = PBXGroup;
 			children = (
+				92DD28311FBAC6160023F58C /* MasterHomeTableHeaderView_17.h */,
+				92DD28321FBAC6160023F58C /* MasterHomeTableHeaderView_17.m */,
+				92DD28341FBAC6390023F58C /* MasterHomeHeaderView_17.h */,
+				92DD28351FBAC6390023F58C /* MasterHomeHeaderView_17.m */,
+				92DD28371FBAC6680023F58C /* MasterHomeBarCell_17.h */,
+				92DD28381FBAC6680023F58C /* MasterHomeBarCell_17.m */,
+				92DD283A1FBAC67F0023F58C /* MasterHomeModuleCell_17.h */,
+				92DD283B1FBAC67F0023F58C /* MasterHomeModuleCell_17.m */,
+				92DD283D1FBAC8FB0023F58C /* MasterWaveView_17.h */,
+				92DD283E1FBAC8FB0023F58C /* MasterWaveView_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -4363,6 +4393,22 @@
 			name = "网页";
 			sourceTree = "<group>";
 		};
+		92DD282F1FBAC46C0023F58C /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		92DD28301FBAC4740023F58C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				922DB1F71FBA930D0078F6BD /* MasterTabBarViewController_17.h */,
+				922DB1F81FBA930D0078F6BD /* MasterTabBarViewController_17.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
 		92E268AC1F0E07330022EA5A /* 2016 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5362,6 +5408,7 @@
 				CBB62E091D2CB98300DAA6DE /* NSDate+Utilities.m in Sources */,
 				92348FC41EEFEDEA00D3B3A7 /* RemindLeftSlipView.m in Sources */,
 				E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */,
+				925F4B041FBAA32C003FB2FC /* MasterIndexRequest_17.m in Sources */,
 				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
@@ -5507,6 +5554,7 @@
 				925146861F25EE6D00B1533B /* ReadingListRequest_17.m in Sources */,
 				920F1D711D5983E500636A51 /* YXVideoRecordManager.m in Sources */,
 				922DB1C21FBA87280078F6BD /* YXAllDatumViewController.m in Sources */,
+				92DD28331FBAC6160023F58C /* MasterHomeTableHeaderView_17.m in Sources */,
 				CBB62E0D1D2CBDB000DAA6DE /* YXBriefListRequest.m in Sources */,
 				922DB1A31FBA7FC20078F6BD /* CourseTestHeaderView_17.m in Sources */,
 				923237681D81512300FDACFE /* YXHotspotPictureCell.m in Sources */,
@@ -5573,6 +5621,7 @@
 				92E927A51F1DB35500BEF834 /* CourseHistoryViewController_17.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
 				92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */,
+				92DD28391FBAC6680023F58C /* MasterHomeBarCell_17.m in Sources */,
 				7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */,
 				928B7A3E1E88B2180067218A /* BeijingCheckedMobileUserViewController.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
@@ -5597,6 +5646,7 @@
 				928B7A451E88B2180067218A /* BeijingExamGenreDefaultHeaderView.m in Sources */,
 				7C3177D61D10FF0A004AAC90 /* YXTestPushViewController.m in Sources */,
 				9223C8401D2F93D7000F74DF /* YXUpdateProfileRequest.m in Sources */,
+				92DD283C1FBAC67F0023F58C /* MasterHomeModuleCell_17.m in Sources */,
 				922850C71DD05E3000A64AB7 /* ActivityPlayBottomView.m in Sources */,
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
 				7C2C3B4F1D2364E300A03635 /* YXTaskCell.m in Sources */,
@@ -5636,6 +5686,7 @@
 				922DB1631FBA7C020078F6BD /* YXTabBarViewController_17.m in Sources */,
 				7C2C3B661D24C4FA00A03635 /* YXCourseDetailRequest.m in Sources */,
 				CB4D917F1D1A650A00B5F1D0 /* YXMyDatumDownloadingInfoView.m in Sources */,
+				92DD283F1FBAC8FC0023F58C /* MasterWaveView_17.m in Sources */,
 				CB74628E1D2133170065113A /* YXSideTableViewCell.m in Sources */,
 				92BBE04E1F20B360009230AC /* HomeworkListHeaderView_17.m in Sources */,
 				922F3ACE1D2A722C00CBF7C3 /* YXWorkshopDetailViewController.m in Sources */,
@@ -5809,6 +5860,7 @@
 				924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */,
 				E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */,
 				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
+				92DD28361FBAC6390023F58C /* MasterHomeHeaderView_17.m in Sources */,
 				922DB1C31FBA87280078F6BD /* YXDatumViewController.m in Sources */,
 				9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */,
 				928B7A411E88B2180067218A /* BeijingDynamicCell.m in Sources */,
