@@ -16,6 +16,7 @@
 #import "YXProjectSelectionView.h"
 #import "YXSectionHeaderFooterView.h"
 #import "MasterReadingListViewController_17.h"
+#import "MasterLearningInfoViewController_17.h"
 @interface MasterHomeViewController_17()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) MasterHomeTableHeaderView_17 *tableHeaderView;
@@ -177,8 +178,9 @@
                 VC.stageString = tool.extend.stageId;
                 VC.toolString = tool.toolId;
                 [self.navigationController pushViewController:VC animated:YES];
-            }else if (tool.toolId.integerValue == 0) {
-                
+            }else if (tool.code.integerValue == 4) {
+                MasterLearningInfoViewController_17 *VC = [[MasterLearningInfoViewController_17 alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.toolId.integerValue == 0) {
                 
             }else if (tool.toolId.integerValue == 0) {

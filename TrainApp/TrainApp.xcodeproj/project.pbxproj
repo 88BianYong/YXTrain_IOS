@@ -375,6 +375,15 @@
 		92551E081FBBE5060034DC71 /* LSTCollectionFilterHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E011FBBE4F60034DC71 /* LSTCollectionFilterHeaderView.m */; };
 		92551E091FBBE5060034DC71 /* LSTCollectionFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E041FBBE4F70034DC71 /* LSTCollectionFilterModel.m */; };
 		92551E0A1FBBE5060034DC71 /* LSTCollectionFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551DFD1FBBE4F50034DC71 /* LSTCollectionFilterView.m */; };
+		92551E111FBBE5AC0034DC71 /* MasterLearningInfoRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E101FBBE5AC0034DC71 /* MasterLearningInfoRequest_17.m */; };
+		92551E141FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E131FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.m */; };
+		92551E171FBBEDC60034DC71 /* MasterLearningInfoViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E161FBBEDC60034DC71 /* MasterLearningInfoViewController_17.m */; };
+		92551E1B1FBBEE6E0034DC71 /* MasterLearningInfoTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E1A1FBBEE6E0034DC71 /* MasterLearningInfoTableHeaderView_17.m */; };
+		92551E211FBBEEE80034DC71 /* MasterLearningInfoCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E201FBBEEE80034DC71 /* MasterLearningInfoCell_17.m */; };
+		92551E241FBBF3A70034DC71 /* YXCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E231FBBF3A70034DC71 /* YXCircleView.m */; };
+		92551E281FBC1ECB0034DC71 /* WCGraintCircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E261FBC1EC70034DC71 /* WCGraintCircleLayer.m */; };
+		92551E2B1FBC29110034DC71 /* MasterCircleDisplayView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E2A1FBC29110034DC71 /* MasterCircleDisplayView_17.m */; };
+		92551E2E1FBC33BE0034DC71 /* MasterExamTopicCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E2D1FBC33BE0034DC71 /* MasterExamTopicCell_17.m */; };
 		925F4AF81FBA9693003FB2FC /* RootViewControllerManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4AF71FBA9693003FB2FC /* RootViewControllerManger.m */; };
 		925F4AFE1FBA96EF003FB2FC /* RootViewControllerManger_16.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4AFD1FBA96EF003FB2FC /* RootViewControllerManger_16.m */; };
 		925F4B011FBA96FC003FB2FC /* RootViewControllerManger_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4B001FBA96FC003FB2FC /* RootViewControllerManger_17.m */; };
@@ -1443,6 +1452,24 @@
 		92551E021FBBE4F60034DC71 /* collectionFilter_mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = collectionFilter_mock.json; sourceTree = "<group>"; };
 		92551E031FBBE4F60034DC71 /* LSTCollectionFilterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterCell.m; sourceTree = "<group>"; };
 		92551E041FBBE4F70034DC71 /* LSTCollectionFilterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterModel.m; sourceTree = "<group>"; };
+		92551E0F1FBBE5AC0034DC71 /* MasterLearningInfoRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterLearningInfoRequest_17.h; sourceTree = "<group>"; };
+		92551E101FBBE5AC0034DC71 /* MasterLearningInfoRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterLearningInfoRequest_17.m; sourceTree = "<group>"; };
+		92551E121FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterLearningInfoFetcher_17.h; sourceTree = "<group>"; };
+		92551E131FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterLearningInfoFetcher_17.m; sourceTree = "<group>"; };
+		92551E151FBBEDC60034DC71 /* MasterLearningInfoViewController_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterLearningInfoViewController_17.h; sourceTree = "<group>"; };
+		92551E161FBBEDC60034DC71 /* MasterLearningInfoViewController_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterLearningInfoViewController_17.m; sourceTree = "<group>"; };
+		92551E191FBBEE6E0034DC71 /* MasterLearningInfoTableHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterLearningInfoTableHeaderView_17.h; sourceTree = "<group>"; };
+		92551E1A1FBBEE6E0034DC71 /* MasterLearningInfoTableHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterLearningInfoTableHeaderView_17.m; sourceTree = "<group>"; };
+		92551E1F1FBBEEE80034DC71 /* MasterLearningInfoCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterLearningInfoCell_17.h; sourceTree = "<group>"; };
+		92551E201FBBEEE80034DC71 /* MasterLearningInfoCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterLearningInfoCell_17.m; sourceTree = "<group>"; };
+		92551E221FBBF3A70034DC71 /* YXCircleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXCircleView.h; sourceTree = "<group>"; };
+		92551E231FBBF3A70034DC71 /* YXCircleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXCircleView.m; sourceTree = "<group>"; };
+		92551E261FBC1EC70034DC71 /* WCGraintCircleLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGraintCircleLayer.m; sourceTree = "<group>"; };
+		92551E271FBC1EC70034DC71 /* WCGraintCircleLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGraintCircleLayer.h; sourceTree = "<group>"; };
+		92551E291FBC29110034DC71 /* MasterCircleDisplayView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterCircleDisplayView_17.h; sourceTree = "<group>"; };
+		92551E2A1FBC29110034DC71 /* MasterCircleDisplayView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterCircleDisplayView_17.m; sourceTree = "<group>"; };
+		92551E2C1FBC33BE0034DC71 /* MasterExamTopicCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterExamTopicCell_17.h; sourceTree = "<group>"; };
+		92551E2D1FBC33BE0034DC71 /* MasterExamTopicCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterExamTopicCell_17.m; sourceTree = "<group>"; };
 		925F4AF61FBA9693003FB2FC /* RootViewControllerManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewControllerManger.h; sourceTree = "<group>"; };
 		925F4AF71FBA9693003FB2FC /* RootViewControllerManger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewControllerManger.m; sourceTree = "<group>"; };
 		925F4AFC1FBA96EF003FB2FC /* RootViewControllerManger_16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewControllerManger_16.h; sourceTree = "<group>"; };
@@ -2329,6 +2356,7 @@
 		7C3177631D0E688D004AAC90 /* 3rdLib */ = {
 			isa = PBXGroup;
 			children = (
+				92551E251FBC1EA10034DC71 /* GraintCircle */,
 				92E971541ED57FC100DEAAD4 /* OLImageView */,
 				E90C609F1D9CFE36001652CF /* TalkingData */,
 				7CF888591D194BE800E7C04D /* JKAlertDialog */,
@@ -3354,6 +3382,7 @@
 		922DB1D61FBA90500078F6BD /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				92551E0E1FBBE5980034DC71 /* 学情统计 */,
 				9260A3881FBBDDFA0022A814 /* masterIndex_mock.json */,
 				925F4B021FBAA32C003FB2FC /* MasterIndexRequest_17.h */,
 				925F4B031FBAA32C003FB2FC /* MasterIndexRequest_17.m */,
@@ -3827,9 +3856,49 @@
 			name = "固定筛选";
 			sourceTree = "<group>";
 		};
+		92551E0E1FBBE5980034DC71 /* 学情统计 */ = {
+			isa = PBXGroup;
+			children = (
+				92551E0F1FBBE5AC0034DC71 /* MasterLearningInfoRequest_17.h */,
+				92551E101FBBE5AC0034DC71 /* MasterLearningInfoRequest_17.m */,
+				92551E121FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.h */,
+				92551E131FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.m */,
+			);
+			path = "学情统计";
+			sourceTree = "<group>";
+		};
+		92551E181FBBEE430034DC71 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92551E191FBBEE6E0034DC71 /* MasterLearningInfoTableHeaderView_17.h */,
+				92551E1A1FBBEE6E0034DC71 /* MasterLearningInfoTableHeaderView_17.m */,
+				92551E1F1FBBEEE80034DC71 /* MasterLearningInfoCell_17.h */,
+				92551E201FBBEEE80034DC71 /* MasterLearningInfoCell_17.m */,
+				92551E221FBBF3A70034DC71 /* YXCircleView.h */,
+				92551E231FBBF3A70034DC71 /* YXCircleView.m */,
+				92551E291FBC29110034DC71 /* MasterCircleDisplayView_17.h */,
+				92551E2A1FBC29110034DC71 /* MasterCircleDisplayView_17.m */,
+				92551E2C1FBC33BE0034DC71 /* MasterExamTopicCell_17.h */,
+				92551E2D1FBC33BE0034DC71 /* MasterExamTopicCell_17.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		92551E251FBC1EA10034DC71 /* GraintCircle */ = {
+			isa = PBXGroup;
+			children = (
+				92551E271FBC1EC70034DC71 /* WCGraintCircleLayer.h */,
+				92551E261FBC1EC70034DC71 /* WCGraintCircleLayer.m */,
+			);
+			path = GraintCircle;
+			sourceTree = "<group>";
+		};
 		9260A3821FBBD3F90022A814 /* 学情统计 */ = {
 			isa = PBXGroup;
 			children = (
+				92551E181FBBEE430034DC71 /* view */,
+				92551E151FBBEDC60034DC71 /* MasterLearningInfoViewController_17.h */,
+				92551E161FBBEDC60034DC71 /* MasterLearningInfoViewController_17.m */,
 			);
 			path = "学情统计";
 			sourceTree = "<group>";
@@ -5384,6 +5453,7 @@
 				92348FE41EEFEF2A00D3B3A7 /* MasterStatRequest.m in Sources */,
 				928B7A4F1E88B3120067218A /* DeYangExamViewController.m in Sources */,
 				9272D5361F1754140010B177 /* YXLearningChannelHeaderView_17.m in Sources */,
+				92551E2B1FBC29110034DC71 /* MasterCircleDisplayView_17.m in Sources */,
 				92348FC91EEFEDEA00D3B3A7 /* StudentsLearnController.m in Sources */,
 				924603F91F2F062300146C82 /* ExamineScoreFloatingView_17.m in Sources */,
 				7CF8882D1D17E6C600E7C04D /* YXSlideProgressView.m in Sources */,
@@ -5443,6 +5513,7 @@
 				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
 				92006C8C1DCC79E500F80488 /* ActivityPlayViewController.m in Sources */,
 				92AA477E1E1B9BD900C88DDC /* WebsocketRedLeftView.m in Sources */,
+				92551E1B1FBBEE6E0034DC71 /* MasterLearningInfoTableHeaderView_17.m in Sources */,
 				92FAE4A41DDAA845000C3C00 /* CoreTextViewHandler.m in Sources */,
 				924603F61F2EDBEF00146C82 /* ExamineToolStatusRequest_17.m in Sources */,
 				92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */,
@@ -5479,6 +5550,8 @@
 				CBB62E091D2CB98300DAA6DE /* NSDate+Utilities.m in Sources */,
 				92348FC41EEFEDEA00D3B3A7 /* RemindLeftSlipView.m in Sources */,
 				E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */,
+				92551E2E1FBC33BE0034DC71 /* MasterExamTopicCell_17.m in Sources */,
+				92551E281FBC1ECB0034DC71 /* WCGraintCircleLayer.m in Sources */,
 				925F4B041FBAA32C003FB2FC /* MasterIndexRequest_17.m in Sources */,
 				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
@@ -5570,6 +5643,7 @@
 				922901591DE57971001474CE /* CommentLaudRequest.m in Sources */,
 				7C2C3B3D1D212D6700A03635 /* YXScoreLeadScoreCell.m in Sources */,
 				928B7A3A1E88B2180067218A /* BeijingActivityListViewController.m in Sources */,
+				92551E211FBBEEE80034DC71 /* MasterLearningInfoCell_17.m in Sources */,
 				7C2C3B5A1D23BEE100A03635 /* YXCourseListFetcher.m in Sources */,
 				7C3F25901D20CB5F00F0A17A /* YXTaskListRequest.m in Sources */,
 				92348FC31EEFEDEA00D3B3A7 /* MasterTaskViewController.m in Sources */,
@@ -5618,6 +5692,7 @@
 				92BBE0581F21A2DE009230AC /* HomeworkListFooterView_17.m in Sources */,
 				92E927C21F1E0CAF00BEF834 /* ReadingListHeaderView_17.m in Sources */,
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
+				92551E241FBBF3A70034DC71 /* YXCircleView.m in Sources */,
 				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
 				924797E11E022C1F0033BFDC /* BeijingActivityFilterRequest.m in Sources */,
 				92F1A5AD1E53083A00015766 /* YXProjectMainViewController+Master.m in Sources */,
@@ -5790,6 +5865,7 @@
 				9232376E1D81668000FDACFE /* YXCheckRequest.m in Sources */,
 				92CE51481D87D2FF0071DE79 /* YXGuideModel.m in Sources */,
 				9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */,
+				92551E141FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.m in Sources */,
 				7C2C3B551D23B34300A03635 /* YXCourseListRequest.m in Sources */,
 				E9BBA6171DD2EDB2000CA413 /* ActivityFilterModel.m in Sources */,
 				CBB62E191D2CCE3D00DAA6DE /* YXShowWebMenuTableViewCell.m in Sources */,
@@ -5874,6 +5950,7 @@
 				923237511D81021A00FDACFE /* AppDelegate+GetInfoList.m in Sources */,
 				7CF888671D1BC49200E7C04D /* YXWaveView.m in Sources */,
 				7C3177801D0E8A1D004AAC90 /* LogFormatter.m in Sources */,
+				92551E111FBBE5AC0034DC71 /* MasterLearningInfoRequest_17.m in Sources */,
 				922DB1AA1FBA7FE30078F6BD /* CourseCenterManagerViewController_17.m in Sources */,
 				7CF844611D2A609500B1CE55 /* YXFileRecordManager.m in Sources */,
 				CB7462701D1E89EE0065113A /* YXInitRequest.m in Sources */,
@@ -5949,6 +6026,7 @@
 				925F4AFE1FBA96EF003FB2FC /* RootViewControllerManger_16.m in Sources */,
 				920F1D1F1D506DE500636A51 /* UIViewController+YXAddtion.m in Sources */,
 				CB3510B71D18E9830081EA3B /* YXDatumOrderViewCell.m in Sources */,
+				92551E171FBBEDC60034DC71 /* MasterLearningInfoViewController_17.m in Sources */,
 				CBBE95071D1D3BC000C935C8 /* YXLoginModifyPasswordViewController.m in Sources */,
 				922661C71E8A476F006DE8A4 /* VideoClassworkHeaderView.m in Sources */,
 				7CF8883E1D18DB7E00E7C04D /* YXCourseFilterView.m in Sources */,
