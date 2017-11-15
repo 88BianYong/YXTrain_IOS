@@ -369,6 +369,12 @@
 		925146861F25EE6D00B1533B /* ReadingListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925146831F25EE6D00B1533B /* ReadingListRequest_17.m */; };
 		925146871F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925146851F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
+		92551E051FBBE5060034DC71 /* collectionFilter_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92551E021FBBE4F60034DC71 /* collectionFilter_mock.json */; };
+		92551E061FBBE5060034DC71 /* LSTCollectionFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E031FBBE4F60034DC71 /* LSTCollectionFilterCell.m */; };
+		92551E071FBBE5060034DC71 /* LSTCollectionFilterFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551DFA1FBBE4F40034DC71 /* LSTCollectionFilterFooterView.m */; };
+		92551E081FBBE5060034DC71 /* LSTCollectionFilterHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E011FBBE4F60034DC71 /* LSTCollectionFilterHeaderView.m */; };
+		92551E091FBBE5060034DC71 /* LSTCollectionFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E041FBBE4F70034DC71 /* LSTCollectionFilterModel.m */; };
+		92551E0A1FBBE5060034DC71 /* LSTCollectionFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551DFD1FBBE4F50034DC71 /* LSTCollectionFilterView.m */; };
 		925F4AF81FBA9693003FB2FC /* RootViewControllerManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4AF71FBA9693003FB2FC /* RootViewControllerManger.m */; };
 		925F4AFE1FBA96EF003FB2FC /* RootViewControllerManger_16.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4AFD1FBA96EF003FB2FC /* RootViewControllerManger_16.m */; };
 		925F4B011FBA96FC003FB2FC /* RootViewControllerManger_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4B001FBA96FC003FB2FC /* RootViewControllerManger_17.m */; };
@@ -1426,6 +1432,17 @@
 		925146851F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingSubmitStatusRequest_17.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
+		92551DFA1FBBE4F40034DC71 /* LSTCollectionFilterFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterFooterView.m; sourceTree = "<group>"; };
+		92551DFB1FBBE4F40034DC71 /* LSTCollectionFilterHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterHeaderView.h; sourceTree = "<group>"; };
+		92551DFC1FBBE4F40034DC71 /* LSTCollectionFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterView.h; sourceTree = "<group>"; };
+		92551DFD1FBBE4F50034DC71 /* LSTCollectionFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterView.m; sourceTree = "<group>"; };
+		92551DFE1FBBE4F50034DC71 /* LSTCollectionFilterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterCell.h; sourceTree = "<group>"; };
+		92551DFF1FBBE4F50034DC71 /* LSTCollectionFilterFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterFooterView.h; sourceTree = "<group>"; };
+		92551E001FBBE4F50034DC71 /* LSTCollectionFilterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterModel.h; sourceTree = "<group>"; };
+		92551E011FBBE4F60034DC71 /* LSTCollectionFilterHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterHeaderView.m; sourceTree = "<group>"; };
+		92551E021FBBE4F60034DC71 /* collectionFilter_mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = collectionFilter_mock.json; sourceTree = "<group>"; };
+		92551E031FBBE4F60034DC71 /* LSTCollectionFilterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterCell.m; sourceTree = "<group>"; };
+		92551E041FBBE4F70034DC71 /* LSTCollectionFilterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterModel.m; sourceTree = "<group>"; };
 		925F4AF61FBA9693003FB2FC /* RootViewControllerManger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewControllerManger.h; sourceTree = "<group>"; };
 		925F4AF71FBA9693003FB2FC /* RootViewControllerManger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewControllerManger.m; sourceTree = "<group>"; };
 		925F4AFC1FBA96EF003FB2FC /* RootViewControllerManger_16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewControllerManger_16.h; sourceTree = "<group>"; };
@@ -2508,6 +2525,8 @@
 		7C3177C01D0EC0FC004AAC90 /* 主框架 */ = {
 			isa = PBXGroup;
 			children = (
+				92551DF91FBBE4DE0034DC71 /* 固定筛选 */,
+				92551DF81FBBE4CB0034DC71 /* 不固定筛选 */,
 				92CE515A1D87EF120071DE79 /* 网页 */,
 				CBF66E431D2F86DD00F4E408 /* YXPickerViewController.h */,
 				CBF66E441D2F86DD00F4E408 /* YXPickerViewController.m */,
@@ -3781,6 +3800,31 @@
 				9223C8221D2E0060000F74DF /* YXAboutViewController.m */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		92551DF81FBBE4CB0034DC71 /* 不固定筛选 */ = {
+			isa = PBXGroup;
+			children = (
+				92551E021FBBE4F60034DC71 /* collectionFilter_mock.json */,
+				92551DFE1FBBE4F50034DC71 /* LSTCollectionFilterCell.h */,
+				92551E031FBBE4F60034DC71 /* LSTCollectionFilterCell.m */,
+				92551DFF1FBBE4F50034DC71 /* LSTCollectionFilterFooterView.h */,
+				92551DFA1FBBE4F40034DC71 /* LSTCollectionFilterFooterView.m */,
+				92551DFB1FBBE4F40034DC71 /* LSTCollectionFilterHeaderView.h */,
+				92551E011FBBE4F60034DC71 /* LSTCollectionFilterHeaderView.m */,
+				92551E001FBBE4F50034DC71 /* LSTCollectionFilterModel.h */,
+				92551E041FBBE4F70034DC71 /* LSTCollectionFilterModel.m */,
+				92551DFC1FBBE4F40034DC71 /* LSTCollectionFilterView.h */,
+				92551DFD1FBBE4F50034DC71 /* LSTCollectionFilterView.m */,
+			);
+			name = "不固定筛选";
+			sourceTree = "<group>";
+		};
+		92551DF91FBBE4DE0034DC71 /* 固定筛选 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "固定筛选";
 			sourceTree = "<group>";
 		};
 		9260A3821FBBD3F90022A814 /* 学情统计 */ = {
@@ -5235,6 +5279,7 @@
 				9223C81D1D2D0EB6000F74DF /* temp.txt in Resources */,
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
 				7C7BF7C61E0788FD007B017C /* env_config.json in Resources */,
+				92551E051FBBE5060034DC71 /* collectionFilter_mock.json in Resources */,
 				920F1D3B1D51A40D00636A51 /* homeworklist_mock.json in Resources */,
 				927B6C7C1F1364920082DB27 /* masterStat_mock_17.json in Resources */,
 				92348FE31EEFEF2A00D3B3A7 /* masterStat_mock.json in Resources */,
@@ -5368,6 +5413,7 @@
 				7C2C3B881D24FD7E00A03635 /* YXCourseRecordHeaderView.m in Sources */,
 				92EDC7BD1D5C7369005B91DD /* YXWriteHomeworkInfoTitleView.m in Sources */,
 				92AD33551EA060B2001F2718 /* ProjectChooseLayerView.m in Sources */,
+				92551E071FBBE5060034DC71 /* LSTCollectionFilterFooterView.m in Sources */,
 				927B6C5C1F0F3A5E0082DB27 /* YXPopUpContainerView.m in Sources */,
 				92938CF11F29BD970099D49A /* CourseCenterListFetcher_17.m in Sources */,
 				925F4B011FBA96FC003FB2FC /* RootViewControllerManger_17.m in Sources */,
@@ -5518,6 +5564,7 @@
 				CB7462671D1D44FA0065113A /* YXLoginByScanQRViewController.m in Sources */,
 				922DB1A01FBA7FC20078F6BD /* CourseTestCell_17.m in Sources */,
 				E935D86F1DFE4838005CC8BD /* LSTAlertButton.m in Sources */,
+				92551E081FBBE5060034DC71 /* LSTCollectionFilterHeaderView.m in Sources */,
 				925146871F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m in Sources */,
 				CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */,
 				922901591DE57971001474CE /* CommentLaudRequest.m in Sources */,
@@ -5567,6 +5614,7 @@
 				7C31778E1D0EA598004AAC90 /* YXMockParser.m in Sources */,
 				92CE51561D87D4C70071DE79 /* YXDynamicRequest.m in Sources */,
 				92913AD01F175AF400934598 /* YXMyLearningScoreCell_17.m in Sources */,
+				92551E091FBBE5060034DC71 /* LSTCollectionFilterModel.m in Sources */,
 				92BBE0581F21A2DE009230AC /* HomeworkListFooterView_17.m in Sources */,
 				92E927C21F1E0CAF00BEF834 /* ReadingListHeaderView_17.m in Sources */,
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
@@ -5669,6 +5717,7 @@
 				923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */,
 				7CF844751D2E2EA000B1CE55 /* YXTriangleView.m in Sources */,
 				7C3177711D0E7EB0004AAC90 /* YXConfigManager.m in Sources */,
+				92551E0A1FBBE5060034DC71 /* LSTCollectionFilterView.m in Sources */,
 				928B7A451E88B2180067218A /* BeijingExamGenreDefaultHeaderView.m in Sources */,
 				7C3177D61D10FF0A004AAC90 /* YXTestPushViewController.m in Sources */,
 				9223C8401D2F93D7000F74DF /* YXUpdateProfileRequest.m in Sources */,
@@ -5793,6 +5842,7 @@
 				CB1606071D2FC8490071BA01 /* UIImage+YXImage.m in Sources */,
 				9241FFD91E1E1BE60015B587 /* ActivityCommentHeaderView.m in Sources */,
 				923237731D825C6500FDACFE /* YXHelpViewController.m in Sources */,
+				92551E061FBBE5060034DC71 /* LSTCollectionFilterCell.m in Sources */,
 				92348FC61EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.m in Sources */,
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,

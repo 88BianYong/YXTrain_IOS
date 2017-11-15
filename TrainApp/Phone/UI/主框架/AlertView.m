@@ -56,10 +56,23 @@
     }];
     BLOCK_EXEC(layoutBlock,self);
 }
+- (void)showInView:(UIView *)view withFrame:(LayoutBlock)layoutBlock {
+    if (!self.contentView) {
+        return;
+    }
+    [self addSubview:self.contentView];
+    [view addSubview:self];
+    self.frame = view.bounds;
+    BLOCK_EXEC(layoutBlock,self);
+}
 
 #pragma mark - hide
 - (void)hide {
-    [self removeFromSuperview];
+    if (self.hideBlock) {
+        self.hideBlock(self);
+    }else {
+        [self removeFromSuperview];
+    }
 }
 
 #pragma mark - set

@@ -1,0 +1,229 @@
+{
+    "itemName": {
+        "name": "学段",
+        "itemName": {
+            "name": "学科",
+            "itemName": {
+                "name": "章节",
+                "itemName": {
+                    "name": "小节"
+                }
+
+            }
+        }
+    },
+    "item": [
+             {
+             "itemID": 2,
+             "name": "小学",
+             "item": [
+                      {
+                      "itemID": 0,
+                      "name": "全部"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "语文",
+                      "item": [
+                               {
+                               "itemID": 15,
+                               "name": "第一章"
+                               },
+                               {
+                               "itemID": 25,
+                               "name": "第二章"
+                               },
+                               {
+                               "itemID": 35,
+                               "name": "第三章"
+                               }
+                               ]
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "数学",
+                      "item": [
+                               {
+                               "itemID": 5,
+                               "name": "第一课"
+                               },
+                               {
+                               "itemID": 35,
+                               "name": "第二课"
+                               }
+                               ]
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "英语",
+                      "item": [
+                               {
+                               "itemID": 5,
+                               "name": "第一节",
+                               "item": [
+                                        {
+                                        "itemID": 55,
+                                        "name": "第一小节"
+                                        },
+                                        {
+                                        "itemID": 65,
+                                        "name": "第二小节"
+                                        }
+                                        ]
+                               },
+                               {
+                               "itemID": 5,
+                               "name": "第二节"
+                               }
+                               ]
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "音乐"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "体育"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "美术"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "科学"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "信息技术"
+                      }
+                      ]
+             },
+             {
+             "itemID": 2,
+             "name": "初中",
+             "item": [
+                      {
+                      "itemID": 5,
+                      "name": "语文"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "数学"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "英语"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "物理"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "化学"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "生物"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "地理"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "历史"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "音乐"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "体育"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "美术"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "信息技术"
+                      }
+                      ]
+             },
+             {
+             "itemID": 2,
+             "name": "高中",
+             "item": [
+                      {
+                      "itemID": 5,
+                      "name": "语文"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "数学"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "英语"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "物理"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "化学"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "生物"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "地理"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "历史"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "音乐"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "体育"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "美术"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "信息技术"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "通用技术"
+                      }
+                      ]
+             },
+             {
+             "itemID": 2,
+             "name": "中职",
+             "item": [
+                      {
+                      "itemID": 5,
+                      "name": "全部"
+                      },
+                      {
+                      "itemID": 5,
+                      "name": "其他"
+                      }
+                      ]
+             }
+             ]
+}
