@@ -7,6 +7,8 @@
 //
 
 #import "MasterIndexRequest_17.h"
+@implementation MasterIndexRequestItem_Body_Modules_Extend
+@end
 @implementation MasterIndexRequestItem_Body_MyExamine_Types_Detail
 @end
 
@@ -23,15 +25,15 @@
 @end
 
 @implementation MasterIndexRequestItem_Body
-- (void)setModules:(NSMutableArray<MasterIndexRequestItem_Body_Modules,Optional> *)modules {
-        NSMutableArray<MasterIndexRequestItem_Body_Modules,Optional> *mutableArray = [[NSMutableArray<MasterIndexRequestItem_Body_Modules,Optional> alloc] init];
-    [modules enumerateObjectsUsingBlock:^(MasterIndexRequestItem_Body_Modules *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.iconStatus.integerValue != 0) {
-            [mutableArray addObject:obj];
-        }
-    }];
-    _modules = mutableArray;
-}
+//- (void)setModules:(NSMutableArray<MasterIndexRequestItem_Body_Modules,Optional> *)modules {
+//        NSMutableArray<MasterIndexRequestItem_Body_Modules,Optional> *mutableArray = [[NSMutableArray<MasterIndexRequestItem_Body_Modules,Optional> alloc] init];
+//    [modules enumerateObjectsUsingBlock:^(MasterIndexRequestItem_Body_Modules *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if (obj.iconStatus.integerValue != 0) {
+//            [mutableArray addObject:obj];
+//        }
+//    }];
+//    _modules = mutableArray;
+//}
 
 @end
 

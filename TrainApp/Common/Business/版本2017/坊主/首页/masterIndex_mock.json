@@ -1,0 +1,177 @@
+{
+"code": "0",
+"desc": "",
+"debug": "http-nio-8080-exec-6-1510639358099-10_47_45901",
+"body": {
+"countBars": [
+{
+"name": "2017年测试新工作坊",
+"allCount": 72,
+"passCount": 35
+}
+],
+"modules": [
+{
+"code": 0,
+"name": "前置阶段",
+"toolId": 222,
+"iconStatus": 0,
+"extend": {
+"stageId": 4761
+}
+},
+{
+"code": 4,
+"name": "学情统计",
+"toolId": 0,
+"iconStatus": 2,
+"extend": {}
+},
+{
+"code": 1,
+"name": "作业管理",
+"toolId": 0,
+"iconStatus": 2,
+"extend": {}
+},
+{
+"code": 3,
+"name": "简报",
+"toolId": 0,
+"iconStatus": 2,
+"extend": {}
+},
+{
+"code": 2,
+"name": "通知",
+"toolId": 0,
+"iconStatus": 0,
+"extend": {}
+},
+{
+"code": 6,
+"name": "线上活动",
+"toolId": 0,
+"iconStatus": 1,
+"extend": {}
+},
+{
+"code": 8,
+"name": "线下活动",
+"toolId": 0,
+"iconStatus": 0,
+"extend": {}
+},
+{
+"code": 5,
+"name": "作品集管理",
+"toolId": 0,
+"iconStatus": 0,
+"extend": {}
+},
+{
+"code": 30,
+"name": "去看课",
+"toolId": 0,
+"iconStatus": 0,
+"extend": {}
+},
+{
+"code": 31,
+"name": "综合评定",
+"toolId": 0,
+"iconStatus": 0,
+"extend": {}
+}
+],
+"myExamine": {
+"egscore": 0,
+"totalscore": 100,
+"viewType": 1,
+"ifexam": 0,
+"total": "48.0",
+"isPass": 0,
+"types": [
+{
+"power": 1,
+"score": 50,
+"details": [
+{
+"typecode": "CXL",
+"type": 2,
+"amount": 100,
+"score": 5,
+"descripe": "学员参训率达到95%及以上：计5分；85%-94%：计4分；70%-84%：计3分；50%-69%：计2分，50%以下不记分。",
+"userscore": "3.0",
+"userfinishnum": 0,
+"isfinish": 2
+},
+{
+"typecode": "PUBLISH_BRIEF",
+"type": 1,
+"amount": 5,
+"score": 25,
+"descripe": "1.以简报形式制作并发布本坊研修计划，计5分；\n2.以简报形式制作并发布本坊典型研修活动、典型研修成果、典型研修人物每一期计5分，满分15分；\n2.以简报形式制作并发布本坊项目总结，计5分.",
+"userscore": "20.0",
+"userfinishnum": 0,
+"isfinish": 0
+},
+{
+"typecode": "PUBLISH_ACTIVE",
+"type": 1,
+"amount": 2,
+"score": 20,
+"descripe": "策划并组织线上线下相结合的研修活动至少2次，每次2分，满分4分；\n每个人活动参与人数超过100人，计8分；50-100人计4分，50人以下不得分，满分16分；",
+"userscore": "20.0",
+"userfinishnum": 0,
+"isfinish": 1
+}
+]
+},
+{
+"power": 2,
+"score": 30,
+"details": [
+{
+"typecode": "RECOMMEND_HOMEWORK",
+"type": 1,
+"amount": 15,
+"score": 15,
+"descripe": "推荐学员优秀作业，每篇1分，满分15分。",
+"userscore": "5.0",
+"userfinishnum": 0,
+"isfinish": 0
+},
+{
+"typecode": "REPLY_WENDA",
+"type": 1,
+"amount": 15,
+"score": 15,
+"descripe": "在线回答学员提问，每次1分，满分15分。",
+"userscore": "0.0",
+"userfinishnum": 0,
+"isfinish": 0
+}
+]
+},
+{
+"power": 6,
+"score": 25,
+"details": [
+{
+"typecode": "GL_SCORE",
+"type": 3,
+"amount": 1,
+"score": 25,
+"descripe": "按照项目组的安排，评审各校推送的学科优品，满分25分。\n",
+"userscore": "0.0",
+"userfinishnum": 0,
+"isfinish": 0
+}
+]
+}
+]
+},
+"schemes": null
+}
+}

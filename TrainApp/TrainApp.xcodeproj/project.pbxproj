@@ -373,6 +373,8 @@
 		925F4AFE1FBA96EF003FB2FC /* RootViewControllerManger_16.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4AFD1FBA96EF003FB2FC /* RootViewControllerManger_16.m */; };
 		925F4B011FBA96FC003FB2FC /* RootViewControllerManger_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4B001FBA96FC003FB2FC /* RootViewControllerManger_17.m */; };
 		925F4B041FBAA32C003FB2FC /* MasterIndexRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925F4B031FBAA32C003FB2FC /* MasterIndexRequest_17.m */; };
+		9260A3861FBBD8140022A814 /* MasterReadingListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9260A3851FBBD8140022A814 /* MasterReadingListViewController_17.m */; };
+		9260A3891FBBDE000022A814 /* masterIndex_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 9260A3881FBBDDFA0022A814 /* masterIndex_mock.json */; };
 		9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */; };
 		926846731F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846721F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m */; };
 		926846761F34547600CD9784 /* UITabBar+YXAddtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846751F34547600CD9784 /* UITabBar+YXAddtion.m */; };
@@ -1432,6 +1434,9 @@
 		925F4B001FBA96FC003FB2FC /* RootViewControllerManger_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewControllerManger_17.m; sourceTree = "<group>"; };
 		925F4B021FBAA32C003FB2FC /* MasterIndexRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterIndexRequest_17.h; sourceTree = "<group>"; };
 		925F4B031FBAA32C003FB2FC /* MasterIndexRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterIndexRequest_17.m; sourceTree = "<group>"; };
+		9260A3841FBBD8140022A814 /* MasterReadingListViewController_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterReadingListViewController_17.h; sourceTree = "<group>"; };
+		9260A3851FBBD8140022A814 /* MasterReadingListViewController_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterReadingListViewController_17.m; sourceTree = "<group>"; };
+		9260A3881FBBDDFA0022A814 /* masterIndex_mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = masterIndex_mock.json; sourceTree = "<group>"; };
 		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
 		9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserRequest.m; sourceTree = "<group>"; };
 		926846711F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListGroupDefaultCell_17.h; sourceTree = "<group>"; };
@@ -3292,6 +3297,8 @@
 		922DB1D21FBA900E0078F6BD /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				9260A3831FBBD41A0022A814 /* 预热阶段 */,
+				9260A3821FBBD3F90022A814 /* 学情统计 */,
 				922DB1DB1FBA90810078F6BD /* view */,
 				922DB1DC1FBA90870078F6BD /* controller */,
 			);
@@ -3328,6 +3335,7 @@
 		922DB1D61FBA90500078F6BD /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				9260A3881FBBDDFA0022A814 /* masterIndex_mock.json */,
 				925F4B021FBAA32C003FB2FC /* MasterIndexRequest_17.h */,
 				925F4B031FBAA32C003FB2FC /* MasterIndexRequest_17.m */,
 			);
@@ -3773,6 +3781,22 @@
 				9223C8221D2E0060000F74DF /* YXAboutViewController.m */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		9260A3821FBBD3F90022A814 /* 学情统计 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "学情统计";
+			sourceTree = "<group>";
+		};
+		9260A3831FBBD41A0022A814 /* 预热阶段 */ = {
+			isa = PBXGroup;
+			children = (
+				9260A3841FBBD8140022A814 /* MasterReadingListViewController_17.h */,
+				9260A3851FBBD8140022A814 /* MasterReadingListViewController_17.m */,
+			);
+			path = "预热阶段";
 			sourceTree = "<group>";
 		};
 		9263544A1DF1528000FAD1DE /* 北京项目 */ = {
@@ -5168,6 +5192,7 @@
 			files = (
 				7C2C3B701D24C8A600A03635 /* moduledetail_mock.json in Resources */,
 				7C2C3B7F1D24F54100A03635 /* courserecord_mock.json in Resources */,
+				9260A3891FBBDE000022A814 /* masterIndex_mock.json in Resources */,
 				92B2C0A61DD42D62003E27F9 /* icon_smile.gif in Resources */,
 				7C31776E1D0E6E92004AAC90 /* YXConfig.plist in Resources */,
 				92134E3B1E8BADEE00A5B9B7 /* videoQuestions_mock.json in Resources */,
@@ -5481,6 +5506,7 @@
 				92348FBA1EEFEDEA00D3B3A7 /* MasterConditionCell.m in Sources */,
 				92348FC81EEFEDEA00D3B3A7 /* StudentExamViewController.m in Sources */,
 				92B9583F1F18A2F900A07203 /* CourseListTableViewHeader_17.m in Sources */,
+				9260A3861FBBD8140022A814 /* MasterReadingListViewController_17.m in Sources */,
 				922DB1EF1FBA91B80078F6BD /* MasterMainViewController_17.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
 				92348FC21EEFEDEA00D3B3A7 /* MasterSchoolTableView.m in Sources */,

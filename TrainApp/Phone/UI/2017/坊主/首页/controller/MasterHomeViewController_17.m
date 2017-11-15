@@ -15,6 +15,7 @@
 #import "MJRefresh.h"
 #import "YXProjectSelectionView.h"
 #import "YXSectionHeaderFooterView.h"
+#import "MasterReadingListViewController_17.h"
 @interface MasterHomeViewController_17()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) MasterHomeTableHeaderView_17 *tableHeaderView;
@@ -60,6 +61,7 @@
 - (void)setMasterItem:(MasterIndexRequestItem_Body *)masterItem {
     _masterItem = masterItem;
     self.tableView.hidden = NO;
+    [self.tableHeaderView reloadHeaderViewContent:_masterItem.myExamine.total withPass:_masterItem.myExamine.isPass.integerValue != 1];
     [self.tableView reloadData];
 }
 #pragma mark - setupUI
@@ -167,6 +169,31 @@
         return cell;
     }else {
         self.moduleCell.modules = self.masterItem.modules;
+        WEAK_SELF
+        self.moduleCell.masterHomeModuleCompleteBlock = ^(MasterIndexRequestItem_Body_Modules *tool) {
+            STRONG_SELF
+            if (tool.code.integerValue == 0) {
+                MasterReadingListViewController_17 *VC = [[MasterReadingListViewController_17 alloc] init];
+                VC.stageString = tool.extend.stageId;
+                VC.toolString = tool.toolId;
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if (tool.toolId.integerValue == 0) {
+                
+            }else if (tool.toolId.integerValue == 0) {
+                
+            }else if (tool.toolId.integerValue == 0) {
+                
+            }else if (tool.toolId.integerValue == 0) {
+                
+            }else if (tool.toolId.integerValue == 0) {
+                
+            }else if (tool.toolId.integerValue == 0) {
+                
+            }else if (tool.toolId.integerValue == 0) {
+                
+            }
+            
+        };
         return self.moduleCell;
     }
 }

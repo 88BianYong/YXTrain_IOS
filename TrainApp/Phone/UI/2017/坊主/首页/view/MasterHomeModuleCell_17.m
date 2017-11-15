@@ -89,7 +89,7 @@
         WEAK_SELF
         [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
             STRONG_SELF;
-            //BLOCK_EXEC(self.learningStageToolCompleteBlock,tool,idx);
+            BLOCK_EXEC(self.masterHomeModuleCompleteBlock,obj);
         }];
         [self.contentView addSubview:button];
         MasterHomeModuleView *toolView = [[MasterHomeModuleView alloc] init];

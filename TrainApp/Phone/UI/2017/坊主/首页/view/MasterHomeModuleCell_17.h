@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MasterIndexRequest_17.h"
 @interface MasterHomeModuleCell_17 : UITableViewCell
-@property (nonatomic, strong) NSArray<__kindof MasterIndexRequestItem_Body_Modules*> *modules;
+@property (nonatomic, strong) NSArray<__kindof MasterIndexRequestItem_Body_Modules *> *modules;
+@property (nonatomic, copy) void(^masterHomeModuleCompleteBlock)(MasterIndexRequestItem_Body_Modules *tool);
 @end
