@@ -28,6 +28,9 @@
 // 字符串解码
 - (NSString *)yx_decodeString;
 
+//eg:@"12.34"=>@"12.34" @"12.00"=>@"12"
+- (NSString *)yx_formatInteger;
+
 @end
 
 @interface NSString (YXTextChecking)

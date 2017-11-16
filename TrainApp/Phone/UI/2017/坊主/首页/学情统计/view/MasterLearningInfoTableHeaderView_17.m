@@ -10,6 +10,7 @@
 
 @interface MasterLearningInfoTableHeaderView_17 ()
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *totalLabel;
 @property (nonatomic, strong) UIButton *filterButton;
 
 @end
@@ -30,6 +31,13 @@
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.titleLabel];
     
+    self.totalLabel = [[UILabel alloc] init];
+    self.totalLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+    self.totalLabel.text = @"考核说明";
+    self.totalLabel.textAlignment = NSTextAlignmentRight;
+    self.totalLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    [self addSubview:self.totalLabel];
+    
     self.filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.filterButton setImage:[UIImage imageNamed:@"解释说明图标正常态"]
                         forState:UIControlStateNormal];
@@ -38,7 +46,8 @@
     WEAK_SELF
     [[self.filterButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
-        BLOCK_EXEC(self.masterLearningInfoButtonBlock);
+        self.filterButton.selected = !self.filterButton.selected;
+        BLOCK_EXEC(self.masterLearningInfoButtonBlock,self.filterButton.selected);
         
     }];
     [self addSubview:self.filterButton];
@@ -46,7 +55,14 @@
 - (void)setupLayout {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15.0f);
+        make.right.equalTo(self.totalLabel.mas_right).offset(-15.0f);
         make.centerY.equalTo(self.mas_centerY);
+    }];
+    
+    [self.totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.filterButton.mas_left).offset(-15.0f);
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.offset(70.0f);
     }];
 
     [self.filterButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -54,6 +70,10 @@
         make.centerY.equalTo(self.titleLabel.mas_centerY);
         make.size.mas_offset(CGSizeMake(25.0f, 25.0f));
     }];
+}
+- (void)reloadMasterLearningInfo:(NSString *)title withNumber:(NSString *)total {
+    self.titleLabel.text = title;
+    self.totalLabel.text = [NSString stringWithFormat:@"共 %@ 人",total];
 }
 
 @end

@@ -25,9 +25,9 @@
     UIImage *selectedImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]];
     [self.itemButton setBackgroundImage:normalImage forState:UIControlStateNormal];
     [self.itemButton setBackgroundImage:selectedImage forState:UIControlStateSelected];
-    [self.itemButton setTitleColor:[UIColor colorWithHexString:@"505f84"] forState:UIControlStateNormal];
+    [self.itemButton setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateNormal];
     [self.itemButton setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateSelected];
-    self.itemButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    self.itemButton.titleLabel.font = [UIFont systemFontOfSize:11.0f];
     self.itemButton.layer.cornerRadius = YXTrainCornerRadii;
     self.itemButton.clipsToBounds = YES;
     WEAK_SELF

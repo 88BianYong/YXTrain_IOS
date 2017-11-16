@@ -30,10 +30,14 @@
                                                                   }];
 }
 @end
+@implementation MasterLearningInfoRequestItem_Body_XueQing
+@end
 
 @implementation MasterLearningInfoRequestItem_Body
 + (JSONKeyMapper *)keyMapper {
-    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"details":@"count"}];
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"detail":@"count",
+                                                                  @"xueQing":@"xueqing"
+                                                                  }];
 }
 @end
 @implementation MasterLearningInfoRequestItem

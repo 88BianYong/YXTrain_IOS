@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterLearningInfoTableHeaderView_17 : UIView
-@property (nonatomic, copy) void(^masterLearningInfoButtonBlock)(void);
-
+@property (nonatomic, copy) void(^masterLearningInfoButtonBlock)(BOOL isOpen);
+- (void)reloadMasterLearningInfo:(NSString *)title withNumber:(NSString *)total;
 @end

@@ -23,13 +23,11 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.cancleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.cancleButton.layer.cornerRadius = YXTrainCornerRadii;
-    self.cancleButton.clipsToBounds = YES;
     [self.cancleButton setTitle:@"取消" forState:UIControlStateNormal];
-    [self.cancleButton setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateNormal];
-    [self.cancleButton setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateHighlighted];
-    [self.cancleButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateNormal];
-    [self.cancleButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
+    [self.cancleButton setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateNormal];
+    [self.cancleButton setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateHighlighted];
+    [self.cancleButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"ffffff"]] forState:UIControlStateNormal];
+    [self.cancleButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
     self.cancleButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     WEAK_SELF
     [[self.cancleButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -40,12 +38,10 @@
     
     self.confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.confirmButton setTitle:@"确认" forState:UIControlStateNormal];
-    self.confirmButton.layer.cornerRadius = YXTrainCornerRadii;
-    self.confirmButton.clipsToBounds = YES;
-    [self.confirmButton setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateNormal];
-    [self.confirmButton setTitleColor:[UIColor colorWithHexString:@"ffffff"] forState:UIControlStateHighlighted];
-    [self.confirmButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
-    [self.confirmButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateHighlighted];
+    [self.confirmButton setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateNormal];
+    [self.confirmButton setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateHighlighted];
+    [self.confirmButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"ffffff"]] forState:UIControlStateNormal];
+    [self.confirmButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
     self.confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     
     
@@ -67,14 +63,16 @@
     }];
     
     [self.cancleButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_centerX).offset(-30.0f);
-        make.size.mas_offset(CGSizeMake(75.0f, 29.0f));
-        make.top.equalTo(self.mas_top).offset(20.0f);
+        make.left.equalTo(self.mas_left);
+        make.width.equalTo(self.mas_width).multipliedBy(1.0f/2.0f);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
     }];
     [self.confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_centerX).offset(30.0f);
-        make.size.mas_offset(CGSizeMake(75.0f, 29.0f));
-        make.top.equalTo(self.mas_top).offset(20.0f);
+        make.right.equalTo(self.mas_right);
+        make.width.equalTo(self.mas_width).multipliedBy(1.0f/2.0f);
+        make.top.equalTo(self.mas_top);
+        make.bottom.equalTo(self.mas_bottom);
     }];
     
 }

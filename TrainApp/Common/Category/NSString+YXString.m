@@ -53,6 +53,12 @@
                                        range:NSMakeRange(0, [resultString length])];
     return [resultString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
+- (NSString *)yx_formatInteger {
+    if ([self floatValue] == ceilf([self floatValue]) && [self floatValue] == floorf([self floatValue])) {
+        return [NSString stringWithFormat:@"%d",[self intValue]];
+    }
+    return self;
+}
 
 @end
 

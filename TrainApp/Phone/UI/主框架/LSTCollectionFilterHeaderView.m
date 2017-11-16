@@ -32,7 +32,7 @@
     }];
     
     self.titleLabel = [[UILabel alloc]init];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:11.0f];
     self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.titleLabel];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

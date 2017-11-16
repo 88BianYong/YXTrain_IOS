@@ -7,8 +7,10 @@
 //
 
 #import "PagedListFetcherBase.h"
-
-@interface MasterLearningInfoFetcher_17 : PagedListFetcherBase
+#import "MasterLearningInfoRequest_17.h"
+#import "LSTCollectionFilterDefaultProtocol.h"
+@interface MasterLearningInfoFetcher_17 : PagedListFetcherBase<LSTCollectionFilterDefaultProtocol>
 @property (nonatomic, copy) NSString<Optional> *status;
 @property (nonatomic, copy) NSString<Optional> *barId;
+@property (nonatomic, copy) void(^masterLearningInfoBlock)(NSArray *model,MasterLearningInfoRequestItem_Body *body);
 @end

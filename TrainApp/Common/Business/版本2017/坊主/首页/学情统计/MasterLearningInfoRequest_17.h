@@ -59,7 +59,7 @@
 @interface  MasterLearningInfoRequestItem_Body : JSONModel
 @property (nonatomic, strong) MasterLearningInfoRequestItem_Body_XueQing<Optional> *xueQing;
 @property (nonatomic, strong) NSArray<MasterLearningInfoRequestItem_Body_Schemes,Optional> *schemes;
-@property (nonatomic, strong) NSArray<MasterLearningInfoRequestItem_Body_Count,Optional> *details;
+@property (nonatomic, strong) MasterLearningInfoRequestItem_Body_Count<Optional> *detail;
 @property (nonatomic, strong) NSArray<MasterLearningInfoRequestItem_Body_Bars,Optional> *bars;
 @end
 

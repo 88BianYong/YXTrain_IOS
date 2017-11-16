@@ -470,6 +470,8 @@
 		92A10F6F1F186BC700B37814 /* NoticeListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A10F6E1F186BC700B37814 /* NoticeListViewController_17.m */; };
 		92A10F721F186BEE00B37814 /* BriefListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A10F711F186BEE00B37814 /* BriefListViewController_17.m */; };
 		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
+		92A7850C1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7850B1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.m */; };
+		92A7850F1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7850E1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.m */; };
 		92A791631F0E20AB00E3D258 /* YXLearningViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A791621F0E20AB00E3D258 /* YXLearningViewController_17.m */; };
 		92A7916F1F0E21A500E3D258 /* YXMessageViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7916E1F0E21A500E3D258 /* YXMessageViewController_17.m */; };
 		92A791721F0E21CA00E3D258 /* YXMineViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A791711F0E21CA00E3D258 /* YXMineViewController_17.m */; };
@@ -1256,12 +1258,7 @@
 		922DB1A81FBA7FE30078F6BD /* CourseCenterListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseCenterListViewController_17.h; sourceTree = "<group>"; };
 		922DB1AB1FBA807F0078F6BD /* CourseRecordListViewController_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseRecordListViewController_17.h; sourceTree = "<group>"; };
 		922DB1AC1FBA807F0078F6BD /* CourseRecordListViewController_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseRecordListViewController_17.m; sourceTree = "<group>"; };
-		922DB1AE1FBA80A10078F6BD /* YXMyLearningScoreCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreCell_17.h; sourceTree = "<group>"; };
 		922DB1AF1FBA80A10078F6BD /* YXMyLearningScoreViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreViewController_17.h; sourceTree = "<group>"; };
-		922DB1B01FBA80A20078F6BD /* YXMyLearningScoreTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreTableHeaderView_17.h; sourceTree = "<group>"; };
-		922DB1B11FBA80A20078F6BD /* YXMyExamExplainView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyExamExplainView_17.h; sourceTree = "<group>"; };
-		922DB1B21FBA80A20078F6BD /* YXMyExamExplainHelp_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyExamExplainHelp_17.h; sourceTree = "<group>"; };
-		922DB1B31FBA80A20078F6BD /* YXMyLearningScoreHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreHeaderView_17.h; sourceTree = "<group>"; };
 		922DB1B41FBA83550078F6BD /* CourseDetailContainerView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseDetailContainerView_17.m; sourceTree = "<group>"; };
 		922DB1B51FBA83550078F6BD /* CourseDetailContainerView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseDetailContainerView_17.h; sourceTree = "<group>"; };
 		922DB1B91FBA87270078F6BD /* YXAllDatumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXAllDatumViewController.h; sourceTree = "<group>"; };
@@ -1503,7 +1500,6 @@
 		9272D5321F174B9A0010B177 /* YXMyLearningScoreViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyLearningScoreViewController_17.m; sourceTree = "<group>"; };
 		9272D5341F1754140010B177 /* YXLearningChannelHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningChannelHeaderView_17.h; sourceTree = "<group>"; };
 		9272D5351F1754140010B177 /* YXLearningChannelHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningChannelHeaderView_17.m; sourceTree = "<group>"; };
-		9272D5391F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreTableHeaderView_17.h; sourceTree = "<group>"; };
 		9272D53A1F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyLearningScoreTableHeaderView_17.m; sourceTree = "<group>"; };
 		9272D53C1F175A9E0010B177 /* YXMyLearningScoreHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreHeaderView_17.h; sourceTree = "<group>"; };
 		9272D53D1F175A9E0010B177 /* YXMyLearningScoreHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyLearningScoreHeaderView_17.m; sourceTree = "<group>"; };
@@ -1639,6 +1635,11 @@
 		92A10F711F186BEE00B37814 /* BriefListViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BriefListViewController_17.m; sourceTree = "<group>"; };
 		92A770071DD18A5800C578F2 /* InputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextView.h; sourceTree = "<group>"; };
 		92A770081DD18A5800C578F2 /* InputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextView.m; sourceTree = "<group>"; };
+		92A7850A1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterDefaultView.h; sourceTree = "<group>"; };
+		92A7850B1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterDefaultView.m; sourceTree = "<group>"; };
+		92A7850D1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterDefaultModel.h; sourceTree = "<group>"; };
+		92A7850E1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterDefaultModel.m; sourceTree = "<group>"; };
+		92A785101FBD2CB5007502A4 /* LSTCollectionFilterDefaultProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterDefaultProtocol.h; sourceTree = "<group>"; };
 		92A791611F0E20AB00E3D258 /* YXLearningViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningViewController_17.h; sourceTree = "<group>"; };
 		92A791621F0E20AB00E3D258 /* YXLearningViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningViewController_17.m; sourceTree = "<group>"; };
 		92A7916D1F0E21A500E3D258 /* YXMessageViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMessageViewController_17.h; sourceTree = "<group>"; };
@@ -3852,6 +3853,11 @@
 		92551DF91FBBE4DE0034DC71 /* 固定筛选 */ = {
 			isa = PBXGroup;
 			children = (
+				92A785101FBD2CB5007502A4 /* LSTCollectionFilterDefaultProtocol.h */,
+				92A7850A1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.h */,
+				92A7850B1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.m */,
+				92A7850D1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.h */,
+				92A7850E1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.m */,
 			);
 			name = "固定筛选";
 			sourceTree = "<group>";
@@ -3874,12 +3880,12 @@
 				92551E1A1FBBEE6E0034DC71 /* MasterLearningInfoTableHeaderView_17.m */,
 				92551E1F1FBBEEE80034DC71 /* MasterLearningInfoCell_17.h */,
 				92551E201FBBEEE80034DC71 /* MasterLearningInfoCell_17.m */,
+				92551E2C1FBC33BE0034DC71 /* MasterExamTopicCell_17.h */,
+				92551E2D1FBC33BE0034DC71 /* MasterExamTopicCell_17.m */,
 				92551E221FBBF3A70034DC71 /* YXCircleView.h */,
 				92551E231FBBF3A70034DC71 /* YXCircleView.m */,
 				92551E291FBC29110034DC71 /* MasterCircleDisplayView_17.h */,
 				92551E2A1FBC29110034DC71 /* MasterCircleDisplayView_17.m */,
-				92551E2C1FBC33BE0034DC71 /* MasterExamTopicCell_17.h */,
-				92551E2D1FBC33BE0034DC71 /* MasterExamTopicCell_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -4015,12 +4021,6 @@
 		9272D5381F175A3F0010B177 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				922DB1B31FBA80A20078F6BD /* YXMyLearningScoreHeaderView_17.h */,
-				9272D5391F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.h */,
-				922DB1B21FBA80A20078F6BD /* YXMyExamExplainHelp_17.h */,
-				922DB1B11FBA80A20078F6BD /* YXMyExamExplainView_17.h */,
-				922DB1AE1FBA80A10078F6BD /* YXMyLearningScoreCell_17.h */,
-				922DB1B01FBA80A20078F6BD /* YXMyLearningScoreTableHeaderView_17.h */,
 				922DB1AF1FBA80A10078F6BD /* YXMyLearningScoreViewController_17.h */,
 				9272D53A1F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.m */,
 				9272D53C1F175A9E0010B177 /* YXMyLearningScoreHeaderView_17.h */,
@@ -5554,6 +5554,7 @@
 				92551E281FBC1ECB0034DC71 /* WCGraintCircleLayer.m in Sources */,
 				925F4B041FBAA32C003FB2FC /* MasterIndexRequest_17.m in Sources */,
 				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
+				92A7850C1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.m in Sources */,
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */,
@@ -5773,6 +5774,7 @@
 				92DD28391FBAC6680023F58C /* MasterHomeBarCell_17.m in Sources */,
 				7C2C3B401D21320E00A03635 /* YXScoreBounsScoreCell.m in Sources */,
 				928B7A3E1E88B2180067218A /* BeijingCheckedMobileUserViewController.m in Sources */,
+				92A7850F1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				92E9715D1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m in Sources */,
 				927B6C811F136B470082DB27 /* YXLearningTableHeaderView_17.m in Sources */,

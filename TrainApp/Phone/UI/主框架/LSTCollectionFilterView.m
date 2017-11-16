@@ -74,7 +74,7 @@
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
     if (section == ([self numberFilterItems:self.filterModel.item withFilterName:self.filterModel.itemName withStart:0] - 1)) {
-        return CGSizeMake(kScreenWidth , 20.0f + 29.0f + 20.0f);
+        return CGSizeMake(kScreenWidth , 54.0f);
     }else {
         return CGSizeZero;
     }
@@ -243,7 +243,4 @@
         }];
     });
 }
-
-
-
 @end

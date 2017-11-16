@@ -21,6 +21,14 @@
     }
     return self;
 }
+#pragma mark - set
+- (void)setLearningInfo:(MasterLearningInfoRequestItem_Body_XueQing_LearningInfoList *)learningInfo {
+    _learningInfo = learningInfo;
+    self.nameLabel.text = _learningInfo.realName;
+    self.passLabel.text = _learningInfo.isPass.boolValue ? @"通过" : @"未通过";
+    self.passLabel.textColor = _learningInfo.isPass.boolValue ?[UIColor colorWithHexString:@"e5581a"] : [UIColor colorWithHexString:@"0067b8"];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%@分",[_learningInfo.totalScore yx_formatInteger]];
+}
 #pragma mark - setupUI
 - (void)setupUI {
     self.nameLabel = [[UILabel alloc] init];
@@ -39,7 +47,6 @@
     self.scoreLabel.textAlignment = NSTextAlignmentRight;
     self.scoreLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     self.scoreLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.scoreLabel.text = @"70.0f";
     [self.contentView addSubview:self.scoreLabel];
     
     self.lineView = [[UIView alloc] init];
