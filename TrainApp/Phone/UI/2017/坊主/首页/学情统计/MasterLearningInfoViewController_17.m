@@ -14,6 +14,7 @@
 #import "MasterExamTopicCell_17.h"
 #import "YXMyExamExplainView_17.h"
 #import "LSTCollectionFilterDefaultView.h"
+#import "PersonLearningInfoViewController_17.h"
 @interface MasterLearningInfoViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) MasterLearningInfoTableHeaderView_17 *headerView;
 @property (nonatomic, strong) NSArray<LSTCollectionFilterDefaultModel *> *filterModel;
@@ -242,6 +243,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    PersonLearningInfoViewController_17 *VC = [[PersonLearningInfoViewController_17 alloc] init];
+    VC.learningInfo = self.dataArray[indexPath.row];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 @end

@@ -1,0 +1,161 @@
+//
+//  PersonLearningInfoViewController_17.m
+//  TrainApp
+//
+//  Created by 郑小龙 on 2017/11/16.
+//  Copyright © 2017年 niuzhaowang. All rights reserved.
+//
+
+#import "PersonLearningInfoViewController_17.h"
+#import "PersonLearningInfoRequest_17.h"
+#import "YXMyLearningScoreTableHeaderView_17.h"
+#import "YXMyLearningScoreHeaderView_17.h"
+#import "YXMyLearningScoreCell_17.h"
+#import "YXMyExamExplainView_17.h"
+#import "YXMyExamExplainHelp_17.h"
+#import "PersonLearningInfoRequest_17.h"
+#import "MJRefresh.h"
+#import "PersonTableHeaderView_17.h"
+@interface PersonLearningInfoViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
+@property (nonatomic, strong) PersonTableHeaderView_17 *headerView;
+@property (nonatomic, strong) PersonLearningInfoRequest_17 *learningInfoRequest;
+@property (nonatomic, strong) ExamineDetailRequest_17Item_Examine *examine;
+@property (nonatomic, strong) MJRefreshHeaderView *header;
+
+@property (nonatomic, assign) NSInteger showMarkHeight;
+@property (nonatomic, assign) BOOL isShowChoose;
+@end
+
+@implementation PersonLearningInfoViewController_17
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupUI];
+    [self setupLayout];
+    [self requestForLearningInfo];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+- (void)setExamine:(ExamineDetailRequest_17Item_Examine *)examine {
+    _examine = examine;
+    [self.headerView reloadPersonLearningInfo:self.learningInfo withScore:self.examine.userGetScore withPass:self.examine.isPass.boolValue];
+    [self.tableView reloadData];
+}
+#pragma mark - setupUI
+- (void)setupUI {
+    self.navigationItem.title = @"考核详情";
+    self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+    [self.tableView registerClass:[YXMyLearningScoreHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"YXMyLearningScoreHeaderView_17"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
+    [self.tableView registerClass:[YXMyLearningScoreCell_17 class] forCellReuseIdentifier:@"YXMyLearningScoreCell_17"];
+    self.headerView = [[PersonTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 210.0f)];
+    self.tableView.tableHeaderView = self.headerView;
+    self.errorView = [[YXErrorView alloc] init];
+    WEAK_SELF
+    self.errorView.retryBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForLearningInfo];
+    };
+    self.dataErrorView = [[DataErrorView alloc] init];
+    self.dataErrorView.refreshBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForLearningInfo];
+    };
+    self.header = [MJRefreshHeaderView header];
+    self.header.scrollView = self.tableView;
+    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        STRONG_SELF
+        [self requestForLearningInfo];
+    };
+}
+- (void)setupLayout {
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+}
+- (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
+    YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
+    [v showInView:self.navigationController.view examExplain:string];
+    [v setupOriginRect:rect withToTop:(rect.origin.y - [self heightForDescription:string] - 30 > 0) ? YES : NO];
+}
+- (CGFloat)heightForDescription:(NSString *)desc {
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:7];
+    CGRect rect = [desc boundingRectWithSize:CGSizeMake(kScreenWidth - 60.0f, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f],NSParagraphStyleAttributeName:paragraphStyle} context:NULL];
+    return rect.size.height;
+}
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ExamineDetailRequest_17Item_Examine_Process *process = self.examine.process[indexPath.section];
+    return  ceil((double)process.toolExamineVoList.count/4.0f) * 80.0f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 5.0f;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return footerView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 45.0f;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    YXMyLearningScoreHeaderView_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXMyLearningScoreHeaderView_17"];
+    headerView.process = self.examine.process[section];
+    WEAK_SELF
+    headerView.myLearningScoreButtonBlock = ^(UIButton *sender) {
+        STRONG_SELF
+        ExamineDetailRequest_17Item_Examine_Process *process = self.examine.process[section];
+        CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
+        [self showMarkWithOriginRect:rect explain:process.descr];
+    };
+    return headerView;
+}
+#pragma mark - UITableViewDataSorce
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.examine.process.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    YXMyLearningScoreCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMyLearningScoreCell_17" forIndexPath:indexPath];
+    cell.process = self.examine.process[indexPath.section];
+    return cell;
+}
+#pragma mark - request
+- (void)requestForLearningInfo {
+    PersonLearningInfoRequest_17 *request = [[PersonLearningInfoRequest_17 alloc] init];
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.userId = @"";
+    WEAK_SELF
+    [request startRequestWithRetClass:[ExamineDetailRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
+        [self.header endRefreshing];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
+        }
+        ExamineDetailRequest_17Item *item = retItem;
+        self.examine = item.examine;
+    }];
+    self.learningInfoRequest = request;
+}
+@end

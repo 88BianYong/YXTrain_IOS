@@ -472,6 +472,9 @@
 		92A770091DD18A5800C578F2 /* InputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A770081DD18A5800C578F2 /* InputTextView.m */; };
 		92A7850C1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7850B1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.m */; };
 		92A7850F1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7850E1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.m */; };
+		92A785181FBD79F7007502A4 /* PersonLearningInfoRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A785171FBD79F7007502A4 /* PersonLearningInfoRequest_17.m */; };
+		92A7851E1FBD85C4007502A4 /* PersonLearningInfoViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7851D1FBD85C4007502A4 /* PersonLearningInfoViewController_17.m */; };
+		92A785221FBD899D007502A4 /* PersonTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A785211FBD899D007502A4 /* PersonTableHeaderView_17.m */; };
 		92A791631F0E20AB00E3D258 /* YXLearningViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A791621F0E20AB00E3D258 /* YXLearningViewController_17.m */; };
 		92A7916F1F0E21A500E3D258 /* YXMessageViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A7916E1F0E21A500E3D258 /* YXMessageViewController_17.m */; };
 		92A791721F0E21CA00E3D258 /* YXMineViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A791711F0E21CA00E3D258 /* YXMineViewController_17.m */; };
@@ -1496,7 +1499,6 @@
 		92706E371F298FBF001867C4 /* CourseCenterConditionRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseCenterConditionRequest_17.h; sourceTree = "<group>"; };
 		92706E381F298FBF001867C4 /* CourseCenterConditionRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseCenterConditionRequest_17.m; sourceTree = "<group>"; };
 		9272D52F1F1748270010B177 /* YXLearningTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningTableHeaderView_17.h; sourceTree = "<group>"; };
-		9272D5311F174B9A0010B177 /* YXMyLearningScoreViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreViewController_17.h; sourceTree = "<group>"; };
 		9272D5321F174B9A0010B177 /* YXMyLearningScoreViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyLearningScoreViewController_17.m; sourceTree = "<group>"; };
 		9272D5341F1754140010B177 /* YXLearningChannelHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningChannelHeaderView_17.h; sourceTree = "<group>"; };
 		9272D5351F1754140010B177 /* YXLearningChannelHeaderView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningChannelHeaderView_17.m; sourceTree = "<group>"; };
@@ -1640,6 +1642,13 @@
 		92A7850D1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterDefaultModel.h; sourceTree = "<group>"; };
 		92A7850E1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterDefaultModel.m; sourceTree = "<group>"; };
 		92A785101FBD2CB5007502A4 /* LSTCollectionFilterDefaultProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSTCollectionFilterDefaultProtocol.h; sourceTree = "<group>"; };
+		92A785161FBD79F7007502A4 /* PersonLearningInfoRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonLearningInfoRequest_17.h; sourceTree = "<group>"; };
+		92A785171FBD79F7007502A4 /* PersonLearningInfoRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonLearningInfoRequest_17.m; sourceTree = "<group>"; };
+		92A7851C1FBD85C4007502A4 /* PersonLearningInfoViewController_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonLearningInfoViewController_17.h; sourceTree = "<group>"; };
+		92A7851D1FBD85C4007502A4 /* PersonLearningInfoViewController_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonLearningInfoViewController_17.m; sourceTree = "<group>"; };
+		92A7851F1FBD866D007502A4 /* YXMyLearningScoreTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyLearningScoreTableHeaderView_17.h; sourceTree = "<group>"; };
+		92A785201FBD899D007502A4 /* PersonTableHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PersonTableHeaderView_17.h; sourceTree = "<group>"; };
+		92A785211FBD899D007502A4 /* PersonTableHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PersonTableHeaderView_17.m; sourceTree = "<group>"; };
 		92A791611F0E20AB00E3D258 /* YXLearningViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningViewController_17.h; sourceTree = "<group>"; };
 		92A791621F0E20AB00E3D258 /* YXLearningViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningViewController_17.m; sourceTree = "<group>"; };
 		92A7916D1F0E21A500E3D258 /* YXMessageViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMessageViewController_17.h; sourceTree = "<group>"; };
@@ -3869,6 +3878,8 @@
 				92551E101FBBE5AC0034DC71 /* MasterLearningInfoRequest_17.m */,
 				92551E121FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.h */,
 				92551E131FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.m */,
+				92A785161FBD79F7007502A4 /* PersonLearningInfoRequest_17.h */,
+				92A785171FBD79F7007502A4 /* PersonLearningInfoRequest_17.m */,
 			);
 			path = "学情统计";
 			sourceTree = "<group>";
@@ -3886,6 +3897,8 @@
 				92551E231FBBF3A70034DC71 /* YXCircleView.m */,
 				92551E291FBC29110034DC71 /* MasterCircleDisplayView_17.h */,
 				92551E2A1FBC29110034DC71 /* MasterCircleDisplayView_17.m */,
+				92A785201FBD899D007502A4 /* PersonTableHeaderView_17.h */,
+				92A785211FBD899D007502A4 /* PersonTableHeaderView_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3905,6 +3918,8 @@
 				92551E181FBBEE430034DC71 /* view */,
 				92551E151FBBEDC60034DC71 /* MasterLearningInfoViewController_17.h */,
 				92551E161FBBEDC60034DC71 /* MasterLearningInfoViewController_17.m */,
+				92A7851C1FBD85C4007502A4 /* PersonLearningInfoViewController_17.h */,
+				92A7851D1FBD85C4007502A4 /* PersonLearningInfoViewController_17.m */,
 			);
 			path = "学情统计";
 			sourceTree = "<group>";
@@ -4012,7 +4027,7 @@
 		9272D5371F175A1E0010B177 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				9272D5311F174B9A0010B177 /* YXMyLearningScoreViewController_17.h */,
+				922DB1AF1FBA80A10078F6BD /* YXMyLearningScoreViewController_17.h */,
 				9272D5321F174B9A0010B177 /* YXMyLearningScoreViewController_17.m */,
 			);
 			name = controller;
@@ -4021,7 +4036,7 @@
 		9272D5381F175A3F0010B177 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				922DB1AF1FBA80A10078F6BD /* YXMyLearningScoreViewController_17.h */,
+				92A7851F1FBD866D007502A4 /* YXMyLearningScoreTableHeaderView_17.h */,
 				9272D53A1F175A6A0010B177 /* YXMyLearningScoreTableHeaderView_17.m */,
 				9272D53C1F175A9E0010B177 /* YXMyLearningScoreHeaderView_17.h */,
 				9272D53D1F175A9E0010B177 /* YXMyLearningScoreHeaderView_17.m */,
@@ -5433,6 +5448,7 @@
 				922661C11E8A0F19006DE8A4 /* VideoClassworkManager.m in Sources */,
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
+				92A785221FBD899D007502A4 /* PersonTableHeaderView_17.m in Sources */,
 				92CE51451D87D2C00071DE79 /* YXWebSocketManger.m in Sources */,
 				928B7A4A1E88B2180067218A /* BeijingHomeworkInfoView.m in Sources */,
 				927874311F01F89300A70DC0 /* VideoBeginningTopView.m in Sources */,
@@ -5524,6 +5540,7 @@
 				7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */,
 				92348FC51EEFEDEA00D3B3A7 /* StudentExamHeaderView.m in Sources */,
 				922DB1B61FBA83550078F6BD /* CourseDetailContainerView_17.m in Sources */,
+				92A785181FBD79F7007502A4 /* PersonLearningInfoRequest_17.m in Sources */,
 				92E971601ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.m in Sources */,
 				92EEA9211EB08348005A3B7C /* DeYangCourseListFetcher.m in Sources */,
 				7CF8885C1D194BE800E7C04D /* JKAlertDialog.m in Sources */,
@@ -5996,6 +6013,7 @@
 				CB4D91681D1A5A4800B5F1D0 /* YXMyDatumFetcher.m in Sources */,
 				CB3510B51D18E9830081EA3B /* YXDatumOrderFilterMenuView.m in Sources */,
 				926F12011EA4798A0041D66F /* NoticeAndBriefDetailViewController.m in Sources */,
+				92A7851E1FBD85C4007502A4 /* PersonLearningInfoViewController_17.m in Sources */,
 				CB4D918C1D1A758500B5F1D0 /* YXDatumSearchFetcher.m in Sources */,
 				920F1D591D533E8B00636A51 /* YXWriteHomeworkRequest.m in Sources */,
 				CB748EDD1D223E2B004BCFBF /* YXFilterCustomButton.m in Sources */,
