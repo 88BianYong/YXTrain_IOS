@@ -100,6 +100,7 @@
         footerView.courseFilterCompleteBlock = ^(BOOL isCancleBool) {
             STRONG_SELF
             if (isCancleBool) {
+                [self cancleUserSelection];
                 BLOCK_EXEC(self.filterSelectedBlock,NO);
             }else {
                 if ([self confirmUserSelected]) {
@@ -112,6 +113,11 @@
         return footerView;
     }
     return nil;
+}
+- (void)cancleUserSelection {
+    [self.filterModel enumerateObjectsUsingBlock:^(LSTCollectionFilterDefaultModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        obj.userSelected = nil;
+    }];
 }
 - (BOOL)confirmUserSelected {
     __block BOOL isChange = NO;

@@ -15,10 +15,12 @@
 #import "YXMyExamExplainView_17.h"
 #import "LSTCollectionFilterDefaultView.h"
 #import "PersonLearningInfoViewController_17.h"
+#import "MasterRemindStudyRequest.h"
 @interface MasterLearningInfoViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) MasterLearningInfoTableHeaderView_17 *headerView;
 @property (nonatomic, strong) NSArray<LSTCollectionFilterDefaultModel *> *filterModel;
 @property (nonatomic, strong) MasterLearningInfoRequestItem_Body *itemBody;
+@property (nonatomic, strong) MasterRemindStudyRequest *studyRequest;
 
 @property (nonatomic, strong) AlertView *alert;
 @property (nonatomic, strong) UIView *bgView;
@@ -96,6 +98,7 @@
     WEAK_SELF
     [[superviseButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
+        [self requestForRemindStudy];
     }];
     [self setupRightWithCustomView:superviseButton];
 }
@@ -152,6 +155,7 @@
             }];
             [view layoutIfNeeded];
         } completion:^(BOOL finished) {
+            [selectionView cancleUserSelection];
             self.bgView.hidden = YES;
             self.alert.contentView = nil;
             [selectionView removeFromSuperview];
@@ -246,6 +250,29 @@
     PersonLearningInfoViewController_17 *VC = [[PersonLearningInfoViewController_17 alloc] init];
     VC.learningInfo = self.dataArray[indexPath.row];
     [self.navigationController pushViewController:VC animated:YES];
+}
+
+#pragma mark - request
+- (void)requestForRemindStudy{
+    [self.studyRequest stopRequest];
+    MasterRemindStudyRequest *request = [[MasterRemindStudyRequest alloc] init];
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.barId = self.filterModel[0].defaultSelectedID;
+    [self startLoading];
+    WEAK_SELF
+    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = YES;
+        data.error = error;
+        if ([self handleRequestData:data]) {
+            return;
+        }
+        [self showMarkWithOriginRect:CGRectMake(200, 30.0f, 80, 30.0f) explain:@"友情上飞机法律框架发就;了法兰克福;老卡机的发了空间啊离开房间啊;立刻就发了卡机的是发"];
+    }];
+    self.studyRequest = request;
 }
 
 @end

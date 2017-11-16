@@ -12,5 +12,6 @@
 @property (nonatomic, strong) NSArray<LSTCollectionFilterDefaultModel *> *filterModel;
 @property (nonatomic, copy) void(^filterSelectedBlock)(BOOL isChange);
 @property (nonatomic, assign) CGSize collectionSize;
+- (void)cancleUserSelection;
 - (void)reloadData;
 @end
