@@ -518,6 +518,7 @@
 		92C79DDD1FBE7FF300DB141D /* MasterMainHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C79DDC1FBE7FF300DB141D /* MasterMainHeaderView_17.m */; };
 		92C79DE01FBE802000DB141D /* MasterMainCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C79DDF1FBE802000DB141D /* MasterMainCell_17.m */; };
 		92C79DE31FBE80A400DB141D /* MasterMainFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C79DE21FBE80A400DB141D /* MasterMainFooterView_17.m */; };
+		92C79DE61FBE93AA00DB141D /* MasterHappeningCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C79DE51FBE93AA00DB141D /* MasterHappeningCell_17.m */; };
 		92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */; };
 		92CA55E01DFE75DD00AA2C50 /* LSTTrainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55DF1DFE75DD00AA2C50 /* LSTTrainHelper.m */; };
 		92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CA55E21DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m */; };
@@ -1736,6 +1737,8 @@
 		92C79DDF1FBE802000DB141D /* MasterMainCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterMainCell_17.m; sourceTree = "<group>"; };
 		92C79DE11FBE80A400DB141D /* MasterMainFooterView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterMainFooterView_17.h; sourceTree = "<group>"; };
 		92C79DE21FBE80A400DB141D /* MasterMainFooterView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterMainFooterView_17.m; sourceTree = "<group>"; };
+		92C79DE41FBE93AA00DB141D /* MasterHappeningCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHappeningCell_17.h; sourceTree = "<group>"; };
+		92C79DE51FBE93AA00DB141D /* MasterHappeningCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningCell_17.m; sourceTree = "<group>"; };
 		92CA55DB1DFE574D00AA2C50 /* AppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegateHelper.h; sourceTree = "<group>"; };
 		92CA55DC1DFE574D00AA2C50 /* AppDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateHelper.m; sourceTree = "<group>"; };
 		92CA55DE1DFE75DD00AA2C50 /* LSTTrainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LSTTrainHelper.h; sourceTree = "<group>"; };
@@ -3516,6 +3519,8 @@
 		922DB1EC1FBA91850078F6BD /* view */ = {
 			isa = PBXGroup;
 			children = (
+				92C79DE41FBE93AA00DB141D /* MasterHappeningCell_17.h */,
+				92C79DE51FBE93AA00DB141D /* MasterHappeningCell_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -6016,6 +6021,7 @@
 				922DB1A91FBA7FE30078F6BD /* CourseCenterListViewController_17.m in Sources */,
 				928B7A471E88B2180067218A /* BeijingExamTableHeaderView.m in Sources */,
 				E935D8521DFE403E005CC8BD /* LSTAlertView.m in Sources */,
+				92C79DE61FBE93AA00DB141D /* MasterHappeningCell_17.m in Sources */,
 				92E8FD6C1D8E1FE600004700 /* YXMsgReadedRequest.m in Sources */,
 				922DB18B1FBA7F6B0078F6BD /* VideoCourseDetailViewController_17.m in Sources */,
 				92AD335B1EA0AB77001F2718 /* ProjectChooseLayerCell.m in Sources */,

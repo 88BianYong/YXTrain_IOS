@@ -83,6 +83,12 @@
             self.typeLabel.text = @"在线考试";
         }
             break;
+        case 6:
+        {
+            self.typeImageView.image = [UIImage imageNamed:@"学习力icon"];
+            self.typeLabel.text = @"坊主能力";
+        }
+            break;
             
         default:
             break;

@@ -53,6 +53,7 @@
 @property (nonatomic, assign)CGFloat waveWidth;
 @property (nonatomic, assign)CGFloat waveAmplitude;
 @property (nonatomic, assign)CGFloat offsetXT;
+@property (nonatomic, assign) BOOL isStartBool;
 
 
 
@@ -124,7 +125,10 @@
     self.waveWidth = kScreenWidth;
     self.waveAmplitude = 10.0f;
     self.offsetXT = 100.0f;
-    [self wave];
+    if (!self.isStartBool) {
+        [self wave];
+    }
+    self.isStartBool = YES;
 }
 
 
