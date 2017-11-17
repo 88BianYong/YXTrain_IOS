@@ -31,13 +31,13 @@
             }else{
                 self.viewControllers[1].tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
             }
-            [self.tabBar hideBadgeOnItemIndex:1];
+            [self.tabBar hideBadgeOnItemIndex:1 withTabbarItem:3];
         }else if (redInteger == 0){
-            [self.tabBar showBadgeOnItemIndex:1];
+            [self.tabBar showBadgeOnItemIndex:1 withTabbarItem:3];
             self.viewControllers[1].tabBarItem.badgeValue = nil;
         }else {
             self.viewControllers[1].tabBarItem.badgeValue = nil;
-            [self.tabBar hideBadgeOnItemIndex:1];
+            [self.tabBar hideBadgeOnItemIndex:1 withTabbarItem:3];
         }
     }];
 }

@@ -7,10 +7,9 @@
 //
 
 #import "UITabBar+YXAddtion.h"
-#define TabbarItemNums  3.0    //tabbar的数量 如果是5个设置为5
 @implementation UITabBar (YXAddtion)
 //显示小红点
-- (void)showBadgeOnItemIndex:(NSInteger)index{
+- (void)showBadgeOnItemIndex:(NSInteger)index withTabbarItem:(NSInteger)total{
     //移除之前的小红点
     [self removeBadgeOnItemIndex:index];
     
@@ -22,7 +21,7 @@
     CGRect tabFrame = self.frame;
     
     //确定小红点的位置
-    CGFloat percentX = (index + 0.6) / TabbarItemNums;
+    CGFloat percentX = (index + 0.6) / total;
     CGFloat x = ceilf(percentX * tabFrame.size.width);
     CGFloat y = ceilf(0.15 * tabFrame.size.height);
     badgeView.frame = CGRectMake(x, y, 5.0, 5.0);//圆形大小为10
@@ -31,7 +30,7 @@
 }
 
 //隐藏小红点
-- (void)hideBadgeOnItemIndex:(NSInteger)index{
+- (void)hideBadgeOnItemIndex:(NSInteger)index withTabbarItem:(NSInteger)total{
     //移除小红点
     [self removeBadgeOnItemIndex:index];
 }

@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UITabBar (YXAddtion)
-- (void)showBadgeOnItemIndex:(NSInteger)index;
-- (void)hideBadgeOnItemIndex:(NSInteger)index;
+- (void)showBadgeOnItemIndex:(NSInteger)index withTabbarItem:(NSInteger)total;
+- (void)hideBadgeOnItemIndex:(NSInteger)index withTabbarItem:(NSInteger)total;
 @end
