@@ -25,6 +25,10 @@
 @property (nonatomic, strong) NSString<Optional> *layerId;//分层id
 @property (nonatomic, strong) NSString<Optional> *isOpenTheme;//是否开启主题
 @property (nonatomic, strong) NSString<Optional> *themeId;//主题id
+@property (nonatomic, strong) NSString<Optional> *startDate;//主题id
+@property (nonatomic, strong) NSString<Optional> *endDate;//主题id
+
+
 
 @property (nonatomic, strong) NSString<Optional> *role;
 @property (nonatomic, strong) NSString<Optional> *isDoubel;

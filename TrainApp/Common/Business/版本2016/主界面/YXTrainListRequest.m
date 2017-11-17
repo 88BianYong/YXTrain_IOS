@@ -58,6 +58,14 @@
         return @"0";
     }
 }
+- (void)setEndDate:(NSString<Optional> *)endDate {
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormater dateFromString:endDate];
+    [dateFormater setDateFormat:@"yyyy年MM月dd日"];
+    NSString *currentDateString = [dateFormater stringFromDate:date];
+    _endDate = currentDateString;
+}
 @end
 
 @implementation YXTrainListRequestItem_body

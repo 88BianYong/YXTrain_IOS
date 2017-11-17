@@ -270,7 +270,8 @@
         if ([self handleRequestData:data]) {
             return;
         }
-        [self showMarkWithOriginRect:CGRectMake(200, 30.0f, 80, 30.0f) explain:@"友情上飞机法律框架发就;了法兰克福;老卡机的发了空间啊离开房间啊;立刻就发了卡机的是发"];
+        NSString *string = [NSString stringWithFormat:@"友情提示:\"%@\"截止时间: %@,请各位老师注意学习进度",[LSTSharedInstance sharedInstance].trainManager.currentProject.name,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
+        [self showMarkWithOriginRect:CGRectMake(200, 30.0f, 80, 30.0f) explain:string];
     }];
     self.studyRequest = request;
 }

@@ -39,13 +39,26 @@
 @end
 
 @interface MasterHomeModuleCell_17 ()
+@property (nonatomic, strong) NSArray *iconArray;
+@property (nonatomic, strong) NSDictionary *iconDicitionary;
 @property (nonatomic, assign) CGSize buttonSize;
 @end
 @implementation MasterHomeModuleCell_17
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.buttonSize = CGSizeMake((kScreenWidth - 3.0f)/4.0f, (kScreenWidth - 3.0f)/4.0f);
+        self.iconDicitionary =
+        @{@"0":@{@"0":@"预热阶段",@"2":@"预热阶段（待完成）",@"1":@"预热阶段（已完成）"},
+          @"4":@{@"0":@"学情统计",@"2":@"学情统计（待完成）",@"1":@"学情统计（已完成）"},
+          @"1":@{@"0":@"作业管理",@"2":@"作业管理（待完成）",@"1":@"作业管理（已完成）"},
+          @"3":@{@"0":@"简报1",@"2":@"简报1（待完成）",@"1":@"简报1（已完成）"},
+          @"2":@{@"0":@"通知",@"2":@"通知（待完成）",@"1":@"通知（已完成）"},
+          @"6":@{@"0":@"线上活动",@"2":@"线上活动（待完成）",@"1":@"线上活动（已完成）"},
+          @"8":@{@"0":@"线下活动",@"2":@"线下活动（待完成）",@"1":@"线下活动（已完成）"},
+          @"5":@{@"0":@"作品集",@"2":@"作品集（待完成）",@"1":@"作品集（已完成）"},
+          @"31":@{@"0":@"综合评定",@"2":@"综合评定（待完成）",@"1":@"综合评定（已完成）"},
+          @"30":@{@"0":@"去看课",@"2":@"去看课（待完成）",@"1":@"去看课（已完成）"}};
     }
     return self;
 }
@@ -96,11 +109,7 @@
         toolView.backgroundColor = [UIColor clearColor];
         toolView.userInteractionEnabled = NO;
         toolView.nameLable.text = obj.name;
-        if (obj.iconStatus.integerValue == 1) {//已完成
-            toolView.imageView.image = [UIImage imageNamed:@"消息动态icon-正常态A"];
-        }else {
-            toolView.imageView.image = [UIImage imageNamed:@"消息动态icon点击态-正常态-拷贝"];
-        }
+        toolView.imageView.image = [UIImage imageNamed:self.iconDicitionary[obj.code][obj.iconStatus]];
         [button addSubview:toolView];
         [toolView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(button);
