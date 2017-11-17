@@ -1,5 +1,5 @@
 //
-//  MasterMainCell_17.h
+//  MasterMainBarErrorCell_17.h
 //  TrainApp
 //
 //  Created by 郑小龙 on 2017/11/17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MasterMainCell_17 : UITableViewCell
-@property (nonatomic, copy) NSString *titleString;
+@interface MasterMainBarErrorCell_17 : UITableViewCell
+
 @end

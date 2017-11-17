@@ -584,6 +584,7 @@
 		92F370B61D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F370B51D893C6A001A642A /* YXWriteHomeworkInfoViewController+Request.m */; };
 		92F6877F1E08E7A000A48420 /* ActivityListDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F6877E1E08E7A000A48420 /* ActivityListDetailModel.m */; };
 		92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F687811E0908F400A48420 /* ActivityDetailManger.m */; };
+		92F881BE1FBED0CA00FDBD2D /* MasterMainBarErrorCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F881BD1FBED0CA00FDBD2D /* MasterMainBarErrorCell_17.m */; };
 		92FA05741F1709CA00CD55AE /* YXLearningStageCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FA05731F1709CA00CD55AE /* YXLearningStageCell_17.m */; };
 		92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */; };
 		92FAE4A41DDAA845000C3C00 /* CoreTextViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FAE4A31DDAA845000C3C00 /* CoreTextViewHandler.m */; };
@@ -1867,6 +1868,8 @@
 		92F687801E0908F400A48420 /* ActivityDetailManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailManger.h; sourceTree = "<group>"; };
 		92F687811E0908F400A48420 /* ActivityDetailManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailManger.m; sourceTree = "<group>"; };
 		92F687831E092A3800A48420 /* WriteHomeworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WriteHomeworkManager.h; sourceTree = "<group>"; };
+		92F881BC1FBED0CA00FDBD2D /* MasterMainBarErrorCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterMainBarErrorCell_17.h; sourceTree = "<group>"; };
+		92F881BD1FBED0CA00FDBD2D /* MasterMainBarErrorCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterMainBarErrorCell_17.m; sourceTree = "<group>"; };
 		92FA05721F1709CA00CD55AE /* YXLearningStageCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningStageCell_17.h; sourceTree = "<group>"; };
 		92FA05731F1709CA00CD55AE /* YXLearningStageCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningStageCell_17.m; sourceTree = "<group>"; };
 		92FAE4A01DD9A0C3000C3C00 /* CommentPagedListFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentPagedListFetcher.m; sourceTree = "<group>"; };
@@ -3487,6 +3490,8 @@
 				92C79DDF1FBE802000DB141D /* MasterMainCell_17.m */,
 				92C79DE11FBE80A400DB141D /* MasterMainFooterView_17.h */,
 				92C79DE21FBE80A400DB141D /* MasterMainFooterView_17.m */,
+				92F881BC1FBED0CA00FDBD2D /* MasterMainBarErrorCell_17.h */,
+				92F881BD1FBED0CA00FDBD2D /* MasterMainBarErrorCell_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -5839,6 +5844,7 @@
 				CB7462731D1F64970065113A /* YXAlertView.m in Sources */,
 				7C3178021D11814B004AAC90 /* YXFileDownloadProgressView.m in Sources */,
 				92BBE0481F20AE60009230AC /* HomeworkListClaimCell_17.m in Sources */,
+				92F881BE1FBED0CA00FDBD2D /* MasterMainBarErrorCell_17.m in Sources */,
 				92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */,
 				92FD5A4C1ED7C4C400D3EBA1 /* VideoCourseCommentViewController.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,

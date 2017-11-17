@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterMainFooterView_17 : UIView
-
+@property (nonatomic, strong) UIButton *logoutButton;
 @end

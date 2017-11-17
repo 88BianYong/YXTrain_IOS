@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterMainHeaderView_17 : UITableViewHeaderFooterView
-
+- (void)reloadMasterMainHeader:(NSString *)iconString withTitle:(NSString *)title;
 @end

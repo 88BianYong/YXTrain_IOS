@@ -7,15 +7,23 @@
 //
 
 #import "MasterMainFooterView_17.h"
-
+@interface MasterMainFooterView_17 ()
+@end
 @implementation MasterMainFooterView_17
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        self.logoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.logoutButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
+        [self.logoutButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
+        [self.logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+        [self.logoutButton setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
+        self.logoutButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+        [self addSubview:self.logoutButton];
+        [self.logoutButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
+    }
+    return self;
 }
-*/
 
 @end

@@ -12,6 +12,7 @@
     UILabel *_titleLabel;
     UIImageView *_imageView;
 }
+@property (nonatomic, strong) UIView *lineView;
 @end
 @implementation YXMySettingCell
 
@@ -65,6 +66,15 @@
         make.right.equalTo(self.contentView.mas_right).offset(-12.0f);
         make.height.width.mas_equalTo(16.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
+    }];
+    self.lineView = [[UIView alloc] init];
+    self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.contentView addSubview:self.lineView];
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(15.0f);
+        make.right.equalTo(self.contentView.mas_right);
+        make.height.mas_offset(1.0f);
+        make.top.equalTo(self.contentView.mas_top);
     }];
 }
 - (void)reloadWithText:(NSString *)text

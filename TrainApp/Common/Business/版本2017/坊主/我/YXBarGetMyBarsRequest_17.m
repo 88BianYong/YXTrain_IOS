@@ -8,6 +8,9 @@
 
 #import "YXBarGetMyBarsRequest_17.h"
 @implementation YXBarGetMyBarsRequestItem_Body_Bar : JSONModel
++(JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"barId":@"id"}];
+}
 @end
 
 @implementation YXBarGetMyBarsRequestItem_Body : JSONModel
