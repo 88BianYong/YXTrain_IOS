@@ -43,8 +43,15 @@
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
     }];
+    
+    
     // Do any additional setup after loading the view.
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:self.bIsGroupedTableViewStyle];
+    if (self.bIsGroupedTableViewStyle) {
+        self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    } else {
+        self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    }
+
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.contentView addSubview:self.tableView];

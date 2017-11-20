@@ -19,6 +19,7 @@
 #import "MasterLearningInfoViewController_17.h"
 #import "MasterBriefViewController_17.h"
 #import "MasterNoticeViewController_17.h"
+#import "MasterHomeworkViewController_17.h"
 @interface MasterHomeViewController_17()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) MasterHomeTableHeaderView_17 *tableHeaderView;
@@ -188,11 +189,13 @@
                 [self.navigationController pushViewController:VC animated:YES];
                 
             }else if (tool.code.integerValue == 1) {//作业
-                
-                
+                MasterHomeworkViewController_17 *VC = [[MasterHomeworkViewController_17 alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 2) {//通知
                 MasterNoticeViewController_17 *VC = [[MasterNoticeViewController_17 alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+
+                
             }else if (tool.code.integerValue == 6) {//线上
                 
             }else if (tool.code.integerValue == 8) {//线下活动
