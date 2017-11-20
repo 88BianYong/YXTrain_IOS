@@ -83,6 +83,8 @@
     }
 }
 - (void)startTimer{
+    [_timer invalidate];
+    _timer = nil;
     _timer = [NSTimer scheduledTimerWithTimeInterval:9.0f target:self selector:@selector(setupData) userInfo:nil repeats:YES];
 
 }

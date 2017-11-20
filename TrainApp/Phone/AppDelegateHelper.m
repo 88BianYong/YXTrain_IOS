@@ -123,7 +123,6 @@
 }
 #pragma mark - add notification
 - (void)registeNotifications {
-    [self removeLoginNotifications];
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLoginSuccessNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
@@ -172,20 +171,12 @@
         [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
     }];
-}
-
-- (void)removeLoginNotifications
-{
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center removeObserver:self
-                      name:YXUserLoginSuccessNotification
-                    object:nil];
-    [center removeObserver:self
-                      name:YXUserLogoutSuccessNotification
-                    object:nil];
-    [center removeObserver:self
-                      name:YXTokenInValidNotification
-                    object:nil];
-
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainUserIdentityChange object:nil] subscribeNext:^(id x) {
+        STRONG_SELF
+        self.rootManger = nil;
+        self.window.rootViewController = [self.rootManger rootViewController];
+        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
+        [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
+    }];
 }
 @end

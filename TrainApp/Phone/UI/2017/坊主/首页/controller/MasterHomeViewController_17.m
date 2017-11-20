@@ -17,6 +17,8 @@
 #import "YXSectionHeaderFooterView.h"
 #import "MasterReadingListViewController_17.h"
 #import "MasterLearningInfoViewController_17.h"
+#import "MasterBriefViewController_17.h"
+#import "MasterNoticeViewController_17.h"
 @interface MasterHomeViewController_17()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) MasterHomeTableHeaderView_17 *tableHeaderView;
@@ -173,28 +175,35 @@
         WEAK_SELF
         self.moduleCell.masterHomeModuleCompleteBlock = ^(MasterIndexRequestItem_Body_Modules *tool) {
             STRONG_SELF
-            if (tool.code.integerValue == 0) {
+            if (tool.code.integerValue == 0) {//前置
                 MasterReadingListViewController_17 *VC = [[MasterReadingListViewController_17 alloc] init];
                 VC.stageString = tool.extend.stageId;
                 VC.toolString = tool.toolId;
                 [self.navigationController pushViewController:VC animated:YES];
-            }else if (tool.code.integerValue == 4) {
+            }else if (tool.code.integerValue == 4) {//学情
                 MasterLearningInfoViewController_17 *VC = [[MasterLearningInfoViewController_17 alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
-            }else if (tool.toolId.integerValue == 0) {
+            }else if (tool.code.integerValue == 3) {//简报
+                MasterBriefViewController_17 *VC = [[MasterBriefViewController_17 alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
                 
-            }else if (tool.toolId.integerValue == 0) {
+            }else if (tool.code.integerValue == 1) {//作业
                 
-            }else if (tool.toolId.integerValue == 0) {
                 
-            }else if (tool.toolId.integerValue == 0) {
+            }else if (tool.code.integerValue == 2) {//通知
+                MasterNoticeViewController_17 *VC = [[MasterNoticeViewController_17 alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
+            }else if (tool.code.integerValue == 6) {//线上
                 
-            }else if (tool.toolId.integerValue == 0) {
+            }else if (tool.code.integerValue == 8) {//线下活动
                 
-            }else if (tool.toolId.integerValue == 0) {
+            }else if (tool.code.integerValue == 5) {//作品集
+                
+            }else if (tool.code.integerValue == 30) {//看课
+                
+            }else if (tool.code.integerValue == 31) {//综合
                 
             }
-            
         };
         return self.moduleCell;
     }

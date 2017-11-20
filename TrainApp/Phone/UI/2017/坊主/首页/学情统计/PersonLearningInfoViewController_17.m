@@ -43,6 +43,7 @@
 }
 - (void)setExamine:(ExamineDetailRequest_17Item_Examine *)examine {
     _examine = examine;
+    self.headerView.hidden = NO;
     [self.headerView reloadPersonLearningInfo:self.learningInfo withScore:self.examine.userGetScore withPass:self.examine.isPass.boolValue];
     [self.tableView reloadData];
 }
@@ -59,6 +60,7 @@
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.tableView registerClass:[YXMyLearningScoreCell_17 class] forCellReuseIdentifier:@"YXMyLearningScoreCell_17"];
     self.headerView = [[PersonTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 210.0f)];
+    self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
     self.errorView = [[YXErrorView alloc] init];
     WEAK_SELF

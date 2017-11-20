@@ -25,7 +25,6 @@
     [self startLoading];
     [self setupUI];
     [self setupLayout];
-    [self firstPageFetch];
 }
 
 - (void)didReceiveMemoryWarning {
