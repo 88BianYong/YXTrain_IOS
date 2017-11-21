@@ -58,7 +58,7 @@
         }
     }
     _homework = homework;
-    NSString *string = [_homework.score yx_formatInteger] ?: @"";
+    NSString *string = [NSString stringWithFormat:@"%@分",[_homework.score yx_formatInteger]];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:string];
     [attString addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_Medium size:14.0f] range:NSMakeRange(0, string.length)];
     self.scoreLabel.attributedText = attString;
@@ -292,7 +292,7 @@
     [self.contentView addSubview:self.finishTimeLabel];
     
     self.scoreLabel = [[UILabel alloc] init];
-    self.scoreLabel.textColor = [UIColor colorWithHexString:@"e558a1"];
+    self.scoreLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
     self.scoreLabel.font = [UIFont systemFontOfSize:13.0f];
     self.scoreLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:self.scoreLabel];

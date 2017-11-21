@@ -59,13 +59,7 @@
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
     YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
-    [v setupOriginRect:rect withToTop:(rect.origin.y - [self heightForDescription:string] - 30 > 0) ? YES : NO];
-}
-- (CGFloat)heightForDescription:(NSString *)desc {
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:7];
-    CGRect rect = [desc boundingRectWithSize:CGSizeMake(kScreenWidth - 60.0f, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f],NSParagraphStyleAttributeName:paragraphStyle} context:NULL];
-    return rect.size.height;
+    [v setupOriginRect:rect withToTop:(rect.origin.y - [YXMyExamExplainView_17 heightForDescription:string] - 30 > 0) ? YES : NO];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

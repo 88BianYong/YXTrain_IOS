@@ -374,6 +374,12 @@
 		924BE40A1FC2BB2800B7EECA /* MasterHomeworkTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4091FC2BB2800B7EECA /* MasterHomeworkTableHeaderView_17.m */; };
 		924BE40D1FC2BB5400B7EECA /* MasterHomeworkHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE40C1FC2BB5400B7EECA /* MasterHomeworkHeaderView_17.m */; };
 		924BE4101FC2BB7300B7EECA /* MasterHomeworkCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE40F1FC2BB7300B7EECA /* MasterHomeworkCell_17.m */; };
+		924BE4131FC3BDB600B7EECA /* MasterHomeworkDetailViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4121FC3BDB600B7EECA /* MasterHomeworkDetailViewController_17.m */; };
+		924BE4161FC3CD4100B7EECA /* MasterHomeworkDetailTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4151FC3CD4100B7EECA /* MasterHomeworkDetailTableHeaderView_17.m */; };
+		924BE4191FC40D4B00B7EECA /* MasterHomeworkAffixsCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4181FC40D4B00B7EECA /* MasterHomeworkAffixsCell_17.m */; };
+		924BE41D1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE41C1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.m */; };
+		924BE4201FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE41F1FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.m */; };
+		924BE4231FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4221FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m */; };
 		924C9A0D1EA735A20017B31B /* TrainGeTuiManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */; };
 		924C9A111EA9DC740017B31B /* TrainRedPointManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 924C9A101EA9DC740017B31B /* TrainRedPointManger.m */; };
 		925146811F25EE4600B1533B /* HomeworkListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925146801F25EE4600B1533B /* HomeworkListRequest_17.m */; };
@@ -1475,6 +1481,18 @@
 		924BE40C1FC2BB5400B7EECA /* MasterHomeworkHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkHeaderView_17.m; sourceTree = "<group>"; };
 		924BE40E1FC2BB7300B7EECA /* MasterHomeworkCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeworkCell_17.h; sourceTree = "<group>"; };
 		924BE40F1FC2BB7300B7EECA /* MasterHomeworkCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkCell_17.m; sourceTree = "<group>"; };
+		924BE4111FC3BDB600B7EECA /* MasterHomeworkDetailViewController_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeworkDetailViewController_17.h; sourceTree = "<group>"; };
+		924BE4121FC3BDB600B7EECA /* MasterHomeworkDetailViewController_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkDetailViewController_17.m; sourceTree = "<group>"; };
+		924BE4141FC3CD4100B7EECA /* MasterHomeworkDetailTableHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeworkDetailTableHeaderView_17.h; sourceTree = "<group>"; };
+		924BE4151FC3CD4100B7EECA /* MasterHomeworkDetailTableHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkDetailTableHeaderView_17.m; sourceTree = "<group>"; };
+		924BE4171FC40D4B00B7EECA /* MasterHomeworkAffixsCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeworkAffixsCell_17.h; sourceTree = "<group>"; };
+		924BE4181FC40D4B00B7EECA /* MasterHomeworkAffixsCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkAffixsCell_17.m; sourceTree = "<group>"; };
+		924BE41B1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeworkCommentCell_17.h; sourceTree = "<group>"; };
+		924BE41C1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkCommentCell_17.m; sourceTree = "<group>"; };
+		924BE41E1FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeworkRemarkRequest_17.h; sourceTree = "<group>"; };
+		924BE41F1FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkRemarkRequest_17.m; sourceTree = "<group>"; };
+		924BE4211FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeworkCommentHeaderView_17.h; sourceTree = "<group>"; };
+		924BE4221FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkCommentHeaderView_17.m; sourceTree = "<group>"; };
 		924C9A091EA60DA20017B31B /* TrainApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrainApp.entitlements; sourceTree = "<group>"; };
 		924C9A0B1EA735A20017B31B /* TrainGeTuiManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainGeTuiManger.h; sourceTree = "<group>"; };
 		924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainGeTuiManger.m; sourceTree = "<group>"; };
@@ -3911,6 +3929,8 @@
 				924BE3F71FC2916600B7EECA /* view */,
 				924BE3F81FC291B800B7EECA /* MasterHomeworkViewController_17.h */,
 				924BE3F91FC291B800B7EECA /* MasterHomeworkViewController_17.m */,
+				924BE4111FC3BDB600B7EECA /* MasterHomeworkDetailViewController_17.h */,
+				924BE4121FC3BDB600B7EECA /* MasterHomeworkDetailViewController_17.m */,
 			);
 			path = "作业管理";
 			sourceTree = "<group>";
@@ -3924,6 +3944,14 @@
 				924BE40C1FC2BB5400B7EECA /* MasterHomeworkHeaderView_17.m */,
 				924BE40E1FC2BB7300B7EECA /* MasterHomeworkCell_17.h */,
 				924BE40F1FC2BB7300B7EECA /* MasterHomeworkCell_17.m */,
+				924BE4141FC3CD4100B7EECA /* MasterHomeworkDetailTableHeaderView_17.h */,
+				924BE4151FC3CD4100B7EECA /* MasterHomeworkDetailTableHeaderView_17.m */,
+				924BE4171FC40D4B00B7EECA /* MasterHomeworkAffixsCell_17.h */,
+				924BE4181FC40D4B00B7EECA /* MasterHomeworkAffixsCell_17.m */,
+				924BE41B1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.h */,
+				924BE41C1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.m */,
+				924BE4211FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.h */,
+				924BE4221FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3937,6 +3965,8 @@
 				924BE4001FC2924100B7EECA /* MasterHomeworkFetcher_17.m */,
 				924BE4021FC2925C00B7EECA /* MasterHomeworkDetailRequest_17.h */,
 				924BE4031FC2925C00B7EECA /* MasterHomeworkDetailRequest_17.m */,
+				924BE41E1FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.h */,
+				924BE41F1FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.m */,
 			);
 			path = "作业管理";
 			sourceTree = "<group>";
@@ -5614,6 +5644,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924BE4201FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.m in Sources */,
 				92E927BC1F1E0C0B00BEF834 /* ReadingListViewController_17.m in Sources */,
 				928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */,
 				92FD5A551ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m in Sources */,
@@ -5766,6 +5797,7 @@
 				CB52FCFB1D2BC1720096D8DC /* YXNoticeListFetch.m in Sources */,
 				928B7A4C1E88B2180067218A /* WebsocketRedRightView.m in Sources */,
 				924BE40D1FC2BB5400B7EECA /* MasterHomeworkHeaderView_17.m in Sources */,
+				924BE4191FC40D4B00B7EECA /* MasterHomeworkAffixsCell_17.m in Sources */,
 				920F1D5C1D53456700636A51 /* YXSaveHomeWorkRequest.m in Sources */,
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				920F1D541D53332600636A51 /* YXCategoryListRequest.m in Sources */,
@@ -5947,6 +5979,7 @@
 				7CF844651D2B622200B1CE55 /* YXRecordManager.m in Sources */,
 				92007EB41ED8194900C16F89 /* VideoCourseSecondCommentViewController.m in Sources */,
 				92348FBB1EEFEDEA00D3B3A7 /* MasterConditionTableView.m in Sources */,
+				924BE4131FC3BDB600B7EECA /* MasterHomeworkDetailViewController_17.m in Sources */,
 				9232377B1D826CC800FDACFE /* YXHelpCell.m in Sources */,
 				92348FBE1EEFEDEA00D3B3A7 /* MasterHappeningTableHeaderView.m in Sources */,
 				922661C41E8A3C89006DE8A4 /* VideoClassworkCell.m in Sources */,
@@ -6075,6 +6108,7 @@
 				9237FF7C1DD572400057FFDE /* ActivityFirstCommentRequest.m in Sources */,
 				CB0904D81D1BC88F00026C9D /* YXClickedUnderLineButton.m in Sources */,
 				9232376E1D81668000FDACFE /* YXCheckRequest.m in Sources */,
+				924BE41D1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.m in Sources */,
 				92CE51481D87D2FF0071DE79 /* YXGuideModel.m in Sources */,
 				9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */,
 				92551E141FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.m in Sources */,
@@ -6135,6 +6169,7 @@
 				92551E061FBBE5060034DC71 /* LSTCollectionFilterCell.m in Sources */,
 				92C79DDD1FBE7FF300DB141D /* MasterMainHeaderView_17.m in Sources */,
 				92348FC61EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.m in Sources */,
+				924BE4161FC3CD4100B7EECA /* MasterHomeworkDetailTableHeaderView_17.m in Sources */,
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
 				92E927AB1F1DDCEB00BEF834 /* NoticeBriefCell_17.m in Sources */,
@@ -6235,6 +6270,7 @@
 				922DB1C31FBA87280078F6BD /* YXDatumViewController.m in Sources */,
 				9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */,
 				928B7A411E88B2180067218A /* BeijingDynamicCell.m in Sources */,
+				924BE4231FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m in Sources */,
 				92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */,
 				922DB1AD1FBA807F0078F6BD /* CourseRecordListViewController_17.m in Sources */,
 				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,

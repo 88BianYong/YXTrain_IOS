@@ -103,7 +103,7 @@
     
     [self.commendNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
-        make.left.equalTo(self.readContentLabel.mas_right).offset(27.0f);
+        make.left.equalTo(self.readContentLabel.mas_right).offset(15.0f);
     }];
     [self.commendContetntLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
@@ -112,7 +112,7 @@
     
     [self.recommendNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
-        make.left.equalTo(self.commendContetntLabel.mas_right).offset(27.0f);
+        make.left.equalTo(self.commendContetntLabel.mas_right).offset(15.0f);
     }];
     [self.recommendContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);

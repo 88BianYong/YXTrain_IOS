@@ -76,6 +76,7 @@
              @"gif":@"jpg-png-bmp",
              @"png":@"jpg-png-bmp",
              @"bmp":@"jpg-png-bmp",
+             @"mp4":@"mp4／m3u8"
              };
 }
 

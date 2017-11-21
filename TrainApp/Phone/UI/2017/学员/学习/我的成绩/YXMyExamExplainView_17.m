@@ -69,8 +69,11 @@
         
     }
 }
-- (void)setOriginRect:(CGRect)originRect{
-
++ (CGFloat)heightForDescription:(NSString *)desc {
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:7];
+    CGRect rect = [desc boundingRectWithSize:CGSizeMake(kScreenWidth - 60.0f, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f],NSParagraphStyleAttributeName:paragraphStyle} context:NULL];
+    return rect.size.height;
 }
 
 - (void)showInView:(UIView *)view examExplain:(NSString *)string {
