@@ -14,6 +14,7 @@
 @property (nonatomic, copy) NSString<Optional> *headUrl;
 @property (nonatomic, copy) NSString<Optional> *userName;
 @property (nonatomic, copy) NSString<Optional> *publishDate;
+@property (nonatomic, copy) NSString<Optional> *allowDel;
 @end
 
 @interface  MasterHomeworkRemarkItem_Body : JSONModel

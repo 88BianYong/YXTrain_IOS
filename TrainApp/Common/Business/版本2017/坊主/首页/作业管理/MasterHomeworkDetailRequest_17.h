@@ -65,5 +65,4 @@
 @interface MasterHomeworkDetailRequest_17 : YXGetRequest
 @property (nonatomic, copy) NSString<Optional> *projectId;
 @property (nonatomic, copy) NSString<Optional> *homeworkId;
-@property (nonatomic, copy) NSString<Optional> *key;
 @end

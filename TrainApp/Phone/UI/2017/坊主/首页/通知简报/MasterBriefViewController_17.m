@@ -12,7 +12,6 @@
 #import "MasterManageBriefRequest_17.h"
 #import "MasterNoticeBriefCell_17.h"
 #import "NoticeAndBriefDetailViewController.h"
-#import "YXMyExamExplainView_17.h"
 @interface MasterBriefViewController_17 ()
 @property (nonatomic, strong) MasterBriefHeaderView_17 *headerView;
 @property (nonatomic, strong) MasterNoticeBriefScheme *scheme;
@@ -57,9 +56,9 @@
     self.tableView.tableHeaderView = self.headerView;
 }
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
-    YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
+    MasterMyExamExplainView_17 *v = [[MasterMyExamExplainView_17 alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
-    [v setupOriginRect:rect withToTop:(rect.origin.y - [YXMyExamExplainView_17 heightForDescription:string] - 30 > 0) ? YES : NO];
+    [v setupOriginRect:rect];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

@@ -21,7 +21,7 @@
 @implementation MasterHomeworkRemarkRequest_17
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/homework/remark"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/homework/remarks"];
     }
     return self;
 }

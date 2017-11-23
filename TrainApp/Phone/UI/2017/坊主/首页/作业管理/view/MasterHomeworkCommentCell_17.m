@@ -83,6 +83,13 @@
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-15.0f);
     }];
+    
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(15.0f);
+        make.right.equalTo(self.contentView.mas_right);
+        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.height.mas_offset(1.0f);
+    }];
 }
 - (void)layoutSubviews {
     [super layoutSubviews];

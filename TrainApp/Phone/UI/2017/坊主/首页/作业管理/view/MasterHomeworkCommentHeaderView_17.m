@@ -11,6 +11,7 @@
 @implementation MasterHomeworkCommentHeaderView_17
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        self.contentView.clipsToBounds = YES;
         self.contentView.backgroundColor = [UIColor whiteColor];
         UILabel *label = [[UILabel alloc] init];
         label.textColor = [UIColor colorWithHexString:@"334466"];

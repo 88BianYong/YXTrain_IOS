@@ -113,6 +113,7 @@
     ReadingListRequest_17 *request = [[ReadingListRequest_17 alloc] init];
     request.stageID = self.stageString;
     request.toolID = self.toolString;
+    request.role = [LSTSharedInstance sharedInstance].trainManager.currentProject.role;
     WEAK_SELF
     [request startRequestWithRetClass:[ReadingListRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

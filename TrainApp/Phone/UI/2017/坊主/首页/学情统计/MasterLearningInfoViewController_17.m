@@ -12,7 +12,6 @@
 #import "MasterLearningInfoTableHeaderView_17.h"
 #import "YXSectionHeaderFooterView.h"
 #import "MasterExamTopicCell_17.h"
-#import "YXMyExamExplainView_17.h"
 #import "LSTCollectionFilterDefaultView.h"
 #import "PersonLearningInfoViewController_17.h"
 #import "MasterRemindStudyRequest.h"
@@ -103,9 +102,9 @@
     [self setupRightWithCustomView:superviseButton];
 }
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
-    YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
+    MasterMyExamExplainView_17 *v = [[MasterMyExamExplainView_17 alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
-    [v setupOriginRect:rect withToTop:(rect.origin.y - [YXMyExamExplainView_17 heightForDescription:string] - 30 > 0) ? YES : NO];
+    [v setupOriginRect:rect];
 }
 
 - (void)tableViewWillRefresh {

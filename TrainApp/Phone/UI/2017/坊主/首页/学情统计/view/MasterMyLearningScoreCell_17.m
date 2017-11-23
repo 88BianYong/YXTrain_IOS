@@ -1,17 +1,14 @@
 //
-//  YXMyLearningScoreCell.m
+//  MasterMyLearningScoreCell.m
 //  TrainApp
 //
-//  Created by 郑小龙 on 2017/7/13.
+//  Created by 郑小龙 on 2017/11/23.
 //  Copyright © 2017年 niuzhaowang. All rights reserved.
 //
 
-#import "YXMyLearningScoreCell_17.h"
+#import "MasterMyLearningScoreCell_17.h"
 #import "YXMyLearningUserScoreView.h"
-@interface YXMyLearningScoreCell_17 ()
-@end
-
-@implementation YXMyLearningScoreCell_17
+@implementation MasterMyLearningScoreCell_17
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -63,7 +60,7 @@
     if ([score floatValue] == ceilf([score floatValue]) && [score floatValue] == floorf([score floatValue])) {
         score = [NSString stringWithFormat:@"%d",[score intValue]];
     }
-
+    
     NSString *completeStr = [NSString stringWithFormat:@"%@ / %@分",score,tScore];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
     [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_DemiBold size:13] range:NSMakeRange(0, score.length)];
@@ -90,31 +87,11 @@
 
 - (void)setupToolScoreView:(NSArray<YXMyLearningUserScoreView *> *)toolView {
     [toolView enumerateObjectsUsingBlock:^(YXMyLearningUserScoreView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ((idx / 4 % 2) == 0) {
-            [obj mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 40.0f);
-                make.left.equalTo(self.contentView.mas_left).offset(kScreenWidth/4.0f * (idx % 4));
-                make.width.mas_offset(kScreenWidth/4.0f);
-            }];
-        }else {
-            [obj mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 40.0f);
-                make.right.equalTo(self.contentView.mas_right).offset(-kScreenWidth/4.0f * (idx % 4));
-                make.width.mas_offset(kScreenWidth/4.0f);
-            }];
-        }
-
+        [obj mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.contentView.mas_top).offset(idx/4 * 80.0f + 40.0f);
+            make.left.equalTo(self.contentView.mas_left).offset(kScreenWidth/4.0f * (idx % 4));
+            make.width.mas_offset(kScreenWidth/4.0f);
+        }];
     }];
 }
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 @end

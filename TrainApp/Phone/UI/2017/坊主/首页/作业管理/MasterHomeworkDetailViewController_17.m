@@ -14,16 +14,28 @@
 #import "MasterHomeworkCommentCell_17.h"
 #import "MasterHomeworkRemarkRequest_17.h"
 #import "MasterHomeworkCommentHeaderView_17.h"
-#import "YXMyExamExplainView_17.h"
+#import "MasterInputView_17.h"
+#import "MasterCancelRecommendHomeworkRequest_17.h"
+#import "MasterRecommendHomeworkRequest_17.h"
+#import "MasterScoreHomeworkRequest_17.h"
+#import "MasterHomeworkDeleteRemarkRequest_17.h"
 @interface MasterHomeworkDetailViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) MasterHomeworkDetailTableHeaderView_17 *headerView;
 @property (nonatomic, strong) MasterHomeworkDetailRequest_17 *detailRequest;
 @property (nonatomic, strong) MasterHomeworkDetailItem_Body *detailItem;
 @property (nonatomic, strong) MasterHomeworkRemarkRequest_17 *remarkRequest;
+@property (nonatomic, strong) MasterRecommendHomeworkRequest_17 *recommendRequest;
+@property (nonatomic, strong) MasterCancelRecommendHomeworkRequest_17 *cancleRequest;
+@property (nonatomic, strong) MasterScoreHomeworkRequest_17 *scoreHomework;
+@property (nonatomic, strong) MasterHomeworkDeleteRemarkRequest_17 *deleteRequest;
 @property (nonatomic, strong) NSMutableArray *remarkMutableArray;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) MJRefreshFooterView *footer;
+
+@property (nonatomic, strong) MasterInputView_17 *inputView;
+@property (nonatomic, strong) UIView *translucentView;
+
 @property (nonatomic, assign) NSInteger startPage;
 
 @property (nonatomic, strong) UIButton *remarkButton;
@@ -32,7 +44,15 @@
 @end
 
 @implementation MasterHomeworkDetailViewController_17
-
+- (void)dealloc {
+    DDLogDebug(@"======>>%@",NSStringFromClass([self class]));
+    [self.inputView removeFromSuperview];
+    self.inputView = nil;
+    [self.translucentView removeFromSuperview];
+    self.translucentView = nil;
+    [self.header free];
+    [self.footer free];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.titleString;
@@ -58,13 +78,6 @@
     self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 407.0f - 30.0f + self.headerView.keywordHeight);
     self.tableView.tableHeaderView = self.headerView;
     self.headerView.hidden = NO;
-    MasterHomeworkRemarkItem_Body_Remark *remark = [[MasterHomeworkRemarkItem_Body_Remark alloc] init];
-    remark.content = @"三角阀;浪费;拉开发;啦;浪费空间啊离开的加法路口见对方;了看见爱的是;联发科";
-    remark.userName = @"坊主日期若群无";
-    remark.publishDate = @"2013.10.02";
-    remark.headUrl = @"http://s1.jsyxw.cn/yanxiu/avatar_new_middle_60_60.png";
-    [self.remarkMutableArray addObject:remark];
-    [self setPullupViewHidden:YES];
     self.tableView.hidden = NO;
     if (_detailItem.isMyRecommend.boolValue) {
         [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
@@ -117,6 +130,7 @@
         [self startLoading];
         [self requestForHomeworkDetail];
     };
+    [self setupInputView];
 }
 - (void)setupBottomView {
     self.remarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -128,6 +142,15 @@
     WEAK_SELF
     [[self.remarkButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
+        [UIView animateWithDuration:0.25 animations:^{
+            self.translucentView.alpha = 1.0f;
+        }];
+        [self.inputView.commentTextView becomeFirstResponder];
+        if (self.detailItem.isMyRecommend.boolValue) {
+            self.inputView.inputStatus = MasterInputStatus_Cancle;
+        }else {
+            self.inputView.inputStatus = MasterInputStatus_Recommend;
+        }
     }];
     [self.view addSubview:self.remarkButton];
     
@@ -139,11 +162,61 @@
     self.commentButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [[self.commentButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
+        [UIView animateWithDuration:0.25 animations:^{
+            self.translucentView.alpha = 1.0f;
+        }];
+        self.inputView.inputStatus = MasterInputStatus_Score;
+        [self.inputView.scoreTextView becomeFirstResponder];
     }];
     [self.view addSubview:self.commentButton];
     self.lineView = [[UIView alloc] init];
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.view addSubview:self.lineView];
+}
+- (void)setupInputView{
+    self.translucentView = [[UIView alloc] init];
+    self.translucentView.alpha = 0.0f;
+    self.translucentView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
+    [self.navigationController.view addSubview:self.translucentView];
+    [self.translucentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.navigationController.view);
+    }];
+    WEAK_SELF
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];
+    [[recognizer rac_gestureSignal] subscribeNext:^(UITapGestureRecognizer *x) {
+        STRONG_SELF
+        [self hiddenInputView];
+    }];
+    [self.translucentView addGestureRecognizer:recognizer];
+    self.inputView = [[MasterInputView_17 alloc] initWithFrame:CGRectZero];
+    self.inputView.masterInputViewBlock = ^(MasterInputStatus status) {
+        STRONG_SELF
+        if (status == MasterInputStatus_Cancle) {
+            [self requestForCancelRecommendHomework:self.inputView.commentTextView.text];
+        }else if (status == MasterInputStatus_Recommend) {
+            [self requestForRecommendHomework:self.inputView.commentTextView.text];
+        }else if (status == MasterInputStatus_Comment) {
+            if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.myScore.integerValue) {
+                [self showToast:@"再次点评不得低于原分数"];
+            }else {
+                   [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
+            }
+        }
+        [self hiddenInputView];
+    };
+    [self.navigationController.view addSubview:self.inputView];
+    [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.navigationController.view.mas_left);
+        make.right.equalTo(self.navigationController.view.mas_right);
+        make.bottom.mas_equalTo(105.0f);
+    }];
+}
+- (void)hiddenInputView {
+    [self.inputView.scoreTextView resignFirstResponder];
+    [self.inputView.commentTextView resignFirstResponder];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.translucentView.alpha = 0.0f;
+    }];
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -188,9 +261,29 @@
     [self setupRightWithCustomView:button];
 }
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
-    YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
+    MasterMyExamExplainView_17 *v = [[MasterMyExamExplainView_17 alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
-    [v setupOriginRect:rect withToTop:(rect.origin.y - [YXMyExamExplainView_17 heightForDescription:string] - 30 > 0) ? YES : NO];
+    [v setupOriginRect:rect];
+}
+- (void)showAlertCancleRemark{
+    LSTAlertView *alertView = [[LSTAlertView alloc]init];
+    alertView.title = @"确认取消推优吗?";
+    alertView.imageName = @"失败icon";
+    WEAK_SELF
+    [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Cancel action:^{
+        STRONG_SELF
+        
+    }];
+    [alertView addButtonWithTitle:@"确认" style:LSTAlertActionStyle_Default action:^{
+        STRONG_SELF
+        self.detailItem.isMyRecommend = @"0";
+        if (self.detailItem.isMyRecommend.boolValue) {
+            [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
+        }else {
+            [self.remarkButton setTitle:@"推优" forState:UIControlStateNormal];
+        }
+    }];
+    [alertView show];
 }
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -221,7 +314,12 @@
             return 0.001f;
         }
     }else {
-        return 40.0f;
+        if (self.remarkMutableArray.count > 0) {
+            return 40.0f;
+        }else {
+            return 0.001f;
+        }
+        
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -268,16 +366,22 @@
 }
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        return UITableViewCellEditingStyleDelete;
+        MasterHomeworkRemarkItem_Body_Remark *remark = self.remarkMutableArray[indexPath.row];
+        if (remark.allowDel.boolValue) {
+          return UITableViewCellEditingStyleDelete;
+        }else {
+          return UITableViewCellEditingStyleNone;
+        }
     }else {
         return UITableViewCellEditingStyleNone;
     }
 }
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
+        WEAK_SELF
         UITableViewRowAction *deleteRoWAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-            
-            
+            STRONG_SELF
+            [self requestForDeleteRemark:indexPath.row];
         }];
         
         return @[deleteRoWAction];
@@ -290,11 +394,11 @@
     MasterHomeworkDetailRequest_17 *request = [[MasterHomeworkDetailRequest_17 alloc] init];
     request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.homeworkId = self.homeworkId;
-    request.key = @"1";
     WEAK_SELF
     [request startRequestWithRetClass:[MasterHomeworkDetailItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
+       [self.header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
         data.localDataExist = NO;
@@ -333,8 +437,91 @@
             [self setPullupViewHidden:[self.remarkMutableArray count] >= item.body.total.integerValue];
         }
     }];
+    self.remarkRequest = request;
 }
 - (void)setPullupViewHidden:(BOOL)hidden {
     self.footer.alpha = hidden ? 0:1;
 }
+- (void)requestForRecommendHomework:(NSString *)content {
+    MasterRecommendHomeworkRequest_17 *request = [[MasterRecommendHomeworkRequest_17 alloc] init];
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.homeworkId = self.homeworkId;
+    request.content = content;
+    WEAK_SELF
+    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error) {
+            [self showToast:error.localizedDescription];
+        }else {
+            self.detailItem.isMyRecommend = @"1";
+            [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
+            [self.inputView clearContent:MasterInputStatus_Recommend];
+        }
+    }];
+    self.recommendRequest = request;
+}
+- (void)requestForCancelRecommendHomework:(NSString *)content {
+    MasterCancelRecommendHomeworkRequest_17 *request = [[MasterCancelRecommendHomeworkRequest_17 alloc] init];
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.homeworkId = self.homeworkId;
+    request.content = content;
+    WEAK_SELF
+    [request startRequestWithRetClass:[MasterCancelRecommendHomeworkItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error) {
+            [self showToast:error.localizedDescription];
+        }else {
+            MasterCancelRecommendHomeworkItem *item = retItem;
+            self.detailItem.isMyRecommend = @"0";
+            [self.remarkButton setTitle:@"推优" forState:UIControlStateNormal];
+            if (self.detailItem.isRecommend.integerValue != item.body.isRecommend.integerValue) {
+                self.detailItem.isRecommend = item.body.isRecommend;
+                self.headerView.body = self.detailItem;
+            }
+            [self.inputView clearContent:MasterInputStatus_Cancle];
+        }
+    }];
+    self.cancleRequest = request;
+}
+- (void)requestForScoreHomework:(NSString *)content withScore:(NSString *)score {
+    MasterScoreHomeworkRequest_17 *request = [[MasterScoreHomeworkRequest_17 alloc] init];
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.homeworkId = self.homeworkId;
+    request.content = content;
+    request.score = score;
+    WEAK_SELF
+    [request startRequestWithRetClass:[MasterScoreHomeworkItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error) {
+            [self showToast:error.localizedDescription];
+        }else {
+            MasterScoreHomeworkItem *item = retItem;
+            self.detailItem.score = item.body.hwscore;
+            self.detailItem.myScore = item.body.myscore;
+            self.headerView.body = self.detailItem;
+            [self.inputView clearContent:MasterInputStatus_Comment];
+        }
+    }];
+    self.scoreHomework = request;
+}
+
+- (void)requestForDeleteRemark:(NSInteger)integer {
+    MasterHomeworkRemarkItem_Body_Remark *remark = self.remarkMutableArray[integer];
+    MasterHomeworkDeleteRemarkRequest_17 *request = [[MasterHomeworkDeleteRemarkRequest_17 alloc] init];
+    request.remarkId = remark.rId;
+    [self startLoading];
+    WEAK_SELF
+    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        [self stopLoading];
+        if (error) {
+            [self showToast:error.localizedDescription];
+        }else {
+            [self.remarkMutableArray removeObjectAtIndex:integer];
+            [self.tableView reloadData];
+        }
+    }];
+    self.deleteRequest = request;
+}
+
 @end

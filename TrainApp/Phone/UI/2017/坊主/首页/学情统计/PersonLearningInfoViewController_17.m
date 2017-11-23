@@ -10,8 +10,7 @@
 #import "PersonLearningInfoRequest_17.h"
 #import "YXMyLearningScoreTableHeaderView_17.h"
 #import "YXMyLearningScoreHeaderView_17.h"
-#import "YXMyLearningScoreCell_17.h"
-#import "YXMyExamExplainView_17.h"
+#import "MasterMyLearningScoreCell_17.h"
 #import "YXMyExamExplainHelp_17.h"
 #import "PersonLearningInfoRequest_17.h"
 #import "MJRefresh.h"
@@ -28,12 +27,15 @@
 @end
 
 @implementation PersonLearningInfoViewController_17
-
+- (void)dealloc {
+    [self.header free];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
     [self setupLayout];
+    [self startLoading];
     [self requestForLearningInfo];
 }
 
@@ -58,7 +60,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView registerClass:[YXMyLearningScoreHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"YXMyLearningScoreHeaderView_17"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
-    [self.tableView registerClass:[YXMyLearningScoreCell_17 class] forCellReuseIdentifier:@"YXMyLearningScoreCell_17"];
+    [self.tableView registerClass:[MasterMyLearningScoreCell_17 class] forCellReuseIdentifier:@"MasterMyLearningScoreCell_17"];
     self.headerView = [[PersonTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 210.0f)];
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
@@ -88,9 +90,9 @@
     }];
 }
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
-    YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
+    MasterMyExamExplainView_17 *v = [[MasterMyExamExplainView_17 alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
-    [v setupOriginRect:rect withToTop:(rect.origin.y - [YXMyExamExplainView_17 heightForDescription:string] - 30 > 0) ? YES : NO];
+    [v setupOriginRect:rect];
 }
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -127,7 +129,7 @@
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    YXMyLearningScoreCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMyLearningScoreCell_17" forIndexPath:indexPath];
+    MasterMyLearningScoreCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterMyLearningScoreCell_17" forIndexPath:indexPath];
     cell.process = self.examine.process[indexPath.section];
     return cell;
 }

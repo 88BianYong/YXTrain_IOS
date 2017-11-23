@@ -51,7 +51,13 @@
         barModel.itemName = @"工作坊";
         barModel.item = barArray;
         [modelArray addObject:barModel];
+        LSTCollectionFilterDefaultModelItem *model = [[LSTCollectionFilterDefaultModelItem alloc] init];
+        model.name = @"全部";
+        model.itemID = @"0";
+        [barArray insertObject:model atIndex:0];
     }
+    
+    
     NSArray<NSString *> *array1 = @[@"全部",@"已阅读",@"未阅读"];
     NSMutableArray<LSTCollectionFilterDefaultModelItem *> *statusArray1 = [[NSMutableArray<LSTCollectionFilterDefaultModelItem *> alloc] init];
     [array1 enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

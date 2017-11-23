@@ -35,6 +35,7 @@ static NSUInteger kPlaceHoldermaxChars = 33;
 
 #pragma mark - setupUI
 - (void)setupUI {
+    self.backgroundColor = [UIColor colorWithHexString:@"f2f4f7"];
     self.layer.cornerRadius = 15.0f;
     self.layer.borderWidth = 1.0f / [UIScreen mainScreen].scale;
     self.layer.borderColor = [UIColor colorWithHexString:@"d0d2d5"].CGColor;

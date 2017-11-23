@@ -380,6 +380,14 @@
 		924BE41D1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE41C1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.m */; };
 		924BE4201FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE41F1FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.m */; };
 		924BE4231FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4221FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m */; };
+		924BE4261FC51A6800B7EECA /* MasterInputView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4251FC51A6800B7EECA /* MasterInputView_17.m */; };
+		924BE4291FC65CDC00B7EECA /* MasterMyLearningScoreCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4281FC65CDC00B7EECA /* MasterMyLearningScoreCell_17.m */; };
+		924BE42C1FC65E2F00B7EECA /* YXMyLearningUserScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE42B1FC65E2F00B7EECA /* YXMyLearningUserScoreView.m */; };
+		924BE42F1FC67E1D00B7EECA /* MasterMyExamExplainView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE42E1FC67E1D00B7EECA /* MasterMyExamExplainView_17.m */; };
+		924BE4321FC6A85400B7EECA /* MasterRecommendHomeworkRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4311FC6A85400B7EECA /* MasterRecommendHomeworkRequest_17.m */; };
+		924BE4351FC6A87A00B7EECA /* MasterCancelRecommendHomeworkRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4341FC6A87A00B7EECA /* MasterCancelRecommendHomeworkRequest_17.m */; };
+		924BE4381FC6A89A00B7EECA /* MasterScoreHomeworkRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE4371FC6A89A00B7EECA /* MasterScoreHomeworkRequest_17.m */; };
+		924BE43B1FC6A8D500B7EECA /* MasterHomeworkDeleteRemarkRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 924BE43A1FC6A8D500B7EECA /* MasterHomeworkDeleteRemarkRequest_17.m */; };
 		924C9A0D1EA735A20017B31B /* TrainGeTuiManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */; };
 		924C9A111EA9DC740017B31B /* TrainRedPointManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 924C9A101EA9DC740017B31B /* TrainRedPointManger.m */; };
 		925146811F25EE4600B1533B /* HomeworkListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925146801F25EE4600B1533B /* HomeworkListRequest_17.m */; };
@@ -1493,6 +1501,22 @@
 		924BE41F1FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkRemarkRequest_17.m; sourceTree = "<group>"; };
 		924BE4211FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeworkCommentHeaderView_17.h; sourceTree = "<group>"; };
 		924BE4221FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkCommentHeaderView_17.m; sourceTree = "<group>"; };
+		924BE4241FC51A6800B7EECA /* MasterInputView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterInputView_17.h; sourceTree = "<group>"; };
+		924BE4251FC51A6800B7EECA /* MasterInputView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterInputView_17.m; sourceTree = "<group>"; };
+		924BE4271FC65CDC00B7EECA /* MasterMyLearningScoreCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterMyLearningScoreCell_17.h; sourceTree = "<group>"; };
+		924BE4281FC65CDC00B7EECA /* MasterMyLearningScoreCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterMyLearningScoreCell_17.m; sourceTree = "<group>"; };
+		924BE42A1FC65E2F00B7EECA /* YXMyLearningUserScoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMyLearningUserScoreView.h; sourceTree = "<group>"; };
+		924BE42B1FC65E2F00B7EECA /* YXMyLearningUserScoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMyLearningUserScoreView.m; sourceTree = "<group>"; };
+		924BE42D1FC67E1D00B7EECA /* MasterMyExamExplainView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterMyExamExplainView_17.h; sourceTree = "<group>"; };
+		924BE42E1FC67E1D00B7EECA /* MasterMyExamExplainView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterMyExamExplainView_17.m; sourceTree = "<group>"; };
+		924BE4301FC6A85400B7EECA /* MasterRecommendHomeworkRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterRecommendHomeworkRequest_17.h; sourceTree = "<group>"; };
+		924BE4311FC6A85400B7EECA /* MasterRecommendHomeworkRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterRecommendHomeworkRequest_17.m; sourceTree = "<group>"; };
+		924BE4331FC6A87A00B7EECA /* MasterCancelRecommendHomeworkRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterCancelRecommendHomeworkRequest_17.h; sourceTree = "<group>"; };
+		924BE4341FC6A87A00B7EECA /* MasterCancelRecommendHomeworkRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterCancelRecommendHomeworkRequest_17.m; sourceTree = "<group>"; };
+		924BE4361FC6A89A00B7EECA /* MasterScoreHomeworkRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterScoreHomeworkRequest_17.h; sourceTree = "<group>"; };
+		924BE4371FC6A89A00B7EECA /* MasterScoreHomeworkRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterScoreHomeworkRequest_17.m; sourceTree = "<group>"; };
+		924BE4391FC6A8D500B7EECA /* MasterHomeworkDeleteRemarkRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHomeworkDeleteRemarkRequest_17.h; sourceTree = "<group>"; };
+		924BE43A1FC6A8D500B7EECA /* MasterHomeworkDeleteRemarkRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHomeworkDeleteRemarkRequest_17.m; sourceTree = "<group>"; };
 		924C9A091EA60DA20017B31B /* TrainApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrainApp.entitlements; sourceTree = "<group>"; };
 		924C9A0B1EA735A20017B31B /* TrainGeTuiManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainGeTuiManger.h; sourceTree = "<group>"; };
 		924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainGeTuiManger.m; sourceTree = "<group>"; };
@@ -3952,6 +3976,8 @@
 				924BE41C1FC411AC00B7EECA /* MasterHomeworkCommentCell_17.m */,
 				924BE4211FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.h */,
 				924BE4221FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m */,
+				924BE4241FC51A6800B7EECA /* MasterInputView_17.h */,
+				924BE4251FC51A6800B7EECA /* MasterInputView_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3967,6 +3993,14 @@
 				924BE4031FC2925C00B7EECA /* MasterHomeworkDetailRequest_17.m */,
 				924BE41E1FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.h */,
 				924BE41F1FC412DF00B7EECA /* MasterHomeworkRemarkRequest_17.m */,
+				924BE4391FC6A8D500B7EECA /* MasterHomeworkDeleteRemarkRequest_17.h */,
+				924BE43A1FC6A8D500B7EECA /* MasterHomeworkDeleteRemarkRequest_17.m */,
+				924BE4301FC6A85400B7EECA /* MasterRecommendHomeworkRequest_17.h */,
+				924BE4311FC6A85400B7EECA /* MasterRecommendHomeworkRequest_17.m */,
+				924BE4331FC6A87A00B7EECA /* MasterCancelRecommendHomeworkRequest_17.h */,
+				924BE4341FC6A87A00B7EECA /* MasterCancelRecommendHomeworkRequest_17.m */,
+				924BE4361FC6A89A00B7EECA /* MasterScoreHomeworkRequest_17.h */,
+				924BE4371FC6A89A00B7EECA /* MasterScoreHomeworkRequest_17.m */,
 			);
 			path = "作业管理";
 			sourceTree = "<group>";
@@ -4062,6 +4096,8 @@
 				92551E2A1FBC29110034DC71 /* MasterCircleDisplayView_17.m */,
 				92A785201FBD899D007502A4 /* PersonTableHeaderView_17.h */,
 				92A785211FBD899D007502A4 /* PersonTableHeaderView_17.m */,
+				924BE4271FC65CDC00B7EECA /* MasterMyLearningScoreCell_17.h */,
+				924BE4281FC65CDC00B7EECA /* MasterMyLearningScoreCell_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -4209,6 +4245,8 @@
 				92177FFD1F17797B0041F70D /* YXMyExamExplainView_17.m */,
 				92177FFF1F177FA40041F70D /* YXMyExamExplainHelp_17.h */,
 				921780001F177FA40041F70D /* YXMyExamExplainHelp_17.m */,
+				924BE42A1FC65E2F00B7EECA /* YXMyLearningUserScoreView.h */,
+				924BE42B1FC65E2F00B7EECA /* YXMyLearningUserScoreView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -4711,6 +4749,8 @@
 		92DD282F1FBAC46C0023F58C /* view */ = {
 			isa = PBXGroup;
 			children = (
+				924BE42D1FC67E1D00B7EECA /* MasterMyExamExplainView_17.h */,
+				924BE42E1FC67E1D00B7EECA /* MasterMyExamExplainView_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -5650,6 +5690,7 @@
 				92FD5A551ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m in Sources */,
 				92131F671E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m in Sources */,
 				922661C11E8A0F19006DE8A4 /* VideoClassworkManager.m in Sources */,
+				924BE4261FC51A6800B7EECA /* MasterInputView_17.m in Sources */,
 				7C31782E1D129DF7004AAC90 /* YXImageViewController.m in Sources */,
 				7C3177E31D114941004AAC90 /* YXFileAudioItem.m in Sources */,
 				92A785221FBD899D007502A4 /* PersonTableHeaderView_17.m in Sources */,
@@ -5781,6 +5822,7 @@
 				CB2CF34E1D1BF00300E76B34 /* NSString+YXString.m in Sources */,
 				92A7850C1FBC45FA007502A4 /* LSTCollectionFilterDefaultView.m in Sources */,
 				CB0904D31D1B97CC00026C9D /* YXLoginViewController.m in Sources */,
+				924BE4381FC6A89A00B7EECA /* MasterScoreHomeworkRequest_17.m in Sources */,
 				7CF888881D1CFBDC00E7C04D /* YXExamNoScoreView.m in Sources */,
 				92FAE4A11DD9A0C3000C3C00 /* CommentPagedListFetcher.m in Sources */,
 				CBF66E311D2E3A8D00F4E408 /* YXUserImageTableViewCell.m in Sources */,
@@ -5885,6 +5927,7 @@
 				92FED8931DD2BDA000457228 /* ActivityDetailViewController.m in Sources */,
 				928B7A8A1E88EE750067218A /* BeijingExamineRequest.m in Sources */,
 				92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */,
+				924BE42F1FC67E1D00B7EECA /* MasterMyExamExplainView_17.m in Sources */,
 				922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */,
 				7C3177781D0E888B004AAC90 /* YXTestViewController.m in Sources */,
 				920F1D441D51F00700636A51 /* YXHomeworkInfoViewController.m in Sources */,
@@ -6124,6 +6167,7 @@
 				CBB62E161D2CCD4300DAA6DE /* YXShowWebMenuView.m in Sources */,
 				7C31778D1D0EA598004AAC90 /* YXMockManager.m in Sources */,
 				7CFBA6BF1D33374B005D08B1 /* YXErrorView.m in Sources */,
+				924BE43B1FC6A8D500B7EECA /* MasterHomeworkDeleteRemarkRequest_17.m in Sources */,
 				7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */,
 				CB748EE91D23E118004BCFBF /* YXDatumSearchView.m in Sources */,
 				922901561DE576F5001474CE /* CommentReplyRequest.m in Sources */,
@@ -6134,6 +6178,7 @@
 				9223C80F1D2CADD6000F74DF /* YXWorkshopMemberRequest.m in Sources */,
 				9223C8231D2E0060000F74DF /* YXAboutViewController.m in Sources */,
 				922661BE1E8A08F1006DE8A4 /* VideoClassworkView.m in Sources */,
+				924BE4291FC65CDC00B7EECA /* MasterMyLearningScoreCell_17.m in Sources */,
 				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
 				924BE3FA1FC291B800B7EECA /* MasterHomeworkViewController_17.m in Sources */,
 				E9BBA5F51DD05CC4000CA413 /* ActivityListViewController.m in Sources */,
@@ -6261,6 +6306,7 @@
 				9241FFDC1E1F39E30015B587 /* ActivityDelReplyRequest.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
 				922DB1A41FBA7FC20078F6BD /* CourseTestNotPassTableHeaderView_17.m in Sources */,
+				924BE42C1FC65E2F00B7EECA /* YXMyLearningUserScoreView.m in Sources */,
 				92B87F3F1F31BD4C00F068C0 /* CourseSubmitUserQuizesRequest_17.m in Sources */,
 				92FE95261F42938C0058E151 /* HomeworkListGroupSpecialCell_17.m in Sources */,
 				924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */,
@@ -6296,11 +6342,13 @@
 				CB4D916E1D1A5E8C00B5F1D0 /* YXDatumGlobalSingleton.m in Sources */,
 				920F1D4E1D531B8000636A51 /* YXHomeworkPromptView.m in Sources */,
 				92177FFE1F17797B0041F70D /* YXMyExamExplainView_17.m in Sources */,
+				924BE4321FC6A85400B7EECA /* MasterRecommendHomeworkRequest_17.m in Sources */,
 				7C3178261D129C01004AAC90 /* ReaderDocument.m in Sources */,
 				CB3510C51D18F1A90081EA3B /* YXDatumSearchRequest.m in Sources */,
 				7CF8446C1D2CA32000B1CE55 /* YXSaveProcessRequest.m in Sources */,
 				920F1D481D51F09200636A51 /* YXHomeworkListHeaderView.m in Sources */,
 				92A10F721F186BEE00B37814 /* BriefListViewController_17.m in Sources */,
+				924BE4351FC6A87A00B7EECA /* MasterCancelRecommendHomeworkRequest_17.m in Sources */,
 				7C2C3B771D24CA6E00A03635 /* YXCourseDetailCell.m in Sources */,
 				CB3510C81D18F62A0081EA3B /* YXWholeDatumFetcher.m in Sources */,
 				927B6C6A1F132ED40082DB27 /* XYChooseProjectViewController.m in Sources */,

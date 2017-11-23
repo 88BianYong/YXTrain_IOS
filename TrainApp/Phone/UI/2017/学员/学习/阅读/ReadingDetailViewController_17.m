@@ -82,7 +82,7 @@
         [self.view addSubview:self.readButton];
         if ([FileReadingManager_17 hasReadingWithFileName:self.reading.name readingID:self.reading.objID]) {
             self.readButton.enabled = YES;
-            [self.readButton setTitle:@"我已阅读文档内容" forState:UIControlStateNormal];
+            [self.readButton setTitle:@"已完成阅读" forState:UIControlStateNormal];
         }else {
             self.readButton.enabled = NO;
             [self readDocumentTime:self.readButton time:11];
@@ -161,13 +161,13 @@
         if (timeout <= 0) {
             dispatch_source_cancel(self.sourceTimer);
             dispatch_async(dispatch_get_main_queue(), ^{
-                [sender setTitle:@"我已阅读文档内容" forState:UIControlStateNormal];
+                [sender setTitle:@"已完成阅读" forState:UIControlStateNormal];
                 sender.enabled = YES;
                 [FileReadingManager_17 saveReadingWithFileName:self.reading.name readingID:self.reading.objID];
             });
         }
         else {
-            NSString *timeString = [NSString stringWithFormat:@"(%ld)我已阅读文档内容",(long)timeout];
+            NSString *timeString = [NSString stringWithFormat:@"(%ld)已完成阅读",(long)timeout];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [sender setTitle:timeString forState:UIControlStateNormal];
                 sender.enabled = NO;

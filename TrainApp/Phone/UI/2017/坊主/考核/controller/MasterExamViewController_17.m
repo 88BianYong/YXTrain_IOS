@@ -89,9 +89,9 @@
     }];
 }
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
-    BeijingExamExplainView *v = [[BeijingExamExplainView alloc]init];
+    MasterMyExamExplainView_17 *v = [[MasterMyExamExplainView_17 alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
-    v.originRect = rect;
+    [v setupOriginRect:rect];
     
 }
 #pragma mark - UITableViewDelegate
