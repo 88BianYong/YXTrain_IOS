@@ -89,11 +89,17 @@
     }];
 }
 
-- (void)reloadHeaderViewContent:(NSString *)score withPass:(BOOL)isPass {
+- (void)reloadHeaderViewContent:(NSString *)score withPass:(NSInteger)pass {
     NSString *contentString = [NSString stringWithFormat:@"%@分",score];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:contentString];
     [attString addAttribute:NSFontAttributeName value: [UIFont fontWithName:YXFontMetro_Medium size:23.0f] range:NSMakeRange(0, contentString.length - 1)];
     self.scoreLabel.attributedText = attString;
-    self.statusLabel.text = isPass ? @"通过" : @"暂未通过";
+    if (pass == 0) {
+        self.statusLabel.text = @"未通过";
+    }else if (pass == 1) {
+        self.statusLabel.text = @"暂未通过";
+    }else {
+        self.statusLabel.text = @"通过";
+    }
 }
 @end

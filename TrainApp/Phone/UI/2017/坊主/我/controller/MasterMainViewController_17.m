@@ -19,6 +19,7 @@
 #import "YXBarGetMyBarsRequest_17.h"
 #import "MasterMainBarErrorCell_17.h"
 #import "YXWorkshopDetailViewController.h"
+#import "TrainListProjectGroup.h"
 @interface MasterMainViewController_17 ()<
 UITableViewDelegate,
 UITableViewDataSource
@@ -29,6 +30,8 @@ UITableViewDataSource
 @property (nonatomic, strong) YXBarGetMyBarsRequest_17 *barsRequest;
 @property (nonatomic, strong) YXBarGetMyBarsRequestItem_Body *itemBody;
 @property (nonatomic, strong) MasterMainTableHeaderView_17 *headerView;
+
+@property (nonatomic, assign) BOOL isBarBool;
 @property (nonatomic, strong) NSArray *titleArray;
 @end
 
@@ -40,11 +43,6 @@ UITableViewDataSource
 #pragma mark - set
 - (void)setItemBody:(YXBarGetMyBarsRequestItem_Body *)itemBody {
     _itemBody = itemBody;
-    _itemBody = [[YXBarGetMyBarsRequestItem_Body alloc] init];
-    YXBarGetMyBarsRequestItem_Body_Bar *bar = [[YXBarGetMyBarsRequestItem_Body_Bar alloc] init];
-    bar.barId = @"2158341";
-    bar.name = @"2017年测试新工作坊";
-    _itemBody.bars = @[bar];
     [self.tableView reloadData];
 }
 - (void)viewDidLoad {
@@ -55,7 +53,7 @@ UITableViewDataSource
     [self setupUI];
     [self setupLayout];
     [self reloadUserProfileData];
-    //[self requestForGetBars];
+    [self requestForGetBars];
     self.itemBody = nil;
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:@"kYXUploadUserPicSuccessNotification" object:nil]subscribeNext:^(id x) {
@@ -120,7 +118,12 @@ UITableViewDataSource
     if (section == 0) {
         return [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.training.count;
     }else if (section == 1) {
-        return self.itemBody.bars.count != 0 ? self.itemBody.bars.count : 1;
+        if (!self.isBarBool) {
+            return 0;
+        }else {
+            return self.itemBody.bars.count != 0 ? self.itemBody.bars.count : 1;
+
+        }
     }else {
         return self.titleArray.count;
     }
@@ -196,10 +199,31 @@ UITableViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if(indexPath.section == 0){
+        YXTrainListRequestItem_body_train *train = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.training[indexPath.row];
+        if (train.pid.integerValue == [LSTSharedInstance sharedInstance].trainManager.currentProject.pid.integerValue) {
+            self.tabBarController.selectedIndex = 0;
+        }else {
+            NSArray<TrainListProjectGroup *> *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
+            __block NSInteger sectionInteger = 0;
+            __block NSInteger indexInteger = 0;
+            __block BOOL isSaveBool = NO;
+            [groups enumerateObjectsUsingBlock:^(TrainListProjectGroup * _Nonnull obj, NSUInteger section, BOOL * _Nonnull stop) {
+                [obj.items enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * _Nonnull train, NSUInteger index, BOOL * _Nonnull stop) {
+                    if ([train.pid isEqualToString:train.pid]) {
+                        sectionInteger = section;
+                        indexInteger = index;
+                        isSaveBool = YES;
+                    }
+                }];
+            }];
+            [LSTSharedInstance sharedInstance].trainManager.currentProject.role = nil;
+            [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = [NSIndexPath indexPathForRow:indexInteger inSection:sectionInteger];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:nil];
+        }
         
     }else if(indexPath.section == 1){
         if (self.itemBody.bars.count == 0) {
-            //
+          [self requestForGetBars];
         }else {
             YXWorkshopDetailViewController *detailVC = [[YXWorkshopDetailViewController alloc] init];
             YXBarGetMyBarsRequestItem_Body_Bar *bar = self.itemBody.bars[indexPath.row];
@@ -277,6 +301,7 @@ UITableViewDataSource
     WEAK_SELF
     [request startRequestWithRetClass:[YXBarGetMyBarsRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
+        self.isBarBool = YES;
         [self stopLoading];
         if (error) {
             self.itemBody = nil;
@@ -285,6 +310,7 @@ UITableViewDataSource
             self.itemBody = item.body;
         }
     }];
+    self.barsRequest = request;
 }
 
 @end

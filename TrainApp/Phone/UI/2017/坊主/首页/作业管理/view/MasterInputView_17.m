@@ -39,7 +39,11 @@
         STRONG_SELF
         if (self.inputStatus != MasterInputStatus_Score) {
             [self uploadHeight];
-            self.sendButton.enabled = self.commentTextView.text.length > 0;
+            if (self.inputStatus == MasterInputStatus_Comment) {
+                self.sendButton.enabled = self.commentTextView.text.length > 0;
+            }else {
+                self.sendButton.enabled = self.commentTextView.text.length >= 10;
+            }
         }else {
             if (self.scoreTextView.text.length > 10) {
                 self.scoreTextView.text = [self.scoreTextView.text substringToIndex:10];
@@ -101,8 +105,9 @@
         [self layoutIfNeeded];
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
         self.sendButton.enabled = self.scoreTextView.text.length > 0;
+         [self.scoreTextView becomeFirstResponder];
     }else if (_inputStatus == MasterInputStatus_Comment){
-        self.commentTextView.placeholder = @"请输入您对本作业的评语";
+        self.commentTextView.placeholder = @"请输您对本作业的评语";
         [UIView animateWithDuration:0.25f animations:^{
             [self.scoreTextView mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.inputView.mas_left).offset(-kScreenWidth + 60.0f);
@@ -113,10 +118,11 @@
             [self layoutIfNeeded];
         } completion:^(BOOL finished) {
             self.commentTextView.text = self.commentString;
+            self.sendButton.enabled = self.commentTextView.text.length > 0;
             [self uploadHeight];
             [self.sendButton setTitle:@"发送" forState:UIControlStateNormal];
         }];
-        self.sendButton.enabled = self.commentTextView.text.length > 0;
+         [self.commentTextView becomeFirstResponder];
     }else if (_inputStatus == MasterInputStatus_Recommend){
         self.commentTextView.placeholder = @"请输入推优原因,不少以10字";
         [self.scoreTextView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -128,7 +134,8 @@
         self.commentTextView.text = self.recommendString;
         [self uploadHeight];
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-        self.sendButton.enabled = self.commentTextView.text.length > 0;
+        self.sendButton.enabled = self.commentTextView.text.length >= 10;
+         [self.commentTextView becomeFirstResponder];
     }else {
         self.commentTextView.placeholder = @"取消推优的理由不少于10个字";
         [self.scoreTextView mas_updateConstraints:^(MASConstraintMaker *make) {
@@ -140,7 +147,8 @@
         self.commentTextView.text = self.cancleString;
         [self uploadHeight];
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-        self.sendButton.enabled = self.commentTextView.text.length > 0;
+        self.sendButton.enabled = self.commentTextView.text.length >= 10;
+         [self.commentTextView becomeFirstResponder];
     }
 }
 

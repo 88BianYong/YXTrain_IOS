@@ -33,6 +33,8 @@
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) MJRefreshFooterView *footer;
 
+@property (nonatomic, strong) YXFileItemBase *fileItem;
+
 @property (nonatomic, strong) MasterInputView_17 *inputView;
 @property (nonatomic, strong) UIView *translucentView;
 
@@ -68,14 +70,8 @@
 #pragma mark - set
 - (void)setDetailItem:(MasterHomeworkDetailItem_Body *)detailItem {
     _detailItem = detailItem;
-    MasterHomeworkDetailItem_Body_Template_Affixs *affix = [[MasterHomeworkDetailItem_Body_Template_Affixs alloc] init];
-    affix.resId = @"32323";
-    affix.resName = @"西十区 第二十七期 送积分卡乐山大佛卡拉胶法警队;是发空间啊;贷款纠纷;爱空间的身份看来就爱迪生;李开复-3.mp4";
-    affix.resType = @"mp4";
-    _detailItem.template.affixs = @[affix];
-    _detailItem.template.keyword = @"期 送积分卡乐山大佛卡拉胶法期 送积分卡乐山大佛卡拉胶法期 送积分卡乐山大佛卡拉胶法期 送积分卡乐山大佛卡拉胶法期 送积分卡乐山大佛卡拉胶法期 送积分卡乐山大佛卡拉胶法期 送积分卡乐山大佛卡拉胶法期 送积分卡乐山大佛卡拉胶法期 送积分卡乐山大佛卡拉胶法期 送积分卡乐山大佛卡拉胶法";
     self.headerView.body = _detailItem;
-    self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 407.0f - 30.0f + self.headerView.keywordHeight);
+    self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 227.0f + self.headerView.summaryHeight);
     self.tableView.tableHeaderView = self.headerView;
     self.headerView.hidden = NO;
     self.tableView.hidden = NO;
@@ -108,13 +104,14 @@
         STRONG_SELF
         self.startPage = 1;
         [self requestForHomeworkDetail];
+        [self requestForHomeworkRemark];
     };
     self.footer = [MJRefreshFooterView footer];
     self.footer.scrollView = self.tableView;
     self.footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
         STRONG_SELF
         self.startPage ++;
-        [self requestForHomeworkDetail];
+        [self requestForHomeworkRemark];
     };
     [self setupHomeworkRightView];
     [self setupBottomView];
@@ -145,7 +142,6 @@
         [UIView animateWithDuration:0.25 animations:^{
             self.translucentView.alpha = 1.0f;
         }];
-        [self.inputView.commentTextView becomeFirstResponder];
         if (self.detailItem.isMyRecommend.boolValue) {
             self.inputView.inputStatus = MasterInputStatus_Cancle;
         }else {
@@ -166,7 +162,6 @@
             self.translucentView.alpha = 1.0f;
         }];
         self.inputView.inputStatus = MasterInputStatus_Score;
-        [self.inputView.scoreTextView becomeFirstResponder];
     }];
     [self.view addSubview:self.commentButton];
     self.lineView = [[UIView alloc] init];
@@ -355,6 +350,25 @@
         return cell;
     }
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.section == 0) {
+        MasterHomeworkDetailItem_Body_Template_Affixs *affix = self.detailItem.template.affixs[indexPath.row];
+        YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:affix.resType];
+        if(type == YXFileTypeUnknown) {
+            [self showToast:@"暂不支持该格式文件预览"];
+            return;
+        }
+        YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
+        fileItem.name = affix.resName;
+        fileItem.url = affix.previewUrl;
+        fileItem.baseViewController = self;
+        [fileItem browseFile];
+        self.fileItem = fileItem;
+        
+    }
+
+}
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
     return  @"删除";
 }
@@ -426,7 +440,7 @@
             self.startPage--;
             [self showToast:error.localizedDescription];
         }else {
-            if (self.startPage == 0) {
+            if (self.startPage == 1) {
                 [self.remarkMutableArray removeAllObjects];
             }
             MasterHomeworkRemarkItem *item = retItem;
@@ -454,8 +468,11 @@
             [self showToast:error.localizedDescription];
         }else {
             self.detailItem.isMyRecommend = @"1";
+            self.detailItem.isRecommend = @"1";
+            self.headerView.body = self.detailItem;
             [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
             [self.inputView clearContent:MasterInputStatus_Recommend];
+            [self requestForHomeworkRemark];
         }
     }];
     self.recommendRequest = request;
@@ -479,6 +496,8 @@
                 self.headerView.body = self.detailItem;
             }
             [self.inputView clearContent:MasterInputStatus_Cancle];
+            self.startPage = 1;
+            [self requestForHomeworkRemark];
         }
     }];
     self.cancleRequest = request;
@@ -500,6 +519,8 @@
             self.detailItem.myScore = item.body.myscore;
             self.headerView.body = self.detailItem;
             [self.inputView clearContent:MasterInputStatus_Comment];
+            self.startPage = 1;
+            [self requestForHomeworkRemark];
         }
     }];
     self.scoreHomework = request;

@@ -72,7 +72,6 @@
     [[self.explainButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         BLOCK_EXEC(self.masterHomeworkButtonBlock,self.explainButton);
-        
     }];
     [self addSubview:self.explainButton];
     

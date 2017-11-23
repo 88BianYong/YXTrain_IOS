@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterHomeTableHeaderView_17 : UIView
-- (void)reloadHeaderViewContent:(NSString *)score withPass:(BOOL)isPass;
+- (void)reloadHeaderViewContent:(NSString *)score withPass:(NSInteger)pass;
 @end

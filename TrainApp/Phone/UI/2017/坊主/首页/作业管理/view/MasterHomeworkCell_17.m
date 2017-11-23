@@ -80,7 +80,7 @@
         make.width.mas_offset(10.0f);
     }];
     width = width + 10.0f;
-    if (self.homework.ismyrec.boolValue) {
+    if (self.homework.isSelfRecommend.boolValue) {
         UILabel *label = [[UILabel alloc] init];
         label.text = @"自荐";
         label.tag = 100001;

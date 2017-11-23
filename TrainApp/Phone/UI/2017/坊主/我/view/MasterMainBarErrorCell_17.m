@@ -12,6 +12,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        self.contentView.clipsToBounds = YES;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.textColor = [UIColor colorWithHexString:@"334466"];

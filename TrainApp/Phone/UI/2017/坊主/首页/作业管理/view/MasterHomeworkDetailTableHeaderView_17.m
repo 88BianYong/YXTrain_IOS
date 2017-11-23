@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) UIView *bottomLineView;
 
+@property (nonatomic, assign) CGFloat heightFloat;
+
 @end
 @implementation MasterHomeworkDetailTableHeaderView_17
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -39,6 +41,7 @@
 #pragma  makr - set
 - (void)setBody:(MasterHomeworkDetailItem_Body *)body {
     _body = body;
+    self.heightFloat = 0.0f;
     if (_body.score.integerValue > 0) {
         self.scoreLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
         self.scoreLabel.text = [NSString stringWithFormat:@"%@分",_body.score];
@@ -46,17 +49,146 @@
         self.scoreLabel.textColor = [UIColor colorWithHexString:@"334466"];
         self.scoreLabel.text = @"未批阅";
     }
-    self.publishLabel.attributedText = [self homeworkInfo:@"提交人:" withContent:_body.publishUser?:@""];
-    self.finishDateLabel.attributedText = [self homeworkInfo:@"提交时间:" withContent:_body.finishDate?:@""];
-    self.segmentLabel.attributedText = [self homeworkInfo:@"学段:" withContent:_body.template.segmentName?:@""];
-    self.studyLabel.attributedText = [self homeworkInfo:@"学科:" withContent:_body.template.studyName?:@""];
-    self.versionLabel.attributedText = [self homeworkInfo:@"教材版本:" withContent:_body.template.versionName ?:@""];
-    self.gradeLabel.attributedText = [self homeworkInfo:@"年级/册:" withContent:_body.template.gradeName?:@""];
-    self.chapterLabel.attributedText = [self homeworkInfo:@"目录:" withContent:_body.template.chapterName?:@""];
-    self.keywordLabel.attributedText = [self homeworkInfo:@"本次作业主要知识点:" withContent:[NSString stringWithFormat:@"\n%@",_body.template.keyword]?:@""];
-    _body.template.content = @"萨法回复卡机的回复路口就哈的路费哈罗德回复拉黑的福利哈六块腹肌哈罗德发挥了卡计划地方了哈哈是粉红色发了是京东方啦惊世毒妃拉黑的酸辣粉哈离斗湖发蜡打飞机啊好到了发哈离斗湖法拉第发了哈当返回拉丁方拉拉附近啊啊放假啊;卡积分拉卡积分;咖啡机阿里京东方;爱咖啡卡发空间发;安居房;按键的发酵ad升级非;安居房;按键;发;就发家发酒疯;阿发;加法;金发放;啊;附近;啊京东方;安静的;发;附近;阿发;骄傲;放假啊;附近;安居房;阿道夫;卡的;放假按揭房;阿发;骄傲;放假啊;大姐夫;啊京东方;骄傲;打飞机啊;都是发生的";
+    self.recommendImageView.hidden = !_body.isRecommend.boolValue;
+    
+    BOOL isLayoutBool = YES;
+    if (_body.publishUser.length > 0) {
+        self.publishLabel.attributedText = [self homeworkInfo:@"提交人:" withContent:_body.publishUser?:@""];
+        [self.publishLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left).offset(15.0f);
+            make.right.equalTo(self.mas_centerX).offset(-15.0f);
+            make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+        }];
+        isLayoutBool = !isLayoutBool;
+        self.heightFloat = self.heightFloat + 0.5f;
+    }
+    if (_body.finishDate.length > 0) {
+           self.finishDateLabel.attributedText = [self homeworkInfo:@"提交时间:" withContent:_body.finishDate?:@""];
+        if (isLayoutBool) {
+            [self.finishDateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_left).offset(15.0f);
+                make.right.equalTo(self.mas_centerX).offset(-15.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }else {
+            [self.finishDateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_centerX);
+                make.right.equalTo(self.mas_right).offset(-15.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }
+        isLayoutBool = !isLayoutBool;
+        self.heightFloat = self.heightFloat + 0.5f;
+    }
+    if (_body.template.segmentName.length > 0) {
+           self.segmentLabel.attributedText = [self homeworkInfo:@"学段:" withContent:_body.template.segmentName?:@""];
+        if (isLayoutBool) {
+            [self.segmentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_left).offset(15.0f);
+                make.right.equalTo(self.mas_centerX).offset(-10.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }else {
+            [self.segmentLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_centerX);
+                make.right.equalTo(self.mas_right).offset(-15.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }
+        isLayoutBool = !isLayoutBool;
+        self.heightFloat = self.heightFloat + 0.5f;
+    }
+    if (_body.template.studyName.length > 0) {
+            self.studyLabel.attributedText = [self homeworkInfo:@"学科:" withContent:_body.template.studyName?:@""];
+        if (isLayoutBool) {
+            [self.studyLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_left).offset(15.0f);
+                make.right.equalTo(self.mas_centerX).offset(-10.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+            
+        }else {
+            [self.studyLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_centerX);
+                make.right.equalTo(self.mas_right).offset(-15.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }
+        isLayoutBool = !isLayoutBool;
+        self.heightFloat = self.heightFloat + 0.5f;
+    }
+    if (_body.template.versionName.length > 0) {
+            self.versionLabel.attributedText = [self homeworkInfo:@"教材版本:" withContent:_body.template.versionName ?:@""];
+        if (isLayoutBool) {
+            [self.versionLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_left).offset(15.0f);
+                make.right.equalTo(self.mas_centerX).offset(-10.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }else {
+            [self.versionLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_centerX);
+                make.right.equalTo(self.mas_right).offset(-15.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+            
+        }
+        isLayoutBool = !isLayoutBool;
+        self.heightFloat = self.heightFloat + 0.5f;
+    }
+    if (_body.template.gradeName.length > 0) {
+        self.gradeLabel.attributedText = [self homeworkInfo:@"年级/册:" withContent:_body.template.gradeName?:@""];
+        if (isLayoutBool) {
+            [self.gradeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_left).offset(15.0f);
+                make.right.equalTo(self.mas_centerX).offset(-10.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }else {
+            [self.gradeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_centerX);
+                make.right.equalTo(self.mas_right).offset(-15.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }
+        isLayoutBool = !isLayoutBool;
+        self.heightFloat = self.heightFloat + 0.5f;
+    }
+    if (_body.template.chapterName.length > 0) {
+            self.chapterLabel.attributedText = [self homeworkInfo:@"目录:" withContent:_body.template.chapterName?:@""];
+        if (isLayoutBool) {
+            [self.chapterLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_left).offset(15.0f);
+                make.right.equalTo(self.mas_right).offset(-15.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }else {
+            [self.chapterLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.mas_centerX);
+                make.right.equalTo(self.mas_right).offset(-15.0f);
+                make.top.equalTo(self.lineView.mas_bottom).offset(floorf(self.heightFloat)*43.0f + 31.0f);
+            }];
+        }
+
+        self.heightFloat = self.heightFloat + 0.5f;
+    }
+    if (_body.template.keyword.length > 0) {
+        self.keywordLabel.attributedText = [self homeworkInfo:@"本次作业主要知识点:" withContent:[NSString stringWithFormat:@"\n%@",_body.template.keyword]?:@""];
+        [self.keywordLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left).offset(15.0f);
+            make.right.equalTo(self.mas_right).offset(-15.0f);
+            make.top.equalTo(self.lineView.mas_bottom).offset(ceilf(self.heightFloat)*43.0f + 31.0f);
+        }];
+    }else {
+        [self.keywordLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.mas_left).offset(15.0f);
+            make.right.equalTo(self.mas_right).offset(-15.0f);
+            make.top.equalTo(self.lineView.mas_bottom).offset(ceilf(self.heightFloat)*43.0f);
+        }];
+    }
+
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]
-                                                   initWithString:_body.template.content];
+                                                   initWithString:_body.template.content?:@""];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineHeightMultiple:1.2f];
     [attributedString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"334466"],NSParagraphStyleAttributeName:paragraphStyle} range:NSMakeRange(0, [_body.template.content length])];
@@ -76,9 +208,12 @@
     [attributedString addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:13.0f],NSForegroundColorAttributeName:[UIColor colorWithHexString:@"a1a7ae"]} range:NSMakeRange(0, title.length + 2)];
     return attributedString;
 }
-- (CGFloat)keywordHeight {
-    return ceilf([self.keywordLabel sizeThatFits:CGSizeMake(kScreenWidth - 15.0f - 15.0f , MAXFLOAT)].height);
+- (CGFloat)summaryHeight {
+    return ceilf([self.keywordLabel sizeThatFits:CGSizeMake(kScreenWidth - 15.0f - 15.0f , MAXFLOAT)].height + ceilf(self.heightFloat) * 43.0f);
 }
+
+
+
 #pragma mark - setupUI
 - (void)setupUI {
     self.scoreLabel = [[UILabel alloc] init];
@@ -160,54 +295,12 @@
         make.top.equalTo(self.scoreLabel.mas_bottom);
     }];
     
-    [self.publishLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(15.0f);
-        make.right.equalTo(self.mas_centerX).offset(-15.0f);
-        make.top.equalTo(self.lineView.mas_bottom).offset(35.0f);
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(self.keywordLabel.mas_bottom).offset(30.0f);
+        make.width.mas_offset(100.0f);
     }];
-    
-    [self.finishDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_centerX);
-        make.centerY.equalTo(self.publishLabel.mas_centerY);
-        make.right.equalTo(self.mas_right).offset(-15.0f);
-    }];
-    
-    [self.segmentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(15.0f);
-        make.top.equalTo(self.publishLabel.mas_bottom).offset(20.0f);
-        make.right.equalTo(self.mas_centerX).offset(-10.0f);
-    }];
-    
-    [self.versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.segmentLabel.mas_left);
-        make.width.equalTo(self.segmentLabel.mas_width);
-        make.top.equalTo(self.segmentLabel.mas_bottom).offset(20.0f);
-    }];
-    
-    [self.chapterLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.segmentLabel.mas_left);
-        make.width.equalTo(self.segmentLabel.mas_width);
-        make.top.equalTo(self.versionLabel.mas_bottom).offset(20.0f);
-    }];
-    
-    [self.studyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_centerX);
-        make.right.equalTo(self.mas_right).offset(-15.0f);
-        make.top.equalTo(self.segmentLabel.mas_top);
-    }];
-    
-    [self.gradeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.studyLabel.mas_left);
-        make.right.equalTo(self.mas_right).offset(-15.0f);
-        make.top.equalTo(self.versionLabel.mas_top);
-    }];
-    
-    [self.keywordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.publishLabel.mas_left);
-        make.top.equalTo(self.chapterLabel.mas_bottom).offset(20.0f);
-        make.right.equalTo(self.mas_right).offset(-15.0f);
-    }];
-    
+
     [self.bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15.0f);
         make.right.equalTo(self.mas_right).offset(-15.0f);
@@ -215,11 +308,7 @@
         make.height.mas_offset(1.0f);
     }];
     
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(self.keywordLabel.mas_bottom).offset(25.0f);
-        make.width.mas_offset(100.0f);
-    }];
+
     
     [self.scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.titleLabel.mas_bottom).offset(20.0f);

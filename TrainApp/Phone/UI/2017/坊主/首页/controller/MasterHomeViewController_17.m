@@ -65,7 +65,7 @@
 - (void)setMasterItem:(MasterIndexRequestItem_Body *)masterItem {
     _masterItem = masterItem;
     self.tableView.hidden = NO;
-    [self.tableHeaderView reloadHeaderViewContent:_masterItem.myExamine.total withPass:_masterItem.myExamine.isPass.integerValue != 1];
+    [self.tableHeaderView reloadHeaderViewContent:_masterItem.myExamine.total withPass:_masterItem.myExamine.isPass.integerValue];
     [self.tableView reloadData];
 }
 #pragma mark - setupUI

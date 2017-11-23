@@ -10,5 +10,5 @@
 #import "MasterHomeworkDetailRequest_17.h"
 @interface MasterHomeworkDetailTableHeaderView_17 : UIView
 @property (nonatomic, strong) MasterHomeworkDetailItem_Body *body;
-@property (nonatomic, assign, readonly) CGFloat keywordHeight;
+@property (nonatomic, assign, readonly) CGFloat summaryHeight;
 @end
