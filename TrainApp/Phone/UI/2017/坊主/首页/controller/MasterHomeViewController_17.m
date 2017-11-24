@@ -152,8 +152,7 @@
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
     [LSTSharedInstance sharedInstance].trainManager.currentProject.role = nil;
     [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
-    [self startLoading];
-    [self requestForMasterIndex];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:nil];
 }
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
