@@ -46,6 +46,8 @@
     self.tableView.estimatedRowHeight = 104.0f;
     [self.tableView registerClass:[CourseListCell_17 class]
            forCellReuseIdentifier:@"CourseListCell_17"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
+
     self.emptyView.title = @"没有符合条件的课程";
     self.emptyView.imageName = @"没有符合条件的课程";
     [self setupObservers];
@@ -118,5 +120,9 @@
     vc.fromWhere = VideoCourseFromWhere_Record;
     vc.isHiddenTestBool = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return headerView;
 }
 @end
