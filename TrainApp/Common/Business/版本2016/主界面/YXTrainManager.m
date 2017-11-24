@@ -122,8 +122,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     [self saveToCache];
     if (isChangeBool) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:@(self.trainStatus)];
-    }
-    if (self.currentProject.role.integerValue == 99 && self.currentProject.w.integerValue >= 5) {
+    }else if (self.currentProject.role.integerValue == 99 && self.currentProject.w.integerValue >= 5) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:@(self.trainStatus)];
     }
 }

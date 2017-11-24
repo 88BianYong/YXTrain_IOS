@@ -56,6 +56,7 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
     _tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     _tableView.layoutMargins = UIEdgeInsetsZero;
     [_tableView registerClass:[YXWorkshopCell class] forCellReuseIdentifier:@"YXWorkshopCell"];
+    [_tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.view addSubview:_tableView];
     
     WEAK_SELF
@@ -88,6 +89,10 @@ static  NSString *const trackPageName = @"我的工作坊列表页面";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 5.0f;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

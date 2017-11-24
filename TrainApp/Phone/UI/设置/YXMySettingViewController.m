@@ -62,6 +62,7 @@ UITableViewDataSource
     _tableView.layoutMargins = UIEdgeInsetsZero;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"staticString"];
     [_tableView registerClass:[YXMySettingCell class] forCellReuseIdentifier:@"YXMySettingCell"];
+    [_tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.view addSubview:_tableView];
 }
 
@@ -122,6 +123,10 @@ UITableViewDataSource
     }else{
         return 30.0f;
     }
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return headerView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

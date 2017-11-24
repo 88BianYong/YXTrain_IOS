@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     self.isWaitingForFilter = YES;
+    self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.title = @"课程列表";
     if ([self isJudgmentChooseCourse]) {

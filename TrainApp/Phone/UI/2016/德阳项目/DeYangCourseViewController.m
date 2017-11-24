@@ -94,6 +94,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[DeYangCourseListCell class] forCellReuseIdentifier:@"DeYangCourseListCell"];
+     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     self.headerView = [[DeYangCourseTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 50.0f)];
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
@@ -274,6 +275,11 @@ static  NSString *const trackPageName = @"课程列表页面";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.0001f;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return headerView;
+}
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.0001f;

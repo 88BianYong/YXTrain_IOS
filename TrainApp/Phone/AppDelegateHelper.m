@@ -173,10 +173,12 @@
     }];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainUserIdentityChange object:nil] subscribeNext:^(id x) {
         STRONG_SELF
-        self.rootManger = nil;
-        self.window.rootViewController = [self.rootManger rootViewController];
-        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
-        [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
+        if ([LSTSharedInstance sharedInstance].trainManager.currentProject.w.integerValue >= 5){
+            self.rootManger = nil;
+            self.window.rootViewController = [self.rootManger rootViewController];
+            [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
+            [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
+        }
     }];
 }
 @end

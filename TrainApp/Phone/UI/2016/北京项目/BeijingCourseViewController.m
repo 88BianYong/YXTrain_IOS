@@ -58,6 +58,7 @@ static  NSString *const trackPageName = @"课程列表页面";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 104.0f;
     [self.tableView registerClass:[BeijingCourseListCell class] forCellReuseIdentifier:@"BeijingCourseListCell"];
+     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     self.filterErrorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
     WEAK_SELF
     self.filterErrorView.retryBlock = ^{
@@ -220,6 +221,10 @@ static  NSString *const trackPageName = @"课程列表页面";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 5;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
