@@ -127,7 +127,7 @@
         }
         if (self.filterModel.count == 2) {
             LSTCollectionFilterDefaultModel *model = self.filterModel[0];
-            [self.headerView reloadMasterLearningInfo:model.item[model.defaultSelected.integerValue].name withNumber:body.xueQing.total];
+            [self.headerView reloadMasterLearningInfo:model.item[model.defaultSelected.integerValue].name withNumber:body.detail.xys];
         }
     };
     self.dataFetcher = fetcher;

@@ -3471,6 +3471,7 @@
 		922DB1D21FBA900E0078F6BD /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				924BE43C1FC809BE00B7EECA /* 线上活动 */,
 				924BE3F61FC2915700B7EECA /* 作业管理 */,
 				92F881BF1FBEDF5000FDBD2D /* 通知简报 */,
 				9260A3831FBBD41A0022A814 /* 预热阶段 */,
@@ -4003,6 +4004,21 @@
 				924BE4371FC6A89A00B7EECA /* MasterScoreHomeworkRequest_17.m */,
 			);
 			path = "作业管理";
+			sourceTree = "<group>";
+		};
+		924BE43C1FC809BE00B7EECA /* 线上活动 */ = {
+			isa = PBXGroup;
+			children = (
+				924BE43D1FC80A5500B7EECA /* view */,
+			);
+			path = "线上活动";
+			sourceTree = "<group>";
+		};
+		924BE43D1FC80A5500B7EECA /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 		924C9A0A1EA735500017B31B /* Push */ = {

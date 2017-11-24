@@ -38,8 +38,8 @@
 - (void)setDetail:(MasterLearningInfoRequestItem_Body_Count *)detail {
     _detail = detail;
     self.trainingView.progress = [_detail.cxl floatValue]/100.0f;
-    self.learningView.progress = [_detail.hgl floatValue]/100.0f;
-    self.qualifiedView.progress = [_detail.xxl floatValue]/100.0f;
+    self.learningView.progress = [_detail.xxl floatValue]/100.0f;
+    self.qualifiedView.progress = [_detail.hgl floatValue]/100.0f;
     self.bestView.progress = [_detail.bestl floatValue]/100.0f;
 }
 #pragma mark - setupUI

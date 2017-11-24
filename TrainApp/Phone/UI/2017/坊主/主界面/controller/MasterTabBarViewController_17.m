@@ -15,7 +15,6 @@
 
 @implementation MasterTabBarViewController_17
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

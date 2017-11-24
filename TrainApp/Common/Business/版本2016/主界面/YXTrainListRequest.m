@@ -58,6 +58,14 @@
         return @"0";
     }
 }
+- (void)setStartDate:(NSString<Optional> *)startDate {
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormater dateFromString:startDate];
+    [dateFormater setDateFormat:@"yyyy.MM.dd"];
+    NSString *currentDateString = [dateFormater stringFromDate:date];
+    _startDate = currentDateString;
+}
 - (void)setEndDate:(NSString<Optional> *)endDate {
     NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
     [dateFormater setDateFormat:@"yyyy-MM-dd"];

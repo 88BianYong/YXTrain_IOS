@@ -33,7 +33,9 @@
 @end
 
 @implementation MasterHomeViewController_17
-
+- (void)dealloc {
+    [self.header free];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
@@ -82,7 +84,7 @@
            forCellReuseIdentifier:@"MasterHomeBarCell_17"];
     [self.tableView registerClass:[MasterHomeHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterHomeHeaderView_17"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
-    self.tableHeaderView = [[MasterHomeTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 125.0f)];
+    self.tableHeaderView = [[MasterHomeTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 140.0f)];
     self.tableView.tableHeaderView = self.tableHeaderView;
     [self.tableHeaderView reloadHeaderViewContent:@"23.3" withPass:NO];
 

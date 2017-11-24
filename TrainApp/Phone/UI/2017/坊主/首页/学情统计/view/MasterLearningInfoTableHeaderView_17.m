@@ -39,11 +39,8 @@
     [self addSubview:self.totalLabel];
     
     self.filterButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.filterButton.backgroundColor = [UIColor redColor];
-//    [self.filterButton setImage:[UIImage imageNamed:@"解释说明图标正常态"]
-//                        forState:UIControlStateNormal];
-//    [self.filterButton setImage:[UIImage imageNamed:@"解释说明图标点击态"]
-//                        forState:UIControlStateHighlighted];
+    [self.filterButton setImage:[UIImage imageNamed:@"筛选"]
+                        forState:UIControlStateNormal];
     WEAK_SELF
     [[self.filterButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF

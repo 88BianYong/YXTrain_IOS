@@ -25,7 +25,7 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.iconImageView = [[UIImageView alloc] init];
-    self.iconImageView.backgroundColor = [UIColor redColor];
+    self.iconImageView.hidden = YES;
     [self.contentView addSubview:self.iconImageView];
     
     self.titleLabel = [[UILabel alloc] init];
@@ -41,7 +41,7 @@
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.iconImageView.mas_right).offset(10.0f);
+        make.left.equalTo(self.contentView.mas_left).offset(15.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     
@@ -51,3 +51,4 @@
     self.titleLabel.text = title;
 }
 @end
+

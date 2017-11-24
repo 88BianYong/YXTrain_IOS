@@ -63,36 +63,54 @@
         {
             self.typeImageView.image = [UIImage imageNamed:@"组织力icon"];
             self.typeLabel.text = @"研修组织力";
+            [self.typeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.typeImageView.mas_right).offset(3.0f);
+            }];
         }
             break;
         case 2:
         {
             self.typeImageView.image = [UIImage imageNamed:@"研修指导力icon"];
             self.typeLabel.text = @"研修指导力";
+            [self.typeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.typeImageView.mas_right).offset(3.0f);
+            }];
         }
             break;
         case 3:
         {
             self.typeImageView.image = [UIImage imageNamed:@"学习力icon"];
             self.typeLabel.text = @"学习力";
+            [self.typeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.typeImageView.mas_right).offset(3.0f);
+            }];
         }
             break;
         case 4:
         {
             self.typeImageView.image = [UIImage imageNamed:@"学习力icon"];
             self.typeLabel.text = @"在线考试";
+            [self.typeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.typeImageView.mas_right).offset(3.0f);
+            }];
         }
             break;
         case 5:
         {
-            self.typeImageView.image = [UIImage imageNamed:@"学习力icon"];
+            self.typeImageView.image = [UIImage imageNamed:@"策划力-培训力"];
             self.typeLabel.text = @"研修策划力";
+            [self.typeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.typeImageView.mas_right).offset(4.0f);
+            }];
         }
             break;
         case 6:
         {
-            self.typeImageView.image = [UIImage imageNamed:@"学习力icon"];
+            self.typeImageView.image = [UIImage imageNamed:@"策划力-培训力"];
             self.typeLabel.text = @"研修培训力";
+            [self.typeLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(self.typeImageView.mas_right).offset(4.0f);
+            }];
         }
             break;
             

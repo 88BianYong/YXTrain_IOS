@@ -116,7 +116,7 @@ UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 0) {
-        return [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.training.count;
+        return [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains.count;
     }else if (section == 1) {
         if (!self.isBarBool) {
             return 0;
@@ -131,7 +131,7 @@ UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0){
-        YXTrainListRequestItem_body_train *train = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.training[indexPath.row];
+        YXTrainListRequestItem_body_train *train = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains[indexPath.row];
         MasterMainCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterMainCell_17" forIndexPath:indexPath];
         cell.titleString = train.name;
         return cell;
@@ -188,9 +188,9 @@ UITableViewDataSource
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     MasterMainHeaderView_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MasterMainHeaderView_17"];
     if (section == 0) {
-        [headerView reloadMasterMainHeader:@"" withTitle:@"我的项目"];
+        [headerView reloadMasterMainHeader:@"我的项目" withTitle:@"我的项目"];
     }else if (section == 1){
-        [headerView reloadMasterMainHeader:@"" withTitle:@"我的工作坊"];
+        [headerView reloadMasterMainHeader:@"我的工作坊icon-正常态" withTitle:@"我的工作坊"];
     }else {
         [headerView reloadMasterMainHeader:@"" withTitle:@""];
     }
@@ -199,7 +199,7 @@ UITableViewDataSource
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if(indexPath.section == 0){
-        YXTrainListRequestItem_body_train *train = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.training[indexPath.row];
+        YXTrainListRequestItem_body_train *train = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains[indexPath.row];
         if (train.pid.integerValue == [LSTSharedInstance sharedInstance].trainManager.currentProject.pid.integerValue) {
             self.tabBarController.selectedIndex = 0;
         }else {
