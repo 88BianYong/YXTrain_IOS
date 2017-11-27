@@ -38,25 +38,22 @@
 - (NSMutableArray<LSTCollectionFilterDefaultModel *> *)fomartCollectionFilterModel:(id)item {
     MasterHomeworkListItem_Body *body = item;
     NSMutableArray<LSTCollectionFilterDefaultModel *> *modelArray = [[NSMutableArray<LSTCollectionFilterDefaultModel *> alloc] initWithCapacity:2];
-    if (body.bars.count > 0) {
-        NSMutableArray<LSTCollectionFilterDefaultModelItem *> *barArray = [[NSMutableArray<LSTCollectionFilterDefaultModelItem *> alloc] init];
-        [body.bars enumerateObjectsUsingBlock:^(MasterHomeworkListItem_Body_Bar *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            LSTCollectionFilterDefaultModelItem *model = [[LSTCollectionFilterDefaultModelItem alloc] init];
-            model.name = obj.name;
-            model.itemID = obj.barId;
-            [barArray addObject:model];
-        }];
-        LSTCollectionFilterDefaultModel *barModel = [[LSTCollectionFilterDefaultModel alloc] init];
-        barModel.defaultSelected = @"0";
-        barModel.itemName = @"工作坊";
-        barModel.item = barArray;
-        [modelArray addObject:barModel];
+    NSMutableArray<LSTCollectionFilterDefaultModelItem *> *barArray = [[NSMutableArray<LSTCollectionFilterDefaultModelItem *> alloc] init];
+    [body.bars enumerateObjectsUsingBlock:^(MasterHomeworkListItem_Body_Bar *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         LSTCollectionFilterDefaultModelItem *model = [[LSTCollectionFilterDefaultModelItem alloc] init];
-        model.name = @"全部";
-        model.itemID = @"0";
-        [barArray insertObject:model atIndex:0];
-    }
-    
+        model.name = obj.name;
+        model.itemID = obj.barId;
+        [barArray addObject:model];
+    }];
+    LSTCollectionFilterDefaultModel *barModel = [[LSTCollectionFilterDefaultModel alloc] init];
+    barModel.defaultSelected = @"0";
+    barModel.itemName = @"工作坊";
+    barModel.item = barArray;
+    [modelArray addObject:barModel];
+    LSTCollectionFilterDefaultModelItem *model = [[LSTCollectionFilterDefaultModelItem alloc] init];
+    model.name = @"全部";
+    model.itemID = @"0";
+    [barArray insertObject:model atIndex:0];
     
     NSArray<NSString *> *array1 = @[@"全部",@"已阅读",@"未阅读"];
     NSMutableArray<LSTCollectionFilterDefaultModelItem *> *statusArray1 = [[NSMutableArray<LSTCollectionFilterDefaultModelItem *> alloc] init];

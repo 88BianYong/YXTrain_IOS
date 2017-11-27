@@ -23,9 +23,6 @@
     }
 }
 - (NSString<Optional> *)isDoubel {
-    if (self.w.integerValue == 5) {
-        return @"0";
-    }
     BOOL isMaster = NO;
     BOOL isStudent = NO;
     NSArray *array = [self.roles componentsSeparatedByString:@","];

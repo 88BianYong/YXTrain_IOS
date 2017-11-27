@@ -416,6 +416,17 @@
 		9260A3861FBBD8140022A814 /* MasterReadingListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9260A3851FBBD8140022A814 /* MasterReadingListViewController_17.m */; };
 		9260A3891FBBDE000022A814 /* masterIndex_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 9260A3881FBBDDFA0022A814 /* masterIndex_mock.json */; };
 		9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */; };
+		92676BE71FCBA51C003EC6AC /* MasterManageActiveRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676BE61FCBA51C003EC6AC /* MasterManageActiveRequest_17.m */; };
+		92676BEA1FCBA53A003EC6AC /* MasterManageOffActiveRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676BE91FCBA53A003EC6AC /* MasterManageOffActiveRequest_17.m */; };
+		92676BED1FCBA641003EC6AC /* MasterManageOffActiveFetcher_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676BEC1FCBA641003EC6AC /* MasterManageOffActiveFetcher_17.m */; };
+		92676BF01FCBA64E003EC6AC /* MasterManageActiveFetcher_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676BEF1FCBA64E003EC6AC /* MasterManageActiveFetcher_17.m */; };
+		92676BF31FCBB446003EC6AC /* MasterManageActiveViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676BF21FCBB446003EC6AC /* MasterManageActiveViewController_17.m */; };
+		92676BF61FCBB4A1003EC6AC /* MasterManageActiveListTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676BF51FCBB4A1003EC6AC /* MasterManageActiveListTableHeaderView_17.m */; };
+		92676BF91FCBB4B7003EC6AC /* MasterManageActiveListHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676BF81FCBB4B7003EC6AC /* MasterManageActiveListHeaderView_17.m */; };
+		92676BFC1FCBB4D9003EC6AC /* MasterManageActiveListCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676BFB1FCBB4D9003EC6AC /* MasterManageActiveListCell_17.m */; };
+		92676BFF1FCBB4FD003EC6AC /* MasterOffActiveListTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676BFE1FCBB4FD003EC6AC /* MasterOffActiveListTableHeaderView_17.m */; };
+		92676C021FCBB532003EC6AC /* MasterManageOffActiveViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676C011FCBB532003EC6AC /* MasterManageOffActiveViewController_17.m */; };
+		92676C051FCBB554003EC6AC /* MasterManageOffActiveListCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676C041FCBB554003EC6AC /* MasterManageOffActiveListCell_17.m */; };
 		926846731F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846721F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m */; };
 		926846761F34547600CD9784 /* UITabBar+YXAddtion.m in Sources */ = {isa = PBXBuildFile; fileRef = 926846751F34547600CD9784 /* UITabBar+YXAddtion.m */; };
 		9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9268C5EE1DF3CDCD00AA109B /* BeijingSendSmsRequest.m */; };
@@ -1572,6 +1583,28 @@
 		9260A3881FBBDDFA0022A814 /* masterIndex_mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = masterIndex_mock.json; sourceTree = "<group>"; };
 		9263544B1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeijingCheckedMobileUserRequest.h; sourceTree = "<group>"; };
 		9263544C1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeijingCheckedMobileUserRequest.m; sourceTree = "<group>"; };
+		92676BE51FCBA51C003EC6AC /* MasterManageActiveRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageActiveRequest_17.h; sourceTree = "<group>"; };
+		92676BE61FCBA51C003EC6AC /* MasterManageActiveRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageActiveRequest_17.m; sourceTree = "<group>"; };
+		92676BE81FCBA53A003EC6AC /* MasterManageOffActiveRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageOffActiveRequest_17.h; sourceTree = "<group>"; };
+		92676BE91FCBA53A003EC6AC /* MasterManageOffActiveRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageOffActiveRequest_17.m; sourceTree = "<group>"; };
+		92676BEB1FCBA641003EC6AC /* MasterManageOffActiveFetcher_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageOffActiveFetcher_17.h; sourceTree = "<group>"; };
+		92676BEC1FCBA641003EC6AC /* MasterManageOffActiveFetcher_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageOffActiveFetcher_17.m; sourceTree = "<group>"; };
+		92676BEE1FCBA64E003EC6AC /* MasterManageActiveFetcher_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageActiveFetcher_17.h; sourceTree = "<group>"; };
+		92676BEF1FCBA64E003EC6AC /* MasterManageActiveFetcher_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageActiveFetcher_17.m; sourceTree = "<group>"; };
+		92676BF11FCBB446003EC6AC /* MasterManageActiveViewController_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageActiveViewController_17.h; sourceTree = "<group>"; };
+		92676BF21FCBB446003EC6AC /* MasterManageActiveViewController_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageActiveViewController_17.m; sourceTree = "<group>"; };
+		92676BF41FCBB4A1003EC6AC /* MasterManageActiveListTableHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageActiveListTableHeaderView_17.h; sourceTree = "<group>"; };
+		92676BF51FCBB4A1003EC6AC /* MasterManageActiveListTableHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageActiveListTableHeaderView_17.m; sourceTree = "<group>"; };
+		92676BF71FCBB4B7003EC6AC /* MasterManageActiveListHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageActiveListHeaderView_17.h; sourceTree = "<group>"; };
+		92676BF81FCBB4B7003EC6AC /* MasterManageActiveListHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageActiveListHeaderView_17.m; sourceTree = "<group>"; };
+		92676BFA1FCBB4D9003EC6AC /* MasterManageActiveListCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageActiveListCell_17.h; sourceTree = "<group>"; };
+		92676BFB1FCBB4D9003EC6AC /* MasterManageActiveListCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageActiveListCell_17.m; sourceTree = "<group>"; };
+		92676BFD1FCBB4FD003EC6AC /* MasterOffActiveListTableHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterOffActiveListTableHeaderView_17.h; sourceTree = "<group>"; };
+		92676BFE1FCBB4FD003EC6AC /* MasterOffActiveListTableHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterOffActiveListTableHeaderView_17.m; sourceTree = "<group>"; };
+		92676C001FCBB532003EC6AC /* MasterManageOffActiveViewController_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageOffActiveViewController_17.h; sourceTree = "<group>"; };
+		92676C011FCBB532003EC6AC /* MasterManageOffActiveViewController_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageOffActiveViewController_17.m; sourceTree = "<group>"; };
+		92676C031FCBB554003EC6AC /* MasterManageOffActiveListCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterManageOffActiveListCell_17.h; sourceTree = "<group>"; };
+		92676C041FCBB554003EC6AC /* MasterManageOffActiveListCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterManageOffActiveListCell_17.m; sourceTree = "<group>"; };
 		926846711F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListGroupDefaultCell_17.h; sourceTree = "<group>"; };
 		926846721F344B1200CD9784 /* HomeworkListGroupDefaultCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListGroupDefaultCell_17.m; sourceTree = "<group>"; };
 		926846741F34547600CD9784 /* UITabBar+YXAddtion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+YXAddtion.h"; sourceTree = "<group>"; };
@@ -3471,6 +3504,7 @@
 		922DB1D21FBA900E0078F6BD /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				92676BE11FCBA3FB003EC6AC /* 线下活动 */,
 				924BE43C1FC809BE00B7EECA /* 线上活动 */,
 				924BE3F61FC2915700B7EECA /* 作业管理 */,
 				92F881BF1FBEDF5000FDBD2D /* 通知简报 */,
@@ -3512,6 +3546,8 @@
 		922DB1D61FBA90500078F6BD /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				92676BE41FCBA496003EC6AC /* 线下活动 */,
+				92676BE31FCBA48D003EC6AC /* 线上活动 */,
 				924BE3FB1FC291D500B7EECA /* 作业管理 */,
 				92F881CA1FBEE09F00FDBD2D /* 通知简报 */,
 				92551E0E1FBBE5980034DC71 /* 学情统计 */,
@@ -4010,6 +4046,8 @@
 			isa = PBXGroup;
 			children = (
 				924BE43D1FC80A5500B7EECA /* view */,
+				92676BF11FCBB446003EC6AC /* MasterManageActiveViewController_17.h */,
+				92676BF21FCBB446003EC6AC /* MasterManageActiveViewController_17.m */,
 			);
 			path = "线上活动";
 			sourceTree = "<group>";
@@ -4017,6 +4055,12 @@
 		924BE43D1FC80A5500B7EECA /* view */ = {
 			isa = PBXGroup;
 			children = (
+				92676BF41FCBB4A1003EC6AC /* MasterManageActiveListTableHeaderView_17.h */,
+				92676BF51FCBB4A1003EC6AC /* MasterManageActiveListTableHeaderView_17.m */,
+				92676BF71FCBB4B7003EC6AC /* MasterManageActiveListHeaderView_17.h */,
+				92676BF81FCBB4B7003EC6AC /* MasterManageActiveListHeaderView_17.m */,
+				92676BFA1FCBB4D9003EC6AC /* MasterManageActiveListCell_17.h */,
+				92676BFB1FCBB4D9003EC6AC /* MasterManageActiveListCell_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -4174,6 +4218,49 @@
 				92AA47741E12440B00C88DDC /* BeijingCourseFilterManager.m */,
 			);
 			path = "北京项目";
+			sourceTree = "<group>";
+		};
+		92676BE11FCBA3FB003EC6AC /* 线下活动 */ = {
+			isa = PBXGroup;
+			children = (
+				92676BE21FCBA40C003EC6AC /* view */,
+				92676C001FCBB532003EC6AC /* MasterManageOffActiveViewController_17.h */,
+				92676C011FCBB532003EC6AC /* MasterManageOffActiveViewController_17.m */,
+			);
+			path = "线下活动";
+			sourceTree = "<group>";
+		};
+		92676BE21FCBA40C003EC6AC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92676BFD1FCBB4FD003EC6AC /* MasterOffActiveListTableHeaderView_17.h */,
+				92676BFE1FCBB4FD003EC6AC /* MasterOffActiveListTableHeaderView_17.m */,
+				92676C031FCBB554003EC6AC /* MasterManageOffActiveListCell_17.h */,
+				92676C041FCBB554003EC6AC /* MasterManageOffActiveListCell_17.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		92676BE31FCBA48D003EC6AC /* 线上活动 */ = {
+			isa = PBXGroup;
+			children = (
+				92676BE51FCBA51C003EC6AC /* MasterManageActiveRequest_17.h */,
+				92676BE61FCBA51C003EC6AC /* MasterManageActiveRequest_17.m */,
+				92676BEE1FCBA64E003EC6AC /* MasterManageActiveFetcher_17.h */,
+				92676BEF1FCBA64E003EC6AC /* MasterManageActiveFetcher_17.m */,
+			);
+			path = "线上活动";
+			sourceTree = "<group>";
+		};
+		92676BE41FCBA496003EC6AC /* 线下活动 */ = {
+			isa = PBXGroup;
+			children = (
+				92676BE81FCBA53A003EC6AC /* MasterManageOffActiveRequest_17.h */,
+				92676BE91FCBA53A003EC6AC /* MasterManageOffActiveRequest_17.m */,
+				92676BEB1FCBA641003EC6AC /* MasterManageOffActiveFetcher_17.h */,
+				92676BEC1FCBA641003EC6AC /* MasterManageOffActiveFetcher_17.m */,
+			);
+			path = "线下活动";
 			sourceTree = "<group>";
 		};
 		926F11FB1EA45BC40041D66F /* 通知简报 */ = {
@@ -5891,6 +5978,7 @@
 				92AA47751E12440B00C88DDC /* BeijingCourseFilterManager.m in Sources */,
 				92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */,
 				9219A18F1F1F054600C49D78 /* ReadingDetailViewController_17.m in Sources */,
+				92676C021FCBB532003EC6AC /* MasterManageOffActiveViewController_17.m in Sources */,
 				92348FBF1EEFEDEA00D3B3A7 /* MasterHappeningViewController.m in Sources */,
 				7C3177DD1D114882004AAC90 /* YXFileItemBase.m in Sources */,
 				9219A1921F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m in Sources */,
@@ -5958,6 +6046,7 @@
 				923237381D7975F300FDACFE /* YXScoreExpGroupCell.m in Sources */,
 				CB7462641D1D44F10065113A /* YXScanQRBackgroundView.m in Sources */,
 				9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */,
+				92676BEA1FCBA53A003EC6AC /* MasterManageOffActiveRequest_17.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
 				9223C80C1D2CA4E4000F74DF /* YXWorkshopMemberCell.m in Sources */,
@@ -5977,6 +6066,7 @@
 				7C3177FD1D1177F9004AAC90 /* DownloadManager.m in Sources */,
 				CBBE95041D1D241C00C935C8 /* YXLoginVerifyCodeViewController.m in Sources */,
 				92348FCC1EEFEDEA00D3B3A7 /* StudentsLearnTableHeaderView.m in Sources */,
+				92676BED1FCBA641003EC6AC /* MasterManageOffActiveFetcher_17.m in Sources */,
 				92F881C61FBEDFE400FDBD2D /* MasterNoticeViewController_17.m in Sources */,
 				7CFBA6C51D3633E7005D08B1 /* YXModuleListRequest.m in Sources */,
 				7C3177991D0EA6A8004AAC90 /* GetRequest.m in Sources */,
@@ -5995,6 +6085,7 @@
 				922901641DED0C15001474CE /* PreventHangingCourseView.m in Sources */,
 				92126C741E9F54C700C061EF /* TrainLayerListRequest.m in Sources */,
 				92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */,
+				92676BFC1FCBB4D9003EC6AC /* MasterManageActiveListCell_17.m in Sources */,
 				925146861F25EE6D00B1533B /* ReadingListRequest_17.m in Sources */,
 				920F1D711D5983E500636A51 /* YXVideoRecordManager.m in Sources */,
 				922DB1C21FBA87280078F6BD /* YXAllDatumViewController.m in Sources */,
@@ -6037,6 +6128,7 @@
 				7C31785B1D139D49004AAC90 /* YXProjectContainerView.m in Sources */,
 				7CF844651D2B622200B1CE55 /* YXRecordManager.m in Sources */,
 				92007EB41ED8194900C16F89 /* VideoCourseSecondCommentViewController.m in Sources */,
+				92676BFF1FCBB4FD003EC6AC /* MasterOffActiveListTableHeaderView_17.m in Sources */,
 				92348FBB1EEFEDEA00D3B3A7 /* MasterConditionTableView.m in Sources */,
 				924BE4131FC3BDB600B7EECA /* MasterHomeworkDetailViewController_17.m in Sources */,
 				9232377B1D826CC800FDACFE /* YXHelpCell.m in Sources */,
@@ -6050,6 +6142,7 @@
 				7CF888791D1BD1BF00E7C04D /* YXExamPhaseHeaderView.m in Sources */,
 				924BE4071FC2B17100B7EECA /* MasterManagerSchemeItem.m in Sources */,
 				7C31779A1D0EA6A8004AAC90 /* PostRequest.m in Sources */,
+				92676BE71FCBA51C003EC6AC /* MasterManageActiveRequest_17.m in Sources */,
 				7CF8887F1D1BD25C00E7C04D /* YXExamEndDateCell.m in Sources */,
 				9223C82F1D2E36F0000F74DF /* YXAboutCell.m in Sources */,
 				CB4D916B1D1A5A8D00B5F1D0 /* YXMyDatumRequest.m in Sources */,
@@ -6066,6 +6159,7 @@
 				7C2C3B311D21043A00A03635 /* YXScoreNoScoreView.m in Sources */,
 				7C2C3B491D22596B00A03635 /* YXExamHelper.m in Sources */,
 				92E927A51F1DB35500BEF834 /* CourseHistoryViewController_17.m in Sources */,
+				92676C051FCBB554003EC6AC /* MasterManageOffActiveListCell_17.m in Sources */,
 				CB3510BE1D18E9DD0081EA3B /* YXDatumFilterModel.m in Sources */,
 				92CA55E31DFE75F200AA2C50 /* LSTTrainHelper_Beijing.m in Sources */,
 				92DD28391FBAC6680023F58C /* MasterHomeBarCell_17.m in Sources */,
@@ -6121,6 +6215,7 @@
 				927B6C5F1F0F3B1A0082DB27 /* PopUpFloatingViewManager_16.m in Sources */,
 				CB52FCF11D2B95900096D8DC /* YXNoticeAndBulletinTableViewCell.m in Sources */,
 				9229015F1DE6C241001474CE /* VideoCommentErrorView.m in Sources */,
+				92676BF01FCBA64E003EC6AC /* MasterManageActiveFetcher_17.m in Sources */,
 				E935D8751DFE4E85005CC8BD /* LSTAlertTitleLabel.m in Sources */,
 				922DB19F1FBA7FC20078F6BD /* FilterMaskView_17.m in Sources */,
 				7C2C3B461D21404700A03635 /* YXScoreExpScoreCell.m in Sources */,
@@ -6247,6 +6342,7 @@
 				7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */,
 				7C2C3B7A1D24CBB700A03635 /* YXCourseDetailHeaderView.m in Sources */,
 				9223C8271D2E0E44000F74DF /* YXFeedBackRequest.m in Sources */,
+				92676BF31FCBB446003EC6AC /* MasterManageActiveViewController_17.m in Sources */,
 				92DE3BC71DDD82350011CFB7 /* ActivityToolVideoRequest.m in Sources */,
 				7CF844781D2E367900B1CE55 /* YXProjectSelectionView.m in Sources */,
 				92A791631F0E20AB00E3D258 /* YXLearningViewController_17.m in Sources */,
@@ -6339,7 +6435,9 @@
 				9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */,
 				924603FC1F2F0ACD00146C82 /* NoticeBriefFloatingView_17.m in Sources */,
 				92EDC7CB1D62BB39005B91DD /* YXWriteHomeworkInfoViewController+Format.m in Sources */,
+				92676BF61FCBB4A1003EC6AC /* MasterManageActiveListTableHeaderView_17.m in Sources */,
 				925F4AFE1FBA96EF003FB2FC /* RootViewControllerManger_16.m in Sources */,
+				92676BF91FCBB4B7003EC6AC /* MasterManageActiveListHeaderView_17.m in Sources */,
 				920F1D1F1D506DE500636A51 /* UIViewController+YXAddtion.m in Sources */,
 				CB3510B71D18E9830081EA3B /* YXDatumOrderViewCell.m in Sources */,
 				92551E171FBBEDC60034DC71 /* MasterLearningInfoViewController_17.m in Sources */,

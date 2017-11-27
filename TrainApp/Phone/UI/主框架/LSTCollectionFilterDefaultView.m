@@ -133,11 +133,11 @@
 #pragma mark - reload
 - (void)reloadData {
     [self.collectionView reloadData];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.25f animations:^{
-            self.frame = CGRectMake(0.0, 0.0f, kScreenWidth, self.collectionView.contentSize.height);
-        }];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [UIView animateWithDuration:0.25f animations:^{
+//            self.frame = CGRectMake(0.0, 0.0f, kScreenWidth, MIN(self.collectionView.contentSize.height, self.superview.frame.size.height));
+//        }];
+//    });
 }
 
 
