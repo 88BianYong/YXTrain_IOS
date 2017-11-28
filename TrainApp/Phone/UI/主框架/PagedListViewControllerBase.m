@@ -130,7 +130,7 @@
         [self.dataArray addObjectsFromArray:retItemArray];
         [self checkHasMore];
         [self.dataFetcher saveToCache];
-        self.tableView.contentOffset = CGPointZero;
+//        self.tableView.contentOffset = CGPointZero;
         [self.tableView reloadData];
     }];
 }

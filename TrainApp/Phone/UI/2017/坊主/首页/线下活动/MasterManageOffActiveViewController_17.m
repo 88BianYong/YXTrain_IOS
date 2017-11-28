@@ -10,6 +10,7 @@
 #import "MasterManageOffActiveFetcher_17.h"
 #import "MasterOffActiveListTableHeaderView_17.h"
 #import "MasterManageOffActiveListCell_17.h"
+#import "MasterManageOffActiveDetailViewController_17.h"
 @interface MasterManageOffActiveViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) MasterOffActiveListTableHeaderView_17 *headerView;
 @end
@@ -44,7 +45,7 @@
     self.headerView.masterActiveButtonBlock = ^(UIButton *sender) {
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-        [self showMarkWithOriginRect:rect explain:@"sasda"];
+        [self showMarkWithOriginRect:rect explain:self.headerView.scheme.descripe?:@""];
     };
     self.tableView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
@@ -103,10 +104,10 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //    MasterHomeworkDetailViewController_17 *VC = [[MasterHomeworkDetailViewController_17 alloc] init];
-    //    MasterHomeworkListItem_Body_Homework *homework = self.dataArray[indexPath.row];
-    //    VC.homeworkId = homework.homeworkId;
-    //    VC.titleString = homework.title;
-    //    [self.navigationController pushViewController:VC animated:YES];
+       MasterManageOffActiveDetailViewController_17 *VC = [[MasterManageOffActiveDetailViewController_17 alloc] init];
+        MasterManageOffActiveItem_Body_Active *active = self.dataArray[indexPath.row];
+        VC.activeId = active.activeId;
+        VC.titleString = active.title;
+        [self.navigationController pushViewController:VC animated:YES];
 }
 @end

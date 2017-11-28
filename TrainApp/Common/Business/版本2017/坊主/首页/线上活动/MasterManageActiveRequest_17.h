@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString<Optional> *startTime;
 @property (nonatomic, copy) NSString<Optional> *endTime;
 @property (nonatomic, copy) NSString<Optional> *createUserName;
+@property (nonatomic, copy) NSString<Optional> *createUserId;
 @property (nonatomic, copy) NSString<Optional> *studyName;
 @property (nonatomic, copy) NSString<Optional> *segmentName;
 @property (nonatomic, copy) NSString<Optional> *isJoin;

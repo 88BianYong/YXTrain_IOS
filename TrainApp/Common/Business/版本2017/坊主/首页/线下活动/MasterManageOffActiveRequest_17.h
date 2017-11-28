@@ -33,6 +33,7 @@
 @end
 @interface MasterManageOffActiveRequest_17 : YXGetRequest
 @property (nonatomic, copy) NSString<Optional> *projectId;
+@property (nonatomic, copy) NSString<Optional> *aId;
 @property (nonatomic, copy) NSString<Optional> *page;
 @property (nonatomic, copy) NSString<Optional> *pageSize;
 @end

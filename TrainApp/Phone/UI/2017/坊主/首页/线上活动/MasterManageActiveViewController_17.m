@@ -12,6 +12,7 @@
 #import "MasterManageActiveListHeaderView_17.h"
 #import "MasterManageActiveListCell_17.h"
 #import "LSTCollectionFilterDefaultView.h"
+#import "MasterManageDetailActiveViewController_17.h"
 @interface MasterManageActiveViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) NSArray<LSTCollectionFilterDefaultModel *> *filterModel;
 @property (nonatomic, strong) MasterManageActiveListTableHeaderView_17 *headerView;
@@ -211,10 +212,13 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    MasterHomeworkDetailViewController_17 *VC = [[MasterHomeworkDetailViewController_17 alloc] init];
-//    MasterHomeworkListItem_Body_Homework *homework = self.dataArray[indexPath.row];
-//    VC.homeworkId = homework.homeworkId;
-//    VC.titleString = homework.title;
-//    [self.navigationController pushViewController:VC animated:YES];
+    MasterManageDetailActiveViewController_17 *VC = [[MasterManageDetailActiveViewController_17 alloc] init];
+    MasterManageActiveItem_Body_Active *active = self.dataArray[indexPath.row];
+    VC.activeId = active.activeId;
+    VC.titleString = active.title;
+    if ([[LSTSharedInstance sharedInstance].userManger userModel].uid.integerValue == active.createUserId.integerValue) {
+        VC.isMySelfBool = YES;
+    }
+    [self.navigationController pushViewController:VC animated:YES];
 }
 @end
