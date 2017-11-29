@@ -42,7 +42,7 @@
 - (void)tableViewWillRefresh {
     NSString *string = @"参与人";
     if (self.total > 0) {
-        string = [NSString stringWithFormat:@"参与人 (%ld)",(long)self.total];
+        string = [NSString stringWithFormat:@"参与人 (共%ld人)",(long)self.total];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadParticipantButton" object:string];
 }

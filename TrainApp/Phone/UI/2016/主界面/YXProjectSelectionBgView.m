@@ -19,6 +19,7 @@
 - (instancetype)initWithFrame:(CGRect)frame triangleX:(CGFloat)x{
     if (self = [super initWithFrame:frame]) {
         self.triangleX = x;
+        self.clipsToBounds = YES;
         [self setupUI];
     }
     return self;
@@ -26,14 +27,6 @@
 
 - (void)setupUI{
     self.backgroundColor = [UIColor clearColor];
-//    self.triangleView = [[YXTriangleView alloc]initWithFrame:CGRectMake(self.triangleX-8, 0, 16, 7)];
-//    self.triangleView.backgroundColor = [UIColor clearColor];
-//    [self addSubview:self.triangleView];
-//    [self.triangleView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.triangleX-8);
-//        make.top.mas_equalTo(0);
-//        make.size.mas_equalTo(CGSizeMake(16, 7));
-//    }];
     UIImageView *imageView = [[UIImageView alloc]init];
     imageView.image = [UIImage imageNamed:@"切换项目名称的弹窗-尖角"];
     [self addSubview:imageView];

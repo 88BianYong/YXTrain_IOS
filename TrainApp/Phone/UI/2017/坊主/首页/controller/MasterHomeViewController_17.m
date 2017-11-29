@@ -22,6 +22,7 @@
 #import "MasterHomeworkViewController_17.h"
 #import "MasterManageActiveViewController_17.h"
 #import "MasterManageOffActiveViewController_17.h"
+#import "MasterHomeworkSetListViewController_17.h"
 @interface MasterHomeViewController_17()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) MasterHomeTableHeaderView_17 *tableHeaderView;
@@ -204,7 +205,8 @@
                 MasterManageOffActiveViewController_17 *VC = [[MasterManageOffActiveViewController_17 alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 5) {//作品集
-                
+                MasterHomeworkSetListViewController_17 *VC = [[MasterHomeworkSetListViewController_17 alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 30) {//看课
                 
             }else if (tool.code.integerValue == 31) {//综合
