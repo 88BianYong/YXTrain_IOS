@@ -472,6 +472,7 @@
             self.headerView.body = self.detailItem;
             [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
             [self.inputView clearContent:MasterInputStatus_Recommend];
+            self.startPage = 1;
             [self requestForHomeworkRemark];
         }
     }];

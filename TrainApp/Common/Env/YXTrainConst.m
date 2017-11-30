@@ -81,3 +81,5 @@ NSString *const kYXTrainPlayCourseNext = @"Play the course interface to show and
 
 NSString *const kYXTrainDocumentRetryTimer = @"Used to watch documents in video playback to increase video start time";
 
+NSString *const kYXTrainRefreshHomeworkSet = @"Refresh master homework set";
+

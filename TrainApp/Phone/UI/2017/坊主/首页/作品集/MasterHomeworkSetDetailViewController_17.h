@@ -7,7 +7,9 @@
 //
 
 #import "YXBaseViewController.h"
-
-@interface MasterHomeworkSetDetailViewController_17 : YXBaseViewController
+#import "MasterHomeworkSetDetailProtocol_17.h"
+@interface MasterHomeworkSetDetailViewController_17 : YXBaseViewController<MasterHomeworkSetDetailProtocol_17>
+@property (nonatomic, copy) NSString *homeworkSetId;
 @property (nonatomic, copy) NSString *homeworkId;
+@property (nonatomic, assign) NSInteger tagInteger;
 @end

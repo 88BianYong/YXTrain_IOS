@@ -116,7 +116,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         if (oldTrain.w.integerValue != newTrain.w.integerValue) {
             isChangeBool = YES;
         }
-        if (newTrain.isDoubel.boolValue) {
+        if (newTrain.isDoubel.boolValue && newTrain.w.integerValue >= 5) {
             isChangeBool = YES;
         }
     }

@@ -194,7 +194,10 @@ extern NSString *const kYXTrainPlayCourseNext;
 extern NSString *const kYXTrainDocumentRetryTimer;
 
 
-
+/*
+ *  刷新17坊主作品集
+ */
+extern NSString *const kYXTrainRefreshHomeworkSet;
 
 
 

@@ -9,7 +9,7 @@
 #import "YXBaseViewController.h"
 
 @interface MasterHomeworkSetListDetailViewController_17 : YXBaseViewController
-@property (nonatomic, copy) NSString<Optional> *homeworkSetId;
+@property (nonatomic, copy) NSString *homeworkSetId;
 @property (nonatomic, copy) NSString *titleString;
 
 @end

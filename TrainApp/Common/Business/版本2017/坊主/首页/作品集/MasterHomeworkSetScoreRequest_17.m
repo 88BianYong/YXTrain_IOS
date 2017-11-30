@@ -7,7 +7,16 @@
 //
 
 #import "MasterHomeworkSetScoreRequest_17.h"
+@implementation MasterHomeworkSetScoreItem_Body
 
+@end
+@implementation MasterHomeworkSetScoreItem
+@end
 @implementation MasterHomeworkSetScoreRequest_17
-
+- (instancetype)init {
+    if (self = [super init]) {
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/master/scoreHomework"];
+    }
+    return self;
+}
 @end

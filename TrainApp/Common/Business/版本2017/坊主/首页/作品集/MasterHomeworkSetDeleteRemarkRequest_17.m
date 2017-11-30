@@ -9,5 +9,10 @@
 #import "MasterHomeworkSetDeleteRemarkRequest_17.h"
 
 @implementation MasterHomeworkSetDeleteRemarkRequest_17
-
+- (instancetype)init {
+    if (self = [super init]) {
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/homeworkSet/delRemark"];
+    }
+    return self;
+}
 @end

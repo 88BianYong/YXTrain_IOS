@@ -7,7 +7,15 @@
 //
 
 #import "YXGetRequest.h"
+@interface MasterHomeworkSetCancelRecommendItem_Body : JSONModel
+@property (nonatomic, copy) NSString<Optional> *isRecommend;
+@end
 
+@interface MasterHomeworkSetCancelRecommendItem : HttpBaseRequestItem
+@property (nonatomic, strong) MasterHomeworkSetCancelRecommendItem_Body<Optional> *body;
+@end
 @interface MasterHomeworkSetCancelRecommendRequest_17 : YXGetRequest
-
+@property (nonatomic, copy) NSString<Optional> *projectId;
+@property (nonatomic, copy) NSString<Optional> *homeworkSetId;
+@property (nonatomic, copy) NSString<Optional> *content;
 @end

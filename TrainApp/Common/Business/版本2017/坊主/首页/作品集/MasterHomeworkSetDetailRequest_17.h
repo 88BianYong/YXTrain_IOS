@@ -37,7 +37,8 @@
 @property (nonatomic, copy) NSString<Optional> *templateId;
 @property (nonatomic, copy) NSString<Optional> *title;
 @property (nonatomic, copy) NSString<Optional> *publishUser;
-@property (nonatomic, strong) NSArray<MasterHomeworkSetDetailItem_Body_Template,Optional> *template;
+@property (nonatomic, strong) MasterHomeworkSetDetailItem_Body_Template<Optional> *template;
+@property (nonatomic, copy) NSString<Optional> *finishDate;
 @end
 
 @interface MasterHomeworkSetDetailItem : HttpBaseRequestItem

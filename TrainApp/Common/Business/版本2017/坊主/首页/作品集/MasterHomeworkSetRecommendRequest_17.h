@@ -9,5 +9,7 @@
 #import "YXGetRequest.h"
 
 @interface MasterHomeworkSetRecommendRequest_17 : YXGetRequest
-
+@property (nonatomic, copy) NSString<Optional> *projectId;
+@property (nonatomic, copy) NSString<Optional> *homeworkSetId;
+@property (nonatomic, copy) NSString<Optional> *content;
 @end

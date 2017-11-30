@@ -10,27 +10,78 @@
 #import "MasterHomeworkSetListDetailRequest_17.h"
 #import "MasterHomeworkSetChooseView_17.h"
 #import "MasterHomeworkSetDetailViewController_17.h"
+#import "MasterHomeworkSetScrollView_17.h"
+#import "MasterHomeworkSetCancelRecommendRequest_17.h"
+#import "MasterHomeworkSetRecommendRequest_17.h"
+#import "MasterHomeworkSetScoreRequest_17.h"
+#import "MasterInputView_17.h"
 @interface MasterHomeworkSetListDetailViewController_17 ()<UIScrollViewDelegate>
 @property (nonatomic, strong) MasterHomeworkSetListDetailRequest_17 *detailRequest;
 @property (nonatomic, strong) MasterHomeworkSetListDetailItem_Body *detailItem;
-
+@property (nonatomic, strong) MasterHomeworkSetRecommendRequest_17 *recommendRequest;
+@property (nonatomic, strong) MasterHomeworkSetCancelRecommendRequest_17 *cancleRequest;
+@property (nonatomic, strong) MasterHomeworkSetScoreRequest_17 *scoreHomework;
 
 @property (nonatomic, strong) UILabel *scoreLabel;
 @property (nonatomic, strong) UIImageView *recommendImageView;
 @property (nonatomic, strong) UIView *firstLineView;
 @property (nonatomic, strong) UIView *secondLineView;
 @property (nonatomic, strong) MasterHomeworkSetChooseView_17 *chooseView;
+@property (nonatomic, strong) MasterHomeworkSetScrollView_17 *scrollView;
 
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) MasterInputView_17 *inputView;
+@property (nonatomic, strong) UIView *translucentView;
+
+
+@property (nonatomic, strong) UIButton *remarkButton;
+@property (nonatomic, strong) UIButton *commentButton;
+@property (nonatomic, strong) UIView *lineView;
+
+@property (nonatomic, assign) NSInteger chooseIndex;
 @end
 
 @implementation MasterHomeworkSetListDetailViewController_17
 - (void)dealloc {
     DDLogDebug(@"release=====>%@",NSStringFromClass([self class]));
+    [self.inputView removeFromSuperview];
+    self.inputView = nil;
+    [self.translucentView removeFromSuperview];
+    self.translucentView = nil;
 }
 #pragma mark - set
 - (void)setDetailItem:(MasterHomeworkSetListDetailItem_Body *)detailItem {
     _detailItem = detailItem;
+    [self reloadContentView];
+    self.chooseView.homeworkArray = _detailItem.homeworks;
+    [_detailItem.homeworks enumerateObjectsUsingBlock:^(MasterHomeworkSetListDetailItem_Body_Homework *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        MasterHomeworkSetDetailViewController_17 *VC = [[MasterHomeworkSetDetailViewController_17 alloc] init];
+        VC.homeworkId = obj.homeworkId;
+        VC.homeworkSetId = self.detailItem.homeworkSetId;
+        VC.tagInteger = idx + 10086;
+        [self addChildViewController:VC];
+        [self.scrollView addSubview:VC.view];
+        [VC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(self.scrollView.mas_left).offset(kScreenWidth * idx);
+            make.top.equalTo(self.scrollView.mas_top);
+            make.bottom.equalTo(self.view.mas_bottom).offset(-50.0f);
+            make.width.mas_offset(kScreenWidth);
+        }];
+    }];
+    self.scrollView.contentSize = CGSizeMake(kScreenWidth * _detailItem.homeworks.count, 100.0f);
+}
+- (void)setChooseIndex:(NSInteger)chooseIndex {
+    if (_chooseIndex == chooseIndex) {
+        return;
+    }
+    _chooseIndex = chooseIndex;
+    MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[_chooseIndex];
+    [VC reloadMasterHomeworkSetRemark];
+}
+- (void)reloadContentView {
+    self.scoreLabel.hidden = NO;
+    self.firstLineView.hidden = NO;
+    self.secondLineView.hidden = NO;
+    self.chooseView.hidden = NO;
     if (_detailItem.score.integerValue > 0) {
         self.scoreLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
         self.scoreLabel.text = [NSString stringWithFormat:@"%@分",_detailItem.score];
@@ -39,20 +90,11 @@
         self.scoreLabel.text = @"未批阅";
     }
     self.recommendImageView.hidden = !_detailItem.isRecommend.boolValue;
-    self.chooseView.homeworkArray = _detailItem.homeworks;
-    [_detailItem.homeworks enumerateObjectsUsingBlock:^(MasterHomeworkSetListDetailItem_Body_Homework *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        MasterHomeworkSetDetailViewController_17 *VC = [[MasterHomeworkSetDetailViewController_17 alloc] init];
-        VC.homeworkId = obj.homeworkId;
-        [self addChildViewController:VC];
-        [self.scrollView addSubview:VC.view];
-        [VC.view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.scrollView.mas_left).offset(kScreenWidth * idx);
-            make.top.equalTo(self.scrollView.mas_top);
-            make.bottom.equalTo(self.scrollView.mas_bottom);
-            make.width.mas_offset(kScreenWidth);
-        }];
-    }];
-    self.scrollView.contentSize = CGSizeMake(kScreenWidth * _detailItem.homeworks.count, 100.0f);
+    if (_detailItem.isMyRecommend.boolValue) {
+        [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
+    }else {
+        [self.remarkButton setTitle:@"推优" forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewDidLoad {
@@ -80,28 +122,35 @@
 - (void)setupUI {
     self.scoreLabel = [[UILabel alloc] init];
     self.scoreLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+    self.scoreLabel.hidden = YES;
     [self.view addSubview:self.scoreLabel];
     
     self.recommendImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"优标签"]];
+    self.recommendImageView.hidden = YES;
     [self.view addSubview:self.recommendImageView];
     
     self.firstLineView = [[UIView alloc] init];
+    self.firstLineView.hidden = YES;
     self.firstLineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.view addSubview:self.firstLineView];
     
     self.secondLineView = [[UIView alloc] init];
+    self.secondLineView.hidden = YES;
     self.secondLineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.view addSubview:self.secondLineView];
     
     self.chooseView = [[MasterHomeworkSetChooseView_17 alloc]initWithFrame:CGRectMake(15, 45, kScreenWidth - 30.0f, 45)];
+    self.chooseView.hidden = YES;
     WEAK_SELF
     self.chooseView.masterHomeworkSetChooseBlock = ^(NSInteger integer) {
         STRONG_SELF
-        
+        [self.scrollView setContentOffset:CGPointMake(integer * kScreenWidth, 0) animated:NO];
+        self.chooseIndex = integer;
     };
     [self.view addSubview:self.chooseView];
-    self.scrollView = [[UIScrollView alloc] init];
+    self.scrollView = [[MasterHomeworkSetScrollView_17 alloc] init];
     self.scrollView.pagingEnabled = YES;
+    self.scrollView.scrollEnabled = NO;
     self.scrollView.showsHorizontalScrollIndicator = NO;
     self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.directionalLockEnabled = YES;
@@ -121,7 +170,111 @@
         [self startLoading];
         [self requestForHomeworkSetListDetail];
     };
+    [self setupBottomView];
+    [self setupInputView];
+}
+- (void)setupBottomView {
+    self.remarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.remarkButton setTitle:@"推优" forState:UIControlStateNormal];
+    [self.remarkButton setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateNormal];
+    [self.remarkButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"ffffff"]] forState:UIControlStateNormal];
+    [self.remarkButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
+    self.remarkButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    WEAK_SELF
+    [[self.remarkButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        [UIView animateWithDuration:0.25 animations:^{
+            self.translucentView.alpha = 1.0f;
+        }];
+        if (self.detailItem.isMyRecommend.boolValue) {
+            self.inputView.inputStatus = MasterInputStatus_Cancle;
+        }else {
+            self.inputView.inputStatus = MasterInputStatus_Recommend;
+        }
+    }];
+    [self.view addSubview:self.remarkButton];
     
+    self.commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.commentButton setTitle:@"点评" forState:UIControlStateNormal];
+    [self.commentButton setTitleColor:[UIColor colorWithHexString:@"334466"] forState:UIControlStateNormal];
+    [self.commentButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"ffffff"]] forState:UIControlStateNormal];
+    [self.commentButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]] forState:UIControlStateHighlighted];
+    self.commentButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [[self.commentButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        [UIView animateWithDuration:0.25 animations:^{
+            self.translucentView.alpha = 1.0f;
+        }];
+        self.inputView.inputStatus = MasterInputStatus_Score;
+    }];
+    [self.view addSubview:self.commentButton];
+    self.lineView = [[UIView alloc] init];
+    self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self.view addSubview:self.lineView];
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-49.0f);
+        make.height.mas_equalTo(1.0f);
+    }];
+    
+    [self.remarkButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.width.equalTo(self.view.mas_width).multipliedBy(1.0f/2.0f);
+        make.top.equalTo(self.lineView.mas_bottom);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+    [self.commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view.mas_right);
+        make.width.equalTo(self.view.mas_width).multipliedBy(1.0f/2.0f);
+        make.top.equalTo(self.lineView.mas_bottom);
+        make.bottom.equalTo(self.view.mas_bottom);
+    }];
+}
+- (void)setupInputView{
+    self.translucentView = [[UIView alloc] init];
+    self.translucentView.alpha = 0.0f;
+    self.translucentView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.5f];
+    [self.navigationController.view addSubview:self.translucentView];
+    [self.translucentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.navigationController.view);
+    }];
+    WEAK_SELF
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];
+    [[recognizer rac_gestureSignal] subscribeNext:^(UITapGestureRecognizer *x) {
+        STRONG_SELF
+        [self hiddenInputView];
+    }];
+    [self.translucentView addGestureRecognizer:recognizer];
+    self.inputView = [[MasterInputView_17 alloc] initWithFrame:CGRectZero];
+    self.inputView.masterInputViewBlock = ^(MasterInputStatus status) {
+        STRONG_SELF
+        if (status == MasterInputStatus_Cancle) {
+            [self requestForCancelRecommendHomework:self.inputView.commentTextView.text];
+        }else if (status == MasterInputStatus_Recommend) {
+            [self requestForRecommendHomework:self.inputView.commentTextView.text];
+        }else if (status == MasterInputStatus_Comment) {
+            if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.myScore.integerValue) {
+                [self showToast:@"再次点评不得低于原分数"];
+            }else {
+                [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
+            }
+        }
+        [self hiddenInputView];
+    };
+    [self.navigationController.view addSubview:self.inputView];
+    [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.navigationController.view.mas_left);
+        make.right.equalTo(self.navigationController.view.mas_right);
+        make.bottom.mas_equalTo(105.0f);
+    }];
+}
+- (void)hiddenInputView {
+    [self.inputView.scoreTextView resignFirstResponder];
+    [self.inputView.commentTextView resignFirstResponder];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.translucentView.alpha = 0.0f;
+    }];
 }
 - (void)setupLayout {
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -174,5 +327,76 @@
         self.detailItem = ((MasterHomeworkSetListDetailItem *)retItem).body;
     }];
     self.detailRequest = request;
+}
+- (void)requestForRecommendHomework:(NSString *)content {
+    MasterHomeworkSetRecommendRequest_17 *request = [[MasterHomeworkSetRecommendRequest_17 alloc] init];
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.homeworkSetId = self.homeworkSetId;
+    request.content = content;
+    WEAK_SELF
+    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error) {
+            [self showToast:error.localizedDescription];
+        }else {
+            self.detailItem.isMyRecommend = @"1";
+            self.detailItem.isRecommend = @"1";
+            [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
+            [self.inputView clearContent:MasterInputStatus_Recommend];
+            MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
+            [VC reloadMasterHomeworkSetRemark];
+        }
+    }];
+    self.recommendRequest = request;
+}
+- (void)requestForCancelRecommendHomework:(NSString *)content {
+    MasterHomeworkSetCancelRecommendRequest_17 *request = [[MasterHomeworkSetCancelRecommendRequest_17 alloc] init];
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.homeworkSetId = self.homeworkSetId;
+    request.content = content;
+    WEAK_SELF
+    [request startRequestWithRetClass:[MasterHomeworkSetCancelRecommendItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error) {
+            [self showToast:error.localizedDescription];
+        }else {
+            MasterHomeworkSetCancelRecommendItem *item = retItem;
+            self.detailItem.isMyRecommend = @"0";
+            self.detailItem.isRecommend = item.body.isRecommend;
+            [self reloadContentView];
+            [self.inputView clearContent:MasterInputStatus_Cancle];
+            MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
+            [VC reloadMasterHomeworkSetRemark];
+        }
+    }];
+    self.cancleRequest = request;
+}
+- (void)requestForScoreHomework:(NSString *)content withScore:(NSString *)score {
+    MasterHomeworkSetScoreRequest_17 *request = [[MasterHomeworkSetScoreRequest_17 alloc] init];
+    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.homeworkSetId = self.homeworkSetId;
+    request.content = content;
+    request.score = score;
+    WEAK_SELF
+    [request startRequestWithRetClass:[MasterHomeworkSetScoreItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
+        STRONG_SELF
+        if (error) {
+            [self showToast:error.localizedDescription];
+        }else {
+            MasterHomeworkSetScoreItem *item = retItem;
+            self.detailItem.score = item.body.hwscore;
+            self.detailItem.myScore = item.body.myscore;
+            [self reloadContentView];
+            [self.inputView clearContent:MasterInputStatus_Comment];
+            MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
+            [VC reloadMasterHomeworkSetRemark];
+        }
+    }];
+    self.scoreHomework = request;
+}
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    self.chooseIndex = scrollView.contentOffset.x/scrollView.frame.size.width;
+    [self.chooseView chooseHomeworkDetail:self.chooseIndex];
 }
 @end

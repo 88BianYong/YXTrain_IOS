@@ -24,7 +24,9 @@
 @end
 
 @implementation MasterHomeworkSetListViewController_17
-
+- (void)dealloc {
+    DDLogDebug(@"======>>%@",NSStringFromClass([self class]));
+}
 #pragma mark - set
 - (AlertView *)alert {
     if (_alert == nil) {

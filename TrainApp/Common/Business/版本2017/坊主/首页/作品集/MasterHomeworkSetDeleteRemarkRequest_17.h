@@ -9,5 +9,5 @@
 #import "YXGetRequest.h"
 
 @interface MasterHomeworkSetDeleteRemarkRequest_17 : YXGetRequest
-
+@property (nonatomic, copy) NSString<Optional> *remarkId;
 @end

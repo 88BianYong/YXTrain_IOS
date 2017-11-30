@@ -7,7 +7,16 @@
 //
 
 #import "YXGetRequest.h"
-
+@interface MasterHomeworkSetScoreItem_Body : JSONModel
+@property (nonatomic, copy) NSString<Optional> *hwscore;//作业的分数
+@property (nonatomic, copy) NSString<Optional> *myscore;//我的评分结果
+@end
+@interface MasterHomeworkSetScoreItem : HttpBaseRequestItem
+@property (nonatomic, strong) MasterHomeworkSetScoreItem_Body<Optional> *body;
+@end
 @interface MasterHomeworkSetScoreRequest_17 : YXGetRequest
-
+@property (nonatomic, copy) NSString<Optional> *projectId;
+@property (nonatomic, copy) NSString<Optional> *homeworkSetId;
+@property (nonatomic, copy) NSString<Optional> *content;
+@property (nonatomic, copy) NSString<Optional> *score;
 @end

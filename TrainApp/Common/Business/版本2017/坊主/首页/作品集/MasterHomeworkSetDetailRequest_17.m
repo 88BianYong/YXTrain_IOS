@@ -27,6 +27,14 @@
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"homeworkId":@"homeworkid",
                                                                   @"templateId":@"templateid"}];
 }
+- (void)setFinishDate:(NSString<Optional> *)finishDate {
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormater dateFromString:finishDate];
+    [dateFormater setDateFormat:@"yyyy.MM.dd"];
+    NSString *currentDateString = [dateFormater stringFromDate:date];
+    _finishDate = currentDateString;
+}
 @end
 
 @implementation MasterHomeworkSetDetailItem
