@@ -103,11 +103,8 @@
                 [self cancleUserSelection];
                 BLOCK_EXEC(self.filterSelectedBlock,NO);
             }else {
-                if ([self confirmUserSelected]) {
-                    BLOCK_EXEC(self.filterSelectedBlock,YES);
-                }else {
-                    BLOCK_EXEC(self.filterSelectedBlock,NO);
-                }
+                [self confirmUserSelected];
+                BLOCK_EXEC(self.filterSelectedBlock,YES);
             }
         };
         return footerView;

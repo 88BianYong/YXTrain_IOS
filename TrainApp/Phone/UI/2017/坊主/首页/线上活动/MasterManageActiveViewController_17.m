@@ -54,9 +54,11 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.showsVerticalScrollIndicator = NO;
-    [self.tableView registerClass:[ MasterManageActiveListCell_17 class] forCellReuseIdentifier:@" MasterManageActiveListCell_17"];
+    [self.tableView registerClass:[MasterManageActiveListCell_17 class] forCellReuseIdentifier:@" MasterManageActiveListCell_17"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
-    [self.tableView registerClass:[ MasterManageActiveListHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterManageActiveListHeaderView_17"];
+    [self.tableView registerClass:[MasterManageActiveListHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterManageActiveListHeaderView_17"];
+    [self.tableView registerClass:[MasterFilterEmptyFooterView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterFilterEmptyFooterView_17"];
+    
     self.headerView = [[MasterManageActiveListTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 198.0f)];
     WEAK_SELF
     self.headerView.masterActiveButtonBlock = ^(UIButton *sender) {
@@ -137,7 +139,7 @@
         selectionView.frame = CGRectMake(0.0f, 0.0f, kScreenWidth, 0.0f);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.25f animations:^{
-                if (self.bgView.bounds.size.height < selectionView.collectionSize.height) {
+                if (self.bgView.bounds.size.height > selectionView.collectionSize.height) {
                     selectionView.frame = CGRectMake(0.0f, 0.0f, kScreenWidth, selectionView.collectionSize.height);
                 }else {
                     selectionView.frame = CGRectMake(0.0f, 0.0f, kScreenWidth, self.bgView.bounds.size.height);
@@ -184,7 +186,11 @@
     return 30.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.00001;
+    if (self.dataArray.count == 0) {
+        return kScreenHeight - 198.0f - 64.0f;
+    }else {
+       return 0.00001;
+    }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
      MasterManageActiveListHeaderView_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MasterManageActiveListHeaderView_17"];
@@ -207,8 +213,14 @@
     return headerView;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
-    return footerView;
+    if (self.dataArray.count == 0) {
+        MasterFilterEmptyFooterView_17 *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MasterFilterEmptyFooterView_17"];
+        footerView.titleLabel.text = @"无符合条件的活动";
+        return footerView;
+    }else {
+        YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+        return footerView;
+    }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -220,5 +232,40 @@
         VC.isMySelfBool = YES;
     }
     [self.navigationController pushViewController:VC animated:YES];
+}
+#pragma mark - request
+- (void)firstPageFetch {
+    if (!self.dataFetcher) {
+        return;
+    }
+    
+    [self.dataFetcher stop];
+    self.dataFetcher.pageindex = 0;
+    if (!self.dataFetcher.pagesize) {
+        self.dataFetcher.pagesize = 20;
+    }
+    WEAK_SELF
+    [self.dataFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
+        STRONG_SELF
+        self.tableView.tableHeaderView.hidden = NO;
+        self.tableView.hidden = NO;
+        [self stopLoading];
+        [self stopAnimation];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = self.dataArray.count != 0;
+        data.error = error;
+        if ([self handleRequestData:data inView:self.contentView]) {
+            return;
+        }
+        self.total = total;
+        [self tableViewWillRefresh];
+        [self.header setLastUpdateTime:[NSDate date]];
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:retItemArray];
+        [self checkHasMore];
+        [self.dataFetcher saveToCache];
+        [self.tableView reloadData];
+    }];
 }
 @end

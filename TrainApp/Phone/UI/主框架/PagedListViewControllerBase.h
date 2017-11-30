@@ -31,5 +31,6 @@
 - (void)setPulldownViewHidden:(BOOL)hidden;
 - (void)setPullupViewHidden:(BOOL)hidden;
 - (void)tableViewWillRefresh;
+- (void)checkHasMore;
 
 @end

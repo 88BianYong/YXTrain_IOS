@@ -269,5 +269,39 @@
     }];
     self.studyRequest = request;
 }
+- (void)firstPageFetch {
+    if (!self.dataFetcher) {
+        return;
+    }
+    
+    [self.dataFetcher stop];
+    self.dataFetcher.pageindex = 0;
+    if (!self.dataFetcher.pagesize) {
+        self.dataFetcher.pagesize = 20;
+    }
+    WEAK_SELF
+    [self.dataFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
+        STRONG_SELF
+        self.tableView.tableHeaderView.hidden = NO;
+        self.tableView.hidden = NO;
+        [self stopLoading];
+        [self stopAnimation];
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = self.dataArray.count != 0;
+        data.error = error;
+        if ([self handleRequestData:data inView:self.contentView]) {
+            return;
+        }
+        self.total = total;
+        [self tableViewWillRefresh];
+        [self.header setLastUpdateTime:[NSDate date]];
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:retItemArray];
+        [self checkHasMore];
+        [self.dataFetcher saveToCache];
+        [self.tableView reloadData];
+    }];
+}
 
 @end

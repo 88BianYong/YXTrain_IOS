@@ -152,6 +152,7 @@
         handled = YES;
     }else {
         if (!data.requestDataExist) {
+            self.emptyView.hidden = NO;
             [view addSubview:self.emptyView];
             [self.emptyView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.equalTo(view);

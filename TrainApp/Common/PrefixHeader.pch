@@ -74,5 +74,6 @@ extern int ddLogLevel;
 #import "LSTAlertView.h"
 #import "YXNoFloatingHeaderFooterTableView.h"
 #import "MasterMyExamExplainView_17.h"
+#import "MasterFilterEmptyFooterView_17.h"
 #endif 
 /* PrefixHeader_pch */

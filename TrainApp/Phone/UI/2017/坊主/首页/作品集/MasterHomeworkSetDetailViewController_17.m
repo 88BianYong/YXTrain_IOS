@@ -309,6 +309,7 @@
 }
 - (void)reloadMasterHomeworkSetRemark {
     self.startPage  = 1;
+    [self startLoading];
     [self requestForHomeworkRemark];
 }
 @end
