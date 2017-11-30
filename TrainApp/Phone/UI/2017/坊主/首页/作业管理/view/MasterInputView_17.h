@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger,MasterInputStatus) {
 @interface MasterInputView_17 : UIView
 @property (nonatomic, strong) SAMTextView *scoreTextView;
 @property (nonatomic, strong) SAMTextView *commentTextView;
+@property (nonatomic, copy) NSString *placeholderScoreString;
 @property (nonatomic, assign) MasterInputStatus inputStatus;
 @property (nonatomic, copy) void(^masterInputViewBlock)(MasterInputStatus status);
 - (void)clearContent:(MasterInputStatus) inputStatus;

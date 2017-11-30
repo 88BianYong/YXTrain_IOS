@@ -30,8 +30,8 @@
 
 
 
-@property (nonatomic, strong) NSString<Optional> *role;
-@property (nonatomic, strong) NSString<Optional> *isDoubel;
+@property (nonatomic, strong) NSString<Ignore> *role;
+@property (nonatomic, strong) NSString<Ignore> *isDoubel;
 @end
 
 @interface YXTrainListRequestItem_body : JSONModel

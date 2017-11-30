@@ -40,15 +40,15 @@
         if (self.inputStatus != MasterInputStatus_Score) {
             [self uploadHeight];
             if (self.inputStatus == MasterInputStatus_Comment) {
-                self.sendButton.enabled = self.commentTextView.text.length > 0;
+                self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0;
             }else {
-                self.sendButton.enabled = self.commentTextView.text.length >= 10;
+                self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] >= 10;
             }
         }else {
-            if (self.scoreTextView.text.length > 10) {
-                self.scoreTextView.text = [self.scoreTextView.text substringToIndex:10];
+            if (self.scoreTextView.text.length > 3) {
+                self.scoreTextView.text = [self.scoreTextView.text substringToIndex:3];
             }
-            self.sendButton.enabled = (self.scoreTextView.text.length > 0 && self.scoreTextView.text.floatValue <= 100.0f);
+            self.sendButton.enabled = ([[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 1);
         }
     }];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillChangeFrameNotification object:nil]subscribeNext:^(id x) {
@@ -103,8 +103,11 @@
             make.left.equalTo(self.inputView.mas_left).offset(kScreenWidth);
         }];
         [self layoutIfNeeded];
+        if (self.scoreTextView.text.length == 0) {
+            self.scoreTextView.text = self.placeholderScoreString;
+        }
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-        self.sendButton.enabled = self.scoreTextView.text.length > 0;
+        self.sendButton.enabled = [[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0;
          [self.scoreTextView becomeFirstResponder];
     }else if (_inputStatus == MasterInputStatus_Comment){
         self.commentTextView.placeholder = @"请输您对本作业的评语";
@@ -118,7 +121,7 @@
             [self layoutIfNeeded];
         } completion:^(BOOL finished) {
             self.commentTextView.text = self.commentString;
-            self.sendButton.enabled = self.commentTextView.text.length > 0;
+            self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0;
             [self uploadHeight];
             [self.sendButton setTitle:@"发送" forState:UIControlStateNormal];
         }];
@@ -134,7 +137,7 @@
         self.commentTextView.text = self.recommendString;
         [self uploadHeight];
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-        self.sendButton.enabled = self.commentTextView.text.length >= 10;
+        self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] >= 10;
          [self.commentTextView becomeFirstResponder];
     }else {
         self.commentTextView.placeholder = @"取消推优的理由不少于10个字";
@@ -147,7 +150,7 @@
         self.commentTextView.text = self.cancleString;
         [self uploadHeight];
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-        self.sendButton.enabled = self.commentTextView.text.length >= 10;
+        self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] >= 10;
          [self.commentTextView becomeFirstResponder];
     }
 }
@@ -253,5 +256,35 @@
         self.commentTextView.text = nil;
     }
 }
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([[[textView textInputMode] primaryLanguage] isEqualToString:@"emoji"] || ![[textView textInputMode] primaryLanguage] || [self stringContainsEmoji:text]) {
+        return NO;
+    }
+    return YES;
+}
 
+- (BOOL)stringContainsEmoji:(NSString *)string {
+    __block BOOL returnValue = NO;
+    [string enumerateSubstringsInRange:NSMakeRange(0, [string length])
+                               options:NSStringEnumerationByComposedCharacterSequences
+                            usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                const unichar high = [substring characterAtIndex: 0];
+                                // Surrogate pair (U+1D000-1F9FF)
+                                if (0xD800 <= high && high <= 0xDBFF) {
+                                    const unichar low = [substring characterAtIndex: 1];
+                                    const int codepoint = ((high - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
+                                    if (0x1D000 <= codepoint && codepoint <= 0x1F9FF){
+                                        returnValue = YES;
+                                    }
+                                    // Not surrogate pair (U+2100-27BF)
+                                } else {
+                                    
+                                    //                                    if (0x2100 <= high && high <= 0x27BF){
+                                    //                                        returnValue = YES;
+                                    //                                    }
+                                }
+                            }];
+    
+    return returnValue;
+}
 @end

@@ -58,7 +58,8 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         if (error) {
             if (self.trainlistItem) {
                 [self chooseProjectWithChoosePid:self.trainlistItem.body.choosePid withBody:self.trainlistItem.body];
-                BLOCK_EXEC(completeBlock,[TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body],nil);
+                self.projectGroupArray = [TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body];
+                BLOCK_EXEC(completeBlock,self.projectGroupArray,nil);
             }else {
                 BLOCK_EXEC(completeBlock,nil,error);
             }
@@ -75,8 +76,8 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         }
         self.trainlistItem = item;
         self.projectGroupArray = [TrainListProjectGroup projectGroupsWithRawData:item.body];
-        BLOCK_EXEC(completeBlock,self.projectGroupArray,nil);
         [self saveToCache];
+        BLOCK_EXEC(completeBlock,self.projectGroupArray,nil);
     }];
 }
 

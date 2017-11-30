@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSArray<LSTCollectionFilterDefaultModel *> *filterModel;
 @property (nonatomic, strong) MasterLearningInfoRequestItem_Body *itemBody;
 @property (nonatomic, strong) MasterRemindStudyRequest *studyRequest;
+@property (nonatomic, strong) UIButton *superviseButton;
 
 @property (nonatomic, strong) AlertView *alert;
 @property (nonatomic, strong) UIView *bgView;
@@ -88,18 +89,19 @@
     }];
 }
 - (void)setupSuperviseLearningRightView {
-    UIButton *superviseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [superviseButton setTitle:@"督促学习" forState:UIControlStateNormal];
-    [superviseButton setTitleColor:[UIColor colorWithHexString:@"0070c9"] forState:UIControlStateNormal];
-    superviseButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    superviseButton.frame = CGRectMake(0, 0, 80.0f, 30.0f);
-    superviseButton.titleEdgeInsets = UIEdgeInsetsMake(0, 20.0f, 0.0f, -20.0f);
+    self.superviseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.superviseButton setTitle:@"督促学习" forState:UIControlStateNormal];
+    [self.superviseButton setTitleColor:[UIColor colorWithHexString:@"0070c9"] forState:UIControlStateNormal];
+    self.superviseButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.superviseButton.frame = CGRectMake(0, 0, 80.0f, 30.0f);
+    self.superviseButton.titleEdgeInsets = UIEdgeInsetsMake(0, 20.0f, 0.0f, -20.0f);
+    self.superviseButton.hidden = YES;
     WEAK_SELF
-    [[superviseButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+    [[self.superviseButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
         [self requestForRemindStudy];
     }];
-    [self setupRightWithCustomView:superviseButton];
+    [self setupRightWithCustomView:self.superviseButton];
 }
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
     MasterMyExamExplainView_17 *v = [[MasterMyExamExplainView_17 alloc]init];
@@ -264,10 +266,20 @@
         if ([self handleRequestData:data]) {
             return;
         }
-        NSString *string = [NSString stringWithFormat:@"友情提示:\"%@\"截止时间: %@,请各位老师注意学习进度",[LSTSharedInstance sharedInstance].trainManager.currentProject.name,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
-        [self showMarkWithOriginRect:CGRectMake(200, 30.0f, 80, 30.0f) explain:string];
+        [self showAlertCancleRemark];
     }];
     self.studyRequest = request;
+}
+- (void)showAlertCancleRemark{
+    NSString *string = [NSString stringWithFormat:@"友情提示:\"%@\"截止时间: %@,请各位老师注意学习进度",[LSTSharedInstance sharedInstance].trainManager.currentProject.name,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
+    LSTAlertView *alertView = [[LSTAlertView alloc]init];
+    alertView.title = string;
+    alertView.imageName = @"失败icon";
+    WEAK_SELF
+    [alertView addButtonWithTitle:@"我知道了" style:LSTAlertActionStyle_Alone action:^{
+        STRONG_SELF
+    }];
+    [alertView show];
 }
 - (void)firstPageFetch {
     if (!self.dataFetcher) {
@@ -301,6 +313,7 @@
         [self checkHasMore];
         [self.dataFetcher saveToCache];
         [self.tableView reloadData];
+        self.superviseButton.hidden = self.dataArray.count == 0;
     }];
 }
 

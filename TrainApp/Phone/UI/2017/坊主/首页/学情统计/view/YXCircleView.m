@@ -13,7 +13,6 @@
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, strong) CAShapeLayer *maskShapeLayer;
 @property (nonatomic, strong) WCGraintCircleLayer * graintlayer;
-@property (nonatomic, strong) UILabel *titleLabel;
 @end
 @implementation YXCircleView
 - (instancetype)initWithFrame:(CGRect)frame {

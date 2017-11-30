@@ -7,9 +7,7 @@
 //
 
 #import "MasterCircleDisplayView_17.h"
-#import "YXCircleView.h"
 @interface MasterCircleDisplayView_17 ()
-@property (nonatomic, strong) YXCircleView *circleView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @end
 @implementation MasterCircleDisplayView_17

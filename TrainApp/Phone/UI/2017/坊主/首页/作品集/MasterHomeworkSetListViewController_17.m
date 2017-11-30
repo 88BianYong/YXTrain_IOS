@@ -156,9 +156,9 @@
             }
             MasterHomeworkSetListFetcher_17 *fetcher = (MasterHomeworkSetListFetcher_17 *)self.dataFetcher;
             fetcher.barId = self.filterModel[0].defaultSelectedID;
-            fetcher.recommendStatus = self.filterModel[1].defaultSelectedID;
-            fetcher.readStatus = self.filterModel[2].defaultSelectedID;
-            fetcher.commendStatus = self.filterModel[3].defaultSelectedID;
+            fetcher.readStatus = self.filterModel[1].defaultSelectedID;
+            fetcher.commendStatus = self.filterModel[2].defaultSelectedID;
+            fetcher.recommendStatus = self.filterModel[3].defaultSelectedID;
             [self startLoading];
             [self firstPageFetch];
         }
@@ -216,7 +216,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (self.dataArray.count == 0) {
         MasterFilterEmptyFooterView_17 *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MasterFilterEmptyFooterView_17"];
-        footerView.titleLabel.text = @"无符合条件的课程";
+        footerView.titleLabel.text = @"无符合条件的作品集";
         return footerView;
     }else {
         YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
@@ -229,6 +229,17 @@
     MasterHomeworkSetListItem_Body_Homework *homework = self.dataArray[indexPath.row];
     VC.homeworkSetId = homework.homeworkSetId;
     VC.titleString = homework.title;
+    WEAK_SELF
+    VC.masterHomeworkSetRecommendBlock = ^(BOOL recommend) {
+        STRONG_SELF
+        homework.isMasterRecommend = [NSString stringWithFormat:@"%d",recommend];
+        [self.tableView reloadData];
+    };
+    VC.masterHomeworkSetCommendBlock = ^{
+        STRONG_SELF
+        homework.isMasterComment = @"1";
+        [self.tableView reloadData];
+    };
     [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark - request

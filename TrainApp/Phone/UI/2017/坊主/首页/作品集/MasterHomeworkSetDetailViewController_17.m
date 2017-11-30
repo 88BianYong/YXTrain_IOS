@@ -258,6 +258,7 @@
     self.detailRequest = request;
 }
 - (void)requestForHomeworkRemark{
+    [self.remarkRequest stopRequest];
     MasterHomeworkSetRemarkListRequest_17 *request = [[MasterHomeworkSetRemarkListRequest_17 alloc] init];
     request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.homeworkSetId = self.homeworkSetId;
@@ -266,6 +267,7 @@
     WEAK_SELF
     [request startRequestWithRetClass:[MasterHomeworkSetRemarkListItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
+        [self stopLoading];
         [self.footer endRefreshing];
         [self.header endRefreshing];
         [self setPullupViewHidden:YES];

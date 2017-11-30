@@ -30,7 +30,11 @@
 - (NSString *)descripe {
     __block NSString *string = @"";
     [self.schemes enumerateObjectsUsingBlock:^(MasterManagerSchemeItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        string = [string stringByAppendingString:obj.descripe];
+        if (idx == self.schemes.count - 1) {
+            string = [string stringByAppendingString:[NSString stringWithFormat:@"%@",obj.descripe]];
+        }else {
+            string = [string stringByAppendingString:[NSString stringWithFormat:@"%@\n",obj.descripe]];
+        }
     }];
     return string;
 }

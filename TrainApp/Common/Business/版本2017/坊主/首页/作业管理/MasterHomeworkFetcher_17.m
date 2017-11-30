@@ -64,7 +64,7 @@
         [statusArray1 addObject:model];
     }];
     LSTCollectionFilterDefaultModel *statusModel1 = [[LSTCollectionFilterDefaultModel alloc] init];
-    statusModel1.defaultSelected = @"0";
+    statusModel1.defaultSelected = @"2";
     statusModel1.itemName = @"阅读状态";
     statusModel1.item = statusArray1;
     [modelArray addObject:statusModel1];

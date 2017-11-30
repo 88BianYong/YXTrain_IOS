@@ -109,8 +109,25 @@
         toolView.backgroundColor = [UIColor clearColor];
         toolView.userInteractionEnabled = NO;
         toolView.nameLable.text = obj.name;
-        toolView.imageView.image = [UIImage imageNamed:self.iconDicitionary[obj.code][obj.iconStatus]];
+        toolView.imageView.image = [UIImage imageNamed:self.iconDicitionary[obj.code][@"1"]];
         [button addSubview:toolView];
+        if (obj.iconStatus.integerValue == 2) {
+            UILabel *label = [[UILabel alloc] init];
+            label.text = @"未完成";
+            label.textAlignment = NSTextAlignmentCenter;
+            label.backgroundColor = [[UIColor colorWithHexString:@"cccccc"] colorWithAlphaComponent:0.5f];
+            label.clipsToBounds = YES;
+            label.textColor = [UIColor whiteColor];
+            label.layer.cornerRadius = 3.0f;
+            label.font = [UIFont systemFontOfSize:10.0f];
+            [button addSubview:label];
+            [label mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(button.mas_right).offset(-2.0f);
+                make.top.equalTo(button.mas_top).offset(2.0f);
+                make.size.mas_offset(CGSizeMake(35.0f, 15.0f));
+            }];
+        }
+        
         [toolView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(button);
             make.width.equalTo(button.mas_width);

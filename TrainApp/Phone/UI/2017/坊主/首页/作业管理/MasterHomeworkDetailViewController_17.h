@@ -11,4 +11,7 @@
 @interface MasterHomeworkDetailViewController_17 : YXBaseViewController
 @property (nonatomic, copy) NSString *homeworkId;
 @property (nonatomic, copy) NSString *titleString;
+@property (nonatomic, copy) void(^masterHomeworkRecommendBlock)(BOOL recommend);
+@property (nonatomic, copy) void(^masterHomeworkCommendBlock)(void);
+
 @end

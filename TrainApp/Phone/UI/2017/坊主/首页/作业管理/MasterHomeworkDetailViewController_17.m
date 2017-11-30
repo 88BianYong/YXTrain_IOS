@@ -64,8 +64,14 @@
     [self setupLayout];
     [self startLoading];
     [self requestForHomeworkDetail];
-    [self requestForHomeworkRemark];
-    
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 }
 #pragma mark - set
 - (void)setDetailItem:(MasterHomeworkDetailItem_Body *)detailItem {
@@ -76,9 +82,14 @@
     self.headerView.hidden = NO;
     self.tableView.hidden = NO;
     if (_detailItem.isMyRecommend.boolValue) {
-        [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
+        [self.remarkButton setTitle:@"取消推优" forState:UIControlStateNormal];
     }else {
         [self.remarkButton setTitle:@"推优" forState:UIControlStateNormal];
+    }
+    if (_detailItem.myScore.integerValue > 0) {
+        [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
+    }else {
+        [self.commentButton setTitle:@"点评" forState:UIControlStateNormal];
     }
     [self.tableView reloadData];
 }
@@ -139,12 +150,12 @@
     WEAK_SELF
     [[self.remarkButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
-        [UIView animateWithDuration:0.25 animations:^{
-            self.translucentView.alpha = 1.0f;
-        }];
         if (self.detailItem.isMyRecommend.boolValue) {
-            self.inputView.inputStatus = MasterInputStatus_Cancle;
+            [self showAlertCancleRemark];
         }else {
+            [UIView animateWithDuration:0.25 animations:^{
+                self.translucentView.alpha = 1.0f;
+            }];
             self.inputView.inputStatus = MasterInputStatus_Recommend;
         }
     }];
@@ -161,6 +172,10 @@
         [UIView animateWithDuration:0.25 animations:^{
             self.translucentView.alpha = 1.0f;
         }];
+        self.inputView.placeholderScoreString = @"60";
+        if (self.detailItem.myScore.integerValue > 0) {
+            self.inputView.placeholderScoreString = self.detailItem.score;
+        }
         self.inputView.inputStatus = MasterInputStatus_Score;
     }];
     [self.view addSubview:self.commentButton];
@@ -178,9 +193,13 @@
     }];
     WEAK_SELF
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];
-    [[recognizer rac_gestureSignal] subscribeNext:^(UITapGestureRecognizer *x) {
+    [[recognizer rac_gestureSignal] subscribeNext:^(UITapGestureRecognizer *sender) {
         STRONG_SELF
-        [self hiddenInputView];
+        CGPoint point = [sender locationInView:self.translucentView];
+        if (sender.state == UIGestureRecognizerStateEnded &&
+            !CGRectContainsPoint(self.inputView.frame,point)) {
+            [self hiddenInputView];
+        }
     }];
     [self.translucentView addGestureRecognizer:recognizer];
     self.inputView = [[MasterInputView_17 alloc] initWithFrame:CGRectZero];
@@ -192,7 +211,9 @@
             [self requestForRecommendHomework:self.inputView.commentTextView.text];
         }else if (status == MasterInputStatus_Comment) {
             if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.myScore.integerValue) {
-                [self showToast:@"再次点评不得低于原分数"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self showToast:@"不应该低于当前分数"];
+                });
             }else {
                    [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
             }
@@ -271,12 +292,7 @@
     }];
     [alertView addButtonWithTitle:@"确认" style:LSTAlertActionStyle_Default action:^{
         STRONG_SELF
-        self.detailItem.isMyRecommend = @"0";
-        if (self.detailItem.isMyRecommend.boolValue) {
-            [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
-        }else {
-            [self.remarkButton setTitle:@"推优" forState:UIControlStateNormal];
-        }
+        self.inputView.inputStatus = MasterInputStatus_Cancle;
     }];
     [alertView show];
 }
@@ -421,6 +437,7 @@
             return;
         }
         self.detailItem = ((MasterHomeworkDetailItem *)retItem).body;
+        [self requestForHomeworkRemark];
     }];
     self.detailRequest = request;
 }
@@ -470,10 +487,11 @@
             self.detailItem.isMyRecommend = @"1";
             self.detailItem.isRecommend = @"1";
             self.headerView.body = self.detailItem;
-            [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
+            [self.remarkButton setTitle:@"取消推优" forState:UIControlStateNormal];
             [self.inputView clearContent:MasterInputStatus_Recommend];
             self.startPage = 1;
             [self requestForHomeworkRemark];
+            BLOCK_EXEC(self.masterHomeworkRecommendBlock,YES);
         }
     }];
     self.recommendRequest = request;
@@ -495,6 +513,7 @@
             if (self.detailItem.isRecommend.integerValue != item.body.isRecommend.integerValue) {
                 self.detailItem.isRecommend = item.body.isRecommend;
                 self.headerView.body = self.detailItem;
+                BLOCK_EXEC(self.masterHomeworkRecommendBlock,self.detailItem.isRecommend.boolValue);
             }
             [self.inputView clearContent:MasterInputStatus_Cancle];
             self.startPage = 1;
@@ -520,8 +539,10 @@
             self.detailItem.myScore = item.body.myscore;
             self.headerView.body = self.detailItem;
             [self.inputView clearContent:MasterInputStatus_Comment];
+            [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
             self.startPage = 1;
             [self requestForHomeworkRemark];
+            BLOCK_EXEC(self.masterHomeworkCommendBlock);
         }
     }];
     self.scoreHomework = request;

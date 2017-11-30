@@ -91,9 +91,14 @@
     }
     self.recommendImageView.hidden = !_detailItem.isRecommend.boolValue;
     if (_detailItem.isMyRecommend.boolValue) {
-        [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
+        [self.remarkButton setTitle:@"取消推优" forState:UIControlStateNormal];
     }else {
         [self.remarkButton setTitle:@"推优" forState:UIControlStateNormal];
+    }
+    if (_detailItem.myScore.integerValue > 0) {
+        [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
+    }else {
+        [self.commentButton setTitle:@"点评" forState:UIControlStateNormal];
     }
 }
 
@@ -113,6 +118,11 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -183,12 +193,12 @@
     WEAK_SELF
     [[self.remarkButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
-        [UIView animateWithDuration:0.25 animations:^{
-            self.translucentView.alpha = 1.0f;
-        }];
         if (self.detailItem.isMyRecommend.boolValue) {
-            self.inputView.inputStatus = MasterInputStatus_Cancle;
+            [self showAlertCancleRemark];
         }else {
+            [UIView animateWithDuration:0.25 animations:^{
+                self.translucentView.alpha = 1.0f;
+            }];
             self.inputView.inputStatus = MasterInputStatus_Recommend;
         }
     }];
@@ -205,6 +215,10 @@
         [UIView animateWithDuration:0.25 animations:^{
             self.translucentView.alpha = 1.0f;
         }];
+        self.inputView.placeholderScoreString = @"60";
+        if (self.detailItem.myScore.integerValue > 0) {
+            self.inputView.placeholderScoreString = self.detailItem.score;
+        }
         self.inputView.inputStatus = MasterInputStatus_Score;
     }];
     [self.view addSubview:self.commentButton];
@@ -231,6 +245,21 @@
         make.bottom.equalTo(self.view.mas_bottom);
     }];
 }
+- (void)showAlertCancleRemark{
+    LSTAlertView *alertView = [[LSTAlertView alloc]init];
+    alertView.title = @"确认取消推优吗?";
+    alertView.imageName = @"失败icon";
+    WEAK_SELF
+    [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Cancel action:^{
+        STRONG_SELF
+        
+    }];
+    [alertView addButtonWithTitle:@"确认" style:LSTAlertActionStyle_Default action:^{
+        STRONG_SELF
+        self.inputView.inputStatus = MasterInputStatus_Cancle;
+    }];
+    [alertView show];
+}
 - (void)setupInputView{
     self.translucentView = [[UIView alloc] init];
     self.translucentView.alpha = 0.0f;
@@ -241,9 +270,13 @@
     }];
     WEAK_SELF
     UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];
-    [[recognizer rac_gestureSignal] subscribeNext:^(UITapGestureRecognizer *x) {
+    [[recognizer rac_gestureSignal] subscribeNext:^(UITapGestureRecognizer *sender) {
         STRONG_SELF
-        [self hiddenInputView];
+        CGPoint point = [sender locationInView:self.translucentView];
+        if (sender.state == UIGestureRecognizerStateEnded &&
+            !CGRectContainsPoint(self.inputView.frame,point)) {
+            [self hiddenInputView];
+        }
     }];
     [self.translucentView addGestureRecognizer:recognizer];
     self.inputView = [[MasterInputView_17 alloc] initWithFrame:CGRectZero];
@@ -255,7 +288,9 @@
             [self requestForRecommendHomework:self.inputView.commentTextView.text];
         }else if (status == MasterInputStatus_Comment) {
             if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.myScore.integerValue) {
-                [self showToast:@"再次点评不得低于原分数"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self showToast:@"不应该低于当前分数"];
+                });
             }else {
                 [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
             }
@@ -341,10 +376,11 @@
         }else {
             self.detailItem.isMyRecommend = @"1";
             self.detailItem.isRecommend = @"1";
-            [self.remarkButton setTitle:@"已推优" forState:UIControlStateNormal];
             [self.inputView clearContent:MasterInputStatus_Recommend];
             MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
             [VC reloadMasterHomeworkSetRemark];
+            BLOCK_EXEC(self.masterHomeworkSetRecommendBlock,YES);
+            [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
         }
     }];
     self.recommendRequest = request;
@@ -367,6 +403,8 @@
             [self.inputView clearContent:MasterInputStatus_Cancle];
             MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
             [VC reloadMasterHomeworkSetRemark];
+            [self.remarkButton setTitle:@"取消推优" forState:UIControlStateNormal];
+            BLOCK_EXEC(self.masterHomeworkSetRecommendBlock,self.detailItem.isRecommend.boolValue);
         }
     }];
     self.cancleRequest = request;
@@ -390,6 +428,7 @@
             [self.inputView clearContent:MasterInputStatus_Comment];
             MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
             [VC reloadMasterHomeworkSetRemark];
+            BLOCK_EXEC(self.masterHomeworkSetCommendBlock);
         }
     }];
     self.scoreHomework = request;

@@ -9,7 +9,7 @@
 #import "YXTrainListRequest.h"
 
 @implementation YXTrainListRequestItem_body_train
-- (NSString<Optional> *)role {
+- (NSString<Ignore> *)role {
     if (_role) {
         return _role;
     }else {
@@ -22,7 +22,7 @@
         return @"9";
     }
 }
-- (NSString<Optional> *)isDoubel {
+- (NSString<Ignore> *)isDoubel {
     BOOL isMaster = NO;
     BOOL isStudent = NO;
     NSArray *array = [self.roles componentsSeparatedByString:@","];
@@ -69,7 +69,7 @@
     NSDate *date = [dateFormater dateFromString:endDate];
     [dateFormater setDateFormat:@"yyyy年MM月dd日"];
     NSString *currentDateString = [dateFormater stringFromDate:date];
-    _endDate = currentDateString;
+    _endDate = currentDateString?:endDate;
 }
 @end
 

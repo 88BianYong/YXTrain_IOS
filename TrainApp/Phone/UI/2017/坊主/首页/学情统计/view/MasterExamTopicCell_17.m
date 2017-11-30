@@ -20,6 +20,8 @@
 @property (nonatomic, strong) MasterCircleDisplayView_17 *learningView;
 @property (nonatomic, strong) MasterCircleDisplayView_17 *qualifiedView;
 @property (nonatomic, strong) MasterCircleDisplayView_17 *bestView;
+@property (nonatomic, strong) MasterCircleDisplayView_17 *averageScoreView;
+
 
 @property (nonatomic, assign) CGFloat spacingFloat;
 @end
@@ -41,6 +43,8 @@
     self.learningView.progress = [_detail.xxl floatValue]/100.0f;
     self.qualifiedView.progress = [_detail.hgl floatValue]/100.0f;
     self.bestView.progress = [_detail.bestl floatValue]/100.0f;
+    self.averageScoreView.progress = [_detail.perscore floatValue]/100.0f;
+    self.averageScoreView.circleView.titleLabel.text = [NSString stringWithFormat:@"%@分",[_detail.perscore yx_formatInteger]];
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -70,7 +74,7 @@
     self.scrollView = [[UIScrollView alloc] init];
     self.scrollView.backgroundColor = [UIColor clearColor];
     self.scrollView.showsHorizontalScrollIndicator = NO;
-    self.scrollView.contentSize = CGSizeMake(kScreenWidth + kCircleWidth/2.0f + self.spacingFloat, 100.0f);
+    self.scrollView.contentSize = CGSizeMake((kCircleWidth + self.spacingFloat) * 5 + self.spacingFloat , 100.0f);
     [self.contentView addSubview:self.scrollView];
     
     self.trainingView = [[MasterCircleDisplayView_17 alloc] init];
@@ -85,6 +89,9 @@
     self.bestView = [[MasterCircleDisplayView_17 alloc] init];
     self.bestView.titleString = @"≥90分比例";
     [self.scrollView addSubview:self.bestView];
+    self.averageScoreView = [[MasterCircleDisplayView_17 alloc] init];
+    self.averageScoreView.titleString = @"平均分";
+    [self.scrollView addSubview:self.averageScoreView];
 }
 - (void)setupLayout {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -132,6 +139,11 @@
     [self.bestView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_offset(CGSizeMake(80.0f, 97.0f));
         make.left.equalTo(self.qualifiedView.mas_right).offset(self.spacingFloat);
+        make.top.equalTo(self.scrollView.mas_top).offset(25.0f);
+    }];
+    [self.averageScoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_offset(CGSizeMake(80.0f, 97.0f));
+        make.left.equalTo(self.bestView.mas_right).offset(self.spacingFloat);
         make.top.equalTo(self.scrollView.mas_top).offset(25.0f);
     }];
 }
