@@ -61,7 +61,7 @@
     NSDate *date = [dateFormater dateFromString:startDate];
     [dateFormater setDateFormat:@"yyyy.MM.dd"];
     NSString *currentDateString = [dateFormater stringFromDate:date];
-    _startDate = currentDateString;
+    _startDate = currentDateString?:startDate;
 }
 - (void)setEndDate:(NSString<Optional> *)endDate {
     NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
