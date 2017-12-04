@@ -190,27 +190,27 @@
                 MasterLearningInfoViewController_17 *VC = [[MasterLearningInfoViewController_17 alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 3) {//简报
-                MasterBriefViewController_17 *VC = [[MasterBriefViewController_17 alloc] init];
-                [self.navigationController pushViewController:VC animated:YES];
+//                MasterBriefViewController_17 *VC = [[MasterBriefViewController_17 alloc] init];
+//                [self.navigationController pushViewController:VC animated:YES];
                 
             }else if (tool.code.integerValue == 1) {//作业
                 MasterHomeworkViewController_17 *VC = [[MasterHomeworkViewController_17 alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 2) {//通知
-                MasterNoticeViewController_17 *VC = [[MasterNoticeViewController_17 alloc] init];
-                [self.navigationController pushViewController:VC animated:YES];
+//                MasterNoticeViewController_17 *VC = [[MasterNoticeViewController_17 alloc] init];
+//                [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 6) {//线上
-                MasterManageActiveViewController_17 *VC = [[MasterManageActiveViewController_17 alloc] init];
-                [self.navigationController pushViewController:VC animated:YES];
+//                MasterManageActiveViewController_17 *VC = [[MasterManageActiveViewController_17 alloc] init];
+//                [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 8) {//线下活动
-                MasterManageOffActiveViewController_17 *VC = [[MasterManageOffActiveViewController_17 alloc] init];
-                [self.navigationController pushViewController:VC animated:YES];
+//                MasterManageOffActiveViewController_17 *VC = [[MasterManageOffActiveViewController_17 alloc] init];
+//                [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 5) {//作品集
-                MasterHomeworkSetListViewController_17 *VC = [[MasterHomeworkSetListViewController_17 alloc] init];
-                [self.navigationController pushViewController:VC animated:YES];
+//                MasterHomeworkSetListViewController_17 *VC = [[MasterHomeworkSetListViewController_17 alloc] init];
+//                [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 30) {//看课
-                MasterCourseRecordListViewController_17 *VC = [[MasterCourseRecordListViewController_17 alloc] init];
-                [self.navigationController pushViewController:VC animated:YES];
+//                MasterCourseRecordListViewController_17 *VC = [[MasterCourseRecordListViewController_17 alloc] init];
+//                [self.navigationController pushViewController:VC animated:YES];
             }else if (tool.code.integerValue == 31) {//综合
                 
             }
