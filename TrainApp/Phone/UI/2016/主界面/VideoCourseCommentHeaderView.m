@@ -123,7 +123,7 @@
 #pragma mark - button Action
 - (void)favorButtonAction:(UIButton *)sender{
     if (sender.selected) {
-        [(YXBaseViewController *)[self viewController] showToast:@"您已经赞过了哦"];
+        [(YXBaseViewController *)[self yx_viewController] showToast:@"您已经赞过了哦"];
     }else {
         BLOCK_EXEC(self.favorBlock);
     }
@@ -134,7 +134,7 @@
         !CGRectContainsPoint(self.favorButton.frame,point)) {
         BLOCK_EXEC(self.fullReplyBlock,self.comment);
     }else {
-        [(YXBaseViewController *)[self viewController] showToast:@"您已经赞过了哦"];
+        [(YXBaseViewController *)[self yx_viewController] showToast:@"您已经赞过了哦"];
     }
 }
 #pragma mark - set
@@ -171,15 +171,5 @@
 }
 - (void)setCourseCommentsFullReplyBlock:(CourseCommentsFullReplyBlock)block {
     self.fullReplyBlock = block;
-}
-- (UIViewController *)viewController
-{
-    for (UIView* next = [self superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    return nil;
 }
 @end

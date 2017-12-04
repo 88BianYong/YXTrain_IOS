@@ -173,9 +173,10 @@
             self.translucentView.alpha = 1.0f;
         }];
         self.inputView.placeholderScoreString = @"60";
-        if (self.detailItem.myScore.integerValue > 0) {
+        if (self.detailItem.score.integerValue > 0) {
             self.inputView.placeholderScoreString = self.detailItem.score;
         }
+        self.inputView.minScoreString = self.detailItem.myScore;
         self.inputView.inputStatus = MasterInputStatus_Score;
     }];
     [self.view addSubview:self.commentButton];
@@ -211,9 +212,6 @@
             [self requestForRecommendHomework:self.inputView.commentTextView.text];
         }else if (status == MasterInputStatus_Comment) {
             if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.myScore.integerValue) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self showToast:@"不应该低于当前分数"];
-                });
             }else {
                    [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
             }
@@ -292,6 +290,9 @@
     }];
     [alertView addButtonWithTitle:@"确认" style:LSTAlertActionStyle_Default action:^{
         STRONG_SELF
+        [UIView animateWithDuration:0.25 animations:^{
+            self.translucentView.alpha = 1.0f;
+        }];
         self.inputView.inputStatus = MasterInputStatus_Cancle;
     }];
     [alertView show];

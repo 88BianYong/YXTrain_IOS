@@ -21,16 +21,38 @@
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, assign) MasterManageActiveType activeType;
 
+@property (nonatomic, strong) MasterFilterEmptyFooterView_17 *footerView;
+
 @end
 
 @implementation MasterManageDetailActiveViewController_17
 - (void)dealloc{
     [self.header free];
 }
+#pragma mark - set
+- (void)setActiveType:(MasterManageActiveType)activeType {
+    _activeType = activeType;
+    if (_activeType == MasterManageActiveType_Tool) {
+        self.footerView.titleLabel.text = @"暂无数据统计";
+        if (self.detailItem.countTool.count == 0) {
+            self.tableView.tableFooterView = self.footerView;
+        }else {
+            self.tableView.tableFooterView = nil;
+        }
+    }else {
+        self.footerView.titleLabel.text = @"暂无成员明细";
+        if (self.detailItem.countMemeber.count == 0) {
+            self.tableView.tableFooterView = self.footerView;
+        }else {
+            self.tableView.tableFooterView = nil;
+        }
+    }
+    [self.tableView reloadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = self.titleString;
-    self.activeType = MasterManageActiveType_Tool;
+    _activeType = MasterManageActiveType_Tool;
     [self setupUI];
     [self setupLayout];
     [self startLoading];
@@ -62,13 +84,12 @@
     [self.tableView registerClass:[MasterDetailActiveMemeberHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterDetailActiveMemeberHeaderView_17"];
     [self.tableView registerClass:[MasterDetailActiveMemeberCell_17 class] forCellReuseIdentifier:@"MasterDetailActiveMemeberCell_17"];
     [self.tableView registerClass:[MasterDetailActiveToolCell_17 class] forCellReuseIdentifier:@"MasterDetailActiveToolCell_17"];
-    
     self.headerView = [[MasterDetailActiveTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 255.0f)];
+    self.footerView = [[MasterFilterEmptyFooterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 255.0f)];
     WEAK_SELF
     self.headerView.masterDetailActiveBlock = ^(MasterManageActiveType type) {
         STRONG_SELF
         self.activeType = type;
-        [self.tableView reloadData];
     };
     self.tableView.hidden = YES;
     self.header = [MJRefreshHeaderView header];

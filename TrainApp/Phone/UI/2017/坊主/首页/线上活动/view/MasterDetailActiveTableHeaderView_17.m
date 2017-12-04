@@ -37,6 +37,7 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, contentString.length)];
     self.descriptionLabel.attributedText = attributedString;
     self.scrollView.contentSize = CGSizeMake(kScreenWidth - 31.0f, ceilf([self.descriptionLabel sizeThatFits:CGSizeMake(kScreenWidth - 30.0f , MAXFLOAT)].height));
+    self.scrollView.scrollEnabled = isMy;
     self.toolButton.hidden = !isMy;
     self.toolButton.enabled = NO;
     self.memeberButton.hidden = !isMy;

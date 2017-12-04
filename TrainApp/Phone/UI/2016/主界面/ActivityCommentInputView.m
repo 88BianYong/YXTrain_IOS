@@ -106,21 +106,10 @@ static NSInteger kMaxCommentNumberWords = 500;
     if ([[self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0) {
         BLOCK_EXEC(self.inputTextBlock,self.textView.text);
     }else {
-        [YXPromtController showToast:self.emptyString inView:[self viewController].view];
+        [YXPromtController showToast:self.emptyString inView:[self yx_viewController].view];
     }
     
 }
-- (UIViewController *)viewController
-{
-    for (UIView* next = [self superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    return nil;
-}
-
 #pragma mark - notification
 - (void)keyboardWillChangeFrame:(NSNotification *)aNotification {
     NSDictionary *userInfo = aNotification.userInfo;

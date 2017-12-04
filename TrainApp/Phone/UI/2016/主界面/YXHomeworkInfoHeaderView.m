@@ -132,7 +132,7 @@
         YXWebViewController *VC = [[YXWebViewController alloc] init];
         VC.urlString = url.absoluteString;
         VC.isUpdatTitle = YES;
-        [[self viewController].navigationController pushViewController:VC animated:YES];
+        [[self yx_viewController].navigationController pushViewController:VC animated:YES];
     }];
     
     self.openCloseButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -319,14 +319,4 @@
     self.isFirstRefresh = NO;
     [self.htmlView relayoutText];
 }
-- (UIViewController *)viewController {
-    for (UIView* next = [self superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    return nil;
-}
-
 @end

@@ -205,20 +205,7 @@
     [super touchesEnded:touches withEvent:event];
     CGPoint location = [[[event allTouches] anyObject] locationInView:self];
     if (CGRectContainsPoint(self.favorButton.frame, location) && self.favorButton.enabled == NO) {
-        [(YXBaseViewController *)[self viewController] showToast:@"您已经赞过了哦"];
+        [(YXBaseViewController *)[self yx_viewController] showToast:@"您已经赞过了哦"];
     }
 }
-
-- (UIViewController *)viewController
-{
-    for (UIView* next = [self superview]; next; next = next.superview) {
-        UIResponder *nextResponder = [next nextResponder];
-        if ([nextResponder isKindOfClass:[UIViewController class]]) {
-            return (UIViewController *)nextResponder;
-        }
-    }
-    return nil;
-}
-
-
 @end

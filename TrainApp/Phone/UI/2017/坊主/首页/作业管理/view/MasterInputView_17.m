@@ -180,7 +180,11 @@
     [[self.sendButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *x) {
         STRONG_SELF
         if (self.inputStatus == MasterInputStatus_Score) {
-            self.inputStatus = MasterInputStatus_Comment;
+            if (self.scoreTextView.text.integerValue <= self.minScoreString.integerValue) {
+                [YXPromtController showToast:@"再次点评不应该低于当前分数" inView:self.superview];
+            }else {
+                self.inputStatus = MasterInputStatus_Comment;
+            }
         }else {
             BLOCK_EXEC(self.masterInputViewBlock,self.inputStatus);
         }
@@ -251,6 +255,7 @@
         self.commentString = nil;
         self.commentTextView.text = nil;
         self.scoreTextView.text = nil;
+        self.placeholderScoreString = nil;
     }else if (inputStatus == MasterInputStatus_Cancle) {
         self.cancleString = nil;
         self.commentTextView.text = nil;

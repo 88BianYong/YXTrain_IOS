@@ -21,6 +21,11 @@
     }
     return self;
 }
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+    }
+    return self;
+}
 #pragma mark - setupUI
 - (void)setupUI {
     self.containerView = [[UIView alloc] init];
@@ -34,7 +39,7 @@
     self.titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
-    self.titleLabel.text = @"无内容";
+    self.titleLabel.text = @"";
     [self.containerView addSubview:self.titleLabel];
 }
 - (void)setupLayout {

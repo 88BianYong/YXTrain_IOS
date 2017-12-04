@@ -65,6 +65,7 @@
     self.titleLabel.text = _homework.title;
     self.publishLabel.text = _homework.publishUser;
     self.finishTimeLabel.text = _homework.finishDate;
+    self.titleLabel.textColor = _homework.isRead.boolValue ? [UIColor colorWithHexString:@"334466"]: [UIColor colorWithHexString:@"a1a7ae"];
     [self setupHomeworkStatusScoreWidth:0.0f];
 }
 

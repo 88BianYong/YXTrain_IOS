@@ -27,6 +27,7 @@
 @property (nonatomic, copy) NSString<Optional> *isGrouperRecommend; //组长推优 1已推优
 @property (nonatomic, copy) NSString<Optional> *isExpertRecommend;//专家推优 1已推优
 @property (nonatomic, copy) NSString<Optional> *isSelfRecommend;//自荐
+@property (nonatomic, copy) NSString<Optional> *isRead;
 @property (nonatomic, copy) NSString<Optional> *finishDate;
 @end
 
