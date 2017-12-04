@@ -7,7 +7,9 @@
 //
 
 #import "PagedListFetcherBase.h"
-
+#import "CourseListRequest_17.h"
 @interface CourseHistoryListFetcher_17 : PagedListFetcherBase
 @property (nonatomic, copy) NSString<Optional> *stageID;
+@property (nonatomic, copy) void(^masterCourseHistoryBlock)(CourseListRequest_17Item_Scheme *scheme);
+
 @end

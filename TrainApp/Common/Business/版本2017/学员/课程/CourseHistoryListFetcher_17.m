@@ -7,7 +7,6 @@
 //
 
 #import "CourseHistoryListFetcher_17.h"
-#import "CourseListRequest_17.h"
 #import "CourseHistoryListRequest_17.h"
 @interface CourseHistoryListFetcher_17 ()
 @property (nonatomic, strong) CourseHistoryListRequest_17 *listRequest;
@@ -28,6 +27,9 @@
         }
         CourseListRequest_17Item *item = (CourseListRequest_17Item *)retItem;
         BLOCK_EXEC(aCompleteBlock,item.count.integerValue,item.objs,nil);
+        if (item.scheme.count > 0) {
+            BLOCK_EXEC(self.masterCourseHistoryBlock,item.scheme[0]);
+        }
     }];
     self.listRequest = request;
 }

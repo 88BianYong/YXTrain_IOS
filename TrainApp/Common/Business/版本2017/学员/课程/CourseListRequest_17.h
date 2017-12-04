@@ -8,6 +8,12 @@
 
 #import "YXGetRequest.h"
 #import "CourseCenterConditionRequest_17.h"
+@protocol CourseListRequest_17Item_SearchTerm_Stage @end
+@interface CourseListRequest_17Item_SearchTerm_Stage : JSONModel
+@property (nonatomic, copy) NSString<Optional> *stageID;
+@property (nonatomic, copy) NSString<Optional> *stageName;
+@end
+
 @protocol CourseListRequest_17Item_SearchTerm_MockSegment_Grade <NSObject>
 @end
 
@@ -81,7 +87,7 @@
 @property (nonatomic, copy) NSString<Optional> *type;
 @property (nonatomic, copy) NSString<Optional> *passFinishScore;
 @property (nonatomic, copy) NSString<Optional> *passScore;
-
+@property (nonatomic, copy) NSString<Optional> *descripe;
 @end
 @interface CourseListRequest_17Item_Scheme_Process : JSONModel
 @property (nonatomic, copy) NSString<Optional> *userFinishNum;
@@ -110,6 +116,7 @@
 @property (nonatomic, strong) CourseListRequest_17Item_SearchTerm_DefaultValue<Optional> *defaultValue;
 @property (nonatomic, copy) NSString<Optional> *isLockStudy;
 @property (nonatomic, strong) NSArray<CourseCenterConditionRequest_17Item_CourseTypes, Optional> *coursetypes;
+@property (nonatomic, strong) NSArray<CourseListRequest_17Item_SearchTerm_Stage, Optional> *stages;
 @property (nonatomic, strong) NSArray<CourseListRequest_17Item_Scheme,Optional> *scheme;
 /**
  内部解析用 读取使用 segmentModel
@@ -144,6 +151,7 @@
 @property (nonatomic, copy) NSString<Optional> *type;//101：选修， 102：必修，默认值0
 @property (nonatomic, copy) NSString<Optional> *page;//页数
 @property (nonatomic, copy) NSString<Optional> *limit;//每页数量
+@property (nonatomic, copy) NSString<Optional> *role;
 @property (nonatomic, copy) NSString<Optional> *category;
-
+@property (nonatomic, copy) NSString<Optional> *status;
 @end

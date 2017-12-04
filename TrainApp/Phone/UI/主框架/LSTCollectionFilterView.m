@@ -15,11 +15,14 @@
 @property (nonatomic, strong) UICollectionView *collectionView;
 @end
 @implementation LSTCollectionFilterView
+- (void)dealloc {
+    DDLogDebug(@"release=======>>%@",NSStringFromClass([self class]));
+}
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
         self.clipsToBounds = YES;
-        [self setupMock];
+//        [self setupMock];
         [self setupUI];
         [self setupLayout];
     }
@@ -32,20 +35,20 @@
     return self.collectionView.contentSize;
 }
 #pragma mark - setupUI
-- (void)setupMock {
-    NSString *filepath = [[NSBundle mainBundle] pathForResource:@"collectionFilter_mock" ofType:@"json"];
-    NSString *string = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
-    LSTCollectionFilterModel *model = [[LSTCollectionFilterModel alloc] initWithString:string error:nil];
-    model.itemName.defaultSelected = @"0";
-    model.itemName.defaultSelectedID = @"2";
-    LSTCollectionFilterModel_ItemName *item = model.itemName.itemName;
-    item.defaultSelected = @"1";
-    item.defaultSelectedID = @"5";
-    LSTCollectionFilterModel_ItemName *test = item.itemName;
-    test.defaultSelected = @"2";
-    test.defaultSelectedID = @"35";
-    self.filterModel = model;
-}
+//- (void)setupMock {
+//    NSString *filepath = [[NSBundle mainBundle] pathForResource:@"collectionFilter_mock" ofType:@"json"];
+//    NSString *string = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
+//    LSTCollectionFilterModel *model = [[LSTCollectionFilterModel alloc] initWithString:string error:nil];
+//    model.itemName.defaultSelected = @"0";
+//    model.itemName.defaultSelectedID = @"2";
+//    LSTCollectionFilterModel_ItemName *item = model.itemName.itemName;
+//    item.defaultSelected = @"1";
+//    item.defaultSelectedID = @"5";
+//    LSTCollectionFilterModel_ItemName *test = item.itemName;
+//    test.defaultSelected = @"2";
+//    test.defaultSelectedID = @"35";
+//    self.filterModel = model;
+//}
 - (void)setupUI {
     CollectionViewEqualSpaceFlowLayout *flowLayout = [[CollectionViewEqualSpaceFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -190,7 +193,7 @@
         footerView.courseFilterCompleteBlock = ^(BOOL isCancleBool) {
             STRONG_SELF
             if (isCancleBool) {
-                [self cancleUserSelected:self.filterModel.itemName];
+                [self cancleUserSelected];
                 BLOCK_EXEC(self.filterSelectedBlock,nil);
             }else {
                 if ([self confirmUserSelected:self.filterModel.itemName withUserChange:NO]) {
@@ -204,6 +207,9 @@
         return footerView;
     }
     return nil;
+}
+- (void)cancleUserSelected {
+    [self cancleUserSelected:self.filterModel.itemName];
 }
 - (void)cancleUserSelected:(LSTCollectionFilterModel_ItemName *)itemName {
     if (itemName != nil) {

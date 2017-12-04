@@ -12,4 +12,5 @@
 @property (nonatomic, strong) LSTCollectionFilterModel *filterModel;
 @property (nonatomic, copy) void(^filterSelectedBlock)(LSTCollectionFilterModel_ItemName *itemName);
 @property (nonatomic, assign) CGSize collectionSize;
+- (void)cancleUserSelected;
 @end

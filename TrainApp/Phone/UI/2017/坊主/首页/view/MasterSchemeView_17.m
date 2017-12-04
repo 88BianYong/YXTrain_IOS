@@ -25,7 +25,7 @@
 - (void)setupUI {
     self.mainPointLabel = [[UILabel alloc] init];
     self.mainPointLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.mainPointLabel.text = @"你熟练度会计分录卡迪夫;拉的屎啦咖啡";
+    self.mainPointLabel.text = @"";
     self.mainPointLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.mainPointLabel];
     

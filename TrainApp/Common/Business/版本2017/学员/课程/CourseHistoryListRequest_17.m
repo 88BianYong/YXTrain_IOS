@@ -21,6 +21,7 @@
         self.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
         self.themeID = [LSTSharedInstance sharedInstance].trainManager.currentProject.themeId;
         self.layerID = [LSTSharedInstance sharedInstance].trainManager.currentProject.layerId;
+        self.role = [LSTSharedInstance sharedInstance].trainManager.currentProject.role;
     }
     return self;
 }

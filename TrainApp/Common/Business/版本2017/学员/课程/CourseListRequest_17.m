@@ -7,6 +7,12 @@
 //
 
 #import "CourseListRequest_17.h"
+@implementation CourseListRequest_17Item_SearchTerm_Stage
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"stageName":@"name",
+                                                                  @"stageID":@"id"}];
+}
+@end
 @implementation CourseListRequest_17Item_SearchTerm_MockSegment_Chapter
 @end
 
@@ -156,6 +162,7 @@
     if (self = [super init]) {
         self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/course/list"];
         self.category = @"1";
+        self.role = [LSTSharedInstance sharedInstance].trainManager.currentProject.role;
     }
     return self;
 }
