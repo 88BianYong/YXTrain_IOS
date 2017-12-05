@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterFilterEmptyFooterView_17 : UITableViewHeaderFooterView
-@property (nonatomic, strong) UILabel *titleLabel;
 @end

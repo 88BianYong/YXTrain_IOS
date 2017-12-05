@@ -8,6 +8,7 @@
 
 #import "MasterFilterEmptyFooterView_17.h"
 @interface MasterFilterEmptyFooterView_17 ()
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIView *containerView;
 
@@ -31,7 +32,7 @@
     self.containerView = [[UIView alloc] init];
     [self addSubview:self.containerView];
     self.imageView = [[UIImageView alloc]init];
-    self.imageView.image = [UIImage imageNamed:@"无内容"];
+    self.imageView.image = [UIImage imageNamed:@"数据为空"];
     [self.containerView addSubview:self.imageView];
     
     self.titleLabel = [[UILabel alloc]init];
@@ -39,22 +40,25 @@
     self.titleLabel.textColor = [UIColor colorWithHexString:@"a1a7ae"];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.titleLabel.numberOfLines = 0;
-    self.titleLabel.text = @"";
+    self.titleLabel.text = @"数据为空";
     [self.containerView addSubview:self.titleLabel];
 }
 - (void)setupLayout {
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(0);
-        make.size.mas_equalTo(CGSizeMake(202, 202));
+        make.top.equalTo(self.containerView.mas_top);
+        make.size.mas_equalTo(CGSizeMake(80, 80));
+        make.centerX.equalTo(self.containerView.mas_centerX);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.equalTo(self.imageView.mas_bottom).mas_offset(2);
+        make.centerX.equalTo(self.containerView.mas_centerX);
+        make.top.equalTo(self.imageView.mas_bottom).offset(14.0f);
+        make.bottom.equalTo(self.containerView.mas_bottom);
     }];
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(self.mas_top);
+        make.centerY.equalTo(self.mas_centerY).offset(10.0f);
+        make.size.mas_offset(CGSizeMake(80 + 14 + 14, 80 + 14 + 14));
     }];
 }
 @end

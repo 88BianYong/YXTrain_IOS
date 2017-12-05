@@ -215,7 +215,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (self.dataArray.count == 0) {
         MasterFilterEmptyFooterView_17 *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MasterFilterEmptyFooterView_17"];
-        footerView.titleLabel.text = @"无符合条件的活动";
+        //footerView.titleLabel.text = @"无符合条件的活动";
         return footerView;
     }else {
         YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];

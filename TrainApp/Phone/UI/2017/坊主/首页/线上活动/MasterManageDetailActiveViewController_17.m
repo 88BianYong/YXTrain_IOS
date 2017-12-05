@@ -33,14 +33,14 @@
 - (void)setActiveType:(MasterManageActiveType)activeType {
     _activeType = activeType;
     if (_activeType == MasterManageActiveType_Tool) {
-        self.footerView.titleLabel.text = @"暂无数据统计";
+//        self.footerView.titleLabel.text = @"暂无数据统计";
         if (self.detailItem.countTool.count == 0) {
             self.tableView.tableFooterView = self.footerView;
         }else {
             self.tableView.tableFooterView = nil;
         }
     }else {
-        self.footerView.titleLabel.text = @"暂无成员明细";
+//        self.footerView.titleLabel.text = @"暂无成员明细";
         if (self.detailItem.countMemeber.count == 0) {
             self.tableView.tableFooterView = self.footerView;
         }else {
