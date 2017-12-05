@@ -20,6 +20,17 @@
 - (NSString *)yx_stringByTrimmingCharacters;
 
 
+/**
+ *  拼音 -> pinyin
+ */
+- (NSString *)yx_transformToPinyin;
+
+/**
+ *  拼音首字母 -> py
+ */
+- (NSString *)yx_transformToPinyinFirstLetter;
+
+
 #pragma mark - encode & decode
 
 // 字符串编码
@@ -74,4 +85,5 @@
  *  @return 需要显示的时间文本
  */
 + (NSString *)timeStringWithTimeStamp:(NSString *)time;
+
 @end
