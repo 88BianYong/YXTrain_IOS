@@ -468,6 +468,9 @@
 		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
 		927874311F01F89300A70DC0 /* VideoBeginningTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927874301F01F89300A70DC0 /* VideoBeginningTopView.m */; };
 		9279268C1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9279268B1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.m */; };
+		92797C111FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C101FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m */; };
+		92797C141FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C131FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m */; };
+		92797C171FD8F16200F57D1F /* YXProjectTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C161FD8F16200F57D1F /* YXProjectTimeView.m */; };
 		927B6C581F0F3A5E0082DB27 /* FloatingBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C4F1F0F3A5E0082DB27 /* FloatingBaseView.m */; };
 		927B6C591F0F3A5E0082DB27 /* PopUpFloatingViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C511F0F3A5E0082DB27 /* PopUpFloatingViewManager.m */; };
 		927B6C5A1F0F3A5E0082DB27 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 927B6C521F0F3A5E0082DB27 /* readme.txt */; };
@@ -1740,6 +1743,12 @@
 		927874301F01F89300A70DC0 /* VideoBeginningTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoBeginningTopView.m; sourceTree = "<group>"; };
 		9279268A1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterFilterEmptyFooterView_17.h; sourceTree = "<group>"; };
 		9279268B1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterFilterEmptyFooterView_17.m; sourceTree = "<group>"; };
+		92797C0F1FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectEndTimeFloatingView_17.h; sourceTree = "<group>"; };
+		92797C101FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectEndTimeFloatingView_17.m; sourceTree = "<group>"; };
+		92797C121FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectEndTimeFloatingView_16.h; sourceTree = "<group>"; };
+		92797C131FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectEndTimeFloatingView_16.m; sourceTree = "<group>"; };
+		92797C151FD8F16200F57D1F /* YXProjectTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXProjectTimeView.h; sourceTree = "<group>"; };
+		92797C161FD8F16200F57D1F /* YXProjectTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXProjectTimeView.m; sourceTree = "<group>"; };
 		927B6C4E1F0F3A5E0082DB27 /* FloatingBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingBaseView.h; sourceTree = "<group>"; };
 		927B6C4F1F0F3A5E0082DB27 /* FloatingBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingBaseView.m; sourceTree = "<group>"; };
 		927B6C501F0F3A5E0082DB27 /* PopUpFloatingViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpFloatingViewManager.h; sourceTree = "<group>"; };
@@ -2754,6 +2763,8 @@
 				7CF8886C1D1BC5C300E7C04D /* YXGradientView.m */,
 				7CF844731D2E2EA000B1CE55 /* YXTriangleView.h */,
 				7CF844741D2E2EA000B1CE55 /* YXTriangleView.m */,
+				92797C151FD8F16200F57D1F /* YXProjectTimeView.h */,
+				92797C161FD8F16200F57D1F /* YXProjectTimeView.m */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -4707,6 +4718,8 @@
 				924603FB1F2F0ACD00146C82 /* NoticeBriefFloatingView_17.m */,
 				924603FD1F2F0AFC00146C82 /* ExamineStepFloatingView_17.h */,
 				924603FE1F2F0AFC00146C82 /* ExamineStepFloatingView_17.m */,
+				92797C0F1FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.h */,
+				92797C101FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m */,
 			);
 			path = "弹出";
 			sourceTree = "<group>";
@@ -5890,6 +5903,8 @@
 				923063AD1EDE566A003AE660 /* QRCodeFloatingView.m */,
 				927B6C5D1F0F3B1A0082DB27 /* PopUpFloatingViewManager_16.h */,
 				927B6C5E1F0F3B1A0082DB27 /* PopUpFloatingViewManager_16.m */,
+				92797C121FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.h */,
+				92797C131FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m */,
 			);
 			path = "弹出";
 			sourceTree = "<group>";
@@ -6163,6 +6178,7 @@
 				92A7EFC31FCD49E70081C3A8 /* MasterManagerOffActiveDetailRquest_17.m in Sources */,
 				92F1A5B01E53084A00015766 /* YXProjectMainViewController+Student.m in Sources */,
 				7C2991B31DFE6F7000AE921C /* FileDownloadHelper.m in Sources */,
+				92797C171FD8F16200F57D1F /* YXProjectTimeView.m in Sources */,
 				92780F601DD9666700548424 /* ActivitySlideProgressControl.m in Sources */,
 				92348FE41EEFEF2A00D3B3A7 /* MasterStatRequest.m in Sources */,
 				928B7A4F1E88B3120067218A /* DeYangExamViewController.m in Sources */,
@@ -6448,6 +6464,7 @@
 				922197301FD7816F00C4A9DC /* MasterOverallRatingSearchView_17.m in Sources */,
 				92E927C21F1E0CAF00BEF834 /* ReadingListHeaderView_17.m in Sources */,
 				CB74626D1D1E85FE0065113A /* YXLoginRequest.m in Sources */,
+				92797C111FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m in Sources */,
 				92551E241FBBF3A70034DC71 /* YXCircleView.m in Sources */,
 				CB748EE61D239AF0004BCFBF /* YXStoreLikeProgressView.m in Sources */,
 				924797E11E022C1F0033BFDC /* BeijingActivityFilterRequest.m in Sources */,
@@ -6668,6 +6685,7 @@
 				922197391FD7A4E500C4A9DC /* MasterOverallRatingScoreRequet_17.m in Sources */,
 				928587671FCE8C580030D7B1 /* MasterHomeworkSetListFetcher_17.m in Sources */,
 				CB748EE91D23E118004BCFBF /* YXDatumSearchView.m in Sources */,
+				92797C141FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m in Sources */,
 				922901561DE576F5001474CE /* CommentReplyRequest.m in Sources */,
 				7C2C3B431D21351F00A03635 /* YXScoreExpHeaderView.m in Sources */,
 				92D29C3D1F1C97F0003DF29B /* CourseFilterHeaderView_17.m in Sources */,

@@ -26,6 +26,8 @@
 @property (nonatomic, assign) BOOL isMultiProject;//多项目
 @property (nonatomic, assign) BOOL isMultiRole;//多角色
 @property (nonatomic, assign) BOOL isQRCode;//二维码扫描
+@property (nonatomic, assign) BOOL isEndTime;//项目结束时间
+
 @end
 @implementation PopUpFloatingViewManager_16
 - (instancetype)init {
@@ -61,6 +63,8 @@
         [self showMultiRoleCutover];
     }else if ([self isQRCodePrompt] || self.isQRCode) {
         [self showQRCodePrompt];
+    }else if ([self isProjectEndTime] || self.isEndTime) {
+        [self showProjectEndTime];
     }
 }
 - (void)showPopUpFloatingView {
@@ -241,6 +245,28 @@
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kYXTrainQRCodePrompt];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+//完成学习步骤
+- (void)showProjectEndTime{
+    if (self.isEndTime) {
+        return;
+    }
+    self.isEndTime = YES;
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    FloatingBaseView*codeView = [[NSClassFromString(@"ProjectEndTimeFloatingView_17") alloc] init];
+    WEAK_SELF
+    [codeView setFloatingBaseRemoveCompleteBlock:^{
+        STRONG_SELF;
+        self.isEndTime = NO;
+        [self startPopUpFloatingView];
+    }];
+    [window addSubview:codeView];
+    [codeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    NSString *key = [NSString stringWithFormat:@"%@%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.pid,[LSTSharedInstance sharedInstance].trainManager.currentProject.w];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 #pragma mark - judgment
 - (BOOL)isShowMoreThanOneProject {
@@ -258,5 +284,9 @@
     return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainQRCodePrompt] &&
     [LSTSharedInstance sharedInstance].trainManager.currentProject != nil &&
     [LSTSharedInstance sharedInstance].trainManager.trainHelper.presentProject != LSTTrainPresentProject_Beijing;
+}
+- (BOOL)isProjectEndTime {
+    NSString *key = [NSString stringWithFormat:@"%@%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.pid,[LSTSharedInstance sharedInstance].trainManager.currentProject.w];
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:key] && ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue  == 0);
 }
 @end

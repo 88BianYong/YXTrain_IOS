@@ -124,12 +124,6 @@
     }else if ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 1){
         statusString = @"进行中";
     }
-    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
-    [dateFormater setDateFormat:@"yyyy年MM月dd日"];
-    NSDate *date = [dateFormater dateFromString:[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
-    [dateFormater setDateFormat:@"yyyy.MM.dd"];
-    NSString *currentDateString = [dateFormater stringFromDate:date];
-    
-    self.projectStatusLabel.text = [NSString stringWithFormat:@"%@-%@ %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,currentDateString,statusString];
+    self.projectStatusLabel.text = [NSString stringWithFormat:@"%@-%@ %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate,statusString];
 }
 @end

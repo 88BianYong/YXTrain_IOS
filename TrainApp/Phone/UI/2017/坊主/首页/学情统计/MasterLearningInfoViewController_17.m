@@ -271,7 +271,12 @@
     self.studyRequest = request;
 }
 - (void)showAlertCancleRemark{
-    NSString *string = [NSString stringWithFormat:@"友情提示:\"%@\"截止时间: %@,请各位老师注意学习进度",[LSTSharedInstance sharedInstance].trainManager.currentProject.name,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"yyyy.MM.dd"];
+    NSDate *date = [dateFormater dateFromString:[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
+    [dateFormater setDateFormat:@"yyyy年MM月dd日"];
+    NSString *currentDateString = [dateFormater stringFromDate:date];
+    NSString *string = [NSString stringWithFormat:@"友情提示:\"%@\"截止时间: %@,请各位老师注意学习进度",[LSTSharedInstance sharedInstance].trainManager.currentProject.name,currentDateString];
     LSTAlertView *alertView = [[LSTAlertView alloc]init];
     alertView.title = string;
     alertView.imageName = @"失败icon";

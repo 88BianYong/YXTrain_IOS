@@ -141,7 +141,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.tableView registerClass:[YXLearningStageCell_17 class] forCellReuseIdentifier:@"YXLearningStageCell_17"];
     [self.tableView registerClass:[YXLearningChannelHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"YXLearningChannelHeaderView_17"];
-    self.headerView = [[YXLearningTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 155.0f)];
+    self.headerView = [[YXLearningTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 155.0f + 90.0f + 5.0f + 1.0f)];
     self.headerView.hidden = YES;
     WEAK_SELF
     self.headerView.learningMyScoreCompleteBlock = ^(BOOL isScoreBool) {
@@ -216,6 +216,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         [self requestForLayerList];
         self.qrCodeView.hidden = YES;
     }else {
+        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [self requestForExamineDetail];
         self.qrCodeView.hidden = NO;
 

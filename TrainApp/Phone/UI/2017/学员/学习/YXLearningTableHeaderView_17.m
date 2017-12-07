@@ -8,6 +8,7 @@
 
 #import "YXLearningTableHeaderView_17.h"
 @interface LearningTableHeaderBottomView :UIView
+@property (nonatomic, strong) UILabel *label;
 @end
 @implementation LearningTableHeaderBottomView
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -23,12 +24,12 @@
             make.centerY.equalTo(self.mas_centerY);
         }];
 
-        UILabel *label = [[UILabel alloc] init];
-        label.text = @"学习流程";
-        label.textColor = [UIColor colorWithHexString:@"#334466"];
-        label.font = [UIFont boldSystemFontOfSize:16];
-        [self addSubview:label];
-        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.label = [[UILabel alloc] init];
+        self.label.text = @"学习流程";
+        self.label.textColor = [UIColor colorWithHexString:@"#334466"];
+        self.label.font = [UIFont boldSystemFontOfSize:16];
+        [self addSubview:self.label];
+        [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(vLineView.mas_right).offset(7.0f);
             make.centerY.equalTo(self.mas_centerY);
         }];
@@ -48,6 +49,10 @@
 @end
 
 @interface YXLearningTableHeaderView_17 ()
+@property (nonatomic, strong) LearningTableHeaderBottomView *topView;
+@property (nonatomic, strong) UIView *projectView;
+@property (nonatomic, strong) UILabel *projectLabel;
+@property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UILabel *scoreLabel;
 @property (nonatomic, strong) UILabel *scoreNameLabel;
@@ -70,6 +75,7 @@
 #pragma mark - set
 - (void)setScoreString:(NSString *)scoreString {
     _scoreString = scoreString;
+    self.projectLabel.text = [NSString stringWithFormat:@"%@-%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
     if (isEmpty(_scoreString)) {
         self.scoreLabel.text = @" ";
         return;
@@ -78,6 +84,24 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    self.topView = [[LearningTableHeaderBottomView alloc] init];
+    self.topView.label.text = @"项目时间";
+    [self addSubview:self.topView];
+    
+    self.lineView = [[UIView alloc] init];
+    self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
+    [self addSubview:self.lineView];
+    
+    self.projectView = [[UIView alloc] init];
+    self.projectView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.projectView];
+    
+    self.projectLabel = [[UILabel alloc] init];
+    self.projectLabel.font = [UIFont systemFontOfSize:14.0f];
+    self.projectLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    [self addSubview:self.projectLabel];
+    self.projectLabel.text = [NSString stringWithFormat:@"%@-%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
+    
     self.containerView = [[UIView alloc] init];
     self.containerView.backgroundColor =[UIColor whiteColor];
     [self addSubview:self.containerView];
@@ -123,14 +147,40 @@
     
     self.bottomView = [[LearningTableHeaderBottomView alloc] init];
     [self addSubview:self.bottomView];
-    
-
 }
 - (void)setupLayout {
-    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
         make.top.equalTo(self.mas_top).offset(5.0f);
+        make.height.mas_offset(45.0f);
+    }];
+    
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.topView.mas_bottom);
+        make.height.mas_offset(1.0f);
+    }];
+    
+    [self.projectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.lineView.mas_bottom);
+        make.height.mas_offset(45.0f);
+    }];
+    
+    [self.projectLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(15.0f);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.lineView.mas_bottom);
+        make.height.mas_offset(45.0f);
+    }];
+
+    [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.projectLabel.mas_bottom).offset(5.0f);
         make.height.mas_offset(100.0f);
     }];
     [self.myScoreButton mas_makeConstraints:^(MASConstraintMaker *make) {

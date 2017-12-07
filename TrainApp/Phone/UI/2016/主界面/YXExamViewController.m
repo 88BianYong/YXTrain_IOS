@@ -330,7 +330,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 10;
+        return 101.0f;
     }
     if (section <= self.examineItem.body.leadingVoList.count){
         YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[section-1];

@@ -43,7 +43,9 @@
 
 #import "MasterHappeningTableHeaderView.h"
 #import "YXWaveView.h"
+#import "YXProjectTimeView.h"
 @interface MasterHappeningTableHeaderView ()
+@property (nonatomic, strong) YXProjectTimeView *timeView;
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UILabel *totalNameLabel;
 @property (nonatomic, strong) UILabel *totalLabel;
@@ -66,6 +68,9 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    self.timeView = [[YXProjectTimeView alloc] init];
+    [self addSubview:self.timeView];
+    
     self.containerView = [[UIView alloc] init];
     self.containerView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.containerView];
@@ -97,8 +102,18 @@
     [self.containerView addSubview:self.bottomExplainLabel];
 }
 - (void)setupLayout {
+    [self.timeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.mas_top);
+        make.height.mas_equalTo(101.0f);
+    }];
+    
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(10.0f, 0.0f, 10.0f, 0.0f));
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.timeView.mas_bottom);
+        make.bottom.equalTo(self.mas_bottom).offset(-10.0f);
     }];
     
     [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {

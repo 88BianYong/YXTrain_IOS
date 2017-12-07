@@ -48,7 +48,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-    self.headerView = [[MasterHappeningTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 170.0f)];
+    self.headerView = [[MasterHappeningTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 170.0f  + 101.0f - 10.0f)];
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
     

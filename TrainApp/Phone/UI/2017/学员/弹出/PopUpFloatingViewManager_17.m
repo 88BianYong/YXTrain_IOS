@@ -26,7 +26,7 @@
 @property (nonatomic, assign) BOOL isScore;//学习成绩
 @property (nonatomic, assign) BOOL isNotice;//通知简报
 @property (nonatomic, assign) BOOL isStep;//流程
-
+@property (nonatomic, assign) BOOL isEndTime;//项目结束时间
 @end
 @implementation PopUpFloatingViewManager_17
 - (instancetype)init {
@@ -62,6 +62,8 @@
         [self showExamineNoticeBrief];
     }else if ([self isFinishStudyStep] || self.isStep) {
         [self showFinishStudyStep];
+    }else if ([self isProjectEndTime] || self.isEndTime) {
+        [self showProjectEndTime];
     }
 }
 - (void)showPopUpFloatingView {
@@ -243,6 +245,31 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+//完成学习步骤
+- (void)showProjectEndTime{
+    if (self.isEndTime) {
+        return;
+    }
+    self.isEndTime = YES;
+    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+    FloatingBaseView*codeView = [[NSClassFromString(@"ProjectEndTimeFloatingView_17") alloc] init];
+    WEAK_SELF
+    [codeView setFloatingBaseRemoveCompleteBlock:^{
+        STRONG_SELF;
+        self.isEndTime = NO;
+        [self startPopUpFloatingView];
+    }];
+    [window addSubview:codeView];
+    [codeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+    NSString *key = [NSString stringWithFormat:@"%@%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.pid,[LSTSharedInstance sharedInstance].trainManager.currentProject.w];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
+
 #pragma mark - judgment
 - (BOOL)isExamineUserScore {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainAcademicPerformance] &&
@@ -255,6 +282,10 @@
 - (BOOL)isFinishStudyStep {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainCompleteTrainingMethod]&&
     self.scoreString != nil;
+}
+- (BOOL)isProjectEndTime {
+    NSString *key = [NSString stringWithFormat:@"%@%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.pid,[LSTSharedInstance sharedInstance].trainManager.currentProject.w];
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:key] && ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue  == 0);
 }
 
 @end
