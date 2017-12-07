@@ -490,6 +490,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 #pragma mark - top / bottom hide
 - (void)resetTopBottomHideTimer {
     [self.topBottomHideTimer invalidate];
+    self.topBottomHideTimer = nil;
     self.topBottomHideTimer = [NSTimer scheduledTimerWithTimeInterval:kTopBottomHiddenTime
                                                                target:self
                                                              selector:@selector(topBottomHideTimerAction)

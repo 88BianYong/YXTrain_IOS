@@ -442,6 +442,8 @@
 
 
 - (void)startTimer{
+    [self.timer invalidate];
+    self.timer = nil;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0f target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 }
 

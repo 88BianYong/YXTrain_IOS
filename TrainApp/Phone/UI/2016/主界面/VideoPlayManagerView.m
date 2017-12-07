@@ -79,6 +79,7 @@ static const NSInteger kPlayReportRetryTime = 10;
             STRONG_SELF
             if ([x.object boolValue]) {
                 [self.documentRetryTimer invalidate];
+                self.documentRetryTimer = nil;
                 self.documentRetryTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                                              target:self
                                                                            selector:@selector(playTotalTimeAdd)
@@ -550,6 +551,7 @@ static const NSInteger kPlayReportRetryTime = 10;
 }
 - (void)resetTopBottomHideTimer {
     [self.topBottomHideTimer invalidate];
+    self.topBottomHideTimer = nil;
     self.topBottomHideTimer = [NSTimer scheduledTimerWithTimeInterval:kTopBottomHiddenTime
                                                                target:self
                                                              selector:@selector(topBottomHideTimerAction)
@@ -817,6 +819,7 @@ static const NSInteger kPlayReportRetryTime = 10;
     if (!self.isTestReport) {
         self.isReportSuccessBlock = block;
         [self.playReportRetryTimer invalidate];
+        self.playReportRetryTimer = nil;
         self.playReportRetryTimer = [NSTimer scheduledTimerWithTimeInterval:kPlayReportRetryTime
                                                                      target:self
                                                                    selector:@selector(startPlayReport)

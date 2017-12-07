@@ -326,6 +326,7 @@
         STRONG_SELF
         if ([x.object boolValue]) {
             [self.documentRetryTimer invalidate];
+            self.documentRetryTimer = nil;
             self.documentRetryTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                                        target:self
                                                                      selector:@selector(playDocumentTimeAdd)
@@ -364,6 +365,7 @@
 - (void)playTestReport {
     if (!self.isTestReport) {
         [self.playReportRetryTimer invalidate];
+        self.playReportRetryTimer = nil;
         self.playReportRetryTimer = [NSTimer scheduledTimerWithTimeInterval:10
                                                                      target:self
                                                                    selector:@selector(startPlayReport)

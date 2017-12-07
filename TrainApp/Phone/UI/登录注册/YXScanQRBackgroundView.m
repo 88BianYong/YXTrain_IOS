@@ -41,6 +41,8 @@
     _scanLineImageView = [[UIImageView alloc] init];
     _scanLineImageView.image = [UIImage imageNamed:@"扫描"];
     [self addSubview:_scanLineImageView];
+    [_scanTimer invalidate];
+    _scanTimer = nil;
     _scanTimer = [NSTimer scheduledTimerWithTimeInterval:.01 target:self selector:@selector(scanAnimation) userInfo:nil repeats:YES];
     
     UILabel *titleLabel = [[UILabel alloc] init];
