@@ -53,9 +53,9 @@
 
 - (void)setupData {
     Account *a11 = [Account accountWithName:@"test2016@yanxiu.com" password:@"123456"];
-    Account *a12 = [Account accountWithName:@"XY00000163@yanxiu.com" password:@"123456"];
-    Account *a13 = [Account accountWithName:@"XY00000193@yanxiu.com" password:@"888888"];
-    AccountGroup *g1 = [AccountGroup accountGroupWithName:@"学员测试环境帐号" accounts:@[a11,a12,a13]];
+    Account *a12 = [Account accountWithName:@"jyy24294@yanxiu.com" password:@"123456"];
+    AccountGroup *g1 = [AccountGroup accountGroupWithName:@"16测试环境帐号" accounts:@[a11,a12]];
+    
     Account *a21 = [Account accountWithName:@"XY03318570@yanxiu.com" password:@"888888"];
     Account *a22 = [Account accountWithName:@"XY02698346@yanxiu.com" password:@"888888"];
     Account *a23 = [Account accountWithName:@"XY02693619@yanxiu.com" password:@"123456"];
@@ -63,9 +63,9 @@
     
     Account *a31 = [Account accountWithName:@"JYY04438@yanxiu.com" password:@"123456"];
     Account *a32 = [Account accountWithName:@"jyy04624@yanxiu.com" password:@"888888"];
-//    Account *a33 = [Account accountWithName:@"JYY32330@yanxiu.com" password:@"888888"];
-//    Account *a34 = [Account accountWithName:@"JYY24294@yanxiu.com" password:@"123456"];
-    AccountGroup *g3 = [AccountGroup accountGroupWithName:@"17坊主测试环境帐号" accounts:@[a31,a32]];
+    Account *a33 = [Account accountWithName:@"XY00000163@yanxiu.com" password:@"123456"];
+    Account *a34 = [Account accountWithName:@"XY00000193@yanxiu.com" password:@"888888"];
+    AccountGroup *g3 = [AccountGroup accountGroupWithName:@"17坊主测试环境帐号" accounts:@[a31,a32,a33,a34]];
     
     Account *a51 = [Account accountWithName:@"XY03019240@yanxiu.com" password:@"123456"];
     AccountGroup *g4 = [AccountGroup accountGroupWithName:@"17坊主正式环境帐号" accounts:@[a51]];
