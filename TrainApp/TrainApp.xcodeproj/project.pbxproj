@@ -471,6 +471,7 @@
 		92797C111FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C101FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m */; };
 		92797C141FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C131FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m */; };
 		92797C171FD8F16200F57D1F /* YXProjectTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C161FD8F16200F57D1F /* YXProjectTimeView.m */; };
+		92797C1A1FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C191FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.m */; };
 		927B6C581F0F3A5E0082DB27 /* FloatingBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C4F1F0F3A5E0082DB27 /* FloatingBaseView.m */; };
 		927B6C591F0F3A5E0082DB27 /* PopUpFloatingViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C511F0F3A5E0082DB27 /* PopUpFloatingViewManager.m */; };
 		927B6C5A1F0F3A5E0082DB27 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 927B6C521F0F3A5E0082DB27 /* readme.txt */; };
@@ -1749,6 +1750,8 @@
 		92797C131FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectEndTimeFloatingView_16.m; sourceTree = "<group>"; };
 		92797C151FD8F16200F57D1F /* YXProjectTimeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXProjectTimeView.h; sourceTree = "<group>"; };
 		92797C161FD8F16200F57D1F /* YXProjectTimeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXProjectTimeView.m; sourceTree = "<group>"; };
+		92797C181FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterHappeningTableHeaderView_17.h; sourceTree = "<group>"; };
+		92797C191FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterHappeningTableHeaderView_17.m; sourceTree = "<group>"; };
 		927B6C4E1F0F3A5E0082DB27 /* FloatingBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatingBaseView.h; sourceTree = "<group>"; };
 		927B6C4F1F0F3A5E0082DB27 /* FloatingBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatingBaseView.m; sourceTree = "<group>"; };
 		927B6C501F0F3A5E0082DB27 /* PopUpFloatingViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopUpFloatingViewManager.h; sourceTree = "<group>"; };
@@ -3892,6 +3895,8 @@
 			children = (
 				92C79DE41FBE93AA00DB141D /* MasterHappeningCell_17.h */,
 				92C79DE51FBE93AA00DB141D /* MasterHappeningCell_17.m */,
+				92797C181FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.h */,
+				92797C191FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -6771,6 +6776,7 @@
 				92551E111FBBE5AC0034DC71 /* MasterLearningInfoRequest_17.m in Sources */,
 				922DB1AA1FBA7FE30078F6BD /* CourseCenterManagerViewController_17.m in Sources */,
 				7CF844611D2A609500B1CE55 /* YXFileRecordManager.m in Sources */,
+				92797C1A1FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.m in Sources */,
 				CB7462701D1E89EE0065113A /* YXInitRequest.m in Sources */,
 				7C3177A21D0EA723004AAC90 /* YXPostRequest.m in Sources */,
 				9223C8351D2F4BD2000F74DF /* YXSchoolSearchViewController.m in Sources */,

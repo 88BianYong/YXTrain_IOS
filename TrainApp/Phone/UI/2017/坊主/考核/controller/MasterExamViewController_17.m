@@ -8,7 +8,7 @@
 
 #import "MasterExamViewController_17.h"
 #import "MasterIndexRequest_17.h"
-#import "MasterHappeningTableHeaderView.h"
+#import "MasterHappeningTableHeaderView_17.h"
 #import "YXExamBlankHeaderFooterView.h"
 #import "MasterHappeningHeaderView.h"
 #import "MasterHappeningCell_17.h"
@@ -16,7 +16,7 @@
 #import "MJRefresh.h"
 @interface MasterExamViewController_17 ()<UITableViewDelegate, UITableViewDataSource>;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) MasterHappeningTableHeaderView *headerView;
+@property (nonatomic, strong) MasterHappeningTableHeaderView_17 *headerView;
 @property (nonatomic, strong) MasterIndexRequestItem_Body_MyExamine *masterBody;
 @property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) MasterIndexRequest_17 *masterStatrequest;
@@ -55,7 +55,7 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
-    self.headerView = [[MasterHappeningTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 170.0f)];
+    self.headerView = [[MasterHappeningTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 170.0f)];
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
     
