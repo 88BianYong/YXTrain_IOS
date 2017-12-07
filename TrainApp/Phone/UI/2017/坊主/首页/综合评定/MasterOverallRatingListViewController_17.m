@@ -336,7 +336,7 @@
     };
 }
 - (void)naviRightAction{
-    if (self.dataMutableArray.count > 0) {
+    if (self.dataMutableArray.count == 0) {
         [self showToast:@"当前无可搜索数据"];
         return;
     }
@@ -478,7 +478,6 @@
         }
     }
 //    NSPredicate *preicate = [NSPredicate predicateWithFormat:@"userName CONTAINS[c] %@", @""];
-//
 //    //过滤数据
 //    self.dataMutableArray = [NSMutableArray arrayWithArray:[self.dataMutableArray filteredArrayUsingPredicate:preicate]];
 }

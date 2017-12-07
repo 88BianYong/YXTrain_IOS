@@ -25,6 +25,8 @@
 #import "MasterHomeworkSetListViewController_17.h"
 #import "MasterCourseRecordListViewController_17.h"
 #import "MasterOverallRatingListViewController_17.h"
+#import "AppDelegate.h"
+#import "YXCourseDetailPlayerViewController_17.h"
 @interface MasterHomeViewController_17()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) MasterHomeTableHeaderView_17 *tableHeaderView;
@@ -49,6 +51,17 @@
     [self requestForMasterIndex];
     NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
     [self dealWithProjectGroups:groups];
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (!isEmpty(appDelegate.appDelegateHelper.courseId)) {
+        YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc] init];
+        YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
+        course.courses_id = appDelegate.appDelegateHelper.courseId;
+        course.courseType = appDelegate.appDelegateHelper.courseType;
+        vc.course = course;
+        vc.seekInteger = [appDelegate.appDelegateHelper.seg integerValue];
+        vc.fromWhere = VideoCourseFromWhere_QRCode;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
