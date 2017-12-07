@@ -33,6 +33,7 @@
 }
 - (void) setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
+    self.recordBgView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.38];
 }
 #pragma mark - setupUI
 - (void)setupUI{

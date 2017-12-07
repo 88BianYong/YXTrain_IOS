@@ -9,7 +9,6 @@
 #import "YXExamBlankHeaderFooterView.h"
 #import "YXProjectTimeView.h"
 @implementation YXExamBlankHeaderFooterView
-
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self setupUI];

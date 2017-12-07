@@ -10,7 +10,7 @@
 #import "YXScoreTotalScoreHeaderView.h"
 #import "YXScoreTypeHeaderView.h"
 #import "YXScoreBounsScoreCell.h"
-#import "YXExamBlankHeaderFooterView.h"
+#import "YXSectionHeaderFooterView.h"
 #import "YXScoreLeadingGroupCell.h"
 #import "YXScoreExpGroupCell.h"
 static  NSString *const trackPageName = @"成绩详情页面";

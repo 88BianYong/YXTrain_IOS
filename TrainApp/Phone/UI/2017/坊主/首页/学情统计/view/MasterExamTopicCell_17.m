@@ -48,6 +48,9 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     self.titleLabel.text = @"考核说明";

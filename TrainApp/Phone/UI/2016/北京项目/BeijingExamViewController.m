@@ -18,7 +18,7 @@
 #import "BeijingExamGenreExplainHeaderView.h"
 #import "BeijingExamTableHeaderView.h"
 #import "BeijingExamExplainView.h"
-#import "YXExamBlankHeaderFooterView.h"
+#import "YXSectionHeaderFooterView.h"
 #import "BeijingActivityListViewController.h"
 #import "YXHomeworkInfoRequest.h"
 #import "BeijingHomeworkInfoViewController.h"
@@ -93,7 +93,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     [self.tableView registerClass:[BeijingExamTipCell class] forCellReuseIdentifier:@"BeijingExamTipCell"];
     [self.tableView registerClass:[BeijingExamGenreDefaultHeaderView class] forHeaderFooterViewReuseIdentifier:@"BeijingExamGenreDefaultHeaderView"];
     [self.tableView registerClass:[BeijingExamGenreExplainHeaderView class] forHeaderFooterViewReuseIdentifier:@"BeijingExamGenreExplainHeaderView"];
-    [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     self.header = [MJRefreshHeaderView header];
     self.header.scrollView = self.tableView;
     
@@ -251,7 +251,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    YXExamBlankHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
+    YXSectionHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return header;
 }
 

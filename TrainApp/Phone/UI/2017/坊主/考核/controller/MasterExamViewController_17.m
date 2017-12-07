@@ -9,7 +9,7 @@
 #import "MasterExamViewController_17.h"
 #import "MasterIndexRequest_17.h"
 #import "MasterHappeningTableHeaderView_17.h"
-#import "YXExamBlankHeaderFooterView.h"
+#import "YXSectionHeaderFooterView.h"
 #import "MasterHappeningHeaderView.h"
 #import "MasterHappeningCell_17.h"
 #import "BeijingExamExplainView.h"
@@ -61,7 +61,7 @@
     
     [self.tableView registerClass:[MasterHappeningCell_17 class] forCellReuseIdentifier:@"MasterHappeningCell_17"];
     [self.tableView registerClass:[MasterHappeningHeaderView class] forHeaderFooterViewReuseIdentifier:@"MasterHappeningHeaderView"];
-    [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     self.header = [MJRefreshHeaderView header];
     self.header.scrollView = self.tableView;
     WEAK_SELF
@@ -111,7 +111,7 @@
     return header;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    YXExamBlankHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
+    YXSectionHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return footer;
 }
 

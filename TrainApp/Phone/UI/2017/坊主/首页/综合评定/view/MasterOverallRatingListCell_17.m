@@ -32,6 +32,9 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    UIView *selectedBgView = [[UIView alloc]init];
+    selectedBgView.backgroundColor = [UIColor colorWithHexString:@"f2f6fa"];
+    self.selectedBackgroundView = selectedBgView;
     self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.nameLabel.font = [UIFont boldSystemFontOfSize:14.0f];

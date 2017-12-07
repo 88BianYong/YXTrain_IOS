@@ -9,7 +9,7 @@
 #import "BeijingCheckedMobileUserViewController.h"
 #import "BeijingCheckedMobileUserHeaderView.h"
 #import "BeijingCheckedMobileUserCell.h"
-#import "YXExamBlankHeaderFooterView.h"
+#import "YXSectionHeaderFooterView.h"
 #import "BeijingCheckedMobileMessageCell.h"
 #import "BeijingSendSmsRequest.h"
 #import "BeijingModifyPasswordRequest.h"
@@ -82,7 +82,7 @@ UITableViewDataSource
     self.confirmPasswordCell = [[BeijingCheckedMobileUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"confirmPassword"];
     self.phoneNumberCell = [[BeijingCheckedMobileUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"phoneNumber"];
     self.messageCell = [[BeijingCheckedMobileMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"messageCell"];
-    [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     
     UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40.0f)];
     self.confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -349,7 +349,7 @@ UITableViewDataSource
     return 40.0f;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    YXExamBlankHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
+    YXSectionHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return header;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {

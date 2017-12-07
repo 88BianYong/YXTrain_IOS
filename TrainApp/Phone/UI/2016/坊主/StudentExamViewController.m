@@ -11,7 +11,7 @@
 #import "YXExamTotalScoreCell.h"
 #import "YXExamPhaseShadowCell.h"
 #import "StudentExamPhaseHeaderView.h"
-#import "YXExamBlankHeaderFooterView.h"
+#import "YXSectionHeaderFooterView.h"
 #import "StudentExamHeaderView.h"
 #import "YXExamineRequest.h"
 #import "MJRefresh.h"
@@ -75,7 +75,7 @@
     [self.tableView registerClass:[YXExamTotalScoreCell class] forCellReuseIdentifier:@"YXExamTotalScoreCell"];
     [self.tableView registerClass:[YXExamPhaseShadowCell class] forCellReuseIdentifier:@"YXExamPhaseShadowCell"];
     [self.tableView registerClass:[StudentExamPhaseHeaderView class] forHeaderFooterViewReuseIdentifier:@"StudentExamPhaseHeaderView"];
-    [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.tableView registerClass:[StudentExamHeaderView class] forHeaderFooterViewReuseIdentifier:@"StudentExamHeaderView"];
     
     self.header = [MJRefreshHeaderView header];
@@ -168,7 +168,7 @@
 #pragma mark - UITableViewDelegate
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        YXExamBlankHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
+        YXSectionHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
         return header;
     }else if (section <= self.examineItem.body.leadingVoList.count){
         YXExamineRequestItem_body_leadingVo *vo = self.examineItem.body.leadingVoList[section-1];
@@ -186,7 +186,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    YXExamBlankHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
+    YXSectionHeaderFooterView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return header;
 }
 

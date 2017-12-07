@@ -9,7 +9,7 @@
 #import "YXScoreExpGroupCell.h"
 #import "YXScoreExpHeaderView.h"
 #import "YXScoreExpScoreCell.h"
-#import "YXExamBlankHeaderFooterView.h"
+#import "YXSectionHeaderFooterView.h"
 @implementation YXExpSubItem
 @end
 @implementation YXExpItem
@@ -58,7 +58,7 @@ UITableViewDataSource
     }];
     [self.tableView registerClass:[YXScoreExpScoreCell class] forCellReuseIdentifier:@"YXScoreExpScoreCell"];
     [self.tableView registerClass:[YXScoreExpHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXScoreExpHeaderView"];
-    [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -92,7 +92,7 @@ UITableViewDataSource
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    YXExamBlankHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXExamBlankHeaderFooterView"];
+    YXSectionHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return footer;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
