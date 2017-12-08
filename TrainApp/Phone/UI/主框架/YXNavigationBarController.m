@@ -23,7 +23,7 @@
 + (void)setLeftWithNavigationItem:(UINavigationItem *)item imageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(actionBlock)action{
     UIImage *normalImage = [UIImage imageNamed:imageName];
     UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width+20, normalImage.size.height+20)];
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width+20, normalImage.size.height)];
     [backButton setImage:normalImage forState:UIControlStateNormal];
     [backButton setImage:highlightImage forState:UIControlStateHighlighted];
     [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
@@ -36,7 +36,7 @@
 
 + (void)setLeftWithNavigationItem:(UINavigationItem *)item customView:(UIView *)view{
     CGRect rect = view.bounds;
-    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width+20, rect.size.height+20)];
+    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width+20, rect.size.height)];
     containerView.backgroundColor = [UIColor clearColor];
     [containerView addSubview:view];
     view.center = CGPointMake(containerView.bounds.size.width/2, containerView.bounds.size.height/2);
@@ -49,7 +49,7 @@
     UIImage *normalImage = [UIImage imageNamed:imageName];
     UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
     
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width+20, normalImage.size.height+20)];
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width+20, normalImage.size.height)];
     [rightButton setImage:normalImage forState:UIControlStateNormal];
     [rightButton setImage:highlightImage forState:UIControlStateHighlighted];
     [[rightButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
@@ -67,7 +67,7 @@
 //    [b setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateDisabled];
     b.titleLabel.font = [UIFont systemFontOfSize:13];
     CGSize size = [title sizeWithAttributes:@{NSFontAttributeName:b.titleLabel.font}];
-    b.frame = CGRectMake(0, 0, ceilf(size.width)+20, ceilf(size.height)+20);
+    b.frame = CGRectMake(0, 0, ceilf(size.width)+20, ceilf(size.height));
     [[b rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         BLOCK_EXEC(action);
     }];
@@ -77,7 +77,7 @@
 
 + (void)setRightWithNavigationItem:(UINavigationItem *)item customView:(UIView *)view{
     CGRect rect = view.bounds;
-    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width+20, rect.size.height+20)];
+    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width+20, rect.size.height)];
     containerView.backgroundColor = [UIColor clearColor];
     [containerView addSubview:view];
     view.center = CGPointMake(containerView.bounds.size.width/2, containerView.bounds.size.height/2);
@@ -110,7 +110,7 @@
 //    [b setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateDisabled];
     b.titleLabel.font = [UIFont systemFontOfSize:13];
     CGSize size = [title sizeWithAttributes:@{NSFontAttributeName:b.titleLabel.font}];
-    b.frame = CGRectMake(0, 0, ceilf(size.width)+20, ceilf(size.height)+20);
+    b.frame = CGRectMake(0, 0, ceilf(size.width)+20, ceilf(size.height));
     return b;
 }
 

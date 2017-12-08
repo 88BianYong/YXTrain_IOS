@@ -43,7 +43,7 @@
     self.bottomScrollView.contentSize = CGSizeMake(kScreenWidth * 5, 200.f);
     [self addSubview:self.bottomScrollView];
     
-    self.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 45.0f,kScreenWidth, 1.0f)];
+    self.lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 50.0f,kScreenWidth, 1.0f)];
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self addSubview:self.lineView];
     WEAK_SELF
@@ -61,7 +61,7 @@
         [self.bottomScrollView addSubview:obj.view];
         UIButton *b = [self buttonWithTitle:obj.title];
         b.tag = 10086 + idx;
-        b.frame = CGRectMake(90.0f * idx, 0, 90.0f, 45.0f);
+        b.frame = CGRectMake(100.0f * idx, 0, 100.0f, 45.0f);
         [self.topView addSubview:b];
         if (idx == 0) {
             b.selected = YES;
