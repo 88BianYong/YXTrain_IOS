@@ -10,7 +10,6 @@
 @interface MasterHomeworkSetListTableHeaderView_17 ()
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIButton *explainButton;
 @property (nonatomic, strong) UIView *lineView;
 @end
 @implementation MasterHomeworkSetListTableHeaderView_17

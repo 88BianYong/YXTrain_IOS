@@ -12,7 +12,6 @@
 @interface MasterOverallRatingListTableHeaderView_17 ()
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIButton *explainButton;
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) MasterSchemeView_17 *schemeView;
 @end
@@ -20,6 +19,7 @@
 -(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+        self.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
     }

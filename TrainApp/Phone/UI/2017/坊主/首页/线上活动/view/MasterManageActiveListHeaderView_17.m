@@ -14,11 +14,13 @@
 @property (nonatomic, strong) UILabel *studyContentLabel;
 @property (nonatomic, strong) UIButton *filterButton;
 @property (nonatomic, strong) UIImageView *imageView;
+
 @end
 
 @implementation MasterManageActiveListHeaderView_17
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        self.contentView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
         [self setupUI];
         [self setupLayout];
     }

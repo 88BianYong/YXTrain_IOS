@@ -31,6 +31,12 @@
         if (self.headerView.scheme == nil) {
             self.headerView.scheme = scheme;
         }
+        if (scheme.scheme.finishScore.integerValue == 0) {
+            self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 0.0001f);
+        }else {
+            self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 202);
+        }
+        self.tableView.tableHeaderView = self.headerView;
     };
     self.dataFetcher = fetcher;
     self.bIsGroupedTableViewStyle = YES;
@@ -56,7 +62,7 @@
     self.headerView.masterCourseRecordButtonBlock = ^(UIButton *sender) {
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-        [self showMarkWithOriginRect:rect explain:self.headerView.scheme.scheme.descripe];
+        [self showMarkWithOriginRect:rect explain:self.headerView.scheme.scheme.descripe?:@""];
     };
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;

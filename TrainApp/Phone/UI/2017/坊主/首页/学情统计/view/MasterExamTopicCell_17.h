@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MasterLearningInfoRequest_17.h"
 @interface MasterExamTopicCell_17 : UITableViewCell
+@property (nonatomic, strong) UIButton *explainButton;
 @property (nonatomic, strong) MasterLearningInfoRequestItem_Body_Count *detail;
 @property (nonatomic, copy) void(^masterExamTopicButtonBlock)(UIButton *sender);
 

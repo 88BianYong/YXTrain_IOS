@@ -32,7 +32,7 @@
     switch (_total.toolType.integerValue) {
         case 1:
         {
-            self.oneLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.voteNum];
+            self.oneLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.discussNum];
             self.twoLabel.text = [NSString stringWithFormat:@"点赞次数: %@",_total.likeNum];
             self.threeLabel.hidden = YES;
         }
@@ -40,14 +40,14 @@
         case 2:
         {
             self.oneLabel.text = _total.voteNum.integerValue > 0 ? @"已参与" : @"未参与";
-            self.twoLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.voteNum];
+            self.twoLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.discussNum];
             self.threeLabel.hidden = NO;
             self.threeLabel.text = [NSString stringWithFormat:@"点赞次数: %@",_total.likeNum];
         }
             break;
         case 3:
         {
-            self.oneLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.voteNum];
+            self.oneLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.discussNum];
             self.twoLabel.text = [NSString stringWithFormat:@"点赞次数: %@",_total.likeNum];
             self.threeLabel.hidden = NO;
             self.threeLabel.text = [NSString stringWithFormat:@"上传个数: %@",_total.uploadNum];
@@ -56,14 +56,14 @@
         case 4:
         {
             self.oneLabel.text = _total.voteNum.integerValue > 0 ? @"已参与" : @"未参与";
-            self.twoLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.voteNum];
+            self.twoLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.discussNum];
             self.threeLabel.hidden = NO;
             self.threeLabel.text = [NSString stringWithFormat:@"点赞次数: %@",_total.likeNum];
         }
             break;
         case 5:
         {
-            self.oneLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.voteNum];
+            self.oneLabel.text = [NSString stringWithFormat:@"评论次数: %@",_total.discussNum];
             self.twoLabel.text = [NSString stringWithFormat:@"点赞次数: %@",_total.likeNum];
             self.threeLabel.hidden = YES;
         }

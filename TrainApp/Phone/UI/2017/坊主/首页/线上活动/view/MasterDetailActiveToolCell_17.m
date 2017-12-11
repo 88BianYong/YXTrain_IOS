@@ -33,6 +33,7 @@
     self.discussLabel.text = [NSString stringWithFormat:@"回复: %@",_tool.total.discussNum];
     self.likeLabel.text = [NSString stringWithFormat:@"点赞: %@",_tool.total.likeNum];
     self.uploadLabel.text = [NSString stringWithFormat:@"上传: %@",_tool.total.uploadNum];
+    self.uploadLabel.hidden = (_tool.toolType.integerValue != 3 && _tool.toolType.integerValue != 4);
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -59,6 +60,7 @@
 - (void)setupLayout {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
+        make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
         make.top.equalTo(self.contentView.mas_top).offset(13.0f);
     }];
     [self.joinUserLabel mas_makeConstraints:^(MASConstraintMaker *make) {

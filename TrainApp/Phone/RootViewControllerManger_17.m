@@ -14,16 +14,16 @@
 #import "YXTabBarViewController_17.h"
 @implementation RootViewControllerManger_17
 - (void)showDrawerViewController:(__weak UIWindow *)window {
-    MasterTabBarViewController_17 *tabVC  = (MasterTabBarViewController_17 *)window.rootViewController;
-    if (tabVC.selectedViewController.presentedViewController) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
-    }
-    YXNavigationController *projectNavi = (YXNavigationController *)tabVC.selectedViewController;
-    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
-        return ;
-    }
-    UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
-    [projectNavi pushViewController:VC animated:YES];
+//    MasterTabBarViewController_17 *tabVC  = (MasterTabBarViewController_17 *)window.rootViewController;
+//    if (tabVC.selectedViewController.presentedViewController) {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+//    }
+//    YXNavigationController *projectNavi = (YXNavigationController *)tabVC.selectedViewController;
+//    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+//        return ;
+//    }
+//    UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
+//    [projectNavi pushViewController:VC animated:YES];
 }
 - (UIViewController *)rootViewController {
     if([LSTSharedInstance sharedInstance].trainManager.currentProject.role.integerValue == 99) {

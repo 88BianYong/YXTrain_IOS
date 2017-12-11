@@ -19,6 +19,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+        self.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
     }
@@ -28,6 +29,11 @@
 - (void)setScheme:(MasterNoticeBriefScheme *)scheme {
     _scheme = scheme;
     [self.schemeView reloadMasterScheme:[NSString stringWithFormat:@"需要阅读%@篇文章",_scheme.amount] withFinishNum:_scheme.userfinishnum withAmount:_scheme.amount];
+    if ([_scheme.descripe stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+        self.explainButton.hidden = NO;
+    }else {
+        self.explainButton.hidden = YES;
+    }
 }
 #pragma mark - setupUI
 - (void)setupUI {

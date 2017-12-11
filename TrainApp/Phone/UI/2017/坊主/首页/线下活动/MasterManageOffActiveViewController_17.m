@@ -13,6 +13,7 @@
 #import "MasterManageOffActiveDetailViewController_17.h"
 @interface MasterManageOffActiveViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) MasterOffActiveListTableHeaderView_17 *headerView;
+
 @end
 
 @implementation MasterManageOffActiveViewController_17
@@ -69,6 +70,11 @@
     fetcher.masterManageOffActiveBlock = ^(MasterManagerSchemeItem *scheme) {
         STRONG_SELF
         self.headerView.scheme = scheme;
+        if (scheme.score.integerValue == 0) {
+            self.tableView.tableHeaderView = nil;
+        }else {
+            self.tableView.tableHeaderView = self.headerView;
+        }
     };
     self.dataFetcher = fetcher;
 }

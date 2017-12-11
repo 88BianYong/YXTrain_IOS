@@ -176,7 +176,7 @@
     request.userId = self.userScore.userId;
     request.score = self.inputView.textField.text;
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        [self storyboard];
+        [self stopLoading];
         if (error) {
             [self showToast:error.localizedDescription];
         }else {

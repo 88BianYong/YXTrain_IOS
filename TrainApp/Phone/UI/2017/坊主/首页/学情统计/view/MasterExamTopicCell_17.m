@@ -13,7 +13,6 @@
 @property (nonatomic, strong) UIView *containerView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIButton *explainButton;
 @property (nonatomic, strong) UIView *lineView;
 
 @property (nonatomic, strong) MasterCircleDisplayView_17 *trainingView;

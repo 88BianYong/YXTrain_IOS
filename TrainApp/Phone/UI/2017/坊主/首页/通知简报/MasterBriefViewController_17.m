@@ -20,12 +20,16 @@
 @implementation MasterBriefViewController_17
 
 - (void)viewDidLoad {
-    self.bIsGroupedTableViewStyle = YES;
     MasterManageBriefFetcher_17 *fetcher = [[MasterManageBriefFetcher_17 alloc] init];
     WEAK_SELF
     fetcher.masterBriefSchemeBlock = ^(MasterNoticeBriefScheme *scheme) {
         STRONG_SELF
-        self.headerView.scheme = scheme;
+        if (scheme.score.integerValue == 0) {
+            self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 5.0f);
+        }else {
+            self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 202);
+        }
+        self.tableView.tableHeaderView = self.headerView;
     };
     self.dataFetcher = fetcher;
     [super viewDidLoad];
@@ -50,7 +54,7 @@
     self.headerView.masterBriefButtonBlock = ^(UIButton *sender) {
         STRONG_SELF
                CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-         [self showMarkWithOriginRect:rect explain:self.headerView.scheme.descripe];
+         [self showMarkWithOriginRect:rect explain:self.headerView.scheme.descripe?:@""];
     };
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
@@ -88,14 +92,14 @@
     }];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.001f;
+    return 0.00001f;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return footerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.001f;
+    return 0.00001f;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     YXSectionHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];

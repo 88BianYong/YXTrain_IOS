@@ -20,6 +20,7 @@
 @interface MasterOverallRatingListViewController_17 ()<UITableViewDelegate, UITableViewDataSource,LSTCollectionFilterDefaultProtocol,UIGestureRecognizerDelegate>
 @property (nonatomic, strong) MasterOverallRatingListRequest_17 *listRequest;
 @property (nonatomic, strong) MasterOverallRatingListItem *listItem;
+@property (nonatomic, strong) NSMutableArray *allMutableArray;
 @property (nonatomic, strong) NSMutableArray *dataMutableArray;
 @property (nonatomic, strong) NSMutableArray *sectionTitleMutableArray;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
@@ -53,11 +54,19 @@
     if (self.filterModel == nil) {
         self.filterModel = [self fomartCollectionFilterModel:_listItem.body.bars];
     }
+    if (self.allMutableArray.count == 0) {
+        [self.allMutableArray addObjectsFromArray:_listItem.body.userScores];
+    }
     self.headerView.countUser = _listItem.body.countUser;
     self.headerView.hidden = NO;
     self.filterTitleView.filterModel = self.filterModel;
     self.filterTitleView.hidden = NO;
     [self fomartUserScoreList:_listItem.body.userScores];
+    if ([_listItem.body.exmineDesc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+        self.headerView.explainButton.hidden = NO;
+    }else {
+        self.headerView.explainButton.hidden = YES;
+    }
 }
 #pragma mark - fomart Data
 - (void)fomartUserScoreList:(NSArray *)userScores {
@@ -138,6 +147,7 @@
     self.navigationItem.title = @"综合评定";
     self.dataMutableArray = [[NSMutableArray alloc] init];
     self.searchMutableArray = [[NSMutableArray alloc] init];
+    self.allMutableArray = [[NSMutableArray alloc] init];
     self.sectionTitleMutableArray = [[NSMutableArray alloc] initWithCapacity:27];
     [self setupUI];
     [self setupLayout];
@@ -187,7 +197,7 @@
     self.headerView.masterOverallRatingButtonBlock = ^(UIButton *sender) {
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-        [self showMarkWithOriginRect:rect explain:self.listItem.body.exmineDesc];
+        [self showMarkWithOriginRect:rect explain:self.listItem.body.exmineDesc?:@""];
     };
     self.tableView.tableHeaderView = self.headerView;
     self.filterTitleView = [[MasterOverallRatingFilterTitleView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];
@@ -360,26 +370,24 @@
         STRONG_SELF
         [self.searchMutableArray removeAllObjects];
         if (![key isEqualToString:@"" ] && ![key isEqual:[NSNull null]]) {
-            [self.dataMutableArray enumerateObjectsUsingBlock:^(NSArray *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [obj enumerateObjectsUsingBlock:^(MasterOverallRatingListItem_Body_UserScore *userScore, NSUInteger idx, BOOL * _Nonnull stop) {
-                    NSString *name = userScore.userName.lowercaseString;
-                    NSString * namePinyin = userScore.sortName.yx_transformToPinyin;
-                    NSString * nameFirstLetter = userScore.sortName.yx_transformToPinyinFirstLetter;
-                    NSRange rang1 = [name rangeOfString:key];
-                    if (rang1.length > 0) {
+            [self.allMutableArray enumerateObjectsUsingBlock:^(MasterOverallRatingListItem_Body_UserScore *userScore, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSString *name = userScore.userName.lowercaseString;
+                NSString * namePinyin = userScore.sortName.yx_transformToPinyin;
+                NSString * nameFirstLetter = userScore.sortName.yx_transformToPinyinFirstLetter;
+                NSRange rang1 = [name rangeOfString:key];
+                if (rang1.length > 0) {
+                    [self.searchMutableArray addObject:userScore];
+                }else {
+                    if ([nameFirstLetter containsString:key]) {
                         [self.searchMutableArray addObject:userScore];
                     }else {
-                        if ([nameFirstLetter containsString:key]) {
-                            [self.searchMutableArray addObject:userScore];
-                        }else {
-                            if ([nameFirstLetter containsString:[key substringToIndex:1]]) {
-                                if ([namePinyin containsString:key]) {
-                                    [self.searchMutableArray addObject:userScore];
-                                }
+                        if ([nameFirstLetter containsString:[key substringToIndex:1]]) {
+                            if ([namePinyin containsString:key]) {
+                                [self.searchMutableArray addObject:userScore];
                             }
                         }
                     }
-                }];
+                }
             }];
         }
         self.maskView.searchMutableArray = self.searchMutableArray;

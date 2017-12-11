@@ -29,6 +29,11 @@
 - (void)setScheme:(MasterManagerSchemeItem *)scheme {
     _scheme = scheme;
     [self.schemeView reloadMasterScheme:[NSString stringWithFormat:@"需要参加%@个活动",_scheme.amount] withFinishNum:_scheme.userfinishnum withAmount:_scheme.amount];
+    if ([_scheme.descripe stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+        self.explainButton.hidden = NO;
+    }else {
+        self.explainButton.hidden = YES;
+    }
 }
 #pragma mark - setupUI
 - (void)setupUI {

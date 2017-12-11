@@ -10,7 +10,9 @@
 @implementation MasterManageOffActiveItem_Body_Active
 +(JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"userName":@"username",
-                                                                  @"activeId":@"aid"
+                                                                  @"activeId":@"aid",
+                                                                  @"startTime":@"starttime",
+                                                                  @"endTime":@"endtime"
                                                                   }];
 }
 - (void)setStartTime:(NSString<Optional> *)startTime{

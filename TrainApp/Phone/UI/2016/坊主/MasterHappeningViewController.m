@@ -125,7 +125,7 @@
     [cell setMasterHappeningCellButtonBlock:^(UIButton *sender) {
        STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-        [self showMarkWithOriginRect:rect explain:detail.descripe];
+        [self showMarkWithOriginRect:rect explain:detail.descripe?:@""];
 
     }];
     return cell;

@@ -201,15 +201,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         MasterExamTopicCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterExamTopicCell_17" forIndexPath:indexPath];
+        __block NSString *explain = @"";
+        [self.itemBody.schemes enumerateObjectsUsingBlock:^(MasterLearningInfoRequestItem_Body_Schemes *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            explain = [explain stringByAppendingString:obj.descripe];
+        }];
         cell.detail = self.itemBody.detail;
+        if ([explain stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+            cell.explainButton.hidden = NO;
+        }else {
+            cell.explainButton.hidden = YES;
+        }
         WEAK_SELF
         cell.masterExamTopicButtonBlock = ^(UIButton *sender) {
             STRONG_SELF
             CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-            __block NSString *explain = @"";
-            [self.itemBody.schemes enumerateObjectsUsingBlock:^(MasterLearningInfoRequestItem_Body_Schemes *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                explain = [explain stringByAppendingString:obj.descripe];
-            }];
             [self showMarkWithOriginRect:rect explain:explain];
         };
         return cell;

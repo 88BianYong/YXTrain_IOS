@@ -22,6 +22,7 @@
     if (self = [super initWithFrame:frame]) {
         self.spacingFloat = (kScreenWidth - (kCircleWidth * 3.5f))/4.0f;
         self.backgroundColor = [UIColor whiteColor];
+        self.containerView.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
     }
@@ -57,6 +58,11 @@
             make.top.equalTo(self.scrollView.mas_top).offset(25.0f);
         }];
     }];
+    if ([self.descripe stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+        self.explainButton.hidden = NO;
+    }else {
+        self.explainButton.hidden = YES;
+    }
 }
 
 #pragma mark - setupUI

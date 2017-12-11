@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterHomeworkSetListTableHeaderView_17 : UIView
+@property (nonatomic, strong) UIButton *explainButton;
 @property (nonatomic, copy) void(^masterHomeworkButtonBlock)(UIButton *sender);
 @end

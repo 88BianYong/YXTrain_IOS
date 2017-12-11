@@ -23,6 +23,19 @@
                                             @"toolId":@"toolid"
                                             }];
 }
+- (void)setToolType:(NSString<Optional> *)toolType {
+    if ([toolType isEqualToString:@"discuss"]) {
+        _toolType = @"1";
+    }else if ([toolType isEqualToString:@"vote"]) {
+        _toolType = @"2";
+    }else if ([toolType isEqualToString:@"resources"]) {
+        _toolType = @"3";
+    }else if ([toolType isEqualToString:@"wenjuan"]) {
+        _toolType = @"4";
+    }else if ([toolType isEqualToString:@"video"]) {
+        _toolType = @"5";
+    }
+}
 @end
 
 @implementation MasterCountActiveItem_Body_CountMemeber_TotalArray

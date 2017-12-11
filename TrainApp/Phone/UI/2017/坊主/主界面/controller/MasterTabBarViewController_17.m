@@ -15,9 +15,29 @@
 
 @implementation MasterTabBarViewController_17
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    WEAK_SELF
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPushWebSocketReceiveMessage object:nil] subscribeNext:^(NSNotification *x) {
+        STRONG_SELF
+        NSInteger redInteger = [LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger;
+        if (redInteger > 0) {
+            if (redInteger > 99){
+                self.viewControllers[2].tabBarItem.badgeValue = @"99+";
+            }else{
+                self.viewControllers[2].tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
+            }
+            [self.tabBar hideBadgeOnItemIndex:1 withTabbarItem:3];
+        }else if (redInteger == 0){
+            [self.tabBar showBadgeOnItemIndex:1 withTabbarItem:3];
+            self.viewControllers[2].tabBarItem.badgeValue = nil;
+        }else {
+            self.viewControllers[2].tabBarItem.badgeValue = nil;
+            [self.tabBar hideBadgeOnItemIndex:1 withTabbarItem:3];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

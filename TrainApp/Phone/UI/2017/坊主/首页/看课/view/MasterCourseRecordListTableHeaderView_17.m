@@ -20,6 +20,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+        self.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
     }
@@ -32,6 +33,11 @@
         [self.schemeView reloadMasterScheme:[NSString stringWithFormat:@"需要观看%@分钟课程",_scheme.scheme.finishNum] withFinishNum:_scheme.process.userFinishNum withAmount:_scheme.scheme.finishNum];
     }else {
         [self.schemeView reloadMasterScheme:[NSString stringWithFormat:@"需要观看%@门课程",_scheme.scheme.finishNum] withFinishNum:_scheme.process.userFinishNum withAmount:_scheme.scheme.finishNum];
+    }
+    if ([_scheme.scheme.descripe stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+        self.explainButton.hidden = NO;
+    }else {
+        self.explainButton.hidden = YES;
     }
 }
 #pragma mark - setupUI

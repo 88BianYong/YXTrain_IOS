@@ -67,6 +67,7 @@
     self.isJoinLabel.layer.masksToBounds = YES;
     self.isJoinLabel.textColor = [UIColor whiteColor];
     self.isJoinLabel.text = @"已参加";
+    self.isJoinLabel.hidden = YES;
     self.isJoinLabel.textAlignment = NSTextAlignmentCenter;
     self.isJoinLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
     [self.contentView addSubview:self.isJoinLabel];

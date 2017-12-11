@@ -19,7 +19,8 @@
 @property (nonatomic, strong) AlertView *alert;
 @property (nonatomic, strong) UIView *bgView;
 
-@property (nonatomic, assign) CGPoint contentPoint;
+@property (nonatomic, assign) CGFloat headerHeight;
+
 @end
 
 @implementation MasterHomeworkViewController_17
@@ -38,7 +39,7 @@
 - (void)viewDidLoad {
     [self setupFetcher];
     [super viewDidLoad];
-    self.contentPoint = CGPointZero;
+    self.headerHeight = 198.0f;
     self.navigationItem.title = @"作业管理";
     [self setupUI];
 }
@@ -61,12 +62,12 @@
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.tableView registerClass:[MasterHomeworkHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterHomeworkHeaderView_17"];
     [self.tableView registerClass:[MasterFilterEmptyFooterView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterFilterEmptyFooterView_17"];
-    self.headerView = [[MasterHomeworkTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 198.0f)];
+    self.headerView = [[MasterHomeworkTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, self.headerHeight)];
     WEAK_SELF
     self.headerView.masterHomeworkButtonBlock = ^(UIButton *sender) {
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-        [self showMarkWithOriginRect:rect explain:self.headerView.descripe];
+        [self showMarkWithOriginRect:rect explain:self.headerView.descripe?:@""];
     };
     self.tableView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
@@ -106,6 +107,13 @@
             self.filterModel = model;
         }
         self.headerView.schemes = schemes;
+        if (schemes.count == 0) {
+            self.headerHeight = 0.0f;
+            self.tableView.tableHeaderView = nil;
+        }else {
+            self.headerHeight = 198.0f;
+            self.tableView.tableHeaderView = self.headerView;
+        }
     };
     self.dataFetcher = fetcher;
 }
@@ -189,9 +197,8 @@
     headerView.masterHomeworkFilterButtonBlock = ^{
         STRONG_SELF
         if (self.bgView.hidden) {
-            self.contentPoint = self.tableView.contentOffset;
-            if (self.contentPoint.y < 198.0f) {
-                [self.tableView setContentOffset:CGPointMake(0, 198.0f) animated:YES];
+            if (self.tableView.contentOffset.y < self.headerHeight && self.headerHeight == 198.0f) {
+                [self.tableView setContentOffset:CGPointMake(0, self.headerHeight) animated:YES];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self showSelectionView];

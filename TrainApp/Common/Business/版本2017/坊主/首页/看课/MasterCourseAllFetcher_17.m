@@ -56,8 +56,8 @@
     typeName.defaultSelectedID = @"0";
     LSTCollectionFilterModel_ItemName *statusName = [[LSTCollectionFilterModel_ItemName alloc] init];
     statusName.name = @"状态";
-    statusName.defaultSelected = @"0";
-    statusName.defaultSelectedID = @"0";
+    statusName.defaultSelected = @"2";
+    statusName.defaultSelectedID = @"2";
     statusName.itemName = typeName;
     LSTCollectionFilterModel_ItemName *stageName = [[LSTCollectionFilterModel_ItemName alloc] init];
     stageName.name = @"阶段";

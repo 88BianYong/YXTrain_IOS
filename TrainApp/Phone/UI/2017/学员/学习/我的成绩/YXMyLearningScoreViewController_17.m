@@ -83,7 +83,7 @@
         STRONG_SELF
         ExamineDetailRequest_17Item_Examine_Process *process = self.examine.process[section];
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-         [self showMarkWithOriginRect:rect explain:process.descr];
+         [self showMarkWithOriginRect:rect explain:process.descr?:@""];
     };
     return headerView;
 }

@@ -20,7 +20,7 @@
 @property (nonatomic, strong) AlertView *alert;
 @property (nonatomic, strong) UIView *bgView;
 
-@property (nonatomic, assign) CGPoint contentPoint;
+@property (nonatomic, assign) CGFloat headerHeight;
 @end
 
 @implementation MasterHomeworkSetListViewController_17
@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [self setupFetcher];
     [super viewDidLoad];
-    self.contentPoint = CGPointZero;
+    self.headerHeight = 198.0f;
     self.navigationItem.title = @"作品集管理";
     [self setupUI];
 }
@@ -108,6 +108,22 @@
         STRONG_SELF
         if (self.filterModel == nil) {
             self.filterModel = model;
+        }
+        __block NSString *string = @"";
+        [self.schemes enumerateObjectsUsingBlock:^(MasterManagerSchemeItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            string = [string stringByAppendingString:obj.descripe];
+        }];
+        if ([string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+            self.headerView.explainButton.hidden = NO;
+        }else {
+            self.headerView.explainButton.hidden = YES;
+        }
+        if (schemes.count == 0) {
+            self.headerHeight = 0.0f;
+            self.tableView.tableHeaderView = nil;
+        }else {
+            self.headerHeight = 198.0f;
+            self.tableView.tableHeaderView = self.headerView;
         }
         self.schemes = schemes;
     };
@@ -193,9 +209,8 @@
     headerView.masterHomeworkFilterButtonBlock = ^{
         STRONG_SELF
         if (self.bgView.hidden) {
-            self.contentPoint = self.tableView.contentOffset;
-            if (self.contentPoint.y < 50.0f) {
-                [self.tableView setContentOffset:CGPointMake(0, 50.0f) animated:YES];
+            if (self.tableView.contentOffset.y < self.headerHeight && self.headerHeight == 198.0f) {
+                [self.tableView setContentOffset:CGPointMake(0, self.headerHeight) animated:YES];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self showSelectionView];
