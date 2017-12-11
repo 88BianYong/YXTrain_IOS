@@ -227,6 +227,8 @@
             }else if (tool.code.integerValue == 31) {//综合
                 MasterOverallRatingListViewController_17 *VC = [[MasterOverallRatingListViewController_17 alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+            }else {
+                [self showToast:@"手机暂不支持该功能,请到电脑端完成"];
             }
         };
         return self.moduleCell;

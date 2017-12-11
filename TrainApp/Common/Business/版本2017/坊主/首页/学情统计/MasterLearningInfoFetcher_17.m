@@ -28,8 +28,8 @@
             return;
         }
         MasterLearningInfoRequestItem *item = retItem;
-        BLOCK_EXEC(self.masterLearningInfoBlock,[self fomartCollectionFilterModel:item.body],item.body);
-        BLOCK_EXEC(aCompleteBlock,item.body.xueQing.total.integerValue,item.body.xueQing.learningInfoList,nil);
+    BLOCK_EXEC(self.masterLearningInfoBlock,[self fomartCollectionFilterModel:item.body],item.body);
+    BLOCK_EXEC(aCompleteBlock,item.body.xueQing.total.integerValue,item.body.xueQing.learningInfoList,nil);
         
     }];
     self.infoRequest = request;

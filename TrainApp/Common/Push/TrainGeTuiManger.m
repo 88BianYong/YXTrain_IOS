@@ -11,6 +11,7 @@
 #import <GTSDK/GeTuiSdk.h>
 #import <UserNotifications/UserNotifications.h>
 #import "TrainRedPointManger.h"
+#import "PushContentModel.h"
 @interface TrainGeTuiManger ()<GeTuiSdkDelegate , UNUserNotificationCenterDelegate>
 @property (nonatomic, strong) NSString *currentUid;
 @end
@@ -182,13 +183,17 @@
 #pragma mark - Handle Notification
 // 处理个推推送，App运行中
 - (void)handleGeTuiContent:(NSString *)content  withOffLine:(BOOL)offLine{
-    if (!offLine) {//在线
-        [UIApplication sharedApplication].applicationIconBadgeNumber ++;
-        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-    }else {
-        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+    PushContentModel *model = [[PushContentModel alloc] initWithString:content error:nil];
+    if (model.module.integerValue == 1) {
+        if (!offLine) {//在线
+            [UIApplication sharedApplication].applicationIconBadgeNumber ++;
+            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        }else {
+            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        }
+    }else if (model.module.integerValue == 2){
+        [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
     }
-    
 }
 // 处理来自苹果的推送 App后台或者杀死
 - (void)handleApnsContent:(NSDictionary *)dict isPush:(BOOL)isPush {
@@ -197,8 +202,4 @@
         BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
     }
 }
-
-
-
-
 @end

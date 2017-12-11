@@ -212,6 +212,7 @@
 		92134E3D1E8BAE2900A5B9B7 /* submitAnswer_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92134E3C1E8BAE2900A5B9B7 /* submitAnswer_mock.json */; };
 		92177FFE1F17797B0041F70D /* YXMyExamExplainView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92177FFD1F17797B0041F70D /* YXMyExamExplainView_17.m */; };
 		921780011F177FA40041F70D /* YXMyExamExplainHelp_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 921780001F177FA40041F70D /* YXMyExamExplainHelp_17.m */; };
+		921928A81FDE1574000C7482 /* PushContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 921928A71FDE1574000C7482 /* PushContentModel.m */; };
 		9219A18F1F1F054600C49D78 /* ReadingDetailViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A18E1F1F054600C49D78 /* ReadingDetailViewController_17.m */; };
 		9219A1921F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A1911F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.m */; };
 		9219A1951F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9219A1941F1F0F0500C49D78 /* ReadingDetailAnnexCell_17.m */; };
@@ -1244,6 +1245,8 @@
 		92177FFD1F17797B0041F70D /* YXMyExamExplainView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyExamExplainView_17.m; sourceTree = "<group>"; };
 		92177FFF1F177FA40041F70D /* YXMyExamExplainHelp_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMyExamExplainHelp_17.h; sourceTree = "<group>"; };
 		921780001F177FA40041F70D /* YXMyExamExplainHelp_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMyExamExplainHelp_17.m; sourceTree = "<group>"; };
+		921928A61FDE1574000C7482 /* PushContentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PushContentModel.h; sourceTree = "<group>"; };
+		921928A71FDE1574000C7482 /* PushContentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PushContentModel.m; sourceTree = "<group>"; };
 		9219A18D1F1F054600C49D78 /* ReadingDetailViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailViewController_17.h; sourceTree = "<group>"; };
 		9219A18E1F1F054600C49D78 /* ReadingDetailViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingDetailViewController_17.m; sourceTree = "<group>"; };
 		9219A1901F1F06AC00C49D78 /* ReadingDetailTableHeaderView_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingDetailTableHeaderView_17.h; sourceTree = "<group>"; };
@@ -4306,6 +4309,8 @@
 			children = (
 				924C9A0B1EA735A20017B31B /* TrainGeTuiManger.h */,
 				924C9A0C1EA735A20017B31B /* TrainGeTuiManger.m */,
+				921928A61FDE1574000C7482 /* PushContentModel.h */,
+				921928A71FDE1574000C7482 /* PushContentModel.m */,
 			);
 			path = Push;
 			sourceTree = "<group>";
@@ -6806,6 +6811,7 @@
 				7C2C3B4C1D226D3D00A03635 /* YXExamMarkView.m in Sources */,
 				924286AD1F2F26D400E0A9FB /* HomeworkFloatingView_17.m in Sources */,
 				9223C8321D2E3F72000F74DF /* YXWorkshopDetailDatumCell.m in Sources */,
+				921928A81FDE1574000C7482 /* PushContentModel.m in Sources */,
 				923F8DB21FCF957F009C907B /* MasterHomeworkSetCommentHeaderView_17.m in Sources */,
 				7C3177B01D0EB738004AAC90 /* UIImage+Color.m in Sources */,
 				7C3177E91D1149B5004AAC90 /* YXFileDocItem.m in Sources */,
