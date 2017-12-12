@@ -34,6 +34,7 @@
 @property (nonatomic, strong) MasterOverallRatingSearchContentView_17 *maskView;
 @property (nonatomic, strong) NSMutableArray *searchMutableArray;
 
+@property (nonatomic, assign) CGFloat headerHeight;
 @end
 
 @implementation MasterOverallRatingListViewController_17
@@ -67,6 +68,16 @@
     }else {
         self.headerView.explainButton.hidden = YES;
     }
+    if (_listItem.body.countUser.allCount.integerValue == 0){
+        self.headerHeight = 0.0f;
+    }else {
+        self.headerHeight = 198.0f;
+    }
+    self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, self.headerHeight + 30.0f);
+    self.tableView.tableHeaderView = self.headerView;
+    [self.filterTitleView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tableView.mas_top).offset(self.headerHeight);
+    }];
 }
 #pragma mark - fomart Data
 - (void)fomartUserScoreList:(NSArray *)userScores {
@@ -205,8 +216,8 @@
     self.filterTitleView.masterOverallRatingFilterButtonBlock = ^{
         STRONG_SELF
         if (self.bgView.hidden) {
-            if (self.tableView.contentOffset.y < 198.0f) {
-                [self.tableView setContentOffset:CGPointMake(0, 198.0f) animated:YES];
+            if (self.tableView.contentOffset.y < self.headerHeight && self.headerHeight == 198.0f) {
+                [self.tableView setContentOffset:CGPointMake(0, self.headerHeight) animated:YES];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self showSelectionView];
@@ -460,7 +471,7 @@
 }
 #pragma mark scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.y > 198.0f) {
+    if (scrollView.contentOffset.y > self.headerHeight) {
         if (!self.isMoveBool) {
             [self.filterTitleView removeFromSuperview];
             [self.view addSubview:self.filterTitleView];
@@ -479,7 +490,7 @@
             [self.filterTitleView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.equalTo(self.view.mas_left);
                 make.right.equalTo(self.view.mas_right);
-                make.top.equalTo(self.tableView.mas_top).offset(198.0f);
+                make.top.equalTo(self.tableView.mas_top).offset(self.headerHeight);
                 make.height.mas_offset(30.0f);
             }];
             self.isMoveBool = NO;

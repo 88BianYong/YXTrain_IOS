@@ -99,7 +99,7 @@
     MasterHomeworkSetListFetcher_17 *fetcher = [[MasterHomeworkSetListFetcher_17 alloc] init];
     fetcher.barId = @"0";
     fetcher.recommendStatus = @"0";
-    fetcher.readStatus = @"0";
+    fetcher.readStatus = @"2";
     fetcher.commendStatus = @"0";
     fetcher.pageindex = 0;
     fetcher.pagesize = 20;
