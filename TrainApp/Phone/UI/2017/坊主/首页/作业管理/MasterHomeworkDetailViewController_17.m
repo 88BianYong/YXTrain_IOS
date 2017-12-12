@@ -394,6 +394,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 -(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
@@ -409,13 +410,17 @@
 }
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        WEAK_SELF
-        UITableViewRowAction *deleteRoWAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-            STRONG_SELF
-            [self requestForDeleteRemark:indexPath.row];
-        }];
-        
-        return @[deleteRoWAction];
+        MasterHomeworkRemarkItem_Body_Remark *remark = self.remarkMutableArray[indexPath.row];
+        if (remark.allowDel.boolValue) {
+            WEAK_SELF
+            UITableViewRowAction *deleteRoWAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                STRONG_SELF
+                [self requestForDeleteRemark:indexPath.row];
+            }];
+            return @[deleteRoWAction];
+        }else {
+            return nil;
+        }
     }else {
         return nil;
     }

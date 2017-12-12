@@ -118,11 +118,11 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -287,10 +287,7 @@
         }else if (status == MasterInputStatus_Recommend) {
             [self requestForRecommendHomework:self.inputView.commentTextView.text];
         }else if (status == MasterInputStatus_Comment) {
-            if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.myScore.integerValue) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self showToast:@"不应该低于当前分数"];
-                });
+            if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.score.integerValue) {
             }else {
                 [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
             }

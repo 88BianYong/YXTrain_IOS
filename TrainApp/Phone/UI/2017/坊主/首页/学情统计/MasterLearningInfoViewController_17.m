@@ -221,7 +221,6 @@
     }else {
             MasterLearningInfoCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterLearningInfoCell_17"];
         cell.learningInfo = self.dataArray[indexPath.row];
-
         return cell;
     }
 }

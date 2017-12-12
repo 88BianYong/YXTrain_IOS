@@ -505,9 +505,13 @@
     MasterOverallRatingListRequest_17 *request = [[MasterOverallRatingListRequest_17 alloc] init];
     request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     if (self.filterModel.count == 2) {
+        if (self.listRequest.barId.integerValue != self.filterModel[0].defaultSelectedID.integerValue) {
+            [self.allMutableArray removeAllObjects];
+        }
         request.barId = self.filterModel[0].defaultSelectedID;
         request.isScore = self.filterModel[1].defaultSelectedID;
     }
+
     WEAK_SELF
     [request startRequestWithRetClass:[MasterOverallRatingListItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

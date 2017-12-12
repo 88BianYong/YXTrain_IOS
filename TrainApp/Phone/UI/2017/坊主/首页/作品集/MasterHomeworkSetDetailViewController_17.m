@@ -206,7 +206,16 @@
     return  @"删除";
 }
 - (BOOL)tableView: (UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    if (indexPath.section == 1) {
+        MasterHomeworkSetRemarkListItem_Body_Remark *remark = self.remarkMutableArray[indexPath.row];
+        if (remark.allowDel.boolValue) {
+            return YES;
+        }else {
+            return NO;
+        }
+    }else {
+        return NO;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -225,13 +234,17 @@
 }
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        WEAK_SELF
-        UITableViewRowAction *deleteRoWAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
-            STRONG_SELF
-            [self requestForDeleteRemark:indexPath.row];
-        }];
-        
-        return @[deleteRoWAction];
+        MasterHomeworkSetRemarkListItem_Body_Remark *remark = self.remarkMutableArray[indexPath.row];
+        if (remark.allowDel.boolValue) {
+            WEAK_SELF
+            UITableViewRowAction *deleteRoWAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath) {
+                STRONG_SELF
+                [self requestForDeleteRemark:indexPath.row];
+            }];
+            return @[deleteRoWAction];
+        }else {
+            return nil;
+        }
     }else {
         return nil;
     }
