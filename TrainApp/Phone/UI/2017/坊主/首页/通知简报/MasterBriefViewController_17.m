@@ -24,6 +24,7 @@
     WEAK_SELF
     fetcher.masterBriefSchemeBlock = ^(MasterNoticeBriefScheme *scheme) {
         STRONG_SELF
+        self.headerView.scheme = scheme;
         if (scheme.score.integerValue == 0) {
             self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 5.0f);
         }else {
