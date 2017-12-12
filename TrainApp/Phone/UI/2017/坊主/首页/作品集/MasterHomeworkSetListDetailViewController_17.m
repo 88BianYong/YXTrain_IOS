@@ -150,6 +150,7 @@
     [self.view addSubview:self.secondLineView];
     
     self.chooseView = [[MasterHomeworkSetChooseView_17 alloc]initWithFrame:CGRectMake(15, 45, kScreenWidth - 30.0f, 45)];
+    self.chooseView.layer.cornerRadius = YXTrainCornerRadii;
     self.chooseView.hidden = YES;
     WEAK_SELF
     self.chooseView.masterHomeworkSetChooseBlock = ^(NSInteger integer) {
@@ -219,6 +220,7 @@
         if (self.detailItem.myScore.integerValue > 0) {
             self.inputView.placeholderScoreString = self.detailItem.score;
         }
+        self.inputView.minScoreString = self.detailItem.myScore;
         self.inputView.inputStatus = MasterInputStatus_Score;
     }];
     [self.view addSubview:self.commentButton];
@@ -400,7 +402,7 @@
             [self.inputView clearContent:MasterInputStatus_Cancle];
             MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
             [VC reloadMasterHomeworkSetRemark];
-            [self.remarkButton setTitle:@"取消推优" forState:UIControlStateNormal];
+            [self.remarkButton setTitle:@"推优" forState:UIControlStateNormal];
             BLOCK_EXEC(self.masterHomeworkSetRecommendBlock,self.detailItem.isRecommend.boolValue);
         }
     }];

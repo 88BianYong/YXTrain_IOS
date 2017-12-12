@@ -44,6 +44,10 @@
     WEAK_SELF
     [[self.filterButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
+        self.filterButton.enabled = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.filterButton.enabled = YES;
+        });
         self.filterButton.selected = !self.filterButton.selected;
         BLOCK_EXEC(self.masterLearningInfoButtonBlock,self.filterButton.selected);
         

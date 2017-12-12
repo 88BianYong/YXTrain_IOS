@@ -15,7 +15,7 @@
 @implementation MasterHomeworkSetScoreRequest_17
 - (instancetype)init {
     if (self = [super init]) {
-        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/master/scoreHomework"];
+        self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/homeworkSet/scoreHomeworkSet"];
     }
     return self;
 }

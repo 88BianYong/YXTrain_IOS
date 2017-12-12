@@ -24,6 +24,7 @@ static const CGFloat kImageWidth = 30;
 }
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.clipsToBounds = YES;
         [self setupUI];
     }
     return self;
@@ -84,6 +85,8 @@ static const CGFloat kImageWidth = 30;
     self.tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
     self.tableView.separatorInset = UIEdgeInsetsMake(0, 15.0, 0, 15.0f);
     self.tableView.rowHeight = 45.0f;
+    self.tableView.layer.cornerRadius = YXTrainCornerRadii;
+    self.tableView.clipsToBounds = YES;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"staticString"];

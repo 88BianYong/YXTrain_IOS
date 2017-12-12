@@ -39,7 +39,6 @@
     self.contentBgView = [[UIView alloc]init];
     self.contentBgView.backgroundColor = [UIColor whiteColor];
     self.contentBgView.layer.cornerRadius = YXTrainCornerRadii;
-    self.contentBgView.clipsToBounds = YES;
     [self addSubview:self.contentBgView];
     [self.contentBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(0);
