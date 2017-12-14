@@ -54,6 +54,7 @@
     _listItem = listItem;
     if (self.filterModel == nil) {
         self.filterModel = [self fomartCollectionFilterModel:_listItem.body.bars];
+        self.listRequest.barId = self.filterModel[0].defaultSelectedID;
     }
     if (self.allMutableArray.count == 0) {
         [self.allMutableArray addObjectsFromArray:_listItem.body.userScores];
