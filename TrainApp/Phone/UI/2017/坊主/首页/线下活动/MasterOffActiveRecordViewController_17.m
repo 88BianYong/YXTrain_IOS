@@ -13,6 +13,8 @@
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, copy) NSString *wonderfulString;
 @property (nonatomic, strong) NSArray *affixArray;
+@property (nonatomic, strong) YXFileItemBase *fileItem;
+
 
 @end
 
@@ -73,6 +75,18 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    MasterManagerOffActiveDetailItem_Body_Affix *affix = self.affixArray[indexPath.row];
+    YXFileType type = [YXAttachmentTypeHelper fileTypeWithTypeName:affix.resType];
+    if(type == YXFileTypeUnknown) {
+        [self showToast:@"暂不支持该格式文件预览"];
+        return;
+    }
+    YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
+    fileItem.name = affix.resName;
+    fileItem.url = affix.previewUrl;
+    fileItem.baseViewController = self;
+    [fileItem browseFile];
+    self.fileItem = fileItem;
 }
 - (void)reloadMasterOffActiveRecord:(NSString *)wonderful withAffix:(NSArray *)affixs {
     self.wonderfulString = wonderful;
