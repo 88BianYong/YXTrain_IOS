@@ -107,6 +107,9 @@
         [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CourseListRequest_17Item_Objs *course = (CourseListRequest_17Item_Objs *)obj;
             if ([course.objID isEqualToString:course_id]) {
+                CourseListRequest_17Item_Scheme *scheme = self.headerView.scheme;
+                scheme.process.userFinishNum = [NSString stringWithFormat:@"%ld",scheme.process.userFinishNum.integerValue + (record.integerValue - course.timeLengthSec.integerValue)/60];
+                self.headerView.scheme = scheme;
                 course.timeLengthSec = record;
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:idx inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                 *stop = YES;

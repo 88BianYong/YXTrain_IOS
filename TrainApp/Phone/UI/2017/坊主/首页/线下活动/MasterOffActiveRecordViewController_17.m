@@ -54,7 +54,7 @@
     return self.affixArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MasterOffActiveRecordAffixCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@" MasterOffActiveRecordAffixCell_17" forIndexPath:indexPath];
+    MasterOffActiveRecordAffixCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterOffActiveRecordAffixCell_17" forIndexPath:indexPath];
     cell.affix = self.affixArray[indexPath.row];
     return cell;
 }

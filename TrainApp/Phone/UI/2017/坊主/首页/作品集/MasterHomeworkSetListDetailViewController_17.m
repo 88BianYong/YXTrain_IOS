@@ -258,6 +258,9 @@
     }];
     [alertView addButtonWithTitle:@"确认" style:LSTAlertActionStyle_Default action:^{
         STRONG_SELF
+        [UIView animateWithDuration:0.25 animations:^{
+            self.translucentView.alpha = 1.0f;
+        }];
         self.inputView.inputStatus = MasterInputStatus_Cancle;
     }];
     [alertView show];
@@ -379,7 +382,7 @@
             MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
             [VC reloadMasterHomeworkSetRemark];
             BLOCK_EXEC(self.masterHomeworkSetRecommendBlock,YES);
-            [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
+            [self.remarkButton setTitle:@"取消推优" forState:UIControlStateNormal];
         }
     }];
     self.recommendRequest = request;
@@ -428,6 +431,7 @@
             MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
             [VC reloadMasterHomeworkSetRemark];
             BLOCK_EXEC(self.masterHomeworkSetCommendBlock);
+            [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
         }
     }];
     self.scoreHomework = request;
