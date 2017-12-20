@@ -70,6 +70,7 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"项目首页" withStatus:YES];
     [self showProjectSelectionView];
     [[LSTSharedInstance sharedInstance].floatingViewManager showPopUpFloatingView];
 }
@@ -78,6 +79,7 @@
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"项目首页" withStatus:NO];
     [self hideProjectSelectionView];
     [[LSTSharedInstance sharedInstance].floatingViewManager hiddenPopUpFloatingView];
 }

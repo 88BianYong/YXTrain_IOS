@@ -67,10 +67,12 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"作业详情" withStatus:YES];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"作业详情" withStatus:NO];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 }
 #pragma mark - set

@@ -62,10 +62,13 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"看课页面" withStatus:YES];
     self.classworkManager.clossworkView.alpha = 1.0f;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"看课页面" withStatus:NO];
+
     self.classworkManager.clossworkView.alpha = 0.0f;
 }
 - (void)didReceiveMemoryWarning {

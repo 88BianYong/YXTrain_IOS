@@ -44,12 +44,13 @@
     [self setupUI];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"学情统计" withStatus:YES];
 }
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [YXDataStatisticsManger trackPage:@"学情统计" withStatus:NO];
 }
 #pragma mark - setupUI
 - (void)setupUI {

@@ -154,6 +154,16 @@
     [modelArray addObject:statusModel];
     return modelArray;
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"综合评定页面" withStatus:YES];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"综合评定页面" withStatus:NO];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"综合评定";
@@ -274,6 +284,7 @@
     [self.maskView addGestureRecognizer:recognizer];
 }
 - (void)hiddenMaskView {
+    [YXDataStatisticsManger trackPage:@"搜索页面" withStatus:NO];
     [self.searchMutableArray removeAllObjects];
     self.maskView.searchMutableArray = self.searchMutableArray;
     self.seachView.searchTextField.text = nil;
@@ -362,6 +373,7 @@
         [self showToast:@"当前无可搜索数据"];
         return;
     }
+    [YXDataStatisticsManger trackPage:@"搜索页面" withStatus:YES];
     [self.seachView setFirstResponse];
     WEAK_SELF
     self.seachView.textBeginEdit = ^{

@@ -69,7 +69,7 @@
     
     self.recordLabel = [[UILabel alloc]init];
     self.recordLabel.font = [UIFont systemFontOfSize:11.0f];
-    self.recordLabel.numberOfLines = 2;
+    self.recordLabel.numberOfLines = 1;
     self.recordLabel.textColor = [UIColor whiteColor];
     [self.recordBgView addSubview:self.recordLabel];
     

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>data</key>
+	<dict>
+		<key>MasterHomeViewController_17</key>
+		<string>项目首页</string>
+		<key>YXWorkshopDetailViewController</key>
+		<string>工作坊页</string>
+		<key>MasterReadingListViewController_17</key>
+		<string>预热阶段</string>
+		<key>MasterLearningInfoViewController_17</key>
+		<string>学情统计</string>
+		<key>PersonLearningInfoViewController_17</key>
+		<string>学员考核</string>
+		<key>MasterHomeworkViewController_17</key>
+		<string>作业列表</string>
+		<key>MasterHomeworkDetailViewController_17</key>
+		<string>作业详情</string>
+		<key>MasterBriefViewController_17</key>
+		<string>简报列表</string>
+		<key>NoticeAndBriefDetailViewController</key>
+		<string>简报详情</string>
+		<key>MasterManageActiveViewController_17</key>
+		<string>线上活动列表</string>
+		<key>MasterManageDetailActiveViewController_17</key>
+		<string>线上活动详情</string>
+		<key>MasterManageOffActiveViewController_17</key>
+		<string>线下活动列表</string>
+		<key>key - 13</key>
+		<string>线下活动活动列表</string>
+		<key>MasterManageOffActiveDetailViewController_17</key>
+		<string>线下活动详情页</string>
+		<key>MasterNoticeViewController_17</key>
+		<string>通知列表</string>
+		<key></key>
+		<string>通知详情页</string>
+		<key>key - 17</key>
+		<string>作品集管理列表</string>
+		<key>key - 18</key>
+		<string>作品集详情页</string>
+		<key>key - 19</key>
+		<string>附件浏览页面</string>
+		<key>key - 20</key>
+		<string>看课列表页面</string>
+		<key>key - 21</key>
+		<string>全部课程页面</string>
+		<key>key - 22</key>
+		<string>看课页面</string>
+		<key>key - 23</key>
+		<string>综合评定页面</string>
+		<key>key - 24</key>
+		<string>搜索页面</string>
+		<key>key - 25</key>
+		<string>打分页面</string>
+		<key>key - 26</key>
+		<string>考核页面</string>
+		<key>key - 27</key>
+		<string>“我”页面</string>
+		<key>key - 28</key>
+		<string>帮助与反馈</string>
+		<key>key - 29</key>
+		<string>关于我们</string>
+		<key>key - 31</key>
+		<string>value</string>
+	</dict>
+</dict>
+</plist>

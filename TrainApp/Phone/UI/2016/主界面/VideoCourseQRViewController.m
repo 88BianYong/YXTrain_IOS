@@ -24,7 +24,9 @@
 @end
 
 @implementation VideoCourseQRViewController
-
+- (void)dealloc {
+    DDLogDebug(@"======>>%@",NSStringFromClass([self class]));
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [super setupLeftBack];
@@ -134,8 +136,14 @@
                 vc.course = course;
                 vc.seekInteger = [[paraDic objectForKey:@"cInx"] integerValue];
                 vc.fromWhere = VideoCourseFromWhere_QRCode;
+                UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:[paraDic objectForKey:@"projectId"]];
-                [self.navigationController pushViewController:vc animated:YES];
+                if ([window.rootViewController isKindOfClass:[UITabBarController class]]) {
+                    UITabBarController *tabBarVC = (UITabBarController *)window.rootViewController;
+                    [(UINavigationController *)(tabBarVC.selectedViewController) pushViewController:vc animated:YES];
+                }else {
+                    [window.rootViewController.navigationController pushViewController:vc animated:YES];
+                }
             }else {
                 [self showToast:@"没有找到该课程"];
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

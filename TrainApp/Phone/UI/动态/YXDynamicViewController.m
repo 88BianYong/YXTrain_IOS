@@ -184,6 +184,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
         NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
         VC.nbIdString = data.objectId;
         VC.titleString = data.title;
+        VC.detailFlag = data.type.integerValue == 1? NoticeAndBriefFlag_Notice : NoticeAndBriefFlag_Brief;
         [self.navigationController pushViewController:VC animated:YES];
     }
 }

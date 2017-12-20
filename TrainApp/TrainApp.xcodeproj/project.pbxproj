@@ -264,6 +264,7 @@
 		9229015C1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229015B1DE68E13001474CE /* UITableView+TemplateLayoutHeaderView.m */; };
 		9229015F1DE6C241001474CE /* VideoCommentErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229015E1DE6C241001474CE /* VideoCommentErrorView.m */; };
 		922901641DED0C15001474CE /* PreventHangingCourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901631DED0C15001474CE /* PreventHangingCourseView.m */; };
+		9229CB5A1FEA454300228085 /* YXDataStatistics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9229CB591FEA454300228085 /* YXDataStatistics.plist */; };
 		922DB1631FBA7C020078F6BD /* YXTabBarViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DB1611FBA7C020078F6BD /* YXTabBarViewController_17.m */; };
 		922DB1701FBA7C700078F6BD /* ActivityListCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DB1641FBA7C6C0078F6BD /* ActivityListCell_17.m */; };
 		922DB1711FBA7C700078F6BD /* ActivityFilterFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DB1681FBA7C6D0078F6BD /* ActivityFilterFooterView_17.m */; };
@@ -1346,6 +1347,7 @@
 		9229015E1DE6C241001474CE /* VideoCommentErrorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCommentErrorView.m; sourceTree = "<group>"; };
 		922901621DED0C15001474CE /* PreventHangingCourseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreventHangingCourseView.h; sourceTree = "<group>"; };
 		922901631DED0C15001474CE /* PreventHangingCourseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreventHangingCourseView.m; sourceTree = "<group>"; };
+		9229CB591FEA454300228085 /* YXDataStatistics.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YXDataStatistics.plist; sourceTree = "<group>"; };
 		922DB1611FBA7C020078F6BD /* YXTabBarViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTabBarViewController_17.m; sourceTree = "<group>"; };
 		922DB1621FBA7C020078F6BD /* YXTabBarViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTabBarViewController_17.h; sourceTree = "<group>"; };
 		922DB1641FBA7C6C0078F6BD /* ActivityListCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListCell_17.m; sourceTree = "<group>"; };
@@ -5777,6 +5779,7 @@
 			children = (
 				E90C60B01D9D0012001652CF /* YXDataStatisticsManger.h */,
 				E90C60B11D9D0012001652CF /* YXDataStatisticsManger.m */,
+				9229CB591FEA454300228085 /* YXDataStatistics.plist */,
 			);
 			name = DataStatisticsManger;
 			sourceTree = "<group>";
@@ -6069,6 +6072,7 @@
 				92AD8EF11E10F0C300A3E91C /* beijingActivityFilter_mock.json in Resources */,
 				7C2C3B571D23B87B00A03635 /* courselist_mock.json in Resources */,
 				927B6C5A1F0F3A5E0082DB27 /* readme.txt in Resources */,
+				9229CB5A1FEA454300228085 /* YXDataStatistics.plist in Resources */,
 				9237FF791DD48F800057FFDE /* activityStep_mock.json in Resources */,
 				E9A7B5F41DDC63EF00136335 /* shareResources_mock.json in Resources */,
 				923237481D800DA900FDACFE /* getRotateList_mock.json in Resources */,

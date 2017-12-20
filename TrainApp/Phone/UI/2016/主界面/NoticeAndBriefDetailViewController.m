@@ -38,6 +38,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:self.detailFlag == NoticeAndBriefFlag_Notice ?@"通知详情":@"简报详情" withStatus:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:self.detailFlag == NoticeAndBriefFlag_Notice ?@"通知详情":@"简报详情" withStatus:YES];
+}
 
 #pragma mark - setupUI
 - (void)setupUI {

@@ -58,6 +58,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"线下活动详情" withStatus:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"线下活动详情" withStatus:NO];
+}
 #pragma mark - setupUI
 - (void)setupUI {
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];

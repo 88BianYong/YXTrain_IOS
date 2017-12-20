@@ -33,7 +33,12 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"预热阶段" withStatus:YES];
     [self.tableView reloadData];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"预热阶段" withStatus:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

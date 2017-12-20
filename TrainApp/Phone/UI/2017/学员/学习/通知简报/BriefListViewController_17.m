@@ -73,6 +73,7 @@
         NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
         VC.nbIdString = item.nbID;
         VC.titleString = item.title;
+        VC.detailFlag = NoticeAndBriefFlag_Brief;
         [self.navigationController pushViewController:VC animated:YES];
     }
 }

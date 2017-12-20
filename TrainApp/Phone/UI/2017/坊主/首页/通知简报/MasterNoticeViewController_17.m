@@ -25,7 +25,14 @@
     [self startLoading];
     [self setupUI];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"通知列表" withStatus:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"通知列表" withStatus:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -56,6 +63,7 @@
     NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
     VC.nbIdString = item.nbId;
     VC.titleString = item.title;
+    VC.detailFlag = NoticeAndBriefFlag_Notice;
     [self.navigationController pushViewController:VC animated:YES];
 }
 

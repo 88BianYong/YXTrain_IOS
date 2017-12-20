@@ -24,6 +24,6 @@
 	<key>testFrameworkOn</key>
 	<false/>
 	<key>talkingDataReportOn</key>
-	<false/>
+	<true/>
 </dict>
 </plist>

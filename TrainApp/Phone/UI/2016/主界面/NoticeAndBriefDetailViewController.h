@@ -7,8 +7,12 @@
 //
 
 #import "YXBaseViewController.h"
-
+typedef NS_ENUM (NSInteger, NoticeAndBriefFlag) {
+    NoticeAndBriefFlag_Notice = 0,
+    NoticeAndBriefFlag_Brief = 1,
+};
 @interface NoticeAndBriefDetailViewController : YXBaseViewController
 @property (nonatomic, copy) NSString *nbIdString;
 @property (nonatomic, copy) NSString *titleString;
+@property (nonatomic, assign) NoticeAndBriefFlag detailFlag;
 @end

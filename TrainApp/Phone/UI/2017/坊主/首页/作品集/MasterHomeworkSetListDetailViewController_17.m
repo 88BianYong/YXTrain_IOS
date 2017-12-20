@@ -115,14 +115,16 @@
     [super viewDidAppear:animated];
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
-    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
-}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
+    [YXDataStatisticsManger trackPage:@"作品集详情" withStatus:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+    [YXDataStatisticsManger trackPage:@"作品集详情" withStatus:NO];
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

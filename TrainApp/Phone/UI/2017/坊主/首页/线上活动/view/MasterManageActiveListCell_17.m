@@ -15,6 +15,8 @@
 @property (nonatomic, strong) UILabel *isJoinLabel;
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *joinCountLabel;
+
 @end
 @implementation MasterManageActiveListCell_17
 
@@ -90,9 +92,12 @@
     self.lineView.backgroundColor = [UIColor colorWithHexString:@"eceef2"];
     [self.contentView addSubview:self.lineView];
 
-    
-
-
+    self.joinCountLabel = [[UILabel alloc]init];
+    self.joinCountLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
+    self.joinCountLabel.textColor = [UIColor whiteColor];
+    self.joinCountLabel.textAlignment = NSTextAlignmentCenter;
+    self.joinCountLabel.font = [UIFont systemFontOfSize:11.0f];
+    [self.activityImageView addSubview:self.joinCountLabel];
 }
 - (void)setupLayout {
     [self.activityImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,6 +131,13 @@
         make.top.equalTo(self.segmentLabel.mas_bottom).offset(9.0f);
     }];
     
+    [self.joinCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.activityImageView.mas_centerX);
+        make.height.mas_equalTo(20.0f);
+        make.width.equalTo(self.activityImageView.mas_width);
+        make.bottom.equalTo(self.activityImageView.mas_bottom);
+    }];
+    
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.activityImageView.mas_left);
         make.right.mas_equalTo(0);
@@ -150,5 +162,6 @@
     }else {
         self.timeLabel.text = @"活动时间: 不限";
     }
+    self.joinCountLabel.text = [NSString stringWithFormat:@"%@人参加",_active.joinUserCount];
 }
 @end
