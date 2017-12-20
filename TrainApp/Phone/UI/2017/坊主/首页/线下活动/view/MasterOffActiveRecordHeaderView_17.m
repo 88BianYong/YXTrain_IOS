@@ -22,10 +22,16 @@
 }
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+//        self.frame = [UIScreen mainScreen].bounds;
+//        [self layoutIfNeeded];
+//        [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.edges.equalTo(self);
+//        }];
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.contentLabel = [[UILabel alloc] init];
         self.contentLabel.textColor = [UIColor colorWithHexString:@"334466"];
         self.contentLabel.font = [UIFont systemFontOfSize:14.0f];
+        self.contentLabel.numberOfLines = 0;
         [self.contentView addSubview:self.contentLabel];
         [self.contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView.mas_left).offset(15.0f);

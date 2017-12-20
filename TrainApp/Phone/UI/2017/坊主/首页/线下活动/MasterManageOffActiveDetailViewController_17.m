@@ -33,7 +33,6 @@
        MasterOffActiveRecordViewController_17 *recordVC = [[MasterOffActiveRecordViewController_17 alloc] init];
         recordVC.title = @"精彩记录";
         [mutableArray addObject:recordVC];
-
         [recordVC reloadMasterOffActiveRecord:_detailItem.wonderful?:@"" withAffix:_detailItem.affixs];
         [self addChildViewController:recordVC];
     }

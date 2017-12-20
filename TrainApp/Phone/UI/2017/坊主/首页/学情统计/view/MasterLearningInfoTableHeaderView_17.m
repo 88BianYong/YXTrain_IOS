@@ -57,7 +57,7 @@
 - (void)setupLayout {
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15.0f);
-        make.right.equalTo(self.totalLabel.mas_right).offset(-15.0f);
+        make.right.equalTo(self.totalLabel.mas_left).offset(-15.0f);
         make.centerY.equalTo(self.mas_centerY);
     }];
     

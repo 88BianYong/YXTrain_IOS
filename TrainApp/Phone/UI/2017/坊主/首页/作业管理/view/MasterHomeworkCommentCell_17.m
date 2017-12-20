@@ -19,6 +19,8 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.frame = [UIScreen mainScreen].bounds;
+        [self layoutIfNeeded];
         [self setupUI];
         [self setupLayout];
     }
@@ -26,7 +28,7 @@
 }
 - (void)setRemark:(MasterHomeworkRemarkItem_Body_Remark *)remark {
     _remark = remark;
-   [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_remark.rId] placeholderImage:[UIImage imageNamed:@"个人信息默认用户头像"]];
+   [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_remark.headUrl] placeholderImage:[UIImage imageNamed:@"个人信息默认用户头像"]];
     self.nameLabel.text = _remark.userName;
     self.timeLabel.text = _remark.publishDate;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -37,6 +39,9 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
     self.userImageView = [[UIImageView alloc] init];
     self.userImageView.clipsToBounds = YES;
     self.userImageView.layer.cornerRadius = 18.0f;

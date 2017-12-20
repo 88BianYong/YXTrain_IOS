@@ -19,6 +19,8 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.frame = [UIScreen mainScreen].bounds;
+        [self layoutIfNeeded];
         [self setupUI];
         [self setupLayout];
     }
@@ -37,6 +39,9 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
     self.userImageView = [[UIImageView alloc] init];
     self.userImageView.clipsToBounds = YES;
     self.userImageView.layer.cornerRadius = 18.0f;

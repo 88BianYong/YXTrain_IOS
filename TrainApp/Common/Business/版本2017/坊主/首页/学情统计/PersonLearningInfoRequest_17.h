@@ -11,4 +11,5 @@
 @interface PersonLearningInfoRequest_17 : YXGetRequest
 @property (nonatomic, copy) NSString<Optional> *projectId;
 @property (nonatomic, copy) NSString<Optional> *userId;
+@property (nonatomic, copy) NSString<Optional> *hook;
 @end

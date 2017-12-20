@@ -33,6 +33,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/master/manageHomeworkIndex"];
+        self.hook = @"yes";
     }
     return self;
 }

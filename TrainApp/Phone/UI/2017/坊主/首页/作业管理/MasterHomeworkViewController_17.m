@@ -230,6 +230,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MasterHomeworkDetailViewController_17 *VC = [[MasterHomeworkDetailViewController_17 alloc] init];
     MasterHomeworkListItem_Body_Homework *homework = self.dataArray[indexPath.row];
+    if (homework.supportTemplate.integerValue == 0) {
+        [self showToast:@"作业类型暂不支持,请通过电脑查看"];
+        return;
+    }
     VC.homeworkId = homework.homeworkId;
     VC.titleString = homework.title;
     WEAK_SELF

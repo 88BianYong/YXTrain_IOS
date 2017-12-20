@@ -759,7 +759,7 @@ static  NSString *const trackPageName = @"个人信息页面";
     if (!image) {
         return;
     }
-    NSData *data = [UIImage compressionImage:image limitSize:2*1024*1024];
+    NSData *data = [UIImage compressionImage:image limitSize:1*1024*1024];
     [self.uploadHeadImgRequest stopRequest];
     self.uploadHeadImgRequest = [[YXUploadHeadImgRequest alloc] init];
     [self.uploadHeadImgRequest.request setData:data

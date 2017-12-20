@@ -10,8 +10,6 @@
 #import <JSONModel.h>
 
 @interface YXMockManager : NSObject
-//+ (YXMockManager *)sharedInstance;
-
 @property (nonatomic, assign) NSInteger requestDuration;
 
 - (BOOL)hasMockDataForKey:(NSString *)key;

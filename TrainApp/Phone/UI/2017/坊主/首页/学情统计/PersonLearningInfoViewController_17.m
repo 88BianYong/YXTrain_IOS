@@ -137,7 +137,7 @@
 - (void)requestForLearningInfo {
     PersonLearningInfoRequest_17 *request = [[PersonLearningInfoRequest_17 alloc] init];
     request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-    request.userId = @"";
+    request.userId = self.learningInfo.userId;
     WEAK_SELF
     [request startRequestWithRetClass:[ExamineDetailRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF

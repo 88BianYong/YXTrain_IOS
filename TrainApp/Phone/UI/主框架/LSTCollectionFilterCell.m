@@ -56,6 +56,6 @@
 
 + (CGSize)sizeForTitle:(NSString *)title {
     CGSize size = [title sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}];
-    return CGSizeMake(ceilf(size.width+30), 33);
+    return CGSizeMake(MIN(ceilf(size.width+30), kScreenWidth - 30.0f), 33);
 }
 @end

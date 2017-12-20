@@ -29,6 +29,7 @@
 @property (nonatomic, copy) NSString<Optional> *isSelfRecommend;//自荐
 @property (nonatomic, copy) NSString<Optional> *isRead;
 @property (nonatomic, copy) NSString<Optional> *finishDate;
+@property (nonatomic, copy) NSString<Optional> *supportTemplate;
 @end
 
 @interface MasterHomeworkListItem_Body : JSONModel
@@ -52,4 +53,5 @@
 @property (nonatomic, copy) NSString<Optional> *commendStatus;
 @property (nonatomic, copy) NSString<Optional> *page;
 @property (nonatomic, copy) NSString<Optional> *pageSize;
+@property (nonatomic, copy) NSString<Optional> *hook;
 @end
