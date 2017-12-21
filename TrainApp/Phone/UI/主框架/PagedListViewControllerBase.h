@@ -8,13 +8,9 @@
 
 #import "YXBaseViewController.h"
 #import "PagedListFetcherBase.h"
-#import "MJRefresh.h"
 @interface PagedListViewControllerBase : YXBaseViewController
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) MJRefreshFooterView *footer;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
-
 
 @property (nonatomic, strong) PagedListFetcherBase *dataFetcher;
 @property (nonatomic, assign) BOOL bIsGroupedTableViewStyle;    // currently trick

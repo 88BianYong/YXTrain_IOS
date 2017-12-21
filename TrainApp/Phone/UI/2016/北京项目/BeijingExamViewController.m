@@ -8,7 +8,6 @@
 
 #import "BeijingExamViewController.h"
 #import "BeijingExamineRequest.h"
-#import "MJRefresh.h"
 #import "YXScoreViewController.h"
 #import "YXExamMarkView.h"
 #import "BeijingCourseViewController.h"
@@ -30,7 +29,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @property (nonatomic, strong) BeijingExamineRequest *request;
 @property (nonatomic, strong) BeijingExamineRequestItem *examineItem;
 @property (nonatomic, strong) NSMutableDictionary *foldStatusDic;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
 
 @property (nonatomic,strong) UIView *waveView;
 @property (nonatomic,assign) BOOL  isSelected;
@@ -43,7 +41,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @implementation BeijingExamViewController
 
 - (void)dealloc{
-    [self.header free];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -94,20 +91,16 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     [self.tableView registerClass:[BeijingExamGenreDefaultHeaderView class] forHeaderFooterViewReuseIdentifier:@"BeijingExamGenreDefaultHeaderView"];
     [self.tableView registerClass:[BeijingExamGenreExplainHeaderView class] forHeaderFooterViewReuseIdentifier:@"BeijingExamGenreExplainHeaderView"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.tableView;
-    
     WEAK_SELF
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self getDataShowLoading:NO];
-    };
+    }];
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self getDataShowLoading:YES];
     };
-    
 }
 
 - (void)setupLayout {
@@ -129,7 +122,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     [self.request startRequestWithRetClass:[BeijingExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self.header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = retItem != nil;
         data.localDataExist = NO;

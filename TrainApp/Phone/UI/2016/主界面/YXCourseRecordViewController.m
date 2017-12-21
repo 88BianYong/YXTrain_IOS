@@ -11,7 +11,6 @@
 #import "YXCourseRecordHeaderView.h"
 #import "YXCourseRecordRequest.h"
 #import "YXCourseRecordFooterView.h"
-#import "MJRefresh.h"
 #import "YXCourseDetailViewController.h"
 #import "YXModuleListRequest.h"
 #import "YXCourseDetailPlayerViewController_17.h"
@@ -21,7 +20,6 @@ static  NSString *const trackPageName = @"看课记录页面";
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) YXCourseRecordRequest *request;
 @property (nonatomic, strong) YXCourseRecordRequestItem *recordItem;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) YXModuleListRequest *moduleListRequest;
 @property (nonatomic, copy) NSString *courseType;
 
@@ -31,7 +29,6 @@ static  NSString *const trackPageName = @"看课记录页面";
 @implementation YXCourseRecordViewController
 
 - (void)dealloc{
-    [self.header free];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,18 +73,15 @@ static  NSString *const trackPageName = @"看课记录页面";
         make.left.right.bottom.mas_equalTo(0);
         make.top.mas_equalTo(0);
     }];
-    
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.collectionView;
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, -290, self.view.bounds.size.width, 360.0f)];
-    topView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    [_header addSubview:topView];
-    [_header sendSubviewToBack:topView];
     WEAK_SELF
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self getDataShowLoading:NO];
-    };
+    }];
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, -290, self.view.bounds.size.width, 360.0f)];
+    topView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.collectionView.mj_header addSubview:topView];
+    [self.collectionView.mj_header sendSubviewToBack:topView];
     
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
@@ -123,7 +117,7 @@ static  NSString *const trackPageName = @"看课记录页面";
         STRONG_SELF
         dispatch_async(dispatch_get_main_queue(), ^{
             [self stopLoading];
-            [self.header endRefreshing];
+            [self.collectionView.mj_header endRefreshing];
             
             YXCourseRecordRequestItem *item = (YXCourseRecordRequestItem *)retItem;
             UnhandledRequestData *data = [[UnhandledRequestData alloc]init];

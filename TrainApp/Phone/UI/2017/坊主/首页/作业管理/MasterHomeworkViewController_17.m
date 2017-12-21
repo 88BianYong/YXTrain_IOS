@@ -277,7 +277,6 @@
         }
         self.total = total;
         [self tableViewWillRefresh];
-        [self.header setLastUpdateTime:[NSDate date]];
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:retItemArray];
         [self checkHasMore];

@@ -194,7 +194,7 @@
         }];
     }else {
         [self setupLeftBack];
-        if (self.footer.alpha == 0.0f){
+        if (!self.tableView.mj_footer.hidden){
             self.tableView.tableFooterView = self.footerView;
         }
         [UIView animateWithDuration:0.1 animations:^{
@@ -216,7 +216,7 @@
 - (void)changeBatchInterface:(BOOL)isBatch {
     self.batchButton.hidden = isBatch;
     self.remindButton.hidden = !isBatch;
-    self.header.hidden = isBatch;
+    self.tableView.mj_header.hidden = isBatch;
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -397,7 +397,6 @@
             }
             return;
         }
-        [self.header setLastUpdateTime:[NSDate date]];
         self.total = total;
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:retItemArray];

@@ -9,7 +9,6 @@
 #import "MasterHomeworkDetailViewController_17.h"
 #import "MasterHomeworkDetailTableHeaderView_17.h"
 #import "MasterHomeworkDetailRequest_17.h"
-#import "MJRefresh.h"
 #import "MasterHomeworkAffixsCell_17.h"
 #import "MasterHomeworkCommentCell_17.h"
 #import "MasterHomeworkRemarkRequest_17.h"
@@ -30,9 +29,6 @@
 @property (nonatomic, strong) MasterHomeworkDeleteRemarkRequest_17 *deleteRequest;
 @property (nonatomic, strong) NSMutableArray *remarkMutableArray;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
-@property (nonatomic, strong) MJRefreshFooterView *footer;
-
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 
 @property (nonatomic, strong) MasterInputView_17 *inputView;
@@ -52,8 +48,6 @@
     self.inputView = nil;
     [self.translucentView removeFromSuperview];
     self.translucentView = nil;
-    [self.header free];
-    [self.footer free];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -110,22 +104,19 @@
     self.headerView = [[MasterHomeworkDetailTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 500.0f)];
     self.tableView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.tableView;
     WEAK_SELF
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         self.startPage = 1;
         [self requestForHomeworkDetail];
         [self requestForHomeworkRemark];
-    };
-    self.footer = [MJRefreshFooterView footer];
-    self.footer.scrollView = self.tableView;
-    self.footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         STRONG_SELF
         self.startPage ++;
         [self requestForHomeworkRemark];
-    };
+    }];
+    
     [self setupHomeworkRightView];
     [self setupBottomView];
     self.errorView = [[YXErrorView alloc] init];
@@ -436,7 +427,7 @@
     [request startRequestWithRetClass:[MasterHomeworkDetailItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-       [self.header endRefreshing];
+       [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
         data.localDataExist = NO;
@@ -458,8 +449,8 @@
     WEAK_SELF
     [request startRequestWithRetClass:[MasterHomeworkRemarkItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self.footer endRefreshing];
-        [self.header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         [self setPullupViewHidden:YES];
         if (error) {
             self.startPage--;
@@ -479,7 +470,7 @@
     self.remarkRequest = request;
 }
 - (void)setPullupViewHidden:(BOOL)hidden {
-    self.footer.alpha = hidden ? 0:1;
+    self.tableView.mj_footer.alpha = hidden;
 }
 - (void)requestForRecommendHomework:(NSString *)content {
     MasterRecommendHomeworkRequest_17 *request = [[MasterRecommendHomeworkRequest_17 alloc] init];

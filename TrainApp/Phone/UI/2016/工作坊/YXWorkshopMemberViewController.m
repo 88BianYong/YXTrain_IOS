@@ -9,7 +9,6 @@
 #import "YXWorkshopMemberViewController.h"
 #import "YXWorkshopMemberCell.h"
 #import "YXWorkshopMemberFetcher.h"
-#import "MJRefresh.h"
 static  NSString *const trackPageName = @"成员列表页面";
 @interface YXWorkshopMemberViewController ()
 <
@@ -19,8 +18,6 @@ UICollectionViewDelegate
 {
     UICollectionView *_collectionView;
     YXWorkshopMemberFetcher *_memberFetcher;
-    MJRefreshFooterView *_footer;
-    MJRefreshHeaderView *_header;
     YXErrorView *_errorView;
     YXEmptyView *_emptyView;
     
@@ -33,8 +30,6 @@ UICollectionViewDelegate
 - (void)dealloc
 {
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
-    [_header free];
-    [_footer free];
     [_memberFetcher stop];
 }
 
@@ -81,28 +76,24 @@ UICollectionViewDelegate
     [self.view addSubview:_collectionView];
     
     WEAK_SELF
-    _header = [MJRefreshHeaderView header];
-    _header.scrollView = _collectionView;
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, self.view.bounds.size.width, 360.0f)];
-    topView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    [_header addSubview:topView];
-    [_header sendSubviewToBack:topView];
-    _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    _collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         self->_pageIndex = 0;
         [self requestForWorkshopMember:self ->_pageIndex withShowLoading:NO];
-    };
-    
-    _footer = [MJRefreshFooterView footer];
-    _footer.scrollView = _collectionView;
+    }];
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, self.view.bounds.size.width, 360.0f)];
+    topView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [_collectionView.mj_header addSubview:topView];
+    [_collectionView.mj_header sendSubviewToBack:topView];
+    _collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        STRONG_SELF
+        [self requestForWorkshopMember:self ->_pageIndex withShowLoading:NO];
+    }];
     UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 360.0f)];
     bottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    [_footer addSubview:bottomView];
-    [_footer sendSubviewToBack:bottomView];
-    _footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-       STRONG_SELF
-        [self requestForWorkshopMember:self ->_pageIndex withShowLoading:NO];
-    };
+    [_collectionView.mj_footer addSubview:bottomView];
+    [_collectionView.mj_footer sendSubviewToBack:bottomView];
+    
     [self setPullupViewHidden:_hiddenPullupBool];
     
     _errorView = [[YXErrorView alloc]initWithFrame:self.view.bounds];
@@ -176,8 +167,8 @@ UICollectionViewDelegate
     [_memberFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self->_footer endRefreshing];
-            [self->_header endRefreshing];
+            [self->_collectionView.mj_footer endRefreshing];
+            [self->_collectionView.mj_header endRefreshing];
         });
         [self stopLoading];
         if (pageIndex == 0) {//首次添加 如果错误添加错误界面如果空添加空界面
@@ -201,9 +192,8 @@ UICollectionViewDelegate
     }];
 }
 
-- (void)setPullupViewHidden:(BOOL)hidden
-{
-    _footer.alpha = hidden ? 0:1;
+- (void)setPullupViewHidden:(BOOL)hidden {
+    _collectionView.mj_footer.alpha = hidden;
 }
 
 - (void)setExceptionViewAndData:(NSArray *)retItemArray withPageIndex:(int)pageIndex{

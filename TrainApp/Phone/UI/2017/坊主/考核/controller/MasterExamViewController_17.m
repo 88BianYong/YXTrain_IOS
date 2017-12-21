@@ -13,18 +13,15 @@
 #import "MasterHappeningHeaderView.h"
 #import "MasterHappeningCell_17.h"
 #import "BeijingExamExplainView.h"
-#import "MJRefresh.h"
 @interface MasterExamViewController_17 ()<UITableViewDelegate, UITableViewDataSource>;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) MasterHappeningTableHeaderView_17 *headerView;
 @property (nonatomic, strong) MasterIndexRequestItem_Body_MyExamine *masterBody;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) MasterIndexRequest_17 *masterStatrequest;
 @end
 
 @implementation MasterExamViewController_17
 - (void)dealloc{
-    [self.header free];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -70,13 +67,11 @@
     [self.tableView registerClass:[MasterHappeningCell_17 class] forCellReuseIdentifier:@"MasterHappeningCell_17"];
     [self.tableView registerClass:[MasterHappeningHeaderView class] forHeaderFooterViewReuseIdentifier:@"MasterHappeningHeaderView"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.tableView;
     WEAK_SELF
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self requestForMasterStat];
-    };
+    }];
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
@@ -153,7 +148,7 @@
     [request startRequestWithRetClass:[MasterIndexRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self.header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc] init];
         data.requestDataExist = YES;
         data.localDataExist = NO;

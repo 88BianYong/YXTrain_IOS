@@ -9,12 +9,10 @@
 #import "MasterHomeworkSetDetailViewController_17.h"
 #import "MasterHomeworkSetDetailTableHeaderView_17.h"
 #import "MasterHomeworkSetDetailRequest_17.h"
-#import "MJRefresh.h"
 #import "MasterHomeworkSetAffixCell_17.h"
 #import "MasterHomeworkSetCommentCell_17.h"
 #import "MasterHomeworkSetRemarkListRequest_17.h"
 #import "MasterHomeworkSetCommentHeaderView_17.h"
-
 #import "MasterHomeworkSetDeleteRemarkRequest_17.h"
 @interface MasterHomeworkSetDetailViewController_17 ()
 <UITableViewDelegate, UITableViewDataSource>
@@ -26,8 +24,6 @@
 @property (nonatomic, strong) MasterHomeworkSetDeleteRemarkRequest_17 *deleteRequest;
 @property (nonatomic, strong) NSMutableArray *remarkMutableArray;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
-@property (nonatomic, strong) MJRefreshFooterView *footer;
 
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 @property (nonatomic, assign) NSInteger startPage;
@@ -39,8 +35,6 @@
 @implementation MasterHomeworkSetDetailViewController_17
 - (void)dealloc {
     DDLogDebug(@"======>>%@",NSStringFromClass([self class]));
-    [self.header free];
-    [self.footer free];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -78,22 +72,18 @@
     self.headerView = [[MasterHomeworkSetDetailTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 500.0f)];
     self.tableView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.tableView;
     WEAK_SELF
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         self.startPage = 1;
         [self requestForHomeworkDetail];
         [self requestForHomeworkRemark];
-    };
-    self.footer = [MJRefreshFooterView footer];
-    self.footer.scrollView = self.tableView;
-    self.footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    }];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         STRONG_SELF
         self.startPage ++;
         [self requestForHomeworkRemark];
-    };
+    }];
     self.errorView = [[YXErrorView alloc] init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
@@ -258,7 +248,7 @@
     [request startRequestWithRetClass:[MasterHomeworkSetDetailItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self.header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
         data.localDataExist = NO;
@@ -281,8 +271,8 @@
     [request startRequestWithRetClass:[MasterHomeworkSetRemarkListItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self.footer endRefreshing];
-        [self.header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         [self setPullupViewHidden:YES];
         if (error) {
             self.startPage--;
@@ -302,7 +292,7 @@
     self.remarkRequest = request;
 }
 - (void)setPullupViewHidden:(BOOL)hidden {
-    self.footer.alpha = hidden ? 0:1;
+    self.tableView.mj_footer.hidden = hidden;
 }
 - (void)requestForDeleteRemark:(NSInteger)integer {
     MasterHomeworkSetRemarkListItem_Body_Remark *remark = self.remarkMutableArray[integer];

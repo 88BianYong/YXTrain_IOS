@@ -8,7 +8,6 @@
 
 #import "YXLearningViewController_17.h"
 #import "ExamineDetailRequest_17.h"
-#import "MJRefresh.h"
 #import "ProjectChooseLayerView.h"
 #import "TrainSelectLayerRequest.h"
 #import "YXProjectSelectionView.h"
@@ -34,7 +33,6 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 @interface YXLearningViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) UIView *qrCodeView;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) ProjectChooseLayerView *chooseLayerView;
 @property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
 @property (nonatomic, strong) YXLearningTableHeaderView_17 *headerView;
@@ -56,7 +54,6 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 @implementation YXLearningViewController_17
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
-    [self.header free];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -176,12 +173,10 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
             [self requestForExamineDetail];
         }
     };
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.tableView;
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self requestForExamineDetail];
-    };
+    }];
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -388,7 +383,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     [request startRequestWithRetClass:[ExamineDetailRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self.header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
         data.localDataExist = NO;

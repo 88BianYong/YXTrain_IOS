@@ -13,22 +13,18 @@
 #import "MasterMyLearningScoreCell_17.h"
 #import "YXMyExamExplainHelp_17.h"
 #import "PersonLearningInfoRequest_17.h"
-#import "MJRefresh.h"
 #import "PersonTableHeaderView_17.h"
 @interface PersonLearningInfoViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) PersonTableHeaderView_17 *headerView;
 @property (nonatomic, strong) PersonLearningInfoRequest_17 *learningInfoRequest;
 @property (nonatomic, strong) ExamineDetailRequest_17Item_Examine *examine;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
-
 @property (nonatomic, assign) NSInteger showMarkHeight;
 @property (nonatomic, assign) BOOL isShowChoose;
 @end
 
 @implementation PersonLearningInfoViewController_17
 - (void)dealloc {
-    [self.header free];
 }
 
 - (void)viewDidLoad {
@@ -85,12 +81,10 @@
         [self startLoading];
         [self requestForLearningInfo];
     };
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.tableView;
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self requestForLearningInfo];
-    };
+    }];
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -150,7 +144,7 @@
     [request startRequestWithRetClass:[ExamineDetailRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self.header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
         data.localDataExist = NO;

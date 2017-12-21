@@ -22,10 +22,8 @@
 #import "HomeworkListVideoSpecialCell_17.h"
 #import "HomeworkListDefaultCell_17.h"
 #import "HomeworkListGroupSpecialCell_17.h"
-#import "MJRefresh.h"
 @interface HomeworkListViewController_17 ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, strong) HomeworkListRequest_17 *listRequest;
 @property (nonatomic, strong) HomeworkListRequest_17Item *listItem;
 @end
@@ -33,7 +31,6 @@
 @implementation HomeworkListViewController_17
 
 - (void)dealloc{
-    [_header free];
 }
 
 - (void)viewDidLoad {
@@ -127,13 +124,10 @@
         [self startLoading];
         [self requestForHomeworkList];
     };
-    
-    _header = [MJRefreshHeaderView header];
-    _header.scrollView = _tableView;
-    _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self requestForHomeworkList];
-    };
+    }];
 }
 
 - (void)layoutInterface{
@@ -310,7 +304,7 @@
     [request startRequestWithRetClass:[HomeworkListRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self->_header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = retItem != nil;

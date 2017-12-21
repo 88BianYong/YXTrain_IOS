@@ -11,7 +11,6 @@
 #import "YXHomeworkListCell.h"
 #import "YXHomeworkListHeaderView.h"
 #import "YXHomeworkInfoViewController.h"
-#import "MJRefresh.h"
 static  NSString *const trackPageName = @"作业列表页面";
 @interface YXHomeworkListViewController ()
 <
@@ -20,7 +19,6 @@ UITableViewDataSource
 >
 {
     UITableView * _tableView;
-    MJRefreshHeaderView *_header;
     
     YXHomeworkListRequestItem *_listItem;
     
@@ -31,7 +29,6 @@ UITableViewDataSource
 
 @implementation YXHomeworkListViewController
 - (void)dealloc{
-    [_header free];
 }
 
 - (void)viewDidLoad {
@@ -41,7 +38,8 @@ UITableViewDataSource
     if ([self isJudgmentChooseCourse]) {
         [self setupUI];
         [self layoutInterface];
-        [self requestForHomeworkList:YES];
+        [self startLoading];
+        [self requestForHomeworkList];
     }
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -95,15 +93,13 @@ UITableViewDataSource
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
-        [self requestForHomeworkList:YES];
+        [self startLoading];
+        [self requestForHomeworkList];
     };
-    
-    _header = [MJRefreshHeaderView header];
-    _header.scrollView = _tableView;
-    _header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    _tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
-        [self requestForHomeworkList:NO];
-    };
+        [self requestForHomeworkList];
+    }];
 }
 
 - (void)layoutInterface{
@@ -178,17 +174,15 @@ UITableViewDataSource
 
 
 #pragma mark - request
-- (void)requestForHomeworkList:(BOOL)isShow{
+- (void)requestForHomeworkList{
     YXHomeworkListRequest *request = [[YXHomeworkListRequest alloc] init];
     request.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-    if (isShow) {
-        [self startLoading];
-    }
+
     WEAK_SELF
     [request startRequestWithRetClass:[YXHomeworkListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self->_header endRefreshing];
+        [self->_tableView.mj_header endRefreshing];
         
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = retItem != nil;

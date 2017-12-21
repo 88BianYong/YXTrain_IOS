@@ -27,11 +27,8 @@
     return self;
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
     DDLogWarn(@"PagedListViewController Dealloc");
-    [self.header free];
-    [self.footer free];
     [self.dataFetcher stop];
 }
 
@@ -75,22 +72,18 @@
     }];
     
     if (self.bNeedFooter) {
-        self.footer = [MJRefreshFooterView footer];
-        self.footer.scrollView = self.tableView;
-        self.footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             STRONG_SELF
             [self morePageFetch];
-        };
-        self.footer.alpha = 0;
+        }];
+        self.tableView.mj_footer.hidden = YES;
     }
     
     if (self.bNeedHeader) {
-        self.header = [MJRefreshHeaderView header];
-        self.header.scrollView = self.tableView;
-        self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
             STRONG_SELF
             [self firstPageFetch];
-        };
+        }];
     }
     
     self.dataArray = [NSMutableArray array];
@@ -125,7 +118,6 @@
         }
         self.total = total;
         [self tableViewWillRefresh];
-        [self.header setLastUpdateTime:[NSDate date]];
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:retItemArray];
         [self checkHasMore];
@@ -140,15 +132,15 @@
 }
 
 - (void)stopAnimation {
-    [self.header endRefreshing];
+    [self.tableView.mj_header endRefreshing];
 }
 
 - (void)setPulldownViewHidden:(BOOL)hidden {
-    self.header.alpha = hidden ? 0:1;
+    self.tableView.mj_header.hidden = hidden;
 }
 
 - (void)setPullupViewHidden:(BOOL)hidden {
-    self.footer.alpha = hidden ? 0:1;
+    self.tableView.mj_footer.hidden = hidden;
 }
 
 - (void)morePageFetch {
@@ -157,7 +149,7 @@
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(NSInteger total, NSArray *retItemArray, NSError *error) {
         STRONG_SELF
-        [self.footer endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         if (error) {
             self.dataFetcher.pageindex--;
             [self showToast:error.localizedDescription];

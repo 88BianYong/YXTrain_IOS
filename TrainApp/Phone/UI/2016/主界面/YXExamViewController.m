@@ -15,7 +15,6 @@
 #import "YXExamBlankHeaderFooterView.h"
 #import "YXExamTaskProgressHeaderView.h"
 #import "YXExamineRequest.h"
-#import "MJRefresh.h"
 #import "YXScoreViewController.h"
 #import "YXExamMarkView.h"
 #import "YXCourseViewController.h"
@@ -28,7 +27,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 @property (nonatomic, strong) YXExamineRequest *examineRequest;
 @property (nonatomic, strong) YXExamineRequestItem *examineItem;
 @property (nonatomic, strong) NSMutableDictionary *foldStatusDic;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
 
 @property (nonatomic, strong) StudentExamTipsView *tipsView;
 
@@ -40,7 +38,6 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
 
 
 - (void)dealloc{
-    [self.header free];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -103,14 +100,11 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     [self.tableView registerClass:[YXExamPhaseHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXExamPhaseHeaderView"];
     [self.tableView registerClass:[YXExamBlankHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXExamBlankHeaderFooterView"];
     [self.tableView registerClass:[YXExamTaskProgressHeaderView class] forHeaderFooterViewReuseIdentifier:@"YXExamTaskProgressHeaderView"];
-    
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.tableView;
     WEAK_SELF
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self requestForExamineContent];
-    };
+    }];
     if (![LSTSharedInstance sharedInstance].trainManager.currentProject.isContainsTeacher.boolValue &&
         [LSTSharedInstance sharedInstance].trainManager.currentProject.isDoubel.boolValue) {
         self.tipsView = [[StudentExamTipsView alloc] init];
@@ -149,7 +143,7 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     [request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self.header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = retItem != nil;
         data.localDataExist = NO;

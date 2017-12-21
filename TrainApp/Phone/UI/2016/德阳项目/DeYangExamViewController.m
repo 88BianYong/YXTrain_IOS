@@ -7,21 +7,18 @@
 //
 
 #import "DeYangExamViewController.h"
-#import "MJRefresh.h"
 static  NSString *const trackPageName = @"考核页面";
 
 @interface DeYangExamViewController () <UIWebViewDelegate>
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, assign) BOOL isShowLoding;
 @property (nonatomic,assign) BOOL  isSelected;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
 @end
 
 @implementation DeYangExamViewController
 
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
-    [self.header free];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -64,13 +61,11 @@ static  NSString *const trackPageName = @"考核页面";
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     [[NSURLCache sharedURLCache] removeCachedResponseForRequest:request];
     [self.webView loadRequest:request];
-    self.header = [MJRefreshHeaderView header];
     WEAK_SELF
-    self.header.scrollView = self.webView.scrollView;
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.webView.scrollView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
-        [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
-    };
+         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlString] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10.0]];
+    }];
     [self startLoading];
     
 }
@@ -85,14 +80,14 @@ static  NSString *const trackPageName = @"考核页面";
     if (webView.isLoading){
         return;
     }
-    [self.header endRefreshing];
+    [self.webView.scrollView.mj_header endRefreshing];
     [self stopLoading];
     [self.errorView removeFromSuperview];
     self.errorView = nil;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     [self stopLoading];
-    [self.header endRefreshing];
+    [self.webView.scrollView.mj_header endRefreshing];
     if (error.code == -1009 || error.code == -1001) {
         self.errorView.frame = self.view.bounds;
         if (!self.errorView) {

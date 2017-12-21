@@ -129,11 +129,6 @@
 		7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8447D1D2E43EC00B1CE55 /* YXProjectSelectionCell.m */; };
 		7CF844801D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 7CF8447F1D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF */; };
 		7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */; };
-		7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */; };
-		7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */; };
-		7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888001D17D4C600E7C04D /* MJRefreshConst.m */; };
-		7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888021D17D4C600E7C04D /* MJRefreshFooterView.m */; };
-		7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888041D17D4C600E7C04D /* MJRefreshHeaderView.m */; };
 		7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8880B1D17D4E100E7C04D /* PagedListViewControllerBase.m */; };
 		7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF8880E1D17D4FD00E7C04D /* YXCommonErrorView.m */; };
 		7CF888121D17D51500E7C04D /* PagedListFetcherBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF888111D17D51500E7C04D /* PagedListFetcherBase.m */; };
@@ -265,6 +260,26 @@
 		9229015F1DE6C241001474CE /* VideoCommentErrorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229015E1DE6C241001474CE /* VideoCommentErrorView.m */; };
 		922901641DED0C15001474CE /* PreventHangingCourseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922901631DED0C15001474CE /* PreventHangingCourseView.m */; };
 		9229CB5A1FEA454300228085 /* YXDataStatistics.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9229CB591FEA454300228085 /* YXDataStatistics.plist */; };
+		9229CB8F1FEB609600228085 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB5F1FEB609600228085 /* UIScrollView+MJRefresh.m */; };
+		9229CB901FEB609600228085 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB601FEB609600228085 /* MJRefreshConst.m */; };
+		9229CB911FEB609600228085 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9229CB641FEB609600228085 /* MJRefresh.bundle */; };
+		9229CB931FEB609600228085 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB671FEB609600228085 /* UIScrollView+MJExtension.m */; };
+		9229CB941FEB609600228085 /* NSBundle+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB6A1FEB609600228085 /* NSBundle+MJRefresh.m */; };
+		9229CB951FEB609600228085 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB6C1FEB609600228085 /* UIView+MJExtension.m */; };
+		9229CB961FEB609600228085 /* MJRefreshBackGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB731FEB609600228085 /* MJRefreshBackGifFooter.m */; };
+		9229CB971FEB609600228085 /* MJRefreshBackStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB741FEB609600228085 /* MJRefreshBackStateFooter.m */; };
+		9229CB981FEB609600228085 /* MJRefreshBackNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB751FEB609600228085 /* MJRefreshBackNormalFooter.m */; };
+		9229CB991FEB609600228085 /* MJRefreshAutoStateFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB7A1FEB609600228085 /* MJRefreshAutoStateFooter.m */; };
+		9229CB9A1FEB609600228085 /* MJRefreshAutoGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB7B1FEB609600228085 /* MJRefreshAutoGifFooter.m */; };
+		9229CB9B1FEB609600228085 /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB7C1FEB609600228085 /* MJRefreshAutoNormalFooter.m */; };
+		9229CB9C1FEB609600228085 /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB7E1FEB609600228085 /* MJRefreshNormalHeader.m */; };
+		9229CB9D1FEB609700228085 /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB821FEB609600228085 /* MJRefreshStateHeader.m */; };
+		9229CB9E1FEB609700228085 /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB831FEB609600228085 /* MJRefreshGifHeader.m */; };
+		9229CB9F1FEB609700228085 /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB851FEB609600228085 /* MJRefreshFooter.m */; };
+		9229CBA01FEB609700228085 /* MJRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB871FEB609600228085 /* MJRefreshHeader.m */; };
+		9229CBA11FEB609700228085 /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB891FEB609600228085 /* MJRefreshBackFooter.m */; };
+		9229CBA21FEB609700228085 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB8A1FEB609600228085 /* MJRefreshAutoFooter.m */; };
+		9229CBA31FEB609700228085 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB8C1FEB609600228085 /* MJRefreshComponent.m */; };
 		922DB1631FBA7C020078F6BD /* YXTabBarViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DB1611FBA7C020078F6BD /* YXTabBarViewController_17.m */; };
 		922DB1701FBA7C700078F6BD /* ActivityListCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DB1641FBA7C6C0078F6BD /* ActivityListCell_17.m */; };
 		922DB1711FBA7C700078F6BD /* ActivityFilterFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DB1681FBA7C6D0078F6BD /* ActivityFilterFooterView_17.m */; };
@@ -1080,16 +1095,6 @@
 		7CF8447F1D2F61E600B1CE55 /* METRO-DEMIBOLD PLAYTYPE.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "METRO-DEMIBOLD PLAYTYPE.OTF"; sourceTree = "<group>"; };
 		7CF887F61D17A77400E7C04D /* YXDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXDrawerViewController.h; sourceTree = "<group>"; };
 		7CF887F71D17A77400E7C04D /* YXDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXDrawerViewController.m; sourceTree = "<group>"; };
-		7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
-		7CF887FC1D17D4C600E7C04D /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
-		7CF887FD1D17D4C600E7C04D /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
-		7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
-		7CF887FF1D17D4C600E7C04D /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
-		7CF888001D17D4C600E7C04D /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
-		7CF888011D17D4C600E7C04D /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
-		7CF888021D17D4C600E7C04D /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
-		7CF888031D17D4C600E7C04D /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
-		7CF888041D17D4C600E7C04D /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
 		7CF8880A1D17D4E100E7C04D /* PagedListViewControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagedListViewControllerBase.h; sourceTree = "<group>"; };
 		7CF8880B1D17D4E100E7C04D /* PagedListViewControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagedListViewControllerBase.m; sourceTree = "<group>"; };
 		7CF8880D1D17D4FD00E7C04D /* YXCommonErrorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXCommonErrorView.h; sourceTree = "<group>"; };
@@ -1348,6 +1353,46 @@
 		922901621DED0C15001474CE /* PreventHangingCourseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreventHangingCourseView.h; sourceTree = "<group>"; };
 		922901631DED0C15001474CE /* PreventHangingCourseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreventHangingCourseView.m; sourceTree = "<group>"; };
 		9229CB591FEA454300228085 /* YXDataStatistics.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = YXDataStatistics.plist; sourceTree = "<group>"; };
+		9229CB5F1FEB609600228085 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
+		9229CB601FEB609600228085 /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		9229CB611FEB609600228085 /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
+		9229CB621FEB609600228085 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		9229CB631FEB609600228085 /* NSBundle+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+MJRefresh.h"; sourceTree = "<group>"; };
+		9229CB641FEB609600228085 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		9229CB651FEB609600228085 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
+		9229CB671FEB609600228085 /* UIScrollView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJExtension.m"; sourceTree = "<group>"; };
+		9229CB681FEB609600228085 /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		9229CB691FEB609600228085 /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
+		9229CB6A1FEB609600228085 /* NSBundle+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+MJRefresh.m"; sourceTree = "<group>"; };
+		9229CB6C1FEB609600228085 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		9229CB701FEB609600228085 /* MJRefreshBackGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackGifFooter.h; sourceTree = "<group>"; };
+		9229CB711FEB609600228085 /* MJRefreshBackStateFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackStateFooter.h; sourceTree = "<group>"; };
+		9229CB721FEB609600228085 /* MJRefreshBackNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackNormalFooter.h; sourceTree = "<group>"; };
+		9229CB731FEB609600228085 /* MJRefreshBackGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBackGifFooter.m; sourceTree = "<group>"; };
+		9229CB741FEB609600228085 /* MJRefreshBackStateFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBackStateFooter.m; sourceTree = "<group>"; };
+		9229CB751FEB609600228085 /* MJRefreshBackNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBackNormalFooter.m; sourceTree = "<group>"; };
+		9229CB771FEB609600228085 /* MJRefreshAutoStateFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoStateFooter.h; sourceTree = "<group>"; };
+		9229CB781FEB609600228085 /* MJRefreshAutoNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoNormalFooter.h; sourceTree = "<group>"; };
+		9229CB791FEB609600228085 /* MJRefreshAutoGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoGifFooter.h; sourceTree = "<group>"; };
+		9229CB7A1FEB609600228085 /* MJRefreshAutoStateFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoStateFooter.m; sourceTree = "<group>"; };
+		9229CB7B1FEB609600228085 /* MJRefreshAutoGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoGifFooter.m; sourceTree = "<group>"; };
+		9229CB7C1FEB609600228085 /* MJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
+		9229CB7E1FEB609600228085 /* MJRefreshNormalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshNormalHeader.m; sourceTree = "<group>"; };
+		9229CB7F1FEB609600228085 /* MJRefreshStateHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshStateHeader.h; sourceTree = "<group>"; };
+		9229CB801FEB609600228085 /* MJRefreshGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshGifHeader.h; sourceTree = "<group>"; };
+		9229CB811FEB609600228085 /* MJRefreshNormalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshNormalHeader.h; sourceTree = "<group>"; };
+		9229CB821FEB609600228085 /* MJRefreshStateHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshStateHeader.m; sourceTree = "<group>"; };
+		9229CB831FEB609600228085 /* MJRefreshGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshGifHeader.m; sourceTree = "<group>"; };
+		9229CB851FEB609600228085 /* MJRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooter.m; sourceTree = "<group>"; };
+		9229CB861FEB609600228085 /* MJRefreshComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshComponent.h; sourceTree = "<group>"; };
+		9229CB871FEB609600228085 /* MJRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeader.m; sourceTree = "<group>"; };
+		9229CB881FEB609600228085 /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
+		9229CB891FEB609600228085 /* MJRefreshBackFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBackFooter.m; sourceTree = "<group>"; };
+		9229CB8A1FEB609600228085 /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
+		9229CB8B1FEB609600228085 /* MJRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeader.h; sourceTree = "<group>"; };
+		9229CB8C1FEB609600228085 /* MJRefreshComponent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshComponent.m; sourceTree = "<group>"; };
+		9229CB8D1FEB609600228085 /* MJRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooter.h; sourceTree = "<group>"; };
+		9229CB8E1FEB609600228085 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
 		922DB1611FBA7C020078F6BD /* YXTabBarViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTabBarViewController_17.m; sourceTree = "<group>"; };
 		922DB1621FBA7C020078F6BD /* YXTabBarViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTabBarViewController_17.h; sourceTree = "<group>"; };
 		922DB1641FBA7C6C0078F6BD /* ActivityListCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListCell_17.m; sourceTree = "<group>"; };
@@ -2697,11 +2742,11 @@
 		7C3177631D0E688D004AAC90 /* 3rdLib */ = {
 			isa = PBXGroup;
 			children = (
+				9229CB5E1FEB609600228085 /* MJRefresh */,
 				92551E251FBC1EA10034DC71 /* GraintCircle */,
 				92E971541ED57FC100DEAAD4 /* OLImageView */,
 				E90C609F1D9CFE36001652CF /* TalkingData */,
 				7CF888591D194BE800E7C04D /* JKAlertDialog */,
-				7CF887FA1D17D4C600E7C04D /* MJRefresh */,
 				7C31780C1D129BDA004AAC90 /* Reader */,
 			);
 			path = 3rdLib;
@@ -3255,23 +3300,6 @@
 			name = "分页框架";
 			sourceTree = "<group>";
 		};
-		7CF887FA1D17D4C600E7C04D /* MJRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				7CF887FB1D17D4C600E7C04D /* MJRefresh.bundle */,
-				7CF887FC1D17D4C600E7C04D /* MJRefresh.h */,
-				7CF887FD1D17D4C600E7C04D /* MJRefreshBaseView.h */,
-				7CF887FE1D17D4C600E7C04D /* MJRefreshBaseView.m */,
-				7CF887FF1D17D4C600E7C04D /* MJRefreshConst.h */,
-				7CF888001D17D4C600E7C04D /* MJRefreshConst.m */,
-				7CF888011D17D4C600E7C04D /* MJRefreshFooterView.h */,
-				7CF888021D17D4C600E7C04D /* MJRefreshFooterView.m */,
-				7CF888031D17D4C600E7C04D /* MJRefreshHeaderView.h */,
-				7CF888041D17D4C600E7C04D /* MJRefreshHeaderView.m */,
-			);
-			path = MJRefresh;
-			sourceTree = "<group>";
-		};
 		7CF888131D17D69C00E7C04D /* 抽屉 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3667,6 +3695,101 @@
 				92AFFAFC1D9B7ADA00E1526C /* YXEmptCell.m */,
 			);
 			name = view;
+			sourceTree = "<group>";
+		};
+		9229CB5E1FEB609600228085 /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				9229CB5F1FEB609600228085 /* UIScrollView+MJRefresh.m */,
+				9229CB691FEB609600228085 /* UIScrollView+MJRefresh.h */,
+				9229CB681FEB609600228085 /* MJRefreshConst.h */,
+				9229CB601FEB609600228085 /* MJRefreshConst.m */,
+				9229CB611FEB609600228085 /* UIScrollView+MJExtension.h */,
+				9229CB671FEB609600228085 /* UIScrollView+MJExtension.m */,
+				9229CB621FEB609600228085 /* MJRefresh.h */,
+				9229CB631FEB609600228085 /* NSBundle+MJRefresh.h */,
+				9229CB6A1FEB609600228085 /* NSBundle+MJRefresh.m */,
+				9229CB641FEB609600228085 /* MJRefresh.bundle */,
+				9229CB6C1FEB609600228085 /* UIView+MJExtension.m */,
+				9229CB651FEB609600228085 /* UIView+MJExtension.h */,
+				9229CB6D1FEB609600228085 /* Custom */,
+				9229CB841FEB609600228085 /* Base */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
+		9229CB6D1FEB609600228085 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				9229CB6E1FEB609600228085 /* Footer */,
+				9229CB7D1FEB609600228085 /* Header */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		9229CB6E1FEB609600228085 /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				9229CB6F1FEB609600228085 /* Back */,
+				9229CB761FEB609600228085 /* Auto */,
+			);
+			path = Footer;
+			sourceTree = "<group>";
+		};
+		9229CB6F1FEB609600228085 /* Back */ = {
+			isa = PBXGroup;
+			children = (
+				9229CB701FEB609600228085 /* MJRefreshBackGifFooter.h */,
+				9229CB711FEB609600228085 /* MJRefreshBackStateFooter.h */,
+				9229CB721FEB609600228085 /* MJRefreshBackNormalFooter.h */,
+				9229CB731FEB609600228085 /* MJRefreshBackGifFooter.m */,
+				9229CB741FEB609600228085 /* MJRefreshBackStateFooter.m */,
+				9229CB751FEB609600228085 /* MJRefreshBackNormalFooter.m */,
+			);
+			path = Back;
+			sourceTree = "<group>";
+		};
+		9229CB761FEB609600228085 /* Auto */ = {
+			isa = PBXGroup;
+			children = (
+				9229CB771FEB609600228085 /* MJRefreshAutoStateFooter.h */,
+				9229CB781FEB609600228085 /* MJRefreshAutoNormalFooter.h */,
+				9229CB791FEB609600228085 /* MJRefreshAutoGifFooter.h */,
+				9229CB7A1FEB609600228085 /* MJRefreshAutoStateFooter.m */,
+				9229CB7B1FEB609600228085 /* MJRefreshAutoGifFooter.m */,
+				9229CB7C1FEB609600228085 /* MJRefreshAutoNormalFooter.m */,
+			);
+			path = Auto;
+			sourceTree = "<group>";
+		};
+		9229CB7D1FEB609600228085 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				9229CB811FEB609600228085 /* MJRefreshNormalHeader.h */,
+				9229CB7E1FEB609600228085 /* MJRefreshNormalHeader.m */,
+				9229CB7F1FEB609600228085 /* MJRefreshStateHeader.h */,
+				9229CB821FEB609600228085 /* MJRefreshStateHeader.m */,
+				9229CB801FEB609600228085 /* MJRefreshGifHeader.h */,
+				9229CB831FEB609600228085 /* MJRefreshGifHeader.m */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		9229CB841FEB609600228085 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9229CB8D1FEB609600228085 /* MJRefreshFooter.h */,
+				9229CB851FEB609600228085 /* MJRefreshFooter.m */,
+				9229CB861FEB609600228085 /* MJRefreshComponent.h */,
+				9229CB8C1FEB609600228085 /* MJRefreshComponent.m */,
+				9229CB881FEB609600228085 /* MJRefreshAutoFooter.h */,
+				9229CB8A1FEB609600228085 /* MJRefreshAutoFooter.m */,
+				9229CB8B1FEB609600228085 /* MJRefreshHeader.h */,
+				9229CB871FEB609600228085 /* MJRefreshHeader.m */,
+				9229CB8E1FEB609600228085 /* MJRefreshBackFooter.h */,
+				9229CB891FEB609600228085 /* MJRefreshBackFooter.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		922DB1791FBA7C860078F6BD /* 学员 */ = {
@@ -6052,7 +6175,6 @@
 				E9BBA6211DD310EA000CA413 /* activityList_mock.json in Resources */,
 				7C3F258D1D20C6C100F0A17A /* trainlist_mock.json in Resources */,
 				920F1D3E1D51A42A00636A51 /* homeworkInfo_mock.json in Resources */,
-				7CF888051D17D4C600E7C04D /* MJRefresh.bundle in Resources */,
 				924AB2571DE41C47003EC952 /* SecondComment_mock.json in Resources */,
 				92134E3D1E8BAE2900A5B9B7 /* submitAnswer_mock.json in Resources */,
 				9223C83A1D2F82D8000F74DF /* search.txt in Resources */,
@@ -6085,6 +6207,7 @@
 				7C3177621D0E61C4004AAC90 /* Empty.xib in Resources */,
 				7C7BF7C61E0788FD007B017C /* env_config.json in Resources */,
 				92551E051FBBE5060034DC71 /* collectionFilter_mock.json in Resources */,
+				9229CB911FEB609600228085 /* MJRefresh.bundle in Resources */,
 				920F1D3B1D51A40D00636A51 /* homeworklist_mock.json in Resources */,
 				927B6C7C1F1364920082DB27 /* masterStat_mock_17.json in Resources */,
 				92348FE31EEFEF2A00D3B3A7 /* masterStat_mock.json in Resources */,
@@ -6236,7 +6359,6 @@
 				92938CF11F29BD970099D49A /* CourseCenterListFetcher_17.m in Sources */,
 				925F4B011FBA96FC003FB2FC /* RootViewControllerManger_17.m in Sources */,
 				92348FDF1EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.m in Sources */,
-				7CF888071D17D4C600E7C04D /* MJRefreshConst.m in Sources */,
 				7C3177D91D110D9D004AAC90 /* YXDrawerController.m in Sources */,
 				92F1A5A41E52EF4700015766 /* MasterProjectContainerView.m in Sources */,
 				92A770091DD18A5800C578F2 /* InputTextView.m in Sources */,
@@ -6276,6 +6398,7 @@
 				7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */,
 				92348FC51EEFEDEA00D3B3A7 /* StudentExamHeaderView.m in Sources */,
 				922DB1B61FBA83550078F6BD /* CourseDetailContainerView_17.m in Sources */,
+				9229CB9C1FEB609600228085 /* MJRefreshNormalHeader.m in Sources */,
 				92A785181FBD79F7007502A4 /* PersonLearningInfoRequest_17.m in Sources */,
 				92E971601ED58CCE00DEAAD4 /* VideoCourseIntroductionCell.m in Sources */,
 				92EEA9211EB08348005A3B7C /* DeYangCourseListFetcher.m in Sources */,
@@ -6285,7 +6408,6 @@
 				7C31780B1D12830A004AAC90 /* YXFileFavorWrapper.m in Sources */,
 				927B6C631F0F3B6E0082DB27 /* PopUpFloatingViewManager_17.m in Sources */,
 				92EE0C831FD4FFBB00754CEB /* MasterCourseAllListViewController_17.m in Sources */,
-				7CF888081D17D4C600E7C04D /* MJRefreshFooterView.m in Sources */,
 				9285873D1FCE507A0030D7B1 /* MasterOffActiveRecordAffixCell_17.m in Sources */,
 				CB4D91891D1A74F700B5F1D0 /* YXDatumSearchBarView.m in Sources */,
 				923F8DA91FCF94AD009C907B /* MasterHomeworkSetDetailTableHeaderView_17.m in Sources */,
@@ -6338,6 +6460,7 @@
 				928B7A5C1E88C63C0067218A /* DeYangCourseRecordViewController.m in Sources */,
 				928B7A401E88B2180067218A /* BeijingCourseViewController.m in Sources */,
 				CB227EA21D34AB4C00D5327B /* YXGuideViewController.m in Sources */,
+				9229CB961FEB609600228085 /* MJRefreshBackGifFooter.m in Sources */,
 				92B958421F18A34200A07203 /* CourseListHeader_17.m in Sources */,
 				7C3177E01D1148EF004AAC90 /* YXFileVideoItem.m in Sources */,
 				7CF8882B1D17E6C600E7C04D /* YXPlayerTopView.m in Sources */,
@@ -6355,6 +6478,7 @@
 				7C3177D31D10FC36004AAC90 /* YXProjectMainViewController.m in Sources */,
 				9223C8181D2D00F1000F74DF /* YXWorkshopDatumFetch.m in Sources */,
 				92F881C91FBEE03500FDBD2D /* MasterBriefViewController_17.m in Sources */,
+				9229CB9F1FEB609700228085 /* MJRefreshFooter.m in Sources */,
 				922DB1721FBA7C700078F6BD /* ActivityListFilterView_17.m in Sources */,
 				92BBE0511F219196009230AC /* HomeworkListVideoDefaultCell_17.m in Sources */,
 				924BE3F51FC272E900B7EECA /* MasterSchemeView_17.m in Sources */,
@@ -6378,8 +6502,10 @@
 				9223C8201D2DF93A000F74DF /* YXFeedBackViewController.m in Sources */,
 				922DB1751FBA7C700078F6BD /* ActivityFilterHeaderView_17.m in Sources */,
 				92AA47781E1B925300C88DDC /* WebsocketRedView.m in Sources */,
+				9229CB901FEB609600228085 /* MJRefreshConst.m in Sources */,
 				923237461D7EA9FE00FDACFE /* YXCMSTimerView.m in Sources */,
 				923F8DB61FCFA6AC009C907B /* MasterHomeworkSetScrollView_17.m in Sources */,
+				9229CB9E1FEB609700228085 /* MJRefreshGifHeader.m in Sources */,
 				92C79DE01FBE802000DB141D /* MasterMainCell_17.m in Sources */,
 				928B7A5F1E88C7220067218A /* DeYangCourseRecordCell.m in Sources */,
 				928B7A491E88B2180067218A /* BeijingExamViewController.m in Sources */,
@@ -6392,7 +6518,6 @@
 				E935D87C1E00E0A6005CC8BD /* UnhandledRequestData.m in Sources */,
 				92C79DDA1FBE7FC200DB141D /* MasterMainTableHeaderView_17.m in Sources */,
 				7C1A5E921E10E9E800832DED /* AccountListView.m in Sources */,
-				7CF888091D17D4C600E7C04D /* MJRefreshHeaderView.m in Sources */,
 				92348FBA1EEFEDEA00D3B3A7 /* MasterConditionCell.m in Sources */,
 				92348FC81EEFEDEA00D3B3A7 /* StudentExamViewController.m in Sources */,
 				92B9583F1F18A2F900A07203 /* CourseListTableViewHeader_17.m in Sources */,
@@ -6400,6 +6525,7 @@
 				9260A3861FBBD8140022A814 /* MasterReadingListViewController_17.m in Sources */,
 				922DB1EF1FBA91B80078F6BD /* MasterMainViewController_17.m in Sources */,
 				7C3178251D129C01004AAC90 /* ReaderContentView.m in Sources */,
+				9229CBA31FEB609700228085 /* MJRefreshComponent.m in Sources */,
 				924BE4011FC2924100B7EECA /* MasterHomeworkFetcher_17.m in Sources */,
 				92348FC21EEFEDEA00D3B3A7 /* MasterSchoolTableView.m in Sources */,
 				92B9584B1F1C915F00A07203 /* CourseFilterCell_17.m in Sources */,
@@ -6422,6 +6548,7 @@
 				92348FC31EEFEDEA00D3B3A7 /* MasterTaskViewController.m in Sources */,
 				920F1D411D51EFB100636A51 /* YXHomeworkListViewController.m in Sources */,
 				7C3178221D129C01004AAC90 /* ReaderConstants.m in Sources */,
+				9229CB991FEB609600228085 /* MJRefreshAutoStateFooter.m in Sources */,
 				92FED8931DD2BDA000457228 /* ActivityDetailViewController.m in Sources */,
 				928B7A8A1E88EE750067218A /* BeijingExamineRequest.m in Sources */,
 				92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */,
@@ -6444,6 +6571,7 @@
 				9223C8021D2B9DD5000F74DF /* YXWorkshopListRequest.m in Sources */,
 				92676BEA1FCBA53A003EC6AC /* MasterManageOffActiveRequest_17.m in Sources */,
 				7C3177FF1D1177F9004AAC90 /* UrlDownloader.m in Sources */,
+				9229CBA21FEB609700228085 /* MJRefreshAutoFooter.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
 				9223C80C1D2CA4E4000F74DF /* YXWorkshopMemberCell.m in Sources */,
 				920F1D511D53298C00636A51 /* YXHomeworkInfoHeaderView.m in Sources */,
@@ -6484,10 +6612,12 @@
 				92F1A5AD1E53083A00015766 /* YXProjectMainViewController+Master.m in Sources */,
 				CB74627C1D1FDB2D0065113A /* YXVerifyPhoneExistRequest.m in Sources */,
 				922901641DED0C15001474CE /* PreventHangingCourseView.m in Sources */,
+				9229CBA11FEB609700228085 /* MJRefreshBackFooter.m in Sources */,
 				92126C741E9F54C700C061EF /* TrainLayerListRequest.m in Sources */,
 				92DDDE301D5B48FD001F125A /* YXUploadDepictionViewController.m in Sources */,
 				92676BFC1FCBB4D9003EC6AC /* MasterManageActiveListCell_17.m in Sources */,
 				925146861F25EE6D00B1533B /* ReadingListRequest_17.m in Sources */,
+				9229CB9A1FEB609600228085 /* MJRefreshAutoGifFooter.m in Sources */,
 				920F1D711D5983E500636A51 /* YXVideoRecordManager.m in Sources */,
 				922DB1C21FBA87280078F6BD /* YXAllDatumViewController.m in Sources */,
 				92DD28331FBAC6160023F58C /* MasterHomeTableHeaderView_17.m in Sources */,
@@ -6503,6 +6633,7 @@
 				92EDC7C81D61AD76005B91DD /* YXSelectHomeworkInfoView.m in Sources */,
 				92E927A81F1DB4BA00BEF834 /* CourseHistoryCell_17.m in Sources */,
 				92BBE0361F205C43009230AC /* HomeworkListViewController_17.m in Sources */,
+				9229CB8F1FEB609600228085 /* UIScrollView+MJRefresh.m in Sources */,
 				7C3178281D129C01004AAC90 /* ReaderMainToolbar.m in Sources */,
 				927B6C871F137E3C0082DB27 /* YXSectionHeaderFooterView.m in Sources */,
 				7C2C3B601D23D68500A03635 /* YXCourseListFilterModel.m in Sources */,
@@ -6608,6 +6739,7 @@
 				927B6C591F0F3A5E0082DB27 /* PopUpFloatingViewManager.m in Sources */,
 				924BE3F21FC2706700B7EECA /* MasterBriefHeaderView_17.m in Sources */,
 				7CF844691D2C9E5700B1CE55 /* YXRecordContent.m in Sources */,
+				9229CB9D1FEB609700228085 /* MJRefreshStateHeader.m in Sources */,
 				922DB1711FBA7C700078F6BD /* ActivityFilterFooterView_17.m in Sources */,
 				922DB1731FBA7C700078F6BD /* ActivityFilterCell_17.m in Sources */,
 				920F1D301D518C1600636A51 /* YXHomeworkListRequest.m in Sources */,
@@ -6621,6 +6753,7 @@
 				92676C0B1FCBF276003EC6AC /* MasterManageDetailActiveViewController_17.m in Sources */,
 				922DB1C41FBA87280078F6BD /* YXDatumSearchViewController.m in Sources */,
 				9285877F1FCE96680030D7B1 /* MasterHomeworkSetListCell_17.m in Sources */,
+				9229CB931FEB609600228085 /* UIScrollView+MJExtension.m in Sources */,
 				920F1D681D58347600636A51 /* YXVideoRecordBottomView.m in Sources */,
 				9285877C1FCE96300030D7B1 /* MasterHomeworkSetListViewController_17.m in Sources */,
 				927B6C5F1F0F3B1A0082DB27 /* PopUpFloatingViewManager_16.m in Sources */,
@@ -6670,6 +6803,7 @@
 				7CF8883B1D18DB5B00E7C04D /* YXCourseViewController.m in Sources */,
 				922DB1881FBA7F6B0078F6BD /* CourseTestViewController_17.m in Sources */,
 				92EDC7B71D5C6C61005B91DD /* YXWriteHomeworkInfoViewController.m in Sources */,
+				9229CB941FEB609600228085 /* NSBundle+MJRefresh.m in Sources */,
 				CB8524641D334BFB009FA14B /* HJCActionSheet.m in Sources */,
 				CB3510BF1D18E9DD0081EA3B /* YXDatumOrderModel.m in Sources */,
 				920F1D191D50499500636A51 /* YXVideoRecordViewController.m in Sources */,
@@ -6681,6 +6815,7 @@
 				9268C5EF1DF3CDCD00AA109B /* BeijingSendSmsRequest.m in Sources */,
 				92551E141FBBEC1A0034DC71 /* MasterLearningInfoFetcher_17.m in Sources */,
 				7C2C3B551D23B34300A03635 /* YXCourseListRequest.m in Sources */,
+				9229CB951FEB609600228085 /* UIView+MJExtension.m in Sources */,
 				E9BBA6171DD2EDB2000CA413 /* ActivityFilterModel.m in Sources */,
 				CBB62E191D2CCE3D00DAA6DE /* YXShowWebMenuTableViewCell.m in Sources */,
 				7C3177971D0EA6A8004AAC90 /* HttpBaseRequest.m in Sources */,
@@ -6765,6 +6900,7 @@
 				92E927AE1F1DEB8A00BEF834 /* YXMineHeaderView_17.m in Sources */,
 				7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */,
 				7C2C3B7A1D24CBB700A03635 /* YXCourseDetailHeaderView.m in Sources */,
+				9229CBA01FEB609700228085 /* MJRefreshHeader.m in Sources */,
 				9223C8271D2E0E44000F74DF /* YXFeedBackRequest.m in Sources */,
 				92676BF31FCBB446003EC6AC /* MasterManageActiveViewController_17.m in Sources */,
 				92DE3BC71DDD82350011CFB7 /* ActivityToolVideoRequest.m in Sources */,
@@ -6822,6 +6958,7 @@
 				9223C8461D360DE0000F74DF /* YXMySettingCell.m in Sources */,
 				92706E391F298FBF001867C4 /* CourseCenterConditionRequest_17.m in Sources */,
 				7C3177FE1D1177F9004AAC90 /* DownloadModel.xcdatamodel in Sources */,
+				9229CB9B1FEB609600228085 /* MJRefreshAutoNormalFooter.m in Sources */,
 				92C05EA51F39AC500070E2DE /* HomeworkListDefaultCell_17.m in Sources */,
 				928587881FCEA2F50030D7B1 /* MasterHomeworkSetListDetailViewController_17.m in Sources */,
 				92348FDD1EEFEF2A00D3B3A7 /* LearningInfoListFetcher.m in Sources */,
@@ -6853,7 +6990,6 @@
 				92FE95261F42938C0058E151 /* HomeworkListGroupSpecialCell_17.m in Sources */,
 				924AB24C1DE2A75E003EC952 /* ActivityPlayExceptionView.m in Sources */,
 				E9A7B5F21DDC46CA00136335 /* ShareResourcesFetcher.m in Sources */,
-				7CF888061D17D4C600E7C04D /* MJRefreshBaseView.m in Sources */,
 				92DD28361FBAC6390023F58C /* MasterHomeHeaderView_17.m in Sources */,
 				922DB1C31FBA87280078F6BD /* YXDatumViewController.m in Sources */,
 				9237FF771DD489390057FFDE /* ActivityStepListRequest.m in Sources */,
@@ -6861,6 +6997,8 @@
 				924BE4231FC418EE00B7EECA /* MasterHomeworkCommentHeaderView_17.m in Sources */,
 				92CA55DD1DFE574D00AA2C50 /* AppDelegateHelper.m in Sources */,
 				922DB1AD1FBA807F0078F6BD /* CourseRecordListViewController_17.m in Sources */,
+				9229CB971FEB609600228085 /* MJRefreshBackStateFooter.m in Sources */,
+				9229CB981FEB609600228085 /* MJRefreshBackNormalFooter.m in Sources */,
 				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,
 				9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */,
 				924603FC1F2F0ACD00146C82 /* NoticeBriefFloatingView_17.m in Sources */,

@@ -12,13 +12,11 @@
 #import "MasterDetailActiveToolCell_17.h"
 #import "MasterDetailActiveMemeberCell_17.h"
 #import "MasterDetailActiveMemeberHeaderView_17.h"
-#import "MJRefresh.h"
 @interface MasterManageDetailActiveViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) MasterDetailActiveTableHeaderView_17 *headerView;
 @property (nonatomic, strong) MasterCountActiveRequest_17 *activeRequest;
 @property (nonatomic, strong) MasterCountActiveItem_Body *detailItem;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
 @property (nonatomic, assign) MasterManageActiveType activeType;
 
 @property (nonatomic, strong) MasterFilterEmptyFooterView_17 *footerView;
@@ -27,7 +25,6 @@
 
 @implementation MasterManageDetailActiveViewController_17
 - (void)dealloc{
-    [self.header free];
 }
 #pragma mark - set
 - (void)setActiveType:(MasterManageActiveType)activeType {
@@ -100,12 +97,10 @@
         self.activeType = type;
     };
     self.tableView.hidden = YES;
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.tableView;
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self requestForActiveDetail];
-    };
+    }];
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
@@ -200,7 +195,7 @@
     [request startRequestWithRetClass:[MasterCountActiveItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self.header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc] init];
         data.requestDataExist = YES;
         data.localDataExist = NO;

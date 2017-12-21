@@ -7,7 +7,6 @@
 //
 
 #import "CommentPageListViewController.h"
-#import "MJRefresh.h"
 #import "CommentPagedListFetcher.h"
 #import "ActitvityCommentHeaderView.h"
 #import "ActitvityCommentCell.h"
@@ -23,8 +22,6 @@
 #import "ActivityDelReplyRequest.h"
 @interface CommentPageListViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, assign) int totalPage;
-@property (nonatomic, strong) MJRefreshFooterView *footerView;
-@property (nonatomic, strong) MJRefreshHeaderView *headerView;
 @property (nonatomic, strong) ActivityCommentInputView *inputTextView;
 @property (nonatomic, strong) UIView *translucentView;
 @property (nonatomic, strong) SendCommentView *sendView;
@@ -42,8 +39,6 @@
 @implementation CommentPageListViewController
 - (void)dealloc {
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
-    [self.headerView free];
-    [self.footerView free];
     [self.dataFetcher stop];
     [self.inputTextView removeFromSuperview];
     self.inputTextView = nil;
@@ -122,29 +117,25 @@
         [self startLoading];
         [self firstPageFetch];
     };
-    
-    self.footerView = [MJRefreshFooterView footer];
-    self.footerView.scrollView = self.tableView;
-    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 365.0f)];
-    bottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    [self.footerView addSubview:bottomView];
-    [self.footerView sendSubviewToBack:bottomView];
-    self.footerView.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
-        STRONG_SELF
-        [self morePageFetch];
-    };
-    self.footerView.alpha = 0;
-    
-    self.headerView = [MJRefreshHeaderView header];
-    self.headerView.scrollView = self.tableView;
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, self.view.bounds.size.width, 365.0f)];
-    topView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    [self.headerView addSubview:topView];
-    [self.headerView sendSubviewToBack:topView];
-    self.headerView.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self firstPageFetch];
-    };
+    }];
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, -300, self.view.bounds.size.width, 365.0f)];
+    topView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.tableView.mj_header addSubview:topView];
+    [self.tableView.mj_header sendSubviewToBack:topView];
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        STRONG_SELF
+        [self morePageFetch];
+    }];
+    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 365.0f)];
+    bottomView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.tableView.mj_footer addSubview:bottomView];
+    [self.tableView.mj_footer sendSubviewToBack:bottomView];
+    self.tableView.mj_footer.hidden = YES;
+
     self.dataMutableArray = [[NSMutableArray alloc] initWithCapacity:10];
     self.totalPage = (int)[self.dataMutableArray count];
     self.sendView = [[SendCommentView alloc] init];
@@ -263,7 +254,6 @@
             self.totalNum = totalNum;
             self.errorView.hidden = YES;
             self.dataErrorView.hidden = YES;
-            [self.headerView setLastUpdateTime:[NSDate date]];
             self.totalPage = totalPage;
             [self.dataMutableArray addObjectsFromArray:retItemArray];
             if (isEmpty(self.dataMutableArray)) {
@@ -288,7 +278,7 @@
     WEAK_SELF
     [self.dataFetcher startWithBlock:^(int totalPage, int currentPage, int totalNum, NSMutableArray *retItemArray, NSError *error) {
         STRONG_SELF
-        [self.footerView endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         if (error) {
             self.dataFetcher.pageIndex--;
             [self showToast:error.localizedDescription];
@@ -301,17 +291,14 @@
         }
     }];
 }
-- (void)stopAnimation
-{
-    [self.headerView endRefreshing];
+- (void)stopAnimation{
+    [self.tableView.mj_header endRefreshing];
 }
-- (void)pulldownViewHidden:(BOOL)hidden
-{
-    self.headerView.alpha = hidden ? 0:1;
+- (void)pulldownViewHidden:(BOOL)hidden{
+    self.tableView.mj_header.hidden = hidden;
 }
-- (void)pullupViewHidden:(BOOL)hidden
-{
-    self.footerView.alpha = hidden ? 0:1;
+- (void)pullupViewHidden:(BOOL)hidden{
+    self.tableView.mj_footer.hidden = hidden;
 }
 - (void)showErroView {
     self.errorView.hidden = NO;

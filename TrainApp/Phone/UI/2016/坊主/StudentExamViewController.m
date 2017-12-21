@@ -14,7 +14,6 @@
 #import "YXSectionHeaderFooterView.h"
 #import "StudentExamHeaderView.h"
 #import "YXExamineRequest.h"
-#import "MJRefresh.h"
 #import "YXScoreViewController.h"
 #import "YXExamMarkView.h"
 #import "YXCourseViewController.h"
@@ -24,7 +23,6 @@
 @property (nonatomic, strong) YXExamineRequest *request;
 @property (nonatomic, strong) YXExamineRequestItem *examineItem;
 @property (nonatomic, strong) NSMutableDictionary *foldStatusDic;
-@property (nonatomic, strong) MJRefreshHeaderView *header;
 
 @property (nonatomic,strong) UIView *waveView;
 @property (nonatomic,assign) BOOL  isSelected;
@@ -33,7 +31,6 @@
 @implementation StudentExamViewController
 
 - (void)dealloc{
-    [self.header free];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -77,14 +74,11 @@
     [self.tableView registerClass:[StudentExamPhaseHeaderView class] forHeaderFooterViewReuseIdentifier:@"StudentExamPhaseHeaderView"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.tableView registerClass:[StudentExamHeaderView class] forHeaderFooterViewReuseIdentifier:@"StudentExamHeaderView"];
-    
-    self.header = [MJRefreshHeaderView header];
-    self.header.scrollView = self.tableView;
     WEAK_SELF
-    self.header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self requestForExamine];
-    };
+    }];
     self.errorView = [[YXErrorView alloc]init];
     [self.errorView setRetryBlock:^{
         STRONG_SELF
@@ -109,7 +103,7 @@
     [self.request startRequestWithRetClass:[YXExamineRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        [self.header endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = retItem != nil;
         data.localDataExist = NO;
