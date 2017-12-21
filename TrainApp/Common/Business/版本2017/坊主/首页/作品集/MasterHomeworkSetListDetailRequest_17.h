@@ -13,6 +13,7 @@
 @property (nonatomic, copy) NSString<Optional> *homeworkId;
 @property (nonatomic, copy) NSString<Optional> *title;
 @property (nonatomic, copy) NSString<Optional> *templateId;
+@property (nonatomic, copy) NSString<Optional> *supportTemplate;
 
 @end
 @interface MasterHomeworkSetListDetailItem_Body : JSONModel
@@ -22,6 +23,7 @@
 @property (nonatomic, copy) NSString<Optional> *myScore;
 @property (nonatomic, copy) NSString<Optional> *isRecommend;
 @property (nonatomic, copy) NSString<Optional> *isMyRecommend;
+@property (nonatomic, copy) NSString<Optional> *supportTemplate;
 @property (nonatomic, copy) NSArray<MasterHomeworkSetListDetailItem_Body_Homework,Optional> *homeworks;
 @end
 @interface MasterHomeworkSetListDetailItem :HttpBaseRequestItem
@@ -30,4 +32,6 @@
 @interface MasterHomeworkSetListDetailRequest_17 : YXGetRequest
 @property (nonatomic, copy) NSString<Optional> *projectId;
 @property (nonatomic, copy) NSString<Optional> *homeworkSetId;
+@property (nonatomic, copy) NSString<Optional> *hook;
+
 @end

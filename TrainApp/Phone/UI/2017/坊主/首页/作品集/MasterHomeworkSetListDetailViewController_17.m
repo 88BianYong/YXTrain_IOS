@@ -31,13 +31,17 @@
 
 @property (nonatomic, strong) MasterInputView_17 *inputView;
 @property (nonatomic, strong) UIView *translucentView;
+@property (nonatomic, strong) YXEmptyView *supportView;
 
 
 @property (nonatomic, strong) UIButton *remarkButton;
 @property (nonatomic, strong) UIButton *commentButton;
 @property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) UIView *bgView;
 
 @property (nonatomic, assign) NSInteger chooseIndex;
+@property (nonatomic, assign) BOOL isButtonHidden;
+
 @end
 
 @implementation MasterHomeworkSetListDetailViewController_17
@@ -49,14 +53,27 @@
     self.translucentView = nil;
 }
 #pragma mark - set
+- (void)setIsButtonHidden:(BOOL)isButtonHidden {
+    _isButtonHidden = isButtonHidden;
+    self.remarkButton.hidden = _isButtonHidden;
+    self.commentButton.hidden = _isButtonHidden;
+    self.lineView.hidden = _isButtonHidden;
+}
 - (void)setDetailItem:(MasterHomeworkSetListDetailItem_Body *)detailItem {
     _detailItem = detailItem;
+    self.bgView.hidden = NO;
+    if (!_detailItem.supportTemplate.boolValue) {
+        self.supportView.hidden = NO;
+        return;
+    }
+    self.isButtonHidden = NO;
     [self reloadContentView];
     self.chooseView.homeworkArray = _detailItem.homeworks;
     [_detailItem.homeworks enumerateObjectsUsingBlock:^(MasterHomeworkSetListDetailItem_Body_Homework *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         MasterHomeworkSetDetailViewController_17 *VC = [[MasterHomeworkSetDetailViewController_17 alloc] init];
         VC.homeworkId = obj.homeworkId;
         VC.homeworkSetId = self.detailItem.homeworkSetId;
+        VC.isSupportBool = obj.supportTemplate.boolValue;
         VC.tagInteger = idx + 10086;
         [self addChildViewController:VC];
         [self.scrollView addSubview:VC.view];
@@ -76,6 +93,7 @@
     _chooseIndex = chooseIndex;
     MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[_chooseIndex];
     [VC reloadMasterHomeworkSetRemark];
+    self.isButtonHidden = !VC.isSupportBool;
 }
 - (void)reloadContentView {
     self.scoreLabel.hidden = NO;
@@ -104,6 +122,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.navigationItem.title = self.titleString;
     [self setupUI];
     [self setupLayout];
@@ -132,6 +151,18 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    self.bgView = [[UIView alloc] init];
+    self.bgView.backgroundColor = [UIColor whiteColor];
+    self.bgView.hidden = YES;
+    [self.view addSubview:self.bgView];
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.height.mas_offset(100.0f);
+        make.top.equalTo(self.view.mas_top);
+    }];
+    
+    
     self.scoreLabel = [[UILabel alloc] init];
     self.scoreLabel.font = [UIFont boldSystemFontOfSize:14.0f];
     self.scoreLabel.hidden = YES;
@@ -185,6 +216,11 @@
     };
     [self setupBottomView];
     [self setupInputView];
+    self.supportView = [[YXEmptyView alloc] init];
+    self.supportView.title = @"作业类型暂不支持,请通过电脑查看";
+    self.supportView.imageName = @"无内容";
+    self.supportView.hidden = YES;
+    [self.view addSubview:self.supportView];
 }
 - (void)setupBottomView {
     self.remarkButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -248,6 +284,7 @@
         make.top.equalTo(self.lineView.mas_bottom);
         make.bottom.equalTo(self.view.mas_bottom);
     }];
+    self.isButtonHidden = YES;
 }
 - (void)showAlertCancleRemark{
     LSTAlertView *alertView = [[LSTAlertView alloc]init];
@@ -345,6 +382,9 @@
         make.right.equalTo(self.view.mas_right);
         make.top.equalTo(self.secondLineView.mas_bottom);
         make.bottom.equalTo(self.view.mas_bottom);
+    }];
+    [self.supportView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
     }];
 }
 #pragma mark - request

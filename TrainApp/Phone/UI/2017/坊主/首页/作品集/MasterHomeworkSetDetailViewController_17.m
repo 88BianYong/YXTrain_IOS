@@ -27,8 +27,7 @@
 
 @property (nonatomic, strong) YXFileItemBase *fileItem;
 @property (nonatomic, assign) NSInteger startPage;
-
-
+@property (nonatomic, strong) YXEmptyView *supportView;
 
 @end
 
@@ -40,6 +39,17 @@
     [super viewDidLoad];
     self.remarkMutableArray = [[NSMutableArray alloc] init];
     self.startPage = 1;
+    if (!self.isSupportBool) {
+        self.supportView = [[YXEmptyView alloc] init];
+        self.supportView.title = @"作业类型暂不支持,请通过电脑查看";
+        self.supportView.imageName = @"无内容";
+        [self.view addSubview:self.supportView];
+        [self.supportView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+        return;
+    }
+    
     [self setupUI];
     [self setupLayout];
     [self startLoading];
@@ -84,6 +94,7 @@
         self.startPage ++;
         [self requestForHomeworkRemark];
     }];
+    self.tableView.mj_footer.hidden = YES;
     self.errorView = [[YXErrorView alloc] init];
     self.errorView.retryBlock = ^{
         STRONG_SELF

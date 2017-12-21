@@ -193,7 +193,7 @@ UICollectionViewDelegate
 }
 
 - (void)setPullupViewHidden:(BOOL)hidden {
-    _collectionView.mj_footer.alpha = hidden;
+    _collectionView.mj_footer.hidden = hidden;
 }
 
 - (void)setExceptionViewAndData:(NSArray *)retItemArray withPageIndex:(int)pageIndex{

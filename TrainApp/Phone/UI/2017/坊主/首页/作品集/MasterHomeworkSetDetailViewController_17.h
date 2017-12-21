@@ -12,4 +12,5 @@
 @property (nonatomic, copy) NSString *homeworkSetId;
 @property (nonatomic, copy) NSString *homeworkId;
 @property (nonatomic, assign) NSInteger tagInteger;
+@property (nonatomic, assign) BOOL isSupportBool;
 @end

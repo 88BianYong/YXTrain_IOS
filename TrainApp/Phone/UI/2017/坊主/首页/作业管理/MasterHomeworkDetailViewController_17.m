@@ -116,6 +116,7 @@
         self.startPage ++;
         [self requestForHomeworkRemark];
     }];
+    self.tableView.mj_footer.hidden = YES;
     
     [self setupHomeworkRightView];
     [self setupBottomView];
@@ -470,7 +471,7 @@
     self.remarkRequest = request;
 }
 - (void)setPullupViewHidden:(BOOL)hidden {
-    self.tableView.mj_footer.alpha = hidden;
+    self.tableView.mj_footer.hidden = hidden;
 }
 - (void)requestForRecommendHomework:(NSString *)content {
     MasterRecommendHomeworkRequest_17 *request = [[MasterRecommendHomeworkRequest_17 alloc] init];
