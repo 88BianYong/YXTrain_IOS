@@ -568,6 +568,7 @@
         if (error) {
             [self showToast:error.localizedDescription];
         }else {
+            [self showToast:@"删除成功"];
             [self.remarkMutableArray removeObjectAtIndex:integer];
             [self.tableView reloadData];
         }

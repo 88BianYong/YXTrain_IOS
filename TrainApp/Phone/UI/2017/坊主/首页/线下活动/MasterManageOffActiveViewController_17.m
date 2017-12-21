@@ -111,8 +111,8 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-       MasterManageOffActiveDetailViewController_17 *VC = [[MasterManageOffActiveDetailViewController_17 alloc] init];
         MasterManageOffActiveItem_Body_Active *active = self.dataArray[indexPath.row];
+        MasterManageOffActiveDetailViewController_17 *VC = [[MasterManageOffActiveDetailViewController_17 alloc] init];
         VC.activeId = active.activeId;
         VC.titleString = active.title;
         [self.navigationController pushViewController:VC animated:YES];

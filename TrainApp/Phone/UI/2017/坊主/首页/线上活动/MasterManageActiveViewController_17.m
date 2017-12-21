@@ -233,6 +233,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     MasterManageDetailActiveViewController_17 *VC = [[MasterManageDetailActiveViewController_17 alloc] init];
     MasterManageActiveItem_Body_Active *active = self.dataArray[indexPath.row];
+    if ([active.source isEqualToString:@"zgjiaoyan"]) {//目前暂不支持教研网的活动
+        [self showToast:@"暂不支持教研网活动"];
+        return;
+    }
     VC.activeId = active.activeId;
     VC.titleString = active.title;
     if ([[LSTSharedInstance sharedInstance].userManger userModel].uid.integerValue == active.createUserId.integerValue) {

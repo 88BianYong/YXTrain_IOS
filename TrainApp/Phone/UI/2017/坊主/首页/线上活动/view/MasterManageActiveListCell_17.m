@@ -152,11 +152,11 @@
     self.segmentLabel.text = [NSString stringWithFormat:@"学段: %@",_active.segmentName];
     self.studyLabel.text = [NSString stringWithFormat:@"学科: %@",_active.studyName];
     self.isJoinLabel.hidden = !_active.isJoin.boolValue;
-//    if ([_active.source isEqualToString:@"zgjiaoyan"]) {
-//        self.titleLabel.textColor = [UIColor colorWithHexString:@"a1ae7a"];
-//    }else {
-//        self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
-//    }
+    if ([_active.source isEqualToString:@"zgjiaoyan"]) {
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"a1ae7a"];
+    }else {
+        self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
+    }
     if (_active.restrictTime.boolValue) {
         self.timeLabel.text = [NSString stringWithFormat:@"活动时间: %@-%@",_active.startTime,_active.endTime];
     }else {
