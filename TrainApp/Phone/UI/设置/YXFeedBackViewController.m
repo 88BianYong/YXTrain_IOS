@@ -35,10 +35,14 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"帮助反馈" withStatus:YES];
+
     self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"版主反馈" withStatus:NO];
+
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
 }
 - (void)viewDidLoad {
@@ -64,6 +68,7 @@
         }];
     }];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

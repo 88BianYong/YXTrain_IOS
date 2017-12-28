@@ -63,10 +63,11 @@ UITableViewDataSource
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"\"我\"页面" withStatus:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-
+    [YXDataStatisticsManger trackPage:@"\"我\"页面" withStatus:NO];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
