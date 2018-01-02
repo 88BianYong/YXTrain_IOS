@@ -10,6 +10,22 @@
 #import <CommonCrypto/CommonDigest.h>
 
 @implementation NSString (YXString)
+- (NSDictionary *)dictionary{
+    if (self == nil) {
+        return nil;
+    }
+    
+    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
 
 - (BOOL)yx_isValidString
 {

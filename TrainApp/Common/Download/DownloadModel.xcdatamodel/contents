@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="DownloaderEntity" representedClassName="DownloaderEntity" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="InstantRecordEntity" representedClassName="InstantRecordEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LogRecordEntity" representedClassName="LogRecordEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="RegularRecordEntity" representedClassName="RegularRecordEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="DownloaderEntity" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="InstantRecordEntity" positionX="54" positionY="99" width="128" height="60"/>
+        <element name="LogRecordEntity" positionX="18" positionY="63" width="128" height="60"/>
+        <element name="RegularRecordEntity" positionX="-27" positionY="18" width="128" height="60"/>
+        <element name="DownloaderEntity" positionX="45" positionY="90" width="128" height="90"/>
     </elements>
 </model>

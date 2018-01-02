@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (YXString)
+@property (nonatomic, weak, readonly) NSDictionary *dictionary;
+
 
 // 是否为有效字符串
 - (BOOL)yx_isValidString;

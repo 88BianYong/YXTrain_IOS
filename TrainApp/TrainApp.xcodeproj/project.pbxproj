@@ -505,6 +505,21 @@
 		927B6C841F1376470082DB27 /* YXMessageCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C831F1376470082DB27 /* YXMessageCell_17.m */; };
 		927B6C871F137E3C0082DB27 /* YXSectionHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927B6C861F137E3C0082DB27 /* YXSectionHeaderFooterView.m */; };
 		92852BEA1EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */; };
+		92853ECC1FFB31F300B6F290 /* YXRecordBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EBE1FFB31EF00B6F290 /* YXRecordBase.m */; };
+		92853ECD1FFB31F300B6F290 /* YXProblemItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EC21FFB31F100B6F290 /* YXProblemItem.m */; };
+		92853ECE1FFB31F300B6F290 /* LaunchAppItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EC41FFB31F100B6F290 /* LaunchAppItem.m */; };
+		92853ECF1FFB31F300B6F290 /* YXStatisticFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EC61FFB31F200B6F290 /* YXStatisticFileRequest.m */; };
+		92853ED01FFB31F300B6F290 /* YXStatisticRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EC71FFB31F200B6F290 /* YXStatisticRequest.m */; };
+		92853ED11FFB31F300B6F290 /* NSString+YXRecordContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853ECA1FFB31F300B6F290 /* NSString+YXRecordContent.m */; };
+		92853ED21FFB31F300B6F290 /* YXNewRecordManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853ECB1FFB31F300B6F290 /* YXNewRecordManager.m */; };
+		92853ED71FFB325600B6F290 /* InstantRecordEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853ED41FFB325400B6F290 /* InstantRecordEntity+CoreDataProperties.m */; };
+		92853ED81FFB325600B6F290 /* InstantRecordEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853ED61FFB325500B6F290 /* InstantRecordEntity.m */; };
+		92853EDB1FFB32E600B6F290 /* NSMutableDictionary+YXDictionarys.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EDA1FFB32E600B6F290 /* NSMutableDictionary+YXDictionarys.m */; };
+		92853EE01FFB343100B6F290 /* LogRecordEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EDD1FFB342F00B6F290 /* LogRecordEntity+CoreDataProperties.m */; };
+		92853EE11FFB343100B6F290 /* LogRecordEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EDE1FFB343000B6F290 /* LogRecordEntity.m */; };
+		92853EEF1FFB359000B6F290 /* RegularRecordEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EEB1FFB358E00B6F290 /* RegularRecordEntity+CoreDataProperties.m */; };
+		92853EF01FFB359000B6F290 /* RegularRecordEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EEC1FFB358E00B6F290 /* RegularRecordEntity.m */; };
+		92853EF31FFB360000B6F290 /* NSDictionary+Dictionarys.m in Sources */ = {isa = PBXBuildFile; fileRef = 92853EF21FFB360000B6F290 /* NSDictionary+Dictionarys.m */; };
 		9285873A1FCE4F430030D7B1 /* MasterOffActiveRecordHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 928587391FCE4F430030D7B1 /* MasterOffActiveRecordHeaderView_17.m */; };
 		9285873D1FCE507A0030D7B1 /* MasterOffActiveRecordAffixCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9285873C1FCE507A0030D7B1 /* MasterOffActiveRecordAffixCell_17.m */; };
 		928587401FCE595A0030D7B1 /* MasterOffActiveJoinUsersRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9285873F1FCE595A0030D7B1 /* MasterOffActiveJoinUsersRequest_17.m */; };
@@ -1831,6 +1846,36 @@
 		927B6C861F137E3C0082DB27 /* YXSectionHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXSectionHeaderFooterView.m; sourceTree = "<group>"; };
 		92852BE81EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeYangGetQuizStatistics.h; sourceTree = "<group>"; };
 		92852BE91EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeYangGetQuizStatistics.m; sourceTree = "<group>"; };
+		92853EBE1FFB31EF00B6F290 /* YXRecordBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXRecordBase.m; sourceTree = "<group>"; };
+		92853EBF1FFB31F000B6F290 /* LaunchAppItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAppItem.h; sourceTree = "<group>"; };
+		92853EC01FFB31F000B6F290 /* NSString+YXRecordContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+YXRecordContent.h"; sourceTree = "<group>"; };
+		92853EC11FFB31F100B6F290 /* YXRecordBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXRecordBase.h; sourceTree = "<group>"; };
+		92853EC21FFB31F100B6F290 /* YXProblemItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXProblemItem.m; sourceTree = "<group>"; };
+		92853EC31FFB31F100B6F290 /* YXProblemItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXProblemItem.h; sourceTree = "<group>"; };
+		92853EC41FFB31F100B6F290 /* LaunchAppItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAppItem.m; sourceTree = "<group>"; };
+		92853EC51FFB31F100B6F290 /* YXStatisticFileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXStatisticFileRequest.h; sourceTree = "<group>"; };
+		92853EC61FFB31F200B6F290 /* YXStatisticFileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXStatisticFileRequest.m; sourceTree = "<group>"; };
+		92853EC71FFB31F200B6F290 /* YXStatisticRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXStatisticRequest.m; sourceTree = "<group>"; };
+		92853EC81FFB31F200B6F290 /* YXStatisticRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXStatisticRequest.h; sourceTree = "<group>"; };
+		92853EC91FFB31F200B6F290 /* YXNewRecordManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXNewRecordManager.h; sourceTree = "<group>"; };
+		92853ECA1FFB31F300B6F290 /* NSString+YXRecordContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+YXRecordContent.m"; sourceTree = "<group>"; };
+		92853ECB1FFB31F300B6F290 /* YXNewRecordManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXNewRecordManager.m; sourceTree = "<group>"; };
+		92853ED31FFB325400B6F290 /* InstantRecordEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstantRecordEntity.h; sourceTree = "<group>"; };
+		92853ED41FFB325400B6F290 /* InstantRecordEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "InstantRecordEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		92853ED51FFB325500B6F290 /* InstantRecordEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstantRecordEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		92853ED61FFB325500B6F290 /* InstantRecordEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstantRecordEntity.m; sourceTree = "<group>"; };
+		92853ED91FFB32E500B6F290 /* NSMutableDictionary+YXDictionarys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+YXDictionarys.h"; sourceTree = "<group>"; };
+		92853EDA1FFB32E600B6F290 /* NSMutableDictionary+YXDictionarys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+YXDictionarys.m"; sourceTree = "<group>"; };
+		92853EDC1FFB342F00B6F290 /* LogRecordEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogRecordEntity.h; sourceTree = "<group>"; };
+		92853EDD1FFB342F00B6F290 /* LogRecordEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LogRecordEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		92853EDE1FFB343000B6F290 /* LogRecordEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogRecordEntity.m; sourceTree = "<group>"; };
+		92853EDF1FFB343000B6F290 /* LogRecordEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LogRecordEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		92853EEB1FFB358E00B6F290 /* RegularRecordEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RegularRecordEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		92853EEC1FFB358E00B6F290 /* RegularRecordEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegularRecordEntity.m; sourceTree = "<group>"; };
+		92853EED1FFB358F00B6F290 /* RegularRecordEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegularRecordEntity.h; sourceTree = "<group>"; };
+		92853EEE1FFB359000B6F290 /* RegularRecordEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RegularRecordEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		92853EF11FFB360000B6F290 /* NSDictionary+Dictionarys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Dictionarys.h"; sourceTree = "<group>"; };
+		92853EF21FFB360000B6F290 /* NSDictionary+Dictionarys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Dictionarys.m"; sourceTree = "<group>"; };
 		928587381FCE4F430030D7B1 /* MasterOffActiveRecordHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterOffActiveRecordHeaderView_17.h; sourceTree = "<group>"; };
 		928587391FCE4F430030D7B1 /* MasterOffActiveRecordHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterOffActiveRecordHeaderView_17.m; sourceTree = "<group>"; };
 		9285873B1FCE507A0030D7B1 /* MasterOffActiveRecordAffixCell_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterOffActiveRecordAffixCell_17.h; sourceTree = "<group>"; };
@@ -2721,6 +2766,7 @@
 				9232376F1D816DAD00FDACFE /* stageAndSubject.json */,
 				7CF888571D194B8300E7C04D /* PrefixHeader.pch */,
 				7CF888581D194B8300E7C04D /* YXDefinitions.h */,
+				92853EBD1FFB31DB00B6F290 /* Statistic */,
 				924C9A0A1EA735500017B31B /* Push */,
 				E90C60AF1D9CFFDF001652CF /* DataStatisticsManger */,
 				7CF888171D17E51200E7C04D /* Player */,
@@ -4899,6 +4945,43 @@
 			path = "学习";
 			sourceTree = "<group>";
 		};
+		92853EBD1FFB31DB00B6F290 /* Statistic */ = {
+			isa = PBXGroup;
+			children = (
+				92853EF11FFB360000B6F290 /* NSDictionary+Dictionarys.h */,
+				92853EF21FFB360000B6F290 /* NSDictionary+Dictionarys.m */,
+				92853EED1FFB358F00B6F290 /* RegularRecordEntity.h */,
+				92853EEC1FFB358E00B6F290 /* RegularRecordEntity.m */,
+				92853EEE1FFB359000B6F290 /* RegularRecordEntity+CoreDataProperties.h */,
+				92853EEB1FFB358E00B6F290 /* RegularRecordEntity+CoreDataProperties.m */,
+				92853EDC1FFB342F00B6F290 /* LogRecordEntity.h */,
+				92853EDE1FFB343000B6F290 /* LogRecordEntity.m */,
+				92853EDF1FFB343000B6F290 /* LogRecordEntity+CoreDataProperties.h */,
+				92853EDD1FFB342F00B6F290 /* LogRecordEntity+CoreDataProperties.m */,
+				92853ED91FFB32E500B6F290 /* NSMutableDictionary+YXDictionarys.h */,
+				92853EDA1FFB32E600B6F290 /* NSMutableDictionary+YXDictionarys.m */,
+				92853ED31FFB325400B6F290 /* InstantRecordEntity.h */,
+				92853ED61FFB325500B6F290 /* InstantRecordEntity.m */,
+				92853ED51FFB325500B6F290 /* InstantRecordEntity+CoreDataProperties.h */,
+				92853ED41FFB325400B6F290 /* InstantRecordEntity+CoreDataProperties.m */,
+				92853EBF1FFB31F000B6F290 /* LaunchAppItem.h */,
+				92853EC41FFB31F100B6F290 /* LaunchAppItem.m */,
+				92853EC01FFB31F000B6F290 /* NSString+YXRecordContent.h */,
+				92853ECA1FFB31F300B6F290 /* NSString+YXRecordContent.m */,
+				92853EC91FFB31F200B6F290 /* YXNewRecordManager.h */,
+				92853ECB1FFB31F300B6F290 /* YXNewRecordManager.m */,
+				92853EC31FFB31F100B6F290 /* YXProblemItem.h */,
+				92853EC21FFB31F100B6F290 /* YXProblemItem.m */,
+				92853EC11FFB31F100B6F290 /* YXRecordBase.h */,
+				92853EBE1FFB31EF00B6F290 /* YXRecordBase.m */,
+				92853EC51FFB31F100B6F290 /* YXStatisticFileRequest.h */,
+				92853EC61FFB31F200B6F290 /* YXStatisticFileRequest.m */,
+				92853EC81FFB31F200B6F290 /* YXStatisticRequest.h */,
+				92853EC71FFB31F200B6F290 /* YXStatisticRequest.m */,
+			);
+			path = Statistic;
+			sourceTree = "<group>";
+		};
 		928587341FCE4ACF0030D7B1 /* 作品集 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6303,6 +6386,7 @@
 				927874311F01F89300A70DC0 /* VideoBeginningTopView.m in Sources */,
 				922DB1CA1FBA89A80078F6BD /* ActivityListFetcher.m in Sources */,
 				92E8FD691D8E1F8D00004700 /* YXHotReadedRequest.m in Sources */,
+				92853EDB1FFB32E600B6F290 /* NSMutableDictionary+YXDictionarys.m in Sources */,
 				92A791721F0E21CA00E3D258 /* YXMineViewController_17.m in Sources */,
 				CB7462821D1FE2160065113A /* YXVerifySMSCodeRequest.m in Sources */,
 				928B7A391E88B2180067218A /* BeijingActivityListCell.m in Sources */,
@@ -6379,8 +6463,10 @@
 				CB52FCF81D2BB7D30096D8DC /* YXNoticeListRequest.m in Sources */,
 				920F1D231D5094D000636A51 /* YXGetQiNiuTokenRequest.m in Sources */,
 				9232374B1D80F40700FDACFE /* YXProvincesRequest.m in Sources */,
+				92853ED81FFB325600B6F290 /* InstantRecordEntity.m in Sources */,
 				92FD5A4F1ED7D6A400D3EBA1 /* VideoCourseCommentsRequest.m in Sources */,
 				920E235B1E890E7F000F1D36 /* YXSubmitAnswerRequest.m in Sources */,
+				92853EE11FFB343100B6F290 /* LogRecordEntity.m in Sources */,
 				92007EBE1ED9358000C16F89 /* VideoCourseQRViewController.m in Sources */,
 				92EDC7C01D5C737F005B91DD /* YXWriteHomeworkInfoBottomView.m in Sources */,
 				7CF8885F1D1A427700E7C04D /* YXNoticeViewController.m in Sources */,
@@ -6406,6 +6492,7 @@
 				CB7462851D1FF00D0065113A /* YXResetPasswordRequest.m in Sources */,
 				927B6C5B1F0F3A5E0082DB27 /* YXAppUpdatePopUpView.m in Sources */,
 				7C31780B1D12830A004AAC90 /* YXFileFavorWrapper.m in Sources */,
+				92853EEF1FFB359000B6F290 /* RegularRecordEntity+CoreDataProperties.m in Sources */,
 				927B6C631F0F3B6E0082DB27 /* PopUpFloatingViewManager_17.m in Sources */,
 				92EE0C831FD4FFBB00754CEB /* MasterCourseAllListViewController_17.m in Sources */,
 				9285873D1FCE507A0030D7B1 /* MasterOffActiveRecordAffixCell_17.m in Sources */,
@@ -6420,6 +6507,7 @@
 				920E23581E890E5C000F1D36 /* YXVideoQuestionsRequest.m in Sources */,
 				E9DE2BC51E13BB890033434F /* ChangeProjectGuideView.m in Sources */,
 				CB74626A1D1E85630065113A /* YXUserManager.m in Sources */,
+				92853ECD1FFB31F300B6F290 /* YXProblemItem.m in Sources */,
 				CB16060D1D2FCB390071BA01 /* YXUploadHeadImgRequest.m in Sources */,
 				7C31777F1D0E8A1D004AAC90 /* FileLogger.m in Sources */,
 				CBF66E401D2F5A4800F4E408 /* YXStageAndSubjectRequest.m in Sources */,
@@ -6647,6 +6735,7 @@
 				7CF887F81D17A77400E7C04D /* YXDrawerViewController.m in Sources */,
 				92CE515E1D87EF3D0071DE79 /* YXWebViewController.m in Sources */,
 				925146811F25EE4600B1533B /* HomeworkListRequest_17.m in Sources */,
+				92853ED71FFB325600B6F290 /* InstantRecordEntity+CoreDataProperties.m in Sources */,
 				9272D5331F174B9A0010B177 /* YXMyLearningScoreViewController_17.m in Sources */,
 				CB4D91771D1A635400B5F1D0 /* YXMyDatumCell.m in Sources */,
 				9285875E1FCE8BF10030D7B1 /* MasterHomeworkSetListRequest_17.m in Sources */,
@@ -6665,6 +6754,7 @@
 				92007EB41ED8194900C16F89 /* VideoCourseSecondCommentViewController.m in Sources */,
 				92676BFF1FCBB4FD003EC6AC /* MasterOffActiveListTableHeaderView_17.m in Sources */,
 				92348FBB1EEFEDEA00D3B3A7 /* MasterConditionTableView.m in Sources */,
+				92853ECF1FFB31F300B6F290 /* YXStatisticFileRequest.m in Sources */,
 				924BE4131FC3BDB600B7EECA /* MasterHomeworkDetailViewController_17.m in Sources */,
 				9232377B1D826CC800FDACFE /* YXHelpCell.m in Sources */,
 				92348FBE1EEFEDEA00D3B3A7 /* MasterHappeningTableHeaderView.m in Sources */,
@@ -6704,6 +6794,7 @@
 				92A7850F1FBC46B3007502A4 /* LSTCollectionFilterDefaultModel.m in Sources */,
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				92E9715D1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m in Sources */,
+				92853ED01FFB31F300B6F290 /* YXStatisticRequest.m in Sources */,
 				927B6C811F136B470082DB27 /* YXLearningTableHeaderView_17.m in Sources */,
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
 				920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */,
@@ -6724,6 +6815,7 @@
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
 				923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */,
 				7CF844751D2E2EA000B1CE55 /* YXTriangleView.m in Sources */,
+				92853ED21FFB31F300B6F290 /* YXNewRecordManager.m in Sources */,
 				7C3177711D0E7EB0004AAC90 /* YXConfigManager.m in Sources */,
 				92551E0A1FBBE5060034DC71 /* LSTCollectionFilterView.m in Sources */,
 				928B7A451E88B2180067218A /* BeijingExamGenreDefaultHeaderView.m in Sources */,
@@ -6795,6 +6887,7 @@
 				9223C8091D2BC59E000F74DF /* YXWorkshopMemberViewController.m in Sources */,
 				7C3177E61D11495D004AAC90 /* YXFilePhotoItem.m in Sources */,
 				E9A7B5EB1DDC3EAA00136335 /* ShareResourcesTableViewCell.m in Sources */,
+				92853ECC1FFB31F300B6F290 /* YXRecordBase.m in Sources */,
 				928B7A551E88BFFD0067218A /* DeYangCourseViewController.m in Sources */,
 				92DA90631FD5207600F24FEC /* MasterCourseAllFetcher_17.m in Sources */,
 				E9CD957F1DE3E47C00AE6704 /* DownloadResourceViewController.m in Sources */,
@@ -6829,6 +6922,7 @@
 				7C31778D1D0EA598004AAC90 /* YXMockManager.m in Sources */,
 				7CFBA6BF1D33374B005D08B1 /* YXErrorView.m in Sources */,
 				924BE43B1FC6A8D500B7EECA /* MasterHomeworkDeleteRemarkRequest_17.m in Sources */,
+				92853EF31FFB360000B6F290 /* NSDictionary+Dictionarys.m in Sources */,
 				7CF888291D17E6C600E7C04D /* YXPlayerBottomView.m in Sources */,
 				922197391FD7A4E500C4A9DC /* MasterOverallRatingScoreRequet_17.m in Sources */,
 				928587671FCE8C580030D7B1 /* MasterHomeworkSetListFetcher_17.m in Sources */,
@@ -6944,6 +7038,7 @@
 				92CA55E61DFE761400AA2C50 /* LSTTrainHelper_Default.m in Sources */,
 				CBF66E371D2E647100F4E408 /* YXUserTextFieldTableViewCell.m in Sources */,
 				CBBE95011D1D1AE200C935C8 /* YXVerifyCodeInputTableViewCell.m in Sources */,
+				92853ED11FFB31F300B6F290 /* NSString+YXRecordContent.m in Sources */,
 				CB2CF3541D1CE98100E76B34 /* YXLoginTopView.m in Sources */,
 				7C3178521D139A2A004AAC90 /* YXTaskViewController.m in Sources */,
 				92D29C401F1CAF51003DF29B /* CollectionViewEqualSpaceFlowLayout.m in Sources */,
@@ -6976,6 +7071,7 @@
 				922DB1F91FBA930D0078F6BD /* MasterTabBarViewController_17.m in Sources */,
 				CB3510B61D18E9830081EA3B /* YXDatumOrderView.m in Sources */,
 				92348F8F1EEF85FC00D3B3A7 /* VideoPlayCommentEmptyView.m in Sources */,
+				92853EF01FFB359000B6F290 /* RegularRecordEntity.m in Sources */,
 				925F4AF81FBA9693003FB2FC /* RootViewControllerManger.m in Sources */,
 				923237351D79623E00FDACFE /* YXScoreLeadingGroupCell.m in Sources */,
 				7CF888901D1D1D9300E7C04D /* YXExamTaskProgressHeaderView.m in Sources */,
@@ -7034,6 +7130,7 @@
 				920F1D481D51F09200636A51 /* YXHomeworkListHeaderView.m in Sources */,
 				92A10F721F186BEE00B37814 /* BriefListViewController_17.m in Sources */,
 				924BE4351FC6A87A00B7EECA /* MasterCancelRecommendHomeworkRequest_17.m in Sources */,
+				92853EE01FFB343100B6F290 /* LogRecordEntity+CoreDataProperties.m in Sources */,
 				7C2C3B771D24CA6E00A03635 /* YXCourseDetailCell.m in Sources */,
 				CB3510C81D18F62A0081EA3B /* YXWholeDatumFetcher.m in Sources */,
 				927B6C6A1F132ED40082DB27 /* XYChooseProjectViewController.m in Sources */,
@@ -7052,6 +7149,7 @@
 				9292DC591E9E3131008C6A14 /* YXActivityListBaseViewController.m in Sources */,
 				7C3178241D129C01004AAC90 /* ReaderContentTile.m in Sources */,
 				92E9715A1ED5801500DEAAD4 /* OLImageView.m in Sources */,
+				92853ECE1FFB31F300B6F290 /* LaunchAppItem.m in Sources */,
 				7C3177811D0E8A1D004AAC90 /* GlobalUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

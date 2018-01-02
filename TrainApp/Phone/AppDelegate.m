@@ -14,6 +14,11 @@
 #import "AppDelegate+GetInfoList.h"
 #import "TalkingData.h"
 #import "TrainGeTuiManger.h"
+#import "YXRecordBase.h"
+#import "LaunchAppItem.h"
+#import "YXNewRecordManager.h"
+#import "UIDevice+HardwareName.h"
+
 @interface AppDelegate ()
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 @property (nonatomic, strong) NSTimer *backgroundTimer;
@@ -30,6 +35,12 @@
     [GlobalUtils setupCore];
     [YXNavigationBarController setup];
     [self setupKeyboardManager];
+    
+    // 内部统计
+    [YXNewRecordManager startRegularReport];
+    [self addLaunchAppStatisticWithType:YXRecordStartType];
+    
+    
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     YXStartViewController *VC = [[YXStartViewController alloc] init];
@@ -160,4 +171,17 @@
     [[LSTSharedInstance sharedInstance].userManger logout];
 	return YES;
 }
+
+- (void)addLaunchAppStatisticWithType:(YXRecordType)type {
+    LaunchAppItem *record = [[LaunchAppItem alloc] init];
+    record.type = type;
+    record.mobileModel = [[UIDevice currentDevice] platformString];
+    record.brand = @"Apple";
+    record.system = [UIDevice currentDevice].systemVersion;
+    record.resolution = [LaunchAppItem screenResolution];
+    record.netModel = [LaunchAppItem networkStatus];
+    
+    [YXNewRecordManager addRecord:record];
+}
+
 @end
