@@ -55,11 +55,11 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [YXDataStatisticsManger trackPage:@"全部课程列表" withStatus:YES];
+    [YXDataStatisticsManger trackPage:@"全部课程页面" withStatus:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [YXDataStatisticsManger trackPage:@"全部课程列表" withStatus:NO];
+    [YXDataStatisticsManger trackPage:@"全部课程页面" withStatus:NO];
 }
 - (void)setupUI {
     self.emptyView.title = @"没有符合条件的课程";

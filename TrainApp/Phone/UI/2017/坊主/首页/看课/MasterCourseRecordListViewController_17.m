@@ -49,11 +49,11 @@
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [YXDataStatisticsManger trackPage:@"看课列表" withStatus:YES];
+    [YXDataStatisticsManger trackPage:@"看课列表页面" withStatus:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [YXDataStatisticsManger trackPage:@"看课列表" withStatus:NO];
+    [YXDataStatisticsManger trackPage:@"看课列表页面" withStatus:NO];
 }
 #pragma mark - setupUI
 - (void)setupUI {

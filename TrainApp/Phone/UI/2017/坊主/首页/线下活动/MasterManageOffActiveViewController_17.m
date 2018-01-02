@@ -27,11 +27,11 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [YXDataStatisticsManger trackPage:@"线下活动" withStatus:YES];
+    [YXDataStatisticsManger trackPage:@"线下活动列表" withStatus:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [YXDataStatisticsManger trackPage:@"线下活动" withStatus:NO];
+    [YXDataStatisticsManger trackPage:@"线下活动列表" withStatus:NO];
 }
 #pragma mark - setupUI
 - (void)setupUI {
