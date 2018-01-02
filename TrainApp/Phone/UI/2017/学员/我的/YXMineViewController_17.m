@@ -162,6 +162,7 @@ UITableViewDataSource
                 break;
             case 2:
             {
+                [YXDataStatisticsManger trackEvent:@"去App Store打分" label:@"我页面" parameters:nil];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1012923844"]];
             }
                 break;

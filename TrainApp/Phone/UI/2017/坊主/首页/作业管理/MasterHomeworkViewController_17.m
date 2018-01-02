@@ -198,6 +198,7 @@
     headerView.masterHomeworkFilterButtonBlock = ^{
         STRONG_SELF
         if (self.bgView.hidden) {
+            [YXDataStatisticsManger trackEvent:@"筛选" label:@"作业管理" parameters:nil];
             if (self.tableView.contentOffset.y < self.headerHeight && self.headerHeight == 198.0f) {
                 [self.tableView setContentOffset:CGPointMake(0, self.headerHeight) animated:YES];
             }

@@ -234,7 +234,9 @@
         STRONG_SELF
         if (self.detailItem.isMyRecommend.boolValue) {
             [self showAlertCancleRemark];
+            [YXDataStatisticsManger trackEvent:@"取消推优" label:@"作品集详情界面" parameters:nil];
         }else {
+            [YXDataStatisticsManger trackEvent:@"推优" label:@"作品集详情界面" parameters:nil];
             [UIView animateWithDuration:0.25 animations:^{
                 self.translucentView.alpha = 1.0f;
             }];
@@ -260,6 +262,11 @@
         }
         self.inputView.minScoreString = self.detailItem.myScore;
         self.inputView.inputStatus = MasterInputStatus_Score;
+        if (self.detailItem.myScore.integerValue > 0) {
+            [YXDataStatisticsManger trackEvent:@"再次点评" label:@"作品集详情界面" parameters:nil];
+        }else {
+            [YXDataStatisticsManger trackEvent:@"点评" label:@"作品集详情界面" parameters:nil];
+        }
     }];
     [self.view addSubview:self.commentButton];
     self.lineView = [[UIView alloc] init];

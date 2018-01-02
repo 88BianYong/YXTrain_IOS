@@ -145,8 +145,10 @@
     [[self.remarkButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         if (self.detailItem.isMyRecommend.boolValue) {
+            [YXDataStatisticsManger trackEvent:@"取消推优" label:@"作业详情界面" parameters:nil];
             [self showAlertCancleRemark];
         }else {
+            [YXDataStatisticsManger trackEvent:@"推优" label:@"作业详情界面" parameters:nil];
             [UIView animateWithDuration:0.25 animations:^{
                 self.translucentView.alpha = 1.0f;
             }];
@@ -163,6 +165,11 @@
     self.commentButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
     [[self.commentButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
+        if (self.detailItem.myScore.integerValue > 0) {
+            [YXDataStatisticsManger trackEvent:@"再次点评" label:@"作业详情界面" parameters:nil];
+        }else {
+            [YXDataStatisticsManger trackEvent:@"点评" label:@"作业详情界面" parameters:nil];
+        }
         [UIView animateWithDuration:0.25 animations:^{
             self.translucentView.alpha = 1.0f;
         }];

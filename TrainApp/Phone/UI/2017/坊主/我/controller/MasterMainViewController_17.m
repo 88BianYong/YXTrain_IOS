@@ -204,6 +204,7 @@ UITableViewDataSource
         if (train.pid.integerValue == [LSTSharedInstance sharedInstance].trainManager.currentProject.pid.integerValue) {
             self.tabBarController.selectedIndex = 0;
         }else {
+            [YXDataStatisticsManger trackEvent:@"切换项目" label:@"我页面" parameters:nil];
             NSArray<TrainListProjectGroup *> *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
             __block NSInteger sectionInteger = 0;
             __block NSInteger indexInteger = 0;
@@ -255,6 +256,7 @@ UITableViewDataSource
                 break;
             case 2:
             {
+                [YXDataStatisticsManger trackEvent:@"去App Store打分" label:@"我页面" parameters:nil];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1012923844"]];
             }
                 break;

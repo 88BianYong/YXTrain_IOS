@@ -70,6 +70,7 @@
     self.headerView.masterCourseRecordButtonBlock = ^(UIButton *sender) {
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
+        [YXDataStatisticsManger trackEvent:@"考核说明" label:@"去看课" parameters:nil];
         [self showMarkWithOriginRect:rect explain:self.headerView.scheme.scheme.descripe?:@""];
     };
     self.headerView.hidden = YES;

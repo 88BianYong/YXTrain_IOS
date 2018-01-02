@@ -70,6 +70,7 @@
     self.headerView.masterLearningInfoButtonBlock = ^(BOOL isOpen) {
         STRONG_SELF
         if (self.bgView.hidden) {
+            [YXDataStatisticsManger trackEvent:@"筛选" label:@"学情统计" parameters:nil];
             [self showSelectionView];
         }else {
             [self.alert hide];
@@ -102,6 +103,7 @@
     [[self.superviseButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
         [self requestForRemindStudy];
+        [YXDataStatisticsManger trackEvent:@"一键督促学情" label:@"学情统计" parameters:nil];
     }];
     [self setupRightWithCustomView:self.superviseButton];
 }
@@ -220,6 +222,7 @@
         cell.masterExamTopicButtonBlock = ^(UIButton *sender) {
             STRONG_SELF
             CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
+            [YXDataStatisticsManger trackEvent:@"考核说明" label:@"学情统计" parameters:nil];
             [self showMarkWithOriginRect:rect explain:explain];
         };
         return cell;

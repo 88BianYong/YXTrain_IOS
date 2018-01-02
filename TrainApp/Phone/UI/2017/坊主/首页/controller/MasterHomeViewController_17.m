@@ -152,6 +152,7 @@
     self.projectSelectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
         STRONG_SELF
         [self showProjectWithIndexPath:indexPath];
+        [YXDataStatisticsManger trackEvent:@"切换项目" label:@"首页" parameters:nil];
     };
     [self showProjectSelectionView];
 }
