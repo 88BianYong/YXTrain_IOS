@@ -82,11 +82,19 @@
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"附件浏览页面" withStatus:NO];    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"附件浏览页面" withStatus:YES];
+
     if (self.qlNavigationBar){
         return;
     }

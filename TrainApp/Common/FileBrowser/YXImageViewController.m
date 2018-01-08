@@ -49,12 +49,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [YXDataStatisticsManger trackPage:@"附件浏览页面" withStatus:YES];
     //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [YXDataStatisticsManger trackPage:@"附件浏览页面" withStatus:NO];
+
     //[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
 }
 

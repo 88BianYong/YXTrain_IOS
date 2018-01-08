@@ -66,6 +66,7 @@
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
         [self showMarkWithOriginRect:rect explain:self.headerView.scheme.descripe?:@""];
+        [YXDataStatisticsManger trackEvent:@"考核说明" label:@"线上活动" parameters:nil];
     };
     self.tableView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;

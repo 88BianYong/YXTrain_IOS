@@ -72,6 +72,7 @@
             string = [string stringByAppendingString:obj.descripe];
         }];
         [self showMarkWithOriginRect:rect explain:string];
+        [YXDataStatisticsManger trackEvent:@"考核说明" label:@"作品集管理" parameters:nil];
     };
     self.tableView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;

@@ -220,6 +220,7 @@
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
         [self showMarkWithOriginRect:rect explain:self.listItem.body.exmineDesc?:@""];
+        [YXDataStatisticsManger trackEvent:@"考核说明" label:@"综合评定" parameters:nil];
     };
     self.tableView.tableHeaderView = self.headerView;
     self.filterTitleView = [[MasterOverallRatingFilterTitleView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 30.0f)];

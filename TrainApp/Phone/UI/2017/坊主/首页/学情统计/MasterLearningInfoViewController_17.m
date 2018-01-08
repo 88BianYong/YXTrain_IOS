@@ -274,9 +274,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    PersonLearningInfoViewController_17 *VC = [[PersonLearningInfoViewController_17 alloc] init];
-    VC.learningInfo = self.dataArray[indexPath.row];
-    [self.navigationController pushViewController:VC animated:YES];
+    if (indexPath.section == 1) {
+        PersonLearningInfoViewController_17 *VC = [[PersonLearningInfoViewController_17 alloc] init];
+        VC.learningInfo = self.dataArray[indexPath.row];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
 }
 
 #pragma mark - request
