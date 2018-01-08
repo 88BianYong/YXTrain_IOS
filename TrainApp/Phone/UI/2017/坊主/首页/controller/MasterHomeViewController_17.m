@@ -31,6 +31,7 @@
 @property (nonatomic, strong) MasterHomeTableHeaderView_17 *tableHeaderView;
 @property (nonatomic, strong) MasterHomeModuleCell_17 *moduleCell;
 @property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
+@property (nonatomic, strong) UIView *qrCodeView;
 
 @property (nonatomic, strong) MasterIndexRequest_17 *indexRequest;
 @property (nonatomic, strong) MasterIndexRequestItem_Body *masterItem;
@@ -69,6 +70,7 @@
     [YXDataStatisticsManger trackPage:@"项目首页" withStatus:YES];
     [self showProjectSelectionView];
     [[LSTSharedInstance sharedInstance].floatingViewManager showPopUpFloatingView];
+    [self setupRightWithCustomView:self.qrCodeView];
 }
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -121,9 +123,10 @@
         [self requestForMasterIndex];
     };
     [self setupQRCodeRightView];
+
 }
 - (void)setupQRCodeRightView{
-    UIView *qrCodeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
+    self.qrCodeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateHighlighted];
@@ -134,8 +137,7 @@
         UIViewController *VC = [[NSClassFromString(@"VideoCourseQRViewController") alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
     }];
-    [qrCodeView addSubview:button];
-    [self setupRightWithCustomView:qrCodeView];
+    [self.qrCodeView addSubview:button];
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {

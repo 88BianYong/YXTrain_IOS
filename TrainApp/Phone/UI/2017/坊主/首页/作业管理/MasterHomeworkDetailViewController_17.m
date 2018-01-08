@@ -271,7 +271,9 @@
     WEAK_SELF
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
-        [self showMarkWithOriginRect:CGRectMake(200, 30.0f, 80, 30.0f) explain:self.detailItem.require.descrip];
+        if (self.detailItem.require.descrip.length > 0) {
+            [self showMarkWithOriginRect:CGRectMake(200, 30.0f, 80, 30.0f) explain:self.detailItem.require.descrip];
+        }
     }];
     [self setupRightWithCustomView:button];
 }
