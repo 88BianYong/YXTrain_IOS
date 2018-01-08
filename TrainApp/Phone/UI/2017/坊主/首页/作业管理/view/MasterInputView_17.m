@@ -107,7 +107,7 @@
             self.scoreTextView.text = self.placeholderScoreString;
         }
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-        self.sendButton.enabled = [[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0;
+         self.sendButton.enabled = ([[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 1);
          [self.scoreTextView becomeFirstResponder];
     }else if (_inputStatus == MasterInputStatus_Comment){
         self.commentTextView.placeholder = @"请输您对本作业的评语";

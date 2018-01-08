@@ -301,7 +301,7 @@
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(15.0f);
         make.top.equalTo(self.contentView.mas_top).offset(12.0f);
-        make.right.equalTo(self.contentView.mas_right).offset(-25.0f);
+        make.right.equalTo(self.contentView.mas_right).offset(-80.0f);
     }];
     
     [self.publishLabel mas_makeConstraints:^(MASConstraintMaker *make) {

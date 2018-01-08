@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MasterLearningInfoRequest_17.h"
 @interface PersonTableHeaderView_17 : UIView
-- (void)reloadPersonLearningInfo:(MasterLearningInfoRequestItem_Body_XueQing_LearningInfoList *)info withScore:(NSString *)score withPass:(BOOL)isPass;
+- (void)reloadPersonLearningInfo:(MasterLearningInfoRequestItem_Body_XueQing_LearningInfoList *)info withScore:(NSString *)score withPass:(NSString *)isPass;
 
 @end

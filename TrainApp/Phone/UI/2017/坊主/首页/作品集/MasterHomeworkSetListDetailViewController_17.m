@@ -260,7 +260,6 @@
         if (self.detailItem.myScore.integerValue > 0) {
             self.inputView.placeholderScoreString = self.detailItem.score;
         }
-        self.inputView.minScoreString = self.detailItem.myScore;
         self.inputView.inputStatus = MasterInputStatus_Score;
         if (self.detailItem.myScore.integerValue > 0) {
             [YXDataStatisticsManger trackEvent:@"再次点评" label:@"作品集详情界面" parameters:nil];
@@ -338,10 +337,11 @@
         }else if (status == MasterInputStatus_Recommend) {
             [self requestForRecommendHomework:self.inputView.commentTextView.text];
         }else if (status == MasterInputStatus_Comment) {
-            if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.score.integerValue) {
-            }else {
-                [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
-            }
+//            if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.myScore.integerValue) {
+//            }else {
+//                [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
+//            }
+            [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
         }
         [self hiddenInputView];
     };

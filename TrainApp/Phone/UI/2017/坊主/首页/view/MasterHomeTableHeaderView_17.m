@@ -62,7 +62,7 @@
     self.statusPromptLabel = [[UILabel alloc] init];
     self.statusPromptLabel.font = [UIFont systemFontOfSize:12.0f];
     self.statusPromptLabel.textColor = [[UIColor colorWithHexString:@"ffffff"] colorWithAlphaComponent:0.6f];
-    self.statusPromptLabel.text = @"当前得分";
+    self.statusPromptLabel.text = @"考核结果";
     [self addSubview:self.statusPromptLabel];
 }
 - (void)setupLayout {

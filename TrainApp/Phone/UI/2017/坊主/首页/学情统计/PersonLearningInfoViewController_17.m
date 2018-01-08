@@ -50,7 +50,7 @@
 - (void)setExamine:(ExamineDetailRequest_17Item_Examine *)examine {
     _examine = examine;
     self.headerView.hidden = NO;
-    [self.headerView reloadPersonLearningInfo:self.learningInfo withScore:self.examine.userGetScore withPass:self.examine.isPass.boolValue];
+    [self.headerView reloadPersonLearningInfo:self.learningInfo withScore:self.examine.userGetScore withPass:self.examine.isPass];
     [self.tableView reloadData];
 }
 #pragma mark - setupUI

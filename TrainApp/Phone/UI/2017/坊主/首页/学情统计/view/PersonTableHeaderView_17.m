@@ -135,11 +135,17 @@
     }];
     
 }
-- (void)reloadPersonLearningInfo:(MasterLearningInfoRequestItem_Body_XueQing_LearningInfoList *)info withScore:(NSString *)score withPass:(BOOL)isPass {
+- (void)reloadPersonLearningInfo:(MasterLearningInfoRequestItem_Body_XueQing_LearningInfoList *)info withScore:(NSString *)score withPass:(NSString *)isPass {
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:info.avatar] placeholderImage:nil];
     self.nameLabel.text = info.realName;
     self.phoneLabel.text = info.mobile;
-    self.passStatusLabel.text = isPass ? @"通过" : @"暂未通过";
+    if (isPass.integerValue == 0) {
+        self.passStatusLabel.text = @"未通过";
+    }else if (isPass.integerValue == 1) {
+        self.passStatusLabel.text = @"暂未通过";
+    }else {
+        self.passStatusLabel.text = @"通过";
+    }
     NSString *string = [NSString stringWithFormat:@"%@分",[score yx_formatInteger]];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:string];
     [attString addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_Medium size:23.0f] range:NSMakeRange(0, string.length - 1)];

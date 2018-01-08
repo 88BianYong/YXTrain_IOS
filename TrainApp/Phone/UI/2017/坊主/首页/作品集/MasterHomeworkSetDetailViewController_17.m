@@ -49,10 +49,9 @@
         }];
         return;
     }
-    
     [self setupUI];
     [self setupLayout];
-    [self startLoading];
+    [YXPromtController startLoadingInView:self.parentViewController.view];
     [self requestForHomeworkDetail];
     [self requestForHomeworkRemark];
     
@@ -281,7 +280,7 @@
     WEAK_SELF
     [request startRequestWithRetClass:[MasterHomeworkSetRemarkListItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
+        [YXPromtController stopLoadingInView:self.parentViewController.view];
         [self.tableView.mj_footer endRefreshing];
         [self.tableView.mj_header endRefreshing];
         [self setPullupViewHidden:YES];
@@ -313,7 +312,7 @@
     WEAK_SELF
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
+        [YXPromtController stopLoadingInView:self.parentViewController.view];
         if (error) {
             [self showToast:error.localizedDescription];
         }else {
