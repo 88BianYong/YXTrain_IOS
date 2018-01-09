@@ -40,11 +40,11 @@ typedef NS_ENUM(NSUInteger, YXSourceType) {
 @property (nonatomic, strong) NSString *cid;
 @property (nonatomic, strong) NSString *source;
 @property (nonatomic, assign) BOOL isDeleteVideo;// 需要删除按键YES  default is NO
-@property (nonatomic, assign) YXSourceType sourceType;//仅上报数据使用  区分来源 + 区分是否显示防挂科
 @property (nonatomic, copy) NSString *vhead;
 @property (nonatomic, copy) NSString *vheadUrl;
 
-
+@property (nonatomic, assign) YXSourceType sourceType;//仅上报数据使用  区分来源 + 区分是否显示防挂科
+@property (nonatomic, copy) NSString *reportTitle;//talkData上报所用
 
 // 上报预存
 @property (nonatomic, strong) NSString *duration;

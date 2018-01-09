@@ -49,15 +49,18 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [YXDataStatisticsManger trackPage:@"附件浏览页面" withStatus:YES];
+    if (self.reportString.length > 0) {
+        [YXDataStatisticsManger trackPage:self.reportString withStatus:YES];
+    }
     //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [YXDataStatisticsManger trackPage:@"附件浏览页面" withStatus:NO];
-
+    if (self.reportString.length > 0) {
+        [YXDataStatisticsManger trackPage:self.reportString withStatus:NO];
+    }
     //[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
 }
 

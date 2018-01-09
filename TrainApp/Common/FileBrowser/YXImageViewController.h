@@ -14,4 +14,5 @@
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, strong) YXFileFavorWrapper *favorWrapper;
 @property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
+@property (nonatomic, copy) NSString *reportString;
 @end

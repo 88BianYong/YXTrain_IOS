@@ -291,10 +291,11 @@
     [self.searchMutableArray removeAllObjects];
     self.maskView.searchMutableArray = self.searchMutableArray;
     self.seachView.searchTextField.text = nil;
+    self.navigationItem.titleView = nil;
     [super setupLeftBack];
     [self setupRightWithImageNamed:@"搜索" highlightImageNamed:@"搜索"];
-    self.navigationItem.titleView = nil;
     self.maskView.hidden = YES;
+
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -420,7 +421,6 @@
         self.maskView.searchMutableArray = self.searchMutableArray;
     };
     self.navigationItem.titleView = self.seachView;
-    self.navigationItem.titleView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44);
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationItem.leftBarButtonItems = nil;
     [self.navigationItem setHidesBackButton:YES animated:NO];

@@ -18,6 +18,7 @@
 @property (nonatomic, strong) YXFileFavorWrapper *favorWrapper;
 @property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
 @property (nonatomic, weak) id<YXBrowseTimeDelegate> browseTimeDelegate;
+@property (nonatomic, copy) NSString *reportString;
 
 - (BOOL)canPreview;
 

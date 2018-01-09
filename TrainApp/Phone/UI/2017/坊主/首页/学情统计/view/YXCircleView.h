@@ -10,5 +10,4 @@
 
 @interface YXCircleView : UIView
 @property (nonatomic,assign) CGFloat progress;
-@property (nonatomic, strong) UILabel *titleLabel;
 @end

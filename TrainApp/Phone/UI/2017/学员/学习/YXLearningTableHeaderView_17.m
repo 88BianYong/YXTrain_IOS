@@ -75,7 +75,13 @@
 #pragma mark - set
 - (void)setScoreString:(NSString *)scoreString {
     _scoreString = scoreString;
-    self.projectLabel.text = [NSString stringWithFormat:@"%@-%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
+    NSString *statusString = @"未开始";
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 0) {
+        statusString = @"已结束";
+    }else if ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 1){
+        statusString = @"进行中";
+    }
+    self.projectLabel.text = [NSString stringWithFormat:@"%@-%@ %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate,statusString];
     if (isEmpty(_scoreString)) {
         self.scoreLabel.text = @" ";
         return;
@@ -100,7 +106,6 @@
     self.projectLabel.font = [UIFont systemFontOfSize:14.0f];
     self.projectLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.projectLabel];
-    self.projectLabel.text = [NSString stringWithFormat:@"%@-%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
     
     self.containerView = [[UIView alloc] init];
     self.containerView.backgroundColor =[UIColor whiteColor];

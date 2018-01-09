@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "YXCircleView.h"
+#import "YXBackgroundCircleView.h"
 @interface MasterCircleDisplayView_17 : UIView
 @property (nonatomic, assign) CGFloat progress;
 @property (nonatomic, copy) NSString *titleString;
 @property (nonatomic, strong) YXCircleView *circleView;
+@property (nonatomic, strong) YXBackgroundCircleView *bgView;
 @end

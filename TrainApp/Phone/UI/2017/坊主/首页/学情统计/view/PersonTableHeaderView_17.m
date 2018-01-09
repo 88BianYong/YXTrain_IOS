@@ -136,7 +136,7 @@
     
 }
 - (void)reloadPersonLearningInfo:(MasterLearningInfoRequestItem_Body_XueQing_LearningInfoList *)info withScore:(NSString *)score withPass:(NSString *)isPass {
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:info.avatar] placeholderImage:nil];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:info.avatar] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
     self.nameLabel.text = info.realName;
     self.phoneLabel.text = info.mobile;
     if (isPass.integerValue == 0) {
@@ -149,6 +149,6 @@
     NSString *string = [NSString stringWithFormat:@"%@分",[score yx_formatInteger]];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:string];
     [attString addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_Medium size:23.0f] range:NSMakeRange(0, string.length - 1)];
-    self.scoreNumberLabel.attributedText = attString;
+    self.scoreNumberLabel.text = string;
 }
 @end

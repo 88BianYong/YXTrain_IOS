@@ -97,13 +97,13 @@
     self.errorView = [[YXErrorView alloc] init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
-        [self startLoading];
+        [YXPromtController startLoadingInView:self.parentViewController.view];
         [self requestForHomeworkDetail];
     };
     self.dataErrorView = [[DataErrorView alloc] init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
-        [self startLoading];
+        [YXPromtController startLoadingInView:self.parentViewController.view];
         [self requestForHomeworkDetail];
     };
 }
@@ -198,6 +198,7 @@
         fileItem.name = affix.resName;
         fileItem.url = affix.previewUrl;
         fileItem.baseViewController = self;
+        fileItem.reportTitle = @"作品集附件浏览页面";
         [fileItem browseFile];
         self.fileItem = fileItem;
     }
@@ -257,7 +258,7 @@
     WEAK_SELF
     [request startRequestWithRetClass:[MasterHomeworkSetDetailItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
-        [self stopLoading];
+        [YXPromtController stopLoadingInView:self.parentViewController.view];
         [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
@@ -308,7 +309,7 @@
     MasterHomeworkSetRemarkListItem_Body_Remark *remark = self.remarkMutableArray[integer];
     MasterHomeworkSetDeleteRemarkRequest_17 *request = [[MasterHomeworkSetDeleteRemarkRequest_17 alloc] init];
     request.remarkId = remark.rId;
-    [self startLoading];
+    [YXPromtController startLoadingInView:self.parentViewController.view];
     WEAK_SELF
     [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
@@ -325,7 +326,7 @@
 }
 - (void)reloadMasterHomeworkSetRemark {
     self.startPage  = 1;
-    [self startLoading];
+    [YXPromtController stopLoadingInView:self.parentViewController.view];
     [self requestForHomeworkRemark];
 }
 @end

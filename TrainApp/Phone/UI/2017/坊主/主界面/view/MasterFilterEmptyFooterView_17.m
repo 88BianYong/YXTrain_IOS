@@ -57,7 +57,7 @@
     }];
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.centerY.equalTo(self.mas_centerY).offset(10.0f);
+        make.centerY.equalTo(self.mas_centerY);
         make.size.mas_offset(CGSizeMake(80 + 14 + 14, 80 + 14 + 14));
     }];
 }

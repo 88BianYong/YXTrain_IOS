@@ -22,6 +22,7 @@
 - (void)setProgress:(CGFloat)progress {
     _progress = progress;
     self.circleView.progress = _progress;
+    self.bgView.titleLabel.text = [NSString stringWithFormat:@"%0.2f%%",_progress *100.0f];
 }
 - (void)setTitleString:(NSString *)titleString {
     _titleString = titleString;
@@ -29,6 +30,8 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
+    self.bgView = [[YXBackgroundCircleView alloc] initWithFrame:CGRectMake(0, 0, 75.0f, 75.0f)];
+    [self addSubview:self.bgView];
     self.circleView = [[YXCircleView alloc] initWithFrame:CGRectMake(0, 0, 75.0f, 75.0f)];
     [self addSubview:self.circleView];
     self.titleLabel = [[UILabel alloc] init];
@@ -41,6 +44,9 @@
         make.size.mas_offset(CGSizeMake(75.0f, 75.0f));
         make.top.equalTo(self.mas_top);
         make.centerX.equalTo(self.mas_centerX);
+    }];
+    [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.circleView);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

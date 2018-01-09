@@ -49,7 +49,14 @@
     self.timeLabel.font = [UIFont systemFontOfSize:14.0f];
     self.timeLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.timeLabel];
-    self.timeLabel.text = [NSString stringWithFormat:@"%@-%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
+    
+    NSString *statusString = @"未开始";
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 0) {
+        statusString = @"已结束";
+    }else if ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 1){
+        statusString = @"进行中";
+    }
+    self.timeLabel.text = [NSString stringWithFormat:@"%@-%@ %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate,statusString];
 }
 - (void)setupLayout {
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {

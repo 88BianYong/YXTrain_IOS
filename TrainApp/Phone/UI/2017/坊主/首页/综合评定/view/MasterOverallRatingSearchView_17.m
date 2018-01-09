@@ -22,6 +22,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setupUI];
+        self.backgroundColor = [UIColor redColor];
         WEAK_SELF
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UITextFieldTextDidChangeNotification object:nil] subscribeNext:^(id x) {
             STRONG_SELF

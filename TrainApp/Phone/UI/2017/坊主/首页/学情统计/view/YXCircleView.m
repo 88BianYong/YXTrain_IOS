@@ -11,8 +11,8 @@
 #define degressToRadius(ang) (M_PI*(ang)/180.0f) //把角度转换成PI的方式
 @interface YXCircleView ()
 @property (nonatomic, assign) CGFloat lineWidth;
-@property (nonatomic, strong) CAShapeLayer *maskShapeLayer;
-@property (nonatomic, strong) WCGraintCircleLayer * graintlayer;
+@property (nonatomic, strong) CAShapeLayer *progressLayer;
+@property (nonatomic, strong) CALayer *gradientLayer;
 @end
 @implementation YXCircleView
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -25,38 +25,42 @@
 #pragma mark - set
 - (void)setProgress:(CGFloat)progress {
     _progress = progress;
-    self.graintlayer.progress = _progress;
-    self.titleLabel.text = [NSString stringWithFormat:@"%0.2f%%",_progress *100.0f];
+    self.progressLayer.strokeEnd = 0.01 + (0.99-0.01)*_progress;
 }
 #pragma mark - setupUI
 - (void)setupUI {
-    self.maskShapeLayer = [CAShapeLayer layer];
     CGRect rect = CGRectMake(0,0,CGRectGetWidth(self.bounds) - 2 * self.lineWidth, CGRectGetHeight(self.bounds) - 2 * self.lineWidth);
-    self.maskShapeLayer.bounds = rect;
-    self.maskShapeLayer.position = CGPointMake(CGRectGetWidth(self.bounds)/2, CGRectGetHeight(self.bounds)/2);
-    self.maskShapeLayer.strokeColor = [UIColor colorWithHexString:@"dfe2e6"].CGColor;
-    self.maskShapeLayer.fillColor = [UIColor clearColor].CGColor;
-    self.maskShapeLayer.path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:CGRectGetWidth(rect)/2].CGPath;
-    self.maskShapeLayer.lineWidth = self.lineWidth;
-    self.maskShapeLayer.lineCap = kCALineCapRound;
-    self.maskShapeLayer.strokeStart = 0.0f;
-    self.maskShapeLayer.strokeEnd = 1.0f;
-    [self.layer addSublayer:self.maskShapeLayer];
+    //获取环形路径（画一个圆形，填充色透明，设置线框宽度为10，这样就获得了一个环形）
+    self.progressLayer = [CAShapeLayer layer];//创建一个track shape layer
+    self.progressLayer.frame = rect;
+    self.progressLayer.position = CGPointMake(CGRectGetWidth(self.bounds)/2, CGRectGetHeight(self.bounds)/2);
+    self.progressLayer.fillColor = [[UIColor clearColor] CGColor];  //填充色为无色
+    self.progressLayer.strokeColor = [[UIColor redColor] CGColor]; //指定path的渲染颜色,这里可以设置任意不透明颜色
+    self.progressLayer.opacity = 1.0f; //背景颜色的透明度
+    self.progressLayer.lineCap = kCALineCapRound;//指定线的边缘是圆的
+    self.progressLayer.lineWidth = self.lineWidth;//线的宽度
+    self.progressLayer.path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:CGRectGetWidth(rect)/2].CGPath;
+    [self.layer addSublayer:self.progressLayer];
+    //生成渐变色
+    self.gradientLayer = [CALayer layer];
     
-    self.graintlayer = [[WCGraintCircleLayer alloc]
-                        initGraintCircleWithBounds:self.bounds Position:self.center
-                        FromColor:[UIColor colorWithHexString:@"40d5fa"]
-                        ToColor:[UIColor colorWithHexString:@"3c9df5"]
-                        LineWidth:self.lineWidth];
-    [self.layer addSublayer:self.graintlayer];
+    //左侧渐变色
+    CAGradientLayer *leftLayer = [CAGradientLayer layer];
+    leftLayer.frame = CGRectMake(0, 0, self.bounds.size.width / 2, self.bounds.size.height);    // 分段设置渐变色
+    leftLayer.locations = @[@0.3, @0.9, @1];
+    leftLayer.colors = @[(id)[UIColor colorWithHexString:@"40d5fa"].CGColor, (id)[UIColor colorWithHexString:@"3c9df5"].CGColor];
+    [self.gradientLayer addSublayer:leftLayer];
     
-    self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    self.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
-    [self addSubview:self.titleLabel];
-    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
-    }];
+    //右侧渐变色
+    CAGradientLayer *rightLayer = [CAGradientLayer layer];
+    rightLayer.frame = CGRectMake(self.bounds.size.width / 2, 0, self.bounds.size.width / 2, self.bounds.size.height);
+    rightLayer.locations = @[@0.3, @0.9, @1];
+    rightLayer.colors = @[(id)[UIColor colorWithHexString:@"40d5fa"].CGColor, (id)[UIColor colorWithHexString:@"3c9df5"].CGColor];
+    [self.gradientLayer addSublayer:rightLayer];
+    
+    [self.layer setMask:self.progressLayer]; //用progressLayer来截取渐变层
+    [self.layer addSublayer:self.gradientLayer];
 }
+
 
 @end

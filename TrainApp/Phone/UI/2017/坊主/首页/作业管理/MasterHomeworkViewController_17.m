@@ -214,7 +214,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (self.dataArray.count == 0) {
-        return kScreenHeight - 198.0f - 64.0f;
+        return kScreenHeight - 198.0f - 64.0f - 30.0f;
     }else {
         return 0.00001f;
     }

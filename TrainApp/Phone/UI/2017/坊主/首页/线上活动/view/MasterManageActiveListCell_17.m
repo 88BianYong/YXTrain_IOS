@@ -28,12 +28,13 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     self.isJoinLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
-    
+    self.joinCountLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
     // Configure the view for the selected state
 };
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
     [super setHighlighted:highlighted animated:animated];
     self.isJoinLabel.backgroundColor = [UIColor colorWithHexString:@"efa280"];
+    self.joinCountLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5f];
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {

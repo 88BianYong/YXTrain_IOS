@@ -43,7 +43,7 @@
     self.qualifiedView.progress = [_detail.hgl floatValue]/100.0f;
     self.bestView.progress = [_detail.bestl floatValue]/100.0f;
     self.averageScoreView.progress = [_detail.perscore floatValue]/100.0f;
-    self.averageScoreView.circleView.titleLabel.text = [NSString stringWithFormat:@"%@分",[_detail.perscore yx_formatInteger]];
+    self.averageScoreView.bgView.titleLabel.text = [NSString stringWithFormat:@"%@分",[_detail.perscore yx_formatInteger]];
 }
 #pragma mark - setupUI
 - (void)setupUI {

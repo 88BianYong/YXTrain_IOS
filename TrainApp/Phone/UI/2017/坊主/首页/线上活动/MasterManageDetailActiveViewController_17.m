@@ -90,7 +90,7 @@
     [self.tableView registerClass:[MasterDetailActiveMemeberCell_17 class] forCellReuseIdentifier:@"MasterDetailActiveMemeberCell_17"];
     [self.tableView registerClass:[MasterDetailActiveToolCell_17 class] forCellReuseIdentifier:@"MasterDetailActiveToolCell_17"];
     self.headerView = [[MasterDetailActiveTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 255.0f)];
-    self.footerView = [[MasterFilterEmptyFooterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 255.0f)];
+    self.footerView = [[MasterFilterEmptyFooterView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - 255.0f - 64.0f)];
     WEAK_SELF
     self.headerView.masterDetailActiveBlock = ^(MasterManageActiveType type) {
         STRONG_SELF

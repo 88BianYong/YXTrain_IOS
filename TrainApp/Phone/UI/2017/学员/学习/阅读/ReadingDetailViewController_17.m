@@ -133,6 +133,7 @@
     fileItem.name = self.reading.affix.resName;
     fileItem.url = self.reading.affix.previewUrl;
     fileItem.baseViewController = self;
+    fileItem.reportTitle = @"前置任务附件浏览页面";
     [fileItem browseFile];
     self.fileItem = fileItem;
 }

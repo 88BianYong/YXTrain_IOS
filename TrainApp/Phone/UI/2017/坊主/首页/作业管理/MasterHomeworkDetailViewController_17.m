@@ -383,9 +383,9 @@
         fileItem.name = affix.resName;
         fileItem.url = affix.previewUrl;
         fileItem.baseViewController = self;
+        fileItem.reportTitle = @"作业附件浏览页面";
         [fileItem browseFile];
         self.fileItem = fileItem;
-        
     }
 
 }

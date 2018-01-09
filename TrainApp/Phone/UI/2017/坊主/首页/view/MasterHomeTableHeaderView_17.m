@@ -108,9 +108,9 @@
 
 - (void)reloadHeaderViewContent:(NSString *)score withPass:(NSInteger)pass {
     NSString *contentString = [NSString stringWithFormat:@"%@分",score];
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:contentString];
-    [attString addAttribute:NSFontAttributeName value: [UIFont fontWithName:YXFontMetro_Medium size:23.0f] range:NSMakeRange(0, contentString.length - 1)];
-    self.scoreLabel.attributedText = attString;
+//    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:contentString];
+//    [attString addAttribute:NSFontAttributeName value: [UIFont fontWithName:YXFontMetro_Medium size:23.0f] range:NSMakeRange(0, contentString.length - 1)];
+    self.scoreLabel.text = contentString;
     if (pass == 0) {
         self.statusLabel.text = @"未通过";
     }else if (pass == 1) {

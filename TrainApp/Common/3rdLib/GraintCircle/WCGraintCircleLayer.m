@@ -14,7 +14,6 @@
 @implementation WCGraintCircleLayer
 -(void)setProgress:(CGFloat)progress{
     _progress = progress;
-    self.maskShapeLayer.strokeEnd = progress;
     self.maskShapeLayer.strokeEnd = 0.01 + (0.99-0.01)*progress;
 }
 -(instancetype)initGraintCircleWithBounds:(CGRect)bounds Position:(CGPoint)position FromColor:(UIColor *)fromColor ToColor:(UIColor *)toColor LineWidth:(CGFloat) linewidth{

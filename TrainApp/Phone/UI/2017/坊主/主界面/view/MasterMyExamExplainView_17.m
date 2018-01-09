@@ -79,7 +79,7 @@
     [view addSubview:self];
     [self.explainLabel sizeToFit];
     CGRect frame = self.explainLabel.frame;
-    if (frame.size.width > kScreenWidth - 40.0f){
+    if (frame.size.width > kScreenWidth - 40.0f || frame.size.height > 30.0f){
         [self setupLayoutSingle:NO];
     }else{
         [self setupLayoutSingle:YES];
