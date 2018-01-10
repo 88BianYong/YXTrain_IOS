@@ -189,17 +189,23 @@
             [UIApplication sharedApplication].applicationIconBadgeNumber ++;
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         }else {
+            BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         }
     }else if (model.module.integerValue == 2){
         [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
+    }else if (model.module.integerValue == 3) {
+        self.url = model.extendInfo.baseUrl;
+        self.title = model.title;
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
     }
 }
 // 处理来自苹果的推送 App后台或者杀死
 - (void)handleApnsContent:(NSDictionary *)dict isPush:(BOOL)isPush {
     [GeTuiSdk handleRemoteNotification:dict];
-    if (isPush) {
-        BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
-    }
+//    if (isPush) {
+//        BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+//    }
 }
 @end

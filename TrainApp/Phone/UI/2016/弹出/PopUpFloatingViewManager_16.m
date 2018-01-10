@@ -16,6 +16,8 @@
 #import "YXWebViewController.h"
 #import "FloatingBaseView.h"
 #import "YXRotateListRequest.h"
+#import "YXDrawerViewController.h"
+#import "YXNavigationController.h"
 @interface PopUpFloatingViewManager_16 ()
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
 @property (nonatomic, strong) YXPopUpContainerView *upgradeView;
@@ -23,6 +25,7 @@
 @property (nonatomic, strong) YXRotateListRequest *rotateListRequest;
 
 @property (nonatomic, assign) BOOL isShowCMS;
+@property (nonatomic, assign) BOOL isCard;//贺卡
 @property (nonatomic, assign) BOOL isMultiProject;//多项目
 @property (nonatomic, assign) BOOL isMultiRole;//多角色
 @property (nonatomic, assign) BOOL isQRCode;//二维码扫描
@@ -57,6 +60,8 @@
         [self showCMSView];
     }else if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade) {
         [self showUpgradeView];
+    }else if ([self isGreetingCard] || self.isCard) {
+        [self showNewYearsGreetingCard];
     }else if ([self isShowMoreThanOneProject] || self.isMultiProject) {
         [self showMultiProjectCutover];
     }else if ([self isShowRoleChange] || self.isMultiRole) {
@@ -126,12 +131,7 @@
                     self.isShowCMS = NO;
                     BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
                 }];
-                if ([window.rootViewController isKindOfClass:[UITabBarController class]]) {
-                    UITabBarController *tabBarVC = (UITabBarController *)window.rootViewController;
-                    [(UINavigationController *)(tabBarVC.selectedViewController) pushViewController:webView animated:YES];
-                }else {
-                    [window.rootViewController.navigationController pushViewController:webView animated:YES];
-                }
+               [window.rootViewController.navigationController pushViewController:webView animated:YES];
             };
         }
     }];
@@ -178,6 +178,36 @@
     [popView setupConstrainsInContainerView:self.upgradeView];
     [popView updateWithData:data actions:@[downloadUpdateAlertAct,cancelAlertAct]];
     [self.upgradeView showInView:nil];
+}
+//显示贺卡
+- (void)showNewYearsGreetingCard{
+    if (self.isCard) {
+        return;
+    }
+    self.isCard = YES;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (![appDelegate.window.rootViewController isKindOfClass:[YXDrawerViewController class]]) {
+        return;
+    }
+    YXDrawerViewController *drawerVC  = (YXDrawerViewController *)appDelegate.window.rootViewController;
+    YXNavigationController *projectNavi = (YXNavigationController *)drawerVC.paneViewController;
+    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXWebViewController") class]]){
+        return ;
+    }
+    YXWebViewController *webView = [[YXWebViewController alloc] init];
+    webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.url,[LSTSharedInstance sharedInstance].userManger.userModel.uid];    webView.titleString = [LSTSharedInstance sharedInstance].geTuiManger.title;
+    webView.isUpdatTitle = YES;
+    [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:YES];
+    WEAK_SELF
+    [webView setBackBlock:^{
+        STRONG_SELF
+        [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:NO];
+        [self startPopUpFloatingView];
+        self.isCard = NO;
+        BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
+    }];
+    [projectNavi pushViewController:webView animated:YES];
+    [LSTSharedInstance sharedInstance].geTuiManger.url = nil;
 }
 
 //多项目切换界面
@@ -288,5 +318,8 @@
 - (BOOL)isProjectEndTime {
     NSString *key = [NSString stringWithFormat:@"%@%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.pid,[LSTSharedInstance sharedInstance].trainManager.currentProject.w];
     return ![[NSUserDefaults standardUserDefaults] boolForKey:key] && ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue  == 0);
+}
+- (BOOL)isGreetingCard {
+    return [LSTSharedInstance sharedInstance].geTuiManger.url.length > 0;
 }
 @end

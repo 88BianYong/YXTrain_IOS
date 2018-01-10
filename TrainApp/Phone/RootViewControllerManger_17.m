@@ -12,6 +12,7 @@
 #import "UITabBar+YXAddtion.h"
 #import "MasterTabBarViewController_17.h"
 #import "YXTabBarViewController_17.h"
+#import "YXWebViewController.h"
 @implementation RootViewControllerManger_17
 - (void)showDrawerViewController:(__weak UIWindow *)window {
 //    MasterTabBarViewController_17 *tabVC  = (MasterTabBarViewController_17 *)window.rootViewController;
@@ -24,6 +25,28 @@
 //    }
 //    UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
 //    [projectNavi pushViewController:VC animated:YES];
+    if ([LSTSharedInstance sharedInstance].geTuiManger.url > 0){
+        YXTabBarViewController_17 *tabVC  = (YXTabBarViewController_17 *)window.rootViewController;
+        if (tabVC.selectedViewController.presentedViewController) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+        }
+        YXNavigationController *projectNavi = (YXNavigationController *)tabVC.selectedViewController;
+        if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXWebViewController") class]]){
+            return ;
+        }
+        YXWebViewController *webView = [[YXWebViewController alloc] init];
+        webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.url,[LSTSharedInstance sharedInstance].userManger.userModel.uid];
+        webView.titleString =  [LSTSharedInstance sharedInstance].geTuiManger.title;
+        webView.isUpdatTitle = YES;
+        [projectNavi pushViewController:webView animated:YES];
+        [LSTSharedInstance sharedInstance].geTuiManger.url = nil;
+        [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:YES];
+        WEAK_SELF
+        [webView setBackBlock:^{
+            STRONG_SELF
+            [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:NO];
+        }];
+    }
 }
 - (UIViewController *)rootViewController {
     if([LSTSharedInstance sharedInstance].trainManager.currentProject.role.integerValue == 99) {

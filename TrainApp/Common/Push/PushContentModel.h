@@ -7,7 +7,10 @@
 //
 
 #import <JSONModel/JSONModel.h>
+@interface PushContentModelItem : JSONModel
+@property (nonatomic, copy) NSString<Optional> *baseUrl;
 
+@end
 @interface PushContentModel : JSONModel
 @property (nonatomic, copy) NSString<Optional> *projectId; //备用
 @property (nonatomic, copy) NSString<Optional> *module; //模块   1消息动态  2热点
@@ -17,4 +20,5 @@
 @property (nonatomic, copy) NSString<Optional> *objectId;//备用，具体的业务id
 @property (nonatomic, copy) NSString<Optional> *msg;    //显示的内容
 @property (nonatomic, copy) NSString<Optional> *title; //备用
+@property (nonatomic, strong) PushContentModelItem<Optional> *extendInfo;
 @end

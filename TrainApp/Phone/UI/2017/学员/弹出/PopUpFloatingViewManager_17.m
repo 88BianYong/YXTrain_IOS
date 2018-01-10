@@ -23,6 +23,7 @@
 @property (nonatomic, strong) YXRotateListRequest *rotateListRequest;
 
 @property (nonatomic, assign) BOOL isShowCMS;
+@property (nonatomic, assign) BOOL isCard;//贺卡
 @property (nonatomic, assign) BOOL isScore;//学习成绩
 @property (nonatomic, assign) BOOL isNotice;//通知简报
 @property (nonatomic, assign) BOOL isStep;//流程
@@ -56,6 +57,8 @@
         [self showCMSView];
     }else if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade) {
         [self showUpgradeView];
+    }else if ([self isGreetingCard] || self.isCard) {
+        [self showNewYearsGreetingCard];
     }else if ([self isExamineUserScore] || self.isScore) {
         [self showExamineUserScore];
     }else if ([self isExamineNoticeBrief] || self.isNotice) {
@@ -125,12 +128,8 @@
                     self.isShowCMS = NO;
                     BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
                 }];
-                if ([window.rootViewController isKindOfClass:[UITabBarController class]]) {
-                    UITabBarController *tabBarVC = (UITabBarController *)window.rootViewController;
-                    [(UINavigationController *)(tabBarVC.selectedViewController) pushViewController:webView animated:YES];
-                }else {
-                    [window.rootViewController.navigationController pushViewController:webView animated:YES];
-                }
+                UITabBarController *tabBarVC = (UITabBarController *)window.rootViewController;
+                [(UINavigationController *)(tabBarVC.selectedViewController) pushViewController:webView animated:YES];
             };
         }
     }];
@@ -178,7 +177,37 @@
     [popView updateWithData:data actions:@[downloadUpdateAlertAct,cancelAlertAct]];
     [self.upgradeView showInView:nil];
 }
-
+//显示贺卡
+- (void)showNewYearsGreetingCard{
+    if (self.isCard) {
+        return;
+    }
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    if (![appDelegate.window.rootViewController isKindOfClass:[UITabBarController class]]) {
+        return;
+    }
+    UITabBarController *tabBarVC = (UITabBarController *)appDelegate.window.rootViewController;
+    UINavigationController *projectNavi = (UINavigationController *)tabBarVC.selectedViewController;
+    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXWebViewController") class]]){
+        return ;
+    }
+    self.isCard = YES;
+    YXWebViewController *webView = [[YXWebViewController alloc] init];
+    webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.url,[LSTSharedInstance sharedInstance].userManger.userModel.uid];
+    webView.titleString = [LSTSharedInstance sharedInstance].geTuiManger.title;
+    webView.isUpdatTitle = YES;
+    [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:YES];
+    WEAK_SELF
+    [webView setBackBlock:^{
+        STRONG_SELF
+        [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:NO];
+        [self startPopUpFloatingView];
+        self.isCard = NO;
+        BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
+    }];
+    [projectNavi pushViewController:webView animated:YES];
+    [LSTSharedInstance sharedInstance].geTuiManger.url = nil;
+}
 //查看我的成绩
 - (void)showExamineUserScore{
     if (self.isScore) {
@@ -271,6 +300,10 @@
 
 
 #pragma mark - judgment
+- (BOOL)isGreetingCard {
+    return [LSTSharedInstance sharedInstance].geTuiManger.url.length > 0;
+}
+
 - (BOOL)isExamineUserScore {
     return ![[NSUserDefaults standardUserDefaults] boolForKey:kYXTrainAcademicPerformance] &&
     self.scoreString != nil;

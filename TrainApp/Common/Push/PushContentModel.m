@@ -7,7 +7,8 @@
 //
 
 #import "PushContentModel.h"
-
+@implementation PushContentModelItem
+@end
 @implementation PushContentModel
 
 @end
