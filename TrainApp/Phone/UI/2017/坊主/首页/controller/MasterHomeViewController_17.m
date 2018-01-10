@@ -128,9 +128,9 @@
 - (void)setupQRCodeRightView{
     self.qrCodeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateHighlighted];
-    button.frame = CGRectMake(25, 0, 44.0f, 44.0f);
+    [button setImage:[UIImage imageNamed:@"扫二维码右"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"扫二维码右"] forState:UIControlStateHighlighted];
+    button.frame = CGRectMake(20, 0, 44.0f, 44.0f);
     WEAK_SELF
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
