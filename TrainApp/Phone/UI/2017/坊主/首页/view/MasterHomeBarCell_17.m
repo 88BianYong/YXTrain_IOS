@@ -24,7 +24,7 @@
 - (void)setCountBar:(MasterIndexRequestItem_Body_CountBars *)countBar {
     _countBar = countBar;
     self.nameLabel.text = _countBar.name;
-    NSString *passString = [NSString stringWithFormat:@"%@/%@ 通过",_countBar.passCount,_countBar.allCount];
+    NSString *passString = [NSString stringWithFormat:@"%@/%@ 人通过",_countBar.passCount,_countBar.allCount];
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:passString];
     [attString addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_Medium size:13.0f] range:NSMakeRange(0, passString.length - 2)];
     [attString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"999999"] range:NSMakeRange(_countBar.passCount.length, _countBar.allCount.length + 1)];
@@ -52,7 +52,7 @@
     [self.passLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).offset(-15.0f);
         make.centerY.equalTo(self.contentView.mas_centerY);
-        make.width.mas_offset(90.0f);
+        make.width.mas_offset(105.0f);
     }];
 }
 - (void)awakeFromNib {

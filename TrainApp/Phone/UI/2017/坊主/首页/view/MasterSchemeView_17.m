@@ -26,6 +26,7 @@
     self.mainPointLabel = [[UILabel alloc] init];
     self.mainPointLabel.font = [UIFont systemFontOfSize:14.0f];
     self.mainPointLabel.text = @"";
+    self.mainPointLabel.numberOfLines = 0;
     self.mainPointLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.mainPointLabel];
     
@@ -42,6 +43,7 @@
 - (void)setupLayout {
     [self.mainPointLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15.0f);
+         make.right.equalTo(self.mas_right).offset(-15.0f);
         make.top.equalTo(self.mas_top).offset(16.0f);
     }];
     [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {

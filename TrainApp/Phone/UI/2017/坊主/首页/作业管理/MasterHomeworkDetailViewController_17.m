@@ -212,10 +212,7 @@
         }else if (status == MasterInputStatus_Recommend) {
             [self requestForRecommendHomework:self.inputView.commentTextView.text];
         }else if (status == MasterInputStatus_Comment) {
-            if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.myScore.integerValue) {
-            }else {
-                   [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
-            }
+            [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
         }
         [self hiddenInputView];
     };
@@ -548,7 +545,9 @@
             self.detailItem.myScore = item.body.myscore;
             self.headerView.body = self.detailItem;
             [self.inputView clearContent:MasterInputStatus_Comment];
-            [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
+            if (self.detailItem.myScore.integerValue > 0) {
+                [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
+            }
             self.startPage = 1;
             [self requestForHomeworkRemark];
             BLOCK_EXEC(self.masterHomeworkCommendBlock);

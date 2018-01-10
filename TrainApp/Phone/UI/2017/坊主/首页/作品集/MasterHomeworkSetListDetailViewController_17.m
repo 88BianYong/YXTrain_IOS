@@ -100,13 +100,8 @@
     self.firstLineView.hidden = NO;
     self.secondLineView.hidden = NO;
     self.chooseView.hidden = NO;
-    if (_detailItem.score.integerValue > 0) {
-        self.scoreLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
-        self.scoreLabel.text = [NSString stringWithFormat:@"%@分",_detailItem.score];
-    }else {
-        self.scoreLabel.textColor = [UIColor colorWithHexString:@"334466"];
-        self.scoreLabel.text = @"未批阅";
-    }
+    self.scoreLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%@分",_detailItem.score];
     self.recommendImageView.hidden = !_detailItem.isRecommend.boolValue;
     if (_detailItem.isMyRecommend.boolValue) {
         [self.remarkButton setTitle:@"取消推优" forState:UIControlStateNormal];
@@ -337,10 +332,6 @@
         }else if (status == MasterInputStatus_Recommend) {
             [self requestForRecommendHomework:self.inputView.commentTextView.text];
         }else if (status == MasterInputStatus_Comment) {
-//            if (self.inputView.scoreTextView.text.integerValue <= self.detailItem.myScore.integerValue) {
-//            }else {
-//                [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
-//            }
             [self requestForScoreHomework:self.inputView.commentTextView.text withScore:self.inputView.scoreTextView.text];
         }
         [self hiddenInputView];
@@ -480,7 +471,9 @@
             MasterHomeworkSetDetailViewController_17 *VC = self.childViewControllers[self.chooseIndex];
             [VC reloadMasterHomeworkSetRemark];
             BLOCK_EXEC(self.masterHomeworkSetCommendBlock);
-            [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
+            if (self.detailItem.myScore.integerValue > 0) {
+                [self.commentButton setTitle:@"再次点评" forState:UIControlStateNormal];
+            }
         }
     }];
     self.scoreHomework = request;

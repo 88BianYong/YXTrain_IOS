@@ -48,7 +48,7 @@
             if (self.scoreTextView.text.length > 3) {
                 self.scoreTextView.text = [self.scoreTextView.text substringToIndex:3];
             }
-            self.sendButton.enabled = ([[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 1);
+            self.sendButton.enabled = ([[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 0);
         }
     }];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillChangeFrameNotification object:nil]subscribeNext:^(id x) {
@@ -107,7 +107,7 @@
             self.scoreTextView.text = self.placeholderScoreString;
         }
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-         self.sendButton.enabled = ([[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 1);
+         self.sendButton.enabled = ([[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 0);
          [self.scoreTextView becomeFirstResponder];
     }else if (_inputStatus == MasterInputStatus_Comment){
         self.commentTextView.placeholder = @"请输您对本作业的评语";
@@ -180,7 +180,7 @@
     [[self.sendButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *x) {
         STRONG_SELF
         if (self.inputStatus == MasterInputStatus_Score) {
-            if (self.scoreTextView.text.integerValue <= self.minScoreString.integerValue) {
+            if (self.scoreTextView.text.integerValue <= self.minScoreString.integerValue &&  self.minScoreString.integerValue != 0) {
                 [YXPromtController showToast:@"再次点评不应该低于当前分数" inView:self.superview];
             }else {
                 self.inputStatus = MasterInputStatus_Comment;

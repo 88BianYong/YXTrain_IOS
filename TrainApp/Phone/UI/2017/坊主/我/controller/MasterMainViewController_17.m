@@ -210,8 +210,8 @@ UITableViewDataSource
             __block NSInteger indexInteger = 0;
             __block BOOL isSaveBool = NO;
             [groups enumerateObjectsUsingBlock:^(TrainListProjectGroup * _Nonnull obj, NSUInteger section, BOOL * _Nonnull stop) {
-                [obj.items enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * _Nonnull train, NSUInteger index, BOOL * _Nonnull stop) {
-                    if ([train.pid isEqualToString:train.pid]) {
+                [obj.items enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * _Nonnull temp, NSUInteger index, BOOL * _Nonnull stop) {
+                    if ([temp.pid isEqualToString:train.pid]) {
                         sectionInteger = section;
                         indexInteger = index;
                         isSaveBool = YES;

@@ -28,7 +28,7 @@
 #pragma mark - set
 - (void)setScheme:(MasterNoticeBriefScheme *)scheme {
     _scheme = scheme;
-    [self.schemeView reloadMasterScheme:[NSString stringWithFormat:@"需要发布%@篇简报",_scheme.amount] withFinishNum:_scheme.userfinishnum withAmount:_scheme.amount];
+    [self.schemeView reloadMasterScheme:[NSString stringWithFormat:@"需要发布%@篇简报(手机端暂不支持，请到PC端完成)",_scheme.amount] withFinishNum:_scheme.userfinishnum withAmount:_scheme.amount];
     if ([_scheme.descripe stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
         self.explainButton.hidden = NO;
     }else {

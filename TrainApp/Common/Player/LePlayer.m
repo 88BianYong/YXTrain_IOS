@@ -336,9 +336,8 @@ static const CGFloat kVolumnStep = 0.0625;
     
     RACDisposable *d2 = [RACObserve(self.playerItem, playbackLikelyToKeepUp) subscribeNext:^(NSNumber *x) {
         @strongify(self); if (!self) return;
-        self.isBuffering = NO;
-
         if ([x boolValue]) {
+            self.isBuffering = NO;
             NSLog(@"playbackLikelyToKeepUp");
             self.state = self->_playPauseState;
             // 更新bIsPlayable
@@ -349,9 +348,9 @@ static const CGFloat kVolumnStep = 0.0625;
     
     RACDisposable *d3 = [RACObserve(self.playerItem, playbackBufferFull) subscribeNext:^(NSNumber *x) {
         @strongify(self); if (!self) return;
-        self.isBuffering = NO;
 
         if ([x boolValue]) {
+            self.isBuffering = NO;
             NSLog(@"playbackLikelyToKeepUp");
             self.state = self->_playPauseState;
             // 更新bIsPlayable
