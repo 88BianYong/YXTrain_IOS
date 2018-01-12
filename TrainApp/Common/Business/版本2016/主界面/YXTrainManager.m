@@ -100,6 +100,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         return nil;
     }
     self.currentProjectIndexPath = [NSIndexPath indexPathForRow:indexInteger inSection:sectionInteger];
+    [LSTSharedInstance sharedInstance].floatingViewManager = nil;
     return self.currentProjectIndexPath;
 }
 - (void)setTrainlistItem:(YXTrainListRequestItem *)trainlistItem {

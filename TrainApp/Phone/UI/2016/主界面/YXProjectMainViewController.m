@@ -72,6 +72,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@">>>>>>34");
     self.dataMutableArrray = [[NSMutableArray alloc] initWithCapacity:6];
     self.layerMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:3];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserRoleInterface) name:kYXTrainUserIdentityChange object:nil];
