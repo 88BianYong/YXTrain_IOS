@@ -25,7 +25,7 @@
 #pragma mark - set
 - (void)setProgress:(CGFloat)progress {
     _progress = progress;
-    self.progressLayer.strokeEnd = 0.01 + (0.99-0.01)*_progress;
+     self.progressLayer.strokeEnd = _progress;
 }
 #pragma mark - setupUI
 - (void)setupUI {

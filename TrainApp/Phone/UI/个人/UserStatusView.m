@@ -32,9 +32,7 @@
         if (!self.isMasterBool) {
             self.isMasterBool = YES;
             [LSTSharedInstance sharedInstance].trainManager.currentProject.role = @"99";
-            if ([LSTSharedInstance sharedInstance].trainManager.currentProject.w.integerValue >= 5) {
-             [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainUserIdentityChange object:nil];
-            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainUserIdentityChange object:nil];
         }
     }];
     [self addSubview:self.masterButton];
