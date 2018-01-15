@@ -24,7 +24,6 @@
 
 @property (nonatomic, strong) YXRotateListRequest *rotateListRequest;
 
-@property (nonatomic, assign) BOOL isShowCMS;
 @property (nonatomic, assign) BOOL isCard;//贺卡
 @property (nonatomic, assign) BOOL isMultiProject;//多项目
 @property (nonatomic, assign) BOOL isMultiRole;//多角色

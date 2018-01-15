@@ -9,5 +9,4 @@
 #import "PopUpFloatingViewManager.h"
 
 @interface PopUpFloatingViewManager_16 : PopUpFloatingViewManager
-
 @end

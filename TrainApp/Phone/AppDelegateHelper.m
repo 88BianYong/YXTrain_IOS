@@ -92,6 +92,14 @@
         YXNavigationController *projectNav = [[YXNavigationController alloc]initWithRootViewController:[[XYChooseProjectViewController alloc] init]];
         self.window.rootViewController = projectNav;
         [self requestCommonData];
+        WEAK_SELF
+        [[LSTSharedInstance sharedInstance].floatingViewManager setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
+            STRONG_SELF
+            if (isShow && self.isRemoteNotification) {
+                [self.rootManger showDrawerViewController:self.window];
+            }
+            self.isRemoteNotification = NO;
+        }];
     } else {
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
         self.window.rootViewController = [[YXNavigationController alloc] initWithRootViewController:loginVC];
@@ -143,7 +151,6 @@
         STRONG_SELF
         self.rootManger = nil;
         self.window.rootViewController = [self.rootManger rootViewController];
-        [self requestCommonData];
         if (self.isLoginBool) {
             if (!isEmpty(self.courseId)) {
                 [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_QRCode;
@@ -151,14 +158,6 @@
                 [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
             }
         }
-        WEAK_SELF
-        [[LSTSharedInstance sharedInstance].floatingViewManager setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
-            STRONG_SELF
-            if (isShow && self.isRemoteNotification) {
-                [self.rootManger showDrawerViewController:self.window];
-            }
-            self.isRemoteNotification = NO;
-        }];
         [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
         self.isRemoteNotification = NO;

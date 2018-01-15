@@ -22,7 +22,6 @@
 @property (nonatomic, strong) YXPopUpContainerView *upgradeView;
 @property (nonatomic, strong) YXRotateListRequest *rotateListRequest;
 
-@property (nonatomic, assign) BOOL isShowCMS;
 @property (nonatomic, assign) BOOL isCard;//贺卡
 @property (nonatomic, assign) BOOL isScore;//学习成绩
 @property (nonatomic, assign) BOOL isNotice;//通知简报

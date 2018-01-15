@@ -7,6 +7,8 @@
 //
 
 #import "LSTSharedInstance.h"
+#import "PopUpFloatingViewManager_16.h"
+#import "PopUpFloatingViewManager_17.h"
 @interface LSTSharedInstance (){
     YXTrainManager *_trainManager;
     TrainGeTuiManger *_geTuiManger;
@@ -22,6 +24,8 @@
     YXDatumGlobalSingleton *_globalSingleton;
     YXMockParser *_mockParser;
 }
+@property (nonatomic, strong) PopUpFloatingViewManager_16 *floatingManager16;
+@property (nonatomic, strong) PopUpFloatingViewManager_17 *floatingManager17;
 @end
 @implementation LSTSharedInstance
 + (instancetype)sharedInstance {
@@ -74,15 +78,34 @@
     }
     return _geTuiManger;
 }
-- (PopUpFloatingViewManager *)floatingViewManager {
-    if (_floatingViewManager == nil && self.trainManager.trainStatus != LSTTrainProjectStatus_unKnow) {
-        if (self.trainManager.trainStatus == LSTTrainProjectStatus_2017) {
-            _floatingViewManager = [[NSClassFromString(@"PopUpFloatingViewManager_17") alloc] init];
-        }else {
-            _floatingViewManager = [[NSClassFromString(@"PopUpFloatingViewManager_16") alloc] init];
-        }
+- (PopUpFloatingViewManager_16 *)floatingManager16 {
+    if (_floatingManager16 == nil) {
+        _floatingManager16 = [[PopUpFloatingViewManager_16 alloc] init];
     }
-    return _floatingViewManager;
+    return _floatingManager16;
+}
+- (PopUpFloatingViewManager_17 *)floatingManager17 {
+    if (_floatingManager17 == nil) {
+        _floatingManager17 = [[PopUpFloatingViewManager_17 alloc] init];
+    }
+    return _floatingManager17;
+}
+
+
+- (PopUpFloatingViewManager *)floatingViewManager {
+    if (self.trainManager.trainStatus == LSTTrainProjectStatus_2016) {
+        if (!self.floatingManager17.isShowCMS) {//17显示过后16不在显示
+            self.floatingManager16.isShowCMS = NO;
+        }
+        return self.floatingManager16;
+    }else if (self.trainManager.trainStatus == LSTTrainProjectStatus_2017) {
+        if (!self.floatingManager16.isShowCMS) {//16显示过后17不在显示
+            self.floatingManager17.isShowCMS = NO;
+        }
+        return self.floatingManager17;
+    }else {
+        return nil;
+    }
 }
 - (YXFileRecordManager *)fileRecordManager {
     if (_fileRecordManager == nil) {
