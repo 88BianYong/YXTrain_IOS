@@ -60,7 +60,7 @@
         make.right.mas_equalTo(self.contentView.mas_right).offset(-15);
         make.centerY.equalTo(self.contentView.mas_centerY);
         make.top.greaterThanOrEqualTo(self.contentView.mas_top).offset(15.0f);
-        make.bottom.greaterThanOrEqualTo(self.contentView.mas_bottom).offset(15.0f);
+//        make.bottom.greaterThanOrEqualTo(self.contentView.mas_bottom).offset(15.0f);
     }];
     
     [self.cellSeperatorView mas_makeConstraints:^(MASConstraintMaker *make) {

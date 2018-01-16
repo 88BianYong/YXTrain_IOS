@@ -36,6 +36,9 @@
         WEAK_SELF
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainShowUpdate object:nil] subscribeNext:^(id x) {
             STRONG_SELF
+            if ([LSTSharedInstance sharedInstance].trainManager.trainStatus != LSTTrainProjectStatus_2017) {
+                return;
+            }
             self.isShowCMS = NO;
             if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade && self.upgradeView == nil) {
                 [self startPopUpFloatingView];

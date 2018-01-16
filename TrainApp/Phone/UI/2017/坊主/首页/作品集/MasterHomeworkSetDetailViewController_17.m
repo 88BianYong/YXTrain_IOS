@@ -194,6 +194,10 @@
             [self showToast:@"暂不支持该格式文件预览"];
             return;
         }
+        if (type == YXFileTypeVideo && self.detailItem.templateId.integerValue <= 250) {
+            [self showToast:@"暂不支持该视频播放"];
+            return;
+        }
         YXFileItemBase *fileItem = [FileBrowserFactory browserWithFileType:type];
         fileItem.name = affix.resName;
         fileItem.url = affix.previewUrl;
