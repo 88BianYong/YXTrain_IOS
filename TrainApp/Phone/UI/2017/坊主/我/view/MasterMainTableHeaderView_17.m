@@ -29,6 +29,7 @@
 - (void)setUserProfile:(YXUserProfile *)userProfile {
     _userProfile = userProfile;
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:[LSTSharedInstance sharedInstance].userManger.userModel.profile.head] placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
+    self.nameLabel.text = [LSTSharedInstance sharedInstance].userManger.userModel.profile.realName;
     self.schooleLabel.text = [LSTSharedInstance sharedInstance].userManger.userModel.profile.school;
 }
 #pragma mark - setupUI

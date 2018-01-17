@@ -18,6 +18,8 @@
         return @"参训率";
     }else if ([code isEqualToString:@"HGL"]) {
         return @"合格率";
+    }else if ([code isEqualToString:@"XXL"]) {
+        return @"学习率";
     }else if ([code isEqualToString:@"BESTL"]) {
         return @"优秀率";
     }else if ([code isEqualToString:@"XY_PER_SCORE"]) {
