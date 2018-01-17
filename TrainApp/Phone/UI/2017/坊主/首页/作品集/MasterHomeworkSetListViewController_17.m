@@ -125,7 +125,7 @@
             self.headerHeight = 0.0f;
             self.tableView.tableHeaderView = nil;
         }else {
-            self.headerHeight = 198.0f;
+            self.headerHeight = 50.0f;
             self.tableView.tableHeaderView = self.headerView;
         }
     };
@@ -212,7 +212,7 @@
         STRONG_SELF
         if (self.bgView.hidden) {
             [YXDataStatisticsManger trackEvent:@"筛选" label:@"作品集管理" parameters:nil];
-            if (self.tableView.contentOffset.y < self.headerHeight && self.headerHeight == 198.0f) {
+            if (self.tableView.contentOffset.y < self.headerHeight && self.headerHeight == 50.0f) {
                 [self.tableView setContentOffset:CGPointMake(0, self.headerHeight) animated:YES];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
