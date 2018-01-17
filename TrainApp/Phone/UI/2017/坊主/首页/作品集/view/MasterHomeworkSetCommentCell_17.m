@@ -28,7 +28,7 @@
 }
 - (void)setRemark:(MasterHomeworkSetRemarkListItem_Body_Remark *)remark{
     _remark = remark;
-    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_remark.rId] placeholderImage:[UIImage imageNamed:@"个人信息默认用户头像"]];
+    [self.userImageView sd_setImageWithURL:[NSURL URLWithString:_remark.headUrl] placeholderImage:[UIImage imageNamed:@"个人信息默认用户头像"]];
     self.nameLabel.text = _remark.userName;
     self.timeLabel.text = _remark.publishDate;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
