@@ -133,6 +133,7 @@
     [super viewWillAppear:animated];
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = NO;
     [YXDataStatisticsManger trackPage:@"作品集详情" withStatus:YES];
+    [self.scrollView setContentOffset:CGPointMake(self.chooseIndex * kScreenWidth, 0) animated:NO];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
