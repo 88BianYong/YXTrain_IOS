@@ -10,6 +10,8 @@
 #import "LSTCollectionFilterModel.h"
 @interface LSTCollectionFilterView : UIView
 @property (nonatomic, strong) LSTCollectionFilterModel *filterModel;
+@property (nonatomic, assign) CGFloat maxHeight;
+
 @property (nonatomic, copy) void(^filterSelectedBlock)(LSTCollectionFilterModel_ItemName *itemName);
 @property (nonatomic, assign) CGSize collectionSize;
 - (void)cancleUserSelected;

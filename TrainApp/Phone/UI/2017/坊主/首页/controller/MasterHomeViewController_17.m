@@ -59,6 +59,8 @@
         vc.fromWhere = VideoCourseFromWhere_QRCode;
         [self.navigationController pushViewController:vc animated:YES];
     }
+    [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
+
 }
 
 - (void)didReceiveMemoryWarning {

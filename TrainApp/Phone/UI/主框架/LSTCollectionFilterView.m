@@ -22,6 +22,7 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
         self.clipsToBounds = YES;
+        self.maxHeight = kScreenHeight - 64.0f;
 //        [self setupMock];
         [self setupUI];
         [self setupLayout];
@@ -245,7 +246,12 @@
     [self.collectionView reloadData];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.25f animations:^{
-            self.frame = CGRectMake(0.0, 0.0f, kScreenWidth, self.collectionView.contentSize.height);
+            if (self.collectionView.contentSize.height > self.maxHeight) {
+              self.frame = CGRectMake(0.0, 0.0f, kScreenWidth, self.maxHeight);
+            }else {
+              self.frame = CGRectMake(0.0, 0.0f, kScreenWidth, self.collectionView.contentSize.height);
+            }
+            
         }];
     });
 }

@@ -97,10 +97,16 @@
         if (!self.floatingManager17.isShowCMS) {//17显示过后16不在显示
             self.floatingManager16.isShowCMS = NO;
         }
+        if (self.floatingManager17.loginStatus != PopUpFloatingLoginStatus_Already) {
+            self.floatingManager16.loginStatus =  self.floatingManager17.loginStatus;
+        }
         return self.floatingManager16;
     }else if (self.trainManager.trainStatus == LSTTrainProjectStatus_2017) {
         if (!self.floatingManager16.isShowCMS) {//16显示过后17不在显示
             self.floatingManager17.isShowCMS = NO;
+        }
+        if (self.floatingManager16.loginStatus != PopUpFloatingLoginStatus_Already) {
+            self.floatingManager17.loginStatus =  self.floatingManager16.loginStatus;
         }
         return self.floatingManager17;
     }else {

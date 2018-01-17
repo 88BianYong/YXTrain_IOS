@@ -111,6 +111,7 @@
         if (self.filterModel == nil) {
             self.filterModel = model;
         }
+        self.schemes = schemes;
         __block NSString *string = @"";
         [self.schemes enumerateObjectsUsingBlock:^(MasterManagerSchemeItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             string = [string stringByAppendingString:obj.descripe];
@@ -127,7 +128,6 @@
             self.headerHeight = 198.0f;
             self.tableView.tableHeaderView = self.headerView;
         }
-        self.schemes = schemes;
     };
     self.dataFetcher = fetcher;
 }

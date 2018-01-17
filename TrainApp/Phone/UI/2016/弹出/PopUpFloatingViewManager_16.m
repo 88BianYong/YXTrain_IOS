@@ -86,6 +86,7 @@
         [window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj isKindOfClass:[FloatingBaseView class]]) {
                 obj.hidden = !isShow;
+                [window bringSubviewToFront:obj];
             }
         }];
     }
@@ -284,7 +285,7 @@
     }
     self.isEndTime = YES;
     UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    FloatingBaseView*codeView = [[NSClassFromString(@"ProjectEndTimeFloatingView_17") alloc] init];
+    FloatingBaseView*codeView = [[NSClassFromString(@"ProjectEndTimeFloatingView_16") alloc] init];
     WEAK_SELF
     [codeView setFloatingBaseRemoveCompleteBlock:^{
         STRONG_SELF;

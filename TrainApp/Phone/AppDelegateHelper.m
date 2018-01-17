@@ -158,7 +158,7 @@
                 [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
             }
         }
-        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
+//        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
         self.isRemoteNotification = NO;
     }];
@@ -167,7 +167,7 @@
         STRONG_SELF
         self.rootManger = nil;
         self.window.rootViewController = [self.rootManger rootViewController];
-        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
+//        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
     }];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainUserIdentityChange object:nil] subscribeNext:^(id x) {
