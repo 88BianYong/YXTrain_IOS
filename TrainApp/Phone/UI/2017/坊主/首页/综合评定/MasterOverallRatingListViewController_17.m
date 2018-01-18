@@ -373,7 +373,7 @@
     };
 }
 - (void)naviRightAction{
-    if (self.dataMutableArray.count == 0) {
+    if (self.allMutableArray.count == 0) {
         [self showToast:@"当前无可搜索数据"];
         return;
     }
