@@ -123,14 +123,14 @@
     [request startRequestWithRetClass:[ReadingListRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
+        ReadingListRequest_17Item *item = retItem;
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = YES;
+        data.requestDataExist = item.objs.count != 0;
         data.localDataExist = NO;
         data.error = error;
         if ([self handleRequestData:data]) {
             return;
         }
-        ReadingListRequest_17Item *item = retItem;
         self.listItem = item;
         self.tableView.hidden = NO;
         [self.tableView reloadData];
