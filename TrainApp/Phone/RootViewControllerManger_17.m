@@ -15,22 +15,15 @@
 #import "YXWebViewController.h"
 @implementation RootViewControllerManger_17
 - (void)showDrawerViewController:(__weak UIWindow *)window {
-//    MasterTabBarViewController_17 *tabVC  = (MasterTabBarViewController_17 *)window.rootViewController;
-//    if (tabVC.selectedViewController.presentedViewController) {
-//        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
-//    }
-//    YXNavigationController *projectNavi = (YXNavigationController *)tabVC.selectedViewController;
-//    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
-//        return ;
-//    }
-//    UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
-//    [projectNavi pushViewController:VC animated:YES];
+    YXTabBarViewController_17 *tabVC  = (YXTabBarViewController_17 *)window.rootViewController;
+    if (tabVC.selectedViewController.presentedViewController) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+    }
+    YXNavigationController *projectNavi = (YXNavigationController *)tabVC.selectedViewController;
+    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+        return ;
+    }
     if ([LSTSharedInstance sharedInstance].geTuiManger.url > 0){
-        YXTabBarViewController_17 *tabVC  = (YXTabBarViewController_17 *)window.rootViewController;
-        if (tabVC.selectedViewController.presentedViewController) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
-        }
-        YXNavigationController *projectNavi = (YXNavigationController *)tabVC.selectedViewController;
         if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXWebViewController") class]]){
             return ;
         }
@@ -46,6 +39,11 @@
             STRONG_SELF
             [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:NO];
         }];
+        return;
+    }
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.role.integerValue == 9) {
+        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
+        [projectNavi pushViewController:VC animated:YES];
     }
 }
 - (UIViewController *)rootViewController {
