@@ -111,6 +111,9 @@
         [self stopAnimation];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = retItemArray.count != 0;
+        if (self.emptyHidden) {
+            data.requestDataExist = YES;
+        }
         data.localDataExist = self.dataArray.count != 0;
         data.error = error;
         if ([self handleRequestData:data inView:self.contentView]) {

@@ -47,7 +47,7 @@ UITableViewDataSource
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"个人中心";
+    self.navigationItem.title = @"我";
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.titleArray = @[@"清空缓存",@"帮助与反馈",@"去AppStore评分",@"关于我们"];
     [self setupUI];

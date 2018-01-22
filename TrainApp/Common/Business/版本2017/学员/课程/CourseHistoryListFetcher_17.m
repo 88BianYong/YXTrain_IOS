@@ -26,10 +26,12 @@
             return;
         }
         CourseListRequest_17Item *item = (CourseListRequest_17Item *)retItem;
-        BLOCK_EXEC(aCompleteBlock,item.count.integerValue,item.objs,nil);
         if (item.scheme.count > 0) {
             BLOCK_EXEC(self.masterCourseHistoryBlock,item.scheme[0]);
+        }else {
+            BLOCK_EXEC(self.masterCourseHistoryBlock,nil);
         }
+        BLOCK_EXEC(aCompleteBlock,item.count.integerValue,item.objs,nil);
     }];
     self.listRequest = request;
 }

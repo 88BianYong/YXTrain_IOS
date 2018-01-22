@@ -20,6 +20,8 @@
 @property (nonatomic, assign) NSInteger total;
 
 @property (nonatomic, assign) int emptyViewTopInset;
+@property (nonatomic, assign) BOOL emptyHidden;
+
 
 
 - (void)firstPageFetch;

@@ -26,8 +26,8 @@
             return;
         }
         MasterManageOffActiveItem *item = retItem;
-        BLOCK_EXEC(aCompleteBlock,item.body.total.integerValue,item.body.offActives,nil);
         BLOCK_EXEC(self.masterManageOffActiveBlock,item.body.scheme);
+        BLOCK_EXEC(aCompleteBlock,item.body.total.integerValue,item.body.offActives,nil);
     }];
     self.listRequest = request;
 }

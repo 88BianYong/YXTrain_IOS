@@ -29,6 +29,9 @@
 #pragma mark - set
 - (void)setScheme:(CourseListRequest_17Item_Scheme *)scheme {
     _scheme = scheme;
+    if (_scheme == nil) {
+        return;
+    }
     if (_scheme.scheme.type.integerValue == 0) {
         [self.schemeView reloadMasterScheme:[NSString stringWithFormat:@"需要观看%@分钟课程",_scheme.scheme.finishNum] withFinishNum:_scheme.process.userFinishNum withAmount:_scheme.scheme.finishNum];
     }else {

@@ -26,8 +26,10 @@
         STRONG_SELF
         self.headerView.scheme = scheme;
         if (scheme.score.integerValue == 0) {
+            self.emptyHidden = NO;
             self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 5.0f);
         }else {
+            self.emptyHidden = YES;
             self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 202);
         }
         self.tableView.tableHeaderView = self.headerView;

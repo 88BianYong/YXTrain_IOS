@@ -32,8 +32,10 @@
             self.headerView.scheme = scheme;
         }
         if (scheme.scheme.finishScore.integerValue == 0) {
+            self.emptyHidden = NO;
             self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 0.0001f);
         }else {
+            self.emptyHidden = YES;
             self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 202);
         }
         self.tableView.tableHeaderView = self.headerView;

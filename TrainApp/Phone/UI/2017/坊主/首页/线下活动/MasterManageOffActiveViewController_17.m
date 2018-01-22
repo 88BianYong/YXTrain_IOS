@@ -73,8 +73,10 @@
         STRONG_SELF
         self.headerView.scheme = scheme;
         if (scheme.score.integerValue == 0) {
+            self.emptyHidden = NO;
             self.tableView.tableHeaderView = nil;
         }else {
+            self.emptyHidden = YES;
             self.tableView.tableHeaderView = self.headerView;
         }
     };

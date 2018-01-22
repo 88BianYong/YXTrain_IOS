@@ -532,15 +532,15 @@
     [request startRequestWithRetClass:[MasterOverallRatingListItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
-        if (error) {
-            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-            data.requestDataExist = YES;
-            data.localDataExist = NO;
-            data.error = error;
-            if ([self handleRequestData:data inView:self.view]) {
-                return;
-            }
-        }else {
+        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
+        data.requestDataExist = YES;
+        data.localDataExist = NO;
+        data.error = error;
+        if ([self handleRequestData:data inView:self.view]) {
+            return;
+        }
+        MasterOverallRatingListItem *item = retItem;
+        if (item != nil) {
             self.listItem = retItem;
         }
     }];

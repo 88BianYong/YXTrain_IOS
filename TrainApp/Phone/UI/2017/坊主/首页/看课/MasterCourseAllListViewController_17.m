@@ -33,8 +33,6 @@
 - (void)viewDidLoad {
     MasterCourseAllFetcher_17 *fetcher = [[MasterCourseAllFetcher_17 alloc]init];
     fetcher.stageID = @"0";
-    fetcher.study = @"10";
-    fetcher.segment = @"10";
     fetcher.type = @"0";
     fetcher.status = @"2";
     WEAK_SELF
