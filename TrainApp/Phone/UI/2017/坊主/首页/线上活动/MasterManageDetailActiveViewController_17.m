@@ -15,12 +15,14 @@
 @interface MasterManageDetailActiveViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) MasterDetailActiveTableHeaderView_17 *headerView;
 @property (nonatomic, strong) MasterCountActiveRequest_17 *activeRequest;
-@property (nonatomic, strong) MasterCountActiveItem_Body *detailItem;
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, assign) MasterManageActiveType activeType;
 
 @property (nonatomic, strong) MasterFilterEmptyFooterView_17 *footerView;
-
+@property (nonatomic, strong) NSMutableArray *toolMutableArray;
+@property (nonatomic, strong) NSMutableArray *memeberMutableArray;
+@property (nonatomic, assign) NSInteger startPage;
+@property (nonatomic, assign) BOOL hasNextPage;
 @end
 
 @implementation MasterManageDetailActiveViewController_17
@@ -29,18 +31,23 @@
 #pragma mark - set
 - (void)setActiveType:(MasterManageActiveType)activeType {
     _activeType = activeType;
+    if (!self.isMySelfBool) {
+        self.tableView.tableFooterView = nil;
+        return;
+    }
     if (_activeType == MasterManageActiveType_Tool) {
-//        self.footerView.titleLabel.text = @"暂无数据统计";
-        if (self.detailItem.countTool.count == 0) {
+        if (self.toolMutableArray.count == 0) {
             self.tableView.tableFooterView = self.footerView;
         }else {
             self.tableView.tableFooterView = nil;
         }
+        self.tableView.mj_footer.hidden = YES;
     }else {
-//        self.footerView.titleLabel.text = @"暂无成员明细";
-        if (self.detailItem.countMemeber.count == 0) {
+        if (self.memeberMutableArray.count == 0) {
             self.tableView.tableFooterView = self.footerView;
+            self.tableView.mj_footer.hidden = YES;
         }else {
+            self.tableView.mj_footer.hidden = !self.hasNextPage;
             self.tableView.tableFooterView = nil;
         }
     }
@@ -48,6 +55,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.startPage = 1;
+    self.memeberMutableArray = [[NSMutableArray alloc] init];
+    self.toolMutableArray = [[NSMutableArray alloc] init];
     self.navigationItem.title = self.titleString;
     _activeType = MasterManageActiveType_Tool;
     [self setupUI];
@@ -67,15 +77,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-#pragma mark - set
-- (void)setDetailItem:(MasterCountActiveItem_Body *)detailItem {
-    _detailItem = detailItem;
-    self.activeType = MasterManageActiveType_Tool;
-    self.headerView.frame = CGRectMake(0 , 0 , kScreenWidth, [self.headerView relodDetailActiveHeader:_detailItem.active.desc?:@"" withMySelf:self.isMySelfBool]);
-    self.tableView.tableHeaderView = self.headerView;
-    self.tableView.hidden = NO;
-    [self.tableView reloadData];
 }
 #pragma mark - setupUI
 - (void)setupUI {
@@ -99,23 +100,44 @@
     self.tableView.hidden = YES;
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
+        self.startPage = 1;
         [self requestForActiveDetail];
     }];
+    if (self.isMySelfBool) {
+        self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            STRONG_SELF
+            self.startPage ++;
+            [self requestForActiveDetail];
+        }];
+    }
+
     self.errorView = [[YXErrorView alloc]init];
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self startLoading];
+        self.startPage = 1;
         [self requestForActiveDetail];
     };
+    self.errorView.hidden = YES;
+    [self.view addSubview:self.errorView];
     self.dataErrorView = [[DataErrorView alloc]init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self startLoading];
+        self.startPage = 1;
         [self requestForActiveDetail];
     };
+    self.dataErrorView.hidden = YES;
+    [self.view addSubview:self.dataErrorView];
 }
 - (void)setupLayout {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    [self.errorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    [self.dataErrorView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
 }
@@ -125,27 +147,27 @@
         return 0;
     }
     if (self.activeType == MasterManageActiveType_Tool) {
-        return self.detailItem.countTool.count;
+        return self.toolMutableArray.count;
     }else {
-        return self.detailItem.countMemeber.count;
+        return self.memeberMutableArray.count;
     }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.activeType == MasterManageActiveType_Tool) {
         return 1;
     }else {
-        MasterCountActiveItem_Body_CountMemeber *memeber = self.detailItem.countMemeber[section];
+        MasterCountActiveItem_Body_CountMemeber *memeber = self.memeberMutableArray[section];
         return memeber.totalArray.count;
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.activeType == MasterManageActiveType_Tool) {
         MasterDetailActiveToolCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterDetailActiveToolCell_17" forIndexPath:indexPath];
-        cell.tool = self.detailItem.countTool[indexPath.section];
+        cell.tool = self.toolMutableArray[indexPath.section];
         return cell;
     }else {
         MasterDetailActiveMemeberCell_17 *cell = [tableView dequeueReusableCellWithIdentifier:@"MasterDetailActiveMemeberCell_17" forIndexPath:indexPath];
-        MasterCountActiveItem_Body_CountMemeber *memeber = self.detailItem.countMemeber[indexPath.section];
+        MasterCountActiveItem_Body_CountMemeber *memeber = self.memeberMutableArray[indexPath.section];
         cell.total = memeber.totalArray[indexPath.row];
         return cell;
     }
@@ -167,7 +189,7 @@
         return header;
     }else {
         MasterDetailActiveMemeberHeaderView_17 *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"MasterDetailActiveMemeberHeaderView_17"];
-        MasterCountActiveItem_Body_CountMemeber *memeber = self.detailItem.countMemeber[section];
+        MasterCountActiveItem_Body_CountMemeber *memeber = self.memeberMutableArray[section];
         header.nameLabel.text = memeber.userName;
         return header;
     }
@@ -191,20 +213,43 @@
     MasterCountActiveRequest_17 *request = [[MasterCountActiveRequest_17  alloc] init];
     request.aId = self.activeId;
     request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.page = [NSString stringWithFormat:@"%ld",(long)self.startPage];
+    request.pageSize = @"5";
     WEAK_SELF
     [request startRequestWithRetClass:[MasterCountActiveItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
+        [self.tableView.mj_footer endRefreshing];
         [self.tableView.mj_header endRefreshing];
-        UnhandledRequestData *data = [[UnhandledRequestData alloc] init];
-        data.requestDataExist = YES;
-        data.localDataExist = NO;
-        data.error = error;
-        if ([self handleRequestData:data]) {
-            return;
+        if (error) {
+            if (self.startPage == 1) {
+                if (error.code == ASIConnectionFailureErrorType || error.code == ASIRequestTimedOutErrorType) {//网络错误/请求超时
+                    self.errorView.hidden = NO;
+                    self.dataErrorView.hidden = YES;
+                }else {
+                    self.errorView.hidden = YES;
+                    self.dataErrorView.hidden = NO;
+                }
+            }else {
+                self.startPage--;
+                [self showToast:error.localizedDescription];
+            }
+        }else {
+            MasterCountActiveItem *item = retItem;
+            self.hasNextPage = item.body.hasNextPage.boolValue;
+            if (self.toolMutableArray.count == 0) {
+                [self.toolMutableArray addObjectsFromArray:item.body.countTool];
+            }
+            if (self.startPage == 1) {
+                [self.memeberMutableArray removeAllObjects];
+                self.headerView.frame = CGRectMake(0 , 0 , kScreenWidth, [self.headerView relodDetailActiveHeader:item.body.active.desc?:@"" withMySelf:self.isMySelfBool]);
+                self.tableView.tableHeaderView = self.headerView;
+                self.tableView.hidden = NO;
+                self.activeType = MasterManageActiveType_Tool;
+            }
+            [self.memeberMutableArray addObjectsFromArray:item.body.countMemeber];
+            [self.tableView reloadData];
         }
-        MasterCountActiveItem *item = retItem;
-        self.detailItem = item.body;
     }];
     self.activeRequest = request;
 }

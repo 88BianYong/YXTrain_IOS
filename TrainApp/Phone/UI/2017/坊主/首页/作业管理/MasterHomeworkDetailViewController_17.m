@@ -124,12 +124,14 @@
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self startLoading];
+        self.startPage = 1;
         [self requestForHomeworkDetail];
     };
     self.dataErrorView = [[DataErrorView alloc] init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self startLoading];
+        self.startPage = 1;
         [self requestForHomeworkDetail];
     };
     [self setupInputView];

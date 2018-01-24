@@ -98,12 +98,14 @@
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [YXPromtController startLoadingInView:self.parentViewController.view];
+        self.startPage = 1;
         [self requestForHomeworkDetail];
     };
     self.dataErrorView = [[DataErrorView alloc] init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [YXPromtController startLoadingInView:self.parentViewController.view];
+        self.startPage = 1;
         [self requestForHomeworkDetail];
     };
 }

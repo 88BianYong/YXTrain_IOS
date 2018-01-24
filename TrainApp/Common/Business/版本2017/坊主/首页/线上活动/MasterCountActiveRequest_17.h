@@ -65,6 +65,8 @@
 @property (nonatomic, strong) MasterCountActiveItem_Body_Active<Optional> *active;
 @property (nonatomic, strong) NSArray<MasterCountActiveItem_Body_CountMemeber,Optional> *countMemeber;
 @property (nonatomic, strong) NSArray<MasterCountActiveItem_Body_CountTool, Optional> *countTool;
+@property (nonatomic, copy) NSString<Optional> *hasNextPage;
+
 @end
 
 @interface MasterCountActiveItem : HttpBaseRequestItem
@@ -74,4 +76,6 @@
 @interface MasterCountActiveRequest_17 : YXGetRequest
 @property (nonatomic, copy) NSString<Optional> *projectId;
 @property (nonatomic, copy) NSString<Optional> *aId;
+@property (nonatomic, copy) NSString<Optional> *page;
+@property (nonatomic, copy) NSString<Optional> *pageSize;
 @end
