@@ -246,9 +246,13 @@
                 self.tableView.tableHeaderView = self.headerView;
                 self.tableView.hidden = NO;
                 self.activeType = MasterManageActiveType_Tool;
+                [self.memeberMutableArray addObjectsFromArray:item.body.countMemeber];
+                [self.tableView reloadData];
+            }else {
+                self.activeType = self.activeType;
+                [self.memeberMutableArray addObjectsFromArray:item.body.countMemeber];
+                [self.tableView reloadData];
             }
-            [self.memeberMutableArray addObjectsFromArray:item.body.countMemeber];
-            [self.tableView reloadData];
         }
     }];
     self.activeRequest = request;
