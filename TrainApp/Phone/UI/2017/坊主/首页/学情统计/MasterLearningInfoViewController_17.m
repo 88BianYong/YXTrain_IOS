@@ -51,6 +51,11 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [YXDataStatisticsManger trackPage:@"学情统计" withStatus:NO];
+    self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    self.navigationController.navigationBar.shadowImage = [[UIImage alloc] init];
 }
 #pragma mark - setupUI
 - (void)setupUI {

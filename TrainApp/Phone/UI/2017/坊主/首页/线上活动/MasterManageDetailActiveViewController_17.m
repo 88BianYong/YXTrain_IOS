@@ -81,7 +81,7 @@
 #pragma mark - setupUI
 - (void)setupUI {
     self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

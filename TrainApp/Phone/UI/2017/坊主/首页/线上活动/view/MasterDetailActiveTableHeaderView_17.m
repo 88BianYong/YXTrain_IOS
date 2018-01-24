@@ -44,6 +44,7 @@
     self.memeberButton.enabled = YES;
     self.vLineView.hidden = !isMy;
     self.bottomView.hidden = !isMy;
+    self.bottomLineView.hidden = !isMy;
     return isMy ? 255.0f : (self.scrollView.contentSize.height + 130.0f);
 }
 #pragma mark - setupUI

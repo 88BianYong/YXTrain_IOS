@@ -34,7 +34,7 @@
 - (void)setupUI {
     self.emptyView.title = @"暂无参与人";
     self.emptyView.imageName = @"没有符合条件的课程";
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[MasterOffActiveParticipantCell_17 class] forCellReuseIdentifier:@"MasterOffActiveParticipantCell_17"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];

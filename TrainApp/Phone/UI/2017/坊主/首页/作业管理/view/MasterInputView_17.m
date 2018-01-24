@@ -20,6 +20,7 @@
 - (void)dealloc {
     DDLogDebug(@"======>>%@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self.sendButton removeObserver:self forKeyPath:@"enabled" context:nil];
 }
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -29,6 +30,7 @@
         [self setupUI];
         [self setupLayout];
         [self setupObservers];
+        [self.sendButton addObserver:self forKeyPath:@"enabled" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return self;
 }
@@ -175,6 +177,7 @@
     self.sendButton.layer.cornerRadius = YXTrainCornerRadii;
     self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"a1a7ae"].CGColor;
     self.sendButton.layer.borderWidth = 1.0f;
+    self.sendButton.clipsToBounds = YES;
     self.sendButton.enabled = NO;
     WEAK_SELF
     [[self.sendButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *x) {
@@ -291,5 +294,15 @@
                             }];
     
     return returnValue;
+}
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    // Toggle visiblity of our custom navigation bar according to the ql navigationbar
+    if ([keyPath isEqualToString:@"enabled"]) {
+        if (!self.sendButton.enabled) {
+            self.sendButton.layer.borderColor = [UIColor colorWithHexString:@"a1a7ae"].CGColor;
+        }else {
+            self.sendButton.layer.borderColor = [UIColor clearColor].CGColor;            
+        }
+    }
 }
 @end

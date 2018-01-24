@@ -47,7 +47,7 @@
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.navigationItem.title = @"全部课程";
-    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self setupUI];
     [self setupObservers];
 }

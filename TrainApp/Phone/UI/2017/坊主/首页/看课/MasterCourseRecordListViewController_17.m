@@ -62,7 +62,7 @@
     self.navigationItem.title = @"课程";
     self.emptyView.title = @"没有符合条件的课程";
     self.emptyView.imageName = @"没有符合条件的课程";
-    self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[MasterCourseListCell_17 class]
            forCellReuseIdentifier:@"MasterCourseListCell_17"];

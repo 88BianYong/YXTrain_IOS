@@ -47,6 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = self.titleString;
     [self setupUI];
     [self setupLayout];
@@ -68,7 +69,6 @@
 }
 #pragma mark - setupUI
 - (void)setupUI {
-    self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.containerView = [[MasterOffActiveContainerView_17 alloc] initWithFrame:self.view.bounds];
     self.containerView.hidden = YES;
     [self.view addSubview:self.containerView];

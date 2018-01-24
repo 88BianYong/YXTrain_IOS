@@ -123,7 +123,7 @@
             [button addSubview:label];
             [label mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.right.equalTo(button.mas_right).offset(-2.0f);
-                make.top.equalTo(button.mas_top).offset(2.0f);
+                make.top.equalTo(button.mas_top).offset(4.0f);
                 make.size.mas_offset(CGSizeMake(35.0f, 15.0f));
             }];
         }
