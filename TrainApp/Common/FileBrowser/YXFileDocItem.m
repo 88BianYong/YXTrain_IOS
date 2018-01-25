@@ -35,6 +35,7 @@
     YXQLPreviewController *qlVC = [[YXQLPreviewController alloc]init];
     qlVC.qlUrl = path;
     qlVC.qlTitle = self.name;
+    qlVC.reportString = self.reportTitle;
     
     if (![qlVC canPreview]) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainStartStopVideo object:@(YXTrainCourseVideoPlay)];

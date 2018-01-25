@@ -15,6 +15,8 @@
 @property (nonatomic, assign) BOOL bIsLocalFile;
 @property (nonatomic, strong) NSString *videoUrl;
 @property (nonatomic, assign) CGFloat preProgress;
+@property (nonatomic, copy) NSString *reportString;
+
 
 
 @property (nonatomic, weak) id<YXPlayProgressDelegate> delegate;

@@ -18,6 +18,7 @@
     webView.titleString = self.name;
     webView.exitDelegate = self;
     webView.browseTimeDelegate = self;
+    webView.reportString = self.reportTitle;
     [self.baseViewController.navigationController pushViewController:webView animated:YES];
 }
 

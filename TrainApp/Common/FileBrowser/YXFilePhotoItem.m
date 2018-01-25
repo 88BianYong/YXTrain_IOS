@@ -39,6 +39,7 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainDocumentRetryTimer object:@(YES)];
     YXImageViewController *vc = [[YXImageViewController alloc] init];
+    vc.reportString = self.reportTitle;
     id favorData = [self valueForKey:@"favorData"];
     if (favorData) {
         YXFileFavorWrapper *wrapper = [[YXFileFavorWrapper alloc]initWithData:favorData baseVC:vc];

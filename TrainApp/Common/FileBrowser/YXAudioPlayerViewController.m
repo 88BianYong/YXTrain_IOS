@@ -240,9 +240,24 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.reportString.length > 0) {
+        [YXDataStatisticsManger trackPage:self.reportString withStatus:YES];
+    }
+    //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:NO];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.reportString.length > 0) {
+        [YXDataStatisticsManger trackPage:self.reportString withStatus:NO];
+    }
+    //[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+}
+
 
 - (void)checkNetwork {
     Reachability *r = [Reachability reachabilityForInternetConnection];

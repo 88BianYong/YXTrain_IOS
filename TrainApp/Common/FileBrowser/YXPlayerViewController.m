@@ -80,6 +80,23 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     return !self.classworkManager.hidden;
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.reportString.length > 0) {
+        [YXDataStatisticsManger trackPage:self.reportString withStatus:YES];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (self.reportString.length > 0) {
+        [YXDataStatisticsManger trackPage:self.reportString withStatus:NO];
+    }
+}
+
 - (void)viewDidLoad {
     _playTime = 0;
     _preventHangingCourseInteger = 0;

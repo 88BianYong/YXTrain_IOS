@@ -59,6 +59,9 @@ static  NSString *const trackBulletinDetailsPageName = @"简报详情页面";
     if ([self.sourceControllerTitile isEqualToString:bulletinSourceTitle]) {
         [YXDataStatisticsManger trackPage:trackBulletinDetailsPageName withStatus:YES];
     }
+    if (self.reportString.length > 0) {
+        [YXDataStatisticsManger trackPage:self.reportString withStatus:YES];
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -67,6 +70,9 @@ static  NSString *const trackBulletinDetailsPageName = @"简报详情页面";
     }
     if ([self.sourceControllerTitile isEqualToString:bulletinSourceTitle]) {
         [YXDataStatisticsManger trackPage:trackBulletinDetailsPageName withStatus:NO];
+    }
+    if (self.reportString.length > 0) {
+        [YXDataStatisticsManger trackPage:self.reportString withStatus:NO];
     }
 }
 - (void)naviRightAction{

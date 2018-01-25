@@ -24,6 +24,7 @@
     vc.title = self.name;
     vc.delegate = self;
     vc.exitDelegate = self;
+    vc.reportString = self.reportTitle;
     [[self.baseViewController visibleViewController] presentViewController:vc animated:YES completion:nil];
 }
 

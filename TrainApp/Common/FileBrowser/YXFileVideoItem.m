@@ -45,6 +45,7 @@
     vc.classworkMutableArray = [self quizeesExercisesFormatSgqz];
     vc.forcequizcorrect = self.forcequizcorrect.boolValue;
     vc.cid = self.cid;
+    vc.reportString = self.reportTitle;
     [[self.baseViewController visibleViewController] presentViewController:vc animated:YES completion:nil];
 }
 -(NSMutableArray<YXFileVideoClassworkItem *> *)quizeesExercisesFormatSgqz {

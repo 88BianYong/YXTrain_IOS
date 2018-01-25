@@ -41,5 +41,7 @@
 @property (nonatomic, assign) BOOL forcequizcorrect;
 @property (nonatomic, copy) NSString *cid;
 @property (nonatomic, copy) NSString *source;
+@property (nonatomic, copy) NSString *reportString;
+
 - (void)backAction;
 @end

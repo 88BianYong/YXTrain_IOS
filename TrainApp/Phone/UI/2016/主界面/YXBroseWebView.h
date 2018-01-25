@@ -16,5 +16,7 @@
 @property (nonatomic, copy) NSString *titleString;
 @property (nonatomic, weak) id<YXBrowserExitDelegate> exitDelegate;
 @property (nonatomic, weak) id<YXBrowseTimeDelegate> browseTimeDelegate;
+@property (nonatomic, copy) NSString *reportString;
+
 
 @end
