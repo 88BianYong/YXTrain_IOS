@@ -62,12 +62,13 @@ typedef NS_ENUM(NSUInteger, YXRecordStrategy) {
 };
 
 @interface YXRecordBase : JSONModel
-
 @property (nonatomic, assign) YXRecordStrategy strategy; // default is YXRecordStrategyInstant
 @property (nonatomic, assign) BOOL shouldKeepLog;  // default is YES
 @property (nonatomic, assign) YXRecordType type;
 
 @property (nonatomic, copy) NSString *eventID;
+@property (nonatomic, copy) NSString *uid;
+
 
 + (NSString *)timestamp;
 

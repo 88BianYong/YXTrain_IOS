@@ -12,7 +12,6 @@
 @interface YXRecordBase()
 
 @property (nonatomic, copy) NSString *timestamp;
-@property (nonatomic, copy) NSString *uid;
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, copy) NSString *clientType;
 @property (nonatomic, copy) NSString *ip;

@@ -180,8 +180,9 @@
     record.system = [UIDevice currentDevice].systemVersion;
     record.resolution = [LaunchAppItem screenResolution];
     record.netModel = [LaunchAppItem networkStatus];
-    
-    [YXNewRecordManager addRecord:record];
+    if (record.uid.length > 0) {
+        [YXNewRecordManager addRecord:record];
+    }
 }
 
 @end
