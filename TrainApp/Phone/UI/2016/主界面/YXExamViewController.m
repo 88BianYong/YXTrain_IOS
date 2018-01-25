@@ -163,7 +163,9 @@ static  NSString *const trackLabelOfJumpFromExeam = @"考核跳转";
     for (YXExamineRequestItem_body_leadingVo *vo in retItem.body.leadingVoList) {
         [self.foldStatusDic setValue:@(vo.isfinish.boolValue) forKey:vo.voID];
     }
-    [self.tableView reloadData];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 - (void)showMarkWithOriginRect:(CGRect)rect{

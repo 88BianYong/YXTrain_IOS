@@ -177,7 +177,6 @@
     
     [self.projectLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(15.0f);
-        make.right.equalTo(self.mas_right);
         make.top.equalTo(self.lineView.mas_bottom);
         make.height.mas_offset(45.0f);
     }];

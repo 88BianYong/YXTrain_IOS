@@ -40,11 +40,6 @@
     self.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     [self.containerView addSubview:self.titleLabel];
     
-    self.hLineView = [[UIView alloc] init];
-    self.hLineView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    [self.containerView addSubview:self.hLineView];
-    
-    
     self.timeLabel = [[UILabel alloc] init];
     self.timeLabel.font = [UIFont systemFontOfSize:14.0f];
     self.timeLabel.textColor = [UIColor colorWithHexString:@"334466"];
@@ -57,6 +52,10 @@
         statusString = @"进行中";
     }
     self.timeLabel.text = [NSString stringWithFormat:@"%@-%@ %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate,statusString];
+    
+    self.hLineView = [[UIView alloc] init];
+    self.hLineView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    [self.containerView addSubview:self.hLineView];
 }
 - (void)setupLayout {
     [self.containerView mas_makeConstraints:^(MASConstraintMaker *make) {
