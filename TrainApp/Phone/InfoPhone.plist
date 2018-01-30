@@ -54,6 +54,8 @@
 	<string>录制课程是否允许打开麦克风?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>上传头像是否允许打开相册?</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>手机研修需要您的同意,才能添加照片到相册</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>METRO-ITALIC PLAYTYPE.otf</string>

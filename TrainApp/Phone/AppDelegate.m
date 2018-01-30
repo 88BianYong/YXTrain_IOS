@@ -18,7 +18,6 @@
 #import "LaunchAppItem.h"
 #import "YXNewRecordManager.h"
 #import "UIDevice+HardwareName.h"
-
 @interface AppDelegate ()
 @property (nonatomic, unsafe_unretained) UIBackgroundTaskIdentifier backgroundTaskIdentifier;
 @property (nonatomic, strong) NSTimer *backgroundTimer;
@@ -39,6 +38,10 @@
     // 内部统计
     [YXNewRecordManager startRegularReport];
     [self addLaunchAppStatisticWithType:YXRecordStartType];
+    
+    
+    //七鱼
+    [[QYSDK sharedSDK] registerAppId:@"5c8fda4d1143b9639ef44ef089f387dd" appName:@"手机研修"];
     
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];

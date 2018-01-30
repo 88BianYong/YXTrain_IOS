@@ -34,7 +34,7 @@ pod 'FCUUID'
 pod 'IQKeyboardManager'
 pod 'SocketRocket'
 pod 'GTSDK', '2.0.0.0-noidfa'
-
+pod 'QIYU_iOS_SDK'
 
 pod 'SCRecorder', '~> 2.6.1'
 pod 'Qiniu', '~> 7.0'

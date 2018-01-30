@@ -142,14 +142,21 @@ UITableViewDataSource
                 // 清缓存
                 NSString *dp = [BaseDownloader downloadFolderPath];
                 [[NSFileManager defaultManager] removeItemAtPath:dp error:nil];
+                
+                [[QYSDK sharedSDK] cleanResourceCacheWithBlock:^(NSError *error) {
+                    
+                }];
+                
                 [self showToast:@"清除成功"];
                 [YXDataStatisticsManger trackEvent:@"清理缓存" label:@"成功清理缓存" parameters:nil];
             }
                 break;
             case 1:
             {
-                YXHelpViewController *helpVC = [[YXHelpViewController alloc] init];
-                [self.navigationController pushViewController:helpVC animated:YES];
+                [[QYSDK sharedSDK] customUIConfig].customerHeadImageUrl = [LSTSharedInstance sharedInstance].userManger.userModel.head;
+                QYSessionViewController *sessionViewController = [[QYSDK sharedSDK] sessionViewController];
+                sessionViewController.sessionTitle = @"手机研修";
+                [self.navigationController pushViewController:sessionViewController animated:YES];
             }
                 break;
             case 2:

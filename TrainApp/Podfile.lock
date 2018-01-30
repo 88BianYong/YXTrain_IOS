@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (3.1.0):
-    - AFNetworking/NSURLSession (= 3.1.0)
-    - AFNetworking/Reachability (= 3.1.0)
-    - AFNetworking/Security (= 3.1.0)
-    - AFNetworking/Serialization (= 3.1.0)
-    - AFNetworking/UIKit (= 3.1.0)
-  - AFNetworking/NSURLSession (3.1.0):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - AFNetworking/UIKit (3.1.0):
-    - AFNetworking/NSURLSession
   - AJNotificationView (0.7)
   - ASIHTTPRequest (1.8.2):
     - ASIHTTPRequest/ASIWebPageRequest (= 1.8.2)
@@ -45,11 +30,11 @@ PODS:
     - DTFoundation/DTAnimatedGIF (~> 1.7.5)
     - DTFoundation/DTHTMLParser (~> 1.7.5)
     - DTFoundation/UIKit (~> 1.7.5)
-  - DTFoundation/Core (1.7.12)
-  - DTFoundation/DTAnimatedGIF (1.7.12)
-  - DTFoundation/DTHTMLParser (1.7.12):
+  - DTFoundation/Core (1.7.13)
+  - DTFoundation/DTAnimatedGIF (1.7.13)
+  - DTFoundation/DTHTMLParser (1.7.13):
     - DTFoundation/Core
-  - DTFoundation/UIKit (1.7.12):
+  - DTFoundation/UIKit (1.7.13):
     - DTFoundation/Core
   - FCUUID (1.3.1):
     - UICKeyChainStore (~> 2.1.0)
@@ -57,7 +42,7 @@ PODS:
   - GTSDK (2.0.0.0-noidfa)
   - HappyDNS (0.3.12)
   - IBActionSheet (0.0.2)
-  - IQKeyboardManager (5.0.4)
+  - IQKeyboardManager (5.0.7)
   - JSONModel (1.7.0)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
@@ -74,9 +59,9 @@ PODS:
   - NSString-Hashes (1.2.1)
   - OpenUDID (1.0.0)
   - pop (1.0.10)
-  - Qiniu (7.1.8):
-    - AFNetworking (~> 3)
+  - Qiniu (7.2.3):
     - HappyDNS (~> 0.3)
+  - QIYU_iOS_SDK (3.13.0)
   - RATreeView (1.0.2)
   - Reachability (3.2)
   - ReactiveCocoa (2.5):
@@ -125,6 +110,7 @@ DEPENDENCIES:
   - OpenUDID (= 1.0.0)
   - pop (~> 1.0)
   - Qiniu (~> 7.0)
+  - QIYU_iOS_SDK
   - RATreeView (= 1.0.2)
   - ReactiveCocoa (~> 2.0)
   - RMDateSelectionViewController (= 1.3.0)
@@ -138,7 +124,6 @@ DEPENDENCIES:
   - UITableView+FDTemplateLayoutCell (= 1.4)
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AJNotificationView: fe9f2e3b806ab71e3705047ed243a283b7155731
   ASIHTTPRequest: ec013992946676b7978dcbde6396d57312d21db4
   Aspects: 7595ba96a6727a58ebcbfc954497fc5d2fdde546
@@ -147,13 +132,13 @@ SPEC CHECKSUMS:
   CommonCrypto: e18c8416332cca5efe80c197f2a522d471c42626
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DTCoreText: 934a16fe9ffdd169c96261721b39dc312b75713d
-  DTFoundation: 26a164ef510877387906fb92bff524a792db4bf8
+  DTFoundation: f03be9fd786f11e505bb8fc44e2a3732bf0917df
   FCUUID: bb054fc90cd7cd99320f9f6ff8e130fe607fba05
   FileMD5Hash: 3ed69cc19a21ff4d30ae8833fc104275ad2c7de0
   GTSDK: 46c0f8dd41ee1f4117b8fd608a4d8a6ad3fc08b3
   HappyDNS: 691a3041128055d09866f86e6e9ca90f24da1f18
   IBActionSheet: 4028206b0561772c3674a339fb4a7265d55a6f8b
-  IQKeyboardManager: 1df9c0f147af1681cfb2d9977bc30309d45a7e76
+  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
@@ -165,7 +150,8 @@ SPEC CHECKSUMS:
   NSString-Hashes: d72496f282a27fad01381363b2761ced259064af
   OpenUDID: e7cb6984c7304906ad20f3a36bf087b025896b6b
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
-  Qiniu: 2f1b9d13904b6a7608a66a2d02c5b7b24575622a
+  Qiniu: ae0fea1cc379fae1560d8748ac537e0fbeb8626e
+  QIYU_iOS_SDK: 58a24f22d6b3921471f1bf0afb3cfabfbf227d55
   RATreeView: 453b8203163c415f4c43da1e20addcf1b2379e06
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
@@ -181,6 +167,6 @@ SPEC CHECKSUMS:
   UIDevice+HardwareName: 6b98c1855f304ec8fc7a1ad72fddaed8523b75ad
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 
-PODFILE CHECKSUM: 7e50d3371422ca8fca7c8ebe980ab4e63eb84b86
+PODFILE CHECKSUM: 8c509270d27d4fc85c2d3348b2e7689b44ca0218
 
-COCOAPODS: 1.2.1.rc.1
+COCOAPODS: 1.4.0

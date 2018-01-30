@@ -38,6 +38,8 @@ extern int ddLogLevel;
 #import <IQKeyboardManager.h>
 #import <SCRecorder.h>
 #import <QiniuSDK.h>
+#import <QIYU_iOS_SDK/QYSDK.h>
+
 
 #pragma mark - Category
 #import "UIViewController+Keyboard.h"
