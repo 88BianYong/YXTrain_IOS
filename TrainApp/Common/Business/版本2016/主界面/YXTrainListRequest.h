@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSString<Optional> *status;//1-training;0-trained
 @property (nonatomic, strong) NSString<Optional> *roles;
 @property (nonatomic, strong) NSString<Optional> *isContainsTeacher;
+
+@property (nonatomic, strong) NSString<Optional> *special;//1   18德阳项目  0 正常
 //2.4.2
 @property (nonatomic, strong) NSString<Optional> *isOpenLayer;//是否开启分层
 @property (nonatomic, strong) NSString<Optional> *layerId;//分层id

@@ -1,16 +1,13 @@
 //
-//  XYLearningViewController.m
+//  YXLearningViewController_Default17.m
 //  TrainApp
 //
-//  Created by 郑小龙 on 2017/7/6.
-//  Copyright © 2017年 niuzhaowang. All rights reserved.
+//  Created by 郑小龙 on 2018/2/8.
+//  Copyright © 2018年 niuzhaowang. All rights reserved.
 //
 
-#import "YXLearningViewController_17.h"
+#import "YXLearningViewController_Default17.h"
 #import "ExamineDetailRequest_17.h"
-#import "ProjectChooseLayerView.h"
-#import "TrainSelectLayerRequest.h"
-#import "YXProjectSelectionView.h"
 #import "YXLearningTableHeaderView_17.h"
 #import "YXLearningStageHeaderView_17.h"
 #import "YXLearningStageCell_17.h"
@@ -24,66 +21,42 @@
 #import "ExamineToolStatusRequest_17.h"
 #import "PopUpFloatingViewManager_17.h"
 #import "YXCourseDetailPlayerViewController_17.h"
-#import "AppDelegate.h"
-#import "YXCourseDetailPlayerViewController_17.h"
-typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
-    YXLearningRequestStatus_ExamineDetail,//请求个人工作室信息
-    YXLearningRequestStatus_LayerList,//请求分层
-};
-@interface YXLearningViewController_17 ()<UITableViewDelegate, UITableViewDataSource>
+@interface YXLearningViewController_Default17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
-@property (nonatomic, strong) UIView *qrCodeView;
-@property (nonatomic, strong) ProjectChooseLayerView *chooseLayerView;
-@property (nonatomic, strong) YXProjectSelectionView *projectSelectionView;
 @property (nonatomic, strong) YXLearningTableHeaderView_17 *headerView;
-
 
 
 @property (nonatomic, strong) ExamineDetailRequest_17 *examineDetailRequest;
 @property (nonatomic, strong) ExamineDetailRequest_17Item *examineDetailItem;
-@property (nonatomic, strong) TrainLayerListRequest *layerListRequest;
-@property (nonatomic, strong) TrainSelectLayerRequest *selectLayerRequest;
 @property (nonatomic, strong) ExamineToolStatusRequest_17 *toolStatusRequest;
-
-@property (nonatomic, strong) NSMutableDictionary *layerMutableDictionary;
-@property (nonatomic, assign) YXLearningRequestStatus requestStatus;
-
 
 @end
 
-@implementation YXLearningViewController_17
+@implementation YXLearningViewController_Default17
+
 - (void)dealloc{
     DDLogError(@"release====>%@",NSStringFromClass([self class]));
+}
+#pragma mark - set
+- (void)setExamineDetailItem:(ExamineDetailRequest_17Item *)examineDetailItem {
+    _examineDetailItem = examineDetailItem;
+    self.headerView.scoreString = [NSString stringWithFormat:@"%0.2f",[_examineDetailItem.examine.userGetScore floatValue]];
+    self.headerView.hidden = NO;
+    [self.tableView reloadData];
+    PopUpFloatingViewManager_17 *floatingView = (PopUpFloatingViewManager_17 *)[LSTSharedInstance sharedInstance].floatingViewManager;
+    floatingView.scoreString = _examineDetailItem.examine.userGetScore;
+    [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
     [self setupLayout];
     [self startLoading];
-     NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
-    [self dealWithProjectGroups:groups];
-    self.layerMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:3];
-    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenLayer.boolValue) {
-        [self requestForLayerList];
-    }else {
-        [self requestForExamineDetail];
-    }
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    if (!isEmpty(appDelegate.appDelegateHelper.courseId)) {
-        YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc] init];
-        YXCourseListRequestItem_body_module_course *course = [[YXCourseListRequestItem_body_module_course alloc] init];
-        course.courses_id = appDelegate.appDelegateHelper.courseId;
-        course.courseType = appDelegate.appDelegateHelper.courseType;
-        vc.course = course;
-        vc.seekInteger = [appDelegate.appDelegateHelper.seg integerValue];
-        vc.fromWhere = VideoCourseFromWhere_QRCode;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    [self requestForExamineDetail];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self showProjectSelectionView];
-    if (self.requestStatus == YXLearningRequestStatus_ExamineDetail && self.examineDetailItem.other.stageLockWay.integerValue == 0) {
+    if (self.examineDetailItem.other.stageLockWay.integerValue == 0) {
         [self requestForExamineToolStatus];
     }
     [[LSTSharedInstance sharedInstance].floatingViewManager showPopUpFloatingView];
@@ -93,43 +66,19 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self hideProjectSelectionView];
     [[LSTSharedInstance sharedInstance].floatingViewManager hiddenPopUpFloatingView];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-#pragma mark - set
-- (ProjectChooseLayerView *)chooseLayerView {
-    if (_chooseLayerView == nil) {
-        _chooseLayerView = [[ProjectChooseLayerView alloc] init];
-        WEAK_SELF
-        [_chooseLayerView setProjectChooseLayerCompleteBlock:^(NSString *layerId){
-            STRONG_SELF;
-            [self requestForSelectLayer:layerId];
-        }];
-    }
-    return _chooseLayerView;
-}
-- (void)setExamineDetailItem:(ExamineDetailRequest_17Item *)examineDetailItem {
-    _examineDetailItem = examineDetailItem;
-    if (self.qrCodeView == nil) {
-        [self setupQRCodeLeftView];
-    }
-    self.headerView.scoreString = [NSString stringWithFormat:@"%0.2f",[_examineDetailItem.examine.userGetScore floatValue]];
-    self.headerView.hidden = NO;
-    [self.tableView reloadData];
-    PopUpFloatingViewManager_17 *floatingView = (PopUpFloatingViewManager_17 *)[LSTSharedInstance sharedInstance].floatingViewManager;
-    floatingView.scoreString = _examineDetailItem.examine.userGetScore;
-    [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
-}
-
-
 #pragma mark - setupUI
 - (void)setupUI {
     self.navigationItem.title = @"";
     self.tableView = [[YXNoFloatingHeaderFooterTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -157,21 +106,13 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     self.errorView.retryBlock = ^{
         STRONG_SELF
         [self startLoading];
-        if (self.requestStatus == YXLearningRequestStatus_LayerList) {
-            [self requestForLayerList];
-        }else {
-            [self requestForExamineDetail];
-        }
+        [self requestForExamineDetail];
     };
     self.dataErrorView = [[DataErrorView alloc] init];
     self.dataErrorView.refreshBlock = ^{
         STRONG_SELF
         [self startLoading];
-        if (self.requestStatus == YXLearningRequestStatus_LayerList) {
-            [self requestForLayerList];
-        }else {
-            [self requestForExamineDetail];
-        }
+        [self requestForExamineDetail];
     };
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
@@ -182,63 +123,6 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-}
-#pragma mark - peojects hide & show
-- (void)dealWithProjectGroups:(NSArray *)groups{
-    self.projectSelectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
-    self.projectSelectionView.currentIndexPath = [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath;
-   self.projectSelectionView.projectGroup = groups;
-    WEAK_SELF
-    self.projectSelectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
-        STRONG_SELF
-        [self showProjectWithIndexPath:indexPath];
-        [YXDataStatisticsManger trackEvent:@"切换项目" label:@"首页" parameters:nil];
-    };
-    [self showProjectSelectionView];
-}
-- (void)showProjectSelectionView {
-    if (self.navigationController.topViewController == self) {
-        [self.navigationController.navigationBar addSubview:self.projectSelectionView];
-    }
-}
-- (void)hideProjectSelectionView {
-    [self.projectSelectionView removeFromSuperview];
-}
-#pragma mark - showView
-- (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
-    [LSTSharedInstance sharedInstance].trainManager.currentProject.role = nil;
-    [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
-    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenLayer.boolValue) {
-        [self requestForLayerList];
-        self.qrCodeView.hidden = YES;
-    }else {
-        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
-        [self requestForExamineDetail];
-        self.qrCodeView.hidden = NO;
-
-    }
-}
-- (void)showTrainLayerView:(TrainLayerListRequestItem *)item {
-    [self.view addSubview:self.chooseLayerView];
-    [self.chooseLayerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
-    }];
-    self.chooseLayerView.dataMutableArray = item.body;
-}
-- (void)setupQRCodeLeftView{
-    self.qrCodeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"扫二维码"] forState:UIControlStateHighlighted];
-    button.frame = CGRectMake(-10, 0, 44.0f, 44.0f);
-    WEAK_SELF
-    [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
-        STRONG_SELF
-        UIViewController *VC = [[NSClassFromString(@"VideoCourseQRViewController") alloc] init];
-        [self.navigationController pushViewController:VC animated:YES];
-    }];
-    [self.qrCodeView addSubview:button];
-    [self setupLeftWithCustomView:self.qrCodeView];
 }
 #pragma mark - UITableViewDelegate
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -277,7 +161,7 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
             [tableView beginUpdates];
             [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
             [tableView endUpdates];
-
+            
         };
         return heaerView;
     }
@@ -376,10 +260,11 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
 
 #pragma mark - request
 - (void)requestForExamineDetail {
-    self.requestStatus = YXLearningRequestStatus_ExamineDetail;
     ExamineDetailRequest_17 *request = [[ExamineDetailRequest_17 alloc] init];
     request.projectID = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
     request.role = [LSTSharedInstance sharedInstance].trainManager.currentProject.role;
+    request.hook = @"yes";
+
     WEAK_SELF
     [request startRequestWithRetClass:[ExamineDetailRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
@@ -395,58 +280,6 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         self.examineDetailItem = retItem;
     }];
     self.examineDetailRequest = request;
-}
-- (void)requestForLayerList {
-    if (self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid]) {
-        [self showTrainLayerView:self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid]];
-    }else {
-        self.requestStatus = YXLearningRequestStatus_LayerList;
-        TrainLayerListRequest *request = [[TrainLayerListRequest alloc] init];
-        request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-        WEAK_SELF
-        [self startLoading];
-        [request startRequestWithRetClass:[TrainLayerListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-            STRONG_SELF
-            [self stopLoading];
-            TrainLayerListRequestItem *item = retItem;
-            UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-            data.requestDataExist = YES;
-            data.localDataExist = NO;
-            data.error = error;
-            if ([self handleRequestData:data]) {
-                return;
-            }
-            if (item) {
-                self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid] = item;
-                [self showTrainLayerView:item];
-            }
-        }];
-        self.layerListRequest = request;
-    }
-}
-- (void)requestForSelectLayer:(NSString *)layerId {
-    [self startLoading];
-    TrainSelectLayerRequest *request = [[TrainSelectLayerRequest alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
-    request.layerId = layerId;
-    WEAK_SELF
-    [request startRequestWithRetClass:[HttpBaseRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        STRONG_SELF
-        [self stopLoading];
-        UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-        data.requestDataExist = YES;
-        data.localDataExist = YES;
-        data.error = error;
-        if ([self handleRequestData:data]) {
-            return;
-        }
-        [LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenLayer = @"0";
-        [LSTSharedInstance sharedInstance].trainManager.currentProject.layerId = layerId;
-        [[LSTSharedInstance sharedInstance].trainManager saveToCache];
-        [self.chooseLayerView removeFromSuperview];
-        [self requestForExamineDetail];
-    }];
-    self.selectLayerRequest = request;
 }
 - (void)requestForExamineToolStatus {
     ExamineToolStatusRequest_17 *request = [[ExamineToolStatusRequest_17 alloc] init];
@@ -482,6 +315,5 @@ typedef NS_ENUM(NSUInteger, YXLearningRequestStatus) {
         }
     }];
     self.toolStatusRequest = request;
-    
 }
 @end

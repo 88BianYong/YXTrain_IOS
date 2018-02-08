@@ -79,7 +79,7 @@
         return tabVC;
     }else {
         YXTabBarViewController_17 *tabVC = [[YXTabBarViewController_17 alloc] init];
-        UIViewController *learningVC = [[NSClassFromString(@"YXLearningViewController_17") alloc]init];
+        UIViewController *learningVC = [[NSClassFromString(@"YXLearningViewManagerController_17") alloc]init];
         YXNavigationController *learningNav = [[YXNavigationController alloc]initWithRootViewController:learningVC];
         UIViewController *messageVC = [[NSClassFromString(@"YXMessageViewController_17") alloc]init];
         YXNavigationController *messageNav = [[YXNavigationController alloc]initWithRootViewController:messageVC];

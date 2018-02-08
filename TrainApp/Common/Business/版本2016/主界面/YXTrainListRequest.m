@@ -13,6 +13,9 @@
     if (_role) {
         return _role;
     }else {
+//        if (self.special.integerValue == 1 && self.w.integerValue >= 5) { //18德阳只显示学员端,又因为需要判断该用户是否存在坊主管理员身份以便确定不显示线下研修,所以如此操作(不能直接删除管理员身份)
+//            return @"9";
+//        }
         NSArray *array = [self.roles componentsSeparatedByString:@","];
         for (NSString *r in array) {
             if ([r isEqualToString:@"99"]) {
@@ -23,6 +26,9 @@
     }
 }
 - (NSString<Ignore> *)isDoubel {
+//    if (self.special.integerValue == 1 && self.w.integerValue >= 5) {//18德阳只显示学员端,又因为需要判断该用户是否存在坊主管理员身份以便确定不显示线下研修,所以如此操作(不能直接删除管理员身份)
+//        return @"0";
+//    }
     BOOL isMaster = NO;
     BOOL isStudent = NO;
     NSArray *array = [self.roles componentsSeparatedByString:@","];
@@ -40,7 +46,13 @@
         return @"0";
     }
 }
-
+- (NSString<Optional> *)roles {
+    if (self.special.integerValue == 1 && self.w.integerValue >= 5) {
+        return @"9";
+    }else {
+        return _roles;
+    }
+}
 - (NSString<Optional> *)isOpenLayer {
     if (_isOpenLayer.boolValue && self.layerId.integerValue <= 0) {
         return @"1";

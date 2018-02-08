@@ -80,7 +80,6 @@
     BeijingExamExplainView *v = [[BeijingExamExplainView alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
     v.originRect = rect;
-    
 }
 #pragma mark - UITableViewDelegate 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

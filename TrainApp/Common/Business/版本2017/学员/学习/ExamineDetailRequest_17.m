@@ -28,9 +28,41 @@
 }
 @end
 @implementation ExamineDetailRequest_17Item_Examine_Process
+- (NSString<Optional> *)isMockFold {
+    if (_isMockFold == nil) {
+        if (self.procesID.integerValue == 304){//在线测评不支持
+            return @"0";
+        }
+        if (self.procesID.integerValue == 1003){//附加分不支持
+            return @"0";
+        }
+        if (self.stageID.integerValue == 0) {//非阶段下全部展开
+            return @"1";
+        }
+        if (self.isFinish.boolValue) {
+            return @"0";
+        }
+        if (![self compareDateDate:self.startDate]) {
+            return @"1";
+        }else {
+            return @"0";
+        }
+    }
+    return _isMockFold;
+}
+- (BOOL)compareDateDate:(NSString*)dateString {
+    NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
+    [dateformater setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateformater dateFromString:dateString];
+    NSComparisonResult result = [[NSDate date] compare:date];
+    if (result == NSOrderedAscending) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
 + (JSONKeyMapper *)keyMapper {
     return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"endDate":@"enddate",
-                                                                  @"processID":@"id",
                                                                   @"ifQuestion":@"ifquestion",
                                                                   @"isFinish":@"isfinish",
                                                                   @"isPass":@"totalnum",
@@ -38,7 +70,10 @@
                                                                   @"stageID":@"stageId",
                                                                   @"totalScore":@"totalscore",
                                                                   @"userScore":@"userscore",
-                                                                  @"passTotalScore":@"passtotalscore"}];
+                                                                  @"passTotalScore":@"passtotalscore",
+                                                                  @"procesID":@"id",
+                                                                  @"startDate":@"startdate"
+                                                                  }];
 }
 @end
 
@@ -82,6 +117,7 @@
 }
 - (NSString<Optional> *)isMockFold {
     if (_isMockFold == nil) {
+        return @"1";
         if (self.isFinish.boolValue) {
             return @"0";
         }
@@ -180,7 +216,6 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"peixun/examine/detail"];
-        self.hook = @"yes";
     }
     return self;
 }

@@ -8,6 +8,6 @@
 
 #import "YXBaseViewController.h"
 
-@interface YXLearningViewController_17 : YXBaseViewController
+@interface YXLearningViewManagerController_17 : YXBaseViewController
 
 @end

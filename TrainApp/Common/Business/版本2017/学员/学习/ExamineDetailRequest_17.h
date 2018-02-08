@@ -127,7 +127,7 @@
 @interface ExamineDetailRequest_17Item_Examine_Process : JSONModel
 @property (nonatomic, copy) NSString<Optional> *descr;
 @property (nonatomic, copy) NSString<Optional> *endDate;//
-@property (nonatomic, copy) NSString<Optional> *processID;//
+@property (nonatomic, copy) NSString<Optional> *startDate;//
 @property (nonatomic, copy) NSString<Optional> *ifQuestion;//
 @property (nonatomic, copy) NSString<Optional> *isExistsNext;
 @property (nonatomic, copy) NSString<Optional> *isFinish;//
@@ -135,11 +135,14 @@
 @property (nonatomic, copy) NSString<Optional> *name;
 @property (nonatomic, copy) NSString<Optional> *passsCore;//
 @property (nonatomic, copy) NSString<Optional> *stageID;//
+@property (nonatomic, copy) NSString<Optional> *procesID;
 @property (nonatomic, copy) NSString<Optional> *status;
 @property (nonatomic, copy) NSMutableArray<ExamineDetailRequest_17Item_Examine_Process_ToolExamineVoList, Optional> *toolExamineVoList;
 @property (nonatomic, copy) NSString<Optional> *totalScore;//
 @property (nonatomic, copy) NSString<Optional> *userScore;//
 @property (nonatomic, copy) NSString<Optional> *passTotalScore;//
+@property (nonatomic, copy) NSString<Optional> *isMockFold;//是否折叠 用于判断展开收起
+
 @end
 
 
