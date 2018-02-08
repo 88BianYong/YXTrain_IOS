@@ -193,10 +193,15 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc] init];
-    vc.course = [CourseListFormatModel_17 formatModel:self.dataArray[indexPath.row]];
-    vc.stageString = @"0";
-    vc.fromWhere = VideoCourseFromWhere_Detail;
-    [self.navigationController pushViewController:vc animated:YES];
+    YXCourseListRequestItem_body_module_course *course = [CourseListFormatModel_17 formatModel:self.dataArray[indexPath.row]];
+    if (course.isSupportApp.boolValue) {
+        YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc] init];
+        vc.course = course;
+        vc.stageString = @"0";
+        vc.fromWhere = VideoCourseFromWhere_Detail;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else {
+        [self showToast:@"手机端暂不支持播放该视频，请到PC端观看"];
+    }
 }
 @end

@@ -79,6 +79,7 @@
 @property (nonatomic, copy) NSString<Optional> *stageID;
 @property (nonatomic, copy) NSString<Optional> *isFinish;
 @property (nonatomic, copy) NSString<Optional> *courseType;
+@property (nonatomic, copy) NSString<Optional> *isSupportApp;
 @end
 @interface CourseListRequest_17Item_Scheme_Scheme : JSONModel
 @property (nonatomic, copy) NSString<Optional> *toolID;

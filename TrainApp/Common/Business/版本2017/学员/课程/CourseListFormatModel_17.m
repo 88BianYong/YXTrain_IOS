@@ -17,7 +17,7 @@
     course.courseType = item.courseType;
     course.is_selected = item.isSelected;
     course.module_id = item.stageID;
-    course.isSupportApp = @"1";//新接口中暂无是否支持移动端的字段
+    course.isSupportApp = item.isSupportApp;
     course.type = item.type;
     return course;
 }
