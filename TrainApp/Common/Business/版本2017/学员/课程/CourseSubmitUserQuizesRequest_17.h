@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString<Optional> *totalNum;
 @property (nonatomic, copy) NSString<Optional> *passRate;
 @property (nonatomic, copy) NSString<Optional> *isPass;
+@property (nonatomic, copy) NSString<Optional> *isCleanedCourseTime;
 @property (nonatomic, strong) NSArray<CourseSubmitUserQuizesRequest_17Item_Data, Optional> *data;
 @end
 @interface CourseSubmitUserQuizesRequest_17 : YXGetRequest

@@ -313,6 +313,7 @@
         STRONG_SELF
         [self recordPlayerDuration];
     }];
+    
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:kRecordReportSuccessNotification object:nil]subscribeNext:^(NSNotification * x) {
         STRONG_SELF
         NSString *course_id = x.userInfo.allKeys.firstObject;
@@ -341,6 +342,16 @@
             self.documentRetryTimer = nil;
         }
     }];
+    
+    //德阳项目
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainReadingClassRecordsCleared object:nil] subscribeNext:^(NSNotification * x) {
+        STRONG_SELF
+        self.playMangerView.playTime = 0;
+        self.playDocumentTime = 0;
+        self.containerView.playTimeInteger = 0;
+        self.detailItem.rc = @"0";
+        self.containerView.isStartBool =floor((float)self.containerView.playTimeInteger/60.0f) >= ceil((float)self.containerView.startTimeInteger/60.0f);
+    }];
 }
 #pragma mark - report
 - (void)setupReportPlayTime {
@@ -356,14 +367,6 @@
 - (void)playDocumentTimeAdd {
     self.playDocumentTime += 1;
     [self setupReportPlayTime];
-}
-- (void)recordPlayerDuration {
-    [UIApplication sharedApplication].idleTimerDisabled = NO;
-    if (self.playMangerView.player.duration) {
-        [self.delegate playerProgress:self.playMangerView.slideProgressView.playProgress totalDuration:self.playMangerView.player.duration stayTime:self.playMangerView.playTime + self.playDocumentTime];
-        self.playMangerView.playTime = 0;
-        self.playDocumentTime = 0;
-    }
 }
 - (void)playTestReport {
     if (!self.isTestReport) {
@@ -381,5 +384,13 @@
     self.isTestReport = YES;
     [self recordPlayerDuration];
     SAFE_CALL(self.exitDelegate, browserExit);
+}
+- (void)recordPlayerDuration {
+    [UIApplication sharedApplication].idleTimerDisabled = NO;
+    if (self.playMangerView.player.duration) {
+        [self.delegate playerProgress:self.playMangerView.slideProgressView.playProgress totalDuration:self.playMangerView.player.duration stayTime:self.playMangerView.playTime + self.playDocumentTime];
+        self.playMangerView.playTime = 0;
+        self.playDocumentTime = 0;
+    }
 }
 @end

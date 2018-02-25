@@ -85,3 +85,5 @@ NSString *const kYXTrainRefreshHomeworkList = @"Refresh homework list for commen
 
 NSString *const kYXTrainRefreshHomeworkSet = @"Refresh master homework set";
 
+NSString *const kYXTrainReadingClassRecordsCleared = @"DeYang Reading class records cleared";
+

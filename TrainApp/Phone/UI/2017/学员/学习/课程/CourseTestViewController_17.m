@@ -379,6 +379,9 @@ typedef NS_ENUM(NSInteger,CourseTestSubmitStatus) {
             self.submitItem = item;
             self.submitStatus = item.isPass.boolValue ? CourseTestSubmitStatus_Pass :CourseTestSubmitStatus_NotPass;
             [self.tableView setContentOffset:CGPointMake(0.0f, 0.0f) animated:NO];
+            if (item.isCleanedCourseTime.boolValue) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainReadingClassRecordsCleared object:self.cID?:@"0"];
+            }
         }
         [self.tableView reloadData];
     }];

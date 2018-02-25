@@ -205,6 +205,13 @@ extern NSString *const kYXTrainRefreshHomeworkList;
 extern NSString *const kYXTrainRefreshHomeworkSet;
 
 
+/*
+ *  德阳项目看课答错随堂练看课记录清零
+ */
+extern NSString *const kYXTrainReadingClassRecordsCleared;
+
+
+
 
 
 /**

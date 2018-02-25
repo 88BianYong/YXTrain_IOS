@@ -69,6 +69,19 @@
             }
         }];
     }];
+    //德阳项目
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainReadingClassRecordsCleared object:nil] subscribeNext:^(NSNotification *noti) {
+        STRONG_SELF
+        NSString *course_id = noti.object;
+        [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            CourseListRequest_17Item_Objs *course = (CourseListRequest_17Item_Objs *)obj;
+            if ([course.objID isEqualToString:course_id]) {
+                course.timeLengthSec = @"0";
+                [self.tableView reloadData];
+                *stop = YES;
+            }
+        }];
+    }];
 }
 
 #pragma mark - UITableViewDataSource

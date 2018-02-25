@@ -117,7 +117,6 @@
 }
 - (NSString<Optional> *)isMockFold {
     if (_isMockFold == nil) {
-        return @"1";
         if (self.isFinish.boolValue) {
             return @"0";
         }
