@@ -128,7 +128,7 @@
     [self.containerView addSubview:self.noticeBriefButton];
     
     self.scoreLabel = [[UILabel alloc] init];
-    self.scoreLabel.font = [UIFont fontWithName:YXFontMetro_Medium size:22.0f];
+    self.scoreLabel.font = [UIFont boldSystemFontOfSize:22.0f];
     self.scoreLabel.textAlignment = NSTextAlignmentCenter;
     self.scoreLabel.textColor = [UIColor colorWithHexString:@"e5581a"];
     self.scoreLabel.text = @"70";
@@ -205,7 +205,7 @@
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.containerView.mas_left);
         make.width.equalTo(self.containerView.mas_width).multipliedBy(1.0f/2.0f);
-        make.bottom.equalTo(self.containerView.mas_centerY).offset(6.0f);
+        make.bottom.equalTo(self.containerView.mas_centerY).offset(2.0f);
     }];
     
     [self.scoreNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {

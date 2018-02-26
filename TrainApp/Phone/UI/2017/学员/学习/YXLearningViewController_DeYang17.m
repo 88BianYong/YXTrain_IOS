@@ -152,7 +152,13 @@
     heaerView.learningStageExplainBlock = ^(UIButton *sender) {
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
-        [self showMarkWithOriginRect:rect explain:proces.descr?:@""];
+        if (proces.procesID.integerValue == 304) {
+            NSString *explainString = [NSString stringWithFormat:@"手机不支持，请到电脑端完成.%@",proces.descr?:@""];
+            [self showMarkWithOriginRect:rect explain:explainString];
+
+        }else {
+            [self showMarkWithOriginRect:rect explain:proces.descr?:@""];
+        }
     };
     return heaerView;
 }

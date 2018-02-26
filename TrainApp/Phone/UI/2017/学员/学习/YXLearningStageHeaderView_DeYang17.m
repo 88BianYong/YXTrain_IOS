@@ -63,7 +63,7 @@
 @end
 
 
-@interface YXLearningStageHeaderView_DeYang17 ()
+@interface YXLearningStageHeaderView_DeYang17 ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) YXLearningIntroductionDeYangView *introductionView;
 @property (nonatomic, strong) UIImageView *finishImageView;
 @property (nonatomic, strong) UIImageView *enterImageView;
@@ -84,6 +84,7 @@
     WEAK_SELF
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] init];
     recognizer.minimumPressDuration = 0.1f;
+    recognizer.delegate = self;
     [[recognizer rac_gestureSignal] subscribeNext:^(UILongPressGestureRecognizer*sender) {
         STRONG_SELF
         if (sender.state == UIGestureRecognizerStateBegan) {
@@ -161,16 +162,18 @@
         }
         self.introductionView.startTimeLabel.text = [NSString stringWithFormat:@"开始时间: %@",_proces.startDate];
     }
-    if (_proces.procesID.integerValue == 304 || _proces.procesID.integerValue == 1003){
-        self.introductionView.explainButton.hidden = NO;
-    }else {
-       self.introductionView.explainButton.hidden = YES;
-    }
     if (_proces.procesID.integerValue == 1003) {
         self.scoreLabel.hidden = NO;
         self.scoreLabel.text = [NSString stringWithFormat:@"%@分",_proces.userScore];
     }else {
         self.scoreLabel.hidden = YES;
     }
+}
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIButton class]]) {
+        return NO;
+    }
+    return YES;
 }
 @end
