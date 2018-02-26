@@ -491,6 +491,7 @@
 		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
 		927874311F01F89300A70DC0 /* VideoBeginningTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927874301F01F89300A70DC0 /* VideoBeginningTopView.m */; };
 		9279268C1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9279268B1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.m */; };
+		9279732E2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9279732D2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m */; };
 		92797C111FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C101FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m */; };
 		92797C141FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C131FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m */; };
 		92797C1A1FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C191FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.m */; };
@@ -1828,6 +1829,8 @@
 		927874301F01F89300A70DC0 /* VideoBeginningTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoBeginningTopView.m; sourceTree = "<group>"; };
 		9279268A1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterFilterEmptyFooterView_17.h; sourceTree = "<group>"; };
 		9279268B1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterFilterEmptyFooterView_17.m; sourceTree = "<group>"; };
+		9279732C2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXLearningExamExplainView_DeYang17.h; sourceTree = "<group>"; };
+		9279732D2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXLearningExamExplainView_DeYang17.m; sourceTree = "<group>"; };
 		92797C0F1FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectEndTimeFloatingView_17.h; sourceTree = "<group>"; };
 		92797C101FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectEndTimeFloatingView_17.m; sourceTree = "<group>"; };
 		92797C121FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectEndTimeFloatingView_16.h; sourceTree = "<group>"; };
@@ -3868,6 +3871,8 @@
 				922AA94F202D291400625B99 /* YXLearningStageHeaderView_DeYang17.m */,
 				922AA952202D54D000625B99 /* YXLearningTableHeaderView_DeYang17.h */,
 				922AA953202D54D000625B99 /* YXLearningTableHeaderView_DeYang17.m */,
+				9279732C2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.h */,
+				9279732D2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m */,
 			);
 			name = "德阳";
 			sourceTree = "<group>";
@@ -6517,6 +6522,7 @@
 				92551E071FBBE5060034DC71 /* LSTCollectionFilterFooterView.m in Sources */,
 				927B6C5C1F0F3A5E0082DB27 /* YXPopUpContainerView.m in Sources */,
 				922197211FD63F0700C4A9DC /* MasterOverallRatingListRequest_17.m in Sources */,
+				9279732E2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m in Sources */,
 				92938CF11F29BD970099D49A /* CourseCenterListFetcher_17.m in Sources */,
 				925F4B011FBA96FC003FB2FC /* RootViewControllerManger_17.m in Sources */,
 				92348FDF1EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.m in Sources */,

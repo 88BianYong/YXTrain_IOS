@@ -37,15 +37,6 @@
             make.bottom.equalTo(self.mas_bottom);
             make.top.equalTo(self.nameLabel.mas_bottom).offset(10.0f);
         }];
-        
-        self.statusImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"小锁（未打开）"]];
-        [self addSubview:self.statusImageView];
-        [self.statusImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_offset(CGSizeMake(12.0f, 15.0f));
-            make.left.equalTo(self.nameLabel.mas_right).offset(10.0f);
-            make.centerY.equalTo(self.nameLabel.mas_centerY);
-        }];
-        
         self.explainButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.explainButton setImage:[UIImage imageNamed:@"解释说明图标正常态A"]
                             forState:UIControlStateNormal];
@@ -56,6 +47,14 @@
             make.left.equalTo(self.nameLabel.mas_right).offset(7.0f - 10.0f);
             make.centerY.equalTo(self.nameLabel.mas_centerY);
             make.size.mas_offset(CGSizeMake(19.0f + 20.0f, 19.0f + 20.0f));
+        }];
+        
+        self.statusImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"小锁（未打开）"]];
+        [self addSubview:self.statusImageView];
+        [self.statusImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_offset(CGSizeMake(12.0f, 15.0f));
+            make.left.equalTo(self.explainButton.mas_right).offset(5.0f);
+            make.centerY.equalTo(self.nameLabel.mas_centerY);
         }];
     }
     return self;
@@ -97,7 +96,12 @@
                 self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头-点击态"];
             }
         }else if (sender.state == UIGestureRecognizerStateEnded){
-            BLOCK_EXEC(self.learningStageHeaderViewBlock,self.proces.stageID.integerValue == 0);
+            if (self.proces.isMockFold.boolValue) {
+                self.enterImageView.image = [UIImage imageNamed:@"第二阶段收起箭头"];
+            }else{
+                self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头"];
+            }
+            BLOCK_EXEC(self.learningStageHeaderViewBlock,NO);
         }
     }];
     [self.contentView addGestureRecognizer:recognizer];
@@ -150,11 +154,9 @@
     if (_proces.stageID.integerValue == 0){
         self.introductionView.statusImageView.hidden = YES;
         self.introductionView.startTimeLabel.hidden = YES;
-        self.enterImageView.hidden = YES;
     }else {
         self.introductionView.statusImageView.hidden = _proces.status.boolValue;
         self.introductionView.startTimeLabel.hidden = NO;
-        self.enterImageView.hidden = NO;
         if (_proces.isMockFold.boolValue) {
             self.enterImageView.image = [UIImage imageNamed:@"第二阶段收起箭头"];
         }else{
@@ -162,10 +164,13 @@
         }
         self.introductionView.startTimeLabel.text = [NSString stringWithFormat:@"开始时间: %@",_proces.startDate];
     }
+    self.enterImageView.hidden = (_proces.procesID.integerValue == 304 || _proces.procesID.integerValue == 1003) ? YES : NO;
     if (_proces.procesID.integerValue == 1003) {
         self.scoreLabel.hidden = NO;
+        self.finishImageView.hidden = YES;
         self.scoreLabel.text = [NSString stringWithFormat:@"%@分",_proces.userScore];
     }else {
+        self.finishImageView.hidden = NO;
         self.scoreLabel.hidden = YES;
     }
 }

@@ -29,16 +29,16 @@
 @end
 @implementation ExamineDetailRequest_17Item_Examine_Process
 - (NSString<Optional> *)isMockFold {
+    if (self.procesID.integerValue == 304){//在线测评不支持
+        return @"0";
+    }
+    if (self.procesID.integerValue == 1003){//附加分不支持
+        return @"0";
+    }
     if (_isMockFold == nil) {
-        if (self.procesID.integerValue == 304){//在线测评不支持
-            return @"0";
-        }
-        if (self.procesID.integerValue == 1003){//附加分不支持
-            return @"0";
-        }
-        if (self.stageID.integerValue == 0) {//非阶段下全部展开
-            return @"1";
-        }
+//        if (self.stageID.integerValue == 0) {//非阶段下全部展开
+//            return @"1";
+//        }
         if (self.isFinish.boolValue) {
             return @"0";
         }

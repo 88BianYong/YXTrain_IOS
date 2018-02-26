@@ -21,7 +21,7 @@
 #import "ExamineToolStatusRequest_17.h"
 #import "PopUpFloatingViewManager_17.h"
 #import "YXCourseDetailPlayerViewController_17.h"
-#import "YXMyExamExplainView_17.h"
+#import "YXLearningExamExplainView_DeYang17.h"
 @interface YXLearningViewController_DeYang17 ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) YXLearningTableHeaderView_DeYang17 *headerView;
@@ -136,26 +136,23 @@
     WEAK_SELF
     heaerView.learningStageHeaderViewBlock = ^(BOOL isStage) {
         STRONG_SELF
-        ExamineDetailRequest_17Item_Examine_Process *proces = self.examineDetailItem.examine.process[section];
         if (!isStage) {
-            if ([self compareDateDate:proces.startDate]) {
+            if ([self compareDateDate:proces.startDate] &&proces.stageID.integerValue != 0) {
                 [self showToast:@"阶段尚未开始"];
                 return;
             }
             proces.isMockFold = proces.isMockFold.boolValue ? @"0" : @"1";
             [tableView beginUpdates];
-            [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationNone];
+            [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
             [tableView endUpdates];
         }
-
     };
     heaerView.learningStageExplainBlock = ^(UIButton *sender) {
         STRONG_SELF
         CGRect rect = [sender convertRect:sender.bounds toView:self.navigationController.view];
         if (proces.procesID.integerValue == 304) {
-            NSString *explainString = [NSString stringWithFormat:@"手机不支持，请到电脑端完成.%@",proces.descr?:@""];
+            NSString *explainString = [NSString stringWithFormat:@"手机不支持，请到电脑端完成.<br />%@",proces.descr?:@""];
             [self showMarkWithOriginRect:rect explain:explainString];
-
         }else {
             [self showMarkWithOriginRect:rect explain:proces.descr?:@""];
         }
@@ -163,9 +160,9 @@
     return heaerView;
 }
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
-    YXMyExamExplainView_17 *v = [[YXMyExamExplainView_17 alloc]init];
+    YXLearningExamExplainView_DeYang17 *v = [[YXLearningExamExplainView_DeYang17 alloc]init];
     [v showInView:self.navigationController.view examExplain:string];
-    [v setupOriginRect:rect withToTop:(rect.origin.y - [YXMyExamExplainView_17 heightForDescription:string] - 30 > 0) ? YES : NO];
+    [v setupOriginRect:rect withToTop:(rect.origin.y - [YXLearningExamExplainView_DeYang17 heightForDescription:string] - 30 > 0) ? YES : NO];
 }
 - (BOOL)compareDateDate:(NSString*)dateString {
     NSDateFormatter *dateformater = [[NSDateFormatter alloc] init];
