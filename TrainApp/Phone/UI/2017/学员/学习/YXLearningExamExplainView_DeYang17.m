@@ -77,7 +77,7 @@
 
 - (void)showInView:(UIView *)view examExplain:(NSString *)string {
     self.frame = view.bounds;
-    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[string dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     self.explainLabel.attributedText = attrStr;
     [view addSubview:self];
     [self.explainLabel sizeToFit];

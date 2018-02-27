@@ -36,6 +36,8 @@
 @interface CourseGetQuizesRequest_17Item_Result : JSONModel
 @property (nonatomic, copy) NSString<Optional> *lastTime;
 @property (nonatomic, copy) NSString<Optional> *wrongNum;
+@property (nonatomic, copy) NSString<Optional> *maxQuizWrongTimes;//德阳项目 多少次清0
+@property (nonatomic, copy) NSString<Optional> *quizWrongTimes;//德阳项目 错误次数
 @property (nonatomic, copy) NSString<Optional> *correctNum;
 @property (nonatomic, copy) NSString<Optional> *status;
 @property (nonatomic, strong) NSArray<CourseGetQuizesRequest_17Item_Result_Questions, Optional> *questions;

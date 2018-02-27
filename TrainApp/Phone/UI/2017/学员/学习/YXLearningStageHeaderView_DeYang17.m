@@ -82,7 +82,7 @@
 - (void)setupUI {
     WEAK_SELF
     UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] init];
-    recognizer.minimumPressDuration = 0.1f;
+    recognizer.minimumPressDuration = 0.01f;
     recognizer.delegate = self;
     [[recognizer rac_gestureSignal] subscribeNext:^(UILongPressGestureRecognizer*sender) {
         STRONG_SELF

@@ -106,7 +106,7 @@
     WEAK_SELF
     VC.readingDetailFinishCompleteBlock = ^{
         STRONG_SELF
-        self.listItem.scheme.process.userFinishNum = [NSString stringWithFormat:@"%ld",self.listItem.scheme.process.userFinishNum.integerValue + 1];
+        self.listItem.scheme.process.userFinishNum = [NSString stringWithFormat:@"%d",self.listItem.scheme.process.userFinishNum.integerValue + 1];
     };
     [self.navigationController pushViewController:VC animated:YES];
 }
