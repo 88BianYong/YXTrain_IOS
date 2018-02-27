@@ -281,10 +281,6 @@
 		9229CBA21FEB609700228085 /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB8A1FEB609600228085 /* MJRefreshAutoFooter.m */; };
 		9229CBA31FEB609700228085 /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 9229CB8C1FEB609600228085 /* MJRefreshComponent.m */; };
 		922AA947202BF99900625B99 /* YXLearningViewController_Default17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922AA946202BF99900625B99 /* YXLearningViewController_Default17.m */; };
-		922AA94A202BF9BD00625B99 /* YXLearningViewController_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922AA949202BF9BD00625B99 /* YXLearningViewController_DeYang17.m */; };
-		922AA94D202C548A00625B99 /* YXLearningStageCell_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922AA94C202C548A00625B99 /* YXLearningStageCell_DeYang17.m */; };
-		922AA950202D291400625B99 /* YXLearningStageHeaderView_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922AA94F202D291400625B99 /* YXLearningStageHeaderView_DeYang17.m */; };
-		922AA954202D54D000625B99 /* YXLearningTableHeaderView_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922AA953202D54D000625B99 /* YXLearningTableHeaderView_DeYang17.m */; };
 		922DB1631FBA7C020078F6BD /* YXTabBarViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DB1611FBA7C020078F6BD /* YXTabBarViewController_17.m */; };
 		922DB1701FBA7C700078F6BD /* ActivityListCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DB1641FBA7C6C0078F6BD /* ActivityListCell_17.m */; };
 		922DB1711FBA7C700078F6BD /* ActivityFilterFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 922DB1681FBA7C6D0078F6BD /* ActivityFilterFooterView_17.m */; };
@@ -491,10 +487,7 @@
 		92780F661DD99FC300548424 /* CommentPageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92780F651DD99FC300548424 /* CommentPageListViewController.m */; };
 		927874311F01F89300A70DC0 /* VideoBeginningTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 927874301F01F89300A70DC0 /* VideoBeginningTopView.m */; };
 		9279268C1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9279268B1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.m */; };
-		9279732E2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9279732D2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m */; };
-		927973312044036C00CE79B1 /* CourseTestViewController_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 927973302044036C00CE79B1 /* CourseTestViewController_DeYang17.m */; };
 		927973342044045800CE79B1 /* CourseTestViewController_Default17.m in Sources */ = {isa = PBXBuildFile; fileRef = 927973332044045800CE79B1 /* CourseTestViewController_Default17.m */; };
-		927973372044066400CE79B1 /* CourseTestTableHeaderView_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 927973362044066400CE79B1 /* CourseTestTableHeaderView_DeYang17.m */; };
 		92797C111FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C101FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m */; };
 		92797C141FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C131FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.m */; };
 		92797C1A1FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92797C191FD8FAD800F57D1F /* MasterHappeningTableHeaderView_17.m */; };
@@ -594,6 +587,13 @@
 		92938CF11F29BD970099D49A /* CourseCenterListFetcher_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92938CF01F29BD970099D49A /* CourseCenterListFetcher_17.m */; };
 		929468071DDE8F220070C3B7 /* ActivitySlideProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 929468061DDE8F220070C3B7 /* ActivitySlideProgressView.m */; };
 		9297DB091F4E8225006F5372 /* CourseListFormatModel_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9297DB081F4E8225006F5372 /* CourseListFormatModel_17.m */; };
+		9299D9C82044F45E003F7455 /* YXLearningTableHeaderView_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299D9C02044F458003F7455 /* YXLearningTableHeaderView_DeYang17.m */; };
+		9299D9C92044F45E003F7455 /* YXLearningExamExplainView_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299D9C12044F458003F7455 /* YXLearningExamExplainView_DeYang17.m */; };
+		9299D9CA2044F45E003F7455 /* YXLearningStageHeaderView_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299D9C22044F458003F7455 /* YXLearningStageHeaderView_DeYang17.m */; };
+		9299D9CB2044F45E003F7455 /* YXLearningStageCell_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299D9C52044F459003F7455 /* YXLearningStageCell_DeYang17.m */; };
+		9299D9CC2044F45E003F7455 /* CourseTestTableHeaderView_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299D9C62044F45D003F7455 /* CourseTestTableHeaderView_DeYang17.m */; };
+		9299D9D12044F46C003F7455 /* YXLearningViewController_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299D9CD2044F46B003F7455 /* YXLearningViewController_DeYang17.m */; };
+		9299D9D22044F46C003F7455 /* CourseTestViewController_DeYang17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9299D9D02044F46C003F7455 /* CourseTestViewController_DeYang17.m */; };
 		92A10F6C1F186BAB00B37814 /* NoticeBriefMangerViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A10F6B1F186BAB00B37814 /* NoticeBriefMangerViewController_17.m */; };
 		92A10F6F1F186BC700B37814 /* NoticeListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A10F6E1F186BC700B37814 /* NoticeListViewController_17.m */; };
 		92A10F721F186BEE00B37814 /* BriefListViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A10F711F186BEE00B37814 /* BriefListViewController_17.m */; };
@@ -1421,14 +1421,6 @@
 		9229CB8E1FEB609600228085 /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
 		922AA945202BF99900625B99 /* YXLearningViewController_Default17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXLearningViewController_Default17.h; sourceTree = "<group>"; };
 		922AA946202BF99900625B99 /* YXLearningViewController_Default17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXLearningViewController_Default17.m; sourceTree = "<group>"; };
-		922AA948202BF9BD00625B99 /* YXLearningViewController_DeYang17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXLearningViewController_DeYang17.h; sourceTree = "<group>"; };
-		922AA949202BF9BD00625B99 /* YXLearningViewController_DeYang17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXLearningViewController_DeYang17.m; sourceTree = "<group>"; };
-		922AA94B202C548A00625B99 /* YXLearningStageCell_DeYang17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXLearningStageCell_DeYang17.h; sourceTree = "<group>"; };
-		922AA94C202C548A00625B99 /* YXLearningStageCell_DeYang17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXLearningStageCell_DeYang17.m; sourceTree = "<group>"; };
-		922AA94E202D291400625B99 /* YXLearningStageHeaderView_DeYang17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXLearningStageHeaderView_DeYang17.h; sourceTree = "<group>"; };
-		922AA94F202D291400625B99 /* YXLearningStageHeaderView_DeYang17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXLearningStageHeaderView_DeYang17.m; sourceTree = "<group>"; };
-		922AA952202D54D000625B99 /* YXLearningTableHeaderView_DeYang17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXLearningTableHeaderView_DeYang17.h; sourceTree = "<group>"; };
-		922AA953202D54D000625B99 /* YXLearningTableHeaderView_DeYang17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXLearningTableHeaderView_DeYang17.m; sourceTree = "<group>"; };
 		922DB1611FBA7C020078F6BD /* YXTabBarViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXTabBarViewController_17.m; sourceTree = "<group>"; };
 		922DB1621FBA7C020078F6BD /* YXTabBarViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXTabBarViewController_17.h; sourceTree = "<group>"; };
 		922DB1641FBA7C6C0078F6BD /* ActivityListCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityListCell_17.m; sourceTree = "<group>"; };
@@ -1832,14 +1824,8 @@
 		927874301F01F89300A70DC0 /* VideoBeginningTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoBeginningTopView.m; sourceTree = "<group>"; };
 		9279268A1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterFilterEmptyFooterView_17.h; sourceTree = "<group>"; };
 		9279268B1FCFE1790043B4AE /* MasterFilterEmptyFooterView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterFilterEmptyFooterView_17.m; sourceTree = "<group>"; };
-		9279732C2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXLearningExamExplainView_DeYang17.h; sourceTree = "<group>"; };
-		9279732D2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXLearningExamExplainView_DeYang17.m; sourceTree = "<group>"; };
-		9279732F2044036C00CE79B1 /* CourseTestViewController_DeYang17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseTestViewController_DeYang17.h; sourceTree = "<group>"; };
-		927973302044036C00CE79B1 /* CourseTestViewController_DeYang17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseTestViewController_DeYang17.m; sourceTree = "<group>"; };
 		927973322044045800CE79B1 /* CourseTestViewController_Default17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseTestViewController_Default17.h; sourceTree = "<group>"; };
 		927973332044045800CE79B1 /* CourseTestViewController_Default17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseTestViewController_Default17.m; sourceTree = "<group>"; };
-		927973352044066400CE79B1 /* CourseTestTableHeaderView_DeYang17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CourseTestTableHeaderView_DeYang17.h; sourceTree = "<group>"; };
-		927973362044066400CE79B1 /* CourseTestTableHeaderView_DeYang17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CourseTestTableHeaderView_DeYang17.m; sourceTree = "<group>"; };
 		92797C0F1FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectEndTimeFloatingView_17.h; sourceTree = "<group>"; };
 		92797C101FD8DC5B00F57D1F /* ProjectEndTimeFloatingView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectEndTimeFloatingView_17.m; sourceTree = "<group>"; };
 		92797C121FD8E2CE00F57D1F /* ProjectEndTimeFloatingView_16.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectEndTimeFloatingView_16.h; sourceTree = "<group>"; };
@@ -2036,6 +2022,20 @@
 		9297DB061F4E78E6006F5372 /* CourseWatchListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseWatchListViewController_17.h; sourceTree = "<group>"; };
 		9297DB071F4E8225006F5372 /* CourseListFormatModel_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListFormatModel_17.h; sourceTree = "<group>"; };
 		9297DB081F4E8225006F5372 /* CourseListFormatModel_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListFormatModel_17.m; sourceTree = "<group>"; };
+		9299D9BE2044F457003F7455 /* YXLearningStageHeaderView_DeYang17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningStageHeaderView_DeYang17.h; sourceTree = "<group>"; };
+		9299D9BF2044F458003F7455 /* YXLearningStageCell_DeYang17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningStageCell_DeYang17.h; sourceTree = "<group>"; };
+		9299D9C02044F458003F7455 /* YXLearningTableHeaderView_DeYang17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningTableHeaderView_DeYang17.m; sourceTree = "<group>"; };
+		9299D9C12044F458003F7455 /* YXLearningExamExplainView_DeYang17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningExamExplainView_DeYang17.m; sourceTree = "<group>"; };
+		9299D9C22044F458003F7455 /* YXLearningStageHeaderView_DeYang17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningStageHeaderView_DeYang17.m; sourceTree = "<group>"; };
+		9299D9C32044F458003F7455 /* CourseTestTableHeaderView_DeYang17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseTestTableHeaderView_DeYang17.h; sourceTree = "<group>"; };
+		9299D9C42044F458003F7455 /* YXLearningTableHeaderView_DeYang17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningTableHeaderView_DeYang17.h; sourceTree = "<group>"; };
+		9299D9C52044F459003F7455 /* YXLearningStageCell_DeYang17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningStageCell_DeYang17.m; sourceTree = "<group>"; };
+		9299D9C62044F45D003F7455 /* CourseTestTableHeaderView_DeYang17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseTestTableHeaderView_DeYang17.m; sourceTree = "<group>"; };
+		9299D9C72044F45D003F7455 /* YXLearningExamExplainView_DeYang17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningExamExplainView_DeYang17.h; sourceTree = "<group>"; };
+		9299D9CD2044F46B003F7455 /* YXLearningViewController_DeYang17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXLearningViewController_DeYang17.m; sourceTree = "<group>"; };
+		9299D9CE2044F46B003F7455 /* YXLearningViewController_DeYang17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXLearningViewController_DeYang17.h; sourceTree = "<group>"; };
+		9299D9CF2044F46C003F7455 /* CourseTestViewController_DeYang17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseTestViewController_DeYang17.h; sourceTree = "<group>"; };
+		9299D9D02044F46C003F7455 /* CourseTestViewController_DeYang17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseTestViewController_DeYang17.m; sourceTree = "<group>"; };
 		92A10F6A1F186BAB00B37814 /* NoticeBriefMangerViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeBriefMangerViewController_17.h; sourceTree = "<group>"; };
 		92A10F6B1F186BAB00B37814 /* NoticeBriefMangerViewController_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeBriefMangerViewController_17.m; sourceTree = "<group>"; };
 		92A10F6D1F186BC700B37814 /* NoticeListViewController_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeListViewController_17.h; sourceTree = "<group>"; };
@@ -3871,24 +3871,10 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		922AA951202D54AD00625B99 /* 德阳 */ = {
-			isa = PBXGroup;
-			children = (
-				922AA94B202C548A00625B99 /* YXLearningStageCell_DeYang17.h */,
-				922AA94C202C548A00625B99 /* YXLearningStageCell_DeYang17.m */,
-				922AA94E202D291400625B99 /* YXLearningStageHeaderView_DeYang17.h */,
-				922AA94F202D291400625B99 /* YXLearningStageHeaderView_DeYang17.m */,
-				922AA952202D54D000625B99 /* YXLearningTableHeaderView_DeYang17.h */,
-				922AA953202D54D000625B99 /* YXLearningTableHeaderView_DeYang17.m */,
-				9279732C2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.h */,
-				9279732D2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m */,
-			);
-			name = "德阳";
-			sourceTree = "<group>";
-		};
 		922DB1791FBA7C860078F6BD /* 学员 */ = {
 			isa = PBXGroup;
 			children = (
+				9299D9B52044F343003F7455 /* 德阳 */,
 				927B6C601F0F3B230082DB27 /* 弹出 */,
 				92E268B51F0E1D790022EA5A /* 主界面 */,
 				92A791641F0E20B000E3D258 /* 学习 */,
@@ -4860,8 +4846,6 @@
 				922DB17C1FBA7F690078F6BD /* CourseTestViewController_17.m */,
 				927973322044045800CE79B1 /* CourseTestViewController_Default17.h */,
 				927973332044045800CE79B1 /* CourseTestViewController_Default17.m */,
-				9279732F2044036C00CE79B1 /* CourseTestViewController_DeYang17.h */,
-				927973302044036C00CE79B1 /* CourseTestViewController_DeYang17.m */,
 				922DB1841FBA7F6B0078F6BD /* VideoCourseDetailViewController_17.h */,
 				922DB17F1FBA7F6A0078F6BD /* VideoCourseDetailViewController_17.m */,
 				922DB1811FBA7F6A0078F6BD /* YXCourseDetailPlayerViewController_17.h */,
@@ -4917,8 +4901,6 @@
 				922DB1981FBA7FC00078F6BD /* CourseTestPassTableHeaderView_17.m */,
 				922DB1941FBA7FBF0078F6BD /* CourseTestTableHeaderView_17.h */,
 				922DB19C1FBA7FC10078F6BD /* CourseTestTableHeaderView_17.m */,
-				927973352044066400CE79B1 /* CourseTestTableHeaderView_DeYang17.h */,
-				927973362044066400CE79B1 /* CourseTestTableHeaderView_DeYang17.m */,
 				922DB1931FBA7FBF0078F6BD /* FilterMaskView_17.h */,
 				922DB1951FBA7FBF0078F6BD /* FilterMaskView_17.m */,
 			);
@@ -5196,6 +5178,43 @@
 			path = "德阳项目";
 			sourceTree = "<group>";
 		};
+		9299D9B52044F343003F7455 /* 德阳 */ = {
+			isa = PBXGroup;
+			children = (
+				9299D9BD2044F437003F7455 /* controller */,
+				9299D9B82044F403003F7455 /* view */,
+			);
+			path = "德阳";
+			sourceTree = "<group>";
+		};
+		9299D9B82044F403003F7455 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				9299D9C32044F458003F7455 /* CourseTestTableHeaderView_DeYang17.h */,
+				9299D9C62044F45D003F7455 /* CourseTestTableHeaderView_DeYang17.m */,
+				9299D9C72044F45D003F7455 /* YXLearningExamExplainView_DeYang17.h */,
+				9299D9C12044F458003F7455 /* YXLearningExamExplainView_DeYang17.m */,
+				9299D9BF2044F458003F7455 /* YXLearningStageCell_DeYang17.h */,
+				9299D9C52044F459003F7455 /* YXLearningStageCell_DeYang17.m */,
+				9299D9BE2044F457003F7455 /* YXLearningStageHeaderView_DeYang17.h */,
+				9299D9C22044F458003F7455 /* YXLearningStageHeaderView_DeYang17.m */,
+				9299D9C42044F458003F7455 /* YXLearningTableHeaderView_DeYang17.h */,
+				9299D9C02044F458003F7455 /* YXLearningTableHeaderView_DeYang17.m */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		9299D9BD2044F437003F7455 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				9299D9CF2044F46C003F7455 /* CourseTestViewController_DeYang17.h */,
+				9299D9D02044F46C003F7455 /* CourseTestViewController_DeYang17.m */,
+				9299D9CE2044F46B003F7455 /* YXLearningViewController_DeYang17.h */,
+				9299D9CD2044F46B003F7455 /* YXLearningViewController_DeYang17.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
 		92A10F631F186A4E00B37814 /* 通知简报 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5245,7 +5264,6 @@
 		92A791651F0E20C300E3D258 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				922AA951202D54AD00625B99 /* 德阳 */,
 				9272D52F1F1748270010B177 /* YXLearningTableHeaderView_17.h */,
 				927B6C801F136B470082DB27 /* YXLearningTableHeaderView_17.m */,
 				92E4F9B41F1629A2001CB34E /* YXLearningStageHeaderView_17.h */,
@@ -5265,8 +5283,6 @@
 				92A791621F0E20AB00E3D258 /* YXLearningViewManagerController_17.m */,
 				922AA945202BF99900625B99 /* YXLearningViewController_Default17.h */,
 				922AA946202BF99900625B99 /* YXLearningViewController_Default17.m */,
-				922AA948202BF9BD00625B99 /* YXLearningViewController_DeYang17.h */,
-				922AA949202BF9BD00625B99 /* YXLearningViewController_DeYang17.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -6470,6 +6486,7 @@
 				92E927BC1F1E0C0B00BEF834 /* ReadingListViewController_17.m in Sources */,
 				928BBC181DFFDBFB00F1FBCB /* AppDelegate.m in Sources */,
 				92FD5A551ED7DB4A00D3EBA1 /* VideoCourseCommentFooterView.m in Sources */,
+				9299D9D12044F46C003F7455 /* YXLearningViewController_DeYang17.m in Sources */,
 				92131F671E94B77C00643314 /* YXNoFloatingHeaderFooterTableView.m in Sources */,
 				928587401FCE595A0030D7B1 /* MasterOffActiveJoinUsersRequest_17.m in Sources */,
 				922661C11E8A0F19006DE8A4 /* VideoClassworkManager.m in Sources */,
@@ -6537,7 +6554,6 @@
 				92551E071FBBE5060034DC71 /* LSTCollectionFilterFooterView.m in Sources */,
 				927B6C5C1F0F3A5E0082DB27 /* YXPopUpContainerView.m in Sources */,
 				922197211FD63F0700C4A9DC /* MasterOverallRatingListRequest_17.m in Sources */,
-				9279732E2043E7E300CE79B1 /* YXLearningExamExplainView_DeYang17.m in Sources */,
 				92938CF11F29BD970099D49A /* CourseCenterListFetcher_17.m in Sources */,
 				925F4B011FBA96FC003FB2FC /* RootViewControllerManger_17.m in Sources */,
 				92348FDF1EEFEF2A00D3B3A7 /* MasterLearningInfoListRequest.m in Sources */,
@@ -6581,7 +6597,6 @@
 				7CF8880C1D17D4E100E7C04D /* PagedListViewControllerBase.m in Sources */,
 				7CF8881D1D17E51E00E7C04D /* LePlayerView.m in Sources */,
 				92348FC51EEFEDEA00D3B3A7 /* StudentExamHeaderView.m in Sources */,
-				922AA94A202BF9BD00625B99 /* YXLearningViewController_DeYang17.m in Sources */,
 				922DB1B61FBA83550078F6BD /* CourseDetailContainerView_17.m in Sources */,
 				9229CB9C1FEB609600228085 /* MJRefreshNormalHeader.m in Sources */,
 				92A785181FBD79F7007502A4 /* PersonLearningInfoRequest_17.m in Sources */,
@@ -6614,6 +6629,7 @@
 				CBF66E281D2E36EE00F4E408 /* YXUserProfile.m in Sources */,
 				CBB62E091D2CB98300DAA6DE /* NSDate+Utilities.m in Sources */,
 				92348FC41EEFEDEA00D3B3A7 /* RemindLeftSlipView.m in Sources */,
+				9299D9C82044F45E003F7455 /* YXLearningTableHeaderView_DeYang17.m in Sources */,
 				E9BBA6061DD09530000CA413 /* ActivityListRequest.m in Sources */,
 				92551E2E1FBC33BE0034DC71 /* MasterExamTopicCell_17.m in Sources */,
 				92551E281FBC1ECB0034DC71 /* WCGraintCircleLayer.m in Sources */,
@@ -6645,7 +6661,6 @@
 				7CF8880F1D17D4FD00E7C04D /* YXCommonErrorView.m in Sources */,
 				920F1D541D53332600636A51 /* YXCategoryListRequest.m in Sources */,
 				92007EBA1ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m in Sources */,
-				922AA954202D54D000625B99 /* YXLearningTableHeaderView_DeYang17.m in Sources */,
 				928B7A5C1E88C63C0067218A /* DeYangCourseRecordViewController.m in Sources */,
 				928B7A401E88B2180067218A /* BeijingCourseViewController.m in Sources */,
 				CB227EA21D34AB4C00D5327B /* YXGuideViewController.m in Sources */,
@@ -6703,6 +6718,7 @@
 				924C9A0D1EA735A20017B31B /* TrainGeTuiManger.m in Sources */,
 				928587461FCE5FCD0030D7B1 /* MasterOffActiveDescriptionViewController_17.m in Sources */,
 				CBB62E131D2CCB0F00DAA6DE /* YXBroseWebView.m in Sources */,
+				9299D9CB2044F45E003F7455 /* YXLearningStageCell_DeYang17.m in Sources */,
 				92FED8851DD18B1600457228 /* ActivityCommentInputView.m in Sources */,
 				E935D87C1E00E0A6005CC8BD /* UnhandledRequestData.m in Sources */,
 				92C79DDA1FBE7FC200DB141D /* MasterMainTableHeaderView_17.m in Sources */,
@@ -6730,6 +6746,7 @@
 				CB2CF34B1D1BE9AD00E76B34 /* YXLoginTextFiledView.m in Sources */,
 				922901591DE57971001474CE /* CommentLaudRequest.m in Sources */,
 				7C2C3B3D1D212D6700A03635 /* YXScoreLeadScoreCell.m in Sources */,
+				9299D9C92044F45E003F7455 /* YXLearningExamExplainView_DeYang17.m in Sources */,
 				928B7A3A1E88B2180067218A /* BeijingActivityListViewController.m in Sources */,
 				92551E211FBBEEE80034DC71 /* MasterLearningInfoCell_17.m in Sources */,
 				7C2C3B5A1D23BEE100A03635 /* YXCourseListFetcher.m in Sources */,
@@ -6897,8 +6914,10 @@
 				7C3177C81D10F46B004AAC90 /* YXBaseViewController.m in Sources */,
 				92E9715D1ED58CB400DEAAD4 /* VideoCourseIntroductionHeaderView.m in Sources */,
 				92853ED01FFB31F300B6F290 /* YXStatisticRequest.m in Sources */,
+				9299D9CA2044F45E003F7455 /* YXLearningStageHeaderView_DeYang17.m in Sources */,
 				927B6C811F136B470082DB27 /* YXLearningTableHeaderView_17.m in Sources */,
 				920F1D2D1D50AA2D00636A51 /* YXTrainConst.m in Sources */,
+				9299D9CC2044F45E003F7455 /* CourseTestTableHeaderView_DeYang17.m in Sources */,
 				920F1D331D519A0900636A51 /* YXHomeworkInfoRequest.m in Sources */,
 				922DB1A21FBA7FC20078F6BD /* CourseTestTableHeaderView_17.m in Sources */,
 				924AB2661DE43EC9003EC952 /* ActivityEnclosureViewController.m in Sources */,
@@ -6942,7 +6961,6 @@
 				928587791FCE8F1C0030D7B1 /* MasterHomeworkSetListDetailRequest_17.m in Sources */,
 				922DB1921FBA7F860078F6BD /* YXPlayerBeginningView.m in Sources */,
 				927B6C841F1376470082DB27 /* YXMessageCell_17.m in Sources */,
-				927973312044036C00CE79B1 /* CourseTestViewController_DeYang17.m in Sources */,
 				CB0904D01D1AA3CC00026C9D /* PersistentUrlDownloader.m in Sources */,
 				7C3177F01D11750D004AAC90 /* YXFileHtmlItem.m in Sources */,
 				92676C0B1FCBF276003EC6AC /* MasterManageDetailActiveViewController_17.m in Sources */,
@@ -7082,9 +7100,9 @@
 				92C79DDD1FBE7FF300DB141D /* MasterMainHeaderView_17.m in Sources */,
 				92348FC61EEFEDEA00D3B3A7 /* StudentExamPhaseHeaderView.m in Sources */,
 				924BE4161FC3CD4100B7EECA /* MasterHomeworkDetailTableHeaderView_17.m in Sources */,
-				922AA950202D291400625B99 /* YXLearningStageHeaderView_DeYang17.m in Sources */,
 				920F1D741D59C38E00636A51 /* YXHomeworkInfoNoRecordCell.m in Sources */,
 				CBF66E4D1D2F8FE500F4E408 /* YXProvinceList.m in Sources */,
+				9299D9D22044F46C003F7455 /* CourseTestViewController_DeYang17.m in Sources */,
 				92E927AB1F1DDCEB00BEF834 /* NoticeBriefCell_17.m in Sources */,
 				92CE56001E55C8AB002C1F11 /* UserStatusView.m in Sources */,
 				92E4F9AF1F15C0A8001CB34E /* CourseListRequest_17.m in Sources */,
@@ -7184,7 +7202,6 @@
 				7C2C3B8E1D2508E200A03635 /* YXCourseRecordFooterView.m in Sources */,
 				9241FFDC1E1F39E30015B587 /* ActivityDelReplyRequest.m in Sources */,
 				7C3177FB1D1177F9004AAC90 /* BaseDownloader.m in Sources */,
-				927973372044066400CE79B1 /* CourseTestTableHeaderView_DeYang17.m in Sources */,
 				92676C141FCC0B0F003EC6AC /* MasterDetailActiveTableHeaderView_17.m in Sources */,
 				922DB1A41FBA7FC20078F6BD /* CourseTestNotPassTableHeaderView_17.m in Sources */,
 				924BE42C1FC65E2F00B7EECA /* YXMyLearningUserScoreView.m in Sources */,
@@ -7256,7 +7273,6 @@
 				9292DC591E9E3131008C6A14 /* YXActivityListBaseViewController.m in Sources */,
 				7C3178241D129C01004AAC90 /* ReaderContentTile.m in Sources */,
 				92E9715A1ED5801500DEAAD4 /* OLImageView.m in Sources */,
-				922AA94D202C548A00625B99 /* YXLearningStageCell_DeYang17.m in Sources */,
 				92853ECE1FFB31F300B6F290 /* LaunchAppItem.m in Sources */,
 				7C3177811D0E8A1D004AAC90 /* GlobalUtils.m in Sources */,
 			);
