@@ -41,6 +41,7 @@
         WEAK_SELF
         [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLogoutSuccessNotification object:nil] subscribeNext:^(id x) {
             STRONG_SELF
+            self.floatingManager17.scoreString = nil;
             self->_floatingViewManager = nil;
 //            self->_trainManager = nil;
 //            self->_geTuiManger = nil;

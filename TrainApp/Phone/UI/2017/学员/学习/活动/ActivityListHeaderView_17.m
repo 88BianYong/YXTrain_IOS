@@ -19,6 +19,7 @@
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         self.contentView.backgroundColor = [UIColor whiteColor];
+        self.contentView.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
     }
@@ -27,6 +28,10 @@
 #pragma mark - set
 - (void)setScheme:(ActivityListRequestItem_body_scheme<Optional> *)scheme {
     _scheme = scheme;
+    if (_scheme.scheme.finishNum.integerValue == 0) {
+        self.mainPointLabel.text = @"无考核要求";
+        return;
+    }
     self.mainPointLabel.text = [NSString stringWithFormat:@"需要参加%@个活动",_scheme.scheme.finishNum];
     self.progressView.progress = _scheme.process.userFinishNum.floatValue / _scheme.scheme.finishNum.floatValue;
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_scheme.process.userFinishNum,_scheme.scheme.finishNum]];

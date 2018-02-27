@@ -30,6 +30,11 @@
 #pragma mark - set
 - (void)setScheme:(HomeworkListRequest_17Item_Scheme *)scheme {
     _scheme = scheme;
+    if (_scheme.scheme.finishNum.integerValue == 0) {
+        self.mainPointLabel.text = @"无考核要求";
+        self.explainButton.hidden = YES;
+        return;
+    }
     self.mainPointLabel.text = [self mainPointContent:_scheme];
     self.progressView.progress = [_scheme.process.userFinishNum floatValue]/[_scheme.scheme.finishNum floatValue];
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ / %@",_scheme.process.userFinishNum,_scheme.scheme.finishNum]];

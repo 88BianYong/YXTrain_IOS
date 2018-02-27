@@ -61,20 +61,11 @@
         [self showUpgradeView];
     }else if ([self isGreetingCard] || self.isCard ) {
         [self showNewYearsGreetingCard];
-    }else if ([self isExamineUserScore] || self.isScore) {
-        if ([LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue == 1) {//德阳端不显示浮层提示 2-27 王小翠
-            return;
-        }
+    }else if (([self isExamineUserScore] || self.isScore) && [LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue != 1){//德阳端不显示浮层提示 2-27 王小翠
         [self showExamineUserScore];
-    }else if ([self isExamineNoticeBrief] || self.isNotice) {
-        if ([LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue == 1) {//德阳端不显示浮层提示 2-27 王小翠
-            return;
-        }
+    }else if (([self isExamineNoticeBrief] || self.isNotice)&& [LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue != 1) {
         [self showExamineNoticeBrief];
-    }else if ([self isFinishStudyStep] || self.isStep) {
-        if ([LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue == 1) {//德阳端不显示浮层提示 2-27 王小翠
-            return;
-        }
+    }else if (([self isFinishStudyStep] || self.isStep) && [LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue != 1) {
         [self showFinishStudyStep];
     }else if ([self isProjectEndTime] || self.isEndTime) {
         [self showProjectEndTime];
@@ -329,8 +320,7 @@
 }
 - (BOOL)isProjectEndTime {
     NSString *key = [NSString stringWithFormat:@"%@%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.pid,[LSTSharedInstance sharedInstance].trainManager.currentProject.w];
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:key] && ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue  == 0) &&
-    self.scoreString != nil;
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:key] && ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue  == 0);
 }
 
 @end

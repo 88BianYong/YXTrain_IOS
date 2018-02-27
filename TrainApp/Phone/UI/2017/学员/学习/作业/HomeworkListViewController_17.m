@@ -159,7 +159,7 @@
     if (indexPath.section == 0) {
         HomeworkListRequest_17Item_Scheme *obj = self.listItem.scheme[indexPath.row];
         if (obj.scheme.finishNum.integerValue == 0) {
-            return 0.00001f;
+            return 38;
         }
         return 60.0f;
     }else {

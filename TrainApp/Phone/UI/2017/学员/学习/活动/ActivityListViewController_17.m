@@ -161,6 +161,9 @@
     return 104;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (self.schemeItem.scheme.finishNum.integerValue == 0) {//有考核要求但为0 显示无考核要求
+        return 45.0f;
+    }
     return 70.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {

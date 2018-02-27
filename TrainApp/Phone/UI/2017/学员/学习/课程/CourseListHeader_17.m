@@ -27,6 +27,10 @@
 #pragma mark - set
 - (void)setScheme:(CourseListRequest_17Item_Scheme *)scheme {
     _scheme = scheme;
+    if (_scheme.scheme.finishNum.integerValue == 0) {
+        self.mainPointLabel.text = @"无考核要求";
+        return;
+    }
     if (_scheme.scheme.type.integerValue == 0) {//时长
         self.mainPointLabel.text = [NSString stringWithFormat:@"需要观看%@分钟课程",_scheme.scheme.finishNum];
     }else {
