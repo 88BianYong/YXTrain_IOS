@@ -25,7 +25,12 @@
 #pragma mark - set
 - (void)setResult:(CourseGetQuizesRequest_17Item_Result *)result {
     _result = result;
-    self.explainLabel.text = [NSString stringWithFormat:@"如果测验提交%@次都没有合格，需要重新看课并达到看课时长才能做测验，您已经答错%@次.\n需要答对%.0f道及以上的题目才能通过课程测验",_result.maxQuizWrongTimes,_result.quizWrongTimes,ceil((float)_result.questions.count/10.0f*6.0f)];
+    NSString *firstString = [NSString stringWithFormat:@"如果测验提交%@次都没有合格，需要重新看课并达到看课时长才能做测验，您已经答错%@次.",_result.maxQuizWrongTimes,_result.quizWrongTimes];
+    NSString *secondString = [NSString stringWithFormat:@"需要答对%.0f道及以上的题目才能通过课程测验",ceil((float)_result.questions.count/10.0f*6.0f)];
+    NSString *contentString = [NSString stringWithFormat:@"%@\n%@",firstString,secondString];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:contentString];
+    [ attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, firstString.length)];
+    self.explainLabel.attributedText = attributedString;
     if (_result.status.integerValue == 0) {
         _lastAnswerLabel.text = [NSString stringWithFormat:@"上次作答结果:(答对%@道,答错%@道),%@",_result.correctNum,_result.wrongNum,_result.lastTime];
         _lastAnswerLabel.hidden = NO;
