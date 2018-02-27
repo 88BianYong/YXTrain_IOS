@@ -59,13 +59,22 @@
         [self showCMSView];
     }else if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade) {
         [self showUpgradeView];
-    }else if ([self isGreetingCard] || self.isCard) {
+    }else if ([self isGreetingCard] || self.isCard ) {
         [self showNewYearsGreetingCard];
     }else if ([self isExamineUserScore] || self.isScore) {
+        if ([LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue == 1) {//德阳端不显示浮层提示 2-27 王小翠
+            return;
+        }
         [self showExamineUserScore];
     }else if ([self isExamineNoticeBrief] || self.isNotice) {
+        if ([LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue == 1) {//德阳端不显示浮层提示 2-27 王小翠
+            return;
+        }
         [self showExamineNoticeBrief];
     }else if ([self isFinishStudyStep] || self.isStep) {
+        if ([LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue == 1) {//德阳端不显示浮层提示 2-27 王小翠
+            return;
+        }
         [self showFinishStudyStep];
     }else if ([self isProjectEndTime] || self.isEndTime) {
         [self showProjectEndTime];

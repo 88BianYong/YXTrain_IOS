@@ -254,13 +254,13 @@
         }else if (tool.toolID.integerValue == 1011) {
             [self showToast:@"请进入[研修宝]完成"];
         }else if (tool.toolID.integerValue == 1001) {
-            [self showToast:@"手机不支持,请到电脑完成"];
+            [self showToast:@"手机不支持,请到电脑端完成"];
         }else if (tool.toolID.integerValue == 1002) {
-            [self showToast:@"手机不支持,请到电脑完成"];
+            [self showToast:@"手机不支持,请到电脑端完成"];
         }else if (tool.toolID.integerValue == 218) {
-            [self showToast:@"手机不支持,请到电脑完成"];
+            [self showToast:@"手机不支持,请到电脑端完成"];
         }else {
-            [self showToast:@"手机不支持,请到电脑完成"];
+            [self showToast:@"手机不支持,请到电脑端完成"];
         }
     };
     return cell;
