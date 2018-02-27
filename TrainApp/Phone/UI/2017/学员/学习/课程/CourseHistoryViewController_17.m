@@ -122,7 +122,7 @@
         vc.fromWhere = VideoCourseFromWhere_Detail;
         [self.navigationController pushViewController:vc animated:YES];
     }else {
-        [self showToast:@"手机端暂不支持播放该视频，请到PC端观看"];
+        [self showToast:@"手机端暂不支持播放该视频，请到电脑端观看"];
     }
 }
 @end
