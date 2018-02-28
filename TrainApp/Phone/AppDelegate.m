@@ -25,7 +25,6 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if([launchOptions objectForKey:UIApplicationLaunchOptionsURLKey] && [[LSTSharedInstance sharedInstance].userManger isLogin]){
          self.appDelegateHelper.scanCodeUrl = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
@@ -38,8 +37,6 @@
     // 内部统计
     [YXNewRecordManager startRegularReport];
     [self addLaunchAppStatisticWithType:YXRecordStartType];
-    
-    
     //七鱼
     [[QYSDK sharedSDK] registerAppId:@"5c8fda4d1143b9639ef44ef089f387dd" appName:@"手机研修"];
     
