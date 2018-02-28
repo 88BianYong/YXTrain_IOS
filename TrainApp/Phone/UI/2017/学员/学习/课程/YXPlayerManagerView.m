@@ -440,7 +440,9 @@
             if (self.bottomView.slideProgressControl.playProgress > 0) { // walkthrough 换url时slide跳动
                 [self.bottomView.slideProgressControl updateUI];
             }
-            self.playTime += 1;
+            if (self.pauseStatus == YXPlayerManagerPause_Not) {
+                self.playTime += 1;
+            }
         }
         BLOCK_EXEC(self.playerManagerSlideActionBlock,self.player.duration * self.bottomView.slideProgressControl.playProgress ,NO);
     }];
