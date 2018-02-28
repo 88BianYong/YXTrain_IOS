@@ -81,8 +81,8 @@
 #pragma mark - setupUI
 - (void)setupUI {
     WEAK_SELF
-    UILongPressGestureRecognizer *recognizer = [[UILongPressGestureRecognizer alloc] init];
-    recognizer.minimumPressDuration = 0.01f;
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] init];
+//    recognizer.minimumPressDuration = 0.01f;
     recognizer.delegate = self;
     [[recognizer rac_gestureSignal] subscribeNext:^(UILongPressGestureRecognizer*sender) {
         STRONG_SELF
