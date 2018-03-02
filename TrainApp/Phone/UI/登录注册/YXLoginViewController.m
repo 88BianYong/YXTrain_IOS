@@ -231,6 +231,10 @@
     [registerView setTextFiledViewBackgroundColor:[UIColor colorWithHexString:@"dae2eb"]];
     [registerView setTextFiledEditedBackgroundColor:[UIColor colorWithHexString:@"bbc2c9"]];
     [registerView setPlaceHolderWithString:@"手机号／身份证／邮箱" keyType:UIKeyboardTypeDefault isSecure:NO];
+    NSString *accountString = [[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainAccountNumber];
+    if (!isEmpty(accountString)) {
+        [registerView setText:accountString];
+    }
     registerView.textChangedBlock = ^(NSString *registerNumber){
         @strongify(self)
         if (!self) {
@@ -367,6 +371,9 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [self stopLoading];
                 [self saveUserDataWithLoginItem:retItem];
+                [[NSUserDefaults standardUserDefaults] setObject:[self.registerNumber yx_safeString] forKey:kYXTrainAccountNumber];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+ 
             });
 //            if ([item.actiFlag integerValue] == 1) {
 //                //[self showToast:@"登录成功"];
@@ -406,7 +413,6 @@
     [[LSTSharedInstance sharedInstance].userManger login];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
@@ -419,6 +425,4 @@
     self.navigationController.navigationBar.hidden = NO;
     [[IQKeyboardManager sharedManager] setEnable:NO];
 }
-
-
 @end

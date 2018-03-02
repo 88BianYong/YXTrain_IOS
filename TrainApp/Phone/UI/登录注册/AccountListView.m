@@ -104,5 +104,4 @@
     Account *account = self.groups[indexPath.section].accounts[indexPath.row];
     BLOCK_EXEC(self.accountSelectBlock,account.name,account.password);
 }
-
 @end

@@ -210,6 +210,11 @@ extern NSString *const kYXTrainRefreshHomeworkSet;
  */
 extern NSString *const kYXTrainReadingClassRecordsCleared;
 
+/*
+ *  储存登录账号
+ */
+extern NSString *const kYXTrainAccountNumber;
+
 
 
 
