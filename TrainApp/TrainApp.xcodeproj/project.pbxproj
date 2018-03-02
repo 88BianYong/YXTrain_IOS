@@ -324,6 +324,7 @@
 		922F3AD11D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD01D2B5AF900CBF7C3 /* YXWorkshopDetailHeaderView.m */; };
 		922F3AD41D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD31D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m */; };
 		922F3AD71D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */; };
+		922F93A7204949B600B0EEB5 /* account.json in Resources */ = {isa = PBXBuildFile; fileRef = 922F93A6204949B600B0EEB5 /* account.json */; };
 		923063AE1EDE566A003AE660 /* QRCodeFloatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923063AD1EDE566A003AE660 /* QRCodeFloatingView.m */; };
 		923237161D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237151D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.m */; };
 		9232371A1D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 923237191D659B5200FDACFE /* YXUpdVideoHomeworkRequest.m */; };
@@ -1508,6 +1509,7 @@
 		922F3AD31D2B830900CBF7C3 /* YXWorkshopDetailGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailGroupCell.m; sourceTree = "<group>"; };
 		922F3AD51D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXWorkshopDetailInfoCell.h; sourceTree = "<group>"; };
 		922F3AD61D2B839A00CBF7C3 /* YXWorkshopDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXWorkshopDetailInfoCell.m; sourceTree = "<group>"; };
+		922F93A6204949B600B0EEB5 /* account.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = account.json; sourceTree = "<group>"; };
 		923063AC1EDE566A003AE660 /* QRCodeFloatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeFloatingView.h; sourceTree = "<group>"; };
 		923063AD1EDE566A003AE660 /* QRCodeFloatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeFloatingView.m; sourceTree = "<group>"; };
 		923237141D64089200FDACFE /* YXHomeworkInfoFinishHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXHomeworkInfoFinishHeaderView.h; sourceTree = "<group>"; };
@@ -5856,6 +5858,7 @@
 		CB0904D51D1BC74400026C9D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				922F93A6204949B600B0EEB5 /* account.json */,
 				CB7462621D1D44F10065113A /* YXScanQRBackgroundView.h */,
 				CB7462631D1D44F10065113A /* YXScanQRBackgroundView.m */,
 				CB2CF34F1D1CDD8100E76B34 /* YXMiddlePlaceholderTextField.h */,
@@ -6348,6 +6351,7 @@
 				923237591D81122700FDACFE /* provinceData.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
+				922F93A7204949B600B0EEB5 /* account.json in Resources */,
 				7C31778C1D0EA598004AAC90 /* MockConfig.plist in Resources */,
 				92348FDE1EEFEF2A00D3B3A7 /* masterLearningInfoList_mock.json in Resources */,
 				7C3F25921D20D11800F0A17A /* tasklist_mock.json in Resources */,

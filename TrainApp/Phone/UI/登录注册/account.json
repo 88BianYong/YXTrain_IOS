@@ -1,0 +1,69 @@
+ [
+  {
+  "groupContent": [
+                   {
+                   "userName": "xy00273991@yanxiu.com",
+                   "password": "123456"
+                   }
+                   ],
+  "groupName": "2016项目学员"
+  },
+  {
+  "groupContent": [
+                   {
+                   "userName": "jyy24294@yanxiu.com",
+                   "password": "123456"
+                   }
+                   ],
+  "groupName": "2016项目坊主,德阳,学员"
+  },
+  {
+  "groupContent": [
+                   {
+                   "userName": "jyy04624@yanxiu.com",
+                   "password": "123456"
+                   }
+                   ],
+  "groupName": "多项目"
+  },
+  {
+  "groupContent": [
+                   {
+                   "userName": "xy00000163@yanxiu.com",
+                   "password": "123456"
+                   },
+                   {
+                   "userName": "xy00000545@yanxiu.com",
+                   "password": "888888"
+                   }
+                   ],
+  "groupName": "17德阳学员"
+  },
+  {
+  "groupContent": [
+                   {
+                   "userName": "jyy04438@yanxiu.com",
+                   "password": "123456"
+                   }
+                   ],
+  "groupName": "17德阳坊主"
+  },
+  {
+  "groupContent": [
+                   {
+                   "userName": "JYY04501@yanxiu.com",
+                   "password": "888888"
+                   }
+                   ],
+  "groupName": "17坊主"
+  },
+  {
+  "groupContent": [
+                   {
+                   "userName": "xy00000450@yanxiu.com",
+                   "password": "888888"
+                   }
+                   ],
+  "groupName": "17学员"
+  }
+  ]

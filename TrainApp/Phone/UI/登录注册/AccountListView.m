@@ -39,12 +39,13 @@
 //////////////////////////////////////////////
 
 @interface AccountListView ()<UITableViewDataSource,UITableViewDelegate>
-@property (nonatomic, strong) NSArray<__kindof AccountGroup *> *groups;
+@property (nonatomic, strong) NSMutableArray<__kindof AccountGroup *> *groups;
 @end
 @implementation AccountListView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.groups = [[NSMutableArray<__kindof AccountGroup*> alloc] init];
         [self setupData];
         [self setupUI];
     }
@@ -52,24 +53,20 @@
 }
 
 - (void)setupData {
-    Account *a11 = [Account accountWithName:@"test2016@yanxiu.com" password:@"123456"];
-    Account *a12 = [Account accountWithName:@"jyy24294@yanxiu.com" password:@"123456"];
-    AccountGroup *g1 = [AccountGroup accountGroupWithName:@"16测试环境帐号" accounts:@[a11,a12]];
-    
-    Account *a21 = [Account accountWithName:@"XY03318570@yanxiu.com" password:@"888888"];
-    Account *a22 = [Account accountWithName:@"XY02698346@yanxiu.com" password:@"888888"];
-    Account *a23 = [Account accountWithName:@"XY02693619@yanxiu.com" password:@"123456"];
-    AccountGroup *g2 = [AccountGroup accountGroupWithName:@"16正式环境帐号" accounts:@[a21,a22,a23]];
-    
-    Account *a31 = [Account accountWithName:@"JYY04438@yanxiu.com" password:@"123456"];
-    Account *a32 = [Account accountWithName:@"jyy04624@yanxiu.com" password:@"888888"];
-    Account *a33 = [Account accountWithName:@"XY00000163@yanxiu.com" password:@"123456"];
-    Account *a34 = [Account accountWithName:@"XY00000193@yanxiu.com" password:@"888888"];
-    AccountGroup *g3 = [AccountGroup accountGroupWithName:@"17坊主测试环境帐号" accounts:@[a31,a32,a33,a34]];
-    
-    Account *a51 = [Account accountWithName:@"XY03019240@yanxiu.com" password:@"123456"];
-    AccountGroup *g4 = [AccountGroup accountGroupWithName:@"17坊主正式环境帐号" accounts:@[a51]];
-    self.groups = @[g1,g2,g3,g4];
+    NSString *filepath = [[NSBundle mainBundle] pathForResource:@"account" ofType:@"json"];
+    NSString *jsonString = [NSString stringWithContentsOfFile:filepath encoding:NSUTF8StringEncoding error:nil];
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSArray *account = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:nil];
+    [account enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSArray *array = obj[@"groupContent"];
+        NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+        [array enumerateObjectsUsingBlock:^(NSDictionary *content, NSUInteger idx, BOOL * _Nonnull stop) {
+            Account *account = [Account accountWithName:content[@"userName"] password:content[@"password"]];
+            [mutableArray addObject:account];
+        }];
+        AccountGroup *group = [AccountGroup accountGroupWithName:obj[@"groupName"] accounts:mutableArray];
+        [self.groups addObject:group];
+    }];
 }
 
 - (void)setupUI {
