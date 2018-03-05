@@ -268,7 +268,7 @@
     };
     [self.playMangerView addSubview:self.beginningView];
     self.beginningView.videoUrl = [NSURL URLWithString:self.playMangerView.fileItem.vheadUrl];
-    //[NSURL URLWithString:@"http://upload.ugc.yanxiu.com/video/4620490456e684328d4fcf5a920f54a1.mp4"];
+//    self.beginningView.videoUrl =[NSURL URLWithString:@"http://upload.ugc.yanxiu.com/video/4620490456e684328d4fcf5a920f54a1.mp4"];
     [self.beginningView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.playMangerView);
     }];

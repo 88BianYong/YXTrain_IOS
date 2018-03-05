@@ -68,7 +68,8 @@
     self.slideProgressView.bufferProgress = self.bufferProgress;
     [self.thumbNormalView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(16.0f, 16.0f));
-        make.centerX.mas_equalTo(self.slideProgressView.wholeProgressView.mas_left).mas_offset(self.slideProgressView.wholeProgressView.bounds.size.width * self.playProgress);
+        make.centerX.mas_equalTo(self.slideProgressView.wholeProgressView.mas_left).
+        mas_offset(self.slideProgressView.wholeProgressView.bounds.size.width * self.playProgress);
         make.centerY.mas_equalTo(self.slideProgressView.wholeProgressView.mas_centerY);
     }];
     

@@ -9,6 +9,8 @@
 #import "YXPlayerManagerView.h"
 #import "ActivityPlayExceptionView.h"
 #import "YXPlayerBufferingView.h"
+#define kScreenSlideAdvanceRetreat(offset) 150.0f/[UIScreen mainScreen].bounds.size.width * offset
+
 @interface YXVideoPlayerDefinition : NSObject
 @property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *url;
@@ -32,6 +34,10 @@
 //上下状态栏显示隐藏
 @property (nonatomic, strong) RACDisposable *topBottomHiddenDisposable;
 @property (nonatomic, assign) BOOL isTopBottomHidden;
+
+@property (nonatomic, assign) CGFloat beginTouchX;
+@property (nonatomic, assign) BOOL isStartChangeBool;
+
 
 @end
 @implementation YXPlayerManagerView
@@ -435,10 +441,12 @@
         }
         if (self.bottomView.slideProgressControl.duration > 0) {
             CGFloat playProgres = [x floatValue] / self.bottomView.slideProgressControl.duration;
-            self.bottomView.slideProgressControl.playProgress = playProgres;
-            self.slideProgressView.playProgress = playProgres;
-            if (self.bottomView.slideProgressControl.playProgress > 0) { // walkthrough 换url时slide跳动
-                [self.bottomView.slideProgressControl updateUI];
+            if (!self.isStartChangeBool) {
+                self.bottomView.slideProgressControl.playProgress = playProgres;
+                self.slideProgressView.playProgress = playProgres;
+                if (self.bottomView.slideProgressControl.playProgress > 0) { // walkthrough 换url时slide跳动
+                    [self.bottomView.slideProgressControl updateUI];
+                }
             }
             if (self.pauseStatus == YXPlayerManagerPause_Not) {
                 self.playTime += 1;
@@ -701,4 +709,57 @@
     }];
     [self.disposableMutableArray removeAllObjects];
 }
+#pragma mark - 滑动快进后退
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    UITouch *oneTouch = [touches anyObject];
+    //手指触摸屏幕开始的坐标
+    self.beginTouchX = [oneTouch locationInView:oneTouch.view].x;
+    self.isStartChangeBool = YES;
+}
+
+
+//滑动快进/快退
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
+    UITouch *oneTouch = [touches anyObject];
+    
+    // 手势相对于初始坐标的偏移量
+    CGFloat offset = [oneTouch locationInView:oneTouch.view].x - self.beginTouchX;
+    if (self.player.timeBuffered > 0.0f && (offset >= 2.0f || offset<= -2.0f)) {//点击或者勿触不改变 2秒容错
+        [self resetTopBottomHideTimer];
+        CGFloat playTime = self.player.timePlayed + kScreenSlideAdvanceRetreat(offset);
+        if (playTime >=  self.player.duration) {//快进滑动超过总时长
+            playTime = (self.player.duration - 10.0f);
+        }else if (playTime < 0) {//快退滑动超过开始时间
+            playTime = 0.0f;
+        }else {//正常区间
+            
+        }
+        CGFloat playProgres = playTime / self.bottomView.slideProgressControl.duration;
+        self.bottomView.slideProgressControl.playProgress = playProgres;
+        self.slideProgressView.playProgress = playProgres;
+        [self.bottomView.slideProgressControl updateUI];
+    }
+}
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    UITouch *oneTouch = [touches anyObject];
+    CGFloat offset = [oneTouch locationInView:oneTouch.view].x - self.beginTouchX;
+    if (self.player.timeBuffered > 0.0f && (offset >= 2.0f || offset<= -2.0f)) {//点击或者勿触不改变 2秒容错
+        [self resetTopBottomHideTimer];
+        CGFloat playTime = self.player.timePlayed + kScreenSlideAdvanceRetreat(offset);
+        if (playTime >=  self.player.duration) {//快进滑动超过总时长
+            playTime = (self.player.duration - 10.0f);
+        }else if (playTime < 0) {//快退滑动超过开始时间
+            playTime = 0.0f;
+        }else {//正常区间
+            
+        }
+        [self.player seekTo:playTime];
+        BLOCK_EXEC(self.playerManagerSlideActionBlock,playTime,YES);
+    }
+    self.isStartChangeBool = NO;
+}
+
 @end
