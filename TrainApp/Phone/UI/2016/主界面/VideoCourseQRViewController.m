@@ -175,9 +175,12 @@
     _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     if(_device == nil)
     {
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"未检测到相机" message:@"请检查相机设备是否正常" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-        [alert show];
-        return ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"未检测到相机" message:@"请检查相机设备是否正常" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+            return ;
+        });
+
     }
     // Input
     _input = [AVCaptureDeviceInput deviceInputWithDevice:_device error:nil];
