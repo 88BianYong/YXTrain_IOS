@@ -174,6 +174,9 @@
     if (self.schemeItem == nil) {
         return 0.0001f;
     }
+    if (self.schemeItem.scheme.finishNum.integerValue == 0) {//有考核要求但为0 显示无考核要求
+        return 45.0f;
+    }
     return 70.0f;
 }
 
