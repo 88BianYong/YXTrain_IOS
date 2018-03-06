@@ -23,7 +23,11 @@
 + (void)setLeftWithNavigationItem:(UINavigationItem *)item imageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(actionBlock)action{
     UIImage *normalImage = [UIImage imageNamed:imageName];
     UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width+20, normalImage.size.height)];
+    CGFloat width = normalImage.size.width + 20.0f;
+    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11.0f) {
+        width = normalImage.size.width;
+    }
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, width, normalImage.size.height)];
     [backButton setImage:normalImage forState:UIControlStateNormal];
     [backButton setImage:highlightImage forState:UIControlStateHighlighted];
     [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
@@ -48,8 +52,11 @@
 + (void)setRightWithNavigationItem:(UINavigationItem *)item imageName:(NSString *)imageName highlightImageName:(NSString *)highlightImageName action:(actionBlock)action{
     UIImage *normalImage = [UIImage imageNamed:imageName];
     UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
-    
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, normalImage.size.width+20, normalImage.size.height)];
+    CGFloat width = normalImage.size.width + 20.0f;
+    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11.0f) {
+        width = normalImage.size.width;
+    }
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, width, normalImage.size.height)];
     [rightButton setImage:normalImage forState:UIControlStateNormal];
     [rightButton setImage:highlightImage forState:UIControlStateHighlighted];
     [[rightButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
