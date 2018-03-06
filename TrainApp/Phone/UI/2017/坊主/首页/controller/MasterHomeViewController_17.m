@@ -97,6 +97,9 @@
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.hidden = YES;
     [self.view addSubview:self.tableView];
     self.moduleCell = [[MasterHomeModuleCell_17 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MasterHomeModuleCell_17"];
@@ -104,10 +107,33 @@
            forCellReuseIdentifier:@"MasterHomeBarCell_17"];
     [self.tableView registerClass:[MasterHomeHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterHomeHeaderView_17"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
-    self.tableHeaderView = [[MasterHomeTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 140.0f)];
+    self.tableHeaderView = [[MasterHomeTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 130.0f)];
     self.tableView.tableHeaderView = self.tableHeaderView;
     [self.tableHeaderView reloadHeaderViewContent:@"23.3" withPass:NO];
-      WEAK_SELF
+    WEAK_SELF
+    self.tableHeaderView.masterHomeOpenCloseBlock = ^(BOOL isOpen) {
+        STRONG_SELF
+        if (isOpen) {
+            [UIView animateWithDuration:0.25f animations:^{
+                self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 190.0f);
+                [self.tableView setTableHeaderView:self.tableHeaderView];
+            }];
+         }else {
+             self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f);
+             [self.tableView setTableHeaderView:self.tableHeaderView];
+
+//             [UIView animateWithDuration:0.25f animations:^{
+//                 self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f);
+//             }];
+             
+            [self.tableView beginUpdates];
+            [self.tableView setTableHeaderView:self.tableHeaderView];
+            [self.tableView endUpdates];
+
+        }
+        
+
+    };
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self requestForMasterIndex];
@@ -173,7 +199,7 @@
     [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
     [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:nil];
 }
-#pragma mark - UITableViewDelegate
+#pragma mark - UITableViewDataScore
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.masterItem == nil ? 0 : 2;
 }
@@ -233,7 +259,7 @@
         return self.moduleCell;
     }
 }
-#pragma mark - UITableViewDataScore
+#pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return 45.0f;
@@ -260,6 +286,7 @@
     YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return footerView;
 }
+
 #pragma mark - request
 - (void)requestForMasterIndex {
     MasterIndexRequest_17 *request = [[MasterIndexRequest_17 alloc] init];

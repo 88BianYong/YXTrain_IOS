@@ -29,11 +29,11 @@
 
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    self.waveSpeed  = 5.0f;
+    self.waveSpeed  = 0.1f;
     self.offsetX = 10.0f;
-    self.waveHeight = 100.0f;
+    self.waveHeight = 115.0f;
     self.waveWidth = kScreenWidth;
-    self.waveAmplitude = 10.0f;
+    self.waveAmplitude = 5.0f;
     self.offsetXT = 100.0f;
     if (!self.isStartBool) {
         [self wave];
@@ -63,9 +63,8 @@
     CGFloat y = 10.f;
     //第一个波纹的公式
     for (float x = 0.f; x <= self.waveWidth ; x++) {
-        y = self.waveAmplitude * sin((300.0f * 1.5f / self.waveWidth) * (x * M_PI / 180) - self.offsetX * M_PI / 270) + self.waveHeight;
+        y = self.waveAmplitude * sin(1.0f/30.0f * x + self.offsetX) + self.waveHeight;
         CGPathAddLineToPoint(path, nil, x, y);
-        x++;
     }
     //把绘图信息添加到路径里
     CGPathAddLineToPoint(path, nil, self.waveWidth, self.frame.size.height);
@@ -83,11 +82,10 @@
     self.offsetXT += self.waveSpeed;
     CGMutablePathRef pathT = CGPathCreateMutable();
     CGPathMoveToPoint(pathT, nil, 0, self.waveHeight+100 - 50.0f);
-    
     CGFloat yT = 10.f;
     for (float x = 0.f; x <= self.waveWidth ; x++) {
-        yT = self.waveAmplitude * sin((260.0f * 1.5f / self.waveWidth) * (x * M_PI / 180) - self.offsetXT * M_PI / 180) + self.waveHeight;
-        CGPathAddLineToPoint(pathT, nil, x, yT-10);
+        yT = self.waveAmplitude * sin(1.0f/30.0f * x + self.offsetXT) + self.waveHeight;
+        CGPathAddLineToPoint(pathT, nil, x, yT-13.0f);
     }
     CGPathAddLineToPoint(pathT, nil, self.waveWidth, self.frame.size.height);
     CGPathAddLineToPoint(pathT, nil, 0, self.frame.size.height);

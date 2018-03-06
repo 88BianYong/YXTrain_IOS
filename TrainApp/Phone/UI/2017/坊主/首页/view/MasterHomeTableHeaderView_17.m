@@ -11,17 +11,24 @@
 @interface MasterHomeTableHeaderView_17 ()
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) MasterWaveView_17 *waveView;
-@property (nonatomic, strong) UILabel *scoreLabel;
+@property (nonatomic, strong) UIView *lineView;
 
-@property (nonatomic, strong) UILabel *projectStatusLabel;
+@property (nonatomic, strong) UILabel *scoreLabel;
 @property (nonatomic, strong) UILabel *scorePromptLabel;
 
 @property (nonatomic, strong) UILabel *statusLabel;
 @property (nonatomic, strong) UILabel *statusPromptLabel;
+
+@property (nonatomic, strong) UIButton *openButton;
+
+
+@property (nonatomic, strong) UILabel *projectStatusLabel;
+
 @end
 @implementation MasterHomeTableHeaderView_17
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.clipsToBounds = YES;
         [self setupUI];
         [self setupLayout];
     }
@@ -35,11 +42,6 @@
     self.waveView.userInteractionEnabled = NO;
     self.waveView.backgroundColor = [UIColor clearColor];
     [self addSubview:self.waveView];
-    
-    self.projectStatusLabel = [[UILabel alloc] init];
-    self.projectStatusLabel.font = [UIFont systemFontOfSize:12.0f];
-    self.projectStatusLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.6f];
-    [self addSubview:self.projectStatusLabel];
     
     self.scoreLabel = [[UILabel alloc] init];
     self.scoreLabel.font = [UIFont systemFontOfSize:18.0f];
@@ -64,6 +66,29 @@
     self.statusPromptLabel.textColor = [[UIColor colorWithHexString:@"ffffff"] colorWithAlphaComponent:0.6f];
     self.statusPromptLabel.text = @"考核结果";
     [self addSubview:self.statusPromptLabel];
+    
+    self.lineView = [[UIView alloc] init];
+    self.lineView.backgroundColor = [UIColor colorWithHexString:@"0067b8"];
+    [self addSubview:self.lineView];
+    
+    
+    self.openButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.openButton setImage:[UIImage imageNamed:@"下拉"] forState:UIControlStateNormal];
+    [self.openButton setImage:[UIImage imageNamed:@"收起"] forState:UIControlStateSelected];
+    WEAK_SELF
+    [[self.openButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        STRONG_SELF
+        self.openButton.selected = !self.openButton.selected;
+        BLOCK_EXEC(self.masterHomeOpenCloseBlock,self.openButton.selected);
+    }];
+    [self addSubview:self.openButton];
+    
+    
+    self.projectStatusLabel = [[UILabel alloc] init];
+    self.projectStatusLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.projectStatusLabel.textColor = [UIColor whiteColor];
+    [self addSubview:self.projectStatusLabel];
+    
 }
 - (void)setupLayout {
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -71,22 +96,21 @@
     }];
     
     [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
-
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.mas_top).offset(15.0f);
+        make.height.mas_offset(130.0f);
         make.bottom.equalTo(self.mas_bottom);
     }];
     
-    [self.projectStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(self.mas_top);
-        make.height.mas_offset(54.0f);
+        make.size.mas_offset(CGSizeMake(1.0f, 40.0f));
+        make.top.equalTo(self.mas_top).offset(35.5f);
     }];
     
     [self.scoreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.mas_width).multipliedBy(1.0f/2.0f);
-        make.top.equalTo(self.mas_top).offset(54.0f);
+        make.top.equalTo(self.mas_top).offset(35.0f);
         make.left.equalTo(self.mas_left);
     }];
     
@@ -97,12 +121,23 @@
     
     [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.mas_width).multipliedBy(1.0f/2.0f);
-        make.top.equalTo(self.mas_top).offset(54.0f);
+        make.top.equalTo(self.mas_top).offset(35.0f);
         make.right.equalTo(self.mas_right);
     }];
     [self.statusPromptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.statusLabel.mas_centerX);
         make.top.equalTo(self.statusLabel.mas_bottom).offset(10.0f);
+    }];
+    
+    [self.openButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.mas_top).offset(35.0f);
+        make.size.mas_offset(CGSizeMake(43.0f, 40.0f));
+    }];
+    
+    [self.projectStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(self.lineView.mas_bottom).offset(20.0f);
     }];
 }
 

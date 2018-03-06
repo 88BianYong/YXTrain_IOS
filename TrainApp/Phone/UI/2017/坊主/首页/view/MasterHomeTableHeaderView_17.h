@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MasterHomeTableHeaderView_17 : UIView
+@property (nonatomic, copy) void(^masterHomeOpenCloseBlock)(BOOL isOpen);
 - (void)reloadHeaderViewContent:(NSString *)score withPass:(NSInteger)pass;
 @end
