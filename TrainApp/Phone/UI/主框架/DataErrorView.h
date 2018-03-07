@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DataErrorView : UIView
+@property (nonatomic, strong) NSString *titleString;
 @property (nonatomic, copy) void(^refreshBlock)(void);
 
 //半屏视频界面专用

@@ -30,6 +30,9 @@
             data.localDataExist = NO;
             data.error = error;
             if ([self handleRequestData:data]) {
+                if (item.code.integerValue == 2) {
+                    self.dataErrorView.titleString = error.localizedDescription;
+                }
                 return;
             }
             self.detailItem = item.body;
@@ -52,6 +55,9 @@
             data.localDataExist = NO;
             data.error = error;
             if ([self handleRequestData:data]) {
+                if (item.code.integerValue == 2) {
+                    self.dataErrorView.titleString = error.localizedDescription;
+                }
                 return;
             }
             self.detailItem = item.body;

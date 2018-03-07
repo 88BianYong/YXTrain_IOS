@@ -24,6 +24,16 @@
     }
     return self;
 }
+- (void)setTitleString:(NSString *)titleString {
+    _titleString = titleString;
+    if (_titleString.length > 0) {
+         self.titleLabel.text = _titleString;
+         self.refreshButton.hidden = YES;
+    }else {
+        self.refreshButton.hidden = NO;
+    }
+}
+
 - (void)setupUI {
     self.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.autoresizingMask = UIViewAutoresizingFlexibleHeight;
