@@ -26,6 +26,7 @@
 #import "MasterOverallRatingListViewController_17.h"
 #import "AppDelegate.h"
 #import "YXCourseDetailPlayerViewController_17.h"
+#import "MasterServiceAgreementViewController_17.h"
 @interface MasterHomeViewController_17()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) MasterHomeTableHeaderView_17 *tableHeaderView;
@@ -42,6 +43,19 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (![LSTSharedInstance sharedInstance].trainManager.currentProject.isSignAgreement.boolValue) {
+        MasterServiceAgreementViewController_17 *VC = [[MasterServiceAgreementViewController_17 alloc] init];
+        WEAK_SELF
+        VC.masterServiceAgreementReloadBlock = ^{
+            STRONG_SELF
+           [self setupMasterHomePage];
+        };
+        [self.navigationController pushViewController:VC animated:NO];
+    }else {
+        [self setupMasterHomePage];
+    }
+}
+- (void)setupMasterHomePage {
     [self setupUI];
     [self setupLayout];
     [self startLoading];
@@ -60,7 +74,6 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -285,6 +298,10 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
     return footerView;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIViewController *VC = [[NSClassFromString(@"MasterServiceAgreementViewController_17") alloc] init];
+    [self.navigationController pushViewController:VC animated:YES];    
 }
 
 #pragma mark - request

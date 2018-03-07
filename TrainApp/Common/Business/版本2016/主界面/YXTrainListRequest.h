@@ -20,25 +20,28 @@
 @property (nonatomic, strong) NSString<Optional> *status;//1-training;0-trained
 @property (nonatomic, strong) NSString<Optional> *roles;
 @property (nonatomic, strong) NSString<Optional> *isContainsTeacher;
-
-@property (nonatomic, strong) NSString<Optional> *special;//1   18德阳项目  0 正常
 //2.4.2
 @property (nonatomic, strong) NSString<Optional> *isOpenLayer;//是否开启分层
 @property (nonatomic, strong) NSString<Optional> *layerId;//分层id
 @property (nonatomic, strong) NSString<Optional> *isOpenTheme;//是否开启主题
 @property (nonatomic, strong) NSString<Optional> *themeId;//主题id
+
+//3.0
 @property (nonatomic, strong) NSString<Optional> *startDate;
 @property (nonatomic, strong) NSString<Optional> *endDate;
 
+//3.0.1
+@property (nonatomic, strong) NSString<Optional> *special;//1   18德阳项目  0 正常
 
+//3.0.2
+@property (nonatomic, strong) NSString<Optional> *isSignAgreement;//是否签署协议
 
+//自定义
 @property (nonatomic, strong) NSString<Ignore> *role;
 @property (nonatomic, strong) NSString<Ignore> *isDoubel;
 @end
 
 @interface YXTrainListRequestItem_body : JSONModel
-//@property (nonatomic, strong) NSString<Ignore> *indexPathSection;
-//@property (nonatomic, strong) NSString<Ignore> *indexPathRow;
 @property (nonatomic, strong) NSString<Optional> *choosePid;
 @property (nonatomic, strong) NSString<Optional> *total;
 @property (nonatomic, strong) NSArray<YXTrainListRequestItem_body_train,Optional> *trains;

@@ -69,11 +69,14 @@
         make.left.equalTo(self.view.mas_left).offset(25.0f);
         make.right.equalTo(self.view.mas_right).offset(-25.0f);
     }];
+    
+    CGFloat heightFloat = [_contentLabel sizeThatFits:CGSizeMake(kScreenWidth - 25.0f - 25.0f , MAXFLOAT)].height;
+    _scrollView.contentSize = CGSizeMake(kScreenWidth - 25.0f - 25.0f, heightFloat + 60.0f);
 }
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    CGSize size = _contentLabel.frame.size;
-    size.height += 30.0f;
-    _scrollView.contentSize = size;
+//    CGSize size = _contentLabel.frame.size;
+//    size.height += 30.0f;
+//    _scrollView.contentSize = size;
 }
 @end

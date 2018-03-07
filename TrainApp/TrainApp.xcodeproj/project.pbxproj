@@ -170,6 +170,9 @@
 		92007EB71ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EB61ED81CAB00C16F89 /* VideoCourseSecondCommentFooterView.m */; };
 		92007EBA1ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EB91ED9197300C16F89 /* VideoCourseReplyCommnetViewController.m */; };
 		92007EBE1ED9358000C16F89 /* VideoCourseQRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92007EBD1ED9358000C16F89 /* VideoCourseQRViewController.m */; };
+		9203D056204FC289005601BD /* MasterThemeListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203D052204FC288005601BD /* MasterThemeListRequest_17.m */; };
+		9203D057204FC289005601BD /* MasterSelectThemeRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203D055204FC288005601BD /* MasterSelectThemeRequest_17.m */; };
+		9203D05A204FC2D6005601BD /* MasterSignAgreementRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203D059204FC2D6005601BD /* MasterSignAgreementRequest_17.m */; };
 		920C0B531FBEF7010002BC47 /* MasterNoticeBriefScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 920C0B521FBEF7010002BC47 /* MasterNoticeBriefScheme.m */; };
 		920E23581E890E5C000F1D36 /* YXVideoQuestionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E23571E890E5C000F1D36 /* YXVideoQuestionsRequest.m */; };
 		920E235B1E890E7F000F1D36 /* YXSubmitAnswerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E235A1E890E7F000F1D36 /* YXSubmitAnswerRequest.m */; };
@@ -429,6 +432,7 @@
 		925146811F25EE4600B1533B /* HomeworkListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925146801F25EE4600B1533B /* HomeworkListRequest_17.m */; };
 		925146861F25EE6D00B1533B /* ReadingListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925146831F25EE6D00B1533B /* ReadingListRequest_17.m */; };
 		925146871F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 925146851F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m */; };
+		92515C8C204F89480009B004 /* MasterServiceAgreementViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92515C8B204F89480009B004 /* MasterServiceAgreementViewController_17.m */; };
 		92529A781D2A37CE007E26D8 /* YXMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */; };
 		92551E051FBBE5060034DC71 /* collectionFilter_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 92551E021FBBE4F60034DC71 /* collectionFilter_mock.json */; };
 		92551E061FBBE5060034DC71 /* LSTCollectionFilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92551E031FBBE4F60034DC71 /* LSTCollectionFilterCell.m */; };
@@ -1209,6 +1213,12 @@
 		92007EBC1ED9358000C16F89 /* VideoCourseQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseQRViewController.h; sourceTree = "<group>"; };
 		92007EBD1ED9358000C16F89 /* VideoCourseQRViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseQRViewController.m; sourceTree = "<group>"; };
 		9202DA4B1DD175D60020F57D /* ActivityCommentInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCommentInputView.h; sourceTree = "<group>"; };
+		9203D052204FC288005601BD /* MasterThemeListRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterThemeListRequest_17.m; sourceTree = "<group>"; };
+		9203D053204FC288005601BD /* MasterSelectThemeRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterSelectThemeRequest_17.h; sourceTree = "<group>"; };
+		9203D054204FC288005601BD /* MasterThemeListRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterThemeListRequest_17.h; sourceTree = "<group>"; };
+		9203D055204FC288005601BD /* MasterSelectThemeRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterSelectThemeRequest_17.m; sourceTree = "<group>"; };
+		9203D058204FC2D6005601BD /* MasterSignAgreementRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterSignAgreementRequest_17.h; sourceTree = "<group>"; };
+		9203D059204FC2D6005601BD /* MasterSignAgreementRequest_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterSignAgreementRequest_17.m; sourceTree = "<group>"; };
 		920C0B511FBEF7010002BC47 /* MasterNoticeBriefScheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterNoticeBriefScheme.h; sourceTree = "<group>"; };
 		920C0B521FBEF7010002BC47 /* MasterNoticeBriefScheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterNoticeBriefScheme.m; sourceTree = "<group>"; };
 		920E23561E890E5C000F1D36 /* YXVideoQuestionsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVideoQuestionsRequest.h; sourceTree = "<group>"; };
@@ -1712,6 +1722,8 @@
 		925146831F25EE6D00B1533B /* ReadingListRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingListRequest_17.m; sourceTree = "<group>"; };
 		925146841F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingSubmitStatusRequest_17.h; sourceTree = "<group>"; };
 		925146851F25EE6D00B1533B /* ReadingSubmitStatusRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingSubmitStatusRequest_17.m; sourceTree = "<group>"; };
+		92515C8A204F89480009B004 /* MasterServiceAgreementViewController_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterServiceAgreementViewController_17.h; sourceTree = "<group>"; };
+		92515C8B204F89480009B004 /* MasterServiceAgreementViewController_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterServiceAgreementViewController_17.m; sourceTree = "<group>"; };
 		92529A761D2A37CE007E26D8 /* YXMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXMySettingViewController.h; sourceTree = "<group>"; };
 		92529A771D2A37CE007E26D8 /* YXMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YXMySettingViewController.m; sourceTree = "<group>"; };
 		92551DFA1FBBE4F40034DC71 /* LSTCollectionFilterFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSTCollectionFilterFooterView.m; sourceTree = "<group>"; };
@@ -3607,6 +3619,19 @@
 			path = "字体";
 			sourceTree = "<group>";
 		};
+		9203D051204FC288005601BD /* 主题服务 */ = {
+			isa = PBXGroup;
+			children = (
+				9203D054204FC288005601BD /* MasterThemeListRequest_17.h */,
+				9203D052204FC288005601BD /* MasterThemeListRequest_17.m */,
+				9203D053204FC288005601BD /* MasterSelectThemeRequest_17.h */,
+				9203D055204FC288005601BD /* MasterSelectThemeRequest_17.m */,
+				9203D058204FC2D6005601BD /* MasterSignAgreementRequest_17.h */,
+				9203D059204FC2D6005601BD /* MasterSignAgreementRequest_17.m */,
+			);
+			path = "主题服务";
+			sourceTree = "<group>";
+		};
 		920F1D101D5047A300636A51 /* 作业 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3912,6 +3937,7 @@
 		922DB1B81FBA84060078F6BD /* 坊主 */ = {
 			isa = PBXGroup;
 			children = (
+				9203D051204FC288005601BD /* 主题服务 */,
 				922DB1D61FBA90500078F6BD /* 首页 */,
 				922DB1D71FBA905B0078F6BD /* 考核 */,
 				922DB1D81FBA90630078F6BD /* 消息 */,
@@ -4041,6 +4067,8 @@
 			children = (
 				922DB1FA1FBA93260078F6BD /* MasterHomeViewController_17.h */,
 				922DB1FB1FBA93260078F6BD /* MasterHomeViewController_17.m */,
+				92515C8A204F89480009B004 /* MasterServiceAgreementViewController_17.h */,
+				92515C8B204F89480009B004 /* MasterServiceAgreementViewController_17.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -6762,6 +6790,7 @@
 				92FED8931DD2BDA000457228 /* ActivityDetailViewController.m in Sources */,
 				928B7A8A1E88EE750067218A /* BeijingExamineRequest.m in Sources */,
 				92780F631DD96E3E00548424 /* ActivityPlayTopView.m in Sources */,
+				9203D056204FC289005601BD /* MasterThemeListRequest_17.m in Sources */,
 				924BE42F1FC67E1D00B7EECA /* MasterMyExamExplainView_17.m in Sources */,
 				92676C1A1FCC0B9E003EC6AC /* MasterDetailActiveToolCell_17.m in Sources */,
 				922850C41DD05DF500A64AB7 /* ActivityPlayManagerView.m in Sources */,
@@ -6949,6 +6978,7 @@
 				92DD283C1FBAC67F0023F58C /* MasterHomeModuleCell_17.m in Sources */,
 				922850C71DD05E3000A64AB7 /* ActivityPlayBottomView.m in Sources */,
 				7C3178351D12A8BB004AAC90 /* YXTOWebViewController.m in Sources */,
+				9203D057204FC289005601BD /* MasterSelectThemeRequest_17.m in Sources */,
 				924BE4101FC2BB7300B7EECA /* MasterHomeworkCell_17.m in Sources */,
 				7C2C3B4F1D2364E300A03635 /* YXTaskCell.m in Sources */,
 				92BBE0121F1F3194009230AC /* ReadingDetailHeaderView_17.m in Sources */,
@@ -7064,6 +7094,7 @@
 				9223C8231D2E0060000F74DF /* YXAboutViewController.m in Sources */,
 				922661BE1E8A08F1006DE8A4 /* VideoClassworkView.m in Sources */,
 				924BE4291FC65CDC00B7EECA /* MasterMyLearningScoreCell_17.m in Sources */,
+				92515C8C204F89480009B004 /* MasterServiceAgreementViewController_17.m in Sources */,
 				7CF8882C1D17E6C600E7C04D /* YXPlayerViewController.m in Sources */,
 				924BE3FA1FC291B800B7EECA /* MasterHomeworkViewController_17.m in Sources */,
 				E9BBA5F51DD05CC4000CA413 /* ActivityListViewController.m in Sources */,
@@ -7119,6 +7150,7 @@
 				922DB1741FBA7C700078F6BD /* ActivityListHeaderView_17.m in Sources */,
 				92E927AE1F1DEB8A00BEF834 /* YXMineHeaderView_17.m in Sources */,
 				7CF8447B1D2E400D00B1CE55 /* YXProjectSelectionBgView.m in Sources */,
+				9203D05A204FC2D6005601BD /* MasterSignAgreementRequest_17.m in Sources */,
 				7C2C3B7A1D24CBB700A03635 /* YXCourseDetailHeaderView.m in Sources */,
 				9229CBA01FEB609700228085 /* MJRefreshHeader.m in Sources */,
 				9223C8271D2E0E44000F74DF /* YXFeedBackRequest.m in Sources */,
