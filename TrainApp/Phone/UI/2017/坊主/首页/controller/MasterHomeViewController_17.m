@@ -27,6 +27,8 @@
 #import "AppDelegate.h"
 #import "YXCourseDetailPlayerViewController_17.h"
 #import "MasterServiceAgreementViewController_17.h"
+#import "MasterThemeViewController_17.h"
+
 @interface MasterHomeViewController_17()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) MasterHomeTableHeaderView_17 *tableHeaderView;
@@ -48,12 +50,24 @@
         WEAK_SELF
         VC.masterServiceAgreementReloadBlock = ^{
             STRONG_SELF
+            [self setupMasterHomePage];
+        };
+        [self.navigationController pushViewController:VC animated:NO];
+        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
+        return;
+    }
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme.boolValue) {
+        WEAK_SELF
+        MasterThemeViewController_17 *VC = [[MasterThemeViewController_17 alloc] init];
+        VC.masterThemeReloadBlock = ^{
+            STRONG_SELF
            [self setupMasterHomePage];
         };
         [self.navigationController pushViewController:VC animated:NO];
-    }else {
-        [self setupMasterHomePage];
+        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
+        return;
     }
+    [self setupMasterHomePage];
 }
 - (void)setupMasterHomePage {
     [self setupUI];
@@ -265,6 +279,9 @@
             }else if (tool.code.integerValue == 31) {//综合
                 MasterOverallRatingListViewController_17 *VC = [[MasterOverallRatingListViewController_17 alloc] init];
                 [self.navigationController pushViewController:VC animated:YES];
+            }else if (tool.code.integerValue == 11) {//综合
+                MasterThemeViewController_17 *VC = [[MasterThemeViewController_17 alloc] init];
+                [self.navigationController pushViewController:VC animated:YES];
             }else {
                 [self showToast:@"手机暂不支持该功能,请到电脑端完成"];
             }
@@ -300,8 +317,6 @@
     return footerView;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *VC = [[NSClassFromString(@"MasterServiceAgreementViewController_17") alloc] init];
-    [self.navigationController pushViewController:VC animated:YES];    
 }
 
 #pragma mark - request

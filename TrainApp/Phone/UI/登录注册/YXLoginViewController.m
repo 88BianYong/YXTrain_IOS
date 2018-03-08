@@ -234,6 +234,7 @@
     NSString *accountString = [[NSUserDefaults standardUserDefaults] objectForKey:kYXTrainAccountNumber];
     if (!isEmpty(accountString)) {
         [registerView setText:accountString];
+        self.registerNumber = accountString;
     }
     registerView.textChangedBlock = ^(NSString *registerNumber){
         @strongify(self)

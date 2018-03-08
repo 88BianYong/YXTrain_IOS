@@ -8,6 +8,7 @@
 
 #import "MasterServiceAgreementViewController_17.h"
 #import "MasterSignAgreementRequest_17.h"
+#import "MasterThemeViewController_17.h"
 @interface MasterServiceAgreementViewController_17 ()
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *contentLabel;
@@ -24,10 +25,8 @@
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self setupAndLayoutInterface];
+    [self setupNavgationLeftView];
     [self setupNavgationRightView];
-}
-- (void)naviLeftAction {
-    [self showAlertView];
 }
 - (void)setupNavgationRightView {
     UIButton *confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -43,6 +42,20 @@
         [self requestForSignAgreement];
     }];
     [self setupRightWithCustomView:confirmButton];
+}
+- (void)setupNavgationLeftView {
+    UIButton *cancleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [cancleButton setTitle:@"取消" forState:UIControlStateNormal];
+    [cancleButton setTitleColor:[UIColor colorWithHexString:@"a1a7ae"] forState:UIControlStateNormal];
+    [cancleButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    cancleButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    cancleButton.frame = CGRectMake(0, 0, 40.0f, 30.0f);
+    WEAK_SELF
+    [[cancleButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
+        STRONG_SELF
+         [self showAlertView];
+    }];
+    [self setupLeftWithCustomView:cancleButton];
 }
 
 #pragma mark - setupUI
@@ -126,6 +139,16 @@
         if (error) {
             [self showToast:error.localizedDescription];
         }else {
+            if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme) {
+                WEAK_SELF
+                MasterThemeViewController_17 *VC = [[MasterThemeViewController_17 alloc] init];
+                VC.masterThemeReloadBlock = ^{
+                    STRONG_SELF
+                    BLOCK_EXEC(self.masterServiceAgreementReloadBlock);
+                };
+                [self.navigationController pushViewController:VC animated:YES];
+                return;
+            }
             BLOCK_EXEC(self.masterServiceAgreementReloadBlock);
             [self.navigationController popViewControllerAnimated:YES];
         }

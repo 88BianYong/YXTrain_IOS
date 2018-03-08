@@ -7,7 +7,12 @@
 //
 
 #import "MasterThemeListRequest_17.h"
-
+@implementation MasterThemeListItem_Body_Theme
+@end
+@implementation MasterThemeListItem_Body
+@end
+@implementation MasterThemeListItem
+@end
 @implementation MasterThemeListRequest_17
 - (instancetype)init {
     if (self = [super init]) {

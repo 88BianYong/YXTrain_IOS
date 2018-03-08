@@ -40,7 +40,11 @@
 
 + (void)setLeftWithNavigationItem:(UINavigationItem *)item customView:(UIView *)view{
     CGRect rect = view.bounds;
-    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width+20, rect.size.height)];
+    CGFloat width = rect.size.width + 20.0f;
+    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11.0f) {
+        width = rect.size.width;
+    }
+    UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
     containerView.backgroundColor = [UIColor clearColor];
     [containerView addSubview:view];
     view.center = CGPointMake(containerView.bounds.size.width/2, containerView.bounds.size.height/2);
