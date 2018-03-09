@@ -163,13 +163,13 @@
         }else{
             self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头"];
         }
-        self.introductionView.startTimeLabel.text = [NSString stringWithFormat:@"开始时间: %@",_proces.startDate];
     }
     if (isEmpty(_proces.startDate)) {
         self.introductionView.startTimeLabel.hidden = YES;
     }else {
         self.introductionView.startTimeLabel.hidden = NO;
     }
+    self.introductionView.startTimeLabel.text = [NSString stringWithFormat:@"开始时间: %@",_proces.startDate];
     self.enterImageView.hidden = (_proces.procesID.integerValue == 304 || _proces.procesID.integerValue == 1003) ? YES : NO;
     if (_proces.procesID.integerValue == 1003) {
         self.scoreLabel.hidden = NO;
