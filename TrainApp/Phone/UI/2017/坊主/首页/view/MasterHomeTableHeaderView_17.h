@@ -10,5 +10,8 @@
 
 @interface MasterHomeTableHeaderView_17 : UIView
 @property (nonatomic, copy) void(^masterHomeOpenCloseBlock)(BOOL isOpen);
-- (void)reloadHeaderViewContent:(NSString *)score withPass:(NSInteger)pass;
+- (void)reloadHeaderViewContent:(NSString *)score
+                 withPassString:(NSString *)passString
+               withDeladyString:(NSString *)delayString
+                       withPass:(NSInteger)pass;
 @end

@@ -114,7 +114,7 @@
 - (void)setMasterItem:(MasterIndexRequestItem_Body *)masterItem {
     _masterItem = masterItem;
     self.tableView.hidden = NO;
-    [self.tableHeaderView reloadHeaderViewContent:_masterItem.myExamine.total withPass:_masterItem.myExamine.isPass.integerValue];
+    [self.tableHeaderView reloadHeaderViewContent:_masterItem.myExamine.total withPassString:_masterItem.myExamine.passDesc withDeladyString:_masterItem.myExamine.delayDesc withPass:_masterItem.myExamine.isPass.integerValue];
     [self.tableView reloadData];
 }
 #pragma mark - setupUI
@@ -134,9 +134,8 @@
            forCellReuseIdentifier:@"MasterHomeBarCell_17"];
     [self.tableView registerClass:[MasterHomeHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterHomeHeaderView_17"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
-    self.tableHeaderView = [[MasterHomeTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 130.0f)];
+    self.tableHeaderView = [[MasterHomeTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 190.0f)];
     self.tableView.tableHeaderView = self.tableHeaderView;
-    [self.tableHeaderView reloadHeaderViewContent:@"23.3" withPass:NO];
     WEAK_SELF
     self.tableHeaderView.masterHomeOpenCloseBlock = ^(BOOL isOpen) {
         STRONG_SELF
@@ -148,18 +147,7 @@
          }else {
              self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f);
              [self.tableView setTableHeaderView:self.tableHeaderView];
-
-//             [UIView animateWithDuration:0.25f animations:^{
-//                 self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f);
-//             }];
-             
-            [self.tableView beginUpdates];
-            [self.tableView setTableHeaderView:self.tableHeaderView];
-            [self.tableView endUpdates];
-
         }
-        
-
     };
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF

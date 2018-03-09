@@ -64,6 +64,8 @@
         return @"生成资源";
     }else if ([code isEqualToString:@"PUBLISH_LOCAL_COURSE"]) {
         return @"本地课程";
+    }else if ([code isEqualToString:@"PUBLISH_NOTICE"]) {
+        return @"发布通知";
     }else {
         return code;
     }

@@ -21,8 +21,10 @@
 
 @property (nonatomic, strong) UIButton *openButton;
 
-
+@property (nonatomic, strong) UILabel *passDescLabel;
+@property (nonatomic, strong) UILabel *delayDescLabel;
 @property (nonatomic, strong) UILabel *projectStatusLabel;
+
 
 @end
 @implementation MasterHomeTableHeaderView_17
@@ -75,13 +77,27 @@
     self.openButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.openButton setImage:[UIImage imageNamed:@"下拉"] forState:UIControlStateNormal];
     [self.openButton setImage:[UIImage imageNamed:@"收起"] forState:UIControlStateSelected];
+    self.openButton.selected = YES;
     WEAK_SELF
     [[self.openButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         self.openButton.selected = !self.openButton.selected;
+        self.delayDescLabel.hidden = !self.openButton.selected;
+        self.projectStatusLabel.hidden = !self.openButton.selected;
         BLOCK_EXEC(self.masterHomeOpenCloseBlock,self.openButton.selected);
     }];
     [self addSubview:self.openButton];
+    
+    
+    self.passDescLabel = [[UILabel alloc] init];
+    self.passDescLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.passDescLabel.textColor = [UIColor whiteColor];
+    [self addSubview:self.passDescLabel];
+    
+    self.delayDescLabel = [[UILabel alloc] init];
+    self.delayDescLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.delayDescLabel.textColor = [UIColor whiteColor];
+    [self addSubview:self.delayDescLabel];
     
     
     self.projectStatusLabel = [[UILabel alloc] init];
@@ -135,16 +151,26 @@
         make.size.mas_offset(CGSizeMake(43.0f, 40.0f));
     }];
     
-    [self.projectStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.passDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(self.lineView.mas_bottom).offset(20.0f);
     }];
+    
+    [self.delayDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(self.passDescLabel.mas_bottom).offset(8.0f);
+    }];
+    [self.projectStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(self.delayDescLabel.mas_bottom).offset(8.0f);
+    }];
 }
 
-- (void)reloadHeaderViewContent:(NSString *)score withPass:(NSInteger)pass {
+- (void)reloadHeaderViewContent:(NSString *)score
+                 withPassString:(NSString *)passString
+               withDeladyString:(NSString *)delayString
+                       withPass:(NSInteger)pass {
     NSString *contentString = [NSString stringWithFormat:@"%@分",score];
-//    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:contentString];
-//    [attString addAttribute:NSFontAttributeName value: [UIFont fontWithName:YXFontMetro_Medium size:23.0f] range:NSMakeRange(0, contentString.length - 1)];
     self.scoreLabel.text = contentString;
     if (pass == 0) {
         self.statusLabel.text = @"未通过";
@@ -159,6 +185,10 @@
     }else if ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 1){
         statusString = @"进行中";
     }
+    self.passDescLabel.text = passString;
+    self.delayDescLabel .text = delayString;
+    
     self.projectStatusLabel.text = [NSString stringWithFormat:@"%@-%@ %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate,statusString];
+    
 }
 @end

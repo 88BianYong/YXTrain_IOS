@@ -37,6 +37,8 @@
 @property (nonatomic, copy) NSString<Optional> *name;
 @property (nonatomic, copy) NSString<Optional> *toolId;
 @property (nonatomic, copy) NSString<Optional> *isPass;
+@property (nonatomic, copy) NSString<Optional> *passDesc;
+@property (nonatomic, copy) NSString<Optional> *delayDesc;
 @property (nonatomic, strong) NSArray<MasterIndexRequestItem_Body_MyExamine_Types,Optional> *types;
 @end
 
