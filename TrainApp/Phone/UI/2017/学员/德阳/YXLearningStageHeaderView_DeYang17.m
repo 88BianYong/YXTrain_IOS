@@ -72,6 +72,7 @@
 @implementation YXLearningStageHeaderView_DeYang17
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        self.contentView.clipsToBounds = YES;
         self.contentView.backgroundColor = [UIColor whiteColor];
         [self setupUI];
         [self setupLayout];
@@ -153,16 +154,21 @@
     self.finishImageView.image = _proces.isFinish.boolValue ?[UIImage imageNamed:@"作业-已完成标签"] : [UIImage imageNamed:@"未成标签"];
     if (_proces.stageID.integerValue == 0){
         self.introductionView.statusImageView.hidden = YES;
-        self.introductionView.startTimeLabel.hidden = YES;
+//        self.introductionView.startTimeLabel.hidden = YES;
     }else {
         self.introductionView.statusImageView.hidden = _proces.status.boolValue;
-        self.introductionView.startTimeLabel.hidden = NO;
+//        self.introductionView.startTimeLabel.hidden = NO;
         if (_proces.isMockFold.boolValue) {
             self.enterImageView.image = [UIImage imageNamed:@"第二阶段收起箭头"];
         }else{
             self.enterImageView.image = [UIImage imageNamed:@"第一阶段展开箭头"];
         }
         self.introductionView.startTimeLabel.text = [NSString stringWithFormat:@"开始时间: %@",_proces.startDate];
+    }
+    if (isEmpty(_proces.startDate)) {
+        self.introductionView.startTimeLabel.hidden = YES;
+    }else {
+        self.introductionView.startTimeLabel.hidden = NO;
     }
     self.enterImageView.hidden = (_proces.procesID.integerValue == 304 || _proces.procesID.integerValue == 1003) ? YES : NO;
     if (_proces.procesID.integerValue == 1003) {
