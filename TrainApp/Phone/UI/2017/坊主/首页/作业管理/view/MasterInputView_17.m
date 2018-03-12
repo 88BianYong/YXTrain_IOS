@@ -123,7 +123,7 @@
             [self layoutIfNeeded];
         } completion:^(BOOL finished) {
             self.commentTextView.text = self.commentString;
-            self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0;
+            self.sendButton.enabled = ([[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) || self.scoreTextView.text.floatValue >= 60.0f;
             [self uploadHeight];
             [self.sendButton setTitle:@"发送" forState:UIControlStateNormal];
         }];
