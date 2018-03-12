@@ -42,12 +42,12 @@ PODS:
   - GTSDK (2.0.0.0-noidfa)
   - HappyDNS (0.3.12)
   - IBActionSheet (0.0.2)
-  - IQKeyboardManager (5.0.7)
+  - IQKeyboardManager (5.0.8)
   - JSONModel (1.7.0)
   - MagicalRecord (2.3.2):
     - MagicalRecord/Core (= 2.3.2)
   - MagicalRecord/Core (2.3.2)
-  - Masonry (0.6.4)
+  - Masonry (1.1.0)
   - MBProgressHUD (0.9)
   - MDRadialProgress (1.3.1)
   - MSDynamicsDrawerViewController (1.5.1)
@@ -61,7 +61,7 @@ PODS:
   - pop (1.0.10)
   - Qiniu (7.2.3):
     - HappyDNS (~> 0.3)
-  - QIYU_iOS_SDK (3.13.0)
+  - QIYU_iOS_SDK (3.14.0)
   - RATreeView (1.0.2)
   - Reachability (3.2)
   - ReactiveCocoa (2.5):
@@ -100,7 +100,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - JSONModel (~> 1.0)
   - MagicalRecord (~> 2.0)
-  - Masonry (~> 0.0)
+  - Masonry
   - MBProgressHUD (= 0.9)
   - MDRadialProgress (= 1.3.1)
   - MSDynamicsDrawerViewController (= 1.5.1)
@@ -138,10 +138,10 @@ SPEC CHECKSUMS:
   GTSDK: 46c0f8dd41ee1f4117b8fd608a4d8a6ad3fc08b3
   HappyDNS: 691a3041128055d09866f86e6e9ca90f24da1f18
   IBActionSheet: 4028206b0561772c3674a339fb4a7265d55a6f8b
-  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
+  IQKeyboardManager: 266cb7b1d11f94a3e71229d77f960f9a1b538e5b
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
   MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
-  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
   MDRadialProgress: 6af31db0315f1b687df825a73481a2a443182402
   MSDynamicsDrawerViewController: 2874df90f5e9453dc7d4e32f8038b50615d4baa7
@@ -151,7 +151,7 @@ SPEC CHECKSUMS:
   OpenUDID: e7cb6984c7304906ad20f3a36bf087b025896b6b
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Qiniu: ae0fea1cc379fae1560d8748ac537e0fbeb8626e
-  QIYU_iOS_SDK: 58a24f22d6b3921471f1bf0afb3cfabfbf227d55
+  QIYU_iOS_SDK: 4ee80c058efc83ca393436d09f15fc463ddae0da
   RATreeView: 453b8203163c415f4c43da1e20addcf1b2379e06
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
@@ -167,6 +167,6 @@ SPEC CHECKSUMS:
   UIDevice+HardwareName: 6b98c1855f304ec8fc7a1ad72fddaed8523b75ad
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 
-PODFILE CHECKSUM: 8c509270d27d4fc85c2d3348b2e7689b44ca0218
+PODFILE CHECKSUM: 6c53bb04cefe972480cf15f57e03d006affe4b54
 
 COCOAPODS: 1.4.0

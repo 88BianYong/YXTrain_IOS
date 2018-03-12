@@ -39,6 +39,9 @@
     else if(IS_IPHONE_6P){
         _imageView.image = [UIImage imageNamed:@"1242-2208"];
     }
+    else if(IS_IPHONE_X){
+        _imageView.image = [UIImage imageNamed:@"iphonex"];
+    }
     [self addSubview:_imageView];
     [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
@@ -60,7 +63,7 @@
         make.edges.mas_equalTo(0);
     }];
     [_timerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(20);
+        make.top.equalTo(self.mas_top).offset(kVerticalStatusBarHeight);
         make.right.mas_equalTo(-15);
         make.width.mas_equalTo(70.0f);
         make.height.mas_offset(29.0f);

@@ -63,8 +63,13 @@
         make.bottom.equalTo(self.backgroundView.mas_bottom);
     }];
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.top.equalTo(self.mas_top);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.mas_safeAreaLayoutGuideLeft);
+            make.top.equalTo(self.mas_safeAreaLayoutGuideTop);
+        }else {
+            make.left.equalTo(self.mas_left);
+            make.top.equalTo(self.mas_top);
+        }
         make.size.mas_offset(CGSizeMake(50.0f, 50.0f));
     }];
 }

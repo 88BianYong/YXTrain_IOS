@@ -76,7 +76,7 @@ static const CGFloat kImageWidth = 30;
      [self.maskView addGestureRecognizer:gestureRecognizer];
     CGFloat w = 240;
     CGFloat x = ([UIScreen mainScreen].bounds.size.width-w)/2;
-    CGFloat y = 147;
+    CGFloat y = kVerticalNavBarHeight + 83.0f;
     self.selectionBgView = [[YXProjectSelectionBgView alloc]initWithFrame:CGRectMake(x, y, w, 0) triangleX:w/2];
 
     self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];

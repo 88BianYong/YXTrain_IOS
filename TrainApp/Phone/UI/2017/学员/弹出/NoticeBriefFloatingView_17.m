@@ -27,7 +27,7 @@
     [containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right);
         make.left.equalTo(self.mas_centerX).offset(2.0f);
-        make.top.equalTo(self.mas_top).offset(69.0f + 96.0f);
+        make.top.equalTo(self.mas_top).offset(kVerticalNavBarHeight + 5.0f + 96.0f);
         make.height.mas_offset(100.0f);
     }];
     UIImageView *noticeBriefImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"简报"]];

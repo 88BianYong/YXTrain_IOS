@@ -30,6 +30,7 @@
         [self.button sd_setBackgroundImageWithURL:[NSURL URLWithString:[LSTSharedInstance sharedInstance].userManger.userModel.profile.head] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"默认用户头像"]];
     }];
     self.button.backgroundColor = [UIColor redColor];
+    self.button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     self.button.layer.cornerRadius = 16;
     self.button.clipsToBounds = YES;
 }

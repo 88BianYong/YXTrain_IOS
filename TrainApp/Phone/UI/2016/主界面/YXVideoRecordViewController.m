@@ -257,7 +257,11 @@
     CGRect frame = CGRectMake(0, 0, size.width, size.height);
     _scanPreviewView.frame = frame;
     _focusView.frame = frame;
-    _topView.frame = CGRectMake(0, 0, size.width, 44.0f);
+    if (IS_IPHONE_X && (size.width < size.height) ) {
+        _topView.frame = CGRectMake(0, 0, size.width, 72.5f);
+    }else {
+        _topView.frame = CGRectMake(0, 0, size.width, 44.0f);
+    }
     _topView.hidden = NO;
     _bottomView.frame = CGRectMake(0, size.height -  110.0f, size.width, 110.0f);
     _bottomView.hidden = NO;

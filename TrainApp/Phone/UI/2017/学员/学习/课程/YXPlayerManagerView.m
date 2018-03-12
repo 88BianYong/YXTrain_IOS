@@ -39,6 +39,10 @@
 @property (nonatomic, assign) BOOL isStartChangeBool;
 
 
+@property (nonatomic, strong) UIView *iphonexView;
+
+
+
 @end
 @implementation YXPlayerManagerView
 - (void)dealloc {
@@ -259,6 +263,11 @@
         STRONG_SELF
         [self.topBottomHiddenDisposable dispose];
     }];
+    
+    self.iphonexView = [[UIView alloc] init];
+    self.iphonexView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
+    [self addSubview:self.iphonexView];
+
 }
 - (void)setupExceptionView {
     WEAK_SELF
@@ -295,19 +304,37 @@
         make.edges.equalTo(self);
     }];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
-        make.bottom.equalTo(self.mas_bottom);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.mas_safeAreaLayoutGuideBottom);
+        }else {
+            make.left.equalTo(self.mas_left);
+            make.right.equalTo(self.mas_right);
+            make.bottom.equalTo(self.mas_bottom);
+        }
         make.height.mas_offset(44.0f);
     }];
+    [self.iphonexView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left);
+        make.right.equalTo(self.mas_right);
+        make.top.equalTo(self.bottomView.mas_bottom);
+        make.height.mas_offset(32.0f);
+    }];
+    
     [self.bufferingView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(@0);
         make.size.mas_equalTo(CGSizeMake(100.0f, 100.0f));
     }];
     
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(self.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.mas_safeAreaLayoutGuideRight);
+        }else {
+            make.left.equalTo(self.mas_left);
+            make.right.equalTo(self.mas_right);
+        }
         make.top.equalTo(self.mas_top);
         make.height.mas_offset(44.0f);
     }];
@@ -538,7 +565,11 @@
 - (void)hiddenBottomView {
     [UIView animateWithDuration:0.6f animations:^{
         [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.mas_bottom).offset(44.0f);
+            if (@available(iOS 11.0, *)) {
+                make.bottom.equalTo(self.mas_safeAreaLayoutGuideBottom).offset(44.0f + kHorizontalBottomUpwardHeight);
+            }else {
+                make.bottom.equalTo(self.mas_bottom).offset(44.0f + kHorizontalBottomUpwardHeight);
+            }
         }];
         [self layoutIfNeeded];
         
@@ -560,7 +591,11 @@
     self.slideProgressView.hidden = YES;
     [UIView animateWithDuration:0.6f animations:^{
         [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.mas_bottom);
+            if (@available(iOS 11.0, *)) {
+                make.bottom.equalTo(self.mas_safeAreaLayoutGuideBottom);
+            }else {
+                make.bottom.equalTo(self.mas_bottom);
+            }
         }];
         [self layoutIfNeeded];
     } completion:^(BOOL finished) {
@@ -718,48 +753,48 @@
     self.isStartChangeBool = YES;
 }
 
-
-//滑动快进/快退
-- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [super touchesMoved:touches withEvent:event];
-    UITouch *oneTouch = [touches anyObject];
-    
-    // 手势相对于初始坐标的偏移量
-    CGFloat offset = [oneTouch locationInView:oneTouch.view].x - self.beginTouchX;
-    if (self.player.timeBuffered > 0.0f && (offset >= 2.0f || offset<= -2.0f)) {//点击或者勿触不改变 2秒容错
-        [self resetTopBottomHideTimer];
-        CGFloat playTime = self.player.timePlayed + kScreenSlideAdvanceRetreat(offset);
-        if (playTime >=  self.player.duration) {//快进滑动超过总时长
-            playTime = (self.player.duration - 10.0f);
-        }else if (playTime < 0) {//快退滑动超过开始时间
-            playTime = 0.0f;
-        }else {//正常区间
-            
-        }
-        CGFloat playProgres = playTime / self.bottomView.slideProgressControl.duration;
-        self.bottomView.slideProgressControl.playProgress = playProgres;
-        self.slideProgressView.playProgress = playProgres;
-        [self.bottomView.slideProgressControl updateUI];
-    }
-}
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [super touchesEnded:touches withEvent:event];
-    UITouch *oneTouch = [touches anyObject];
-    CGFloat offset = [oneTouch locationInView:oneTouch.view].x - self.beginTouchX;
-    if (self.player.timeBuffered > 0.0f && (offset >= 2.0f || offset<= -2.0f)) {//点击或者勿触不改变 2秒容错
-        [self resetTopBottomHideTimer];
-        CGFloat playTime = self.player.timePlayed + kScreenSlideAdvanceRetreat(offset);
-        if (playTime >=  self.player.duration) {//快进滑动超过总时长
-            playTime = (self.player.duration - 10.0f);
-        }else if (playTime < 0) {//快退滑动超过开始时间
-            playTime = 0.0f;
-        }else {//正常区间
-            
-        }
-        [self.player seekTo:playTime];
-        BLOCK_EXEC(self.playerManagerSlideActionBlock,playTime,YES);
-    }
-    self.isStartChangeBool = NO;
-}
+//
+////滑动快进/快退
+//- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    [super touchesMoved:touches withEvent:event];
+//    UITouch *oneTouch = [touches anyObject];
+//
+//    // 手势相对于初始坐标的偏移量
+//    CGFloat offset = [oneTouch locationInView:oneTouch.view].x - self.beginTouchX;
+//    if (self.player.timeBuffered > 0.0f && (offset >= 2.0f || offset<= -2.0f)) {//点击或者勿触不改变 2秒容错
+//        [self resetTopBottomHideTimer];
+//        CGFloat playTime = self.player.timePlayed + kScreenSlideAdvanceRetreat(offset);
+//        if (playTime >=  self.player.duration) {//快进滑动超过总时长
+//            playTime = (self.player.duration - 10.0f);
+//        }else if (playTime < 0) {//快退滑动超过开始时间
+//            playTime = 0.0f;
+//        }else {//正常区间
+//
+//        }
+//        CGFloat playProgres = playTime / self.bottomView.slideProgressControl.duration;
+//        self.bottomView.slideProgressControl.playProgress = playProgres;
+//        self.slideProgressView.playProgress = playProgres;
+//        [self.bottomView.slideProgressControl updateUI];
+//    }
+//}
+//- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    [super touchesEnded:touches withEvent:event];
+//    UITouch *oneTouch = [touches anyObject];
+//    CGFloat offset = [oneTouch locationInView:oneTouch.view].x - self.beginTouchX;
+//    if (self.player.timeBuffered > 0.0f && (offset >= 2.0f || offset<= -2.0f)) {//点击或者勿触不改变 2秒容错
+//        [self resetTopBottomHideTimer];
+//        CGFloat playTime = self.player.timePlayed + kScreenSlideAdvanceRetreat(offset);
+//        if (playTime >=  self.player.duration) {//快进滑动超过总时长
+//            playTime = (self.player.duration - 10.0f);
+//        }else if (playTime < 0) {//快退滑动超过开始时间
+//            playTime = 0.0f;
+//        }else {//正常区间
+//
+//        }
+//        [self.player seekTo:playTime];
+//        BLOCK_EXEC(self.playerManagerSlideActionBlock,playTime,YES);
+//    }
+//    self.isStartChangeBool = NO;
+//}
 
 @end

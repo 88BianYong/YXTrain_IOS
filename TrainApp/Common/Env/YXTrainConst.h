@@ -5,16 +5,32 @@
 //  Created by 郑小龙 on 16/8/2.
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
-
 //屏幕
 #define kScreenHeightScale(f) [UIScreen mainScreen].bounds.size.height / 667.0f * f
 #define kScreenWidthScale(f) [UIScreen mainScreen].bounds.size.width / 375.0f * f
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kScreenWidth   [UIScreen mainScreen].bounds.size.width
-#define IS_IPHONE_6P ( fabs( ( double )[ [UIScreen mainScreen] bounds ].size.height - ( double )736 ) < DBL_EPSILON )
-#define IS_IPHONE_6  ( fabs( ( double )[ [UIScreen mainScreen] bounds ].size.height - ( double )667 ) < DBL_EPSILON )
-#define IS_IPHONE_5  ( fabs( ( double )[ [UIScreen mainScreen] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
-#define IS_IPHONE_4  ( fabs( ( double )[ [UIScreen mainScreen] bounds ].size.height - ( double )480 ) < DBL_EPSILON )
+#define IS_IPHONE_4 ([UIScreen mainScreen].bounds.size.height == 480)
+#define IS_IPHONE_5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define IS_IPHONE_6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size)) : NO)
+
+#define IS_IPHONE_6P ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? (CGSizeEqualToSize(CGSizeMake(1125, 2001), [[UIScreen mainScreen] currentMode].size) || CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size)) : NO)
+
+#define IS_IPHONE_X ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+
+
+#define kVerticalStatusBarHeight (IS_IPHONE_X ? 44.0f  : 20.0f)
+
+#define kVerticalNavBarHeight  (IS_IPHONE_X ? 88.0f : 64.0f)
+
+#define kVerticalBottomUpwardHeight (IS_IPHONE_X ? 34.0f : 0.0f)
+
+#define kHorizontalBottomUpwardHeight (IS_IPHONE_X ? 21.0f : 0.0f)
+
+
+
+
 
 //视频
 #define PATH_OF_DOCUMENT         [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0]

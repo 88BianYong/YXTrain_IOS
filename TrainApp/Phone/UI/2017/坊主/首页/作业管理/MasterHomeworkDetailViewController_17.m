@@ -236,14 +236,22 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-50.0f);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-50.0f);
+        } else {
+            make.bottom.equalTo(self.view.mas_bottom).offset(-50.0f);
+        }
         make.top.equalTo(self.view.mas_top);
     }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-49.0f);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-49.0f);
+        } else {
+            make.bottom.equalTo(self.view.mas_bottom).offset(-49.0f);
+        }
         make.height.mas_equalTo(1.0f);
     }];
     
@@ -251,13 +259,22 @@
         make.left.equalTo(self.view.mas_left);
         make.width.equalTo(self.view.mas_width).multipliedBy(1.0f/2.0f);
         make.top.equalTo(self.lineView.mas_bottom);
-        make.bottom.equalTo(self.view.mas_bottom);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        } else {
+            make.bottom.equalTo(self.view.mas_bottom);
+        }
     }];
     [self.commentButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view.mas_right);
         make.width.equalTo(self.view.mas_width).multipliedBy(1.0f/2.0f);
         make.top.equalTo(self.lineView.mas_bottom);
-        make.bottom.equalTo(self.view.mas_bottom);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        } else {
+            make.bottom.equalTo(self.view.mas_bottom);
+        }
+        
     }];
 }
 - (void)setupHomeworkRightView{
@@ -271,7 +288,7 @@
     [[button rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
         if (self.detailItem.require.descrip.length > 0) {
-            [self showMarkWithOriginRect:CGRectMake(200, 30.0f, 80, 30.0f) explain:self.detailItem.require.descrip];
+            [self showMarkWithOriginRect:CGRectMake(200, kVerticalNavBarHeight - 34.0f, 80, 30.0f) explain:self.detailItem.require.descrip];
         }
     }];
     [self setupRightWithCustomView:button];

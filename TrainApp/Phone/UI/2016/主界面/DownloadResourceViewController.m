@@ -98,7 +98,12 @@
     [self.bottomView addSubview:viewCommentsButton];
     
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        }else {
+            make.bottom.equalTo(self.view.mas_bottom);
+        }
         make.height.mas_equalTo(44);
     }];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {

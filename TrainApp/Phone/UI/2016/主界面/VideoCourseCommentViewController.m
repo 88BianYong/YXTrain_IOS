@@ -205,7 +205,11 @@
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-44.0f);
+        }else {
+            make.bottom.equalTo(self.view.mas_bottom).offset(-44.0f);
+        }
         make.top.equalTo(self.view.mas_top);
     }];
     [self.inputTextView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -215,7 +219,12 @@
         make.height.mas_offset(140.0f);
     }];
     [self.sendView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        }else {
+            make.bottom.equalTo(self.view.mas_bottom);
+        }
         make.height.mas_offset(44.0f);
     }];
 }

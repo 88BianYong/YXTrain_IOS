@@ -111,6 +111,7 @@
     _schoolNameLabel.text = @"1";
     [self.headerView addSubview:_schoolNameLabel];
     UIView *topView = [[UIView alloc] init];
+    topView.hidden = IS_IPHONE_X;
     topView.backgroundColor = [UIColor whiteColor];
     [self.headerView addSubview:topView];
     [topView mas_makeConstraints:^(MASConstraintMaker *make) {

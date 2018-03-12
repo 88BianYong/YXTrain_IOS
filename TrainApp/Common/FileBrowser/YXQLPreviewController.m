@@ -186,7 +186,7 @@
 
 - (CGRect)navigationBarFrameForOrientation:(UIInterfaceOrientation)orientation {
     // We cannot use the frame of qlNavigationBar as it changes position when hidden, also there seems to be a bug in iOS7 concerning qlNavigationBar height in landcape
-    return CGRectMake(0.0f, [UIDevice currentDevice].systemVersion.floatValue >= 11.0f ? 20.0f : 0.0f, self.view.bounds.size.width, [self navigationBarHeight:orientation]);
+    return CGRectMake(0.0f, [UIDevice currentDevice].systemVersion.floatValue >= 11.0f ? kVerticalStatusBarHeight : 0.0f, self.view.bounds.size.width, [self navigationBarHeight:orientation]);
 }
 - (CGFloat)navigationBarHeight:(UIInterfaceOrientation)orientation {
     if([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {

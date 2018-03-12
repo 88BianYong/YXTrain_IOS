@@ -26,7 +26,7 @@
     [containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(-2.0f);
         make.width.mas_offset(110.0f);
-        make.top.equalTo(self.mas_top).offset(174.0f + 96.0f);
+        make.top.equalTo(self.mas_top).offset(kVerticalNavBarHeight + 110.0f + 96.0f);
         make.height.mas_offset(45.0f);
     }];
     UIView *vLineView = [[UIView alloc] init];
