@@ -97,7 +97,8 @@
     }
     [self dealWithProjectGroups:groups];
     [self setupQRCodeLeftView];
-    [self showProjectWithIndexPath:[LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath];
+    [self refreshUserRoleInterface];
+
 }
 #pragma mark - peojects hide & show
 - (void)dealWithProjectGroups:(NSArray *)groups{
@@ -138,7 +139,6 @@
         [self requestForLayerList];
         self.qrCodeView.hidden = YES;
     }else {
-        [self stopLoading];
         if ([LSTSharedInstance sharedInstance].trainManager.currentProject.special.intValue == 1) {
             UIViewController *deYangVC = [[NSClassFromString(@"YXLearningViewController_DeYang17") alloc] init];
             [self addChildViewController:deYangVC];
