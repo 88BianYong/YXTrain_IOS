@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YXMineHeaderView_17 : UITableViewHeaderFooterView
-@property (nonatomic, strong) YXUserProfile *userProfile;
-@property (nonatomic, copy) void(^mineHeaderUserCompleteBlock)(void);
+- (void)reloadMasterMainHeader:(NSString *)iconString withTitle:(NSString *)title;
 @end

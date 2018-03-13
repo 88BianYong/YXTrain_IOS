@@ -177,6 +177,8 @@
 		9203D061204FD565005601BD /* MasterThemeViewController_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203D060204FD565005601BD /* MasterThemeViewController_17.m */; };
 		9203D068204FD629005601BD /* MasterThemeCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203D067204FD629005601BD /* MasterThemeCell_17.m */; };
 		9203D06B204FE3B1005601BD /* MasterThemeHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203D06A204FE3B1005601BD /* MasterThemeHeaderView_17.m */; };
+		9203F5ED2057A68B000A7931 /* YXMineMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203F5EC2057A68B000A7931 /* YXMineMainCell.m */; };
+		9203F5F02057A8C0000A7931 /* YXMineTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203F5EF2057A8C0000A7931 /* YXMineTableHeaderView_17.m */; };
 		920C0B531FBEF7010002BC47 /* MasterNoticeBriefScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 920C0B521FBEF7010002BC47 /* MasterNoticeBriefScheme.m */; };
 		920E23581E890E5C000F1D36 /* YXVideoQuestionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E23571E890E5C000F1D36 /* YXVideoQuestionsRequest.m */; };
 		920E235B1E890E7F000F1D36 /* YXSubmitAnswerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E235A1E890E7F000F1D36 /* YXSubmitAnswerRequest.m */; };
@@ -1230,6 +1232,10 @@
 		9203D067204FD629005601BD /* MasterThemeCell_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterThemeCell_17.m; sourceTree = "<group>"; };
 		9203D069204FE3B1005601BD /* MasterThemeHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterThemeHeaderView_17.h; sourceTree = "<group>"; };
 		9203D06A204FE3B1005601BD /* MasterThemeHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterThemeHeaderView_17.m; sourceTree = "<group>"; };
+		9203F5EB2057A68B000A7931 /* YXMineMainCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineMainCell.h; sourceTree = "<group>"; };
+		9203F5EC2057A68B000A7931 /* YXMineMainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineMainCell.m; sourceTree = "<group>"; };
+		9203F5EE2057A8C0000A7931 /* YXMineTableHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineTableHeaderView_17.h; sourceTree = "<group>"; };
+		9203F5EF2057A8C0000A7931 /* YXMineTableHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineTableHeaderView_17.m; sourceTree = "<group>"; };
 		920C0B511FBEF7010002BC47 /* MasterNoticeBriefScheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterNoticeBriefScheme.h; sourceTree = "<group>"; };
 		920C0B521FBEF7010002BC47 /* MasterNoticeBriefScheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterNoticeBriefScheme.m; sourceTree = "<group>"; };
 		920E23561E890E5C000F1D36 /* YXVideoQuestionsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVideoQuestionsRequest.h; sourceTree = "<group>"; };
@@ -5386,8 +5392,12 @@
 		92A7916B1F0E214400E3D258 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				9203F5EE2057A8C0000A7931 /* YXMineTableHeaderView_17.h */,
+				9203F5EF2057A8C0000A7931 /* YXMineTableHeaderView_17.m */,
 				92E927AC1F1DEB8A00BEF834 /* YXMineHeaderView_17.h */,
 				92E927AD1F1DEB8A00BEF834 /* YXMineHeaderView_17.m */,
+				9203F5EB2057A68B000A7931 /* YXMineMainCell.h */,
+				9203F5EC2057A68B000A7931 /* YXMineMainCell.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -6630,6 +6640,7 @@
 				7CF8447E1D2E43EC00B1CE55 /* YXProjectSelectionCell.m in Sources */,
 				92852BEA1EB9AF3D000BF9D1 /* DeYangGetQuizStatistics.m in Sources */,
 				92938CEE1F29BD720099D49A /* CourseCenterListRequest_17.m in Sources */,
+				9203F5ED2057A68B000A7931 /* YXMineMainCell.m in Sources */,
 				921AC82F1ED29DCD001579A9 /* VideoCourseDetailViewController.m in Sources */,
 				928C253F1F1DAFF200FA853A /* CourseHistoryListRequest_17.m in Sources */,
 				92AD33581EA0AB58001F2718 /* ProjectChooseLayerHeaderView.m in Sources */,
@@ -7288,6 +7299,7 @@
 				922DB1AD1FBA807F0078F6BD /* CourseRecordListViewController_17.m in Sources */,
 				9229CB971FEB609600228085 /* MJRefreshBackStateFooter.m in Sources */,
 				9229CB981FEB609600228085 /* MJRefreshBackNormalFooter.m in Sources */,
+				9203F5F02057A8C0000A7931 /* YXMineTableHeaderView_17.m in Sources */,
 				923237431D7EA80E00FDACFE /* YXCMSCustomView.m in Sources */,
 				9263544D1DF152E400FAD1DE /* BeijingCheckedMobileUserRequest.m in Sources */,
 				924603FC1F2F0ACD00146C82 /* NoticeBriefFloatingView_17.m in Sources */,

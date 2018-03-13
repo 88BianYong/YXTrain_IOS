@@ -13,6 +13,8 @@
 #import "YXMySettingCell.h"
 #import "YXWebSocketManger.h"
 #import "YXUserProfileRequest.h"
+#import "YXMineTableHeaderView_17.h"
+#import "YXMineMainCell.h"
 #import "YXMineHeaderView_17.h"
 static  NSString *const trackPageName = @"设置页面";
 @interface YXMineViewController_17 ()
@@ -24,7 +26,7 @@ UITableViewDataSource
 @property (nonatomic, strong) YXNoFloatingHeaderFooterTableView *tableView;
 @property (nonatomic, strong) YXUserProfile *userProfile;
 @property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
-@property (nonatomic, strong) YXMineHeaderView_17 *headerView;
+@property (nonatomic, strong) YXMineTableHeaderView_17 *headerView;
 @end
 
 @implementation YXMineViewController_17
@@ -35,7 +37,7 @@ UITableViewDataSource
     [super viewDidLoad];
     self.title = @"我";
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    self.titleArray = @[@[@"清空缓存",@"帮助与反馈",@"去AppStore评分",@"关于我们"],@[@"退出登录"]];
+    self.titleArray = @[@"清空缓存",@"帮助与反馈",@"去AppStore评分",@"关于我们"];
     [self setupUI];
     [self layoutInterface];
     [self reloadUserProfileData];
@@ -70,8 +72,12 @@ UITableViewDataSource
     self.tableView.layoutMargins = UIEdgeInsetsZero;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"staticString"];
     [self.tableView registerClass:[YXMySettingCell class] forCellReuseIdentifier:@"YXMySettingCell"];
+    [self.tableView registerClass:[YXMineMainCell class] forCellReuseIdentifier:@"YXMineMainCell"];
+    [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
+     [self.tableView registerClass:[YXMineHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"YXMineHeaderView_17"];
+    
     [self.view addSubview:self.tableView];
-    self.headerView = [[YXMineHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 133.0f)];
+    self.headerView = [[YXMineTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 133.0f)];
     WEAK_SELF
     self.headerView.mineHeaderUserCompleteBlock = ^{
         STRONG_SELF
@@ -88,22 +94,32 @@ UITableViewDataSource
 
 #pragma mark - tableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return _titleArray.count;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return ((NSArray *)_titleArray[section]).count;
+    if (section == 0) {
+        return [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains.count;
+    }else if (section == 1) {
+        return self.titleArray.count;
+    }else {
+        return 1;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        YXMySettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMySettingCell" forIndexPath:indexPath];
-        [cell reloadWithText:_titleArray[indexPath.section][indexPath.row] imageName:@""];
+        YXMineMainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMineMainCell" forIndexPath:indexPath];
+         YXTrainListRequestItem_body_train *train = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains[indexPath.row];
+        cell.titleString = train.name;
         return cell;
-    }
-    else{
+    }else if (indexPath.section == 1) {
+        YXMySettingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"YXMySettingCell" forIndexPath:indexPath];
+        [cell reloadWithText:_titleArray[indexPath.row] imageName:@""];
+        return cell;
+    } else{
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"staticString" forIndexPath:indexPath];
-        cell.textLabel.text = _titleArray[indexPath.section][indexPath.row];
+        cell.textLabel.text = @"退出登录";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.font = [UIFont systemFontOfSize:14.0f];
         cell.textLabel.textColor = [UIColor colorWithHexString:@"0067be"];
@@ -118,28 +134,64 @@ UITableViewDataSource
 #pragma mark - tableView Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 43.0f;
+    return 45.0f;
 }
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0.01f;
+    if (section == 1) {
+        return 30.0f;
+    }else {
+        return 10.0f;
+    }
 }
-
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    return [[UIView alloc] init];
+    YXSectionHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXSectionHeaderFooterView"];
+    return footerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 0.00001f;
-    }else{
-        return 30.0f;
+        return 45.0f;
+    }else {
+        return 0.0001f;
     }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    YXMineHeaderView_17 *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"YXMineHeaderView_17"];
+    if (section == 0) {
+        [headerView reloadMasterMainHeader:@"我的项目" withTitle:@"我的项目"];
+    }else {
+        [headerView reloadMasterMainHeader:@"" withTitle:@""];
+    }
+    return headerView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if(indexPath.section == 0){
+    if (indexPath.section == 0) {
+        YXTrainListRequestItem_body_train *train = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains[indexPath.row];
+        if (train.pid.integerValue == [LSTSharedInstance sharedInstance].trainManager.currentProject.pid.integerValue) {
+            self.tabBarController.selectedIndex = 0;
+        }else {
+            [YXDataStatisticsManger trackEvent:@"切换项目" label:@"我页面" parameters:nil];
+            NSArray<TrainListProjectGroup *> *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
+            __block NSInteger sectionInteger = 0;
+            __block NSInteger indexInteger = 0;
+            __block BOOL isSaveBool = NO;
+            [groups enumerateObjectsUsingBlock:^(TrainListProjectGroup * _Nonnull obj, NSUInteger section, BOOL * _Nonnull stop) {
+                [obj.items enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * _Nonnull temp, NSUInteger index, BOOL * _Nonnull stop) {
+                    if ([temp.pid isEqualToString:train.pid]) {
+                        sectionInteger = section;
+                        indexInteger = index;
+                        isSaveBool = YES;
+                    }
+                }];
+            }];
+            [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = [NSIndexPath indexPathForRow:indexInteger inSection:sectionInteger];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:nil];
+        }
+        
+    }else if(indexPath.section == 1){
         switch (indexPath.row) {
             case 0:
             {
