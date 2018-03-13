@@ -219,7 +219,6 @@ UITableViewDataSource
                     }
                 }];
             }];
-            [LSTSharedInstance sharedInstance].trainManager.currentProject.role = nil;
             [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = [NSIndexPath indexPathForRow:indexInteger inSection:sectionInteger];
             [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:nil];
         }

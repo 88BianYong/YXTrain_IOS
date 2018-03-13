@@ -170,7 +170,6 @@
 }
 #pragma mark - showView
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
-    [LSTSharedInstance sharedInstance].trainManager.currentProject.role = nil;
     [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
     [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:nil];
 }

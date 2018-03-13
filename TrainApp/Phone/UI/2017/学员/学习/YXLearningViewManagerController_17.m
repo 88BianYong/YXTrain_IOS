@@ -123,7 +123,6 @@
 }
 #pragma mark - showView
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
-    [LSTSharedInstance sharedInstance].trainManager.currentProject.role = nil;
     [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
     [self refreshUserRoleInterface];
 }
@@ -241,6 +240,7 @@
         [LSTSharedInstance sharedInstance].trainManager.currentProject.layerId = layerId;
         [[LSTSharedInstance sharedInstance].trainManager saveToCache];
         [self.chooseLayerView removeFromSuperview];
+        [self refreshUserRoleInterface];
     }];
     self.selectLayerRequest = request;
 }

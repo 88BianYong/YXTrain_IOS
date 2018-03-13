@@ -282,7 +282,6 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 
 #pragma mark - showView
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
-    [LSTSharedInstance sharedInstance].trainManager.currentProject.role = nil;
     [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
     [self refreshUserRoleInterface];
 }

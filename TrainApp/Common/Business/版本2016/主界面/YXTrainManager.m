@@ -120,6 +120,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         if (newTrain.w.integerValue >= 5 && oldTrain.w.integerValue >= 5 && oldTrain.role.integerValue != newTrain.role.integerValue) {//17 坊主学员身份切换需要重新刷新
             isChangeBool = YES;
         }
+        oldTrain.role = nil;
     }
     _currentProjectIndexPath = currentProjectIndexPath;
     self.trainlistItem.body.choosePid = self.currentProject.pid;
