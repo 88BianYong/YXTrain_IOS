@@ -262,6 +262,10 @@
             }
         }
     }];
+    
+    
+    
+    
 }
 - (void)playVideoClear {
     self.player = nil;
