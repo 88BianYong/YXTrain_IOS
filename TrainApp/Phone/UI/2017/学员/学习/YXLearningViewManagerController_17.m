@@ -195,6 +195,7 @@
 #pragma mark - request
 - (void)requestForLayerList {
     if (self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid]) {
+        [self stopLoading];
         [self showTrainLayerView:self.layerMutableDictionary[[LSTSharedInstance sharedInstance].trainManager.currentProject.pid]];
     }else {
         TrainLayerListRequest *request = [[TrainLayerListRequest alloc] init];
