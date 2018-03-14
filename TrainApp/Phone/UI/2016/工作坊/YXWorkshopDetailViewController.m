@@ -83,6 +83,8 @@ UITableViewDataSource
     _tableView.layoutMargins = UIEdgeInsetsZero;
     _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
     _tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
+    _tableView.estimatedSectionFooterHeight = 0.0001f;
+    _tableView.estimatedSectionHeaderHeight = 5.0f;
     [_tableView registerClass:[YXWorkshopDetailGroupCell class] forCellReuseIdentifier:@"YXWorkshopDetailGroupCell"];
     [_tableView registerClass:[YXWorkshopDetailInfoCell class] forCellReuseIdentifier:@"YXWorkshopDetailInfoCell"];
     [_tableView registerClass:[YXWorkshopDetailDatumCell class] forCellReuseIdentifier:@"YXWorkshopDetailDatumCell"];
@@ -125,6 +127,7 @@ UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01f;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];

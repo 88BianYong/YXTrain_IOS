@@ -419,5 +419,8 @@
         }];
     }
 }
+- (BOOL)prefersHomeIndicatorAutoHidden{
+    return YES;
+}
 
 @end

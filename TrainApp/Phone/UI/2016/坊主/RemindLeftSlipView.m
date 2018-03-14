@@ -25,7 +25,7 @@
     [remindView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_offset(CGSizeMake(100.0f, 115.0f));
         make.right.equalTo(self.mas_right).offset(0.0f);
-        make.top.equalTo(self.mas_top).offset(64.0f + 44.0f + 150.0f - 15.0f);
+        make.top.equalTo(self.mas_top).offset(kVerticalNavBarHeight + 44.0f + 150.0f - 15.0f);
     }];
     
     UIImageView *descriptionImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"内容模块A"]];

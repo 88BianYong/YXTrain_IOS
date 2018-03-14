@@ -91,4 +91,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.00001f;
 }
+- (BOOL)prefersHomeIndicatorAutoHidden{
+    return YES;
+}
 @end

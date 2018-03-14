@@ -111,16 +111,34 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     [self modifiDeleteBtn];
+    DDLogDebug(@"调用");
 }
 -(void)modifiDeleteBtn{
-    for (UIView *subView in self.subviews) {
-        if ([subView isKindOfClass:NSClassFromString(@"UITableViewCellDeleteConfirmationView")]) {
-            subView.backgroundColor= [UIColor colorWithHexString:@"0070c9"];
-            for (UIButton *btn in subView.subviews) {
-                if ([btn isKindOfClass:[UIButton class]]) {
-                    btn.backgroundColor=[UIColor colorWithHexString:@"0070c9"];
-                    btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
-                    [btn setTitle:@"提醒学习" forState:UIControlStateNormal];
+    if (@available(iOS 11.0, *)) {
+        for (UIView *subview in self.superview.subviews)
+        {
+            if ([subview isKindOfClass:NSClassFromString(@"UISwipeActionPullView")])
+            {
+                subview.backgroundColor=[UIColor colorWithHexString:@"0070c9"];
+                for (UIButton *btn in subview.subviews) {
+                    if ([btn isKindOfClass:[UIButton class]]) {
+                        btn.backgroundColor=[UIColor colorWithHexString:@"0070c9"];
+                        btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+                        [btn setTitle:@"提醒学习" forState:UIControlStateNormal];
+                    }
+                }
+            }
+        }
+    }else {
+        for (UIView *subView in self.subviews) {
+            if ([subView isKindOfClass:NSClassFromString(@"UITableViewCellDeleteConfirmationView")]) {
+                subView.backgroundColor= [UIColor colorWithHexString:@"0070c9"];
+                for (UIButton *btn in subView.subviews) {
+                    if ([btn isKindOfClass:[UIButton class]]) {
+                        btn.backgroundColor=[UIColor colorWithHexString:@"0070c9"];
+                        btn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+                        [btn setTitle:@"提醒学习" forState:UIControlStateNormal];
+                    }
                 }
             }
         }

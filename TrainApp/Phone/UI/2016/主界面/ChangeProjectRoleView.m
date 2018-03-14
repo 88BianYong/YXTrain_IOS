@@ -26,7 +26,7 @@
     [containerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_offset(CGSizeMake(54.0f, 54.0f));
         make.left.equalTo(self.mas_left).offset(5.0f);
-        make.top.equalTo(self.mas_top).offset(20.0f);
+        make.top.equalTo(self.mas_top).offset(kVerticalStatusBarHeight - 5.0f);
     }];
 
     UIImageView *userHeaderView = [[UIImageView alloc] init];

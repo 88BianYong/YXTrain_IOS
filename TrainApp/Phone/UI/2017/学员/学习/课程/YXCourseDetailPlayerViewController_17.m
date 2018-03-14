@@ -393,4 +393,7 @@
         self.playDocumentTime = 0;
     }
 }
+- (BOOL)prefersHomeIndicatorAutoHidden{
+    return YES;
+}
 @end

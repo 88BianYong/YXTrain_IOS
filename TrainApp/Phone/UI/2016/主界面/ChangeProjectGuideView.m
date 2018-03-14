@@ -30,7 +30,7 @@
     [self addSubview:imageView];
     
     [arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(60);
+        make.top.mas_equalTo(kVerticalNavBarHeight - 4.0f);
         make.centerX.mas_equalTo(0);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];

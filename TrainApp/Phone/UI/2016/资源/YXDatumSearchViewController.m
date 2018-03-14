@@ -145,9 +145,9 @@ static  NSString *const trackPageName = @"搜索结果页面";
     seachView.cancelButtonClickedBlock = ^{
         [self dismissViewControllerAnimated:YES completion:nil];
     };
-    self.navigationItem.titleView = seachView;
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationItem.leftBarButtonItems = nil;
+    self.navigationItem.titleView = seachView;
     [self.navigationItem setHidesBackButton:YES animated:NO];
 }
 

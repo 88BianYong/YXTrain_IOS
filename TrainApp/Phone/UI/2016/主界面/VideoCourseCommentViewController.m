@@ -486,5 +486,7 @@
     }
     return _replyCommnetVC;
 }
-
+- (BOOL)prefersHomeIndicatorAutoHidden{
+    return YES;
+}
 @end

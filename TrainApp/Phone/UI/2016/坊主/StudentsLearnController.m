@@ -95,7 +95,7 @@
     self.headerView.hidden = YES;
     self.tableView.tableHeaderView = self.headerView;
     self.footerView  = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 86.0f)];
-    self.footerView.backgroundColor = [UIColor whiteColor];
+    self.footerView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.remindButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.remindButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"0070c9"]] forState:UIControlStateNormal];
     [self.remindButton setBackgroundImage:[UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f3f7fa"]] forState:UIControlStateDisabled];
@@ -165,10 +165,14 @@
     }];
     
     [self.remindButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.view.mas_bottom);
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
         make.height.mas_offset(44.0f);
+        if (@available(iOS 11.0,*)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        }else {
+            make.bottom.equalTo(self.view.mas_bottom);
+        }
     }];
 }
 - (void)setIsBatchBool:(BOOL)isBatchBool {
@@ -241,8 +245,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.0001f;
 }
+
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return  @"提醒学";
+    return  @"提醒学习";
 }
 - (BOOL)tableView: (UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -261,6 +266,7 @@
         return UITableViewCellEditingStyleNone;
     }
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     MasterLearningInfoListRequestItem_Body_LearningInfoList *info = self.dataArray[indexPath.row];
     if (self.isBatchBool) {
@@ -278,6 +284,11 @@
         VC.title = info.realname;
         [self.navigationController pushViewController:VC animated:YES];
     }
+}
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setNeedsLayout]; 
 }
 #pragma mark - button Action
 - (void)buttonBatchAction:(UIButton *)sender {

@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIImageView *searchImageView;
 
 @property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) UILabel *titleLabel;
 
 @end
 
@@ -26,6 +27,14 @@
 }
 
 - (void)setupUI {
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.hidden = YES;
+    self.titleLabel.text = @"撒就爱看老实交代克拉斯大卡司大Sasasasasas叔大婶dadahdahsdalkjsalh多撒";
+    [self addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+    }];
+    
     self.searchImageView = [[UIImageView alloc] init];
     self.searchImageView.image = [UIImage imageNamed:@"搜索输入框内的搜索icon"];
     [self addSubview:self.searchImageView];

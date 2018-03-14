@@ -100,7 +100,7 @@ static CGFloat const spaceLine = 0;
     self.sheetView.frame = sheetViewF;
     
     CGRect newSheetViewF = self.sheetView.frame;
-    newSheetViewF.origin.y = kActionSheetScreenHeight - self.sheetView.frame.size.height;
+    newSheetViewF.origin.y = kActionSheetScreenHeight - self.sheetView.frame.size.height - kVerticalBottomUpwardHeight;
     
     [UIView animateWithDuration:0.3 animations:^{
 

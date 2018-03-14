@@ -45,7 +45,7 @@
     
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(66);
+        make.top.mas_equalTo(kVerticalNavBarHeight + 2.0f);
         make.right.mas_equalTo(-5);
         make.height.mas_equalTo(135);
         make.width.mas_equalTo(149);
@@ -97,7 +97,7 @@
 }
 
 - (void)setTriangleFrame {
-    self.topTriangleImageView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 30, 58, 18, 8);
+    self.topTriangleImageView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 30, kVerticalNavBarHeight - 6.0f, 18, 8);
 }
 
 

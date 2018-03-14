@@ -166,7 +166,11 @@
     [self.rotateButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(30.0f, 30.0f));
         make.bottom.equalTo(self.mas_bottom).offset(-7.0f);
-        make.right.equalTo(self.mas_right).offset(-7.0f);
+        if (@available(iOS 11.0, *)) {
+            make.right.equalTo(self.mas_safeAreaLayoutGuideRight).offset(-7.0f);
+        }else {
+            make.right.equalTo(self.mas_right).offset(-7.0f);
+        }
     }];
     [self.exceptionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);

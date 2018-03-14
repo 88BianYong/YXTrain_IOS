@@ -120,9 +120,9 @@
             }
         }];        
     };
-    self.navigationItem.titleView = self.seachView;
     self.navigationItem.rightBarButtonItems = nil;
     self.navigationItem.leftBarButtonItems = nil;
+    self.navigationItem.titleView = self.seachView;
     [self.navigationItem setHidesBackButton:YES animated:NO];
 }
 
