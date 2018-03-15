@@ -30,6 +30,7 @@
          self.appDelegateHelper.scanCodeUrl = [launchOptions objectForKey:UIApplicationLaunchOptionsURLKey];
         [[LSTSharedInstance sharedInstance].userManger logout];
     }
+    
     [GlobalUtils setupCore];
     [YXNavigationBarController setup];
     [self setupKeyboardManager];
@@ -39,7 +40,6 @@
     [self addLaunchAppStatisticWithType:YXRecordStartType];
     //七鱼
     [[QYSDK sharedSDK] registerAppId:@"5c8fda4d1143b9639ef44ef089f387dd" appName:@"手机研修"];
-    
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
