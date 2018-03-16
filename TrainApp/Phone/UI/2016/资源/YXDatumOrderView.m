@@ -38,9 +38,9 @@
     [self setTriangleFrame];
     [self.tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
         if (self.isNavBarHidden) {
-            make.top.mas_equalTo(109 - 45.0f);
+            make.top.mas_equalTo(kVerticalNavBarHeight);
         }else{
-            make.top.mas_equalTo(109);
+            make.top.mas_equalTo(kVerticalNavBarHeight + 45.0f);
         }
         make.left.mas_equalTo(6);
         make.right.mas_equalTo(-6);
@@ -129,9 +129,9 @@
 
 - (void)setTriangleFrame {
     if (self.isNavBarHidden) {
-        self.topTriangleImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width/self.btnCount) * (0.5 + self.index) - 8, 101 - 44.0f, 18, 8);
+        self.topTriangleImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width/self.btnCount) * (0.5 + self.index) - 8, kVerticalNavBarHeight + 45.0f - 8.0f - 44.0f, 18, 8);
     }else{
-        self.topTriangleImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width/self.btnCount) * (0.5 + self.index) - 8, 101, 18, 8);
+        self.topTriangleImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width/self.btnCount) * (0.5 + self.index) - 8, kVerticalNavBarHeight + 45.0f - 8.0f, 18, 8);
     }
 }
 

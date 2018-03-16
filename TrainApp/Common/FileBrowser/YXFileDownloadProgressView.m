@@ -54,7 +54,11 @@
     //[closeButton setImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
     [self addSubview:closeButton];
     [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(@20);
+        if (@available(iOS 11.0,*)) {
+            make.top.equalTo(self.mas_safeAreaLayoutGuideTop);
+        }else {
+            make.top.mas_equalTo(@20);
+        }
         make.right.mas_equalTo(@0);
         make.size.mas_equalTo(CGSizeMake(44, 44));
     }];

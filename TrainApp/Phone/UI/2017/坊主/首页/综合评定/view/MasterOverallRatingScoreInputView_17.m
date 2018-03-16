@@ -28,9 +28,16 @@
             CGRect keyboardFrame = keyboardFrameValue.CGRectValue;
             NSNumber *duration = [dic valueForKey:UIKeyboardAnimationDurationUserInfoKey];
             [UIView animateWithDuration:duration.floatValue animations:^{
-                [self mas_updateConstraints:^(MASConstraintMaker *make) {
-                    make.bottom.mas_equalTo(-(kScreenHeight - keyboardFrame.origin.y));
-                }];
+                if (keyboardFrame.origin.y == kScreenHeight) {
+                    [self mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.bottom.mas_equalTo(-(kScreenHeight - keyboardFrame.origin.y) - kVerticalBottomUpwardHeight);
+                    }];
+                }else {
+                    [self mas_updateConstraints:^(MASConstraintMaker *make) {
+                        make.bottom.mas_equalTo(-(kScreenHeight - keyboardFrame.origin.y));
+                    }];
+                }
+  
                 [self.superview layoutIfNeeded];
             }];
         }];

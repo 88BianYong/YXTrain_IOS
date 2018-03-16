@@ -145,7 +145,12 @@
     [self.inputView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left);
         make.right.equalTo(self.view.mas_right);
-        make.bottom.equalTo(self.view.mas_bottom);
+        if(@available(iOS 11.0, *)){
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        }else {
+            make.bottom.equalTo(self.view.mas_bottom);
+        }
+        
         make.height.mas_offset(45.0f);
     }];
 }

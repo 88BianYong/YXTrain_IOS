@@ -222,10 +222,10 @@
             self.isNavBarHidden = YES;
             self.isAllowChange = NO;
             [self.navigationController setNavigationBarHidden:YES animated:YES];
-            self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
+            self.filterView.frame = CGRectMake(0, kVerticalStatusBarHeight, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
-                make.top.mas_equalTo(64);
+                make.top.mas_equalTo(kVerticalNavBarHeight);
             }];
             return;
         }
@@ -234,10 +234,10 @@
             self.isNavBarHidden = YES;
             self.isAllowChange = NO;
             [self.navigationController setNavigationBarHidden:YES animated:YES];
-            self.filterView.frame = CGRectMake(0, 20, self.view.bounds.size.width, 44);
+            self.filterView.frame = CGRectMake(0, kVerticalStatusBarHeight, self.view.bounds.size.width, 44);
             [self.contentView mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.bottom.mas_equalTo(0);
-                make.top.mas_equalTo(64);
+                make.top.mas_equalTo(kVerticalNavBarHeight);
             }];
         }
         if (scrollView.contentOffset.y < self.oldOffsetY && self.isAllowChange) {

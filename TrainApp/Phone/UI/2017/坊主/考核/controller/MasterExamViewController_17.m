@@ -93,9 +93,8 @@
 }
 - (void)showMarkWithOriginRect:(CGRect)rect explain:(NSString *)string {
     MasterMyExamExplainView_17 *v = [[MasterMyExamExplainView_17 alloc]init];
-    [v showInView:self.navigationController.view examExplain:string];
+    [v showInView:self.tabBarController.view examExplain:string];
     [v setupOriginRect:rect];
-    
 }
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -316,8 +316,8 @@
         make.height.mas_offset(44.0f);
     }];
     [self.iphonexView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left);
-        make.right.equalTo(self.mas_right);
+        make.left.equalTo(self.bottomView.mas_left);
+        make.right.equalTo(self.bottomView.mas_right);
         make.top.equalTo(self.bottomView.mas_bottom);
         make.height.mas_offset(32.0f);
     }];
@@ -690,18 +690,26 @@
     for (UIButton *btn in self.buttonMutableArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(45, 25.5));
-            make.right.mas_equalTo(-3);
+            if (@available(iOS 11.0, *)) {
+                make.right.equalTo(self.mas_safeAreaLayoutGuideRight).offset(-3.0f);
+            }else {
+                make.right.mas_equalTo(-3);
+            }
             make.top.mas_equalTo(self.mas_bottom);
         }];
         btn.alpha = 0;
     }
     [self layoutIfNeeded];
     
-    CGFloat yOffset = -50;
+    CGFloat yOffset = - 50 - kHorizontalBottomUpwardHeight;
     for (UIButton *btn in _buttonMutableArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(45, 25.5));
-            make.right.mas_equalTo(-3);
+            if (@available(iOS 11.0, *)) {
+                make.right.equalTo(self.mas_safeAreaLayoutGuideRight).offset(-3.0f);
+            }else {
+                make.right.mas_equalTo(-3);
+            }
             make.bottom.mas_equalTo(yOffset);
         }];
         btn.alpha = 1;
@@ -716,7 +724,11 @@
     for (UIButton *btn in self.buttonMutableArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(60, 34));
-            make.right.mas_equalTo(-10);
+            if (@available(iOS 11.0, *)) {
+                make.right.equalTo(self.mas_safeAreaLayoutGuideRight).offset(-10.0f);
+            }else {
+                make.right.mas_equalTo(-10);
+            }
             make.top.mas_equalTo(self.mas_bottom);
         }];
         btn.alpha = 0;

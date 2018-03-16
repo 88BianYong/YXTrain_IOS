@@ -63,6 +63,9 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 @property (nonatomic ,strong) VideoClassworkManager *classworkManager;
 @property (nonatomic, assign) BOOL isShowClossworkViewBool;//是否正在显示随堂练界面
 
+@property (nonatomic, strong) UIView *iphonexView;
+
+
 
 
 
@@ -143,7 +146,14 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }
     [self.view addSubview:self.topView];
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(@0);
+        make.top.right.mas_equalTo(@0);
+        if (@available(iOS 11.0,*)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+        }else {
+            make.left.equalTo(self.view.mas_left);
+            make.right.equalTo(self.view.mas_right);
+        }
         make.height.mas_equalTo(@44);
     }];
     
@@ -151,8 +161,25 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     self.bottomView.bShowDefinition = _bShowDefinition;
     [self.view addSubview:self.bottomView];
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.mas_equalTo(@0);
         make.height.mas_equalTo(@55).priorityHigh();
+        if (@available(iOS 11.0,*)) {
+            make.left.equalTo(self.view.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+        }else {
+            make.bottom.equalTo(self.view.mas_bottom);
+            make.left.right.mas_equalTo(@0);
+        }
+    }];
+    
+    self.iphonexView = [[UIView alloc] init];
+    self.iphonexView.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.6f];
+    [self.view addSubview:self.iphonexView];
+    [self.iphonexView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bottomView.mas_left);
+        make.right.equalTo(self.bottomView.mas_right);
+        make.top.equalTo(self.bottomView.mas_bottom);
+        make.height.mas_offset(32.0f);
     }];
 
     [self.topView.backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
@@ -181,7 +208,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     }];
     
     [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(@55);
+        if (@available(iOS 11.0,*)) {
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(55.0f);
+        }else {
+            make.bottom.equalTo(self.view.mas_bottom).offset(55.0f);
+        }
     }];
     
     self.topView.titleLabel.text = self.title;
@@ -537,7 +568,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)showBottom {
     [UIView animateWithDuration:0.6 animations:^{
         [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(@0);
+            if (@available(iOS 11.0,*)) {
+                make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            }else {
+                make.bottom.equalTo(self.view.mas_bottom);
+            }
         }];
         [self.view layoutIfNeeded];
     }];
@@ -555,7 +590,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
 - (void)hideBottom {
     [UIView animateWithDuration:0.6 animations:^{
         [self.bottomView mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(@55);
+            if (@available(iOS 11.0,*)) {
+                make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(55.0f +kHorizontalBottomUpwardHeight);
+            }else {
+                make.bottom.equalTo(self.view.mas_bottom).offset(55.0f +kHorizontalBottomUpwardHeight);
+            }
         }];
         [self.view layoutIfNeeded];
     }];
@@ -697,18 +736,26 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     for (UIButton *btn in _defButtonArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(60, 34));
-            make.right.mas_equalTo(-10);
+            if (@available(iOS 11.0,*)) {
+                make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight).offset(-10.0f);
+            }else {
+                make.right.mas_equalTo(-10);
+            }
             make.top.mas_equalTo(self.view.mas_bottom);
         }];
         btn.alpha = 0;
     }
     [self.view layoutIfNeeded];
     
-    CGFloat yOffset = -60;
+    CGFloat yOffset = - 60 - kHorizontalBottomUpwardHeight;
     for (UIButton *btn in _defButtonArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(60, 34));
-            make.right.mas_equalTo(-10);
+            if (@available(iOS 11.0,*)) {
+                make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight).offset(-10.0f);
+            }else {
+                make.right.mas_equalTo(-10);
+            }
             make.bottom.mas_equalTo(yOffset);
         }];
         btn.alpha = 1;
@@ -725,7 +772,11 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     for (UIButton *btn in _defButtonArray) {
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(60, 34));
-            make.right.mas_equalTo(-10);
+            if (@available(iOS 11.0,*)) {
+                make.right.equalTo(self.view.mas_safeAreaLayoutGuideRight).offset(-10.0f);
+            }else {
+                make.right.mas_equalTo(-10);
+            }
             make.top.mas_equalTo(self.view.mas_bottom);
         }];
         btn.alpha = 0;
@@ -806,4 +857,7 @@ static const NSTimeInterval kTopBottomHiddenTime = 5;
     _preventHangingCourseInteger = preventHangingCourseInteger;
 }
 
+- (BOOL)prefersHomeIndicatorAutoHidden {
+    return YES;
+}
 @end
