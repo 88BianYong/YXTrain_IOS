@@ -31,8 +31,8 @@
             }
             [self.tabBar hideBadgeOnItemIndex:2 withTabbarItem:4];
         }else if (redInteger == 0){
-            [self.tabBar showBadgeOnItemIndex:2 withTabbarItem:4];
             self.viewControllers[2].tabBarItem.badgeValue = nil;
+            [self.tabBar showBadgeOnItemIndex:2 withTabbarItem:4];
         }else {
             self.viewControllers[2].tabBarItem.badgeValue = nil;
             [self.tabBar hideBadgeOnItemIndex:2 withTabbarItem:4];

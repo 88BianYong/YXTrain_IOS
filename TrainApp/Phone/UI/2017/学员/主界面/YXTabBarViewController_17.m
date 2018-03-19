@@ -27,17 +27,17 @@
         NSInteger redInteger = [LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger;
         if (redInteger > 0) {
             if (redInteger > 99){
-                self.viewControllers[1].tabBarItem.badgeValue = @"99+";
+                self.viewControllers[2].tabBarItem.badgeValue = @"99+";
             }else{
-                self.viewControllers[1].tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
+                self.viewControllers[2].tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
             }
-            [self.tabBar hideBadgeOnItemIndex:1 withTabbarItem:3];
+            [self.tabBar hideBadgeOnItemIndex:2 withTabbarItem:4];
         }else if (redInteger == 0){
-            [self.tabBar showBadgeOnItemIndex:1 withTabbarItem:3];
-            self.viewControllers[1].tabBarItem.badgeValue = nil;
+            self.viewControllers[2].tabBarItem.badgeValue = nil;
+            [self.tabBar showBadgeOnItemIndex:2 withTabbarItem:4];
         }else {
-            self.viewControllers[1].tabBarItem.badgeValue = nil;
-            [self.tabBar hideBadgeOnItemIndex:1 withTabbarItem:3];
+            self.viewControllers[2].tabBarItem.badgeValue = nil;
+            [self.tabBar hideBadgeOnItemIndex:2 withTabbarItem:4];
         }
     }];
 }
