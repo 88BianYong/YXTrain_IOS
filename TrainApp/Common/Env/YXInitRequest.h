@@ -49,20 +49,17 @@ extern NSString *const YXInitSuccessNotification;
 
 @end
 
-@interface YXInitRequest : GetRequest
+@interface YXInitRequest : YXGetRequest
 
 @property (nonatomic, strong) NSString<Optional> *did;        //设备编号
 @property (nonatomic, strong) NSString<Optional> *brand;      //手机品牌
 @property (nonatomic, strong) NSString<Optional> *nettype;    //网络类型，0:mobile，1:wifi
-@property (nonatomic, strong) NSString<Optional> *osType;     //操作系统类型，0:Android，1:IOS，100:Others
 @property (nonatomic, strong) NSString<Optional> *appVersion; //当前使用的应用的版本号
 @property (nonatomic, strong) NSString<Optional> *content;    //上报log的内容，可定义富文本
 @property (nonatomic, strong) NSString<Optional> *operType;   //操作类型，以自行定义标示
 @property (nonatomic, strong) NSString<Optional> *phone;      //手机号码
 @property (nonatomic, strong) NSString<Optional> *remoteIp;   //客户端IP
 @property (nonatomic, strong) NSString<Optional> *mode;       //正式环境、测试环境
-@property (nonatomic, strong) NSString<Optional> *token;
-
 @end
 
 @interface YXInitHelper : NSObject
