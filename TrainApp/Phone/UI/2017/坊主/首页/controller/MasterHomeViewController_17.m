@@ -134,19 +134,27 @@
            forCellReuseIdentifier:@"MasterHomeBarCell_17"];
     [self.tableView registerClass:[MasterHomeHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"MasterHomeHeaderView_17"];
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
-    self.tableHeaderView = [[MasterHomeTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 190.0f)];
+    self.tableHeaderView = [[MasterHomeTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 237.0f)];
     self.tableView.tableHeaderView = self.tableHeaderView;
     WEAK_SELF
     self.tableHeaderView.masterHomeOpenCloseBlock = ^(BOOL isOpen) {
         STRONG_SELF
         if (isOpen) {
             [UIView animateWithDuration:0.25f animations:^{
-                self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 190.0f);
+                self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 237.0f);
                 [self.tableView setTableHeaderView:self.tableHeaderView];
             }];
          }else {
-             self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 130.0f);
+             self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 193.0f);
              [self.tableView setTableHeaderView:self.tableHeaderView];
+//             [UIView animateWithDuration:0.25f animations:^{
+//                 self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 193.0f);
+//                 [self.tableView setTableHeaderView:self.tableHeaderView];
+//             }];
+//             self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 193.0f);
+//             [self.tableView beginUpdates];
+//             [self.tableView setTableHeaderView:self.tableHeaderView];
+//             [self.tableView endUpdates];
         }
     };
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{

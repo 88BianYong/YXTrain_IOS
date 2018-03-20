@@ -31,6 +31,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = YES;
+        self.backgroundColor = [UIColor clearColor];
         [self setupUI];
         [self setupLayout];
     }
@@ -75,34 +76,30 @@
     
     
     self.openButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.openButton setImage:[UIImage imageNamed:@"下拉"] forState:UIControlStateNormal];
-    [self.openButton setImage:[UIImage imageNamed:@"收起"] forState:UIControlStateSelected];
+    [self.openButton setImage:[UIImage imageNamed:@"展开"] forState:UIControlStateNormal];
+    [self.openButton setImage:[UIImage imageNamed:@"收起A"] forState:UIControlStateSelected];
     self.openButton.selected = YES;
     WEAK_SELF
     [[self.openButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
         self.openButton.selected = !self.openButton.selected;
-        self.delayDescLabel.hidden = !self.openButton.selected;
-        self.projectStatusLabel.hidden = !self.openButton.selected;
-        BLOCK_EXEC(self.masterHomeOpenCloseBlock,self.openButton.selected);
+        [self openProjectScoreAndProjectTime:self.openButton.selected];
     }];
     [self addSubview:self.openButton];
     
-    
     self.passDescLabel = [[UILabel alloc] init];
-    self.passDescLabel.font = [UIFont systemFontOfSize:12.0f];
-    self.passDescLabel.textColor = [UIColor whiteColor];
+    self.passDescLabel.font = [UIFont boldSystemFontOfSize:12.0f];
+    self.passDescLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.passDescLabel];
     
     self.delayDescLabel = [[UILabel alloc] init];
-    self.delayDescLabel.font = [UIFont systemFontOfSize:12.0f];
-    self.delayDescLabel.textColor = [UIColor whiteColor];
+    self.delayDescLabel.font = [UIFont boldSystemFontOfSize:12.0f];
+    self.delayDescLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.delayDescLabel];
-    
     
     self.projectStatusLabel = [[UILabel alloc] init];
     self.projectStatusLabel.font = [UIFont systemFontOfSize:12.0f];
-    self.projectStatusLabel.textColor = [UIColor whiteColor];
+    self.projectStatusLabel.textColor = [UIColor colorWithHexString:@"334466"];
     [self addSubview:self.projectStatusLabel];
     
 }
@@ -114,7 +111,7 @@
     [self.waveView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left);
         make.right.equalTo(self.mas_right);
-        make.height.mas_offset(130.0f);
+        make.height.mas_offset(230.0f);
         make.bottom.equalTo(self.mas_bottom);
     }];
     
@@ -145,24 +142,25 @@
         make.top.equalTo(self.statusLabel.mas_bottom).offset(10.0f);
     }];
     
-    [self.openButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right);
-        make.top.equalTo(self.mas_top).offset(35.0f);
-        make.size.mas_offset(CGSizeMake(43.0f, 40.0f));
-    }];
-    
     [self.passDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(self.lineView.mas_bottom).offset(20.0f);
+        make.top.equalTo(self.lineView.mas_bottom).offset(54.0f);
     }];
     
     [self.delayDescLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(self.passDescLabel.mas_bottom).offset(8.0f);
+        make.top.equalTo(self.passDescLabel.mas_bottom).offset(6.0f);
     }];
+    
     [self.projectStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(self.delayDescLabel.mas_bottom).offset(8.0f);
+        make.top.equalTo(self.delayDescLabel.mas_bottom).offset(12.0f);
+    }];
+    
+    [self.openButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.bottom.equalTo(self.mas_bottom).offset(-10.0f);
+        make.size.mas_offset(CGSizeMake(30.0f, 30.0f));
     }];
 }
 
@@ -185,10 +183,28 @@
     }else if ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 1){
         statusString = @"进行中";
     }
-    self.passDescLabel.text = passString;
-    self.delayDescLabel .text = delayString;
+    self.passDescLabel.text = passString?:@"";
+    self.delayDescLabel .text = delayString?:@"";
     
     self.projectStatusLabel.text = [NSString stringWithFormat:@"%@-%@ %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate,statusString];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.openButton.selected = NO;
+        [self openProjectScoreAndProjectTime:NO];
+    });
     
+}
+
+#pragma mark - open & close
+- (void)openProjectScoreAndProjectTime:(BOOL)isOpen {
+    self.delayDescLabel.hidden = !isOpen;
+    self.projectStatusLabel.hidden = !isOpen;
+    [self.waveView mas_updateConstraints:^(MASConstraintMaker *make) {
+        if (isOpen) {
+            make.height.mas_offset(230.0f);
+        }else {
+            make.height.mas_offset(180.0f);
+        }
+    }];
+    BLOCK_EXEC(self.masterHomeOpenCloseBlock,isOpen);
 }
 @end
