@@ -188,8 +188,10 @@
     
     self.projectStatusLabel.text = [NSString stringWithFormat:@"%@-%@ %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate,statusString];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.openButton.selected = NO;
-        [self openProjectScoreAndProjectTime:NO];
+        if (self.openButton.selected) {
+            self.openButton.selected = NO;
+            [self openProjectScoreAndProjectTime:NO];
+        }
     });
     
 }

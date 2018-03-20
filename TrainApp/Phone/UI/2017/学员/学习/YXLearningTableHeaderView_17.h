@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface YXLearningTableHeaderView_17 : UIView
-@property (nonatomic, copy) NSString *scoreString;
-@property (nonatomic, copy) void(^learningMyScoreCompleteBlock)(BOOL isScoreBool);
+@property (nonatomic, copy) void(^learningMyScoreCompleteBlock)(void);
+@property (nonatomic, copy) void(^masterHomeOpenCloseBlock)(BOOL isOpen);
+- (void)reloadHeaderViewContent:(NSString *)score
+                 withPassString:(NSString *)passString
+                       withPass:(NSInteger)pass;
 @end

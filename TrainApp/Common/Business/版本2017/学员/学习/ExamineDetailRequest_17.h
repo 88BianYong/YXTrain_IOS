@@ -153,6 +153,7 @@
 @property (nonatomic, copy) NSString<Optional> *userGetScore;
 @property (nonatomic, copy) NSString<Optional> *userName;
 @property (nonatomic, strong) NSArray<ExamineDetailRequest_17Item_Examine_Process, Optional> *process;
+@property (nonatomic, copy) NSString<Optional> *passDesc;
 @end
 
 @interface ExamineDetailRequest_17Item: HttpBaseRequestItem

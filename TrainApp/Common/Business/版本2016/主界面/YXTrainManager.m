@@ -114,10 +114,8 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         YXTrainListRequestItem_body_train *oldTrain = oldTrainingGroup.items[_currentProjectIndexPath.row];
         TrainListProjectGroup *newTrainingGroup = self.projectGroupArray[currentProjectIndexPath.section];
         YXTrainListRequestItem_body_train *newTrain = newTrainingGroup.items[currentProjectIndexPath.row];
-        if (oldTrain.w.integerValue != newTrain.w.integerValue) {//16 17切换,需要重新刷新
-            isChangeBool = YES;
-        }
-        if (newTrain.w.integerValue >= 5 && oldTrain.w.integerValue >= 5 && oldTrain.role.integerValue != newTrain.role.integerValue) {//17 坊主学员身份切换需要重新刷新
+        
+        if (newTrain.w.integerValue >= 5 || oldTrain.w.integerValue >= 5) {//只有同为16项目才不需要刷新
             isChangeBool = YES;
         }
         oldTrain.role = nil;

@@ -40,7 +40,7 @@
 #pragma mark - set
 - (void)setExamineDetailItem:(ExamineDetailRequest_17Item *)examineDetailItem {
     _examineDetailItem = examineDetailItem;
-    self.headerView.scoreString = [NSString stringWithFormat:@"%0.2f",[_examineDetailItem.examine.userGetScore floatValue]];
+    [self.headerView reloadHeaderViewContent:_examineDetailItem.examine.userGetScore withPassString:_examineDetailItem.examine.passDesc  withPass:_examineDetailItem.examine.isPass.integerValue];
     self.headerView.hidden = NO;
     [self.tableView reloadData];
     PopUpFloatingViewManager_17 *floatingView = (PopUpFloatingViewManager_17 *)[LSTSharedInstance sharedInstance].floatingViewManager;
@@ -87,18 +87,25 @@
     [self.tableView registerClass:[YXSectionHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"YXSectionHeaderFooterView"];
     [self.tableView registerClass:[YXLearningStageCell_17 class] forCellReuseIdentifier:@"YXLearningStageCell_17"];
     [self.tableView registerClass:[YXLearningChannelHeaderView_17 class] forHeaderFooterViewReuseIdentifier:@"YXLearningChannelHeaderView_17"];
-    self.headerView = [[YXLearningTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 155.0f + 90.0f + 5.0f + 1.0f)];
+    self.headerView = [[YXLearningTableHeaderView_17 alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 218)];
     self.headerView.hidden = YES;
     WEAK_SELF
-    self.headerView.learningMyScoreCompleteBlock = ^(BOOL isScoreBool) {
+    self.headerView.learningMyScoreCompleteBlock = ^{
         STRONG_SELF
-        if (isScoreBool) {
-            YXMyLearningScoreViewController_17 *VC = [[YXMyLearningScoreViewController_17 alloc] init];
-            VC.examine = self.examineDetailItem.examine;
-            [self.navigationController pushViewController:VC animated:YES];
+        YXMyLearningScoreViewController_17 *VC = [[YXMyLearningScoreViewController_17 alloc] init];
+        VC.examine = self.examineDetailItem.examine;
+        [self.navigationController pushViewController:VC animated:YES];
+    };
+    self.headerView.masterHomeOpenCloseBlock = ^(BOOL isOpen) {
+        STRONG_SELF
+        if (isOpen) {
+            [UIView animateWithDuration:0.25f animations:^{
+                self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 218.0f);
+                [self.tableView setTableHeaderView:self.headerView];
+            }];
         }else {
-            UIViewController *VC = [[NSClassFromString(@"NoticeBriefMangerViewController_17") alloc] init];
-            [self.navigationController pushViewController:VC animated:YES];
+            self.tableView.tableHeaderView.frame = CGRectMake(0, 0, kScreenWidth, 193.0f);
+            [self.tableView setTableHeaderView:self.headerView];
         }
     };
     self.tableView.tableHeaderView = self.headerView;

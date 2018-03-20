@@ -25,19 +25,23 @@
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainPushWebSocketReceiveMessage object:nil] subscribeNext:^(NSNotification *x) {
         STRONG_SELF
         NSInteger redInteger = [LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger;
+        NSInteger indexInteger = 2;
+        if (self.viewControllers.count == 3) {
+            indexInteger = 1;
+        }
         if (redInteger > 0) {
             if (redInteger > 99){
-                self.viewControllers[2].tabBarItem.badgeValue = @"99+";
+                self.viewControllers[indexInteger].tabBarItem.badgeValue = @"99+";
             }else{
-                self.viewControllers[2].tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
+                self.viewControllers[indexInteger].tabBarItem.badgeValue = [NSString stringWithFormat:@"%ld",(long)[LSTSharedInstance sharedInstance].redPointManger.showRedPointInteger];
             }
-            [self.tabBar hideBadgeOnItemIndex:2 withTabbarItem:4];
+            [self.tabBar hideBadgeOnItemIndex:indexInteger withTabbarItem:self.viewControllers.count];
         }else if (redInteger == 0){
-            self.viewControllers[2].tabBarItem.badgeValue = nil;
-            [self.tabBar showBadgeOnItemIndex:2 withTabbarItem:4];
+            self.viewControllers[indexInteger].tabBarItem.badgeValue = nil;
+            [self.tabBar showBadgeOnItemIndex:indexInteger withTabbarItem:self.viewControllers.count];
         }else {
-            self.viewControllers[2].tabBarItem.badgeValue = nil;
-            [self.tabBar hideBadgeOnItemIndex:2 withTabbarItem:4];
+            self.viewControllers[indexInteger].tabBarItem.badgeValue = nil;
+            [self.tabBar hideBadgeOnItemIndex:indexInteger withTabbarItem:self.viewControllers.count];
         }
     }];
 }
