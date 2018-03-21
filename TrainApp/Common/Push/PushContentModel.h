@@ -16,7 +16,7 @@
 @property (nonatomic, copy) NSString<Optional> *module; //模块   1消息动态  2热点
 @property (nonatomic, copy) NSString<Optional> *type; //消息类型
 //0通用类型
-//消息动态：1-通知  2-简报  3-打分  4-推优  5-任务到期提醒   6-坊主提醒
+//消息动态：1-通知  2-简报  3-打分  4-推优  5-任务到期提醒   6-坊主提醒  31-项目开始提醒坊主 32-项目结束提醒坊主  33-坊主考核通过 34-提醒坊主作业管理  35-提醒坊主作品集管理
 @property (nonatomic, copy) NSString<Optional> *objectId;//备用，具体的业务id
 @property (nonatomic, copy) NSString<Optional> *msg;    //显示的内容
 @property (nonatomic, copy) NSString<Optional> *title; //备用

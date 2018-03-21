@@ -61,7 +61,7 @@
         UIViewController *VC = [[NSClassFromString(@"YXHotspotViewController") alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.section == 1) {
-        UIViewController *VC = [[NSClassFromString(@"MasterDynamicViewController_17") alloc] init];
+        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.section == 2) {
         
