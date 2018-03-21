@@ -32,7 +32,9 @@
     }
     
     [GlobalUtils setupCore];
+    
     [YXNavigationBarController setup];
+    
     [self setupKeyboardManager];
     
     // 内部统计
