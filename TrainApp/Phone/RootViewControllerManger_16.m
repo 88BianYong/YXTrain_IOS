@@ -19,13 +19,13 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
     }
     YXNavigationController *projectNavi = (YXNavigationController *)drawerVC.paneViewController;
-    if ([LSTSharedInstance sharedInstance].geTuiManger.url > 0){
+    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl.length > 0){
         if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXWebViewController") class]]){
             return ;
         }
         YXWebViewController *webView = [[YXWebViewController alloc] init];
-        webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.url,[LSTSharedInstance sharedInstance].userManger.userModel.uid];
-        webView.titleString = [LSTSharedInstance sharedInstance].geTuiManger.title;
+        webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl,[LSTSharedInstance sharedInstance].userManger.userModel.uid];
+        webView.titleString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
         webView.isUpdatTitle = YES;
         [projectNavi pushViewController:webView animated:YES];
         [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:YES];
@@ -34,7 +34,7 @@
             STRONG_SELF
             [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:NO];
         }];
-        [LSTSharedInstance sharedInstance].geTuiManger.url = nil;
+        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return;
     }
     if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){

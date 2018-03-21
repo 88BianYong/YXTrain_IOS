@@ -13,6 +13,7 @@
 #import "MasterTabBarViewController_17.h"
 #import "YXTabBarViewController_17.h"
 #import "YXWebViewController.h"
+#import "NoticeAndBriefDetailViewController.h"
 @implementation RootViewControllerManger_17
 - (void)showDrawerViewController:(__weak UIWindow *)window {
     YXTabBarViewController_17 *tabVC  = (YXTabBarViewController_17 *)window.rootViewController;
@@ -20,19 +21,16 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
     }
     YXNavigationController *projectNavi = (YXNavigationController *)tabVC.selectedViewController;
-    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
-        return ;
-    }
-    if ([LSTSharedInstance sharedInstance].geTuiManger.url > 0){
+    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl.length > 0){
         if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXWebViewController") class]]){
             return ;
         }
         YXWebViewController *webView = [[YXWebViewController alloc] init];
-        webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.url,[LSTSharedInstance sharedInstance].userManger.userModel.uid];
-        webView.titleString =  [LSTSharedInstance sharedInstance].geTuiManger.title;
+        webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl,[LSTSharedInstance sharedInstance].userManger.userModel.uid];
+        webView.titleString =  [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
         webView.isUpdatTitle = YES;
         [projectNavi pushViewController:webView animated:YES];
-        [LSTSharedInstance sharedInstance].geTuiManger.url = nil;
+        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:YES];
         WEAK_SELF
         [webView setBackBlock:^{
@@ -40,6 +38,26 @@
             [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:NO];
         }];
         return;
+    }
+    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.module.integerValue == 1) {
+        NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
+        VC.nbIdString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.objectId;
+        VC.titleString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
+        VC.detailFlag =  NoticeAndBriefFlag_Notice;
+         [projectNavi pushViewController:VC animated:YES];
+        return;
+    }
+    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.module.integerValue == 2) {
+        NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
+        VC.nbIdString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.objectId;
+        VC.titleString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
+        VC.detailFlag = NoticeAndBriefFlag_Brief;
+        [projectNavi pushViewController:VC animated:YES];
+        return;
+    }
+
+    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+        return ;
     }
     if ([LSTSharedInstance sharedInstance].trainManager.currentProject.role.integerValue == 9) {
         UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];

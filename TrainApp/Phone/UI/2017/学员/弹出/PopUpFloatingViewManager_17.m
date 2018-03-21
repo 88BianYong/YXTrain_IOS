@@ -195,8 +195,8 @@
     }
     self.isCard = YES;
     YXWebViewController *webView = [[YXWebViewController alloc] init];
-    webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.url,[LSTSharedInstance sharedInstance].userManger.userModel.uid];
-    webView.titleString = [LSTSharedInstance sharedInstance].geTuiManger.title;
+    webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl,[LSTSharedInstance sharedInstance].userManger.userModel.uid];
+    webView.titleString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
     webView.isUpdatTitle = YES;
     [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:YES];
     WEAK_SELF
@@ -208,7 +208,7 @@
         BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
     }];
     [projectNavi pushViewController:webView animated:YES];
-    [LSTSharedInstance sharedInstance].geTuiManger.url = nil;
+    [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
 }
 //查看我的成绩
 - (void)showExamineUserScore{
@@ -303,7 +303,7 @@
 
 #pragma mark - judgment
 - (BOOL)isGreetingCard {
-    return [LSTSharedInstance sharedInstance].geTuiManger.url.length > 0;
+    return [LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl.length > 0;
 }
 
 - (BOOL)isExamineUserScore {

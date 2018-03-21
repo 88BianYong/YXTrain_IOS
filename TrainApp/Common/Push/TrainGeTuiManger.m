@@ -11,7 +11,6 @@
 #import <GTSDK/GeTuiSdk.h>
 #import <UserNotifications/UserNotifications.h>
 #import "TrainRedPointManger.h"
-#import "PushContentModel.h"
 @interface TrainGeTuiManger ()<GeTuiSdkDelegate , UNUserNotificationCenterDelegate>
 @property (nonatomic, strong) NSString *currentUid;
 @end
@@ -183,20 +182,21 @@
 #pragma mark - Handle Notification
 // 处理个推推送，App运行中
 - (void)handleGeTuiContent:(NSString *)content  withOffLine:(BOOL)offLine{
-    PushContentModel *model = [[PushContentModel alloc] initWithString:content error:nil];
-    if (model.module.integerValue == 1) {
+    self.pushModel = [[PushContentModel alloc] initWithString:content error:nil];
+    if (self.pushModel.module.integerValue == 1) {
+        self.pushModel.extendInfo.baseUrl = nil;
         if (!offLine) {//在线
             [UIApplication sharedApplication].applicationIconBadgeNumber ++;
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         }else {
             BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
-            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+            if (self.pushModel.type.integerValue > 4) {
+                [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+            }
         }
-    }else if (model.module.integerValue == 2){
+    }else if (self.pushModel.module.integerValue == 2){
         [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
-    }else if (model.module.integerValue == 3) {
-        self.url = model.extendInfo.baseUrl;
-        self.title = model.title;
+    }else if (self.pushModel.module.integerValue == 3) {
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
     }
