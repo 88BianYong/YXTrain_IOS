@@ -418,7 +418,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [[IQKeyboardManager sharedManager] setEnable:YES];
-    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 60;
+    [IQKeyboardManager sharedManager].keyboardDistanceFromTextField = 180;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
