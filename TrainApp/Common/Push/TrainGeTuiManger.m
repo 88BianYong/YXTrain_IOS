@@ -190,9 +190,7 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         }else {
             BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
-            if (self.pushModel.type.integerValue > 4) {
-                [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-            }
+            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         }
     }else if (self.pushModel.module.integerValue == 2){
         [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;

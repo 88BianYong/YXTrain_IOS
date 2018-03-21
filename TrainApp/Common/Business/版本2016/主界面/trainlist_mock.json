@@ -1,16 +1,46 @@
 {
+    "BaseBeanCreateTime": 1521612823656,
     "code": "0",
-    "debugDesc": "[debug_token: http-nio-45901-exec-4-1466492260388-12_7_45901 ] backen code[0]+ Focus fetching code[0],desc[返回数据成功]",
-    "desc": "success",
+    "debugDesc": "[debug_token:  http-nio-8080-exec-9-1521612823468-10_47_45901 ] 返回数据成功 backen code[0]",
+    "desc": "返回数据成功",
     "body": {
-        "total": 1,
-        "trains": [
-                   {
-                   "pid": 1758,
-                   "name": "主题选学平台测试项目",
-                   "w": 3,
-                   "pic": "http://p.yanxiu.com/plogo/8/1758.png"
-                   }
-                   ]
+        "total": "1",
+        "trains": [{
+                   "BaseBeanCreateTime": 1521612823656,
+                   "pid": "2396",
+                   "name": "17平台测试考核专用项目【请勿修改考核项】-加长项目名称，用于专家个人工作室项目列表的展示测试",
+                   "pic": "http://p.yanxiu.com/plogo/6/2396.png",
+                   "w": "5",
+                   "status": "0",
+                   "special": 0,
+                   "isContainsTeacher": false,
+                   "roles": "99",
+                   "isOpenLayer": false,
+                   "layerId": 0,
+                   "isOpenTheme": "true",
+                   "themeId": 133,
+                   "startDate": "2017-11-01",
+                   "endDate": "2017-11-14",
+                   "isSignAgreement": "false"
+                   }],
+        "trained": [{
+                    "BaseBeanCreateTime": 1521612823656,
+                    "pid": "2396",
+                    "name": "17平台测试考核专用项目【请勿修改考核项】-加长项目名称，用于专家个人工作室项目列表的展示测试",
+                    "pic": "http://p.yanxiu.com/plogo/6/2396.png",
+                    "w": "5",
+                    "status": "0",
+                    "special": 0,
+                    "isContainsTeacher": false,
+                    "roles": "99",
+                    "isOpenLayer": false,
+                    "layerId": 0,
+                    "isOpenTheme": "true",
+                    "themeId": 133,
+                    "startDate": "2017-11-01",
+                    "endDate": "2017-11-14",
+                    "isSignAgreement": "false"
+                    }],
+        "training": []
     }
 }

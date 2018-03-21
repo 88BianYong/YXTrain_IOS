@@ -139,7 +139,7 @@
         if (error) {
             [self showToast:error.localizedDescription];
         }else {
-            if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme) {
+            if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme.boolValue) {
                 WEAK_SELF
                 MasterThemeViewController_17 *VC = [[MasterThemeViewController_17 alloc] init];
                 VC.masterThemeReloadBlock = ^{

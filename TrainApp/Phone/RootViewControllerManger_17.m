@@ -46,6 +46,8 @@
         VC.titleString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
         VC.detailFlag =  NoticeAndBriefFlag_Notice;
          [projectNavi pushViewController:VC animated:YES];
+        [UIApplication sharedApplication].applicationIconBadgeNumber --;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         return;
     }
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.module.integerValue == 2) {
@@ -54,6 +56,8 @@
         VC.titleString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
         VC.detailFlag = NoticeAndBriefFlag_Brief;
         [projectNavi pushViewController:VC animated:YES];
+        [UIApplication sharedApplication].applicationIconBadgeNumber --;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         return;
     }
     
@@ -67,6 +71,8 @@
         YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
         VC.itemBody = itemBody;
         [projectNavi pushViewController:VC animated:YES];
+        [UIApplication sharedApplication].applicationIconBadgeNumber --;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         return;
     }
     
