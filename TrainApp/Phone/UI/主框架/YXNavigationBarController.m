@@ -24,10 +24,8 @@
     UIImage *normalImage = [UIImage imageNamed:imageName];
     UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
     CGFloat width = normalImage.size.width + 20.0f;
-    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11.0f) {
-        width = normalImage.size.width;
-    }
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, width, normalImage.size.height)];
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, width, normalImage.size.height + 10)];
+    backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [backButton setImage:normalImage forState:UIControlStateNormal];
     [backButton setImage:highlightImage forState:UIControlStateHighlighted];
     [[backButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
@@ -73,6 +71,7 @@
 
 + (void)setRightWithNavigationItem:(UINavigationItem *)item title:(NSString *)title action:(actionBlock)action{
     UIButton *b = [[UIButton alloc]init];
+    b.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [b setTitle:title forState:UIControlStateNormal];
     [b setTitleColor:[UIColor colorWithHexString:@"0067be"] forState:UIControlStateNormal];
 //    [b setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateDisabled];
@@ -89,13 +88,10 @@
 + (void)setRightWithNavigationItem:(UINavigationItem *)item customView:(UIView *)view{
     CGRect rect = view.bounds;
     CGFloat width = rect.size.width + 20.0f;
-    if ([UIDevice currentDevice].systemVersion.doubleValue >= 11.0f) {
-        width = rect.size.width;
-    }
     UIView *containerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, width, rect.size.height)];
     containerView.backgroundColor = [UIColor clearColor];
     [containerView addSubview:view];
-    view.center = CGPointMake(containerView.bounds.size.width/2, containerView.bounds.size.height/2);
+    view.center = CGPointMake(containerView.bounds.size.width/2 + 10.0f, containerView.bounds.size.height/2);
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:containerView];
     
     item.rightBarButtonItems = @[[self negativeBarButtonItem],rightItem];

@@ -175,6 +175,7 @@
         NoticeAndBriefDetailRequestItem *item = retItem;
         self.itemBody = item.body;
         self.headerView.body = self.itemBody;
+        self.title = item.body.title;
         self.tableView.tableHeaderView = self.headerView;
         [self.tableView reloadData];
         self.tableView.hidden = NO;

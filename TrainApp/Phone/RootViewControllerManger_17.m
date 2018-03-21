@@ -14,6 +14,7 @@
 #import "YXTabBarViewController_17.h"
 #import "YXWebViewController.h"
 #import "NoticeAndBriefDetailViewController.h"
+#import "YXHomeworkInfoViewController.h"
 @implementation RootViewControllerManger_17
 - (void)showDrawerViewController:(__weak UIWindow *)window {
     YXTabBarViewController_17 *tabVC  = (YXTabBarViewController_17 *)window.rootViewController;
@@ -55,7 +56,20 @@
         [projectNavi pushViewController:VC animated:YES];
         return;
     }
-
+    
+    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.module.integerValue == 3 || [LSTSharedInstance sharedInstance].geTuiManger.pushModel.module.integerValue == 4) {
+        YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
+        itemBody.type = @"4";
+        itemBody.requireId = @"";
+        itemBody.homeworkid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.objectId;
+        itemBody.title = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
+        itemBody.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
+        YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
+        VC.itemBody = itemBody;
+        [projectNavi pushViewController:VC animated:YES];
+        return;
+    }
+    
     if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
         return ;
     }
