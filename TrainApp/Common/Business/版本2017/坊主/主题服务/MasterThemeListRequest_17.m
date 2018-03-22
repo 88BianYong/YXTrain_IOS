@@ -8,6 +8,9 @@
 
 #import "MasterThemeListRequest_17.h"
 @implementation MasterThemeListItem_Body_Theme
++(JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithModelToJSONDictionary:@{@"themeId":@"id"}];
+}
 @end
 @implementation MasterThemeListItem_Body
 @end

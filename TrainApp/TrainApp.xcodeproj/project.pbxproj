@@ -179,6 +179,7 @@
 		9203D06B204FE3B1005601BD /* MasterThemeHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203D06A204FE3B1005601BD /* MasterThemeHeaderView_17.m */; };
 		9203F5ED2057A68B000A7931 /* YXMineMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203F5EC2057A68B000A7931 /* YXMineMainCell.m */; };
 		9203F5F02057A8C0000A7931 /* YXMineTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 9203F5EF2057A8C0000A7931 /* YXMineTableHeaderView_17.m */; };
+		920B1AF0206346AD0061A1A2 /* masterThemeList_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 920B1AEF206346AC0061A1A2 /* masterThemeList_mock.json */; };
 		920C0B531FBEF7010002BC47 /* MasterNoticeBriefScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 920C0B521FBEF7010002BC47 /* MasterNoticeBriefScheme.m */; };
 		920E23581E890E5C000F1D36 /* YXVideoQuestionsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E23571E890E5C000F1D36 /* YXVideoQuestionsRequest.m */; };
 		920E235B1E890E7F000F1D36 /* YXSubmitAnswerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 920E235A1E890E7F000F1D36 /* YXSubmitAnswerRequest.m */; };
@@ -1236,6 +1237,7 @@
 		9203F5EC2057A68B000A7931 /* YXMineMainCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineMainCell.m; sourceTree = "<group>"; };
 		9203F5EE2057A8C0000A7931 /* YXMineTableHeaderView_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXMineTableHeaderView_17.h; sourceTree = "<group>"; };
 		9203F5EF2057A8C0000A7931 /* YXMineTableHeaderView_17.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXMineTableHeaderView_17.m; sourceTree = "<group>"; };
+		920B1AEF206346AC0061A1A2 /* masterThemeList_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = masterThemeList_mock.json; sourceTree = "<group>"; };
 		920C0B511FBEF7010002BC47 /* MasterNoticeBriefScheme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterNoticeBriefScheme.h; sourceTree = "<group>"; };
 		920C0B521FBEF7010002BC47 /* MasterNoticeBriefScheme.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterNoticeBriefScheme.m; sourceTree = "<group>"; };
 		920E23561E890E5C000F1D36 /* YXVideoQuestionsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXVideoQuestionsRequest.h; sourceTree = "<group>"; };
@@ -3637,6 +3639,7 @@
 		9203D051204FC288005601BD /* 主题服务 */ = {
 			isa = PBXGroup;
 			children = (
+				920B1AEF206346AC0061A1A2 /* masterThemeList_mock.json */,
 				9203D054204FC288005601BD /* MasterThemeListRequest_17.h */,
 				9203D052204FC288005601BD /* MasterThemeListRequest_17.m */,
 				9203D053204FC288005601BD /* MasterSelectThemeRequest_17.h */,
@@ -6418,6 +6421,7 @@
 				926F11FA1EA456CE0041D66F /* selectLayer_mock.json in Resources */,
 				92E927B61F1E0ABB00BEF834 /* readingList_mock_17.json in Resources */,
 				923237591D81122700FDACFE /* provinceData.json in Resources */,
+				920B1AF0206346AD0061A1A2 /* masterThemeList_mock.json in Resources */,
 				7C3177A81D0EB3C0004AAC90 /* errorcode_mock.json in Resources */,
 				CB7462871D20F5F00065113A /* METRO-LIGHT PLAYTYPE.otf in Resources */,
 				922F93A7204949B600B0EEB5 /* account.json in Resources */,

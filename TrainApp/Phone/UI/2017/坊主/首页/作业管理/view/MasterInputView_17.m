@@ -42,7 +42,7 @@
         if (self.inputStatus != MasterInputStatus_Score) {
             [self uploadHeight];
             if (self.inputStatus == MasterInputStatus_Comment) {
-                self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0;
+                self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0 || self.scoreTextView.text.floatValue >= 60.0f;
             }else {
                 self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] >= 10;
             }

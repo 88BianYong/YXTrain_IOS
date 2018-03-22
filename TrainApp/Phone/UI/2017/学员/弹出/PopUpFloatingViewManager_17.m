@@ -61,13 +61,13 @@
         [self showUpgradeView];
     }else if ([self isGreetingCard] || self.isCard ) {
         [self showNewYearsGreetingCard];
-    }else if (([self isExamineUserScore] || self.isScore) && [LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue != 1){//德阳端不显示浮层提示 2-27 王小翠
+    }/*else if (([self isExamineUserScore] || self.isScore) && [LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue != 1){//德阳端不显示浮层提示 2-27 王小翠
         [self showExamineUserScore];
     }else if (([self isExamineNoticeBrief] || self.isNotice)&& [LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue != 1) {
         [self showExamineNoticeBrief];
     }else if (([self isFinishStudyStep] || self.isStep) && [LSTSharedInstance sharedInstance].trainManager.currentProject.special.integerValue != 1) {
         [self showFinishStudyStep];
-    }else if ([self isProjectEndTime] || self.isEndTime) {
+    }*/else if ([self isProjectEndTime] || self.isEndTime) {
         [self showProjectEndTime];
     }
 }
@@ -78,7 +78,7 @@
     [self popUpFloatingViewStatus:NO];
 }
 - (void)popUpFloatingViewStatus:(BOOL)isShow {
-    if (self.isScore || self.isNotice || self.isStep) {
+    if (self.isScore || self.isNotice || self.isStep || self.isEndTime) {
         UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
         [window.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([obj isKindOfClass:[FloatingBaseView class]]) {
@@ -276,7 +276,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-//完成学习步骤
+//项目结束
 - (void)showProjectEndTime{
     if (self.isEndTime) {
         return;
@@ -297,6 +297,12 @@
     NSString *key = [NSString stringWithFormat:@"%@%@",[LSTSharedInstance sharedInstance].trainManager.currentProject.pid,[LSTSharedInstance sharedInstance].trainManager.currentProject.w];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    UITabBarController *tabBarVC = (UITabBarController *)window.rootViewController;
+    if([tabBarVC.selectedViewController isKindOfClass:[NSClassFromString(@"MasterHomeViewController_17") class]]){
+        codeView.hidden = NO;
+    }else {
+        codeView.hidden = YES;
+    }
 }
 
 
