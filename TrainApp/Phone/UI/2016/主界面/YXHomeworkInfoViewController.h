@@ -9,5 +9,6 @@
 #import "YXBaseViewController.h"
 #import "YXHomeworkInfoRequest.h"
 @interface YXHomeworkInfoViewController : YXBaseViewController
-@property(nonatomic ,strong, nonnull) YXHomeworkInfoRequestItem_Body *itemBody;
+@property (nonatomic ,strong) YXHomeworkInfoRequestItem_Body *itemBody;
+@property (nonatomic ,copy) void(^requestSuccessBlock)(void);
 @end

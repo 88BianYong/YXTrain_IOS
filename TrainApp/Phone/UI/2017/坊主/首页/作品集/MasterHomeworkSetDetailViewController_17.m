@@ -37,6 +37,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (isEmpty(self.pid)) {
+        self.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    }
     self.remarkMutableArray = [[NSMutableArray alloc] init];
     self.startPage = 1;
     if (!self.isSupportBool) {
@@ -259,7 +262,7 @@
 #pragma mark - request
 - (void)requestForHomeworkDetail {
     MasterHomeworkSetDetailRequest_17 *request = [[MasterHomeworkSetDetailRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkId = self.homeworkId;
     WEAK_SELF
     [request startRequestWithRetClass:[MasterHomeworkSetDetailItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -280,7 +283,7 @@
 - (void)requestForHomeworkRemark{
     [self.remarkRequest stopRequest];
     MasterHomeworkSetRemarkListRequest_17 *request = [[MasterHomeworkSetRemarkListRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkSetId = self.homeworkSetId;
     request.page = [NSString stringWithFormat:@"%ld",(long)self.startPage];
     request.pageSize = @"20";

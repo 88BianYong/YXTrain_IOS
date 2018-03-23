@@ -179,6 +179,7 @@
         self.tableView.tableHeaderView = self.headerView;
         [self.tableView reloadData];
         self.tableView.hidden = NO;
+        BLOCK_EXEC(self.requestSuccessBlock);
     }];
     self.detailRequest = request;
 }

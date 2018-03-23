@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString<Optional> *name;
 @property (nonatomic, strong) NSString<Optional> *w;
 @property (nonatomic, strong) NSString<Optional> *pic;
-@property (nonatomic, strong) NSString<Optional> *status;//1-training;0-trained
+@property (nonatomic, strong) NSString<Optional> *status;//0已结束1进行中2未开始
 @property (nonatomic, strong) NSString<Optional> *roles;
 @property (nonatomic, strong) NSString<Optional> *isContainsTeacher;
 //2.4.2

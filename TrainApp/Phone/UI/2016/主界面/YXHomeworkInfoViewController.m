@@ -273,6 +273,7 @@ UITableViewDataSource
         [self findVideoHomeworkInformation:self.itemBody];
         self ->_tableView.hidden = NO;
         [self setupTableViewHeaderView];
+        BLOCK_EXEC(self.requestSuccessBlock);
     }];
     _infoRequest = request;
 }

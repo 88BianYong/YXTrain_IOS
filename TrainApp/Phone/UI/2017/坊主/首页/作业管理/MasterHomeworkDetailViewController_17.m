@@ -51,6 +51,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (isEmpty(self.pid)) {
+        self.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    }
     self.navigationItem.title = self.titleString;
     self.remarkMutableArray = [[NSMutableArray alloc] init];
     self.startPage = 1;
@@ -72,6 +75,7 @@
 #pragma mark - set
 - (void)setDetailItem:(MasterHomeworkDetailItem_Body *)detailItem {
     _detailItem = detailItem;
+    self.navigationItem.title = _detailItem.title;
     self.headerView.body = _detailItem;
     self.headerView.frame = CGRectMake(0, 0, kScreenWidth, 227.0f + self.headerView.summaryHeight);
     self.tableView.tableHeaderView = self.headerView;
@@ -452,7 +456,7 @@
 #pragma mark - request
 - (void)requestForHomeworkDetail {
     MasterHomeworkDetailRequest_17 *request = [[MasterHomeworkDetailRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkId = self.homeworkId;
     WEAK_SELF
     [request startRequestWithRetClass:[MasterHomeworkDetailItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -467,13 +471,14 @@
             return;
         }
         self.detailItem = ((MasterHomeworkDetailItem *)retItem).body;
+        BLOCK_EXEC(self.requestSuccessBlock);
         [self requestForHomeworkRemark];
     }];
     self.detailRequest = request;
 }
 - (void)requestForHomeworkRemark{
     MasterHomeworkRemarkRequest_17 *request = [[MasterHomeworkRemarkRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkId = self.homeworkId;
     request.page = [NSString stringWithFormat:@"%ld",(long)self.startPage];
     request.pageSize = @"20";
@@ -505,7 +510,7 @@
 }
 - (void)requestForRecommendHomework:(NSString *)content {
     MasterRecommendHomeworkRequest_17 *request = [[MasterRecommendHomeworkRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkId = self.homeworkId;
     request.content = content;
     WEAK_SELF
@@ -528,7 +533,7 @@
 }
 - (void)requestForCancelRecommendHomework:(NSString *)content {
     MasterCancelRecommendHomeworkRequest_17 *request = [[MasterCancelRecommendHomeworkRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkId = self.homeworkId;
     request.content = content;
     WEAK_SELF
@@ -554,7 +559,7 @@
 }
 - (void)requestForScoreHomework:(NSString *)content withScore:(NSString *)score {
     MasterScoreHomeworkRequest_17 *request = [[MasterScoreHomeworkRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkId = self.homeworkId;
     request.content = content;
     request.score = score;

@@ -250,7 +250,7 @@
         [self.playMangerView.player play];
         return;
     }
-    if ([r isReachableViaWiFi]) {
+    if ([r isReachableViaWWAN]) {
         UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"网络连接提示" message:@"当前处于非Wi-Fi环境，仍要继续吗？" preferredStyle:UIAlertControllerStyleAlert];
         WEAK_SELF
         UIAlertAction *backAction = [UIAlertAction actionWithTitle:@"返回" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {

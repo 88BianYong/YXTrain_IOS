@@ -14,4 +14,7 @@
 @property (nonatomic, copy) void(^masterHomeworkSetRecommendBlock)(BOOL recommend);
 @property (nonatomic, copy) void(^masterHomeworkSetCommendBlock)(void);
 
+@property (nonatomic, copy) NSString *pid;//如果不传使用默认pid
+@property (nonatomic ,copy) void(^requestSuccessBlock)(void);
+
 @end

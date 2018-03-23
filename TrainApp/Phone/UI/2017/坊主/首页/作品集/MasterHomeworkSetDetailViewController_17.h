@@ -13,4 +13,6 @@
 @property (nonatomic, copy) NSString *homeworkId;
 @property (nonatomic, assign) NSInteger tagInteger;
 @property (nonatomic, assign) BOOL isSupportBool;
+@property (nonatomic, copy) NSString *pid;//如果不传使用默认pid
+
 @end

@@ -15,4 +15,5 @@ typedef NS_ENUM (NSInteger, NoticeAndBriefFlag) {
 @property (nonatomic, copy) NSString *nbIdString;
 @property (nonatomic, copy) NSString *titleString;
 @property (nonatomic, assign) NoticeAndBriefFlag detailFlag;
+@property (nonatomic ,copy) void(^requestSuccessBlock)(void);
 @end

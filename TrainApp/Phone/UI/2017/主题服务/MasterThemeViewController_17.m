@@ -39,9 +39,6 @@
 #pragma mark - set
 - (void)setDataItem:(MasterThemeListItem_Body *)dataItem {
     _dataItem = dataItem;
-    
-    
-    
     self.tableView.hidden = NO;
     [self.tableView reloadData];
     [_dataItem.themes enumerateObjectsUsingBlock:^(MasterThemeListItem_Body_Theme *obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -85,7 +82,7 @@
         [self startLoading];
         [self requestForThemeList];
     };
-    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme.boolValue) {
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme.boolValue || [LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 2) {
         [self setupNavgationRightView];
     }
 }
@@ -169,7 +166,7 @@
     return 0.0001f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme.boolValue) {
+    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.isOpenTheme.boolValue ||[LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 2) {
         [self.dataItem.themes enumerateObjectsUsingBlock:^(__kindof MasterThemeListItem_Body_Theme * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             obj.isSelected = @"0";
         }];

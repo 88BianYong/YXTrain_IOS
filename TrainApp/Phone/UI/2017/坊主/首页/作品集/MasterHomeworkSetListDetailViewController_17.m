@@ -61,6 +61,7 @@
 }
 - (void)setDetailItem:(MasterHomeworkSetListDetailItem_Body *)detailItem {
     _detailItem = detailItem;
+    self.navigationItem.title = _detailItem.title;
     self.bgView.hidden = NO;
     if (!_detailItem.supportTemplate.boolValue) {
         self.supportView.hidden = NO;
@@ -119,6 +120,9 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.navigationItem.title = self.titleString;
+    if (isEmpty(self.pid)) {
+        self.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    }
     [self setupUI];
     [self setupLayout];
     [self startLoading];
@@ -389,7 +393,7 @@
 #pragma mark - request
 - (void)requestForHomeworkSetListDetail {
     MasterHomeworkSetListDetailRequest_17 *request = [[MasterHomeworkSetListDetailRequest_17  alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkSetId = self.homeworkSetId;
     WEAK_SELF
     [request startRequestWithRetClass:[MasterHomeworkSetListDetailItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
@@ -403,12 +407,13 @@
             return;
         }
         self.detailItem = ((MasterHomeworkSetListDetailItem *)retItem).body;
+        BLOCK_EXEC(self.requestSuccessBlock);
     }];
     self.detailRequest = request;
 }
 - (void)requestForRecommendHomework:(NSString *)content {
     MasterHomeworkSetRecommendRequest_17 *request = [[MasterHomeworkSetRecommendRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkSetId = self.homeworkSetId;
     request.content = content;
     WEAK_SELF
@@ -430,7 +435,7 @@
 }
 - (void)requestForCancelRecommendHomework:(NSString *)content {
     MasterHomeworkSetCancelRecommendRequest_17 *request = [[MasterHomeworkSetCancelRecommendRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkSetId = self.homeworkSetId;
     request.content = content;
     WEAK_SELF
@@ -454,7 +459,7 @@
 }
 - (void)requestForScoreHomework:(NSString *)content withScore:(NSString *)score {
     MasterHomeworkSetScoreRequest_17 *request = [[MasterHomeworkSetScoreRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.pid;
     request.homeworkSetId = self.homeworkSetId;
     request.content = content;
     request.score = score;
