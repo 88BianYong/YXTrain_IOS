@@ -16,6 +16,8 @@
 #import "NoticeAndBriefDetailViewController.h"
 #import "TrainRedPointManger.h"
 #import "YXWebSocketManger.h"
+#import "MasterHomeworkDetailViewController_17.h"
+#import "MasterHomeworkSetListDetailViewController_17.h"
 static  NSString *const trackPageName = @"消息动态列表页面";
 @interface YXDynamicViewController ()
 @property (nonatomic, strong) YXMsgReadedRequest *readedRequest;
@@ -167,7 +169,39 @@ static  NSString *const trackPageName = @"消息动态列表页面";
 //            [self.navigationController popToRootViewControllerAnimated:YES];
         }
             break;
+        case 31:
+        {
             
+        }
+            break;
+        case 32:
+        {
+            
+        }
+            break;
+        case 33:
+        {
+            
+        }
+            break;
+        case 34:
+        {
+            MasterHomeworkDetailViewController_17 *VC = [[MasterHomeworkDetailViewController_17 alloc] init];
+            VC.homeworkId = data.objectId;
+            VC.pid = data.projectId;
+            VC.titleString = data.title;
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+            break;
+        case 35:
+        {
+            MasterHomeworkSetListDetailViewController_17 *VC = [[MasterHomeworkSetListDetailViewController_17 alloc] init];
+            VC.homeworkSetId = data.objectId;
+            VC.pid = data.projectId;
+            VC.titleString = data.title;
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+            break;
         default:
             break;
     }

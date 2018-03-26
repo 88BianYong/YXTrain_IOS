@@ -15,7 +15,7 @@
 @implementation YXDynamicDatumFetch
 - (void)startWithBlock:(void(^)(NSInteger total, NSArray *retItemArray, NSError *error))aCompleteBlock{
     YXDynamicRequest *request = [[YXDynamicRequest alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+//    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;消息动态界面不区分项目
     request.pageNo = [NSString stringWithFormat:@"%d", self.pageindex + 1];
     request.pageSize = [NSString stringWithFormat:@"%d", self.pagesize];
     [request startRequestWithRetClass:[YXDynamicRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {

@@ -59,7 +59,7 @@
             return ;//1.通过通知启动需要等待升级接口返回才进行跳转2.未登录不进行跳转3.弹出升级界面不进行跳转
         }
         self.isRemoteNotification = NO;
-        [self.rootManger showDrawerViewController:self.window];
+        [self.rootManger showDynamicViewController:self.window];
     }];
 }
 - (void)setupRootViewController{
@@ -96,7 +96,7 @@
         [[LSTSharedInstance sharedInstance].floatingViewManager setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
             STRONG_SELF
             if (isShow && self.isRemoteNotification) {
-                [self.rootManger showDrawerViewController:self.window];
+                [self.rootManger showDynamicViewController:self.window];
             }
             self.isRemoteNotification = NO;
         }];

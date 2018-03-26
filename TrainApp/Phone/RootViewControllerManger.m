@@ -17,6 +17,7 @@
 #import "YXHomeworkInfoViewController.h"
 #import "MasterHomeworkDetailViewController_17.h"
 #import "MasterHomeworkSetListDetailViewController_17.h"
+
 @implementation RootViewControllerManger
 + (instancetype)alloc{
     if ([self class] == [RootViewControllerManger class]) {
@@ -28,14 +29,14 @@
     }
     return [super alloc];
 }
-- (void)showDrawerViewController:(UIWindow *)window {
+- (void)showDynamicViewController:(UIWindow *)window {
     YXNavigationController *projectNavi = nil;
     if ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2016) {
         YXDrawerViewController *drawerVC  = (YXDrawerViewController *)window.rootViewController;
         if (drawerVC.paneViewController.presentedViewController) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
         }
-     projectNavi = (YXNavigationController *)drawerVC.paneViewController;
+        projectNavi = (YXNavigationController *)drawerVC.paneViewController;
     }else if ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2017) {
         YXTabBarViewController_17 *tabVC  = (YXTabBarViewController_17 *)window.rootViewController;
         if (tabVC.selectedViewController.presentedViewController) {
@@ -143,7 +144,6 @@
         UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
         [projectNavi pushViewController:VC animated:YES];
     }
-    
 }
 - (UIViewController *)rootViewController {
     return nil;

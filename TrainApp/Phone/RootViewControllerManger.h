@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface RootViewControllerManger : NSObject
-- (void)showDrawerViewController:(UIWindow *)window;
+- (void)showDynamicViewController:(UIWindow *)window;
 - (UIViewController *)rootViewController;
 @end
