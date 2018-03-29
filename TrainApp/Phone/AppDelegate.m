@@ -83,7 +83,7 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-	// Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -103,6 +103,7 @@
         self.backgroundTimer = [NSTimer scheduledTimerWithTimeInterval:0.3f target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(finishRecordTimer) name:kRecordReportCompleteNotification object:nil];
     }
+    [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = YES;
 }
 - (void)endBackgroundTask{
     dispatch_queue_t mainQueue = dispatch_get_main_queue();

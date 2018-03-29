@@ -11,6 +11,9 @@
 
 @interface TrainGeTuiManger : NSObject
 @property (nonatomic, strong) PushContentModel *pushModel;
+@property (nonatomic, assign) BOOL isLaunchedByNotification;
+
+
 @property (nonatomic, copy) void (^trainGeTuiMangerCompleteBlock)(void);
 
 - (void)resume;

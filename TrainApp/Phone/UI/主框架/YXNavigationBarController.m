@@ -24,7 +24,7 @@
     UIImage *normalImage = [UIImage imageNamed:imageName];
     UIImage *highlightImage = [UIImage imageNamed:highlightImageName];
     CGFloat width = normalImage.size.width + 20.0f;
-    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, width, normalImage.size.height + 10)];
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, width, normalImage.size.height + 20)];
     backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [backButton setImage:normalImage forState:UIControlStateNormal];
     [backButton setImage:highlightImage forState:UIControlStateHighlighted];

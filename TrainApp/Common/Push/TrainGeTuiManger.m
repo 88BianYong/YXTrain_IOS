@@ -54,6 +54,7 @@
 }
 #pragma mark - iOS10 Notification Delegate
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
+    self.isLaunchedByNotification = YES;
     [self handleApnsContent:response.notification.request.content.userInfo isPush:YES];
 }
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
@@ -189,8 +190,11 @@
             [UIApplication sharedApplication].applicationIconBadgeNumber ++;
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         }else {
-            BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
-            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+            if (self.isLaunchedByNotification) {
+                self.isLaunchedByNotification = NO;
+                BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+            }
         }
     }else if (self.pushModel.module.integerValue == 2){
         [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
