@@ -18,6 +18,7 @@
 #import "YXWebSocketManger.h"
 #import "MasterHomeworkDetailViewController_17.h"
 #import "MasterHomeworkSetListDetailViewController_17.h"
+#import <GTSDK/GeTuiSdk.h>
 static  NSString *const trackPageName = @"消息动态列表页面";
 @interface YXDynamicViewController ()
 @property (nonatomic, strong) YXMsgReadedRequest *readedRequest;
@@ -58,6 +59,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
         [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Dynamic];
         [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = -1;
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+        [GeTuiSdk clearAllNotificationForNotificationBar];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
