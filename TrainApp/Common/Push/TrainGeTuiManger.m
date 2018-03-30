@@ -54,8 +54,9 @@
 }
 #pragma mark - iOS10 Notification Delegate
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler {
-    self.isLaunchedByNotification = YES;
-    [self handleApnsContent:response.notification.request.content.userInfo isPush:YES];
+    if ([[LSTSharedInstance sharedInstance].userManger isLogin]) {
+        [self handleApnsContent:response.notification.request.content.userInfo isPush:YES];
+    }
 }
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler {
     
@@ -97,7 +98,6 @@
 #pragma mark - GeTuiSdkDelegate
 - (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId {
     [GeTuiSdk sendFeedbackMessage:90001 andTaskId:taskId andMsgId:msgId];
-    
     // 个推消息数据转换
     NSString *payloadMsg = nil;
     if (payloadData) {
@@ -184,30 +184,48 @@
 // 处理个推推送，App运行中
 - (void)handleGeTuiContent:(NSString *)content  withOffLine:(BOOL)offLine{
     self.pushModel = [[PushContentModel alloc] initWithString:content error:nil];
-    if (self.pushModel.module.integerValue == 1) {
-        self.pushModel.extendInfo.baseUrl = nil;
-        if (!offLine) {//在线
+    if (!offLine) {
+        if (self.pushModel.module.integerValue == 1) {
+            self.pushModel.extendInfo.baseUrl = nil;
             [UIApplication sharedApplication].applicationIconBadgeNumber ++;
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        }else {
-             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-            if (self.isLaunchedByNotification) {
-                self.isLaunchedByNotification = NO;
+        }else if (self.pushModel.module.integerValue == 2){
+            [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
+        }else if (self.pushModel.module.integerValue == 3) {
+            [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        }
+    }else {
+        if (self.isLaunchedByNotification) {
+            self.isLaunchedByNotification = NO;
+            if (self.pushModel.module.integerValue == 1) {
+                self.pushModel.extendInfo.baseUrl = nil;
+                [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+                BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+            }else if (self.pushModel.module.integerValue == 2){
+                [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
+            }else if (self.pushModel.module.integerValue == 3) {
+                [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
                 BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
             }
         }
-    }else if (self.pushModel.module.integerValue == 2){
-        [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
-    }else if (self.pushModel.module.integerValue == 3) {
-        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-        BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+        
     }
 }
 // 处理来自苹果的推送 App后台或者杀死
 - (void)handleApnsContent:(NSDictionary *)dict isPush:(BOOL)isPush {
     [GeTuiSdk handleRemoteNotification:dict];
-//    if (isPush) {
-//        BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
-//    }
+    if (isPush) {
+        self.pushModel = [[PushContentModel alloc] initWithString:[dict valueForKey:@"payload"] error:nil];
+        if (self.pushModel.module.integerValue == 1) {
+            self.pushModel.extendInfo.baseUrl = nil;
+            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+            BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+        }else if (self.pushModel.module.integerValue == 2){
+            [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
+        }else if (self.pushModel.module.integerValue == 3) {
+            [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+            BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+        }
+    }
 }
 @end

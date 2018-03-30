@@ -99,7 +99,7 @@
 
 + (UIBarButtonItem *)negativeBarButtonItem{
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -16;
+//    negativeSpacer.width = ;
     return negativeSpacer;
 }
 

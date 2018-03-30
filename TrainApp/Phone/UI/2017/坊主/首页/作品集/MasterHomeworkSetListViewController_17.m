@@ -98,7 +98,11 @@
 }
 
 - (void)setupFetcher {
+    if (isEmpty(self.pid)) {
+        self.pid = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    }
     MasterHomeworkSetListFetcher_17 *fetcher = [[MasterHomeworkSetListFetcher_17 alloc] init];
+    fetcher.projectId = self.pid;
     fetcher.barId = @"0";
     fetcher.recommendStatus = @"0";
     fetcher.readStatus = @"2";
@@ -247,6 +251,7 @@
     MasterHomeworkSetListItem_Body_Homework *homework = self.dataArray[indexPath.row];
     VC.homeworkSetId = homework.homeworkSetId;
     VC.titleString = homework.title;
+    VC.pid = self.pid;
     WEAK_SELF
     VC.masterHomeworkSetRecommendBlock = ^(BOOL recommend) {
         STRONG_SELF
@@ -285,6 +290,7 @@
         if ([self handleRequestData:data inView:self.contentView]) {
             return;
         }
+        BLOCK_EXEC(self.requestSuccessBlock);
         self.total = total;
         [self tableViewWillRefresh];
         [self.dataArray removeAllObjects];

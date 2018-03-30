@@ -407,7 +407,6 @@
             return;
         }
         self.detailItem = ((MasterHomeworkSetListDetailItem *)retItem).body;
-        BLOCK_EXEC(self.requestSuccessBlock);
     }];
     self.detailRequest = request;
 }

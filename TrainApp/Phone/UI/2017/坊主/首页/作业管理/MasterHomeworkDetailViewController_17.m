@@ -471,7 +471,6 @@
             return;
         }
         self.detailItem = ((MasterHomeworkDetailItem *)retItem).body;
-        BLOCK_EXEC(self.requestSuccessBlock);
         [self requestForHomeworkRemark];
     }];
     self.detailRequest = request;

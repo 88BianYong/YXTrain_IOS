@@ -15,8 +15,8 @@
 #import "YXWebViewController.h"
 #import "NoticeAndBriefDetailViewController.h"
 #import "YXHomeworkInfoViewController.h"
-#import "MasterHomeworkDetailViewController_17.h"
-#import "MasterHomeworkSetListDetailViewController_17.h"
+#import "MasterHomeworkViewController_17.h"
+#import "MasterHomeworkSetListViewController_17.h"
 
 @implementation RootViewControllerManger
 + (instancetype)alloc{
@@ -110,10 +110,8 @@
         return;
     }
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 34) {
-        MasterHomeworkDetailViewController_17 *VC = [[MasterHomeworkDetailViewController_17 alloc] init];
-        VC.homeworkId = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.objectId;
+        MasterHomeworkViewController_17 *VC = [[MasterHomeworkViewController_17 alloc] init];
         VC.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
-        VC.titleString =[LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
         WEAK_SELF
         VC.requestSuccessBlock = ^{
             STRONG_SELF
@@ -124,10 +122,8 @@
         return;
     }
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 35) {
-        MasterHomeworkSetListDetailViewController_17 *VC = [[MasterHomeworkSetListDetailViewController_17 alloc] init];
-        VC.homeworkSetId = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.objectId;
+        MasterHomeworkSetListViewController_17 *VC = [[MasterHomeworkSetListViewController_17 alloc] init];
         VC.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
-        VC.titleString =[LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
         WEAK_SELF
         VC.requestSuccessBlock = ^{
             STRONG_SELF
@@ -140,10 +136,8 @@
     if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
         return ;
     }
-    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.role.integerValue == 9) {
-        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
-        [projectNavi pushViewController:VC animated:YES];
-    }
+    UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
+    [projectNavi pushViewController:VC animated:YES];
 }
 - (UIViewController *)rootViewController {
     return nil;

@@ -50,6 +50,7 @@
     [self.window makeKeyAndVisible];
     self.appDelegateHelper = [[AppDelegateHelper alloc] initWithWindow:self.window];
     if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
+        [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = YES;
         self.appDelegateHelper.isRemoteNotification = YES;//标记推送启动
     }
     WEAK_SELF
@@ -103,7 +104,6 @@
         self.backgroundTimer = [NSTimer scheduledTimerWithTimeInterval:0.3f target:self selector:@selector(timerMethod:) userInfo:nil repeats:YES];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(finishRecordTimer) name:kRecordReportCompleteNotification object:nil];
     }
-    [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = YES;
 }
 - (void)endBackgroundTask{
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
@@ -151,7 +151,9 @@
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
     BOOL result = ([UIApplication sharedApplication].applicationState == UIApplicationStateBackground);
-    [[LSTSharedInstance sharedInstance].geTuiManger handleApnsContent:userInfo isPush:!result];
+    if ([[LSTSharedInstance sharedInstance].userManger isLogin]) {
+        [[LSTSharedInstance sharedInstance].geTuiManger handleApnsContent:userInfo isPush:!result];
+    }
     completionHandler(UIBackgroundFetchResultNewData);
 }
 

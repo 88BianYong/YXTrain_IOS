@@ -53,7 +53,7 @@
     self.contentLabel = [[UILabel alloc] init];
     self.contentLabel.textColor = [UIColor colorWithHexString:@"334466"];
     self.contentLabel.font = [UIFont boldSystemFontOfSize:15.0f];
-    self.contentLabel.numberOfLines = 2;
+    self.contentLabel.numberOfLines = 0;
     [self.contentView addSubview:self.contentLabel];
     
     self.timeLabel = [[UILabel alloc] init];
@@ -160,12 +160,12 @@
     self.contentLabel.attributedText = [self contentStringWithDesc:data.title];
     self.contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.timeLabel.text = data.timer;
-    if (data.type.integerValue >= 5) {
-        self.nextImageView.hidden = YES;
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-    }else {
+    if (data.type.integerValue == 1 || data.type.integerValue == 2 || data.type.integerValue == 3||data.type.integerValue == 4 ||data.type.integerValue == 34 || data.type.integerValue == 35) {
         self.nextImageView.hidden = NO;
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }else {
+        self.nextImageView.hidden = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 //    self.redPointView.hidden = data.status.boolValue ? YES : NO;
     [self.titleLabel sizeToFit];

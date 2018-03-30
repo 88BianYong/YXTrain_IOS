@@ -14,7 +14,7 @@
 - (void)startWithBlock:(void (^)(NSInteger, NSArray *, NSError *))aCompleteBlock {
     [self.listRequest stopRequest];
     MasterHomeworkListRequest_17 *request = [[MasterHomeworkListRequest_17 alloc] init];
-    request.projectId = [LSTSharedInstance sharedInstance].trainManager.currentProject.pid;
+    request.projectId = self.projectId;
     request.page = [NSString stringWithFormat:@"%d",self.pageindex + 1];
     request.pageSize = [NSString stringWithFormat:@"%d",self.pagesize];
     request.barId =  self.barId;
