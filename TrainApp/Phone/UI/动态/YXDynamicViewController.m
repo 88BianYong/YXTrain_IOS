@@ -60,6 +60,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
         [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = -1;
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
         [GeTuiSdk clearAllNotificationForNotificationBar];
+        [GeTuiSdk resetBadge];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
