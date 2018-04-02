@@ -43,6 +43,7 @@
     [self.tableView reloadData];
     [_dataItem.themes enumerateObjectsUsingBlock:^(MasterThemeListItem_Body_Theme *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if(obj.isSelected.boolValue) {
+            self.confirmButton.enabled = YES;
             if(![self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0]]){
                 [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:idx inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
             }
