@@ -53,7 +53,7 @@ static  NSString *const trackPageName = @"工作坊资源列表页面";
     self.emptyView.imageName = @"暂无资源";
     self.tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     self.tableView.estimatedRowHeight = 800;
-    self.tableView.estimatedSectionFooterHeight = 0.0001f;
+    self.tableView.estimatedSectionFooterHeight = 0.0f;
     self.tableView.estimatedSectionHeaderHeight = 5.0f;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[YXAllDatumTableViewCell class] forCellReuseIdentifier:@"YXAllDatumTableViewCell"];

@@ -35,14 +35,18 @@
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
 @property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
 @property (nonatomic, strong) RootViewControllerManger *rootManger;
-@property (nonatomic, assign) BOOL isLoginBool;
+@property (nonatomic, assign) BOOL isLoginBool;//是否为手动登录
 @end
 @implementation AppDelegateHelper
 - (instancetype)initWithWindow:(UIWindow *)window {
     if (self = [super init]) {
         self.window = window;
+        WEAK_SELF
+        [[LSTSharedInstance sharedInstance].geTuiManger setTrainGeTuiMangerCompleteBlock:^{
+            STRONG_SELF
+             [self.rootManger showDynamicViewController:self.window];
+        }];
         [self registeNotifications];
-        [self showNotificationViewController];
     }
     return self;
 }
@@ -51,16 +55,6 @@
         _rootManger = [RootViewControllerManger alloc];
     }
     return _rootManger;
-}
-- (void)showNotificationViewController{
-    [[LSTSharedInstance sharedInstance].geTuiManger setTrainGeTuiMangerCompleteBlock:^{
-        if (self.isRemoteNotification || ![[LSTSharedInstance sharedInstance].userManger isLogin] ||
-            [LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade) {
-            return ;//1.通过通知启动需要等待升级接口返回才进行跳转2.未登录不进行跳转3.弹出升级界面不进行跳转
-        }
-        self.isRemoteNotification = NO;
-        [self.rootManger showDynamicViewController:self.window];
-    }];
 }
 - (void)setupRootViewController{
     if ([LSTSharedInstance sharedInstance].configManager.testFrameworkOn.boolValue) {
@@ -95,10 +89,10 @@
         WEAK_SELF
         [[LSTSharedInstance sharedInstance].floatingViewManager setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
             STRONG_SELF
-            if (isShow && self.isRemoteNotification) {
+            if (isShow && [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification) {
                 [self.rootManger showDynamicViewController:self.window];
             }
-            self.isRemoteNotification = NO;
+            [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = NO;
         }];
     } else {
         YXLoginViewController *loginVC = [[YXLoginViewController alloc] init];
@@ -160,7 +154,7 @@
         }
 //        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
-        self.isRemoteNotification = NO;
+
     }];
     
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kXYTrainChangeProject object:nil] subscribeNext:^(NSNotification *x) {

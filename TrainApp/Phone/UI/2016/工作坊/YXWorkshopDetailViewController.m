@@ -83,7 +83,7 @@ UITableViewDataSource
     _tableView.layoutMargins = UIEdgeInsetsZero;
     _tableView.separatorColor = [UIColor colorWithHexString:@"eceef2"];
     _tableView.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    _tableView.estimatedSectionFooterHeight = 0.0001f;
+    _tableView.estimatedSectionFooterHeight = 0.0f;
     _tableView.estimatedSectionHeaderHeight = 5.0f;
     [_tableView registerClass:[YXWorkshopDetailGroupCell class] forCellReuseIdentifier:@"YXWorkshopDetailGroupCell"];
     [_tableView registerClass:[YXWorkshopDetailInfoCell class] forCellReuseIdentifier:@"YXWorkshopDetailInfoCell"];

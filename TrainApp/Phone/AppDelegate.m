@@ -50,8 +50,7 @@
     [self.window makeKeyAndVisible];
     self.appDelegateHelper = [[AppDelegateHelper alloc] initWithWindow:self.window];
     if (launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey]) {
-        [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = YES;
-        self.appDelegateHelper.isRemoteNotification = YES;//标记推送启动
+        [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = YES;//标记推送启动
     }
     WEAK_SELF
     [[LSTSharedInstance sharedInstance].upgradeManger requestCompeletion:^(BOOL upgrade) {

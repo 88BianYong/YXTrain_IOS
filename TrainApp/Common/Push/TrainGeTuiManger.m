@@ -194,21 +194,6 @@
         }else if (self.pushModel.module.integerValue == 3) {
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         }
-    }else {
-        if (self.isLaunchedByNotification) {
-            self.isLaunchedByNotification = NO;
-            if (self.pushModel.module.integerValue == 1) {
-                self.pushModel.extendInfo.baseUrl = nil;
-                [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-                BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
-            }else if (self.pushModel.module.integerValue == 2){
-                [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
-            }else if (self.pushModel.module.integerValue == 3) {
-                [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-                BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
-            }
-        }
-        
     }
 }
 // 处理来自苹果的推送 App后台或者杀死
@@ -219,12 +204,16 @@
         if (self.pushModel.module.integerValue == 1) {
             self.pushModel.extendInfo.baseUrl = nil;
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-            BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+            if (!self.isLaunchedByNotification) {//通过推送启动暂时不进行界面切换,需要等升级,广告等一系列操作完成在切换
+                BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+            }
         }else if (self.pushModel.module.integerValue == 2){
             [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
         }else if (self.pushModel.module.integerValue == 3) {
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-            BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+            if (!self.isLaunchedByNotification) {
+                BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
+            }
         }
     }
 }

@@ -50,7 +50,7 @@
 
 - (CGFloat)fd_heightForCellWithIdentifier:(NSString *)identifier configuration:(void (^)(id cell))configuration {
     if (!identifier) {
-        return 0;
+        return 0.0001f;
     }
     
     UITableViewCell *templateLayoutCell = [self fd_templateCellForReuseIdentifier:identifier];
@@ -121,7 +121,7 @@
 
 - (CGFloat)fd_heightForCellWithIdentifier:(NSString *)identifier cacheByIndexPath:(NSIndexPath *)indexPath configuration:(void (^)(id cell))configuration {
     if (!identifier || !indexPath) {
-        return 0;
+        return 0.0001f;
     }
 
     // Hit cache
@@ -139,7 +139,7 @@
 
 - (CGFloat)fd_heightForCellWithIdentifier:(NSString *)identifier cacheByKey:(id<NSCopying>)key configuration:(void (^)(id cell))configuration {
     if (!identifier || !key) {
-        return 0;
+        return 0.0001f;
     }
     
     // Hit cache

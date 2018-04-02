@@ -17,6 +17,7 @@
 #import "YXHomeworkInfoViewController.h"
 #import "MasterHomeworkViewController_17.h"
 #import "MasterHomeworkSetListViewController_17.h"
+#import "MasterTabBarViewController_17.h"
 
 @implementation RootViewControllerManger
 + (instancetype)alloc{
@@ -30,19 +31,41 @@
     return [super alloc];
 }
 - (void)showDynamicViewController:(UIWindow *)window {
+    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel == nil) {
+        return;
+    }
     YXNavigationController *projectNavi = nil;
     if ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2016) {
-        YXDrawerViewController *drawerVC  = (YXDrawerViewController *)window.rootViewController;
-        if (drawerVC.paneViewController.presentedViewController) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+        if ([window.rootViewController isKindOfClass:[YXDrawerViewController class]]) {
+            YXDrawerViewController *drawerVC  = (YXDrawerViewController *)window.rootViewController;
+            if (drawerVC.paneViewController.presentedViewController) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+            }
+            projectNavi = (YXNavigationController *)drawerVC.paneViewController;
+        }else {
+            return;
         }
-        projectNavi = (YXNavigationController *)drawerVC.paneViewController;
-    }else if ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2017) {
-        YXTabBarViewController_17 *tabVC  = (YXTabBarViewController_17 *)window.rootViewController;
-        if (tabVC.selectedViewController.presentedViewController) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+
+    }else if ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2017 && [LSTSharedInstance sharedInstance].trainManager.currentProject.role.integerValue == 9) {
+        if ([window.rootViewController isKindOfClass:[YXTabBarViewController_17 class]]) {
+            YXTabBarViewController_17 *tabVC  = (YXTabBarViewController_17 *)window.rootViewController;
+            if (tabVC.selectedViewController.presentedViewController) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+            }
+            projectNavi = (YXNavigationController *)tabVC.selectedViewController;
+        }else {
+            return;
         }
-        projectNavi = (YXNavigationController *)tabVC.selectedViewController;
+    }else if ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2017 && [LSTSharedInstance sharedInstance].trainManager.currentProject.role.integerValue == 99){
+        if ([window.rootViewController isKindOfClass:[MasterTabBarViewController_17 class]]) {
+            MasterTabBarViewController_17 *tabVC  = (MasterTabBarViewController_17 *)window.rootViewController;
+            if (tabVC.selectedViewController.presentedViewController) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushNotification object:nil];
+            }
+            projectNavi = (YXNavigationController *)tabVC.selectedViewController;
+        }else {
+            return;
+        }
     }
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl.length > 0){
         if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXWebViewController") class]]){
@@ -60,6 +83,7 @@
             STRONG_SELF
             [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:NO];
         }];
+        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return;
     }
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 1) {
@@ -74,6 +98,7 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         };
         [projectNavi pushViewController:VC animated:YES];
+        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return;
     }
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 2) {
@@ -88,6 +113,7 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         };
         [projectNavi pushViewController:VC animated:YES];
+        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return;
     }
     
@@ -107,6 +133,7 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         };
         [projectNavi pushViewController:VC animated:YES];
+        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return;
     }
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 34) {
@@ -119,6 +146,7 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         };
         [projectNavi pushViewController:VC animated:YES];
+        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return;
     }
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 35) {
@@ -131,13 +159,16 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         };
         [projectNavi pushViewController:VC animated:YES];
+        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return;
     }
     if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return ;
     }
     UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
     [projectNavi pushViewController:VC animated:YES];
+    [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
 }
 - (UIViewController *)rootViewController {
     return nil;

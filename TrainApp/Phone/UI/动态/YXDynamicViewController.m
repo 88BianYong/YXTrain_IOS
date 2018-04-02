@@ -227,6 +227,8 @@ static  NSString *const trackPageName = @"消息动态列表页面";
         [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Dynamic];
         [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = -1;
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+        [GeTuiSdk clearAllNotificationForNotificationBar];
+        [GeTuiSdk resetBadge];
     });
 }
 
