@@ -59,7 +59,7 @@
     self.tableView.separatorColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     self.tableView.estimatedRowHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 0.0001f;
+    self.tableView.estimatedSectionHeaderHeight = 0.0f;
     self.tableView.estimatedSectionFooterHeight = 0.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
