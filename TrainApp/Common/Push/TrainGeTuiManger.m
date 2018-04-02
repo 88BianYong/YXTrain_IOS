@@ -186,8 +186,12 @@
     self.pushModel = [[PushContentModel alloc] initWithString:content error:nil];
     if (self.pushModel.module.integerValue == 1) {
         self.pushModel.extendInfo.baseUrl = nil;
-        [UIApplication sharedApplication].applicationIconBadgeNumber ++;
-        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        if (!offLine) {//在线
+            [UIApplication sharedApplication].applicationIconBadgeNumber ++;
+            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        }else {
+            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
+        }
     }else if (self.pushModel.module.integerValue == 2){
         [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
     }else if (self.pushModel.module.integerValue == 3) {
