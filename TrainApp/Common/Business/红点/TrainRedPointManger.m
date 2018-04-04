@@ -7,6 +7,7 @@
 //
 
 #import "TrainRedPointManger.h"
+#import <GTSDK/GeTuiSdk.h>
 
 @implementation TrainRedPointManger
 - (instancetype)init {
@@ -23,6 +24,7 @@
     }else {
         [UIApplication sharedApplication].applicationIconBadgeNumber  = 0;
     }
+    [GeTuiSdk setBadge:[UIApplication sharedApplication].applicationIconBadgeNumber];
     [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainPushWebSocketReceiveMessage object:nil];
 }
 

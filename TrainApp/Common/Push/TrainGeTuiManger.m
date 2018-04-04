@@ -183,8 +183,8 @@
 #pragma mark - Handle Notification
 // 处理个推推送，App运行中
 - (void)handleGeTuiContent:(NSString *)content  withOffLine:(BOOL)offLine{
-    self.pushModel = [[PushContentModel alloc] initWithString:content error:nil];
-    if (self.pushModel.module.integerValue == 1) {
+    PushContentModel *model = [[PushContentModel alloc] initWithString:content error:nil];
+    if (model.module.integerValue == 1) {
         self.pushModel.extendInfo.baseUrl = nil;
         if (!offLine) {//在线
             [UIApplication sharedApplication].applicationIconBadgeNumber ++;
@@ -192,10 +192,11 @@
         }else {
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         }
-    }else if (self.pushModel.module.integerValue == 2){
+    }else if (model.module.integerValue == 2){
         [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
     }else if (self.pushModel.module.integerValue == 3) {
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
     }
 }
 // 处理来自苹果的推送 App后台或者杀死
@@ -213,6 +214,7 @@
             [LSTSharedInstance sharedInstance].redPointManger.hotspotInteger = 1;
         }else if (self.pushModel.module.integerValue == 3) {
             [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
             if (!self.isLaunchedByNotification) {
                 BLOCK_EXEC(self.trainGeTuiMangerCompleteBlock);
             }

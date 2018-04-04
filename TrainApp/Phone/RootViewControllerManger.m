@@ -18,7 +18,6 @@
 #import "MasterHomeworkViewController_17.h"
 #import "MasterHomeworkSetListViewController_17.h"
 #import "MasterTabBarViewController_17.h"
-
 @implementation RootViewControllerManger
 + (instancetype)alloc{
     if ([self class] == [RootViewControllerManger class]) {
