@@ -19,6 +19,7 @@
 #import "MasterHomeworkSetListViewController_17.h"
 #import <GTSDK/GeTuiSdk.h>
 #import "MasterHomeworkViewController_17.h"
+#import "AppDelegate.h"
 static  NSString *const trackPageName = @"消息动态列表页面";
 @interface YXDynamicViewController ()
 @property (nonatomic, strong) YXMsgReadedRequest *readedRequest;
@@ -53,16 +54,6 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     [super viewWillDisappear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:NO];
     self.navigationController.navigationBar.shadowImage = [UIImage yx_imageWithColor:[UIColor colorWithHexString:@"f2f6fa"]];
-}
-- (void)naviLeftAction {
-    if (self.isSuccess) {
-        [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Dynamic];
-        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = -1;
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-        [GeTuiSdk clearAllNotificationForNotificationBar];
-        [GeTuiSdk resetBadge];
-    }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -123,87 +114,15 @@ static  NSString *const trackPageName = @"消息动态列表页面";
     if (data.status.integerValue == 0) {
         [self requestForMagReaded:data andIndexPatch:indexPath];
     }
-    switch (data.type.integerValue) {//1-通知  2-简报  3-打分  4-推优  5-任务到期提醒
-        case 1:
-        {
-            [self pushNextViewController:data];
-        }
-            break;
-        case 2:
-        {
-            [self pushNextViewController:data];
-        }
-            break;
-        case 3:
-        {
-            YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
-            itemBody.type = @"4";
-            itemBody.requireId = @"";
-            itemBody.homeworkid = data.objectId;
-            itemBody.title = data.projectName;
-            itemBody.pid = data.projectId;
-            YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
-            VC.itemBody = itemBody;
-            [self.navigationController pushViewController:VC animated:YES];
-        }
-            break;
-        case 4:
-        {
-            YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
-            itemBody.type = @"4";
-            itemBody.requireId = @"";
-            itemBody.homeworkid = data.objectId;
-            itemBody.title = data.projectName;
-            itemBody.pid = data.projectId;
-            YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
-            VC.itemBody = itemBody;
-            [self.navigationController pushViewController:VC animated:YES];
-        }
-            break;
-        case 5:
-        {
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:data.projectId];
-//            [self.navigationController popToRootViewControllerAnimated:YES];
-        }
-            break;
-        case 6:
-        {
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kYXTrainCurrentProjectIndex object:data.projectId];
-//            [self.navigationController popToRootViewControllerAnimated:YES];
-        }
-            break;
-        case 31:
-        {
-            
-        }
-            break;
-        case 32:
-        {
-            
-        }
-            break;
-        case 33:
-        {
-            
-        }
-            break;
-        case 34:
-        {
-            MasterHomeworkViewController_17 *VC = [[MasterHomeworkViewController_17 alloc] init];
-            VC.pid = data.projectId;
-            [self.navigationController pushViewController:VC animated:YES];
-        }
-            break;
-        case 35:
-        {
-            MasterHomeworkSetListViewController_17 *VC = [[MasterHomeworkSetListViewController_17 alloc] init];
-            VC.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
-            [self.navigationController pushViewController:VC animated:YES];
-        }
-            break;
-        default:
-            break;
-    }
+    PushContentModel *pushModel = [[PushContentModel alloc] init];
+    pushModel.projectId = data.projectId;
+    pushModel.module = @"1";
+    pushModel.type = data.type;
+    pushModel.objectId = data.objectId;
+    pushModel.title = data.projectName;
+    [LSTSharedInstance sharedInstance].geTuiManger.pushModel = pushModel;
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate.appDelegateHelper.rootManger reloadProjectTemplateViewController:appDelegate.window withPushNotification:NO];
     
 }
 - (void)pushNextViewController:(YXDynamicRequestItem_Data *)data{
@@ -223,7 +142,7 @@ static  NSString *const trackPageName = @"消息动态列表页面";
 }
 - (void)tableViewWillRefresh {
     self.isSuccess = YES;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [[LSTSharedInstance  sharedInstance].webSocketManger setState:YXWebSocketMangerState_Dynamic];
         [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = -1;
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];

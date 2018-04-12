@@ -118,6 +118,21 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         if (newTrain.w.integerValue >= 5 || oldTrain.w.integerValue >= 5) {//只有同为16项目才不需要刷新
             isChangeBool = YES;
         }
+        if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel != nil) {//如果有待切换项目
+            isChangeBool = YES;
+            NSInteger typeInteger = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue;
+            if (typeInteger >= 31 && typeInteger <=35) {//坊主 1、2、31、32、33、34、35
+                newTrain.role = @"99";
+            }
+            if (typeInteger >= 3 && typeInteger <= 6) {//学员 1、2、3、4、5、6
+                newTrain.role = @"9";
+            }
+            if (typeInteger == 1 || typeInteger == 2) {//通知简报双身份,进入学员
+                if(newTrain.isDoubel.boolValue){
+                    newTrain.role = @"9";
+                }
+            }
+        }
         oldTrain.role = nil;
     }
     _currentProjectIndexPath = currentProjectIndexPath;

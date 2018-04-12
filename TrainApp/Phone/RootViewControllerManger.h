@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface RootViewControllerManger : NSObject
-- (void)showDynamicViewController:(UIWindow *)window;
+/**
+ 变换项目模板
+
+ @param window window
+ @param isPush 是否通过推送切换
+ */
+- (void)reloadProjectTemplateViewController:(UIWindow *)window withPushNotification:(BOOL)isPush;
 - (UIViewController *)rootViewController;
 @end

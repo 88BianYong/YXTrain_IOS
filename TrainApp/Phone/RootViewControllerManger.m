@@ -29,10 +29,12 @@
     }
     return [super alloc];
 }
-- (void)showDynamicViewController:(UIWindow *)window {
+- (void)reloadProjectTemplateViewController:(UIWindow *)window withPushNotification:(BOOL)isPush {
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel == nil) {
         return;
     }
+    //因为项目相同,角色也可能不同所以统一切换一遍项目
+    [[LSTSharedInstance sharedInstance].trainManager setupProjectId:[LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId];//更换项目
     YXNavigationController *projectNavi = nil;
     if ([LSTSharedInstance sharedInstance].trainManager.trainStatus == LSTTrainProjectStatus_2016) {
         if ([window.rootViewController isKindOfClass:[YXDrawerViewController class]]) {
@@ -161,6 +163,10 @@
         [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return;
     }
+    if (!isPush) {
+        return;
+    }
+    
     if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
         [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
         return ;

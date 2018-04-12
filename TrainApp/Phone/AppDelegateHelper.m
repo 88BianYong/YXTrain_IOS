@@ -29,12 +29,10 @@
 #import "XYChooseProjectViewController.h"
 #import "YXTabBarViewController_17.h"
 #import "UITabBar+YXAddtion.h"
-#import "RootViewControllerManger.h"
 @interface AppDelegateHelper ()
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) YXCMSCustomView *cmsView;
 @property (nonatomic, strong) YXUserProfileRequest *userProfileRequest;
-@property (nonatomic, strong) RootViewControllerManger *rootManger;
 @property (nonatomic, assign) BOOL isLoginBool;//是否为手动登录
 @end
 @implementation AppDelegateHelper
@@ -44,7 +42,7 @@
         WEAK_SELF
         [[LSTSharedInstance sharedInstance].geTuiManger setTrainGeTuiMangerCompleteBlock:^{
             STRONG_SELF
-             [self.rootManger showDynamicViewController:self.window];
+             [self.rootManger reloadProjectTemplateViewController:self.window withPushNotification:YES];
         }];
         [self registeNotifications];
     }
@@ -90,7 +88,7 @@
         [[LSTSharedInstance sharedInstance].floatingViewManager setPopUpFloatingViewManagerCompleteBlock:^(BOOL isShow){
             STRONG_SELF
             if (isShow && [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification) {
-                [self.rootManger showDynamicViewController:self.window];
+                 [self.rootManger reloadProjectTemplateViewController:self.window withPushNotification:YES];
             }
             [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = NO;
         }];
@@ -152,7 +150,6 @@
                 [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
             }
         }
-//        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
 
     }];
@@ -161,7 +158,6 @@
         STRONG_SELF
         self.rootManger = nil;
         self.window.rootViewController = [self.rootManger rootViewController];
-//        [[LSTSharedInstance sharedInstance].floatingViewManager startPopUpFloatingView];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
     }];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainUserIdentityChange object:nil] subscribeNext:^(id x) {

@@ -412,23 +412,6 @@
 	[super viewDidDisappear:animated];
 }
 
-- (void)viewDidUnload
-{
-#ifdef DEBUG
-	NSLog(@"%s", __FUNCTION__);
-#endif
-
-	mainToolbar = nil;
-
-	theScrollView = nil; contentViews = nil; lastHideTime = nil;
-
-	documentInteraction = nil; printInteraction = nil;
-
-	lastAppearSize = CGSizeZero; currentPage = 0;
-
-	[super viewDidUnload];
-}
-
 - (BOOL)prefersStatusBarHidden
 {
 	return YES;
@@ -439,29 +422,23 @@
 	return UIStatusBarStyleLightContent;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-	return YES;
+- (BOOL)shouldAutorotate {
+    return YES;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-	if (userInterfaceIdiom == UIUserInterfaceIdiomPad) if (printInteraction != nil) [printInteraction dismissAnimated:NO];
-
-	ignoreDidScroll = YES;
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation duration:(NSTimeInterval)duration
-{
-	if (CGSizeEqualToSize(theScrollView.contentSize, CGSizeZero) == false)
-	{
-		[self updateContentViews:theScrollView]; lastAppearSize = CGSizeZero;
-	}
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-	ignoreDidScroll = NO;
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+         if (self->userInterfaceIdiom == UIUserInterfaceIdiomPad) if (self->printInteraction != nil) [self->printInteraction dismissAnimated:NO];
+         self->ignoreDidScroll = YES;
+     } completion:^(id<UIViewControllerTransitionCoordinatorContext> context)
+     {
+        self->ignoreDidScroll = NO;
+     }];
+    if (CGSizeEqualToSize(theScrollView.contentSize, CGSizeZero) == false)
+    {
+        [self updateContentViews:theScrollView]; lastAppearSize = CGSizeZero;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -469,7 +446,13 @@
 #ifdef DEBUG
 	NSLog(@"%s", __FUNCTION__);
 #endif
-
+    mainToolbar = nil;
+    
+    theScrollView = nil; contentViews = nil; lastHideTime = nil;
+    
+    documentInteraction = nil; printInteraction = nil;
+    
+    lastAppearSize = CGSizeZero; currentPage = 0;
 	[super didReceiveMemoryWarning];
 }
 

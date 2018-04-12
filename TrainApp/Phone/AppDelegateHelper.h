@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "RootViewControllerManger.h"
 @interface AppDelegateHelper : NSObject
 - (instancetype)initWithWindow:(UIWindow *)window;
 @property (nonatomic, strong, readonly) UIWindow *window;
@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSString *projectId;
 @property (nonatomic, copy) NSString *seg;
 @property (nonatomic, copy) NSString *courseType;
-
+@property (nonatomic, strong) RootViewControllerManger *rootManger;
 
 // 启动的根视图控制器
 - (void)setupRootViewController;

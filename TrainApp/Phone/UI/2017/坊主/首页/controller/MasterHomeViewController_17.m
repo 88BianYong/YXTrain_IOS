@@ -220,7 +220,6 @@
 #pragma mark - showView
 - (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
     [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:nil];
 }
 #pragma mark - UITableViewDataScore
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

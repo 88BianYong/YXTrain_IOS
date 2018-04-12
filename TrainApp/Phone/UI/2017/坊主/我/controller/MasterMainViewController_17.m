@@ -220,7 +220,6 @@ UITableViewDataSource
                 }];
             }];
             [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = [NSIndexPath indexPathForRow:indexInteger inSection:sectionInteger];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:nil];
         }
         
     }else if(indexPath.section == 1){
