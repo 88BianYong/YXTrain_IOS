@@ -179,7 +179,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     }else {
         [self setupQRCodeRightView];
         [self dealWithProjectGroups:self.dataMutableArrray];
-        [self showProjectWithIndexPath:[LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath];
+        [self refreshUserRoleInterface];
     }
 }
 
@@ -220,7 +220,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         }else {
             [self.emptyView removeFromSuperview];
             [self setupRightView];
-            [self showProjectWithIndexPath:[LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath];
+            [self refreshUserRoleInterface];
         }
         [self dealWithProjectGroups:self.dataMutableArrray];
     }];
