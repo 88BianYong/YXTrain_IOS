@@ -69,9 +69,6 @@
         }
     }
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl.length > 0){
-        if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXWebViewController") class]]){
-            return ;
-        }
         YXWebViewController *webView = [[YXWebViewController alloc] init];
         webView.urlString = [NSString stringWithFormat:@"%@/%@",[LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl,[LSTSharedInstance sharedInstance].userManger.userModel.uid];
         webView.titleString =  [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
@@ -99,10 +96,7 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         };
         [projectNavi pushViewController:VC animated:YES];
-        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
-        return;
-    }
-    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 2) {
+    }else if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 2) {
         NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
         VC.nbIdString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.objectId;
         VC.titleString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
@@ -114,11 +108,7 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         };
         [projectNavi pushViewController:VC animated:YES];
-        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
-        return;
-    }
-    
-    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 3 || [LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 4) {
+    }else if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 3 || [LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 4) {
         YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
         itemBody.type = @"4";
         itemBody.requireId = @"";
@@ -135,9 +125,7 @@
         };
         [projectNavi pushViewController:VC animated:YES];
         [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
-        return;
-    }
-    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 34) {
+    }else if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 34) {
         MasterHomeworkViewController_17 *VC = [[MasterHomeworkViewController_17 alloc] init];
         VC.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
         WEAK_SELF
@@ -147,10 +135,7 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         };
         [projectNavi pushViewController:VC animated:YES];
-        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
-        return;
-    }
-    if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 35) {
+    }else if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 35) {
         MasterHomeworkSetListViewController_17 *VC = [[MasterHomeworkSetListViewController_17 alloc] init];
         VC.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
         WEAK_SELF
@@ -160,19 +145,11 @@
             [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         };
         [projectNavi pushViewController:VC animated:YES];
-        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
-        return;
+    }else if(isPush && ![projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
+        UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
+        [projectNavi pushViewController:VC animated:YES];
     }
-    if (!isPush) {
-        return;
-    }
-    
-    if ([projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){
-        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
-        return ;
-    }
-    UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
-    [projectNavi pushViewController:VC animated:YES];
+    [YXPromtController showToast:[NSString stringWithFormat:@"您已进入到[%@]中",[LSTSharedInstance sharedInstance].trainManager.currentProject.name] inView:window];
     [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
 }
 - (UIViewController *)rootViewController {
