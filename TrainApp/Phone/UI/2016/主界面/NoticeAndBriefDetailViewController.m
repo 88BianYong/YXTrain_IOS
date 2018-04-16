@@ -164,6 +164,7 @@
     WEAK_SELF
     [request startRequestWithRetClass:[NoticeAndBriefDetailRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
+        BLOCK_EXEC(self.requestSuccessBlock);
         [self stopLoading];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
@@ -179,7 +180,6 @@
         self.tableView.tableHeaderView = self.headerView;
         [self.tableView reloadData];
         self.tableView.hidden = NO;
-        BLOCK_EXEC(self.requestSuccessBlock);
     }];
     self.detailRequest = request;
 }

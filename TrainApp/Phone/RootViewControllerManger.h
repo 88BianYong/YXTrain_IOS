@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface RootViewControllerManger : NSObject
+@property (nonatomic, strong) UIViewController *viewController;
 /**
  变换项目模板
 

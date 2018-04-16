@@ -92,25 +92,18 @@
         VC.nbIdString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.objectId;
         VC.titleString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
         VC.detailFlag =  NoticeAndBriefFlag_Notice;
-        WEAK_SELF
-        VC.requestSuccessBlock = ^{
-            STRONG_SELF
-            [UIApplication sharedApplication].applicationIconBadgeNumber --;
-            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        };
+        [UIApplication sharedApplication].applicationIconBadgeNumber --;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
         [projectNavi pushViewController:VC animated:YES];
+        self.viewController = VC;
     }else if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 2) {//简报
         NoticeAndBriefDetailViewController *VC = [[NoticeAndBriefDetailViewController alloc] init];
         VC.nbIdString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.objectId;
         VC.titleString = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.title;
         VC.detailFlag = NoticeAndBriefFlag_Brief;
-        WEAK_SELF
-        VC.requestSuccessBlock = ^{
-            STRONG_SELF
-            [UIApplication sharedApplication].applicationIconBadgeNumber --;
-            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        };
         [projectNavi pushViewController:VC animated:YES];
+        [UIApplication sharedApplication].applicationIconBadgeNumber --;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
     }else if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 3 || [LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 4) {//作业被打分,作业被推优
         YXHomeworkInfoRequestItem_Body *itemBody = [[YXHomeworkInfoRequestItem_Body alloc] init];
         itemBody.type = @"4";
@@ -120,49 +113,33 @@
         itemBody.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
         YXHomeworkInfoViewController *VC = [[YXHomeworkInfoViewController alloc] init];
         VC.itemBody = itemBody;
-        WEAK_SELF
-        VC.requestSuccessBlock = ^{
-            STRONG_SELF
-            [UIApplication sharedApplication].applicationIconBadgeNumber --;
-            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        };
-        [projectNavi pushViewController:VC animated:YES];
-        [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
+        [UIApplication sharedApplication].applicationIconBadgeNumber --;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
     }else if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 34) {//提醒坊主作业管理
         MasterHomeworkViewController_17 *VC = [[MasterHomeworkViewController_17 alloc] init];
         VC.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
-        WEAK_SELF
-        VC.requestSuccessBlock = ^{
-            STRONG_SELF
-            [UIApplication sharedApplication].applicationIconBadgeNumber --;
-            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        };
         [projectNavi pushViewController:VC animated:YES];
+        [UIApplication sharedApplication].applicationIconBadgeNumber --;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
     }else if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 35) {//提醒坊主作品集管理
         MasterHomeworkSetListViewController_17 *VC = [[MasterHomeworkSetListViewController_17 alloc] init];
         VC.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
-        WEAK_SELF
-        VC.requestSuccessBlock = ^{
-            STRONG_SELF
-            [UIApplication sharedApplication].applicationIconBadgeNumber --;
-            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        };
         [projectNavi pushViewController:VC animated:YES];
+        [UIApplication sharedApplication].applicationIconBadgeNumber --;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
     }else if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.type.integerValue == 35) {//提醒坊主作品集管理
         MasterHomeworkSetListViewController_17 *VC = [[MasterHomeworkSetListViewController_17 alloc] init];
         VC.pid = [LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId;
-        WEAK_SELF
-        VC.requestSuccessBlock = ^{
-            STRONG_SELF
-            [UIApplication sharedApplication].applicationIconBadgeNumber --;
-            [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
-        };
         [projectNavi pushViewController:VC animated:YES];
+        [UIApplication sharedApplication].applicationIconBadgeNumber --;
+        [LSTSharedInstance sharedInstance].redPointManger.dynamicInteger = [UIApplication sharedApplication].applicationIconBadgeNumber;
     }else if(isPush && ![projectNavi.viewControllers.lastObject isKindOfClass:[NSClassFromString(@"YXDynamicViewController") class]]){//5,6,31,32,33进入消息动态
         UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
         [projectNavi pushViewController:VC animated:YES];
     }
-    [YXPromtController showToast:[NSString stringWithFormat:@"您已进入到[%@]中",[LSTSharedInstance sharedInstance].trainManager.currentProject.name] inView:window];
+    if ([LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains.count > 1) {
+           [YXPromtController showToast:[NSString stringWithFormat:@"您已进入到[%@]中",[LSTSharedInstance sharedInstance].trainManager.currentProject.name] inView:window];
+    }
     [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
     
 }
