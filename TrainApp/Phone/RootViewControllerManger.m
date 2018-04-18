@@ -33,8 +33,12 @@
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel == nil) {
         return;
     }
+    BOOL isChangeBool = YES;
     if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.extendInfo.baseUrl.length == 0) {
         //因为项目相同,角色也可能不同所以统一切换一遍项目
+        if ([LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId.integerValue == [LSTSharedInstance sharedInstance].trainManager.currentProject.pid.integerValue) {
+            isChangeBool = NO;
+        }
         [[LSTSharedInstance sharedInstance].trainManager setupProjectId:[LSTSharedInstance sharedInstance].geTuiManger.pushModel.projectId];//更换项目
     }
 
@@ -137,7 +141,7 @@
         UIViewController *VC = [[NSClassFromString(@"YXDynamicViewController") alloc] init];
         [projectNavi pushViewController:VC animated:YES];
     }
-    if ([LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains.count > 1) {
+    if ([LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains.count > 1 && isChangeBool) {
            [YXPromtController showToast:[NSString stringWithFormat:@"您已进入到[%@]中",[LSTSharedInstance sharedInstance].trainManager.currentProject.name] inView:window];
     }
     [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;
