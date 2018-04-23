@@ -31,7 +31,7 @@
     [super drawRect:rect];
     self.waveSpeed  = 5.0f;
     self.offsetX = 10.0f;
-    self.waveHeight = 100.0f;
+    self.waveHeight = 95.0f;
     self.waveWidth = kScreenWidth;
     self.waveAmplitude = 10.0f;
     self.offsetXT = 100.0f;

@@ -25,9 +25,16 @@
 @property (nonatomic, strong) UILabel *delayDescLabel;
 @property (nonatomic, strong) UILabel *projectStatusLabel;
 
+@property (nonatomic, strong) NSTimer *closeTimer;
+
 
 @end
 @implementation MasterHomeTableHeaderView_17
+- (void)dealloc {
+    [self.closeTimer invalidate];
+    self.closeTimer = nil;
+    DDLogDebug(@"release=======>>%@",NSStringFromClass([self class]));
+}
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.clipsToBounds = YES;
@@ -82,8 +89,13 @@
     WEAK_SELF
     [[self.openButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         STRONG_SELF
+        [self.closeTimer invalidate];
+        self.closeTimer = nil;
         self.openButton.selected = !self.openButton.selected;
         [self openProjectScoreAndProjectTime:self.openButton.selected];
+        if (self.openButton.selected) {
+            self.closeTimer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(closeProjectForScheduledTime) userInfo:nil repeats:NO];
+        }
     }];
     [self addSubview:self.openButton];
     
@@ -187,13 +199,10 @@
     self.delayDescLabel .text = delayString?:@"";
     
     self.projectStatusLabel.text = [NSString stringWithFormat:@"%@-%@ %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate,statusString];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if (self.openButton.selected) {
-            self.openButton.selected = NO;
-            [self openProjectScoreAndProjectTime:NO];
-        }
-    });
-    
+    [self.closeTimer invalidate];
+    self.closeTimer = nil;
+    self.closeTimer = [NSTimer scheduledTimerWithTimeInterval:3.0f target:self selector:@selector(closeProjectForScheduledTime) userInfo:nil repeats:NO];
+
 }
 
 #pragma mark - open & close
@@ -208,5 +217,11 @@
         }
     }];
     BLOCK_EXEC(self.masterHomeOpenCloseBlock,isOpen);
+}
+- (void)closeProjectForScheduledTime {
+    if (self.openButton.selected) {
+        self.openButton.selected = NO;
+        [self openProjectScoreAndProjectTime:NO];
+    }
 }
 @end
