@@ -10,7 +10,5 @@
 @class TrainListProjectGroup;
 
 @interface YXProjectSelectionView : UIView
-@property (nonatomic, strong) NSIndexPath *currentIndexPath;
-@property (nonatomic, strong) NSArray<TrainListProjectGroup *> *projectGroup;
-@property (nonatomic, strong) void(^projectChangeBlock)(NSIndexPath *indexPath);
+@property (nonatomic, strong) void(^showProjectChangeBlock)(void);
 @end

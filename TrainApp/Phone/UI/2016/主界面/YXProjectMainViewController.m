@@ -41,7 +41,6 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 @property (nonatomic, strong) TrainLayerListRequest *layerListRequest;
 @property (nonatomic, strong) TrainSelectLayerRequest *selectLayerRequest;
 
-@property (nonatomic, strong) NSMutableArray *dataMutableArrray;
 @property (nonatomic, strong) NSMutableDictionary *layerMutableDictionary;
 @property (nonatomic, assign) TrainProjectRequestStatus requestStatus;
 
@@ -72,11 +71,12 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataMutableArrray = [[NSMutableArray alloc] initWithCapacity:6];
     self.layerMutableDictionary = [[NSMutableDictionary alloc] initWithCapacity:3];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserRoleInterface) name:kYXTrainUserIdentityChange object:nil];
-    [self setupUI];
-    [self showProjectMainView];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self setupUI];
+        [self showProjectMainView];
+    });
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -161,24 +161,22 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
 }
 #pragma mark - request
 - (void)showProjectMainView{
-    NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
     self.emptyView.imageName = @"无培训项目";
     self.emptyView.title = @"您没有已参加的培训项目";
     self.emptyView.subTitle = @"";
     UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-    data.requestDataExist = groups.count != 0;
+    data.requestDataExist = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains.count != 0;;
     data.localDataExist = NO;
     data.error = nil;
     if ([self handleRequestData:data]) {
         [self stopLoading];
         return;
     }
-    [self.dataMutableArrray addObjectsFromArray:groups];
     if ([LSTSharedInstance sharedInstance].trainManager.trainHelper.presentProject == LSTTrainPresentProject_Beijing) {//北京项目需要校验信息
         [self requestCheckedMobileUser];
     }else {
         [self setupQRCodeRightView];
-        [self dealWithProjectGroups:self.dataMutableArrray];
+        [self dealWithTrainListProject];
         [self refreshUserRoleInterface];
     }
 }
@@ -222,7 +220,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
             [self setupRightView];
             [self refreshUserRoleInterface];
         }
-        [self dealWithProjectGroups:self.dataMutableArrray];
+        [self dealWithTrainListProject];
     }];
     self.checkedMobileUserRequest = request;
 }
@@ -280,12 +278,6 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     self.selectLayerRequest = request;
 }
 
-#pragma mark - showView
-- (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
-    [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
-    [self refreshUserRoleInterface];
-}
-
 - (void)refreshUserRoleInterface {
     for (UIViewController *vc in self.childViewControllers) {
         [vc removeFromParentViewController];
@@ -328,14 +320,20 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     self.chooseLayerView.dataMutableArray = item.body;
 }
 #pragma mark - peojects hide & show
-- (void)dealWithProjectGroups:(NSArray *)groups{
+- (void)dealWithTrainListProject{
     YXProjectSelectionView *selectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
-    selectionView.currentIndexPath = [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath;
-    selectionView.projectGroup = groups;
     WEAK_SELF
-    selectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
+    selectionView.showProjectChangeBlock = ^{
         STRONG_SELF
-        [self showProjectWithIndexPath:indexPath];
+        YXTrainListViewController *VC = [[YXTrainListViewController alloc] init];
+        YXNavigationController *nav = [[YXNavigationController alloc] initWithRootViewController:VC];
+        VC.reloadChooseTrainListBlock = ^{
+            STRONG_SELF
+            [self refreshUserRoleInterface];
+        };
+        [self presentViewController:nav animated:YES completion:^{
+            
+        }];
     };
     self.projectSelectionView = selectionView;
     [self showProjectSelectionView];
@@ -346,7 +344,9 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
     }
 }
 - (void)hideProjectSelectionView {
-    [self.projectSelectionView removeFromSuperview];
+    if (self.navigationController.topViewController != self) {
+        [self.projectSelectionView removeFromSuperview];
+    }
 }
 - (void)showAlertView {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;

@@ -19,7 +19,7 @@ typedef NS_ENUM (NSInteger, LSTTrainProjectStatus) {
 
 @interface YXTrainManager : NSObject
 @property (nonatomic, strong) YXTrainListRequestItem_body_train *currentProject;
-@property (nonatomic, strong) NSIndexPath *currentProjectIndexPath;
+@property (nonatomic, assign) NSInteger currentProjectIndex;
 @property (nonatomic, strong) YXTrainListRequestItem *trainlistItem;
 @property (nonatomic, strong) LSTTrainHelper *trainHelper;
 @property (nonatomic, assign ,readonly) LSTTrainProjectStatus trainStatus;

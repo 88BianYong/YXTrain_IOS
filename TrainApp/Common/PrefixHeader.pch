@@ -78,5 +78,7 @@ extern int ddLogLevel;
 #import "MasterMyExamExplainView_17.h"
 #import "MasterFilterEmptyFooterView_17.h"
 #import "MJRefresh.h"
+#import "YXTrainListViewController.h"
+#import "YXNavigationController.h"
 #endif 
 /* PrefixHeader_pch */

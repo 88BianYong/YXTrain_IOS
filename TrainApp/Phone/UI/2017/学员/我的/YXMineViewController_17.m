@@ -173,21 +173,8 @@ UITableViewDataSource
         if (train.pid.integerValue == [LSTSharedInstance sharedInstance].trainManager.currentProject.pid.integerValue) {
             self.tabBarController.selectedIndex = 0;
         }else {
+            [LSTSharedInstance sharedInstance].trainManager.currentProjectIndex = indexPath.row;
             [YXDataStatisticsManger trackEvent:@"切换项目" label:@"我页面" parameters:nil];
-            NSArray<TrainListProjectGroup *> *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
-            __block NSInteger sectionInteger = 0;
-            __block NSInteger indexInteger = 0;
-            __block BOOL isSaveBool = NO;
-            [groups enumerateObjectsUsingBlock:^(TrainListProjectGroup * _Nonnull obj, NSUInteger section, BOOL * _Nonnull stop) {
-                [obj.items enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * _Nonnull temp, NSUInteger index, BOOL * _Nonnull stop) {
-                    if ([temp.pid isEqualToString:train.pid]) {
-                        sectionInteger = section;
-                        indexInteger = index;
-                        isSaveBool = YES;
-                    }
-                }];
-            }];
-            [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = [NSIndexPath indexPathForRow:indexInteger inSection:sectionInteger];
         }
         
     }else if(indexPath.section == 1){

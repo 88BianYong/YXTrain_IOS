@@ -655,6 +655,8 @@
 		92BBE0541F219D03009230AC /* HomeworkListVideoSpecialCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0531F219D03009230AC /* HomeworkListVideoSpecialCell_17.m */; };
 		92BBE0581F21A2DE009230AC /* HomeworkListFooterView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92BBE0571F21A2DE009230AC /* HomeworkListFooterView_17.m */; };
 		92C05EA51F39AC500070E2DE /* HomeworkListDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C05EA41F39AC500070E2DE /* HomeworkListDefaultCell_17.m */; };
+		92C6327C209026CB00158A73 /* YXTrainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C6327B209026CB00158A73 /* YXTrainListViewController.m */; };
+		92C6328020902EDD00158A73 /* YXTrainListChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C6327F20902EDD00158A73 /* YXTrainListChooseCell.m */; };
 		92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */; };
 		92C79DD71FBE7D4B00DB141D /* YXBarGetMyBarsRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C79DD61FBE7D4B00DB141D /* YXBarGetMyBarsRequest_17.m */; };
 		92C79DDA1FBE7FC200DB141D /* MasterMainTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C79DD91FBE7FC200DB141D /* MasterMainTableHeaderView_17.m */; };
@@ -2165,6 +2167,10 @@
 		92BBE0571F21A2DE009230AC /* HomeworkListFooterView_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListFooterView_17.m; sourceTree = "<group>"; };
 		92C05EA31F39AC500070E2DE /* HomeworkListDefaultCell_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeworkListDefaultCell_17.h; sourceTree = "<group>"; };
 		92C05EA41F39AC500070E2DE /* HomeworkListDefaultCell_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeworkListDefaultCell_17.m; sourceTree = "<group>"; };
+		92C6327A209026CB00158A73 /* YXTrainListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXTrainListViewController.h; sourceTree = "<group>"; };
+		92C6327B209026CB00158A73 /* YXTrainListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXTrainListViewController.m; sourceTree = "<group>"; };
+		92C6327E20902EDD00158A73 /* YXTrainListChooseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXTrainListChooseCell.h; sourceTree = "<group>"; };
+		92C6327F20902EDD00158A73 /* YXTrainListChooseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXTrainListChooseCell.m; sourceTree = "<group>"; };
 		92C649A31ED41C7F00ABC1CE /* VideoCourseChapterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseChapterViewController.h; sourceTree = "<group>"; };
 		92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseChapterViewController.m; sourceTree = "<group>"; };
 		92C79DD51FBE7D4B00DB141D /* YXBarGetMyBarsRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXBarGetMyBarsRequest_17.h; sourceTree = "<group>"; };
@@ -5505,6 +5511,15 @@
 			path = "作业";
 			sourceTree = "<group>";
 		};
+		92C6327D20902EAB00158A73 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				92C6327E20902EDD00158A73 /* YXTrainListChooseCell.h */,
+				92C6327F20902EDD00158A73 /* YXTrainListChooseCell.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		92CE51491D87D3020071DE79 /* 动态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5597,10 +5612,13 @@
 		92E268AE1F0E0D370022EA5A /* 启动 */ = {
 			isa = PBXGroup;
 			children = (
+				92C6327D20902EAB00158A73 /* view */,
 				9232372F1D6E9F3000FDACFE /* YXStartViewController.h */,
 				923237301D6E9F3000FDACFE /* YXStartViewController.m */,
 				927B6C681F132ED40082DB27 /* XYChooseProjectViewController.h */,
 				927B6C691F132ED40082DB27 /* XYChooseProjectViewController.m */,
+				92C6327A209026CB00158A73 /* YXTrainListViewController.h */,
+				92C6327B209026CB00158A73 /* YXTrainListViewController.m */,
 			);
 			path = "启动";
 			sourceTree = "<group>";
@@ -6792,6 +6810,7 @@
 				9229CB9E1FEB609700228085 /* MJRefreshGifHeader.m in Sources */,
 				92C79DE01FBE802000DB141D /* MasterMainCell_17.m in Sources */,
 				928B7A5F1E88C7220067218A /* DeYangCourseRecordCell.m in Sources */,
+				92C6328020902EDD00158A73 /* YXTrainListChooseCell.m in Sources */,
 				928B7A491E88B2180067218A /* BeijingExamViewController.m in Sources */,
 				928587491FCE600C0030D7B1 /* MasterOffActiveRecordViewController_17.m in Sources */,
 				9223C8121D2CD5DB000F74DF /* YXWorkshopMemberFetcher.m in Sources */,
@@ -6862,6 +6881,7 @@
 				922AA947202BF99900625B99 /* YXLearningViewController_Default17.m in Sources */,
 				7CF8881C1D17E51E00E7C04D /* LePlayer.m in Sources */,
 				9223C80C1D2CA4E4000F74DF /* YXWorkshopMemberCell.m in Sources */,
+				92C6327C209026CB00158A73 /* YXTrainListViewController.m in Sources */,
 				920F1D511D53298C00636A51 /* YXHomeworkInfoHeaderView.m in Sources */,
 				9285873A1FCE4F430030D7B1 /* MasterOffActiveRecordHeaderView_17.m in Sources */,
 				9203D05E204FD45E005601BD /* MasterServiceAgreementViewController_17.m in Sources */,

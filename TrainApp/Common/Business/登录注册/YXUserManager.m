@@ -107,6 +107,7 @@ NSString *const YXUserLogoutSuccessNotification = @"kYXUserLogoutSuccessNotifica
     self.userModel = nil;
     [NSKeyedArchiver archiveRootObject:self.userModel toFile:[self userDataPath]];
     [self initUserModel];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:kYXTrainChoosePid];
 }
 
 - (void)loadLocalUserData

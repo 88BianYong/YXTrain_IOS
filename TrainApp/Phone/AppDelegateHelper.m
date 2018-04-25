@@ -111,7 +111,11 @@
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLoginSuccessNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
-        self.isLoginBool = YES;
+        if (!isEmpty(self.courseId)) {
+            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_QRCode;
+        }else {
+            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
+        }
         YXNavigationController *projectNav = [[YXNavigationController alloc]initWithRootViewController:[[XYChooseProjectViewController alloc] init]];
         self.window.rootViewController = projectNav;
     }];
@@ -136,20 +140,10 @@
         STRONG_SELF
         self.rootManger = nil;
         self.window.rootViewController = [self.rootManger rootViewController];
-        if (self.isLoginBool) {
-            if (!isEmpty(self.courseId)) {
-                [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_QRCode;
-            }else {
-                [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
-            }
+        if (![LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade && [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification) {
+            [self.rootManger reloadProjectTemplateViewController:self.window withPushNotification:YES];
         }
-        [LSTSharedInstance sharedInstance].floatingViewManager.popUpFloatingViewManagerCompleteBlock = ^(BOOL isShow) {
-            STRONG_SELF
-            if (isShow && [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification) {
-                [self.rootManger reloadProjectTemplateViewController:self.window withPushNotification:YES];
-            }
-            [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = NO;
-        };
+        [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = NO;
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
     }];
     
@@ -158,13 +152,6 @@
         self.rootManger = nil;
         self.window.rootViewController = [self.rootManger rootViewController];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
-        [LSTSharedInstance sharedInstance].floatingViewManager.popUpFloatingViewManagerCompleteBlock = ^(BOOL isShow) {
-            STRONG_SELF
-            if (isShow && [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification) {
-                [self.rootManger reloadProjectTemplateViewController:self.window withPushNotification:YES];
-            }
-            [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification = NO;
-        };
     }];
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainUserIdentityChange object:nil] subscribeNext:^(id x) {
         STRONG_SELF

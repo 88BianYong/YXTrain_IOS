@@ -74,8 +74,7 @@
     [self setupLayout];
     [self startLoading];
     [self requestForMasterIndex];
-    NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
-    [self dealWithProjectGroups:groups];
+    [self dealWithTrainListProject];
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     if (!isEmpty(appDelegate.appDelegateHelper.courseId)) {
         YXCourseDetailPlayerViewController_17 *vc = [[YXCourseDetailPlayerViewController_17 alloc] init];
@@ -197,15 +196,16 @@
     
 }
 #pragma mark - peojects hide & show
-- (void)dealWithProjectGroups:(NSArray *)groups{
+- (void)dealWithTrainListProject{
     self.projectSelectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
-    self.projectSelectionView.currentIndexPath = [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath;
-    self.projectSelectionView.projectGroup = groups;
     WEAK_SELF
-    self.projectSelectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
+    self.projectSelectionView.showProjectChangeBlock = ^{
         STRONG_SELF
-        [self showProjectWithIndexPath:indexPath];
-        [YXDataStatisticsManger trackEvent:@"切换项目" label:@"首页" parameters:nil];
+        YXTrainListViewController *VC = [[YXTrainListViewController alloc] init];
+        YXNavigationController *nav = [[YXNavigationController alloc] initWithRootViewController:VC];
+        [self presentViewController:nav animated:YES completion:^{
+            
+        }];
     };
     [self showProjectSelectionView];
 }
@@ -215,11 +215,9 @@
     }
 }
 - (void)hideProjectSelectionView {
-    [self.projectSelectionView removeFromSuperview];
-}
-#pragma mark - showView
-- (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
-    [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
+    if (self.navigationController.topViewController != self) {
+        [self.projectSelectionView removeFromSuperview];
+    }
 }
 #pragma mark - UITableViewDataScore
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

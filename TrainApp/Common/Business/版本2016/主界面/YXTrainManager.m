@@ -13,11 +13,10 @@
 static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 @interface YXTrainManager()
 @property (nonatomic, strong) YXTrainListRequest *request;
-@property (nonatomic, strong) NSArray *projectGroupArray;
 @end
 
 @implementation YXTrainManager
-@synthesize currentProjectIndexPath = _currentProjectIndexPath;
+@synthesize currentProjectIndex = _currentProjectIndex;
 - (instancetype)init {
     if (self = [super init]) {
         [self loadFromCache];
@@ -34,19 +33,13 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
 
 
 - (YXTrainListRequestItem_body_train *)currentProject {
-    NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body];
-    if (isEmpty(groups)) {
+    if (self.trainlistItem.body.trains.count ==  0) {
         return nil;
     }
-    if (self.currentProjectIndexPath.section >= groups.count) {
-        self.currentProjectIndexPath = [NSIndexPath indexPathForRow:self.currentProjectIndexPath.row inSection:0];
+    if (self.currentProjectIndex >= self.trainlistItem.body.trains.count) {
+        return self.trainlistItem.body.trains[0];
     }
-    TrainListProjectGroup *group = groups[self.currentProjectIndexPath.section];
-    NSArray *items = group.items;
-    if (self.currentProjectIndexPath.row >= items.count) {
-        self.currentProjectIndexPath = [NSIndexPath indexPathForRow:0 inSection:self.currentProjectIndexPath.section];
-    }
-    return items[self.currentProjectIndexPath.row];
+    return self.trainlistItem.body.trains[self.currentProjectIndex];
 }
 - (void)getProjectsWithCompleteBlock:(void(^)(NSArray *groups, NSError *error))completeBlock {
     self.trainHelper = nil;
@@ -58,8 +51,7 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
         if (error) {
             if (self.trainlistItem) {
                 [self chooseProjectWithChoosePid:self.trainlistItem.body.choosePid withBody:self.trainlistItem.body];
-                self.projectGroupArray = [TrainListProjectGroup projectGroupsWithRawData:self.trainlistItem.body];
-                BLOCK_EXEC(completeBlock,self.projectGroupArray,nil);
+                BLOCK_EXEC(completeBlock,self.trainlistItem.body.trains,nil);
             }else {
                 BLOCK_EXEC(completeBlock,nil,error);
             }
@@ -75,46 +67,35 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
             item.body.choosePid = self.trainlistItem.body.choosePid;
         }
         self.trainlistItem = item;
-        self.projectGroupArray = [TrainListProjectGroup projectGroupsWithRawData:item.body];
         [self saveToCache];
-        BLOCK_EXEC(completeBlock,self.projectGroupArray,nil);
+        BLOCK_EXEC(completeBlock,self.trainlistItem.body.trains,nil);
     }];
 }
 
-- (NSIndexPath *)chooseProjectWithChoosePid:(NSString *)pid withBody:(YXTrainListRequestItem_body *)body{
-    NSArray<TrainListProjectGroup *> *groups = [TrainListProjectGroup projectGroupsWithRawData:body];
-    __block NSInteger sectionInteger = 0;
-    __block NSInteger indexInteger = 0;
-    __block BOOL isSaveBool = NO;
-    [groups enumerateObjectsUsingBlock:^(TrainListProjectGroup * _Nonnull obj, NSUInteger section, BOOL * _Nonnull stop) {
-        [obj.items enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train * _Nonnull train, NSUInteger index, BOOL * _Nonnull stop) {
-            if ([pid isEqualToString:train.pid]) {
-                sectionInteger = section;
-                indexInteger = index;
-                isSaveBool = YES;
-            }
-        }];
+- (NSInteger)chooseProjectWithChoosePid:(NSString *)pid withBody:(YXTrainListRequestItem_body *)body{
+    __block NSInteger chooseInteger = -1;
+    [body.trains enumerateObjectsUsingBlock:^(YXTrainListRequestItem_body_train *train, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([pid isEqualToString:train.pid]) {
+            chooseInteger = idx;
+        }
     }];
-    if (!isSaveBool) {
-        self.currentProjectIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        return nil;
+    if (chooseInteger > 0) {
+        self.currentProjectIndex = chooseInteger;
+    }else {
+        self.currentProjectIndex = 0;
     }
-    self.currentProjectIndexPath = [NSIndexPath indexPathForRow:indexInteger inSection:sectionInteger];
-    return self.currentProjectIndexPath;
+    return chooseInteger;
 }
 - (void)setTrainlistItem:(YXTrainListRequestItem *)trainlistItem {
     self.trainHelper = nil;
     _trainlistItem = trainlistItem;
     
 }
-- (void)setCurrentProjectIndexPath:(NSIndexPath *)currentProjectIndexPath {
+- (void)setCurrentProjectIndex:(NSInteger)currentProjectIndex {
     BOOL isChangeBool = NO;
-    if (_currentProjectIndexPath != nil && self.projectGroupArray.count > 0) {
-        TrainListProjectGroup *oldTrainingGroup = self.projectGroupArray[_currentProjectIndexPath.section];
-        YXTrainListRequestItem_body_train *oldTrain = oldTrainingGroup.items[_currentProjectIndexPath.row];
-        TrainListProjectGroup *newTrainingGroup = self.projectGroupArray[currentProjectIndexPath.section];
-        YXTrainListRequestItem_body_train *newTrain = newTrainingGroup.items[currentProjectIndexPath.row];
-        
+    if (self.trainlistItem.body.trains.count > 0) {
+        YXTrainListRequestItem_body_train *oldTrain = self.trainlistItem.body.trains[_currentProjectIndex];
+        YXTrainListRequestItem_body_train *newTrain = self.trainlistItem.body.trains[currentProjectIndex];
         if (newTrain.w.integerValue >= 5 || oldTrain.w.integerValue >= 5) {//只有同为16项目才不需要刷新
             isChangeBool = YES;
         }
@@ -133,17 +114,21 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
                 }
             }
         }
+        if (_currentProjectIndex == currentProjectIndex) {//登录后首次选择通过这里今入主界面
+            isChangeBool = YES;
+        }
         oldTrain.role = nil;
     }
-    _currentProjectIndexPath = currentProjectIndexPath;
+    _currentProjectIndex = currentProjectIndex;
     self.trainlistItem.body.choosePid = self.currentProject.pid;
     [self saveToCache];
     if (isChangeBool) {
         [[NSNotificationCenter defaultCenter] postNotificationName:kXYTrainChangeProject object:@(self.trainStatus)];
     }
+    
 }
-- (NSIndexPath *)currentProjectIndexPath {
-    return _currentProjectIndexPath;
+- (NSInteger)currentProjectIndex {
+    return _currentProjectIndex;
 }
 - (LSTTrainProjectStatus)trainStatus {
     if (self.trainlistItem == nil) {
@@ -155,8 +140,8 @@ static  NSString *const trackLabelOfJumpFromTaskList = @"任务跳转";
     return LSTTrainProjectStatus_2016;
 }
 - (BOOL)setupProjectId:(NSString *)projectId {
-    NSIndexPath *indexPath = [self chooseProjectWithChoosePid:projectId withBody:self.trainlistItem.body];
-    if (indexPath != nil) {
+    NSInteger integer = [self chooseProjectWithChoosePid:projectId withBody:self.trainlistItem.body];
+    if (integer >= 0) {
         return YES;
     }else {
         return NO;

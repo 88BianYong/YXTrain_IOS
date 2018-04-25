@@ -126,7 +126,6 @@
     }];
     [alertView addButtonWithTitle:@"确定" style:LSTAlertActionStyle_Default action:^{
         STRONG_SELF
-        [[LSTSharedInstance  sharedInstance].webSocketManger close];
         [[LSTSharedInstance sharedInstance].userManger logout];
         [YXDataStatisticsManger trackEvent:@"退出登录" label:@"成功登出" parameters:nil];
     }];

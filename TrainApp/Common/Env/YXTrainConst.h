@@ -230,8 +230,10 @@ extern NSString *const kYXTrainReadingClassRecordsCleared;
  */
 extern NSString *const kYXTrainAccountNumber;
 
-
-
+/*
+ *  是否手动选择了pid
+ */
+extern NSString *const kYXTrainChoosePid;
 
 
 /**

@@ -89,3 +89,6 @@ NSString *const kYXTrainReadingClassRecordsCleared = @"DeYang Reading class reco
 
 NSString *const kYXTrainAccountNumber = @"Store the login account";
 
+
+NSString *const kYXTrainChoosePid = @"Manual choose pid";
+

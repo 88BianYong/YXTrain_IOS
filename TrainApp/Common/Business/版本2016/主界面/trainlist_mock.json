@@ -52,6 +52,23 @@
                    "pid": "1255",
                    "status": "0",
                    "name": "2016主题选学测试项目2016主题选学测试项目2016主题选学测试项目2016主题选学测试项目"
+                   },
+                   {
+                   "isContainsTeacher": "1",
+                   "roles": "9,99",
+                   "w": "4",
+                   "layerId": "1",
+                   "pic": "http://p.yanxiu.com/plogo/5/1255.png",
+                   "endDate": "2017.11.13",
+                   "special": "0",
+                   "isOpenTheme": "0",
+                   "themeId": "0",
+                   "isSignAgreement": "1",
+                   "isOpenLayer": "0",
+                   "startDate": "2017.11.01",
+                   "pid": "1798",
+                   "status": "0",
+                   "name": "2016主题选学测试项目2016主题选学测试项目2016主题选学测试项目2016主题选学测试项目"
                    }
                    ],
         "trained": [

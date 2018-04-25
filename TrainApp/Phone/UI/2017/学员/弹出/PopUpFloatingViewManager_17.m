@@ -33,20 +33,6 @@
     if (self = [super init]) {
         self.isShowCMS = YES;
         self.loginStatus = PopUpFloatingLoginStatus_Already;
-        WEAK_SELF
-        [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kYXTrainShowUpdate object:nil] subscribeNext:^(id x) {
-            STRONG_SELF
-            if ([LSTSharedInstance sharedInstance].trainManager.trainStatus != LSTTrainProjectStatus_2017) {
-                return;
-            }
-            self.isShowCMS = NO;
-            if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade && self.upgradeView == nil) {
-                [self startPopUpFloatingView];
-                BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
-            }else {
-                BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,YES);
-            }
-        }];
     }
     return self;
 }
@@ -55,9 +41,7 @@
     if (self.loginStatus == PopUpFloatingLoginStatus_QRCode) {
         return;
     }
-    if (self.isShowCMS && self.loginStatus == PopUpFloatingLoginStatus_Already) {
-        [self showCMSView];
-    }else if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade) {
+    if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade) {
         [self showUpgradeView];
     }else if ([self isGreetingCard] || self.isCard ) {
         [self showNewYearsGreetingCard];
@@ -86,56 +70,6 @@
             }
         }];
     }
-}
-
-- (void)showCMSView {
-    if (self.cmsView) {
-        return;
-    }
-    UIWindow *window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
-    self.cmsView = [[YXCMSCustomView alloc] init];
-    [window addSubview:self.cmsView];
-    [self.cmsView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.mas_equalTo(0);
-    }];
-    WEAK_SELF
-    YXRotateListRequest *request = [[YXRotateListRequest alloc] init];
-    [request startRequestWithRetClass:[YXRotateListRequestItem class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
-        YXRotateListRequestItem *item = retItem;
-        STRONG_SELF
-        if (error || item.rotates.count <= 0) {
-            self.isShowCMS = NO;
-            [self.cmsView removeFromSuperview];
-            if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade && self.upgradeView == nil) {
-                [self showUpgradeView];
-                BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
-            }else {
-                BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,YES);
-            }
-        }
-        else{
-            YXRotateListRequestItem_Rotates *rotate = item.rotates[0];
-            [self.cmsView reloadWithModel:rotate];
-            WEAK_SELF
-            self.cmsView.clickedBlock = ^(YXRotateListRequestItem_Rotates *model) {
-                STRONG_SELF
-                YXWebViewController *webView = [[YXWebViewController alloc] init];
-                webView.urlString = model.typelink;
-                webView.titleString = model.name;
-                [webView setBackBlock:^{
-                    STRONG_SELF
-                    if ([LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade && self.upgradeView == nil) {
-                        [self showUpgradeView];
-                    }
-                    self.isShowCMS = NO;
-                    BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
-                }];
-                UITabBarController *tabBarVC = (UITabBarController *)window.rootViewController;
-                [(UINavigationController *)(tabBarVC.selectedViewController) pushViewController:webView animated:YES];
-            };
-        }
-    }];
-    self.rotateListRequest = request;
 }
 //升级弹窗
 - (void)showUpgradeView {
@@ -205,7 +139,6 @@
         [YXDataStatisticsManger trackPage:@"元旦贺卡" withStatus:NO];
         [self startPopUpFloatingView];
         self.isCard = NO;
-        BLOCK_EXEC(self.popUpFloatingViewManagerCompleteBlock,NO);
     }];
     [projectNavi pushViewController:webView animated:YES];
     [LSTSharedInstance sharedInstance].geTuiManger.pushModel = nil;

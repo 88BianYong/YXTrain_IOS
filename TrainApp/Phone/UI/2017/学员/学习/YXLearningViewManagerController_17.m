@@ -83,32 +83,32 @@
 }
 
 - (void)showProjectMainView{
-    NSArray *groups = [TrainListProjectGroup projectGroupsWithRawData:[LSTSharedInstance sharedInstance].trainManager.trainlistItem.body];
     self.emptyView.imageName = @"无培训项目";
     self.emptyView.title = @"您没有已参加的培训项目";
     self.emptyView.subTitle = @"";
     UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
-    data.requestDataExist = groups.count != 0;
+    data.requestDataExist = [LSTSharedInstance sharedInstance].trainManager.trainlistItem.body.trains.count != 0;
     data.localDataExist = NO;
     data.error = nil;
     if ([self handleRequestData:data]) {
         [self stopLoading];
         return;
     }
-    [self dealWithProjectGroups:groups];
+    [self dealWithTrainListProject];
     [self setupQRCodeRightView];
     [self refreshUserRoleInterface];
 }
 #pragma mark - peojects hide & show
-- (void)dealWithProjectGroups:(NSArray *)groups{
+- (void)dealWithTrainListProject{
     self.projectSelectionView = [[YXProjectSelectionView alloc]initWithFrame:CGRectMake(70, 0, self.view.bounds.size.width-110, 44)];
-    self.projectSelectionView.currentIndexPath = [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath;
-   self.projectSelectionView.projectGroup = groups;
     WEAK_SELF
-    self.projectSelectionView.projectChangeBlock = ^(NSIndexPath *indexPath){
+    self.projectSelectionView.showProjectChangeBlock = ^{
         STRONG_SELF
-        [self showProjectWithIndexPath:indexPath];
-        [YXDataStatisticsManger trackEvent:@"切换项目" label:@"首页" parameters:nil];
+        YXTrainListViewController *VC = [[YXTrainListViewController alloc] init];
+        YXNavigationController *nav = [[YXNavigationController alloc] initWithRootViewController:VC];
+        [self presentViewController:nav animated:YES completion:^{
+            
+        }];
     };
     [self showProjectSelectionView];
 }
@@ -118,12 +118,9 @@
     }
 }
 - (void)hideProjectSelectionView {
-    [self.projectSelectionView removeFromSuperview];
-}
-#pragma mark - showView
-- (void)showProjectWithIndexPath:(NSIndexPath *)indexPath {
-    [LSTSharedInstance sharedInstance].trainManager.currentProjectIndexPath = indexPath;
-    [self refreshUserRoleInterface];
+    if (self.navigationController.topViewController != self) {
+        [self.projectSelectionView removeFromSuperview];
+    }
 }
 - (void)refreshUserRoleInterface {
     for (UIViewController *vc in self.childViewControllers) {
