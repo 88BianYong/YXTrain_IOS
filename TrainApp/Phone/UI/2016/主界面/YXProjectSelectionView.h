@@ -11,4 +11,5 @@
 
 @interface YXProjectSelectionView : UIView
 @property (nonatomic, strong) void(^showProjectChangeBlock)(void);
+- (void)setupTitleWithProject:(NSString *)projectName;
 @end

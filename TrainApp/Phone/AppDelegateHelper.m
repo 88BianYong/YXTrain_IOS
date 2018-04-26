@@ -111,11 +111,6 @@
     WEAK_SELF
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:YXUserLoginSuccessNotification object:nil] subscribeNext:^(id x) {
         STRONG_SELF
-        if (!isEmpty(self.courseId)) {
-            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_QRCode;
-        }else {
-            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
-        }
         YXNavigationController *projectNav = [[YXNavigationController alloc]initWithRootViewController:[[XYChooseProjectViewController alloc] init]];
         self.window.rootViewController = projectNav;
     }];
@@ -139,6 +134,11 @@
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kXYTrainChooseProject object:nil] subscribeNext:^(NSNotification *x) {
         STRONG_SELF
         self.rootManger = nil;
+        if (!isEmpty(self.courseId)) {
+            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_QRCode;
+        }else {
+            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
+        }
         self.window.rootViewController = [self.rootManger rootViewController];
         if (![LSTSharedInstance sharedInstance].upgradeManger.isShowUpgrade && [LSTSharedInstance sharedInstance].geTuiManger.isLaunchedByNotification) {
             [self.rootManger reloadProjectTemplateViewController:self.window withPushNotification:YES];
@@ -150,6 +150,11 @@
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kXYTrainChangeProject object:nil] subscribeNext:^(NSNotification *x) {
         STRONG_SELF
         self.rootManger = nil;
+        if (!isEmpty(self.courseId)) {
+            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_QRCode;
+        }else {
+            [LSTSharedInstance sharedInstance].floatingViewManager.loginStatus = PopUpFloatingLoginStatus_Default;
+        }
         self.window.rootViewController = [self.rootManger rootViewController];
         [[LSTSharedInstance sharedInstance].geTuiManger loginSuccess];
     }];

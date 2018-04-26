@@ -33,7 +33,7 @@
     self.title = @"手机研修";
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self setupUI];
-    if ([LSTSharedInstance sharedInstance].floatingViewManager.loginStatus == PopUpFloatingLoginStatus_Already) {
+    if ([LSTSharedInstance sharedInstance].floatingViewManager != nil) {
         [self showCMSView];
     }else {
         self.isShowCmsBool = YES;

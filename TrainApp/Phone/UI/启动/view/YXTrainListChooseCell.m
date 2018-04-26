@@ -31,13 +31,13 @@
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, _train.name.length)];
     self.nameLabel.attributedText = attributedString;
     NSString *statusString = @"未开始";
-    if ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 0) {
+    if (_train.status.integerValue == 0) {
         statusString = @"已结束";
-    }else if ([LSTSharedInstance sharedInstance].trainManager.currentProject.status.integerValue == 1){
+    }else if (_train.status.integerValue == 1){
         statusString = @"进行中";
     }
     self.statusLabel.text = [NSString stringWithFormat:@"项目状态: %@",statusString];
-    self.timeLabel.text = [NSString stringWithFormat:@"%@ 至 %@",[LSTSharedInstance sharedInstance].trainManager.currentProject.startDate,[LSTSharedInstance sharedInstance].trainManager.currentProject.endDate];
+    self.timeLabel.text = [NSString stringWithFormat:@"%@ 至 %@",_train.startDate,_train.endDate];
 }
 #pragma mark - setupUI
 - (void)setupUI {

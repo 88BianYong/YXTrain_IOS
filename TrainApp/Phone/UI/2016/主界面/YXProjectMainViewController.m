@@ -330,6 +330,7 @@ typedef NS_ENUM(NSUInteger, TrainProjectRequestStatus) {
         VC.reloadChooseTrainListBlock = ^{
             STRONG_SELF
             [self refreshUserRoleInterface];
+            [self.projectSelectionView setupTitleWithProject:[LSTSharedInstance sharedInstance].trainManager.currentProject.name];
         };
         [self presentViewController:nav animated:YES completion:^{
             
