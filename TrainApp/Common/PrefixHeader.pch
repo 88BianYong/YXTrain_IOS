@@ -42,6 +42,7 @@ extern int ddLogLevel;
 
 
 #pragma mark - Category
+#import "JSONValueTransformer+Custom.h"
 #import "UIViewController+Keyboard.h"
 #import "UIImage+Color.h"
 #import "UIImage+FixOrientation.h"

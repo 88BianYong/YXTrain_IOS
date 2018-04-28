@@ -657,6 +657,7 @@
 		92C05EA51F39AC500070E2DE /* HomeworkListDefaultCell_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C05EA41F39AC500070E2DE /* HomeworkListDefaultCell_17.m */; };
 		92C6327C209026CB00158A73 /* YXTrainListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C6327B209026CB00158A73 /* YXTrainListViewController.m */; };
 		92C6328020902EDD00158A73 /* YXTrainListChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C6327F20902EDD00158A73 /* YXTrainListChooseCell.m */; };
+		92C632982094635400158A73 /* JSONValueTransformer+Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C632972094635400158A73 /* JSONValueTransformer+Custom.m */; };
 		92C649A51ED41C7F00ABC1CE /* VideoCourseChapterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */; };
 		92C79DD71FBE7D4B00DB141D /* YXBarGetMyBarsRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C79DD61FBE7D4B00DB141D /* YXBarGetMyBarsRequest_17.m */; };
 		92C79DDA1FBE7FC200DB141D /* MasterMainTableHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C79DD91FBE7FC200DB141D /* MasterMainTableHeaderView_17.m */; };
@@ -2171,6 +2172,8 @@
 		92C6327B209026CB00158A73 /* YXTrainListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXTrainListViewController.m; sourceTree = "<group>"; };
 		92C6327E20902EDD00158A73 /* YXTrainListChooseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXTrainListChooseCell.h; sourceTree = "<group>"; };
 		92C6327F20902EDD00158A73 /* YXTrainListChooseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXTrainListChooseCell.m; sourceTree = "<group>"; };
+		92C632962094635400158A73 /* JSONValueTransformer+Custom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+Custom.h"; sourceTree = "<group>"; };
+		92C632972094635400158A73 /* JSONValueTransformer+Custom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+Custom.m"; sourceTree = "<group>"; };
 		92C649A31ED41C7F00ABC1CE /* VideoCourseChapterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoCourseChapterViewController.h; sourceTree = "<group>"; };
 		92C649A41ED41C7F00ABC1CE /* VideoCourseChapterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoCourseChapterViewController.m; sourceTree = "<group>"; };
 		92C79DD51FBE7D4B00DB141D /* YXBarGetMyBarsRequest_17.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXBarGetMyBarsRequest_17.h; sourceTree = "<group>"; };
@@ -2917,6 +2920,8 @@
 				920F1D6A1D58419900636A51 /* UIView+YXAddtion.m */,
 				926846741F34547600CD9784 /* UITabBar+YXAddtion.h */,
 				926846751F34547600CD9784 /* UITabBar+YXAddtion.m */,
+				92C632962094635400158A73 /* JSONValueTransformer+Custom.h */,
+				92C632972094635400158A73 /* JSONValueTransformer+Custom.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -7036,6 +7041,7 @@
 				92F881BE1FBED0CA00FDBD2D /* MasterMainBarErrorCell_17.m in Sources */,
 				92F687821E0908F400A48420 /* ActivityDetailManger.m in Sources */,
 				92FD5A4C1ED7C4C400D3EBA1 /* VideoCourseCommentViewController.m in Sources */,
+				92C632982094635400158A73 /* JSONValueTransformer+Custom.m in Sources */,
 				7C31775A1D0E5E04004AAC90 /* main.m in Sources */,
 				923237831D82D87800FDACFE /* YXDynamicCell.m in Sources */,
 				7CF844751D2E2EA000B1CE55 /* YXTriangleView.m in Sources */,

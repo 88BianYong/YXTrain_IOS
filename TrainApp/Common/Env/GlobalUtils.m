@@ -103,6 +103,7 @@ void FLUncaughtExceptionHandler(NSException * exception)
     [MagicalRecord setLoggingLevel:MagicalRecordLoggingLevelOff];
     [MagicalRecord setShouldDeleteStoreOnModelMismatch:YES];
     [MagicalRecord setupCoreDataStackWithAutoMigratingSqliteStoreNamed:@"CoreDataDB.sqlite"];
+    Swizzle([JSONValueTransformer class], @selector(NSStringFromNSNumber:), @selector(yx_NSStringFromNSNumber:));
 }
 
 + (void)clearCore {
