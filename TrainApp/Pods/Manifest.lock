@@ -54,8 +54,8 @@ PODS:
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
-    - SDWebImage (!= 3.7.2, ~> 3.7)
-  - NSData+MD5Digest (1.0.0)
+    - "SDWebImage (!= 3.7.2, ~> 3.7)"
+  - "NSData+MD5Digest (1.0.0)"
   - NSString-Hashes (1.2.1)
   - OpenUDID (1.0.0)
   - pop (1.0.10)
@@ -82,8 +82,8 @@ PODS:
   - TOWebViewController (2.0.14)
   - UICKeyChainStore (2.1.1)
   - UIColor-Utilities (1.0.1)
-  - UIDevice+HardwareName (6.0.0)
-  - UITableView+FDTemplateLayoutCell (1.4)
+  - "UIDevice+HardwareName (6.0.0)"
+  - "UITableView+FDTemplateLayoutCell (1.4)"
 
 DEPENDENCIES:
   - AJNotificationView (= 0.7)
@@ -98,17 +98,17 @@ DEPENDENCIES:
   - GTSDK (= 2.0.0.0-noidfa)
   - IBActionSheet (= 0.0.2)
   - IQKeyboardManager
-  - JSONModel (~> 1.0)
+  - JSONModel
   - MagicalRecord (~> 2.0)
   - Masonry
-  - MBProgressHUD (= 0.9)
+  - MBProgressHUD
   - MDRadialProgress (= 1.3.1)
   - MSDynamicsDrawerViewController (= 1.5.1)
   - MWPhotoBrowser (= 2.1.1)
-  - NSData+MD5Digest (= 1.0.0)
+  - "NSData+MD5Digest (= 1.0.0)"
   - NSString-Hashes (= 1.2.1)
   - OpenUDID (= 1.0.0)
-  - pop (~> 1.0)
+  - pop
   - Qiniu (~> 7.0)
   - QIYU_iOS_SDK
   - RATreeView (= 1.0.2)
@@ -120,8 +120,53 @@ DEPENDENCIES:
   - StyledPageControl (= 1.0)
   - TOWebViewController (= 2.0.14)
   - UIColor-Utilities (= 1.0.1)
-  - UIDevice+HardwareName (= 6.0.0)
-  - UITableView+FDTemplateLayoutCell (= 1.4)
+  - "UIDevice+HardwareName (= 6.0.0)"
+  - "UITableView+FDTemplateLayoutCell"
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AJNotificationView
+    - ASIHTTPRequest
+    - Aspects
+    - Base64
+    - CocoaLumberjack
+    - CommonCrypto
+    - DACircularProgress
+    - DTCoreText
+    - DTFoundation
+    - FCUUID
+    - FileMD5Hash
+    - GTSDK
+    - HappyDNS
+    - IBActionSheet
+    - IQKeyboardManager
+    - JSONModel
+    - MagicalRecord
+    - Masonry
+    - MBProgressHUD
+    - MDRadialProgress
+    - MSDynamicsDrawerViewController
+    - MWPhotoBrowser
+    - "NSData+MD5Digest"
+    - NSString-Hashes
+    - OpenUDID
+    - pop
+    - Qiniu
+    - QIYU_iOS_SDK
+    - RATreeView
+    - Reachability
+    - ReactiveCocoa
+    - RMDateSelectionViewController
+    - SAMTextView
+    - SCRecorder
+    - SDWebImage
+    - SocketRocket
+    - StyledPageControl
+    - TOWebViewController
+    - UICKeyChainStore
+    - UIColor-Utilities
+    - "UIDevice+HardwareName"
+    - "UITableView+FDTemplateLayoutCell"
 
 SPEC CHECKSUMS:
   AJNotificationView: fe9f2e3b806ab71e3705047ed243a283b7155731
@@ -146,7 +191,7 @@ SPEC CHECKSUMS:
   MDRadialProgress: 6af31db0315f1b687df825a73481a2a443182402
   MSDynamicsDrawerViewController: 2874df90f5e9453dc7d4e32f8038b50615d4baa7
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
-  NSData+MD5Digest: 0743d53874455e2bdf49f70e7f815b0b963a355f
+  "NSData+MD5Digest": 0743d53874455e2bdf49f70e7f815b0b963a355f
   NSString-Hashes: d72496f282a27fad01381363b2761ced259064af
   OpenUDID: e7cb6984c7304906ad20f3a36bf087b025896b6b
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
@@ -164,9 +209,9 @@ SPEC CHECKSUMS:
   TOWebViewController: 2cfd0032d781cabd88a0995fbca9692c11f0797e
   UICKeyChainStore: 239558492fa260531a0774cfc611ea83a6eaff3a
   UIColor-Utilities: 6746a54dcdb3bc012dd7aeaeea5588ae2100beb2
-  UIDevice+HardwareName: 6b98c1855f304ec8fc7a1ad72fddaed8523b75ad
-  UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
+  "UIDevice+HardwareName": 6b98c1855f304ec8fc7a1ad72fddaed8523b75ad
+  "UITableView+FDTemplateLayoutCell": 234e1582bcc4e18461af91155123bb96538ed030
 
-PODFILE CHECKSUM: 6c53bb04cefe972480cf15f57e03d006affe4b54
+PODFILE CHECKSUM: 3a8b175291bea1423ff497ac0c0297dfb174ade8
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.2

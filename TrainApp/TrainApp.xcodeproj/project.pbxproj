@@ -6316,7 +6316,6 @@
 				7C3177161D0E4D6C004AAC90 /* Sources */,
 				7C3177171D0E4D6C004AAC90 /* Frameworks */,
 				7C3177181D0E4D6C004AAC90 /* Resources */,
-				EEA4AE664ACA395F9E505B56 /* [CP] Embed Pods Frameworks */,
 				0DD8E44EF7E52409D7E6AB80 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -6557,21 +6556,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EEA4AE664ACA395F9E505B56 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TrainApp/Pods-TrainApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -7579,8 +7563,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = $APP_PROFILE;
-				PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE;
+				PROVISIONING_PROFILE = "$APP_PROFILE";
+				PROVISIONING_PROFILE_SPECIFIER = "$APP_PROFILE";
 			};
 			name = Release;
 		};
