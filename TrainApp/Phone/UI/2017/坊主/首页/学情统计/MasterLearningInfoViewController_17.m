@@ -218,7 +218,7 @@
             explain = [explain stringByAppendingString:obj.descripe];
         }];
         cell.detail = self.itemBody.detail;
-        if ([explain stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+        if ([explain yx_stringByTrimmingCharacters].length > 0) {
             cell.explainButton.hidden = NO;
         }else {
             cell.explainButton.hidden = YES;

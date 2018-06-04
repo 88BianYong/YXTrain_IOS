@@ -54,14 +54,7 @@
     [self setupToolScoreView:mutableArray];
 }
 - (NSMutableAttributedString *)totalScore:(NSString *)tScore WithScore:(NSString *)score{
-    if ([tScore floatValue] == ceilf([tScore floatValue]) && [tScore floatValue] == floorf([tScore floatValue])) {
-        tScore = [NSString stringWithFormat:@"%d",[tScore intValue]];
-    }
-    if ([score floatValue] == ceilf([score floatValue]) && [score floatValue] == floorf([score floatValue])) {
-        score = [NSString stringWithFormat:@"%d",[score intValue]];
-    }
-    
-    NSString *completeStr = [NSString stringWithFormat:@"%@ / %@分",score,tScore];
+    NSString *completeStr = [NSString stringWithFormat:@"%@ / %@分",[score yx_formatInteger],[tScore yx_formatInteger]];
     NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:completeStr];
     [attr addAttribute:NSFontAttributeName value:[UIFont fontWithName:YXFontMetro_DemiBold size:13] range:NSMakeRange(0, score.length)];
     [attr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"e96e38"] range:NSMakeRange(0, score.length)];

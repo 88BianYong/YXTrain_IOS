@@ -64,7 +64,7 @@
     self.filterTitleView.filterModel = self.filterModel;
     self.filterTitleView.hidden = NO;
     [self fomartUserScoreList:_listItem.body.userScores];
-    if ([_listItem.body.exmineDesc stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+    if ([_listItem.body.exmineDesc yx_stringByTrimmingCharacters].length > 0) {
         self.headerView.explainButton.hidden = NO;
     }else {
         self.headerView.explainButton.hidden = YES;

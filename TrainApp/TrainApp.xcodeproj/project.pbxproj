@@ -692,6 +692,7 @@
 		92DE3BBE1DDC45DE0011CFB7 /* SecondCommentFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BBD1DDC45DE0011CFB7 /* SecondCommentFooterView.m */; };
 		92DE3BC41DDC590D0011CFB7 /* SendCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BC31DDC590D0011CFB7 /* SendCommentView.m */; };
 		92DE3BC71DDD82350011CFB7 /* ActivityToolVideoRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */; };
+		92DFF1FD20C5198C00B99CCF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 92DFF1FC20C5198C00B99CCF /* README.md */; };
 		92E4F9AF1F15C0A8001CB34E /* CourseListRequest_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F9AE1F15C0A8001CB34E /* CourseListRequest_17.m */; };
 		92E4F9B31F15FA38001CB34E /* courseList_mock_17.json in Resources */ = {isa = PBXBuildFile; fileRef = 92E4F9B21F15FA38001CB34E /* courseList_mock_17.json */; };
 		92E4F9B61F1629A2001CB34E /* YXLearningStageHeaderView_17.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E4F9B51F1629A2001CB34E /* YXLearningStageHeaderView_17.m */; };
@@ -2242,6 +2243,7 @@
 		92DE3BC31DDC590D0011CFB7 /* SendCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendCommentView.m; sourceTree = "<group>"; };
 		92DE3BC51DDD82350011CFB7 /* ActivityToolVideoRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityToolVideoRequest.h; sourceTree = "<group>"; };
 		92DE3BC61DDD82350011CFB7 /* ActivityToolVideoRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityToolVideoRequest.m; sourceTree = "<group>"; };
+		92DFF1FC20C5198C00B99CCF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		92E4F9AD1F15C0A8001CB34E /* CourseListRequest_17.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseListRequest_17.h; sourceTree = "<group>"; };
 		92E4F9AE1F15C0A8001CB34E /* CourseListRequest_17.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseListRequest_17.m; sourceTree = "<group>"; };
 		92E4F9B21F15FA38001CB34E /* courseList_mock_17.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = courseList_mock_17.json; sourceTree = "<group>"; };
@@ -2766,6 +2768,7 @@
 		7C3177111D0E4D6C004AAC90 = {
 			isa = PBXGroup;
 			children = (
+				92DFF1FC20C5198C00B99CCF /* README.md */,
 				924C9A091EA60DA20017B31B /* TrainApp.entitlements */,
 				7C31775C1D0E5E0F004AAC90 /* Common */,
 				7C3177511D0E5E04004AAC90 /* Phone */,
@@ -6462,6 +6465,7 @@
 				7CF888821D1BD4A900E7C04D /* METRO-MEDIUM PLAYTYPE.otf in Resources */,
 				924AB2561DE41C47003EC952 /* firstComment_mock.json in Resources */,
 				92126C7A1E9F732900C061EF /* trainLayerList_mock.json in Resources */,
+				92DFF1FD20C5198C00B99CCF /* README.md in Resources */,
 				CB748EEE1D250086004BCFBF /* PhoneImage.xcassets in Resources */,
 				7C3177A91D0EB3C0004AAC90 /* neterror_mock.json in Resources */,
 				9223C81D1D2D0EB6000F74DF /* temp.txt in Resources */,
@@ -7563,8 +7567,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "$APP_PROFILE";
-				PROVISIONING_PROFILE_SPECIFIER = "$APP_PROFILE";
+				PROVISIONING_PROFILE = $APP_PROFILE;
+				PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE;
 			};
 			name = Release;
 		};

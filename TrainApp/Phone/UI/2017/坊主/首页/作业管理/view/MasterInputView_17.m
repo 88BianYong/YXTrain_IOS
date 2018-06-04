@@ -42,15 +42,15 @@
         if (self.inputStatus != MasterInputStatus_Score) {
             [self uploadHeight];
             if (self.inputStatus == MasterInputStatus_Comment) {
-                self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0 || self.scoreTextView.text.floatValue >= 60.0f;
+                self.sendButton.enabled = [self.commentTextView.text yx_stringByTrimmingCharacters].length > 0 || self.scoreTextView.text.floatValue >= 60.0f;
             }else {
-                self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] >= 10;
+                self.sendButton.enabled = [[self.commentTextView.text yx_stringByTrimmingCharacters] length] >= 10;
             }
         }else {
             if (self.scoreTextView.text.length > 3) {
                 self.scoreTextView.text = [self.scoreTextView.text substringToIndex:3];
             }
-            self.sendButton.enabled = ([[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 0);
+            self.sendButton.enabled = ([[self.scoreTextView.text yx_stringByTrimmingCharacters] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 0);
         }
     }];
     [[[NSNotificationCenter defaultCenter]rac_addObserverForName:UIKeyboardWillChangeFrameNotification object:nil]subscribeNext:^(id x) {
@@ -109,7 +109,7 @@
             self.scoreTextView.text = self.placeholderScoreString;
         }
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-         self.sendButton.enabled = ([[self.scoreTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 0);
+         self.sendButton.enabled = ([[self.scoreTextView.text yx_stringByTrimmingCharacters] length]!=0 && self.scoreTextView.text.floatValue <= 100.0f && self.scoreTextView.text.floatValue >= 0);
          [self.scoreTextView becomeFirstResponder];
     }else if (_inputStatus == MasterInputStatus_Comment){
         self.commentTextView.placeholder = @"请输您对本作业的评语";
@@ -123,7 +123,7 @@
             [self layoutIfNeeded];
         } completion:^(BOOL finished) {
             self.commentTextView.text = self.commentString;
-            self.sendButton.enabled = ([[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) || self.scoreTextView.text.floatValue >= 60.0f;
+            self.sendButton.enabled = ([[self.commentTextView.text yx_stringByTrimmingCharacters] length] > 0) || self.scoreTextView.text.floatValue >= 60.0f;
             [self uploadHeight];
             [self.sendButton setTitle:@"发送" forState:UIControlStateNormal];
         }];
@@ -139,7 +139,7 @@
         self.commentTextView.text = self.recommendString;
         [self uploadHeight];
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-        self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] >= 10;
+        self.sendButton.enabled = [[self.commentTextView.text yx_stringByTrimmingCharacters] length] >= 10;
          [self.commentTextView becomeFirstResponder];
     }else {
         self.commentTextView.placeholder = @"取消推优的理由不少于10个字";
@@ -152,7 +152,7 @@
         self.commentTextView.text = self.cancleString;
         [self uploadHeight];
         [self.sendButton setTitle:@"确认" forState:UIControlStateNormal];
-        self.sendButton.enabled = [[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] >= 10;
+        self.sendButton.enabled = [[self.commentTextView.text yx_stringByTrimmingCharacters] length] >= 10;
          [self.commentTextView becomeFirstResponder];
     }
 }

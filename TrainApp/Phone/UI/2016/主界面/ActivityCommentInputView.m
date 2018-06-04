@@ -103,7 +103,7 @@ static NSInteger kMaxCommentNumberWords = 500;
 }
 #pragma mark - button Action
 - (void)sendButtonAction:(UIButton *)sender {
-    if ([[self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length]!=0) {
+    if ([[self.textView.text yx_stringByTrimmingCharacters] length]!=0) {
         BLOCK_EXEC(self.inputTextBlock,self.textView.text);
     }else {
         [YXPromtController showToast:self.emptyString inView:[self yx_viewController].view];

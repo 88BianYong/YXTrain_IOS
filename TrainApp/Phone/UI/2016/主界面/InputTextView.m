@@ -85,7 +85,7 @@ static NSUInteger kPlaceHoldermaxChars = 33;
     NSUInteger maxChars = kPlaceHoldermaxChars;
     if([placeHolder length] > maxChars) {
         placeHolder = [placeHolder substringToIndex:maxChars - 8];
-        placeHolder = [[placeHolder stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] stringByAppendingFormat:@"..."];
+        placeHolder = [[placeHolder yx_stringByTrimmingCharacters] stringByAppendingFormat:@"..."];
     }
     _placeHolder = placeHolder;
     [self setNeedsDisplay];

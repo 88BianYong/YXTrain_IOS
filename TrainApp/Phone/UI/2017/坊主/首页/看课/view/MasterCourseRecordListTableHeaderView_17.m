@@ -37,7 +37,7 @@
     }else {
         [self.schemeView reloadMasterScheme:[NSString stringWithFormat:@"需要观看%@门课程",_scheme.scheme.finishNum] withFinishNum:_scheme.process.userFinishNum withAmount:_scheme.scheme.finishNum];
     }
-    if ([_scheme.scheme.descripe stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+    if ([_scheme.scheme.descripe yx_stringByTrimmingCharacters].length > 0) {
         self.explainButton.hidden = NO;
     }else {
         self.explainButton.hidden = YES;

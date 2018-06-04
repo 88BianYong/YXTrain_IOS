@@ -29,7 +29,7 @@
 - (void)setScheme:(MasterManagerSchemeItem *)scheme {
     _scheme = scheme;
     [self.schemeView reloadMasterScheme:[NSString stringWithFormat:@"需要发布%@个活动(手机端暂不支持发布活动)",_scheme.amount] withFinishNum:_scheme.userfinishnum withAmount:_scheme.amount];
-    if ([_scheme.descripe stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+    if ([_scheme.descripe yx_stringByTrimmingCharacters].length > 0) {
         self.explainButton.hidden = NO;
     }else {
         self.explainButton.hidden = YES;

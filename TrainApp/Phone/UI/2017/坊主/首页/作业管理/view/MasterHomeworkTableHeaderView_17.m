@@ -58,7 +58,7 @@
             make.top.equalTo(self.scrollView.mas_top).offset(25.0f);
         }];
     }];
-    if ([self.descripe stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+    if ([self.descripe yx_stringByTrimmingCharacters].length > 0) {
         self.explainButton.hidden = NO;
     }else {
         self.explainButton.hidden = YES;

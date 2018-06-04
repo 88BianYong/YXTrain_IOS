@@ -74,7 +74,7 @@ NSString *const placeholderString = @"发表感想(200字以内)...";
     self.sendButton.enabled = NO;
     [[self.sendButton rac_signalForControlEvents:UIControlEventTouchUpInside]subscribeNext:^(id x) {
         STRONG_SELF
-        if([[self.commentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length]==0) {
+        if([[self.commentTextView.text yx_stringByTrimmingCharacters]length]==0) {
             [self showToast:@"请输入评论内容"];
         }else{
             [self requestForCommentReply:self.commentTextView.text];

@@ -120,7 +120,7 @@
         [self.schemes enumerateObjectsUsingBlock:^(MasterManagerSchemeItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             string = [string stringByAppendingString:obj.descripe];
         }];
-        if ([string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0) {
+        if ([string yx_stringByTrimmingCharacters].length > 0) {
             self.headerView.explainButton.hidden = NO;
         }else {
             self.headerView.explainButton.hidden = YES;
