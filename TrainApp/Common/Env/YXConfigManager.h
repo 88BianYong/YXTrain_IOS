@@ -34,5 +34,9 @@
 @property (nonatomic, strong) NSString<Ignore> *geTuiAppId;
 @property (nonatomic, strong) NSString<Ignore> *geTuiAppKey;
 @property (nonatomic, strong) NSString<Ignore> *geTuiAppServer;
+
+
+@property (nonatomic, strong) NSString<Optional> *qiyu;
+@property (nonatomic, strong) NSString<Optional> *talkingData;
 - (instancetype)initWithConfigFile:(NSString *)filename;
 @end

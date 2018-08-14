@@ -11,6 +11,8 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleDisplayName</key>
 	<string>手机研修</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
@@ -24,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.yanxiu.www</string>
+			<string>com.yanxiu.lst</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.yanxiu.lst</string>

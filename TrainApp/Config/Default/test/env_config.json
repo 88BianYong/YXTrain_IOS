@@ -1,0 +1,12 @@
+{
+    "server":"http://mobile.yanxiu.com/test/api/",
+    "loginServer":"http://u.yanxiu.com/test/",
+    "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
+    "websocketServer":"ws://mobile.yanxiu.com/test/api/websocket",
+    "geTuiAppId" : "gRI05lqFG46hR8ChAOKmY",
+    "geTuiAppKey" : "EPYwuoNr9V7Z6bpGaTDfv9",
+    "geTuiAppServer" : "WrnB1Dzq7c8j4GD8qVqKi6",
+    "qiyu" : "5c8fda4d1143b9639ef44ef089f387dd",
+    "talkingData" : "2D51075BBBC948E36A11E656DABC1775",
+    "mode":"test"
+}

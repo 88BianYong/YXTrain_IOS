@@ -6,6 +6,8 @@
     "geTuiAppId" : "gRI05lqFG46hR8ChAOKmY",
     "geTuiAppKey" : "EPYwuoNr9V7Z6bpGaTDfv9",
     "geTuiAppServer" : "WrnB1Dzq7c8j4GD8qVqKi6",
+    "qiyu" : "5c8fda4d1143b9639ef44ef089f387dd",
+    "talkingData" : "2D51075BBBC948E36A11E656DABC1775",
     "mode":"test",
     "serverList" :{
         "server":"http://mobile.yanxiu.com/v20/api/",
@@ -15,6 +17,8 @@
         "geTuiAppId" : "LdLqS464X99FznE4G3mms8",
         "geTuiAppKey" : "NHNIntWycO85vkc8U6Ctt4",
         "geTuiAppServer" : "uglF0oXvO1AmyAS0Uql9P5",
+        "qiyu" : "5c8fda4d1143b9639ef44ef089f387dd",
+        "talkingData" : "2D51075BBBC948E36A11E656DABC1775",
         "mode":"test"
       }
 }

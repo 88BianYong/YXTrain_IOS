@@ -41,7 +41,7 @@
     [YXNewRecordManager startRegularReport];
     [self addLaunchAppStatisticWithType:YXRecordStartType];
     //七鱼
-    [[QYSDK sharedSDK] registerAppId:@"5c8fda4d1143b9639ef44ef089f387dd" appName:@"手机研修"];
+    [[QYSDK sharedSDK] registerAppId:[LSTSharedInstance sharedInstance].configManager.qiyu appName:@"手机研修"];
     
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -61,7 +61,7 @@
     }];
     [GlobalUtils setDefaultExceptionHandler];
     [TalkingData setExceptionReportEnabled:YES];
-    [YXDataStatisticsManger sessionStarted:@"2D51075BBBC948E36A11E656DABC1775" withChannelId:@"AppStore"];
+    [YXDataStatisticsManger sessionStarted:[LSTSharedInstance sharedInstance].configManager.talkingData withChannelId:@"AppStore"];
     [[LSTSharedInstance sharedInstance].geTuiManger registerGeTui];
     return YES;
 }
