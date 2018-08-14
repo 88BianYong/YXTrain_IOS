@@ -84,7 +84,7 @@
 }
 - (void)copy:(id)sender {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    [pasteboard setString:@"zgjsyxw"];
+    [pasteboard setString:YXTrainWechatName];
     [YXDataStatisticsManger trackEvent:@"官方微信" label:@"成功拷贝官方微信号" parameters:nil];
 }
 #pragma mark -UIMenuControllerWillHideMenuNotification

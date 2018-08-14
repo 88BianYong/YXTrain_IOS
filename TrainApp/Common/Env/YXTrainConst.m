@@ -6,6 +6,16 @@
 //  Copyright © 2016年 niuzhaowang. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+#ifdef TianjinApp
+NSString *const YXTrainWechatName = @"zgjsyxw天津";
+NSString *const YXTrainServiceTelephone = @"400-7799-010飒飒";
+NSString *const YXTrainProtocolAddress= @"http://www.baidu.com";
+#else
+NSString *const YXTrainWechatName = @"zgjsyxw";
+NSString *const YXTrainServiceTelephone = @"400-7799-010";
+NSString *const YXTrainProtocolAddress= @"http://www.yanxiu.com/common/agreement.html";
+#endif
+
 
 const CGFloat YXTrainLeftDrawerWidth = 600.0f;
 

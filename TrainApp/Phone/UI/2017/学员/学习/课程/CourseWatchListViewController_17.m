@@ -60,7 +60,7 @@
         if (self.typeString.integerValue != 0 || model.searchTerm.isLockStudy.boolValue) {
             [self reforeUI];
         }else if (self.filterView.searchTerm == nil) {
-            if (model.searchTerm.selectedMutableArray.count == 0) {
+            if (model.searchTerm.segmentModel.count == 0) {
                 [self reforeUI];
             }else {
                 self.filterView.searchTerm = model.searchTerm;

@@ -36,9 +36,9 @@
     [YXNavigationBarController setup];
     
     [self setupKeyboardManager];
-    
-    // 内部统计
+#ifndef TianjinApp
     [YXNewRecordManager startRegularReport];
+#endif
     [self addLaunchAppStatisticWithType:YXRecordStartType];
     //七鱼
     [[QYSDK sharedSDK] registerAppId:[LSTSharedInstance sharedInstance].configManager.qiyu appName:@"手机研修"];

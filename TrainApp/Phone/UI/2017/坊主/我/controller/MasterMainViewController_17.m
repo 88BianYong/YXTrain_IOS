@@ -240,10 +240,15 @@ UITableViewDataSource
                 break;
             case 1:
             {
+#ifdef TianjinApp
+                YXHelpViewController *vc = [[YXHelpViewController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+#else
                 [[QYSDK sharedSDK] customUIConfig].customerHeadImageUrl = [LSTSharedInstance sharedInstance].userManger.userModel.profile.head;
                 QYSessionViewController *sessionViewController = [[QYSDK sharedSDK] sessionViewController];
                 sessionViewController.sessionTitle = @"手机研修";
                 [self.navigationController pushViewController:sessionViewController animated:YES];
+#endif
             }
                 break;
             case 2:

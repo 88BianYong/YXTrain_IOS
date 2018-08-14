@@ -1,24 +1,12 @@
 {
-    "server":"http://mobile.yanxiu.com/test/api/",
-    "loginServer":"http://u.yanxiu.com/test/",
+    "server": "http://mobile.yanxiu.com/test/api/",
+  "loginServer":"http://u.yanxiu.com/test/tianjin/",
     "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
     "websocketServer":"ws://mobile.yanxiu.com/test/api/websocket",
-    "geTuiAppId" : "gRI05lqFG46hR8ChAOKmY",
-    "geTuiAppKey" : "EPYwuoNr9V7Z6bpGaTDfv9",
-    "geTuiAppServer" : "WrnB1Dzq7c8j4GD8qVqKi6",
+    "geTuiAppId" : "5W7cH077cy8NpZkMqM6pU2",
+    "geTuiAppKey" : "S9mVS0VWSR8GovlisR7nn5",
+    "geTuiAppServer" : "oiI68sKbybAZfeA2eN3oJ9",
     "qiyu" : "5c8fda4d1143b9639ef44ef089f387dd",
-    "talkingData" : "2D51075BBBC948E36A11E656DABC1775",
-    "mode":"test",
-    "serverList" :{
-        "server":"http://mobile.yanxiu.com/v20/api/",
-        "loginServer":"http://u.yanxiu.com/",
-        "uploadServer":"http://upload.yanxiu.com/resource/index.jsp",
-        "websocketServer":"ws://mobile.yanxiu.com/websocket",
-        "geTuiAppId" : "LdLqS464X99FznE4G3mms8",
-        "geTuiAppKey" : "NHNIntWycO85vkc8U6Ctt4",
-        "geTuiAppServer" : "uglF0oXvO1AmyAS0Uql9P5",
-        "qiyu" : "5c8fda4d1143b9639ef44ef089f387dd",
-        "talkingData" : "2D51075BBBC948E36A11E656DABC1775",
-        "mode":"test"
-      }
+    "talkingData" : "E5A5DA92B36E4DF094F816228463DF5B",
+    "mode":"test"
 }

@@ -100,7 +100,7 @@ static const CGFloat YXScrollMargin = 30.f;
     
     self.imageView.image = [UIImage imageNamed:data.imageName];
     self.titleLabel.text = data.title;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:data.content];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:data.content?:@""];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:7];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [data.content length])];

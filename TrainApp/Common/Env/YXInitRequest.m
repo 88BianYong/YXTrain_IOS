@@ -67,6 +67,11 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         _operType = @"app.upload.log";
         _phone = @"";
         _remoteIp = @"";
+#ifdef TianjinApp
+        self.productLine = @"x";
+#else
+        self.productLine = @"0";
+#endif
         _mode = [LSTSharedInstance sharedInstance].configManager.mode;
         self.urlHead = [[LSTSharedInstance sharedInstance].configManager.server stringByAppendingString:@"initialize"];
     }

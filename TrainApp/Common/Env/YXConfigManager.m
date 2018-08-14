@@ -38,8 +38,8 @@
     self.geTuiAppKey = [envDic valueForKey:@"geTuiAppKey"];
     self.geTuiAppServer = [envDic valueForKey:@"geTuiAppServer"];
     
-    self.qiyu = [envDic valueForKey:@"geTuiAppServer"];
-    self.talkingData = [envDic valueForKey:@"geTuiAppServer"];
+    self.qiyu = [envDic valueForKey:@"qiyu"];
+    self.talkingData = [envDic valueForKey:@"talkingData"];
     DDLogDebug(@"server env : %@",envDic);
 }
 

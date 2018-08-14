@@ -213,11 +213,11 @@ static  NSString *const trackEventName = @"常见问题";
     item6.contentString = @"目前手机研修只开放了资源查看的功能，上传暂时未开放，请您到电脑端完成.";
     item6.isOpen = NO;
     
-    YXHelpItem *item7 = [[YXHelpItem alloc] init];
-    item7.titleString = @"我想在手机研修的工作坊发问答可以吗?";
-    item7.contentString = @"目前手机研修的工作坊只开放了工作坊人员查看和资源查看功能，其他功能暂时未开放，请您到电脑端完成.";
-    item7.isOpen = NO;
-    return @[item1,item2,item3,item4,item5,item6,item7];
+//    YXHelpItem *item7 = [[YXHelpItem alloc] init];
+//    item7.titleString = @"我想在手机研修的工作坊发问答可以吗?";
+//    item7.contentString = @"目前手机研修的工作坊只开放了工作坊人员查看和资源查看功能，其他功能暂时未开放，请您到电脑端完成.";
+//    item7.isOpen = NO;
+    return @[item1,item2,item3,item4,item5,item6/*,item7*/];
 }
 
 #pragma mark - button Action

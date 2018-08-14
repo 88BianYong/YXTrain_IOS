@@ -274,4 +274,18 @@ extern const BOOL YXTrainCourseVideoPause;
 extern const BOOL YXTrainCourseVideoPlay;
 
 
+/**
+ *  官方微信
+ */
+extern NSString *const YXTrainWechatName;
+/**
+ *  客服电话
+ */
+extern NSString *const YXTrainServiceTelephone;
+/**
+ *  条款隐私协议地址
+ */
+extern NSString *const YXTrainProtocolAddress;
+
+
 

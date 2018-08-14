@@ -32,7 +32,7 @@ static  NSString *const trackPageName = @"关于我们页面";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"关于我们";
-    _phoneString = @"400-7799-010";
+    _phoneString = YXTrainServiceTelephone;
     [self setupUI];
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -99,7 +99,7 @@ static  NSString *const trackPageName = @"关于我们页面";
     if (indexPath.row == 0) {
         cell.titleLabel.textColor = [UIColor colorWithHexString:@"334466"];
         cell.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-        cell.titleLabel.text = @"官方微信  zgjsyxw";
+        cell.titleLabel.text = [NSString stringWithFormat:@"官方微信  %@",YXTrainWechatName];
         cell.titleLabel.textAlignment = NSTextAlignmentCenter;
         cell.delegate = self;
     }
@@ -155,7 +155,7 @@ static  NSString *const trackPageName = @"关于我们页面";
 
 - (void)goProvisionButtonAction:(UIButton *)sender{
     YXWebViewController *provisionVC = [[YXWebViewController alloc] init];
-    provisionVC.urlString = @"http://www.yanxiu.com/common/agreement.html";
+    provisionVC.urlString = YXTrainProtocolAddress;
     provisionVC.titleString = @"服务条款";
     provisionVC.isUpdatTitle = YES;
     [self.navigationController pushViewController:provisionVC animated:YES];

@@ -50,7 +50,7 @@ extern NSString *const YXInitSuccessNotification;
 @end
 
 @interface YXInitRequest : YXGetRequest
-
+@property (nonatomic, strong) NSString<Optional> *productLine;//产品类型(0：良师通，1：E学E练，默认为0)
 @property (nonatomic, strong) NSString<Optional> *did;        //设备编号
 @property (nonatomic, strong) NSString<Optional> *brand;      //手机品牌
 @property (nonatomic, strong) NSString<Optional> *nettype;    //网络类型，0:mobile，1:wifi

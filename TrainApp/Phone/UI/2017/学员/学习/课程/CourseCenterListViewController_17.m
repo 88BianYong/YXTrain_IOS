@@ -49,7 +49,7 @@
     self.bIsGroupedTableViewStyle = YES;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
-    if (self.conditionItem.isLockStudy.boolValue || self.conditionItem.selectedMutableArray.count == 0) {
+    if (self.conditionItem.isLockStudy.boolValue || self.conditionItem.segmentModel.count == 0) {
         [self reforeUI];
     }
 }
