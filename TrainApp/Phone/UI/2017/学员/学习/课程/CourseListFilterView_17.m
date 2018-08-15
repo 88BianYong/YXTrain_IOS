@@ -219,6 +219,9 @@
 }
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    if (self.searchTerm.segmentModel.count == 0) {
+        return 0;
+    }
     CourseListRequest_17Item_SearchTerm_MockSegment *mockSegment = self.searchTerm.segmentModel[[self.selectedMutableArray[0] integerValue]];
     if (mockSegment.chapter.count > 0) {
         return 2;

@@ -60,8 +60,12 @@
         if (self.typeString.integerValue != 0 || model.searchTerm.isLockStudy.boolValue) {
             [self reforeUI];
         }else if (self.filterView.searchTerm == nil) {
-            self.filterView.searchTerm = model.searchTerm;
-            self.filterView.hidden = NO;
+            if (model.searchTerm.selectedMutableArray.count == 0) {
+                [self reforeUI];
+            }else {
+                self.filterView.searchTerm = model.searchTerm;
+                self.filterView.hidden = NO;
+            }
         }
     };
     self.dataFetcher = fetcher;
