@@ -7528,8 +7528,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_ENTITLEMENTS = TrainApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Lei Cai (M89J3EV65R)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Lei Cai (M89J3EV65R)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xingfu liu (J63VXZH2U7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xingfu liu (J63VXZH2U7)";
 				DEVELOPMENT_TEAM = P8ZS8UUN27;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Common/PrefixHeader.pch";
@@ -7542,7 +7542,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.tianjin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "fca3a814-8844-45cc-b494-b07fe6b9b4c7";
+				PROVISIONING_PROFILE = "8f77b9fe-9179-40bd-ab85-41fdd733e44b";
 				PROVISIONING_PROFILE_SPECIFIER = LiangShiTongTianJin_dev;
 			};
 			name = Debug;

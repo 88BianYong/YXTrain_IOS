@@ -30,7 +30,7 @@
             [self showChooseTrainListView];
         }
     }];
-    self.title = @"手机研修";
+    self.title = YXTrainShowAPPName;
     self.view.backgroundColor = [UIColor colorWithHexString:@"dfe2e6"];
     [self setupUI];
     if ([LSTSharedInstance sharedInstance].floatingViewManager != nil) {

@@ -31,6 +31,8 @@
     }
     else if(IS_IPHONE_6P){
         imageView.image = [UIImage imageNamed:@"1242-2208"];
+    }else if(IS_IPHONE_X){
+        imageView.image = [UIImage imageNamed:@"iphonex"];
     }
     [self.view addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {

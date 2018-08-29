@@ -286,6 +286,18 @@ extern NSString *const YXTrainServiceTelephone;
  *  条款隐私协议地址
  */
 extern NSString *const YXTrainProtocolAddress;
+/*
+*  APP内部名称
+*/
+extern NSString *const YXTrainShowAPPName;
+
+/*
+ *  URL Schemes
+ */
+extern NSString *const YXTrainURLSchemes;
+
+
+
 
 
 

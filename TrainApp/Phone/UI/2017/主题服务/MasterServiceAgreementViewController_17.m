@@ -113,7 +113,7 @@
 - (void)showAlertView {
     WEAK_SELF
     LSTAlertView *alertView = [[LSTAlertView alloc]init];
-    alertView.title = @"确定退出[手机研修]吗?";
+    alertView.title = [NSString stringWithFormat:@"确定退出[%@]吗?",YXTrainShowAPPName];
     alertView.imageName = @"失败icon";
     [alertView addButtonWithTitle:@"取消" style:LSTAlertActionStyle_Cancel action:^{
         STRONG_SELF

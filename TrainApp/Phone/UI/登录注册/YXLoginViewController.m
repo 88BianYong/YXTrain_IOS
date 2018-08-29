@@ -59,7 +59,7 @@
 - (void)scanCodeEntry:(NSURL *)url {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     appDelegate.appDelegateHelper.scanCodeUrl = nil;
-    if ([[url scheme] isEqualToString:@"com.yanxiu.lst"]) {
+    if ([[url scheme] isEqualToString:YXTrainURLSchemes]) {
         NSString *query = [url query];
         NSDictionary *paraDic = [self urlInfo:query];
 
@@ -151,6 +151,11 @@
     
     UIImageView *QRScanImageView = [[UIImageView alloc] init];
     QRScanImageView.image = [UIImage imageNamed:@"QR-icon"];
+#ifdef TianjinApp
+    QRScanImageView.hidden = YES;
+#else
+    QRScanImageView.hidden = NO;
+#endif
     [containerView addSubview:QRScanImageView];
     YXClickedUnderLineButton *QRScanButton = [[YXClickedUnderLineButton alloc] initWithFrame:CGRectZero];
     WEAK_SELF
@@ -178,6 +183,11 @@
         }];
         
     };
+#ifdef TianjinApp
+    QRScanButton.hidden = YES;
+#else
+    QRScanButton.hidden = NO;
+#endif
     [QRScanButton buttonTitileWithName:@"扫描二维码登录"];
     [containerView addSubview:QRScanButton];
     
@@ -189,6 +199,11 @@
             //
         }];
     };
+#ifdef TianjinApp
+    forgetPasswordButton.hidden = YES;
+#else
+    forgetPasswordButton.hidden = NO;
+#endif
     [forgetPasswordButton buttonTitileWithName:@"忘记密码?"];
     [containerView addSubview:forgetPasswordButton];
     

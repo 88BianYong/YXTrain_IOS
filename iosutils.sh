@@ -5,7 +5,7 @@ version="$3"
 buildno="$4"
 echo $edition,$mode,$version,$buildno
 if [ "$edition" == "天津版" ];then
-bundleName="手机研修(天津)"
+bundleName="心里教师"
 bundleIdentifier="com.yanxiu.iphone.traing.tianjin"
 schema="com.yanxiu.tianjin"
 else
@@ -17,7 +17,11 @@ echo $bundleName
 echo $bundleIdentifier
 echo $schema
 
+phoneDescription="需要您的同意,才能添加照片到相册?"
+
 INFOPLIST_FILE="TrainApp/Phone/InfoPhone.plist"
+
+/usr/libexec/PlistBuddy -c "Set :NSPhotoLibraryAddUsageDescription ${bundleName}${phoneDescription}" "$INFOPLIST_FILE"
 
 /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName $bundleName" "$INFOPLIST_FILE"
 
@@ -31,6 +35,9 @@ INFOPLIST_FILE="TrainApp/Phone/InfoPhone.plist"
 sed -i "" "s/PRODUCT_BUNDLE_IDENTIFIER = .*;/PRODUCT_BUNDLE_IDENTIFIER = ${bundleIdentifier};/g" TrainApp/TrainApp.xcodeproj/project.pbxproj
 
 
+
+
+
 rm -rf TrainApp/Common/env_config.json
 if [ "$edition" == "天津版" ];then
     if [ "$mode" == "release" ];then
@@ -42,7 +49,7 @@ else
     if [ "$mode" == "release" ];then
        cp -a TrainApp/Config/Default/release/env_config.json TrainApp/Common/env_config.json
     else
-       cp -a TrainApp/Config/Default/test/env_config.json TrainAppTrainApp/Common/env_config.json
+       cp -a TrainApp/Config/Default/test/env_config.json TrainApp/Common/env_config.json
     fi
 fi
 
@@ -50,6 +57,8 @@ fi
 rm -rf TrainApp/Phone/PhoneImage/Assets.xcassets/AppIcon.appiconset
 rm -rf TrainApp/Phone/PhoneImage/Assets.xcassets/LaunchImage.launchimage
 rm -rf TrainApp/Phone/PhoneImage/Assets.xcassets/启动图
+rm -rf TrainApp/Phone/PhoneImage/Assets.xcassets/手机研修
+rm -rf TrainApp/Phone/PhoneImage/Assets.xcassets/LOGO
 if [ "$edition" == "天津版" ];then
 cp -a TrainApp/AppIcon\&LaunchImage/Tianjin/ TrainApp/Phone/PhoneImage.xcassets/
 else

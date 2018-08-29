@@ -68,7 +68,7 @@ NSString *const YXInitSuccessNotification = @"kYXInitSuccessNotification";
         _phone = @"";
         _remoteIp = @"";
 #ifdef TianjinApp
-        self.productLine = @"x";
+        self.productLine = @"10";
 #else
         self.productLine = @"0";
 #endif

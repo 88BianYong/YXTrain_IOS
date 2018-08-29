@@ -7,13 +7,17 @@
 //
 #import <UIKit/UIKit.h>
 #ifdef TianjinApp
-NSString *const YXTrainWechatName = @"zgjsyxw天津";
-NSString *const YXTrainServiceTelephone = @"400-7799-010飒飒";
-NSString *const YXTrainProtocolAddress= @"http://www.baidu.com";
+NSString *const YXTrainWechatName = @"zgjsyxw";
+NSString *const YXTrainServiceTelephone = @"400-7799-010";
+NSString *const YXTrainProtocolAddress= @"http://www.yanxiu.com/common/agreement.html";
+NSString *const YXTrainShowAPPName = @"心里教师";
+NSString *const YXTrainURLSchemes = @"com.yanxiu.tianjin";
 #else
 NSString *const YXTrainWechatName = @"zgjsyxw";
 NSString *const YXTrainServiceTelephone = @"400-7799-010";
 NSString *const YXTrainProtocolAddress= @"http://www.yanxiu.com/common/agreement.html";
+NSString *const YXTrainShowAPPName= @"手机研修";
+NSString *const YXTrainURLSchemes = @"com.yanxiu.lst";
 #endif
 
 

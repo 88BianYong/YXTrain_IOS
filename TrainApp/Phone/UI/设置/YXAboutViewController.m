@@ -23,7 +23,6 @@ static  NSString *const trackPageName = @"关于我们页面";
     UITableView *_tableView;
     NSString *_phoneString;
 }
-
 @end
 
 @implementation YXAboutViewController
@@ -33,8 +32,39 @@ static  NSString *const trackPageName = @"关于我们页面";
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"关于我们";
     _phoneString = YXTrainServiceTelephone;
+#ifdef TianjinApp
+    [self setupUIForTianJin];
+#else
     [self setupUI];
+#endif
 }
+- (void)setupUIForTianJin{
+    UIImageView *imageView = [[UIImageView alloc] init];
+    if (IS_IPHONE_4) {
+        imageView.image = [UIImage imageNamed:@"关于640"];
+    }
+    else if (IS_IPHONE_5){
+        imageView.image = [UIImage imageNamed:@"关于1136"];
+    }else if (IS_IPHONE_6) {
+        imageView.image = [UIImage imageNamed:@"关于750"];
+    }
+    else if(IS_IPHONE_6P){
+        imageView.image = [UIImage imageNamed:@"关于1242"];
+    }else if(IS_IPHONE_X) {
+        imageView.image = [UIImage imageNamed:@"关于X"];
+    }
+    [self.view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left);
+        make.right.equalTo(self.view.mas_right);
+        make.bottom.equalTo(self.view.mas_bottom);
+        make.top.equalTo(self.view.mas_top).offset(-kVerticalNavBarHeight);
+    }];
+    
+}
+
+
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [YXDataStatisticsManger trackPage:trackPageName withStatus:YES];
