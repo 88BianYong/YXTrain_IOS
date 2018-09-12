@@ -5,7 +5,7 @@ version="$3"
 buildno="$4"
 echo $edition,$mode,$version,$buildno
 if [ "$edition" == "天津版" ];then
-bundleName="心里教师"
+bundleName="心理教师"
 bundleIdentifier="com.yanxiu.iphone.traing.tianjin"
 schema="com.yanxiu.tianjin"
 else

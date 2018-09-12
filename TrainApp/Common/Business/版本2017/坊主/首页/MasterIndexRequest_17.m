@@ -66,6 +66,18 @@
         return @"本地课程";
     }else if ([code isEqualToString:@"PUBLISH_NOTICE"]) {
         return @"发布通知";
+    }else if ([code isEqualToString:@"PUBLISH_PLAN"]) {
+        return @"制订计划";
+    }else if ([code isEqualToString:@"RGANIZATION_GROUP"]) {
+        return @"组织分组";
+    }else if ([code isEqualToString:@"SUPERVISOR_CHECK"]) {
+        return @"督导检查";
+    }else if ([code isEqualToString:@"ORGANIZATION_TESTING"]) {
+        return @"组织测评";
+    }else if ([code isEqualToString:@"COMMENT_TEACHER"]) {
+        return @"评价学员";
+    }else if ([code isEqualToString:@"SUMMARY_REFINE"]) {
+        return @"总结提炼";
     }else {
         return code;
     }

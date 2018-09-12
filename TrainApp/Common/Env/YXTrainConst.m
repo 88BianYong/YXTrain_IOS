@@ -10,7 +10,7 @@
 NSString *const YXTrainWechatName = @"zgjsyxw";
 NSString *const YXTrainServiceTelephone = @"400-7799-010";
 NSString *const YXTrainProtocolAddress= @"http://www.yanxiu.com/common/agreement.html";
-NSString *const YXTrainShowAPPName = @"心里教师";
+NSString *const YXTrainShowAPPName = @"心理教师";
 NSString *const YXTrainURLSchemes = @"com.yanxiu.tianjin";
 #else
 NSString *const YXTrainWechatName = @"zgjsyxw";

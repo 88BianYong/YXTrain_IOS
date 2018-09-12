@@ -65,9 +65,14 @@
     NSInteger studyInteger = [self.searchTerm.selectedMutableArray[1] integerValue];
     if (studyInteger >= 0) {
          CourseListRequest_17Item_SearchTerm_MockSegment *segment = self.searchTerm.segmentModel[segmentInteger];
-        CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = segment.chapter[studyInteger];
-        self.studyContentLabel.text = chapter.chapterName;
-        [mutableArray addObject:chapter.chapterID];
+        if (segment.chapter.count > 0 ) {
+            CourseListRequest_17Item_SearchTerm_MockSegment_Chapter *chapter = segment.chapter[studyInteger];
+            self.studyContentLabel.text = chapter.chapterName;
+            [mutableArray addObject:chapter.chapterID];
+        }else {
+          [mutableArray addObject:@"0"];
+        }
+
     }else {
         self.studyContentLabel.text = @"请选择";
         [mutableArray addObject:@"0"];
