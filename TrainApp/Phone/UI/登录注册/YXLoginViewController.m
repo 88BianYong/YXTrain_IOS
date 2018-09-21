@@ -175,7 +175,12 @@
                         //
                     }];
                     [alertView addButtonWithTitle:@"确定" action:^{
-                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=Privacy&path=Photos"]];
+                        NSString *version= [UIDevice currentDevice].systemVersion;
+                        if(version.doubleValue >=10.0){
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString] options:@{} completionHandler:nil];
+                        }else {
+                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                        }
                     }];
                     [alertView show];
                 }
