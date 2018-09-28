@@ -7569,8 +7569,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.tianjin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = $APP_PROFILE;
-				PROVISIONING_PROFILE_SPECIFIER = $APP_PROFILE;
+				PROVISIONING_PROFILE = "a90bccfb-b29a-4291-bab4-201038b7be6a";
+				PROVISIONING_PROFILE_SPECIFIER = LiangShiTongTianJin_rel;
 			};
 			name = Release;
 		};
