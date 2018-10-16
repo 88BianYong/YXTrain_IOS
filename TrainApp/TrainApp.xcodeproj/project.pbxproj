@@ -7540,10 +7540,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TalkingData_Analytics_iOS_SDK_V2.2.36",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.tianjin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8f77b9fe-9179-40bd-ab85-41fdd733e44b";
-				PROVISIONING_PROFILE_SPECIFIER = LiangShiTongTianJin_dev;
+				PROVISIONING_PROFILE_SPECIFIER = LST_Dev;
 			};
 			name = Debug;
 		};
@@ -7567,7 +7567,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TalkingData_Analytics_iOS_SDK_V2.2.36",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.tianjin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a90bccfb-b29a-4291-bab4-201038b7be6a";
 				PROVISIONING_PROFILE_SPECIFIER = LiangShiTongTianJin_rel;
@@ -7580,7 +7580,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TrainAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.tianjin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrainApp.app/TrainApp";
 			};
@@ -7592,7 +7592,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = TrainAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.tianjin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrainApp.app/TrainApp";
 			};
@@ -7604,7 +7604,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: xingfu liu (J63VXZH2U7)";
 				INFOPLIST_FILE = TrainAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.tianjin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "75708598-3471-4f46-aeb5-f045020c67aa";
 				TEST_TARGET_NAME = TrainApp;
@@ -7616,7 +7616,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = TrainAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.tianjin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanxiu.iphone.traing.teacher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "75708598-3471-4f46-aeb5-f045020c67aa";
 				TEST_TARGET_NAME = TrainApp;

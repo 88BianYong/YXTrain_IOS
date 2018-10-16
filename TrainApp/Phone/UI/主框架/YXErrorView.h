@@ -12,4 +12,8 @@
 @property (nonatomic, strong) void(^retryBlock)(void);
 //半屏视频界面专用
 @property (nonatomic, assign) BOOL isVideo;
+
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *subTitle;
+@property (nonatomic, strong) NSString *imageName;
 @end

@@ -170,6 +170,7 @@
 @property (nonatomic, copy) NSString<Optional> *role;
 @property (nonatomic, copy) NSString<Optional> *serverRole;
 
+@property (nonatomic, copy) NSString<Optional> *isPayStatus;  //0正常流程   1 强制缴费   2 需要缴费但可以继续学习
 @end
 
 @interface ExamineDetailRequest_17 : YXGetRequest

@@ -30,6 +30,8 @@
 @property (nonatomic, strong) ExamineDetailRequest_17Item *examineDetailItem;
 @property (nonatomic, strong) ExamineToolStatusRequest_17 *toolStatusRequest;
 
+@property (nonatomic, strong) YXErrorView *notPayView;
+
 @end
 
 @implementation YXLearningViewController_Default17
@@ -124,6 +126,21 @@
     self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         STRONG_SELF
         [self requestForExamineDetail];
+    }];
+    
+    self.notPayView = [[YXErrorView alloc] init];
+    self.notPayView.title = @"业务异常";
+    self.notPayView.subTitle = @"您需要线上支付培训费用,为了不影响学习请您尽快去电脑平台端支付";
+    self.notPayView.imageName = @"业务异常";
+    self.notPayView.hidden = YES;
+    self.notPayView.retryBlock = ^{
+        STRONG_SELF
+        [self startLoading];
+        [self requestForExamineDetail];
+    };
+    [self.view addSubview:self.notPayView];
+    [self.notPayView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
     }];
 }
 - (void)setupLayout {
@@ -264,7 +281,12 @@
     };
     return cell;
 }
-
+//isPay   是否开启缴费
+//isForce  是否强制缴费
+//payCount   需要支付的订单数
+//
+//isPay==1 && payCount>0   弹出提示缴费层
+//isForce==1               不能继续学习
 #pragma mark - request
 - (void)requestForExamineDetail {
     ExamineDetailRequest_17 *request = [[ExamineDetailRequest_17 alloc] init];
@@ -276,6 +298,7 @@
     [request startRequestWithRetClass:[ExamineDetailRequest_17Item class] andCompleteBlock:^(id retItem, NSError *error, BOOL isMock) {
         STRONG_SELF
         [self stopLoading];
+        self.notPayView.hidden = YES;
         [self.tableView.mj_header endRefreshing];
         UnhandledRequestData *data = [[UnhandledRequestData alloc]init];
         data.requestDataExist = YES;
@@ -284,7 +307,24 @@
         if ([self handleRequestData:data]) {
             return;
         }
-        self.examineDetailItem = retItem;
+        ExamineDetailRequest_17Item *item = retItem;
+        if (item.isPayStatus.integerValue == 1) {
+             self.notPayView.hidden = NO;
+            return;
+        }
+        if (item.isPayStatus.integerValue == 2) {
+            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"您需要线上支付培训费用，为了不影响学习请您尽快去电脑平台端支付" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *goAction = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                STRONG_SELF
+
+            }];
+            [alertVC addAction:goAction];
+            [self presentViewController:alertVC animated:YES completion:nil];
+        }
+        
+ //0正常流程   1 强制缴费   2 需要缴费但可以继续学习
+        
+        self.examineDetailItem = item;
     }];
     self.examineDetailRequest = request;
 }

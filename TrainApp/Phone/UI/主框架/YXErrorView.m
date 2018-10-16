@@ -56,8 +56,8 @@
     self.subTitleLabel.text = @"刷新重试";
     [self addSubview:self.subTitleLabel];
     [self.subTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
+        make.left.mas_equalTo(20);
+        make.right.mas_equalTo(-20);
         make.top.mas_equalTo(self.titleLabel.mas_bottom).mas_offset(10);
     }];
     self.retryButton = [[UIButton alloc]init];
@@ -75,7 +75,23 @@
         make.size.mas_equalTo(CGSizeMake(115, 33));
     }];
 }
+- (void)setTitle:(NSString *)title{
+    _title = title;
+    self.titleLabel.text = title;
+}
 
+- (void)setSubTitle:(NSString *)subTitle{
+    _subTitle = subTitle;
+    self.subTitleLabel.text = subTitle;
+}
+
+- (void)setImageName:(NSString *)imageName{
+    _imageName = imageName;
+    self.imageView.image = [UIImage imageNamed:imageName];
+    [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.size.mas_equalTo(CGSizeMake(130, 130));
+    }];
+}
 - (void)btnAction{
     BLOCK_EXEC(self.retryBlock);
 }
